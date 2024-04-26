@@ -26,22 +26,36 @@
 
 import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
 
+/**
+ * Describes the file extra/comments.proto.
+ */
 export const fileDesc_extra_comments = /*@__PURE__*/
   fileDesc("ChRleHRyYS9jb21tZW50cy5wcm90bxIEc3BlYyKiAQoTTWVzc2FnZVdpdGhDb21tZW50cxILCgNmb28YASABKAkSDwoFdmFsdWUYAiABKAVIABIPCgVlcnJvchgDIAEoCUgAEicKH3RoaXNfZmllbGRfaGFzX2FuX2VtcHR5X2NvbW1lbnQYBCABKAkSKQoYdGhpc19maWVsZF9pc19kZXByZWNhdGVkGAUgASgJQgIYAVIDc2RmQggKBnJlc3VsdCIZChdFbXB0eU1lc3NhZ2VXaXRoQ29tbWVudCJpChRHb29nbGVDb21tZW50RXhhbXBsZRILCgNmb28YASABKAUSCwoDYmFyGAIgASgFEgsKA2JhehgDIAEoCRILCgNxdXgYBCABKAESDQoFY29yZ2UYBSABKAkSDgoGZ3JhdWx0GAYgASgFKh0KEEVudW1XaXRoQ29tbWVudHMSCQoFVkFMVUUQACpnChlEZXByZWNhdGVkRW51bVdpdGhDb21tZW50EiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQRAAEiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQhABGgIYASphChdEZXByZWNhdGVkRW51bU5vQ29tbWVudBIgChxERVBSRUNBVEVEX0VOVU1fTk9fQ09NTUVOVF9BEAASIAocREVQUkVDQVRFRF9FTlVNX05PX0NPTU1FTlRfQhABGgIYAWIGcHJvdG8z");
 
-// Describes the message spec.MessageWithComments. Use `create(MessageWithCommentsDesc)` to create a new MessageWithComments.
+/**
+ * Describes the message spec.MessageWithComments.
+ * Use `create(MessageWithCommentsDesc)` to create a new message.
+ */
 export const MessageWithCommentsDesc = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 0);
 
-// Describes the message spec.EmptyMessageWithComment. Use `create(EmptyMessageWithCommentDesc)` to create a new EmptyMessageWithComment.
+/**
+ * Describes the message spec.EmptyMessageWithComment.
+ * Use `create(EmptyMessageWithCommentDesc)` to create a new message.
+ */
 export const EmptyMessageWithCommentDesc = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 1);
 
-// Describes the message spec.GoogleCommentExample. Use `create(GoogleCommentExampleDesc)` to create a new GoogleCommentExample.
+/**
+ * Describes the message spec.GoogleCommentExample.
+ * Use `create(GoogleCommentExampleDesc)` to create a new message.
+ */
 export const GoogleCommentExampleDesc = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 2);
 
-// Describes the enum spec.EnumWithComments.
+/**
+ * Describes the enum spec.EnumWithComments.
+ */
 export const EnumWithCommentsDesc = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 0);
 
@@ -55,7 +69,10 @@ export const EnumWithCommentsDesc = /*@__PURE__*/
 export const EnumWithComments = /*@__PURE__*/
   tsEnum(EnumWithCommentsDesc);
 
-// Describes the enum spec.DeprecatedEnumWithComment.
+/**
+ * Describes the enum spec.DeprecatedEnumWithComment.
+ * @deprecated
+ */
 export const DeprecatedEnumWithCommentDesc = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 1);
 
@@ -68,7 +85,10 @@ export const DeprecatedEnumWithCommentDesc = /*@__PURE__*/
 export const DeprecatedEnumWithComment = /*@__PURE__*/
   tsEnum(DeprecatedEnumWithCommentDesc);
 
-// Describes the enum spec.DeprecatedEnumNoComment.
+/**
+ * Describes the enum spec.DeprecatedEnumNoComment.
+ * @deprecated
+ */
 export const DeprecatedEnumNoCommentDesc = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 2);
 

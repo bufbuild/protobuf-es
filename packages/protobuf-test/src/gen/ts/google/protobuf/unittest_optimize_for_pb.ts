@@ -28,6 +28,9 @@ import type { ForeignMessage } from "./unittest_pb.js";
 import { fileDesc_google_protobuf_unittest } from "./unittest_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_optimize_for.proto.
+ */
 export const fileDesc_google_protobuf_unittest_optimize_for: GenDescFile = /*@__PURE__*/
   fileDesc("Citnb29nbGUvcHJvdG9idWYvdW5pdHRlc3Rfb3B0aW1pemVfZm9yLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCLqAgoUVGVzdE9wdGltaXplZEZvclNpemUSCQoBaRgBIAEoBRIuCgNtc2cYEyABKAsyIS5wcm90b2J1Zl91bml0dGVzdC5Gb3JlaWduTWVzc2FnZRIXCg1pbnRlZ2VyX2ZpZWxkGAIgASgFSAASFgoMc3RyaW5nX2ZpZWxkGAMgASgJSAAqCQjoBxCAgICAAjJPCg50ZXN0X2V4dGVuc2lvbhInLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RPcHRpbWl6ZWRGb3JTaXplGNIJIAEoBVINdGVzdEV4dGVuc2lvbjKCAQoPdGVzdF9leHRlbnNpb24yEicucHJvdG9idWZfdW5pdHRlc3QuVGVzdE9wdGltaXplZEZvclNpemUY0wkgASgLMi8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkT3B0aW1pemVkRm9yU2l6ZVIOdGVzdEV4dGVuc2lvbjJCBQoDZm9vIikKHFRlc3RSZXF1aXJlZE9wdGltaXplZEZvclNpemUSCQoBeBgBIAIoBSJaChxUZXN0T3B0aW9uYWxPcHRpbWl6ZWRGb3JTaXplEjoKAW8YASABKAsyLy5wcm90b2J1Zl91bml0dGVzdC5UZXN0UmVxdWlyZWRPcHRpbWl6ZWRGb3JTaXplQgJIAg", [fileDesc_google_protobuf_unittest]);
 
@@ -63,8 +66,10 @@ export type TestOptimizedForSize = Message<"protobuf_unittest.TestOptimizedForSi
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message protobuf_unittest.TestOptimizedForSize.
-// Use `create(TestOptimizedForSizeDesc)` to create a new TestOptimizedForSize.
+/**
+ * Describes the message protobuf_unittest.TestOptimizedForSize.
+ * Use `create(TestOptimizedForSizeDesc)` to create a new message.
+ */
 export const TestOptimizedForSizeDesc: GenDescMessage<TestOptimizedForSize> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_optimize_for, 0);
 
@@ -90,8 +95,10 @@ export type TestRequiredOptimizedForSize = Message<"protobuf_unittest.TestRequir
   x: number;
 };
 
-// Describes the message protobuf_unittest.TestRequiredOptimizedForSize.
-// Use `create(TestRequiredOptimizedForSizeDesc)` to create a new TestRequiredOptimizedForSize.
+/**
+ * Describes the message protobuf_unittest.TestRequiredOptimizedForSize.
+ * Use `create(TestRequiredOptimizedForSizeDesc)` to create a new message.
+ */
 export const TestRequiredOptimizedForSizeDesc: GenDescMessage<TestRequiredOptimizedForSize> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_optimize_for, 1);
 
@@ -105,8 +112,10 @@ export type TestOptionalOptimizedForSize = Message<"protobuf_unittest.TestOption
   o?: TestRequiredOptimizedForSize;
 };
 
-// Describes the message protobuf_unittest.TestOptionalOptimizedForSize.
-// Use `create(TestOptionalOptimizedForSizeDesc)` to create a new TestOptionalOptimizedForSize.
+/**
+ * Describes the message protobuf_unittest.TestOptionalOptimizedForSize.
+ * Use `create(TestOptionalOptimizedForSizeDesc)` to create a new message.
+ */
 export const TestOptionalOptimizedForSizeDesc: GenDescMessage<TestOptionalOptimizedForSize> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_optimize_for, 2);
 

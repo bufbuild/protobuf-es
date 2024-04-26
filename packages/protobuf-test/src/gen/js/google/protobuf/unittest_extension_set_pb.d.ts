@@ -25,6 +25,9 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_extension_set.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_extension_set: GenDescFile;
 
 /**
@@ -35,7 +38,10 @@ export declare const fileDesc_google_protobuf_unittest_extension_set: GenDescFil
 export declare type TestExtensionSet = Message<"protobuf_unittest.TestExtensionSet"> & {
 };
 
-// Describes the message protobuf_unittest.TestExtensionSet. Use `create(TestExtensionSetDesc)` to create a new TestExtensionSet.
+/**
+ * Describes the message protobuf_unittest.TestExtensionSet.
+ * Use `create(TestExtensionSetDesc)` to create a new message.
+ */
 export declare const TestExtensionSetDesc: GenDescMessage<TestExtensionSet>;
 
 /**
@@ -48,6 +54,9 @@ export declare type TestExtensionSetContainer = Message<"protobuf_unittest.TestE
   extension?: TestExtensionSet;
 };
 
-// Describes the message protobuf_unittest.TestExtensionSetContainer. Use `create(TestExtensionSetContainerDesc)` to create a new TestExtensionSetContainer.
+/**
+ * Describes the message protobuf_unittest.TestExtensionSetContainer.
+ * Use `create(TestExtensionSetContainerDesc)` to create a new message.
+ */
 export declare const TestExtensionSetContainerDesc: GenDescMessage<TestExtensionSetContainer>;
 

@@ -19,6 +19,9 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/msg-maps.proto.
+ */
 export declare const fileDesc_extra_msg_maps: GenDescFile;
 
 /**
@@ -96,7 +99,10 @@ export declare type MapsMessage = Message<"spec.MapsMessage"> & {
   int64EnuField: { [key: string]: MapsEnum };
 };
 
-// Describes the message spec.MapsMessage. Use `create(MapsMessageDesc)` to create a new MapsMessage.
+/**
+ * Describes the message spec.MapsMessage.
+ * Use `create(MapsMessageDesc)` to create a new message.
+ */
 export declare const MapsMessageDesc: GenDescMessage<MapsMessage>;
 
 /**
@@ -119,6 +125,8 @@ export enum MapsEnum {
   NO = 2,
 }
 
-// Describes the enum spec.MapsEnum.
+/**
+ * Describes the enum spec.MapsEnum.
+ */
 export declare const MapsEnumDesc: GenDescEnum<MapsEnum>;
 

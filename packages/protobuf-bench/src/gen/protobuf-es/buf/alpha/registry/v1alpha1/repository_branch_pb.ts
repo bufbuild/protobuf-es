@@ -22,6 +22,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/repository_branch.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_repository_branch: GenDescFile = /*@__PURE__*/
   fileDesc("CjNidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcmVwb3NpdG9yeV9icmFuY2gucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSJ0ChBSZXBvc2l0b3J5QnJhbmNoEgoKAmlkGAEgASgJEi8KC2NyZWF0ZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRuYW1lGAQgASgJEhUKDXJlcG9zaXRvcnlfaWQYBSABKAkiWwodQ3JlYXRlUmVwb3NpdG9yeUJyYW5jaFJlcXVlc3QSFQoNcmVwb3NpdG9yeV9pZBgBIAEoCRIMCgRuYW1lGAIgASgJEhUKDXBhcmVudF9icmFuY2gYAyABKAkiagoeQ3JlYXRlUmVwb3NpdG9yeUJyYW5jaFJlc3BvbnNlEkgKEXJlcG9zaXRvcnlfYnJhbmNoGAEgASgLMi0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlCcmFuY2gibgodTGlzdFJlcG9zaXRvcnlCcmFuY2hlc1JlcXVlc3QSFQoNcmVwb3NpdG9yeV9pZBgBIAEoCRIRCglwYWdlX3NpemUYAiABKA0SEgoKcGFnZV90b2tlbhgDIAEoCRIPCgdyZXZlcnNlGAQgASgIIoUBCh5MaXN0UmVwb3NpdG9yeUJyYW5jaGVzUmVzcG9uc2USSgoTcmVwb3NpdG9yeV9icmFuY2hlcxgBIAMoCzItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5QnJhbmNoEhcKD25leHRfcGFnZV90b2tlbhgCIAEoCTLBAgoXUmVwb3NpdG9yeUJyYW5jaFNlcnZpY2USkQEKFkNyZWF0ZVJlcG9zaXRvcnlCcmFuY2gSOi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuQ3JlYXRlUmVwb3NpdG9yeUJyYW5jaFJlcXVlc3QaOy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuQ3JlYXRlUmVwb3NpdG9yeUJyYW5jaFJlc3BvbnNlEpEBChZMaXN0UmVwb3NpdG9yeUJyYW5jaGVzEjouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3J5QnJhbmNoZXNSZXF1ZXN0GjsuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3J5QnJhbmNoZXNSZXNwb25zZWIGcHJvdG8z", [fileDesc_google_protobuf_timestamp]);
 
@@ -60,8 +63,10 @@ export type RepositoryBranch = Message<"buf.alpha.registry.v1alpha1.RepositoryBr
   repositoryId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RepositoryBranch.
-// Use `create(RepositoryBranchDesc)` to create a new RepositoryBranch.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RepositoryBranch.
+ * Use `create(RepositoryBranchDesc)` to create a new message.
+ */
 export const RepositoryBranchDesc: GenDescMessage<RepositoryBranch> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_branch, 0);
 
@@ -92,8 +97,10 @@ export type CreateRepositoryBranchRequest = Message<"buf.alpha.registry.v1alpha1
   parentBranch: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryBranchRequest.
-// Use `create(CreateRepositoryBranchRequestDesc)` to create a new CreateRepositoryBranchRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryBranchRequest.
+ * Use `create(CreateRepositoryBranchRequestDesc)` to create a new message.
+ */
 export const CreateRepositoryBranchRequestDesc: GenDescMessage<CreateRepositoryBranchRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_branch, 1);
 
@@ -107,8 +114,10 @@ export type CreateRepositoryBranchResponse = Message<"buf.alpha.registry.v1alpha
   repositoryBranch?: RepositoryBranch;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryBranchResponse.
-// Use `create(CreateRepositoryBranchResponseDesc)` to create a new CreateRepositoryBranchResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryBranchResponse.
+ * Use `create(CreateRepositoryBranchResponseDesc)` to create a new message.
+ */
 export const CreateRepositoryBranchResponseDesc: GenDescMessage<CreateRepositoryBranchResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_branch, 2);
 
@@ -141,8 +150,10 @@ export type ListRepositoryBranchesRequest = Message<"buf.alpha.registry.v1alpha1
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoryBranchesRequest.
-// Use `create(ListRepositoryBranchesRequestDesc)` to create a new ListRepositoryBranchesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoryBranchesRequest.
+ * Use `create(ListRepositoryBranchesRequestDesc)` to create a new message.
+ */
 export const ListRepositoryBranchesRequestDesc: GenDescMessage<ListRepositoryBranchesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_branch, 3);
 
@@ -163,8 +174,10 @@ export type ListRepositoryBranchesResponse = Message<"buf.alpha.registry.v1alpha
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoryBranchesResponse.
-// Use `create(ListRepositoryBranchesResponseDesc)` to create a new ListRepositoryBranchesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoryBranchesResponse.
+ * Use `create(ListRepositoryBranchesResponseDesc)` to create a new message.
+ */
 export const ListRepositoryBranchesResponseDesc: GenDescMessage<ListRepositoryBranchesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_branch, 4);
 

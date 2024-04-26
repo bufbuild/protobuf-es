@@ -19,26 +19,43 @@
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file google/protobuf/unittest_retention.proto.
+ */
 export const fileDesc_google_protobuf_unittest_retention = /*@__PURE__*/
   fileDesc("Cihnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfcmV0ZW50aW9uLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCJwCg5PcHRpb25zTWVzc2FnZRITCgtwbGFpbl9maWVsZBgBIAEoBRIkChdydW50aW1lX3JldGVudGlvbl9maWVsZBgCIAEoBUIDiAEBEiMKFnNvdXJjZV9yZXRlbnRpb25fZmllbGQYAyABKAVCA4gBAiIWCghFeHRlbmRlZSoECAEQAioECAIQAyLmAQoPVG9wTGV2ZWxNZXNzYWdlEhUKAWYYASABKAJCCpq67YQPBAgBEAISCwoBaRgCIAEoA0gAGhsKDU5lc3RlZE1lc3NhZ2U6CprF3oUPBAgBEAIiLAoKTmVzdGVkRW51bRISCg5ORVNURURfVU5LTk9XThAAGgr6nqqEDwQIARACKhAIChBlGgqimN+FDwQIARACMjUKAXMSGy5wcm90b2J1Zl91bml0dGVzdC5FeHRlbmRlZRgCIAEoCUIKmrrthA8ECAEQAlIBczoKmsXehQ8ECAEQAkIPCgFvEgqK27eEDwQIARACKj0KDFRvcExldmVsRW51bRIhChFUT1BfTEVWRUxfVU5LTk9XThAAGgrS3amEDwQIARACGgr6nqqEDwQIARACMnQKB1NlcnZpY2USXQoHRG9TdHVmZhIiLnByb3RvYnVmX3VuaXR0ZXN0LlRvcExldmVsTWVzc2FnZRoiLnByb3RvYnVmX3VuaXR0ZXN0LlRvcExldmVsTWVzc2FnZSIK4q74gw8ECAEQAhoK6oeLhA8ECAEQAjpDCgxwbGFpbl9vcHRpb24SHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMYxrXs8AEgASgFUgtwbGFpbk9wdGlvbjpfChhydW50aW1lX3JldGVudGlvbl9vcHRpb24SHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMYnJLp8AEgASgFQgOIAQFSFnJ1bnRpbWVSZXRlbnRpb25PcHRpb246XQoXc291cmNlX3JldGVudGlvbl9vcHRpb24SHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY1Kzf8AEgASgFQgOIAQJSFXNvdXJjZVJldGVudGlvbk9wdGlvbjpkCgtmaWxlX29wdGlvbhIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxiA8t7wASABKAsyIS5wcm90b2J1Zl91bml0dGVzdC5PcHRpb25zTWVzc2FnZVIKZmlsZU9wdGlvbjpuChByZXBlYXRlZF9vcHRpb25zEhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGJL+2/ABIAMoCzIhLnByb3RvYnVmX3VuaXR0ZXN0Lk9wdGlvbnNNZXNzYWdlUg9yZXBlYXRlZE9wdGlvbnM6gwEKFmV4dGVuc2lvbl9yYW5nZV9vcHRpb24SJi5nb29nbGUucHJvdG9idWYuRXh0ZW5zaW9uUmFuZ2VPcHRpb25zGITz2/ABIAEoCzIhLnByb3RvYnVmX3VuaXR0ZXN0Lk9wdGlvbnNNZXNzYWdlUhRleHRlbnNpb25SYW5nZU9wdGlvbjptCg5tZXNzYWdlX29wdGlvbhIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjT6NvwASABKAsyIS5wcm90b2J1Zl91bml0dGVzdC5PcHRpb25zTWVzc2FnZVINbWVzc2FnZU9wdGlvbjpnCgxmaWVsZF9vcHRpb24SHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGKPXzfABIAEoCzIhLnByb3RvYnVmX3VuaXR0ZXN0Lk9wdGlvbnNNZXNzYWdlUgtmaWVsZE9wdGlvbjpnCgxvbmVvZl9vcHRpb24SHS5nb29nbGUucHJvdG9idWYuT25lb2ZPcHRpb25zGLH7xvABIAEoCzIhLnByb3RvYnVmX3VuaXR0ZXN0Lk9wdGlvbnNNZXNzYWdlUgtvbmVvZk9wdGlvbjpkCgtlbnVtX29wdGlvbhIcLmdvb2dsZS5wcm90b2J1Zi5FbnVtT3B0aW9ucxjvo8XwASABKAsyIS5wcm90b2J1Zl91bml0dGVzdC5PcHRpb25zTWVzc2FnZVIKZW51bU9wdGlvbjp0ChFlbnVtX2VudHJ5X29wdGlvbhIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGNqbxfABIAEoCzIhLnByb3RvYnVmX3VuaXR0ZXN0Lk9wdGlvbnNNZXNzYWdlUg9lbnVtRW50cnlPcHRpb246bQoOc2VydmljZV9vcHRpb24SHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMY/bDB8AEgASgLMiEucHJvdG9idWZfdW5pdHRlc3QuT3B0aW9uc01lc3NhZ2VSDXNlcnZpY2VPcHRpb246agoNbWV0aG9kX29wdGlvbhIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGOyFv/ABIAEoCzIhLnByb3RvYnVmX3VuaXR0ZXN0Lk9wdGlvbnNNZXNzYWdlUgxtZXRob2RPcHRpb246NQoBaRIbLnByb3RvYnVmX3VuaXR0ZXN0LkV4dGVuZGVlGAEgASgFQgqauu2EDwQIARACUgFpQjOqAhBQcm90b2J1ZlVuaXR0ZXN0kvHfhQ8ECAEQAoKQ94UPBAgBEALgkcmGDwKwrOOGDwE", [fileDesc_google_protobuf_descriptor]);
 
-// Describes the message protobuf_unittest.OptionsMessage. Use `create(OptionsMessageDesc)` to create a new OptionsMessage.
+/**
+ * Describes the message protobuf_unittest.OptionsMessage.
+ * Use `create(OptionsMessageDesc)` to create a new message.
+ */
 export const OptionsMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_retention, 0);
 
-// Describes the message protobuf_unittest.Extendee. Use `create(ExtendeeDesc)` to create a new Extendee.
+/**
+ * Describes the message protobuf_unittest.Extendee.
+ * Use `create(ExtendeeDesc)` to create a new message.
+ */
 export const ExtendeeDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_retention, 1);
 
-// Describes the message protobuf_unittest.TopLevelMessage. Use `create(TopLevelMessageDesc)` to create a new TopLevelMessage.
+/**
+ * Describes the message protobuf_unittest.TopLevelMessage.
+ * Use `create(TopLevelMessageDesc)` to create a new message.
+ */
 export const TopLevelMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_retention, 2);
 
-// Describes the message protobuf_unittest.TopLevelMessage.NestedMessage. Use `create(TopLevelMessage_NestedMessageDesc)` to create a new TopLevelMessage_NestedMessage.
+/**
+ * Describes the message protobuf_unittest.TopLevelMessage.NestedMessage.
+ * Use `create(TopLevelMessage_NestedMessageDesc)` to create a new message.
+ */
 export const TopLevelMessage_NestedMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_retention, 2, 0);
 
-// Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
+/**
+ * Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
+ */
 export const TopLevelMessage_NestedEnumDesc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_retention, 2, 0);
 
@@ -54,7 +71,9 @@ export const TopLevelMessage_NestedEnum = /*@__PURE__*/
 export const TopLevelMessage_s = /*@__PURE__*/
   extDesc(fileDesc_google_protobuf_unittest_retention, 2, 0);
 
-// Describes the enum protobuf_unittest.TopLevelEnum.
+/**
+ * Describes the enum protobuf_unittest.TopLevelEnum.
+ */
 export const TopLevelEnumDesc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_retention, 0);
 

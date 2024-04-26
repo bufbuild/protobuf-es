@@ -19,6 +19,9 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/example.proto.
+ */
 export declare const fileDesc_extra_example: GenDescFile;
 
 /**
@@ -56,6 +59,9 @@ export declare type User = Message<"docs.User"> & {
   projects: { [key: string]: string };
 };
 
-// Describes the message docs.User. Use `create(UserDesc)` to create a new User.
+/**
+ * Describes the message docs.User.
+ * Use `create(UserDesc)` to create a new message.
+ */
 export declare const UserDesc: GenDescMessage<User>;
 

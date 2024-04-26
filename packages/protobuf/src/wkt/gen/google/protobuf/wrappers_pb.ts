@@ -21,6 +21,9 @@ import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
+/**
+ * Describes the file google/protobuf/wrappers.proto.
+ */
 export const fileDesc_google_protobuf_wrappers: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5nb29nbGUvcHJvdG9idWYvd3JhcHBlcnMucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIcCgtEb3VibGVWYWx1ZRINCgV2YWx1ZRgBIAEoASIbCgpGbG9hdFZhbHVlEg0KBXZhbHVlGAEgASgCIhsKCkludDY0VmFsdWUSDQoFdmFsdWUYASABKAMiHAoLVUludDY0VmFsdWUSDQoFdmFsdWUYASABKAQiGwoKSW50MzJWYWx1ZRINCgV2YWx1ZRgBIAEoBSIcCgtVSW50MzJWYWx1ZRINCgV2YWx1ZRgBIAEoDSIaCglCb29sVmFsdWUSDQoFdmFsdWUYASABKAgiHAoLU3RyaW5nVmFsdWUSDQoFdmFsdWUYASABKAkiGwoKQnl0ZXNWYWx1ZRINCgV2YWx1ZRgBIAEoDEKDAQoTY29tLmdvb2dsZS5wcm90b2J1ZkINV3JhcHBlcnNQcm90b1ABWjFnb29nbGUuZ29sYW5nLm9yZy9wcm90b2J1Zi90eXBlcy9rbm93bi93cmFwcGVyc3Bi+AEBogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
@@ -40,8 +43,10 @@ export type DoubleValue = Message<"google.protobuf.DoubleValue"> & {
   value: number;
 };
 
-// Describes the message google.protobuf.DoubleValue.
-// Use `create(DoubleValueDesc)` to create a new DoubleValue.
+/**
+ * Describes the message google.protobuf.DoubleValue.
+ * Use `create(DoubleValueDesc)` to create a new message.
+ */
 export const DoubleValueDesc: GenDescMessage<DoubleValue> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 0);
 
@@ -61,8 +66,10 @@ export type FloatValue = Message<"google.protobuf.FloatValue"> & {
   value: number;
 };
 
-// Describes the message google.protobuf.FloatValue.
-// Use `create(FloatValueDesc)` to create a new FloatValue.
+/**
+ * Describes the message google.protobuf.FloatValue.
+ * Use `create(FloatValueDesc)` to create a new message.
+ */
 export const FloatValueDesc: GenDescMessage<FloatValue> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 1);
 
@@ -82,8 +89,10 @@ export type Int64Value = Message<"google.protobuf.Int64Value"> & {
   value: bigint;
 };
 
-// Describes the message google.protobuf.Int64Value.
-// Use `create(Int64ValueDesc)` to create a new Int64Value.
+/**
+ * Describes the message google.protobuf.Int64Value.
+ * Use `create(Int64ValueDesc)` to create a new message.
+ */
 export const Int64ValueDesc: GenDescMessage<Int64Value> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 2);
 
@@ -103,8 +112,10 @@ export type UInt64Value = Message<"google.protobuf.UInt64Value"> & {
   value: bigint;
 };
 
-// Describes the message google.protobuf.UInt64Value.
-// Use `create(UInt64ValueDesc)` to create a new UInt64Value.
+/**
+ * Describes the message google.protobuf.UInt64Value.
+ * Use `create(UInt64ValueDesc)` to create a new message.
+ */
 export const UInt64ValueDesc: GenDescMessage<UInt64Value> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 3);
 
@@ -124,8 +135,10 @@ export type Int32Value = Message<"google.protobuf.Int32Value"> & {
   value: number;
 };
 
-// Describes the message google.protobuf.Int32Value.
-// Use `create(Int32ValueDesc)` to create a new Int32Value.
+/**
+ * Describes the message google.protobuf.Int32Value.
+ * Use `create(Int32ValueDesc)` to create a new message.
+ */
 export const Int32ValueDesc: GenDescMessage<Int32Value> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 4);
 
@@ -145,8 +158,10 @@ export type UInt32Value = Message<"google.protobuf.UInt32Value"> & {
   value: number;
 };
 
-// Describes the message google.protobuf.UInt32Value.
-// Use `create(UInt32ValueDesc)` to create a new UInt32Value.
+/**
+ * Describes the message google.protobuf.UInt32Value.
+ * Use `create(UInt32ValueDesc)` to create a new message.
+ */
 export const UInt32ValueDesc: GenDescMessage<UInt32Value> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 5);
 
@@ -166,8 +181,10 @@ export type BoolValue = Message<"google.protobuf.BoolValue"> & {
   value: boolean;
 };
 
-// Describes the message google.protobuf.BoolValue.
-// Use `create(BoolValueDesc)` to create a new BoolValue.
+/**
+ * Describes the message google.protobuf.BoolValue.
+ * Use `create(BoolValueDesc)` to create a new message.
+ */
 export const BoolValueDesc: GenDescMessage<BoolValue> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 6);
 
@@ -187,8 +204,10 @@ export type StringValue = Message<"google.protobuf.StringValue"> & {
   value: string;
 };
 
-// Describes the message google.protobuf.StringValue.
-// Use `create(StringValueDesc)` to create a new StringValue.
+/**
+ * Describes the message google.protobuf.StringValue.
+ * Use `create(StringValueDesc)` to create a new message.
+ */
 export const StringValueDesc: GenDescMessage<StringValue> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 7);
 
@@ -208,8 +227,10 @@ export type BytesValue = Message<"google.protobuf.BytesValue"> & {
   value: Uint8Array;
 };
 
-// Describes the message google.protobuf.BytesValue.
-// Use `create(BytesValueDesc)` to create a new BytesValue.
+/**
+ * Describes the message google.protobuf.BytesValue.
+ * Use `create(BytesValueDesc)` to create a new message.
+ */
 export const BytesValueDesc: GenDescMessage<BytesValue> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 8);
 

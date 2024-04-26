@@ -19,6 +19,9 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/jstype-proto2.proto.
+ */
 export declare const fileDesc_extra_jstype_proto2: GenDescFile;
 
 /**
@@ -76,7 +79,10 @@ export declare type JSTypeProto2OmittedMessage = Message<"spec.JSTypeProto2Omitt
   repeatedUint64Field: bigint[];
 };
 
-// Describes the message spec.JSTypeProto2OmittedMessage. Use `create(JSTypeProto2OmittedMessageDesc)` to create a new JSTypeProto2OmittedMessage.
+/**
+ * Describes the message spec.JSTypeProto2OmittedMessage.
+ * Use `create(JSTypeProto2OmittedMessageDesc)` to create a new message.
+ */
 export declare const JSTypeProto2OmittedMessageDesc: GenDescMessage<JSTypeProto2OmittedMessage>;
 
 /**
@@ -134,7 +140,10 @@ export declare type JSTypeProto2NormalMessage = Message<"spec.JSTypeProto2Normal
   repeatedUint64Field: bigint[];
 };
 
-// Describes the message spec.JSTypeProto2NormalMessage. Use `create(JSTypeProto2NormalMessageDesc)` to create a new JSTypeProto2NormalMessage.
+/**
+ * Describes the message spec.JSTypeProto2NormalMessage.
+ * Use `create(JSTypeProto2NormalMessageDesc)` to create a new message.
+ */
 export declare const JSTypeProto2NormalMessageDesc: GenDescMessage<JSTypeProto2NormalMessage>;
 
 /**
@@ -192,7 +201,10 @@ export declare type JSTypeProto2StringMessage = Message<"spec.JSTypeProto2String
   repeatedUint64Field: string[];
 };
 
-// Describes the message spec.JSTypeProto2StringMessage. Use `create(JSTypeProto2StringMessageDesc)` to create a new JSTypeProto2StringMessage.
+/**
+ * Describes the message spec.JSTypeProto2StringMessage.
+ * Use `create(JSTypeProto2StringMessageDesc)` to create a new message.
+ */
 export declare const JSTypeProto2StringMessageDesc: GenDescMessage<JSTypeProto2StringMessage>;
 
 /**
@@ -250,6 +262,9 @@ export declare type JSTypeProto2NumberMessage = Message<"spec.JSTypeProto2Number
   repeatedUint64Field: bigint[];
 };
 
-// Describes the message spec.JSTypeProto2NumberMessage. Use `create(JSTypeProto2NumberMessageDesc)` to create a new JSTypeProto2NumberMessage.
+/**
+ * Describes the message spec.JSTypeProto2NumberMessage.
+ * Use `create(JSTypeProto2NumberMessageDesc)` to create a new message.
+ */
 export declare const JSTypeProto2NumberMessageDesc: GenDescMessage<JSTypeProto2NumberMessage>;
 

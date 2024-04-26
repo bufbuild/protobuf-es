@@ -18,16 +18,16 @@ import type {
   DescMessage,
   DescService,
 } from "@bufbuild/protobuf";
-import { localName } from "@bufbuild/protobuf/reflect";
+import { localName, parentTypes } from "@bufbuild/protobuf/reflect";
 import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv1";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type {
-  Schema,
   GeneratedFile,
   Printable,
+  Schema,
   Target,
 } from "@bufbuild/protoplugin/ecmascript";
-import { arrayLiteral, functionCall, fieldTypeScriptType } from "./util";
+import { arrayLiteral, fieldTypeScriptType, functionCall } from "./util";
 import { version } from "../package.json";
 
 export const protocGenEs = createEcmaScriptPlugin({
@@ -51,6 +51,7 @@ function generateTs(schema: Schema) {
     f.preamble(file);
     const { GenDescFile } = f.runtime.codegen;
     const fileDesc = f.importDesc(file);
+    generateDescDoc(f, file);
     f.print(f.exportDecl("const", fileDesc.name), ": ", GenDescFile, " = ", pure);
     f.print("  ", getFileDescCall(f, file), ";");
     f.print();
@@ -60,10 +61,8 @@ function generateTs(schema: Schema) {
           generateMessageShape(f, desc, "ts");
           const {GenDescMessage, messageDesc} = f.runtime.codegen;
           const MessageShape = f.importShape(desc);
-          const fileDesc = f.importDesc(file);
           const name = f.importDesc(desc).name;
-          f.print("// Describes the ", desc.toString(), ".");
-          f.print("// Use `create(", name, ")` to create a new ", MessageShape.name, ".");
+          generateDescDoc(f, desc);
           const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.exportDecl("const", name), ": ", GenDescMessage, "<", MessageShape, ">", " = ", pure);
           f.print("  ", call, ";");
@@ -74,8 +73,7 @@ function generateTs(schema: Schema) {
           generateEnumShape(f, desc);
           const {GenDescEnum, enumDesc} = f.runtime.codegen;
           const EnumShape = f.importShape(desc);
-          const fileDesc = f.importDesc(file);
-          f.print("// Describes the ", desc.toString(), ".");
+          generateDescDoc(f, desc);
           const name = f.importDesc(desc).name;
           const call = functionCall(enumDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.exportDecl("const", name), ": ", GenDescEnum, "<", EnumShape, ">", " = ", pure);
@@ -88,7 +86,7 @@ function generateTs(schema: Schema) {
           const name = f.importDesc(desc).name;
           const E = f.importShape(desc.extendee);
           const V = fieldTypeScriptType(desc).typing;
-          const call = functionCall(extDesc, [f.importDesc(file), ...pathInFileDesc(desc)]);
+          const call = functionCall(extDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
           f.print(f.exportDecl("const", name), ": ", GenDescExtension, "<", E, ", ", V, ">", " = ", pure);
           f.print("  ", call, ";");
@@ -98,7 +96,7 @@ function generateTs(schema: Schema) {
         case "service": {
           const { GenDescService, serviceDesc} = f.runtime.codegen;
           const name = f.importDesc(desc).name;
-          const call = functionCall(serviceDesc, [f.importDesc(file), ...pathInFileDesc(desc)]);
+          const call = functionCall(serviceDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
           f.print(f.exportDecl("const", name), ": ", GenDescService, "<", getServiceShapeExpr(f, desc), "> = ", pure);
           f.print("  ", call, ";");
@@ -116,6 +114,7 @@ function generateJs(schema: Schema) {
     const f = schema.generateFile(file.name + "_pb.js");
     f.preamble(file);
     const fileDesc = f.importDesc(file);
+    generateDescDoc(f, file);
     f.print(f.exportDecl("const", fileDesc.name), " = ", pure);
     f.print("  ", getFileDescCall(f, file), ";");
     f.print();
@@ -123,9 +122,8 @@ function generateJs(schema: Schema) {
       switch (desc.kind) {
         case "message": {
           const { messageDesc} = f.runtime.codegen;
-          const MessageShape = f.importShape(desc);
           const name = f.importDesc(desc).name;
-          f.print("// Describes the ", desc.toString(), ". Use `create(", name, ")` to create a new ", MessageShape.name, ".");
+          generateDescDoc(f, desc);
           const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.exportDecl("const", name), " = ", pure);
           f.print("  ", call, ";");
@@ -136,7 +134,7 @@ function generateJs(schema: Schema) {
           // generate descriptor
           {
             const { enumDesc } = f.runtime.codegen;
-            f.print("// Describes the ", desc.toString(), ".");
+            generateDescDoc(f, desc);
             const name = f.importDesc(desc).name;
             const call = functionCall(enumDesc, [fileDesc, ...pathInFileDesc(desc)]);
             f.print(f.exportDecl("const", name), " = ", pure);
@@ -157,7 +155,7 @@ function generateJs(schema: Schema) {
         case "extension": {
           const { extDesc } = f.runtime.codegen;
           const name = f.importDesc(desc).name;
-          const call = functionCall(extDesc, [f.importDesc(desc.file), ...pathInFileDesc(desc)]);
+          const call = functionCall(extDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
           f.print(f.exportDecl("const", name), " = ", pure);
           f.print("  ", call, ";");
@@ -168,7 +166,7 @@ function generateJs(schema: Schema) {
           const { serviceDesc} = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           f.print(f.jsDoc(desc));
-          const call = functionCall(serviceDesc, [f.importDesc(desc.file), ...pathInFileDesc(desc)]);
+          const call = functionCall(serviceDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.exportDecl("const", name), " = ", pure);
           f.print("  ", call, ";");
           f.print();
@@ -186,6 +184,7 @@ function generateDts(schema: Schema) {
     f.preamble(file);
     const { GenDescFile } = f.runtime.codegen;
     const fileDesc = f.importDesc(file);
+    generateDescDoc(f, file);
     f.print(f.exportDecl("declare const", fileDesc.name), ": ", GenDescFile, ";");
     f.print();
     for (const desc of schema.typesInFile(file)) {
@@ -195,7 +194,7 @@ function generateDts(schema: Schema) {
           const { GenDescMessage } = f.runtime.codegen;
           const MessageShape = f.importShape(desc);
           const name = f.importDesc(desc).name;
-          f.print("// Describes the ", desc.toString(), ". Use `create(", name, ")` to create a new ", MessageShape.name, ".");
+          generateDescDoc(f, desc);
           f.print(f.exportDecl("declare const", name), ": ", GenDescMessage, "<", MessageShape, ">", ";");
           f.print();
           break;
@@ -204,7 +203,7 @@ function generateDts(schema: Schema) {
           generateEnumShape(f, desc);
           const { GenDescEnum } = f.runtime.codegen;
           const EnumShape = f.importShape(desc);
-          f.print("// Describes the ", desc.toString(), ".");
+          generateDescDoc(f, desc);
           const name = f.importDesc(desc).name;
           f.print(f.exportDecl("declare const", name), ": ", GenDescEnum, "<", EnumShape, ">;");
           f.print();
@@ -231,6 +230,36 @@ function generateDts(schema: Schema) {
       }
     }
   }
+}
+
+function generateDescDoc(
+  f: GeneratedFile,
+  desc: DescFile | DescMessage | DescEnum,
+): void {
+  let lines: string[];
+  switch (desc.kind) {
+    case "file":
+      lines = [`Describes the ${desc.toString()}.`];
+      break;
+    case "message":
+      lines = [
+        `Describes the ${desc.toString()}.`,
+        `Use \`create(${f.importDesc(desc).name})\` to create a new message.`,
+      ];
+      break;
+    case "enum":
+      lines = [`Describes the ${desc.toString()}.`];
+      break;
+  }
+  const deprecated =
+    desc.deprecated || parentTypes(desc).some((d) => d.deprecated);
+  if (deprecated) {
+    lines.push("@deprecated");
+  }
+  f.print({
+    kind: "es_jsdoc",
+    text: lines.join("\n"),
+  });
 }
 
 // prettier-ignore

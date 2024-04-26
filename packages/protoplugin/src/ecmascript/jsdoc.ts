@@ -18,6 +18,7 @@ import {
   getDeclarationString,
   getFeatureOptionStrings,
 } from "../source-code-info.js";
+import { parentTypes } from "@bufbuild/protobuf/reflect";
 
 export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {
   const comments = getComments(desc);
@@ -67,14 +68,16 @@ export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {
       text += `@generated from ${desc.toString()}`;
       break;
   }
-  let deprecated = desc.deprecated;
+  let deprecated: boolean;
   switch (desc.kind) {
-    case "enum":
-    case "message":
-    case "service":
-      deprecated = deprecated || desc.file.deprecated;
+    case "field":
+    case "enum_value":
+    case "rpc":
+      deprecated = desc.deprecated;
       break;
     default:
+      deprecated =
+        desc.deprecated || parentTypes(desc).some((d) => d.deprecated);
       break;
   }
   if (deprecated) {

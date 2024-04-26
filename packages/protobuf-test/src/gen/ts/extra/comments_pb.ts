@@ -28,6 +28,9 @@ import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobu
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/comments.proto.
+ */
 export const fileDesc_extra_comments: GenDescFile = /*@__PURE__*/
   fileDesc("ChRleHRyYS9jb21tZW50cy5wcm90bxIEc3BlYyKiAQoTTWVzc2FnZVdpdGhDb21tZW50cxILCgNmb28YASABKAkSDwoFdmFsdWUYAiABKAVIABIPCgVlcnJvchgDIAEoCUgAEicKH3RoaXNfZmllbGRfaGFzX2FuX2VtcHR5X2NvbW1lbnQYBCABKAkSKQoYdGhpc19maWVsZF9pc19kZXByZWNhdGVkGAUgASgJQgIYAVIDc2RmQggKBnJlc3VsdCIZChdFbXB0eU1lc3NhZ2VXaXRoQ29tbWVudCJpChRHb29nbGVDb21tZW50RXhhbXBsZRILCgNmb28YASABKAUSCwoDYmFyGAIgASgFEgsKA2JhehgDIAEoCRILCgNxdXgYBCABKAESDQoFY29yZ2UYBSABKAkSDgoGZ3JhdWx0GAYgASgFKh0KEEVudW1XaXRoQ29tbWVudHMSCQoFVkFMVUUQACpnChlEZXByZWNhdGVkRW51bVdpdGhDb21tZW50EiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQRAAEiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQhABGgIYASphChdEZXByZWNhdGVkRW51bU5vQ29tbWVudBIgChxERVBSRUNBVEVEX0VOVU1fTk9fQ09NTUVOVF9BEAASIAocREVQUkVDQVRFRF9FTlVNX05PX0NPTU1FTlRfQhABGgIYAWIGcHJvdG8z");
 
@@ -87,8 +90,10 @@ export type MessageWithComments = Message<"spec.MessageWithComments"> & {
   thisFieldIsDeprecated: string;
 };
 
-// Describes the message spec.MessageWithComments.
-// Use `create(MessageWithCommentsDesc)` to create a new MessageWithComments.
+/**
+ * Describes the message spec.MessageWithComments.
+ * Use `create(MessageWithCommentsDesc)` to create a new message.
+ */
 export const MessageWithCommentsDesc: GenDescMessage<MessageWithComments> = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 0);
 
@@ -100,8 +105,10 @@ export const MessageWithCommentsDesc: GenDescMessage<MessageWithComments> = /*@_
 export type EmptyMessageWithComment = Message<"spec.EmptyMessageWithComment"> & {
 };
 
-// Describes the message spec.EmptyMessageWithComment.
-// Use `create(EmptyMessageWithCommentDesc)` to create a new EmptyMessageWithComment.
+/**
+ * Describes the message spec.EmptyMessageWithComment.
+ * Use `create(EmptyMessageWithCommentDesc)` to create a new message.
+ */
 export const EmptyMessageWithCommentDesc: GenDescMessage<EmptyMessageWithComment> = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 1);
 
@@ -160,8 +167,10 @@ export type GoogleCommentExample = Message<"spec.GoogleCommentExample"> & {
   grault: number;
 };
 
-// Describes the message spec.GoogleCommentExample.
-// Use `create(GoogleCommentExampleDesc)` to create a new GoogleCommentExample.
+/**
+ * Describes the message spec.GoogleCommentExample.
+ * Use `create(GoogleCommentExampleDesc)` to create a new message.
+ */
 export const GoogleCommentExampleDesc: GenDescMessage<GoogleCommentExample> = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 2);
 
@@ -183,7 +192,9 @@ export enum EnumWithComments {
   VALUE = 0,
 }
 
-// Describes the enum spec.EnumWithComments.
+/**
+ * Describes the enum spec.EnumWithComments.
+ */
 export const EnumWithCommentsDesc: GenDescEnum<EnumWithComments> = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 0);
 
@@ -205,7 +216,10 @@ export enum DeprecatedEnumWithComment {
   B = 1,
 }
 
-// Describes the enum spec.DeprecatedEnumWithComment.
+/**
+ * Describes the enum spec.DeprecatedEnumWithComment.
+ * @deprecated
+ */
 export const DeprecatedEnumWithCommentDesc: GenDescEnum<DeprecatedEnumWithComment> = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 1);
 
@@ -225,7 +239,10 @@ export enum DeprecatedEnumNoComment {
   B = 1,
 }
 
-// Describes the enum spec.DeprecatedEnumNoComment.
+/**
+ * Describes the enum spec.DeprecatedEnumNoComment.
+ * @deprecated
+ */
 export const DeprecatedEnumNoCommentDesc: GenDescEnum<DeprecatedEnumNoComment> = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 2);
 

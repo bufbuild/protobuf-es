@@ -24,6 +24,9 @@ import type { LocalModulePin } from "./module_pb.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_module } from "./module_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/push.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_push: GenDescFile = /*@__PURE__*/
   fileDesc("CiZidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcHVzaC5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIpEBCgtQdXNoUmVxdWVzdBINCgVvd25lchgBIAEoCRISCgpyZXBvc2l0b3J5GAIgASgJEg4KBmJyYW5jaBgDIAEoCRIxCgZtb2R1bGUYBCABKAsyIS5idWYuYWxwaGEubW9kdWxlLnYxYWxwaGExLk1vZHVsZRIMCgR0YWdzGAUgAygJEg4KBnRyYWNrcxgGIAMoCSJVCgxQdXNoUmVzcG9uc2USRQoQbG9jYWxfbW9kdWxlX3BpbhgFIAEoCzIrLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Mb2NhbE1vZHVsZVBpbjJqCgtQdXNoU2VydmljZRJbCgRQdXNoEiguYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlB1c2hSZXF1ZXN0GikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlB1c2hSZXNwb25zZWIGcHJvdG8z", [fileDesc_buf_alpha_module_v1alpha1_module, fileDesc_buf_alpha_registry_v1alpha1_module]);
 
@@ -69,8 +72,10 @@ export type PushRequest = Message<"buf.alpha.registry.v1alpha1.PushRequest"> & {
   tracks: string[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.PushRequest.
-// Use `create(PushRequestDesc)` to create a new PushRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.PushRequest.
+ * Use `create(PushRequestDesc)` to create a new message.
+ */
 export const PushRequestDesc: GenDescMessage<PushRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_push, 0);
 
@@ -84,8 +89,10 @@ export type PushResponse = Message<"buf.alpha.registry.v1alpha1.PushResponse"> &
   localModulePin?: LocalModulePin;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.PushResponse.
-// Use `create(PushResponseDesc)` to create a new PushResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.PushResponse.
+ * Use `create(PushResponseDesc)` to create a new message.
+ */
 export const PushResponseDesc: GenDescMessage<PushResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_push, 1);
 

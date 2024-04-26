@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobu
 import type { Message } from "@bufbuild/protobuf";
 import type { UInt32Value } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file extra/proto3.proto.
+ */
 export declare const fileDesc_extra_proto3: GenDescFile;
 
 /**
@@ -330,7 +333,10 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
   mapInt32WrappedUint32Field: { [key: number]: UInt32Value };
 };
 
-// Describes the message spec.Proto3Message. Use `create(Proto3MessageDesc)` to create a new Proto3Message.
+/**
+ * Describes the message spec.Proto3Message.
+ * Use `create(Proto3MessageDesc)` to create a new message.
+ */
 export declare const Proto3MessageDesc: GenDescMessage<Proto3Message>;
 
 /**
@@ -353,6 +359,8 @@ export enum Proto3Enum {
   NO = 2,
 }
 
-// Describes the enum spec.Proto3Enum.
+/**
+ * Describes the enum spec.Proto3Enum.
+ */
 export declare const Proto3EnumDesc: GenDescEnum<Proto3Enum>;
 

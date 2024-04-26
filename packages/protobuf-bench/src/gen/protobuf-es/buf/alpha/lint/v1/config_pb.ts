@@ -20,6 +20,9 @@ import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/lint/v1/config.proto.
+ */
 export const fileDesc_buf_alpha_lint_v1_config: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5idWYvYWxwaGEvbGludC92MS9jb25maWcucHJvdG8SEWJ1Zi5hbHBoYS5saW50LnYxIu4CCgZDb25maWcSDwoHdmVyc2lvbhgBIAEoCRIPCgd1c2VfaWRzGAIgAygJEhIKCmV4Y2VwdF9pZHMYAyADKAkSFAoMaWdub3JlX3BhdGhzGAQgAygJEjMKD2lnbm9yZV9pZF9wYXRocxgFIAMoCzIaLmJ1Zi5hbHBoYS5saW50LnYxLklEUGF0aHMSHgoWZW51bV96ZXJvX3ZhbHVlX3N1ZmZpeBgGIAEoCRInCh9ycGNfYWxsb3dfc2FtZV9yZXF1ZXN0X3Jlc3BvbnNlGAcgASgIEjAKKHJwY19hbGxvd19nb29nbGVfcHJvdG9idWZfZW1wdHlfcmVxdWVzdHMYCCABKAgSMQopcnBjX2FsbG93X2dvb2dsZV9wcm90b2J1Zl9lbXB0eV9yZXNwb25zZXMYCSABKAgSFgoOc2VydmljZV9zdWZmaXgYCiABKAkSHQoVYWxsb3dfY29tbWVudF9pZ25vcmVzGAsgASgIIiQKB0lEUGF0aHMSCgoCaWQYASABKAkSDQoFcGF0aHMYAiADKAliBnByb3RvMw");
 
@@ -118,8 +121,10 @@ export type Config = Message<"buf.alpha.lint.v1.Config"> & {
   allowCommentIgnores: boolean;
 };
 
-// Describes the message buf.alpha.lint.v1.Config.
-// Use `create(ConfigDesc)` to create a new Config.
+/**
+ * Describes the message buf.alpha.lint.v1.Config.
+ * Use `create(ConfigDesc)` to create a new message.
+ */
 export const ConfigDesc: GenDescMessage<Config> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_lint_v1_config, 0);
 
@@ -140,8 +145,10 @@ export type IDPaths = Message<"buf.alpha.lint.v1.IDPaths"> & {
   paths: string[];
 };
 
-// Describes the message buf.alpha.lint.v1.IDPaths.
-// Use `create(IDPathsDesc)` to create a new IDPaths.
+/**
+ * Describes the message buf.alpha.lint.v1.IDPaths.
+ * Use `create(IDPathsDesc)` to create a new message.
+ */
 export const IDPathsDesc: GenDescMessage<IDPaths> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_lint_v1_config, 1);
 

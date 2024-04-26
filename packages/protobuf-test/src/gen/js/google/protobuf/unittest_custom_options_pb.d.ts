@@ -29,6 +29,9 @@ import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDes
 import type { Message } from "@bufbuild/protobuf";
 import type { Any, EnumOptions, EnumValueOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file google/protobuf/unittest_custom_options.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_custom_options: GenDescFile;
 
 /**
@@ -60,7 +63,10 @@ export declare type TestMessageWithCustomOptions = Message<"protobuf_unittest.Te
   mapField: { [key: string]: string };
 };
 
-// Describes the message protobuf_unittest.TestMessageWithCustomOptions. Use `create(TestMessageWithCustomOptionsDesc)` to create a new TestMessageWithCustomOptions.
+/**
+ * Describes the message protobuf_unittest.TestMessageWithCustomOptions.
+ * Use `create(TestMessageWithCustomOptionsDesc)` to create a new message.
+ */
 export declare const TestMessageWithCustomOptionsDesc: GenDescMessage<TestMessageWithCustomOptions>;
 
 /**
@@ -78,7 +84,9 @@ export enum TestMessageWithCustomOptions_AnEnum {
   ANENUM_VAL2 = 2,
 }
 
-// Describes the enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum.
+/**
+ * Describes the enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum.
+ */
 export declare const TestMessageWithCustomOptions_AnEnumDesc: GenDescEnum<TestMessageWithCustomOptions_AnEnum>;
 
 /**
@@ -90,7 +98,10 @@ export declare const TestMessageWithCustomOptions_AnEnumDesc: GenDescEnum<TestMe
 export declare type CustomOptionFooRequest = Message<"protobuf_unittest.CustomOptionFooRequest"> & {
 };
 
-// Describes the message protobuf_unittest.CustomOptionFooRequest. Use `create(CustomOptionFooRequestDesc)` to create a new CustomOptionFooRequest.
+/**
+ * Describes the message protobuf_unittest.CustomOptionFooRequest.
+ * Use `create(CustomOptionFooRequestDesc)` to create a new message.
+ */
 export declare const CustomOptionFooRequestDesc: GenDescMessage<CustomOptionFooRequest>;
 
 /**
@@ -99,7 +110,10 @@ export declare const CustomOptionFooRequestDesc: GenDescMessage<CustomOptionFooR
 export declare type CustomOptionFooResponse = Message<"protobuf_unittest.CustomOptionFooResponse"> & {
 };
 
-// Describes the message protobuf_unittest.CustomOptionFooResponse. Use `create(CustomOptionFooResponseDesc)` to create a new CustomOptionFooResponse.
+/**
+ * Describes the message protobuf_unittest.CustomOptionFooResponse.
+ * Use `create(CustomOptionFooResponseDesc)` to create a new message.
+ */
 export declare const CustomOptionFooResponseDesc: GenDescMessage<CustomOptionFooResponse>;
 
 /**
@@ -108,7 +122,10 @@ export declare const CustomOptionFooResponseDesc: GenDescMessage<CustomOptionFoo
 export declare type CustomOptionFooClientMessage = Message<"protobuf_unittest.CustomOptionFooClientMessage"> & {
 };
 
-// Describes the message protobuf_unittest.CustomOptionFooClientMessage. Use `create(CustomOptionFooClientMessageDesc)` to create a new CustomOptionFooClientMessage.
+/**
+ * Describes the message protobuf_unittest.CustomOptionFooClientMessage.
+ * Use `create(CustomOptionFooClientMessageDesc)` to create a new message.
+ */
 export declare const CustomOptionFooClientMessageDesc: GenDescMessage<CustomOptionFooClientMessage>;
 
 /**
@@ -117,7 +134,10 @@ export declare const CustomOptionFooClientMessageDesc: GenDescMessage<CustomOpti
 export declare type CustomOptionFooServerMessage = Message<"protobuf_unittest.CustomOptionFooServerMessage"> & {
 };
 
-// Describes the message protobuf_unittest.CustomOptionFooServerMessage. Use `create(CustomOptionFooServerMessageDesc)` to create a new CustomOptionFooServerMessage.
+/**
+ * Describes the message protobuf_unittest.CustomOptionFooServerMessage.
+ * Use `create(CustomOptionFooServerMessageDesc)` to create a new message.
+ */
 export declare const CustomOptionFooServerMessageDesc: GenDescMessage<CustomOptionFooServerMessage>;
 
 /**
@@ -126,7 +146,10 @@ export declare const CustomOptionFooServerMessageDesc: GenDescMessage<CustomOpti
 export declare type DummyMessageContainingEnum = Message<"protobuf_unittest.DummyMessageContainingEnum"> & {
 };
 
-// Describes the message protobuf_unittest.DummyMessageContainingEnum. Use `create(DummyMessageContainingEnumDesc)` to create a new DummyMessageContainingEnum.
+/**
+ * Describes the message protobuf_unittest.DummyMessageContainingEnum.
+ * Use `create(DummyMessageContainingEnumDesc)` to create a new message.
+ */
 export declare const DummyMessageContainingEnumDesc: GenDescMessage<DummyMessageContainingEnum>;
 
 /**
@@ -144,7 +167,9 @@ export enum DummyMessageContainingEnum_TestEnumType {
   TEST_OPTION_ENUM_TYPE2 = -23,
 }
 
-// Describes the enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType.
+/**
+ * Describes the enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType.
+ */
 export declare const DummyMessageContainingEnum_TestEnumTypeDesc: GenDescEnum<DummyMessageContainingEnum_TestEnumType>;
 
 /**
@@ -153,7 +178,10 @@ export declare const DummyMessageContainingEnum_TestEnumTypeDesc: GenDescEnum<Du
 export declare type DummyMessageInvalidAsOptionType = Message<"protobuf_unittest.DummyMessageInvalidAsOptionType"> & {
 };
 
-// Describes the message protobuf_unittest.DummyMessageInvalidAsOptionType. Use `create(DummyMessageInvalidAsOptionTypeDesc)` to create a new DummyMessageInvalidAsOptionType.
+/**
+ * Describes the message protobuf_unittest.DummyMessageInvalidAsOptionType.
+ * Use `create(DummyMessageInvalidAsOptionTypeDesc)` to create a new message.
+ */
 export declare const DummyMessageInvalidAsOptionTypeDesc: GenDescMessage<DummyMessageInvalidAsOptionType>;
 
 /**
@@ -162,7 +190,10 @@ export declare const DummyMessageInvalidAsOptionTypeDesc: GenDescMessage<DummyMe
 export declare type CustomOptionMinIntegerValues = Message<"protobuf_unittest.CustomOptionMinIntegerValues"> & {
 };
 
-// Describes the message protobuf_unittest.CustomOptionMinIntegerValues. Use `create(CustomOptionMinIntegerValuesDesc)` to create a new CustomOptionMinIntegerValues.
+/**
+ * Describes the message protobuf_unittest.CustomOptionMinIntegerValues.
+ * Use `create(CustomOptionMinIntegerValuesDesc)` to create a new message.
+ */
 export declare const CustomOptionMinIntegerValuesDesc: GenDescMessage<CustomOptionMinIntegerValues>;
 
 /**
@@ -171,7 +202,10 @@ export declare const CustomOptionMinIntegerValuesDesc: GenDescMessage<CustomOpti
 export declare type CustomOptionMaxIntegerValues = Message<"protobuf_unittest.CustomOptionMaxIntegerValues"> & {
 };
 
-// Describes the message protobuf_unittest.CustomOptionMaxIntegerValues. Use `create(CustomOptionMaxIntegerValuesDesc)` to create a new CustomOptionMaxIntegerValues.
+/**
+ * Describes the message protobuf_unittest.CustomOptionMaxIntegerValues.
+ * Use `create(CustomOptionMaxIntegerValuesDesc)` to create a new message.
+ */
 export declare const CustomOptionMaxIntegerValuesDesc: GenDescMessage<CustomOptionMaxIntegerValues>;
 
 /**
@@ -180,7 +214,10 @@ export declare const CustomOptionMaxIntegerValuesDesc: GenDescMessage<CustomOpti
 export declare type CustomOptionOtherValues = Message<"protobuf_unittest.CustomOptionOtherValues"> & {
 };
 
-// Describes the message protobuf_unittest.CustomOptionOtherValues. Use `create(CustomOptionOtherValuesDesc)` to create a new CustomOptionOtherValues.
+/**
+ * Describes the message protobuf_unittest.CustomOptionOtherValues.
+ * Use `create(CustomOptionOtherValuesDesc)` to create a new message.
+ */
 export declare const CustomOptionOtherValuesDesc: GenDescMessage<CustomOptionOtherValues>;
 
 /**
@@ -189,7 +226,10 @@ export declare const CustomOptionOtherValuesDesc: GenDescMessage<CustomOptionOth
 export declare type SettingRealsFromPositiveInts = Message<"protobuf_unittest.SettingRealsFromPositiveInts"> & {
 };
 
-// Describes the message protobuf_unittest.SettingRealsFromPositiveInts. Use `create(SettingRealsFromPositiveIntsDesc)` to create a new SettingRealsFromPositiveInts.
+/**
+ * Describes the message protobuf_unittest.SettingRealsFromPositiveInts.
+ * Use `create(SettingRealsFromPositiveIntsDesc)` to create a new message.
+ */
 export declare const SettingRealsFromPositiveIntsDesc: GenDescMessage<SettingRealsFromPositiveInts>;
 
 /**
@@ -198,7 +238,10 @@ export declare const SettingRealsFromPositiveIntsDesc: GenDescMessage<SettingRea
 export declare type SettingRealsFromNegativeInts = Message<"protobuf_unittest.SettingRealsFromNegativeInts"> & {
 };
 
-// Describes the message protobuf_unittest.SettingRealsFromNegativeInts. Use `create(SettingRealsFromNegativeIntsDesc)` to create a new SettingRealsFromNegativeInts.
+/**
+ * Describes the message protobuf_unittest.SettingRealsFromNegativeInts.
+ * Use `create(SettingRealsFromNegativeIntsDesc)` to create a new message.
+ */
 export declare const SettingRealsFromNegativeIntsDesc: GenDescMessage<SettingRealsFromNegativeInts>;
 
 /**
@@ -226,7 +269,10 @@ export declare type ComplexOptionType1 = Message<"protobuf_unittest.ComplexOptio
   foo4: number[];
 };
 
-// Describes the message protobuf_unittest.ComplexOptionType1. Use `create(ComplexOptionType1Desc)` to create a new ComplexOptionType1.
+/**
+ * Describes the message protobuf_unittest.ComplexOptionType1.
+ * Use `create(ComplexOptionType1Desc)` to create a new message.
+ */
 export declare const ComplexOptionType1Desc: GenDescMessage<ComplexOptionType1>;
 
 /**
@@ -254,7 +300,10 @@ export declare type ComplexOptionType2 = Message<"protobuf_unittest.ComplexOptio
   barney: ComplexOptionType2_ComplexOptionType4[];
 };
 
-// Describes the message protobuf_unittest.ComplexOptionType2. Use `create(ComplexOptionType2Desc)` to create a new ComplexOptionType2.
+/**
+ * Describes the message protobuf_unittest.ComplexOptionType2.
+ * Use `create(ComplexOptionType2Desc)` to create a new message.
+ */
 export declare const ComplexOptionType2Desc: GenDescMessage<ComplexOptionType2>;
 
 /**
@@ -267,7 +316,10 @@ export declare type ComplexOptionType2_ComplexOptionType4 = Message<"protobuf_un
   waldo: number;
 };
 
-// Describes the message protobuf_unittest.ComplexOptionType2.ComplexOptionType4. Use `create(ComplexOptionType2_ComplexOptionType4Desc)` to create a new ComplexOptionType2_ComplexOptionType4.
+/**
+ * Describes the message protobuf_unittest.ComplexOptionType2.ComplexOptionType4.
+ * Use `create(ComplexOptionType2_ComplexOptionType4Desc)` to create a new message.
+ */
 export declare const ComplexOptionType2_ComplexOptionType4Desc: GenDescMessage<ComplexOptionType2_ComplexOptionType4>;
 
 /**
@@ -290,7 +342,10 @@ export declare type ComplexOptionType3 = Message<"protobuf_unittest.ComplexOptio
   complexoptiontype5?: ComplexOptionType3_ComplexOptionType5;
 };
 
-// Describes the message protobuf_unittest.ComplexOptionType3. Use `create(ComplexOptionType3Desc)` to create a new ComplexOptionType3.
+/**
+ * Describes the message protobuf_unittest.ComplexOptionType3.
+ * Use `create(ComplexOptionType3Desc)` to create a new message.
+ */
 export declare const ComplexOptionType3Desc: GenDescMessage<ComplexOptionType3>;
 
 /**
@@ -303,7 +358,10 @@ export declare type ComplexOptionType3_ComplexOptionType5 = Message<"protobuf_un
   plugh: number;
 };
 
-// Describes the message protobuf_unittest.ComplexOptionType3.ComplexOptionType5. Use `create(ComplexOptionType3_ComplexOptionType5Desc)` to create a new ComplexOptionType3_ComplexOptionType5.
+/**
+ * Describes the message protobuf_unittest.ComplexOptionType3.ComplexOptionType5.
+ * Use `create(ComplexOptionType3_ComplexOptionType5Desc)` to create a new message.
+ */
 export declare const ComplexOptionType3_ComplexOptionType5Desc: GenDescMessage<ComplexOptionType3_ComplexOptionType5>;
 
 /**
@@ -316,7 +374,10 @@ export declare type ComplexOpt6 = Message<"protobuf_unittest.ComplexOpt6"> & {
   xyzzy: number;
 };
 
-// Describes the message protobuf_unittest.ComplexOpt6. Use `create(ComplexOpt6Desc)` to create a new ComplexOpt6.
+/**
+ * Describes the message protobuf_unittest.ComplexOpt6.
+ * Use `create(ComplexOpt6Desc)` to create a new message.
+ */
 export declare const ComplexOpt6Desc: GenDescMessage<ComplexOpt6>;
 
 /**
@@ -327,7 +388,10 @@ export declare const ComplexOpt6Desc: GenDescMessage<ComplexOpt6>;
 export declare type VariousComplexOptions = Message<"protobuf_unittest.VariousComplexOptions"> & {
 };
 
-// Describes the message protobuf_unittest.VariousComplexOptions. Use `create(VariousComplexOptionsDesc)` to create a new VariousComplexOptions.
+/**
+ * Describes the message protobuf_unittest.VariousComplexOptions.
+ * Use `create(VariousComplexOptionsDesc)` to create a new message.
+ */
 export declare const VariousComplexOptionsDesc: GenDescMessage<VariousComplexOptions>;
 
 /**
@@ -336,7 +400,10 @@ export declare const VariousComplexOptionsDesc: GenDescMessage<VariousComplexOpt
 export declare type AggregateMessageSet = Message<"protobuf_unittest.AggregateMessageSet"> & {
 };
 
-// Describes the message protobuf_unittest.AggregateMessageSet. Use `create(AggregateMessageSetDesc)` to create a new AggregateMessageSet.
+/**
+ * Describes the message protobuf_unittest.AggregateMessageSet.
+ * Use `create(AggregateMessageSetDesc)` to create a new message.
+ */
 export declare const AggregateMessageSetDesc: GenDescMessage<AggregateMessageSet>;
 
 /**
@@ -349,7 +416,10 @@ export declare type AggregateMessageSetElement = Message<"protobuf_unittest.Aggr
   s: string;
 };
 
-// Describes the message protobuf_unittest.AggregateMessageSetElement. Use `create(AggregateMessageSetElementDesc)` to create a new AggregateMessageSetElement.
+/**
+ * Describes the message protobuf_unittest.AggregateMessageSetElement.
+ * Use `create(AggregateMessageSetElementDesc)` to create a new message.
+ */
 export declare const AggregateMessageSetElementDesc: GenDescMessage<AggregateMessageSetElement>;
 
 /**
@@ -402,7 +472,10 @@ export declare type Aggregate = Message<"protobuf_unittest.Aggregate"> & {
   any?: Any;
 };
 
-// Describes the message protobuf_unittest.Aggregate. Use `create(AggregateDesc)` to create a new Aggregate.
+/**
+ * Describes the message protobuf_unittest.Aggregate.
+ * Use `create(AggregateDesc)` to create a new message.
+ */
 export declare const AggregateDesc: GenDescMessage<Aggregate>;
 
 /**
@@ -420,7 +493,10 @@ export declare type AggregateMessage = Message<"protobuf_unittest.AggregateMessa
   fieldname: number;
 };
 
-// Describes the message protobuf_unittest.AggregateMessage. Use `create(AggregateMessageDesc)` to create a new AggregateMessage.
+/**
+ * Describes the message protobuf_unittest.AggregateMessage.
+ * Use `create(AggregateMessageDesc)` to create a new message.
+ */
 export declare const AggregateMessageDesc: GenDescMessage<AggregateMessage>;
 
 /**
@@ -431,7 +507,10 @@ export declare const AggregateMessageDesc: GenDescMessage<AggregateMessage>;
 export declare type NestedOptionType = Message<"protobuf_unittest.NestedOptionType"> & {
 };
 
-// Describes the message protobuf_unittest.NestedOptionType. Use `create(NestedOptionTypeDesc)` to create a new NestedOptionType.
+/**
+ * Describes the message protobuf_unittest.NestedOptionType.
+ * Use `create(NestedOptionTypeDesc)` to create a new message.
+ */
 export declare const NestedOptionTypeDesc: GenDescMessage<NestedOptionType>;
 
 /**
@@ -444,7 +523,10 @@ export declare type NestedOptionType_NestedMessage = Message<"protobuf_unittest.
   nestedField: number;
 };
 
-// Describes the message protobuf_unittest.NestedOptionType.NestedMessage. Use `create(NestedOptionType_NestedMessageDesc)` to create a new NestedOptionType_NestedMessage.
+/**
+ * Describes the message protobuf_unittest.NestedOptionType.NestedMessage.
+ * Use `create(NestedOptionType_NestedMessageDesc)` to create a new message.
+ */
 export declare const NestedOptionType_NestedMessageDesc: GenDescMessage<NestedOptionType_NestedMessage>;
 
 /**
@@ -457,7 +539,9 @@ export enum NestedOptionType_NestedEnum {
   VALUE = 1,
 }
 
-// Describes the enum protobuf_unittest.NestedOptionType.NestedEnum.
+/**
+ * Describes the enum protobuf_unittest.NestedOptionType.NestedEnum.
+ */
 export declare const NestedOptionType_NestedEnumDesc: GenDescEnum<NestedOptionType_NestedEnum>;
 
 /**
@@ -478,7 +562,10 @@ export declare type OldOptionType = Message<"protobuf_unittest.OldOptionType"> &
   value: OldOptionType_TestEnum;
 };
 
-// Describes the message protobuf_unittest.OldOptionType. Use `create(OldOptionTypeDesc)` to create a new OldOptionType.
+/**
+ * Describes the message protobuf_unittest.OldOptionType.
+ * Use `create(OldOptionTypeDesc)` to create a new message.
+ */
 export declare const OldOptionTypeDesc: GenDescMessage<OldOptionType>;
 
 /**
@@ -491,7 +578,9 @@ export enum OldOptionType_TestEnum {
   OLD_VALUE = 0,
 }
 
-// Describes the enum protobuf_unittest.OldOptionType.TestEnum.
+/**
+ * Describes the enum protobuf_unittest.OldOptionType.TestEnum.
+ */
 export declare const OldOptionType_TestEnumDesc: GenDescEnum<OldOptionType_TestEnum>;
 
 /**
@@ -506,7 +595,10 @@ export declare type NewOptionType = Message<"protobuf_unittest.NewOptionType"> &
   value: NewOptionType_TestEnum;
 };
 
-// Describes the message protobuf_unittest.NewOptionType. Use `create(NewOptionTypeDesc)` to create a new NewOptionType.
+/**
+ * Describes the message protobuf_unittest.NewOptionType.
+ * Use `create(NewOptionTypeDesc)` to create a new message.
+ */
 export declare const NewOptionTypeDesc: GenDescMessage<NewOptionType>;
 
 /**
@@ -524,7 +616,9 @@ export enum NewOptionType_TestEnum {
   NEW_VALUE = 1,
 }
 
-// Describes the enum protobuf_unittest.NewOptionType.TestEnum.
+/**
+ * Describes the enum protobuf_unittest.NewOptionType.TestEnum.
+ */
 export declare const NewOptionType_TestEnumDesc: GenDescEnum<NewOptionType_TestEnum>;
 
 /**
@@ -535,7 +629,10 @@ export declare const NewOptionType_TestEnumDesc: GenDescEnum<NewOptionType_TestE
 export declare type TestMessageWithRequiredEnumOption = Message<"protobuf_unittest.TestMessageWithRequiredEnumOption"> & {
 };
 
-// Describes the message protobuf_unittest.TestMessageWithRequiredEnumOption. Use `create(TestMessageWithRequiredEnumOptionDesc)` to create a new TestMessageWithRequiredEnumOption.
+/**
+ * Describes the message protobuf_unittest.TestMessageWithRequiredEnumOption.
+ * Use `create(TestMessageWithRequiredEnumOptionDesc)` to create a new message.
+ */
 export declare const TestMessageWithRequiredEnumOptionDesc: GenDescMessage<TestMessageWithRequiredEnumOption>;
 
 /**
@@ -553,7 +650,9 @@ export enum MethodOpt1 {
   METHODOPT1_VAL2 = 2,
 }
 
-// Describes the enum protobuf_unittest.MethodOpt1.
+/**
+ * Describes the enum protobuf_unittest.MethodOpt1.
+ */
 export declare const MethodOpt1Desc: GenDescEnum<MethodOpt1>;
 
 /**
@@ -566,7 +665,9 @@ export enum AggregateEnum {
   VALUE = 1,
 }
 
-// Describes the enum protobuf_unittest.AggregateEnum.
+/**
+ * Describes the enum protobuf_unittest.AggregateEnum.
+ */
 export declare const AggregateEnumDesc: GenDescEnum<AggregateEnum>;
 
 /**

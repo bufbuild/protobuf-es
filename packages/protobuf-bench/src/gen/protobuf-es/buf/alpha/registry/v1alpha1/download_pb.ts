@@ -22,6 +22,9 @@ import type { Module } from "../../module/v1alpha1/module_pb.js";
 import { fileDesc_buf_alpha_module_v1alpha1_module } from "../../module/v1alpha1/module_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/download.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_download: GenDescFile = /*@__PURE__*/
   fileDesc("CipidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvZG93bmxvYWQucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSJHCg9Eb3dubG9hZFJlcXVlc3QSDQoFb3duZXIYASABKAkSEgoKcmVwb3NpdG9yeRgCIAEoCRIRCglyZWZlcmVuY2UYAyABKAkiRQoQRG93bmxvYWRSZXNwb25zZRIxCgZtb2R1bGUYASABKAsyIS5idWYuYWxwaGEubW9kdWxlLnYxYWxwaGExLk1vZHVsZTJ6Cg9Eb3dubG9hZFNlcnZpY2USZwoIRG93bmxvYWQSLC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRG93bmxvYWRSZXF1ZXN0Gi0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRvd25sb2FkUmVzcG9uc2ViBnByb3RvMw", [fileDesc_buf_alpha_module_v1alpha1_module]);
 
@@ -45,8 +48,10 @@ export type DownloadRequest = Message<"buf.alpha.registry.v1alpha1.DownloadReque
   reference: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DownloadRequest.
-// Use `create(DownloadRequestDesc)` to create a new DownloadRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DownloadRequest.
+ * Use `create(DownloadRequestDesc)` to create a new message.
+ */
 export const DownloadRequestDesc: GenDescMessage<DownloadRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_download, 0);
 
@@ -60,8 +65,10 @@ export type DownloadResponse = Message<"buf.alpha.registry.v1alpha1.DownloadResp
   module?: Module;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DownloadResponse.
-// Use `create(DownloadResponseDesc)` to create a new DownloadResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DownloadResponse.
+ * Use `create(DownloadResponseDesc)` to create a new message.
+ */
 export const DownloadResponseDesc: GenDescMessage<DownloadResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_download, 1);
 

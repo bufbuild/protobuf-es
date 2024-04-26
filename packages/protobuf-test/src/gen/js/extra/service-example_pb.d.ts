@@ -19,6 +19,10 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/service-example.proto.
+ * @deprecated
+ */
 export declare const fileDesc_extra_service_example: GenDescFile;
 
 /**
@@ -55,7 +59,11 @@ export declare type ExampleRequest = Message<"spec.ExampleRequest"> & {
   disableSendingExampleResponseHeaders: boolean;
 };
 
-// Describes the message spec.ExampleRequest. Use `create(ExampleRequestDesc)` to create a new ExampleRequest.
+/**
+ * Describes the message spec.ExampleRequest.
+ * Use `create(ExampleRequestDesc)` to create a new message.
+ * @deprecated
+ */
 export declare const ExampleRequestDesc: GenDescMessage<ExampleRequest>;
 
 /**
@@ -92,7 +100,11 @@ export declare type ExampleResponse = Message<"spec.ExampleResponse"> & {
   yourFailRequest: FailRequest;
 };
 
-// Describes the message spec.ExampleResponse. Use `create(ExampleResponseDesc)` to create a new ExampleResponse.
+/**
+ * Describes the message spec.ExampleResponse.
+ * Use `create(ExampleResponseDesc)` to create a new message.
+ * @deprecated
+ */
 export declare const ExampleResponseDesc: GenDescMessage<ExampleResponse>;
 
 /**
@@ -122,7 +134,10 @@ export enum FailRequest {
   ERROR_STATUS_ONLY = 2,
 }
 
-// Describes the enum spec.FailRequest.
+/**
+ * Describes the enum spec.FailRequest.
+ * @deprecated
+ */
 export declare const FailRequestDesc: GenDescEnum<FailRequest>;
 
 /**

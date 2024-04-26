@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobu
 import type { Message } from "@bufbuild/protobuf";
 import type { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file google/protobuf/test_messages_proto3.proto.
+ */
 export declare const fileDesc_google_protobuf_test_messages_proto3: GenDescFile;
 
 /**
@@ -820,7 +823,10 @@ export declare type TestAllTypesProto3 = Message<"protobuf_test_messages.proto3.
   FieldName18: number;
 };
 
-// Describes the message protobuf_test_messages.proto3.TestAllTypesProto3. Use `create(TestAllTypesProto3Desc)` to create a new TestAllTypesProto3.
+/**
+ * Describes the message protobuf_test_messages.proto3.TestAllTypesProto3.
+ * Use `create(TestAllTypesProto3Desc)` to create a new message.
+ */
 export declare const TestAllTypesProto3Desc: GenDescMessage<TestAllTypesProto3>;
 
 /**
@@ -838,7 +844,10 @@ export declare type TestAllTypesProto3_NestedMessage = Message<"protobuf_test_me
   corecursive?: TestAllTypesProto3;
 };
 
-// Describes the message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage. Use `create(TestAllTypesProto3_NestedMessageDesc)` to create a new TestAllTypesProto3_NestedMessage.
+/**
+ * Describes the message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage.
+ * Use `create(TestAllTypesProto3_NestedMessageDesc)` to create a new message.
+ */
 export declare const TestAllTypesProto3_NestedMessageDesc: GenDescMessage<TestAllTypesProto3_NestedMessage>;
 
 /**
@@ -868,7 +877,9 @@ export enum TestAllTypesProto3_NestedEnum {
   NEG = -1,
 }
 
-// Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum.
+/**
+ * Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum.
+ */
 export declare const TestAllTypesProto3_NestedEnumDesc: GenDescEnum<TestAllTypesProto3_NestedEnum>;
 
 /**
@@ -906,7 +917,9 @@ export enum TestAllTypesProto3_AliasedEnum {
   bAz = 2,
 }
 
-// Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum.
+/**
+ * Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum.
+ */
 export declare const TestAllTypesProto3_AliasedEnumDesc: GenDescEnum<TestAllTypesProto3_AliasedEnum>;
 
 /**
@@ -919,7 +932,10 @@ export declare type ForeignMessage = Message<"protobuf_test_messages.proto3.Fore
   c: number;
 };
 
-// Describes the message protobuf_test_messages.proto3.ForeignMessage. Use `create(ForeignMessageDesc)` to create a new ForeignMessage.
+/**
+ * Describes the message protobuf_test_messages.proto3.ForeignMessage.
+ * Use `create(ForeignMessageDesc)` to create a new message.
+ */
 export declare const ForeignMessageDesc: GenDescMessage<ForeignMessage>;
 
 /**
@@ -928,7 +944,10 @@ export declare const ForeignMessageDesc: GenDescMessage<ForeignMessage>;
 export declare type NullHypothesisProto3 = Message<"protobuf_test_messages.proto3.NullHypothesisProto3"> & {
 };
 
-// Describes the message protobuf_test_messages.proto3.NullHypothesisProto3. Use `create(NullHypothesisProto3Desc)` to create a new NullHypothesisProto3.
+/**
+ * Describes the message protobuf_test_messages.proto3.NullHypothesisProto3.
+ * Use `create(NullHypothesisProto3Desc)` to create a new message.
+ */
 export declare const NullHypothesisProto3Desc: GenDescMessage<NullHypothesisProto3>;
 
 /**
@@ -937,7 +956,10 @@ export declare const NullHypothesisProto3Desc: GenDescMessage<NullHypothesisProt
 export declare type EnumOnlyProto3 = Message<"protobuf_test_messages.proto3.EnumOnlyProto3"> & {
 };
 
-// Describes the message protobuf_test_messages.proto3.EnumOnlyProto3. Use `create(EnumOnlyProto3Desc)` to create a new EnumOnlyProto3.
+/**
+ * Describes the message protobuf_test_messages.proto3.EnumOnlyProto3.
+ * Use `create(EnumOnlyProto3Desc)` to create a new message.
+ */
 export declare const EnumOnlyProto3Desc: GenDescMessage<EnumOnlyProto3>;
 
 /**
@@ -955,7 +977,9 @@ export enum EnumOnlyProto3_Bool {
   kTrue = 1,
 }
 
-// Describes the enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool.
+/**
+ * Describes the enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool.
+ */
 export declare const EnumOnlyProto3_BoolDesc: GenDescEnum<EnumOnlyProto3_Bool>;
 
 /**
@@ -978,6 +1002,8 @@ export enum ForeignEnum {
   FOREIGN_BAZ = 2,
 }
 
-// Describes the enum protobuf_test_messages.proto3.ForeignEnum.
+/**
+ * Describes the enum protobuf_test_messages.proto3.ForeignEnum.
+ */
 export declare const ForeignEnumDesc: GenDescEnum<ForeignEnum>;
 

@@ -26,6 +26,9 @@ import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { TestOptimizedForSize } from "./unittest_optimize_for_pb.js";
 
+/**
+ * Describes the file google/protobuf/unittest_embed_optimize_for.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_embed_optimize_for: GenDescFile;
 
 /**
@@ -46,6 +49,9 @@ export declare type TestEmbedOptimizedForSize = Message<"protobuf_unittest.TestE
   repeatedMessage: TestOptimizedForSize[];
 };
 
-// Describes the message protobuf_unittest.TestEmbedOptimizedForSize. Use `create(TestEmbedOptimizedForSizeDesc)` to create a new TestEmbedOptimizedForSize.
+/**
+ * Describes the message protobuf_unittest.TestEmbedOptimizedForSize.
+ * Use `create(TestEmbedOptimizedForSizeDesc)` to create a new message.
+ */
 export declare const TestEmbedOptimizedForSizeDesc: GenDescMessage<TestEmbedOptimizedForSize>;
 

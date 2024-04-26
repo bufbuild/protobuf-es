@@ -26,6 +26,9 @@ import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/pr
 import type { Message } from "@bufbuild/protobuf";
 import type { ForeignMessage } from "./unittest_pb.js";
 
+/**
+ * Describes the file google/protobuf/unittest_optimize_for.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_optimize_for: GenDescFile;
 
 /**
@@ -60,7 +63,10 @@ export declare type TestOptimizedForSize = Message<"protobuf_unittest.TestOptimi
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message protobuf_unittest.TestOptimizedForSize. Use `create(TestOptimizedForSizeDesc)` to create a new TestOptimizedForSize.
+/**
+ * Describes the message protobuf_unittest.TestOptimizedForSize.
+ * Use `create(TestOptimizedForSizeDesc)` to create a new message.
+ */
 export declare const TestOptimizedForSizeDesc: GenDescMessage<TestOptimizedForSize>;
 
 /**
@@ -83,7 +89,10 @@ export declare type TestRequiredOptimizedForSize = Message<"protobuf_unittest.Te
   x: number;
 };
 
-// Describes the message protobuf_unittest.TestRequiredOptimizedForSize. Use `create(TestRequiredOptimizedForSizeDesc)` to create a new TestRequiredOptimizedForSize.
+/**
+ * Describes the message protobuf_unittest.TestRequiredOptimizedForSize.
+ * Use `create(TestRequiredOptimizedForSizeDesc)` to create a new message.
+ */
 export declare const TestRequiredOptimizedForSizeDesc: GenDescMessage<TestRequiredOptimizedForSize>;
 
 /**
@@ -96,6 +105,9 @@ export declare type TestOptionalOptimizedForSize = Message<"protobuf_unittest.Te
   o?: TestRequiredOptimizedForSize;
 };
 
-// Describes the message protobuf_unittest.TestOptionalOptimizedForSize. Use `create(TestOptionalOptimizedForSizeDesc)` to create a new TestOptionalOptimizedForSize.
+/**
+ * Describes the message protobuf_unittest.TestOptionalOptimizedForSize.
+ * Use `create(TestOptionalOptimizedForSizeDesc)` to create a new message.
+ */
 export declare const TestOptionalOptimizedForSizeDesc: GenDescMessage<TestOptionalOptimizedForSize>;
 

@@ -19,6 +19,9 @@
 import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file extra/extensions-proto3.proto.
+ */
 export const fileDesc_extra_extensions_proto3 = /*@__PURE__*/
   fileDesc("Ch1leHRyYS9leHRlbnNpb25zLXByb3RvMy5wcm90bxIJcHJvdG8zZXh0OjwKCnVpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY6QcgASgNUgl1aW50MzJFeHQ6UAoTb3B0aW9uYWxfdWludDMyX2V4dBIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxjqByABKA1SEW9wdGlvbmFsVWludDMyRXh0iAEBOkkKEXBhY2tlZF91aW50MzJfZXh0EhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGNs2IAMoDVIPcGFja2VkVWludDMyRXh0OlEKE3VucGFja2VkX3VpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY3DYgAygNQgIQAFIRdW5wYWNrZWRVaW50MzJFeHRiBnByb3RvMw", [fileDesc_google_protobuf_descriptor]);
 

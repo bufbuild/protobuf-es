@@ -21,6 +21,9 @@ import type { Message } from "@bufbuild/protobuf";
 import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
 import type { Type } from "./type_pb.js";
 
+/**
+ * Describes the file google/protobuf/unittest_well_known_types.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_well_known_types: GenDescFile;
 
 /**
@@ -129,7 +132,10 @@ export declare type TestWellKnownTypes = Message<"protobuf_unittest.TestWellKnow
   valueField?: Value;
 };
 
-// Describes the message protobuf_unittest.TestWellKnownTypes. Use `create(TestWellKnownTypesDesc)` to create a new TestWellKnownTypes.
+/**
+ * Describes the message protobuf_unittest.TestWellKnownTypes.
+ * Use `create(TestWellKnownTypesDesc)` to create a new message.
+ */
 export declare const TestWellKnownTypesDesc: GenDescMessage<TestWellKnownTypes>;
 
 /**
@@ -231,7 +237,10 @@ export declare type RepeatedWellKnownTypes = Message<"protobuf_unittest.Repeated
   bytesField: BytesValue[];
 };
 
-// Describes the message protobuf_unittest.RepeatedWellKnownTypes. Use `create(RepeatedWellKnownTypesDesc)` to create a new RepeatedWellKnownTypes.
+/**
+ * Describes the message protobuf_unittest.RepeatedWellKnownTypes.
+ * Use `create(RepeatedWellKnownTypesDesc)` to create a new message.
+ */
 export declare const RepeatedWellKnownTypesDesc: GenDescMessage<RepeatedWellKnownTypes>;
 
 /**
@@ -352,7 +361,10 @@ export declare type OneofWellKnownTypes = Message<"protobuf_unittest.OneofWellKn
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message protobuf_unittest.OneofWellKnownTypes. Use `create(OneofWellKnownTypesDesc)` to create a new OneofWellKnownTypes.
+/**
+ * Describes the message protobuf_unittest.OneofWellKnownTypes.
+ * Use `create(OneofWellKnownTypesDesc)` to create a new message.
+ */
 export declare const OneofWellKnownTypesDesc: GenDescMessage<OneofWellKnownTypes>;
 
 /**
@@ -454,6 +466,9 @@ export declare type MapWellKnownTypes = Message<"protobuf_unittest.MapWellKnownT
   bytesField: { [key: number]: BytesValue };
 };
 
-// Describes the message protobuf_unittest.MapWellKnownTypes. Use `create(MapWellKnownTypesDesc)` to create a new MapWellKnownTypes.
+/**
+ * Describes the message protobuf_unittest.MapWellKnownTypes.
+ * Use `create(MapWellKnownTypesDesc)` to create a new message.
+ */
 export declare const MapWellKnownTypesDesc: GenDescMessage<MapWellKnownTypes>;
 

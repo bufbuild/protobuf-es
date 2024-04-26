@@ -26,6 +26,9 @@ import type { TestAllTypes, TestRequired } from "./unittest_pb.js";
 import { fileDesc_google_protobuf_unittest } from "./unittest_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_lite_imports_nonlite.proto.
+ */
 export const fileDesc_google_protobuf_unittest_lite_imports_nonlite: GenDescFile = /*@__PURE__*/
   fileDesc("CjNnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbGl0ZV9pbXBvcnRzX25vbmxpdGUucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0IooBChZUZXN0TGl0ZUltcG9ydHNOb25saXRlEjAKB21lc3NhZ2UYASABKAsyHy5wcm90b2J1Zl91bml0dGVzdC5UZXN0QWxsVHlwZXMSPgoVbWVzc2FnZV93aXRoX3JlcXVpcmVkGAIgASgLMh8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkQgJIAw", [fileDesc_google_protobuf_unittest]);
 
@@ -46,8 +49,10 @@ export type TestLiteImportsNonlite = Message<"protobuf_unittest.TestLiteImportsN
   messageWithRequired?: TestRequired;
 };
 
-// Describes the message protobuf_unittest.TestLiteImportsNonlite.
-// Use `create(TestLiteImportsNonliteDesc)` to create a new TestLiteImportsNonlite.
+/**
+ * Describes the message protobuf_unittest.TestLiteImportsNonlite.
+ * Use `create(TestLiteImportsNonliteDesc)` to create a new message.
+ */
 export const TestLiteImportsNonliteDesc: GenDescMessage<TestLiteImportsNonlite> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_lite_imports_nonlite, 0);
 

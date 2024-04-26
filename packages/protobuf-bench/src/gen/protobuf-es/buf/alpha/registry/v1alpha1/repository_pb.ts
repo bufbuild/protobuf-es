@@ -26,6 +26,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/repository.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_repository: GenDescFile = /*@__PURE__*/
   fileDesc("CixidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcmVwb3NpdG9yeS5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIq0CCgpSZXBvc2l0b3J5EgoKAmlkGAEgASgJEi8KC2NyZWF0ZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgt1cGRhdGVfdGltZRgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDAoEbmFtZRgEIAEoCRIRCgd1c2VyX2lkGAUgASgJSAASGQoPb3JnYW5pemF0aW9uX2lkGAYgASgJSAASOwoKdmlzaWJpbGl0eRgHIAEoDjInLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5WaXNpYmlsaXR5EhIKCmRlcHJlY2F0ZWQYCCABKAgSGwoTZGVwcmVjYXRpb25fbWVzc2FnZRgJIAEoCUIHCgVvd25lciLnAQoVUmVwb3NpdG9yeUNvbnRyaWJ1dG9yEi8KBHVzZXIYASABKAsyIS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlchIVCg1yZXBvc2l0b3J5X2lkGAIgASgJEkIKDWV4cGxpY2l0X3JvbGUYAyABKA4yKy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeVJvbGUSQgoNaW1wbGljaXRfcm9sZRgEIAEoDjIrLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5Um9sZSI2CiBHZXRSZXBvc2l0b3JpZXNCeUZ1bGxOYW1lUmVxdWVzdBISCgpmdWxsX25hbWVzGAEgAygJImIKIUdldFJlcG9zaXRvcmllc0J5RnVsbE5hbWVSZXNwb25zZRI9CgxyZXBvc2l0b3JpZXMYASADKAsyJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeSIiChRHZXRSZXBvc2l0b3J5UmVxdWVzdBIKCgJpZBgBIAEoCSJUChVHZXRSZXBvc2l0b3J5UmVzcG9uc2USOwoKcmVwb3NpdG9yeRgBIAEoCzInLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5IjMKHkdldFJlcG9zaXRvcnlCeUZ1bGxOYW1lUmVxdWVzdBIRCglmdWxsX25hbWUYASABKAkiXgofR2V0UmVwb3NpdG9yeUJ5RnVsbE5hbWVSZXNwb25zZRI7CgpyZXBvc2l0b3J5GAEgASgLMicuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnkiUQoXTGlzdFJlcG9zaXRvcmllc1JlcXVlc3QSEQoJcGFnZV9zaXplGAEgASgNEhIKCnBhZ2VfdG9rZW4YAiABKAkSDwoHcmV2ZXJzZRgDIAEoCCJyChhMaXN0UmVwb3NpdG9yaWVzUmVzcG9uc2USPQoMcmVwb3NpdG9yaWVzGAEgAygLMicuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnkSFwoPbmV4dF9wYWdlX3Rva2VuGAIgASgJImYKG0xpc3RVc2VyUmVwb3NpdG9yaWVzUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgidgocTGlzdFVzZXJSZXBvc2l0b3JpZXNSZXNwb25zZRI9CgxyZXBvc2l0b3JpZXMYASADKAsyJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeRIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkiXgokTGlzdFJlcG9zaXRvcmllc1VzZXJDYW5BY2Nlc3NSZXF1ZXN0EhEKCXBhZ2Vfc2l6ZRgBIAEoDRISCgpwYWdlX3Rva2VuGAIgASgJEg8KB3JldmVyc2UYAyABKAgifwolTGlzdFJlcG9zaXRvcmllc1VzZXJDYW5BY2Nlc3NSZXNwb25zZRI9CgxyZXBvc2l0b3JpZXMYASADKAsyJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeRIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkidgojTGlzdE9yZ2FuaXphdGlvblJlcG9zaXRvcmllc1JlcXVlc3QSFwoPb3JnYW5pemF0aW9uX2lkGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgifgokTGlzdE9yZ2FuaXphdGlvblJlcG9zaXRvcmllc1Jlc3BvbnNlEj0KDHJlcG9zaXRvcmllcxgBIAMoCzInLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5EhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSJzCiFDcmVhdGVSZXBvc2l0b3J5QnlGdWxsTmFtZVJlcXVlc3QSEQoJZnVsbF9uYW1lGAEgASgJEjsKCnZpc2liaWxpdHkYAiABKA4yJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVmlzaWJpbGl0eSJhCiJDcmVhdGVSZXBvc2l0b3J5QnlGdWxsTmFtZVJlc3BvbnNlEjsKCnJlcG9zaXRvcnkYASABKAsyJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeSIlChdEZWxldGVSZXBvc2l0b3J5UmVxdWVzdBIKCgJpZBgBIAEoCSIaChhEZWxldGVSZXBvc2l0b3J5UmVzcG9uc2UiNgohRGVsZXRlUmVwb3NpdG9yeUJ5RnVsbE5hbWVSZXF1ZXN0EhEKCWZ1bGxfbmFtZRgBIAEoCSIkCiJEZWxldGVSZXBvc2l0b3J5QnlGdWxsTmFtZVJlc3BvbnNlImwKIERlcHJlY2F0ZVJlcG9zaXRvcnlCeU5hbWVSZXF1ZXN0EhIKCm93bmVyX25hbWUYASABKAkSFwoPcmVwb3NpdG9yeV9uYW1lGAIgASgJEhsKE2RlcHJlY2F0aW9uX21lc3NhZ2UYAyABKAkiYAohRGVwcmVjYXRlUmVwb3NpdG9yeUJ5TmFtZVJlc3BvbnNlEjsKCnJlcG9zaXRvcnkYASABKAsyJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeSJRCiJVbmRlcHJlY2F0ZVJlcG9zaXRvcnlCeU5hbWVSZXF1ZXN0EhIKCm93bmVyX25hbWUYASABKAkSFwoPcmVwb3NpdG9yeV9uYW1lGAIgASgJImIKI1VuZGVwcmVjYXRlUmVwb3NpdG9yeUJ5TmFtZVJlc3BvbnNlEjsKCnJlcG9zaXRvcnkYASABKAsyJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeSKPAQofU2V0UmVwb3NpdG9yeUNvbnRyaWJ1dG9yUmVxdWVzdBIVCg1yZXBvc2l0b3J5X2lkGAEgASgJEg8KB3VzZXJfaWQYAiABKAkSRAoPcmVwb3NpdG9yeV9yb2xlGAMgASgOMisuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlSb2xlIiIKIFNldFJlcG9zaXRvcnlDb250cmlidXRvclJlc3BvbnNlInIKIUxpc3RSZXBvc2l0b3J5Q29udHJpYnV0b3JzUmVxdWVzdBIVCg1yZXBvc2l0b3J5X2lkGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgigAEKIkxpc3RSZXBvc2l0b3J5Q29udHJpYnV0b3JzUmVzcG9uc2USQQoFdXNlcnMYASADKAsyMi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeUNvbnRyaWJ1dG9yEhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSI1ChxHZXRSZXBvc2l0b3J5U2V0dGluZ3NSZXF1ZXN0EhUKDXJlcG9zaXRvcnlfaWQYASABKAkiOwodR2V0UmVwb3NpdG9yeVNldHRpbmdzUmVzcG9uc2USGgoSY29udHJpYnV0b3JzX2NvdW50GAEgASgNKlcKClZpc2liaWxpdHkSGgoWVklTSUJJTElUWV9VTlNQRUNJRklFRBAAEhUKEVZJU0lCSUxJVFlfUFVCTElDEAESFgoSVklTSUJJTElUWV9QUklWQVRFEAIy6REKEVJlcG9zaXRvcnlTZXJ2aWNlEnYKDUdldFJlcG9zaXRvcnkSMS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UmVwb3NpdG9yeVJlcXVlc3QaMi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UmVwb3NpdG9yeVJlc3BvbnNlEpQBChdHZXRSZXBvc2l0b3J5QnlGdWxsTmFtZRI7LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRSZXBvc2l0b3J5QnlGdWxsTmFtZVJlcXVlc3QaPC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UmVwb3NpdG9yeUJ5RnVsbE5hbWVSZXNwb25zZRJ/ChBMaXN0UmVwb3NpdG9yaWVzEjQuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3JpZXNSZXF1ZXN0GjUuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3JpZXNSZXNwb25zZRKLAQoUTGlzdFVzZXJSZXBvc2l0b3JpZXMSOC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFVzZXJSZXBvc2l0b3JpZXNSZXF1ZXN0GjkuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RVc2VyUmVwb3NpdG9yaWVzUmVzcG9uc2USpgEKHUxpc3RSZXBvc2l0b3JpZXNVc2VyQ2FuQWNjZXNzEkEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3JpZXNVc2VyQ2FuQWNjZXNzUmVxdWVzdBpCLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0UmVwb3NpdG9yaWVzVXNlckNhbkFjY2Vzc1Jlc3BvbnNlEqMBChxMaXN0T3JnYW5pemF0aW9uUmVwb3NpdG9yaWVzEkAuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RPcmdhbml6YXRpb25SZXBvc2l0b3JpZXNSZXF1ZXN0GkEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RPcmdhbml6YXRpb25SZXBvc2l0b3JpZXNSZXNwb25zZRKdAQoaQ3JlYXRlUmVwb3NpdG9yeUJ5RnVsbE5hbWUSPi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuQ3JlYXRlUmVwb3NpdG9yeUJ5RnVsbE5hbWVSZXF1ZXN0Gj8uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkNyZWF0ZVJlcG9zaXRvcnlCeUZ1bGxOYW1lUmVzcG9uc2USfwoQRGVsZXRlUmVwb3NpdG9yeRI0LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EZWxldGVSZXBvc2l0b3J5UmVxdWVzdBo1LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EZWxldGVSZXBvc2l0b3J5UmVzcG9uc2USnQEKGkRlbGV0ZVJlcG9zaXRvcnlCeUZ1bGxOYW1lEj4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlbGV0ZVJlcG9zaXRvcnlCeUZ1bGxOYW1lUmVxdWVzdBo/LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EZWxldGVSZXBvc2l0b3J5QnlGdWxsTmFtZVJlc3BvbnNlEpoBChlEZXByZWNhdGVSZXBvc2l0b3J5QnlOYW1lEj0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlcHJlY2F0ZVJlcG9zaXRvcnlCeU5hbWVSZXF1ZXN0Gj4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlcHJlY2F0ZVJlcG9zaXRvcnlCeU5hbWVSZXNwb25zZRKgAQobVW5kZXByZWNhdGVSZXBvc2l0b3J5QnlOYW1lEj8uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVuZGVwcmVjYXRlUmVwb3NpdG9yeUJ5TmFtZVJlcXVlc3QaQC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVW5kZXByZWNhdGVSZXBvc2l0b3J5QnlOYW1lUmVzcG9uc2USmgEKGUdldFJlcG9zaXRvcmllc0J5RnVsbE5hbWUSPS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UmVwb3NpdG9yaWVzQnlGdWxsTmFtZVJlcXVlc3QaPi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UmVwb3NpdG9yaWVzQnlGdWxsTmFtZVJlc3BvbnNlEpcBChhTZXRSZXBvc2l0b3J5Q29udHJpYnV0b3ISPC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuU2V0UmVwb3NpdG9yeUNvbnRyaWJ1dG9yUmVxdWVzdBo9LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5TZXRSZXBvc2l0b3J5Q29udHJpYnV0b3JSZXNwb25zZRKdAQoaTGlzdFJlcG9zaXRvcnlDb250cmlidXRvcnMSPi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFJlcG9zaXRvcnlDb250cmlidXRvcnNSZXF1ZXN0Gj8uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3J5Q29udHJpYnV0b3JzUmVzcG9uc2USjgEKFUdldFJlcG9zaXRvcnlTZXR0aW5ncxI5LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRSZXBvc2l0b3J5U2V0dGluZ3NSZXF1ZXN0GjouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldFJlcG9zaXRvcnlTZXR0aW5nc1Jlc3BvbnNlYgZwcm90bzM", [fileDesc_buf_alpha_registry_v1alpha1_role, fileDesc_buf_alpha_registry_v1alpha1_user, fileDesc_google_protobuf_timestamp]);
 
@@ -102,8 +105,10 @@ export type Repository = Message<"buf.alpha.registry.v1alpha1.Repository"> & {
   deprecationMessage: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Repository.
-// Use `create(RepositoryDesc)` to create a new Repository.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Repository.
+ * Use `create(RepositoryDesc)` to create a new message.
+ */
 export const RepositoryDesc: GenDescMessage<Repository> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 0);
 
@@ -139,8 +144,10 @@ export type RepositoryContributor = Message<"buf.alpha.registry.v1alpha1.Reposit
   implicitRole: RepositoryRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RepositoryContributor.
-// Use `create(RepositoryContributorDesc)` to create a new RepositoryContributor.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RepositoryContributor.
+ * Use `create(RepositoryContributorDesc)` to create a new message.
+ */
 export const RepositoryContributorDesc: GenDescMessage<RepositoryContributor> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 1);
 
@@ -157,8 +164,10 @@ export type GetRepositoriesByFullNameRequest = Message<"buf.alpha.registry.v1alp
   fullNames: string[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoriesByFullNameRequest.
-// Use `create(GetRepositoriesByFullNameRequestDesc)` to create a new GetRepositoriesByFullNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoriesByFullNameRequest.
+ * Use `create(GetRepositoriesByFullNameRequestDesc)` to create a new message.
+ */
 export const GetRepositoriesByFullNameRequestDesc: GenDescMessage<GetRepositoriesByFullNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 2);
 
@@ -172,8 +181,10 @@ export type GetRepositoriesByFullNameResponse = Message<"buf.alpha.registry.v1al
   repositories: Repository[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoriesByFullNameResponse.
-// Use `create(GetRepositoriesByFullNameResponseDesc)` to create a new GetRepositoriesByFullNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoriesByFullNameResponse.
+ * Use `create(GetRepositoriesByFullNameResponseDesc)` to create a new message.
+ */
 export const GetRepositoriesByFullNameResponseDesc: GenDescMessage<GetRepositoriesByFullNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 3);
 
@@ -187,8 +198,10 @@ export type GetRepositoryRequest = Message<"buf.alpha.registry.v1alpha1.GetRepos
   id: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoryRequest.
-// Use `create(GetRepositoryRequestDesc)` to create a new GetRepositoryRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoryRequest.
+ * Use `create(GetRepositoryRequestDesc)` to create a new message.
+ */
 export const GetRepositoryRequestDesc: GenDescMessage<GetRepositoryRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 4);
 
@@ -202,8 +215,10 @@ export type GetRepositoryResponse = Message<"buf.alpha.registry.v1alpha1.GetRepo
   repository?: Repository;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoryResponse.
-// Use `create(GetRepositoryResponseDesc)` to create a new GetRepositoryResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoryResponse.
+ * Use `create(GetRepositoryResponseDesc)` to create a new message.
+ */
 export const GetRepositoryResponseDesc: GenDescMessage<GetRepositoryResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 5);
 
@@ -217,8 +232,10 @@ export type GetRepositoryByFullNameRequest = Message<"buf.alpha.registry.v1alpha
   fullName: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoryByFullNameRequest.
-// Use `create(GetRepositoryByFullNameRequestDesc)` to create a new GetRepositoryByFullNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoryByFullNameRequest.
+ * Use `create(GetRepositoryByFullNameRequestDesc)` to create a new message.
+ */
 export const GetRepositoryByFullNameRequestDesc: GenDescMessage<GetRepositoryByFullNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 6);
 
@@ -232,8 +249,10 @@ export type GetRepositoryByFullNameResponse = Message<"buf.alpha.registry.v1alph
   repository?: Repository;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoryByFullNameResponse.
-// Use `create(GetRepositoryByFullNameResponseDesc)` to create a new GetRepositoryByFullNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoryByFullNameResponse.
+ * Use `create(GetRepositoryByFullNameResponseDesc)` to create a new message.
+ */
 export const GetRepositoryByFullNameResponseDesc: GenDescMessage<GetRepositoryByFullNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 7);
 
@@ -259,8 +278,10 @@ export type ListRepositoriesRequest = Message<"buf.alpha.registry.v1alpha1.ListR
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoriesRequest.
-// Use `create(ListRepositoriesRequestDesc)` to create a new ListRepositoriesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoriesRequest.
+ * Use `create(ListRepositoriesRequestDesc)` to create a new message.
+ */
 export const ListRepositoriesRequestDesc: GenDescMessage<ListRepositoriesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 8);
 
@@ -281,8 +302,10 @@ export type ListRepositoriesResponse = Message<"buf.alpha.registry.v1alpha1.List
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoriesResponse.
-// Use `create(ListRepositoriesResponseDesc)` to create a new ListRepositoriesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoriesResponse.
+ * Use `create(ListRepositoriesResponseDesc)` to create a new message.
+ */
 export const ListRepositoriesResponseDesc: GenDescMessage<ListRepositoriesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 9);
 
@@ -315,8 +338,10 @@ export type ListUserRepositoriesRequest = Message<"buf.alpha.registry.v1alpha1.L
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUserRepositoriesRequest.
-// Use `create(ListUserRepositoriesRequestDesc)` to create a new ListUserRepositoriesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUserRepositoriesRequest.
+ * Use `create(ListUserRepositoriesRequestDesc)` to create a new message.
+ */
 export const ListUserRepositoriesRequestDesc: GenDescMessage<ListUserRepositoriesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 10);
 
@@ -337,8 +362,10 @@ export type ListUserRepositoriesResponse = Message<"buf.alpha.registry.v1alpha1.
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUserRepositoriesResponse.
-// Use `create(ListUserRepositoriesResponseDesc)` to create a new ListUserRepositoriesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUserRepositoriesResponse.
+ * Use `create(ListUserRepositoriesResponseDesc)` to create a new message.
+ */
 export const ListUserRepositoriesResponseDesc: GenDescMessage<ListUserRepositoriesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 11);
 
@@ -364,8 +391,10 @@ export type ListRepositoriesUserCanAccessRequest = Message<"buf.alpha.registry.v
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoriesUserCanAccessRequest.
-// Use `create(ListRepositoriesUserCanAccessRequestDesc)` to create a new ListRepositoriesUserCanAccessRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoriesUserCanAccessRequest.
+ * Use `create(ListRepositoriesUserCanAccessRequestDesc)` to create a new message.
+ */
 export const ListRepositoriesUserCanAccessRequestDesc: GenDescMessage<ListRepositoriesUserCanAccessRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 12);
 
@@ -386,8 +415,10 @@ export type ListRepositoriesUserCanAccessResponse = Message<"buf.alpha.registry.
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoriesUserCanAccessResponse.
-// Use `create(ListRepositoriesUserCanAccessResponseDesc)` to create a new ListRepositoriesUserCanAccessResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoriesUserCanAccessResponse.
+ * Use `create(ListRepositoriesUserCanAccessResponseDesc)` to create a new message.
+ */
 export const ListRepositoriesUserCanAccessResponseDesc: GenDescMessage<ListRepositoriesUserCanAccessResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 13);
 
@@ -420,8 +451,10 @@ export type ListOrganizationRepositoriesRequest = Message<"buf.alpha.registry.v1
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationRepositoriesRequest.
-// Use `create(ListOrganizationRepositoriesRequestDesc)` to create a new ListOrganizationRepositoriesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationRepositoriesRequest.
+ * Use `create(ListOrganizationRepositoriesRequestDesc)` to create a new message.
+ */
 export const ListOrganizationRepositoriesRequestDesc: GenDescMessage<ListOrganizationRepositoriesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 14);
 
@@ -442,8 +475,10 @@ export type ListOrganizationRepositoriesResponse = Message<"buf.alpha.registry.v
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationRepositoriesResponse.
-// Use `create(ListOrganizationRepositoriesResponseDesc)` to create a new ListOrganizationRepositoriesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationRepositoriesResponse.
+ * Use `create(ListOrganizationRepositoriesResponseDesc)` to create a new message.
+ */
 export const ListOrganizationRepositoriesResponseDesc: GenDescMessage<ListOrganizationRepositoriesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 15);
 
@@ -464,8 +499,10 @@ export type CreateRepositoryByFullNameRequest = Message<"buf.alpha.registry.v1al
   visibility: Visibility;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryByFullNameRequest.
-// Use `create(CreateRepositoryByFullNameRequestDesc)` to create a new CreateRepositoryByFullNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryByFullNameRequest.
+ * Use `create(CreateRepositoryByFullNameRequestDesc)` to create a new message.
+ */
 export const CreateRepositoryByFullNameRequestDesc: GenDescMessage<CreateRepositoryByFullNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 16);
 
@@ -479,8 +516,10 @@ export type CreateRepositoryByFullNameResponse = Message<"buf.alpha.registry.v1a
   repository?: Repository;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryByFullNameResponse.
-// Use `create(CreateRepositoryByFullNameResponseDesc)` to create a new CreateRepositoryByFullNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryByFullNameResponse.
+ * Use `create(CreateRepositoryByFullNameResponseDesc)` to create a new message.
+ */
 export const CreateRepositoryByFullNameResponseDesc: GenDescMessage<CreateRepositoryByFullNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 17);
 
@@ -494,8 +533,10 @@ export type DeleteRepositoryRequest = Message<"buf.alpha.registry.v1alpha1.Delet
   id: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteRepositoryRequest.
-// Use `create(DeleteRepositoryRequestDesc)` to create a new DeleteRepositoryRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteRepositoryRequest.
+ * Use `create(DeleteRepositoryRequestDesc)` to create a new message.
+ */
 export const DeleteRepositoryRequestDesc: GenDescMessage<DeleteRepositoryRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 18);
 
@@ -505,8 +546,10 @@ export const DeleteRepositoryRequestDesc: GenDescMessage<DeleteRepositoryRequest
 export type DeleteRepositoryResponse = Message<"buf.alpha.registry.v1alpha1.DeleteRepositoryResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteRepositoryResponse.
-// Use `create(DeleteRepositoryResponseDesc)` to create a new DeleteRepositoryResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteRepositoryResponse.
+ * Use `create(DeleteRepositoryResponseDesc)` to create a new message.
+ */
 export const DeleteRepositoryResponseDesc: GenDescMessage<DeleteRepositoryResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 19);
 
@@ -520,8 +563,10 @@ export type DeleteRepositoryByFullNameRequest = Message<"buf.alpha.registry.v1al
   fullName: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteRepositoryByFullNameRequest.
-// Use `create(DeleteRepositoryByFullNameRequestDesc)` to create a new DeleteRepositoryByFullNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteRepositoryByFullNameRequest.
+ * Use `create(DeleteRepositoryByFullNameRequestDesc)` to create a new message.
+ */
 export const DeleteRepositoryByFullNameRequestDesc: GenDescMessage<DeleteRepositoryByFullNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 20);
 
@@ -531,8 +576,10 @@ export const DeleteRepositoryByFullNameRequestDesc: GenDescMessage<DeleteReposit
 export type DeleteRepositoryByFullNameResponse = Message<"buf.alpha.registry.v1alpha1.DeleteRepositoryByFullNameResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteRepositoryByFullNameResponse.
-// Use `create(DeleteRepositoryByFullNameResponseDesc)` to create a new DeleteRepositoryByFullNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteRepositoryByFullNameResponse.
+ * Use `create(DeleteRepositoryByFullNameResponseDesc)` to create a new message.
+ */
 export const DeleteRepositoryByFullNameResponseDesc: GenDescMessage<DeleteRepositoryByFullNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 21);
 
@@ -559,8 +606,10 @@ export type DeprecateRepositoryByNameRequest = Message<"buf.alpha.registry.v1alp
   deprecationMessage: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeprecateRepositoryByNameRequest.
-// Use `create(DeprecateRepositoryByNameRequestDesc)` to create a new DeprecateRepositoryByNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeprecateRepositoryByNameRequest.
+ * Use `create(DeprecateRepositoryByNameRequestDesc)` to create a new message.
+ */
 export const DeprecateRepositoryByNameRequestDesc: GenDescMessage<DeprecateRepositoryByNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 22);
 
@@ -574,8 +623,10 @@ export type DeprecateRepositoryByNameResponse = Message<"buf.alpha.registry.v1al
   repository?: Repository;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeprecateRepositoryByNameResponse.
-// Use `create(DeprecateRepositoryByNameResponseDesc)` to create a new DeprecateRepositoryByNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeprecateRepositoryByNameResponse.
+ * Use `create(DeprecateRepositoryByNameResponseDesc)` to create a new message.
+ */
 export const DeprecateRepositoryByNameResponseDesc: GenDescMessage<DeprecateRepositoryByNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 23);
 
@@ -594,8 +645,10 @@ export type UndeprecateRepositoryByNameRequest = Message<"buf.alpha.registry.v1a
   repositoryName: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UndeprecateRepositoryByNameRequest.
-// Use `create(UndeprecateRepositoryByNameRequestDesc)` to create a new UndeprecateRepositoryByNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UndeprecateRepositoryByNameRequest.
+ * Use `create(UndeprecateRepositoryByNameRequestDesc)` to create a new message.
+ */
 export const UndeprecateRepositoryByNameRequestDesc: GenDescMessage<UndeprecateRepositoryByNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 24);
 
@@ -609,8 +662,10 @@ export type UndeprecateRepositoryByNameResponse = Message<"buf.alpha.registry.v1
   repository?: Repository;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UndeprecateRepositoryByNameResponse.
-// Use `create(UndeprecateRepositoryByNameResponseDesc)` to create a new UndeprecateRepositoryByNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UndeprecateRepositoryByNameResponse.
+ * Use `create(UndeprecateRepositoryByNameResponseDesc)` to create a new message.
+ */
 export const UndeprecateRepositoryByNameResponseDesc: GenDescMessage<UndeprecateRepositoryByNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 25);
 
@@ -641,8 +696,10 @@ export type SetRepositoryContributorRequest = Message<"buf.alpha.registry.v1alph
   repositoryRole: RepositoryRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetRepositoryContributorRequest.
-// Use `create(SetRepositoryContributorRequestDesc)` to create a new SetRepositoryContributorRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetRepositoryContributorRequest.
+ * Use `create(SetRepositoryContributorRequestDesc)` to create a new message.
+ */
 export const SetRepositoryContributorRequestDesc: GenDescMessage<SetRepositoryContributorRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 26);
 
@@ -652,8 +709,10 @@ export const SetRepositoryContributorRequestDesc: GenDescMessage<SetRepositoryCo
 export type SetRepositoryContributorResponse = Message<"buf.alpha.registry.v1alpha1.SetRepositoryContributorResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetRepositoryContributorResponse.
-// Use `create(SetRepositoryContributorResponseDesc)` to create a new SetRepositoryContributorResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetRepositoryContributorResponse.
+ * Use `create(SetRepositoryContributorResponseDesc)` to create a new message.
+ */
 export const SetRepositoryContributorResponseDesc: GenDescMessage<SetRepositoryContributorResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 27);
 
@@ -684,8 +743,10 @@ export type ListRepositoryContributorsRequest = Message<"buf.alpha.registry.v1al
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoryContributorsRequest.
-// Use `create(ListRepositoryContributorsRequestDesc)` to create a new ListRepositoryContributorsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoryContributorsRequest.
+ * Use `create(ListRepositoryContributorsRequestDesc)` to create a new message.
+ */
 export const ListRepositoryContributorsRequestDesc: GenDescMessage<ListRepositoryContributorsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 28);
 
@@ -706,8 +767,10 @@ export type ListRepositoryContributorsResponse = Message<"buf.alpha.registry.v1a
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoryContributorsResponse.
-// Use `create(ListRepositoryContributorsResponseDesc)` to create a new ListRepositoryContributorsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoryContributorsResponse.
+ * Use `create(ListRepositoryContributorsResponseDesc)` to create a new message.
+ */
 export const ListRepositoryContributorsResponseDesc: GenDescMessage<ListRepositoryContributorsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 29);
 
@@ -723,8 +786,10 @@ export type GetRepositorySettingsRequest = Message<"buf.alpha.registry.v1alpha1.
   repositoryId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositorySettingsRequest.
-// Use `create(GetRepositorySettingsRequestDesc)` to create a new GetRepositorySettingsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositorySettingsRequest.
+ * Use `create(GetRepositorySettingsRequestDesc)` to create a new message.
+ */
 export const GetRepositorySettingsRequestDesc: GenDescMessage<GetRepositorySettingsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 30);
 
@@ -741,8 +806,10 @@ export type GetRepositorySettingsResponse = Message<"buf.alpha.registry.v1alpha1
   contributorsCount: number;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositorySettingsResponse.
-// Use `create(GetRepositorySettingsResponseDesc)` to create a new GetRepositorySettingsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositorySettingsResponse.
+ * Use `create(GetRepositorySettingsResponseDesc)` to create a new message.
+ */
 export const GetRepositorySettingsResponseDesc: GenDescMessage<GetRepositorySettingsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 31);
 
@@ -766,7 +833,9 @@ export enum Visibility {
   PRIVATE = 2,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.Visibility.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.Visibility.
+ */
 export const VisibilityDesc: GenDescEnum<Visibility> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_repository, 0);
 

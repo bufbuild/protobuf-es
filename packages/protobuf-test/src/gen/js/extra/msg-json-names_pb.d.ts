@@ -19,6 +19,9 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/msg-json-names.proto.
+ */
 export declare const fileDesc_extra_msg_json_names: GenDescFile;
 
 /**
@@ -51,6 +54,9 @@ export declare type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
   c: string;
 };
 
-// Describes the message spec.JsonNamesMessage. Use `create(JsonNamesMessageDesc)` to create a new JsonNamesMessage.
+/**
+ * Describes the message spec.JsonNamesMessage.
+ * Use `create(JsonNamesMessageDesc)` to create a new message.
+ */
 export declare const JsonNamesMessageDesc: GenDescMessage<JsonNamesMessage>;
 

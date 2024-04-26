@@ -19,6 +19,9 @@
 import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 
+/**
+ * Describes the file buf/alpha/audit/v1alpha1/role.proto.
+ */
 export const fileDesc_buf_alpha_audit_v1alpha1_role: GenDescFile = /*@__PURE__*/
   fileDesc("CiNidWYvYWxwaGEvYXVkaXQvdjFhbHBoYTEvcm9sZS5wcm90bxIYYnVmLmFscGhhLmF1ZGl0LnYxYWxwaGExKscBCiJCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFTZXJ2ZXJSb2xlEjgKNEJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfU0VSVkVSX1JPTEVfVU5TUEVDSUZJRUQQABIyCi5CVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX1NFUlZFUl9ST0xFX0FETUlOEAESMwovQlVGX0FMUEhBX1JFR0lTVFJZX1YxX0FMUEhBMV9TRVJWRVJfUk9MRV9NRU1CRVIQAiqZAgooQnVmQWxwaGFSZWdpc3RyeVYxQWxwaGExT3JnYW5pemF0aW9uUm9sZRI+CjpCVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX09SR0FOSVpBVElPTl9ST0xFX1VOU1BFQ0lGSUVEEAASOAo0QlVGX0FMUEhBX1JFR0lTVFJZX1YxX0FMUEhBMV9PUkdBTklaQVRJT05fUk9MRV9PV05FUhABEjgKNEJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfT1JHQU5JWkFUSU9OX1JPTEVfQURNSU4QAhI5CjVCVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX09SR0FOSVpBVElPTl9ST0xFX01FTUJFUhADKsUCCiZCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFSZXBvc2l0b3J5Um9sZRI8CjhCVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX1JFUE9TSVRPUllfUk9MRV9VTlNQRUNJRklFRBAAEjYKMkJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfUkVQT1NJVE9SWV9ST0xFX09XTkVSEAESNgoyQlVGX0FMUEhBX1JFR0lTVFJZX1YxX0FMUEhBMV9SRVBPU0lUT1JZX1JPTEVfQURNSU4QAhI2CjJCVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX1JFUE9TSVRPUllfUk9MRV9XUklURRADEjUKMUJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfUkVQT1NJVE9SWV9ST0xFX1JFQUQQBCq5AgokQnVmQWxwaGFSZWdpc3RyeVYxQWxwaGExVGVtcGxhdGVSb2xlEjoKNkJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfVEVNUExBVEVfUk9MRV9VTlNQRUNJRklFRBAAEjQKMEJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfVEVNUExBVEVfUk9MRV9PV05FUhABEjQKMEJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfVEVNUExBVEVfUk9MRV9BRE1JThACEjQKMEJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfVEVNUExBVEVfUk9MRV9XUklURRADEjMKL0JVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfVEVNUExBVEVfUk9MRV9SRUFEEAQqrQIKIkJ1ZkFscGhhUmVnaXN0cnlWMUFscGhhMVBsdWdpblJvbGUSOAo0QlVGX0FMUEhBX1JFR0lTVFJZX1YxX0FMUEhBMV9QTFVHSU5fUk9MRV9VTlNQRUNJRklFRBAAEjIKLkJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfUExVR0lOX1JPTEVfT1dORVIQARIyCi5CVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX1BMVUdJTl9ST0xFX0FETUlOEAISMgouQlVGX0FMUEhBX1JFR0lTVFJZX1YxX0FMUEhBMV9QTFVHSU5fUk9MRV9XUklURRADEjEKLUJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfUExVR0lOX1JPTEVfUkVBRBAEYgZwcm90bzM");
 
@@ -42,7 +45,9 @@ export enum BufAlphaRegistryV1Alpha1ServerRole {
   MEMBER = 2,
 }
 
-// Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ServerRole.
+/**
+ * Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ServerRole.
+ */
 export const BufAlphaRegistryV1Alpha1ServerRoleDesc: GenDescEnum<BufAlphaRegistryV1Alpha1ServerRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_audit_v1alpha1_role, 0);
 
@@ -71,7 +76,9 @@ export enum BufAlphaRegistryV1Alpha1OrganizationRole {
   MEMBER = 3,
 }
 
-// Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1OrganizationRole.
+/**
+ * Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1OrganizationRole.
+ */
 export const BufAlphaRegistryV1Alpha1OrganizationRoleDesc: GenDescEnum<BufAlphaRegistryV1Alpha1OrganizationRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_audit_v1alpha1_role, 1);
 
@@ -105,7 +112,9 @@ export enum BufAlphaRegistryV1Alpha1RepositoryRole {
   READ = 4,
 }
 
-// Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryRole.
+/**
+ * Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryRole.
+ */
 export const BufAlphaRegistryV1Alpha1RepositoryRoleDesc: GenDescEnum<BufAlphaRegistryV1Alpha1RepositoryRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_audit_v1alpha1_role, 2);
 
@@ -139,7 +148,9 @@ export enum BufAlphaRegistryV1Alpha1TemplateRole {
   READ = 4,
 }
 
-// Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1TemplateRole.
+/**
+ * Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1TemplateRole.
+ */
 export const BufAlphaRegistryV1Alpha1TemplateRoleDesc: GenDescEnum<BufAlphaRegistryV1Alpha1TemplateRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_audit_v1alpha1_role, 3);
 
@@ -173,7 +184,9 @@ export enum BufAlphaRegistryV1Alpha1PluginRole {
   READ = 4,
 }
 
-// Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginRole.
+/**
+ * Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginRole.
+ */
 export const BufAlphaRegistryV1Alpha1PluginRoleDesc: GenDescEnum<BufAlphaRegistryV1Alpha1PluginRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_audit_v1alpha1_role, 4);
 

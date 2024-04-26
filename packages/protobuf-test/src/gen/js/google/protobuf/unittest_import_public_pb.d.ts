@@ -21,6 +21,9 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_import_public.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_import_public: GenDescFile;
 
 /**
@@ -33,6 +36,9 @@ export declare type PublicImportMessage = Message<"protobuf_unittest_import.Publ
   e: number;
 };
 
-// Describes the message protobuf_unittest_import.PublicImportMessage. Use `create(PublicImportMessageDesc)` to create a new PublicImportMessage.
+/**
+ * Describes the message protobuf_unittest_import.PublicImportMessage.
+ * Use `create(PublicImportMessageDesc)` to create a new message.
+ */
 export declare const PublicImportMessageDesc: GenDescMessage<PublicImportMessage>;
 

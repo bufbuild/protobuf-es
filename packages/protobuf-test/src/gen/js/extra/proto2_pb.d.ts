@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobu
 import type { Message } from "@bufbuild/protobuf";
 import type { UInt32Value } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file extra/proto2.proto.
+ */
 export declare const fileDesc_extra_proto2: GenDescFile;
 
 /**
@@ -471,7 +474,10 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
   mapInt32WrappedUint32Field: { [key: number]: UInt32Value };
 };
 
-// Describes the message spec.Proto2Message. Use `create(Proto2MessageDesc)` to create a new Proto2Message.
+/**
+ * Describes the message spec.Proto2Message.
+ * Use `create(Proto2MessageDesc)` to create a new message.
+ */
 export declare const Proto2MessageDesc: GenDescMessage<Proto2Message>;
 
 /**
@@ -484,7 +490,10 @@ export declare type Proto2Message_RequiredGroup = Message<"spec.Proto2Message.Re
   int32Field: number;
 };
 
-// Describes the message spec.Proto2Message.RequiredGroup. Use `create(Proto2Message_RequiredGroupDesc)` to create a new Proto2Message_RequiredGroup.
+/**
+ * Describes the message spec.Proto2Message.RequiredGroup.
+ * Use `create(Proto2Message_RequiredGroupDesc)` to create a new message.
+ */
 export declare const Proto2Message_RequiredGroupDesc: GenDescMessage<Proto2Message_RequiredGroup>;
 
 /**
@@ -497,7 +506,10 @@ export declare type Proto2Message_RequiredDefaultGroup = Message<"spec.Proto2Mes
   int32Field: number;
 };
 
-// Describes the message spec.Proto2Message.RequiredDefaultGroup. Use `create(Proto2Message_RequiredDefaultGroupDesc)` to create a new Proto2Message_RequiredDefaultGroup.
+/**
+ * Describes the message spec.Proto2Message.RequiredDefaultGroup.
+ * Use `create(Proto2Message_RequiredDefaultGroupDesc)` to create a new message.
+ */
 export declare const Proto2Message_RequiredDefaultGroupDesc: GenDescMessage<Proto2Message_RequiredDefaultGroup>;
 
 /**
@@ -510,7 +522,10 @@ export declare type Proto2Message_OptionalGroup = Message<"spec.Proto2Message.Op
   int32Field: number;
 };
 
-// Describes the message spec.Proto2Message.OptionalGroup. Use `create(Proto2Message_OptionalGroupDesc)` to create a new Proto2Message_OptionalGroup.
+/**
+ * Describes the message spec.Proto2Message.OptionalGroup.
+ * Use `create(Proto2Message_OptionalGroupDesc)` to create a new message.
+ */
 export declare const Proto2Message_OptionalGroupDesc: GenDescMessage<Proto2Message_OptionalGroup>;
 
 /**
@@ -523,7 +538,10 @@ export declare type Proto2Message_OptionalDefaultGroup = Message<"spec.Proto2Mes
   int32Field: number;
 };
 
-// Describes the message spec.Proto2Message.OptionalDefaultGroup. Use `create(Proto2Message_OptionalDefaultGroupDesc)` to create a new Proto2Message_OptionalDefaultGroup.
+/**
+ * Describes the message spec.Proto2Message.OptionalDefaultGroup.
+ * Use `create(Proto2Message_OptionalDefaultGroupDesc)` to create a new message.
+ */
 export declare const Proto2Message_OptionalDefaultGroupDesc: GenDescMessage<Proto2Message_OptionalDefaultGroup>;
 
 /**
@@ -536,7 +554,10 @@ export declare type Proto2Message_RepeatedGroup = Message<"spec.Proto2Message.Re
   int32Field: number;
 };
 
-// Describes the message spec.Proto2Message.RepeatedGroup. Use `create(Proto2Message_RepeatedGroupDesc)` to create a new Proto2Message_RepeatedGroup.
+/**
+ * Describes the message spec.Proto2Message.RepeatedGroup.
+ * Use `create(Proto2Message_RepeatedGroupDesc)` to create a new message.
+ */
 export declare const Proto2Message_RepeatedGroupDesc: GenDescMessage<Proto2Message_RepeatedGroup>;
 
 /**
@@ -549,7 +570,10 @@ export declare type Proto2Message_OneofGroup = Message<"spec.Proto2Message.Oneof
   int32Field: number;
 };
 
-// Describes the message spec.Proto2Message.OneofGroup. Use `create(Proto2Message_OneofGroupDesc)` to create a new Proto2Message_OneofGroup.
+/**
+ * Describes the message spec.Proto2Message.OneofGroup.
+ * Use `create(Proto2Message_OneofGroupDesc)` to create a new message.
+ */
 export declare const Proto2Message_OneofGroupDesc: GenDescMessage<Proto2Message_OneofGroup>;
 
 /**
@@ -567,7 +591,9 @@ export enum Proto2Enum {
   NO = 2,
 }
 
-// Describes the enum spec.Proto2Enum.
+/**
+ * Describes the enum spec.Proto2Enum.
+ */
 export declare const Proto2EnumDesc: GenDescEnum<Proto2Enum>;
 
 /**
@@ -587,6 +613,8 @@ export enum Proto2EnumWithZero {
   ONE = 1,
 }
 
-// Describes the enum spec.Proto2EnumWithZero.
+/**
+ * Describes the enum spec.Proto2EnumWithZero.
+ */
 export declare const Proto2EnumWithZeroDesc: GenDescEnum<Proto2EnumWithZero>;
 

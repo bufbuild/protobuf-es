@@ -21,6 +21,9 @@ import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
+/**
+ * Describes the file google/protobuf/timestamp.proto.
+ */
 export const fileDesc_google_protobuf_timestamp: GenDescFile = /*@__PURE__*/
   fileDesc("Ch9nb29nbGUvcHJvdG9idWYvdGltZXN0YW1wLnByb3RvEg9nb29nbGUucHJvdG9idWYiKwoJVGltZXN0YW1wEg8KB3NlY29uZHMYASABKAMSDQoFbmFub3MYAiABKAVChQEKE2NvbS5nb29nbGUucHJvdG9idWZCDlRpbWVzdGFtcFByb3RvUAFaMmdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL3RpbWVzdGFtcHBi+AEBogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
@@ -139,8 +142,10 @@ export type Timestamp = Message<"google.protobuf.Timestamp"> & {
   nanos: number;
 };
 
-// Describes the message google.protobuf.Timestamp.
-// Use `create(TimestampDesc)` to create a new Timestamp.
+/**
+ * Describes the message google.protobuf.Timestamp.
+ * Use `create(TimestampDesc)` to create a new message.
+ */
 export const TimestampDesc: GenDescMessage<Timestamp> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_timestamp, 0);
 

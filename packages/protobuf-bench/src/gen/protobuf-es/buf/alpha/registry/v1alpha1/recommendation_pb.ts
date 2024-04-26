@@ -22,6 +22,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/recommendation.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_recommendation: GenDescFile = /*@__PURE__*/
   fileDesc("CjBidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcmVjb21tZW5kYXRpb24ucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSKRAQoVUmVjb21tZW5kZWRSZXBvc2l0b3J5Eg0KBW93bmVyGAEgASgJEgwKBG5hbWUYAiABKAkSLwoLY3JlYXRlX3RpbWUYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhMKC2Rlc2NyaXB0aW9uGAQgASgJEhUKDXJlcG9zaXRvcnlfaWQYBSABKAkiXAoTUmVjb21tZW5kZWRUZW1wbGF0ZRINCgVvd25lchgBIAEoCRIMCgRuYW1lGAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJEhMKC3RlbXBsYXRlX2lkGAQgASgJIkYKGFNldFJlY29tbWVuZGVkUmVwb3NpdG9yeRIVCg1yZXBvc2l0b3J5X2lkGAEgASgJEhMKC2Rlc2NyaXB0aW9uGAIgASgJIkIKFlNldFJlY29tbWVuZGVkVGVtcGxhdGUSEwoLdGVtcGxhdGVfaWQYASABKAkSEwoLZGVzY3JpcHRpb24YAiABKAkiIAoeUmVjb21tZW5kZWRSZXBvc2l0b3JpZXNSZXF1ZXN0ImsKH1JlY29tbWVuZGVkUmVwb3NpdG9yaWVzUmVzcG9uc2USSAoMcmVwb3NpdG9yaWVzGAEgAygLMjIuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlY29tbWVuZGVkUmVwb3NpdG9yeSIdChtSZWNvbW1lbmRlZFRlbXBsYXRlc1JlcXVlc3QiYwocUmVjb21tZW5kZWRUZW1wbGF0ZXNSZXNwb25zZRJDCgl0ZW1wbGF0ZXMYASADKAsyMC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVjb21tZW5kZWRUZW1wbGF0ZSIkCiJMaXN0UmVjb21tZW5kZWRSZXBvc2l0b3JpZXNSZXF1ZXN0Im8KI0xpc3RSZWNvbW1lbmRlZFJlcG9zaXRvcmllc1Jlc3BvbnNlEkgKDHJlcG9zaXRvcmllcxgBIAMoCzIyLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZWNvbW1lbmRlZFJlcG9zaXRvcnkiIQofTGlzdFJlY29tbWVuZGVkVGVtcGxhdGVzUmVxdWVzdCJnCiBMaXN0UmVjb21tZW5kZWRUZW1wbGF0ZXNSZXNwb25zZRJDCgl0ZW1wbGF0ZXMYASADKAsyMC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVjb21tZW5kZWRUZW1wbGF0ZSJwCiFTZXRSZWNvbW1lbmRlZFJlcG9zaXRvcmllc1JlcXVlc3QSSwoMcmVwb3NpdG9yaWVzGAEgAygLMjUuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlNldFJlY29tbWVuZGVkUmVwb3NpdG9yeSIkCiJTZXRSZWNvbW1lbmRlZFJlcG9zaXRvcmllc1Jlc3BvbnNlImgKHlNldFJlY29tbWVuZGVkVGVtcGxhdGVzUmVxdWVzdBJGCgl0ZW1wbGF0ZXMYASADKAsyMy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuU2V0UmVjb21tZW5kZWRUZW1wbGF0ZSIhCh9TZXRSZWNvbW1lbmRlZFRlbXBsYXRlc1Jlc3BvbnNlMrAHChVSZWNvbW1lbmRhdGlvblNlcnZpY2USlAEKF1JlY29tbWVuZGVkUmVwb3NpdG9yaWVzEjsuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlY29tbWVuZGVkUmVwb3NpdG9yaWVzUmVxdWVzdBo8LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZWNvbW1lbmRlZFJlcG9zaXRvcmllc1Jlc3BvbnNlEosBChRSZWNvbW1lbmRlZFRlbXBsYXRlcxI4LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZWNvbW1lbmRlZFRlbXBsYXRlc1JlcXVlc3QaOS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVjb21tZW5kZWRUZW1wbGF0ZXNSZXNwb25zZRKgAQobTGlzdFJlY29tbWVuZGVkUmVwb3NpdG9yaWVzEj8uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZWNvbW1lbmRlZFJlcG9zaXRvcmllc1JlcXVlc3QaQC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFJlY29tbWVuZGVkUmVwb3NpdG9yaWVzUmVzcG9uc2USlwEKGExpc3RSZWNvbW1lbmRlZFRlbXBsYXRlcxI8LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0UmVjb21tZW5kZWRUZW1wbGF0ZXNSZXF1ZXN0Gj0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZWNvbW1lbmRlZFRlbXBsYXRlc1Jlc3BvbnNlEp0BChpTZXRSZWNvbW1lbmRlZFJlcG9zaXRvcmllcxI+LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5TZXRSZWNvbW1lbmRlZFJlcG9zaXRvcmllc1JlcXVlc3QaPy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuU2V0UmVjb21tZW5kZWRSZXBvc2l0b3JpZXNSZXNwb25zZRKUAQoXU2V0UmVjb21tZW5kZWRUZW1wbGF0ZXMSOy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuU2V0UmVjb21tZW5kZWRUZW1wbGF0ZXNSZXF1ZXN0GjwuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlNldFJlY29tbWVuZGVkVGVtcGxhdGVzUmVzcG9uc2ViBnByb3RvMw", [fileDesc_google_protobuf_timestamp]);
 
@@ -58,8 +61,10 @@ export type RecommendedRepository = Message<"buf.alpha.registry.v1alpha1.Recomme
   repositoryId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RecommendedRepository.
-// Use `create(RecommendedRepositoryDesc)` to create a new RecommendedRepository.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RecommendedRepository.
+ * Use `create(RecommendedRepositoryDesc)` to create a new message.
+ */
 export const RecommendedRepositoryDesc: GenDescMessage<RecommendedRepository> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 0);
 
@@ -91,8 +96,10 @@ export type RecommendedTemplate = Message<"buf.alpha.registry.v1alpha1.Recommend
   templateId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RecommendedTemplate.
-// Use `create(RecommendedTemplateDesc)` to create a new RecommendedTemplate.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RecommendedTemplate.
+ * Use `create(RecommendedTemplateDesc)` to create a new message.
+ */
 export const RecommendedTemplateDesc: GenDescMessage<RecommendedTemplate> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 1);
 
@@ -113,8 +120,10 @@ export type SetRecommendedRepository = Message<"buf.alpha.registry.v1alpha1.SetR
   description: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetRecommendedRepository.
-// Use `create(SetRecommendedRepositoryDesc)` to create a new SetRecommendedRepository.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetRecommendedRepository.
+ * Use `create(SetRecommendedRepositoryDesc)` to create a new message.
+ */
 export const SetRecommendedRepositoryDesc: GenDescMessage<SetRecommendedRepository> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 2);
 
@@ -135,8 +144,10 @@ export type SetRecommendedTemplate = Message<"buf.alpha.registry.v1alpha1.SetRec
   description: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetRecommendedTemplate.
-// Use `create(SetRecommendedTemplateDesc)` to create a new SetRecommendedTemplate.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetRecommendedTemplate.
+ * Use `create(SetRecommendedTemplateDesc)` to create a new message.
+ */
 export const SetRecommendedTemplateDesc: GenDescMessage<SetRecommendedTemplate> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 3);
 
@@ -146,8 +157,10 @@ export const SetRecommendedTemplateDesc: GenDescMessage<SetRecommendedTemplate> 
 export type RecommendedRepositoriesRequest = Message<"buf.alpha.registry.v1alpha1.RecommendedRepositoriesRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RecommendedRepositoriesRequest.
-// Use `create(RecommendedRepositoriesRequestDesc)` to create a new RecommendedRepositoriesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RecommendedRepositoriesRequest.
+ * Use `create(RecommendedRepositoriesRequestDesc)` to create a new message.
+ */
 export const RecommendedRepositoriesRequestDesc: GenDescMessage<RecommendedRepositoriesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 4);
 
@@ -161,8 +174,10 @@ export type RecommendedRepositoriesResponse = Message<"buf.alpha.registry.v1alph
   repositories: RecommendedRepository[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RecommendedRepositoriesResponse.
-// Use `create(RecommendedRepositoriesResponseDesc)` to create a new RecommendedRepositoriesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RecommendedRepositoriesResponse.
+ * Use `create(RecommendedRepositoriesResponseDesc)` to create a new message.
+ */
 export const RecommendedRepositoriesResponseDesc: GenDescMessage<RecommendedRepositoriesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 5);
 
@@ -172,8 +187,10 @@ export const RecommendedRepositoriesResponseDesc: GenDescMessage<RecommendedRepo
 export type RecommendedTemplatesRequest = Message<"buf.alpha.registry.v1alpha1.RecommendedTemplatesRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RecommendedTemplatesRequest.
-// Use `create(RecommendedTemplatesRequestDesc)` to create a new RecommendedTemplatesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RecommendedTemplatesRequest.
+ * Use `create(RecommendedTemplatesRequestDesc)` to create a new message.
+ */
 export const RecommendedTemplatesRequestDesc: GenDescMessage<RecommendedTemplatesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 6);
 
@@ -187,8 +204,10 @@ export type RecommendedTemplatesResponse = Message<"buf.alpha.registry.v1alpha1.
   templates: RecommendedTemplate[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RecommendedTemplatesResponse.
-// Use `create(RecommendedTemplatesResponseDesc)` to create a new RecommendedTemplatesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RecommendedTemplatesResponse.
+ * Use `create(RecommendedTemplatesResponseDesc)` to create a new message.
+ */
 export const RecommendedTemplatesResponseDesc: GenDescMessage<RecommendedTemplatesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 7);
 
@@ -198,8 +217,10 @@ export const RecommendedTemplatesResponseDesc: GenDescMessage<RecommendedTemplat
 export type ListRecommendedRepositoriesRequest = Message<"buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesRequest.
-// Use `create(ListRecommendedRepositoriesRequestDesc)` to create a new ListRecommendedRepositoriesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesRequest.
+ * Use `create(ListRecommendedRepositoriesRequestDesc)` to create a new message.
+ */
 export const ListRecommendedRepositoriesRequestDesc: GenDescMessage<ListRecommendedRepositoriesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 8);
 
@@ -213,8 +234,10 @@ export type ListRecommendedRepositoriesResponse = Message<"buf.alpha.registry.v1
   repositories: RecommendedRepository[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesResponse.
-// Use `create(ListRecommendedRepositoriesResponseDesc)` to create a new ListRecommendedRepositoriesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRecommendedRepositoriesResponse.
+ * Use `create(ListRecommendedRepositoriesResponseDesc)` to create a new message.
+ */
 export const ListRecommendedRepositoriesResponseDesc: GenDescMessage<ListRecommendedRepositoriesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 9);
 
@@ -224,8 +247,10 @@ export const ListRecommendedRepositoriesResponseDesc: GenDescMessage<ListRecomme
 export type ListRecommendedTemplatesRequest = Message<"buf.alpha.registry.v1alpha1.ListRecommendedTemplatesRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRecommendedTemplatesRequest.
-// Use `create(ListRecommendedTemplatesRequestDesc)` to create a new ListRecommendedTemplatesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRecommendedTemplatesRequest.
+ * Use `create(ListRecommendedTemplatesRequestDesc)` to create a new message.
+ */
 export const ListRecommendedTemplatesRequestDesc: GenDescMessage<ListRecommendedTemplatesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 10);
 
@@ -239,8 +264,10 @@ export type ListRecommendedTemplatesResponse = Message<"buf.alpha.registry.v1alp
   templates: RecommendedTemplate[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRecommendedTemplatesResponse.
-// Use `create(ListRecommendedTemplatesResponseDesc)` to create a new ListRecommendedTemplatesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRecommendedTemplatesResponse.
+ * Use `create(ListRecommendedTemplatesResponseDesc)` to create a new message.
+ */
 export const ListRecommendedTemplatesResponseDesc: GenDescMessage<ListRecommendedTemplatesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 11);
 
@@ -254,8 +281,10 @@ export type SetRecommendedRepositoriesRequest = Message<"buf.alpha.registry.v1al
   repositories: SetRecommendedRepository[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesRequest.
-// Use `create(SetRecommendedRepositoriesRequestDesc)` to create a new SetRecommendedRepositoriesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesRequest.
+ * Use `create(SetRecommendedRepositoriesRequestDesc)` to create a new message.
+ */
 export const SetRecommendedRepositoriesRequestDesc: GenDescMessage<SetRecommendedRepositoriesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 12);
 
@@ -265,8 +294,10 @@ export const SetRecommendedRepositoriesRequestDesc: GenDescMessage<SetRecommende
 export type SetRecommendedRepositoriesResponse = Message<"buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesResponse.
-// Use `create(SetRecommendedRepositoriesResponseDesc)` to create a new SetRecommendedRepositoriesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetRecommendedRepositoriesResponse.
+ * Use `create(SetRecommendedRepositoriesResponseDesc)` to create a new message.
+ */
 export const SetRecommendedRepositoriesResponseDesc: GenDescMessage<SetRecommendedRepositoriesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 13);
 
@@ -280,8 +311,10 @@ export type SetRecommendedTemplatesRequest = Message<"buf.alpha.registry.v1alpha
   templates: SetRecommendedTemplate[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetRecommendedTemplatesRequest.
-// Use `create(SetRecommendedTemplatesRequestDesc)` to create a new SetRecommendedTemplatesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetRecommendedTemplatesRequest.
+ * Use `create(SetRecommendedTemplatesRequestDesc)` to create a new message.
+ */
 export const SetRecommendedTemplatesRequestDesc: GenDescMessage<SetRecommendedTemplatesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 14);
 
@@ -291,8 +324,10 @@ export const SetRecommendedTemplatesRequestDesc: GenDescMessage<SetRecommendedTe
 export type SetRecommendedTemplatesResponse = Message<"buf.alpha.registry.v1alpha1.SetRecommendedTemplatesResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetRecommendedTemplatesResponse.
-// Use `create(SetRecommendedTemplatesResponseDesc)` to create a new SetRecommendedTemplatesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetRecommendedTemplatesResponse.
+ * Use `create(SetRecommendedTemplatesResponseDesc)` to create a new message.
+ */
 export const SetRecommendedTemplatesResponseDesc: GenDescMessage<SetRecommendedTemplatesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_recommendation, 15);
 

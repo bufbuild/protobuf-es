@@ -28,6 +28,9 @@ import type { User } from "./user_pb.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_user } from "./user_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/admin.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_admin: GenDescFile = /*@__PURE__*/
   fileDesc("CididWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvYWRtaW4ucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSIpChZGb3JjZURlbGV0ZVVzZXJSZXF1ZXN0Eg8KB3VzZXJfaWQYASABKAkiuwIKF0ZvcmNlRGVsZXRlVXNlclJlc3BvbnNlEi8KBHVzZXIYASABKAsyIS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlchJACg1vcmdhbml6YXRpb25zGAIgAygLMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk9yZ2FuaXphdGlvbhI9CgxyZXBvc2l0b3JpZXMYAyADKAsyJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeRI0CgdwbHVnaW5zGAQgAygLMiMuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlBsdWdpbhI4Cgl0ZW1wbGF0ZXMYBSADKAsyJS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVGVtcGxhdGUyjAEKDEFkbWluU2VydmljZRJ8Cg9Gb3JjZURlbGV0ZVVzZXISMy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRm9yY2VEZWxldGVVc2VyUmVxdWVzdBo0LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Gb3JjZURlbGV0ZVVzZXJSZXNwb25zZWIGcHJvdG8z", [fileDesc_buf_alpha_registry_v1alpha1_organization, fileDesc_buf_alpha_registry_v1alpha1_plugin, fileDesc_buf_alpha_registry_v1alpha1_repository, fileDesc_buf_alpha_registry_v1alpha1_user]);
 
@@ -41,8 +44,10 @@ export type ForceDeleteUserRequest = Message<"buf.alpha.registry.v1alpha1.ForceD
   userId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ForceDeleteUserRequest.
-// Use `create(ForceDeleteUserRequestDesc)` to create a new ForceDeleteUserRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ForceDeleteUserRequest.
+ * Use `create(ForceDeleteUserRequestDesc)` to create a new message.
+ */
 export const ForceDeleteUserRequestDesc: GenDescMessage<ForceDeleteUserRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_admin, 0);
 
@@ -86,8 +91,10 @@ export type ForceDeleteUserResponse = Message<"buf.alpha.registry.v1alpha1.Force
   templates: Template[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ForceDeleteUserResponse.
-// Use `create(ForceDeleteUserResponseDesc)` to create a new ForceDeleteUserResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ForceDeleteUserResponse.
+ * Use `create(ForceDeleteUserResponseDesc)` to create a new message.
+ */
 export const ForceDeleteUserResponseDesc: GenDescMessage<ForceDeleteUserResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_admin, 1);
 

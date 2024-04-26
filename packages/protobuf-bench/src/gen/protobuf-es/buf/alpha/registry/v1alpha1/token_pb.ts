@@ -22,6 +22,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/token.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_token: GenDescFile = /*@__PURE__*/
   fileDesc("CididWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvdG9rZW4ucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSKDAQoFVG9rZW4SCgoCaWQYASABKAkSLwoLY3JlYXRlX3RpbWUYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC2V4cGlyZV90aW1lGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRub3RlGAQgASgJIlMKEkNyZWF0ZVRva2VuUmVxdWVzdBIMCgRub3RlGAEgASgJEi8KC2V4cGlyZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCIkChNDcmVhdGVUb2tlblJlc3BvbnNlEg0KBXRva2VuGAEgASgJIiMKD0dldFRva2VuUmVxdWVzdBIQCgh0b2tlbl9pZBgBIAEoCSJFChBHZXRUb2tlblJlc3BvbnNlEjEKBXRva2VuGAEgASgLMiIuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlRva2VuIksKEUxpc3RUb2tlbnNSZXF1ZXN0EhEKCXBhZ2Vfc2l6ZRgBIAEoDRISCgpwYWdlX3Rva2VuGAIgASgJEg8KB3JldmVyc2UYAyABKAgiYQoSTGlzdFRva2Vuc1Jlc3BvbnNlEjIKBnRva2VucxgBIAMoCzIiLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Ub2tlbhIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkiJgoSRGVsZXRlVG9rZW5SZXF1ZXN0EhAKCHRva2VuX2lkGAEgASgJIhUKE0RlbGV0ZVRva2VuUmVzcG9uc2UyygMKDFRva2VuU2VydmljZRJwCgtDcmVhdGVUb2tlbhIvLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVUb2tlblJlcXVlc3QaMC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuQ3JlYXRlVG9rZW5SZXNwb25zZRJnCghHZXRUb2tlbhIsLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRUb2tlblJlcXVlc3QaLS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0VG9rZW5SZXNwb25zZRJtCgpMaXN0VG9rZW5zEi4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RUb2tlbnNSZXF1ZXN0Gi8uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RUb2tlbnNSZXNwb25zZRJwCgtEZWxldGVUb2tlbhIvLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EZWxldGVUb2tlblJlcXVlc3QaMC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRGVsZXRlVG9rZW5SZXNwb25zZWIGcHJvdG8z", [fileDesc_google_protobuf_timestamp]);
 
@@ -50,8 +53,10 @@ export type Token = Message<"buf.alpha.registry.v1alpha1.Token"> & {
   note: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Token.
-// Use `create(TokenDesc)` to create a new Token.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Token.
+ * Use `create(TokenDesc)` to create a new message.
+ */
 export const TokenDesc: GenDescMessage<Token> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_token, 0);
 
@@ -73,8 +78,10 @@ export type CreateTokenRequest = Message<"buf.alpha.registry.v1alpha1.CreateToke
   expireTime?: Timestamp;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateTokenRequest.
-// Use `create(CreateTokenRequestDesc)` to create a new CreateTokenRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateTokenRequest.
+ * Use `create(CreateTokenRequestDesc)` to create a new message.
+ */
 export const CreateTokenRequestDesc: GenDescMessage<CreateTokenRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_token, 1);
 
@@ -90,8 +97,10 @@ export type CreateTokenResponse = Message<"buf.alpha.registry.v1alpha1.CreateTok
   token: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateTokenResponse.
-// Use `create(CreateTokenResponseDesc)` to create a new CreateTokenResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateTokenResponse.
+ * Use `create(CreateTokenResponseDesc)` to create a new message.
+ */
 export const CreateTokenResponseDesc: GenDescMessage<CreateTokenResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_token, 2);
 
@@ -105,8 +114,10 @@ export type GetTokenRequest = Message<"buf.alpha.registry.v1alpha1.GetTokenReque
   tokenId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetTokenRequest.
-// Use `create(GetTokenRequestDesc)` to create a new GetTokenRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetTokenRequest.
+ * Use `create(GetTokenRequestDesc)` to create a new message.
+ */
 export const GetTokenRequestDesc: GenDescMessage<GetTokenRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_token, 3);
 
@@ -120,8 +131,10 @@ export type GetTokenResponse = Message<"buf.alpha.registry.v1alpha1.GetTokenResp
   token?: Token;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetTokenResponse.
-// Use `create(GetTokenResponseDesc)` to create a new GetTokenResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetTokenResponse.
+ * Use `create(GetTokenResponseDesc)` to create a new message.
+ */
 export const GetTokenResponseDesc: GenDescMessage<GetTokenResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_token, 4);
 
@@ -147,8 +160,10 @@ export type ListTokensRequest = Message<"buf.alpha.registry.v1alpha1.ListTokensR
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListTokensRequest.
-// Use `create(ListTokensRequestDesc)` to create a new ListTokensRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListTokensRequest.
+ * Use `create(ListTokensRequestDesc)` to create a new message.
+ */
 export const ListTokensRequestDesc: GenDescMessage<ListTokensRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_token, 5);
 
@@ -169,8 +184,10 @@ export type ListTokensResponse = Message<"buf.alpha.registry.v1alpha1.ListTokens
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListTokensResponse.
-// Use `create(ListTokensResponseDesc)` to create a new ListTokensResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListTokensResponse.
+ * Use `create(ListTokensResponseDesc)` to create a new message.
+ */
 export const ListTokensResponseDesc: GenDescMessage<ListTokensResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_token, 6);
 
@@ -184,8 +201,10 @@ export type DeleteTokenRequest = Message<"buf.alpha.registry.v1alpha1.DeleteToke
   tokenId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteTokenRequest.
-// Use `create(DeleteTokenRequestDesc)` to create a new DeleteTokenRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteTokenRequest.
+ * Use `create(DeleteTokenRequestDesc)` to create a new message.
+ */
 export const DeleteTokenRequestDesc: GenDescMessage<DeleteTokenRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_token, 7);
 
@@ -195,8 +214,10 @@ export const DeleteTokenRequestDesc: GenDescMessage<DeleteTokenRequest> = /*@__P
 export type DeleteTokenResponse = Message<"buf.alpha.registry.v1alpha1.DeleteTokenResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteTokenResponse.
-// Use `create(DeleteTokenResponseDesc)` to create a new DeleteTokenResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteTokenResponse.
+ * Use `create(DeleteTokenResponseDesc)` to create a new message.
+ */
 export const DeleteTokenResponseDesc: GenDescMessage<DeleteTokenResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_token, 8);
 

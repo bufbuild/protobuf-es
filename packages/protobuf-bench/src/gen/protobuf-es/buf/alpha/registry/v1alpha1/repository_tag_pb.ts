@@ -22,6 +22,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/repository_tag.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_repository_tag: GenDescFile = /*@__PURE__*/
   fileDesc("CjBidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcmVwb3NpdG9yeV90YWcucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSJ/Cg1SZXBvc2l0b3J5VGFnEgoKAmlkGAEgASgJEi8KC2NyZWF0ZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRuYW1lGAQgASgJEhMKC2NvbW1pdF9uYW1lGAUgASgJEg4KBmF1dGhvchgGIAEoCSJWChpDcmVhdGVSZXBvc2l0b3J5VGFnUmVxdWVzdBIVCg1yZXBvc2l0b3J5X2lkGAEgASgJEgwKBG5hbWUYAiABKAkSEwoLY29tbWl0X25hbWUYAyABKAkiYQobQ3JlYXRlUmVwb3NpdG9yeVRhZ1Jlc3BvbnNlEkIKDnJlcG9zaXRvcnlfdGFnGAEgASgLMiouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlUYWciagoZTGlzdFJlcG9zaXRvcnlUYWdzUmVxdWVzdBIVCg1yZXBvc2l0b3J5X2lkGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgiegoaTGlzdFJlcG9zaXRvcnlUYWdzUmVzcG9uc2USQwoPcmVwb3NpdG9yeV90YWdzGAEgAygLMiouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlUYWcSFwoPbmV4dF9wYWdlX3Rva2VuGAIgASgJMqkCChRSZXBvc2l0b3J5VGFnU2VydmljZRKIAQoTQ3JlYXRlUmVwb3NpdG9yeVRhZxI3LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVSZXBvc2l0b3J5VGFnUmVxdWVzdBo4LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVSZXBvc2l0b3J5VGFnUmVzcG9uc2UShQEKEkxpc3RSZXBvc2l0b3J5VGFncxI2LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0UmVwb3NpdG9yeVRhZ3NSZXF1ZXN0GjcuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3J5VGFnc1Jlc3BvbnNlYgZwcm90bzM", [fileDesc_google_protobuf_timestamp]);
 
@@ -67,8 +70,10 @@ export type RepositoryTag = Message<"buf.alpha.registry.v1alpha1.RepositoryTag">
   author: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RepositoryTag.
-// Use `create(RepositoryTagDesc)` to create a new RepositoryTag.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RepositoryTag.
+ * Use `create(RepositoryTagDesc)` to create a new message.
+ */
 export const RepositoryTagDesc: GenDescMessage<RepositoryTag> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_tag, 0);
 
@@ -98,8 +103,10 @@ export type CreateRepositoryTagRequest = Message<"buf.alpha.registry.v1alpha1.Cr
   commitName: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryTagRequest.
-// Use `create(CreateRepositoryTagRequestDesc)` to create a new CreateRepositoryTagRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryTagRequest.
+ * Use `create(CreateRepositoryTagRequestDesc)` to create a new message.
+ */
 export const CreateRepositoryTagRequestDesc: GenDescMessage<CreateRepositoryTagRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_tag, 1);
 
@@ -113,8 +120,10 @@ export type CreateRepositoryTagResponse = Message<"buf.alpha.registry.v1alpha1.C
   repositoryTag?: RepositoryTag;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryTagResponse.
-// Use `create(CreateRepositoryTagResponseDesc)` to create a new CreateRepositoryTagResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateRepositoryTagResponse.
+ * Use `create(CreateRepositoryTagResponseDesc)` to create a new message.
+ */
 export const CreateRepositoryTagResponseDesc: GenDescMessage<CreateRepositoryTagResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_tag, 2);
 
@@ -147,8 +156,10 @@ export type ListRepositoryTagsRequest = Message<"buf.alpha.registry.v1alpha1.Lis
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoryTagsRequest.
-// Use `create(ListRepositoryTagsRequestDesc)` to create a new ListRepositoryTagsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoryTagsRequest.
+ * Use `create(ListRepositoryTagsRequestDesc)` to create a new message.
+ */
 export const ListRepositoryTagsRequestDesc: GenDescMessage<ListRepositoryTagsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_tag, 3);
 
@@ -169,8 +180,10 @@ export type ListRepositoryTagsResponse = Message<"buf.alpha.registry.v1alpha1.Li
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoryTagsResponse.
-// Use `create(ListRepositoryTagsResponseDesc)` to create a new ListRepositoryTagsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoryTagsResponse.
+ * Use `create(ListRepositoryTagsResponseDesc)` to create a new message.
+ */
 export const ListRepositoryTagsResponseDesc: GenDescMessage<ListRepositoryTagsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_tag, 4);
 

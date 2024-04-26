@@ -22,6 +22,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/audit/v1alpha1/repository.proto.
+ */
 export const fileDesc_buf_alpha_audit_v1alpha1_repository: GenDescFile = /*@__PURE__*/
   fileDesc("CilidWYvYWxwaGEvYXVkaXQvdjFhbHBoYTEvcmVwb3NpdG9yeS5wcm90bxIYYnVmLmFscGhhLmF1ZGl0LnYxYWxwaGExIowBCihCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFSZXBvc2l0b3J5QnJhbmNoEgoKAmlkGAEgASgJEi8KC2NyZWF0ZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRuYW1lGAQgASgJEhUKDXJlcG9zaXRvcnlfaWQYBSABKAkilwEKJUJ1ZkFscGhhUmVnaXN0cnlWMUFscGhhMVJlcG9zaXRvcnlUYWcSCgoCaWQYASABKAkSLwoLY3JlYXRlX3RpbWUYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEgwKBG5hbWUYBCABKAkSEwoLY29tbWl0X25hbWUYBSABKAkSDgoGYXV0aG9yGAYgASgJIpACCihCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFSZXBvc2l0b3J5Q29tbWl0EgoKAmlkGAEgASgJEi8KC2NyZWF0ZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIOCgZkaWdlc3QYAyABKAkSDAoEbmFtZRgEIAEoCRIOCgZicmFuY2gYBSABKAkSGgoSY29tbWl0X3NlcXVlbmNlX2lkGAYgASgDEg4KBmF1dGhvchgHIAEoCRJNCgR0YWdzGAggAygLMj8uYnVmLmFscGhhLmF1ZGl0LnYxYWxwaGExLkJ1ZkFscGhhUmVnaXN0cnlWMUFscGhhMVJlcG9zaXRvcnlUYWcidAonQnVmQWxwaGFSZWdpc3RyeVYxQWxwaGExUmVwb3NpdG9yeVRyYWNrEgoKAmlkGAEgASgJEi8KC2NyZWF0ZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRuYW1lGAQgASgJKsYBCiJCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFWaXNpYmlsaXR5EjcKM0JVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfVklTSUJJTElUWV9VTlNQRUNJRklFRBAAEjIKLkJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfVklTSUJJTElUWV9QVUJMSUMQARIzCi9CVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX1ZJU0lCSUxJVFlfUFJJVkFURRACYgZwcm90bzM", [fileDesc_google_protobuf_timestamp]);
 
@@ -52,8 +55,10 @@ export type BufAlphaRegistryV1Alpha1RepositoryBranch = Message<"buf.alpha.audit.
   repositoryId: string;
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryBranch.
-// Use `create(BufAlphaRegistryV1Alpha1RepositoryBranchDesc)` to create a new BufAlphaRegistryV1Alpha1RepositoryBranch.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryBranch.
+ * Use `create(BufAlphaRegistryV1Alpha1RepositoryBranchDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1RepositoryBranchDesc: GenDescMessage<BufAlphaRegistryV1Alpha1RepositoryBranch> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_repository, 0);
 
@@ -89,8 +94,10 @@ export type BufAlphaRegistryV1Alpha1RepositoryTag = Message<"buf.alpha.audit.v1a
   author: string;
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTag.
-// Use `create(BufAlphaRegistryV1Alpha1RepositoryTagDesc)` to create a new BufAlphaRegistryV1Alpha1RepositoryTag.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTag.
+ * Use `create(BufAlphaRegistryV1Alpha1RepositoryTagDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1RepositoryTagDesc: GenDescMessage<BufAlphaRegistryV1Alpha1RepositoryTag> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_repository, 1);
 
@@ -139,8 +146,10 @@ export type BufAlphaRegistryV1Alpha1RepositoryCommit = Message<"buf.alpha.audit.
   tags: BufAlphaRegistryV1Alpha1RepositoryTag[];
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryCommit.
-// Use `create(BufAlphaRegistryV1Alpha1RepositoryCommitDesc)` to create a new BufAlphaRegistryV1Alpha1RepositoryCommit.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryCommit.
+ * Use `create(BufAlphaRegistryV1Alpha1RepositoryCommitDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1RepositoryCommitDesc: GenDescMessage<BufAlphaRegistryV1Alpha1RepositoryCommit> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_repository, 2);
 
@@ -166,8 +175,10 @@ export type BufAlphaRegistryV1Alpha1RepositoryTrack = Message<"buf.alpha.audit.v
   name: string;
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTrack.
-// Use `create(BufAlphaRegistryV1Alpha1RepositoryTrackDesc)` to create a new BufAlphaRegistryV1Alpha1RepositoryTrack.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1RepositoryTrack.
+ * Use `create(BufAlphaRegistryV1Alpha1RepositoryTrackDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1RepositoryTrackDesc: GenDescMessage<BufAlphaRegistryV1Alpha1RepositoryTrack> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_repository, 3);
 
@@ -191,7 +202,9 @@ export enum BufAlphaRegistryV1Alpha1Visibility {
   PRIVATE = 2,
 }
 
-// Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1Visibility.
+/**
+ * Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1Visibility.
+ */
 export const BufAlphaRegistryV1Alpha1VisibilityDesc: GenDescEnum<BufAlphaRegistryV1Alpha1Visibility> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_audit_v1alpha1_repository, 0);
 

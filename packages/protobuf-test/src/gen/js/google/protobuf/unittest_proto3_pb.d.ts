@@ -21,6 +21,9 @@ import type { Message } from "@bufbuild/protobuf";
 import type { ImportMessage } from "./unittest_import_pb.js";
 import type { PublicImportMessage } from "./unittest_import_public_pb.js";
 
+/**
+ * Describes the file google/protobuf/unittest_proto3.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_proto3: GenDescFile;
 
 /**
@@ -311,7 +314,10 @@ export declare type TestAllTypes = Message<"proto3_unittest.TestAllTypes"> & {
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message proto3_unittest.TestAllTypes. Use `create(TestAllTypesDesc)` to create a new TestAllTypes.
+/**
+ * Describes the message proto3_unittest.TestAllTypes.
+ * Use `create(TestAllTypesDesc)` to create a new message.
+ */
 export declare const TestAllTypesDesc: GenDescMessage<TestAllTypes>;
 
 /**
@@ -328,7 +334,10 @@ export declare type TestAllTypes_NestedMessage = Message<"proto3_unittest.TestAl
   bb: number;
 };
 
-// Describes the message proto3_unittest.TestAllTypes.NestedMessage. Use `create(TestAllTypes_NestedMessageDesc)` to create a new TestAllTypes_NestedMessage.
+/**
+ * Describes the message proto3_unittest.TestAllTypes.NestedMessage.
+ * Use `create(TestAllTypes_NestedMessageDesc)` to create a new message.
+ */
 export declare const TestAllTypes_NestedMessageDesc: GenDescMessage<TestAllTypes_NestedMessage>;
 
 /**
@@ -363,7 +372,9 @@ export enum TestAllTypes_NestedEnum {
   NEG = -1,
 }
 
-// Describes the enum proto3_unittest.TestAllTypes.NestedEnum.
+/**
+ * Describes the enum proto3_unittest.TestAllTypes.NestedEnum.
+ */
 export declare const TestAllTypes_NestedEnumDesc: GenDescEnum<TestAllTypes_NestedEnum>;
 
 /**
@@ -441,7 +452,10 @@ export declare type TestPackedTypes = Message<"proto3_unittest.TestPackedTypes">
   packedEnum: ForeignEnum[];
 };
 
-// Describes the message proto3_unittest.TestPackedTypes. Use `create(TestPackedTypesDesc)` to create a new TestPackedTypes.
+/**
+ * Describes the message proto3_unittest.TestPackedTypes.
+ * Use `create(TestPackedTypesDesc)` to create a new message.
+ */
 export declare const TestPackedTypesDesc: GenDescMessage<TestPackedTypes>;
 
 /**
@@ -521,7 +535,10 @@ export declare type TestUnpackedTypes = Message<"proto3_unittest.TestUnpackedTyp
   repeatedNestedEnum: TestAllTypes_NestedEnum[];
 };
 
-// Describes the message proto3_unittest.TestUnpackedTypes. Use `create(TestUnpackedTypesDesc)` to create a new TestUnpackedTypes.
+/**
+ * Describes the message proto3_unittest.TestUnpackedTypes.
+ * Use `create(TestUnpackedTypesDesc)` to create a new message.
+ */
 export declare const TestUnpackedTypesDesc: GenDescMessage<TestUnpackedTypes>;
 
 /**
@@ -541,7 +558,10 @@ export declare type NestedTestAllTypes = Message<"proto3_unittest.NestedTestAllT
   payload?: TestAllTypes;
 };
 
-// Describes the message proto3_unittest.NestedTestAllTypes. Use `create(NestedTestAllTypesDesc)` to create a new NestedTestAllTypes.
+/**
+ * Describes the message proto3_unittest.NestedTestAllTypes.
+ * Use `create(NestedTestAllTypesDesc)` to create a new message.
+ */
 export declare const NestedTestAllTypesDesc: GenDescMessage<NestedTestAllTypes>;
 
 /**
@@ -557,7 +577,10 @@ export declare type ForeignMessage = Message<"proto3_unittest.ForeignMessage"> &
   c: number;
 };
 
-// Describes the message proto3_unittest.ForeignMessage. Use `create(ForeignMessageDesc)` to create a new ForeignMessage.
+/**
+ * Describes the message proto3_unittest.ForeignMessage.
+ * Use `create(ForeignMessageDesc)` to create a new message.
+ */
 export declare const ForeignMessageDesc: GenDescMessage<ForeignMessage>;
 
 /**
@@ -568,7 +591,10 @@ export declare const ForeignMessageDesc: GenDescMessage<ForeignMessage>;
 export declare type TestEmptyMessage = Message<"proto3_unittest.TestEmptyMessage"> & {
 };
 
-// Describes the message proto3_unittest.TestEmptyMessage. Use `create(TestEmptyMessageDesc)` to create a new TestEmptyMessage.
+/**
+ * Describes the message proto3_unittest.TestEmptyMessage.
+ * Use `create(TestEmptyMessageDesc)` to create a new message.
+ */
 export declare const TestEmptyMessageDesc: GenDescMessage<TestEmptyMessage>;
 
 /**
@@ -586,7 +612,10 @@ export declare type TestMessageWithDummy = Message<"proto3_unittest.TestMessageW
   dummy: boolean;
 };
 
-// Describes the message proto3_unittest.TestMessageWithDummy. Use `create(TestMessageWithDummyDesc)` to create a new TestMessageWithDummy.
+/**
+ * Describes the message proto3_unittest.TestMessageWithDummy.
+ * Use `create(TestMessageWithDummyDesc)` to create a new message.
+ */
 export declare const TestMessageWithDummyDesc: GenDescMessage<TestMessageWithDummy>;
 
 /**
@@ -608,7 +637,10 @@ export declare type TestOneof2 = Message<"proto3_unittest.TestOneof2"> & {
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message proto3_unittest.TestOneof2. Use `create(TestOneof2Desc)` to create a new TestOneof2.
+/**
+ * Describes the message proto3_unittest.TestOneof2.
+ * Use `create(TestOneof2Desc)` to create a new message.
+ */
 export declare const TestOneof2Desc: GenDescMessage<TestOneof2>;
 
 /**
@@ -636,7 +668,9 @@ export enum TestOneof2_NestedEnum {
   BAZ = 3,
 }
 
-// Describes the enum proto3_unittest.TestOneof2.NestedEnum.
+/**
+ * Describes the enum proto3_unittest.TestOneof2.NestedEnum.
+ */
 export declare const TestOneof2_NestedEnumDesc: GenDescEnum<TestOneof2_NestedEnum>;
 
 /**
@@ -664,6 +698,8 @@ export enum ForeignEnum {
   FOREIGN_BAZ = 6,
 }
 
-// Describes the enum proto3_unittest.ForeignEnum.
+/**
+ * Describes the enum proto3_unittest.ForeignEnum.
+ */
 export declare const ForeignEnumDesc: GenDescEnum<ForeignEnum>;
 

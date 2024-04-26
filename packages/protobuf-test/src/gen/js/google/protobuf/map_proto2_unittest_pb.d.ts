@@ -24,6 +24,9 @@ import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobu
 import type { Message } from "@bufbuild/protobuf";
 import type { ImportEnumForMap } from "./unittest_import_pb.js";
 
+/**
+ * Describes the file google/protobuf/map_proto2_unittest.proto.
+ */
 export declare const fileDesc_google_protobuf_map_proto2_unittest: GenDescFile;
 
 /**
@@ -103,7 +106,10 @@ export declare type TestEnumMap = Message<"protobuf_unittest.TestEnumMap"> & {
   unknownMapFieldSfixed64: { [key: string]: Proto2MapEnum };
 };
 
-// Describes the message protobuf_unittest.TestEnumMap. Use `create(TestEnumMapDesc)` to create a new TestEnumMap.
+/**
+ * Describes the message protobuf_unittest.TestEnumMap.
+ * Use `create(TestEnumMapDesc)` to create a new message.
+ */
 export declare const TestEnumMapDesc: GenDescMessage<TestEnumMap>;
 
 /**
@@ -183,7 +189,10 @@ export declare type TestEnumMapPlusExtra = Message<"protobuf_unittest.TestEnumMa
   unknownMapFieldSfixed64: { [key: string]: Proto2MapEnumPlusExtra };
 };
 
-// Describes the message protobuf_unittest.TestEnumMapPlusExtra. Use `create(TestEnumMapPlusExtraDesc)` to create a new TestEnumMapPlusExtra.
+/**
+ * Describes the message protobuf_unittest.TestEnumMapPlusExtra.
+ * Use `create(TestEnumMapPlusExtraDesc)` to create a new message.
+ */
 export declare const TestEnumMapPlusExtraDesc: GenDescMessage<TestEnumMapPlusExtra>;
 
 /**
@@ -196,7 +205,10 @@ export declare type TestImportEnumMap = Message<"protobuf_unittest.TestImportEnu
   importEnumAmp: { [key: number]: ImportEnumForMap };
 };
 
-// Describes the message protobuf_unittest.TestImportEnumMap. Use `create(TestImportEnumMapDesc)` to create a new TestImportEnumMap.
+/**
+ * Describes the message protobuf_unittest.TestImportEnumMap.
+ * Use `create(TestImportEnumMapDesc)` to create a new message.
+ */
 export declare const TestImportEnumMapDesc: GenDescMessage<TestImportEnumMap>;
 
 /**
@@ -209,7 +221,10 @@ export declare type TestIntIntMap = Message<"protobuf_unittest.TestIntIntMap"> &
   m: { [key: number]: number };
 };
 
-// Describes the message protobuf_unittest.TestIntIntMap. Use `create(TestIntIntMapDesc)` to create a new TestIntIntMap.
+/**
+ * Describes the message protobuf_unittest.TestIntIntMap.
+ * Use `create(TestIntIntMapDesc)` to create a new message.
+ */
 export declare const TestIntIntMapDesc: GenDescMessage<TestIntIntMap>;
 
 /**
@@ -279,7 +294,10 @@ export declare type TestMaps = Message<"protobuf_unittest.TestMaps"> & {
   mString: { [key: string]: TestIntIntMap };
 };
 
-// Describes the message protobuf_unittest.TestMaps. Use `create(TestMapsDesc)` to create a new TestMaps.
+/**
+ * Describes the message protobuf_unittest.TestMaps.
+ * Use `create(TestMapsDesc)` to create a new message.
+ */
 export declare const TestMapsDesc: GenDescMessage<TestMaps>;
 
 /**
@@ -294,7 +312,10 @@ export declare type TestSubmessageMaps = Message<"protobuf_unittest.TestSubmessa
   m?: TestMaps;
 };
 
-// Describes the message protobuf_unittest.TestSubmessageMaps. Use `create(TestSubmessageMapsDesc)` to create a new TestSubmessageMaps.
+/**
+ * Describes the message protobuf_unittest.TestSubmessageMaps.
+ * Use `create(TestSubmessageMapsDesc)` to create a new message.
+ */
 export declare const TestSubmessageMapsDesc: GenDescMessage<TestSubmessageMaps>;
 
 /**
@@ -312,7 +333,10 @@ export declare type TestProto2BytesMap = Message<"protobuf_unittest.TestProto2By
   mapString: { [key: number]: string };
 };
 
-// Describes the message protobuf_unittest.TestProto2BytesMap. Use `create(TestProto2BytesMapDesc)` to create a new TestProto2BytesMap.
+/**
+ * Describes the message protobuf_unittest.TestProto2BytesMap.
+ * Use `create(TestProto2BytesMapDesc)` to create a new message.
+ */
 export declare const TestProto2BytesMapDesc: GenDescMessage<TestProto2BytesMap>;
 
 /**
@@ -335,7 +359,9 @@ export enum Proto2MapEnum {
   BAZ = 2,
 }
 
-// Describes the enum protobuf_unittest.Proto2MapEnum.
+/**
+ * Describes the enum protobuf_unittest.Proto2MapEnum.
+ */
 export declare const Proto2MapEnumDesc: GenDescEnum<Proto2MapEnum>;
 
 /**
@@ -363,6 +389,8 @@ export enum Proto2MapEnumPlusExtra {
   E_PROTO2_MAP_ENUM_EXTRA = 3,
 }
 
-// Describes the enum protobuf_unittest.Proto2MapEnumPlusExtra.
+/**
+ * Describes the enum protobuf_unittest.Proto2MapEnumPlusExtra.
+ */
 export declare const Proto2MapEnumPlusExtraDesc: GenDescEnum<Proto2MapEnumPlusExtra>;
 

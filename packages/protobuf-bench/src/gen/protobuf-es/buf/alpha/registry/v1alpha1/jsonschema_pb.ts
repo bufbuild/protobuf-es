@@ -20,6 +20,9 @@ import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/prot
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/jsonschema.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_jsonschema: GenDescFile = /*@__PURE__*/
   fileDesc("CixidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvanNvbnNjaGVtYS5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIl8KFEdldEpTT05TY2hlbWFSZXF1ZXN0Eg0KBW93bmVyGAEgASgJEhIKCnJlcG9zaXRvcnkYAiABKAkSEQoJcmVmZXJlbmNlGAMgASgJEhEKCXR5cGVfbmFtZRgEIAEoCSIsChVHZXRKU09OU2NoZW1hUmVzcG9uc2USEwoLanNvbl9zY2hlbWEYASABKAwyiwEKEUpTT05TY2hlbWFTZXJ2aWNlEnYKDUdldEpTT05TY2hlbWESMS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0SlNPTlNjaGVtYVJlcXVlc3QaMi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0SlNPTlNjaGVtYVJlc3BvbnNlYgZwcm90bzM");
 
@@ -52,8 +55,10 @@ export type GetJSONSchemaRequest = Message<"buf.alpha.registry.v1alpha1.GetJSONS
   typeName: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetJSONSchemaRequest.
-// Use `create(GetJSONSchemaRequestDesc)` to create a new GetJSONSchemaRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetJSONSchemaRequest.
+ * Use `create(GetJSONSchemaRequestDesc)` to create a new message.
+ */
 export const GetJSONSchemaRequestDesc: GenDescMessage<GetJSONSchemaRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_jsonschema, 0);
 
@@ -72,8 +77,10 @@ export type GetJSONSchemaResponse = Message<"buf.alpha.registry.v1alpha1.GetJSON
   jsonSchema: Uint8Array;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetJSONSchemaResponse.
-// Use `create(GetJSONSchemaResponseDesc)` to create a new GetJSONSchemaResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetJSONSchemaResponse.
+ * Use `create(GetJSONSchemaResponseDesc)` to create a new message.
+ */
 export const GetJSONSchemaResponseDesc: GenDescMessage<GetJSONSchemaResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_jsonschema, 1);
 

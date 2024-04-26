@@ -21,6 +21,9 @@
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_no_generic_services.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_no_generic_services: GenDescFile;
 
 /**
@@ -33,7 +36,10 @@ export declare type TestMessage = Message<"protobuf_unittest.no_generic_services
   a: number;
 };
 
-// Describes the message protobuf_unittest.no_generic_services_test.TestMessage. Use `create(TestMessageDesc)` to create a new TestMessage.
+/**
+ * Describes the message protobuf_unittest.no_generic_services_test.TestMessage.
+ * Use `create(TestMessageDesc)` to create a new message.
+ */
 export declare const TestMessageDesc: GenDescMessage<TestMessage>;
 
 /**
@@ -46,7 +52,9 @@ export enum TestEnum {
   FOO = 1,
 }
 
-// Describes the enum protobuf_unittest.no_generic_services_test.TestEnum.
+/**
+ * Describes the enum protobuf_unittest.no_generic_services_test.TestEnum.
+ */
 export declare const TestEnumDesc: GenDescEnum<TestEnum>;
 
 /**

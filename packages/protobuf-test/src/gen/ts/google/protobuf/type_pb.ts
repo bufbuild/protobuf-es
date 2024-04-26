@@ -22,6 +22,9 @@ import type { Any, SourceContext } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_source_context } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/type.proto.
+ */
 export const fileDesc_google_protobuf_type: GenDescFile = /*@__PURE__*/
   fileDesc("Chpnb29nbGUvcHJvdG9idWYvdHlwZS5wcm90bxIPZ29vZ2xlLnByb3RvYnVmIugBCgRUeXBlEgwKBG5hbWUYASABKAkSJgoGZmllbGRzGAIgAygLMhYuZ29vZ2xlLnByb3RvYnVmLkZpZWxkEg4KBm9uZW9mcxgDIAMoCRIoCgdvcHRpb25zGAQgAygLMhcuZ29vZ2xlLnByb3RvYnVmLk9wdGlvbhI2Cg5zb3VyY2VfY29udGV4dBgFIAEoCzIeLmdvb2dsZS5wcm90b2J1Zi5Tb3VyY2VDb250ZXh0EicKBnN5bnRheBgGIAEoDjIXLmdvb2dsZS5wcm90b2J1Zi5TeW50YXgSDwoHZWRpdGlvbhgHIAEoCSLVBQoFRmllbGQSKQoEa2luZBgBIAEoDjIbLmdvb2dsZS5wcm90b2J1Zi5GaWVsZC5LaW5kEjcKC2NhcmRpbmFsaXR5GAIgASgOMiIuZ29vZ2xlLnByb3RvYnVmLkZpZWxkLkNhcmRpbmFsaXR5Eg4KBm51bWJlchgDIAEoBRIMCgRuYW1lGAQgASgJEhAKCHR5cGVfdXJsGAYgASgJEhMKC29uZW9mX2luZGV4GAcgASgFEg4KBnBhY2tlZBgIIAEoCBIoCgdvcHRpb25zGAkgAygLMhcuZ29vZ2xlLnByb3RvYnVmLk9wdGlvbhIRCglqc29uX25hbWUYCiABKAkSFQoNZGVmYXVsdF92YWx1ZRgLIAEoCSLIAgoES2luZBIQCgxUWVBFX1VOS05PV04QABIPCgtUWVBFX0RPVUJMRRABEg4KClRZUEVfRkxPQVQQAhIOCgpUWVBFX0lOVDY0EAMSDwoLVFlQRV9VSU5UNjQQBBIOCgpUWVBFX0lOVDMyEAUSEAoMVFlQRV9GSVhFRDY0EAYSEAoMVFlQRV9GSVhFRDMyEAcSDQoJVFlQRV9CT09MEAgSDwoLVFlQRV9TVFJJTkcQCRIOCgpUWVBFX0dST1VQEAoSEAoMVFlQRV9NRVNTQUdFEAsSDgoKVFlQRV9CWVRFUxAMEg8KC1RZUEVfVUlOVDMyEA0SDQoJVFlQRV9FTlVNEA4SEQoNVFlQRV9TRklYRUQzMhAPEhEKDVRZUEVfU0ZJWEVENjQQEBIPCgtUWVBFX1NJTlQzMhAREg8KC1RZUEVfU0lOVDY0EBIidAoLQ2FyZGluYWxpdHkSFwoTQ0FSRElOQUxJVFlfVU5LTk9XThAAEhgKFENBUkRJTkFMSVRZX09QVElPTkFMEAESGAoUQ0FSRElOQUxJVFlfUkVRVUlSRUQQAhIYChRDQVJESU5BTElUWV9SRVBFQVRFRBADIt8BCgRFbnVtEgwKBG5hbWUYASABKAkSLQoJZW51bXZhbHVlGAIgAygLMhouZ29vZ2xlLnByb3RvYnVmLkVudW1WYWx1ZRIoCgdvcHRpb25zGAMgAygLMhcuZ29vZ2xlLnByb3RvYnVmLk9wdGlvbhI2Cg5zb3VyY2VfY29udGV4dBgEIAEoCzIeLmdvb2dsZS5wcm90b2J1Zi5Tb3VyY2VDb250ZXh0EicKBnN5bnRheBgFIAEoDjIXLmdvb2dsZS5wcm90b2J1Zi5TeW50YXgSDwoHZWRpdGlvbhgGIAEoCSJTCglFbnVtVmFsdWUSDAoEbmFtZRgBIAEoCRIOCgZudW1iZXIYAiABKAUSKAoHb3B0aW9ucxgDIAMoCzIXLmdvb2dsZS5wcm90b2J1Zi5PcHRpb24iOwoGT3B0aW9uEgwKBG5hbWUYASABKAkSIwoFdmFsdWUYAiABKAsyFC5nb29nbGUucHJvdG9idWYuQW55KkMKBlN5bnRheBIRCg1TWU5UQVhfUFJPVE8yEAASEQoNU1lOVEFYX1BST1RPMxABEhMKD1NZTlRBWF9FRElUSU9OUxACQnsKE2NvbS5nb29nbGUucHJvdG9idWZCCVR5cGVQcm90b1ABWi1nb29nbGUuZ29sYW5nLm9yZy9wcm90b2J1Zi90eXBlcy9rbm93bi90eXBlcGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw", [fileDesc_google_protobuf_any, fileDesc_google_protobuf_source_context]);
 
@@ -81,8 +84,10 @@ export type Type = Message<"google.protobuf.Type"> & {
   edition: string;
 };
 
-// Describes the message google.protobuf.Type.
-// Use `create(TypeDesc)` to create a new Type.
+/**
+ * Describes the message google.protobuf.Type.
+ * Use `create(TypeDesc)` to create a new message.
+ */
 export const TypeDesc: GenDescMessage<Type> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 0);
 
@@ -165,8 +170,10 @@ export type Field = Message<"google.protobuf.Field"> & {
   defaultValue: string;
 };
 
-// Describes the message google.protobuf.Field.
-// Use `create(FieldDesc)` to create a new Field.
+/**
+ * Describes the message google.protobuf.Field.
+ * Use `create(FieldDesc)` to create a new message.
+ */
 export const FieldDesc: GenDescMessage<Field> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 1);
 
@@ -310,7 +317,9 @@ export enum Field_Kind {
   TYPE_SINT64 = 18,
 }
 
-// Describes the enum google.protobuf.Field.Kind.
+/**
+ * Describes the enum google.protobuf.Field.Kind.
+ */
 export const Field_KindDesc: GenDescEnum<Field_Kind> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 0);
 
@@ -349,7 +358,9 @@ export enum Field_Cardinality {
   REPEATED = 3,
 }
 
-// Describes the enum google.protobuf.Field.Cardinality.
+/**
+ * Describes the enum google.protobuf.Field.Cardinality.
+ */
 export const Field_CardinalityDesc: GenDescEnum<Field_Cardinality> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 1);
 
@@ -402,8 +413,10 @@ export type Enum = Message<"google.protobuf.Enum"> & {
   edition: string;
 };
 
-// Describes the message google.protobuf.Enum.
-// Use `create(EnumDesc)` to create a new Enum.
+/**
+ * Describes the message google.protobuf.Enum.
+ * Use `create(EnumDesc)` to create a new message.
+ */
 export const EnumDesc: GenDescMessage<Enum> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 2);
 
@@ -435,8 +448,10 @@ export type EnumValue = Message<"google.protobuf.EnumValue"> & {
   options: Option[];
 };
 
-// Describes the message google.protobuf.EnumValue.
-// Use `create(EnumValueDesc)` to create a new EnumValue.
+/**
+ * Describes the message google.protobuf.EnumValue.
+ * Use `create(EnumValueDesc)` to create a new message.
+ */
 export const EnumValueDesc: GenDescMessage<EnumValue> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 3);
 
@@ -468,8 +483,10 @@ export type Option = Message<"google.protobuf.Option"> & {
   value?: Any;
 };
 
-// Describes the message google.protobuf.Option.
-// Use `create(OptionDesc)` to create a new Option.
+/**
+ * Describes the message google.protobuf.Option.
+ * Use `create(OptionDesc)` to create a new message.
+ */
 export const OptionDesc: GenDescMessage<Option> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 4);
 
@@ -501,7 +518,9 @@ export enum Syntax {
   EDITIONS = 2,
 }
 
-// Describes the enum google.protobuf.Syntax.
+/**
+ * Describes the enum google.protobuf.Syntax.
+ */
 export const SyntaxDesc: GenDescEnum<Syntax> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 0);
 

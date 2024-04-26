@@ -19,6 +19,9 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/edition2023-proto3.proto.
+ */
 export declare const fileDesc_extra_edition2023_proto3: GenDescFile;
 
 /**
@@ -58,7 +61,10 @@ export declare type Proto3MessageForEdition2023 = Message<"spec.Proto3MessageFor
   unpackedDoubleField: number[];
 };
 
-// Describes the message spec.Proto3MessageForEdition2023. Use `create(Proto3MessageForEdition2023Desc)` to create a new Proto3MessageForEdition2023.
+/**
+ * Describes the message spec.Proto3MessageForEdition2023.
+ * Use `create(Proto3MessageForEdition2023Desc)` to create a new message.
+ */
 export declare const Proto3MessageForEdition2023Desc: GenDescMessage<Proto3MessageForEdition2023>;
 
 /**
@@ -76,6 +82,8 @@ export enum Proto3EnumForEdition2023 {
   A = 1,
 }
 
-// Describes the enum spec.Proto3EnumForEdition2023.
+/**
+ * Describes the enum spec.Proto3EnumForEdition2023.
+ */
 export declare const Proto3EnumForEdition2023Desc: GenDescEnum<Proto3EnumForEdition2023>;
 

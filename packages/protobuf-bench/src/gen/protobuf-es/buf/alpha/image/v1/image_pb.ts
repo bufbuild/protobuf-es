@@ -22,6 +22,9 @@ import type { DescriptorProto, EnumDescriptorProto, FieldDescriptorProto, FileOp
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/image/v1/image.proto.
+ */
 export const fileDesc_buf_alpha_image_v1_image: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5idWYvYWxwaGEvaW1hZ2UvdjEvaW1hZ2UucHJvdG8SEmJ1Zi5hbHBoYS5pbWFnZS52MSI0CgVJbWFnZRIrCgRmaWxlGAEgAygLMh0uYnVmLmFscGhhLmltYWdlLnYxLkltYWdlRmlsZSKRBAoJSW1hZ2VGaWxlEgwKBG5hbWUYASABKAkSDwoHcGFja2FnZRgCIAEoCRISCgpkZXBlbmRlbmN5GAMgAygJEhkKEXB1YmxpY19kZXBlbmRlbmN5GAogAygFEhcKD3dlYWtfZGVwZW5kZW5jeRgLIAMoBRI2CgxtZXNzYWdlX3R5cGUYBCADKAsyIC5nb29nbGUucHJvdG9idWYuRGVzY3JpcHRvclByb3RvEjcKCWVudW1fdHlwZRgFIAMoCzIkLmdvb2dsZS5wcm90b2J1Zi5FbnVtRGVzY3JpcHRvclByb3RvEjgKB3NlcnZpY2UYBiADKAsyJy5nb29nbGUucHJvdG9idWYuU2VydmljZURlc2NyaXB0b3JQcm90bxI4CglleHRlbnNpb24YByADKAsyJS5nb29nbGUucHJvdG9idWYuRmllbGREZXNjcmlwdG9yUHJvdG8SLQoHb3B0aW9ucxgIIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxI5ChBzb3VyY2VfY29kZV9pbmZvGAkgASgLMh8uZ29vZ2xlLnByb3RvYnVmLlNvdXJjZUNvZGVJbmZvEg4KBnN5bnRheBgMIAEoCRI+Cg1idWZfZXh0ZW5zaW9uGOo+IAEoCzImLmJ1Zi5hbHBoYS5pbWFnZS52MS5JbWFnZUZpbGVFeHRlbnNpb24ilgEKEkltYWdlRmlsZUV4dGVuc2lvbhIRCglpc19pbXBvcnQYASABKAgSMwoLbW9kdWxlX2luZm8YAiABKAsyHi5idWYuYWxwaGEuaW1hZ2UudjEuTW9kdWxlSW5mbxIdChVpc19zeW50YXhfdW5zcGVjaWZpZWQYAyABKAgSGQoRdW51c2VkX2RlcGVuZGVuY3kYBCADKAUiSgoKTW9kdWxlSW5mbxIsCgRuYW1lGAEgASgLMh4uYnVmLmFscGhhLmltYWdlLnYxLk1vZHVsZU5hbWUSDgoGY29tbWl0GAIgASgJIj8KCk1vZHVsZU5hbWUSDgoGcmVtb3RlGAEgASgJEg0KBW93bmVyGAIgASgJEhIKCnJlcG9zaXRvcnkYAyABKAlCBUgB+AEB", [fileDesc_google_protobuf_descriptor]);
 
@@ -39,8 +42,10 @@ export type Image = Message<"buf.alpha.image.v1.Image"> & {
   file: ImageFile[];
 };
 
-// Describes the message buf.alpha.image.v1.Image.
-// Use `create(ImageDesc)` to create a new Image.
+/**
+ * Describes the message buf.alpha.image.v1.Image.
+ * Use `create(ImageDesc)` to create a new message.
+ */
 export const ImageDesc: GenDescMessage<Image> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_image_v1_image, 0);
 
@@ -130,8 +135,10 @@ export type ImageFile = Message<"buf.alpha.image.v1.ImageFile"> & {
   bufExtension?: ImageFileExtension;
 };
 
-// Describes the message buf.alpha.image.v1.ImageFile.
-// Use `create(ImageFileDesc)` to create a new ImageFile.
+/**
+ * Describes the message buf.alpha.image.v1.ImageFile.
+ * Use `create(ImageFileDesc)` to create a new message.
+ */
 export const ImageFileDesc: GenDescMessage<ImageFile> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_image_v1_image, 1);
 
@@ -203,8 +210,10 @@ export type ImageFileExtension = Message<"buf.alpha.image.v1.ImageFileExtension"
   unusedDependency: number[];
 };
 
-// Describes the message buf.alpha.image.v1.ImageFileExtension.
-// Use `create(ImageFileExtensionDesc)` to create a new ImageFileExtension.
+/**
+ * Describes the message buf.alpha.image.v1.ImageFileExtension.
+ * Use `create(ImageFileExtensionDesc)` to create a new message.
+ */
 export const ImageFileExtensionDesc: GenDescMessage<ImageFileExtension> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_image_v1_image, 2);
 
@@ -234,8 +243,10 @@ export type ModuleInfo = Message<"buf.alpha.image.v1.ModuleInfo"> & {
   commit: string;
 };
 
-// Describes the message buf.alpha.image.v1.ModuleInfo.
-// Use `create(ModuleInfoDesc)` to create a new ModuleInfo.
+/**
+ * Describes the message buf.alpha.image.v1.ModuleInfo.
+ * Use `create(ModuleInfoDesc)` to create a new message.
+ */
 export const ModuleInfoDesc: GenDescMessage<ModuleInfo> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_image_v1_image, 3);
 
@@ -263,8 +274,10 @@ export type ModuleName = Message<"buf.alpha.image.v1.ModuleName"> & {
   repository: string;
 };
 
-// Describes the message buf.alpha.image.v1.ModuleName.
-// Use `create(ModuleNameDesc)` to create a new ModuleName.
+/**
+ * Describes the message buf.alpha.image.v1.ModuleName.
+ * Use `create(ModuleNameDesc)` to create a new message.
+ */
 export const ModuleNameDesc: GenDescMessage<ModuleName> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_image_v1_image, 4);
 

@@ -22,6 +22,9 @@ import type { PluginRole, RepositoryRole, TemplateRole } from "./role_pb.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_role } from "./role_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/display.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_display: GenDescFile = /*@__PURE__*/
   fileDesc("CilidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvZGlzcGxheS5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIj0KIkRpc3BsYXlPcmdhbml6YXRpb25FbGVtZW50c1JlcXVlc3QSFwoPb3JnYW5pemF0aW9uX2lkGAEgASgJIqsBCiNEaXNwbGF5T3JnYW5pemF0aW9uRWxlbWVudHNSZXNwb25zZRIZChFjcmVhdGVfcmVwb3NpdG9yeRgBIAEoCBIVCg1jcmVhdGVfcGx1Z2luGAIgASgIEhcKD2NyZWF0ZV90ZW1wbGF0ZRgDIAEoCBIQCghzZXR0aW5ncxgEIAEoCBIXCg91cGRhdGVfc2V0dGluZ3MYBSABKAgSDgoGZGVsZXRlGAYgASgIIjkKIERpc3BsYXlSZXBvc2l0b3J5RWxlbWVudHNSZXF1ZXN0EhUKDXJlcG9zaXRvcnlfaWQYASABKAkiRQohRGlzcGxheVJlcG9zaXRvcnlFbGVtZW50c1Jlc3BvbnNlEhAKCHNldHRpbmdzGAEgASgIEg4KBmRlbGV0ZRgCIAEoCCIxChxEaXNwbGF5UGx1Z2luRWxlbWVudHNSZXF1ZXN0EhEKCXBsdWdpbl9pZBgBIAEoCSJZCh1EaXNwbGF5UGx1Z2luRWxlbWVudHNSZXNwb25zZRIWCg5jcmVhdGVfdmVyc2lvbhgBIAEoCBIQCghzZXR0aW5ncxgCIAEoCBIOCgZkZWxldGUYAyABKAgiNQoeRGlzcGxheVRlbXBsYXRlRWxlbWVudHNSZXF1ZXN0EhMKC3RlbXBsYXRlX2lkGAEgASgJIlsKH0Rpc3BsYXlUZW1wbGF0ZUVsZW1lbnRzUmVzcG9uc2USFgoOY3JlYXRlX3ZlcnNpb24YASABKAgSEAoIc2V0dGluZ3MYAiABKAgSDgoGZGVsZXRlGAMgASgIIhwKGkRpc3BsYXlVc2VyRWxlbWVudHNSZXF1ZXN0Ii0KG0Rpc3BsYXlVc2VyRWxlbWVudHNSZXNwb25zZRIOCgZkZWxldGUYASABKAgiHgocRGlzcGxheVNlcnZlckVsZW1lbnRzUmVxdWVzdCI0Ch1EaXNwbGF5U2VydmVyRWxlbWVudHNSZXNwb25zZRITCgthZG1pbl9wYW5lbBgBIAEoCCI9CiRMaXN0TWFuYWdlYWJsZVJlcG9zaXRvcnlSb2xlc1JlcXVlc3QSFQoNcmVwb3NpdG9yeV9pZBgBIAEoCSJjCiVMaXN0TWFuYWdlYWJsZVJlcG9zaXRvcnlSb2xlc1Jlc3BvbnNlEjoKBXJvbGVzGAEgAygOMisuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlSb2xlIlIKKExpc3RNYW5hZ2VhYmxlVXNlclJlcG9zaXRvcnlSb2xlc1JlcXVlc3QSFQoNcmVwb3NpdG9yeV9pZBgBIAEoCRIPCgd1c2VyX2lkGAIgASgJImcKKUxpc3RNYW5hZ2VhYmxlVXNlclJlcG9zaXRvcnlSb2xlc1Jlc3BvbnNlEjoKBXJvbGVzGAEgAygOMisuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlSb2xlIjUKIExpc3RNYW5hZ2VhYmxlUGx1Z2luUm9sZXNSZXF1ZXN0EhEKCXBsdWdpbl9pZBgBIAEoCSJbCiFMaXN0TWFuYWdlYWJsZVBsdWdpblJvbGVzUmVzcG9uc2USNgoFcm9sZXMYASADKA4yJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUGx1Z2luUm9sZSJKCiRMaXN0TWFuYWdlYWJsZVVzZXJQbHVnaW5Sb2xlc1JlcXVlc3QSEQoJcGx1Z2luX2lkGAEgASgJEg8KB3VzZXJfaWQYAiABKAkiXwolTGlzdE1hbmFnZWFibGVVc2VyUGx1Z2luUm9sZXNSZXNwb25zZRI2CgVyb2xlcxgBIAMoDjInLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5Sb2xlIjkKIkxpc3RNYW5hZ2VhYmxlVGVtcGxhdGVSb2xlc1JlcXVlc3QSEwoLdGVtcGxhdGVfaWQYASABKAkiXwojTGlzdE1hbmFnZWFibGVUZW1wbGF0ZVJvbGVzUmVzcG9uc2USOAoFcm9sZXMYASADKA4yKS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVGVtcGxhdGVSb2xlIk4KJkxpc3RNYW5hZ2VhYmxlVXNlclRlbXBsYXRlUm9sZXNSZXF1ZXN0EhMKC3RlbXBsYXRlX2lkGAEgASgJEg8KB3VzZXJfaWQYAiABKAkiYwonTGlzdE1hbmFnZWFibGVVc2VyVGVtcGxhdGVSb2xlc1Jlc3BvbnNlEjgKBXJvbGVzGAEgAygOMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlRlbXBsYXRlUm9sZTKKDwoORGlzcGxheVNlcnZpY2USoAEKG0Rpc3BsYXlPcmdhbml6YXRpb25FbGVtZW50cxI/LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EaXNwbGF5T3JnYW5pemF0aW9uRWxlbWVudHNSZXF1ZXN0GkAuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRpc3BsYXlPcmdhbml6YXRpb25FbGVtZW50c1Jlc3BvbnNlEpoBChlEaXNwbGF5UmVwb3NpdG9yeUVsZW1lbnRzEj0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRpc3BsYXlSZXBvc2l0b3J5RWxlbWVudHNSZXF1ZXN0Gj4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRpc3BsYXlSZXBvc2l0b3J5RWxlbWVudHNSZXNwb25zZRKOAQoVRGlzcGxheVBsdWdpbkVsZW1lbnRzEjkuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRpc3BsYXlQbHVnaW5FbGVtZW50c1JlcXVlc3QaOi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRGlzcGxheVBsdWdpbkVsZW1lbnRzUmVzcG9uc2USlAEKF0Rpc3BsYXlUZW1wbGF0ZUVsZW1lbnRzEjsuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRpc3BsYXlUZW1wbGF0ZUVsZW1lbnRzUmVxdWVzdBo8LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EaXNwbGF5VGVtcGxhdGVFbGVtZW50c1Jlc3BvbnNlEogBChNEaXNwbGF5VXNlckVsZW1lbnRzEjcuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRpc3BsYXlVc2VyRWxlbWVudHNSZXF1ZXN0GjguYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRpc3BsYXlVc2VyRWxlbWVudHNSZXNwb25zZRKOAQoVRGlzcGxheVNlcnZlckVsZW1lbnRzEjkuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRpc3BsYXlTZXJ2ZXJFbGVtZW50c1JlcXVlc3QaOi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRGlzcGxheVNlcnZlckVsZW1lbnRzUmVzcG9uc2USpgEKHUxpc3RNYW5hZ2VhYmxlUmVwb3NpdG9yeVJvbGVzEkEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RNYW5hZ2VhYmxlUmVwb3NpdG9yeVJvbGVzUmVxdWVzdBpCLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0TWFuYWdlYWJsZVJlcG9zaXRvcnlSb2xlc1Jlc3BvbnNlErIBCiFMaXN0TWFuYWdlYWJsZVVzZXJSZXBvc2l0b3J5Um9sZXMSRS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdE1hbmFnZWFibGVVc2VyUmVwb3NpdG9yeVJvbGVzUmVxdWVzdBpGLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0TWFuYWdlYWJsZVVzZXJSZXBvc2l0b3J5Um9sZXNSZXNwb25zZRKaAQoZTGlzdE1hbmFnZWFibGVQbHVnaW5Sb2xlcxI9LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0TWFuYWdlYWJsZVBsdWdpblJvbGVzUmVxdWVzdBo+LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0TWFuYWdlYWJsZVBsdWdpblJvbGVzUmVzcG9uc2USpgEKHUxpc3RNYW5hZ2VhYmxlVXNlclBsdWdpblJvbGVzEkEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RNYW5hZ2VhYmxlVXNlclBsdWdpblJvbGVzUmVxdWVzdBpCLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0TWFuYWdlYWJsZVVzZXJQbHVnaW5Sb2xlc1Jlc3BvbnNlEqABChtMaXN0TWFuYWdlYWJsZVRlbXBsYXRlUm9sZXMSPy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdE1hbmFnZWFibGVUZW1wbGF0ZVJvbGVzUmVxdWVzdBpALmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0TWFuYWdlYWJsZVRlbXBsYXRlUm9sZXNSZXNwb25zZRKsAQofTGlzdE1hbmFnZWFibGVVc2VyVGVtcGxhdGVSb2xlcxJDLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0TWFuYWdlYWJsZVVzZXJUZW1wbGF0ZVJvbGVzUmVxdWVzdBpELmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0TWFuYWdlYWJsZVVzZXJUZW1wbGF0ZVJvbGVzUmVzcG9uc2ViBnByb3RvMw", [fileDesc_buf_alpha_registry_v1alpha1_role]);
 
@@ -38,8 +41,10 @@ export type DisplayOrganizationElementsRequest = Message<"buf.alpha.registry.v1a
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayOrganizationElementsRequest.
-// Use `create(DisplayOrganizationElementsRequestDesc)` to create a new DisplayOrganizationElementsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayOrganizationElementsRequest.
+ * Use `create(DisplayOrganizationElementsRequestDesc)` to create a new message.
+ */
 export const DisplayOrganizationElementsRequestDesc: GenDescMessage<DisplayOrganizationElementsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 0);
 
@@ -90,8 +95,10 @@ export type DisplayOrganizationElementsResponse = Message<"buf.alpha.registry.v1
   delete: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayOrganizationElementsResponse.
-// Use `create(DisplayOrganizationElementsResponseDesc)` to create a new DisplayOrganizationElementsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayOrganizationElementsResponse.
+ * Use `create(DisplayOrganizationElementsResponseDesc)` to create a new message.
+ */
 export const DisplayOrganizationElementsResponseDesc: GenDescMessage<DisplayOrganizationElementsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 1);
 
@@ -108,8 +115,10 @@ export type DisplayRepositoryElementsRequest = Message<"buf.alpha.registry.v1alp
   repositoryId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayRepositoryElementsRequest.
-// Use `create(DisplayRepositoryElementsRequestDesc)` to create a new DisplayRepositoryElementsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayRepositoryElementsRequest.
+ * Use `create(DisplayRepositoryElementsRequestDesc)` to create a new message.
+ */
 export const DisplayRepositoryElementsRequestDesc: GenDescMessage<DisplayRepositoryElementsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 2);
 
@@ -132,8 +141,10 @@ export type DisplayRepositoryElementsResponse = Message<"buf.alpha.registry.v1al
   delete: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayRepositoryElementsResponse.
-// Use `create(DisplayRepositoryElementsResponseDesc)` to create a new DisplayRepositoryElementsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayRepositoryElementsResponse.
+ * Use `create(DisplayRepositoryElementsResponseDesc)` to create a new message.
+ */
 export const DisplayRepositoryElementsResponseDesc: GenDescMessage<DisplayRepositoryElementsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 3);
 
@@ -150,8 +161,10 @@ export type DisplayPluginElementsRequest = Message<"buf.alpha.registry.v1alpha1.
   pluginId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayPluginElementsRequest.
-// Use `create(DisplayPluginElementsRequestDesc)` to create a new DisplayPluginElementsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayPluginElementsRequest.
+ * Use `create(DisplayPluginElementsRequestDesc)` to create a new message.
+ */
 export const DisplayPluginElementsRequestDesc: GenDescMessage<DisplayPluginElementsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 4);
 
@@ -181,8 +194,10 @@ export type DisplayPluginElementsResponse = Message<"buf.alpha.registry.v1alpha1
   delete: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayPluginElementsResponse.
-// Use `create(DisplayPluginElementsResponseDesc)` to create a new DisplayPluginElementsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayPluginElementsResponse.
+ * Use `create(DisplayPluginElementsResponseDesc)` to create a new message.
+ */
 export const DisplayPluginElementsResponseDesc: GenDescMessage<DisplayPluginElementsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 5);
 
@@ -199,8 +214,10 @@ export type DisplayTemplateElementsRequest = Message<"buf.alpha.registry.v1alpha
   templateId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayTemplateElementsRequest.
-// Use `create(DisplayTemplateElementsRequestDesc)` to create a new DisplayTemplateElementsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayTemplateElementsRequest.
+ * Use `create(DisplayTemplateElementsRequestDesc)` to create a new message.
+ */
 export const DisplayTemplateElementsRequestDesc: GenDescMessage<DisplayTemplateElementsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 6);
 
@@ -230,8 +247,10 @@ export type DisplayTemplateElementsResponse = Message<"buf.alpha.registry.v1alph
   delete: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayTemplateElementsResponse.
-// Use `create(DisplayTemplateElementsResponseDesc)` to create a new DisplayTemplateElementsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayTemplateElementsResponse.
+ * Use `create(DisplayTemplateElementsResponseDesc)` to create a new message.
+ */
 export const DisplayTemplateElementsResponseDesc: GenDescMessage<DisplayTemplateElementsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 7);
 
@@ -241,8 +260,10 @@ export const DisplayTemplateElementsResponseDesc: GenDescMessage<DisplayTemplate
 export type DisplayUserElementsRequest = Message<"buf.alpha.registry.v1alpha1.DisplayUserElementsRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayUserElementsRequest.
-// Use `create(DisplayUserElementsRequestDesc)` to create a new DisplayUserElementsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayUserElementsRequest.
+ * Use `create(DisplayUserElementsRequestDesc)` to create a new message.
+ */
 export const DisplayUserElementsRequestDesc: GenDescMessage<DisplayUserElementsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 8);
 
@@ -258,8 +279,10 @@ export type DisplayUserElementsResponse = Message<"buf.alpha.registry.v1alpha1.D
   delete: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayUserElementsResponse.
-// Use `create(DisplayUserElementsResponseDesc)` to create a new DisplayUserElementsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayUserElementsResponse.
+ * Use `create(DisplayUserElementsResponseDesc)` to create a new message.
+ */
 export const DisplayUserElementsResponseDesc: GenDescMessage<DisplayUserElementsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 9);
 
@@ -269,8 +292,10 @@ export const DisplayUserElementsResponseDesc: GenDescMessage<DisplayUserElements
 export type DisplayServerElementsRequest = Message<"buf.alpha.registry.v1alpha1.DisplayServerElementsRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayServerElementsRequest.
-// Use `create(DisplayServerElementsRequestDesc)` to create a new DisplayServerElementsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayServerElementsRequest.
+ * Use `create(DisplayServerElementsRequestDesc)` to create a new message.
+ */
 export const DisplayServerElementsRequestDesc: GenDescMessage<DisplayServerElementsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 10);
 
@@ -286,8 +311,10 @@ export type DisplayServerElementsResponse = Message<"buf.alpha.registry.v1alpha1
   adminPanel: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DisplayServerElementsResponse.
-// Use `create(DisplayServerElementsResponseDesc)` to create a new DisplayServerElementsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DisplayServerElementsResponse.
+ * Use `create(DisplayServerElementsResponseDesc)` to create a new message.
+ */
 export const DisplayServerElementsResponseDesc: GenDescMessage<DisplayServerElementsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 11);
 
@@ -304,8 +331,10 @@ export type ListManageableRepositoryRolesRequest = Message<"buf.alpha.registry.v
   repositoryId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesRequest.
-// Use `create(ListManageableRepositoryRolesRequestDesc)` to create a new ListManageableRepositoryRolesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesRequest.
+ * Use `create(ListManageableRepositoryRolesRequestDesc)` to create a new message.
+ */
 export const ListManageableRepositoryRolesRequestDesc: GenDescMessage<ListManageableRepositoryRolesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 12);
 
@@ -322,8 +351,10 @@ export type ListManageableRepositoryRolesResponse = Message<"buf.alpha.registry.
   roles: RepositoryRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesResponse.
-// Use `create(ListManageableRepositoryRolesResponseDesc)` to create a new ListManageableRepositoryRolesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableRepositoryRolesResponse.
+ * Use `create(ListManageableRepositoryRolesResponseDesc)` to create a new message.
+ */
 export const ListManageableRepositoryRolesResponseDesc: GenDescMessage<ListManageableRepositoryRolesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 13);
 
@@ -348,8 +379,10 @@ export type ListManageableUserRepositoryRolesRequest = Message<"buf.alpha.regist
   userId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesRequest.
-// Use `create(ListManageableUserRepositoryRolesRequestDesc)` to create a new ListManageableUserRepositoryRolesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesRequest.
+ * Use `create(ListManageableUserRepositoryRolesRequestDesc)` to create a new message.
+ */
 export const ListManageableUserRepositoryRolesRequestDesc: GenDescMessage<ListManageableUserRepositoryRolesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 14);
 
@@ -366,8 +399,10 @@ export type ListManageableUserRepositoryRolesResponse = Message<"buf.alpha.regis
   roles: RepositoryRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesResponse.
-// Use `create(ListManageableUserRepositoryRolesResponseDesc)` to create a new ListManageableUserRepositoryRolesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableUserRepositoryRolesResponse.
+ * Use `create(ListManageableUserRepositoryRolesResponseDesc)` to create a new message.
+ */
 export const ListManageableUserRepositoryRolesResponseDesc: GenDescMessage<ListManageableUserRepositoryRolesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 15);
 
@@ -384,8 +419,10 @@ export type ListManageablePluginRolesRequest = Message<"buf.alpha.registry.v1alp
   pluginId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageablePluginRolesRequest.
-// Use `create(ListManageablePluginRolesRequestDesc)` to create a new ListManageablePluginRolesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageablePluginRolesRequest.
+ * Use `create(ListManageablePluginRolesRequestDesc)` to create a new message.
+ */
 export const ListManageablePluginRolesRequestDesc: GenDescMessage<ListManageablePluginRolesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 16);
 
@@ -402,8 +439,10 @@ export type ListManageablePluginRolesResponse = Message<"buf.alpha.registry.v1al
   roles: PluginRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageablePluginRolesResponse.
-// Use `create(ListManageablePluginRolesResponseDesc)` to create a new ListManageablePluginRolesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageablePluginRolesResponse.
+ * Use `create(ListManageablePluginRolesResponseDesc)` to create a new message.
+ */
 export const ListManageablePluginRolesResponseDesc: GenDescMessage<ListManageablePluginRolesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 17);
 
@@ -428,8 +467,10 @@ export type ListManageableUserPluginRolesRequest = Message<"buf.alpha.registry.v
   userId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesRequest.
-// Use `create(ListManageableUserPluginRolesRequestDesc)` to create a new ListManageableUserPluginRolesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesRequest.
+ * Use `create(ListManageableUserPluginRolesRequestDesc)` to create a new message.
+ */
 export const ListManageableUserPluginRolesRequestDesc: GenDescMessage<ListManageableUserPluginRolesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 18);
 
@@ -446,8 +487,10 @@ export type ListManageableUserPluginRolesResponse = Message<"buf.alpha.registry.
   roles: PluginRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesResponse.
-// Use `create(ListManageableUserPluginRolesResponseDesc)` to create a new ListManageableUserPluginRolesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableUserPluginRolesResponse.
+ * Use `create(ListManageableUserPluginRolesResponseDesc)` to create a new message.
+ */
 export const ListManageableUserPluginRolesResponseDesc: GenDescMessage<ListManageableUserPluginRolesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 19);
 
@@ -464,8 +507,10 @@ export type ListManageableTemplateRolesRequest = Message<"buf.alpha.registry.v1a
   templateId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableTemplateRolesRequest.
-// Use `create(ListManageableTemplateRolesRequestDesc)` to create a new ListManageableTemplateRolesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableTemplateRolesRequest.
+ * Use `create(ListManageableTemplateRolesRequestDesc)` to create a new message.
+ */
 export const ListManageableTemplateRolesRequestDesc: GenDescMessage<ListManageableTemplateRolesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 20);
 
@@ -482,8 +527,10 @@ export type ListManageableTemplateRolesResponse = Message<"buf.alpha.registry.v1
   roles: TemplateRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableTemplateRolesResponse.
-// Use `create(ListManageableTemplateRolesResponseDesc)` to create a new ListManageableTemplateRolesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableTemplateRolesResponse.
+ * Use `create(ListManageableTemplateRolesResponseDesc)` to create a new message.
+ */
 export const ListManageableTemplateRolesResponseDesc: GenDescMessage<ListManageableTemplateRolesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 21);
 
@@ -508,8 +555,10 @@ export type ListManageableUserTemplateRolesRequest = Message<"buf.alpha.registry
   userId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesRequest.
-// Use `create(ListManageableUserTemplateRolesRequestDesc)` to create a new ListManageableUserTemplateRolesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesRequest.
+ * Use `create(ListManageableUserTemplateRolesRequestDesc)` to create a new message.
+ */
 export const ListManageableUserTemplateRolesRequestDesc: GenDescMessage<ListManageableUserTemplateRolesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 22);
 
@@ -526,8 +575,10 @@ export type ListManageableUserTemplateRolesResponse = Message<"buf.alpha.registr
   roles: TemplateRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesResponse.
-// Use `create(ListManageableUserTemplateRolesResponseDesc)` to create a new ListManageableUserTemplateRolesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListManageableUserTemplateRolesResponse.
+ * Use `create(ListManageableUserTemplateRolesResponseDesc)` to create a new message.
+ */
 export const ListManageableUserTemplateRolesResponseDesc: GenDescMessage<ListManageableUserTemplateRolesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_display, 23);
 

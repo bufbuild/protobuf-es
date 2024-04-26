@@ -18,14 +18,23 @@
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 
+/**
+ * Describes the file extra/msg-scalar.proto.
+ */
 export const fileDesc_extra_msg_scalar = /*@__PURE__*/
   fileDesc("ChZleHRyYS9tc2ctc2NhbGFyLnByb3RvEgRzcGVjIt8CChNTY2FsYXJWYWx1ZXNNZXNzYWdlEhQKDGRvdWJsZV9maWVsZBgBIAEoARITCgtmbG9hdF9maWVsZBgCIAEoAhITCgtpbnQ2NF9maWVsZBgDIAEoAxIUCgx1aW50NjRfZmllbGQYBCABKAQSEwoLaW50MzJfZmllbGQYBSABKAUSFQoNZml4ZWQ2NF9maWVsZBgGIAEoBhIVCg1maXhlZDMyX2ZpZWxkGAcgASgHEhIKCmJvb2xfZmllbGQYCCABKAgSFAoMc3RyaW5nX2ZpZWxkGAkgASgJEhMKC2J5dGVzX2ZpZWxkGAsgASgMEhQKDHVpbnQzMl9maWVsZBgMIAEoDRIWCg5zZml4ZWQzMl9maWVsZBgOIAEoDxIWCg5zZml4ZWQ2NF9maWVsZBgPIAEoEBIUCgxzaW50MzJfZmllbGQYECABKBESFAoMc2ludDY0X2ZpZWxkGBEgASgSIucCChtSZXBlYXRlZFNjYWxhclZhbHVlc01lc3NhZ2USFAoMZG91YmxlX2ZpZWxkGAEgAygBEhMKC2Zsb2F0X2ZpZWxkGAIgAygCEhMKC2ludDY0X2ZpZWxkGAMgAygDEhQKDHVpbnQ2NF9maWVsZBgEIAMoBBITCgtpbnQzMl9maWVsZBgFIAMoBRIVCg1maXhlZDY0X2ZpZWxkGAYgAygGEhUKDWZpeGVkMzJfZmllbGQYByADKAcSEgoKYm9vbF9maWVsZBgIIAMoCBIUCgxzdHJpbmdfZmllbGQYCSADKAkSEwoLYnl0ZXNfZmllbGQYCyADKAwSFAoMdWludDMyX2ZpZWxkGAwgAygNEhYKDnNmaXhlZDMyX2ZpZWxkGA4gAygPEhYKDnNmaXhlZDY0X2ZpZWxkGA8gAygQEhQKDHNpbnQzMl9maWVsZBgQIAMoERIUCgxzaW50NjRfZmllbGQYESADKBJiBnByb3RvMw");
 
-// Describes the message spec.ScalarValuesMessage. Use `create(ScalarValuesMessageDesc)` to create a new ScalarValuesMessage.
+/**
+ * Describes the message spec.ScalarValuesMessage.
+ * Use `create(ScalarValuesMessageDesc)` to create a new message.
+ */
 export const ScalarValuesMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_scalar, 0);
 
-// Describes the message spec.RepeatedScalarValuesMessage. Use `create(RepeatedScalarValuesMessageDesc)` to create a new RepeatedScalarValuesMessage.
+/**
+ * Describes the message spec.RepeatedScalarValuesMessage.
+ * Use `create(RepeatedScalarValuesMessageDesc)` to create a new message.
+ */
 export const RepeatedScalarValuesMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_scalar, 1);
 

@@ -22,6 +22,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/repository_track_commit.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_repository_track_commit: GenDescFile = /*@__PURE__*/
   fileDesc("CjlidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcmVwb3NpdG9yeV90cmFja19jb21taXQucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSKYAQoVUmVwb3NpdG9yeVRyYWNrQ29tbWl0Ei8KC2NyZWF0ZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIbChNyZXBvc2l0b3J5X3RyYWNrX2lkGAQgASgJEhwKFHJlcG9zaXRvcnlfY29tbWl0X2lkGAUgASgJEhMKC3NlcXVlbmNlX2lkGAYgASgDIm4KMUdldFJlcG9zaXRvcnlUcmFja0NvbW1pdEJ5UmVwb3NpdG9yeUNvbW1pdFJlcXVlc3QSGwoTcmVwb3NpdG9yeV90cmFja19pZBgBIAEoCRIcChRyZXBvc2l0b3J5X2NvbW1pdF9pZBgCIAEoCSKJAQoyR2V0UmVwb3NpdG9yeVRyYWNrQ29tbWl0QnlSZXBvc2l0b3J5Q29tbWl0UmVzcG9uc2USUwoXcmVwb3NpdG9yeV90cmFja19jb21taXQYASABKAsyMi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeVRyYWNrQ29tbWl0IokBCjJMaXN0UmVwb3NpdG9yeVRyYWNrQ29tbWl0c0J5UmVwb3NpdG9yeVRyYWNrUmVxdWVzdBIbChNyZXBvc2l0b3J5X3RyYWNrX2lkGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgipAEKM0xpc3RSZXBvc2l0b3J5VHJhY2tDb21taXRzQnlSZXBvc2l0b3J5VHJhY2tSZXNwb25zZRJUChhyZXBvc2l0b3J5X3RyYWNrX2NvbW1pdHMYASADKAsyMi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeVRyYWNrQ29tbWl0EhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSKBAQoqR2V0UmVwb3NpdG9yeVRyYWNrQ29tbWl0QnlSZWZlcmVuY2VSZXF1ZXN0EhgKEHJlcG9zaXRvcnlfb3duZXIYASABKAkSFwoPcmVwb3NpdG9yeV9uYW1lGAIgASgJEg0KBXRyYWNrGAMgASgJEhEKCXJlZmVyZW5jZRgEIAEoCSKCAQorR2V0UmVwb3NpdG9yeVRyYWNrQ29tbWl0QnlSZWZlcmVuY2VSZXNwb25zZRJTChdyZXBvc2l0b3J5X3RyYWNrX2NvbW1pdBgBIAEoCzIyLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5VHJhY2tDb21taXQy/AQKHFJlcG9zaXRvcnlUcmFja0NvbW1pdFNlcnZpY2USzQEKKkdldFJlcG9zaXRvcnlUcmFja0NvbW1pdEJ5UmVwb3NpdG9yeUNvbW1pdBJOLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRSZXBvc2l0b3J5VHJhY2tDb21taXRCeVJlcG9zaXRvcnlDb21taXRSZXF1ZXN0Gk8uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldFJlcG9zaXRvcnlUcmFja0NvbW1pdEJ5UmVwb3NpdG9yeUNvbW1pdFJlc3BvbnNlEtABCitMaXN0UmVwb3NpdG9yeVRyYWNrQ29tbWl0c0J5UmVwb3NpdG9yeVRyYWNrEk8uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3J5VHJhY2tDb21taXRzQnlSZXBvc2l0b3J5VHJhY2tSZXF1ZXN0GlAuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RSZXBvc2l0b3J5VHJhY2tDb21taXRzQnlSZXBvc2l0b3J5VHJhY2tSZXNwb25zZRK4AQojR2V0UmVwb3NpdG9yeVRyYWNrQ29tbWl0QnlSZWZlcmVuY2USRy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UmVwb3NpdG9yeVRyYWNrQ29tbWl0QnlSZWZlcmVuY2VSZXF1ZXN0GkguYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldFJlcG9zaXRvcnlUcmFja0NvbW1pdEJ5UmVmZXJlbmNlUmVzcG9uc2ViBnByb3RvMw", [fileDesc_google_protobuf_timestamp]);
 
@@ -64,8 +67,10 @@ export type RepositoryTrackCommit = Message<"buf.alpha.registry.v1alpha1.Reposit
   sequenceId: bigint;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RepositoryTrackCommit.
-// Use `create(RepositoryTrackCommitDesc)` to create a new RepositoryTrackCommit.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RepositoryTrackCommit.
+ * Use `create(RepositoryTrackCommitDesc)` to create a new message.
+ */
 export const RepositoryTrackCommitDesc: GenDescMessage<RepositoryTrackCommit> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_track_commit, 0);
 
@@ -84,8 +89,10 @@ export type GetRepositoryTrackCommitByRepositoryCommitRequest = Message<"buf.alp
   repositoryCommitId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitRequest.
-// Use `create(GetRepositoryTrackCommitByRepositoryCommitRequestDesc)` to create a new GetRepositoryTrackCommitByRepositoryCommitRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitRequest.
+ * Use `create(GetRepositoryTrackCommitByRepositoryCommitRequestDesc)` to create a new message.
+ */
 export const GetRepositoryTrackCommitByRepositoryCommitRequestDesc: GenDescMessage<GetRepositoryTrackCommitByRepositoryCommitRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_track_commit, 1);
 
@@ -99,8 +106,10 @@ export type GetRepositoryTrackCommitByRepositoryCommitResponse = Message<"buf.al
   repositoryTrackCommit?: RepositoryTrackCommit;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitResponse.
-// Use `create(GetRepositoryTrackCommitByRepositoryCommitResponseDesc)` to create a new GetRepositoryTrackCommitByRepositoryCommitResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByRepositoryCommitResponse.
+ * Use `create(GetRepositoryTrackCommitByRepositoryCommitResponseDesc)` to create a new message.
+ */
 export const GetRepositoryTrackCommitByRepositoryCommitResponseDesc: GenDescMessage<GetRepositoryTrackCommitByRepositoryCommitResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_track_commit, 2);
 
@@ -129,8 +138,10 @@ export type ListRepositoryTrackCommitsByRepositoryTrackRequest = Message<"buf.al
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackRequest.
-// Use `create(ListRepositoryTrackCommitsByRepositoryTrackRequestDesc)` to create a new ListRepositoryTrackCommitsByRepositoryTrackRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackRequest.
+ * Use `create(ListRepositoryTrackCommitsByRepositoryTrackRequestDesc)` to create a new message.
+ */
 export const ListRepositoryTrackCommitsByRepositoryTrackRequestDesc: GenDescMessage<ListRepositoryTrackCommitsByRepositoryTrackRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_track_commit, 3);
 
@@ -149,8 +160,10 @@ export type ListRepositoryTrackCommitsByRepositoryTrackResponse = Message<"buf.a
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackResponse.
-// Use `create(ListRepositoryTrackCommitsByRepositoryTrackResponseDesc)` to create a new ListRepositoryTrackCommitsByRepositoryTrackResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListRepositoryTrackCommitsByRepositoryTrackResponse.
+ * Use `create(ListRepositoryTrackCommitsByRepositoryTrackResponseDesc)` to create a new message.
+ */
 export const ListRepositoryTrackCommitsByRepositoryTrackResponseDesc: GenDescMessage<ListRepositoryTrackCommitsByRepositoryTrackResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_track_commit, 4);
 
@@ -179,8 +192,10 @@ export type GetRepositoryTrackCommitByReferenceRequest = Message<"buf.alpha.regi
   reference: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceRequest.
-// Use `create(GetRepositoryTrackCommitByReferenceRequestDesc)` to create a new GetRepositoryTrackCommitByReferenceRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceRequest.
+ * Use `create(GetRepositoryTrackCommitByReferenceRequestDesc)` to create a new message.
+ */
 export const GetRepositoryTrackCommitByReferenceRequestDesc: GenDescMessage<GetRepositoryTrackCommitByReferenceRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_track_commit, 5);
 
@@ -194,8 +209,10 @@ export type GetRepositoryTrackCommitByReferenceResponse = Message<"buf.alpha.reg
   repositoryTrackCommit?: RepositoryTrackCommit;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceResponse.
-// Use `create(GetRepositoryTrackCommitByReferenceResponseDesc)` to create a new GetRepositoryTrackCommitByReferenceResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetRepositoryTrackCommitByReferenceResponse.
+ * Use `create(GetRepositoryTrackCommitByReferenceResponseDesc)` to create a new message.
+ */
 export const GetRepositoryTrackCommitByReferenceResponseDesc: GenDescMessage<GetRepositoryTrackCommitByReferenceResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_repository_track_commit, 6);
 

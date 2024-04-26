@@ -24,6 +24,9 @@ import type { Event } from "../../audit/v1alpha1/envelope_pb.js";
 import { fileDesc_buf_alpha_audit_v1alpha1_envelope } from "../../audit/v1alpha1/envelope_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/audit_logs.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_audit_logs: GenDescFile = /*@__PURE__*/
   fileDesc("CixidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvYXVkaXRfbG9ncy5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIqwBChRMaXN0QXVkaXRMb2dzUmVxdWVzdBIRCglwYWdlX3NpemUYASABKA0SEgoKcGFnZV90b2tlbhgCIAEoCRIPCgdyZXZlcnNlGAMgASgIEi4KCnN0YXJ0X3RpbWUYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiwKCGVuZF90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJlChVMaXN0QXVkaXRMb2dzUmVzcG9uc2USMwoKYXVkaXRfbG9ncxgBIAMoCzIfLmJ1Zi5hbHBoYS5hdWRpdC52MWFscGhhMS5FdmVudBIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkyigEKEEF1ZGl0TG9nc1NlcnZpY2USdgoNTGlzdEF1ZGl0TG9ncxIxLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0QXVkaXRMb2dzUmVxdWVzdBoyLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0QXVkaXRMb2dzUmVzcG9uc2ViBnByb3RvMw", [fileDesc_google_protobuf_timestamp, fileDesc_buf_alpha_audit_v1alpha1_envelope]);
 
@@ -71,8 +74,10 @@ export type ListAuditLogsRequest = Message<"buf.alpha.registry.v1alpha1.ListAudi
   endTime?: Timestamp;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListAuditLogsRequest.
-// Use `create(ListAuditLogsRequestDesc)` to create a new ListAuditLogsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListAuditLogsRequest.
+ * Use `create(ListAuditLogsRequestDesc)` to create a new message.
+ */
 export const ListAuditLogsRequestDesc: GenDescMessage<ListAuditLogsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_audit_logs, 0);
 
@@ -93,8 +98,10 @@ export type ListAuditLogsResponse = Message<"buf.alpha.registry.v1alpha1.ListAud
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListAuditLogsResponse.
-// Use `create(ListAuditLogsResponseDesc)` to create a new ListAuditLogsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListAuditLogsResponse.
+ * Use `create(ListAuditLogsResponseDesc)` to create a new message.
+ */
 export const ListAuditLogsResponseDesc: GenDescMessage<ListAuditLogsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_audit_logs, 1);
 

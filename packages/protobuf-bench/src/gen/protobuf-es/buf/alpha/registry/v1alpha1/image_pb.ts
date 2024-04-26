@@ -22,6 +22,9 @@ import type { Image } from "../../image/v1/image_pb.js";
 import { fileDesc_buf_alpha_image_v1_image } from "../../image/v1/image_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/image.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_image: GenDescFile = /*@__PURE__*/
   fileDesc("CididWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvaW1hZ2UucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSLKAQoPR2V0SW1hZ2VSZXF1ZXN0Eg0KBW93bmVyGAEgASgJEhIKCnJlcG9zaXRvcnkYAiABKAkSEQoJcmVmZXJlbmNlGAMgASgJEhcKD2V4Y2x1ZGVfaW1wb3J0cxgEIAEoCBIbChNleGNsdWRlX3NvdXJjZV9pbmZvGAUgASgIEg0KBXR5cGVzGAYgAygJEjwKDGluY2x1ZGVfbWFzaxgHIAMoDjImLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5JbWFnZU1hc2siPAoQR2V0SW1hZ2VSZXNwb25zZRIoCgVpbWFnZRgBIAEoCzIZLmJ1Zi5hbHBoYS5pbWFnZS52MS5JbWFnZSpvCglJbWFnZU1hc2sSGgoWSU1BR0VfTUFTS19VTlNQRUNJRklFRBAAEhcKE0lNQUdFX01BU0tfTUVTU0FHRVMQARIUChBJTUFHRV9NQVNLX0VOVU1TEAISFwoTSU1BR0VfTUFTS19TRVJWSUNFUxADMncKDEltYWdlU2VydmljZRJnCghHZXRJbWFnZRIsLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRJbWFnZVJlcXVlc3QaLS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0SW1hZ2VSZXNwb25zZWIGcHJvdG8z", [fileDesc_buf_alpha_image_v1_image]);
 
@@ -84,8 +87,10 @@ export type GetImageRequest = Message<"buf.alpha.registry.v1alpha1.GetImageReque
   includeMask: ImageMask[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetImageRequest.
-// Use `create(GetImageRequestDesc)` to create a new GetImageRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetImageRequest.
+ * Use `create(GetImageRequestDesc)` to create a new message.
+ */
 export const GetImageRequestDesc: GenDescMessage<GetImageRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_image, 0);
 
@@ -99,8 +104,10 @@ export type GetImageResponse = Message<"buf.alpha.registry.v1alpha1.GetImageResp
   image?: Image;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetImageResponse.
-// Use `create(GetImageResponseDesc)` to create a new GetImageResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetImageResponse.
+ * Use `create(GetImageResponseDesc)` to create a new message.
+ */
 export const GetImageResponseDesc: GenDescMessage<GetImageResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_image, 1);
 
@@ -141,7 +148,9 @@ export enum ImageMask {
   SERVICES = 3,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.ImageMask.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.ImageMask.
+ */
 export const ImageMaskDesc: GenDescEnum<ImageMask> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_image, 0);
 

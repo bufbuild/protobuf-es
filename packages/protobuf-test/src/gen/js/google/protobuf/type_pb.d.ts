@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobu
 import type { Message } from "@bufbuild/protobuf";
 import type { Any, SourceContext } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file google/protobuf/type.proto.
+ */
 export declare const fileDesc_google_protobuf_type: GenDescFile;
 
 /**
@@ -78,7 +81,10 @@ export declare type Type = Message<"google.protobuf.Type"> & {
   edition: string;
 };
 
-// Describes the message google.protobuf.Type. Use `create(TypeDesc)` to create a new Type.
+/**
+ * Describes the message google.protobuf.Type.
+ * Use `create(TypeDesc)` to create a new message.
+ */
 export declare const TypeDesc: GenDescMessage<Type>;
 
 /**
@@ -160,7 +166,10 @@ export declare type Field = Message<"google.protobuf.Field"> & {
   defaultValue: string;
 };
 
-// Describes the message google.protobuf.Field. Use `create(FieldDesc)` to create a new Field.
+/**
+ * Describes the message google.protobuf.Field.
+ * Use `create(FieldDesc)` to create a new message.
+ */
 export declare const FieldDesc: GenDescMessage<Field>;
 
 /**
@@ -303,7 +312,9 @@ export enum Field_Kind {
   TYPE_SINT64 = 18,
 }
 
-// Describes the enum google.protobuf.Field.Kind.
+/**
+ * Describes the enum google.protobuf.Field.Kind.
+ */
 export declare const Field_KindDesc: GenDescEnum<Field_Kind>;
 
 /**
@@ -341,7 +352,9 @@ export enum Field_Cardinality {
   REPEATED = 3,
 }
 
-// Describes the enum google.protobuf.Field.Cardinality.
+/**
+ * Describes the enum google.protobuf.Field.Cardinality.
+ */
 export declare const Field_CardinalityDesc: GenDescEnum<Field_Cardinality>;
 
 /**
@@ -393,7 +406,10 @@ export declare type Enum = Message<"google.protobuf.Enum"> & {
   edition: string;
 };
 
-// Describes the message google.protobuf.Enum. Use `create(EnumDesc)` to create a new Enum.
+/**
+ * Describes the message google.protobuf.Enum.
+ * Use `create(EnumDesc)` to create a new message.
+ */
 export declare const EnumDesc: GenDescMessage<Enum>;
 
 /**
@@ -424,7 +440,10 @@ export declare type EnumValue = Message<"google.protobuf.EnumValue"> & {
   options: Option[];
 };
 
-// Describes the message google.protobuf.EnumValue. Use `create(EnumValueDesc)` to create a new EnumValue.
+/**
+ * Describes the message google.protobuf.EnumValue.
+ * Use `create(EnumValueDesc)` to create a new message.
+ */
 export declare const EnumValueDesc: GenDescMessage<EnumValue>;
 
 /**
@@ -455,7 +474,10 @@ export declare type Option = Message<"google.protobuf.Option"> & {
   value?: Any;
 };
 
-// Describes the message google.protobuf.Option. Use `create(OptionDesc)` to create a new Option.
+/**
+ * Describes the message google.protobuf.Option.
+ * Use `create(OptionDesc)` to create a new message.
+ */
 export declare const OptionDesc: GenDescMessage<Option>;
 
 /**
@@ -486,6 +508,8 @@ export enum Syntax {
   EDITIONS = 2,
 }
 
-// Describes the enum google.protobuf.Syntax.
+/**
+ * Describes the enum google.protobuf.Syntax.
+ */
 export declare const SyntaxDesc: GenDescEnum<Syntax>;
 

@@ -20,6 +20,9 @@ import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/breaking/v1/config.proto.
+ */
 export const fileDesc_buf_alpha_breaking_v1_config: GenDescFile = /*@__PURE__*/
   fileDesc("CiJidWYvYWxwaGEvYnJlYWtpbmcvdjEvY29uZmlnLnByb3RvEhVidWYuYWxwaGEuYnJlYWtpbmcudjEirwEKBkNvbmZpZxIPCgd2ZXJzaW9uGAEgASgJEg8KB3VzZV9pZHMYAiADKAkSEgoKZXhjZXB0X2lkcxgDIAMoCRIUCgxpZ25vcmVfcGF0aHMYBCADKAkSNwoPaWdub3JlX2lkX3BhdGhzGAUgAygLMh4uYnVmLmFscGhhLmJyZWFraW5nLnYxLklEUGF0aHMSIAoYaWdub3JlX3Vuc3RhYmxlX3BhY2thZ2VzGAYgASgIIiQKB0lEUGF0aHMSCgoCaWQYASABKAkSDQoFcGF0aHMYAiADKAliBnByb3RvMw");
 
@@ -84,8 +87,10 @@ export type Config = Message<"buf.alpha.breaking.v1.Config"> & {
   ignoreUnstablePackages: boolean;
 };
 
-// Describes the message buf.alpha.breaking.v1.Config.
-// Use `create(ConfigDesc)` to create a new Config.
+/**
+ * Describes the message buf.alpha.breaking.v1.Config.
+ * Use `create(ConfigDesc)` to create a new message.
+ */
 export const ConfigDesc: GenDescMessage<Config> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_breaking_v1_config, 0);
 
@@ -106,8 +111,10 @@ export type IDPaths = Message<"buf.alpha.breaking.v1.IDPaths"> & {
   paths: string[];
 };
 
-// Describes the message buf.alpha.breaking.v1.IDPaths.
-// Use `create(IDPathsDesc)` to create a new IDPaths.
+/**
+ * Describes the message buf.alpha.breaking.v1.IDPaths.
+ * Use `create(IDPathsDesc)` to create a new message.
+ */
 export const IDPathsDesc: GenDescMessage<IDPaths> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_breaking_v1_config, 1);
 

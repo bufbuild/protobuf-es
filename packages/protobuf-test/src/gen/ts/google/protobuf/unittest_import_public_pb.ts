@@ -22,6 +22,9 @@ import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_import_public.proto.
+ */
 export const fileDesc_google_protobuf_unittest_import_public: GenDescFile = /*@__PURE__*/
   fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0X3B1YmxpYy5wcm90bxIYcHJvdG9idWZfdW5pdHRlc3RfaW1wb3J0IiAKE1B1YmxpY0ltcG9ydE1lc3NhZ2USCQoBZRgBIAEoBUIaChhjb20uZ29vZ2xlLnByb3RvYnVmLnRlc3Q");
 
@@ -35,8 +38,10 @@ export type PublicImportMessage = Message<"protobuf_unittest_import.PublicImport
   e: number;
 };
 
-// Describes the message protobuf_unittest_import.PublicImportMessage.
-// Use `create(PublicImportMessageDesc)` to create a new PublicImportMessage.
+/**
+ * Describes the message protobuf_unittest_import.PublicImportMessage.
+ * Use `create(PublicImportMessageDesc)` to create a new message.
+ */
 export const PublicImportMessageDesc: GenDescMessage<PublicImportMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_import_public, 0);
 

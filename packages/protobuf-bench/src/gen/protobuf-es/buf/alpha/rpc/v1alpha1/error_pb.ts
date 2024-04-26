@@ -19,6 +19,9 @@
 import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 
+/**
+ * Describes the file buf/alpha/rpc/v1alpha1/error.proto.
+ */
 export const fileDesc_buf_alpha_rpc_v1alpha1_error: GenDescFile = /*@__PURE__*/
   fileDesc("CiJidWYvYWxwaGEvcnBjL3YxYWxwaGExL2Vycm9yLnByb3RvEhZidWYuYWxwaGEucnBjLnYxYWxwaGExKoAECglFcnJvckNvZGUSGgoWRVJST1JfQ09ERV9VTlNQRUNJRklFRBAAEhgKFEVSUk9SX0NPREVfQ0FOQ0VMTEVEEAESFgoSRVJST1JfQ09ERV9VTktOT1dOEAISHwobRVJST1JfQ09ERV9JTlZBTElEX0FSR1VNRU5UEAMSIAocRVJST1JfQ09ERV9ERUFETElORV9FWENFRURFRBAEEhgKFEVSUk9SX0NPREVfTk9UX0ZPVU5EEAUSHQoZRVJST1JfQ09ERV9BTFJFQURZX0VYSVNUUxAGEiAKHEVSUk9SX0NPREVfUEVSTUlTU0lPTl9ERU5JRUQQBxIhCh1FUlJPUl9DT0RFX1JFU09VUkNFX0VYSEFVU1RFRBAIEiIKHkVSUk9SX0NPREVfRkFJTEVEX1BSRUNPTkRJVElPThAJEhYKEkVSUk9SX0NPREVfQUJPUlRFRBAKEhsKF0VSUk9SX0NPREVfT1VUX09GX1JBTkdFEAsSHAoYRVJST1JfQ09ERV9VTklNUExFTUVOVEVEEAwSFwoTRVJST1JfQ09ERV9JTlRFUk5BTBANEhoKFkVSUk9SX0NPREVfVU5BVkFJTEFCTEUQDhIYChRFUlJPUl9DT0RFX0RBVEFfTE9TUxAPEh4KGkVSUk9SX0NPREVfVU5BVVRIRU5USUNBVEVEEBBiBnByb3RvMw");
 
@@ -114,7 +117,9 @@ export enum ErrorCode {
   UNAUTHENTICATED = 16,
 }
 
-// Describes the enum buf.alpha.rpc.v1alpha1.ErrorCode.
+/**
+ * Describes the enum buf.alpha.rpc.v1alpha1.ErrorCode.
+ */
 export const ErrorCodeDesc: GenDescEnum<ErrorCode> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_rpc_v1alpha1_error, 0);
 
