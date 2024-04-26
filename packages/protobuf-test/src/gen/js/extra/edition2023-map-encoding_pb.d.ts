@@ -20,6 +20,9 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/edition2023-map-encoding.proto.
+ */
 export declare const fileDesc_extra_edition2023_map_encoding: GenDescFile;
 
 /**
@@ -36,6 +39,9 @@ export declare type Edition2023MapEncodingMessage = Message<"spec.Edition2023Map
   mapField: { [key: number]: boolean };
 };
 
-// Describes the message spec.Edition2023MapEncodingMessage. Use `create(Edition2023MapEncodingMessageDesc)` to create a new Edition2023MapEncodingMessage.
+/**
+ * Describes the message spec.Edition2023MapEncodingMessage.
+ * Use `create(Edition2023MapEncodingMessageDesc)` to create a new message.
+ */
 export declare const Edition2023MapEncodingMessageDesc: GenDescMessage<Edition2023MapEncodingMessage>;
 

@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from 
 import type { Message } from "@bufbuild/protobuf";
 import type { User } from "./example_pb.js";
 
+/**
+ * Describes the file extra/extensions-proto2.proto.
+ */
 export declare const fileDesc_extra_extensions_proto2: GenDescFile;
 
 /**
@@ -34,7 +37,10 @@ export declare type Proto2Extendee = Message<"proto2ext.Proto2Extendee"> & {
   ownField: number;
 };
 
-// Describes the message proto2ext.Proto2Extendee. Use `create(Proto2ExtendeeDesc)` to create a new Proto2Extendee.
+/**
+ * Describes the message proto2ext.Proto2Extendee.
+ * Use `create(Proto2ExtendeeDesc)` to create a new message.
+ */
 export declare const Proto2ExtendeeDesc: GenDescMessage<Proto2Extendee>;
 
 /**
@@ -49,7 +55,10 @@ export declare type Proto2ExtMessage = Message<"proto2ext.Proto2ExtMessage"> & {
   stringField: string;
 };
 
-// Describes the message proto2ext.Proto2ExtMessage. Use `create(Proto2ExtMessageDesc)` to create a new Proto2ExtMessage.
+/**
+ * Describes the message proto2ext.Proto2ExtMessage.
+ * Use `create(Proto2ExtMessageDesc)` to create a new message.
+ */
 export declare const Proto2ExtMessageDesc: GenDescMessage<Proto2ExtMessage>;
 
 /**
@@ -67,7 +76,10 @@ export declare type GroupExt = Message<"proto2ext.GroupExt"> & {
   b: number;
 };
 
-// Describes the message proto2ext.GroupExt. Use `create(GroupExtDesc)` to create a new GroupExt.
+/**
+ * Describes the message proto2ext.GroupExt.
+ * Use `create(GroupExtDesc)` to create a new message.
+ */
 export declare const GroupExtDesc: GenDescMessage<GroupExt>;
 
 /**
@@ -85,7 +97,10 @@ export declare type RepeatedGroupExt = Message<"proto2ext.RepeatedGroupExt"> & {
   b: number;
 };
 
-// Describes the message proto2ext.RepeatedGroupExt. Use `create(RepeatedGroupExtDesc)` to create a new RepeatedGroupExt.
+/**
+ * Describes the message proto2ext.RepeatedGroupExt.
+ * Use `create(RepeatedGroupExtDesc)` to create a new message.
+ */
 export declare const RepeatedGroupExtDesc: GenDescMessage<RepeatedGroupExt>;
 
 /**
@@ -96,7 +111,10 @@ export declare const RepeatedGroupExtDesc: GenDescMessage<RepeatedGroupExt>;
 export declare type Proto2ExtContainer = Message<"proto2ext.Proto2ExtContainer"> & {
 };
 
-// Describes the message proto2ext.Proto2ExtContainer. Use `create(Proto2ExtContainerDesc)` to create a new Proto2ExtContainer.
+/**
+ * Describes the message proto2ext.Proto2ExtContainer.
+ * Use `create(Proto2ExtContainerDesc)` to create a new message.
+ */
 export declare const Proto2ExtContainerDesc: GenDescMessage<Proto2ExtContainer>;
 
 /**
@@ -105,7 +123,10 @@ export declare const Proto2ExtContainerDesc: GenDescMessage<Proto2ExtContainer>;
 export declare type Proto2ExtContainer_Child = Message<"proto2ext.Proto2ExtContainer.Child"> & {
 };
 
-// Describes the message proto2ext.Proto2ExtContainer.Child. Use `create(Proto2ExtContainer_ChildDesc)` to create a new Proto2ExtContainer_Child.
+/**
+ * Describes the message proto2ext.Proto2ExtContainer.Child.
+ * Use `create(Proto2ExtContainer_ChildDesc)` to create a new message.
+ */
 export declare const Proto2ExtContainer_ChildDesc: GenDescMessage<Proto2ExtContainer_Child>;
 
 /**
@@ -135,7 +156,9 @@ export enum Proto2ExtEnum {
   NO = 2,
 }
 
-// Describes the enum proto2ext.Proto2ExtEnum.
+/**
+ * Describes the enum proto2ext.Proto2ExtEnum.
+ */
 export declare const Proto2ExtEnumDesc: GenDescEnum<Proto2ExtEnum>;
 
 /**

@@ -21,6 +21,9 @@ import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
+/**
+ * Describes the file google/protobuf/any.proto.
+ */
 export const fileDesc_google_protobuf_any: GenDescFile = /*@__PURE__*/
   fileDesc("Chlnb29nbGUvcHJvdG9idWYvYW55LnByb3RvEg9nb29nbGUucHJvdG9idWYiJgoDQW55EhAKCHR5cGVfdXJsGAEgASgJEg0KBXZhbHVlGAIgASgMQnYKE2NvbS5nb29nbGUucHJvdG9idWZCCEFueVByb3RvUAFaLGdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2FueXBiogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
@@ -158,8 +161,10 @@ export type Any = Message<"google.protobuf.Any"> & {
   value: Uint8Array;
 };
 
-// Describes the message google.protobuf.Any.
-// Use `create(AnyDesc)` to create a new Any.
+/**
+ * Describes the message google.protobuf.Any.
+ * Use `create(AnyDesc)` to create a new message.
+ */
 export const AnyDesc: GenDescMessage<Any> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_any, 0);
 

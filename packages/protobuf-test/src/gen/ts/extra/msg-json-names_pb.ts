@@ -20,6 +20,9 @@ import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/msg-json-names.proto.
+ */
 export const fileDesc_extra_msg_json_names: GenDescFile = /*@__PURE__*/
   fileDesc("ChpleHRyYS9tc2ctanNvbi1uYW1lcy5wcm90bxIEc3BlYyKjAQoQSnNvbk5hbWVzTWVzc2FnZRIpCgxzY2FsYXJfZmllbGQYASABKAlSE3NjYWxhckZpZWxkSnNvbk5hbWUSOgoVcmVwZWF0ZWRfc2NhbGFyX2ZpZWxkGAIgAygJUhtyZXBlYXRlZFNjYWxhckZpZWxkSnNvbk5hbWUSCQoBYRgDIAEoCRILCgFiGAQgASgJUgASEAoBYxgFIAEoCVIFQHR5cGViBnByb3RvMw");
 
@@ -53,8 +56,10 @@ export type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
   c: string;
 };
 
-// Describes the message spec.JsonNamesMessage.
-// Use `create(JsonNamesMessageDesc)` to create a new JsonNamesMessage.
+/**
+ * Describes the message spec.JsonNamesMessage.
+ * Use `create(JsonNamesMessageDesc)` to create a new message.
+ */
 export const JsonNamesMessageDesc: GenDescMessage<JsonNamesMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_json_names, 0);
 

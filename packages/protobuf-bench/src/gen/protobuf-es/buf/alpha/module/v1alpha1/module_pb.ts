@@ -26,6 +26,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/module/v1alpha1/module.proto.
+ */
 export const fileDesc_buf_alpha_module_v1alpha1_module: GenDescFile = /*@__PURE__*/
   fileDesc("CiZidWYvYWxwaGEvbW9kdWxlL3YxYWxwaGExL21vZHVsZS5wcm90bxIZYnVmLmFscGhhLm1vZHVsZS52MWFscGhhMSL5AQoGTW9kdWxlEjQKBWZpbGVzGAEgAygLMiUuYnVmLmFscGhhLm1vZHVsZS52MWFscGhhMS5Nb2R1bGVGaWxlEjoKDGRlcGVuZGVuY2llcxgCIAMoCzIkLmJ1Zi5hbHBoYS5tb2R1bGUudjFhbHBoYTEuTW9kdWxlUGluEhUKDWRvY3VtZW50YXRpb24YAyABKAkSNgoPYnJlYWtpbmdfY29uZmlnGAQgASgLMh0uYnVmLmFscGhhLmJyZWFraW5nLnYxLkNvbmZpZxIuCgtsaW50X2NvbmZpZxgFIAEoCzIZLmJ1Zi5hbHBoYS5saW50LnYxLkNvbmZpZyIrCgpNb2R1bGVGaWxlEgwKBHBhdGgYASABKAkSDwoHY29udGVudBgCIAEoDCJXCg9Nb2R1bGVSZWZlcmVuY2USDgoGcmVtb3RlGAEgASgJEg0KBW93bmVyGAIgASgJEhIKCnJlcG9zaXRvcnkYAyABKAkSEQoJcmVmZXJlbmNlGAQgASgJIp8BCglNb2R1bGVQaW4SDgoGcmVtb3RlGAEgASgJEg0KBW93bmVyGAIgASgJEhIKCnJlcG9zaXRvcnkYAyABKAkSDgoGYnJhbmNoGAQgASgJEg4KBmNvbW1pdBgFIAEoCRIOCgZkaWdlc3QYBiABKAkSLwoLY3JlYXRlX3RpbWUYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wYgZwcm90bzM", [fileDesc_buf_alpha_breaking_v1_config, fileDesc_buf_alpha_lint_v1_config, fileDesc_google_protobuf_timestamp]);
 
@@ -79,8 +82,10 @@ export type Module = Message<"buf.alpha.module.v1alpha1.Module"> & {
   lintConfig?: Config$1;
 };
 
-// Describes the message buf.alpha.module.v1alpha1.Module.
-// Use `create(ModuleDesc)` to create a new Module.
+/**
+ * Describes the message buf.alpha.module.v1alpha1.Module.
+ * Use `create(ModuleDesc)` to create a new message.
+ */
 export const ModuleDesc: GenDescMessage<Module> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_module_v1alpha1_module, 0);
 
@@ -106,8 +111,10 @@ export type ModuleFile = Message<"buf.alpha.module.v1alpha1.ModuleFile"> & {
   content: Uint8Array;
 };
 
-// Describes the message buf.alpha.module.v1alpha1.ModuleFile.
-// Use `create(ModuleFileDesc)` to create a new ModuleFile.
+/**
+ * Describes the message buf.alpha.module.v1alpha1.ModuleFile.
+ * Use `create(ModuleFileDesc)` to create a new message.
+ */
 export const ModuleFileDesc: GenDescMessage<ModuleFile> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_module_v1alpha1_module, 1);
 
@@ -140,8 +147,10 @@ export type ModuleReference = Message<"buf.alpha.module.v1alpha1.ModuleReference
   reference: string;
 };
 
-// Describes the message buf.alpha.module.v1alpha1.ModuleReference.
-// Use `create(ModuleReferenceDesc)` to create a new ModuleReference.
+/**
+ * Describes the message buf.alpha.module.v1alpha1.ModuleReference.
+ * Use `create(ModuleReferenceDesc)` to create a new message.
+ */
 export const ModuleReferenceDesc: GenDescMessage<ModuleReference> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_module_v1alpha1_module, 2);
 
@@ -187,8 +196,10 @@ export type ModulePin = Message<"buf.alpha.module.v1alpha1.ModulePin"> & {
   createTime?: Timestamp;
 };
 
-// Describes the message buf.alpha.module.v1alpha1.ModulePin.
-// Use `create(ModulePinDesc)` to create a new ModulePin.
+/**
+ * Describes the message buf.alpha.module.v1alpha1.ModulePin.
+ * Use `create(ModulePinDesc)` to create a new message.
+ */
 export const ModulePinDesc: GenDescMessage<ModulePin> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_module_v1alpha1_module, 3);
 

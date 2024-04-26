@@ -24,6 +24,9 @@ import type { Organization } from "./organization_pb.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_organization } from "./organization_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/owner.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_owner: GenDescFile = /*@__PURE__*/
   fileDesc("CididWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvb3duZXIucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSKGAQoFT3duZXISMQoEdXNlchgBIAEoCzIhLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VySAASQQoMb3JnYW5pemF0aW9uGAIgASgLMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk9yZ2FuaXphdGlvbkgAQgcKBW93bmVyIiUKFUdldE93bmVyQnlOYW1lUmVxdWVzdBIMCgRuYW1lGAEgASgJIksKFkdldE93bmVyQnlOYW1lUmVzcG9uc2USMQoFb3duZXIYASABKAsyIi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuT3duZXIyiQEKDE93bmVyU2VydmljZRJ5Cg5HZXRPd25lckJ5TmFtZRIyLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRPd25lckJ5TmFtZVJlcXVlc3QaMy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0T3duZXJCeU5hbWVSZXNwb25zZWIGcHJvdG8z", [fileDesc_buf_alpha_registry_v1alpha1_user, fileDesc_buf_alpha_registry_v1alpha1_organization]);
 
@@ -53,8 +56,10 @@ export type Owner = Message<"buf.alpha.registry.v1alpha1.Owner"> & {
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Owner.
-// Use `create(OwnerDesc)` to create a new Owner.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Owner.
+ * Use `create(OwnerDesc)` to create a new message.
+ */
 export const OwnerDesc: GenDescMessage<Owner> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_owner, 0);
 
@@ -70,8 +75,10 @@ export type GetOwnerByNameRequest = Message<"buf.alpha.registry.v1alpha1.GetOwne
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetOwnerByNameRequest.
-// Use `create(GetOwnerByNameRequestDesc)` to create a new GetOwnerByNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetOwnerByNameRequest.
+ * Use `create(GetOwnerByNameRequestDesc)` to create a new message.
+ */
 export const GetOwnerByNameRequestDesc: GenDescMessage<GetOwnerByNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_owner, 1);
 
@@ -85,8 +92,10 @@ export type GetOwnerByNameResponse = Message<"buf.alpha.registry.v1alpha1.GetOwn
   owner?: Owner;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetOwnerByNameResponse.
-// Use `create(GetOwnerByNameResponseDesc)` to create a new GetOwnerByNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetOwnerByNameResponse.
+ * Use `create(GetOwnerByNameResponseDesc)` to create a new message.
+ */
 export const GetOwnerByNameResponseDesc: GenDescMessage<GetOwnerByNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_owner, 2);
 

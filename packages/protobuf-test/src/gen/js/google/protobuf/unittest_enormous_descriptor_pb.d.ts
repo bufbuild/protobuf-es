@@ -28,6 +28,9 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_enormous_descriptor.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_enormous_descriptor: GenDescFile;
 
 /**
@@ -5037,6 +5040,9 @@ export declare type TestEnormousDescriptor = Message<"protobuf_unittest.TestEnor
   longFieldNameIsLooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong1000: string;
 };
 
-// Describes the message protobuf_unittest.TestEnormousDescriptor. Use `create(TestEnormousDescriptorDesc)` to create a new TestEnormousDescriptor.
+/**
+ * Describes the message protobuf_unittest.TestEnormousDescriptor.
+ * Use `create(TestEnormousDescriptorDesc)` to create a new message.
+ */
 export declare const TestEnormousDescriptorDesc: GenDescMessage<TestEnormousDescriptor>;
 

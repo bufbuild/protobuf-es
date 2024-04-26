@@ -24,6 +24,9 @@ import type { LocalModulePin, LocalModuleReference } from "./module_pb.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_module } from "./module_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/resolve.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_resolve: GenDescFile = /*@__PURE__*/
   fileDesc("CilidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcmVzb2x2ZS5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIqABChRHZXRNb2R1bGVQaW5zUmVxdWVzdBJFChFtb2R1bGVfcmVmZXJlbmNlcxgBIAMoCzIqLmJ1Zi5hbHBoYS5tb2R1bGUudjFhbHBoYTEuTW9kdWxlUmVmZXJlbmNlEkEKE2N1cnJlbnRfbW9kdWxlX3BpbnMYAiADKAsyJC5idWYuYWxwaGEubW9kdWxlLnYxYWxwaGExLk1vZHVsZVBpbiJSChVHZXRNb2R1bGVQaW5zUmVzcG9uc2USOQoLbW9kdWxlX3BpbnMYASADKAsyJC5idWYuYWxwaGEubW9kdWxlLnYxYWxwaGExLk1vZHVsZVBpbiJvChlHZXRMb2NhbE1vZHVsZVBpbnNSZXF1ZXN0ElIKF2xvY2FsX21vZHVsZV9yZWZlcmVuY2VzGAEgAygLMjEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxvY2FsTW9kdWxlUmVmZXJlbmNlIu8BChhMb2NhbE1vZHVsZVJlc29sdmVSZXN1bHQSRAoJcmVmZXJlbmNlGAEgASgLMjEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxvY2FsTW9kdWxlUmVmZXJlbmNlEjgKA3BpbhgCIAEoCzIrLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Mb2NhbE1vZHVsZVBpbhJTChdyZXNvbHZlZF9yZWZlcmVuY2VfdHlwZRgDIAEoDjIyLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXNvbHZlZFJlZmVyZW5jZVR5cGUitQEKGkdldExvY2FsTW9kdWxlUGluc1Jlc3BvbnNlElsKHGxvY2FsX21vZHVsZV9yZXNvbHZlX3Jlc3VsdHMYASADKAsyNS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTG9jYWxNb2R1bGVSZXNvbHZlUmVzdWx0EjoKDGRlcGVuZGVuY2llcxgCIAMoCzIkLmJ1Zi5hbHBoYS5tb2R1bGUudjFhbHBoYTEuTW9kdWxlUGluKswBChVSZXNvbHZlZFJlZmVyZW5jZVR5cGUSJwojUkVTT0xWRURfUkVGRVJFTkNFX1RZUEVfVU5TUEVDSUZJRUQQABIiCh5SRVNPTFZFRF9SRUZFUkVOQ0VfVFlQRV9DT01NSVQQARIiCh5SRVNPTFZFRF9SRUZFUkVOQ0VfVFlQRV9CUkFOQ0gQAhIfChtSRVNPTFZFRF9SRUZFUkVOQ0VfVFlQRV9UQUcQAxIhCh1SRVNPTFZFRF9SRUZFUkVOQ0VfVFlQRV9UUkFDSxAEMogBCg5SZXNvbHZlU2VydmljZRJ2Cg1HZXRNb2R1bGVQaW5zEjEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldE1vZHVsZVBpbnNSZXF1ZXN0GjIuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldE1vZHVsZVBpbnNSZXNwb25zZTKdAQoTTG9jYWxSZXNvbHZlU2VydmljZRKFAQoSR2V0TG9jYWxNb2R1bGVQaW5zEjYuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldExvY2FsTW9kdWxlUGluc1JlcXVlc3QaNy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0TG9jYWxNb2R1bGVQaW5zUmVzcG9uc2ViBnByb3RvMw", [fileDesc_buf_alpha_module_v1alpha1_module, fileDesc_buf_alpha_registry_v1alpha1_module]);
 
@@ -53,8 +56,10 @@ export type GetModulePinsRequest = Message<"buf.alpha.registry.v1alpha1.GetModul
   currentModulePins: ModulePin[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetModulePinsRequest.
-// Use `create(GetModulePinsRequestDesc)` to create a new GetModulePinsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetModulePinsRequest.
+ * Use `create(GetModulePinsRequestDesc)` to create a new message.
+ */
 export const GetModulePinsRequestDesc: GenDescMessage<GetModulePinsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_resolve, 0);
 
@@ -68,8 +73,10 @@ export type GetModulePinsResponse = Message<"buf.alpha.registry.v1alpha1.GetModu
   modulePins: ModulePin[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetModulePinsResponse.
-// Use `create(GetModulePinsResponseDesc)` to create a new GetModulePinsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetModulePinsResponse.
+ * Use `create(GetModulePinsResponseDesc)` to create a new message.
+ */
 export const GetModulePinsResponseDesc: GenDescMessage<GetModulePinsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_resolve, 1);
 
@@ -83,8 +90,10 @@ export type GetLocalModulePinsRequest = Message<"buf.alpha.registry.v1alpha1.Get
   localModuleReferences: LocalModuleReference[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetLocalModulePinsRequest.
-// Use `create(GetLocalModulePinsRequestDesc)` to create a new GetLocalModulePinsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetLocalModulePinsRequest.
+ * Use `create(GetLocalModulePinsRequestDesc)` to create a new message.
+ */
 export const GetLocalModulePinsRequestDesc: GenDescMessage<GetLocalModulePinsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_resolve, 2);
 
@@ -114,8 +123,10 @@ export type LocalModuleResolveResult = Message<"buf.alpha.registry.v1alpha1.Loca
   resolvedReferenceType: ResolvedReferenceType;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.LocalModuleResolveResult.
-// Use `create(LocalModuleResolveResultDesc)` to create a new LocalModuleResolveResult.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.LocalModuleResolveResult.
+ * Use `create(LocalModuleResolveResultDesc)` to create a new message.
+ */
 export const LocalModuleResolveResultDesc: GenDescMessage<LocalModuleResolveResult> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_resolve, 3);
 
@@ -138,8 +149,10 @@ export type GetLocalModulePinsResponse = Message<"buf.alpha.registry.v1alpha1.Ge
   dependencies: ModulePin[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetLocalModulePinsResponse.
-// Use `create(GetLocalModulePinsResponseDesc)` to create a new GetLocalModulePinsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetLocalModulePinsResponse.
+ * Use `create(GetLocalModulePinsResponseDesc)` to create a new message.
+ */
 export const GetLocalModulePinsResponseDesc: GenDescMessage<GetLocalModulePinsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_resolve, 4);
 
@@ -173,7 +186,9 @@ export enum ResolvedReferenceType {
   TRACK = 4,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.ResolvedReferenceType.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.ResolvedReferenceType.
+ */
 export const ResolvedReferenceTypeDesc: GenDescEnum<ResolvedReferenceType> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_resolve, 0);
 

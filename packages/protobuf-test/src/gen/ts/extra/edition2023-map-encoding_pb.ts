@@ -21,6 +21,9 @@ import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/edition2023-map-encoding.proto.
+ */
 export const fileDesc_extra_edition2023_map_encoding: GenDescFile = /*@__PURE__*/
   fileDesc("CiRleHRyYS9lZGl0aW9uMjAyMy1tYXAtZW5jb2RpbmcucHJvdG8SBHNwZWMilgEKHUVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlEkQKCW1hcF9maWVsZBhNIAMoCzIxLnNwZWMuRWRpdGlvbjIwMjNNYXBFbmNvZGluZ01lc3NhZ2UuTWFwRmllbGRFbnRyeRovCg1NYXBGaWVsZEVudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoCDoCOAFCBZIDAigCYghlZGl0aW9uc3DoBw");
 
@@ -38,8 +41,10 @@ export type Edition2023MapEncodingMessage = Message<"spec.Edition2023MapEncoding
   mapField: { [key: number]: boolean };
 };
 
-// Describes the message spec.Edition2023MapEncodingMessage.
-// Use `create(Edition2023MapEncodingMessageDesc)` to create a new Edition2023MapEncodingMessage.
+/**
+ * Describes the message spec.Edition2023MapEncodingMessage.
+ * Use `create(Edition2023MapEncodingMessageDesc)` to create a new message.
+ */
 export const Edition2023MapEncodingMessageDesc: GenDescMessage<Edition2023MapEncodingMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_map_encoding, 0);
 

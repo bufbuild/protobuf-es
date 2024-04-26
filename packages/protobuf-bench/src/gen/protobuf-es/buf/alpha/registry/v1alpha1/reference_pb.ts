@@ -28,6 +28,9 @@ import type { RepositoryTrack } from "./repository_track_pb.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_repository_track } from "./repository_track_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/reference.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_reference: GenDescFile = /*@__PURE__*/
   fileDesc("CitidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcmVmZXJlbmNlLnByb3RvEhtidWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEilAIKCVJlZmVyZW5jZRI/CgZicmFuY2gYASABKAsyLS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeUJyYW5jaEgAEjkKA3RhZxgCIAEoCzIqLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5VGFnSAASPwoGY29tbWl0GAMgASgLMi0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlDb21taXRIABI9CgV0cmFjaxgEIAEoCzIsLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5VHJhY2tIAEILCglyZWZlcmVuY2UiUQoZR2V0UmVmZXJlbmNlQnlOYW1lUmVxdWVzdBIMCgRuYW1lGAEgASgJEg0KBW93bmVyGAIgASgJEhcKD3JlcG9zaXRvcnlfbmFtZRgDIAEoCSJXChpHZXRSZWZlcmVuY2VCeU5hbWVSZXNwb25zZRI5CglyZWZlcmVuY2UYASABKAsyJi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVmZXJlbmNlMpoBChBSZWZlcmVuY2VTZXJ2aWNlEoUBChJHZXRSZWZlcmVuY2VCeU5hbWUSNi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UmVmZXJlbmNlQnlOYW1lUmVxdWVzdBo3LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRSZWZlcmVuY2VCeU5hbWVSZXNwb25zZWIGcHJvdG8z", [fileDesc_buf_alpha_registry_v1alpha1_repository_branch, fileDesc_buf_alpha_registry_v1alpha1_repository_commit, fileDesc_buf_alpha_registry_v1alpha1_repository_tag, fileDesc_buf_alpha_registry_v1alpha1_repository_track]);
 
@@ -73,8 +76,10 @@ export type Reference = Message<"buf.alpha.registry.v1alpha1.Reference"> & {
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Reference.
-// Use `create(ReferenceDesc)` to create a new Reference.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Reference.
+ * Use `create(ReferenceDesc)` to create a new message.
+ */
 export const ReferenceDesc: GenDescMessage<Reference> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_reference, 0);
 
@@ -104,8 +109,10 @@ export type GetReferenceByNameRequest = Message<"buf.alpha.registry.v1alpha1.Get
   repositoryName: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetReferenceByNameRequest.
-// Use `create(GetReferenceByNameRequestDesc)` to create a new GetReferenceByNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetReferenceByNameRequest.
+ * Use `create(GetReferenceByNameRequestDesc)` to create a new message.
+ */
 export const GetReferenceByNameRequestDesc: GenDescMessage<GetReferenceByNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_reference, 1);
 
@@ -119,8 +126,10 @@ export type GetReferenceByNameResponse = Message<"buf.alpha.registry.v1alpha1.Ge
   reference?: Reference;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetReferenceByNameResponse.
-// Use `create(GetReferenceByNameResponseDesc)` to create a new GetReferenceByNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetReferenceByNameResponse.
+ * Use `create(GetReferenceByNameResponseDesc)` to create a new message.
+ */
 export const GetReferenceByNameResponseDesc: GenDescMessage<GetReferenceByNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_reference, 2);
 

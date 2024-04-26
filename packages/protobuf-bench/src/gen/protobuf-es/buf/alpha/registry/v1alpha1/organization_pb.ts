@@ -24,6 +24,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/organization.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_organization: GenDescFile = /*@__PURE__*/
   fileDesc("Ci5idWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvb3JnYW5pemF0aW9uLnByb3RvEhtidWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEiigEKDE9yZ2FuaXphdGlvbhIKCgJpZBgBIAEoCRIvCgtjcmVhdGVfdGltZRgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLwoLdXBkYXRlX3RpbWUYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEgwKBG5hbWUYBCABKAkiowEKFk9yZ2FuaXphdGlvbk1lbWJlcnNoaXASPwoMb3JnYW5pemF0aW9uGAEgASgLMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk9yZ2FuaXphdGlvbhJIChFvcmdhbml6YXRpb25fcm9sZRgCIAEoDjItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Pcmdhbml6YXRpb25Sb2xlIiQKFkdldE9yZ2FuaXphdGlvblJlcXVlc3QSCgoCaWQYASABKAkiWgoXR2V0T3JnYW5pemF0aW9uUmVzcG9uc2USPwoMb3JnYW5pemF0aW9uGAEgASgLMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk9yZ2FuaXphdGlvbiIsChxHZXRPcmdhbml6YXRpb25CeU5hbWVSZXF1ZXN0EgwKBG5hbWUYASABKAkiYAodR2V0T3JnYW5pemF0aW9uQnlOYW1lUmVzcG9uc2USPwoMb3JnYW5pemF0aW9uGAEgASgLMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk9yZ2FuaXphdGlvbiJSChhMaXN0T3JnYW5pemF0aW9uc1JlcXVlc3QSEQoJcGFnZV9zaXplGAEgASgNEhIKCnBhZ2VfdG9rZW4YAiABKAkSDwoHcmV2ZXJzZRgDIAEoCCJ2ChlMaXN0T3JnYW5pemF0aW9uc1Jlc3BvbnNlEkAKDW9yZ2FuaXphdGlvbnMYASADKAsyKS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuT3JnYW5pemF0aW9uEhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSJnChxMaXN0VXNlck9yZ2FuaXphdGlvbnNSZXF1ZXN0Eg8KB3VzZXJfaWQYASABKAkSEQoJcGFnZV9zaXplGAIgASgNEhIKCnBhZ2VfdG9rZW4YAyABKAkSDwoHcmV2ZXJzZRgEIAEoCCKEAQodTGlzdFVzZXJPcmdhbml6YXRpb25zUmVzcG9uc2USSgoNb3JnYW5pemF0aW9ucxgBIAMoCzIzLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Pcmdhbml6YXRpb25NZW1iZXJzaGlwEhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSIpChlDcmVhdGVPcmdhbml6YXRpb25SZXF1ZXN0EgwKBG5hbWUYASABKAkiXQoaQ3JlYXRlT3JnYW5pemF0aW9uUmVzcG9uc2USPwoMb3JnYW5pemF0aW9uGAEgASgLMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk9yZ2FuaXphdGlvbiInChlEZWxldGVPcmdhbml6YXRpb25SZXF1ZXN0EgoKAmlkGAEgASgJIhwKGkRlbGV0ZU9yZ2FuaXphdGlvblJlc3BvbnNlIi8KH0RlbGV0ZU9yZ2FuaXphdGlvbkJ5TmFtZVJlcXVlc3QSDAoEbmFtZRgBIAEoCSIiCiBEZWxldGVPcmdhbml6YXRpb25CeU5hbWVSZXNwb25zZSKSAQocQWRkT3JnYW5pemF0aW9uTWVtYmVyUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkSDwoHdXNlcl9pZBgCIAEoCRJIChFvcmdhbml6YXRpb25fcm9sZRgDIAEoDjItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Pcmdhbml6YXRpb25Sb2xlIh8KHUFkZE9yZ2FuaXphdGlvbk1lbWJlclJlc3BvbnNlIpUBCh9VcGRhdGVPcmdhbml6YXRpb25NZW1iZXJSZXF1ZXN0EhcKD29yZ2FuaXphdGlvbl9pZBgBIAEoCRIPCgd1c2VyX2lkGAIgASgJEkgKEW9yZ2FuaXphdGlvbl9yb2xlGAMgASgOMi0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk9yZ2FuaXphdGlvblJvbGUiIgogVXBkYXRlT3JnYW5pemF0aW9uTWVtYmVyUmVzcG9uc2UiSwofUmVtb3ZlT3JnYW5pemF0aW9uTWVtYmVyUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkSDwoHdXNlcl9pZBgCIAEoCSIiCiBSZW1vdmVPcmdhbml6YXRpb25NZW1iZXJSZXNwb25zZSKSAQocU2V0T3JnYW5pemF0aW9uTWVtYmVyUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkSDwoHdXNlcl9pZBgCIAEoCRJIChFvcmdhbml6YXRpb25fcm9sZRgDIAEoDjItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Pcmdhbml6YXRpb25Sb2xlIh8KHVNldE9yZ2FuaXphdGlvbk1lbWJlclJlc3BvbnNlIjkKHkdldE9yZ2FuaXphdGlvblNldHRpbmdzUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkijQIKH0dldE9yZ2FuaXphdGlvblNldHRpbmdzUmVzcG9uc2USSQoUcmVwb3NpdG9yeV9iYXNlX3JvbGUYASABKA4yKy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUmVwb3NpdG9yeVJvbGUSQQoQcGx1Z2luX2Jhc2Vfcm9sZRgCIAEoDjInLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5Sb2xlEkUKEnRlbXBsYXRlX2Jhc2Vfcm9sZRgDIAEoDjIpLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5UZW1wbGF0ZVJvbGUSFQoNbWVtYmVyc19jb3VudBgEIAEoDSKRAgohVXBkYXRlT3JnYW5pemF0aW9uU2V0dGluZ3NSZXF1ZXN0EhcKD29yZ2FuaXphdGlvbl9pZBgBIAEoCRJJChRyZXBvc2l0b3J5X2Jhc2Vfcm9sZRgCIAEoDjIrLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5Um9sZRJBChBwbHVnaW5fYmFzZV9yb2xlGAMgASgOMicuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlBsdWdpblJvbGUSRQoSdGVtcGxhdGVfYmFzZV9yb2xlGAQgASgOMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlRlbXBsYXRlUm9sZSIkCiJVcGRhdGVPcmdhbml6YXRpb25TZXR0aW5nc1Jlc3BvbnNlMvEOChNPcmdhbml6YXRpb25TZXJ2aWNlEnwKD0dldE9yZ2FuaXphdGlvbhIzLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRPcmdhbml6YXRpb25SZXF1ZXN0GjQuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldE9yZ2FuaXphdGlvblJlc3BvbnNlEo4BChVHZXRPcmdhbml6YXRpb25CeU5hbWUSOS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0T3JnYW5pemF0aW9uQnlOYW1lUmVxdWVzdBo6LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRPcmdhbml6YXRpb25CeU5hbWVSZXNwb25zZRKCAQoRTGlzdE9yZ2FuaXphdGlvbnMSNS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdE9yZ2FuaXphdGlvbnNSZXF1ZXN0GjYuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RPcmdhbml6YXRpb25zUmVzcG9uc2USjgEKFUxpc3RVc2VyT3JnYW5pemF0aW9ucxI5LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0VXNlck9yZ2FuaXphdGlvbnNSZXF1ZXN0GjouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RVc2VyT3JnYW5pemF0aW9uc1Jlc3BvbnNlEoUBChJDcmVhdGVPcmdhbml6YXRpb24SNi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuQ3JlYXRlT3JnYW5pemF0aW9uUmVxdWVzdBo3LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVPcmdhbml6YXRpb25SZXNwb25zZRKFAQoSRGVsZXRlT3JnYW5pemF0aW9uEjYuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlbGV0ZU9yZ2FuaXphdGlvblJlcXVlc3QaNy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRGVsZXRlT3JnYW5pemF0aW9uUmVzcG9uc2USlwEKGERlbGV0ZU9yZ2FuaXphdGlvbkJ5TmFtZRI8LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EZWxldGVPcmdhbml6YXRpb25CeU5hbWVSZXF1ZXN0Gj0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlbGV0ZU9yZ2FuaXphdGlvbkJ5TmFtZVJlc3BvbnNlEo4BChVBZGRPcmdhbml6YXRpb25NZW1iZXISOS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuQWRkT3JnYW5pemF0aW9uTWVtYmVyUmVxdWVzdBo6LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5BZGRPcmdhbml6YXRpb25NZW1iZXJSZXNwb25zZRKXAQoYVXBkYXRlT3JnYW5pemF0aW9uTWVtYmVyEjwuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVwZGF0ZU9yZ2FuaXphdGlvbk1lbWJlclJlcXVlc3QaPS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXBkYXRlT3JnYW5pemF0aW9uTWVtYmVyUmVzcG9uc2USlwEKGFJlbW92ZU9yZ2FuaXphdGlvbk1lbWJlchI8LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZW1vdmVPcmdhbml6YXRpb25NZW1iZXJSZXF1ZXN0Gj0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlbW92ZU9yZ2FuaXphdGlvbk1lbWJlclJlc3BvbnNlEo4BChVTZXRPcmdhbml6YXRpb25NZW1iZXISOS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuU2V0T3JnYW5pemF0aW9uTWVtYmVyUmVxdWVzdBo6LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5TZXRPcmdhbml6YXRpb25NZW1iZXJSZXNwb25zZRKUAQoXR2V0T3JnYW5pemF0aW9uU2V0dGluZ3MSOy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0T3JnYW5pemF0aW9uU2V0dGluZ3NSZXF1ZXN0GjwuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldE9yZ2FuaXphdGlvblNldHRpbmdzUmVzcG9uc2USnQEKGlVwZGF0ZU9yZ2FuaXphdGlvblNldHRpbmdzEj4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVwZGF0ZU9yZ2FuaXphdGlvblNldHRpbmdzUmVxdWVzdBo/LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5VcGRhdGVPcmdhbml6YXRpb25TZXR0aW5nc1Jlc3BvbnNlYgZwcm90bzM", [fileDesc_buf_alpha_registry_v1alpha1_role, fileDesc_google_protobuf_timestamp]);
 
@@ -60,8 +63,10 @@ export type Organization = Message<"buf.alpha.registry.v1alpha1.Organization"> &
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Organization.
-// Use `create(OrganizationDesc)` to create a new Organization.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Organization.
+ * Use `create(OrganizationDesc)` to create a new message.
+ */
 export const OrganizationDesc: GenDescMessage<Organization> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 0);
 
@@ -83,8 +88,10 @@ export type OrganizationMembership = Message<"buf.alpha.registry.v1alpha1.Organi
   organizationRole: OrganizationRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.OrganizationMembership.
-// Use `create(OrganizationMembershipDesc)` to create a new OrganizationMembership.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.OrganizationMembership.
+ * Use `create(OrganizationMembershipDesc)` to create a new message.
+ */
 export const OrganizationMembershipDesc: GenDescMessage<OrganizationMembership> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 1);
 
@@ -98,8 +105,10 @@ export type GetOrganizationRequest = Message<"buf.alpha.registry.v1alpha1.GetOrg
   id: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetOrganizationRequest.
-// Use `create(GetOrganizationRequestDesc)` to create a new GetOrganizationRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetOrganizationRequest.
+ * Use `create(GetOrganizationRequestDesc)` to create a new message.
+ */
 export const GetOrganizationRequestDesc: GenDescMessage<GetOrganizationRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 2);
 
@@ -113,8 +122,10 @@ export type GetOrganizationResponse = Message<"buf.alpha.registry.v1alpha1.GetOr
   organization?: Organization;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetOrganizationResponse.
-// Use `create(GetOrganizationResponseDesc)` to create a new GetOrganizationResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetOrganizationResponse.
+ * Use `create(GetOrganizationResponseDesc)` to create a new message.
+ */
 export const GetOrganizationResponseDesc: GenDescMessage<GetOrganizationResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 3);
 
@@ -128,8 +139,10 @@ export type GetOrganizationByNameRequest = Message<"buf.alpha.registry.v1alpha1.
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetOrganizationByNameRequest.
-// Use `create(GetOrganizationByNameRequestDesc)` to create a new GetOrganizationByNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetOrganizationByNameRequest.
+ * Use `create(GetOrganizationByNameRequestDesc)` to create a new message.
+ */
 export const GetOrganizationByNameRequestDesc: GenDescMessage<GetOrganizationByNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 4);
 
@@ -143,8 +156,10 @@ export type GetOrganizationByNameResponse = Message<"buf.alpha.registry.v1alpha1
   organization?: Organization;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetOrganizationByNameResponse.
-// Use `create(GetOrganizationByNameResponseDesc)` to create a new GetOrganizationByNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetOrganizationByNameResponse.
+ * Use `create(GetOrganizationByNameResponseDesc)` to create a new message.
+ */
 export const GetOrganizationByNameResponseDesc: GenDescMessage<GetOrganizationByNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 5);
 
@@ -170,8 +185,10 @@ export type ListOrganizationsRequest = Message<"buf.alpha.registry.v1alpha1.List
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationsRequest.
-// Use `create(ListOrganizationsRequestDesc)` to create a new ListOrganizationsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationsRequest.
+ * Use `create(ListOrganizationsRequestDesc)` to create a new message.
+ */
 export const ListOrganizationsRequestDesc: GenDescMessage<ListOrganizationsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 6);
 
@@ -192,8 +209,10 @@ export type ListOrganizationsResponse = Message<"buf.alpha.registry.v1alpha1.Lis
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationsResponse.
-// Use `create(ListOrganizationsResponseDesc)` to create a new ListOrganizationsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationsResponse.
+ * Use `create(ListOrganizationsResponseDesc)` to create a new message.
+ */
 export const ListOrganizationsResponseDesc: GenDescMessage<ListOrganizationsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 7);
 
@@ -226,8 +245,10 @@ export type ListUserOrganizationsRequest = Message<"buf.alpha.registry.v1alpha1.
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUserOrganizationsRequest.
-// Use `create(ListUserOrganizationsRequestDesc)` to create a new ListUserOrganizationsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUserOrganizationsRequest.
+ * Use `create(ListUserOrganizationsRequestDesc)` to create a new message.
+ */
 export const ListUserOrganizationsRequestDesc: GenDescMessage<ListUserOrganizationsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 8);
 
@@ -248,8 +269,10 @@ export type ListUserOrganizationsResponse = Message<"buf.alpha.registry.v1alpha1
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUserOrganizationsResponse.
-// Use `create(ListUserOrganizationsResponseDesc)` to create a new ListUserOrganizationsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUserOrganizationsResponse.
+ * Use `create(ListUserOrganizationsResponseDesc)` to create a new message.
+ */
 export const ListUserOrganizationsResponseDesc: GenDescMessage<ListUserOrganizationsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 9);
 
@@ -265,8 +288,10 @@ export type CreateOrganizationRequest = Message<"buf.alpha.registry.v1alpha1.Cre
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateOrganizationRequest.
-// Use `create(CreateOrganizationRequestDesc)` to create a new CreateOrganizationRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateOrganizationRequest.
+ * Use `create(CreateOrganizationRequestDesc)` to create a new message.
+ */
 export const CreateOrganizationRequestDesc: GenDescMessage<CreateOrganizationRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 10);
 
@@ -280,8 +305,10 @@ export type CreateOrganizationResponse = Message<"buf.alpha.registry.v1alpha1.Cr
   organization?: Organization;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateOrganizationResponse.
-// Use `create(CreateOrganizationResponseDesc)` to create a new CreateOrganizationResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateOrganizationResponse.
+ * Use `create(CreateOrganizationResponseDesc)` to create a new message.
+ */
 export const CreateOrganizationResponseDesc: GenDescMessage<CreateOrganizationResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 11);
 
@@ -295,8 +322,10 @@ export type DeleteOrganizationRequest = Message<"buf.alpha.registry.v1alpha1.Del
   id: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteOrganizationRequest.
-// Use `create(DeleteOrganizationRequestDesc)` to create a new DeleteOrganizationRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteOrganizationRequest.
+ * Use `create(DeleteOrganizationRequestDesc)` to create a new message.
+ */
 export const DeleteOrganizationRequestDesc: GenDescMessage<DeleteOrganizationRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 12);
 
@@ -306,8 +335,10 @@ export const DeleteOrganizationRequestDesc: GenDescMessage<DeleteOrganizationReq
 export type DeleteOrganizationResponse = Message<"buf.alpha.registry.v1alpha1.DeleteOrganizationResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteOrganizationResponse.
-// Use `create(DeleteOrganizationResponseDesc)` to create a new DeleteOrganizationResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteOrganizationResponse.
+ * Use `create(DeleteOrganizationResponseDesc)` to create a new message.
+ */
 export const DeleteOrganizationResponseDesc: GenDescMessage<DeleteOrganizationResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 13);
 
@@ -321,8 +352,10 @@ export type DeleteOrganizationByNameRequest = Message<"buf.alpha.registry.v1alph
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteOrganizationByNameRequest.
-// Use `create(DeleteOrganizationByNameRequestDesc)` to create a new DeleteOrganizationByNameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteOrganizationByNameRequest.
+ * Use `create(DeleteOrganizationByNameRequestDesc)` to create a new message.
+ */
 export const DeleteOrganizationByNameRequestDesc: GenDescMessage<DeleteOrganizationByNameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 14);
 
@@ -332,8 +365,10 @@ export const DeleteOrganizationByNameRequestDesc: GenDescMessage<DeleteOrganizat
 export type DeleteOrganizationByNameResponse = Message<"buf.alpha.registry.v1alpha1.DeleteOrganizationByNameResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteOrganizationByNameResponse.
-// Use `create(DeleteOrganizationByNameResponseDesc)` to create a new DeleteOrganizationByNameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteOrganizationByNameResponse.
+ * Use `create(DeleteOrganizationByNameResponseDesc)` to create a new message.
+ */
 export const DeleteOrganizationByNameResponseDesc: GenDescMessage<DeleteOrganizationByNameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 15);
 
@@ -363,8 +398,10 @@ export type AddOrganizationMemberRequest = Message<"buf.alpha.registry.v1alpha1.
   organizationRole: OrganizationRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.AddOrganizationMemberRequest.
-// Use `create(AddOrganizationMemberRequestDesc)` to create a new AddOrganizationMemberRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.AddOrganizationMemberRequest.
+ * Use `create(AddOrganizationMemberRequestDesc)` to create a new message.
+ */
 export const AddOrganizationMemberRequestDesc: GenDescMessage<AddOrganizationMemberRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 16);
 
@@ -374,8 +411,10 @@ export const AddOrganizationMemberRequestDesc: GenDescMessage<AddOrganizationMem
 export type AddOrganizationMemberResponse = Message<"buf.alpha.registry.v1alpha1.AddOrganizationMemberResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.AddOrganizationMemberResponse.
-// Use `create(AddOrganizationMemberResponseDesc)` to create a new AddOrganizationMemberResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.AddOrganizationMemberResponse.
+ * Use `create(AddOrganizationMemberResponseDesc)` to create a new message.
+ */
 export const AddOrganizationMemberResponseDesc: GenDescMessage<AddOrganizationMemberResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 17);
 
@@ -405,8 +444,10 @@ export type UpdateOrganizationMemberRequest = Message<"buf.alpha.registry.v1alph
   organizationRole: OrganizationRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UpdateOrganizationMemberRequest.
-// Use `create(UpdateOrganizationMemberRequestDesc)` to create a new UpdateOrganizationMemberRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UpdateOrganizationMemberRequest.
+ * Use `create(UpdateOrganizationMemberRequestDesc)` to create a new message.
+ */
 export const UpdateOrganizationMemberRequestDesc: GenDescMessage<UpdateOrganizationMemberRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 18);
 
@@ -416,8 +457,10 @@ export const UpdateOrganizationMemberRequestDesc: GenDescMessage<UpdateOrganizat
 export type UpdateOrganizationMemberResponse = Message<"buf.alpha.registry.v1alpha1.UpdateOrganizationMemberResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UpdateOrganizationMemberResponse.
-// Use `create(UpdateOrganizationMemberResponseDesc)` to create a new UpdateOrganizationMemberResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UpdateOrganizationMemberResponse.
+ * Use `create(UpdateOrganizationMemberResponseDesc)` to create a new message.
+ */
 export const UpdateOrganizationMemberResponseDesc: GenDescMessage<UpdateOrganizationMemberResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 19);
 
@@ -440,8 +483,10 @@ export type RemoveOrganizationMemberRequest = Message<"buf.alpha.registry.v1alph
   userId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RemoveOrganizationMemberRequest.
-// Use `create(RemoveOrganizationMemberRequestDesc)` to create a new RemoveOrganizationMemberRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RemoveOrganizationMemberRequest.
+ * Use `create(RemoveOrganizationMemberRequestDesc)` to create a new message.
+ */
 export const RemoveOrganizationMemberRequestDesc: GenDescMessage<RemoveOrganizationMemberRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 20);
 
@@ -451,8 +496,10 @@ export const RemoveOrganizationMemberRequestDesc: GenDescMessage<RemoveOrganizat
 export type RemoveOrganizationMemberResponse = Message<"buf.alpha.registry.v1alpha1.RemoveOrganizationMemberResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RemoveOrganizationMemberResponse.
-// Use `create(RemoveOrganizationMemberResponseDesc)` to create a new RemoveOrganizationMemberResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RemoveOrganizationMemberResponse.
+ * Use `create(RemoveOrganizationMemberResponseDesc)` to create a new message.
+ */
 export const RemoveOrganizationMemberResponseDesc: GenDescMessage<RemoveOrganizationMemberResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 21);
 
@@ -483,8 +530,10 @@ export type SetOrganizationMemberRequest = Message<"buf.alpha.registry.v1alpha1.
   organizationRole: OrganizationRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetOrganizationMemberRequest.
-// Use `create(SetOrganizationMemberRequestDesc)` to create a new SetOrganizationMemberRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetOrganizationMemberRequest.
+ * Use `create(SetOrganizationMemberRequestDesc)` to create a new message.
+ */
 export const SetOrganizationMemberRequestDesc: GenDescMessage<SetOrganizationMemberRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 22);
 
@@ -494,8 +543,10 @@ export const SetOrganizationMemberRequestDesc: GenDescMessage<SetOrganizationMem
 export type SetOrganizationMemberResponse = Message<"buf.alpha.registry.v1alpha1.SetOrganizationMemberResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetOrganizationMemberResponse.
-// Use `create(SetOrganizationMemberResponseDesc)` to create a new SetOrganizationMemberResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetOrganizationMemberResponse.
+ * Use `create(SetOrganizationMemberResponseDesc)` to create a new message.
+ */
 export const SetOrganizationMemberResponseDesc: GenDescMessage<SetOrganizationMemberResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 23);
 
@@ -511,8 +562,10 @@ export type GetOrganizationSettingsRequest = Message<"buf.alpha.registry.v1alpha
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetOrganizationSettingsRequest.
-// Use `create(GetOrganizationSettingsRequestDesc)` to create a new GetOrganizationSettingsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetOrganizationSettingsRequest.
+ * Use `create(GetOrganizationSettingsRequestDesc)` to create a new message.
+ */
 export const GetOrganizationSettingsRequestDesc: GenDescMessage<GetOrganizationSettingsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 24);
 
@@ -543,8 +596,10 @@ export type GetOrganizationSettingsResponse = Message<"buf.alpha.registry.v1alph
   membersCount: number;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetOrganizationSettingsResponse.
-// Use `create(GetOrganizationSettingsResponseDesc)` to create a new GetOrganizationSettingsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetOrganizationSettingsResponse.
+ * Use `create(GetOrganizationSettingsResponseDesc)` to create a new message.
+ */
 export const GetOrganizationSettingsResponseDesc: GenDescMessage<GetOrganizationSettingsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 25);
 
@@ -581,8 +636,10 @@ export type UpdateOrganizationSettingsRequest = Message<"buf.alpha.registry.v1al
   templateBaseRole: TemplateRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UpdateOrganizationSettingsRequest.
-// Use `create(UpdateOrganizationSettingsRequestDesc)` to create a new UpdateOrganizationSettingsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UpdateOrganizationSettingsRequest.
+ * Use `create(UpdateOrganizationSettingsRequestDesc)` to create a new message.
+ */
 export const UpdateOrganizationSettingsRequestDesc: GenDescMessage<UpdateOrganizationSettingsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 26);
 
@@ -592,8 +649,10 @@ export const UpdateOrganizationSettingsRequestDesc: GenDescMessage<UpdateOrganiz
 export type UpdateOrganizationSettingsResponse = Message<"buf.alpha.registry.v1alpha1.UpdateOrganizationSettingsResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UpdateOrganizationSettingsResponse.
-// Use `create(UpdateOrganizationSettingsResponseDesc)` to create a new UpdateOrganizationSettingsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UpdateOrganizationSettingsResponse.
+ * Use `create(UpdateOrganizationSettingsResponseDesc)` to create a new message.
+ */
 export const UpdateOrganizationSettingsResponseDesc: GenDescMessage<UpdateOrganizationSettingsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_organization, 27);
 

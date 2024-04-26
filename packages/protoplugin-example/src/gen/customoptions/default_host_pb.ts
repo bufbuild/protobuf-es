@@ -21,6 +21,9 @@ import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 import type { ServiceOptions } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file customoptions/default_host.proto.
+ */
 export const fileDesc_customoptions_default_host: GenDescFile = /*@__PURE__*/
   fileDesc("CiBjdXN0b21vcHRpb25zL2RlZmF1bHRfaG9zdC5wcm90bxINY3VzdG9tb3B0aW9uczpGCgxkZWZhdWx0X2hvc3QSHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMY6QcgASgJUgtkZWZhdWx0SG9zdIgBAWIGcHJvdG8z", [fileDesc_google_protobuf_descriptor]);
 

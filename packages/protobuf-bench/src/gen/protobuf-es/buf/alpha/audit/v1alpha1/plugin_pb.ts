@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobu
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/audit/v1alpha1/plugin.proto.
+ */
 export const fileDesc_buf_alpha_audit_v1alpha1_plugin: GenDescFile = /*@__PURE__*/
   fileDesc("CiVidWYvYWxwaGEvYXVkaXQvdjFhbHBoYTEvcGx1Z2luLnByb3RvEhhidWYuYWxwaGEuYXVkaXQudjFhbHBoYTEiewosQnVmQWxwaGFSZWdpc3RyeVYxQWxwaGExUGx1Z2luVmVyc2lvbk1hcHBpbmcSFAoMcGx1Z2luX293bmVyGAEgASgJEhMKC3BsdWdpbl9uYW1lGAIgASgJEg8KB3ZlcnNpb24YAyABKAkSDwoHZGVsZXRlZBgEIAEoCCJ2CiRCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFQbHVnaW5Db25maWcSFAoMcGx1Z2luX293bmVyGAEgASgJEhMKC3BsdWdpbl9uYW1lGAIgASgJEhIKCnBhcmFtZXRlcnMYAyADKAkSDwoHZGVsZXRlZBgEIAEoCCJUCjNCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFQbHVnaW5WZXJzaW9uUnVudGltZUxpYnJhcnkSDAoEbmFtZRgBIAEoCRIPCgd2ZXJzaW9uGAIgASgJKuEBCihCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFQbHVnaW5WaXNpYmlsaXR5Ej4KOkJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfUExVR0lOX1ZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABI5CjVCVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX1BMVUdJTl9WSVNJQklMSVRZX1BVQkxJQxABEjoKNkJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfUExVR0lOX1ZJU0lCSUxJVFlfUFJJVkFURRACYgZwcm90bzM");
 
@@ -48,8 +51,10 @@ export type BufAlphaRegistryV1Alpha1PluginVersionMapping = Message<"buf.alpha.au
   deleted: boolean;
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionMapping.
-// Use `create(BufAlphaRegistryV1Alpha1PluginVersionMappingDesc)` to create a new BufAlphaRegistryV1Alpha1PluginVersionMapping.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionMapping.
+ * Use `create(BufAlphaRegistryV1Alpha1PluginVersionMappingDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1PluginVersionMappingDesc: GenDescMessage<BufAlphaRegistryV1Alpha1PluginVersionMapping> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_plugin, 0);
 
@@ -78,8 +83,10 @@ export type BufAlphaRegistryV1Alpha1PluginConfig = Message<"buf.alpha.audit.v1al
   deleted: boolean;
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginConfig.
-// Use `create(BufAlphaRegistryV1Alpha1PluginConfigDesc)` to create a new BufAlphaRegistryV1Alpha1PluginConfig.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginConfig.
+ * Use `create(BufAlphaRegistryV1Alpha1PluginConfigDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1PluginConfigDesc: GenDescMessage<BufAlphaRegistryV1Alpha1PluginConfig> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_plugin, 1);
 
@@ -98,8 +105,10 @@ export type BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary = Message<"buf.a
   version: string;
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary.
-// Use `create(BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibraryDesc)` to create a new BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary.
+ * Use `create(BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibraryDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibraryDesc: GenDescMessage<BufAlphaRegistryV1Alpha1PluginVersionRuntimeLibrary> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_plugin, 2);
 
@@ -123,7 +132,9 @@ export enum BufAlphaRegistryV1Alpha1PluginVisibility {
   PRIVATE = 2,
 }
 
-// Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVisibility.
+/**
+ * Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1PluginVisibility.
+ */
 export const BufAlphaRegistryV1Alpha1PluginVisibilityDesc: GenDescEnum<BufAlphaRegistryV1Alpha1PluginVisibility> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_audit_v1alpha1_plugin, 0);
 

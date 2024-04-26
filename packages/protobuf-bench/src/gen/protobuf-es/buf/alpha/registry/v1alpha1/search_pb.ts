@@ -24,6 +24,9 @@ import type { PluginVisibility } from "./plugin_pb.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_plugin } from "./plugin_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/search.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_search: GenDescFile = /*@__PURE__*/
   fileDesc("CihidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvc2VhcmNoLnByb3RvEhtidWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEikgEKFlJlcG9zaXRvcnlTZWFyY2hSZXN1bHQSCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRINCgVvd25lchgDIAEoCRI7Cgp2aXNpYmlsaXR5GAQgASgOMicuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlZpc2liaWxpdHkSEgoKZGVwcmVjYXRlZBgFIAEoCCI0ChhPcmdhbml6YXRpb25TZWFyY2hSZXN1bHQSCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCSJFChBVc2VyU2VhcmNoUmVzdWx0EgoKAmlkGAEgASgJEhAKCHVzZXJuYW1lGAIgASgJEhMKC2RlYWN0aXZhdGVkGAMgASgIIkcKEFRlYW1TZWFyY2hSZXN1bHQSCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIZChFvcmdhbml6YXRpb25fbmFtZRgDIAEoCSKUAQoSUGx1Z2luU2VhcmNoUmVzdWx0EgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkSDQoFb3duZXIYAyABKAkSQQoKdmlzaWJpbGl0eRgEIAEoDjItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5WaXNpYmlsaXR5EhIKCmRlcHJlY2F0ZWQYBSABKAgilgEKFFRlbXBsYXRlU2VhcmNoUmVzdWx0EgoKAmlkGAEgASgJEgwKBG5hbWUYAiABKAkSDQoFb3duZXIYAyABKAkSQQoKdmlzaWJpbGl0eRgEIAEoDjItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5WaXNpYmlsaXR5EhIKCmRlcHJlY2F0ZWQYBSABKAgiuAMKDFNlYXJjaFJlc3VsdBJJCgpyZXBvc2l0b3J5GAEgASgLMjMuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlJlcG9zaXRvcnlTZWFyY2hSZXN1bHRIABJNCgxvcmdhbml6YXRpb24YAiABKAsyNS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuT3JnYW5pemF0aW9uU2VhcmNoUmVzdWx0SAASPQoEdXNlchgDIAEoCzItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyU2VhcmNoUmVzdWx0SAASPQoEdGVhbRgEIAEoCzItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5UZWFtU2VhcmNoUmVzdWx0SAASQQoGcGx1Z2luGAUgASgLMi8uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlBsdWdpblNlYXJjaFJlc3VsdEgAEkUKCHRlbXBsYXRlGAYgASgLMjEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlRlbXBsYXRlU2VhcmNoUmVzdWx0SABCBgoEaXRlbSKBAQoNU2VhcmNoUmVxdWVzdBINCgVxdWVyeRgBIAEoCRIRCglwYWdlX3NpemUYAiABKA0SEgoKcGFnZV90b2tlbhgDIAEoDRI6CgdmaWx0ZXJzGAQgAygOMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlNlYXJjaEZpbHRlciJsCg5TZWFyY2hSZXNwb25zZRJBCg5zZWFyY2hfcmVzdWx0cxgBIAMoCzIpLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5TZWFyY2hSZXN1bHQSFwoPbmV4dF9wYWdlX3Rva2VuGAIgASgNKtEBCgxTZWFyY2hGaWx0ZXISHQoZU0VBUkNIX0ZJTFRFUl9VTlNQRUNJRklFRBAAEhYKElNFQVJDSF9GSUxURVJfVVNFUhABEh4KGlNFQVJDSF9GSUxURVJfT1JHQU5JWkFUSU9OEAISHAoYU0VBUkNIX0ZJTFRFUl9SRVBPU0lUT1JZEAMSGAoUU0VBUkNIX0ZJTFRFUl9QTFVHSU4QBBIaChZTRUFSQ0hfRklMVEVSX1RFTVBMQVRFEAUSFgoSU0VBUkNIX0ZJTFRFUl9URUFNEAYycgoNU2VhcmNoU2VydmljZRJhCgZTZWFyY2gSKi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuU2VhcmNoUmVxdWVzdBorLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5TZWFyY2hSZXNwb25zZWIGcHJvdG8z", [fileDesc_buf_alpha_registry_v1alpha1_repository, fileDesc_buf_alpha_registry_v1alpha1_plugin]);
 
@@ -62,8 +65,10 @@ export type RepositorySearchResult = Message<"buf.alpha.registry.v1alpha1.Reposi
   deprecated: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RepositorySearchResult.
-// Use `create(RepositorySearchResultDesc)` to create a new RepositorySearchResult.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RepositorySearchResult.
+ * Use `create(RepositorySearchResultDesc)` to create a new message.
+ */
 export const RepositorySearchResultDesc: GenDescMessage<RepositorySearchResult> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 0);
 
@@ -82,8 +87,10 @@ export type OrganizationSearchResult = Message<"buf.alpha.registry.v1alpha1.Orga
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.OrganizationSearchResult.
-// Use `create(OrganizationSearchResultDesc)` to create a new OrganizationSearchResult.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.OrganizationSearchResult.
+ * Use `create(OrganizationSearchResultDesc)` to create a new message.
+ */
 export const OrganizationSearchResultDesc: GenDescMessage<OrganizationSearchResult> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 1);
 
@@ -107,8 +114,10 @@ export type UserSearchResult = Message<"buf.alpha.registry.v1alpha1.UserSearchRe
   deactivated: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserSearchResult.
-// Use `create(UserSearchResultDesc)` to create a new UserSearchResult.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserSearchResult.
+ * Use `create(UserSearchResultDesc)` to create a new message.
+ */
 export const UserSearchResultDesc: GenDescMessage<UserSearchResult> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 2);
 
@@ -132,8 +141,10 @@ export type TeamSearchResult = Message<"buf.alpha.registry.v1alpha1.TeamSearchRe
   organizationName: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.TeamSearchResult.
-// Use `create(TeamSearchResultDesc)` to create a new TeamSearchResult.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.TeamSearchResult.
+ * Use `create(TeamSearchResultDesc)` to create a new message.
+ */
 export const TeamSearchResultDesc: GenDescMessage<TeamSearchResult> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 3);
 
@@ -172,8 +183,10 @@ export type PluginSearchResult = Message<"buf.alpha.registry.v1alpha1.PluginSear
   deprecated: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.PluginSearchResult.
-// Use `create(PluginSearchResultDesc)` to create a new PluginSearchResult.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.PluginSearchResult.
+ * Use `create(PluginSearchResultDesc)` to create a new message.
+ */
 export const PluginSearchResultDesc: GenDescMessage<PluginSearchResult> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 4);
 
@@ -212,8 +225,10 @@ export type TemplateSearchResult = Message<"buf.alpha.registry.v1alpha1.Template
   deprecated: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.TemplateSearchResult.
-// Use `create(TemplateSearchResultDesc)` to create a new TemplateSearchResult.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.TemplateSearchResult.
+ * Use `create(TemplateSearchResultDesc)` to create a new message.
+ */
 export const TemplateSearchResultDesc: GenDescMessage<TemplateSearchResult> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 5);
 
@@ -263,8 +278,10 @@ export type SearchResult = Message<"buf.alpha.registry.v1alpha1.SearchResult"> &
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SearchResult.
-// Use `create(SearchResultDesc)` to create a new SearchResult.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SearchResult.
+ * Use `create(SearchResultDesc)` to create a new message.
+ */
 export const SearchResultDesc: GenDescMessage<SearchResult> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 6);
 
@@ -301,8 +318,10 @@ export type SearchRequest = Message<"buf.alpha.registry.v1alpha1.SearchRequest">
   filters: SearchFilter[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SearchRequest.
-// Use `create(SearchRequestDesc)` to create a new SearchRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SearchRequest.
+ * Use `create(SearchRequestDesc)` to create a new message.
+ */
 export const SearchRequestDesc: GenDescMessage<SearchRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 7);
 
@@ -323,8 +342,10 @@ export type SearchResponse = Message<"buf.alpha.registry.v1alpha1.SearchResponse
   nextPageToken: number;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SearchResponse.
-// Use `create(SearchResponseDesc)` to create a new SearchResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SearchResponse.
+ * Use `create(SearchResponseDesc)` to create a new message.
+ */
 export const SearchResponseDesc: GenDescMessage<SearchResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 8);
 
@@ -368,7 +389,9 @@ export enum SearchFilter {
   TEAM = 6,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.SearchFilter.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.SearchFilter.
+ */
 export const SearchFilterDesc: GenDescEnum<SearchFilter> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_search, 0);
 

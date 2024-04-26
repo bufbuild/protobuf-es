@@ -19,6 +19,9 @@
 import type { GenDescFile, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import type { Int32Value, StringValue } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file extra/service-all.proto.
+ */
 export declare const fileDesc_extra_service_all: GenDescFile;
 
 /**

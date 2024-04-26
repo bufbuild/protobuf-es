@@ -22,6 +22,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file addressbook.proto.
+ */
 export const fileDesc_addressbook: GenDescFile = /*@__PURE__*/
   fileDesc("ChFhZGRyZXNzYm9vay5wcm90bxIHZXhhbXBsZSKFAgoGUGVyc29uEgwKBG5hbWUYASABKAkSCgoCaWQYAiABKAUSDQoFZW1haWwYAyABKAkSKwoGcGhvbmVzGAQgAygLMhsuZXhhbXBsZS5QZXJzb24uUGhvbmVOdW1iZXISMAoMbGFzdF91cGRhdGVkGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBpGCgtQaG9uZU51bWJlchIOCgZudW1iZXIYASABKAkSJwoEdHlwZRgCIAEoDjIZLmV4YW1wbGUuUGVyc29uLlBob25lVHlwZSIrCglQaG9uZVR5cGUSCgoGTU9CSUxFEAASCAoESE9NRRABEggKBFdPUksQAiIuCgtBZGRyZXNzQm9vaxIfCgZwZW9wbGUYASADKAsyDy5leGFtcGxlLlBlcnNvbmIGcHJvdG8z", [fileDesc_google_protobuf_timestamp]);
 
@@ -57,8 +60,10 @@ export type Person = Message<"example.Person"> & {
   lastUpdated?: Timestamp;
 };
 
-// Describes the message example.Person.
-// Use `create(PersonDesc)` to create a new Person.
+/**
+ * Describes the message example.Person.
+ * Use `create(PersonDesc)` to create a new message.
+ */
 export const PersonDesc: GenDescMessage<Person> = /*@__PURE__*/
   messageDesc(fileDesc_addressbook, 0);
 
@@ -77,8 +82,10 @@ export type Person_PhoneNumber = Message<"example.Person.PhoneNumber"> & {
   type: Person_PhoneType;
 };
 
-// Describes the message example.Person.PhoneNumber.
-// Use `create(Person_PhoneNumberDesc)` to create a new Person_PhoneNumber.
+/**
+ * Describes the message example.Person.PhoneNumber.
+ * Use `create(Person_PhoneNumberDesc)` to create a new message.
+ */
 export const Person_PhoneNumberDesc: GenDescMessage<Person_PhoneNumber> = /*@__PURE__*/
   messageDesc(fileDesc_addressbook, 0, 0);
 
@@ -102,7 +109,9 @@ export enum Person_PhoneType {
   WORK = 2,
 }
 
-// Describes the enum example.Person.PhoneType.
+/**
+ * Describes the enum example.Person.PhoneType.
+ */
 export const Person_PhoneTypeDesc: GenDescEnum<Person_PhoneType> = /*@__PURE__*/
   enumDesc(fileDesc_addressbook, 0, 0);
 
@@ -118,8 +127,10 @@ export type AddressBook = Message<"example.AddressBook"> & {
   people: Person[];
 };
 
-// Describes the message example.AddressBook.
-// Use `create(AddressBookDesc)` to create a new AddressBook.
+/**
+ * Describes the message example.AddressBook.
+ * Use `create(AddressBookDesc)` to create a new message.
+ */
 export const AddressBookDesc: GenDescMessage<AddressBook> = /*@__PURE__*/
   messageDesc(fileDesc_addressbook, 1);
 

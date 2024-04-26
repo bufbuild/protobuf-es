@@ -34,6 +34,9 @@
 
 import { fileDesc } from "@bufbuild/protobuf/codegenv1";
 
+/**
+ * Describes the file google/protobuf/unittest_empty.proto.
+ */
 export const fileDesc_google_protobuf_unittest_empty = /*@__PURE__*/
   fileDesc("CiRnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZW1wdHkucHJvdG8");
 

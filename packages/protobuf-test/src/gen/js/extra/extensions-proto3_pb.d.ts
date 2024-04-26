@@ -19,6 +19,9 @@
 import type { GenDescExtension, GenDescFile } from "@bufbuild/protobuf/codegenv1";
 import type { FileOptions } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file extra/extensions-proto3.proto.
+ */
 export declare const fileDesc_extra_extensions_proto3: GenDescFile;
 
 /**

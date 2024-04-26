@@ -22,6 +22,9 @@ import type { OrganizationRole, PluginRole, RepositoryRole, TemplateRole } from 
 import { fileDesc_buf_alpha_registry_v1alpha1_role } from "./role_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/authz.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_authz: GenDescFile = /*@__PURE__*/
   fileDesc("CididWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvYXV0aHoucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSJFCipVc2VyQ2FuQ3JlYXRlT3JnYW5pemF0aW9uUmVwb3NpdG9yeVJlcXVlc3QSFwoPb3JnYW5pemF0aW9uX2lkGAEgASgJIkEKK1VzZXJDYW5DcmVhdGVPcmdhbml6YXRpb25SZXBvc2l0b3J5UmVzcG9uc2USEgoKYXV0aG9yaXplZBgBIAEoCCI8CiNVc2VyQ2FuU2VlUmVwb3NpdG9yeVNldHRpbmdzUmVxdWVzdBIVCg1yZXBvc2l0b3J5X2lkGAEgASgJIjoKJFVzZXJDYW5TZWVSZXBvc2l0b3J5U2V0dGluZ3NSZXNwb25zZRISCgphdXRob3JpemVkGAEgASgIIkAKJVVzZXJDYW5TZWVPcmdhbml6YXRpb25TZXR0aW5nc1JlcXVlc3QSFwoPb3JnYW5pemF0aW9uX2lkGAEgASgJIjwKJlVzZXJDYW5TZWVPcmdhbml6YXRpb25TZXR0aW5nc1Jlc3BvbnNlEhIKCmF1dGhvcml6ZWQYASABKAgiNwoYVXNlckNhblJlYWRQbHVnaW5SZXF1ZXN0Eg0KBW93bmVyGAEgASgJEgwKBG5hbWUYAiABKAkiLwoZVXNlckNhblJlYWRQbHVnaW5SZXNwb25zZRISCgphdXRob3JpemVkGAEgASgIIkAKIVVzZXJDYW5DcmVhdGVQbHVnaW5WZXJzaW9uUmVxdWVzdBINCgVvd25lchgBIAEoCRIMCgRuYW1lGAIgASgJIjgKIlVzZXJDYW5DcmVhdGVQbHVnaW5WZXJzaW9uUmVzcG9uc2USEgoKYXV0aG9yaXplZBgBIAEoCCJCCiNVc2VyQ2FuQ3JlYXRlVGVtcGxhdGVWZXJzaW9uUmVxdWVzdBINCgVvd25lchgBIAEoCRIMCgRuYW1lGAIgASgJIjoKJFVzZXJDYW5DcmVhdGVUZW1wbGF0ZVZlcnNpb25SZXNwb25zZRISCgphdXRob3JpemVkGAEgASgIIkEKJlVzZXJDYW5DcmVhdGVPcmdhbml6YXRpb25QbHVnaW5SZXF1ZXN0EhcKD29yZ2FuaXphdGlvbl9pZBgBIAEoCSI9CidVc2VyQ2FuQ3JlYXRlT3JnYW5pemF0aW9uUGx1Z2luUmVzcG9uc2USEgoKYXV0aG9yaXplZBgBIAEoCCJDCihVc2VyQ2FuQ3JlYXRlT3JnYW5pemF0aW9uVGVtcGxhdGVSZXF1ZXN0EhcKD29yZ2FuaXphdGlvbl9pZBgBIAEoCSI/CilVc2VyQ2FuQ3JlYXRlT3JnYW5pemF0aW9uVGVtcGxhdGVSZXNwb25zZRISCgphdXRob3JpemVkGAEgASgIIj4KH1VzZXJDYW5TZWVQbHVnaW5TZXR0aW5nc1JlcXVlc3QSDQoFb3duZXIYASABKAkSDAoEbmFtZRgCIAEoCSI2CiBVc2VyQ2FuU2VlUGx1Z2luU2V0dGluZ3NSZXNwb25zZRISCgphdXRob3JpemVkGAEgASgIIkAKIVVzZXJDYW5TZWVUZW1wbGF0ZVNldHRpbmdzUmVxdWVzdBINCgVvd25lchgBIAEoCRIMCgRuYW1lGAIgASgJIjgKIlVzZXJDYW5TZWVUZW1wbGF0ZVNldHRpbmdzUmVzcG9uc2USEgoKYXV0aG9yaXplZBgBIAEoCCI+CiNVc2VyQ2FuQWRkT3JnYW5pemF0aW9uTWVtYmVyUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkibwokVXNlckNhbkFkZE9yZ2FuaXphdGlvbk1lbWJlclJlc3BvbnNlEkcKEGF1dGhvcml6ZWRfcm9sZXMYASADKA4yLS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuT3JnYW5pemF0aW9uUm9sZSJBCiZVc2VyQ2FuVXBkYXRlT3JnYW5pemF0aW9uTWVtYmVyUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkicgonVXNlckNhblVwZGF0ZU9yZ2FuaXphdGlvbk1lbWJlclJlc3BvbnNlEkcKEGF1dGhvcml6ZWRfcm9sZXMYASADKA4yLS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuT3JnYW5pemF0aW9uUm9sZSJBCiZVc2VyQ2FuUmVtb3ZlT3JnYW5pemF0aW9uTWVtYmVyUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkicgonVXNlckNhblJlbW92ZU9yZ2FuaXphdGlvbk1lbWJlclJlc3BvbnNlEkcKEGF1dGhvcml6ZWRfcm9sZXMYASADKA4yLS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuT3JnYW5pemF0aW9uUm9sZSI7CiBVc2VyQ2FuRGVsZXRlT3JnYW5pemF0aW9uUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkiNwohVXNlckNhbkRlbGV0ZU9yZ2FuaXphdGlvblJlc3BvbnNlEhIKCmF1dGhvcml6ZWQYASABKAgiNwoeVXNlckNhbkRlbGV0ZVJlcG9zaXRvcnlSZXF1ZXN0EhUKDXJlcG9zaXRvcnlfaWQYASABKAkiNQofVXNlckNhbkRlbGV0ZVJlcG9zaXRvcnlSZXNwb25zZRISCgphdXRob3JpemVkGAEgASgIIjMKHFVzZXJDYW5EZWxldGVUZW1wbGF0ZVJlcXVlc3QSEwoLdGVtcGxhdGVfaWQYASABKAkiMwodVXNlckNhbkRlbGV0ZVRlbXBsYXRlUmVzcG9uc2USEgoKYXV0aG9yaXplZBgBIAEoCCIvChpVc2VyQ2FuRGVsZXRlUGx1Z2luUmVxdWVzdBIRCglwbHVnaW5faWQYASABKAkiMQobVXNlckNhbkRlbGV0ZVBsdWdpblJlc3BvbnNlEhIKCmF1dGhvcml6ZWQYASABKAgiGgoYVXNlckNhbkRlbGV0ZVVzZXJSZXF1ZXN0Ii8KGVVzZXJDYW5EZWxldGVVc2VyUmVzcG9uc2USEgoKYXV0aG9yaXplZBgBIAEoCCIjCiFVc2VyQ2FuU2VlU2VydmVyQWRtaW5QYW5lbFJlcXVlc3QiOAoiVXNlckNhblNlZVNlcnZlckFkbWluUGFuZWxSZXNwb25zZRISCgphdXRob3JpemVkGAEgASgIIkMKKlVzZXJDYW5NYW5hZ2VSZXBvc2l0b3J5Q29udHJpYnV0b3JzUmVxdWVzdBIVCg1yZXBvc2l0b3J5X2lkGAEgASgJInQKK1VzZXJDYW5NYW5hZ2VSZXBvc2l0b3J5Q29udHJpYnV0b3JzUmVzcG9uc2USRQoQYXV0aG9yaXplZF9yb2xlcxgBIAMoDjIrLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SZXBvc2l0b3J5Um9sZSI7CiZVc2VyQ2FuTWFuYWdlUGx1Z2luQ29udHJpYnV0b3JzUmVxdWVzdBIRCglwbHVnaW5faWQYASABKAkibAonVXNlckNhbk1hbmFnZVBsdWdpbkNvbnRyaWJ1dG9yc1Jlc3BvbnNlEkEKEGF1dGhvcml6ZWRfcm9sZXMYASADKA4yJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUGx1Z2luUm9sZSI/CihVc2VyQ2FuTWFuYWdlVGVtcGxhdGVDb250cmlidXRvcnNSZXF1ZXN0EhMKC3RlbXBsYXRlX2lkGAEgASgJInAKKVVzZXJDYW5NYW5hZ2VUZW1wbGF0ZUNvbnRyaWJ1dG9yc1Jlc3BvbnNlEkMKEGF1dGhvcml6ZWRfcm9sZXMYASADKA4yKS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVGVtcGxhdGVSb2xlMpwcCgxBdXRoelNlcnZpY2USuAEKI1VzZXJDYW5DcmVhdGVPcmdhbml6YXRpb25SZXBvc2l0b3J5EkcuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5DcmVhdGVPcmdhbml6YXRpb25SZXBvc2l0b3J5UmVxdWVzdBpILmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuQ3JlYXRlT3JnYW5pemF0aW9uUmVwb3NpdG9yeVJlc3BvbnNlEqMBChxVc2VyQ2FuU2VlUmVwb3NpdG9yeVNldHRpbmdzEkAuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5TZWVSZXBvc2l0b3J5U2V0dGluZ3NSZXF1ZXN0GkEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5TZWVSZXBvc2l0b3J5U2V0dGluZ3NSZXNwb25zZRKpAQoeVXNlckNhblNlZU9yZ2FuaXphdGlvblNldHRpbmdzEkIuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5TZWVPcmdhbml6YXRpb25TZXR0aW5nc1JlcXVlc3QaQy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhblNlZU9yZ2FuaXphdGlvblNldHRpbmdzUmVzcG9uc2USggEKEVVzZXJDYW5SZWFkUGx1Z2luEjUuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5SZWFkUGx1Z2luUmVxdWVzdBo2LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuUmVhZFBsdWdpblJlc3BvbnNlEp0BChpVc2VyQ2FuQ3JlYXRlUGx1Z2luVmVyc2lvbhI+LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuQ3JlYXRlUGx1Z2luVmVyc2lvblJlcXVlc3QaPy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhbkNyZWF0ZVBsdWdpblZlcnNpb25SZXNwb25zZRKjAQocVXNlckNhbkNyZWF0ZVRlbXBsYXRlVmVyc2lvbhJALmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuQ3JlYXRlVGVtcGxhdGVWZXJzaW9uUmVxdWVzdBpBLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuQ3JlYXRlVGVtcGxhdGVWZXJzaW9uUmVzcG9uc2USrAEKH1VzZXJDYW5DcmVhdGVPcmdhbml6YXRpb25QbHVnaW4SQy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhbkNyZWF0ZU9yZ2FuaXphdGlvblBsdWdpblJlcXVlc3QaRC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhbkNyZWF0ZU9yZ2FuaXphdGlvblBsdWdpblJlc3BvbnNlErIBCiFVc2VyQ2FuQ3JlYXRlT3JnYW5pemF0aW9uVGVtcGxhdGUSRS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhbkNyZWF0ZU9yZ2FuaXphdGlvblRlbXBsYXRlUmVxdWVzdBpGLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuQ3JlYXRlT3JnYW5pemF0aW9uVGVtcGxhdGVSZXNwb25zZRKXAQoYVXNlckNhblNlZVBsdWdpblNldHRpbmdzEjwuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5TZWVQbHVnaW5TZXR0aW5nc1JlcXVlc3QaPS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhblNlZVBsdWdpblNldHRpbmdzUmVzcG9uc2USnQEKGlVzZXJDYW5TZWVUZW1wbGF0ZVNldHRpbmdzEj4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5TZWVUZW1wbGF0ZVNldHRpbmdzUmVxdWVzdBo/LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuU2VlVGVtcGxhdGVTZXR0aW5nc1Jlc3BvbnNlEqMBChxVc2VyQ2FuQWRkT3JnYW5pemF0aW9uTWVtYmVyEkAuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5BZGRPcmdhbml6YXRpb25NZW1iZXJSZXF1ZXN0GkEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5BZGRPcmdhbml6YXRpb25NZW1iZXJSZXNwb25zZRKsAQofVXNlckNhblVwZGF0ZU9yZ2FuaXphdGlvbk1lbWJlchJDLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuVXBkYXRlT3JnYW5pemF0aW9uTWVtYmVyUmVxdWVzdBpELmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuVXBkYXRlT3JnYW5pemF0aW9uTWVtYmVyUmVzcG9uc2USrAEKH1VzZXJDYW5SZW1vdmVPcmdhbml6YXRpb25NZW1iZXISQy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhblJlbW92ZU9yZ2FuaXphdGlvbk1lbWJlclJlcXVlc3QaRC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhblJlbW92ZU9yZ2FuaXphdGlvbk1lbWJlclJlc3BvbnNlEpoBChlVc2VyQ2FuRGVsZXRlT3JnYW5pemF0aW9uEj0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5EZWxldGVPcmdhbml6YXRpb25SZXF1ZXN0Gj4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5EZWxldGVPcmdhbml6YXRpb25SZXNwb25zZRKUAQoXVXNlckNhbkRlbGV0ZVJlcG9zaXRvcnkSOy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhbkRlbGV0ZVJlcG9zaXRvcnlSZXF1ZXN0GjwuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5EZWxldGVSZXBvc2l0b3J5UmVzcG9uc2USjgEKFVVzZXJDYW5EZWxldGVUZW1wbGF0ZRI5LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuRGVsZXRlVGVtcGxhdGVSZXF1ZXN0GjouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5EZWxldGVUZW1wbGF0ZVJlc3BvbnNlEogBChNVc2VyQ2FuRGVsZXRlUGx1Z2luEjcuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5EZWxldGVQbHVnaW5SZXF1ZXN0GjguYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5EZWxldGVQbHVnaW5SZXNwb25zZRKCAQoRVXNlckNhbkRlbGV0ZVVzZXISNS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhbkRlbGV0ZVVzZXJSZXF1ZXN0GjYuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5EZWxldGVVc2VyUmVzcG9uc2USnQEKGlVzZXJDYW5TZWVTZXJ2ZXJBZG1pblBhbmVsEj4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5TZWVTZXJ2ZXJBZG1pblBhbmVsUmVxdWVzdBo/LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuU2VlU2VydmVyQWRtaW5QYW5lbFJlc3BvbnNlErgBCiNVc2VyQ2FuTWFuYWdlUmVwb3NpdG9yeUNvbnRyaWJ1dG9ycxJHLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuTWFuYWdlUmVwb3NpdG9yeUNvbnRyaWJ1dG9yc1JlcXVlc3QaSC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlckNhbk1hbmFnZVJlcG9zaXRvcnlDb250cmlidXRvcnNSZXNwb25zZRKsAQofVXNlckNhbk1hbmFnZVBsdWdpbkNvbnRyaWJ1dG9ycxJDLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuTWFuYWdlUGx1Z2luQ29udHJpYnV0b3JzUmVxdWVzdBpELmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuTWFuYWdlUGx1Z2luQ29udHJpYnV0b3JzUmVzcG9uc2USsgEKIVVzZXJDYW5NYW5hZ2VUZW1wbGF0ZUNvbnRyaWJ1dG9ycxJFLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyQ2FuTWFuYWdlVGVtcGxhdGVDb250cmlidXRvcnNSZXF1ZXN0GkYuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJDYW5NYW5hZ2VUZW1wbGF0ZUNvbnRyaWJ1dG9yc1Jlc3BvbnNlYgZwcm90bzM", [fileDesc_buf_alpha_registry_v1alpha1_role]);
 
@@ -38,8 +41,10 @@ export type UserCanCreateOrganizationRepositoryRequest = Message<"buf.alpha.regi
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationRepositoryRequest.
-// Use `create(UserCanCreateOrganizationRepositoryRequestDesc)` to create a new UserCanCreateOrganizationRepositoryRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationRepositoryRequest.
+ * Use `create(UserCanCreateOrganizationRepositoryRequestDesc)` to create a new message.
+ */
 export const UserCanCreateOrganizationRepositoryRequestDesc: GenDescMessage<UserCanCreateOrganizationRepositoryRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 0);
 
@@ -53,8 +58,10 @@ export type UserCanCreateOrganizationRepositoryResponse = Message<"buf.alpha.reg
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationRepositoryResponse.
-// Use `create(UserCanCreateOrganizationRepositoryResponseDesc)` to create a new UserCanCreateOrganizationRepositoryResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationRepositoryResponse.
+ * Use `create(UserCanCreateOrganizationRepositoryResponseDesc)` to create a new message.
+ */
 export const UserCanCreateOrganizationRepositoryResponseDesc: GenDescMessage<UserCanCreateOrganizationRepositoryResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 1);
 
@@ -71,8 +78,10 @@ export type UserCanSeeRepositorySettingsRequest = Message<"buf.alpha.registry.v1
   repositoryId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeeRepositorySettingsRequest.
-// Use `create(UserCanSeeRepositorySettingsRequestDesc)` to create a new UserCanSeeRepositorySettingsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeeRepositorySettingsRequest.
+ * Use `create(UserCanSeeRepositorySettingsRequestDesc)` to create a new message.
+ */
 export const UserCanSeeRepositorySettingsRequestDesc: GenDescMessage<UserCanSeeRepositorySettingsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 2);
 
@@ -86,8 +95,10 @@ export type UserCanSeeRepositorySettingsResponse = Message<"buf.alpha.registry.v
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeeRepositorySettingsResponse.
-// Use `create(UserCanSeeRepositorySettingsResponseDesc)` to create a new UserCanSeeRepositorySettingsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeeRepositorySettingsResponse.
+ * Use `create(UserCanSeeRepositorySettingsResponseDesc)` to create a new message.
+ */
 export const UserCanSeeRepositorySettingsResponseDesc: GenDescMessage<UserCanSeeRepositorySettingsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 3);
 
@@ -104,8 +115,10 @@ export type UserCanSeeOrganizationSettingsRequest = Message<"buf.alpha.registry.
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeeOrganizationSettingsRequest.
-// Use `create(UserCanSeeOrganizationSettingsRequestDesc)` to create a new UserCanSeeOrganizationSettingsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeeOrganizationSettingsRequest.
+ * Use `create(UserCanSeeOrganizationSettingsRequestDesc)` to create a new message.
+ */
 export const UserCanSeeOrganizationSettingsRequestDesc: GenDescMessage<UserCanSeeOrganizationSettingsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 4);
 
@@ -119,8 +132,10 @@ export type UserCanSeeOrganizationSettingsResponse = Message<"buf.alpha.registry
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeeOrganizationSettingsResponse.
-// Use `create(UserCanSeeOrganizationSettingsResponseDesc)` to create a new UserCanSeeOrganizationSettingsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeeOrganizationSettingsResponse.
+ * Use `create(UserCanSeeOrganizationSettingsResponseDesc)` to create a new message.
+ */
 export const UserCanSeeOrganizationSettingsResponseDesc: GenDescMessage<UserCanSeeOrganizationSettingsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 5);
 
@@ -143,8 +158,10 @@ export type UserCanReadPluginRequest = Message<"buf.alpha.registry.v1alpha1.User
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanReadPluginRequest.
-// Use `create(UserCanReadPluginRequestDesc)` to create a new UserCanReadPluginRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanReadPluginRequest.
+ * Use `create(UserCanReadPluginRequestDesc)` to create a new message.
+ */
 export const UserCanReadPluginRequestDesc: GenDescMessage<UserCanReadPluginRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 6);
 
@@ -158,8 +175,10 @@ export type UserCanReadPluginResponse = Message<"buf.alpha.registry.v1alpha1.Use
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanReadPluginResponse.
-// Use `create(UserCanReadPluginResponseDesc)` to create a new UserCanReadPluginResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanReadPluginResponse.
+ * Use `create(UserCanReadPluginResponseDesc)` to create a new message.
+ */
 export const UserCanReadPluginResponseDesc: GenDescMessage<UserCanReadPluginResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 7);
 
@@ -182,8 +201,10 @@ export type UserCanCreatePluginVersionRequest = Message<"buf.alpha.registry.v1al
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreatePluginVersionRequest.
-// Use `create(UserCanCreatePluginVersionRequestDesc)` to create a new UserCanCreatePluginVersionRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreatePluginVersionRequest.
+ * Use `create(UserCanCreatePluginVersionRequestDesc)` to create a new message.
+ */
 export const UserCanCreatePluginVersionRequestDesc: GenDescMessage<UserCanCreatePluginVersionRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 8);
 
@@ -197,8 +218,10 @@ export type UserCanCreatePluginVersionResponse = Message<"buf.alpha.registry.v1a
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreatePluginVersionResponse.
-// Use `create(UserCanCreatePluginVersionResponseDesc)` to create a new UserCanCreatePluginVersionResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreatePluginVersionResponse.
+ * Use `create(UserCanCreatePluginVersionResponseDesc)` to create a new message.
+ */
 export const UserCanCreatePluginVersionResponseDesc: GenDescMessage<UserCanCreatePluginVersionResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 9);
 
@@ -221,8 +244,10 @@ export type UserCanCreateTemplateVersionRequest = Message<"buf.alpha.registry.v1
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreateTemplateVersionRequest.
-// Use `create(UserCanCreateTemplateVersionRequestDesc)` to create a new UserCanCreateTemplateVersionRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreateTemplateVersionRequest.
+ * Use `create(UserCanCreateTemplateVersionRequestDesc)` to create a new message.
+ */
 export const UserCanCreateTemplateVersionRequestDesc: GenDescMessage<UserCanCreateTemplateVersionRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 10);
 
@@ -236,8 +261,10 @@ export type UserCanCreateTemplateVersionResponse = Message<"buf.alpha.registry.v
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreateTemplateVersionResponse.
-// Use `create(UserCanCreateTemplateVersionResponseDesc)` to create a new UserCanCreateTemplateVersionResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreateTemplateVersionResponse.
+ * Use `create(UserCanCreateTemplateVersionResponseDesc)` to create a new message.
+ */
 export const UserCanCreateTemplateVersionResponseDesc: GenDescMessage<UserCanCreateTemplateVersionResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 11);
 
@@ -254,8 +281,10 @@ export type UserCanCreateOrganizationPluginRequest = Message<"buf.alpha.registry
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationPluginRequest.
-// Use `create(UserCanCreateOrganizationPluginRequestDesc)` to create a new UserCanCreateOrganizationPluginRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationPluginRequest.
+ * Use `create(UserCanCreateOrganizationPluginRequestDesc)` to create a new message.
+ */
 export const UserCanCreateOrganizationPluginRequestDesc: GenDescMessage<UserCanCreateOrganizationPluginRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 12);
 
@@ -269,8 +298,10 @@ export type UserCanCreateOrganizationPluginResponse = Message<"buf.alpha.registr
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationPluginResponse.
-// Use `create(UserCanCreateOrganizationPluginResponseDesc)` to create a new UserCanCreateOrganizationPluginResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationPluginResponse.
+ * Use `create(UserCanCreateOrganizationPluginResponseDesc)` to create a new message.
+ */
 export const UserCanCreateOrganizationPluginResponseDesc: GenDescMessage<UserCanCreateOrganizationPluginResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 13);
 
@@ -287,8 +318,10 @@ export type UserCanCreateOrganizationTemplateRequest = Message<"buf.alpha.regist
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationTemplateRequest.
-// Use `create(UserCanCreateOrganizationTemplateRequestDesc)` to create a new UserCanCreateOrganizationTemplateRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationTemplateRequest.
+ * Use `create(UserCanCreateOrganizationTemplateRequestDesc)` to create a new message.
+ */
 export const UserCanCreateOrganizationTemplateRequestDesc: GenDescMessage<UserCanCreateOrganizationTemplateRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 14);
 
@@ -302,8 +335,10 @@ export type UserCanCreateOrganizationTemplateResponse = Message<"buf.alpha.regis
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationTemplateResponse.
-// Use `create(UserCanCreateOrganizationTemplateResponseDesc)` to create a new UserCanCreateOrganizationTemplateResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanCreateOrganizationTemplateResponse.
+ * Use `create(UserCanCreateOrganizationTemplateResponseDesc)` to create a new message.
+ */
 export const UserCanCreateOrganizationTemplateResponseDesc: GenDescMessage<UserCanCreateOrganizationTemplateResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 15);
 
@@ -326,8 +361,10 @@ export type UserCanSeePluginSettingsRequest = Message<"buf.alpha.registry.v1alph
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeePluginSettingsRequest.
-// Use `create(UserCanSeePluginSettingsRequestDesc)` to create a new UserCanSeePluginSettingsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeePluginSettingsRequest.
+ * Use `create(UserCanSeePluginSettingsRequestDesc)` to create a new message.
+ */
 export const UserCanSeePluginSettingsRequestDesc: GenDescMessage<UserCanSeePluginSettingsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 16);
 
@@ -341,8 +378,10 @@ export type UserCanSeePluginSettingsResponse = Message<"buf.alpha.registry.v1alp
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeePluginSettingsResponse.
-// Use `create(UserCanSeePluginSettingsResponseDesc)` to create a new UserCanSeePluginSettingsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeePluginSettingsResponse.
+ * Use `create(UserCanSeePluginSettingsResponseDesc)` to create a new message.
+ */
 export const UserCanSeePluginSettingsResponseDesc: GenDescMessage<UserCanSeePluginSettingsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 17);
 
@@ -365,8 +404,10 @@ export type UserCanSeeTemplateSettingsRequest = Message<"buf.alpha.registry.v1al
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeeTemplateSettingsRequest.
-// Use `create(UserCanSeeTemplateSettingsRequestDesc)` to create a new UserCanSeeTemplateSettingsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeeTemplateSettingsRequest.
+ * Use `create(UserCanSeeTemplateSettingsRequestDesc)` to create a new message.
+ */
 export const UserCanSeeTemplateSettingsRequestDesc: GenDescMessage<UserCanSeeTemplateSettingsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 18);
 
@@ -380,8 +421,10 @@ export type UserCanSeeTemplateSettingsResponse = Message<"buf.alpha.registry.v1a
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeeTemplateSettingsResponse.
-// Use `create(UserCanSeeTemplateSettingsResponseDesc)` to create a new UserCanSeeTemplateSettingsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeeTemplateSettingsResponse.
+ * Use `create(UserCanSeeTemplateSettingsResponseDesc)` to create a new message.
+ */
 export const UserCanSeeTemplateSettingsResponseDesc: GenDescMessage<UserCanSeeTemplateSettingsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 19);
 
@@ -398,8 +441,10 @@ export type UserCanAddOrganizationMemberRequest = Message<"buf.alpha.registry.v1
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanAddOrganizationMemberRequest.
-// Use `create(UserCanAddOrganizationMemberRequestDesc)` to create a new UserCanAddOrganizationMemberRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanAddOrganizationMemberRequest.
+ * Use `create(UserCanAddOrganizationMemberRequestDesc)` to create a new message.
+ */
 export const UserCanAddOrganizationMemberRequestDesc: GenDescMessage<UserCanAddOrganizationMemberRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 20);
 
@@ -416,8 +461,10 @@ export type UserCanAddOrganizationMemberResponse = Message<"buf.alpha.registry.v
   authorizedRoles: OrganizationRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanAddOrganizationMemberResponse.
-// Use `create(UserCanAddOrganizationMemberResponseDesc)` to create a new UserCanAddOrganizationMemberResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanAddOrganizationMemberResponse.
+ * Use `create(UserCanAddOrganizationMemberResponseDesc)` to create a new message.
+ */
 export const UserCanAddOrganizationMemberResponseDesc: GenDescMessage<UserCanAddOrganizationMemberResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 21);
 
@@ -434,8 +481,10 @@ export type UserCanUpdateOrganizationMemberRequest = Message<"buf.alpha.registry
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanUpdateOrganizationMemberRequest.
-// Use `create(UserCanUpdateOrganizationMemberRequestDesc)` to create a new UserCanUpdateOrganizationMemberRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanUpdateOrganizationMemberRequest.
+ * Use `create(UserCanUpdateOrganizationMemberRequestDesc)` to create a new message.
+ */
 export const UserCanUpdateOrganizationMemberRequestDesc: GenDescMessage<UserCanUpdateOrganizationMemberRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 22);
 
@@ -452,8 +501,10 @@ export type UserCanUpdateOrganizationMemberResponse = Message<"buf.alpha.registr
   authorizedRoles: OrganizationRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanUpdateOrganizationMemberResponse.
-// Use `create(UserCanUpdateOrganizationMemberResponseDesc)` to create a new UserCanUpdateOrganizationMemberResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanUpdateOrganizationMemberResponse.
+ * Use `create(UserCanUpdateOrganizationMemberResponseDesc)` to create a new message.
+ */
 export const UserCanUpdateOrganizationMemberResponseDesc: GenDescMessage<UserCanUpdateOrganizationMemberResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 23);
 
@@ -470,8 +521,10 @@ export type UserCanRemoveOrganizationMemberRequest = Message<"buf.alpha.registry
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanRemoveOrganizationMemberRequest.
-// Use `create(UserCanRemoveOrganizationMemberRequestDesc)` to create a new UserCanRemoveOrganizationMemberRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanRemoveOrganizationMemberRequest.
+ * Use `create(UserCanRemoveOrganizationMemberRequestDesc)` to create a new message.
+ */
 export const UserCanRemoveOrganizationMemberRequestDesc: GenDescMessage<UserCanRemoveOrganizationMemberRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 24);
 
@@ -488,8 +541,10 @@ export type UserCanRemoveOrganizationMemberResponse = Message<"buf.alpha.registr
   authorizedRoles: OrganizationRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanRemoveOrganizationMemberResponse.
-// Use `create(UserCanRemoveOrganizationMemberResponseDesc)` to create a new UserCanRemoveOrganizationMemberResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanRemoveOrganizationMemberResponse.
+ * Use `create(UserCanRemoveOrganizationMemberResponseDesc)` to create a new message.
+ */
 export const UserCanRemoveOrganizationMemberResponseDesc: GenDescMessage<UserCanRemoveOrganizationMemberResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 25);
 
@@ -506,8 +561,10 @@ export type UserCanDeleteOrganizationRequest = Message<"buf.alpha.registry.v1alp
   organizationId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteOrganizationRequest.
-// Use `create(UserCanDeleteOrganizationRequestDesc)` to create a new UserCanDeleteOrganizationRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteOrganizationRequest.
+ * Use `create(UserCanDeleteOrganizationRequestDesc)` to create a new message.
+ */
 export const UserCanDeleteOrganizationRequestDesc: GenDescMessage<UserCanDeleteOrganizationRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 26);
 
@@ -521,8 +578,10 @@ export type UserCanDeleteOrganizationResponse = Message<"buf.alpha.registry.v1al
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteOrganizationResponse.
-// Use `create(UserCanDeleteOrganizationResponseDesc)` to create a new UserCanDeleteOrganizationResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteOrganizationResponse.
+ * Use `create(UserCanDeleteOrganizationResponseDesc)` to create a new message.
+ */
 export const UserCanDeleteOrganizationResponseDesc: GenDescMessage<UserCanDeleteOrganizationResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 27);
 
@@ -539,8 +598,10 @@ export type UserCanDeleteRepositoryRequest = Message<"buf.alpha.registry.v1alpha
   repositoryId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteRepositoryRequest.
-// Use `create(UserCanDeleteRepositoryRequestDesc)` to create a new UserCanDeleteRepositoryRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteRepositoryRequest.
+ * Use `create(UserCanDeleteRepositoryRequestDesc)` to create a new message.
+ */
 export const UserCanDeleteRepositoryRequestDesc: GenDescMessage<UserCanDeleteRepositoryRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 28);
 
@@ -554,8 +615,10 @@ export type UserCanDeleteRepositoryResponse = Message<"buf.alpha.registry.v1alph
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteRepositoryResponse.
-// Use `create(UserCanDeleteRepositoryResponseDesc)` to create a new UserCanDeleteRepositoryResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteRepositoryResponse.
+ * Use `create(UserCanDeleteRepositoryResponseDesc)` to create a new message.
+ */
 export const UserCanDeleteRepositoryResponseDesc: GenDescMessage<UserCanDeleteRepositoryResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 29);
 
@@ -572,8 +635,10 @@ export type UserCanDeleteTemplateRequest = Message<"buf.alpha.registry.v1alpha1.
   templateId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteTemplateRequest.
-// Use `create(UserCanDeleteTemplateRequestDesc)` to create a new UserCanDeleteTemplateRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteTemplateRequest.
+ * Use `create(UserCanDeleteTemplateRequestDesc)` to create a new message.
+ */
 export const UserCanDeleteTemplateRequestDesc: GenDescMessage<UserCanDeleteTemplateRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 30);
 
@@ -587,8 +652,10 @@ export type UserCanDeleteTemplateResponse = Message<"buf.alpha.registry.v1alpha1
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteTemplateResponse.
-// Use `create(UserCanDeleteTemplateResponseDesc)` to create a new UserCanDeleteTemplateResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteTemplateResponse.
+ * Use `create(UserCanDeleteTemplateResponseDesc)` to create a new message.
+ */
 export const UserCanDeleteTemplateResponseDesc: GenDescMessage<UserCanDeleteTemplateResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 31);
 
@@ -605,8 +672,10 @@ export type UserCanDeletePluginRequest = Message<"buf.alpha.registry.v1alpha1.Us
   pluginId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeletePluginRequest.
-// Use `create(UserCanDeletePluginRequestDesc)` to create a new UserCanDeletePluginRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeletePluginRequest.
+ * Use `create(UserCanDeletePluginRequestDesc)` to create a new message.
+ */
 export const UserCanDeletePluginRequestDesc: GenDescMessage<UserCanDeletePluginRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 32);
 
@@ -620,8 +689,10 @@ export type UserCanDeletePluginResponse = Message<"buf.alpha.registry.v1alpha1.U
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeletePluginResponse.
-// Use `create(UserCanDeletePluginResponseDesc)` to create a new UserCanDeletePluginResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeletePluginResponse.
+ * Use `create(UserCanDeletePluginResponseDesc)` to create a new message.
+ */
 export const UserCanDeletePluginResponseDesc: GenDescMessage<UserCanDeletePluginResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 33);
 
@@ -631,8 +702,10 @@ export const UserCanDeletePluginResponseDesc: GenDescMessage<UserCanDeletePlugin
 export type UserCanDeleteUserRequest = Message<"buf.alpha.registry.v1alpha1.UserCanDeleteUserRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteUserRequest.
-// Use `create(UserCanDeleteUserRequestDesc)` to create a new UserCanDeleteUserRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteUserRequest.
+ * Use `create(UserCanDeleteUserRequestDesc)` to create a new message.
+ */
 export const UserCanDeleteUserRequestDesc: GenDescMessage<UserCanDeleteUserRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 34);
 
@@ -646,8 +719,10 @@ export type UserCanDeleteUserResponse = Message<"buf.alpha.registry.v1alpha1.Use
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteUserResponse.
-// Use `create(UserCanDeleteUserResponseDesc)` to create a new UserCanDeleteUserResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanDeleteUserResponse.
+ * Use `create(UserCanDeleteUserResponseDesc)` to create a new message.
+ */
 export const UserCanDeleteUserResponseDesc: GenDescMessage<UserCanDeleteUserResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 35);
 
@@ -657,8 +732,10 @@ export const UserCanDeleteUserResponseDesc: GenDescMessage<UserCanDeleteUserResp
 export type UserCanSeeServerAdminPanelRequest = Message<"buf.alpha.registry.v1alpha1.UserCanSeeServerAdminPanelRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeeServerAdminPanelRequest.
-// Use `create(UserCanSeeServerAdminPanelRequestDesc)` to create a new UserCanSeeServerAdminPanelRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeeServerAdminPanelRequest.
+ * Use `create(UserCanSeeServerAdminPanelRequestDesc)` to create a new message.
+ */
 export const UserCanSeeServerAdminPanelRequestDesc: GenDescMessage<UserCanSeeServerAdminPanelRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 36);
 
@@ -672,8 +749,10 @@ export type UserCanSeeServerAdminPanelResponse = Message<"buf.alpha.registry.v1a
   authorized: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanSeeServerAdminPanelResponse.
-// Use `create(UserCanSeeServerAdminPanelResponseDesc)` to create a new UserCanSeeServerAdminPanelResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanSeeServerAdminPanelResponse.
+ * Use `create(UserCanSeeServerAdminPanelResponseDesc)` to create a new message.
+ */
 export const UserCanSeeServerAdminPanelResponseDesc: GenDescMessage<UserCanSeeServerAdminPanelResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 37);
 
@@ -690,8 +769,10 @@ export type UserCanManageRepositoryContributorsRequest = Message<"buf.alpha.regi
   repositoryId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanManageRepositoryContributorsRequest.
-// Use `create(UserCanManageRepositoryContributorsRequestDesc)` to create a new UserCanManageRepositoryContributorsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanManageRepositoryContributorsRequest.
+ * Use `create(UserCanManageRepositoryContributorsRequestDesc)` to create a new message.
+ */
 export const UserCanManageRepositoryContributorsRequestDesc: GenDescMessage<UserCanManageRepositoryContributorsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 38);
 
@@ -708,8 +789,10 @@ export type UserCanManageRepositoryContributorsResponse = Message<"buf.alpha.reg
   authorizedRoles: RepositoryRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanManageRepositoryContributorsResponse.
-// Use `create(UserCanManageRepositoryContributorsResponseDesc)` to create a new UserCanManageRepositoryContributorsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanManageRepositoryContributorsResponse.
+ * Use `create(UserCanManageRepositoryContributorsResponseDesc)` to create a new message.
+ */
 export const UserCanManageRepositoryContributorsResponseDesc: GenDescMessage<UserCanManageRepositoryContributorsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 39);
 
@@ -726,8 +809,10 @@ export type UserCanManagePluginContributorsRequest = Message<"buf.alpha.registry
   pluginId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanManagePluginContributorsRequest.
-// Use `create(UserCanManagePluginContributorsRequestDesc)` to create a new UserCanManagePluginContributorsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanManagePluginContributorsRequest.
+ * Use `create(UserCanManagePluginContributorsRequestDesc)` to create a new message.
+ */
 export const UserCanManagePluginContributorsRequestDesc: GenDescMessage<UserCanManagePluginContributorsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 40);
 
@@ -744,8 +829,10 @@ export type UserCanManagePluginContributorsResponse = Message<"buf.alpha.registr
   authorizedRoles: PluginRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanManagePluginContributorsResponse.
-// Use `create(UserCanManagePluginContributorsResponseDesc)` to create a new UserCanManagePluginContributorsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanManagePluginContributorsResponse.
+ * Use `create(UserCanManagePluginContributorsResponseDesc)` to create a new message.
+ */
 export const UserCanManagePluginContributorsResponseDesc: GenDescMessage<UserCanManagePluginContributorsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 41);
 
@@ -762,8 +849,10 @@ export type UserCanManageTemplateContributorsRequest = Message<"buf.alpha.regist
   templateId: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanManageTemplateContributorsRequest.
-// Use `create(UserCanManageTemplateContributorsRequestDesc)` to create a new UserCanManageTemplateContributorsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanManageTemplateContributorsRequest.
+ * Use `create(UserCanManageTemplateContributorsRequestDesc)` to create a new message.
+ */
 export const UserCanManageTemplateContributorsRequestDesc: GenDescMessage<UserCanManageTemplateContributorsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 42);
 
@@ -780,8 +869,10 @@ export type UserCanManageTemplateContributorsResponse = Message<"buf.alpha.regis
   authorizedRoles: TemplateRole[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UserCanManageTemplateContributorsResponse.
-// Use `create(UserCanManageTemplateContributorsResponseDesc)` to create a new UserCanManageTemplateContributorsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UserCanManageTemplateContributorsResponse.
+ * Use `create(UserCanManageTemplateContributorsResponseDesc)` to create a new message.
+ */
 export const UserCanManageTemplateContributorsResponseDesc: GenDescMessage<UserCanManageTemplateContributorsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authz, 43);
 

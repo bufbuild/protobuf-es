@@ -20,6 +20,9 @@ import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/prot
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message as Message$1 } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/doc.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_doc: GenDescFile = /*@__PURE__*/
   fileDesc("CiVidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvZG9jLnByb3RvEhtidWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEiVQodR2V0U291cmNlRGlyZWN0b3J5SW5mb1JlcXVlc3QSDQoFb3duZXIYASABKAkSEgoKcmVwb3NpdG9yeRgCIAEoCRIRCglyZWZlcmVuY2UYAyABKAkiVQoeR2V0U291cmNlRGlyZWN0b3J5SW5mb1Jlc3BvbnNlEjMKBHJvb3QYASABKAsyJS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRmlsZUluZm8iYQoIRmlsZUluZm8SDAoEcGF0aBgBIAEoCRIOCgZpc19kaXIYAiABKAgSNwoIY2hpbGRyZW4YAyADKAsyJS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRmlsZUluZm8iWgoUR2V0U291cmNlRmlsZVJlcXVlc3QSDQoFb3duZXIYASABKAkSEgoKcmVwb3NpdG9yeRgCIAEoCRIRCglyZWZlcmVuY2UYAyABKAkSDAoEcGF0aBgEIAEoCSIoChVHZXRTb3VyY2VGaWxlUmVzcG9uc2USDwoHY29udGVudBgBIAEoDCJQChhHZXRNb2R1bGVQYWNrYWdlc1JlcXVlc3QSDQoFb3duZXIYASABKAkSEgoKcmVwb3NpdG9yeRgCIAEoCRIRCglyZWZlcmVuY2UYAyABKAkibgoZR2V0TW9kdWxlUGFja2FnZXNSZXNwb25zZRIMCgRuYW1lGAEgASgJEkMKD21vZHVsZV9wYWNrYWdlcxgCIAMoCzIqLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Nb2R1bGVQYWNrYWdlIjIKDU1vZHVsZVBhY2thZ2USDAoEbmFtZRgBIAEoCRITCgtkZXNjcmlwdGlvbhgCIAEoCSJVCh1HZXRNb2R1bGVEb2N1bWVudGF0aW9uUmVxdWVzdBINCgVvd25lchgBIAEoCRISCgpyZXBvc2l0b3J5GAIgASgJEhEKCXJlZmVyZW5jZRgDIAEoCSJwCh5HZXRNb2R1bGVEb2N1bWVudGF0aW9uUmVzcG9uc2USTgoUbW9kdWxlX2RvY3VtZW50YXRpb24YASABKAsyMC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTW9kdWxlRG9jdW1lbnRhdGlvbiI6ChNNb2R1bGVEb2N1bWVudGF0aW9uEgwKBG5hbWUYASABKAkSFQoNZG9jdW1lbnRhdGlvbhgDIAEoCSJsCh5HZXRQYWNrYWdlRG9jdW1lbnRhdGlvblJlcXVlc3QSDQoFb3duZXIYASABKAkSEgoKcmVwb3NpdG9yeRgCIAEoCRIRCglyZWZlcmVuY2UYAyABKAkSFAoMcGFja2FnZV9uYW1lGAQgASgJInMKH0dldFBhY2thZ2VEb2N1bWVudGF0aW9uUmVzcG9uc2USUAoVcGFja2FnZV9kb2N1bWVudGF0aW9uGAEgASgLMjEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlBhY2thZ2VEb2N1bWVudGF0aW9uIqACChRQYWNrYWdlRG9jdW1lbnRhdGlvbhIMCgRuYW1lGAEgASgJEhMKC2Rlc2NyaXB0aW9uGAIgASgJEjYKCHNlcnZpY2VzGAMgAygLMiQuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlNlcnZpY2USMAoFZW51bXMYBCADKAsyIS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRW51bRI2CghtZXNzYWdlcxgFIAMoCzIkLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5NZXNzYWdlEkMKD2ZpbGVfZXh0ZW5zaW9ucxgGIAMoCzIqLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5GaWxlRXh0ZW5zaW9uIloKCExvY2F0aW9uEhIKCnN0YXJ0X2xpbmUYASABKAUSFAoMc3RhcnRfY29sdW1uGAIgASgFEhAKCGVuZF9saW5lGAMgASgFEhIKCmVuZF9jb2x1bW4YBCABKAUi1gEKB1NlcnZpY2USDAoEbmFtZRgBIAEoCRITCgtuZXN0ZWRfbmFtZRgCIAEoCRIRCglmdWxsX25hbWUYAyABKAkSEwoLZGVzY3JpcHRpb24YBCABKAkSEQoJZmlsZV9wYXRoGAUgASgJEjcKCGxvY2F0aW9uGAYgASgLMiUuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxvY2F0aW9uEjQKB21ldGhvZHMYByADKAsyIy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTWV0aG9kIrYBCgZNZXRob2QSDAoEbmFtZRgBIAEoCRITCgtkZXNjcmlwdGlvbhgCIAEoCRJDCgdyZXF1ZXN0GAMgASgLMjIuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk1ldGhvZFJlcXVlc3RSZXNwb25zZRJECghyZXNwb25zZRgEIAEoCzIyLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5NZXRob2RSZXF1ZXN0UmVzcG9uc2Ui0gEKFU1ldGhvZFJlcXVlc3RSZXNwb25zZRITCgtuZXN0ZWRfdHlwZRgBIAEoCRIRCglmdWxsX3R5cGUYAiABKAkSEQoJc3RyZWFtaW5nGAMgASgIEjUKB21lc3NhZ2UYBCABKAsyJC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTWVzc2FnZRJHChFpbXBvcnRfbW9kdWxlX3JlZhgFIAEoCzIsLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5JbXBvcnRNb2R1bGVSZWYi1QEKBEVudW0SDAoEbmFtZRgBIAEoCRITCgtuZXN0ZWRfbmFtZRgCIAEoCRIRCglmdWxsX25hbWUYAyABKAkSEwoLZGVzY3JpcHRpb24YBCABKAkSEQoJZmlsZV9wYXRoGAUgASgJEjcKCGxvY2F0aW9uGAYgASgLMiUuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxvY2F0aW9uEjYKBnZhbHVlcxgHIAMoCzImLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5FbnVtVmFsdWUiPgoJRW51bVZhbHVlEgwKBG5hbWUYASABKAkSDgoGbnVtYmVyGAIgASgFEhMKC2Rlc2NyaXB0aW9uGAMgASgJImoKD0ltcG9ydE1vZHVsZVJlZhIOCgZyZW1vdGUYASABKAkSDQoFb3duZXIYAiABKAkSEgoKcmVwb3NpdG9yeRgDIAEoCRIOCgZjb21taXQYBCABKAkSFAoMcGFja2FnZV9uYW1lGAUgASgJIrECCgdNZXNzYWdlEgwKBG5hbWUYASABKAkSEwoLbmVzdGVkX25hbWUYAiABKAkSEQoJZnVsbF9uYW1lGAMgASgJEhMKC2Rlc2NyaXB0aW9uGAQgASgJEhEKCWZpbGVfcGF0aBgFIAEoCRIUCgxpc19tYXBfZW50cnkYBiABKAgSOQoGZmllbGRzGAcgAygLMikuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk1lc3NhZ2VGaWVsZBI3Cghsb2NhdGlvbhgIIAEoCzIlLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Mb2NhdGlvbhI+ChJtZXNzYWdlX2V4dGVuc2lvbnMYCSADKAsyIi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRmllbGQiiQEKDE1lc3NhZ2VGaWVsZBIzCgVmaWVsZBgBIAEoCzIiLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5GaWVsZEgAEjMKBW9uZW9mGAIgASgLMiIuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLk9uZW9mSABCDwoNbWVzc2FnZV9maWVsZCJJCgVPbmVvZhIMCgRuYW1lGAEgASgJEjIKBmZpZWxkcxgCIAMoCzIiLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5GaWVsZCKDAgoFRmllbGQSDAoEbmFtZRgBIAEoCRITCgtkZXNjcmlwdGlvbhgCIAEoCRINCgVsYWJlbBgDIAEoCRITCgtuZXN0ZWRfdHlwZRgEIAEoCRIRCglmdWxsX3R5cGUYBSABKAkSCwoDdGFnGAYgASgNEjgKCW1hcF9lbnRyeRgHIAEoCzIlLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5NYXBFbnRyeRJHChFpbXBvcnRfbW9kdWxlX3JlZhgIIAEoCzIsLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5JbXBvcnRNb2R1bGVSZWYSEAoIZXh0ZW5kZWUYCSABKAkipAEKCE1hcEVudHJ5EhUKDWtleV9mdWxsX3R5cGUYASABKAkSGQoRdmFsdWVfbmVzdGVkX3R5cGUYAiABKAkSFwoPdmFsdWVfZnVsbF90eXBlGAMgASgJEk0KF3ZhbHVlX2ltcG9ydF9tb2R1bGVfcmVmGAQgASgLMiwuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkltcG9ydE1vZHVsZVJlZiK8AQoNRmlsZUV4dGVuc2lvbhIWCg5leHRlbnNpb25fdHlwZRgBIAEoCRITCgtkZXNjcmlwdGlvbhgCIAEoCRIRCglmaWxlX3BhdGgYAyABKAkSNwoIbG9jYXRpb24YBCABKAsyJS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTG9jYXRpb24SMgoGZmllbGRzGAUgAygLMiIuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkZpZWxkMsgFCgpEb2NTZXJ2aWNlEpEBChZHZXRTb3VyY2VEaXJlY3RvcnlJbmZvEjouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldFNvdXJjZURpcmVjdG9yeUluZm9SZXF1ZXN0GjsuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldFNvdXJjZURpcmVjdG9yeUluZm9SZXNwb25zZRJ2Cg1HZXRTb3VyY2VGaWxlEjEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldFNvdXJjZUZpbGVSZXF1ZXN0GjIuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldFNvdXJjZUZpbGVSZXNwb25zZRKCAQoRR2V0TW9kdWxlUGFja2FnZXMSNS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0TW9kdWxlUGFja2FnZXNSZXF1ZXN0GjYuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldE1vZHVsZVBhY2thZ2VzUmVzcG9uc2USkQEKFkdldE1vZHVsZURvY3VtZW50YXRpb24SOi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0TW9kdWxlRG9jdW1lbnRhdGlvblJlcXVlc3QaOy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0TW9kdWxlRG9jdW1lbnRhdGlvblJlc3BvbnNlEpQBChdHZXRQYWNrYWdlRG9jdW1lbnRhdGlvbhI7LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRQYWNrYWdlRG9jdW1lbnRhdGlvblJlcXVlc3QaPC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UGFja2FnZURvY3VtZW50YXRpb25SZXNwb25zZWIGcHJvdG8z");
 
@@ -45,8 +48,10 @@ export type GetSourceDirectoryInfoRequest = Message$1<"buf.alpha.registry.v1alph
   reference: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoRequest.
-// Use `create(GetSourceDirectoryInfoRequestDesc)` to create a new GetSourceDirectoryInfoRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoRequest.
+ * Use `create(GetSourceDirectoryInfoRequestDesc)` to create a new message.
+ */
 export const GetSourceDirectoryInfoRequestDesc: GenDescMessage<GetSourceDirectoryInfoRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 0);
 
@@ -62,8 +67,10 @@ export type GetSourceDirectoryInfoResponse = Message$1<"buf.alpha.registry.v1alp
   root?: FileInfo;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoResponse.
-// Use `create(GetSourceDirectoryInfoResponseDesc)` to create a new GetSourceDirectoryInfoResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetSourceDirectoryInfoResponse.
+ * Use `create(GetSourceDirectoryInfoResponseDesc)` to create a new message.
+ */
 export const GetSourceDirectoryInfoResponseDesc: GenDescMessage<GetSourceDirectoryInfoResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 1);
 
@@ -92,8 +99,10 @@ export type FileInfo = Message$1<"buf.alpha.registry.v1alpha1.FileInfo"> & {
   children: FileInfo[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.FileInfo.
-// Use `create(FileInfoDesc)` to create a new FileInfo.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.FileInfo.
+ * Use `create(FileInfoDesc)` to create a new message.
+ */
 export const FileInfoDesc: GenDescMessage<FileInfo> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 2);
 
@@ -126,8 +135,10 @@ export type GetSourceFileRequest = Message$1<"buf.alpha.registry.v1alpha1.GetSou
   path: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetSourceFileRequest.
-// Use `create(GetSourceFileRequestDesc)` to create a new GetSourceFileRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetSourceFileRequest.
+ * Use `create(GetSourceFileRequestDesc)` to create a new message.
+ */
 export const GetSourceFileRequestDesc: GenDescMessage<GetSourceFileRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 3);
 
@@ -145,8 +156,10 @@ export type GetSourceFileResponse = Message$1<"buf.alpha.registry.v1alpha1.GetSo
   content: Uint8Array;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetSourceFileResponse.
-// Use `create(GetSourceFileResponseDesc)` to create a new GetSourceFileResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetSourceFileResponse.
+ * Use `create(GetSourceFileResponseDesc)` to create a new message.
+ */
 export const GetSourceFileResponseDesc: GenDescMessage<GetSourceFileResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 4);
 
@@ -172,8 +185,10 @@ export type GetModulePackagesRequest = Message$1<"buf.alpha.registry.v1alpha1.Ge
   reference: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetModulePackagesRequest.
-// Use `create(GetModulePackagesRequestDesc)` to create a new GetModulePackagesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetModulePackagesRequest.
+ * Use `create(GetModulePackagesRequestDesc)` to create a new message.
+ */
 export const GetModulePackagesRequestDesc: GenDescMessage<GetModulePackagesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 5);
 
@@ -194,8 +209,10 @@ export type GetModulePackagesResponse = Message$1<"buf.alpha.registry.v1alpha1.G
   modulePackages: ModulePackage[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetModulePackagesResponse.
-// Use `create(GetModulePackagesResponseDesc)` to create a new GetModulePackagesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetModulePackagesResponse.
+ * Use `create(GetModulePackagesResponseDesc)` to create a new message.
+ */
 export const GetModulePackagesResponseDesc: GenDescMessage<GetModulePackagesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 6);
 
@@ -216,8 +233,10 @@ export type ModulePackage = Message$1<"buf.alpha.registry.v1alpha1.ModulePackage
   description: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ModulePackage.
-// Use `create(ModulePackageDesc)` to create a new ModulePackage.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ModulePackage.
+ * Use `create(ModulePackageDesc)` to create a new message.
+ */
 export const ModulePackageDesc: GenDescMessage<ModulePackage> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 7);
 
@@ -243,8 +262,10 @@ export type GetModuleDocumentationRequest = Message$1<"buf.alpha.registry.v1alph
   reference: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetModuleDocumentationRequest.
-// Use `create(GetModuleDocumentationRequestDesc)` to create a new GetModuleDocumentationRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetModuleDocumentationRequest.
+ * Use `create(GetModuleDocumentationRequestDesc)` to create a new message.
+ */
 export const GetModuleDocumentationRequestDesc: GenDescMessage<GetModuleDocumentationRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 8);
 
@@ -260,8 +281,10 @@ export type GetModuleDocumentationResponse = Message$1<"buf.alpha.registry.v1alp
   moduleDocumentation?: ModuleDocumentation;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetModuleDocumentationResponse.
-// Use `create(GetModuleDocumentationResponseDesc)` to create a new GetModuleDocumentationResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetModuleDocumentationResponse.
+ * Use `create(GetModuleDocumentationResponseDesc)` to create a new message.
+ */
 export const GetModuleDocumentationResponseDesc: GenDescMessage<GetModuleDocumentationResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 9);
 
@@ -287,8 +310,10 @@ export type ModuleDocumentation = Message$1<"buf.alpha.registry.v1alpha1.ModuleD
   documentation: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ModuleDocumentation.
-// Use `create(ModuleDocumentationDesc)` to create a new ModuleDocumentation.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ModuleDocumentation.
+ * Use `create(ModuleDocumentationDesc)` to create a new message.
+ */
 export const ModuleDocumentationDesc: GenDescMessage<ModuleDocumentation> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 10);
 
@@ -321,8 +346,10 @@ export type GetPackageDocumentationRequest = Message$1<"buf.alpha.registry.v1alp
   packageName: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetPackageDocumentationRequest.
-// Use `create(GetPackageDocumentationRequestDesc)` to create a new GetPackageDocumentationRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetPackageDocumentationRequest.
+ * Use `create(GetPackageDocumentationRequestDesc)` to create a new message.
+ */
 export const GetPackageDocumentationRequestDesc: GenDescMessage<GetPackageDocumentationRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 11);
 
@@ -338,8 +365,10 @@ export type GetPackageDocumentationResponse = Message$1<"buf.alpha.registry.v1al
   packageDocumentation?: PackageDocumentation;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetPackageDocumentationResponse.
-// Use `create(GetPackageDocumentationResponseDesc)` to create a new GetPackageDocumentationResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetPackageDocumentationResponse.
+ * Use `create(GetPackageDocumentationResponseDesc)` to create a new message.
+ */
 export const GetPackageDocumentationResponseDesc: GenDescMessage<GetPackageDocumentationResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 12);
 
@@ -395,8 +424,10 @@ export type PackageDocumentation = Message$1<"buf.alpha.registry.v1alpha1.Packag
   fileExtensions: FileExtension[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.PackageDocumentation.
-// Use `create(PackageDocumentationDesc)` to create a new PackageDocumentation.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.PackageDocumentation.
+ * Use `create(PackageDocumentationDesc)` to create a new message.
+ */
 export const PackageDocumentationDesc: GenDescMessage<PackageDocumentation> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 13);
 
@@ -430,8 +461,10 @@ export type Location = Message$1<"buf.alpha.registry.v1alpha1.Location"> & {
   endColumn: number;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Location.
-// Use `create(LocationDesc)` to create a new Location.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Location.
+ * Use `create(LocationDesc)` to create a new message.
+ */
 export const LocationDesc: GenDescMessage<Location> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 14);
 
@@ -489,8 +522,10 @@ export type Service = Message$1<"buf.alpha.registry.v1alpha1.Service"> & {
   methods: Method[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Service.
-// Use `create(ServiceDesc)` to create a new Service.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Service.
+ * Use `create(ServiceDesc)` to create a new message.
+ */
 export const ServiceDesc: GenDescMessage<Service> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 15);
 
@@ -526,8 +561,10 @@ export type Method = Message$1<"buf.alpha.registry.v1alpha1.Method"> & {
   response?: MethodRequestResponse;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Method.
-// Use `create(MethodDesc)` to create a new Method.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Method.
+ * Use `create(MethodDesc)` to create a new message.
+ */
 export const MethodDesc: GenDescMessage<Method> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 16);
 
@@ -572,8 +609,10 @@ export type MethodRequestResponse = Message$1<"buf.alpha.registry.v1alpha1.Metho
   importModuleRef?: ImportModuleRef;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.MethodRequestResponse.
-// Use `create(MethodRequestResponseDesc)` to create a new MethodRequestResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.MethodRequestResponse.
+ * Use `create(MethodRequestResponseDesc)` to create a new message.
+ */
 export const MethodRequestResponseDesc: GenDescMessage<MethodRequestResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 17);
 
@@ -630,8 +669,10 @@ export type Enum = Message$1<"buf.alpha.registry.v1alpha1.Enum"> & {
   values: EnumValue[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Enum.
-// Use `create(EnumDesc)` to create a new Enum.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Enum.
+ * Use `create(EnumDesc)` to create a new message.
+ */
 export const EnumDesc: GenDescMessage<Enum> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 18);
 
@@ -662,8 +703,10 @@ export type EnumValue = Message$1<"buf.alpha.registry.v1alpha1.EnumValue"> & {
   description: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.EnumValue.
-// Use `create(EnumValueDesc)` to create a new EnumValue.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.EnumValue.
+ * Use `create(EnumValueDesc)` to create a new message.
+ */
 export const EnumValueDesc: GenDescMessage<EnumValue> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 19);
 
@@ -702,8 +745,10 @@ export type ImportModuleRef = Message$1<"buf.alpha.registry.v1alpha1.ImportModul
   packageName: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ImportModuleRef.
-// Use `create(ImportModuleRefDesc)` to create a new ImportModuleRef.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ImportModuleRef.
+ * Use `create(ImportModuleRefDesc)` to create a new message.
+ */
 export const ImportModuleRefDesc: GenDescMessage<ImportModuleRef> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 20);
 
@@ -770,8 +815,10 @@ export type Message = Message$1<"buf.alpha.registry.v1alpha1.Message"> & {
   messageExtensions: Field[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Message.
-// Use `create(MessageDesc)` to create a new Message.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Message.
+ * Use `create(MessageDesc)` to create a new message.
+ */
 export const MessageDesc: GenDescMessage<Message> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 21);
 
@@ -799,8 +846,10 @@ export type MessageField = Message$1<"buf.alpha.registry.v1alpha1.MessageField">
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.MessageField.
-// Use `create(MessageFieldDesc)` to create a new MessageField.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.MessageField.
+ * Use `create(MessageFieldDesc)` to create a new message.
+ */
 export const MessageFieldDesc: GenDescMessage<MessageField> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 22);
 
@@ -821,8 +870,10 @@ export type Oneof = Message$1<"buf.alpha.registry.v1alpha1.Oneof"> & {
   fields: Field[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Oneof.
-// Use `create(OneofDesc)` to create a new Oneof.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Oneof.
+ * Use `create(OneofDesc)` to create a new message.
+ */
 export const OneofDesc: GenDescMessage<Oneof> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 23);
 
@@ -896,8 +947,10 @@ export type Field = Message$1<"buf.alpha.registry.v1alpha1.Field"> & {
   extendee: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Field.
-// Use `create(FieldDesc)` to create a new Field.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Field.
+ * Use `create(FieldDesc)` to create a new message.
+ */
 export const FieldDesc: GenDescMessage<Field> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 24);
 
@@ -937,8 +990,10 @@ export type MapEntry = Message$1<"buf.alpha.registry.v1alpha1.MapEntry"> & {
   valueImportModuleRef?: ImportModuleRef;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.MapEntry.
-// Use `create(MapEntryDesc)` to create a new MapEntry.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.MapEntry.
+ * Use `create(MapEntryDesc)` to create a new message.
+ */
 export const MapEntryDesc: GenDescMessage<MapEntry> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 25);
 
@@ -985,8 +1040,10 @@ export type FileExtension = Message$1<"buf.alpha.registry.v1alpha1.FileExtension
   fields: Field[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.FileExtension.
-// Use `create(FileExtensionDesc)` to create a new FileExtension.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.FileExtension.
+ * Use `create(FileExtensionDesc)` to create a new message.
+ */
 export const FileExtensionDesc: GenDescMessage<FileExtension> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_doc, 26);
 

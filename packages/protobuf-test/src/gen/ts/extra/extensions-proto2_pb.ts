@@ -23,6 +23,9 @@ import { fileDesc_extra_example } from "./example_pb.js";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/extensions-proto2.proto.
+ */
 export const fileDesc_extra_extensions_proto2: GenDescFile = /*@__PURE__*/
   fileDesc("Ch1leHRyYS9leHRlbnNpb25zLXByb3RvMi5wcm90bxIJcHJvdG8yZXh0IisKDlByb3RvMkV4dGVuZGVlEhEKCW93bl9maWVsZBgBIAEoBSoGCOgHEJBOIigKEFByb3RvMkV4dE1lc3NhZ2USFAoMc3RyaW5nX2ZpZWxkGAEgASgJIiAKCEdyb3VwRXh0EgkKAWEYASABKAUSCQoBYhgCIAEoBSIoChBSZXBlYXRlZEdyb3VwRXh0EgkKAWEYASABKAUSCQoBYhgCIAEoBSKTAQoSUHJvdG8yRXh0Q29udGFpbmVyGkIKBUNoaWxkMjkKCnVpbnQzMl9leHQSGS5wcm90bzJleHQuUHJvdG8yRXh0ZW5kZWUYskYgASgNUgl1aW50MzJFeHQyOQoKdWludDMyX2V4dBIZLnByb3RvMmV4dC5Qcm90bzJFeHRlbmRlZRipRiABKA1SCXVpbnQzMkV4dCpACg1Qcm90bzJFeHRFbnVtEhcKE1BST1RPMl9FWFRfRU5VTV9ZRVMQARIWChJQUk9UTzJfRVhUX0VOVU1fTk8QAjo5Cgp1aW50MzJfZXh0EhkucHJvdG8yZXh0LlByb3RvMkV4dGVuZGVlGOkHIAEoDVIJdWludDMyRXh0OlYKF3VpbnQzMl9leHRfd2l0aF9kZWZhdWx0EhkucHJvdG8yZXh0LlByb3RvMkV4dGVuZGVlGOoHIAEoDToDOTk5UhR1aW50MzJFeHRXaXRoRGVmYXVsdDo5CgpzdHJpbmdfZXh0EhkucHJvdG8yZXh0LlByb3RvMkV4dGVuZGVlGNEPIAEoCVIJc3RyaW5nRXh0Ol4KF3N0cmluZ19leHRfd2l0aF9kZWZhdWx0EhkucHJvdG8yZXh0LlByb3RvMkV4dGVuZGVlGNIPIAEoCToLaGVsbG8gIiAqLyBSFHN0cmluZ0V4dFdpdGhEZWZhdWx0OjkKCnVpbnQ2NF9leHQSGS5wcm90bzJleHQuUHJvdG8yRXh0ZW5kZWUYuRcgASgEUgl1aW50NjRFeHQ6TwoUdWludDY0X2V4dF9qc19zdHJpbmcSGS5wcm90bzJleHQuUHJvdG8yRXh0ZW5kZWUYuhcgASgEQgIwAVIRdWludDY0RXh0SnNTdHJpbmc6NwoJYnl0ZXNfZXh0EhkucHJvdG8yZXh0LlByb3RvMkV4dGVuZGVlGKEfIAEoDFIIYnl0ZXNFeHQ6dgoWYnl0ZXNfZXh0X3dpdGhfZGVmYXVsdBIZLnByb3RvMmV4dC5Qcm90bzJFeHRlbmRlZRiiHyABKAw6JVwwMDB4XFx4XCJ4XCdBQUFBQUFcMDEwXDAxNFxuXHJcdFwwMTNSE2J5dGVzRXh0V2l0aERlZmF1bHQ6TwoIZW51bV9leHQSGS5wcm90bzJleHQuUHJvdG8yRXh0ZW5kZWUYiScgASgOMhgucHJvdG8yZXh0LlByb3RvMkV4dEVudW1SB2VudW1FeHQ6ewoVZW51bV9leHRfd2l0aF9kZWZhdWx0EhkucHJvdG8yZXh0LlByb3RvMkV4dGVuZGVlGIonIAEoDjIYLnByb3RvMmV4dC5Qcm90bzJFeHRFbnVtOhJQUk9UTzJfRVhUX0VOVU1fTk9SEmVudW1FeHRXaXRoRGVmYXVsdDpYCgttZXNzYWdlX2V4dBIZLnByb3RvMmV4dC5Qcm90bzJFeHRlbmRlZRjxLiABKAsyGy5wcm90bzJleHQuUHJvdG8yRXh0TWVzc2FnZVIKbWVzc2FnZUV4dDpUChJtZXNzYWdlX2V4dF9wcm90bzMSGS5wcm90bzJleHQuUHJvdG8yRXh0ZW5kZWUY8i4gASgLMgouZG9jcy5Vc2VyUhBtZXNzYWdlRXh0UHJvdG8zOmkKFHJlcGVhdGVkX21lc3NhZ2VfZXh0EhkucHJvdG8yZXh0LlByb3RvMkV4dGVuZGVlGNk2IAMoCzIbLnByb3RvMmV4dC5Qcm90bzJFeHRNZXNzYWdlUhJyZXBlYXRlZE1lc3NhZ2VFeHQ6YAoRcmVwZWF0ZWRfZW51bV9leHQSGS5wcm90bzJleHQuUHJvdG8yRXh0ZW5kZWUY3TYgAygOMhgucHJvdG8yZXh0LlByb3RvMkV4dEVudW1SD3JlcGVhdGVkRW51bUV4dDpKChNyZXBlYXRlZF9zdHJpbmdfZXh0EhkucHJvdG8yZXh0LlByb3RvMkV4dGVuZGVlGNo2IAMoCVIRcmVwZWF0ZWRTdHJpbmdFeHQ6SgoRcGFja2VkX3VpbnQzMl9leHQSGS5wcm90bzJleHQuUHJvdG8yRXh0ZW5kZWUY2zYgAygNQgIQAVIPcGFja2VkVWludDMyRXh0OkoKE3VucGFja2VkX3VpbnQzMl9leHQSGS5wcm90bzJleHQuUHJvdG8yRXh0ZW5kZWUY3DYgAygNUhF1bnBhY2tlZFVpbnQzMkV4dDpZCgt3cmFwcGVyX2V4dBIZLnByb3RvMmV4dC5Qcm90bzJFeHRlbmRlZRjBPiABKAsyHC5nb29nbGUucHJvdG9idWYuVUludDMyVmFsdWVSCndyYXBwZXJFeHQ6SwoIZ3JvdXBleHQSGS5wcm90bzJleHQuUHJvdG8yRXh0ZW5kZWUYpD8gASgKMhMucHJvdG8yZXh0Lkdyb3VwRXh0Ughncm91cGV4dDpjChByZXBlYXRlZGdyb3VwZXh0EhkucHJvdG8yZXh0LlByb3RvMkV4dGVuZGVlGKU/IAMoCjIbLnByb3RvMmV4dC5SZXBlYXRlZEdyb3VwRXh0UhByZXBlYXRlZGdyb3VwZXh0", [fileDesc_extra_example, fileDesc_google_protobuf_wrappers]);
 
@@ -38,8 +41,10 @@ export type Proto2Extendee = Message<"proto2ext.Proto2Extendee"> & {
   ownField: number;
 };
 
-// Describes the message proto2ext.Proto2Extendee.
-// Use `create(Proto2ExtendeeDesc)` to create a new Proto2Extendee.
+/**
+ * Describes the message proto2ext.Proto2Extendee.
+ * Use `create(Proto2ExtendeeDesc)` to create a new message.
+ */
 export const Proto2ExtendeeDesc: GenDescMessage<Proto2Extendee> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 0);
 
@@ -55,8 +60,10 @@ export type Proto2ExtMessage = Message<"proto2ext.Proto2ExtMessage"> & {
   stringField: string;
 };
 
-// Describes the message proto2ext.Proto2ExtMessage.
-// Use `create(Proto2ExtMessageDesc)` to create a new Proto2ExtMessage.
+/**
+ * Describes the message proto2ext.Proto2ExtMessage.
+ * Use `create(Proto2ExtMessageDesc)` to create a new message.
+ */
 export const Proto2ExtMessageDesc: GenDescMessage<Proto2ExtMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 1);
 
@@ -75,8 +82,10 @@ export type GroupExt = Message<"proto2ext.GroupExt"> & {
   b: number;
 };
 
-// Describes the message proto2ext.GroupExt.
-// Use `create(GroupExtDesc)` to create a new GroupExt.
+/**
+ * Describes the message proto2ext.GroupExt.
+ * Use `create(GroupExtDesc)` to create a new message.
+ */
 export const GroupExtDesc: GenDescMessage<GroupExt> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 2);
 
@@ -95,8 +104,10 @@ export type RepeatedGroupExt = Message<"proto2ext.RepeatedGroupExt"> & {
   b: number;
 };
 
-// Describes the message proto2ext.RepeatedGroupExt.
-// Use `create(RepeatedGroupExtDesc)` to create a new RepeatedGroupExt.
+/**
+ * Describes the message proto2ext.RepeatedGroupExt.
+ * Use `create(RepeatedGroupExtDesc)` to create a new message.
+ */
 export const RepeatedGroupExtDesc: GenDescMessage<RepeatedGroupExt> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 3);
 
@@ -108,8 +119,10 @@ export const RepeatedGroupExtDesc: GenDescMessage<RepeatedGroupExt> = /*@__PURE_
 export type Proto2ExtContainer = Message<"proto2ext.Proto2ExtContainer"> & {
 };
 
-// Describes the message proto2ext.Proto2ExtContainer.
-// Use `create(Proto2ExtContainerDesc)` to create a new Proto2ExtContainer.
+/**
+ * Describes the message proto2ext.Proto2ExtContainer.
+ * Use `create(Proto2ExtContainerDesc)` to create a new message.
+ */
 export const Proto2ExtContainerDesc: GenDescMessage<Proto2ExtContainer> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 4);
 
@@ -119,8 +132,10 @@ export const Proto2ExtContainerDesc: GenDescMessage<Proto2ExtContainer> = /*@__P
 export type Proto2ExtContainer_Child = Message<"proto2ext.Proto2ExtContainer.Child"> & {
 };
 
-// Describes the message proto2ext.Proto2ExtContainer.Child.
-// Use `create(Proto2ExtContainer_ChildDesc)` to create a new Proto2ExtContainer_Child.
+/**
+ * Describes the message proto2ext.Proto2ExtContainer.Child.
+ * Use `create(Proto2ExtContainer_ChildDesc)` to create a new message.
+ */
 export const Proto2ExtContainer_ChildDesc: GenDescMessage<Proto2ExtContainer_Child> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 4, 0);
 
@@ -153,7 +168,9 @@ export enum Proto2ExtEnum {
   NO = 2,
 }
 
-// Describes the enum proto2ext.Proto2ExtEnum.
+/**
+ * Describes the enum proto2ext.Proto2ExtEnum.
+ */
 export const Proto2ExtEnumDesc: GenDescEnum<Proto2ExtEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_extensions_proto2, 0);
 

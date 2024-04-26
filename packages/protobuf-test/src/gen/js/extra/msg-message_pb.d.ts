@@ -19,6 +19,9 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/msg-message.proto.
+ */
 export declare const fileDesc_extra_msg_message: GenDescFile;
 
 /**
@@ -36,7 +39,10 @@ export declare type MessageFieldMessage = Message<"spec.MessageFieldMessage"> & 
   repeatedMessageField: MessageFieldMessage_TestMessage[];
 };
 
-// Describes the message spec.MessageFieldMessage. Use `create(MessageFieldMessageDesc)` to create a new MessageFieldMessage.
+/**
+ * Describes the message spec.MessageFieldMessage.
+ * Use `create(MessageFieldMessageDesc)` to create a new message.
+ */
 export declare const MessageFieldMessageDesc: GenDescMessage<MessageFieldMessage>;
 
 /**
@@ -49,6 +55,9 @@ export declare type MessageFieldMessage_TestMessage = Message<"spec.MessageField
   name: string;
 };
 
-// Describes the message spec.MessageFieldMessage.TestMessage. Use `create(MessageFieldMessage_TestMessageDesc)` to create a new MessageFieldMessage_TestMessage.
+/**
+ * Describes the message spec.MessageFieldMessage.TestMessage.
+ * Use `create(MessageFieldMessage_TestMessageDesc)` to create a new message.
+ */
 export declare const MessageFieldMessage_TestMessageDesc: GenDescMessage<MessageFieldMessage_TestMessage>;
 

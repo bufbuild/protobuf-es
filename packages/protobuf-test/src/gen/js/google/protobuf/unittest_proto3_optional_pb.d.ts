@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from 
 import type { Message } from "@bufbuild/protobuf";
 import type { MessageOptions } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file google/protobuf/unittest_proto3_optional.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_proto3_optional: GenDescFile;
 
 /**
@@ -136,7 +139,10 @@ export declare type TestProto3Optional = Message<"protobuf_unittest.TestProto3Op
   singularInt64: bigint;
 };
 
-// Describes the message protobuf_unittest.TestProto3Optional. Use `create(TestProto3OptionalDesc)` to create a new TestProto3Optional.
+/**
+ * Describes the message protobuf_unittest.TestProto3Optional.
+ * Use `create(TestProto3OptionalDesc)` to create a new message.
+ */
 export declare const TestProto3OptionalDesc: GenDescMessage<TestProto3Optional>;
 
 /**
@@ -153,7 +159,10 @@ export declare type TestProto3Optional_NestedMessage = Message<"protobuf_unittes
   bb?: number;
 };
 
-// Describes the message protobuf_unittest.TestProto3Optional.NestedMessage. Use `create(TestProto3Optional_NestedMessageDesc)` to create a new TestProto3Optional_NestedMessage.
+/**
+ * Describes the message protobuf_unittest.TestProto3Optional.NestedMessage.
+ * Use `create(TestProto3Optional_NestedMessageDesc)` to create a new message.
+ */
 export declare const TestProto3Optional_NestedMessageDesc: GenDescMessage<TestProto3Optional_NestedMessage>;
 
 /**
@@ -188,7 +197,9 @@ export enum TestProto3Optional_NestedEnum {
   NEG = -1,
 }
 
-// Describes the enum protobuf_unittest.TestProto3Optional.NestedEnum.
+/**
+ * Describes the enum protobuf_unittest.TestProto3Optional.NestedEnum.
+ */
 export declare const TestProto3Optional_NestedEnumDesc: GenDescEnum<TestProto3Optional_NestedEnum>;
 
 /**
@@ -206,7 +217,10 @@ export declare type TestProto3OptionalMessage = Message<"protobuf_unittest.TestP
   optionalNestedMessage?: TestProto3OptionalMessage_NestedMessage;
 };
 
-// Describes the message protobuf_unittest.TestProto3OptionalMessage. Use `create(TestProto3OptionalMessageDesc)` to create a new TestProto3OptionalMessage.
+/**
+ * Describes the message protobuf_unittest.TestProto3OptionalMessage.
+ * Use `create(TestProto3OptionalMessageDesc)` to create a new message.
+ */
 export declare const TestProto3OptionalMessageDesc: GenDescMessage<TestProto3OptionalMessage>;
 
 /**
@@ -219,7 +233,10 @@ export declare type TestProto3OptionalMessage_NestedMessage = Message<"protobuf_
   s: string;
 };
 
-// Describes the message protobuf_unittest.TestProto3OptionalMessage.NestedMessage. Use `create(TestProto3OptionalMessage_NestedMessageDesc)` to create a new TestProto3OptionalMessage_NestedMessage.
+/**
+ * Describes the message protobuf_unittest.TestProto3OptionalMessage.NestedMessage.
+ * Use `create(TestProto3OptionalMessage_NestedMessageDesc)` to create a new message.
+ */
 export declare const TestProto3OptionalMessage_NestedMessageDesc: GenDescMessage<TestProto3OptionalMessage_NestedMessage>;
 
 /**
@@ -228,7 +245,10 @@ export declare const TestProto3OptionalMessage_NestedMessageDesc: GenDescMessage
 export declare type Proto3OptionalExtensions = Message<"protobuf_unittest.Proto3OptionalExtensions"> & {
 };
 
-// Describes the message protobuf_unittest.Proto3OptionalExtensions. Use `create(Proto3OptionalExtensionsDesc)` to create a new Proto3OptionalExtensions.
+/**
+ * Describes the message protobuf_unittest.Proto3OptionalExtensions.
+ * Use `create(Proto3OptionalExtensionsDesc)` to create a new message.
+ */
 export declare const Proto3OptionalExtensionsDesc: GenDescMessage<Proto3OptionalExtensions>;
 
 /**

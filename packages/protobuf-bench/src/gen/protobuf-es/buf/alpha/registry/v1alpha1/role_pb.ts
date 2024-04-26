@@ -19,6 +19,9 @@
 import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/role.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_role: GenDescFile = /*@__PURE__*/
   fileDesc("CiZidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcm9sZS5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExKlgKClNlcnZlclJvbGUSGwoXU0VSVkVSX1JPTEVfVU5TUEVDSUZJRUQQABIVChFTRVJWRVJfUk9MRV9BRE1JThABEhYKElNFUlZFUl9ST0xFX01FTUJFUhACKo0BChBPcmdhbml6YXRpb25Sb2xlEiEKHU9SR0FOSVpBVElPTl9ST0xFX1VOU1BFQ0lGSUVEEAASGwoXT1JHQU5JWkFUSU9OX1JPTEVfT1dORVIQARIbChdPUkdBTklaQVRJT05fUk9MRV9BRE1JThACEhwKGE9SR0FOSVpBVElPTl9ST0xFX01FTUJFUhADKpwBCg5SZXBvc2l0b3J5Um9sZRIfChtSRVBPU0lUT1JZX1JPTEVfVU5TUEVDSUZJRUQQABIZChVSRVBPU0lUT1JZX1JPTEVfT1dORVIQARIZChVSRVBPU0lUT1JZX1JPTEVfQURNSU4QAhIZChVSRVBPU0lUT1JZX1JPTEVfV1JJVEUQAxIYChRSRVBPU0lUT1JZX1JPTEVfUkVBRBAEKpABCgxUZW1wbGF0ZVJvbGUSHQoZVEVNUExBVEVfUk9MRV9VTlNQRUNJRklFRBAAEhcKE1RFTVBMQVRFX1JPTEVfT1dORVIQARIXChNURU1QTEFURV9ST0xFX0FETUlOEAISFwoTVEVNUExBVEVfUk9MRV9XUklURRADEhYKElRFTVBMQVRFX1JPTEVfUkVBRBAEKoQBCgpQbHVnaW5Sb2xlEhsKF1BMVUdJTl9ST0xFX1VOU1BFQ0lGSUVEEAASFQoRUExVR0lOX1JPTEVfT1dORVIQARIVChFQTFVHSU5fUk9MRV9BRE1JThACEhUKEVBMVUdJTl9ST0xFX1dSSVRFEAMSFAoQUExVR0lOX1JPTEVfUkVBRBAEYgZwcm90bzM");
 
@@ -44,7 +47,9 @@ export enum ServerRole {
   MEMBER = 2,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.ServerRole.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.ServerRole.
+ */
 export const ServerRoleDesc: GenDescEnum<ServerRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_role, 0);
 
@@ -75,7 +80,9 @@ export enum OrganizationRole {
   MEMBER = 3,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.OrganizationRole.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.OrganizationRole.
+ */
 export const OrganizationRoleDesc: GenDescEnum<OrganizationRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_role, 1);
 
@@ -111,7 +118,9 @@ export enum RepositoryRole {
   READ = 4,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.RepositoryRole.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.RepositoryRole.
+ */
 export const RepositoryRoleDesc: GenDescEnum<RepositoryRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_role, 2);
 
@@ -147,7 +156,9 @@ export enum TemplateRole {
   READ = 4,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.TemplateRole.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.TemplateRole.
+ */
 export const TemplateRoleDesc: GenDescEnum<TemplateRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_role, 3);
 
@@ -183,7 +194,9 @@ export enum PluginRole {
   READ = 4,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.PluginRole.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.PluginRole.
+ */
 export const PluginRoleDesc: GenDescEnum<PluginRole> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_role, 4);
 

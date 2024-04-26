@@ -24,6 +24,9 @@ import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { TestAllTypes, TestRequired } from "./unittest_pb.js";
 
+/**
+ * Describes the file google/protobuf/unittest_lite_imports_nonlite.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_lite_imports_nonlite: GenDescFile;
 
 /**
@@ -43,6 +46,9 @@ export declare type TestLiteImportsNonlite = Message<"protobuf_unittest.TestLite
   messageWithRequired?: TestRequired;
 };
 
-// Describes the message protobuf_unittest.TestLiteImportsNonlite. Use `create(TestLiteImportsNonliteDesc)` to create a new TestLiteImportsNonlite.
+/**
+ * Describes the message protobuf_unittest.TestLiteImportsNonlite.
+ * Use `create(TestLiteImportsNonliteDesc)` to create a new message.
+ */
 export declare const TestLiteImportsNonliteDesc: GenDescMessage<TestLiteImportsNonlite>;
 

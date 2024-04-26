@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDes
 import type { Message } from "@bufbuild/protobuf";
 import type { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file google/protobuf/unittest_retention.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_retention: GenDescFile;
 
 /**
@@ -44,7 +47,10 @@ export declare type OptionsMessage = Message<"protobuf_unittest.OptionsMessage">
   sourceRetentionField: number;
 };
 
-// Describes the message protobuf_unittest.OptionsMessage. Use `create(OptionsMessageDesc)` to create a new OptionsMessage.
+/**
+ * Describes the message protobuf_unittest.OptionsMessage.
+ * Use `create(OptionsMessageDesc)` to create a new message.
+ */
 export declare const OptionsMessageDesc: GenDescMessage<OptionsMessage>;
 
 /**
@@ -53,7 +59,10 @@ export declare const OptionsMessageDesc: GenDescMessage<OptionsMessage>;
 export declare type Extendee = Message<"protobuf_unittest.Extendee"> & {
 };
 
-// Describes the message protobuf_unittest.Extendee. Use `create(ExtendeeDesc)` to create a new Extendee.
+/**
+ * Describes the message protobuf_unittest.Extendee.
+ * Use `create(ExtendeeDesc)` to create a new message.
+ */
 export declare const ExtendeeDesc: GenDescMessage<Extendee>;
 
 /**
@@ -77,7 +86,10 @@ export declare type TopLevelMessage = Message<"protobuf_unittest.TopLevelMessage
   } | { case: undefined; value?: undefined };
 };
 
-// Describes the message protobuf_unittest.TopLevelMessage. Use `create(TopLevelMessageDesc)` to create a new TopLevelMessage.
+/**
+ * Describes the message protobuf_unittest.TopLevelMessage.
+ * Use `create(TopLevelMessageDesc)` to create a new message.
+ */
 export declare const TopLevelMessageDesc: GenDescMessage<TopLevelMessage>;
 
 /**
@@ -86,7 +98,10 @@ export declare const TopLevelMessageDesc: GenDescMessage<TopLevelMessage>;
 export declare type TopLevelMessage_NestedMessage = Message<"protobuf_unittest.TopLevelMessage.NestedMessage"> & {
 };
 
-// Describes the message protobuf_unittest.TopLevelMessage.NestedMessage. Use `create(TopLevelMessage_NestedMessageDesc)` to create a new TopLevelMessage_NestedMessage.
+/**
+ * Describes the message protobuf_unittest.TopLevelMessage.NestedMessage.
+ * Use `create(TopLevelMessage_NestedMessageDesc)` to create a new message.
+ */
 export declare const TopLevelMessage_NestedMessageDesc: GenDescMessage<TopLevelMessage_NestedMessage>;
 
 /**
@@ -99,7 +114,9 @@ export enum TopLevelMessage_NestedEnum {
   NESTED_UNKNOWN = 0,
 }
 
-// Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
+/**
+ * Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
+ */
 export declare const TopLevelMessage_NestedEnumDesc: GenDescEnum<TopLevelMessage_NestedEnum>;
 
 /**
@@ -117,7 +134,9 @@ export enum TopLevelEnum {
   TOP_LEVEL_UNKNOWN = 0,
 }
 
-// Describes the enum protobuf_unittest.TopLevelEnum.
+/**
+ * Describes the enum protobuf_unittest.TopLevelEnum.
+ */
 export declare const TopLevelEnumDesc: GenDescEnum<TopLevelEnum>;
 
 /**

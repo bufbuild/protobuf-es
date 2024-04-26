@@ -19,6 +19,9 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/msg-scalar.proto.
+ */
 export declare const fileDesc_extra_msg_scalar: GenDescFile;
 
 /**
@@ -101,7 +104,10 @@ export declare type ScalarValuesMessage = Message<"spec.ScalarValuesMessage"> & 
   sint64Field: bigint;
 };
 
-// Describes the message spec.ScalarValuesMessage. Use `create(ScalarValuesMessageDesc)` to create a new ScalarValuesMessage.
+/**
+ * Describes the message spec.ScalarValuesMessage.
+ * Use `create(ScalarValuesMessageDesc)` to create a new message.
+ */
 export declare const ScalarValuesMessageDesc: GenDescMessage<ScalarValuesMessage>;
 
 /**
@@ -184,6 +190,9 @@ export declare type RepeatedScalarValuesMessage = Message<"spec.RepeatedScalarVa
   sint64Field: bigint[];
 };
 
-// Describes the message spec.RepeatedScalarValuesMessage. Use `create(RepeatedScalarValuesMessageDesc)` to create a new RepeatedScalarValuesMessage.
+/**
+ * Describes the message spec.RepeatedScalarValuesMessage.
+ * Use `create(RepeatedScalarValuesMessageDesc)` to create a new message.
+ */
 export declare const RepeatedScalarValuesMessageDesc: GenDescMessage<RepeatedScalarValuesMessage>;
 

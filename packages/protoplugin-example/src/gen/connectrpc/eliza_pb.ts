@@ -21,6 +21,9 @@ import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1
 import { fileDesc_customoptions_default_host } from "../customoptions/default_host_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file connectrpc/eliza.proto.
+ */
 export const fileDesc_connectrpc_eliza: GenDescFile = /*@__PURE__*/
   fileDesc("ChZjb25uZWN0cnBjL2VsaXphLnByb3RvEhNjb25uZWN0cnBjLmVsaXphLnYxIh4KClNheVJlcXVlc3QSEAoIc2VudGVuY2UYASABKAkiHwoLU2F5UmVzcG9uc2USEAoIc2VudGVuY2UYASABKAkyfgoMRWxpemFTZXJ2aWNlEk0KA1NheRIfLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVxdWVzdBogLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVzcG9uc2UiA5ACARofyj4caHR0cHM6Ly9kZW1vLmNvbm5lY3RycGMuY29tL2IGcHJvdG8z", [fileDesc_customoptions_default_host]);
 
@@ -36,8 +39,10 @@ export type SayRequest = Message<"connectrpc.eliza.v1.SayRequest"> & {
   sentence: string;
 };
 
-// Describes the message connectrpc.eliza.v1.SayRequest.
-// Use `create(SayRequestDesc)` to create a new SayRequest.
+/**
+ * Describes the message connectrpc.eliza.v1.SayRequest.
+ * Use `create(SayRequestDesc)` to create a new message.
+ */
 export const SayRequestDesc: GenDescMessage<SayRequest> = /*@__PURE__*/
   messageDesc(fileDesc_connectrpc_eliza, 0);
 
@@ -53,8 +58,10 @@ export type SayResponse = Message<"connectrpc.eliza.v1.SayResponse"> & {
   sentence: string;
 };
 
-// Describes the message connectrpc.eliza.v1.SayResponse.
-// Use `create(SayResponseDesc)` to create a new SayResponse.
+/**
+ * Describes the message connectrpc.eliza.v1.SayResponse.
+ * Use `create(SayResponseDesc)` to create a new message.
+ */
 export const SayResponseDesc: GenDescMessage<SayResponse> = /*@__PURE__*/
   messageDesc(fileDesc_connectrpc_eliza, 1);
 

@@ -22,6 +22,9 @@ import type { User } from "./user_pb.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_user } from "./user_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/authn.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_authn: GenDescFile = /*@__PURE__*/
   fileDesc("CididWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvYXV0aG4ucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSIXChVHZXRDdXJyZW50VXNlclJlcXVlc3QiSQoWR2V0Q3VycmVudFVzZXJSZXNwb25zZRIvCgR1c2VyGAEgASgLMiEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXIiHgocR2V0Q3VycmVudFVzZXJTdWJqZWN0UmVxdWVzdCIwCh1HZXRDdXJyZW50VXNlclN1YmplY3RSZXNwb25zZRIPCgdzdWJqZWN0GAEgASgJMpoCCgxBdXRoblNlcnZpY2USeQoOR2V0Q3VycmVudFVzZXISMi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0Q3VycmVudFVzZXJSZXF1ZXN0GjMuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldEN1cnJlbnRVc2VyUmVzcG9uc2USjgEKFUdldEN1cnJlbnRVc2VyU3ViamVjdBI5LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRDdXJyZW50VXNlclN1YmplY3RSZXF1ZXN0GjouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldEN1cnJlbnRVc2VyU3ViamVjdFJlc3BvbnNlYgZwcm90bzM", [fileDesc_buf_alpha_registry_v1alpha1_user]);
 
@@ -31,8 +34,10 @@ export const fileDesc_buf_alpha_registry_v1alpha1_authn: GenDescFile = /*@__PURE
 export type GetCurrentUserRequest = Message<"buf.alpha.registry.v1alpha1.GetCurrentUserRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetCurrentUserRequest.
-// Use `create(GetCurrentUserRequestDesc)` to create a new GetCurrentUserRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetCurrentUserRequest.
+ * Use `create(GetCurrentUserRequestDesc)` to create a new message.
+ */
 export const GetCurrentUserRequestDesc: GenDescMessage<GetCurrentUserRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authn, 0);
 
@@ -46,8 +51,10 @@ export type GetCurrentUserResponse = Message<"buf.alpha.registry.v1alpha1.GetCur
   user?: User;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetCurrentUserResponse.
-// Use `create(GetCurrentUserResponseDesc)` to create a new GetCurrentUserResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetCurrentUserResponse.
+ * Use `create(GetCurrentUserResponseDesc)` to create a new message.
+ */
 export const GetCurrentUserResponseDesc: GenDescMessage<GetCurrentUserResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authn, 1);
 
@@ -57,8 +64,10 @@ export const GetCurrentUserResponseDesc: GenDescMessage<GetCurrentUserResponse> 
 export type GetCurrentUserSubjectRequest = Message<"buf.alpha.registry.v1alpha1.GetCurrentUserSubjectRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetCurrentUserSubjectRequest.
-// Use `create(GetCurrentUserSubjectRequestDesc)` to create a new GetCurrentUserSubjectRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetCurrentUserSubjectRequest.
+ * Use `create(GetCurrentUserSubjectRequestDesc)` to create a new message.
+ */
 export const GetCurrentUserSubjectRequestDesc: GenDescMessage<GetCurrentUserSubjectRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authn, 2);
 
@@ -77,8 +86,10 @@ export type GetCurrentUserSubjectResponse = Message<"buf.alpha.registry.v1alpha1
   subject: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetCurrentUserSubjectResponse.
-// Use `create(GetCurrentUserSubjectResponseDesc)` to create a new GetCurrentUserSubjectResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetCurrentUserSubjectResponse.
+ * Use `create(GetCurrentUserSubjectResponseDesc)` to create a new message.
+ */
 export const GetCurrentUserSubjectResponseDesc: GenDescMessage<GetCurrentUserSubjectResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_authn, 3);
 

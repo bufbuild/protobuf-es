@@ -27,6 +27,9 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/comments.proto.
+ */
 export declare const fileDesc_extra_comments: GenDescFile;
 
 /**
@@ -85,7 +88,10 @@ export declare type MessageWithComments = Message<"spec.MessageWithComments"> & 
   thisFieldIsDeprecated: string;
 };
 
-// Describes the message spec.MessageWithComments. Use `create(MessageWithCommentsDesc)` to create a new MessageWithComments.
+/**
+ * Describes the message spec.MessageWithComments.
+ * Use `create(MessageWithCommentsDesc)` to create a new message.
+ */
 export declare const MessageWithCommentsDesc: GenDescMessage<MessageWithComments>;
 
 /**
@@ -96,7 +102,10 @@ export declare const MessageWithCommentsDesc: GenDescMessage<MessageWithComments
 export declare type EmptyMessageWithComment = Message<"spec.EmptyMessageWithComment"> & {
 };
 
-// Describes the message spec.EmptyMessageWithComment. Use `create(EmptyMessageWithCommentDesc)` to create a new EmptyMessageWithComment.
+/**
+ * Describes the message spec.EmptyMessageWithComment.
+ * Use `create(EmptyMessageWithCommentDesc)` to create a new message.
+ */
 export declare const EmptyMessageWithCommentDesc: GenDescMessage<EmptyMessageWithComment>;
 
 /**
@@ -154,7 +163,10 @@ export declare type GoogleCommentExample = Message<"spec.GoogleCommentExample"> 
   grault: number;
 };
 
-// Describes the message spec.GoogleCommentExample. Use `create(GoogleCommentExampleDesc)` to create a new GoogleCommentExample.
+/**
+ * Describes the message spec.GoogleCommentExample.
+ * Use `create(GoogleCommentExampleDesc)` to create a new message.
+ */
 export declare const GoogleCommentExampleDesc: GenDescMessage<GoogleCommentExample>;
 
 /**
@@ -175,7 +187,9 @@ export enum EnumWithComments {
   VALUE = 0,
 }
 
-// Describes the enum spec.EnumWithComments.
+/**
+ * Describes the enum spec.EnumWithComments.
+ */
 export declare const EnumWithCommentsDesc: GenDescEnum<EnumWithComments>;
 
 /**
@@ -196,7 +210,10 @@ export enum DeprecatedEnumWithComment {
   B = 1,
 }
 
-// Describes the enum spec.DeprecatedEnumWithComment.
+/**
+ * Describes the enum spec.DeprecatedEnumWithComment.
+ * @deprecated
+ */
 export declare const DeprecatedEnumWithCommentDesc: GenDescEnum<DeprecatedEnumWithComment>;
 
 /**
@@ -215,6 +232,9 @@ export enum DeprecatedEnumNoComment {
   B = 1,
 }
 
-// Describes the enum spec.DeprecatedEnumNoComment.
+/**
+ * Describes the enum spec.DeprecatedEnumNoComment.
+ * @deprecated
+ */
 export declare const DeprecatedEnumNoCommentDesc: GenDescEnum<DeprecatedEnumNoComment>;
 

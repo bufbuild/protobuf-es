@@ -20,6 +20,10 @@ import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDes
 import type { Message } from "@bufbuild/protobuf";
 import type { Empty, FieldOptions } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file extra/deprecation-implicit.proto.
+ * @deprecated
+ */
 export declare const fileDesc_extra_deprecation_implicit: GenDescFile;
 
 /**
@@ -33,7 +37,11 @@ export declare type ImplicitlyDeprecatedMessage = Message<"spec.ImplicitlyDeprec
   implicitlyDeprecatedField: string;
 };
 
-// Describes the message spec.ImplicitlyDeprecatedMessage. Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new ImplicitlyDeprecatedMessage.
+/**
+ * Describes the message spec.ImplicitlyDeprecatedMessage.
+ * Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new message.
+ * @deprecated
+ */
 export declare const ImplicitlyDeprecatedMessageDesc: GenDescMessage<ImplicitlyDeprecatedMessage>;
 
 /**
@@ -47,7 +55,10 @@ export enum ImplicitlyDeprecatedEnum {
   UNSPECIFIED = 0,
 }
 
-// Describes the enum spec.ImplicitlyDeprecatedEnum.
+/**
+ * Describes the enum spec.ImplicitlyDeprecatedEnum.
+ * @deprecated
+ */
 export declare const ImplicitlyDeprecatedEnumDesc: GenDescEnum<ImplicitlyDeprecatedEnum>;
 
 /**
@@ -68,6 +79,7 @@ export declare const ImplicitlyDeprecatedService: GenDescService<{
 
 /**
  * @generated from extension: int32 implicitly_deprecated_option = 2001;
+ * @deprecated
  */
 export declare const implicitly_deprecated_option: GenDescExtension<FieldOptions, number>;
 

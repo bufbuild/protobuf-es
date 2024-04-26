@@ -22,6 +22,9 @@ import type { Empty, FieldOptions } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_descriptor, fileDesc_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file extra/deprecation-explicit.proto.
+ */
 export const fileDesc_extra_deprecation_explicit: GenDescFile = /*@__PURE__*/
   fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1leHBsaWNpdC5wcm90bxIEc3BlYyImChFEZXByZWNhdGVkTWVzc2FnZRINCgVmaWVsZBgBIAEoCToCGAEiTQoWRGVwcmVjYXRlZEZpZWxkTWVzc2FnZRIcChBkZXByZWNhdGVkX2ZpZWxkGAEgASgJQgIYARIVCg1jdXJyZW50X2ZpZWxkGAIgASgJKkIKDkRlcHJlY2F0ZWRFbnVtEhUKEURFUFJFQ0FURURfRU5VTV9BEAASFQoRREVQUkVDQVRFRF9FTlVNX0IQARoCGAEqbAoTRGVwcmVjYXRlZFZhbHVlRW51bRIlCiFERVBSRUNBVEVEX1ZBTFVFX0VOVU1fVU5TUEVDSUZJRUQQABIuCiZERVBSRUNBVEVEX1ZBTFVFX0VOVU1fREVQUkVDQVRFRF9WQUxVRRABGgIIATJWChFEZXByZWNhdGVkU2VydmljZRI8CgpEZXByZWNhdGVkEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GgOIAgEymgEKFERlcHJlY2F0ZWRScGNTZXJ2aWNlEkEKCkRlcHJlY2F0ZWQSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiA4gCARI/Cg1Ob3REZXByZWNhdGVkEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5OmQKHGV4cGxpY2l0bHlfZGVwcmVjYXRlZF9vcHRpb24SHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGNEPIAEoBUICGAFSGmV4cGxpY2l0bHlEZXByZWNhdGVkT3B0aW9uYgZwcm90bzM", [fileDesc_google_protobuf_empty, fileDesc_google_protobuf_descriptor]);
 
@@ -38,8 +41,11 @@ export type DeprecatedMessage = Message<"spec.DeprecatedMessage"> & {
   field: string;
 };
 
-// Describes the message spec.DeprecatedMessage.
-// Use `create(DeprecatedMessageDesc)` to create a new DeprecatedMessage.
+/**
+ * Describes the message spec.DeprecatedMessage.
+ * Use `create(DeprecatedMessageDesc)` to create a new message.
+ * @deprecated
+ */
 export const DeprecatedMessageDesc: GenDescMessage<DeprecatedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_deprecation_explicit, 0);
 
@@ -65,8 +71,10 @@ export type DeprecatedFieldMessage = Message<"spec.DeprecatedFieldMessage"> & {
   currentField: string;
 };
 
-// Describes the message spec.DeprecatedFieldMessage.
-// Use `create(DeprecatedFieldMessageDesc)` to create a new DeprecatedFieldMessage.
+/**
+ * Describes the message spec.DeprecatedFieldMessage.
+ * Use `create(DeprecatedFieldMessageDesc)` to create a new message.
+ */
 export const DeprecatedFieldMessageDesc: GenDescMessage<DeprecatedFieldMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_deprecation_explicit, 1);
 
@@ -88,7 +96,10 @@ export enum DeprecatedEnum {
   B = 1,
 }
 
-// Describes the enum spec.DeprecatedEnum.
+/**
+ * Describes the enum spec.DeprecatedEnum.
+ * @deprecated
+ */
 export const DeprecatedEnumDesc: GenDescEnum<DeprecatedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_deprecation_explicit, 0);
 
@@ -110,7 +121,9 @@ export enum DeprecatedValueEnum {
   DEPRECATED_VALUE = 1,
 }
 
-// Describes the enum spec.DeprecatedValueEnum.
+/**
+ * Describes the enum spec.DeprecatedValueEnum.
+ */
 export const DeprecatedValueEnumDesc: GenDescEnum<DeprecatedValueEnum> = /*@__PURE__*/
   enumDesc(fileDesc_extra_deprecation_explicit, 1);
 

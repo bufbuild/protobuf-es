@@ -22,6 +22,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/audit/v1alpha1/module.proto.
+ */
 export const fileDesc_buf_alpha_audit_v1alpha1_module: GenDescFile = /*@__PURE__*/
   fileDesc("CiVidWYvYWxwaGEvYXVkaXQvdjFhbHBoYTEvbW9kdWxlLnByb3RvEhhidWYuYWxwaGEuYXVkaXQudjFhbHBoYTEirAEKJkJ1ZkFscGhhUmVnaXN0cnlWMUFscGhhMUxvY2FsTW9kdWxlUGluEg0KBW93bmVyGAEgASgJEhIKCnJlcG9zaXRvcnkYAiABKAkSDgoGYnJhbmNoGAMgASgJEg4KBmNvbW1pdBgEIAEoCRIOCgZkaWdlc3QYBSABKAkSLwoLY3JlYXRlX3RpbWUYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wImQKLEJ1ZkFscGhhUmVnaXN0cnlWMUFscGhhMUxvY2FsTW9kdWxlUmVmZXJlbmNlEg0KBW93bmVyGAEgASgJEhIKCnJlcG9zaXRvcnkYAiABKAkSEQoJcmVmZXJlbmNlGAMgASgJIsYCCjBCdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFMb2NhbE1vZHVsZVJlc29sdmVSZXN1bHQSWQoJcmVmZXJlbmNlGAEgASgLMkYuYnVmLmFscGhhLmF1ZGl0LnYxYWxwaGExLkJ1ZkFscGhhUmVnaXN0cnlWMUFscGhhMUxvY2FsTW9kdWxlUmVmZXJlbmNlEk0KA3BpbhgCIAEoCzJALmJ1Zi5hbHBoYS5hdWRpdC52MWFscGhhMS5CdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFMb2NhbE1vZHVsZVBpbhJoChdyZXNvbHZlZF9yZWZlcmVuY2VfdHlwZRgDIAEoDjJHLmJ1Zi5hbHBoYS5hdWRpdC52MWFscGhhMS5CdWZBbHBoYVJlZ2lzdHJ5VjFBbHBoYTFSZXNvbHZlZFJlZmVyZW5jZVR5cGUq9QIKLUJ1ZkFscGhhUmVnaXN0cnlWMUFscGhhMVJlc29sdmVkUmVmZXJlbmNlVHlwZRJECkBCVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX1JFU09MVkVEX1JFRkVSRU5DRV9UWVBFX1VOU1BFQ0lGSUVEEAASPwo7QlVGX0FMUEhBX1JFR0lTVFJZX1YxX0FMUEhBMV9SRVNPTFZFRF9SRUZFUkVOQ0VfVFlQRV9DT01NSVQQARI/CjtCVUZfQUxQSEFfUkVHSVNUUllfVjFfQUxQSEExX1JFU09MVkVEX1JFRkVSRU5DRV9UWVBFX0JSQU5DSBACEjwKOEJVRl9BTFBIQV9SRUdJU1RSWV9WMV9BTFBIQTFfUkVTT0xWRURfUkVGRVJFTkNFX1RZUEVfVEFHEAMSPgo6QlVGX0FMUEhBX1JFR0lTVFJZX1YxX0FMUEhBMV9SRVNPTFZFRF9SRUZFUkVOQ0VfVFlQRV9UUkFDSxAEYgZwcm90bzM", [fileDesc_google_protobuf_timestamp]);
 
@@ -60,8 +63,10 @@ export type BufAlphaRegistryV1Alpha1LocalModulePin = Message<"buf.alpha.audit.v1
   createTime?: Timestamp;
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModulePin.
-// Use `create(BufAlphaRegistryV1Alpha1LocalModulePinDesc)` to create a new BufAlphaRegistryV1Alpha1LocalModulePin.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModulePin.
+ * Use `create(BufAlphaRegistryV1Alpha1LocalModulePinDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1LocalModulePinDesc: GenDescMessage<BufAlphaRegistryV1Alpha1LocalModulePin> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_module, 0);
 
@@ -85,8 +90,10 @@ export type BufAlphaRegistryV1Alpha1LocalModuleReference = Message<"buf.alpha.au
   reference: string;
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleReference.
-// Use `create(BufAlphaRegistryV1Alpha1LocalModuleReferenceDesc)` to create a new BufAlphaRegistryV1Alpha1LocalModuleReference.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleReference.
+ * Use `create(BufAlphaRegistryV1Alpha1LocalModuleReferenceDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1LocalModuleReferenceDesc: GenDescMessage<BufAlphaRegistryV1Alpha1LocalModuleReference> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_module, 1);
 
@@ -110,8 +117,10 @@ export type BufAlphaRegistryV1Alpha1LocalModuleResolveResult = Message<"buf.alph
   resolvedReferenceType: BufAlphaRegistryV1Alpha1ResolvedReferenceType;
 };
 
-// Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleResolveResult.
-// Use `create(BufAlphaRegistryV1Alpha1LocalModuleResolveResultDesc)` to create a new BufAlphaRegistryV1Alpha1LocalModuleResolveResult.
+/**
+ * Describes the message buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1LocalModuleResolveResult.
+ * Use `create(BufAlphaRegistryV1Alpha1LocalModuleResolveResultDesc)` to create a new message.
+ */
 export const BufAlphaRegistryV1Alpha1LocalModuleResolveResultDesc: GenDescMessage<BufAlphaRegistryV1Alpha1LocalModuleResolveResult> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_audit_v1alpha1_module, 2);
 
@@ -145,7 +154,9 @@ export enum BufAlphaRegistryV1Alpha1ResolvedReferenceType {
   TRACK = 4,
 }
 
-// Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ResolvedReferenceType.
+/**
+ * Describes the enum buf.alpha.audit.v1alpha1.BufAlphaRegistryV1Alpha1ResolvedReferenceType.
+ */
 export const BufAlphaRegistryV1Alpha1ResolvedReferenceTypeDesc: GenDescEnum<BufAlphaRegistryV1Alpha1ResolvedReferenceType> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_audit_v1alpha1_module, 0);
 

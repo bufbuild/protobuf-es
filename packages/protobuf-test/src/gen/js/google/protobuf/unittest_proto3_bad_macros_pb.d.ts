@@ -18,6 +18,9 @@
 
 import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/codegenv1";
 
+/**
+ * Describes the file google/protobuf/unittest_proto3_bad_macros.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_proto3_bad_macros: GenDescFile;
 
 /**
@@ -32,7 +35,9 @@ export enum GID {
   GID_UNUSED = 0,
 }
 
-// Describes the enum protobuf_unittest.GID.
+/**
+ * Describes the enum protobuf_unittest.GID.
+ */
 export declare const GIDDesc: GenDescEnum<GID>;
 
 /**
@@ -47,7 +52,9 @@ export enum UID {
   UID_UNUSED = 0,
 }
 
-// Describes the enum protobuf_unittest.UID.
+/**
+ * Describes the enum protobuf_unittest.UID.
+ */
 export declare const UIDDesc: GenDescEnum<UID>;
 
 /**
@@ -235,6 +242,8 @@ export enum BadNames {
   DEBUG = 31,
 }
 
-// Describes the enum protobuf_unittest.BadNames.
+/**
+ * Describes the enum protobuf_unittest.BadNames.
+ */
 export declare const BadNamesDesc: GenDescEnum<BadNames>;
 

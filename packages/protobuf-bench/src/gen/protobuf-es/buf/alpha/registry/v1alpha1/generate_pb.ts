@@ -24,6 +24,9 @@ import type { Image } from "../../image/v1/image_pb.js";
 import { fileDesc_buf_alpha_image_v1_image } from "../../image/v1/image_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/generate.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_generate: GenDescFile = /*@__PURE__*/
   fileDesc("CipidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvZ2VuZXJhdGUucHJvdG8SG2J1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMSIlCgRGaWxlEgwKBHBhdGgYASABKAkSDwoHY29udGVudBgCIAEoDCIvCg5SdW50aW1lTGlicmFyeRIMCgRuYW1lGAEgASgJEg8KB3ZlcnNpb24YAiABKAkiUwoPUGx1Z2luUmVmZXJlbmNlEg0KBW93bmVyGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHdmVyc2lvbhgDIAEoCRISCgpwYXJhbWV0ZXJzGAQgAygJIrwBChZHZW5lcmF0ZVBsdWdpbnNSZXF1ZXN0EigKBWltYWdlGAEgASgLMhkuYnVmLmFscGhhLmltYWdlLnYxLkltYWdlEj0KB3BsdWdpbnMYAiADKAsyLC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUGx1Z2luUmVmZXJlbmNlEhcKD2luY2x1ZGVfaW1wb3J0cxgDIAEoCBIgChhpbmNsdWRlX3dlbGxfa25vd25fdHlwZXMYBCABKAgipQEKF0dlbmVyYXRlUGx1Z2luc1Jlc3BvbnNlEkIKCXJlc3BvbnNlcxgBIAMoCzIvLmdvb2dsZS5wcm90b2J1Zi5jb21waWxlci5Db2RlR2VuZXJhdG9yUmVzcG9uc2USRgoRcnVudGltZV9saWJyYXJpZXMYAiADKAsyKy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUnVudGltZUxpYnJhcnkixwEKF0dlbmVyYXRlVGVtcGxhdGVSZXF1ZXN0EigKBWltYWdlGAEgASgLMhkuYnVmLmFscGhhLmltYWdlLnYxLkltYWdlEhYKDnRlbXBsYXRlX293bmVyGAIgASgJEhUKDXRlbXBsYXRlX25hbWUYAyABKAkSGAoQdGVtcGxhdGVfdmVyc2lvbhgEIAEoCRIXCg9pbmNsdWRlX2ltcG9ydHMYBSABKAgSIAoYaW5jbHVkZV93ZWxsX2tub3duX3R5cGVzGAYgASgIIpQBChhHZW5lcmF0ZVRlbXBsYXRlUmVzcG9uc2USMAoFZmlsZXMYASADKAsyIS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRmlsZRJGChFydW50aW1lX2xpYnJhcmllcxgCIAMoCzIrLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SdW50aW1lTGlicmFyeTKQAgoPR2VuZXJhdGVTZXJ2aWNlEnwKD0dlbmVyYXRlUGx1Z2lucxIzLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZW5lcmF0ZVBsdWdpbnNSZXF1ZXN0GjQuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdlbmVyYXRlUGx1Z2luc1Jlc3BvbnNlEn8KEEdlbmVyYXRlVGVtcGxhdGUSNC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2VuZXJhdGVUZW1wbGF0ZVJlcXVlc3QaNS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2VuZXJhdGVUZW1wbGF0ZVJlc3BvbnNlYgZwcm90bzM", [fileDesc_google_protobuf_compiler_plugin, fileDesc_buf_alpha_image_v1_image]);
 
@@ -49,8 +52,10 @@ export type File = Message<"buf.alpha.registry.v1alpha1.File"> & {
   content: Uint8Array;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.File.
-// Use `create(FileDesc)` to create a new File.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.File.
+ * Use `create(FileDesc)` to create a new message.
+ */
 export const FileDesc: GenDescMessage<File> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_generate, 0);
 
@@ -82,8 +87,10 @@ export type RuntimeLibrary = Message<"buf.alpha.registry.v1alpha1.RuntimeLibrary
   version: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.RuntimeLibrary.
-// Use `create(RuntimeLibraryDesc)` to create a new RuntimeLibrary.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.RuntimeLibrary.
+ * Use `create(RuntimeLibraryDesc)` to create a new message.
+ */
 export const RuntimeLibraryDesc: GenDescMessage<RuntimeLibrary> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_generate, 1);
 
@@ -123,8 +130,10 @@ export type PluginReference = Message<"buf.alpha.registry.v1alpha1.PluginReferen
   parameters: string[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.PluginReference.
-// Use `create(PluginReferenceDesc)` to create a new PluginReference.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.PluginReference.
+ * Use `create(PluginReferenceDesc)` to create a new message.
+ */
 export const PluginReferenceDesc: GenDescMessage<PluginReference> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_generate, 2);
 
@@ -167,8 +176,10 @@ export type GeneratePluginsRequest = Message<"buf.alpha.registry.v1alpha1.Genera
   includeWellKnownTypes: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GeneratePluginsRequest.
-// Use `create(GeneratePluginsRequestDesc)` to create a new GeneratePluginsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GeneratePluginsRequest.
+ * Use `create(GeneratePluginsRequestDesc)` to create a new message.
+ */
 export const GeneratePluginsRequestDesc: GenDescMessage<GeneratePluginsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_generate, 3);
 
@@ -197,8 +208,10 @@ export type GeneratePluginsResponse = Message<"buf.alpha.registry.v1alpha1.Gener
   runtimeLibraries: RuntimeLibrary[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GeneratePluginsResponse.
-// Use `create(GeneratePluginsResponseDesc)` to create a new GeneratePluginsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GeneratePluginsResponse.
+ * Use `create(GeneratePluginsResponseDesc)` to create a new message.
+ */
 export const GeneratePluginsResponseDesc: GenDescMessage<GeneratePluginsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_generate, 4);
 
@@ -258,8 +271,10 @@ export type GenerateTemplateRequest = Message<"buf.alpha.registry.v1alpha1.Gener
   includeWellKnownTypes: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GenerateTemplateRequest.
-// Use `create(GenerateTemplateRequestDesc)` to create a new GenerateTemplateRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GenerateTemplateRequest.
+ * Use `create(GenerateTemplateRequestDesc)` to create a new message.
+ */
 export const GenerateTemplateRequestDesc: GenDescMessage<GenerateTemplateRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_generate, 5);
 
@@ -286,8 +301,10 @@ export type GenerateTemplateResponse = Message<"buf.alpha.registry.v1alpha1.Gene
   runtimeLibraries: RuntimeLibrary[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GenerateTemplateResponse.
-// Use `create(GenerateTemplateResponseDesc)` to create a new GenerateTemplateResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GenerateTemplateResponse.
+ * Use `create(GenerateTemplateResponseDesc)` to create a new message.
+ */
 export const GenerateTemplateResponseDesc: GenDescMessage<GenerateTemplateResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_generate, 6);
 

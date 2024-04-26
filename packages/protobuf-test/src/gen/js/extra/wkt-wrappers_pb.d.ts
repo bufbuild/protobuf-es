@@ -20,6 +20,10 @@ import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file extra/wkt-wrappers.proto.
+ * @deprecated
+ */
 export declare const fileDesc_extra_wkt_wrappers: GenDescFile;
 
 /**
@@ -74,6 +78,7 @@ export declare type WrappersMessage = Message<"spec.WrappersMessage"> & {
 
   /**
    * @generated from oneof spec.WrappersMessage.oneof_fields
+   * @deprecated
    */
   oneofFields: {
     /**
@@ -222,6 +227,10 @@ export declare type WrappersMessage = Message<"spec.WrappersMessage"> & {
   mapBytesValueField: { [key: string]: BytesValue };
 };
 
-// Describes the message spec.WrappersMessage. Use `create(WrappersMessageDesc)` to create a new WrappersMessage.
+/**
+ * Describes the message spec.WrappersMessage.
+ * Use `create(WrappersMessageDesc)` to create a new message.
+ * @deprecated
+ */
 export declare const WrappersMessageDesc: GenDescMessage<WrappersMessage>;
 

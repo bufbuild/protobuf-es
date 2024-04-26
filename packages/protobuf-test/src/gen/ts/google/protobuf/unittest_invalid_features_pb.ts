@@ -22,6 +22,9 @@ import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_invalid_features.proto.
+ */
 export const fileDesc_google_protobuf_unittest_invalid_features: GenDescFile = /*@__PURE__*/
   fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW52YWxpZF9mZWF0dXJlcy5wcm90bxICcGIiQAoTVGVzdEludmFsaWRGZWF0dXJlcxIpChByZXBlYXRlZF9mZWF0dXJlGAEgAygFQg+IAQGYAQSiAQYSATMY6Ac6WAoMdGVzdF9pbnZhbGlkEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYjE4gASgLMhcucGIuVGVzdEludmFsaWRGZWF0dXJlc1ILdGVzdEludmFsaWQ", [fileDesc_google_protobuf_descriptor]);
 
@@ -35,8 +38,10 @@ export type TestInvalidFeatures = Message<"pb.TestInvalidFeatures"> & {
   repeatedFeature: number[];
 };
 
-// Describes the message pb.TestInvalidFeatures.
-// Use `create(TestInvalidFeaturesDesc)` to create a new TestInvalidFeatures.
+/**
+ * Describes the message pb.TestInvalidFeatures.
+ * Use `create(TestInvalidFeaturesDesc)` to create a new message.
+ */
 export const TestInvalidFeaturesDesc: GenDescMessage<TestInvalidFeatures> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_invalid_features, 0);
 

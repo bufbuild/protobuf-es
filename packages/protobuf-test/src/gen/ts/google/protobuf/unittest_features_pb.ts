@@ -22,6 +22,9 @@ import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_features.proto.
+ */
 export const fileDesc_google_protobuf_unittest_features: GenDescFile = /*@__PURE__*/
   fileDesc("Cidnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZmVhdHVyZXMucHJvdG8SAnBiIrsBCgtUZXN0TWVzc2FnZRpZCgZOZXN0ZWQyTwoLdGVzdF9uZXN0ZWQSGy5nb29nbGUucHJvdG9idWYuRmVhdHVyZVNldBiNTiABKAsyEC5wYi5UZXN0RmVhdHVyZXNSCnRlc3ROZXN0ZWQyUQoMdGVzdF9tZXNzYWdlEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYjk4gASgLMhAucGIuVGVzdEZlYXR1cmVzUgt0ZXN0TWVzc2FnZSLbCgoMVGVzdEZlYXR1cmVzEnsKDGZpbGVfZmVhdHVyZRgBIAEoDjIPLnBiLkVudW1GZWF0dXJlQlSIAQGYAQGiAQsSBlZBTFVFMRiEB6IBCxIGVkFMVUUyGOcHogELEgZWQUxVRTMY6AeiAQwSBlZBTFVFNBidjQaiAQwSBlZBTFVFNRiejQayAQMI6AcSTAoXZXh0ZW5zaW9uX3JhbmdlX2ZlYXR1cmUYAiABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAECogELEgZWQUxVRTEYhAeyAQMI6AcSRAoPbWVzc2FnZV9mZWF0dXJlGAMgASgOMg8ucGIuRW51bUZlYXR1cmVCGogBAZgBA6IBCxIGVkFMVUUxGIQHsgEDCOgHEkIKDWZpZWxkX2ZlYXR1cmUYBCABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAEEogELEgZWQUxVRTEYhAeyAQMI6AcSQgoNb25lb2ZfZmVhdHVyZRgFIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQWiAQsSBlZBTFVFMRiEB7IBAwjoBxJBCgxlbnVtX2ZlYXR1cmUYBiABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAEGogELEgZWQUxVRTEYhAeyAQMI6AcSRwoSZW51bV9lbnRyeV9mZWF0dXJlGAcgASgOMg8ucGIuRW51bUZlYXR1cmVCGogBAZgBB6IBCxIGVkFMVUUxGIQHsgEDCOgHEkQKD3NlcnZpY2VfZmVhdHVyZRgIIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQiiAQsSBlZBTFVFMRiEB7IBAwjoBxJDCg5tZXRob2RfZmVhdHVyZRgJIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQmiAQsSBlZBTFVFMRiEB7IBAwjoBxJdChBtdWx0aXBsZV9mZWF0dXJlGAogASgOMg8ucGIuRW51bUZlYXR1cmVCMogBAZgBAZgBBJgBA5gBBpgBB5gBCJgBCZgBBZgBAqIBCxIGVkFMVUUxGIQHsgEDCOgHEkIKEmJvb2xfZmllbGRfZmVhdHVyZRgLIAEoCEImiAEBmAEEogEKEgVmYWxzZRiEB6IBChIEdHJ1ZRidjQayAQMI6AcSWwoOc291cmNlX2ZlYXR1cmUYDyABKA4yDy5wYi5FbnVtRmVhdHVyZUIyiAECmAEBmAEEmAEDmAEGmAEHmAEImAEJmAEFmAECogELEgZWQUxVRTEYhAeyAQMI6AcSXAoPc291cmNlX2ZlYXR1cmUyGBAgASgOMg8ucGIuRW51bUZlYXR1cmVCMogBApgBAZgBBJgBA5gBBpgBB5gBCJgBCZgBBZgBAqIBCxIGVkFMVUUxGIQHsgEDCOgHEo0BCg9yZW1vdmVkX2ZlYXR1cmUYESABKA4yDy5wYi5FbnVtRmVhdHVyZUJjiAEBmAEBmAEEogELEgZWQUxVRTEYhAeiAQsSBlZBTFVFMhjoB6IBCxIGVkFMVUUzGOkHsgEtCOgHEOgHGiJDdXN0b20gZmVhdHVyZSBkZXByZWNhdGlvbiB3YXJuaW5nIOkHElQKDmZ1dHVyZV9mZWF0dXJlGBIgASgOMg8ucGIuRW51bUZlYXR1cmVCK4gBAZgBAZgBBKIBCxIGVkFMVUUxGIQHogELEgZWQUxVRTIY6QeyAQMI6QcSVwoObGVnYWN5X2ZlYXR1cmUYEyABKA4yDy5wYi5FbnVtRmVhdHVyZUIuiAEBmAEBmAEEogELEgZWQUxVRTEYhAeiAQsSBlZBTFVFMhjoB7IBBgjmByDoByrmAQoLRW51bUZlYXR1cmUSHQoZVEVTVF9FTlVNX0ZFQVRVUkVfVU5LTk9XThAAEgoKBlZBTFVFMRABEgoKBlZBTFVFMhACEgoKBlZBTFVFMxADEgoKBlZBTFVFNBAEEgoKBlZBTFVFNRAFEgoKBlZBTFVFNhAGEgoKBlZBTFVFNxAHEgoKBlZBTFVFOBAIEgoKBlZBTFVFORAJEgsKB1ZBTFVFMTAQChILCgdWQUxVRTExEAsSCwoHVkFMVUUxMhAMEgsKB1ZBTFVFMTMQDRILCgdWQUxVRTE0EA4SCwoHVkFMVUUxNRAPOkIKBHRlc3QSGy5nb29nbGUucHJvdG9idWYuRmVhdHVyZVNldBiPTiABKAsyEC5wYi5UZXN0RmVhdHVyZXNSBHRlc3Q", [fileDesc_google_protobuf_descriptor]);
 
@@ -31,8 +34,10 @@ export const fileDesc_google_protobuf_unittest_features: GenDescFile = /*@__PURE
 export type TestMessage = Message<"pb.TestMessage"> & {
 };
 
-// Describes the message pb.TestMessage.
-// Use `create(TestMessageDesc)` to create a new TestMessage.
+/**
+ * Describes the message pb.TestMessage.
+ * Use `create(TestMessageDesc)` to create a new message.
+ */
 export const TestMessageDesc: GenDescMessage<TestMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 0);
 
@@ -42,8 +47,10 @@ export const TestMessageDesc: GenDescMessage<TestMessage> = /*@__PURE__*/
 export type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
 };
 
-// Describes the message pb.TestMessage.Nested.
-// Use `create(TestMessage_NestedDesc)` to create a new TestMessage_Nested.
+/**
+ * Describes the message pb.TestMessage.Nested.
+ * Use `create(TestMessage_NestedDesc)` to create a new message.
+ */
 export const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 0, 0);
 
@@ -144,8 +151,10 @@ export type TestFeatures = Message<"pb.TestFeatures"> & {
   legacyFeature: EnumFeature;
 };
 
-// Describes the message pb.TestFeatures.
-// Use `create(TestFeaturesDesc)` to create a new TestFeatures.
+/**
+ * Describes the message pb.TestFeatures.
+ * Use `create(TestFeaturesDesc)` to create a new message.
+ */
 export const TestFeaturesDesc: GenDescMessage<TestFeatures> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 1);
 
@@ -234,7 +243,9 @@ export enum EnumFeature {
   VALUE15 = 15,
 }
 
-// Describes the enum pb.EnumFeature.
+/**
+ * Describes the enum pb.EnumFeature.
+ */
 export const EnumFeatureDesc: GenDescEnum<EnumFeature> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_features, 0);
 

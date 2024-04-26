@@ -21,6 +21,9 @@ import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
+/**
+ * Describes the file google/protobuf/duration.proto.
+ */
 export const fileDesc_google_protobuf_duration: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5nb29nbGUvcHJvdG9idWYvZHVyYXRpb24ucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIqCghEdXJhdGlvbhIPCgdzZWNvbmRzGAEgASgDEg0KBW5hbm9zGAIgASgFQoMBChNjb20uZ29vZ2xlLnByb3RvYnVmQg1EdXJhdGlvblByb3RvUAFaMWdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2R1cmF0aW9ucGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
 
@@ -110,8 +113,10 @@ export type Duration = Message<"google.protobuf.Duration"> & {
   nanos: number;
 };
 
-// Describes the message google.protobuf.Duration.
-// Use `create(DurationDesc)` to create a new Duration.
+/**
+ * Describes the message google.protobuf.Duration.
+ * Use `create(DurationDesc)` to create a new message.
+ */
 export const DurationDesc: GenDescMessage<Duration> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_duration, 0);
 

@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from 
 import type { Message } from "@bufbuild/protobuf";
 import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file google/protobuf/unittest_features.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_features: GenDescFile;
 
 /**
@@ -28,7 +31,10 @@ export declare const fileDesc_google_protobuf_unittest_features: GenDescFile;
 export declare type TestMessage = Message<"pb.TestMessage"> & {
 };
 
-// Describes the message pb.TestMessage. Use `create(TestMessageDesc)` to create a new TestMessage.
+/**
+ * Describes the message pb.TestMessage.
+ * Use `create(TestMessageDesc)` to create a new message.
+ */
 export declare const TestMessageDesc: GenDescMessage<TestMessage>;
 
 /**
@@ -37,7 +43,10 @@ export declare const TestMessageDesc: GenDescMessage<TestMessage>;
 export declare type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
 };
 
-// Describes the message pb.TestMessage.Nested. Use `create(TestMessage_NestedDesc)` to create a new TestMessage_Nested.
+/**
+ * Describes the message pb.TestMessage.Nested.
+ * Use `create(TestMessage_NestedDesc)` to create a new message.
+ */
 export declare const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested>;
 
 /**
@@ -135,7 +144,10 @@ export declare type TestFeatures = Message<"pb.TestFeatures"> & {
   legacyFeature: EnumFeature;
 };
 
-// Describes the message pb.TestFeatures. Use `create(TestFeaturesDesc)` to create a new TestFeatures.
+/**
+ * Describes the message pb.TestFeatures.
+ * Use `create(TestFeaturesDesc)` to create a new message.
+ */
 export declare const TestFeaturesDesc: GenDescMessage<TestFeatures>;
 
 /**
@@ -223,7 +235,9 @@ export enum EnumFeature {
   VALUE15 = 15,
 }
 
-// Describes the enum pb.EnumFeature.
+/**
+ * Describes the enum pb.EnumFeature.
+ */
 export declare const EnumFeatureDesc: GenDescEnum<EnumFeature>;
 
 /**

@@ -30,6 +30,9 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file google/protobuf/unittest_import.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_import: GenDescFile;
 
 /**
@@ -42,7 +45,10 @@ export declare type ImportMessage = Message<"protobuf_unittest_import.ImportMess
   d: number;
 };
 
-// Describes the message protobuf_unittest_import.ImportMessage. Use `create(ImportMessageDesc)` to create a new ImportMessage.
+/**
+ * Describes the message protobuf_unittest_import.ImportMessage.
+ * Use `create(ImportMessageDesc)` to create a new message.
+ */
 export declare const ImportMessageDesc: GenDescMessage<ImportMessage>;
 
 /**
@@ -65,7 +71,9 @@ export enum ImportEnum {
   IMPORT_BAZ = 9,
 }
 
-// Describes the enum protobuf_unittest_import.ImportEnum.
+/**
+ * Describes the enum protobuf_unittest_import.ImportEnum.
+ */
 export declare const ImportEnumDesc: GenDescEnum<ImportEnum>;
 
 /**
@@ -90,6 +98,8 @@ export enum ImportEnumForMap {
   BAR = 2,
 }
 
-// Describes the enum protobuf_unittest_import.ImportEnumForMap.
+/**
+ * Describes the enum protobuf_unittest_import.ImportEnumForMap.
+ */
 export declare const ImportEnumForMapDesc: GenDescEnum<ImportEnumForMap>;
 

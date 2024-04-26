@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDes
 import type { Message } from "@bufbuild/protobuf";
 import type { Empty, FieldOptions } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file extra/deprecation-explicit.proto.
+ */
 export declare const fileDesc_extra_deprecation_explicit: GenDescFile;
 
 /**
@@ -35,7 +38,11 @@ export declare type DeprecatedMessage = Message<"spec.DeprecatedMessage"> & {
   field: string;
 };
 
-// Describes the message spec.DeprecatedMessage. Use `create(DeprecatedMessageDesc)` to create a new DeprecatedMessage.
+/**
+ * Describes the message spec.DeprecatedMessage.
+ * Use `create(DeprecatedMessageDesc)` to create a new message.
+ * @deprecated
+ */
 export declare const DeprecatedMessageDesc: GenDescMessage<DeprecatedMessage>;
 
 /**
@@ -60,7 +67,10 @@ export declare type DeprecatedFieldMessage = Message<"spec.DeprecatedFieldMessag
   currentField: string;
 };
 
-// Describes the message spec.DeprecatedFieldMessage. Use `create(DeprecatedFieldMessageDesc)` to create a new DeprecatedFieldMessage.
+/**
+ * Describes the message spec.DeprecatedFieldMessage.
+ * Use `create(DeprecatedFieldMessageDesc)` to create a new message.
+ */
 export declare const DeprecatedFieldMessageDesc: GenDescMessage<DeprecatedFieldMessage>;
 
 /**
@@ -81,7 +91,10 @@ export enum DeprecatedEnum {
   B = 1,
 }
 
-// Describes the enum spec.DeprecatedEnum.
+/**
+ * Describes the enum spec.DeprecatedEnum.
+ * @deprecated
+ */
 export declare const DeprecatedEnumDesc: GenDescEnum<DeprecatedEnum>;
 
 /**
@@ -102,7 +115,9 @@ export enum DeprecatedValueEnum {
   DEPRECATED_VALUE = 1,
 }
 
-// Describes the enum spec.DeprecatedValueEnum.
+/**
+ * Describes the enum spec.DeprecatedValueEnum.
+ */
 export declare const DeprecatedValueEnumDesc: GenDescEnum<DeprecatedValueEnum>;
 
 /**

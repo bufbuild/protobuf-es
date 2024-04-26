@@ -20,6 +20,9 @@ import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/pr
 import type { Message } from "@bufbuild/protobuf";
 import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file google/protobuf/unittest_invalid_features.proto.
+ */
 export declare const fileDesc_google_protobuf_unittest_invalid_features: GenDescFile;
 
 /**
@@ -32,7 +35,10 @@ export declare type TestInvalidFeatures = Message<"pb.TestInvalidFeatures"> & {
   repeatedFeature: number[];
 };
 
-// Describes the message pb.TestInvalidFeatures. Use `create(TestInvalidFeaturesDesc)` to create a new TestInvalidFeatures.
+/**
+ * Describes the message pb.TestInvalidFeatures.
+ * Use `create(TestInvalidFeaturesDesc)` to create a new message.
+ */
 export declare const TestInvalidFeaturesDesc: GenDescMessage<TestInvalidFeatures>;
 
 /**

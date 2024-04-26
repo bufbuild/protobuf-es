@@ -22,6 +22,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/module.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_module: GenDescFile = /*@__PURE__*/
   fileDesc("CihidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvbW9kdWxlLnByb3RvEhtidWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEiTAoUTG9jYWxNb2R1bGVSZWZlcmVuY2USDQoFb3duZXIYASABKAkSEgoKcmVwb3NpdG9yeRgCIAEoCRIRCglyZWZlcmVuY2UYAyABKAkilAEKDkxvY2FsTW9kdWxlUGluEg0KBW93bmVyGAEgASgJEhIKCnJlcG9zaXRvcnkYAiABKAkSDgoGYnJhbmNoGAMgASgJEg4KBmNvbW1pdBgEIAEoCRIOCgZkaWdlc3QYBSABKAkSLwoLY3JlYXRlX3RpbWUYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wYgZwcm90bzM", [fileDesc_google_protobuf_timestamp]);
 
@@ -51,8 +54,10 @@ export type LocalModuleReference = Message<"buf.alpha.registry.v1alpha1.LocalMod
   reference: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.LocalModuleReference.
-// Use `create(LocalModuleReferenceDesc)` to create a new LocalModuleReference.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.LocalModuleReference.
+ * Use `create(LocalModuleReferenceDesc)` to create a new message.
+ */
 export const LocalModuleReferenceDesc: GenDescMessage<LocalModuleReference> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_module, 0);
 
@@ -95,8 +100,10 @@ export type LocalModulePin = Message<"buf.alpha.registry.v1alpha1.LocalModulePin
   createTime?: Timestamp;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.LocalModulePin.
-// Use `create(LocalModulePinDesc)` to create a new LocalModulePin.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.LocalModulePin.
+ * Use `create(LocalModulePinDesc)` to create a new message.
+ */
 export const LocalModulePinDesc: GenDescMessage<LocalModulePin> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_module, 1);
 

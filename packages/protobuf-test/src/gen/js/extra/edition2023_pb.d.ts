@@ -20,6 +20,9 @@ import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobu
 import type { Message } from "@bufbuild/protobuf";
 import type { UInt32Value } from "@bufbuild/protobuf/wkt";
 
+/**
+ * Describes the file extra/edition2023.proto.
+ */
 export declare const fileDesc_extra_edition2023: GenDescFile;
 
 /**
@@ -467,7 +470,10 @@ export declare type Edition2023Message = Message<"spec.Edition2023Message"> & {
   mapInt32WrappedUint32Field: { [key: number]: UInt32Value };
 };
 
-// Describes the message spec.Edition2023Message. Use `create(Edition2023MessageDesc)` to create a new Edition2023Message.
+/**
+ * Describes the message spec.Edition2023Message.
+ * Use `create(Edition2023MessageDesc)` to create a new message.
+ */
 export declare const Edition2023MessageDesc: GenDescMessage<Edition2023Message>;
 
 /**
@@ -482,7 +488,10 @@ export declare type Edition2023Message_Child = Message<"spec.Edition2023Message.
   f: number;
 };
 
-// Describes the message spec.Edition2023Message.Child. Use `create(Edition2023Message_ChildDesc)` to create a new Edition2023Message_Child.
+/**
+ * Describes the message spec.Edition2023Message.Child.
+ * Use `create(Edition2023Message_ChildDesc)` to create a new message.
+ */
 export declare const Edition2023Message_ChildDesc: GenDescMessage<Edition2023Message_Child>;
 
 /**
@@ -543,7 +552,10 @@ export declare type Edition2023FromProto2Message = Message<"spec.Edition2023From
   unpackedDoubleField: number[];
 };
 
-// Describes the message spec.Edition2023FromProto2Message. Use `create(Edition2023FromProto2MessageDesc)` to create a new Edition2023FromProto2Message.
+/**
+ * Describes the message spec.Edition2023FromProto2Message.
+ * Use `create(Edition2023FromProto2MessageDesc)` to create a new message.
+ */
 export declare const Edition2023FromProto2MessageDesc: GenDescMessage<Edition2023FromProto2Message>;
 
 /**
@@ -556,7 +568,10 @@ export declare type Edition2023FromProto2Message_OptionalGroup = Message<"spec.E
   int32Field: number;
 };
 
-// Describes the message spec.Edition2023FromProto2Message.OptionalGroup. Use `create(Edition2023FromProto2Message_OptionalGroupDesc)` to create a new Edition2023FromProto2Message_OptionalGroup.
+/**
+ * Describes the message spec.Edition2023FromProto2Message.OptionalGroup.
+ * Use `create(Edition2023FromProto2Message_OptionalGroupDesc)` to create a new message.
+ */
 export declare const Edition2023FromProto2Message_OptionalGroupDesc: GenDescMessage<Edition2023FromProto2Message_OptionalGroup>;
 
 /**
@@ -569,7 +584,10 @@ export declare type Edition2023FromProto2Message_RequiredGroup = Message<"spec.E
   int32Field: number;
 };
 
-// Describes the message spec.Edition2023FromProto2Message.RequiredGroup. Use `create(Edition2023FromProto2Message_RequiredGroupDesc)` to create a new Edition2023FromProto2Message_RequiredGroup.
+/**
+ * Describes the message spec.Edition2023FromProto2Message.RequiredGroup.
+ * Use `create(Edition2023FromProto2Message_RequiredGroupDesc)` to create a new message.
+ */
 export declare const Edition2023FromProto2Message_RequiredGroupDesc: GenDescMessage<Edition2023FromProto2Message_RequiredGroup>;
 
 /**
@@ -610,7 +628,10 @@ export declare type Edition2023FromProto3Message = Message<"spec.Edition2023From
   unpackedDoubleField: number[];
 };
 
-// Describes the message spec.Edition2023FromProto3Message. Use `create(Edition2023FromProto3MessageDesc)` to create a new Edition2023FromProto3Message.
+/**
+ * Describes the message spec.Edition2023FromProto3Message.
+ * Use `create(Edition2023FromProto3MessageDesc)` to create a new message.
+ */
 export declare const Edition2023FromProto3MessageDesc: GenDescMessage<Edition2023FromProto3Message>;
 
 /**
@@ -628,7 +649,9 @@ export enum Edition2023EnumOpen {
   A = 1,
 }
 
-// Describes the enum spec.Edition2023EnumOpen.
+/**
+ * Describes the enum spec.Edition2023EnumOpen.
+ */
 export declare const Edition2023EnumOpenDesc: GenDescEnum<Edition2023EnumOpen>;
 
 /**
@@ -642,6 +665,8 @@ export enum Edition2023EnumClosed {
   A = 1,
 }
 
-// Describes the enum spec.Edition2023EnumClosed.
+/**
+ * Describes the enum spec.Edition2023EnumClosed.
+ */
 export declare const Edition2023EnumClosedDesc: GenDescEnum<Edition2023EnumClosed>;
 

@@ -24,6 +24,9 @@ import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/user.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_user: GenDescFile = /*@__PURE__*/
   fileDesc("CiZidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvdXNlci5wcm90bxIbYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExIpsBCgRVc2VyEgoKAmlkGAEgASgJEi8KC2NyZWF0ZV90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgt1cGRhdGVfdGltZRgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASEAoIdXNlcm5hbWUYBCABKAkSEwoLZGVhY3RpdmF0ZWQYBSABKAgipgEKEE9yZ2FuaXphdGlvblVzZXISLwoEdXNlchgBIAEoCzIhLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyEhcKD29yZ2FuaXphdGlvbl9pZBgCIAEoCRJIChFvcmdhbml6YXRpb25fcm9sZRgDIAEoDjItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Pcmdhbml6YXRpb25Sb2xlIiUKEUNyZWF0ZVVzZXJSZXF1ZXN0EhAKCHVzZXJuYW1lGAEgASgJIkUKEkNyZWF0ZVVzZXJSZXNwb25zZRIvCgR1c2VyGAEgASgLMiEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXIiHAoOR2V0VXNlclJlcXVlc3QSCgoCaWQYASABKAkiQgoPR2V0VXNlclJlc3BvbnNlEi8KBHVzZXIYASABKAsyIS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlciIsChhHZXRVc2VyQnlVc2VybmFtZVJlcXVlc3QSEAoIdXNlcm5hbWUYASABKAkiTAoZR2V0VXNlckJ5VXNlcm5hbWVSZXNwb25zZRIvCgR1c2VyGAEgASgLMiEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXIijQEKEExpc3RVc2Vyc1JlcXVlc3QSEQoJcGFnZV9zaXplGAEgASgNEhIKCnBhZ2VfdG9rZW4YAiABKAkSDwoHcmV2ZXJzZRgDIAEoCBJBChF1c2VyX3N0YXRlX2ZpbHRlchgEIAEoDjImLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Vc2VyU3RhdGUiXgoRTGlzdFVzZXJzUmVzcG9uc2USMAoFdXNlcnMYASADKAsyIS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlchIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkibwocTGlzdE9yZ2FuaXphdGlvblVzZXJzUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkSEQoJcGFnZV9zaXplGAIgASgNEhIKCnBhZ2VfdG9rZW4YAyABKAkSDwoHcmV2ZXJzZRgEIAEoCCJ2Ch1MaXN0T3JnYW5pemF0aW9uVXNlcnNSZXNwb25zZRI8CgV1c2VycxgBIAMoCzItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Pcmdhbml6YXRpb25Vc2VyEhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSITChFEZWxldGVVc2VyUmVxdWVzdCIUChJEZWxldGVVc2VyUmVzcG9uc2UiIwoVRGVhY3RpdmF0ZVVzZXJSZXF1ZXN0EgoKAmlkGAEgASgJIhgKFkRlYWN0aXZhdGVVc2VyUmVzcG9uc2UibAobVXBkYXRlVXNlclNlcnZlclJvbGVSZXF1ZXN0Eg8KB3VzZXJfaWQYASABKAkSPAoLc2VydmVyX3JvbGUYAiABKA4yJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuU2VydmVyUm9sZSIeChxVcGRhdGVVc2VyU2VydmVyUm9sZVJlc3BvbnNlIlYKEUNvdW50VXNlcnNSZXF1ZXN0EkEKEXVzZXJfc3RhdGVfZmlsdGVyGAEgASgOMiYuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXJTdGF0ZSIpChJDb3VudFVzZXJzUmVzcG9uc2USEwoLdG90YWxfY291bnQYASABKA0qWgoJVXNlclN0YXRlEhoKFlVTRVJfU1RBVEVfVU5TUEVDSUZJRUQQABIVChFVU0VSX1NUQVRFX0FDVElWRRABEhoKFlVTRVJfU1RBVEVfREVBQ1RJVkFURUQQAjLLCAoLVXNlclNlcnZpY2USbQoKQ3JlYXRlVXNlchIuLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVVc2VyUmVxdWVzdBovLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVVc2VyUmVzcG9uc2USZAoHR2V0VXNlchIrLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRVc2VyUmVxdWVzdBosLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRVc2VyUmVzcG9uc2USggEKEUdldFVzZXJCeVVzZXJuYW1lEjUuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkdldFVzZXJCeVVzZXJuYW1lUmVxdWVzdBo2LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRVc2VyQnlVc2VybmFtZVJlc3BvbnNlEmoKCUxpc3RVc2VycxItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0VXNlcnNSZXF1ZXN0Gi4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RVc2Vyc1Jlc3BvbnNlEo4BChVMaXN0T3JnYW5pemF0aW9uVXNlcnMSOS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdE9yZ2FuaXphdGlvblVzZXJzUmVxdWVzdBo6LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0T3JnYW5pemF0aW9uVXNlcnNSZXNwb25zZRJtCgpEZWxldGVVc2VyEi4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlbGV0ZVVzZXJSZXF1ZXN0Gi8uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlbGV0ZVVzZXJSZXNwb25zZRJ5Cg5EZWFjdGl2YXRlVXNlchIyLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EZWFjdGl2YXRlVXNlclJlcXVlc3QaMy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRGVhY3RpdmF0ZVVzZXJSZXNwb25zZRKLAQoUVXBkYXRlVXNlclNlcnZlclJvbGUSOC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXBkYXRlVXNlclNlcnZlclJvbGVSZXF1ZXN0GjkuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVwZGF0ZVVzZXJTZXJ2ZXJSb2xlUmVzcG9uc2USbQoKQ291bnRVc2VycxIuLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Db3VudFVzZXJzUmVxdWVzdBovLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5Db3VudFVzZXJzUmVzcG9uc2ViBnByb3RvMw", [fileDesc_buf_alpha_registry_v1alpha1_role, fileDesc_google_protobuf_timestamp]);
 
@@ -67,8 +70,10 @@ export type User = Message<"buf.alpha.registry.v1alpha1.User"> & {
   deactivated: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.User.
-// Use `create(UserDesc)` to create a new User.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.User.
+ * Use `create(UserDesc)` to create a new message.
+ */
 export const UserDesc: GenDescMessage<User> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 0);
 
@@ -98,8 +103,10 @@ export type OrganizationUser = Message<"buf.alpha.registry.v1alpha1.Organization
   organizationRole: OrganizationRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.OrganizationUser.
-// Use `create(OrganizationUserDesc)` to create a new OrganizationUser.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.OrganizationUser.
+ * Use `create(OrganizationUserDesc)` to create a new message.
+ */
 export const OrganizationUserDesc: GenDescMessage<OrganizationUser> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 1);
 
@@ -113,8 +120,10 @@ export type CreateUserRequest = Message<"buf.alpha.registry.v1alpha1.CreateUserR
   username: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateUserRequest.
-// Use `create(CreateUserRequestDesc)` to create a new CreateUserRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateUserRequest.
+ * Use `create(CreateUserRequestDesc)` to create a new message.
+ */
 export const CreateUserRequestDesc: GenDescMessage<CreateUserRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 2);
 
@@ -128,8 +137,10 @@ export type CreateUserResponse = Message<"buf.alpha.registry.v1alpha1.CreateUser
   user?: User;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateUserResponse.
-// Use `create(CreateUserResponseDesc)` to create a new CreateUserResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateUserResponse.
+ * Use `create(CreateUserResponseDesc)` to create a new message.
+ */
 export const CreateUserResponseDesc: GenDescMessage<CreateUserResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 3);
 
@@ -143,8 +154,10 @@ export type GetUserRequest = Message<"buf.alpha.registry.v1alpha1.GetUserRequest
   id: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetUserRequest.
-// Use `create(GetUserRequestDesc)` to create a new GetUserRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetUserRequest.
+ * Use `create(GetUserRequestDesc)` to create a new message.
+ */
 export const GetUserRequestDesc: GenDescMessage<GetUserRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 4);
 
@@ -158,8 +171,10 @@ export type GetUserResponse = Message<"buf.alpha.registry.v1alpha1.GetUserRespon
   user?: User;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetUserResponse.
-// Use `create(GetUserResponseDesc)` to create a new GetUserResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetUserResponse.
+ * Use `create(GetUserResponseDesc)` to create a new message.
+ */
 export const GetUserResponseDesc: GenDescMessage<GetUserResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 5);
 
@@ -173,8 +188,10 @@ export type GetUserByUsernameRequest = Message<"buf.alpha.registry.v1alpha1.GetU
   username: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.
-// Use `create(GetUserByUsernameRequestDesc)` to create a new GetUserByUsernameRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetUserByUsernameRequest.
+ * Use `create(GetUserByUsernameRequestDesc)` to create a new message.
+ */
 export const GetUserByUsernameRequestDesc: GenDescMessage<GetUserByUsernameRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 6);
 
@@ -188,8 +205,10 @@ export type GetUserByUsernameResponse = Message<"buf.alpha.registry.v1alpha1.Get
   user?: User;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.
-// Use `create(GetUserByUsernameResponseDesc)` to create a new GetUserByUsernameResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetUserByUsernameResponse.
+ * Use `create(GetUserByUsernameResponseDesc)` to create a new message.
+ */
 export const GetUserByUsernameResponseDesc: GenDescMessage<GetUserByUsernameResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 7);
 
@@ -222,8 +241,10 @@ export type ListUsersRequest = Message<"buf.alpha.registry.v1alpha1.ListUsersReq
   userStateFilter: UserState;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUsersRequest.
-// Use `create(ListUsersRequestDesc)` to create a new ListUsersRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUsersRequest.
+ * Use `create(ListUsersRequestDesc)` to create a new message.
+ */
 export const ListUsersRequestDesc: GenDescMessage<ListUsersRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 8);
 
@@ -244,8 +265,10 @@ export type ListUsersResponse = Message<"buf.alpha.registry.v1alpha1.ListUsersRe
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUsersResponse.
-// Use `create(ListUsersResponseDesc)` to create a new ListUsersResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUsersResponse.
+ * Use `create(ListUsersResponseDesc)` to create a new message.
+ */
 export const ListUsersResponseDesc: GenDescMessage<ListUsersResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 9);
 
@@ -276,8 +299,10 @@ export type ListOrganizationUsersRequest = Message<"buf.alpha.registry.v1alpha1.
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.
-// Use `create(ListOrganizationUsersRequestDesc)` to create a new ListOrganizationUsersRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationUsersRequest.
+ * Use `create(ListOrganizationUsersRequestDesc)` to create a new message.
+ */
 export const ListOrganizationUsersRequestDesc: GenDescMessage<ListOrganizationUsersRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 10);
 
@@ -298,8 +323,10 @@ export type ListOrganizationUsersResponse = Message<"buf.alpha.registry.v1alpha1
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.
-// Use `create(ListOrganizationUsersResponseDesc)` to create a new ListOrganizationUsersResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationUsersResponse.
+ * Use `create(ListOrganizationUsersResponseDesc)` to create a new message.
+ */
 export const ListOrganizationUsersResponseDesc: GenDescMessage<ListOrganizationUsersResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 11);
 
@@ -309,8 +336,10 @@ export const ListOrganizationUsersResponseDesc: GenDescMessage<ListOrganizationU
 export type DeleteUserRequest = Message<"buf.alpha.registry.v1alpha1.DeleteUserRequest"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteUserRequest.
-// Use `create(DeleteUserRequestDesc)` to create a new DeleteUserRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteUserRequest.
+ * Use `create(DeleteUserRequestDesc)` to create a new message.
+ */
 export const DeleteUserRequestDesc: GenDescMessage<DeleteUserRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 12);
 
@@ -320,8 +349,10 @@ export const DeleteUserRequestDesc: GenDescMessage<DeleteUserRequest> = /*@__PUR
 export type DeleteUserResponse = Message<"buf.alpha.registry.v1alpha1.DeleteUserResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteUserResponse.
-// Use `create(DeleteUserResponseDesc)` to create a new DeleteUserResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteUserResponse.
+ * Use `create(DeleteUserResponseDesc)` to create a new message.
+ */
 export const DeleteUserResponseDesc: GenDescMessage<DeleteUserResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 13);
 
@@ -335,8 +366,10 @@ export type DeactivateUserRequest = Message<"buf.alpha.registry.v1alpha1.Deactiv
   id: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeactivateUserRequest.
-// Use `create(DeactivateUserRequestDesc)` to create a new DeactivateUserRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeactivateUserRequest.
+ * Use `create(DeactivateUserRequestDesc)` to create a new message.
+ */
 export const DeactivateUserRequestDesc: GenDescMessage<DeactivateUserRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 14);
 
@@ -346,8 +379,10 @@ export const DeactivateUserRequestDesc: GenDescMessage<DeactivateUserRequest> = 
 export type DeactivateUserResponse = Message<"buf.alpha.registry.v1alpha1.DeactivateUserResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeactivateUserResponse.
-// Use `create(DeactivateUserResponseDesc)` to create a new DeactivateUserResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeactivateUserResponse.
+ * Use `create(DeactivateUserResponseDesc)` to create a new message.
+ */
 export const DeactivateUserResponseDesc: GenDescMessage<DeactivateUserResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 15);
 
@@ -370,8 +405,10 @@ export type UpdateUserServerRoleRequest = Message<"buf.alpha.registry.v1alpha1.U
   serverRole: ServerRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.
-// Use `create(UpdateUserServerRoleRequestDesc)` to create a new UpdateUserServerRoleRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UpdateUserServerRoleRequest.
+ * Use `create(UpdateUserServerRoleRequestDesc)` to create a new message.
+ */
 export const UpdateUserServerRoleRequestDesc: GenDescMessage<UpdateUserServerRoleRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 16);
 
@@ -381,8 +418,10 @@ export const UpdateUserServerRoleRequestDesc: GenDescMessage<UpdateUserServerRol
 export type UpdateUserServerRoleResponse = Message<"buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.
-// Use `create(UpdateUserServerRoleResponseDesc)` to create a new UpdateUserServerRoleResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UpdateUserServerRoleResponse.
+ * Use `create(UpdateUserServerRoleResponseDesc)` to create a new message.
+ */
 export const UpdateUserServerRoleResponseDesc: GenDescMessage<UpdateUserServerRoleResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 17);
 
@@ -398,8 +437,10 @@ export type CountUsersRequest = Message<"buf.alpha.registry.v1alpha1.CountUsersR
   userStateFilter: UserState;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CountUsersRequest.
-// Use `create(CountUsersRequestDesc)` to create a new CountUsersRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CountUsersRequest.
+ * Use `create(CountUsersRequestDesc)` to create a new message.
+ */
 export const CountUsersRequestDesc: GenDescMessage<CountUsersRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 18);
 
@@ -413,8 +454,10 @@ export type CountUsersResponse = Message<"buf.alpha.registry.v1alpha1.CountUsers
   totalCount: number;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CountUsersResponse.
-// Use `create(CountUsersResponseDesc)` to create a new CountUsersResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CountUsersResponse.
+ * Use `create(CountUsersResponseDesc)` to create a new message.
+ */
 export const CountUsersResponseDesc: GenDescMessage<CountUsersResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 19);
 
@@ -438,7 +481,9 @@ export enum UserState {
   DEACTIVATED = 2,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.UserState.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.UserState.
+ */
 export const UserStateDesc: GenDescEnum<UserState> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_user, 0);
 

@@ -26,6 +26,9 @@ import type { RuntimeLibrary } from "./generate_pb.js";
 import { fileDesc_buf_alpha_registry_v1alpha1_generate } from "./generate_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
+/**
+ * Describes the file buf/alpha/registry/v1alpha1/plugin.proto.
+ */
 export const fileDesc_buf_alpha_registry_v1alpha1_plugin: GenDescFile = /*@__PURE__*/
   fileDesc("CihidWYvYWxwaGEvcmVnaXN0cnkvdjFhbHBoYTEvcGx1Z2luLnByb3RvEhtidWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEipQEKBlBsdWdpbhIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEg0KBW93bmVyGAMgASgJEkEKCnZpc2liaWxpdHkYBCABKA4yLS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUGx1Z2luVmlzaWJpbGl0eRISCgpkZXByZWNhdGVkGAUgASgIEhsKE2RlcHJlY2F0aW9uX21lc3NhZ2UYBiABKAkivAEKDVBsdWdpblZlcnNpb24SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRITCgtwbHVnaW5fbmFtZRgDIAEoCRIUCgxwbHVnaW5fb3duZXIYBCABKAkSHgoWY29udGFpbmVyX2ltYWdlX2RpZ2VzdBgFIAEoCRJGChFydW50aW1lX2xpYnJhcmllcxgGIAMoCzIrLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5SdW50aW1lTGlicmFyeSLqAQoIVGVtcGxhdGUSCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRINCgVvd25lchgDIAEoCRJBCg5wbHVnaW5fY29uZmlncxgEIAMoCzIpLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5Db25maWcSQQoKdmlzaWJpbGl0eRgFIAEoDjItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5WaXNpYmlsaXR5EhIKCmRlcHJlY2F0ZWQYCCABKAgSGwoTZGVwcmVjYXRpb25fbWVzc2FnZRgJIAEoCSJyCgxQbHVnaW5Db25maWcSFAoMcGx1Z2luX293bmVyGAEgASgJEhMKC3BsdWdpbl9uYW1lGAIgASgJEhIKCnBhcmFtZXRlcnMYAyADKAkSFAoMaW5hY2Nlc3NpYmxlGAUgASgISgQIBBAFUgdkZWxldGVkIqYBCg9UZW1wbGF0ZVZlcnNpb24SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIWCg50ZW1wbGF0ZV9vd25lchgDIAEoCRIVCg10ZW1wbGF0ZV9uYW1lGAQgASgJEkoKD3BsdWdpbl92ZXJzaW9ucxgFIAMoCzIxLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5WZXJzaW9uTWFwcGluZyJ3ChRQbHVnaW5WZXJzaW9uTWFwcGluZxIUCgxwbHVnaW5fb3duZXIYASABKAkSEwoLcGx1Z2luX25hbWUYAiABKAkSDwoHdmVyc2lvbhgDIAEoCRIUCgxpbmFjY2Vzc2libGUYBSABKAhKBAgEEAVSB2RlbGV0ZWQi1wEKEVBsdWdpbkNvbnRyaWJ1dG9yEi8KBHVzZXIYASABKAsyIS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVXNlchIRCglwbHVnaW5faWQYAiABKAkSPgoNZXhwbGljaXRfcm9sZRgDIAEoDjInLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5Sb2xlEj4KDWltcGxpY2l0X3JvbGUYBCABKA4yJy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUGx1Z2luUm9sZSLfAQoTVGVtcGxhdGVDb250cmlidXRvchIvCgR1c2VyGAEgASgLMiEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVzZXISEwoLdGVtcGxhdGVfaWQYAiABKAkSQAoNZXhwbGljaXRfcm9sZRgDIAEoDjIpLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5UZW1wbGF0ZVJvbGUSQAoNaW1wbGljaXRfcm9sZRgEIAEoDjIpLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5UZW1wbGF0ZVJvbGUiTAoSTGlzdFBsdWdpbnNSZXF1ZXN0EhEKCXBhZ2Vfc2l6ZRgBIAEoDRISCgpwYWdlX3Rva2VuGAIgASgJEg8KB3JldmVyc2UYAyABKAgiZAoTTGlzdFBsdWdpbnNSZXNwb25zZRI0CgdwbHVnaW5zGAEgAygLMiMuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlBsdWdpbhIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkiXwoWTGlzdFVzZXJQbHVnaW5zUmVxdWVzdBINCgVvd25lchgBIAEoCRIRCglwYWdlX3NpemUYAiABKA0SEgoKcGFnZV90b2tlbhgDIAEoCRIPCgdyZXZlcnNlGAQgASgIImgKF0xpc3RVc2VyUGx1Z2luc1Jlc3BvbnNlEjQKB3BsdWdpbnMYASADKAsyIy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUGx1Z2luEhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSJuCh5MaXN0T3JnYW5pemF0aW9uUGx1Z2luc1JlcXVlc3QSFAoMb3JnYW5pemF0aW9uGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgicAofTGlzdE9yZ2FuaXphdGlvblBsdWdpbnNSZXNwb25zZRI0CgdwbHVnaW5zGAEgAygLMiMuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlBsdWdpbhIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkiRwoXR2V0UGx1Z2luVmVyc2lvblJlcXVlc3QSDQoFb3duZXIYASABKAkSDAoEbmFtZRgCIAEoCRIPCgd2ZXJzaW9uGAMgASgJIl4KGEdldFBsdWdpblZlcnNpb25SZXNwb25zZRJCCg5wbHVnaW5fdmVyc2lvbhgBIAEoCzIqLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5WZXJzaW9uInAKGUxpc3RQbHVnaW5WZXJzaW9uc1JlcXVlc3QSDQoFb3duZXIYASABKAkSDAoEbmFtZRgCIAEoCRIRCglwYWdlX3NpemUYAyABKA0SEgoKcGFnZV90b2tlbhgEIAEoCRIPCgdyZXZlcnNlGAUgASgIInoKGkxpc3RQbHVnaW5WZXJzaW9uc1Jlc3BvbnNlEkMKD3BsdWdpbl92ZXJzaW9ucxgBIAMoCzIqLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5WZXJzaW9uEhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSJ1ChNDcmVhdGVQbHVnaW5SZXF1ZXN0Eg0KBW93bmVyGAEgASgJEgwKBG5hbWUYAiABKAkSQQoKdmlzaWJpbGl0eRgDIAEoDjItLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5WaXNpYmlsaXR5IksKFENyZWF0ZVBsdWdpblJlc3BvbnNlEjMKBnBsdWdpbhgBIAEoCzIjLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW4iLwoQR2V0UGx1Z2luUmVxdWVzdBINCgVvd25lchgBIAEoCRIMCgRuYW1lGAIgASgJIkgKEUdldFBsdWdpblJlc3BvbnNlEjMKBnBsdWdpbhgBIAEoCzIjLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW4iMgoTRGVsZXRlUGx1Z2luUmVxdWVzdBINCgVvd25lchgBIAEoCRIMCgRuYW1lGAIgASgJIhYKFERlbGV0ZVBsdWdpblJlc3BvbnNlIn8KG1NldFBsdWdpbkNvbnRyaWJ1dG9yUmVxdWVzdBIRCglwbHVnaW5faWQYASABKAkSDwoHdXNlcl9pZBgCIAEoCRI8CgtwbHVnaW5fcm9sZRgDIAEoDjInLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5QbHVnaW5Sb2xlIh4KHFNldFBsdWdpbkNvbnRyaWJ1dG9yUmVzcG9uc2UiagodTGlzdFBsdWdpbkNvbnRyaWJ1dG9yc1JlcXVlc3QSEQoJcGx1Z2luX2lkGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgieAoeTGlzdFBsdWdpbkNvbnRyaWJ1dG9yc1Jlc3BvbnNlEj0KBXVzZXJzGAEgAygLMi4uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlBsdWdpbkNvbnRyaWJ1dG9yEhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSJGChZEZXByZWNhdGVQbHVnaW5SZXF1ZXN0Eg0KBW93bmVyGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHbWVzc2FnZRgDIAEoCSIZChdEZXByZWNhdGVQbHVnaW5SZXNwb25zZSI3ChhVbmRlcHJlY2F0ZVBsdWdpblJlcXVlc3QSDQoFb3duZXIYASABKAkSDAoEbmFtZRgCIAEoCSIbChlVbmRlcHJlY2F0ZVBsdWdpblJlc3BvbnNlIjEKEkdldFRlbXBsYXRlUmVxdWVzdBINCgVvd25lchgBIAEoCRIMCgRuYW1lGAIgASgJIk4KE0dldFRlbXBsYXRlUmVzcG9uc2USNwoIdGVtcGxhdGUYASABKAsyJS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVGVtcGxhdGUiTgoUTGlzdFRlbXBsYXRlc1JlcXVlc3QSEQoJcGFnZV9zaXplGAEgASgNEhIKCnBhZ2VfdG9rZW4YAiABKAkSDwoHcmV2ZXJzZRgDIAEoCCJqChVMaXN0VGVtcGxhdGVzUmVzcG9uc2USOAoJdGVtcGxhdGVzGAEgAygLMiUuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlRlbXBsYXRlEhcKD25leHRfcGFnZV90b2tlbhgCIAEoCSJhChhMaXN0VXNlclRlbXBsYXRlc1JlcXVlc3QSDQoFb3duZXIYASABKAkSEQoJcGFnZV9zaXplGAIgASgNEhIKCnBhZ2VfdG9rZW4YAyABKAkSDwoHcmV2ZXJzZRgEIAEoCCJuChlMaXN0VXNlclRlbXBsYXRlc1Jlc3BvbnNlEjgKCXRlbXBsYXRlcxgBIAMoCzIlLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5UZW1wbGF0ZRIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkiSQoZR2V0VGVtcGxhdGVWZXJzaW9uUmVxdWVzdBINCgVvd25lchgBIAEoCRIMCgRuYW1lGAIgASgJEg8KB3ZlcnNpb24YAyABKAkiZAoaR2V0VGVtcGxhdGVWZXJzaW9uUmVzcG9uc2USRgoQdGVtcGxhdGVfdmVyc2lvbhgBIAEoCzIsLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5UZW1wbGF0ZVZlcnNpb24icAogTGlzdE9yZ2FuaXphdGlvblRlbXBsYXRlc1JlcXVlc3QSFAoMb3JnYW5pemF0aW9uGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgidgohTGlzdE9yZ2FuaXphdGlvblRlbXBsYXRlc1Jlc3BvbnNlEjgKCXRlbXBsYXRlcxgBIAMoCzIlLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5UZW1wbGF0ZRIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkicgobTGlzdFRlbXBsYXRlVmVyc2lvbnNSZXF1ZXN0Eg0KBW93bmVyGAEgASgJEgwKBG5hbWUYAiABKAkSEQoJcGFnZV9zaXplGAMgASgNEhIKCnBhZ2VfdG9rZW4YBCABKAkSDwoHcmV2ZXJzZRgFIAEoCCKAAQocTGlzdFRlbXBsYXRlVmVyc2lvbnNSZXNwb25zZRJHChF0ZW1wbGF0ZV92ZXJzaW9ucxgBIAMoCzIsLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5UZW1wbGF0ZVZlcnNpb24SFwoPbmV4dF9wYWdlX3Rva2VuGAIgASgJIroBChVDcmVhdGVUZW1wbGF0ZVJlcXVlc3QSDQoFb3duZXIYASABKAkSDAoEbmFtZRgCIAEoCRJBCgp2aXNpYmlsaXR5GAMgASgOMi0uYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlBsdWdpblZpc2liaWxpdHkSQQoOcGx1Z2luX2NvbmZpZ3MYBCADKAsyKS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuUGx1Z2luQ29uZmlnIlEKFkNyZWF0ZVRlbXBsYXRlUmVzcG9uc2USNwoIdGVtcGxhdGUYASABKAsyJS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVGVtcGxhdGUiNAoVRGVsZXRlVGVtcGxhdGVSZXF1ZXN0Eg0KBW93bmVyGAEgASgJEgwKBG5hbWUYAiABKAkiGAoWRGVsZXRlVGVtcGxhdGVSZXNwb25zZSKnAQocQ3JlYXRlVGVtcGxhdGVWZXJzaW9uUmVxdWVzdBIMCgRuYW1lGAEgASgJEhYKDnRlbXBsYXRlX293bmVyGAIgASgJEhUKDXRlbXBsYXRlX25hbWUYAyABKAkSSgoPcGx1Z2luX3ZlcnNpb25zGAQgAygLMjEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlBsdWdpblZlcnNpb25NYXBwaW5nImcKHUNyZWF0ZVRlbXBsYXRlVmVyc2lvblJlc3BvbnNlEkYKEHRlbXBsYXRlX3ZlcnNpb24YASABKAsyLC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVGVtcGxhdGVWZXJzaW9uIocBCh1TZXRUZW1wbGF0ZUNvbnRyaWJ1dG9yUmVxdWVzdBITCgt0ZW1wbGF0ZV9pZBgBIAEoCRIPCgd1c2VyX2lkGAIgASgJEkAKDXRlbXBsYXRlX3JvbGUYAyABKA4yKS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVGVtcGxhdGVSb2xlIiAKHlNldFRlbXBsYXRlQ29udHJpYnV0b3JSZXNwb25zZSJuCh9MaXN0VGVtcGxhdGVDb250cmlidXRvcnNSZXF1ZXN0EhMKC3RlbXBsYXRlX2lkGAEgASgJEhEKCXBhZ2Vfc2l6ZRgCIAEoDRISCgpwYWdlX3Rva2VuGAMgASgJEg8KB3JldmVyc2UYBCABKAgifAogTGlzdFRlbXBsYXRlQ29udHJpYnV0b3JzUmVzcG9uc2USPwoFdXNlcnMYASADKAsyMC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVGVtcGxhdGVDb250cmlidXRvchIXCg9uZXh0X3BhZ2VfdG9rZW4YAiABKAkiSAoYRGVwcmVjYXRlVGVtcGxhdGVSZXF1ZXN0Eg0KBW93bmVyGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHbWVzc2FnZRgDIAEoCSIbChlEZXByZWNhdGVUZW1wbGF0ZVJlc3BvbnNlIjkKGlVuZGVwcmVjYXRlVGVtcGxhdGVSZXF1ZXN0Eg0KBW93bmVyGAEgASgJEgwKBG5hbWUYAiABKAkiHQobVW5kZXByZWNhdGVUZW1wbGF0ZVJlc3BvbnNlKnIKEFBsdWdpblZpc2liaWxpdHkSIQodUExVR0lOX1ZJU0lCSUxJVFlfVU5TUEVDSUZJRUQQABIcChhQTFVHSU5fVklTSUJJTElUWV9QVUJMSUMQARIdChlQTFVHSU5fVklTSUJJTElUWV9QUklWQVRFEAIygRoKDVBsdWdpblNlcnZpY2UScAoLTGlzdFBsdWdpbnMSLy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFBsdWdpbnNSZXF1ZXN0GjAuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RQbHVnaW5zUmVzcG9uc2USfAoPTGlzdFVzZXJQbHVnaW5zEjMuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RVc2VyUGx1Z2luc1JlcXVlc3QaNC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFVzZXJQbHVnaW5zUmVzcG9uc2USlAEKF0xpc3RPcmdhbml6YXRpb25QbHVnaW5zEjsuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RPcmdhbml6YXRpb25QbHVnaW5zUmVxdWVzdBo8LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0T3JnYW5pemF0aW9uUGx1Z2luc1Jlc3BvbnNlEn8KEEdldFBsdWdpblZlcnNpb24SNC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UGx1Z2luVmVyc2lvblJlcXVlc3QaNS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UGx1Z2luVmVyc2lvblJlc3BvbnNlEoUBChJMaXN0UGx1Z2luVmVyc2lvbnMSNi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFBsdWdpblZlcnNpb25zUmVxdWVzdBo3LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5MaXN0UGx1Z2luVmVyc2lvbnNSZXNwb25zZRJzCgxDcmVhdGVQbHVnaW4SMC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuQ3JlYXRlUGx1Z2luUmVxdWVzdBoxLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVQbHVnaW5SZXNwb25zZRJqCglHZXRQbHVnaW4SLS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0UGx1Z2luUmVxdWVzdBouLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRQbHVnaW5SZXNwb25zZRJzCgxEZWxldGVQbHVnaW4SMC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRGVsZXRlUGx1Z2luUmVxdWVzdBoxLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EZWxldGVQbHVnaW5SZXNwb25zZRKLAQoUU2V0UGx1Z2luQ29udHJpYnV0b3ISOC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuU2V0UGx1Z2luQ29udHJpYnV0b3JSZXF1ZXN0GjkuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlNldFBsdWdpbkNvbnRyaWJ1dG9yUmVzcG9uc2USkQEKFkxpc3RQbHVnaW5Db250cmlidXRvcnMSOi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFBsdWdpbkNvbnRyaWJ1dG9yc1JlcXVlc3QaOy5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFBsdWdpbkNvbnRyaWJ1dG9yc1Jlc3BvbnNlEnwKD0RlcHJlY2F0ZVBsdWdpbhIzLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EZXByZWNhdGVQbHVnaW5SZXF1ZXN0GjQuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlcHJlY2F0ZVBsdWdpblJlc3BvbnNlEoIBChFVbmRlcHJlY2F0ZVBsdWdpbhI1LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5VbmRlcHJlY2F0ZVBsdWdpblJlcXVlc3QaNi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuVW5kZXByZWNhdGVQbHVnaW5SZXNwb25zZRJwCgtHZXRUZW1wbGF0ZRIvLmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRUZW1wbGF0ZVJlcXVlc3QaMC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0VGVtcGxhdGVSZXNwb25zZRJ2Cg1MaXN0VGVtcGxhdGVzEjEuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RUZW1wbGF0ZXNSZXF1ZXN0GjIuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RUZW1wbGF0ZXNSZXNwb25zZRKCAQoRTGlzdFVzZXJUZW1wbGF0ZXMSNS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFVzZXJUZW1wbGF0ZXNSZXF1ZXN0GjYuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RVc2VyVGVtcGxhdGVzUmVzcG9uc2USmgEKGUxpc3RPcmdhbml6YXRpb25UZW1wbGF0ZXMSPS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdE9yZ2FuaXphdGlvblRlbXBsYXRlc1JlcXVlc3QaPi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdE9yZ2FuaXphdGlvblRlbXBsYXRlc1Jlc3BvbnNlEoUBChJHZXRUZW1wbGF0ZVZlcnNpb24SNi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuR2V0VGVtcGxhdGVWZXJzaW9uUmVxdWVzdBo3LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5HZXRUZW1wbGF0ZVZlcnNpb25SZXNwb25zZRKLAQoUTGlzdFRlbXBsYXRlVmVyc2lvbnMSOC5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFRlbXBsYXRlVmVyc2lvbnNSZXF1ZXN0GjkuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RUZW1wbGF0ZVZlcnNpb25zUmVzcG9uc2USeQoOQ3JlYXRlVGVtcGxhdGUSMi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuQ3JlYXRlVGVtcGxhdGVSZXF1ZXN0GjMuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkNyZWF0ZVRlbXBsYXRlUmVzcG9uc2USeQoORGVsZXRlVGVtcGxhdGUSMi5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuRGVsZXRlVGVtcGxhdGVSZXF1ZXN0GjMuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlbGV0ZVRlbXBsYXRlUmVzcG9uc2USjgEKFUNyZWF0ZVRlbXBsYXRlVmVyc2lvbhI5LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5DcmVhdGVUZW1wbGF0ZVZlcnNpb25SZXF1ZXN0GjouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkNyZWF0ZVRlbXBsYXRlVmVyc2lvblJlc3BvbnNlEpEBChZTZXRUZW1wbGF0ZUNvbnRyaWJ1dG9yEjouYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlNldFRlbXBsYXRlQ29udHJpYnV0b3JSZXF1ZXN0GjsuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlNldFRlbXBsYXRlQ29udHJpYnV0b3JSZXNwb25zZRKXAQoYTGlzdFRlbXBsYXRlQ29udHJpYnV0b3JzEjwuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkxpc3RUZW1wbGF0ZUNvbnRyaWJ1dG9yc1JlcXVlc3QaPS5idWYuYWxwaGEucmVnaXN0cnkudjFhbHBoYTEuTGlzdFRlbXBsYXRlQ29udHJpYnV0b3JzUmVzcG9uc2USggEKEURlcHJlY2F0ZVRlbXBsYXRlEjUuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLkRlcHJlY2F0ZVRlbXBsYXRlUmVxdWVzdBo2LmJ1Zi5hbHBoYS5yZWdpc3RyeS52MWFscGhhMS5EZXByZWNhdGVUZW1wbGF0ZVJlc3BvbnNlEogBChNVbmRlcHJlY2F0ZVRlbXBsYXRlEjcuYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVuZGVwcmVjYXRlVGVtcGxhdGVSZXF1ZXN0GjguYnVmLmFscGhhLnJlZ2lzdHJ5LnYxYWxwaGExLlVuZGVwcmVjYXRlVGVtcGxhdGVSZXNwb25zZWIGcHJvdG8z", [fileDesc_buf_alpha_registry_v1alpha1_role, fileDesc_buf_alpha_registry_v1alpha1_user, fileDesc_buf_alpha_registry_v1alpha1_generate]);
 
@@ -79,8 +82,10 @@ export type Plugin = Message<"buf.alpha.registry.v1alpha1.Plugin"> & {
   deprecationMessage: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Plugin.
-// Use `create(PluginDesc)` to create a new Plugin.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Plugin.
+ * Use `create(PluginDesc)` to create a new message.
+ */
 export const PluginDesc: GenDescMessage<Plugin> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 0);
 
@@ -137,8 +142,10 @@ export type PluginVersion = Message<"buf.alpha.registry.v1alpha1.PluginVersion">
   runtimeLibraries: RuntimeLibrary[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.PluginVersion.
-// Use `create(PluginVersionDesc)` to create a new PluginVersion.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.PluginVersion.
+ * Use `create(PluginVersionDesc)` to create a new message.
+ */
 export const PluginVersionDesc: GenDescMessage<PluginVersion> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 1);
 
@@ -204,8 +211,10 @@ export type Template = Message<"buf.alpha.registry.v1alpha1.Template"> & {
   deprecationMessage: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.Template.
-// Use `create(TemplateDesc)` to create a new Template.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.Template.
+ * Use `create(TemplateDesc)` to create a new message.
+ */
 export const TemplateDesc: GenDescMessage<Template> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 2);
 
@@ -245,8 +254,10 @@ export type PluginConfig = Message<"buf.alpha.registry.v1alpha1.PluginConfig"> &
   inaccessible: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.PluginConfig.
-// Use `create(PluginConfigDesc)` to create a new PluginConfig.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.PluginConfig.
+ * Use `create(PluginConfigDesc)` to create a new message.
+ */
 export const PluginConfigDesc: GenDescMessage<PluginConfig> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 3);
 
@@ -296,8 +307,10 @@ export type TemplateVersion = Message<"buf.alpha.registry.v1alpha1.TemplateVersi
   pluginVersions: PluginVersionMapping[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.TemplateVersion.
-// Use `create(TemplateVersionDesc)` to create a new TemplateVersion.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.TemplateVersion.
+ * Use `create(TemplateVersionDesc)` to create a new message.
+ */
 export const TemplateVersionDesc: GenDescMessage<TemplateVersion> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 4);
 
@@ -336,8 +349,10 @@ export type PluginVersionMapping = Message<"buf.alpha.registry.v1alpha1.PluginVe
   inaccessible: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.PluginVersionMapping.
-// Use `create(PluginVersionMappingDesc)` to create a new PluginVersionMapping.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.PluginVersionMapping.
+ * Use `create(PluginVersionMappingDesc)` to create a new message.
+ */
 export const PluginVersionMappingDesc: GenDescMessage<PluginVersionMapping> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 5);
 
@@ -373,8 +388,10 @@ export type PluginContributor = Message<"buf.alpha.registry.v1alpha1.PluginContr
   implicitRole: PluginRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.PluginContributor.
-// Use `create(PluginContributorDesc)` to create a new PluginContributor.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.PluginContributor.
+ * Use `create(PluginContributorDesc)` to create a new message.
+ */
 export const PluginContributorDesc: GenDescMessage<PluginContributor> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 6);
 
@@ -410,8 +427,10 @@ export type TemplateContributor = Message<"buf.alpha.registry.v1alpha1.TemplateC
   implicitRole: TemplateRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.TemplateContributor.
-// Use `create(TemplateContributorDesc)` to create a new TemplateContributor.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.TemplateContributor.
+ * Use `create(TemplateContributorDesc)` to create a new message.
+ */
 export const TemplateContributorDesc: GenDescMessage<TemplateContributor> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 7);
 
@@ -437,8 +456,10 @@ export type ListPluginsRequest = Message<"buf.alpha.registry.v1alpha1.ListPlugin
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListPluginsRequest.
-// Use `create(ListPluginsRequestDesc)` to create a new ListPluginsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListPluginsRequest.
+ * Use `create(ListPluginsRequestDesc)` to create a new message.
+ */
 export const ListPluginsRequestDesc: GenDescMessage<ListPluginsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 8);
 
@@ -459,8 +480,10 @@ export type ListPluginsResponse = Message<"buf.alpha.registry.v1alpha1.ListPlugi
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListPluginsResponse.
-// Use `create(ListPluginsResponseDesc)` to create a new ListPluginsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListPluginsResponse.
+ * Use `create(ListPluginsResponseDesc)` to create a new message.
+ */
 export const ListPluginsResponseDesc: GenDescMessage<ListPluginsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 9);
 
@@ -493,8 +516,10 @@ export type ListUserPluginsRequest = Message<"buf.alpha.registry.v1alpha1.ListUs
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUserPluginsRequest.
-// Use `create(ListUserPluginsRequestDesc)` to create a new ListUserPluginsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUserPluginsRequest.
+ * Use `create(ListUserPluginsRequestDesc)` to create a new message.
+ */
 export const ListUserPluginsRequestDesc: GenDescMessage<ListUserPluginsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 10);
 
@@ -515,8 +540,10 @@ export type ListUserPluginsResponse = Message<"buf.alpha.registry.v1alpha1.ListU
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUserPluginsResponse.
-// Use `create(ListUserPluginsResponseDesc)` to create a new ListUserPluginsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUserPluginsResponse.
+ * Use `create(ListUserPluginsResponseDesc)` to create a new message.
+ */
 export const ListUserPluginsResponseDesc: GenDescMessage<ListUserPluginsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 11);
 
@@ -549,8 +576,10 @@ export type ListOrganizationPluginsRequest = Message<"buf.alpha.registry.v1alpha
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationPluginsRequest.
-// Use `create(ListOrganizationPluginsRequestDesc)` to create a new ListOrganizationPluginsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationPluginsRequest.
+ * Use `create(ListOrganizationPluginsRequestDesc)` to create a new message.
+ */
 export const ListOrganizationPluginsRequestDesc: GenDescMessage<ListOrganizationPluginsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 12);
 
@@ -571,8 +600,10 @@ export type ListOrganizationPluginsResponse = Message<"buf.alpha.registry.v1alph
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationPluginsResponse.
-// Use `create(ListOrganizationPluginsResponseDesc)` to create a new ListOrganizationPluginsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationPluginsResponse.
+ * Use `create(ListOrganizationPluginsResponseDesc)` to create a new message.
+ */
 export const ListOrganizationPluginsResponseDesc: GenDescMessage<ListOrganizationPluginsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 13);
 
@@ -602,8 +633,10 @@ export type GetPluginVersionRequest = Message<"buf.alpha.registry.v1alpha1.GetPl
   version: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetPluginVersionRequest.
-// Use `create(GetPluginVersionRequestDesc)` to create a new GetPluginVersionRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetPluginVersionRequest.
+ * Use `create(GetPluginVersionRequestDesc)` to create a new message.
+ */
 export const GetPluginVersionRequestDesc: GenDescMessage<GetPluginVersionRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 14);
 
@@ -617,8 +650,10 @@ export type GetPluginVersionResponse = Message<"buf.alpha.registry.v1alpha1.GetP
   pluginVersion?: PluginVersion;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetPluginVersionResponse.
-// Use `create(GetPluginVersionResponseDesc)` to create a new GetPluginVersionResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetPluginVersionResponse.
+ * Use `create(GetPluginVersionResponseDesc)` to create a new message.
+ */
 export const GetPluginVersionResponseDesc: GenDescMessage<GetPluginVersionResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 15);
 
@@ -660,8 +695,10 @@ export type ListPluginVersionsRequest = Message<"buf.alpha.registry.v1alpha1.Lis
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListPluginVersionsRequest.
-// Use `create(ListPluginVersionsRequestDesc)` to create a new ListPluginVersionsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListPluginVersionsRequest.
+ * Use `create(ListPluginVersionsRequestDesc)` to create a new message.
+ */
 export const ListPluginVersionsRequestDesc: GenDescMessage<ListPluginVersionsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 16);
 
@@ -682,8 +719,10 @@ export type ListPluginVersionsResponse = Message<"buf.alpha.registry.v1alpha1.Li
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListPluginVersionsResponse.
-// Use `create(ListPluginVersionsResponseDesc)` to create a new ListPluginVersionsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListPluginVersionsResponse.
+ * Use `create(ListPluginVersionsResponseDesc)` to create a new message.
+ */
 export const ListPluginVersionsResponseDesc: GenDescMessage<ListPluginVersionsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 17);
 
@@ -717,8 +756,10 @@ export type CreatePluginRequest = Message<"buf.alpha.registry.v1alpha1.CreatePlu
   visibility: PluginVisibility;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreatePluginRequest.
-// Use `create(CreatePluginRequestDesc)` to create a new CreatePluginRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreatePluginRequest.
+ * Use `create(CreatePluginRequestDesc)` to create a new message.
+ */
 export const CreatePluginRequestDesc: GenDescMessage<CreatePluginRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 18);
 
@@ -734,8 +775,10 @@ export type CreatePluginResponse = Message<"buf.alpha.registry.v1alpha1.CreatePl
   plugin?: Plugin;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreatePluginResponse.
-// Use `create(CreatePluginResponseDesc)` to create a new CreatePluginResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreatePluginResponse.
+ * Use `create(CreatePluginResponseDesc)` to create a new message.
+ */
 export const CreatePluginResponseDesc: GenDescMessage<CreatePluginResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 19);
 
@@ -758,8 +801,10 @@ export type GetPluginRequest = Message<"buf.alpha.registry.v1alpha1.GetPluginReq
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetPluginRequest.
-// Use `create(GetPluginRequestDesc)` to create a new GetPluginRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetPluginRequest.
+ * Use `create(GetPluginRequestDesc)` to create a new message.
+ */
 export const GetPluginRequestDesc: GenDescMessage<GetPluginRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 20);
 
@@ -773,8 +818,10 @@ export type GetPluginResponse = Message<"buf.alpha.registry.v1alpha1.GetPluginRe
   plugin?: Plugin;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetPluginResponse.
-// Use `create(GetPluginResponseDesc)` to create a new GetPluginResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetPluginResponse.
+ * Use `create(GetPluginResponseDesc)` to create a new message.
+ */
 export const GetPluginResponseDesc: GenDescMessage<GetPluginResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 21);
 
@@ -797,8 +844,10 @@ export type DeletePluginRequest = Message<"buf.alpha.registry.v1alpha1.DeletePlu
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeletePluginRequest.
-// Use `create(DeletePluginRequestDesc)` to create a new DeletePluginRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeletePluginRequest.
+ * Use `create(DeletePluginRequestDesc)` to create a new message.
+ */
 export const DeletePluginRequestDesc: GenDescMessage<DeletePluginRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 22);
 
@@ -808,8 +857,10 @@ export const DeletePluginRequestDesc: GenDescMessage<DeletePluginRequest> = /*@_
 export type DeletePluginResponse = Message<"buf.alpha.registry.v1alpha1.DeletePluginResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeletePluginResponse.
-// Use `create(DeletePluginResponseDesc)` to create a new DeletePluginResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeletePluginResponse.
+ * Use `create(DeletePluginResponseDesc)` to create a new message.
+ */
 export const DeletePluginResponseDesc: GenDescMessage<DeletePluginResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 23);
 
@@ -840,8 +891,10 @@ export type SetPluginContributorRequest = Message<"buf.alpha.registry.v1alpha1.S
   pluginRole: PluginRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetPluginContributorRequest.
-// Use `create(SetPluginContributorRequestDesc)` to create a new SetPluginContributorRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetPluginContributorRequest.
+ * Use `create(SetPluginContributorRequestDesc)` to create a new message.
+ */
 export const SetPluginContributorRequestDesc: GenDescMessage<SetPluginContributorRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 24);
 
@@ -851,8 +904,10 @@ export const SetPluginContributorRequestDesc: GenDescMessage<SetPluginContributo
 export type SetPluginContributorResponse = Message<"buf.alpha.registry.v1alpha1.SetPluginContributorResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetPluginContributorResponse.
-// Use `create(SetPluginContributorResponseDesc)` to create a new SetPluginContributorResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetPluginContributorResponse.
+ * Use `create(SetPluginContributorResponseDesc)` to create a new message.
+ */
 export const SetPluginContributorResponseDesc: GenDescMessage<SetPluginContributorResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 25);
 
@@ -883,8 +938,10 @@ export type ListPluginContributorsRequest = Message<"buf.alpha.registry.v1alpha1
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListPluginContributorsRequest.
-// Use `create(ListPluginContributorsRequestDesc)` to create a new ListPluginContributorsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListPluginContributorsRequest.
+ * Use `create(ListPluginContributorsRequestDesc)` to create a new message.
+ */
 export const ListPluginContributorsRequestDesc: GenDescMessage<ListPluginContributorsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 26);
 
@@ -905,8 +962,10 @@ export type ListPluginContributorsResponse = Message<"buf.alpha.registry.v1alpha
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListPluginContributorsResponse.
-// Use `create(ListPluginContributorsResponseDesc)` to create a new ListPluginContributorsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListPluginContributorsResponse.
+ * Use `create(ListPluginContributorsResponseDesc)` to create a new message.
+ */
 export const ListPluginContributorsResponseDesc: GenDescMessage<ListPluginContributorsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 27);
 
@@ -936,8 +995,10 @@ export type DeprecatePluginRequest = Message<"buf.alpha.registry.v1alpha1.Deprec
   message: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeprecatePluginRequest.
-// Use `create(DeprecatePluginRequestDesc)` to create a new DeprecatePluginRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeprecatePluginRequest.
+ * Use `create(DeprecatePluginRequestDesc)` to create a new message.
+ */
 export const DeprecatePluginRequestDesc: GenDescMessage<DeprecatePluginRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 28);
 
@@ -947,8 +1008,10 @@ export const DeprecatePluginRequestDesc: GenDescMessage<DeprecatePluginRequest> 
 export type DeprecatePluginResponse = Message<"buf.alpha.registry.v1alpha1.DeprecatePluginResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeprecatePluginResponse.
-// Use `create(DeprecatePluginResponseDesc)` to create a new DeprecatePluginResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeprecatePluginResponse.
+ * Use `create(DeprecatePluginResponseDesc)` to create a new message.
+ */
 export const DeprecatePluginResponseDesc: GenDescMessage<DeprecatePluginResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 29);
 
@@ -971,8 +1034,10 @@ export type UndeprecatePluginRequest = Message<"buf.alpha.registry.v1alpha1.Unde
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UndeprecatePluginRequest.
-// Use `create(UndeprecatePluginRequestDesc)` to create a new UndeprecatePluginRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UndeprecatePluginRequest.
+ * Use `create(UndeprecatePluginRequestDesc)` to create a new message.
+ */
 export const UndeprecatePluginRequestDesc: GenDescMessage<UndeprecatePluginRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 30);
 
@@ -982,8 +1047,10 @@ export const UndeprecatePluginRequestDesc: GenDescMessage<UndeprecatePluginReque
 export type UndeprecatePluginResponse = Message<"buf.alpha.registry.v1alpha1.UndeprecatePluginResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UndeprecatePluginResponse.
-// Use `create(UndeprecatePluginResponseDesc)` to create a new UndeprecatePluginResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UndeprecatePluginResponse.
+ * Use `create(UndeprecatePluginResponseDesc)` to create a new message.
+ */
 export const UndeprecatePluginResponseDesc: GenDescMessage<UndeprecatePluginResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 31);
 
@@ -1006,8 +1073,10 @@ export type GetTemplateRequest = Message<"buf.alpha.registry.v1alpha1.GetTemplat
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetTemplateRequest.
-// Use `create(GetTemplateRequestDesc)` to create a new GetTemplateRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetTemplateRequest.
+ * Use `create(GetTemplateRequestDesc)` to create a new message.
+ */
 export const GetTemplateRequestDesc: GenDescMessage<GetTemplateRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 32);
 
@@ -1021,8 +1090,10 @@ export type GetTemplateResponse = Message<"buf.alpha.registry.v1alpha1.GetTempla
   template?: Template;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetTemplateResponse.
-// Use `create(GetTemplateResponseDesc)` to create a new GetTemplateResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetTemplateResponse.
+ * Use `create(GetTemplateResponseDesc)` to create a new message.
+ */
 export const GetTemplateResponseDesc: GenDescMessage<GetTemplateResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 33);
 
@@ -1048,8 +1119,10 @@ export type ListTemplatesRequest = Message<"buf.alpha.registry.v1alpha1.ListTemp
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListTemplatesRequest.
-// Use `create(ListTemplatesRequestDesc)` to create a new ListTemplatesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListTemplatesRequest.
+ * Use `create(ListTemplatesRequestDesc)` to create a new message.
+ */
 export const ListTemplatesRequestDesc: GenDescMessage<ListTemplatesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 34);
 
@@ -1070,8 +1143,10 @@ export type ListTemplatesResponse = Message<"buf.alpha.registry.v1alpha1.ListTem
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListTemplatesResponse.
-// Use `create(ListTemplatesResponseDesc)` to create a new ListTemplatesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListTemplatesResponse.
+ * Use `create(ListTemplatesResponseDesc)` to create a new message.
+ */
 export const ListTemplatesResponseDesc: GenDescMessage<ListTemplatesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 35);
 
@@ -1104,8 +1179,10 @@ export type ListUserTemplatesRequest = Message<"buf.alpha.registry.v1alpha1.List
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUserTemplatesRequest.
-// Use `create(ListUserTemplatesRequestDesc)` to create a new ListUserTemplatesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUserTemplatesRequest.
+ * Use `create(ListUserTemplatesRequestDesc)` to create a new message.
+ */
 export const ListUserTemplatesRequestDesc: GenDescMessage<ListUserTemplatesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 36);
 
@@ -1126,8 +1203,10 @@ export type ListUserTemplatesResponse = Message<"buf.alpha.registry.v1alpha1.Lis
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListUserTemplatesResponse.
-// Use `create(ListUserTemplatesResponseDesc)` to create a new ListUserTemplatesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListUserTemplatesResponse.
+ * Use `create(ListUserTemplatesResponseDesc)` to create a new message.
+ */
 export const ListUserTemplatesResponseDesc: GenDescMessage<ListUserTemplatesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 37);
 
@@ -1157,8 +1236,10 @@ export type GetTemplateVersionRequest = Message<"buf.alpha.registry.v1alpha1.Get
   version: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetTemplateVersionRequest.
-// Use `create(GetTemplateVersionRequestDesc)` to create a new GetTemplateVersionRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetTemplateVersionRequest.
+ * Use `create(GetTemplateVersionRequestDesc)` to create a new message.
+ */
 export const GetTemplateVersionRequestDesc: GenDescMessage<GetTemplateVersionRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 38);
 
@@ -1172,8 +1253,10 @@ export type GetTemplateVersionResponse = Message<"buf.alpha.registry.v1alpha1.Ge
   templateVersion?: TemplateVersion;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.GetTemplateVersionResponse.
-// Use `create(GetTemplateVersionResponseDesc)` to create a new GetTemplateVersionResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.GetTemplateVersionResponse.
+ * Use `create(GetTemplateVersionResponseDesc)` to create a new message.
+ */
 export const GetTemplateVersionResponseDesc: GenDescMessage<GetTemplateVersionResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 39);
 
@@ -1206,8 +1289,10 @@ export type ListOrganizationTemplatesRequest = Message<"buf.alpha.registry.v1alp
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationTemplatesRequest.
-// Use `create(ListOrganizationTemplatesRequestDesc)` to create a new ListOrganizationTemplatesRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationTemplatesRequest.
+ * Use `create(ListOrganizationTemplatesRequestDesc)` to create a new message.
+ */
 export const ListOrganizationTemplatesRequestDesc: GenDescMessage<ListOrganizationTemplatesRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 40);
 
@@ -1228,8 +1313,10 @@ export type ListOrganizationTemplatesResponse = Message<"buf.alpha.registry.v1al
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListOrganizationTemplatesResponse.
-// Use `create(ListOrganizationTemplatesResponseDesc)` to create a new ListOrganizationTemplatesResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListOrganizationTemplatesResponse.
+ * Use `create(ListOrganizationTemplatesResponseDesc)` to create a new message.
+ */
 export const ListOrganizationTemplatesResponseDesc: GenDescMessage<ListOrganizationTemplatesResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 41);
 
@@ -1271,8 +1358,10 @@ export type ListTemplateVersionsRequest = Message<"buf.alpha.registry.v1alpha1.L
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListTemplateVersionsRequest.
-// Use `create(ListTemplateVersionsRequestDesc)` to create a new ListTemplateVersionsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListTemplateVersionsRequest.
+ * Use `create(ListTemplateVersionsRequestDesc)` to create a new message.
+ */
 export const ListTemplateVersionsRequestDesc: GenDescMessage<ListTemplateVersionsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 42);
 
@@ -1293,8 +1382,10 @@ export type ListTemplateVersionsResponse = Message<"buf.alpha.registry.v1alpha1.
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListTemplateVersionsResponse.
-// Use `create(ListTemplateVersionsResponseDesc)` to create a new ListTemplateVersionsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListTemplateVersionsResponse.
+ * Use `create(ListTemplateVersionsResponseDesc)` to create a new message.
+ */
 export const ListTemplateVersionsResponseDesc: GenDescMessage<ListTemplateVersionsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 43);
 
@@ -1335,8 +1426,10 @@ export type CreateTemplateRequest = Message<"buf.alpha.registry.v1alpha1.CreateT
   pluginConfigs: PluginConfig[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateTemplateRequest.
-// Use `create(CreateTemplateRequestDesc)` to create a new CreateTemplateRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateTemplateRequest.
+ * Use `create(CreateTemplateRequestDesc)` to create a new message.
+ */
 export const CreateTemplateRequestDesc: GenDescMessage<CreateTemplateRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 44);
 
@@ -1352,8 +1445,10 @@ export type CreateTemplateResponse = Message<"buf.alpha.registry.v1alpha1.Create
   template?: Template;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateTemplateResponse.
-// Use `create(CreateTemplateResponseDesc)` to create a new CreateTemplateResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateTemplateResponse.
+ * Use `create(CreateTemplateResponseDesc)` to create a new message.
+ */
 export const CreateTemplateResponseDesc: GenDescMessage<CreateTemplateResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 45);
 
@@ -1376,8 +1471,10 @@ export type DeleteTemplateRequest = Message<"buf.alpha.registry.v1alpha1.DeleteT
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteTemplateRequest.
-// Use `create(DeleteTemplateRequestDesc)` to create a new DeleteTemplateRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteTemplateRequest.
+ * Use `create(DeleteTemplateRequestDesc)` to create a new message.
+ */
 export const DeleteTemplateRequestDesc: GenDescMessage<DeleteTemplateRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 46);
 
@@ -1387,8 +1484,10 @@ export const DeleteTemplateRequestDesc: GenDescMessage<DeleteTemplateRequest> = 
 export type DeleteTemplateResponse = Message<"buf.alpha.registry.v1alpha1.DeleteTemplateResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeleteTemplateResponse.
-// Use `create(DeleteTemplateResponseDesc)` to create a new DeleteTemplateResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeleteTemplateResponse.
+ * Use `create(DeleteTemplateResponseDesc)` to create a new message.
+ */
 export const DeleteTemplateResponseDesc: GenDescMessage<DeleteTemplateResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 47);
 
@@ -1427,8 +1526,10 @@ export type CreateTemplateVersionRequest = Message<"buf.alpha.registry.v1alpha1.
   pluginVersions: PluginVersionMapping[];
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateTemplateVersionRequest.
-// Use `create(CreateTemplateVersionRequestDesc)` to create a new CreateTemplateVersionRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateTemplateVersionRequest.
+ * Use `create(CreateTemplateVersionRequestDesc)` to create a new message.
+ */
 export const CreateTemplateVersionRequestDesc: GenDescMessage<CreateTemplateVersionRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 48);
 
@@ -1444,8 +1545,10 @@ export type CreateTemplateVersionResponse = Message<"buf.alpha.registry.v1alpha1
   templateVersion?: TemplateVersion;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.CreateTemplateVersionResponse.
-// Use `create(CreateTemplateVersionResponseDesc)` to create a new CreateTemplateVersionResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.CreateTemplateVersionResponse.
+ * Use `create(CreateTemplateVersionResponseDesc)` to create a new message.
+ */
 export const CreateTemplateVersionResponseDesc: GenDescMessage<CreateTemplateVersionResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 49);
 
@@ -1476,8 +1579,10 @@ export type SetTemplateContributorRequest = Message<"buf.alpha.registry.v1alpha1
   templateRole: TemplateRole;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetTemplateContributorRequest.
-// Use `create(SetTemplateContributorRequestDesc)` to create a new SetTemplateContributorRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetTemplateContributorRequest.
+ * Use `create(SetTemplateContributorRequestDesc)` to create a new message.
+ */
 export const SetTemplateContributorRequestDesc: GenDescMessage<SetTemplateContributorRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 50);
 
@@ -1487,8 +1592,10 @@ export const SetTemplateContributorRequestDesc: GenDescMessage<SetTemplateContri
 export type SetTemplateContributorResponse = Message<"buf.alpha.registry.v1alpha1.SetTemplateContributorResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.SetTemplateContributorResponse.
-// Use `create(SetTemplateContributorResponseDesc)` to create a new SetTemplateContributorResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.SetTemplateContributorResponse.
+ * Use `create(SetTemplateContributorResponseDesc)` to create a new message.
+ */
 export const SetTemplateContributorResponseDesc: GenDescMessage<SetTemplateContributorResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 51);
 
@@ -1519,8 +1626,10 @@ export type ListTemplateContributorsRequest = Message<"buf.alpha.registry.v1alph
   reverse: boolean;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListTemplateContributorsRequest.
-// Use `create(ListTemplateContributorsRequestDesc)` to create a new ListTemplateContributorsRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListTemplateContributorsRequest.
+ * Use `create(ListTemplateContributorsRequestDesc)` to create a new message.
+ */
 export const ListTemplateContributorsRequestDesc: GenDescMessage<ListTemplateContributorsRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 52);
 
@@ -1541,8 +1650,10 @@ export type ListTemplateContributorsResponse = Message<"buf.alpha.registry.v1alp
   nextPageToken: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.ListTemplateContributorsResponse.
-// Use `create(ListTemplateContributorsResponseDesc)` to create a new ListTemplateContributorsResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.ListTemplateContributorsResponse.
+ * Use `create(ListTemplateContributorsResponseDesc)` to create a new message.
+ */
 export const ListTemplateContributorsResponseDesc: GenDescMessage<ListTemplateContributorsResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 53);
 
@@ -1572,8 +1683,10 @@ export type DeprecateTemplateRequest = Message<"buf.alpha.registry.v1alpha1.Depr
   message: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeprecateTemplateRequest.
-// Use `create(DeprecateTemplateRequestDesc)` to create a new DeprecateTemplateRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeprecateTemplateRequest.
+ * Use `create(DeprecateTemplateRequestDesc)` to create a new message.
+ */
 export const DeprecateTemplateRequestDesc: GenDescMessage<DeprecateTemplateRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 54);
 
@@ -1583,8 +1696,10 @@ export const DeprecateTemplateRequestDesc: GenDescMessage<DeprecateTemplateReque
 export type DeprecateTemplateResponse = Message<"buf.alpha.registry.v1alpha1.DeprecateTemplateResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.DeprecateTemplateResponse.
-// Use `create(DeprecateTemplateResponseDesc)` to create a new DeprecateTemplateResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.DeprecateTemplateResponse.
+ * Use `create(DeprecateTemplateResponseDesc)` to create a new message.
+ */
 export const DeprecateTemplateResponseDesc: GenDescMessage<DeprecateTemplateResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 55);
 
@@ -1607,8 +1722,10 @@ export type UndeprecateTemplateRequest = Message<"buf.alpha.registry.v1alpha1.Un
   name: string;
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UndeprecateTemplateRequest.
-// Use `create(UndeprecateTemplateRequestDesc)` to create a new UndeprecateTemplateRequest.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UndeprecateTemplateRequest.
+ * Use `create(UndeprecateTemplateRequestDesc)` to create a new message.
+ */
 export const UndeprecateTemplateRequestDesc: GenDescMessage<UndeprecateTemplateRequest> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 56);
 
@@ -1618,8 +1735,10 @@ export const UndeprecateTemplateRequestDesc: GenDescMessage<UndeprecateTemplateR
 export type UndeprecateTemplateResponse = Message<"buf.alpha.registry.v1alpha1.UndeprecateTemplateResponse"> & {
 };
 
-// Describes the message buf.alpha.registry.v1alpha1.UndeprecateTemplateResponse.
-// Use `create(UndeprecateTemplateResponseDesc)` to create a new UndeprecateTemplateResponse.
+/**
+ * Describes the message buf.alpha.registry.v1alpha1.UndeprecateTemplateResponse.
+ * Use `create(UndeprecateTemplateResponseDesc)` to create a new message.
+ */
 export const UndeprecateTemplateResponseDesc: GenDescMessage<UndeprecateTemplateResponse> = /*@__PURE__*/
   messageDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 57);
 
@@ -1646,7 +1765,9 @@ export enum PluginVisibility {
   PRIVATE = 2,
 }
 
-// Describes the enum buf.alpha.registry.v1alpha1.PluginVisibility.
+/**
+ * Describes the enum buf.alpha.registry.v1alpha1.PluginVisibility.
+ */
 export const PluginVisibilityDesc: GenDescEnum<PluginVisibility> = /*@__PURE__*/
   enumDesc(fileDesc_buf_alpha_registry_v1alpha1_plugin, 0);
 
