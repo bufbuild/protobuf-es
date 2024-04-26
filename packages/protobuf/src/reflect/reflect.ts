@@ -34,10 +34,13 @@ import {
 } from "./unsafe.js";
 import { create } from "../create.js";
 import { isWrapper, isWrapperDesc } from "../wkt/wrappers.js";
-import { LongType, ScalarType } from "./scalar.js";
+import { LongType, ScalarType, scalarZeroValue } from "./scalar.js";
 import { protoInt64 } from "../proto-int64.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
 
+/**
+ * Create a ReflectMessage.
+ */
 export function reflect<Desc extends DescMessage>(
   messageDesc: Desc,
   message?: MessageShape<Desc>,
@@ -125,9 +128,11 @@ export function reflect<Desc extends DescMessage>(
           }
           return reflect(field.message, value as Message);
         case "scalar":
-          return longToReflect(field, value);
+          return value === undefined
+            ? scalarZeroValue(field.scalar, LongType.BIGINT)
+            : longToReflect(field, value);
         case "enum":
-          return value;
+          return value ?? field.enum.values[0].number;
       }
     },
 
@@ -213,6 +218,9 @@ function assertOwn(owner: Message, member: DescField | DescOneof) {
   }
 }
 
+/**
+ * Create a ReflectList.
+ */
 export function reflectList<V>(
   field: DescField & { fieldKind: "list" },
   unsafeInput?: unknown[],
@@ -276,6 +284,9 @@ export function reflectList<V>(
   };
 }
 
+/**
+ * Create a ReflectMap.
+ */
 export function reflectMap<K extends MapEntryKey, V>(
   field: DescField & { fieldKind: "map" },
   unsafeInput?: Record<string, unknown>,
@@ -447,57 +458,53 @@ function mapKeyToReflect(
 }
 
 function longToReflect(field: DescField, value: unknown): unknown {
-  if (field.scalar !== undefined) {
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
-    switch (field.scalar) {
-      case ScalarType.INT64:
-      case ScalarType.SFIXED64:
-      case ScalarType.SINT64:
-        if (
-          "longType" in field &&
-          field.longType == LongType.STRING &&
-          typeof value == "string"
-        ) {
-          value = protoInt64.parse(value);
-        }
-        break;
-      case ScalarType.FIXED64:
-      case ScalarType.UINT64:
-        if (
-          "longType" in field &&
-          field.longType == LongType.STRING &&
-          typeof value == "string"
-        ) {
-          value = protoInt64.uParse(value);
-        }
-        break;
-    }
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+  switch (field.scalar) {
+    case ScalarType.INT64:
+    case ScalarType.SFIXED64:
+    case ScalarType.SINT64:
+      if (
+        "longType" in field &&
+        field.longType == LongType.STRING &&
+        typeof value == "string"
+      ) {
+        value = protoInt64.parse(value);
+      }
+      break;
+    case ScalarType.FIXED64:
+    case ScalarType.UINT64:
+      if (
+        "longType" in field &&
+        field.longType == LongType.STRING &&
+        typeof value == "string"
+      ) {
+        value = protoInt64.uParse(value);
+      }
+      break;
   }
   return value;
 }
 
 function longToLocal(field: DescField, value: unknown) {
-  if (field.scalar !== undefined) {
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
-    switch (field.scalar) {
-      case ScalarType.INT64:
-      case ScalarType.SFIXED64:
-      case ScalarType.SINT64:
-        if ("longType" in field && field.longType == LongType.STRING) {
-          value = String(value);
-        } else if (typeof value == "string" || typeof value == "number") {
-          value = protoInt64.parse(value);
-        }
-        break;
-      case ScalarType.FIXED64:
-      case ScalarType.UINT64:
-        if ("longType" in field && field.longType == LongType.STRING) {
-          value = String(value);
-        } else if (typeof value == "string" || typeof value == "number") {
-          value = protoInt64.uParse(value);
-        }
-        break;
-    }
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+  switch (field.scalar) {
+    case ScalarType.INT64:
+    case ScalarType.SFIXED64:
+    case ScalarType.SINT64:
+      if ("longType" in field && field.longType == LongType.STRING) {
+        value = String(value);
+      } else if (typeof value == "string" || typeof value == "number") {
+        value = protoInt64.parse(value);
+      }
+      break;
+    case ScalarType.FIXED64:
+    case ScalarType.UINT64:
+      if ("longType" in field && field.longType == LongType.STRING) {
+        value = String(value);
+      } else if (typeof value == "string" || typeof value == "number") {
+        value = protoInt64.uParse(value);
+      }
+      break;
   }
   return value;
 }

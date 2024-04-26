@@ -17,10 +17,11 @@ import {
   isReflectList,
   reflectList,
   reflect,
+  isReflectMessage,
 } from "@bufbuild/protobuf/reflect";
 import { getFieldByLocalName } from "../helpers.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
-import { protoInt64 } from "@bufbuild/protobuf";
+import { create, protoInt64 } from "@bufbuild/protobuf";
 import { UserDesc } from "../gen/ts/extra/example_pb.js";
 
 describe("reflectList()", () => {
@@ -97,6 +98,13 @@ describe("ReflectList", () => {
       const local: unknown[] = ["1"];
       const list = reflectList(repeatedInt64JsStringField, local);
       expect(list.get(0)).toBe(n1);
+    });
+    test("returns ReflectMessage for message list", () => {
+      const list = reflectList(repeatedMessageField, [
+        create(proto3_ts.Proto3MessageDesc),
+      ]);
+      const val = list.get(0);
+      expect(isReflectMessage(val)).toBe(true);
     });
   });
   describe("add()", () => {

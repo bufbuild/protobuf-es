@@ -181,9 +181,30 @@ describe("ReflectMessage", () => {
       };
       expect(r.get(f)).toBe(false);
     });
-    test("returns undefined for unselected oneof field", () => {
-      const f = getFieldByLocalName(desc, "oneofBoolField");
-      expect(r.get(f)).toBeUndefined();
+    describe("returns zero value for unset", () => {
+      test("scalar oneof field", () => {
+        const f = getFieldByLocalName(desc, "oneofBoolField");
+        expect(r.get(f)).toBe(false);
+      });
+      test("optional string field", () => {
+        const f = getFieldByLocalName(desc, "optionalStringField");
+        expect(r.get(f)).toBe("");
+      });
+      test("optional enum field", () => {
+        const f = getFieldByLocalName(desc, "optionalEnumField");
+        expect(r.get(f)).toBe(proto3_ts.Proto3Enum.UNSPECIFIED);
+      });
+      test("message field", () => {
+        const f = getFieldByLocalName(desc, "singularMessageField", "message");
+        const v = r.get(f);
+        expect(isReflectMessage(v)).toBe(true);
+        if (isReflectMessage(v)) {
+          for (const f of v.fields) {
+            expect(v.isSet(f)).toBe(false);
+          }
+        }
+        expect(r.isSet(f)).toBe(false);
+      });
     });
     test("returns ReflectMessage with zero message for unset message field", () => {
       const f = getFieldByLocalName(desc, "singularMessageField", "message");
@@ -194,10 +215,6 @@ describe("ReflectMessage", () => {
           expect(v.isSet(f)).toBe(false);
         }
       }
-    });
-    test("returns undefined for unset optional string field", () => {
-      const f = getFieldByLocalName(desc, "optionalStringField");
-      expect(r.get(f)).toBeUndefined();
     });
     test("returns bigint for jstype=JS_STRING", () => {
       const f = getFieldByLocalName(desc, "singularInt64JsStringField");
@@ -356,6 +373,7 @@ describe("ReflectMessage", () => {
     });
     describe("returns error setting undefined", () => {
       test.each(desc.fields)("for proto3 field $name", (f) => {
+        // @ts-expect-error TS2345
         const err = r.set(f, undefined);
         expect(err).toBeDefined();
         expect(err?.message).toMatch(/^expected .*, got undefined/);
