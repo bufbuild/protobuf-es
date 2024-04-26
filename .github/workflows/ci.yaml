@@ -29,6 +29,28 @@ jobs:
             ${{ runner.os }}-protobuf-es-ci-
       - name: make
         run: make ci
+  lint:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [18, 20]
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.tmp
+            .tmp
+          key: ${{ runner.os }}-protobuf-es-lint-${{ hashFiles('Makefile') }}
+          restore-keys: |
+            ${{ runner.os }}-protobuf-es-lint-
+      - name: lint
+        run: make lint
   typescript-compat:
     runs-on: ubuntu-20.04
     steps:
