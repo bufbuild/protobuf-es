@@ -12,15 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescExtension, DescField } from "./desc-types.js";
+import type { DescExtension } from "./desc-types.js";
 import { assert } from "./reflect/assert.js";
-import { create } from "./create.js";
-import { readField } from "./from-binary.js";
-import { localName } from "./reflect/names.js";
-import type { ReflectMessage } from "./reflect/reflect-types.js";
-import { reflect } from "./reflect/reflect.js";
-import { scalarZeroValue } from "./reflect/scalar.js";
-import { writeField } from "./to-binary.js";
+import { readExtension } from "./from-binary.js";
+import { writeExtension } from "./to-binary.js";
 import type {
   Extendee,
   ExtensionValueShape,
@@ -28,7 +23,6 @@ import type {
   UnknownField,
 } from "./types.js";
 import { BinaryReader, BinaryWriter } from "./wire/binary-encoding.js";
-import { isWrapperDesc } from "./wkt/wrappers.js";
 
 /**
  * Retrieve an extension value from a message.
@@ -49,14 +43,10 @@ export function getExtension<Desc extends DescExtension>(
   extension: Desc,
 ): ExtensionValueShape<Desc> {
   assertExtendee(extension, message);
-  const ufs = filterUnknownFields(message.$unknown, extension);
-  const [container, field, get] = createExtensionContainer(extension);
-  for (const uf of ufs) {
-    readField(container, new BinaryReader(uf.data), field, uf.wireType, {
-      readUnknownFields: false,
-    });
-  }
-  return get();
+  return readExtension(
+    filterUnknownFields(message.$unknown, extension),
+    extension,
+  ) as ExtensionValueShape<Desc>;
 }
 
 /**
@@ -74,9 +64,8 @@ export function setExtension<Desc extends DescExtension>(
   const ufs = (message.$unknown ?? []).filter(
     (uf) => uf.no !== extension.number,
   );
-  const [container, field] = createExtensionContainer(extension, value);
   const writer = new BinaryWriter();
-  writeField(writer, { writeUnknownFields: false }, container, field);
+  writeExtension(writer, extension, value);
   const reader = new BinaryReader(writer.finish());
   while (reader.pos < reader.len) {
     const [no, wireType] = reader.tag();
@@ -132,50 +121,6 @@ function filterUnknownFields(
     return [];
   }
   return unknownFields.filter((uf) => uf.no === extension.number);
-}
-
-/**
- * @private
- */
-export function createExtensionContainer<Desc extends DescExtension>(
-  extension: Desc,
-  value?: ExtensionValueShape<Desc>,
-): [ReflectMessage, DescField, () => ExtensionValueShape<Desc>] {
-  const field = {
-    ...extension,
-    kind: "field",
-    parent: extension.extendee,
-  } as DescField;
-  const desc = {
-    ...extension.extendee,
-    fields: [field],
-    members: [field],
-    oneofs: [],
-  };
-  const fieldName = localName(field);
-  const container = create(
-    desc,
-    value !== undefined ? { [fieldName]: value } : undefined,
-  );
-  return [
-    reflect(desc, container),
-    field,
-    () => {
-      const value = (container as Record<string, unknown>)[fieldName];
-      if (value === undefined) {
-        // Only message fields are undefined, rest will have a zero value.
-        const desc = extension.message!;
-        if (isWrapperDesc(desc)) {
-          return scalarZeroValue(
-            desc.fields[0].scalar,
-            desc.fields[0].longType,
-          ) as ExtensionValueShape<Desc>;
-        }
-        return create(desc) as ExtensionValueShape<Desc>;
-      }
-      return value as ExtensionValueShape<Desc>;
-    },
-  ];
 }
 
 function assertExtendee(extension: DescExtension, message: Message) {

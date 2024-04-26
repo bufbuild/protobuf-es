@@ -12,7 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescField, DescMessage } from "./desc-types.js";
+import type {
+  DescEnum,
+  DescExtension,
+  DescField,
+  DescMessage,
+} from "./desc-types.js";
 import type { JsonObject, JsonValue } from "./json-value.js";
 import { assert } from "./reflect/assert.js";
 import { protoCamelCase } from "./reflect/names.js";
@@ -39,7 +44,7 @@ import type {
 import { anyUnpack } from "./wkt/index.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
 import { base64Encode } from "./wire/index.js";
-import { createExtensionContainer, getExtension } from "./extensions.js";
+import { getExtension } from "./extensions.js";
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
 const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
@@ -169,8 +174,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
         continue;
       }
       const value = getExtension(msg.message, extension);
-      const [, field] = createExtensionContainer(extension);
-      const jsonValue = fieldToJson(field, value, opts);
+      const jsonValue = extensionToJson(extension, value, opts);
       if (jsonValue !== undefined) {
         json[extension.jsonName] = jsonValue;
       }
@@ -191,6 +195,48 @@ function fieldToJson(f: DescField, val: unknown, opts: JsonWriteOptions) {
       return listToJson(val as ReflectList, opts);
     case "map":
       return mapToJson(val as ReflectMap, opts);
+  }
+}
+
+function extensionToJson(
+  f: DescExtension,
+  val: unknown,
+  opts: JsonWriteOptions,
+) {
+  switch (f.fieldKind) {
+    case "scalar":
+      return scalarToJson(f.scalar, val);
+    case "enum":
+      return enumToJson(f.enum, val, opts.enumAsInteger);
+    case "message":
+      return reflectToJson(reflect(f.message, val as Message), opts);
+    case "list":
+      // eslint-disable-next-line no-case-declarations
+      const jsonArr: JsonValue[] = [];
+      // eslint-disable-next-line no-case-declarations
+      const list = val as unknown[];
+      switch (f.listKind) {
+        case "scalar":
+          for (const item of list) {
+            jsonArr.push(scalarToJson(f.scalar, item) as JsonValue);
+          }
+          break;
+        case "enum":
+          for (const item of list) {
+            jsonArr.push(
+              enumToJson(f.enum, item, opts.enumAsInteger) as JsonValue,
+            );
+          }
+          break;
+        case "message":
+          for (const item of list) {
+            jsonArr.push(
+              reflectToJson(reflect(f.message, item as Message), opts),
+            );
+          }
+          break;
+      }
+      return opts.emitDefaultValues || jsonArr.length > 0 ? jsonArr : undefined;
   }
 }
 

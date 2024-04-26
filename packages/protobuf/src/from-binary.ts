@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescField, DescMessage } from "./desc-types.js";
-import type { MessageShape } from "./types.js";
+import type { DescExtension, DescField, DescMessage } from "./desc-types.js";
+import type { MessageShape, UnknownField } from "./types.js";
 import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
 import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";
+import { isWrapper } from "./wkt/wrappers.js";
 
 /**
  * Options for parsing binary data.
@@ -131,9 +132,6 @@ function readMessage(
   }
 }
 
-/**
- * @private
- */
 export function readField(
   message: ReflectMessage,
   reader: BinaryReader,
@@ -162,6 +160,67 @@ export function readField(
       const [key, val] = readMapEntry(field, reader, options);
       message.setMapEntry(field, key, val);
       break;
+  }
+}
+
+/**
+ * @private
+ */
+export function readExtension(ufs: UnknownField[], field: DescExtension) {
+  const options = { readUnknownFields: false };
+  switch (field.fieldKind) {
+    case "scalar":
+      return ufs.length > 0
+        ? readScalar(
+            new BinaryReader(ufs[ufs.length - 1].data),
+            field.scalar,
+            field.longType,
+          )
+        : field.getDefaultValue() ??
+            scalarZeroValue(field.scalar, field.longType);
+    case "enum":
+      return ufs.length > 0
+        ? readScalar(
+            new BinaryReader(ufs[ufs.length - 1].data),
+            ScalarType.INT32,
+          )
+        : field.getDefaultValue() ?? field.enum.values[0].number;
+    case "message":
+      // eslint-disable-next-line no-case-declarations
+      const rMsg = reflect(field.message);
+      for (const uf of ufs) {
+        readMessageField(new BinaryReader(uf.data), options, field, rMsg);
+      }
+      if (isWrapper(rMsg.message)) {
+        return rMsg.message.value;
+      }
+      return rMsg.message;
+    case "list":
+      // eslint-disable-next-line no-case-declarations
+      const value: unknown[] = [];
+      for (const uf of ufs) {
+        const reader = new BinaryReader(uf.data);
+        if (field.listKind === "message") {
+          value.push(readMessageField(reader, options, field).message);
+          continue;
+        }
+        const scalarType = field.scalar ?? ScalarType.INT32;
+        const longType =
+          field.listKind == "scalar" ? field.longType : undefined;
+        const packed =
+          uf.wireType == WireType.LengthDelimited &&
+          scalarType != ScalarType.STRING &&
+          scalarType != ScalarType.BYTES;
+        if (!packed) {
+          value.push(readScalar(reader, scalarType, longType));
+          continue;
+        }
+        const e = reader.uint32() + reader.pos;
+        while (reader.pos < e) {
+          value.push(readScalar(reader, scalarType, longType));
+        }
+      }
+      return value;
   }
 }
 
@@ -247,7 +306,7 @@ function readListField(
 function readMessageField(
   reader: BinaryReader,
   options: BinaryReadOptions,
-  field: DescField & { message: DescMessage },
+  field: (DescField | DescExtension) & { message: DescMessage },
   mergeMessage?: ReflectMessage,
 ): ReflectMessage {
   const delimited = field.delimitedEncoding;

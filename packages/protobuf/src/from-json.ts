@@ -26,7 +26,11 @@ import { assertFloat32, assertInt32, assertUInt32 } from "./reflect/assert.js";
 import { protoInt64 } from "./proto-int64.js";
 import { create } from "./create.js";
 import type { Registry } from "./reflect/registry.js";
-import type { ReflectMessage, MapEntryKey } from "./reflect/reflect-types.js";
+import type {
+  ReflectMessage,
+  MapEntryKey,
+  ReflectList,
+} from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { formatVal } from "./reflect/reflect-check.js";
 import {
@@ -55,7 +59,7 @@ import type {
   ListValue,
 } from "./wkt/index.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
-import { createExtensionContainer, setExtension } from "./extensions.js";
+import { clearExtension, setExtension } from "./extensions.js";
 
 /**
  * Options for parsing JSON data.
@@ -203,9 +207,12 @@ function readMessage(
         )) &&
         extension.extendee.typeName === msg.desc.typeName
       ) {
-        const [container, field, get] = createExtensionContainer(extension);
-        readField(container, field, jsonValue, opts);
-        setExtension(msg.message, extension, get());
+        const value = readExtension(extension, jsonValue, opts);
+        if (value === tokenNull) {
+          clearExtension(msg.message, extension);
+        } else if (value !== tokenIgnoredUnknownEnum) {
+          setExtension(msg.message, extension, value);
+        }
       }
       if (!extension && !opts.ignoreUnknownFields) {
         throw new Error(
@@ -233,11 +240,51 @@ function readField(
       readMessageField(msg, field, json, opts);
       break;
     case "list":
-      readListField(msg, field, json, opts);
+      readListField(msg.get(field), field, json, opts);
       break;
     case "map":
       readMapField(msg, field, json, opts);
       break;
+  }
+}
+
+function readExtension(
+  field: DescExtension,
+  json: JsonValue,
+  opts: JsonReadOptions,
+) {
+  try {
+    switch (field.fieldKind) {
+      case "scalar":
+        return readScalar(field.scalar, json, field.longType, false);
+      case "enum":
+        return readEnum(field.enum, json, opts.ignoreUnknownFields, false);
+      case "message":
+        if (json === null) return tokenNull;
+        const messageValue = create(field.message);
+        readMessage(reflect(field.message, messageValue), json, opts);
+        return messageValue;
+      case "list":
+        if (json === null) return tokenNull;
+        const listValue: unknown[] = [];
+        const list = {
+          add: (...items) => void listValue.push(...items),
+        } satisfies Pick<ReflectList, "add">;
+        if (field.listKind === "message") {
+          list.add = (...items) =>
+            void listValue.push(
+              items.map((v) => (v as ReflectMessage).message),
+            );
+        }
+        readListField(list, field, json, opts);
+        return listValue;
+    }
+  } catch (e) {
+    let m = `cannot decode field ${getFullyQualifiedName(field)} from JSON: ${formatVal(json)}`;
+    if (e instanceof Error && e.message.length > 0) {
+      m += `: ${e.message}`;
+    }
+    throw new Error(m);
   }
 }
 
@@ -308,8 +355,8 @@ function readMapField(
 }
 
 function readListField(
-  msg: ReflectMessage,
-  field: DescField & { fieldKind: "list" },
+  list: Pick<ReflectList, "add">,
+  field: (DescField | DescExtension) & { fieldKind: "list" },
   json: JsonValue,
   opts: JsonReadOptions,
 ) {
@@ -318,20 +365,20 @@ function readListField(
   }
   if (!Array.isArray(json)) {
     throw new Error(
-      `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(json)}`,
+      `cannot decode field ${getFullyQualifiedName(field)} from JSON: ${formatVal(json)}`,
     );
   }
   for (const jsonItem of json) {
     if (jsonItem === null) {
       throw new Error(
-        `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonItem)}`,
+        `cannot decode field ${getFullyQualifiedName(field)} from JSON: ${formatVal(jsonItem)}`,
       );
     }
     switch (field.listKind) {
       case "message":
         const msgValue = reflect(field.message);
         readMessage(msgValue, jsonItem, opts);
-        msg.addListItem(field, msgValue);
+        list.add(msgValue);
         break;
       case "enum":
         const enumValue = readEnum(
@@ -341,17 +388,14 @@ function readListField(
           true,
         );
         if (enumValue !== tokenIgnoredUnknownEnum) {
-          msg.addListItem(field, enumValue);
+          list.add(enumValue);
         }
         break;
       case "scalar":
         try {
-          msg.addListItem(
-            field,
-            readScalar(field.scalar, jsonItem, field.longType, true),
-          );
+          list.add(readScalar(field.scalar, jsonItem, field.longType, true));
         } catch (e) {
-          let m = `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonItem)}`;
+          let m = `cannot decode field ${getFullyQualifiedName(field)} from JSON: ${formatVal(jsonItem)}`;
           if (e instanceof Error && e.message.length > 0) {
             m += `: ${e.message}`;
           }
@@ -848,4 +892,9 @@ function typeUrlToName(url: string): string {
     throw new Error(`invalid type url: ${url}`);
   }
   return name;
+}
+
+function getFullyQualifiedName(field: DescField | DescExtension) {
+  if (field.kind === "field") return `${field.parent.typeName}.${field.name}`;
+  return field.typeName;
 }

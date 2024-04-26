@@ -12,14 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { MessageShape } from "./types.js";
+import type { Message, MessageShape } from "./types.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryWriter, WireType } from "./wire/binary-encoding.js";
 import type { FeatureSet_FieldPresence } from "./wkt/gen/google/protobuf/descriptor_pb.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import { ScalarType } from "./reflect/scalar.js";
-import type { DescField, DescMessage } from "./desc-types.js";
+import type { DescExtension, DescField, DescMessage } from "./desc-types.js";
 import type { ReflectList, ReflectMessage } from "./reflect/index.js";
+import { isWrapperDesc } from "./wkt/wrappers.js";
+import { create } from "./create.js";
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
 const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
@@ -91,10 +93,7 @@ function writeFields(
   return writer;
 }
 
-/**
- * @private
- */
-export function writeField(
+function writeField(
   writer: BinaryWriter,
   opts: BinaryWriteOptions,
   msg: ReflectMessage,
@@ -124,6 +123,69 @@ export function writeField(
   }
 }
 
+/**
+ * @private
+ */
+export function writeExtension(
+  writer: BinaryWriter,
+  field: DescExtension,
+  value: unknown,
+) {
+  const opts = { writeUnknownFields: false };
+  switch (field.fieldKind) {
+    case "scalar":
+    case "enum":
+      writeScalar(
+        writer,
+        field.scalar ?? ScalarType.INT32,
+        field.number,
+        value,
+      );
+      break;
+    case "message":
+      if (isWrapperDesc(field.message)) {
+        value = create(field.message, { value });
+      }
+      writeMessageField(
+        writer,
+        opts,
+        field,
+        reflect(field.message, value as Message),
+      );
+      break;
+    case "list":
+      // eslint-disable-next-line no-case-declarations
+      const list = value as unknown[];
+      if (field.listKind == "message") {
+        for (const item of list) {
+          writeMessageField(
+            writer,
+            opts,
+            field,
+            reflect(field.message, item as Message),
+          );
+        }
+        break;
+      }
+      // eslint-disable-next-line no-case-declarations
+      const scalarType = field.scalar ?? ScalarType.INT32;
+      if (field.packed) {
+        if (!list.length) {
+          break;
+        }
+        writer.tag(field.number, WireType.LengthDelimited).fork();
+        for (const item of list) {
+          writeScalarValue(writer, scalarType, item as ScalarValue);
+        }
+        writer.join();
+        break;
+      }
+      for (const item of list) {
+        writeScalar(writer, scalarType, field.number, item);
+      }
+  }
+}
+
 function writeScalar(
   writer: BinaryWriter,
   scalarType: ScalarType,
@@ -140,7 +202,7 @@ function writeScalar(
 function writeMessageField(
   writer: BinaryWriter,
   opts: BinaryWriteOptions,
-  field: DescField &
+  field: (DescField | DescExtension) &
     ({ fieldKind: "message" } | { fieldKind: "list"; listKind: "message" }),
   message: ReflectMessage,
 ) {
