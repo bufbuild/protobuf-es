@@ -98,7 +98,7 @@ export function setExtension<E extends Message<E>, V>(
   const reader = readOpt.readerFactory(writer.finish());
   while (reader.pos < reader.len) {
     const [no, wireType] = reader.tag();
-    const data = reader.skip(wireType);
+    const data = reader.skip(wireType, no);
     message.getType().runtime.bin.onUnknownField(message, no, wireType, data);
   }
 }
