@@ -92,7 +92,7 @@ export interface IBinaryReader {
   /**
    * Skip one element on the wire and return the skipped data.
    */
-  skip(wireType: WireType): Uint8Array;
+  skip(wireType: WireType, fieldNo?: number): Uint8Array;
 
   /**
    * Read a `uint32` field, an unsigned 32 bit varint.
@@ -582,10 +582,12 @@ export class BinaryReader implements IBinaryReader {
   }
 
   /**
-   * Skip one element on the wire and return the skipped data.
-   * Supports WireType.StartGroup since v2.0.0-alpha.23.
+   * Skip one element and return the skipped data.
+   *
+   * When skipping StartGroup, provide the tags field number to check for
+   * matching field number in the EndGroup tag.
    */
-  skip(wireType: WireType): Uint8Array {
+  skip(wireType: WireType, fieldNo?: number): Uint8Array {
     let start = this.pos;
     switch (wireType) {
       case WireType.Varint:
@@ -607,10 +609,15 @@ export class BinaryReader implements IBinaryReader {
         this.pos += len;
         break;
       case WireType.StartGroup:
-        // TODO check for matching field numbers in StartGroup / EndGroup tags
-        let t: WireType;
-        while ((t = this.tag()[1]) !== WireType.EndGroup) {
-          this.skip(t);
+        for (;;) {
+          const [fn, wt] = this.tag();
+          if (wt === WireType.EndGroup) {
+            if (fieldNo !== undefined && fn !== fieldNo) {
+              throw new Error("invalid end group tag");
+            }
+            break;
+          }
+          this.skip(wt, fn);
         }
         break;
       default:
