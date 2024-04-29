@@ -44,6 +44,7 @@ import {
   repeated_enum_ext,
   repeated_message_ext,
   repeated_string_ext,
+  repeated_uint64_ext_js_string,
   repeatedgroupext,
   string_ext,
   string_ext_with_default,
@@ -99,6 +100,7 @@ const goldenValues: extensionWithValueCollection = [
   { ext: repeated_string_ext, val: ["a", "b", "c"] },
   { ext: packed_uint32_ext, val: [1, 2, 3] },
   { ext: unpacked_uint32_ext, val: [4, 5, 6] },
+  { ext: repeated_uint64_ext_js_string, val: ["1", "2", "3"] },
   { ext: wrapper_ext, val: 123 },
   { ext: groupext, val: create(GroupExtDesc, { a: 123 }) },
   {
@@ -130,6 +132,7 @@ const goldenValuesZero: extensionWithValueCollection = [
   { ext: repeated_string_ext, val: [] },
   { ext: packed_uint32_ext, val: [] },
   { ext: unpacked_uint32_ext, val: [] },
+  { ext: repeated_uint64_ext_js_string, val: [] },
   { ext: wrapper_ext, val: 0 },
   { ext: groupext, val: create(GroupExtDesc) },
   { ext: repeatedgroupext, val: [] },

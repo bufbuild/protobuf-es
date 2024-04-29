@@ -62,6 +62,7 @@ extend Proto2Extendee {
   repeated string repeated_string_ext = 7002;
   repeated uint32 packed_uint32_ext = 7003 [packed = true];
   repeated uint32 unpacked_uint32_ext = 7004; // unpacked by default in proto2
+  repeated uint64 repeated_uint64_ext_js_string = 7006 [jstype = JS_STRING];
 
   optional google.protobuf.UInt32Value wrapper_ext = 8001;
 
