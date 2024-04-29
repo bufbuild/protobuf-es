@@ -16,12 +16,7 @@ import type { DescExtension } from "./desc-types.js";
 import { assert } from "./reflect/assert.js";
 import { readExtension } from "./from-binary.js";
 import { writeExtension } from "./to-binary.js";
-import type {
-  Extendee,
-  ExtensionValueShape,
-  Message,
-  UnknownField,
-} from "./types.js";
+import type { Extendee, ExtensionValueShape, Message } from "./types.js";
 import { BinaryReader, BinaryWriter } from "./wire/binary-encoding.js";
 
 /**
@@ -44,8 +39,8 @@ export function getExtension<Desc extends DescExtension>(
 ): ExtensionValueShape<Desc> {
   assertExtendee(extension, message);
   return readExtension(
-    filterUnknownFields(message.$unknown, extension),
     extension,
+    message.$unknown,
   ) as ExtensionValueShape<Desc>;
 }
 
@@ -104,23 +99,6 @@ export function hasExtension<Desc extends DescExtension>(
     extension.extendee.typeName === message.$typeName &&
     !!message.$unknown?.find((uf) => uf.no === extension.number)
   );
-}
-
-function filterUnknownFields(
-  unknownFields: UnknownField[] | undefined,
-  extension: DescExtension,
-): UnknownField[] {
-  if (unknownFields === undefined) return [];
-  if (extension.fieldKind === "enum" || extension.fieldKind === "scalar") {
-    // singular scalar fields do not merge, we pick the last
-    for (let i = unknownFields.length - 1; i >= 0; --i) {
-      if (unknownFields[i].no == extension.number) {
-        return [unknownFields[i]];
-      }
-    }
-    return [];
-  }
-  return unknownFields.filter((uf) => uf.no === extension.number);
 }
 
 function assertExtendee(extension: DescExtension, message: Message) {

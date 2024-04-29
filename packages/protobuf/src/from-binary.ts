@@ -132,7 +132,7 @@ function readMessage(
   }
 }
 
-export function readField(
+function readField(
   message: ReflectMessage,
   reader: BinaryReader,
   field: DescField,
@@ -166,7 +166,11 @@ export function readField(
 /**
  * @private
  */
-export function readExtension(ufs: UnknownField[], field: DescExtension) {
+export function readExtension(
+  field: DescExtension,
+  ufs: UnknownField[] | undefined,
+) {
+  ufs = ufs?.filter((uf) => uf.no === field.number) ?? [];
   const options = { readUnknownFields: false };
   switch (field.fieldKind) {
     case "scalar":
