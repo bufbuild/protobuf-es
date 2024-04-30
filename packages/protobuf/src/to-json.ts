@@ -169,8 +169,8 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
         continue;
       }
       const value = getExtension(msg.message, extension);
-      const [, field] = createExtensionContainer(extension);
-      const jsonValue = fieldToJson(field, value, opts);
+      const [container, field] = createExtensionContainer(extension, value);
+      const jsonValue = fieldToJson(field, container.get(field), opts);
       if (jsonValue !== undefined) {
         json[extension.jsonName] = jsonValue;
       }

@@ -249,6 +249,11 @@ export declare const packed_uint32_ext: GenDescExtension<Proto2Extendee, number[
 export declare const unpacked_uint32_ext: GenDescExtension<Proto2Extendee, number[]>;
 
 /**
+ * @generated from extension: repeated uint64 repeated_uint64_ext_js_string = 7006 [jstype = JS_STRING];
+ */
+export declare const repeated_uint64_ext_js_string: GenDescExtension<Proto2Extendee, string[]>;
+
+/**
  * @generated from extension: optional google.protobuf.UInt32Value wrapper_ext = 8001;
  */
 export declare const wrapper_ext: GenDescExtension<Proto2Extendee, number>;

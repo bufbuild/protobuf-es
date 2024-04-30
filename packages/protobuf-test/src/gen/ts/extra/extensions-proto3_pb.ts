@@ -16,16 +16,36 @@
 // @generated from file extra/extensions-proto3.proto (package proto3ext, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescExtension, GenDescFile } from "@bufbuild/protobuf/codegenv1";
-import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { FileOptions } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
+import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/extensions-proto3.proto.
  */
 export const fileDesc_extra_extensions_proto3: GenDescFile = /*@__PURE__*/
-  fileDesc("Ch1leHRyYS9leHRlbnNpb25zLXByb3RvMy5wcm90bxIJcHJvdG8zZXh0OjwKCnVpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY6QcgASgNUgl1aW50MzJFeHQ6UAoTb3B0aW9uYWxfdWludDMyX2V4dBIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxjqByABKA1SEW9wdGlvbmFsVWludDMyRXh0iAEBOkkKEXBhY2tlZF91aW50MzJfZXh0EhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGNs2IAMoDVIPcGFja2VkVWludDMyRXh0OlEKE3VucGFja2VkX3VpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY3DYgAygNQgIQAFIRdW5wYWNrZWRVaW50MzJFeHRiBnByb3RvMw", [fileDesc_google_protobuf_descriptor]);
+  fileDesc("Ch1leHRyYS9leHRlbnNpb25zLXByb3RvMy5wcm90bxIJcHJvdG8zZXh0IigKEFByb3RvM0V4dE1lc3NhZ2USFAoMc3RyaW5nX2ZpZWxkGAEgASgJOjwKCnVpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY6QcgASgNUgl1aW50MzJFeHQ6UAoTb3B0aW9uYWxfdWludDMyX2V4dBIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxjqByABKA1SEW9wdGlvbmFsVWludDMyRXh0iAEBOkkKEXBhY2tlZF91aW50MzJfZXh0EhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGNs2IAMoDVIPcGFja2VkVWludDMyRXh0OlEKE3VucGFja2VkX3VpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY3DYgAygNQgIQAFIRdW5wYWNrZWRVaW50MzJFeHQ6WwoLbWVzc2FnZV9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY3TYgASgLMhsucHJvdG8zZXh0LlByb3RvM0V4dE1lc3NhZ2VSCm1lc3NhZ2VFeHRiBnByb3RvMw", [fileDesc_google_protobuf_descriptor]);
+
+/**
+ * A message used in extensions
+ *
+ * @generated from message proto3ext.Proto3ExtMessage
+ */
+export type Proto3ExtMessage = Message<"proto3ext.Proto3ExtMessage"> & {
+  /**
+   * @generated from field: string string_field = 1;
+   */
+  stringField: string;
+};
+
+/**
+ * Describes the message proto3ext.Proto3ExtMessage.
+ * Use `create(Proto3ExtMessageDesc)` to create a new message.
+ */
+export const Proto3ExtMessageDesc: GenDescMessage<Proto3ExtMessage> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_extensions_proto3, 0);
 
 /**
  * @generated from extension: uint32 uint32_ext = 1001;
@@ -50,4 +70,10 @@ export const packed_uint32_ext: GenDescExtension<FileOptions, number[]> = /*@__P
  */
 export const unpacked_uint32_ext: GenDescExtension<FileOptions, number[]> = /*@__PURE__*/
   extDesc(fileDesc_extra_extensions_proto3, 3);
+
+/**
+ * @generated from extension: proto3ext.Proto3ExtMessage message_ext = 7005;
+ */
+export const message_ext: GenDescExtension<FileOptions, Proto3ExtMessage> = /*@__PURE__*/
+  extDesc(fileDesc_extra_extensions_proto3, 4);
 

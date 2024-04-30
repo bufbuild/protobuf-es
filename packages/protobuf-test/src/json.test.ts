@@ -17,10 +17,16 @@ import {
   create,
   toJson,
   fromJson,
+  fromJsonString,
   setExtension,
   getExtension,
 } from "@bufbuild/protobuf";
-import type { MessageInitShape } from "@bufbuild/protobuf";
+import type {
+  MessageInitShape,
+  DescMessage,
+  JsonValue,
+} from "@bufbuild/protobuf";
+import { createRegistry } from "@bufbuild/protobuf/reflect";
 import {
   RepeatedScalarValuesMessageDesc,
   ScalarValuesMessageDesc,
@@ -38,21 +44,16 @@ import {
   ValueDesc,
   anyPack,
   anyUnpack,
+  FileOptionsDesc,
 } from "@bufbuild/protobuf/wkt";
-import type { DescMessage, JsonValue } from "@bufbuild/protobuf";
-import { createRegistry } from "@bufbuild/protobuf/reflect";
-
-import {
-  Proto2ExtendeeDesc,
-  string_ext,
-} from "./gen/ts/extra/extensions-proto2_pb.js";
+import * as ext_proto2 from "./gen/ts/extra/extensions-proto2_pb.js";
+import * as ext_proto3 from "./gen/ts/extra/extensions-proto3_pb.js";
 import { OneofMessageDesc } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageDesc } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageDesc } from "./gen/ts/extra/jstype-proto2_pb.js";
-import { fromJsonString } from "@bufbuild/protobuf";
 import { TestAllTypesProto3Desc } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 
-describe(`json serialization`, () => {
+describe("JSON serialization", () => {
   testJson(
     ScalarValuesMessageDesc,
     {
@@ -561,21 +562,142 @@ describe(`json serialization`, () => {
       });
     });
   });
-  describe("extensions", () => {
-    test("encode and decode an extension", () => {
-      const extendee = create(Proto2ExtendeeDesc);
-      setExtension(extendee, string_ext, "foo");
-      const jsonOpts = { registry: createRegistry(string_ext) };
-      expect(
-        getExtension(
-          fromJson(
-            Proto2ExtendeeDesc,
-            toJson(Proto2ExtendeeDesc, extendee, jsonOpts),
-            jsonOpts,
-          ),
-          string_ext,
-        ),
-      ).toEqual("foo");
+});
+
+describe("extensions in JSON", () => {
+  describe("proto2", () => {
+    const extendeeDesc = ext_proto2.Proto2ExtendeeDesc;
+    const jsonOpts = {
+      registry: createRegistry(ext_proto2.fileDesc_extra_extensions_proto2),
+    };
+    describe("string_ext", () => {
+      const ext = ext_proto2.string_ext;
+      const goldenJson = {
+        "[proto2ext.string_ext]": "foo",
+      };
+      const goldenValue = "foo";
+      test("encode", () => {
+        const extendee = create(extendeeDesc);
+        setExtension(extendee, ext, goldenValue);
+        const json = toJson(extendeeDesc, extendee, jsonOpts);
+        expect(json).toStrictEqual(goldenJson);
+      });
+      test("decode", () => {
+        const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
+        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+      });
+    });
+    describe("uint64_ext", () => {
+      const ext = ext_proto2.uint64_ext;
+      const goldenJson = {
+        "[proto2ext.uint64_ext]": "123",
+      };
+      const goldenValue = protoInt64.parse(123);
+      test("encode", () => {
+        const extendee = create(extendeeDesc);
+        setExtension(extendee, ext, goldenValue);
+        const json = toJson(extendeeDesc, extendee, jsonOpts);
+        expect(json).toStrictEqual(goldenJson);
+      });
+      test("decode", () => {
+        const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
+        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+      });
+    });
+    describe("uint64_ext_js_string", () => {
+      const ext = ext_proto2.uint64_ext_js_string;
+      const goldenJson = {
+        "[proto2ext.uint64_ext_js_string]": "456",
+      };
+      const goldenValue = "456";
+      test("encode", () => {
+        const extendee = create(extendeeDesc);
+        setExtension(extendee, ext, goldenValue);
+        const json = toJson(extendeeDesc, extendee, jsonOpts);
+        expect(json).toStrictEqual(goldenJson);
+      });
+      test("decode", () => {
+        const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
+        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+      });
+    });
+    describe("wrapper_ext", () => {
+      const ext = ext_proto2.wrapper_ext;
+      const goldenJson = {
+        "[proto2ext.wrapper_ext]": 789,
+      };
+      const goldenValue = 789;
+      test("encode", () => {
+        const extendee = create(extendeeDesc);
+        setExtension(extendee, ext, goldenValue);
+        const json = toJson(extendeeDesc, extendee, jsonOpts);
+        expect(json).toStrictEqual(goldenJson);
+      });
+      test("decode", () => {
+        const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
+        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+      });
+    });
+    describe("message_ext", () => {
+      const ext = ext_proto2.message_ext;
+      const goldenJson = {
+        "[proto2ext.message_ext]": { stringField: "abc" },
+      };
+      const goldenValue = create(ext_proto2.Proto2ExtMessageDesc, {
+        stringField: "abc",
+      });
+      test("encode", () => {
+        const extendee = create(extendeeDesc);
+        setExtension(extendee, ext, goldenValue);
+        const json = toJson(extendeeDesc, extendee, jsonOpts);
+        expect(json).toStrictEqual(goldenJson);
+      });
+      test("decode", () => {
+        const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
+        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+      });
+    });
+  });
+  describe("proto3", () => {
+    const extendeeDesc = FileOptionsDesc;
+    const jsonOpts = {
+      registry: createRegistry(ext_proto3.fileDesc_extra_extensions_proto3),
+    };
+    describe("uint32_ext", () => {
+      const ext = ext_proto3.uint32_ext;
+      const goldenJson = {
+        "[proto3ext.uint32_ext]": 0,
+      };
+      const goldenValue = 0;
+      test("encode", () => {
+        const extendee = create(extendeeDesc);
+        setExtension(extendee, ext, goldenValue);
+        const json = toJson(extendeeDesc, extendee, jsonOpts);
+        expect(json).toStrictEqual(goldenJson);
+      });
+      test("decode", () => {
+        const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
+        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+      });
+    });
+    describe("message_ext", () => {
+      const ext = ext_proto3.message_ext;
+      const goldenJson = {
+        "[proto3ext.message_ext]": { stringField: "abc" },
+      };
+      const goldenValue = create(ext_proto3.Proto3ExtMessageDesc, {
+        stringField: "abc",
+      });
+      test("encode", () => {
+        const extendee = create(extendeeDesc);
+        setExtension(extendee, ext, goldenValue);
+        const json = toJson(extendeeDesc, extendee, jsonOpts);
+        expect(json).toStrictEqual(goldenJson);
+      });
+      test("decode", () => {
+        const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
+        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+      });
     });
   });
 });

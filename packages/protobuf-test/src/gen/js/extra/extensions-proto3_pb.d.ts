@@ -16,13 +16,32 @@
 // @generated from file extra/extensions-proto3.proto (package proto3ext, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescExtension, GenDescFile } from "@bufbuild/protobuf/codegenv1";
+import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { Message } from "@bufbuild/protobuf";
 import type { FileOptions } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/extensions-proto3.proto.
  */
 export declare const fileDesc_extra_extensions_proto3: GenDescFile;
+
+/**
+ * A message used in extensions
+ *
+ * @generated from message proto3ext.Proto3ExtMessage
+ */
+export declare type Proto3ExtMessage = Message<"proto3ext.Proto3ExtMessage"> & {
+  /**
+   * @generated from field: string string_field = 1;
+   */
+  stringField: string;
+};
+
+/**
+ * Describes the message proto3ext.Proto3ExtMessage.
+ * Use `create(Proto3ExtMessageDesc)` to create a new message.
+ */
+export declare const Proto3ExtMessageDesc: GenDescMessage<Proto3ExtMessage>;
 
 /**
  * @generated from extension: uint32 uint32_ext = 1001;
@@ -43,4 +62,9 @@ export declare const packed_uint32_ext: GenDescExtension<FileOptions, number[]>;
  * @generated from extension: repeated uint32 unpacked_uint32_ext = 7004 [packed = false];
  */
 export declare const unpacked_uint32_ext: GenDescExtension<FileOptions, number[]>;
+
+/**
+ * @generated from extension: proto3ext.Proto3ExtMessage message_ext = 7005;
+ */
+export declare const message_ext: GenDescExtension<FileOptions, Proto3ExtMessage>;
 
