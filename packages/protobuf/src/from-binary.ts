@@ -143,10 +143,10 @@ export function readField(
 ) {
   switch (field.fieldKind) {
     case "scalar":
-      message.set(field, readScalar(reader, field.scalar, field.longType));
+      message.set(field, readScalar(reader, field.scalar));
       break;
     case "enum":
-      message.set(field, readScalar(reader, ScalarType.INT32));
+      message.set(field, readScalar(reader, ScalarType.INT32) as number);
       break;
     case "message":
       message.set(
@@ -178,7 +178,7 @@ function readMapEntry(
     const [fieldNo] = reader.tag();
     switch (fieldNo) {
       case 1:
-        key = readScalar(reader, field.mapKey);
+        key = readScalar(reader, field.mapKey) as MapEntryKey;
         break;
       case 2:
         switch (field.mapKind) {
@@ -229,18 +229,17 @@ function readListField(
     return;
   }
   const scalarType = field.scalar ?? ScalarType.INT32;
-  const longType = field.listKind == "scalar" ? field.longType : undefined;
   const packed =
     wireType == WireType.LengthDelimited &&
     scalarType != ScalarType.STRING &&
     scalarType != ScalarType.BYTES;
   if (!packed) {
-    message.addListItem(field, readScalar(reader, scalarType, longType));
+    message.addListItem(field, readScalar(reader, scalarType));
     return;
   }
   const e = reader.uint32() + reader.pos;
   while (reader.pos < e) {
-    message.addListItem(field, readScalar(reader, scalarType, longType));
+    message.addListItem(field, readScalar(reader, scalarType));
   }
 }
 
@@ -262,19 +261,7 @@ function readMessageField(
   return message;
 }
 
-function readScalar<Scalar extends ScalarType, L extends LongType>(
-  reader: BinaryReader,
-  type: Scalar,
-  longType?: L,
-): ScalarValue<Scalar, L> {
-  let v = readScalarValue(reader, type);
-  if (longType === LongType.STRING) {
-    v = typeof v == "bigint" ? v.toString() : v;
-  }
-  return v as ScalarValue<Scalar, L>;
-}
-
-function readScalarValue(reader: BinaryReader, type: ScalarType): ScalarValue {
+function readScalar(reader: BinaryReader, type: ScalarType): ScalarValue {
   switch (type) {
     case ScalarType.STRING:
       return reader.string();
