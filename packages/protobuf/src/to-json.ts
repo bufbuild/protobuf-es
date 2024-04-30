@@ -29,7 +29,6 @@ import type {
   Any,
   Duration,
   FeatureSet_FieldPresence,
-  FieldDescriptorProto_Label,
   FieldMask,
   ListValue,
   Struct,
@@ -44,8 +43,8 @@ import { createExtensionContainer, getExtension } from "./extensions.js";
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
 const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
 
-// bootstrap-inject google.protobuf.FieldDescriptorProto.Label.LABEL_OPTIONAL: const $name: FieldDescriptorProto_Label.$localName = $number;
-const LABEL_OPTIONAL: FieldDescriptorProto_Label.OPTIONAL = 1;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
+const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
 
 /**
  * Options for serializing to JSON.
@@ -135,19 +134,13 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
   const json: JsonObject = {};
   for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
-      if (
-        f.fieldKind != "map" &&
-        f.fieldKind != "list" &&
-        f.presence == LEGACY_REQUIRED
-      ) {
+      if (f.presence == LEGACY_REQUIRED) {
         throw new Error(
           `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,
         );
       }
-      if (!opts.emitDefaultValues) {
-        continue;
-      }
-      if (!canEmitFieldDefaultValue(f)) {
+      if (!opts.emitDefaultValues || f.presence !== IMPLICIT) {
+        // Fields with implicit presence omit zero values (e.g. empty string) by default
         continue;
       }
     }
@@ -318,23 +311,6 @@ function scalarToJson(
     case ScalarType.BYTES:
       assert(value instanceof Uint8Array);
       return base64Encode(value);
-  }
-}
-
-// Decide whether an unset field should be emitted with JSON write option `emitDefaultValues`
-function canEmitFieldDefaultValue(field: DescField) {
-  switch (true) {
-    // oneof fields are never emitted
-    case field.oneof !== undefined:
-    // singular message field are allowed to emit JSON null, but we do not
-    // eslint-disable-next-line no-fallthrough
-    case field.fieldKind === "message":
-    // the field uses explicit presence, so we cannot emit a zero value
-    // eslint-disable-next-line no-fallthrough
-    case field.proto.label === LABEL_OPTIONAL:
-      return false;
-    default:
-      return true;
   }
 }
 

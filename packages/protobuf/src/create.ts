@@ -28,8 +28,6 @@ import type {
 
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
 const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;
-// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.EXPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
-const EXPLICIT: FeatureSet_FieldPresence.EXPLICIT = 1;
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
 const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
 
@@ -182,19 +180,9 @@ function createZeroMessage(desc: DescMessage): Message {
     // the `optional` keyword generate an optional property.
     msg = {};
     for (const member of desc.members) {
-      if (member.kind == "field") {
-        if (
-          member.fieldKind == "scalar" ||
-          member.fieldKind == "enum" ||
-          member.fieldKind == "message"
-        ) {
-          if (member.presence == EXPLICIT) {
-            // skips message fields and optional scalar/enum
-            continue;
-          }
-        }
+      if (member.kind == "oneof" || member.presence == IMPLICIT) {
+        msg[localName(member)] = createZeroField(member);
       }
-      msg[localName(member)] = createZeroField(member);
     }
   } else {
     // for everything but proto3, we support default values, and track presence
@@ -219,8 +207,8 @@ function createZeroMessage(desc: DescMessage): Message {
           continue;
         }
         if (member.presence == IMPLICIT) {
-          // implicit presence tracks field presence by zero values
-          // e.g. 0, false, "", are unset, 1, true, "x" are set
+          // implicit presence tracks field presence by zero values - e.g. 0, false, "", are unset, 1, true, "x" are set.
+          // message, map, list fields are mutable, and also have IMPLICIT presence.
           continue;
         }
         members.add(member);

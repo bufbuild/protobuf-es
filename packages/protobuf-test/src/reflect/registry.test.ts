@@ -25,7 +25,6 @@ import {
 import type {
   DescEnum,
   DescExtension,
-  DescField,
   DescFile,
   DescMessage,
   DescOneof,
@@ -39,6 +38,7 @@ import {
 } from "@bufbuild/protobuf/wkt";
 import {
   compileEnum,
+  compileExtension,
   compileField,
   compileFile,
   compileFileDescriptorSet,
@@ -639,13 +639,6 @@ describe("DescEnum", () => {
 
 describe("DescField", () => {
   describe("presence", () => {
-    function getPresence(field: DescField) {
-      return field.fieldKind == "scalar" ||
-        field.fieldKind == "message" ||
-        field.fieldKind == "enum"
-        ? field.presence
-        : undefined;
-    }
     test("proto2 optional is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
@@ -653,7 +646,7 @@ describe("DescField", () => {
           optional int32 f = 1;
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto2 optional message is EXPLICIT", async () => {
       const field = await compileField(`
@@ -662,7 +655,7 @@ describe("DescField", () => {
           optional M f = 1;
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto2 required is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
@@ -671,7 +664,7 @@ describe("DescField", () => {
           required int32 f = 1;
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
     });
     test("proto2 required message is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
@@ -680,7 +673,25 @@ describe("DescField", () => {
           required M f = 1;
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
+    });
+    test("proto2 list is IMPLICIT", async () => {
+      const field = await compileField(`
+        syntax="proto2";
+        message M { 
+          repeated int32 f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+    test("proto2 map is IMPLICIT", async () => {
+      const field = await compileField(`
+        syntax="proto2";
+        message M { 
+          map <int32, int32> f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto2 oneof is EXPLICIT", async () => {
       const field = await compileField(`
@@ -691,7 +702,7 @@ describe("DescField", () => {
           }
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto3 is IMPLICIT", async () => {
       const field = await compileField(`
@@ -700,7 +711,7 @@ describe("DescField", () => {
           int32 f = 1;
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto3 optional is EXPLICIT", async () => {
       const field = await compileField(`
@@ -709,7 +720,25 @@ describe("DescField", () => {
           optional int32 f = 1;
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+    });
+    test("proto3 list is IMPLICIT", async () => {
+      const field = await compileField(`
+        syntax="proto3";
+        message M { 
+          repeated int32 f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+    test("proto3 map is IMPLICIT", async () => {
+      const field = await compileField(`
+        syntax="proto3";
+        message M { 
+          map <int32, int32> f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto3 oneof is EXPLICIT", async () => {
       const field = await compileField(`
@@ -720,7 +749,7 @@ describe("DescField", () => {
           }
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto3 message is EXPLICIT", async () => {
       const field = await compileField(`
@@ -729,7 +758,7 @@ describe("DescField", () => {
           M f = 1;
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto3 optional message is EXPLICIT", async () => {
       const field = await compileField(`
@@ -738,7 +767,26 @@ describe("DescField", () => {
           optional M f = 1;
         }
       `);
-      expect(getPresence(field)).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+    });
+    test("edition2023 scalar is EXPLICIT", async () => {
+      const field = await compileField(`
+        edition="2023";
+        message M { 
+          int32 f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+    });
+    test("edition2023 inherited features.field_presence is IMPLICIT", async () => {
+      const field = await compileField(`
+        edition="2023";
+        option features.field_presence = IMPLICIT;
+        message M { 
+          int32 f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
     });
   });
   describe("delimitedEncoding", () => {
@@ -1284,6 +1332,133 @@ describe("DescField", () => {
         break;
       }
     }
+  });
+});
+
+describe("DescExtension", () => {
+  test("typeName", async () => {
+    const ext = await compileExtension(`
+      syntax="proto2";
+      extend M {
+        optional int32 ext = 1;
+      }
+      message M { extensions 1; }
+    `);
+    expect(ext.typeName).toBe("ext");
+  });
+  test("typeName with package", async () => {
+    const ext = await compileExtension(`
+      syntax="proto2";
+      package test;
+      extend M {
+        optional int32 ext = 1;
+      }
+      message M { extensions 1; }
+    `);
+    expect(ext.typeName).toBe("test.ext");
+  });
+  test("typeName for nested package", async () => {
+    const message = await compileMessage(`
+      syntax="proto2";
+      package test;
+      message C {
+        extend M {
+          optional int32 ext = 1;
+        }
+      }
+      message M { extensions 1; }
+    `);
+    const ext = message.nestedExtensions[0];
+    expect(ext.typeName).toBe("test.C.ext");
+  });
+  test("jsonName", async () => {
+    const message = await compileMessage(`
+      syntax="proto2";
+      package test;
+      message C {
+        extend M {
+          optional int32 ext = 1;
+        }
+      }
+      message M { extensions 1; }
+    `);
+    const ext = message.nestedExtensions[0];
+    expect(ext.jsonName).toBe("[test.C.ext]");
+  });
+  test("extendee", async () => {
+    const file = await compileFile(`
+      syntax="proto2";
+      package test;
+      extend M {
+        optional int32 ext = 1;
+      }
+      message M { extensions 1; }
+    `);
+    const ext = file.extensions[0];
+    const M = file.messages[0];
+    expect(ext.extendee).toBe(M);
+  });
+  test("parent", async () => {
+    const message = await compileMessage(`
+      syntax="proto2";
+      package test;
+      message C {
+        extend M {
+          optional int32 ext = 1;
+        }
+      }
+      message M { extensions 1; }
+    `);
+    const ext = message.nestedExtensions[0];
+    expect(ext.parent).toBe(message);
+  });
+  describe("presence", () => {
+    test("proto3 implicit field is EXPLICIT", async () => {
+      const ext = await compileExtension(`
+        syntax="proto3";
+        import "google/protobuf/descriptor.proto";
+        extend google.protobuf.FieldOptions {
+          int32 ext = 1001;
+        }
+      `);
+      expect(ext.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+    });
+    test("proto3 list is IMPLICIT", async () => {
+      const ext = await compileExtension(`
+        syntax="proto3";
+        import "google/protobuf/descriptor.proto";
+        extend google.protobuf.FieldOptions {
+          repeated int32 ext = 1001;
+        }
+      `);
+      expect(ext.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+  });
+  describe("delimitedEncoding", () => {
+    test("true for proto2 group", async () => {
+      const ext = await compileExtension(`
+        syntax="proto2";
+        extend M {
+          optional group GroupExt = 1 {}
+        }
+        message M { extensions 1; }
+      `);
+      expect(
+        ext.fieldKind == "message" ? ext.delimitedEncoding : undefined,
+      ).toBe(true);
+    });
+    test("true for field with features.message_encoding = DELIMITED", async () => {
+      const ext = await compileExtension(`
+        edition="2023";
+        extend M {
+          M f = 1 [features.message_encoding = DELIMITED];
+        }
+        message M { extensions 1; }
+      `);
+      expect(
+        ext.fieldKind == "message" ? ext.delimitedEncoding : undefined,
+      ).toBe(true);
+    });
   });
 });
 

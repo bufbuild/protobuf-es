@@ -48,10 +48,12 @@ import {
 } from "@bufbuild/protobuf/wkt";
 import * as ext_proto2 from "./gen/ts/extra/extensions-proto2_pb.js";
 import * as ext_proto3 from "./gen/ts/extra/extensions-proto3_pb.js";
+import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import { OneofMessageDesc } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageDesc } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageDesc } from "./gen/ts/extra/jstype-proto2_pb.js";
 import { TestAllTypesProto3Desc } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
+import { compileMessage } from "./helpers.js";
 
 describe("JSON serialization", () => {
   testJson(
@@ -697,6 +699,116 @@ describe("extensions in JSON", () => {
       test("decode", () => {
         const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
         expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+      });
+    });
+  });
+});
+
+describe("JsonWriteOptions", () => {
+  describe("emitDefaultValues", () => {
+    test("emits proto3 implicit fields", async () => {
+      const descMessage = await compileMessage(`
+        syntax="proto3";
+        message M {
+          int32 int32_field = 1;
+          bool bool_field = 2;
+          repeated int32 list_field = 3;
+          map<int32, int32> map_field = 4;
+        }
+      `);
+      const json = toJson(descMessage, create(descMessage), {
+        emitDefaultValues: true,
+      });
+      expect(json).toStrictEqual({
+        int32Field: 0,
+        boolField: false,
+        listField: [],
+        mapField: {},
+      });
+    });
+    test("does not emit proto3 explicit fields", async () => {
+      const descMessage = await compileMessage(`
+        syntax="proto3";
+        message M {
+          oneof kind {
+            int32 int32_field = 1;
+          }
+          optional int32 optional_field = 2;
+        }
+      `);
+      const json = toJson(descMessage, create(descMessage), {
+        emitDefaultValues: true,
+      });
+      expect(json).toStrictEqual({});
+    });
+    test("emits proto2 implicit fields", async () => {
+      const descMessage = await compileMessage(`
+        syntax="proto2";
+        message M {
+          optional int32 optional_field = 1;
+          repeated int32 list_field = 2;
+          map<int32, int32> map_field = 3;
+        }
+      `);
+      const json = toJson(descMessage, create(descMessage), {
+        emitDefaultValues: true,
+      });
+      expect(json).toStrictEqual({
+        listField: [],
+        mapField: {},
+      });
+    });
+  });
+  test("enumAsInteger", () => {
+    const msg = create(proto3_ts.Proto3MessageDesc, {
+      singularEnumField: proto3_ts.Proto3Enum.YES,
+      optionalEnumField: proto3_ts.Proto3Enum.UNSPECIFIED,
+      repeatedEnumField: [proto3_ts.Proto3Enum.YES, proto3_ts.Proto3Enum.NO],
+      mapInt32EnumField: {
+        1: proto3_ts.Proto3Enum.YES,
+        2: proto3_ts.Proto3Enum.NO,
+      },
+      singularMessageField: {
+        singularEnumField: proto3_ts.Proto3Enum.YES,
+      },
+    });
+    const json = toJson(proto3_ts.Proto3MessageDesc, msg, {
+      enumAsInteger: true,
+    });
+    expect(json).toStrictEqual({
+      singularEnumField: 1,
+      optionalEnumField: 0,
+      repeatedEnumField: [1, 2],
+      mapInt32EnumField: {
+        1: 1,
+        2: 2,
+      },
+      singularMessageField: {
+        singularEnumField: 1,
+      },
+    });
+  });
+  describe("useProtoFieldName", () => {
+    test("prefers proto field name", () => {
+      const msg = create(proto3_ts.Proto3MessageDesc, {
+        singularStringField: "a",
+      });
+      const json = toJson(proto3_ts.Proto3MessageDesc, msg, {
+        useProtoFieldName: true,
+      });
+      expect(json).toStrictEqual({
+        singular_string_field: "a",
+      });
+    });
+    test("prefers proto field name over json_name", () => {
+      const msg = create(JsonNamesMessageDesc, {
+        scalarField: "a",
+      });
+      const json = toJson(JsonNamesMessageDesc, msg, {
+        useProtoFieldName: true,
+      });
+      expect(json).toStrictEqual({
+        scalar_field: "a",
       });
     });
   });
