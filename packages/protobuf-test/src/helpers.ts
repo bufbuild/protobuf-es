@@ -75,6 +75,13 @@ export async function compileField(proto: string) {
   return firstField;
 }
 
+export async function compileExtension(proto: string) {
+  const file = await compileFile(proto);
+  const firstExt = file.extensions[0];
+  assert(firstExt);
+  return firstExt;
+}
+
 export async function compileService(proto: string) {
   const file = await compileFile(proto);
   const firstService = file.services[0];

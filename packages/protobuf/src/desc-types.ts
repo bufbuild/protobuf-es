@@ -309,6 +309,11 @@ interface descFieldAndExtensionShared {
    */
   readonly deprecated: boolean;
   /**
+   * Presence of the field.
+   * See https://protobuf.dev/programming-guides/field_presence/
+   */
+  readonly presence: SupportedFieldPresence;
+  /**
    * The compiler-generated descriptor.
    */
   readonly proto: FieldDescriptorProto;
@@ -325,11 +330,6 @@ type descFieldSingularCommon = {
    * This does not include synthetic oneofs for proto3 optionals.
    */
   readonly oneof: DescOneof | undefined;
-  /**
-   * Presence of the field.
-   * See https://protobuf.dev/programming-guides/field_presence/
-   */
-  readonly presence: SupportedFieldPresence;
 };
 
 type descFieldScalar<T extends ScalarType = ScalarType> = T extends T

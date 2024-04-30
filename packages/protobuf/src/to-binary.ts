@@ -70,11 +70,7 @@ function writeFields(
 ): BinaryWriter {
   for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
-      if (
-        f.fieldKind != "map" &&
-        f.fieldKind != "list" &&
-        f.presence == LEGACY_REQUIRED
-      ) {
+      if (f.presence == LEGACY_REQUIRED) {
         throw new Error(
           `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,
         );

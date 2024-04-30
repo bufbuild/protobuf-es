@@ -386,6 +386,8 @@ const IDEMPOTENCY_UNKNOWN: MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN = 
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.EXPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
 const EXPLICIT: FeatureSet_FieldPresence.EXPLICIT = 1;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
+const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
 const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
 
@@ -763,6 +765,7 @@ function newField(
   oneof?: DescOneof | undefined,
   mapEntries?: FileMapEntries,
 ): DescField | DescExtension {
+  const isExtension = mapEntries === undefined;
   type AllKeys =
     | keyof DescField
     | keyof DescExtension
@@ -778,8 +781,9 @@ function newField(
     scalar: undefined,
     message: undefined,
     enum: undefined,
+    presence: getFieldPresence(proto, oneof, isExtension, parentOrFile),
   };
-  if (mapEntries === undefined) {
+  if (isExtension) {
     // extension field
     const file = parentOrFile.kind == "file" ? parentOrFile : parentOrFile.file;
     const parent = parentOrFile.kind == "file" ? undefined : parentOrFile;
@@ -906,7 +910,6 @@ function newField(
       break;
     }
   }
-  field.presence = getFieldPresence(proto, oneof, parentOrFile);
   return field as DescField | DescExtension;
 }
 
@@ -1054,26 +1057,29 @@ function findOneof(
 function getFieldPresence(
   proto: FieldDescriptorProto,
   oneof: DescOneof | undefined,
+  isExtension: boolean,
   parent: DescMessage | DescFile,
 ): FeatureSet_FieldPresence {
   if (proto.label == LABEL_REQUIRED) {
     // proto2 required is LEGACY_REQUIRED
     return LEGACY_REQUIRED;
   }
-  const { edition } = parent.kind == "message" ? parent.file : parent;
-  if (edition == EDITION_PROTO3) {
-    // proto3 oneof and optional are explicit
-    if (oneof != undefined || proto.proto3Optional) {
-      return EXPLICIT;
-    }
-    // proto3 singular message is explicit
-    const singularMessage =
-      proto.label != LABEL_REPEATED && proto.type == TYPE_MESSAGE;
-    if (singularMessage) {
-      return EXPLICIT;
-    }
+  if (proto.label == LABEL_REPEATED) {
+    // repeated fields (including maps) do not track presence
+    return IMPLICIT;
   }
-  // also resolves proto2/proto3 defaults
+  if (!!oneof || proto.proto3Optional) {
+    // oneof is always explicit
+    return EXPLICIT;
+  }
+  if (proto.type == TYPE_MESSAGE) {
+    // singular message field cannot be implicit
+    return EXPLICIT;
+  }
+  if (isExtension) {
+    // extensions always track presence
+    return EXPLICIT;
+  }
   return resolveFeature("fieldPresence", { proto, parent });
 }
 

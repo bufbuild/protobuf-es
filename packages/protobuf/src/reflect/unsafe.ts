@@ -52,26 +52,26 @@ export function unsafeIsSet(
   if (field.oneof) {
     return target[localName(field.oneof)].case === name; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
   }
+  if (field.presence != IMPLICIT) {
+    // Fields with explicit presence have properties on the prototype chain
+    // for default / zero values (except for proto3).
+    return (
+      target[name] !== undefined &&
+      Object.prototype.hasOwnProperty.call(target, name)
+    );
+  }
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (field.fieldKind) {
-    case "message":
-      return target[name] !== undefined;
     case "list":
       return (target[name] as unknown[]).length > 0;
     case "map":
       return Object.keys(target[name]).length > 0; // eslint-disable-line @typescript-eslint/no-unsafe-argument
-    default:
-      if (field.presence == IMPLICIT) {
-        if (field.fieldKind == "enum") {
-          return target[name] !== field.enum.values[0].number;
-        }
-        return !isScalarZeroValue(field.scalar, target[name]);
-      }
-      // EXPLICIT and LEGACY_REQUIRED
-      return (
-        target[name] !== undefined &&
-        Object.prototype.hasOwnProperty.call(target, name)
-      );
+    case "scalar":
+      return !isScalarZeroValue(field.scalar, target[name]);
+    case "enum":
+      return target[name] !== field.enum.values[0].number;
   }
+  throw new Error("message field with implicit presence");
 }
 
 /**
@@ -143,7 +143,13 @@ export function unsafeClear(
     if ((target[oneofLocalName] as OneofADT).case === name) {
       target[oneofLocalName] = { case: undefined };
     }
+  } else if (field.presence != IMPLICIT) {
+    // Fields with explicit presence have properties on the prototype chain
+    // for default / zero values (except for proto3). By deleting their own
+    // property, the field is reset.
+    delete target[name];
   } else {
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (field.fieldKind) {
       case "map":
         target[name] = {};
@@ -151,18 +157,12 @@ export function unsafeClear(
       case "list":
         target[name] = [];
         break;
-      case "message":
-        delete target[name];
+      case "enum":
+        target[name] = field.enum.values[0].number;
         break;
-      default:
-        if (field.presence == IMPLICIT) {
-          target[name] =
-            field.fieldKind == "enum"
-              ? field.enum.values[0].number
-              : scalarZeroValue(field.scalar, field.longType);
-        } else {
-          delete target[name];
-        }
+      case "scalar":
+        target[name] = scalarZeroValue(field.scalar, field.longType);
+        break;
     }
   }
 }
