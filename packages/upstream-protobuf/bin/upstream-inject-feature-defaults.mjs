@@ -15,6 +15,7 @@
 // limitations under the License.
 
 import { argv, exit, stdout, stderr } from "node:process";
+// eslint-disable-next-line n/no-unsupported-features/node-builtins
 import { parseArgs } from "node:util";
 import { readFileSync, writeFileSync } from "node:fs";
 import { UpstreamProtobuf } from "../index.mjs";

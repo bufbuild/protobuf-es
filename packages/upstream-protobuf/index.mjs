@@ -551,6 +551,7 @@ export class UpstreamProtobuf {
     if (existsSync(path)) {
       return path;
     }
+    // eslint-disable-next-line n/no-unsupported-features/es-builtins
     const res = await fetch(url);
     if (!res.ok) {
       throw new Error(`HTTP ${res.status} ${res.statusText} for ${url}`);
