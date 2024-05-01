@@ -26,33 +26,33 @@ import { assertFloat32, assertInt32, assertUInt32 } from "./reflect/assert.js";
 import { protoInt64 } from "./proto-int64.js";
 import { create } from "./create.js";
 import type { Registry } from "./reflect/registry.js";
-import type { ReflectMessage, MapEntryKey } from "./reflect/reflect-types.js";
+import type { MapEntryKey, ReflectMessage } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { formatVal } from "./reflect/reflect-check.js";
 import {
-  scalarZeroValue,
   LongType,
   ScalarType,
   type ScalarValue,
+  scalarZeroValue,
 } from "./reflect/scalar.js";
 import type { MessageShape } from "./types.js";
 import { base64Decode } from "./wire/base64-encoding.js";
 import { getTextEncoding } from "./wire/text-encoding.js";
+import type {
+  Any,
+  Duration,
+  FieldMask,
+  ListValue,
+  Struct,
+  Timestamp,
+  Value,
+} from "./wkt/index.js";
 import {
+  anyPack,
   ListValueDesc,
   NullValue,
   StructDesc,
   ValueDesc,
-  anyPack,
-} from "./wkt/index.js";
-import type {
-  Any,
-  Timestamp,
-  Duration,
-  Struct,
-  Value,
-  FieldMask,
-  ListValue,
 } from "./wkt/index.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
 import { createExtensionContainer, setExtension } from "./extensions.js";
@@ -293,7 +293,7 @@ function readMapField(
           msg.setMapEntry(
             field,
             key,
-            readScalar(field.scalar, jsonMapValue, LongType.BIGINT, true),
+            readScalar(field.scalar, jsonMapValue, true),
           );
         } catch (e) {
           let m = `cannot decode map value for field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonMapValue)}`;
@@ -346,10 +346,7 @@ function readListField(
         break;
       case "scalar":
         try {
-          msg.addListItem(
-            field,
-            readScalar(field.scalar, jsonItem, field.longType, true),
-          );
+          msg.addListItem(field, readScalar(field.scalar, jsonItem, true));
         } catch (e) {
           let m = `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonItem)}`;
           if (e instanceof Error && e.message.length > 0) {
@@ -397,7 +394,7 @@ function readScalarField(
   json: JsonValue,
 ) {
   try {
-    const scalarValue = readScalar(field.scalar, json, field.longType, false);
+    const scalarValue = readScalar(field.scalar, json, false);
     if (scalarValue === tokenNull) {
       msg.clear(field);
     } else {
@@ -424,7 +421,7 @@ function readMapKey(type: ScalarType, json: JsonValue) {
         break;
     }
   }
-  return readScalar(type, json, LongType.BIGINT, true) as ScalarValue<
+  return readScalar(type, json, true) as ScalarValue<
     Exclude<ScalarType, ScalarType.BYTES | ScalarType.DOUBLE | ScalarType.FLOAT>
   >;
 }
@@ -482,24 +479,21 @@ const tokenNull = Symbol();
 function readScalar(
   type: ScalarType,
   json: JsonValue,
-  longType: LongType,
   nullAsZeroValue: true,
 ): ScalarValue;
 function readScalar(
   type: ScalarType,
   json: JsonValue,
-  longType: LongType,
   nullAsZeroValue: false,
 ): ScalarValue | typeof tokenNull;
 function readScalar(
   type: ScalarType,
   json: JsonValue,
-  longType: LongType,
   nullAsZeroValue: boolean,
 ): ScalarValue | typeof tokenNull {
   if (json === null) {
     if (nullAsZeroValue) {
-      return scalarZeroValue(type, longType);
+      return scalarZeroValue(type, LongType.BIGINT);
     }
     return tokenNull;
   }
@@ -558,15 +552,11 @@ function readScalar(
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
       if (typeof json != "number" && typeof json != "string") break;
-      const long = protoInt64.parse(json);
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      return longType ? long.toString() : long;
+      return protoInt64.parse(json);
     case ScalarType.FIXED64:
     case ScalarType.UINT64:
       if (typeof json != "number" && typeof json != "string") break;
-      const uLong = protoInt64.uParse(json);
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      return longType ? uLong.toString() : uLong;
+      return protoInt64.uParse(json);
 
     // bool:
     case ScalarType.BOOL:
@@ -642,10 +632,7 @@ function tryWktFromJson(
         if (jsonValue === null) {
           msg.clear(valueField);
         } else {
-          msg.set(
-            valueField,
-            readScalar(valueField.scalar, jsonValue, valueField.longType, true),
-          );
+          msg.set(valueField, readScalar(valueField.scalar, jsonValue, true));
         }
         return true;
       }
