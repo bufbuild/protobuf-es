@@ -25,15 +25,15 @@
     "copyrightHolder": "Buf Technologies, Inc."
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.15.2",
+    "@arethetypeswrong/cli": "^0.15.3",
     "@bufbuild/license-header": "^0.0.4",
     "@types/node": "^20.11.19",
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
-    "@typescript-eslint/parser": "^7.4.0",
-    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "eslint": "^9.1.1",
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-n": "^17.4.0",
     "jest": "^29.7.0",
     "prettier": "^3.2.4",
     "typescript": "^5.3.3"
