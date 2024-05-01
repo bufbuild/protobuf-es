@@ -24,7 +24,7 @@ describe("fileDesc()", () => {
         int32 int32_field = 1;
       }
     `);
-    const hydrated = fileDesc(embedFileDesc(file).base64());
+    const hydrated = fileDesc(embedFileDesc(file.proto).base64());
     const field = hydrated.messages[0].fields[0];
     expect(field.jsonName).toBe("int32Field");
     expect(field.proto.jsonName).toBe("int32Field");
@@ -37,7 +37,7 @@ describe("fileDesc()", () => {
         int32 int32_field = 1 [json_name="foo"];
       }
     `);
-    const hydrated = fileDesc(embedFileDesc(file).base64());
+    const hydrated = fileDesc(embedFileDesc(file.proto).base64());
     const field = hydrated.messages[0].fields[0];
     expect(field.jsonName).toBe("foo");
     expect(field.proto.jsonName).toBe("foo");

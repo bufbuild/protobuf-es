@@ -53,7 +53,7 @@ function generateTs(schema: Schema) {
     const fileDesc = f.importDesc(file);
     generateDescDoc(f, file);
     f.print(f.exportDecl("const", fileDesc.name), ": ", GenDescFile, " = ", pure);
-    f.print("  ", getFileDescCall(f, file), ";");
+    f.print("  ", getFileDescCall(f, file, schema), ";");
     f.print();
     for (const desc of schema.typesInFile(file)) {
       switch (desc.kind) {
@@ -116,7 +116,7 @@ function generateJs(schema: Schema) {
     const fileDesc = f.importDesc(file);
     generateDescDoc(f, file);
     f.print(f.exportDecl("const", fileDesc.name), " = ", pure);
-    f.print("  ", getFileDescCall(f, file), ";");
+    f.print("  ", getFileDescCall(f, file, schema), ";");
     f.print();
     for (const desc of schema.typesInFile(file)) {
       switch (desc.kind) {
@@ -263,8 +263,10 @@ function generateDescDoc(
 }
 
 // prettier-ignore
-function getFileDescCall(f: GeneratedFile, file: DescFile) {
-  const info = embedFileDesc(file);
+function getFileDescCall(f: GeneratedFile, file: DescFile, schema: Schema) {
+  const sourceFile = file.proto;
+  const runtimeFile = schema.proto.protoFile.find(f => f.name == sourceFile.name);
+  const info = embedFileDesc(runtimeFile ?? sourceFile);
   if (info.bootable && !f.runtime.create.from.startsWith("@bufbuild/protobuf")) {
     // google/protobuf/descriptor.proto is embedded as a plain object when
     // bootstrapping to avoid recursion

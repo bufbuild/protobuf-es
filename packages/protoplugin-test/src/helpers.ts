@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
+import type {
+  CodeGeneratorResponse,
+  FileDescriptorSet,
+} from "@bufbuild/protobuf/wkt";
 import {
   CodeGeneratorRequestDesc,
   FileDescriptorSetDesc,
@@ -117,6 +120,16 @@ export async function createTestPluginAndRun(
     return content.split("\n");
   }
   return res;
+}
+
+export async function compileFileDescriptorSet(
+  files: Record<string, string>,
+): Promise<FileDescriptorSet> {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
+  const bytes = await upstreamProtobuf.compileToDescriptorSet(files, {
+    includeImports: true,
+  });
+  return fromBinary(FileDescriptorSetDesc, bytes);
 }
 
 export async function compileFile(proto: string) {

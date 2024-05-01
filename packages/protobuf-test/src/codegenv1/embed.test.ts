@@ -26,7 +26,7 @@ describe("embedFileDesc()", () => {
         int32 int32_field = 1;
       }
     `);
-    const embedded = embedFileDesc(file);
+    const embedded = embedFileDesc(file.proto);
     expect(embedded.bootable).toBe(false);
     expect(typeof embedded.base64()).toBe("string");
   });
@@ -41,7 +41,7 @@ describe("embedFileDesc()", () => {
     ).getFile("google/protobuf/descriptor.proto");
     assert(file);
 
-    const embedded = embedFileDesc(file);
+    const embedded = embedFileDesc(file.proto);
     expect(embedded).toBeDefined();
     expect(embedded.bootable).toBe(true);
     if (embedded.bootable) {
