@@ -15,7 +15,6 @@
 import type {
   DescEnum,
   DescExtension,
-  DescFile,
   DescMessage,
   DescService,
 } from "../desc-types.js";
@@ -66,12 +65,12 @@ type EmbedDescriptorProto = Omit<EmbedUnknown, "bootable"> & {
  * @private
  */
 export function embedFileDesc(
-  file: DescFile,
+  file: FileDescriptorProto,
 ): EmbedUnknown | EmbedDescriptorProto {
   const embed: EmbedUnknown = {
     bootable: false,
     proto() {
-      const stripped = clone(FileDescriptorProtoDesc, file.proto);
+      const stripped = clone(FileDescriptorProtoDesc, file);
       clearField(FileDescriptorProtoDesc, stripped, "dependency");
       clearField(FileDescriptorProtoDesc, stripped, "sourceCodeInfo");
       stripped.messageType.map(stripJsonNames);
@@ -82,7 +81,7 @@ export function embedFileDesc(
       return base64Encode(bytes, "std_raw");
     },
   };
-  return file.proto.name == "google/protobuf/descriptor.proto"
+  return file.name == "google/protobuf/descriptor.proto"
     ? {
         ...embed,
         bootable: true,

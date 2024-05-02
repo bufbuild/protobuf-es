@@ -1,0 +1,61 @@
+// Copyright 2021-2024 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+package spec;
+
+import "extra/options.proto";
+
+option (spec.file_option_retention_unknown) = "file option retention unknown";
+option (spec.file_option_retention_runtime) = "file option retention runtime";
+option (spec.file_option_retention_source) = "file option retention source";
+
+message MessageWithOptions {
+  option (spec.message_option_retention_unknown) = "message option retention unknown";
+  option (spec.message_option_retention_runtime) = "message option retention runtime";
+  option (spec.message_option_retention_source) = "message option retention source";
+  int32 field = 1 [
+    (spec.field_option_retention_unknown) = "field option retention unknown",
+    (spec.field_option_retention_runtime) = "field option retention runtime",
+    (spec.field_option_retention_source) = "field option retention source"
+  ];
+  oneof kind {
+    option (spec.oneof_option_retention_unknown) = "oneof option retention unknown";
+    option (spec.oneof_option_retention_runtime) = "oneof option retention runtime";
+    option (spec.oneof_option_retention_source) = "oneof option retention source";
+    int32 oneof_field = 2;
+  }
+}
+
+enum EnumWithOptions {
+  option (spec.enum_option_retention_unknown) = "enum option retention unknown";
+  option (spec.enum_option_retention_runtime) = "enum option retention runtime";
+  option (spec.enum_option_retention_source) = "enum option retention source";
+  ENUM_WITH_OPTIONS_UNSPECIFIED = 0 [
+    (spec.enum_value_option_retention_unknown) = "enum value option retention unknown",
+    (spec.enum_value_option_retention_runtime) = "enum value option retention runtime",
+    (spec.enum_value_option_retention_source) = "enum value option retention source"
+  ];
+}
+
+service ServiceWithOptions {
+  option (spec.service_option_retention_unknown) = "service option retention unknown";
+  option (spec.service_option_retention_runtime) = "service option retention runtime";
+  option (spec.service_option_retention_source) = "service option retention source";
+  rpc Foo (MessageWithOptions) returns (MessageWithOptions) {
+    option (spec.method_option_retention_unknown) = "method option retention unknown";
+    option (spec.method_option_retention_runtime) = "method option retention runtime";
+    option (spec.method_option_retention_source) = "method option retention source";
+  }
+}

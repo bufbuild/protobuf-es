@@ -35,18 +35,12 @@ import {
   createFileDescriptorProtoBoot,
   embedFileDesc,
 } from "@bufbuild/protobuf/codegenv1";
-import { createFileRegistry } from "@bufbuild/protobuf/reflect";
 import { boot } from "@bufbuild/protobuf/codegenv1";
 
 describe("boot()", () => {
   test("hydrates google/protobuf/descriptor.proto", async () => {
     const fileDescriptorProto = await compileGoogleProtobufDescriptorProto();
-    const fileDesc = createFileRegistry(
-      fileDescriptorProto,
-      () => undefined,
-    ).getFile(fileDescriptorProto.name);
-    assert(fileDesc);
-    const embedded = embedFileDesc(fileDesc);
+    const embedded = embedFileDesc(fileDescriptorProto);
     assert(embedded.bootable);
 
     const bootedFileDesc = boot(embedded.boot());

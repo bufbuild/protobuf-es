@@ -216,9 +216,19 @@ function getFilesToGenerate(
       }
     }
   }
+  // Our goal is to provide options with source retention to plugin authors.
+  // CodeGeneratorRequest.proto_file elides options with source retention for
+  // files to generate. For these files, we take the file from source_file_descriptors,
+  // which does include options with source retention.
+  const allProtoWithSourceOptions = request.protoFile.map((protoFile) => {
+    const sourceFile = request.sourceFileDescriptors.find(
+      (s) => s.name == protoFile.name,
+    );
+    return sourceFile ?? protoFile;
+  });
   const registry = createFileRegistry(
     create(FileDescriptorSetDesc, {
-      file: request.protoFile,
+      file: allProtoWithSourceOptions,
     }),
   );
   const allFiles: DescFile[] = [];
