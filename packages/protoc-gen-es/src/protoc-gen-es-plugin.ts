@@ -264,6 +264,9 @@ function generateDescDoc(
 
 // prettier-ignore
 function getFileDescCall(f: GeneratedFile, file: DescFile, schema: Schema) {
+  // Schema provides files with source retention options. Since we do not want to
+  // embed source retention options in generated code, we use FileDescriptorProto
+  // messages from CodeGeneratorRequest.proto_file instead.
   const sourceFile = file.proto;
   const runtimeFile = schema.proto.protoFile.find(f => f.name == sourceFile.name);
   const info = embedFileDesc(runtimeFile ?? sourceFile);
