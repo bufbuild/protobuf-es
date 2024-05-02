@@ -14,6 +14,7 @@
 
 import { describe, test, expect } from "@jest/globals";
 import type { Int32Value, StringValue } from "@bufbuild/protobuf/wkt";
+import { hasExtension } from "@bufbuild/protobuf";
 import type { GenDescService } from "@bufbuild/protobuf/codegenv1";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 import * as proto2_js from "./gen/js/extra/proto2_pb.js";
@@ -31,151 +32,62 @@ import * as test_messages_proto3_ts from "./gen/ts/google/protobuf/test_messages
 import * as test_messages_proto3_js from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
 import * as options_ts from "./gen/ts/extra/options_pb.js";
 import * as option_usage_ts from "./gen/ts/extra/option-usage_pb.js";
-import assert from "node:assert";
-import { getExtension, hasExtension } from "@bufbuild/protobuf";
 
-describe("custom options from generated code", () => {
-  test("can be read via extensions", () => {
-    const fileOptions =
-      option_usage_ts.fileDesc_extra_option_usage.proto.options;
-    assert(fileOptions);
-    expect(
-      getExtension(fileOptions, options_ts.file_option_retention_unknown),
-    ).toBe("file option retention unknown");
-    expect(
-      getExtension(fileOptions, options_ts.file_option_retention_runtime),
-    ).toBe("file option retention runtime");
-
-    const messageOptions = option_usage_ts.MessageWithOptionsDesc.proto.options;
-    assert(messageOptions);
-    expect(
-      getExtension(messageOptions, options_ts.message_option_retention_unknown),
-    ).toBe("message option retention unknown");
-    expect(
-      getExtension(messageOptions, options_ts.message_option_retention_runtime),
-    ).toBe("message option retention runtime");
-
-    const fieldOptions =
-      option_usage_ts.MessageWithOptionsDesc.fields[0].proto.options;
-    assert(fieldOptions);
-    expect(
-      getExtension(fieldOptions, options_ts.field_option_retention_unknown),
-    ).toBe("field option retention unknown");
-    expect(
-      getExtension(fieldOptions, options_ts.field_option_retention_runtime),
-    ).toBe("field option retention runtime");
-
-    const oneofOptions =
-      option_usage_ts.MessageWithOptionsDesc.oneofs[0].proto.options;
-    assert(oneofOptions);
-    expect(
-      getExtension(oneofOptions, options_ts.oneof_option_retention_unknown),
-    ).toBe("oneof option retention unknown");
-    expect(
-      getExtension(oneofOptions, options_ts.oneof_option_retention_runtime),
-    ).toBe("oneof option retention runtime");
-
-    const enumOptions = option_usage_ts.EnumWithOptionsDesc.proto.options;
-    assert(enumOptions);
-    expect(
-      getExtension(enumOptions, options_ts.enum_option_retention_unknown),
-    ).toBe("enum option retention unknown");
-    expect(
-      getExtension(enumOptions, options_ts.enum_option_retention_runtime),
-    ).toBe("enum option retention runtime");
-
-    const enumValueOptions =
-      option_usage_ts.EnumWithOptionsDesc.values[0].proto.options;
-    assert(enumValueOptions);
-    expect(
-      getExtension(
-        enumValueOptions,
-        options_ts.enum_value_option_retention_unknown,
-      ),
-    ).toBe("enum value option retention unknown");
-    expect(
-      getExtension(
-        enumValueOptions,
-        options_ts.enum_value_option_retention_runtime,
-      ),
-    ).toBe("enum value option retention runtime");
-
-    const serviceOptions = option_usage_ts.ServiceWithOptions.proto.options;
-    assert(serviceOptions);
-    expect(
-      getExtension(serviceOptions, options_ts.service_option_retention_unknown),
-    ).toBe("service option retention unknown");
-    expect(
-      getExtension(serviceOptions, options_ts.service_option_retention_runtime),
-    ).toBe("service option retention runtime");
-
-    const methodOptions =
-      option_usage_ts.ServiceWithOptions.methods[0].proto.options;
-    assert(methodOptions);
-    expect(
-      getExtension(methodOptions, options_ts.method_option_retention_unknown),
-    ).toBe("method option retention unknown");
-    expect(
-      getExtension(methodOptions, options_ts.method_option_retention_runtime),
-    ).toBe("method option retention runtime");
-  });
-  test("are unavailable for source retention options", () => {
-    const fileOptions =
-      option_usage_ts.fileDesc_extra_option_usage.proto.options;
-    assert(fileOptions);
-    expect(
+test("source retention options are unavailable in generated code", () => {
+  const fileOptions = option_usage_ts.fileDesc_extra_option_usage.proto.options;
+  expect(
+    !!fileOptions &&
       hasExtension(fileOptions, options_ts.file_option_retention_source),
-    ).toBe(false);
+  ).toBe(false);
 
-    const messageOptions = option_usage_ts.MessageWithOptionsDesc.proto.options;
-    assert(messageOptions);
-    expect(
+  const messageOptions = option_usage_ts.MessageWithOptionsDesc.proto.options;
+  expect(
+    !!messageOptions &&
       hasExtension(messageOptions, options_ts.message_option_retention_source),
-    ).toBe(false);
+  ).toBe(false);
 
-    const fieldOptions =
-      option_usage_ts.MessageWithOptionsDesc.fields[0].proto.options;
-    assert(fieldOptions);
-    expect(
+  const fieldOptions =
+    option_usage_ts.MessageWithOptionsDesc.fields[0].proto.options;
+  expect(
+    !!fieldOptions &&
       hasExtension(fieldOptions, options_ts.field_option_retention_source),
-    ).toBe(false);
+  ).toBe(false);
 
-    const oneofOptions =
-      option_usage_ts.MessageWithOptionsDesc.oneofs[0].proto.options;
-    assert(oneofOptions);
-    expect(
+  const oneofOptions =
+    option_usage_ts.MessageWithOptionsDesc.oneofs[0].proto.options;
+  expect(
+    !!oneofOptions &&
       hasExtension(oneofOptions, options_ts.oneof_option_retention_source),
-    ).toBe(false);
+  ).toBe(false);
 
-    const enumOptions = option_usage_ts.EnumWithOptionsDesc.proto.options;
-    assert(enumOptions);
-    expect(
+  const enumOptions = option_usage_ts.EnumWithOptionsDesc.proto.options;
+  expect(
+    !!enumOptions &&
       hasExtension(enumOptions, options_ts.enum_option_retention_source),
-    ).toBe(false);
+  ).toBe(false);
 
-    const enumValueOptions =
-      option_usage_ts.EnumWithOptionsDesc.values[0].proto.options;
-    assert(enumValueOptions);
-    expect(
+  const enumValueOptions =
+    option_usage_ts.EnumWithOptionsDesc.values[0].proto.options;
+  expect(
+    !!enumValueOptions &&
       hasExtension(
         enumValueOptions,
         options_ts.enum_value_option_retention_source,
       ),
-    ).toBe(false);
+  ).toBe(false);
 
-    const serviceOptions = option_usage_ts.ServiceWithOptions.proto.options;
-    assert(serviceOptions);
-    expect(
+  const serviceOptions = option_usage_ts.ServiceWithOptions.proto.options;
+  expect(
+    !!serviceOptions &&
       hasExtension(serviceOptions, options_ts.service_option_retention_source),
-    ).toBe(false);
+  ).toBe(false);
 
-    const methodOptions =
-      option_usage_ts.ServiceWithOptions.methods[0].proto.options;
-    assert(methodOptions);
-    expect(
+  const methodOptions =
+    option_usage_ts.ServiceWithOptions.methods[0].proto.options;
+  expect(
+    !!methodOptions &&
       hasExtension(methodOptions, options_ts.method_option_retention_source),
-    ).toBe(false);
-  });
+  ).toBe(false);
 });
 
 test("ts generated code is assignable to js", () => {

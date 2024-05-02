@@ -31,5 +31,7 @@ export {
   getExtension,
   setExtension,
   clearExtension,
+  hasOption,
+  getOption,
 } from "./extensions.js";
 export * from "./proto-int64.js";

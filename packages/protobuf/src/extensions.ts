@@ -12,7 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescExtension, DescField } from "./desc-types.js";
+import type {
+  AnyDesc,
+  DescEnum,
+  DescEnumValue,
+  DescExtension,
+  DescField,
+  DescFile,
+  DescMessage,
+  DescMethod,
+  DescOneof,
+  DescService,
+} from "./desc-types.js";
 import { assert } from "./reflect/assert.js";
 import { create } from "./create.js";
 import { readField } from "./from-binary.js";
@@ -29,6 +40,16 @@ import type {
 } from "./types.js";
 import { BinaryReader, BinaryWriter } from "./wire/binary-encoding.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
+import type {
+  EnumOptions,
+  EnumValueOptions,
+  FieldOptions,
+  FileOptions,
+  MessageOptions,
+  MethodOptions,
+  OneofOptions,
+  ServiceOptions,
+} from "./wkt/gen/google/protobuf/descriptor_pb.js";
 
 /**
  * Retrieve an extension value from a message.
@@ -116,6 +137,58 @@ export function hasExtension<Desc extends DescExtension>(
     !!message.$unknown?.find((uf) => uf.no === extension.number)
   );
 }
+
+/**
+ * Check whether an option is set on a descriptor.
+ *
+ * Options are extensions to the `google.protobuf.*Options` messages defined in
+ * google/protobuf/descriptor.proto. This function gets the option message from
+ * the descriptor, and calls hasExtension().
+ */
+export function hasOption<
+  Ext extends DescExtension,
+  Desc extends DescForOptionExtension<Ext>,
+>(element: Desc, option: Ext): boolean {
+  const message = element.proto.options as Extendee<Ext> | undefined;
+  if (!message) {
+    return false;
+  }
+  return hasExtension(message, option);
+}
+
+/**
+ * Retrieve an option value from a descriptor.
+ *
+ * Options are extensions to the `google.protobuf.*Options` messages defined in
+ * google/protobuf/descriptor.proto. This function gets the option message from
+ * the descriptor, and calls getExtension(). Same as getExtension(), this
+ * function never returns undefined.
+ */
+export function getOption<
+  Ext extends DescExtension,
+  Desc extends DescForOptionExtension<Ext>,
+>(element: Desc, option: Ext): ExtensionValueShape<Ext> {
+  const message = element.proto.options as Extendee<Ext> | undefined;
+  if (!message) {
+    const [, , get] = createExtensionContainer(option);
+    return get();
+  }
+  return getExtension(message, option);
+}
+
+// prettier-ignore
+type DescForOptionExtension<Ext extends DescExtension> =
+    Extendee<Ext> extends FileOptions ? DescFile
+  : Extendee<Ext> extends EnumOptions ? DescEnum
+  : Extendee<Ext> extends EnumValueOptions ? DescEnumValue
+  : Extendee<Ext> extends MessageOptions ? DescMessage
+  : Extendee<Ext> extends MessageOptions ? DescEnum
+  : Extendee<Ext> extends FieldOptions ? DescField | DescExtension
+  : Extendee<Ext> extends OneofOptions ? DescOneof
+  : Extendee<Ext> extends ServiceOptions ? DescService
+  : Extendee<Ext> extends EnumOptions ? DescEnum
+  : Extendee<Ext> extends MethodOptions ? DescMethod
+  : AnyDesc;
 
 function filterUnknownFields(
   unknownFields: UnknownField[] | undefined,

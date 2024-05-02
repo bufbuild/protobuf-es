@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
-import { getExtension, hasExtension } from "@bufbuild/protobuf";
+import { getOption, hasOption } from "@bufbuild/protobuf";
 import { localName } from "@bufbuild/protobuf/reflect";
 import { type Schema, safeIdentifier } from "@bufbuild/protoplugin/ecmascript";
 import { default_host } from "./gen/customoptions/default_host_pb.js";
@@ -39,12 +39,12 @@ function generateTs(schema: Schema) {
 
       // To support the custom option we defined in customoptions/default_host.proto,
       // we need to generate code for this proto file first. This will generate the
-      // file customoptions/default_host_pb.ts, which contains the generated extension
-      // `default_host`.
-      // Then we use the functions hasExtension() and getExtension() to see whether
-      // the option is set, and set the value as the default for the constructor argument.
-      if (service.proto.options && hasExtension(service.proto.options, default_host)) {
-        const defaultHost = getExtension(service.proto.options, default_host);
+      // file customoptions/default_host_pb.ts, which contains the generated option
+      // extension `default_host`.
+      // Then we use the functions hasOption() and getOption() to see whether the
+      // option is set, and set the value as the default for the constructor argument.
+      if (hasOption(service, default_host)) {
+        const defaultHost = getOption(service, default_host);
         f.print("    constructor(private readonly baseUrl = ", f.string(defaultHost), ") {");
         f.print("    }");
       } else {
