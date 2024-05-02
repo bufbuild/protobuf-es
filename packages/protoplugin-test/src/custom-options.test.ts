@@ -18,6 +18,8 @@ import {
   fromBinary,
   hasExtension,
   getExtension,
+  hasOption,
+  getOption,
 } from "@bufbuild/protobuf";
 import {
   type CodeGeneratorRequest,
@@ -30,13 +32,13 @@ import assert from "node:assert";
 
 describe("custom options", () => {
   const proto = `
-      syntax = "proto3";
-      import "google/protobuf/descriptor.proto";
-      option (opt) = 123;
-      extend google.protobuf.FileOptions {
-        optional uint32 opt = 60123;
-      }
-    `;
+    syntax = "proto3";
+    import "google/protobuf/descriptor.proto";
+    option (opt) = 123;
+    extend google.protobuf.FileOptions {
+      optional uint32 opt = 60123;
+    }
+  `;
   test("can be read via extension", async () => {
     const opt = (await compileFile(proto)).extensions[0];
     assert(opt);
@@ -52,6 +54,26 @@ describe("custom options", () => {
         }
       },
     });
+    expect(value).toBe(123);
+  });
+  test("can be read via getOptions", async () => {
+    const opt = (await compileFile(proto)).extensions[0];
+    assert(opt);
+    let has = false;
+    let value: unknown;
+    await createTestPluginAndRun({
+      proto: {
+        "input.proto": proto,
+      },
+      generateAny(_, schema) {
+        const file = schema.files.find((f) => f.proto.name == "input.proto");
+        if (file) {
+          has = hasOption(file, opt);
+          value = getOption(file, opt);
+        }
+      },
+    });
+    expect(has).toBe(true);
     expect(value).toBe(123);
   });
 });
