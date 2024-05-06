@@ -258,7 +258,7 @@ function setupTests(): Test[] {
 
 /**
  * Run given tests consecutively. Repeating each one several times.
- **/
+ */
 function run(tests: Test[], iterations: number): void {
   for (const test of tests) {
     console.log(`Running "${test.name}" ${iterations} times...`);
@@ -271,7 +271,7 @@ function run(tests: Test[], iterations: number): void {
 /**
  * Benchmark tests with the npm package "benchmark". Results are printed to
  * standard out.
- **/
+ */
 function bench(tests: Test[]): void {
   let error: unknown;
   const suite = new Benchmark.Suite({
