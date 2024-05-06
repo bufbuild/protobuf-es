@@ -15,7 +15,7 @@
 import Benchmark from "benchmark";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
-import {readFileSync} from "fs";
+import { readFileSync } from "fs";
 import { UserDesc } from "./gen/ts/extra/example_pb.js";
 import { ScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
 import { RepeatedScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
@@ -24,7 +24,7 @@ import {
   MessageFieldMessageDesc,
   MessageFieldMessage_TestMessageDesc,
 } from "./gen/ts/extra/msg-message_pb.js";
-import {PerfMessageDesc} from "./gen/ts/extra/perf_pb.js";
+import { PerfMessageDesc } from "./gen/ts/extra/perf_pb.js";
 
 /* eslint-disable no-console, import/no-named-as-default-member */
 
@@ -33,14 +33,14 @@ main(process.argv.slice(2));
 function main(args: string[]): void {
   function filterTests(regexp: string): Test[] {
     const tests = setupTests();
-    const re = new RegExp(regexp)
-    return tests.filter(test => re.test(test.name));
+    const re = new RegExp(regexp);
+    return tests.filter((test) => re.test(test.name));
   }
   switch (args.shift()) {
     case "list":
       if (args.length > 1) {
         exitUsage(1);
-        break
+        break;
       }
       for (const test of filterTests(args.length == 1 ? args[0] : ".*")) {
         console.log(test.name);
@@ -49,14 +49,14 @@ function main(args: string[]): void {
     case "benchmark":
       if (args.length > 1) {
         exitUsage(1);
-        break
+        break;
       }
       bench(filterTests(args.length == 1 ? args[0] : ".*"));
       break;
     case "run": {
       if (args.length != 2) {
         exitUsage(1);
-        break
+        break;
       }
       const tests = filterTests(args[0]);
       const iterations = parseInt(args[1]);
@@ -69,19 +69,22 @@ function main(args: string[]): void {
 
   function exitUsage(exitCode = 0) {
     const out = exitCode === 0 ? process.stdout : process.stderr;
-    out.write([
-      `USAGE: ${process.argv[1]} [list|benchmark|run] [regex] [iteration]`,
-      ``,
-      `benchmark '.*'`,
-      `Run tests with the npm package "benchmark", and print results to standard out.`,
-      ``,
-      `run '.*' 1000`,
-      `Run each test 1.000 times.`,
-      ``,
-      `list '.*':`,
-      `List tests.`,
-      ``,
-    ].join("\n"), () => process.exit(exitCode));
+    out.write(
+      [
+        `USAGE: ${process.argv[1]} [list|benchmark|run] [regex] [iteration]`,
+        ``,
+        `benchmark '.*'`,
+        `Run tests with the npm package "benchmark", and print results to standard out.`,
+        ``,
+        `run '.*' 1000`,
+        `Run each test 1.000 times.`,
+        ``,
+        `list '.*':`,
+        `List tests.`,
+        ``,
+      ].join("\n"),
+      () => process.exit(exitCode),
+    );
   }
 }
 
@@ -93,7 +96,9 @@ interface Test {
 function setupTests(): Test[] {
   const tests: Test[] = [];
   {
-    const bytes = readFileSync(new URL("perf-payload.bin", import.meta.url).pathname);
+    const bytes = readFileSync(
+      new URL("perf-payload.bin", import.meta.url).pathname,
+    );
     tests.push({
       name: `fromBinary perf-payload.bin`,
       fn: () => {
@@ -264,7 +269,7 @@ function setupTests(): Test[] {
  */
 function run(tests: Test[], iterations: number): void {
   for (const test of tests) {
-    console.log(`Running "${test.name}" ${iterations} times...`)
+    console.log(`Running "${test.name}" ${iterations} times...`);
     for (let i = 0; i < iterations; i++) {
       test.fn();
     }
