@@ -3,9 +3,10 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
-    "build": "npm run build:esm+types && npm run build:copy-gen-js",
+    "build": "npm run build:esm+types && npm run build:copy-gen-js && npm run build:copy-perf-payload",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "build:copy-gen-js": "rsync -a --exclude '*.js' src/gen/js dist/types/gen && rsync -a --exclude '*.d.ts' src/gen/js dist/esm/gen",
+    "build:copy-perf-payload": "cp src/perf-payload.* dist/esm/",
     "pregenerate": "rm -rf src/gen/*/* descriptorset.*",
     "generate": "npm run generate:ts && npm run generate:js && npm run generate:wkt:ts && npm run generate:wkt:js && npm run generate:desc",
     "generate:ts": "protoc --es_out=src/gen/ts --es_opt=ts_nocheck=false,target=ts     --proto_path=. $(buf ls-files extra) --proto_path=$(upstream-include test) $(upstream-files test) google/protobuf/type.proto",
@@ -14,7 +15,8 @@
     "generate:wkt:js": "protoc --es_out=src/gen/js --es_opt=ts_nocheck=false,target=js+dts $(upstream-files wkt)",
     "generate:desc": "protoc --experimental_editions --descriptor_set_out descriptorset.binpb --include_imports --include_source_info --proto_path=. --proto_path=$(upstream-include test) $(buf ls-files extra) $(upstream-files test) --proto_path=. $(buf ls-files editions)",
     "postgenerate": "license-header src/gen",
-    "perf": "tsx src/perf.ts",
+    "perf": "tsx src/perf.ts benchmark '.*'",
+    "flamegraph": "npx 0x -- node dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
     "test": "npm run test:bigint && npm run test:string",
     "test:bigint": "BUF_BIGINT_DISABLE=0 NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:string": "BUF_BIGINT_DISABLE=1 NODE_OPTIONS=--experimental-vm-modules npx jest"
@@ -28,6 +30,7 @@
   "dependencies": {
     "@bufbuild/protobuf": "1.9.0",
     "@types/benchmark": "^2.1.5",
+    "0x": "^5.7.0",
     "benchmark": "^2.1.4",
     "long": "~5.2.3",
     "upstream-protobuf": "*"
