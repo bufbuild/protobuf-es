@@ -19,7 +19,10 @@ option features.message_encoding = DELIMITED;
 
 // Map fields are syntactic sugar for a repeated message field with field 1 for
 // key and field 2 for value. Despite that, the file feature message_encoding =
-// DELIMITED should NOT apply to this "synthetic" message.
+// DELIMITED should NOT apply to this "synthetic" message, and it should also
+// not apply to map message values.
 message Edition2023MapEncodingMessage {
-  map<int32, bool> map_field = 77;
+  map<int32, string> string_map = 77;
+  map<int32, Child> message_map = 88;
+  message Child {}
 }

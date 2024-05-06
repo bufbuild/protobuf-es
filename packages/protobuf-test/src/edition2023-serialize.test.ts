@@ -24,7 +24,10 @@ import {
 import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
 import * as edition2023_proto2_ts from "./gen/ts/extra/edition2023-proto2_pb.js";
 import * as edition2023_proto3_ts from "./gen/ts/extra/edition2023-proto3_pb.js";
-import { Edition2023MapEncodingMessageDesc } from "./gen/ts/extra/edition2023-map-encoding_pb.js";
+import {
+  Edition2023MapEncodingMessage_ChildDesc,
+  Edition2023MapEncodingMessageDesc,
+} from "./gen/ts/extra/edition2023-map-encoding_pb.js";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 
 describe("edition2023 serialization", () => {
@@ -213,26 +216,40 @@ describe("edition2023 serialization", () => {
   describe("message_encoding DELIMITED with maps", () => {
     test("should round-trip", () => {
       const a = create(Edition2023MapEncodingMessageDesc);
-      a.mapField[123] = true;
+      a.stringMap[123] = "abc";
       const bytes = toBinary(Edition2023MapEncodingMessageDesc, a);
       const b = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
       expect(b).toStrictEqual(a);
     });
-    test("should expect LENGTH_PREFIXED", () => {
+    test("should expect LENGTH_PREFIXED map entry", () => {
       const w = new BinaryWriter();
       w.tag(77, WireType.LengthDelimited);
-      w.uint32(4);
+      w.fork();
       w.tag(1, WireType.Varint).int32(123);
-      w.tag(2, WireType.Varint).bool(true);
+      w.tag(2, WireType.Varint).string("abc");
+      w.join();
       const bytes = w.finish();
       const msg = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
-      expect(msg.mapField).toStrictEqual({
-        123: true,
+      expect(msg.stringMap).toStrictEqual({
+        123: "abc",
       });
     });
-    test("should serialize LENGTH_PREFIXED", () => {
+    test("should expect LENGTH_PREFIXED map value message", () => {
+      const w = new BinaryWriter();
+      w.tag(88, WireType.LengthDelimited);
+      w.fork();
+      w.tag(1, WireType.Varint).int32(123);
+      w.tag(2, WireType.LengthDelimited).fork().join();
+      w.join();
+      const bytes = w.finish();
+      const msg = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
+      expect(msg.messageMap).toStrictEqual({
+        123: create(Edition2023MapEncodingMessage_ChildDesc),
+      });
+    });
+    test("should serialize map entry LENGTH_PREFIXED", () => {
       const msg = create(Edition2023MapEncodingMessageDesc);
-      msg.mapField[123] = true;
+      msg.stringMap[123] = "abc";
       const bytes = toBinary(Edition2023MapEncodingMessageDesc, msg);
       const r = new BinaryReader(bytes);
       {
@@ -243,16 +260,42 @@ describe("edition2023 serialization", () => {
         expect(length).toBe(r.len - r.pos);
       }
       {
-        const [number, wireType] = r.tag();
+        const [number] = r.tag();
         expect(number).toBe(1);
-        expect(wireType).toBe(WireType.Varint);
+        expect(r.int32()).toBe(123);
+      }
+      {
+        const [number] = r.tag();
+        expect(number).toBe(2);
+        expect(r.string()).toBe("abc");
+      }
+      {
+        expect(r.pos).toBe(r.len);
+      }
+    });
+    test("should serialize map value message LENGTH_PREFIXED", () => {
+      const msg = create(Edition2023MapEncodingMessageDesc);
+      msg.messageMap[123] = create(Edition2023MapEncodingMessage_ChildDesc);
+      const bytes = toBinary(Edition2023MapEncodingMessageDesc, msg);
+      const r = new BinaryReader(bytes);
+      {
+        const [number, wireType] = r.tag();
+        expect(number).toBe(88);
+        expect(wireType).toBe(WireType.LengthDelimited);
+        const length = r.uint32();
+        expect(length).toBe(r.len - r.pos);
+      }
+      {
+        const [number] = r.tag();
+        expect(number).toBe(1);
         expect(r.int32()).toBe(123);
       }
       {
         const [number, wireType] = r.tag();
         expect(number).toBe(2);
-        expect(wireType).toBe(WireType.Varint);
-        expect(r.bool()).toBe(true);
+        expect(wireType).toBe(WireType.LengthDelimited);
+        const length = r.uint32();
+        expect(length).toBe(0);
       }
       {
         expect(r.pos).toBe(r.len);
