@@ -14,8 +14,9 @@
 
 import Benchmark from "benchmark";
 import { protoInt64 } from "@bufbuild/protobuf";
-import { UserDesc } from "./gen/ts/extra/example_pb.js";
 import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
+import { readFileSync } from "fs";
+import { UserDesc } from "./gen/ts/extra/example_pb.js";
 import { ScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
 import { RepeatedScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
 import { MapsMessageDesc } from "./gen/ts/extra/msg-maps_pb.js";
@@ -23,34 +24,121 @@ import {
   MessageFieldMessageDesc,
   MessageFieldMessage_TestMessageDesc,
 } from "./gen/ts/extra/msg-message_pb.js";
+import { PerfMessageDesc } from "./gen/ts/extra/perf_pb.js";
 
 /* eslint-disable no-console, import/no-named-as-default-member */
 
-run("Parsing binary", [
-  // function () {
-  //   const data = readFileSync("./descriptorset.binpb");
-  //   return {
-  //     name: `large google.protobuf.FileDescriptorSet (${data.byteLength} bytes)`,
-  //     fn: () => {
-  //       fromBinary(FileDescriptorSetDesc, data);
-  //     },
-  //   };
-  // },
-  function () {
+main(process.argv.slice(2));
+
+function main(args: string[]): void {
+  function filterTests(regexp: string): Test[] {
+    const tests = setupTests();
+    const re = new RegExp(regexp);
+    return tests.filter((test) => re.test(test.name));
+  }
+  switch (args.shift()) {
+    case "list":
+      if (args.length > 1) {
+        exitUsage(1);
+        break;
+      }
+      for (const test of filterTests(args.length == 1 ? args[0] : ".*")) {
+        console.log(test.name);
+      }
+      break;
+    case "benchmark":
+      if (args.length > 1) {
+        exitUsage(1);
+        break;
+      }
+      bench(filterTests(args.length == 1 ? args[0] : ".*"));
+      break;
+    case "run": {
+      if (args.length != 2) {
+        exitUsage(1);
+        break;
+      }
+      const tests = filterTests(args[0]);
+      const iterations = parseInt(args[1]);
+      run(tests, iterations);
+      break;
+    }
+    default:
+      exitUsage(1);
+  }
+
+  function exitUsage(exitCode = 0) {
+    const out = exitCode === 0 ? process.stdout : process.stderr;
+    out.write(
+      [
+        `USAGE: ${process.argv[1]} [list|benchmark|run] [regex] [iteration]`,
+        ``,
+        `benchmark '.*'`,
+        `Run tests with the npm package "benchmark", and print results to standard out.`,
+        ``,
+        `run '.*' 1000`,
+        `Run each test 1.000 times.`,
+        ``,
+        `list '.*':`,
+        `List tests.`,
+        ``,
+      ].join("\n"),
+      () => process.exit(exitCode),
+    );
+  }
+}
+
+interface Test {
+  name: string;
+  fn: () => void;
+}
+
+function setupTests(): Test[] {
+  const tests: Test[] = [];
+  {
+    const bytes = readFileSync(
+      new URL("perf-payload.bin", import.meta.url).pathname,
+    );
+    tests.push({
+      name: `fromBinary perf-payload.bin`,
+      fn: () => {
+        fromBinary(PerfMessageDesc, bytes);
+      },
+    });
+  }
+  {
     const desc = UserDesc;
     const tinyUser = create(desc, {
       active: false,
       manager: { active: true },
     });
     const data = toBinary(desc, tinyUser);
-    return {
-      name: `tiny docs.User (${data.byteLength} bytes)`,
+    tests.push({
+      name: `fromBinary tiny docs.User (${data.byteLength} bytes)`,
       fn: () => {
         fromBinary(desc, data);
       },
-    };
-  },
-  function () {
+    });
+  }
+  {
+    const desc = UserDesc;
+    const normalUser = create(desc, {
+      firstName: "Jane",
+      lastName: "Doe",
+      active: true,
+      manager: { firstName: "Jane", lastName: "Doe", active: false },
+      locations: ["Seattle", "New York", "Tokyo"],
+      projects: { foo: "project foo", bar: "project bar" },
+    });
+    const data = toBinary(desc, normalUser);
+    tests.push({
+      name: `fromBinary normal docs.User (${data.byteLength} bytes)`,
+      fn: () => {
+        fromBinary(desc, data);
+      },
+    });
+  }
+  {
     const desc = ScalarValuesMessageDesc;
     const message = create(ScalarValuesMessageDesc, {
       doubleField: 0.75,
@@ -72,14 +160,14 @@ run("Parsing binary", [
       sint64Field: protoInt64.parse(-1),
     });
     const data = toBinary(desc, message);
-    return {
-      name: `scalar values (${data.byteLength} bytes)`,
+    tests.push({
+      name: `fromBinary scalar values (${data.byteLength} bytes)`,
       fn: () => {
         fromBinary(desc, data);
       },
-    };
-  },
-  function () {
+    });
+  }
+  {
     const desc = RepeatedScalarValuesMessageDesc;
     const message = create(desc, {
       doubleField: [0.75, 0, 1],
@@ -109,15 +197,16 @@ run("Parsing binary", [
       ],
     });
     const data = toBinary(desc, message);
-    return {
-      name: `repeated scalar fields (${data.byteLength} bytes)`,
+    tests.push({
+      name: `fromBinary repeated scalar fields (${data.byteLength} bytes)`,
       fn: () => {
         fromBinary(desc, data);
       },
-    };
-  },
-  function () {
-    const message = create(MapsMessageDesc, {
+    });
+  }
+  {
+    const desc = MapsMessageDesc;
+    const message = create(desc, {
       strStrField: { a: "str", b: "xx" },
       strInt32Field: { a: 123, b: 455 },
       strInt64Field: { a: protoInt64.parse(123) },
@@ -134,57 +223,67 @@ run("Parsing binary", [
       int32EnuField: { 1: 0, 2: 1, 0: 2 },
       int64EnuField: { "-1": 0, "2": 1, "0": 2 },
     });
-    const data = toBinary(MapsMessageDesc, message);
-    return {
-      name: `map with scalar keys and values (${data.byteLength} bytes)`,
+    const data = toBinary(desc, message);
+    tests.push({
+      name: `fromBinary map with scalar keys and values (${data.byteLength} bytes)`,
       fn: () => {
-        fromBinary(MapsMessageDesc, data);
+        fromBinary(desc, data);
       },
-    };
-  },
-  function () {
-    const message = create(MessageFieldMessageDesc);
+    });
+  }
+  {
+    const desc = MessageFieldMessageDesc;
+    const message = create(desc);
     for (let i = 0; i < 1000; i++) {
       message.repeatedMessageField.push(
         create(MessageFieldMessage_TestMessageDesc),
       );
     }
-    const data = toBinary(MessageFieldMessageDesc, message);
-    return {
-      name: `repeated field with 1000 messages (${data.byteLength} bytes)`,
+    const data = toBinary(desc, message);
+    tests.push({
+      name: `fromBinary repeated field with 1000 messages (${data.byteLength} bytes)`,
       fn: () => {
-        fromBinary(MessageFieldMessageDesc, data);
+        fromBinary(desc, data);
       },
-    };
-  },
-  function () {
-    const message = create(MapsMessageDesc);
+    });
+  }
+  {
+    const desc = MapsMessageDesc;
+    const message = create(desc);
     for (let i = 0; i < 1000; i++) {
-      message.strMsgField[i.toString()] = create(MapsMessageDesc);
+      message.strMsgField[i.toString()] = create(desc);
     }
-    const data = toBinary(MapsMessageDesc, message);
-    return {
-      name: `map field with 1000 messages (${data.byteLength} bytes)`,
+    const data = toBinary(desc, message);
+    tests.push({
+      name: `fromBinary map field with 1000 messages (${data.byteLength} bytes)`,
       fn: () => {
-        fromBinary(MapsMessageDesc, data);
+        fromBinary(desc, data);
       },
-    };
-  },
-]);
-
-interface Test {
-  name: string;
-  fn: () => void;
+    });
+  }
+  return tests;
 }
 
 /**
- * Benchmark a suite of tests with the npm package "benchmark". Results are
- * printed to standard out.
+ * Run given tests consecutively. Repeating each one several times.
  */
-function run(name: string, tests: (Test | (() => Test))[]): void {
+function run(tests: Test[], iterations: number): void {
+  for (const test of tests) {
+    console.log(`Running "${test.name}" ${iterations} times...`);
+    for (let i = 0; i < iterations; i++) {
+      test.fn();
+    }
+  }
+}
+
+/**
+ * Benchmark tests with the npm package "benchmark". Results are printed to
+ * standard out.
+ */
+function bench(tests: Test[]): void {
   let error: unknown;
   const suite = new Benchmark.Suite({
-    name,
+    name: "Benchmark",
     onCycle(event: Event) {
       console.log(String(event.target));
     },
@@ -196,16 +295,9 @@ function run(name: string, tests: (Test | (() => Test))[]): void {
     },
     async: false,
   });
-  for (const testOrProvider of tests) {
-    if (typeof testOrProvider == "function") {
-      const { name, fn } = testOrProvider();
-      suite.add(name, fn);
-    } else {
-      const { name, fn } = testOrProvider;
-      suite.add(name, fn);
-    }
+  for (const test of tests) {
+    suite.add(test.name, test.fn);
   }
-  console.log(`### ${String(suite.name)}`);
   suite.run();
   if (error !== undefined) {
     throw error;

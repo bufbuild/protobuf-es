@@ -149,6 +149,10 @@ bench: node_modules $(GEN)/protobuf-bench $(BUILD)/protobuf ## Benchmark code si
 perf: $(BUILD)/protobuf-test
 	npm run -w packages/protobuf-test perf
 
+.PHONY: flamegraph
+flamegraph: $(BUILD)/protobuf-test
+	npm run -w packages/protobuf-test flamegraph
+
 .PHONY: bootstrap
 bootstrap: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es node_modules ## Bootstrap well-known types and edition features-set defaults in @bufbuild/protobuf from upstream protobuf
 	npm run -w packages/protobuf bootstrap:wkt
