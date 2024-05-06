@@ -3,10 +3,10 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
-    "build": "npm run build:esm+types && npm run build:copy-gen-js && npm run build:perf-payload",
+    "build": "npm run build:esm+types && npm run build:copy-gen-js && npm run build:copy-perf-payload",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "build:copy-gen-js": "rsync -a --exclude '*.js' src/gen/js dist/types/gen && rsync -a --exclude '*.d.ts' src/gen/js dist/esm/gen",
-    "build:perf-payload": "cp src/perf-payload.* dist/esm/",
+    "build:copy-perf-payload": "cp src/perf-payload.* dist/esm/",
     "pregenerate": "rm -rf src/gen/*/* descriptorset.*",
     "generate": "npm run generate:ts && npm run generate:js",
     "generate:ts": "protoc --es_out=src/gen/ts --es_opt=ts_nocheck=false,target=ts     --proto_path=. $(buf ls-files extra) --proto_path=$(upstream-include test) $(upstream-files test) google/protobuf/type.proto",
