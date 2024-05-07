@@ -6,7 +6,9 @@
     // generated, but imported from @bufbuild/protobuf, which is compatible.
     // Users of this version of TypeScript must use them.
     "../../protobuf-test/src/gen/ts/google/protobuf/*.ts",
-    "../../protobuf-test/src/google/protobuf/*.test.ts"
+    "../../protobuf-test/src/google/protobuf/*.test.ts",
+    // Exclude the perf file as this is only used internally for performance tests.
+    "../../protobuf-test/src/perf.ts"
   ],
   // These are the default compiler options for TypeScript v4.2.4,
   // created with `tsc --init`

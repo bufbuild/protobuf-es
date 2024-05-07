@@ -1,5 +1,6 @@
 {
   "include": ["../../protobuf-test/src/**/*"],
+  "exclude": ["../../protobuf-test/src/perf.ts"],
   // These are the default compiler options for TypeScript v4.7.x, created
   // with `tsc --init` (except where noted in comments below)
   "compilerOptions": {
