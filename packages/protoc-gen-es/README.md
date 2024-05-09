@@ -95,10 +95,9 @@ bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
 
 By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
 (and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
-don't use a file extensions in import paths.
+does not add a file extensions to import paths.
 
-Some bundlers and environments may require an import extension like [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html)
-requires `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions
+Some environments require an import extension. For example, using [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html) requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions
 in import paths with the given value. For example, set
 
 - `import_extension=.js` to add the `.js` extension.
