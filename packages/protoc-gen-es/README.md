@@ -91,19 +91,19 @@ By default, we generate JavaScript and TypeScript declaration files, which
 produces the smallest code size and is the most compatible with various
 bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
 
-### `import_extension=.js`
+### `import_extension`
 
 By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
 (and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
-uses a `.js` file extensions in import paths, even in TypeScript files.
+don't use a file extensions in import paths.
 
-This is unintuitive, but necessary for [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html).
-Unfortunately, not all bundlers and tools have caught up yet, and Deno
-requires `.ts`. With this plugin option, you can replace `.js` extensions
+Some bundlers and environments may require an import extension like [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html)
+requires `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions
 in import paths with the given value. For example, set
 
-- `import_extension=none` to remove the `.js` extension.
-- `import_extension=.ts` to replace the `.js` extension with `.ts`.
+- `import_extension=.js` to add the `.js` extension.
+- `import_extension=.ts` to add the `.ts` extension.
+- `import_extension=none` to not add an extension. (Default)
 
 ### `js_import_style`
 
