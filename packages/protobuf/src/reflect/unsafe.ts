@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import type { DescField, DescOneof } from "../desc-types.js";
-import { localName } from "./names.js";
 import type { OneofADT } from "./guard.js";
 import { isScalarZeroValue, scalarZeroValue } from "./scalar.js";
 import type { FeatureSet_FieldPresence } from "../wkt/gen/google/protobuf/descriptor_pb.js";
@@ -32,11 +31,11 @@ export function unsafeOneofCase(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
   oneof: DescOneof,
 ) {
-  const c = (target[localName(oneof)] as OneofADT).case;
+  const c = (target[oneof.localName] as OneofADT).case;
   if (c === undefined) {
     return c;
   }
-  return oneof.fields.find((f) => localName(f) === c);
+  return oneof.fields.find((f) => f.localName === c);
 }
 
 /**
@@ -48,9 +47,9 @@ export function unsafeIsSet(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
   field: DescField,
 ) {
-  const name = localName(field);
+  const name = field.localName;
   if (field.oneof) {
-    return target[localName(field.oneof)].case === name; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+    return target[field.oneof.localName].case === name; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
   }
   if (field.presence != IMPLICIT) {
     // Fields with explicit presence have properties on the prototype chain
@@ -96,15 +95,14 @@ export function unsafeGet(
   target: Record<string, unknown>,
   field: DescField,
 ): unknown {
-  const name = localName(field);
   if (field.oneof) {
-    const oneof = target[localName(field.oneof)] as OneofADT;
-    if (oneof.case === name) {
+    const oneof = target[field.oneof.localName] as OneofADT;
+    if (oneof.case === field.localName) {
       return oneof.value;
     }
     return undefined;
   }
-  return target[name];
+  return target[field.localName];
 }
 
 /**
@@ -117,14 +115,13 @@ export function unsafeSet(
   field: DescField,
   value: unknown,
 ) {
-  const name = localName(field);
   if (field.oneof) {
-    target[localName(field.oneof)] = {
-      case: name,
+    target[field.oneof.localName] = {
+      case: field.localName,
       value: value,
     };
   } else {
-    target[name] = value;
+    target[field.localName] = value;
   }
 }
 
@@ -137,9 +134,9 @@ export function unsafeClear(
   target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
   field: DescField,
 ) {
-  const name = localName(field);
+  const name = field.localName;
   if (field.oneof) {
-    const oneofLocalName = localName(field.oneof);
+    const oneofLocalName = field.oneof.localName;
     if ((target[oneofLocalName] as OneofADT).case === name) {
       target[oneofLocalName] = { case: undefined };
     }
@@ -177,8 +174,7 @@ export function unsafeAddListItem(
   field: DescField & { fieldKind: "list" },
   value: unknown,
 ) {
-  const name = localName(field);
-  (target[name] as unknown[]).push(value);
+  (target[field.localName] as unknown[]).push(value);
 }
 
 /**
@@ -192,6 +188,5 @@ export function unsafeSetMapEntry(
   key: string | number,
   value: unknown,
 ) {
-  const name = localName(field);
-  (target[name] as Record<string | number, unknown>)[key] = value;
+  (target[field.localName] as Record<string | number, unknown>)[key] = value;
 }

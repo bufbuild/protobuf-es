@@ -31,6 +31,7 @@ import type {
   MethodOptions_IdempotencyLevel,
   OneofDescriptorProto,
   ServiceDescriptorProto,
+  EnumValueDescriptorProto,
 } from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import { assert } from "./assert.js";
 import type {
@@ -51,6 +52,7 @@ import {
 import { LongType, ScalarType } from "./scalar.js";
 import { nestedTypes } from "./nested-types.js";
 import { unsafeIsSetExplicit } from "./unsafe.js";
+import { protoCamelCase, safeObjectProperty } from "./names.js";
 
 /**
  * A set of descriptors for messages, enumerations, extensions,
@@ -569,6 +571,7 @@ function addEnum(
   parent: DescMessage | undefined,
   reg: MutableRegistry,
 ): void {
+  const sharedPrefix = findEnumSharedPrefix(proto.name, proto.value);
   const desc: { -readonly [P in keyof DescEnum]: DescEnum[P] } = {
     kind: "enum",
     proto,
@@ -579,10 +582,7 @@ function addEnum(
     name: proto.name,
     typeName: makeTypeName(proto, parent, file),
     values: [],
-    sharedPrefix: findEnumSharedPrefix(
-      proto.name,
-      proto.value.map((v) => v.name),
-    ),
+    sharedPrefix,
     toString(): string {
       return `enum ${this.typeName}`;
     },
@@ -590,12 +590,16 @@ function addEnum(
   desc.open = isEnumOpen(desc);
   reg.add(desc);
   proto.value.forEach((proto) => {
+    const name = proto.name;
     desc.values.push({
       kind: "enum_value",
       proto,
       deprecated: proto.options?.deprecated ?? false,
       parent: desc,
       name: proto.name,
+      localName: safeObjectProperty(
+        sharedPrefix == undefined ? name : name.substring(sharedPrefix.length),
+      ),
       number: proto.number,
       toString() {
         return `enum value ${desc.typeName}.${this.name}`;
@@ -711,6 +715,11 @@ function newMethod(
     deprecated: proto.options?.deprecated ?? false,
     parent,
     name,
+    localName: safeObjectProperty(
+      name.length
+        ? safeObjectProperty(name[0].toLowerCase() + name.substring(1))
+        : name,
+    ),
     methodKind,
     input,
     output,
@@ -732,6 +741,7 @@ function newOneof(proto: OneofDescriptorProto, parent: DescMessage): DescOneof {
     parent,
     fields: [],
     name: proto.name,
+    localName: safeObjectProperty(protoCamelCase(proto.name)),
     toString(): string {
       return `oneof ${parent.typeName}.${this.name}`;
     },
@@ -808,6 +818,9 @@ function newField(
     field.kind = "field";
     field.parent = parent;
     field.oneof = oneof;
+    field.localName = oneof
+      ? protoCamelCase(proto.name)
+      : safeObjectProperty(protoCamelCase(proto.name));
     field.jsonName = proto.jsonName;
     field.toString = () => `field ${parent.typeName}.${proto.name}`;
   }
@@ -956,14 +969,14 @@ function findFileDependencies(
  */
 function findEnumSharedPrefix(
   enumName: string,
-  valueNames: string[],
+  values: EnumValueDescriptorProto[],
 ): string | undefined {
   const prefix = camelToSnakeCase(enumName) + "_";
-  for (const name of valueNames) {
-    if (!name.toLowerCase().startsWith(prefix)) {
+  for (const value of values) {
+    if (!value.name.toLowerCase().startsWith(prefix)) {
       return undefined;
     }
-    const shortName = name.substring(prefix.length);
+    const shortName = value.name.substring(prefix.length);
     if (shortName.length == 0) {
       return undefined;
     }

@@ -15,7 +15,6 @@
 import { isMessage } from "./is-message.js";
 import type { DescField, DescMessage, DescOneof } from "./desc-types.js";
 import type { Message, MessageInitShape, MessageShape } from "./types.js";
-import { localName } from "./reflect/names.js";
 import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";
 import { FieldError } from "./reflect/error.js";
 import { isObject, type OneofADT } from "./reflect/guard.js";
@@ -60,7 +59,7 @@ function initMessage<Desc extends DescMessage>(
   init: MessageInitShape<Desc>,
 ): MessageShape<Desc> | FieldError {
   for (const member of messageDesc.members) {
-    let value = (init as Record<string, unknown>)[localName(member)];
+    let value = (init as Record<string, unknown>)[member.localName];
     if (value == null) {
       // intentionally ignore undefined and null
       continue;
@@ -181,7 +180,7 @@ function createZeroMessage(desc: DescMessage): Message {
     msg = {};
     for (const member of desc.members) {
       if (member.kind == "oneof" || member.presence == IMPLICIT) {
-        msg[localName(member)] = createZeroField(member);
+        msg[member.localName] = createZeroField(member);
       }
     }
   } else {
@@ -212,7 +211,7 @@ function createZeroMessage(desc: DescMessage): Message {
           continue;
         }
         members.add(member);
-        prototype[localName(member)] = createZeroField(member);
+        prototype[member.localName] = createZeroField(member);
       }
       messagePrototypes.set(desc, { prototype, members });
     }
@@ -231,7 +230,7 @@ function createZeroMessage(desc: DescMessage): Message {
           }
         }
       }
-      msg[localName(member)] = createZeroField(member);
+      msg[member.localName] = createZeroField(member);
     }
   }
   msg.$typeName = desc.typeName;
