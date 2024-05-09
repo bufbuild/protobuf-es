@@ -65,12 +65,12 @@ export function clearField<Desc extends DescMessage>(
 // prettier-ignore
 type MessageFieldNames<T extends Message> = Message extends T ? string :
   Exclude<keyof {
-    [P in keyof T as
-      P extends ("$typeName" | "$unknown") ? never
-        : T[P] extends Oneof<infer K> ? K
-          : P
-    ]-?: true;
-  }, number | symbol>
+  [P in keyof T as
+     P extends ("$typeName" | "$unknown") ? never
+    : T[P] extends Oneof<infer K> ? K
+    : P
+  ]-?: true;
+}, number | symbol>;
 
 type Oneof<K extends string> = {
   case: K | undefined;
