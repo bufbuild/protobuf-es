@@ -16,7 +16,6 @@
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { getOption, hasOption } from "@bufbuild/protobuf";
-import { localName } from "@bufbuild/protobuf/reflect";
 import { type Schema, safeIdentifier } from "@bufbuild/protoplugin/ecmascript";
 import { default_host } from "./gen/customoptions/default_host_pb.js";
 import { version } from "../package.json";
@@ -60,7 +59,7 @@ function generateTs(schema: Schema) {
           const outputType = f.importShape(method.output);
           const outputDesc = f.importDesc(method.output);
           const jsonValue = f.import("JsonValue", "@bufbuild/protobuf").toTypeOnly();
-          f.print("    async ", localName(method), "(request: ", inputType, "): Promise<", outputType, "> {");
+          f.print("    async ", method.localName, "(request: ", inputType, "): Promise<", outputType, "> {");
           f.print("        const headers = new Headers([]);");
           f.print("        headers.set('content-type', 'application/json');");
           f.print("        const fetchResponse = await fetch(");

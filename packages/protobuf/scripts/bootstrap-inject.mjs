@@ -17,11 +17,7 @@ import { join as joinPath } from "node:path";
 import assert from "node:assert";
 import { stdout, stderr, argv } from "node:process";
 import { UpstreamProtobuf } from "upstream-protobuf";
-import {
-  createFileRegistry,
-  localName,
-  reflect,
-} from "@bufbuild/protobuf/reflect";
+import { createFileRegistry, reflect } from "@bufbuild/protobuf/reflect";
 import { fromBinary } from "@bufbuild/protobuf";
 import {
   Edition,
@@ -116,7 +112,7 @@ async function processFile(filePath, content, descriptorProto, upstream) {
         lines[i] = injectVars(template, {
           $name: enumValueDesc.name,
           $number: enumValueDesc.number,
-          $localName: localName(enumValueDesc),
+          $localName: enumValueDesc.localName,
         });
         continue;
       }
@@ -177,7 +173,7 @@ async function processFile(filePath, content, descriptorProto, upstream) {
             assert(val !== undefined);
             const valDesc = f.enum.values.find((e) => e.number === val);
             assert(valDesc !== undefined);
-            lines.push(`    ${localName(f)}: ${val}, // ${valDesc.name},`);
+            lines.push(`    ${f.localName}: ${val}, // ${valDesc.name},`);
           }
           lines.push(`  },`);
         }

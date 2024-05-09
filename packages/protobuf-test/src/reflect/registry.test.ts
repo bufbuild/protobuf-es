@@ -14,8 +14,8 @@
 
 import { beforeAll, beforeEach, describe, expect, test } from "@jest/globals";
 import assert from "node:assert";
-import type { FileRegistry } from "@bufbuild/protobuf/reflect";
 import {
+  type FileRegistry,
   createFileRegistry,
   createRegistry,
   LongType,
@@ -30,8 +30,8 @@ import type {
   DescOneof,
   DescService,
 } from "@bufbuild/protobuf";
-import type { FileDescriptorSet } from "@bufbuild/protobuf/wkt";
 import {
+  type FileDescriptorSet,
   Edition,
   FeatureSet_FieldPresence,
   MethodOptions_IdempotencyLevel,
@@ -637,6 +637,70 @@ describe("DescEnum", () => {
   });
 });
 
+describe("DescEnumValue", () => {
+  describe("name", () => {
+    test.each(["MY_ENUM_A", "foo", "__proto__"])(
+      "is proto name %s",
+      async (name) => {
+        const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum MyEnum {
+          ${name} = 0; 
+        }
+      `);
+        expect(descEnum.values[0].name).toBe(name);
+      },
+    );
+  });
+  describe("localName", () => {
+    test("does not change case", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum E {
+          FooBAR_baz_1 = 0;
+        }
+      `)
+      ).values[0];
+      expect(value.localName).toBe("FooBAR_baz_1");
+    });
+    test("drops shared prefix", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum PrefixEnum {
+          PREFIX_ENUM_ZERO = 0;
+          PREFIX_ENUM_ONE = 1;
+        }
+      `)
+      ).values[0];
+      expect(value.localName).toBe("ZERO");
+    });
+    test("escapes reserved property name", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum EnumBuiltIn {
+          constructor = 0;
+        }
+      `)
+      ).values[0];
+      expect(value.localName).toBe("constructor$");
+    });
+    test("escapes reserved property name with dropped prefix", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum EnumBuiltInPrefixed {
+          ENUM_BUILT_IN_PREFIXED_constructor = 0;
+        }
+      `)
+      ).values[0];
+      expect(value.localName).toBe("constructor$");
+    });
+  });
+});
+
 describe("DescField", () => {
   describe("presence", () => {
     test("proto2 optional is EXPLICIT", async () => {
@@ -918,6 +982,52 @@ describe("DescField", () => {
         }
       },
     );
+  });
+  describe("localName", () => {
+    test("applies protoCamelCase", async () => {
+      const field = await compileField(`
+        syntax="proto3";
+        message M {
+          int32 __proto__ = 1;
+        }
+      `);
+      expect(field.localName).toBe("Proto");
+    });
+    test("escapes reserved property name", async () => {
+      const field = await compileField(`
+        syntax="proto3";
+        message M {
+          int32 constructor = 1;
+        }
+      `);
+      expect(field.localName).toBe("constructor$");
+    });
+    describe("with field in oneof", () => {
+      test("applies protoCamelCase", async () => {
+        const field = await compileField(`
+        syntax="proto3";
+        message M {
+          oneof kind {
+            int32 __proto__ = 1;
+          }
+        }
+      `);
+        expect(field.oneof).toBeDefined();
+        expect(field.localName).toBe("Proto");
+      });
+      test("does not escape reserved property name", async () => {
+        const field = await compileField(`
+        syntax="proto3";
+        message M {
+          oneof kind {
+            int32 constructor = 1;
+          }
+        }
+      `);
+        expect(field.oneof).toBeDefined();
+        expect(field.localName).toBe("constructor");
+      });
+    });
   });
   describe("jsonName", () => {
     test.each(["field", "foo_bar", "__proto__", "constructor"])(
@@ -1335,6 +1445,53 @@ describe("DescField", () => {
   });
 });
 
+describe("DescOneof", () => {
+  describe("localName", () => {
+    test("applies protoCamelCase", async () => {
+      const oneof = (
+        await compileMessage(`
+        syntax="proto3";
+        message M {
+          oneof __proto__ {
+            bool placeholder = 1;
+          }
+        }
+      `)
+      ).oneofs[0];
+      expect(oneof.localName).toBe("Proto");
+    });
+    test("escapes reserved property name", async () => {
+      const oneof = (
+        await compileMessage(`
+        syntax="proto3";
+        message M {
+          oneof constructor {
+            bool placeholder = 1;
+          }
+        }
+      `)
+      ).oneofs[0];
+      expect(oneof.localName).toBe("constructor$");
+    });
+  });
+  describe("fields", () => {
+    test("has member fields", async () => {
+      const oneof = (
+        await compileMessage(`
+        syntax="proto3";
+        message M {
+          oneof tst {
+            bool a = 1;
+            bool b = 2;
+          }
+        }
+      `)
+      ).oneofs[0];
+      expect(oneof.fields.length).toBe(2);
+    });
+  });
+});
+
 describe("DescExtension", () => {
   test("typeName", async () => {
     const ext = await compileExtension(`
@@ -1635,6 +1792,32 @@ describe("DescMethod", () => {
         message O {}
       `);
       expect(method.deprecated).toBe(true);
+    });
+  });
+  describe("localName", () => {
+    test("makes first letter lowerCase", async () => {
+      const rpc = (
+        await compileService(`
+        syntax="proto3";
+        service Srv {
+          rpc Foo_bar_BAZ(E) returns (E);
+        }
+        message E {}
+      `)
+      ).methods[0];
+      expect(rpc.localName).toBe("foo_bar_BAZ");
+    });
+    test("escapes reserved property name", async () => {
+      const rpc = (
+        await compileService(`
+        syntax="proto3";
+        service Srv {
+          rpc constructor(E) returns (E);
+        }
+        message E {}
+      `)
+      ).methods[0];
+      expect(rpc.localName).toBe("constructor$");
     });
   });
 });

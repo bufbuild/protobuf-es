@@ -12,49 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnumValue, DescField } from "../desc-types.js";
-import type { DescMethod, DescOneof } from "../desc-types.js";
-
-/**
- * Returns the name of a protobuf element in generated code.
- *
- * Field names - including oneofs - are converted to lowerCamelCase. For methods,
- * the first character is made lowercase. All names are escaped to be safe object
- * property names.
- *
- * This function does not provide names for messages, enumerations, and services.
- */
-export function localName(
-  desc: DescEnumValue | DescOneof | DescField | DescMethod,
-): string {
-  const name = desc.name;
-  switch (desc.kind) {
-    // @ts-expect-error TS7029
-    case "field":
-      if (desc.oneof !== undefined) {
-        // oneof member names are not properties, but values of the `case` property.
-        return protoCamelCase(name);
-      }
-    // eslint-disable-next-line no-fallthrough
-    case "oneof":
-      return safeObjectProperty(protoCamelCase(name));
-    case "enum_value": {
-      let name = desc.name;
-      const sharedPrefix = desc.parent.sharedPrefix;
-      if (sharedPrefix !== undefined) {
-        name = name.substring(sharedPrefix.length);
-      }
-      return safeObjectProperty(name);
-    }
-    case "rpc": {
-      if (name.length == 0) {
-        return name;
-      }
-      return safeObjectProperty(name[0].toLowerCase() + name.substring(1));
-    }
-  }
-}
-
 /**
  * Converts snake_case to protoCamelCase according to the convention
  * used by protoc to convert a field name to a JSON name.

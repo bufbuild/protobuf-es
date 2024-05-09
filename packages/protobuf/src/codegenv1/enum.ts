@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import type { DescEnum, DescFile } from "../desc-types.js";
-import { localName } from "../reflect/names.js";
 import type { GenDescEnum } from "./types.js";
 
 /**
@@ -42,9 +41,8 @@ export function enumDesc<Shape>(
 export function tsEnum(desc: DescEnum) {
   const enumObject = {} as enumObject;
   for (const value of desc.values) {
-    const name = localName(value);
-    enumObject[name] = value.number;
-    enumObject[value.number] = name;
+    enumObject[value.localName] = value.number;
+    enumObject[value.number] = value.localName;
   }
   return enumObject;
 }

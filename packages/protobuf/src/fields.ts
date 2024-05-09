@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import type { Message, MessageShape } from "./types.js";
-import { localName } from "./reflect/names.js";
 import { unsafeClear, unsafeIsSet } from "./reflect/unsafe.js";
 import type { DescMessage } from "./desc-types.js";
 
@@ -38,7 +37,7 @@ export function isFieldSet<Desc extends DescMessage>(
   message: MessageShape<Desc>,
   fieldName: MessageFieldNames<MessageShape<Desc>>,
 ): boolean {
-  const field = messageDesc.fields.find((f) => localName(f) === fieldName);
+  const field = messageDesc.fields.find((f) => f.localName === fieldName);
   if (field) {
     return unsafeIsSet(message, field);
   }
@@ -53,7 +52,7 @@ export function clearField<Desc extends DescMessage>(
   message: MessageShape<Desc>,
   fieldName: MessageFieldNames<MessageShape<Desc>>,
 ): void {
-  const field = messageDesc.fields.find((f) => localName(f) === fieldName);
+  const field = messageDesc.fields.find((f) => f.localName === fieldName);
   if (field) {
     unsafeClear(message, field);
   }
@@ -66,12 +65,12 @@ export function clearField<Desc extends DescMessage>(
 // prettier-ignore
 type MessageFieldNames<T extends Message> = Message extends T ? string :
   Exclude<keyof {
-  [P in keyof T as
-     P extends ("$typeName" | "$unknown") ? never
-    : T[P] extends Oneof<infer K> ? K
-    : P
-  ]-?: true;
-}, number | symbol>
+    [P in keyof T as
+      P extends ("$typeName" | "$unknown") ? never
+        : T[P] extends Oneof<infer K> ? K
+          : P
+    ]-?: true;
+  }, number | symbol>
 
 type Oneof<K extends string> = {
   case: K | undefined;

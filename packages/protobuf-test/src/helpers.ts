@@ -14,7 +14,7 @@
 
 import type { DescMessage } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
-import { createFileRegistry, localName } from "@bufbuild/protobuf/reflect";
+import { createFileRegistry } from "@bufbuild/protobuf/reflect";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import type { DescField } from "@bufbuild/protobuf";
 import { fromBinary } from "@bufbuild/protobuf";
@@ -118,7 +118,7 @@ export function getFieldByLocalName(
   fieldKind?: string,
 ): DescField {
   const field = proto3_ts.Proto3MessageDesc.fields.find(
-    (f) => localName(f) === name,
+    (f) => f.localName === name,
   );
   if (!field) {
     throw new Error(`getFieldByLocalName: ${name} not found`);

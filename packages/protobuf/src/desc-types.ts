@@ -160,6 +160,10 @@ export interface DescEnumValue {
    */
   readonly name: string;
   /**
+   * A safe and idiomatic name for the value in a TypeScript enum.
+   */
+  readonly localName: string;
+  /**
    * The enumeration this value belongs to.
    */
   readonly parent: DescEnum;
@@ -256,6 +260,10 @@ type descFieldCommon = descFieldAndExtensionShared & {
    * The message this field is declared on.
    */
   readonly parent: DescMessage;
+  /**
+   * A safe and idiomatic name for the field as a property in ECMAScript.
+   */
+  readonly localName: string;
 };
 
 /**
@@ -564,6 +572,10 @@ export interface DescOneof {
    */
   readonly name: string;
   /**
+   * A safe and idiomatic name for the oneof group as a property in ECMAScript.
+   */
+  readonly localName: string;
+  /**
    * The message this oneof group was declared in.
    */
   readonly parent: DescMessage;
@@ -627,6 +639,10 @@ export interface DescMethod {
    * The name of the RPC, as specified in the protobuf source.
    */
   readonly name: string;
+  /**
+   * A safe and idiomatic name for the RPC as a method in ECMAScript.
+   */
+  readonly localName: string;
   /**
    * The parent service.
    */

@@ -18,7 +18,7 @@ import type {
   DescMessage,
   DescService,
 } from "@bufbuild/protobuf";
-import { localName, parentTypes } from "@bufbuild/protobuf/reflect";
+import { parentTypes } from "@bufbuild/protobuf/reflect";
 import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv1";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type {
@@ -298,7 +298,7 @@ function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable 
   print("{");
   for (const method of service.methods) {
     print(f.jsDoc(method, "  "));
-    print("  ", localName(method), ": {");
+    print("  ", method.localName, ": {");
     print("    kind: ", f.string(method.methodKind), ";");
     print("    I: ", f.importShape(method.input), ";");
     print("    O: ", f.importShape(method.output), ";");
@@ -317,7 +317,7 @@ function generateEnumShape(f: GeneratedFile, enumeration: DescEnum) {
       f.print();
     }
     f.print(f.jsDoc(value, "  "));
-    f.print("  ", localName(value), " = ", value.number, ",");
+    f.print("  ", value.localName, " = ", value.number, ",");
   }
   f.print("}");
   f.print();
@@ -333,7 +333,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
     switch (member.kind) {
       case "oneof":
         f.print(f.jsDoc(member, "  "));
-        f.print("  ", localName(member), ": {");
+        f.print("  ", member.localName, ": {");
         for (const field of member.fields) {
           if (member.fields.indexOf(field) > 0) {
             f.print(`  } | {`);
@@ -341,7 +341,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
           f.print(f.jsDoc(field, "    "));
           const { typing } = fieldTypeScriptType(field);
           f.print(`    value: `, typing, `;`);
-          f.print(`    case: "`, localName(field), `";`);
+          f.print(`    case: "`, field.localName, `";`);
         }
         f.print(`  } | { case: undefined; value?: undefined };`);
         break;
@@ -349,9 +349,9 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
         f.print(f.jsDoc(member, "  "));
         const { typing, optional } = fieldTypeScriptType(member);
         if (optional) {
-          f.print("  ", localName(member), "?: ", typing, ";");
+          f.print("  ", member.localName, "?: ", typing, ";");
         } else {
-          f.print("  ", localName(member), ": ", typing, ";");
+          f.print("  ", member.localName, ": ", typing, ";");
         }
         break;
       }

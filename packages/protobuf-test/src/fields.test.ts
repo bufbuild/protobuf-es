@@ -15,7 +15,6 @@
 import { beforeEach, describe, expect, test } from "@jest/globals";
 import type { DescMessage } from "@bufbuild/protobuf";
 import { clearField, create, isFieldSet } from "@bufbuild/protobuf";
-import { localName } from "@bufbuild/protobuf/reflect";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
@@ -55,7 +54,7 @@ describe("isFieldSet()", () => {
     const desc = proto3_ts.Proto3MessageDesc;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
-      const set = isFieldSet(desc as DescMessage, msg, localName(field));
+      const set = isFieldSet(desc as DescMessage, msg, field.localName);
       expect(set).toBe(false);
     });
     test.each(fillProto3MessageNames())("%s is set", (name) => {
@@ -69,7 +68,7 @@ describe("isFieldSet()", () => {
     const desc = proto2_ts.Proto2MessageDesc;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
-      const set = isFieldSet(desc as DescMessage, msg, localName(field));
+      const set = isFieldSet(desc as DescMessage, msg, field.localName);
       expect(set).toBe(false);
     });
     test.each(fillProto2MessageNames())("%s is set", (name) => {
@@ -83,7 +82,7 @@ describe("isFieldSet()", () => {
     const desc = edition2023_ts.Edition2023MessageDesc;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
-      const set = isFieldSet(desc as DescMessage, msg, localName(field));
+      const set = isFieldSet(desc as DescMessage, msg, field.localName);
       expect(set).toBe(false);
     });
     test.each(fillEdition2023MessageNames())("%s is set", (name) => {

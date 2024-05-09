@@ -27,7 +27,6 @@ import type {
 import { assert } from "./reflect/assert.js";
 import { create } from "./create.js";
 import { readField } from "./from-binary.js";
-import { localName } from "./reflect/names.js";
 import type { ReflectMessage } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
@@ -214,10 +213,12 @@ export function createExtensionContainer<Desc extends DescExtension>(
   extension: Desc,
   value?: ExtensionValueShape<Desc>,
 ): [ReflectMessage, DescField, () => ExtensionValueShape<Desc>] {
+  const localName = extension.typeName;
   const field = {
     ...extension,
     kind: "field",
     parent: extension.extendee,
+    localName,
   } as DescField;
   const desc = {
     ...extension.extendee,
@@ -225,16 +226,15 @@ export function createExtensionContainer<Desc extends DescExtension>(
     members: [field],
     oneofs: [],
   };
-  const fieldName = localName(field);
   const container = create(
     desc,
-    value !== undefined ? { [fieldName]: value } : undefined,
+    value !== undefined ? { [localName]: value } : undefined,
   );
   return [
     reflect(desc, container),
     field,
     () => {
-      const value = (container as Record<string, unknown>)[fieldName];
+      const value = (container as Record<string, unknown>)[localName];
       if (value === undefined) {
         // Only message fields are undefined, rest will have a zero value.
         const desc = extension.message!;
