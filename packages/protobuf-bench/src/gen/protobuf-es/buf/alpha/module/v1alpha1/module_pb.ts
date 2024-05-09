@@ -18,10 +18,10 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Config } from "../../breaking/v1/config_pb.js";
-import { fileDesc_buf_alpha_breaking_v1_config } from "../../breaking/v1/config_pb.js";
-import type { Config as Config$1 } from "../../lint/v1/config_pb.js";
-import { fileDesc_buf_alpha_lint_v1_config } from "../../lint/v1/config_pb.js";
+import type { Config } from "../../breaking/v1/config_pb";
+import { fileDesc_buf_alpha_breaking_v1_config } from "../../breaking/v1/config_pb";
+import type { Config as Config$1 } from "../../lint/v1/config_pb";
+import { fileDesc_buf_alpha_lint_v1_config } from "../../lint/v1/config_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";

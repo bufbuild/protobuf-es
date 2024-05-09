@@ -18,10 +18,10 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { RepositoryRole } from "./role_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_role } from "./role_pb.js";
-import type { User } from "./user_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_user } from "./user_pb.js";
+import type { RepositoryRole } from "./role_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_role } from "./role_pb";
+import type { User } from "./user_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_user } from "./user_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";

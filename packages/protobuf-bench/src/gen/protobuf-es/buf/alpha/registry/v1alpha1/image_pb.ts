@@ -18,8 +18,8 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Image } from "../../image/v1/image_pb.js";
-import { fileDesc_buf_alpha_image_v1_image } from "../../image/v1/image_pb.js";
+import type { Image } from "../../image/v1/image_pb";
+import { fileDesc_buf_alpha_image_v1_image } from "../../image/v1/image_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

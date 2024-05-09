@@ -27,8 +27,8 @@ describe("rewrite_imports", function () {
       },
     );
     expect(lines).toStrictEqual([
-      'import { Bar } from "@scope/pkg/foo/bar_pb.js";',
-      'import { Baz } from "@scope/pkg/foo/bar/baz_pb.js";',
+      'import { Bar } from "@scope/pkg/foo/bar_pb";',
+      'import { Baz } from "@scope/pkg/foo/bar/baz_pb";',
       "",
       "console.log(Bar, Baz);",
     ]);

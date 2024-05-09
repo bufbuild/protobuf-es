@@ -17,6 +17,28 @@ import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("import_extension", function () {
+  test("should default to 'none'", async () => {
+    const lines = await testGenerate("target=ts", (f) => {
+      const Bar = f.import("Bar", "./foo/bar_pb.js");
+      f.print`${Bar}`;
+    });
+    expect(lines).toStrictEqual([
+      'import { Bar } from "./foo/bar_pb";',
+      "",
+      "Bar",
+    ]);
+  });
+  test("should be replaced with '.js'", async () => {
+    const lines = await testGenerate("target=ts,import_extension=.js", (f) => {
+      const Bar = f.import("Bar", "./foo/bar_pb.js");
+      f.print`${Bar}`;
+    });
+    expect(lines).toStrictEqual([
+      'import { Bar } from "./foo/bar_pb.js";',
+      "",
+      "Bar",
+    ]);
+  });
   test("should be replaced with '.ts'", async () => {
     const lines = await testGenerate("target=ts,import_extension=.ts", (f) => {
       const Bar = f.import("Bar", "./foo/bar_pb.js");

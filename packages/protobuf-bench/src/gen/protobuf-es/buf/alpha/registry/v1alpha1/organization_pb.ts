@@ -18,8 +18,8 @@
 
 import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { OrganizationRole, PluginRole, RepositoryRole, TemplateRole } from "./role_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_role } from "./role_pb.js";
+import type { OrganizationRole, PluginRole, RepositoryRole, TemplateRole } from "./role_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_role } from "./role_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";

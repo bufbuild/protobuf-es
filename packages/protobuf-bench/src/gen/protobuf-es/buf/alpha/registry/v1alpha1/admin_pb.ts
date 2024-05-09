@@ -18,14 +18,14 @@
 
 import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Organization } from "./organization_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_organization } from "./organization_pb.js";
-import type { Plugin, Template } from "./plugin_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_plugin } from "./plugin_pb.js";
-import type { Repository } from "./repository_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_repository } from "./repository_pb.js";
-import type { User } from "./user_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_user } from "./user_pb.js";
+import type { Organization } from "./organization_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_organization } from "./organization_pb";
+import type { Plugin, Template } from "./plugin_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_plugin } from "./plugin_pb";
+import type { Repository } from "./repository_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_repository } from "./repository_pb";
+import type { User } from "./user_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_user } from "./user_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

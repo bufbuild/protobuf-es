@@ -18,10 +18,10 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Visibility } from "./repository_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_repository } from "./repository_pb.js";
-import type { PluginVisibility } from "./plugin_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_plugin } from "./plugin_pb.js";
+import type { Visibility } from "./repository_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_repository } from "./repository_pb";
+import type { PluginVisibility } from "./plugin_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_plugin } from "./plugin_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

@@ -18,10 +18,10 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { ModulePin, ModuleReference } from "../../module/v1alpha1/module_pb.js";
-import { fileDesc_buf_alpha_module_v1alpha1_module } from "../../module/v1alpha1/module_pb.js";
-import type { LocalModulePin, LocalModuleReference } from "./module_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_module } from "./module_pb.js";
+import type { ModulePin, ModuleReference } from "../../module/v1alpha1/module_pb";
+import { fileDesc_buf_alpha_module_v1alpha1_module } from "../../module/v1alpha1/module_pb";
+import type { LocalModulePin, LocalModuleReference } from "./module_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_module } from "./module_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

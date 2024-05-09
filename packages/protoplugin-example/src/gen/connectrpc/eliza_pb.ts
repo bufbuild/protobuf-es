@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc_customoptions_default_host } from "../customoptions/default_host_pb.js";
+import { fileDesc_customoptions_default_host } from "../customoptions/default_host_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

@@ -20,8 +20,8 @@ import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/prot
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
-import type { Event } from "../../audit/v1alpha1/envelope_pb.js";
-import { fileDesc_buf_alpha_audit_v1alpha1_envelope } from "../../audit/v1alpha1/envelope_pb.js";
+import type { Event } from "../../audit/v1alpha1/envelope_pb";
+import { fileDesc_buf_alpha_audit_v1alpha1_envelope } from "../../audit/v1alpha1/envelope_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

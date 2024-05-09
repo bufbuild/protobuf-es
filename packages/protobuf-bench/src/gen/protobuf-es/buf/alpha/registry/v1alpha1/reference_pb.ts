@@ -18,14 +18,14 @@
 
 import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { RepositoryBranch } from "./repository_branch_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_repository_branch } from "./repository_branch_pb.js";
-import type { RepositoryCommit } from "./repository_commit_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_repository_commit } from "./repository_commit_pb.js";
-import type { RepositoryTag } from "./repository_tag_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_repository_tag } from "./repository_tag_pb.js";
-import type { RepositoryTrack } from "./repository_track_pb.js";
-import { fileDesc_buf_alpha_registry_v1alpha1_repository_track } from "./repository_track_pb.js";
+import type { RepositoryBranch } from "./repository_branch_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_repository_branch } from "./repository_branch_pb";
+import type { RepositoryCommit } from "./repository_commit_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_repository_commit } from "./repository_commit_pb";
+import type { RepositoryTag } from "./repository_tag_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_repository_tag } from "./repository_tag_pb";
+import type { RepositoryTrack } from "./repository_track_pb";
+import { fileDesc_buf_alpha_registry_v1alpha1_repository_track } from "./repository_track_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

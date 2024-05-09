@@ -36,7 +36,7 @@ export function parseParameter(
   let bootstrapWkt = false;
   let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
-  let importExtension = ".js";
+  let importExtension = "";
   let jsImportStyle: "module" | "legacy_commonjs" = "module";
   const rawParameters: string[] = [];
   for (const { key, value, raw } of splitParameter(parameter)) {

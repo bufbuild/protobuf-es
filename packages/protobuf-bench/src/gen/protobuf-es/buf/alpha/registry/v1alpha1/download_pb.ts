@@ -18,8 +18,8 @@
 
 import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Module } from "../../module/v1alpha1/module_pb.js";
-import { fileDesc_buf_alpha_module_v1alpha1_module } from "../../module/v1alpha1/module_pb.js";
+import type { Module } from "../../module/v1alpha1/module_pb";
+import { fileDesc_buf_alpha_module_v1alpha1_module } from "../../module/v1alpha1/module_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

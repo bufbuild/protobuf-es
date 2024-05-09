@@ -20,8 +20,8 @@ import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/prot
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_compiler_plugin } from "@bufbuild/protobuf/wkt";
-import type { Image } from "../../image/v1/image_pb.js";
-import { fileDesc_buf_alpha_image_v1_image } from "../../image/v1/image_pb.js";
+import type { Image } from "../../image/v1/image_pb";
+import { fileDesc_buf_alpha_image_v1_image } from "../../image/v1/image_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
