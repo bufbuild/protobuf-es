@@ -144,7 +144,7 @@ export interface ReflectMessage {
    */
   addListItem<Field extends DescField & { fieldKind: "list" }>(
     field: Field,
-    value: NewListItem<Field>,
+    value: ReflectAddListItemValue<Field>,
   ): FieldError | undefined;
 
   /**
@@ -153,7 +153,7 @@ export interface ReflectMessage {
   setMapEntry<Field extends DescField & { fieldKind: "map" }>(
     field: Field,
     key: MapEntryKey,
-    value: NewMapEntryValue<Field>,
+    value: ReflectSetMapEntryValue<Field>,
   ): FieldError | undefined;
 
   /**
@@ -264,12 +264,18 @@ export interface ReflectMap<K extends MapEntryKey = MapEntryKey, V = unknown>
   [unsafeLocal]: Record<string, unknown>;
 }
 
+/**
+ * A ReflectMap key.
+ */
 export type MapEntryKey = string | number | bigint | boolean;
 
 type enumVal = number;
 
+/**
+ * The return type of ReflectMessage.get()
+ */
 // prettier-ignore
-type ReflectGetValue<Field extends DescField = DescField> = (
+export type ReflectGetValue<Field extends DescField = DescField> = (
   Field extends { fieldKind: "map" } ? (
     Field extends { mapKind: "message" } ? ReflectMap<MapEntryKey, ReflectMessage> :
     Field extends { mapKind: "enum" } ? ReflectMap<MapEntryKey, enumVal> :
@@ -283,8 +289,11 @@ type ReflectGetValue<Field extends DescField = DescField> = (
   never
 );
 
+/**
+ * The type of the "value" argument of ReflectMessage.set()
+ */
 // prettier-ignore
-type ReflectSetValue<Field extends DescField = DescField> = (
+export type ReflectSetValue<Field extends DescField = DescField> = (
   Field extends { fieldKind: "map" } ? ReflectMap :
   Field extends { fieldKind: "list" } ? ReflectList :
   Field extends { fieldKind: "enum" } ? number :
@@ -293,16 +302,22 @@ type ReflectSetValue<Field extends DescField = DescField> = (
   never
 );
 
+/**
+ * The type of the "value" argument of ReflectMessage.addListItem()
+ */
 // prettier-ignore
-type NewListItem<Field extends DescField & { fieldKind: "list" }> = (
+export type ReflectAddListItemValue<Field extends DescField & { fieldKind: "list" }> = (
   Field extends { listKind: "scalar"; scalar: infer T } ? ScalarValue<T> :
   Field extends { listKind: "enum" } ? enumVal :
   Field extends { listKind: "message" } ? ReflectMessage :
   never
 );
 
+/**
+ * The type of the "value" argument of ReflectMessage.setMapEntry()
+ */
 // prettier-ignore
-type NewMapEntryValue<Field extends DescField & { fieldKind: "map" }> = (
+export type ReflectSetMapEntryValue<Field extends DescField & { fieldKind: "map" }> = (
   Field extends { mapKind: "enum" } ? enumVal :
   Field extends { mapKind: "message" } ? ReflectMessage :
   Field extends { mapKind: "scalar"; scalar: infer T } ? ScalarValue<T, LongType.BIGINT> :
