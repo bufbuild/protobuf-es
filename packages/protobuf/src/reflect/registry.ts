@@ -784,6 +784,7 @@ function newField(
     | keyof (DescField & { fieldKind: "list" })
     | keyof (DescField & { fieldKind: "scalar" });
   const field: Partial<Record<AllKeys, unknown>> = {
+    kind: "field",
     proto,
     deprecated: proto.options?.deprecated ?? false,
     name: proto.name,
@@ -792,6 +793,13 @@ function newField(
     message: undefined,
     enum: undefined,
     presence: getFieldPresence(proto, oneof, isExtension, parentOrFile),
+    listKind: undefined,
+    mapKind: undefined,
+    mapKey: undefined,
+    delimitedEncoding: undefined,
+    packed: undefined,
+    longType: undefined,
+    getDefaultValue: undefined,
   };
   if (isExtension) {
     // extension field
@@ -815,7 +823,6 @@ function newField(
     // regular field
     const parent = parentOrFile;
     assert(parent.kind == "message");
-    field.kind = "field";
     field.parent = parent;
     field.oneof = oneof;
     field.localName = oneof

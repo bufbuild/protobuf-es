@@ -158,19 +158,18 @@ export function readField(
       readListField(message, reader, options, field, wireType);
       break;
     case "map":
-      // eslint-disable-next-line no-case-declarations
-      const [key, val] = readMapEntry(field, reader, options);
-      message.setMapEntry(field, key, val);
+      readMapEntry(message, field, reader, options);
       break;
   }
 }
 
 // Read a map field, expecting key field = 1, value field = 2
 function readMapEntry(
+  message: ReflectMessage,
   field: DescField & { fieldKind: "map" },
   reader: BinaryReader,
   options: BinaryReadOptions,
-): [MapEntryKey, ScalarValue | ReflectMessage] {
+): void {
   let key: MapEntryKey | undefined,
     val: ScalarValue | ReflectMessage | undefined;
   const end = reader.pos + reader.uint32();
@@ -211,7 +210,7 @@ function readMapEntry(
         break;
     }
   }
-  return [key, val];
+  message.setMapEntry(field, key, val);
 }
 
 function readListField(
