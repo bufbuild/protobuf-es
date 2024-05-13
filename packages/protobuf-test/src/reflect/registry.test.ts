@@ -543,6 +543,45 @@ describe("DescFile", () => {
   });
 });
 
+describe("DescMessage", () => {
+  describe("deprecated", () => {
+    test("is false by default", async () => {
+      const descMessage = await compileMessage(`
+        syntax="proto3";
+        option deprecated = true;
+        message Foo {}
+      `);
+      expect(descMessage.deprecated).toBe(false);
+    });
+    test("is true with option", async () => {
+      const descMessage = await compileMessage(`
+        syntax="proto3";
+        message Foo {
+          option deprecated = true;
+        }
+      `);
+      expect(descMessage.deprecated).toBe(true);
+    });
+  });
+  describe("field", () => {
+    test("contains field by localName", async () => {
+      const descMessage = await compileMessage(`
+        syntax="proto3";
+        message Foo {
+          int32 foo_bar = 1;
+          oneof kind {
+            int32 oneof_field = 2;
+          }
+        }
+      `);
+      expect(Object.keys(descMessage.field).sort()).toStrictEqual([
+        "fooBar",
+        "oneofField",
+      ]);
+    });
+  });
+});
+
 describe("DescEnum", () => {
   describe("open", () => {
     test("proto3 enum is open", async () => {

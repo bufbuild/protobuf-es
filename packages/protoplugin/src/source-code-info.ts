@@ -36,6 +36,10 @@ import {
   FieldOptionsDesc,
   FeatureSetDesc,
   SourceCodeInfo_LocationDesc,
+  FileDescriptorProtoDesc,
+  DescriptorProtoDesc,
+  EnumDescriptorProtoDesc,
+  ServiceDescriptorProtoDesc,
 } from "@bufbuild/protobuf/wkt";
 
 /**
@@ -43,7 +47,7 @@ import {
  */
 export function getPackageComments(desc: DescFile): DescComments {
   return findComments(desc.proto.sourceCodeInfo, [
-    FieldNumber.FileDescriptorProto_Package,
+    FileDescriptorProtoDesc.field.package.number,
   ]);
 }
 
@@ -52,7 +56,7 @@ export function getPackageComments(desc: DescFile): DescComments {
  */
 export function getSyntaxComments(desc: DescFile): DescComments {
   return findComments(desc.proto.sourceCodeInfo, [
-    FieldNumber.FileDescriptorProto_Syntax,
+    FileDescriptorProtoDesc.field.syntax.number,
   ]);
 }
 
@@ -67,11 +71,11 @@ export function getComments(desc: Exclude<AnyDesc, DescFile>): DescComments {
       path = desc.parent
         ? [
             ...getComments(desc.parent).sourcePath,
-            FieldNumber.DescriptorProto_EnumType,
+            DescriptorProtoDesc.field.enumType.number,
             desc.parent.proto.enumType.indexOf(desc.proto),
           ]
         : [
-            FieldNumber.FileDescriptorProto_EnumType,
+            FileDescriptorProtoDesc.field.enumType.number,
             desc.file.proto.enumType.indexOf(desc.proto),
           ];
       file = desc.file;
@@ -79,7 +83,7 @@ export function getComments(desc: Exclude<AnyDesc, DescFile>): DescComments {
     case "oneof":
       path = [
         ...getComments(desc.parent).sourcePath,
-        FieldNumber.DescriptorProto_OneofDecl,
+        DescriptorProtoDesc.field.oneofDecl.number,
         desc.parent.proto.oneofDecl.indexOf(desc.proto),
       ];
       file = desc.parent.file;
@@ -88,11 +92,11 @@ export function getComments(desc: Exclude<AnyDesc, DescFile>): DescComments {
       path = desc.parent
         ? [
             ...getComments(desc.parent).sourcePath,
-            FieldNumber.DescriptorProto_NestedType,
+            DescriptorProtoDesc.field.nestedType.number,
             desc.parent.proto.nestedType.indexOf(desc.proto),
           ]
         : [
-            FieldNumber.FileDescriptorProto_MessageType,
+            FileDescriptorProtoDesc.field.messageType.number,
             desc.file.proto.messageType.indexOf(desc.proto),
           ];
       file = desc.file;
@@ -100,7 +104,7 @@ export function getComments(desc: Exclude<AnyDesc, DescFile>): DescComments {
     case "enum_value":
       path = [
         ...getComments(desc.parent).sourcePath,
-        FieldNumber.EnumDescriptorProto_Value,
+        EnumDescriptorProtoDesc.field.value.number,
         desc.parent.proto.value.indexOf(desc.proto),
       ];
       file = desc.parent.file;
@@ -108,7 +112,7 @@ export function getComments(desc: Exclude<AnyDesc, DescFile>): DescComments {
     case "field":
       path = [
         ...getComments(desc.parent).sourcePath,
-        FieldNumber.DescriptorProto_Field,
+        DescriptorProtoDesc.field.field.number,
         desc.parent.proto.field.indexOf(desc.proto),
       ];
       file = desc.parent.file;
@@ -117,18 +121,18 @@ export function getComments(desc: Exclude<AnyDesc, DescFile>): DescComments {
       path = desc.parent
         ? [
             ...getComments(desc.parent).sourcePath,
-            FieldNumber.DescriptorProto_Extension,
+            DescriptorProtoDesc.field.extension.number,
             desc.parent.proto.extension.indexOf(desc.proto),
           ]
         : [
-            FieldNumber.FileDescriptorProto_Extension,
+            FileDescriptorProtoDesc.field.extension.number,
             desc.file.proto.extension.indexOf(desc.proto),
           ];
       file = desc.file;
       break;
     case "service":
       path = [
-        FieldNumber.FileDescriptorProto_Service,
+        FileDescriptorProtoDesc.field.service.number,
         desc.file.proto.service.indexOf(desc.proto),
       ];
       file = desc.file;
@@ -136,7 +140,7 @@ export function getComments(desc: Exclude<AnyDesc, DescFile>): DescComments {
     case "rpc":
       path = [
         ...getComments(desc.parent).sourcePath,
-        FieldNumber.ServiceDescriptorProto_Method,
+        ServiceDescriptorProtoDesc.field.method.number,
         desc.parent.proto.method.indexOf(desc.proto),
       ];
       file = desc.parent.file;
@@ -219,11 +223,11 @@ export function getDeclarationString(
   const protoOptions = desc.proto.options;
   if (
     protoOptions !== undefined &&
-    isFieldSet(FieldOptionsDesc, protoOptions, "packed")
+    isFieldSet(protoOptions, FieldOptionsDesc.field.packed)
   ) {
     options.push(`packed = ${protoOptions.packed.toString()}`);
   }
-  if (isFieldSet(FieldDescriptorProtoDesc, desc.proto, "defaultValue")) {
+  if (isFieldSet(desc.proto, FieldDescriptorProtoDesc.field.defaultValue)) {
     let defaultValue = desc.proto.defaultValue;
     if (
       desc.proto.type == FieldDescriptorProto_Type.BYTES ||
@@ -238,13 +242,13 @@ export function getDeclarationString(
   }
   if (
     protoOptions !== undefined &&
-    isFieldSet(FieldOptionsDesc, protoOptions, "jstype")
+    isFieldSet(protoOptions, FieldOptionsDesc.field.jstype)
   ) {
     options.push(`jstype = ${FieldOptions_JSType[protoOptions.jstype]}`);
   }
   if (
     protoOptions !== undefined &&
-    isFieldSet(FieldOptionsDesc, protoOptions, "deprecated")
+    isFieldSet(protoOptions, FieldOptionsDesc.field.deprecated)
   ) {
     options.push(`deprecated = true`);
   }
@@ -309,16 +313,14 @@ function findComments(
     return {
       leadingDetached: location.leadingDetachedComments,
       leading: isFieldSet(
-        SourceCodeInfo_LocationDesc,
         location,
-        "leadingComments",
+        SourceCodeInfo_LocationDesc.field.leadingComments,
       )
         ? location.leadingComments
         : undefined,
       trailing: isFieldSet(
-        SourceCodeInfo_LocationDesc,
         location,
-        "trailingComments",
+        SourceCodeInfo_LocationDesc.field.trailingComments,
       )
         ? location.trailingComments
         : undefined,
@@ -329,24 +331,4 @@ function findComments(
     leadingDetached: [],
     sourcePath,
   };
-}
-
-/**
- * The following field numbers are used to find comments in
- * google.protobuf.SourceCodeInfo.
- */
-enum FieldNumber {
-  FileDescriptorProto_Package = 2,
-  FileDescriptorProto_MessageType = 4,
-  FileDescriptorProto_EnumType = 5,
-  FileDescriptorProto_Service = 6,
-  FileDescriptorProto_Extension = 7,
-  FileDescriptorProto_Syntax = 12,
-  DescriptorProto_Field = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
-  DescriptorProto_NestedType = 3,
-  DescriptorProto_EnumType = 4, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
-  DescriptorProto_Extension = 6, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
-  DescriptorProto_OneofDecl = 8,
-  EnumDescriptorProto_Value = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
-  ServiceDescriptorProto_Method = 2, // eslint-disable-line @typescript-eslint/no-duplicate-enum-values
 }

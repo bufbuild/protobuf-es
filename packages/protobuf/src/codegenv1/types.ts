@@ -16,6 +16,7 @@ import type { Message } from "../types.js";
 import type {
   DescEnum,
   DescExtension,
+  DescField,
   DescFile,
   DescMessage,
   DescService,
@@ -36,8 +37,11 @@ export type GenDescFile = DescFile;
  *
  * @private
  */
-export type GenDescMessage<RuntimeShape extends Message> = DescMessage &
-  brand<RuntimeShape>;
+// prettier-ignore
+export type GenDescMessage<RuntimeShape extends Message> =
+  & Omit<DescMessage, "field">
+  & { field: Record<MessageFieldNames<RuntimeShape>, DescField> }
+  & brand<RuntimeShape>;
 
 /**
  * Describes an enumeration in a protobuf source file.
@@ -88,3 +92,22 @@ class brand<A, B = unknown> {
   protected a: A | boolean = false;
   protected b: B | boolean = false;
 }
+
+/**
+ * Union of the property names of all fields, including oneof members.
+ * For an anonymous message (no generated message shape), it's simply a string.
+ */
+// prettier-ignore
+type MessageFieldNames<T extends Message> = Message extends T ? string :
+  Exclude<keyof {
+    [P in keyof T as
+      P extends ("$typeName" | "$unknown") ? never
+        : T[P] extends Oneof<infer K> ? K
+          : P
+    ]-?: true;
+  }, number | symbol>;
+
+type Oneof<K extends string> = {
+  case: K | undefined;
+  value?: unknown;
+};

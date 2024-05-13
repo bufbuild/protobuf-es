@@ -18,24 +18,22 @@ import { UpstreamProtobuf } from "upstream-protobuf";
 import { join as joinPath } from "node:path";
 import { readFileSync } from "fs";
 import { clearField, equals, fromBinary, toBinary } from "@bufbuild/protobuf";
-import type {
-  DescriptorProto,
-  FileDescriptorProto,
-} from "@bufbuild/protobuf/wkt";
 import {
+  type DescriptorProto,
+  type FileDescriptorProto,
   DescriptorProtoDesc,
-  FieldDescriptorProtoDesc,
   FileDescriptorProtoDesc,
   FileDescriptorSetDesc,
+  FieldDescriptorProtoDesc,
   FieldOptionsDesc,
 } from "@bufbuild/protobuf/wkt";
 import assert from "node:assert";
 import {
+  boot,
   bootFileDescriptorProto,
   createFileDescriptorProtoBoot,
   embedFileDesc,
 } from "@bufbuild/protobuf/codegenv1";
-import { boot } from "@bufbuild/protobuf/codegenv1";
 
 describe("boot()", () => {
   test("hydrates google/protobuf/descriptor.proto", async () => {
@@ -95,12 +93,12 @@ describe("bootFileDescriptorProto()", () => {
       d.messageType.forEach(stripLikeBoot);
       return;
     }
-    clearField(DescriptorProtoDesc, d, "reservedRange");
-    clearField(DescriptorProtoDesc, d, "reservedName");
+    clearField(d, DescriptorProtoDesc.field.reservedRange);
+    clearField(d, DescriptorProtoDesc.field.reservedName);
     for (const f of d.field) {
-      clearField(FieldDescriptorProtoDesc, f, "jsonName");
+      clearField(f, FieldDescriptorProtoDesc.field.jsonName);
       if (f.options) {
-        clearField(FieldOptionsDesc, f.options, "featureSupport");
+        clearField(f.options, FieldOptionsDesc.field.featureSupport);
       }
     }
     for (const n of d.nestedType) {

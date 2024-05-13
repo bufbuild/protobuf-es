@@ -543,6 +543,7 @@ function addFields(
     const oneof = findOneof(proto, allOneofs);
     const field = newField(proto, message, reg, oneof, mapEntries);
     message.fields.push(field);
+    message.field[field.localName] = field;
     if (oneof === undefined) {
       message.members.push(field);
     } else {
@@ -629,6 +630,7 @@ function addMessage(
     name: proto.name,
     typeName: makeTypeName(proto, parent, file),
     fields: [],
+    field: {},
     oneofs: [],
     members: [],
     nestedEnums: [],

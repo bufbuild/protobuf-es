@@ -210,6 +210,10 @@ export interface DescMessage {
    */
   readonly fields: DescField[];
   /**
+   * All fields of this message by their "localName".
+   */
+  readonly field: Record<string, DescField>;
+  /**
    * Oneof groups declared for this message.
    * This does not include synthetic oneofs for proto3 optionals.
    */
