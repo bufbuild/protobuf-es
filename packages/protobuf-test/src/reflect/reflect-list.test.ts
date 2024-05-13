@@ -19,54 +19,38 @@ import {
   reflect,
   isReflectMessage,
 } from "@bufbuild/protobuf/reflect";
-import { getFieldByLocalName } from "../helpers.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import { create, protoInt64 } from "@bufbuild/protobuf";
 import { UserDesc } from "../gen/ts/extra/example_pb.js";
+import assert from "node:assert";
 
 describe("reflectList()", () => {
   test("creates ReflectList", () => {
-    const f = getFieldByLocalName(
-      proto3_ts.Proto3MessageDesc,
-      "repeatedStringField",
-      "list",
-    );
+    const f = proto3_ts.Proto3MessageDesc.field.repeatedStringField;
+    assert(f.fieldKind == "list");
     const list = reflectList(f);
     expect(typeof list.field).toBe("function");
     expect(isReflectList(list)).toBe(true);
   });
   test("creates ReflectList with unsafe input", () => {
-    const f = getFieldByLocalName(
-      proto3_ts.Proto3MessageDesc,
-      "repeatedStringField",
-      "list",
-    );
+    const f = proto3_ts.Proto3MessageDesc.field.repeatedStringField;
+    assert(f.fieldKind == "list");
     const list = reflectList(f, [1, 2, 3]);
     expect(isReflectList(list)).toBe(true);
   });
 });
 
 describe("ReflectList", () => {
-  const repeatedStringField = getFieldByLocalName(
-    proto3_ts.Proto3MessageDesc,
-    "repeatedStringField",
-    "list",
-  );
-  const repeatedInt64Field = getFieldByLocalName(
-    proto3_ts.Proto3MessageDesc,
-    "repeatedInt64Field",
-    "list",
-  );
-  const repeatedInt64JsStringField = getFieldByLocalName(
-    proto3_ts.Proto3MessageDesc,
-    "repeatedInt64JsStringField",
-    "list",
-  );
-  const repeatedMessageField = getFieldByLocalName(
-    proto3_ts.Proto3MessageDesc,
-    "repeatedMessageField",
-    "list",
-  );
+  const {
+    repeatedStringField,
+    repeatedInt64Field,
+    repeatedInt64JsStringField,
+    repeatedMessageField,
+  } = proto3_ts.Proto3MessageDesc.field;
+  assert(repeatedStringField.fieldKind == "list");
+  assert(repeatedInt64Field.fieldKind == "list");
+  assert(repeatedInt64JsStringField.fieldKind == "list");
+  assert(repeatedMessageField.fieldKind == "list");
   const n0 = protoInt64.zero;
   const n1 = protoInt64.parse(1);
   const n2 = protoInt64.parse(2);

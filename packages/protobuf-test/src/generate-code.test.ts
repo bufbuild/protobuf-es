@@ -225,8 +225,13 @@ describe("ts generated code is equal to js generated code", () => {
           if (id !== undefined) {
             return id;
           }
-          if ("toString" in value) {
-            id = String(value) + "@" + seen.size;
+          if (
+            "toString" in value &&
+            typeof value.toString == "function" &&
+            Object.prototype.hasOwnProperty.call(value, "toString")
+          ) {
+            // eslint-disable-next-line @typescript-eslint/no-base-to-string -- we're not calling Object.toString
+            id = value.toString() + "@" + seen.size;
           } else {
             id = "unknown@" + seen.size;
           }
@@ -236,4 +241,12 @@ describe("ts generated code is equal to js generated code", () => {
       }),
     );
   }
+});
+
+describe("GenDescMessage.field", () => {
+  test("is type safe", () => {
+    proto3_ts.Proto3MessageDesc.field.optionalStringField;
+    // @ts-expect-error TS2339: Property foo does not exist on type
+    proto3_ts.Proto3MessageDesc.field.foo;
+  });
 });

@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { getFieldByLocalName } from "../helpers.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import {
   isReflectMap,
@@ -24,51 +23,36 @@ import {
 import { protoInt64 } from "@bufbuild/protobuf";
 import { UserDesc } from "../gen/ts/extra/example_pb.js";
 import { create } from "@bufbuild/protobuf";
+import assert from "node:assert";
 
 describe("reflectMap()", () => {
   test("creates ReflectMap", () => {
-    const mapStringStringField = getFieldByLocalName(
-      proto3_ts.Proto3MessageDesc,
-      "mapStringStringField",
-      "map",
-    );
-    const map = reflectMap(mapStringStringField);
+    const f = proto3_ts.Proto3MessageDesc.field.mapStringStringField;
+    assert(f.fieldKind == "map");
+    const map = reflectMap(f);
     expect(typeof map.field).toBe("function");
     expect(isReflectMap(map)).toBe(true);
   });
   test("creates ReflectMap with unsafe input", () => {
-    const mapStringStringField = getFieldByLocalName(
-      proto3_ts.Proto3MessageDesc,
-      "mapStringStringField",
-      "map",
-    );
-    const map = reflectMap(mapStringStringField, { x: 123 });
+    const f = proto3_ts.Proto3MessageDesc.field.mapStringStringField;
+    assert(f.fieldKind == "map");
+    const map = reflectMap(f, { x: 123 });
     expect(typeof map.field).toBe("function");
     expect(isReflectMap(map)).toBe(true);
   });
 });
 
 describe("ReflectMap", () => {
-  const mapStringStringField = getFieldByLocalName(
-    proto3_ts.Proto3MessageDesc,
-    "mapStringStringField",
-    "map",
-  );
-  const mapInt64Int64Field = getFieldByLocalName(
-    proto3_ts.Proto3MessageDesc,
-    "mapInt64Int64Field",
-    "map",
-  );
-  const mapInt32Int32Field = getFieldByLocalName(
-    proto3_ts.Proto3MessageDesc,
-    "mapInt32Int32Field",
-    "map",
-  );
-  const mapInt32MessageField = getFieldByLocalName(
-    proto3_ts.Proto3MessageDesc,
-    "mapInt32MessageField",
-    "map",
-  );
+  const {
+    mapStringStringField,
+    mapInt64Int64Field,
+    mapInt32Int32Field,
+    mapInt32MessageField,
+  } = proto3_ts.Proto3MessageDesc.field;
+  assert(mapStringStringField.fieldKind == "map");
+  assert(mapInt64Int64Field.fieldKind == "map");
+  assert(mapInt32Int32Field.fieldKind == "map");
+  assert(mapInt32MessageField.fieldKind == "map");
   const n1 = protoInt64.parse(1);
   const n2 = protoInt64.parse(2);
   const n3 = protoInt64.parse(3);

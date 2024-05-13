@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Message, MessageShape } from "./types.js";
+import type { MessageShape } from "./types.js";
+import type { DescField, DescMessage } from "./desc-types.js";
 import { unsafeClear, unsafeIsSet } from "./reflect/unsafe.js";
-import type { DescMessage } from "./desc-types.js";
 
 /**
  * Returns true if the field is set.
@@ -33,46 +33,22 @@ import type { DescMessage } from "./desc-types.js";
  *   Set if not empty.
  */
 export function isFieldSet<Desc extends DescMessage>(
-  messageDesc: Desc,
   message: MessageShape<Desc>,
-  fieldName: MessageFieldNames<MessageShape<Desc>>,
+  field: DescField,
 ): boolean {
-  const field = messageDesc.fields.find((f) => f.localName === fieldName);
-  if (field) {
-    return unsafeIsSet(message, field);
-  }
-  return false;
+  return (
+    field.parent.typeName == message.$typeName && unsafeIsSet(message, field)
+  );
 }
 
 /**
  * Resets the field, so that isFieldSet() will return false.
  */
 export function clearField<Desc extends DescMessage>(
-  messageDesc: Desc,
   message: MessageShape<Desc>,
-  fieldName: MessageFieldNames<MessageShape<Desc>>,
+  field: DescField,
 ): void {
-  const field = messageDesc.fields.find((f) => f.localName === fieldName);
-  if (field) {
+  if (field.parent.typeName == message.$typeName) {
     unsafeClear(message, field);
   }
 }
-
-/**
- * Union of the property names of all fields, including oneof members.
- * For an anonymous message (no generated message shape), it's simply a string.
- */
-// prettier-ignore
-type MessageFieldNames<T extends Message> = Message extends T ? string :
-  Exclude<keyof {
-  [P in keyof T as
-     P extends ("$typeName" | "$unknown") ? never
-    : T[P] extends Oneof<infer K> ? K
-    : P
-  ]-?: true;
-}, number | symbol>;
-
-type Oneof<K extends string> = {
-  case: K | undefined;
-  value?: unknown;
-};

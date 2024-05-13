@@ -12,11 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescMessage } from "@bufbuild/protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { createFileRegistry } from "@bufbuild/protobuf/reflect";
-import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
-import type { DescField } from "@bufbuild/protobuf";
 import { fromBinary } from "@bufbuild/protobuf";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/wkt";
 import { FileDescriptorSetDesc } from "@bufbuild/protobuf/wkt";
@@ -94,41 +91,4 @@ export async function compileMethod(proto: string) {
   const firstMethod = service.methods[0];
   assert(firstMethod);
   return firstMethod;
-}
-
-export function getFieldByLocalName(desc: DescMessage, name: string): DescField;
-export function getFieldByLocalName(
-  desc: DescMessage,
-  name: string,
-  fieldKind: "message",
-): DescField & { fieldKind: "message" };
-export function getFieldByLocalName(
-  desc: DescMessage,
-  name: string,
-  fieldKind: "list",
-): DescField & { fieldKind: "list" };
-export function getFieldByLocalName(
-  desc: DescMessage,
-  name: string,
-  fieldKind: "map",
-): DescField & { fieldKind: "map" };
-export function getFieldByLocalName(
-  desc: DescMessage,
-  name: string,
-  fieldKind?: string,
-): DescField {
-  const field = proto3_ts.Proto3MessageDesc.fields.find(
-    (f) => f.localName === name,
-  );
-  if (!field) {
-    throw new Error(`getFieldByLocalName: ${name} not found`);
-  }
-  if (fieldKind !== undefined) {
-    if (field.fieldKind != fieldKind) {
-      throw new Error(
-        `getFieldByLocalName: ${name} is not a ${fieldKind} field`,
-      );
-    }
-  }
-  return field;
 }

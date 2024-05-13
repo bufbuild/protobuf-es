@@ -27,7 +27,7 @@ import {
   isReflectList,
   isReflectMap,
 } from "@bufbuild/protobuf/reflect";
-import { compileMessage, getFieldByLocalName } from "../helpers.js";
+import { compileMessage } from "../helpers.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import * as example_ts from "../gen/ts/extra/example_pb.js";
 import assert from "node:assert";
@@ -135,7 +135,8 @@ describe("ReflectMessage", () => {
       r = reflect(desc, msg);
     });
     test("gets message", () => {
-      const f = getFieldByLocalName(desc, "singularMessageField", "message");
+      const f = desc.field.singularMessageField;
+      assert(f.fieldKind == "message");
       msg.singularMessageField = create(proto3_ts.Proto3MessageDesc);
       const v = r.get(f);
       expect(isReflectMessage(v)).toBe(true);
@@ -144,27 +145,29 @@ describe("ReflectMessage", () => {
       }
     });
     test("gets enum", () => {
-      const f = getFieldByLocalName(desc, "singularEnumField");
+      const f = desc.field.singularEnumField;
       msg.singularEnumField = proto3_ts.Proto3Enum.YES;
       expect(r.get(f)).toBe(proto3_ts.Proto3Enum.YES);
     });
     test("gets string", () => {
-      const f = getFieldByLocalName(desc, "singularStringField");
+      const f = desc.field.singularStringField;
       msg.singularStringField = "abc";
       expect(r.get(f)).toBe("abc");
     });
     test("gets list", () => {
-      const f = getFieldByLocalName(desc, "repeatedStringField", "list");
+      const f = desc.field.repeatedStringField;
+      assert(f.fieldKind == "list");
       const list = r.get(f);
       expect(isReflectList(list)).toBe(true);
     });
     test("gets map", () => {
-      const f = getFieldByLocalName(desc, "mapStringStringField", "map");
+      const f = desc.field.mapStringStringField;
+      assert(f.fieldKind == "map");
       const map = r.get(f);
       expect(isReflectMap(map)).toBe(true);
     });
     test("gets wrapped wrapper field", () => {
-      const f = getFieldByLocalName(desc, "singularWrappedUint32Field");
+      const f = desc.field.singularWrappedUint32Field;
       msg.singularWrappedUint32Field = 123;
       const wrapper = r.get(f);
       expect(isReflectMessage(wrapper, UInt32ValueDesc)).toBe(true);
@@ -174,7 +177,7 @@ describe("ReflectMessage", () => {
       }
     });
     test("gets selected oneof field", () => {
-      const f = getFieldByLocalName(desc, "oneofBoolField");
+      const f = desc.field.oneofBoolField;
       msg.either = {
         case: "oneofBoolField",
         value: false,
@@ -183,19 +186,20 @@ describe("ReflectMessage", () => {
     });
     describe("returns zero value for unset", () => {
       test("scalar oneof field", () => {
-        const f = getFieldByLocalName(desc, "oneofBoolField");
+        const f = desc.field.oneofBoolField;
         expect(r.get(f)).toBe(false);
       });
       test("optional string field", () => {
-        const f = getFieldByLocalName(desc, "optionalStringField");
+        const f = desc.field.optionalStringField;
         expect(r.get(f)).toBe("");
       });
       test("optional enum field", () => {
-        const f = getFieldByLocalName(desc, "optionalEnumField");
+        const f = desc.field.optionalEnumField;
         expect(r.get(f)).toBe(proto3_ts.Proto3Enum.UNSPECIFIED);
       });
       test("message field", () => {
-        const f = getFieldByLocalName(desc, "singularMessageField", "message");
+        const f = desc.field.singularMessageField;
+        assert(f.fieldKind == "message");
         const v = r.get(f);
         expect(isReflectMessage(v)).toBe(true);
         if (isReflectMessage(v)) {
@@ -207,7 +211,8 @@ describe("ReflectMessage", () => {
       });
     });
     test("returns ReflectMessage with zero message for unset message field", () => {
-      const f = getFieldByLocalName(desc, "singularMessageField", "message");
+      const f = desc.field.singularMessageField;
+      assert(f.fieldKind == "message");
       const v = r.get(f);
       expect(isReflectMessage(v)).toBe(true);
       if (isReflectMessage(v)) {
@@ -217,7 +222,7 @@ describe("ReflectMessage", () => {
       }
     });
     test("returns bigint for jstype=JS_STRING", () => {
-      const f = getFieldByLocalName(desc, "singularInt64JsStringField");
+      const f = desc.field.singularInt64JsStringField;
       msg.singularInt64JsStringField = "123";
       expect(r.get(f)).toBe(protoInt64.parse(123));
     });
@@ -242,19 +247,20 @@ describe("ReflectMessage", () => {
       r = reflect(desc, msg);
     });
     test("sets enum", () => {
-      const singularEnumField = getFieldByLocalName(desc, "singularEnumField");
-      const err = r.set(singularEnumField, proto3_ts.Proto3Enum.YES);
+      const f = desc.field.singularEnumField;
+      const err = r.set(f, proto3_ts.Proto3Enum.YES);
       expect(err).toBeUndefined();
       expect(msg.singularEnumField).toBe(proto3_ts.Proto3Enum.YES);
     });
     test("sets string", () => {
-      const f = getFieldByLocalName(desc, "singularStringField");
+      const f = desc.field.singularStringField;
       const err = r.set(f, "abc");
       expect(err).toBeUndefined();
       expect(msg.singularStringField).toBe("abc");
     });
     test("sets ReflectMap", () => {
-      const f = getFieldByLocalName(desc, "mapStringStringField", "map");
+      const f = desc.field.mapStringStringField;
+      assert(f.fieldKind == "map");
       const map = reflectMap(f);
       expect(map.set("foo", "bar")).toBeUndefined();
       const err = r.set(f, map);
@@ -262,7 +268,8 @@ describe("ReflectMessage", () => {
       expect(msg.mapStringStringField).toStrictEqual({ foo: "bar" });
     });
     test("sets ReflectList", () => {
-      const f = getFieldByLocalName(desc, "repeatedStringField", "list");
+      const f = desc.field.repeatedStringField;
+      assert(f.fieldKind == "list");
       const list = reflectList(f);
       expect(list.add("foo")).toBeUndefined();
       const err = r.set(f, list);
@@ -270,72 +277,57 @@ describe("ReflectMessage", () => {
       expect(msg.repeatedStringField).toStrictEqual(["foo"]);
     });
     test("sets ReflectMessage", () => {
-      const f = getFieldByLocalName(desc, "singularMessageField");
+      const f = desc.field.singularMessageField;
       const testMessage = create(proto3_ts.Proto3MessageDesc);
       const err = r.set(f, reflect(proto3_ts.Proto3MessageDesc, testMessage));
       expect(err).toBeUndefined();
       expect(msg.singularMessageField).toBe(testMessage);
     });
     test("sets number, string, bigint as bigint for 64-bit integer field", () => {
-      const singularInt64Field = getFieldByLocalName(
-        desc,
-        "singularInt64Field",
-      );
-      expect(r.set(singularInt64Field, protoInt64.parse(123))).toBeUndefined();
+      const f = desc.field.singularInt64Field;
+      expect(r.set(f, protoInt64.parse(123))).toBeUndefined();
       expect(msg.singularInt64Field === protoInt64.parse(123)).toBe(true);
-      expect(r.set(singularInt64Field, 123)).toBeUndefined();
+      expect(r.set(f, 123)).toBeUndefined();
       expect(msg.singularInt64Field === protoInt64.parse(123)).toBe(true);
-      expect(r.set(singularInt64Field, "123")).toBeUndefined();
+      expect(r.set(f, "123")).toBeUndefined();
       expect(msg.singularInt64Field === protoInt64.parse(123)).toBe(true);
     });
     test("sets number, string, bigint as string for 64-bit integer field with jstype=JS_STRING", () => {
-      const singularInt64JsStringField = getFieldByLocalName(
-        desc,
-        "singularInt64JsStringField",
-      );
-      expect(
-        r.set(singularInt64JsStringField, protoInt64.parse(123)),
-      ).toBeUndefined();
+      const f = desc.field.singularInt64JsStringField;
+      expect(r.set(f, protoInt64.parse(123))).toBeUndefined();
       expect(msg.singularInt64JsStringField).toBe("123");
-      expect(r.set(singularInt64JsStringField, 123)).toBeUndefined();
+      expect(r.set(f, 123)).toBeUndefined();
       expect(msg.singularInt64JsStringField).toBe("123");
-      expect(r.set(singularInt64JsStringField, "123")).toBeUndefined();
+      expect(r.set(f, "123")).toBeUndefined();
       expect(msg.singularInt64JsStringField).toBe("123");
     });
     test("sets unwrapped value for wrapper field", () => {
-      const singularWrappedUint32Field = getFieldByLocalName(
-        desc,
-        "singularWrappedUint32Field",
-      );
+      const f = desc.field.singularWrappedUint32Field;
       const wrapper = create(UInt32ValueDesc, { value: 123 });
-      const err = r.set(
-        singularWrappedUint32Field,
-        reflect(UInt32ValueDesc, wrapper),
-      );
+      const err = r.set(f, reflect(UInt32ValueDesc, wrapper));
       expect(err).toBeUndefined();
       expect(msg.singularWrappedUint32Field).toBe(123);
     });
     test("sets unknown value for open enum", () => {
-      const singularEnumField = getFieldByLocalName(desc, "singularEnumField");
-      const err = r.set(singularEnumField, 99);
+      const f = desc.field.singularEnumField;
+      const err = r.set(f, 99);
       expect(err).toBeUndefined();
       expect(msg.singularEnumField).toBe(99);
     });
     test("selects oneof field", () => {
-      const oneofInt32Field = getFieldByLocalName(desc, "oneofInt32Field");
+      const f = desc.field.oneofInt32Field;
       msg.either = {
         case: "oneofInt32Field",
         value: 123,
       };
-      r.set(oneofInt32Field, 123);
+      r.set(f, 123);
       expect(msg.either).toStrictEqual({
         case: "oneofInt32Field",
         value: 123,
       });
     });
     test("deselects other oneof field", () => {
-      const oneofBoolField = getFieldByLocalName(desc, "oneofBoolField");
-      const oneofInt32Field = getFieldByLocalName(desc, "oneofInt32Field");
+      const { oneofBoolField, oneofInt32Field } = desc.field;
       msg.either = {
         case: "oneofInt32Field",
         value: 123,
@@ -358,7 +350,7 @@ describe("ReflectMessage", () => {
       );
     });
     test("returns error setting number out of range", () => {
-      const f = getFieldByLocalName(r.desc, "singularInt32Field");
+      const f = desc.field.singularInt32Field;
       const err = r.set(f, Number.MAX_SAFE_INTEGER);
       expect(err?.message).toMatch(
         /^expected number \(int32\): 9007199254740991 out of range$/,
@@ -366,7 +358,7 @@ describe("ReflectMessage", () => {
       expect(err?.name).toMatch("FieldValueInvalidError");
     });
     test("returns error setting float for int", () => {
-      const f = getFieldByLocalName(r.desc, "singularInt32Field");
+      const f = desc.field.singularInt32Field;
       const err = r.set(f, 3.142);
       expect(err?.message).toMatch(/^expected number \(int32\), got 3.142$/);
       expect(err?.name).toMatch("FieldValueInvalidError");
@@ -452,7 +444,7 @@ describe("ReflectMessage", () => {
       });
     });
     test("returns error setting incompatible ReflectMessage", () => {
-      const f = getFieldByLocalName(r.desc, "singularMessageField");
+      const f = desc.field.singularMessageField;
       const err = r.set(f, reflect(example_ts.UserDesc));
       expect(err?.message).toMatch(
         /^expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
@@ -460,16 +452,9 @@ describe("ReflectMessage", () => {
       expect(err?.name).toMatch("FieldValueInvalidError");
     });
     test("returns error setting incompatible ReflectMap", () => {
-      const mapStringStringField = getFieldByLocalName(
-        desc,
-        "mapStringStringField",
-        "map",
-      );
-      const mapInt32Int32Field = getFieldByLocalName(
-        desc,
-        "mapInt32Int32Field",
-        "map",
-      );
+      const { mapStringStringField, mapInt32Int32Field } = desc.field;
+      assert(mapStringStringField.fieldKind == "map");
+      assert(mapInt32Int32Field.fieldKind == "map");
       const map = reflectMap(mapStringStringField);
       const err = r.set(mapInt32Int32Field, map);
       expect(err?.message).toMatch(
@@ -478,16 +463,9 @@ describe("ReflectMessage", () => {
       expect(err?.name).toMatch("FieldValueInvalidError");
     });
     test("returns error setting incompatible ReflectList", () => {
-      const repeatedStringField = getFieldByLocalName(
-        desc,
-        "repeatedStringField",
-        "list",
-      );
-      const repeatedInt32Field = getFieldByLocalName(
-        desc,
-        "repeatedInt32Field",
-        "list",
-      );
+      const { repeatedStringField, repeatedInt32Field } = desc.field;
+      assert(repeatedStringField.fieldKind == "list");
+      assert(repeatedInt32Field.fieldKind == "list");
       const list = reflectList(repeatedStringField);
       const err = r.set(repeatedInt32Field, list);
       expect(err?.message).toMatch(
@@ -534,67 +512,27 @@ describe("ReflectMessage", () => {
         a: "A",
       };
       const r = reflect(desc, msg);
-      expect(r.isSet(getFieldByLocalName(desc, "singularStringField"))).toBe(
-        true,
-      );
-      expect(r.isSet(getFieldByLocalName(desc, "singularBytesField"))).toBe(
-        true,
-      );
-      expect(r.isSet(getFieldByLocalName(desc, "singularInt32Field"))).toBe(
-        true,
-      );
-      expect(r.isSet(getFieldByLocalName(desc, "singularInt64Field"))).toBe(
-        true,
-      );
-      expect(
-        r.isSet(getFieldByLocalName(desc, "singularInt64JsStringField")),
-      ).toBe(true);
-      expect(r.isSet(getFieldByLocalName(desc, "singularEnumField"))).toBe(
-        true,
-      );
-      expect(r.isSet(getFieldByLocalName(desc, "singularMessageField"))).toBe(
-        true,
-      );
-      expect(
-        r.isSet(getFieldByLocalName(desc, "singularWrappedUint32Field")),
-      ).toBe(true);
-      expect(r.isSet(getFieldByLocalName(desc, "optionalStringField"))).toBe(
-        true,
-      );
-      expect(r.isSet(getFieldByLocalName(desc, "optionalInt64Field"))).toBe(
-        true,
-      );
-      expect(
-        r.isSet(getFieldByLocalName(desc, "optionalInt64JsStringField")),
-      ).toBe(true);
-      expect(r.isSet(getFieldByLocalName(desc, "optionalMessageField"))).toBe(
-        true,
-      );
-      expect(
-        r.isSet(getFieldByLocalName(desc, "optionalWrappedUint32Field")),
-      ).toBe(true);
-      expect(r.isSet(getFieldByLocalName(desc, "repeatedStringField"))).toBe(
-        true,
-      );
-      expect(
-        r.isSet(getFieldByLocalName(desc, "repeatedWrappedUint32Field")),
-      ).toBe(true);
-      expect(r.isSet(getFieldByLocalName(desc, "repeatedInt64Field"))).toBe(
-        true,
-      );
-      expect(
-        r.isSet(getFieldByLocalName(desc, "repeatedInt64JsStringField")),
-      ).toBe(true);
-      expect(r.isSet(getFieldByLocalName(desc, "repeatedMessageField"))).toBe(
-        true,
-      );
-      expect(r.isSet(getFieldByLocalName(desc, "repeatedEnumField"))).toBe(
-        true,
-      );
-      expect(r.isSet(getFieldByLocalName(desc, "oneofBoolField"))).toBe(true);
-      expect(r.isSet(getFieldByLocalName(desc, "mapStringStringField"))).toBe(
-        true,
-      );
+      expect(r.isSet(desc.field.singularStringField)).toBe(true);
+      expect(r.isSet(desc.field.singularBytesField)).toBe(true);
+      expect(r.isSet(desc.field.singularInt32Field)).toBe(true);
+      expect(r.isSet(desc.field.singularInt64Field)).toBe(true);
+      expect(r.isSet(desc.field.singularInt64JsStringField)).toBe(true);
+      expect(r.isSet(desc.field.singularEnumField)).toBe(true);
+      expect(r.isSet(desc.field.singularMessageField)).toBe(true);
+      expect(r.isSet(desc.field.singularWrappedUint32Field)).toBe(true);
+      expect(r.isSet(desc.field.optionalStringField)).toBe(true);
+      expect(r.isSet(desc.field.optionalInt64Field)).toBe(true);
+      expect(r.isSet(desc.field.optionalInt64JsStringField)).toBe(true);
+      expect(r.isSet(desc.field.optionalMessageField)).toBe(true);
+      expect(r.isSet(desc.field.optionalWrappedUint32Field)).toBe(true);
+      expect(r.isSet(desc.field.repeatedStringField)).toBe(true);
+      expect(r.isSet(desc.field.repeatedWrappedUint32Field)).toBe(true);
+      expect(r.isSet(desc.field.repeatedInt64Field)).toBe(true);
+      expect(r.isSet(desc.field.repeatedInt64JsStringField)).toBe(true);
+      expect(r.isSet(desc.field.repeatedMessageField)).toBe(true);
+      expect(r.isSet(desc.field.repeatedEnumField)).toBe(true);
+      expect(r.isSet(desc.field.oneofBoolField)).toBe(true);
+      expect(r.isSet(desc.field.mapStringStringField)).toBe(true);
     });
     test("throws error on foreign field", async () => {
       const foreignMessage = await compileMessage(`
@@ -679,19 +617,22 @@ describe("ReflectMessage", () => {
       r = reflect(desc, msg);
     });
     test("adds valid item to repeatedStringField", () => {
-      const f = getFieldByLocalName(desc, "repeatedStringField", "list");
+      const f = desc.field.repeatedStringField;
+      assert(f.fieldKind == "list");
       const err = r.addListItem(f, "abc");
       expect(err).toBeUndefined();
       expect(msg.repeatedStringField).toStrictEqual(["abc"]);
     });
     test("adds unknown value for open enum", () => {
-      const f = getFieldByLocalName(desc, "repeatedEnumField", "list");
+      const f = desc.field.repeatedEnumField;
+      assert(f.fieldKind == "list");
       const err = r.addListItem(f, 99);
       expect(err).toBeUndefined();
       expect(msg.repeatedEnumField).toStrictEqual([99]);
     });
     test("adds bigint, number, and string as bigint", () => {
-      const f = getFieldByLocalName(desc, "repeatedInt64Field", "list");
+      const f = desc.field.repeatedInt64Field;
+      assert(f.fieldKind == "list");
       r.addListItem(f, protoInt64.parse(1));
       r.addListItem(f, 2);
       r.addListItem(f, "3");
@@ -702,7 +643,8 @@ describe("ReflectMessage", () => {
       ]);
     });
     test("adds bigint, number, and string as string for jstype=JS_STRING", () => {
-      const f = getFieldByLocalName(desc, "repeatedInt64JsStringField", "list");
+      const f = desc.field.repeatedInt64JsStringField;
+      assert(f.fieldKind == "list");
       r.addListItem(f, protoInt64.parse(1));
       r.addListItem(f, 2);
       r.addListItem(f, "3");
@@ -721,7 +663,8 @@ describe("ReflectMessage", () => {
     });
     describe("returns error on invalid item", () => {
       test("bool for repeatedStringField", () => {
-        const f = getFieldByLocalName(desc, "repeatedStringField", "list");
+        const f = desc.field.repeatedStringField;
+        assert(f.fieldKind == "list");
         const err = r.addListItem(f, true);
         expect(err?.message).toMatch(
           /^list item #1: expected string, got true$/,
@@ -729,7 +672,8 @@ describe("ReflectMessage", () => {
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
       test("number out of range for repeatedInt32Field", () => {
-        const f = getFieldByLocalName(desc, "repeatedInt32Field", "list");
+        const f = desc.field.repeatedInt32Field;
+        assert(f.fieldKind == "list");
         const err = r.addListItem(f, Number.MAX_SAFE_INTEGER);
         expect(err?.message).toMatch(
           /^list item #1: expected number \(int32\): 9007199254740991 out of range/,
@@ -737,7 +681,8 @@ describe("ReflectMessage", () => {
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
       test("message for repeatedMessageField", () => {
-        const f = getFieldByLocalName(desc, "repeatedMessageField", "list");
+        const f = desc.field.repeatedMessageField;
+        assert(f.fieldKind == "list");
         // @ts-expect-error ignore to test runtime behavior
         const err = r.addListItem(f, create(example_ts.UserDesc));
         expect(err?.message).toMatch(
@@ -746,7 +691,8 @@ describe("ReflectMessage", () => {
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
       test("wrong ReflectMessage for repeatedMessageField", () => {
-        const f = getFieldByLocalName(desc, "repeatedMessageField", "list");
+        const f = desc.field.repeatedMessageField;
+        assert(f.fieldKind == "list");
         const testMessage = reflect(example_ts.UserDesc);
         const err = r.addListItem(f, testMessage);
         expect(err?.message).toMatch(
@@ -755,7 +701,8 @@ describe("ReflectMessage", () => {
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
       test("true for repeatedMessageField", () => {
-        const f = getFieldByLocalName(desc, "repeatedMessageField", "list");
+        const f = desc.field.repeatedMessageField;
+        assert(f.fieldKind == "list");
         const err = r.addListItem(f, true);
         expect(err?.message).toMatch(
           /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got true/,
@@ -773,7 +720,8 @@ describe("ReflectMessage", () => {
       r = reflect(desc, msg);
     });
     test("adds valid entry to mapStringStringField", () => {
-      const f = getFieldByLocalName(desc, "mapStringStringField", "map");
+      const f = desc.field.mapStringStringField;
+      assert(f.fieldKind == "map");
       const err = r.setMapEntry(f, "key", "value");
       expect(err).toBeUndefined();
       expect(msg.mapStringStringField).toStrictEqual({ key: "value" });
@@ -792,7 +740,8 @@ describe("ReflectMessage", () => {
       );
     });
     test("adds bigint, number, and string value as bigint", () => {
-      const f = getFieldByLocalName(desc, "mapInt64Int64Field", "map");
+      const f = desc.field.mapInt64Int64Field;
+      assert(f.fieldKind == "map");
       expect(
         r.setMapEntry(f, protoInt64.parse(1), protoInt64.parse(1)),
       ).toBeUndefined();
@@ -805,7 +754,8 @@ describe("ReflectMessage", () => {
       ]);
     });
     test("adds bigint, number, and string key as string", () => {
-      const f = getFieldByLocalName(desc, "mapInt64Int64Field", "map");
+      const f = desc.field.mapInt64Int64Field;
+      assert(f.fieldKind == "map");
       expect(
         r.setMapEntry(f, protoInt64.parse(1), protoInt64.parse(1)),
       ).toBeUndefined();
@@ -818,7 +768,8 @@ describe("ReflectMessage", () => {
       ]);
     });
     test("adds bool key as string", () => {
-      const f = getFieldByLocalName(desc, "mapBoolBoolField", "map");
+      const f = desc.field.mapBoolBoolField;
+      assert(f.fieldKind == "map");
       expect(r.setMapEntry(f, true, true)).toBeUndefined();
       expect(r.setMapEntry(f, false, false)).toBeUndefined();
       expect(Object.keys(msg.mapBoolBoolField)).toStrictEqual([
@@ -828,7 +779,8 @@ describe("ReflectMessage", () => {
     });
     describe("returns error on invalid value", () => {
       test("wrong message", () => {
-        const f = getFieldByLocalName(desc, "mapInt32MessageField", "map");
+        const f = desc.field.mapInt32MessageField;
+        assert(f.fieldKind == "map");
         const err = r.setMapEntry(f, 123, reflect(example_ts.UserDesc));
         expect(err?.message).toMatch(
           /^map entry 123: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)/,
@@ -836,7 +788,8 @@ describe("ReflectMessage", () => {
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
       test("number out of range", () => {
-        const f = getFieldByLocalName(desc, "mapInt32Int32Field", "map");
+        const f = desc.field.mapInt32Int32Field;
+        assert(f.fieldKind == "map");
         const err = r.setMapEntry(f, 123, Number.MAX_SAFE_INTEGER);
         expect(err?.message).toMatch(
           /^map entry 123: expected number \(int32\): 9007199254740991 out of range/,
@@ -846,7 +799,8 @@ describe("ReflectMessage", () => {
     });
     describe("returns error on invalid key", () => {
       test("number out of range", () => {
-        const f = getFieldByLocalName(desc, "mapInt32Int32Field", "map");
+        const f = desc.field.mapInt32Int32Field;
+        assert(f.fieldKind == "map");
         const err = r.setMapEntry(f, Number.MAX_SAFE_INTEGER, 123);
         expect(err?.message).toMatch(
           /^invalid map key: expected number \(int32\): 9007199254740991 out of range/,

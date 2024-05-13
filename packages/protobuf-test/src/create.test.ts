@@ -540,7 +540,7 @@ describe("create()", () => {
             expect(created.either).toStrictEqual(filled.either);
             break;
           default:
-            expect(isFieldSet(desc, created, name)).toBe(true);
+            expect(isFieldSet(created, desc.field[name])).toBe(true);
             expect(created[name]).toStrictEqual(filled[name]);
         }
       });
@@ -561,7 +561,7 @@ describe("create()", () => {
             expect(created.either).toStrictEqual(filled.either);
             break;
           default:
-            expect(isFieldSet(desc, created, name)).toBe(true);
+            expect(isFieldSet(created, desc.field[name])).toBe(true);
             expect(created[name]).toStrictEqual(filled[name]);
         }
       });
@@ -582,7 +582,7 @@ describe("create()", () => {
             expect(created.either).toStrictEqual(filled.either);
             break;
           default:
-            expect(isFieldSet(desc, created, name)).toBe(true);
+            expect(isFieldSet(created, desc.field[name])).toBe(true);
             expect(created[name]).toStrictEqual(filled[name]);
         }
       });

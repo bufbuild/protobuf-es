@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
-import type { DescMessage } from "@bufbuild/protobuf";
 import { clearField, create, isFieldSet } from "@bufbuild/protobuf";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
@@ -26,41 +25,43 @@ import {
 } from "./helpers-edition2023.js";
 
 describe("isFieldSet()", () => {
-  test("accepts field names", () => {
+  test("returns true for set field", () => {
     const msg = create(proto3_ts.Proto3MessageDesc);
-    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "singularStringField");
-    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "optionalStringField");
-    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "repeatedStringField");
-    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "mapStringStringField");
-    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "oneofBoolField");
+    msg.optionalStringField = "abc";
+    const set = isFieldSet(
+      msg,
+      proto3_ts.Proto3MessageDesc.field.optionalStringField,
+    );
+    expect(set).toBe(true);
   });
-  test("rejects unknown field names", () => {
+  test("returns true for unset field", () => {
     const msg = create(proto3_ts.Proto3MessageDesc);
-    // @ts-expect-error TS2345
-    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "not a field name");
+    const set = isFieldSet(
+      msg,
+      proto3_ts.Proto3MessageDesc.field.optionalStringField,
+    );
+    expect(set).toBe(false);
   });
-  test("rejects oneof names", () => {
+  test("returns false for foreign field", () => {
     const msg = create(proto3_ts.Proto3MessageDesc);
-    // @ts-expect-error TS2345
-    isFieldSet(proto3_ts.Proto3MessageDesc, msg, "either");
-  });
-  test("accepts string for anonymous message", () => {
-    const desc: DescMessage = proto3_ts.Proto3MessageDesc;
-    const msg = create(desc);
-    const set = isFieldSet(desc, msg, "not a field name");
+    msg.optionalStringField = "abc";
+    const set = isFieldSet(
+      msg,
+      proto2_ts.Proto2MessageDesc.field.optionalStringField,
+    );
     expect(set).toBe(false);
   });
   describe("with proto3", () => {
     const desc = proto3_ts.Proto3MessageDesc;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
-      const set = isFieldSet(desc as DescMessage, msg, field.localName);
+      const set = isFieldSet(msg, field);
       expect(set).toBe(false);
     });
     test.each(fillProto3MessageNames())("%s is set", (name) => {
       const msg = create(desc);
       fillProto3Message(msg);
-      const set = isFieldSet(desc, msg, name);
+      const set = isFieldSet(msg, desc.field[name]);
       expect(set).toBe(true);
     });
   });
@@ -68,13 +69,13 @@ describe("isFieldSet()", () => {
     const desc = proto2_ts.Proto2MessageDesc;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
-      const set = isFieldSet(desc as DescMessage, msg, field.localName);
+      const set = isFieldSet(msg, field);
       expect(set).toBe(false);
     });
     test.each(fillProto2MessageNames())("%s is set", (name) => {
       const msg = create(desc);
       fillProto2Message(msg);
-      const set = isFieldSet(desc, msg, name);
+      const set = isFieldSet(msg, desc.field[name]);
       expect(set).toBe(true);
     });
   });
@@ -82,13 +83,13 @@ describe("isFieldSet()", () => {
     const desc = edition2023_ts.Edition2023MessageDesc;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
-      const set = isFieldSet(desc as DescMessage, msg, field.localName);
+      const set = isFieldSet(msg, field);
       expect(set).toBe(false);
     });
     test.each(fillEdition2023MessageNames())("%s is set", (name) => {
       const msg = create(desc);
       fillEdition2023Message(msg);
-      const set = isFieldSet(desc, msg, name);
+      const set = isFieldSet(msg, desc.field[name]);
       expect(set).toBe(true);
     });
   });
@@ -105,9 +106,9 @@ describe("clearField()", () => {
       fillProto3Message(msg);
     });
     test.each(fillProto3MessageNames())("%s", (name) => {
-      expect(isFieldSet(desc, msg, name)).toBe(true);
-      clearField(desc, msg, name);
-      expect(isFieldSet(desc, msg, name)).toBe(false);
+      expect(isFieldSet(msg, desc.field[name])).toBe(true);
+      clearField(msg, desc.field[name]);
+      expect(isFieldSet(msg, desc.field[name])).toBe(false);
       switch (name) {
         case "oneofBoolField":
           expect(msg.either).toStrictEqual(zero.either);
@@ -135,9 +136,9 @@ describe("clearField()", () => {
       fillProto2Message(msg);
     });
     test.each(fillProto2MessageNames())("%s", (name) => {
-      expect(isFieldSet(desc, msg, name)).toBe(true);
-      clearField(desc, msg, name);
-      expect(isFieldSet(desc, msg, name)).toBe(false);
+      expect(isFieldSet(msg, desc.field[name])).toBe(true);
+      clearField(msg, desc.field[name]);
+      expect(isFieldSet(msg, desc.field[name])).toBe(false);
       switch (name) {
         case "oneofBoolField":
           expect(msg.either).toStrictEqual(zero.either);
@@ -162,9 +163,9 @@ describe("clearField()", () => {
       fillEdition2023Message(msg);
     });
     test.each(fillEdition2023MessageNames())("%s", (name) => {
-      expect(isFieldSet(desc, msg, name)).toBe(true);
-      clearField(desc, msg, name);
-      expect(isFieldSet(desc, msg, name)).toBe(false);
+      expect(isFieldSet(msg, desc.field[name])).toBe(true);
+      clearField(msg, desc.field[name]);
+      expect(isFieldSet(msg, desc.field[name])).toBe(false);
       switch (name) {
         case "oneofBoolField":
           expect(msg.either).toStrictEqual(zero.either);
