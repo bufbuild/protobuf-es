@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { GenDescService, GenDescServiceShape } from "./types.js";
-import type { DescFile } from "../desc-types.js";
+import type { DescFile } from "../descriptors.js";
 
 /**
  * Hydrate a service descriptor.

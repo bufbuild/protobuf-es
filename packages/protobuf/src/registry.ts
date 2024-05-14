@@ -32,27 +32,28 @@ import type {
   OneofDescriptorProto,
   ServiceDescriptorProto,
   EnumValueDescriptorProto,
-} from "../wkt/gen/google/protobuf/descriptor_pb.js";
-import { assert } from "./assert.js";
-import type {
-  DescEnum,
-  DescExtension,
-  DescField,
-  DescFile,
-  DescMessage,
-  DescMethod,
-  DescOneof,
-  DescService,
-  SupportedEdition,
-} from "../desc-types.js";
+} from "./wkt/gen/google/protobuf/descriptor_pb.js";
+import { assert } from "./reflect/assert.js";
+import {
+  type DescEnum,
+  type DescExtension,
+  type DescField,
+  type DescFile,
+  type DescMessage,
+  type DescMethod,
+  type DescOneof,
+  type DescService,
+  LongType,
+  ScalarType,
+  type SupportedEdition,
+} from "./descriptors.js";
 import {
   parseTextFormatEnumValue,
   parseTextFormatScalarValue,
-} from "../wire/text-format.js";
-import { LongType, ScalarType } from "./scalar.js";
-import { nestedTypes } from "./nested-types.js";
-import { unsafeIsSetExplicit } from "./unsafe.js";
-import { protoCamelCase, safeObjectProperty } from "./names.js";
+} from "./wire/text-format.js";
+import { nestedTypes } from "./reflect/nested-types.js";
+import { unsafeIsSetExplicit } from "./reflect/unsafe.js";
+import { protoCamelCase, safeObjectProperty } from "./reflect/names.js";
 
 /**
  * A set of descriptors for messages, enumerations, extensions,

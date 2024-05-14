@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescField, DescOneof } from "../desc-types.js";
+import type { DescField, DescOneof } from "../descriptors.js";
 
 const errorNames = [
   "FieldValueInvalidError",

@@ -12,10 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ScalarType, scalarTypeDescription } from "./scalar.js";
+import { scalarTypeDescription } from "./scalar.js";
 import type { InvalidScalarValueErr } from "./scalar.js";
 import { checkScalarValue } from "./scalar.js";
-import type { DescEnum, DescField, DescMessage } from "../desc-types.js";
+import {
+  type DescEnum,
+  type DescField,
+  type DescMessage,
+  ScalarType,
+} from "../descriptors.js";
 import { isMessage } from "../is-message.js";
 import { FieldError } from "./error.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";

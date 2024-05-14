@@ -12,7 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescField, DescMessage, DescOneof } from "../desc-types.js";
+import {
+  type DescField,
+  type DescMessage,
+  type DescOneof,
+  LongType,
+  ScalarType,
+} from "../descriptors.js";
 import type { Message, MessageShape, UnknownField } from "../types.js";
 import { checkField, checkListItem, checkMapEntry } from "./reflect-check.js";
 import { FieldError } from "./error.js";
@@ -38,7 +44,7 @@ import {
 } from "./unsafe.js";
 import { create } from "../create.js";
 import { isWrapper, isWrapperDesc } from "../wkt/wrappers.js";
-import { LongType, ScalarType, scalarZeroValue } from "./scalar.js";
+import { scalarZeroValue } from "./scalar.js";
 import { protoInt64 } from "../proto-int64.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
 

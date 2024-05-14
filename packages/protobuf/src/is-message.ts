@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { MessageShape } from "./types.js";
-import type { DescMessage } from "./desc-types.js";
+import type { DescMessage } from "./descriptors.js";
 
 /**
  * Determine whether the given `arg` is a message.

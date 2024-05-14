@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescExtension, DescField } from "@bufbuild/protobuf";
 import {
+  type DescExtension,
+  type DescField,
   LongType,
   ScalarType,
-  scalarTypeScriptType,
-} from "@bufbuild/protobuf/reflect";
+} from "@bufbuild/protobuf";
+import { scalarTypeScriptType } from "@bufbuild/protobuf/reflect";
 import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 

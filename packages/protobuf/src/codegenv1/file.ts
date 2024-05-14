@@ -14,8 +14,8 @@
 
 import { base64Decode } from "../wire/index.js";
 import { FileDescriptorProtoDesc } from "../wkt/gen/google/protobuf/descriptor_pb.js";
-import type { DescFile } from "../desc-types.js";
-import { createFileRegistry } from "../reflect/registry.js";
+import type { DescFile } from "../descriptors.js";
+import { createFileRegistry } from "../registry.js";
 import { assert } from "../reflect/assert.js";
 import { restoreJsonNames } from "./restore-json-names.js";
 import { fromBinary } from "../from-binary.js";

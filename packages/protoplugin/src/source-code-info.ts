@@ -20,12 +20,9 @@ import {
   type DescField,
   type DescFile,
   isFieldSet,
-} from "@bufbuild/protobuf";
-import {
-  protoCamelCase,
-  reflect,
   ScalarType,
-} from "@bufbuild/protobuf/reflect";
+} from "@bufbuild/protobuf";
+import { protoCamelCase, reflect } from "@bufbuild/protobuf/reflect";
 import {
   Edition,
   type SourceCodeInfo,

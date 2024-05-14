@@ -16,7 +16,7 @@ export * from "./types.js";
 export * from "./is-message.js";
 export * from "./create.js";
 export * from "./clone.js";
-export * from "./desc-types.js";
+export * from "./descriptors.js";
 export * from "./equals.js";
 export * from "./fields.js";
 export type { JsonValue, JsonObject } from "./json-value.js";

@@ -19,7 +19,7 @@ import type {
   DescFile,
   DescMessage,
   DescService,
-} from "../desc-types.js";
+} from "../descriptors.js";
 
 /**
  * Iterate over all types - enumerations, extensions, services, messages -
