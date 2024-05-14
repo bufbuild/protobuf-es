@@ -12,10 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescField, DescMessage } from "./desc-types.js";
+import {
+  type DescField,
+  type DescMessage,
+  LongType,
+  ScalarType,
+} from "./descriptors.js";
 import type { MessageShape } from "./types.js";
 import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
-import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";
+import { scalarZeroValue } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";

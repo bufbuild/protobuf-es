@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescField, DescOneof } from "../desc-types.js";
+import type { DescField, DescOneof } from "../descriptors.js";
 import type { OneofADT } from "./guard.js";
 import { isScalarZeroValue, scalarZeroValue } from "./scalar.js";
 import type { FeatureSet_FieldPresence } from "../wkt/gen/google/protobuf/descriptor_pb.js";

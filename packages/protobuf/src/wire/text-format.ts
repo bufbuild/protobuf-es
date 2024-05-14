@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum } from "../desc-types.js";
+import { type DescEnum, ScalarType } from "../descriptors.js";
 import { assert } from "../reflect/assert.js";
 import { protoInt64 } from "../proto-int64.js";
-import { ScalarType } from "../reflect/scalar.js";
 
 /**
  * Parse an enum value from the Protobuf text format.

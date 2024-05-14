@@ -13,9 +13,15 @@
 // limitations under the License.
 
 import { isMessage } from "./is-message.js";
-import type { DescField, DescMessage, DescOneof } from "./desc-types.js";
+import {
+  type DescField,
+  type DescMessage,
+  type DescOneof,
+  LongType,
+  ScalarType,
+} from "./descriptors.js";
 import type { Message, MessageInitShape, MessageShape } from "./types.js";
-import { LongType, ScalarType, scalarZeroValue } from "./reflect/scalar.js";
+import { scalarZeroValue } from "./reflect/scalar.js";
 import { FieldError } from "./reflect/error.js";
 import { isObject, type OneofADT } from "./reflect/guard.js";
 import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";

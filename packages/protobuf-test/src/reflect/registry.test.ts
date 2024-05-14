@@ -18,17 +18,17 @@ import {
   type FileRegistry,
   createFileRegistry,
   createRegistry,
-  LongType,
   protoCamelCase,
-  ScalarType,
 } from "@bufbuild/protobuf/reflect";
-import type {
-  DescEnum,
-  DescExtension,
-  DescFile,
-  DescMessage,
-  DescOneof,
-  DescService,
+import {
+  type DescEnum,
+  type DescExtension,
+  type DescFile,
+  type DescMessage,
+  type DescOneof,
+  type DescService,
+  LongType,
+  ScalarType,
 } from "@bufbuild/protobuf";
 import {
   type FileDescriptorSet,

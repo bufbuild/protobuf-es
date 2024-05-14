@@ -17,8 +17,7 @@ import { reflect } from "./reflect/reflect.js";
 import { BinaryWriter, WireType } from "./wire/binary-encoding.js";
 import type { FeatureSet_FieldPresence } from "./wkt/gen/google/protobuf/descriptor_pb.js";
 import type { ScalarValue } from "./reflect/scalar.js";
-import { ScalarType } from "./reflect/scalar.js";
-import type { DescField, DescMessage } from "./desc-types.js";
+import { type DescField, type DescMessage, ScalarType } from "./descriptors.js";
 import type { ReflectList, ReflectMessage } from "./reflect/index.js";
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;

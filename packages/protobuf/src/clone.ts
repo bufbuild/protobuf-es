@@ -13,11 +13,10 @@
 // limitations under the License.
 
 import type { MessageShape } from "./types.js";
-import type { DescField, DescMessage } from "./desc-types.js";
+import { type DescField, type DescMessage, ScalarType } from "./descriptors.js";
 import type { ReflectMessage } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { isReflectMessage } from "./reflect/guard.js";
-import { ScalarType } from "./reflect/scalar.js";
 
 /**
  * Create a deep copy of a message, including extensions and unknown fields.

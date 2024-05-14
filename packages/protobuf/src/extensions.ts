@@ -23,7 +23,7 @@ import type {
   DescMethod,
   DescOneof,
   DescService,
-} from "./desc-types.js";
+} from "./descriptors.js";
 import { assert } from "./reflect/assert.js";
 import { create } from "./create.js";
 import { readField } from "./from-binary.js";

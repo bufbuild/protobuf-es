@@ -15,7 +15,7 @@
 import type { Message, MessageShape } from "../types.js";
 import type { Any } from "./gen/google/protobuf/any_pb.js";
 import { AnyDesc } from "./gen/google/protobuf/any_pb.js";
-import type { DescMessage } from "../desc-types.js";
+import type { DescMessage } from "../descriptors.js";
 import type { Registry } from "../reflect/index.js";
 import { create } from "../create.js";
 import { toBinary } from "../to-binary.js";

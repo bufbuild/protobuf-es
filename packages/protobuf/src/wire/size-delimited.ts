@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescMessage } from "../desc-types.js";
+import type { DescMessage } from "../descriptors.js";
 import type { BinaryWriteOptions } from "../to-binary.js";
 import { toBinary } from "../to-binary.js";
 import type { MessageShape } from "../types.js";

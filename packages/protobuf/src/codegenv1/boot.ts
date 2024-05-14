@@ -26,9 +26,9 @@ import type {
   FieldOptions,
   EnumDescriptorProto,
 } from "../wkt/gen/google/protobuf/descriptor_pb.js";
-import type { DescFile } from "../desc-types.js";
+import type { DescFile } from "../descriptors.js";
 import { restoreJsonNames } from "./restore-json-names.js";
-import { createFileRegistry } from "../reflect/registry.js";
+import { createFileRegistry } from "../registry.js";
 import { assert } from "../reflect/assert.js";
 
 /**

@@ -12,13 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescEnum, DescField, DescMessage } from "./desc-types.js";
+import {
+  type DescEnum,
+  type DescField,
+  type DescMessage,
+  ScalarType,
+} from "./descriptors.js";
 import type { JsonObject, JsonValue } from "./json-value.js";
 import { assert } from "./reflect/assert.js";
 import { protoCamelCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
-import { ScalarType } from "./reflect/scalar.js";
-import type { Registry } from "./reflect/registry.js";
+import type { Registry } from "./registry.js";
 import type {
   ReflectList,
   ReflectMap,

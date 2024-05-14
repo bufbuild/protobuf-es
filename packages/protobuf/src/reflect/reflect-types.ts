@@ -12,11 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescField, DescMessage, DescOneof } from "../desc-types.js";
+import {
+  type DescField,
+  type DescMessage,
+  type DescOneof,
+  LongType,
+} from "../descriptors.js";
 import { FieldError } from "./error.js";
 import { unsafeLocal } from "./unsafe.js";
 import type { Message, UnknownField } from "../types.js";
-import type { LongType, ScalarValue } from "./scalar.js";
+import type { ScalarValue } from "./scalar.js";
 
 /**
  * ReflectMessage provides dynamic access and manipulation of a message.

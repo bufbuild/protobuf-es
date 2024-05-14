@@ -24,7 +24,7 @@ import type {
   UInt32Value,
   UInt64Value,
 } from "./gen/google/protobuf/wrappers_pb.js";
-import type { DescField, DescMessage } from "../desc-types.js";
+import type { DescField, DescMessage } from "../descriptors.js";
 
 export function isWrapper(
   arg: Message,

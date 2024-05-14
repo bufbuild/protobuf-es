@@ -20,7 +20,7 @@ import type {
   DescFile,
   DescMessage,
   DescService,
-} from "../desc-types.js";
+} from "../descriptors.js";
 
 /**
  * Describes a protobuf source file.

@@ -14,27 +14,24 @@
 
 /* eslint-disable no-case-declarations */
 
-import type {
-  DescEnum,
-  DescExtension,
-  DescField,
-  DescMessage,
-  DescOneof,
-} from "./desc-types.js";
+import {
+  type DescEnum,
+  type DescExtension,
+  type DescField,
+  type DescMessage,
+  type DescOneof,
+  LongType,
+  ScalarType,
+} from "./descriptors.js";
 import type { JsonValue } from "./json-value.js";
 import { assertFloat32, assertInt32, assertUInt32 } from "./reflect/assert.js";
 import { protoInt64 } from "./proto-int64.js";
 import { create } from "./create.js";
-import type { Registry } from "./reflect/registry.js";
+import type { Registry } from "./registry.js";
 import type { MapEntryKey, ReflectMessage } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { formatVal } from "./reflect/reflect-check.js";
-import {
-  LongType,
-  ScalarType,
-  type ScalarValue,
-  scalarZeroValue,
-} from "./reflect/scalar.js";
+import { type ScalarValue, scalarZeroValue } from "./reflect/scalar.js";
 import type { MessageShape } from "./types.js";
 import { base64Decode } from "./wire/base64-encoding.js";
 import { getTextEncoding } from "./wire/text-encoding.js";

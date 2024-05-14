@@ -17,7 +17,7 @@ import type {
   DescExtension,
   DescMessage,
   DescService,
-} from "../desc-types.js";
+} from "../descriptors.js";
 import { protoCamelCase } from "../reflect/names.js";
 import { assert } from "../reflect/assert.js";
 import { isFieldSet, clearField } from "../fields.js";
