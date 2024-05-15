@@ -338,11 +338,11 @@ The natural instinct would be to simply print your own import statements as `f.p
 
 ### Exporting
 
-To export a declaration from your code, use `exportDecl`:
+To export a declaration from your code, use `export`:
 
 ```typescript
 const name = "foo";
-f.exportDecl("const", name);
+f.export("const", name);
 ```
 
 This method takes two arguments:
@@ -354,7 +354,7 @@ The return value of the method can be passed to `print`:
 
 ```typescript
 const name = "foo";
-f.print(f.exportDecl("const", name), " = 123;");
+f.print(f.export("const", name), " = 123;");
 ```
 
 The example above will generate the following code:

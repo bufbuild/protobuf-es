@@ -41,7 +41,7 @@ describe("keep_empty_files", () => {
             // An unused import does not count as non-empty
             f.import("foo", "bar");
             // An unused export declaration does not count as non-empty
-            f.exportDecl("foo", "bar");
+            f.export("foo", "bar");
           },
         });
         expect(res.file.length).toBe(0);

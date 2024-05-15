@@ -17,11 +17,11 @@ import type { DescEnum, DescMessage } from "@bufbuild/protobuf";
 import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.exportDecl", () => {
+describe("GeneratedFile.export", () => {
   test("works as documented", async () => {
     const lines = await testGenerate((f) => {
       const name = "foo";
-      f.print(f.exportDecl("const", name), " = 123;");
+      f.print(f.export("const", name), " = 123;");
     });
     expect(lines).toStrictEqual(["export const foo = 123;"]);
   });
@@ -29,7 +29,7 @@ describe("GeneratedFile.exportDecl", () => {
   test("declaration can be empty string", async () => {
     const lines = await testGenerate((f) => {
       f.print("const foo = 123;");
-      f.print(f.exportDecl("", "foo"), ";");
+      f.print(f.export("", "foo"), ";");
     });
     expect(lines).toStrictEqual(["const foo = 123;", "export foo;"]);
   });
@@ -37,7 +37,7 @@ describe("GeneratedFile.exportDecl", () => {
   test("forces import with same name to be aliased", async () => {
     const lines = await testGenerate((f) => {
       f.print(f.import("Foo", "pkg"));
-      f.print(f.exportDecl("const", "Foo"), " = 123;");
+      f.print(f.export("const", "Foo"), " = 123;");
     });
     expect(lines).toStrictEqual([
       `import { Foo as Foo$1 } from "pkg";`,
