@@ -117,15 +117,6 @@ Possible values:
   the default behavior.
 - `js_import_style=legacy_commonjs` generate CommonJS `require()` calls.
 
-### `keep_empty_files=true`
-
-By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
-(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
-omit empty files from the plugin output. This option disables pruning of
-empty files, to allow for smooth interoperation with Bazel and similar
-tooling that requires all output files to be declared ahead of time.
-Unless you use Bazel, it is very unlikely that you need this option.
-
 ### `ts_nocheck=true`
 
 [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) generates

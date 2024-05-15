@@ -2,28 +2,29 @@ Protobuf-ES: Writing Plugins
 ========================
 Code generator plugins can be created using the npm packages [@bufbuild/protoplugin](https://npmjs.com/package/@bufbuild/protoplugin) and [@bufbuild/protobuf](https://npmjs.com/package/@bufbuild/protobuf). This is a detailed overview of the process of writing a plugin.
 
-- [Introduction](#introduction)
-- [Writing a plugin](#writing-a-plugin)
-  - [Installing the plugin framework and dependencies](#installing-the-plugin-framework-and-dependencies)
-  - [Setting up your plugin](#setting-up-your-plugin)
-  - [Providing generator functions](#providing-generator-functions)
-     - [Overriding transpilation](#overriding-transpilation) 
-  - [Generating a file](#generating-a-file)
-  - [Walking through the schema](#walking-through-the-schema)
-  - [Printing to a generated file](#printing-to-a-generated-file)
-     - [As a variadic function](#as-a-variadic-function)
-     - [As a template literal tagged function](#as-a-template-literal-tagged-function)   
-  - [Importing](#importing)
-     - [Importing from an NPM package](#importing-from-an-npm-package) 
-     - [Importing from `protoc-gen-es` generated code](#importing-from-protoc-gen-es-generated-code) 
-     - [Importing from the `@bufbuild/protobuf` runtime](#importing-from-the-bufbuildprotobuf-runtime)
-     - [Type-only imports](#type-only-imports)
-     - [Why use `f.import()`?](#why-use-fimport)
-  - [Exporting](#exporting)
-  - [Parsing plugin options](#parsing-plugin-options)
-  - [Using custom Protobuf options](#using-custom-protobuf-options)
-- [Testing](#testing)
-- [Examples](#examples)
+- [Protobuf-ES: Writing Plugins](#protobuf-es-writing-plugins)
+  - [Introduction](#introduction)
+  - [Writing a plugin](#writing-a-plugin)
+    - [Installing the plugin framework and dependencies](#installing-the-plugin-framework-and-dependencies)
+    - [Setting up your plugin](#setting-up-your-plugin)
+    - [Providing generator functions](#providing-generator-functions)
+      - [Overriding transpilation](#overriding-transpilation)
+    - [Generating a file](#generating-a-file)
+    - [Walking through the schema](#walking-through-the-schema)
+    - [Printing to a generated file](#printing-to-a-generated-file)
+      - [As a variadic function](#as-a-variadic-function)
+      - [As a template literal tagged function](#as-a-template-literal-tagged-function)
+    - [Importing](#importing)
+      - [Importing from an NPM package](#importing-from-an-npm-package)
+      - [Importing from `protoc-gen-es` generated code](#importing-from-protoc-gen-es-generated-code)
+      - [Importing from the @bufbuild/protobuf runtime](#importing-from-the-bufbuildprotobuf-runtime)
+      - [Type-only imports](#type-only-imports)
+      - [Why use `f.import()`?](#why-use-fimport)
+    - [Exporting](#exporting)
+    - [Parsing plugin options](#parsing-plugin-options)
+    - [Using custom Protobuf options](#using-custom-protobuf-options)
+  - [Testing](#testing)
+  - [Examples](#examples)
 
 ## Introduction
 
@@ -369,7 +370,7 @@ automatically generate the correct export for CommonJS.
 
 ### Parsing plugin options
 
-The plugin framework recognizes a set of pre-defined key/value pairs that can be passed to all plugins when executed (i.e. `target`, `keep_empty_files`, etc.), but if your plugin needs to be passed additional parameters, you can specify a `parseOption` function as part of your plugin initialization.  
+The plugin framework recognizes a set of pre-defined key/value pairs that can be passed to all plugins when executed (i.e. `target`, `import_extension`, etc.), but if your plugin needs to be passed additional parameters, you can specify a `parseOption` function as part of your plugin initialization.  
 
 ```ts
 parseOption(key: string, value: string | undefined): void;
