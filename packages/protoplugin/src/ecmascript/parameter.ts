@@ -20,7 +20,6 @@ export interface ParsedParameter {
   targets: Target[];
   tsNocheck: boolean;
   bootstrapWkt: boolean;
-  keepEmptyFiles: boolean;
   rewriteImports: RewriteImports;
   importExtension: string;
   jsImportStyle: "module" | "legacy_commonjs";
@@ -34,7 +33,6 @@ export function parseParameter(
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = false;
   let bootstrapWkt = false;
-  let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
   let importExtension = "";
   let jsImportStyle: "module" | "legacy_commonjs" = "module";
@@ -120,21 +118,6 @@ export function parseParameter(
             throw new PluginOptionError(raw);
         }
         break;
-      case "keep_empty_files": {
-        switch (value) {
-          case "true":
-          case "1":
-            keepEmptyFiles = true;
-            break;
-          case "false":
-          case "0":
-            keepEmptyFiles = false;
-            break;
-          default:
-            throw new PluginOptionError(raw);
-        }
-        break;
-      }
       default:
         if (parseExtraOption === undefined) {
           throw new PluginOptionError(raw);
@@ -160,7 +143,6 @@ export function parseParameter(
     rewriteImports,
     importExtension,
     jsImportStyle,
-    keepEmptyFiles,
     sanitizedParameter,
   };
 }

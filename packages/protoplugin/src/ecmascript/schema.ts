@@ -157,9 +157,7 @@ export function createSchema(
       return genFile;
     },
     getFileInfo() {
-      return generatedFiles
-        .map((f) => f.getFileInfo())
-        .filter((fi) => parameter.keepEmptyFiles || fi.content.length > 0);
+      return generatedFiles.map((f) => f.getFileInfo());
     },
     prepareGenerate(newTarget) {
       target = newTarget;
