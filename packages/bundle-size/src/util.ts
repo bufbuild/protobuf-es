@@ -62,20 +62,20 @@ type Chartline = {
 export function generateChart(lines: Chartline[]): string {
   const yMax = 290;
   const xStep = 140;
-  const xMax = xStep * sizes.length + 90 + 10;
+  const xMax = xStep * sizes.length + 110 + 10;
   let svg = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="${xMax}px" height="330px" viewBox="0 0 ${xMax} 330" class="chart">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="${xMax}px" height="330px" viewBox="0 0 ${xMax} 340" class="chart">
     <style>
       <![CDATA[
       text {
-        font: 12px Verdana, Helvetica, Arial, sans-serif;
+        font: 14px Verdana, Helvetica, Arial, sans-serif;
       }
       ]]>
     </style>
-    <g transform="translate(90,310)">
+    <g transform="translate(110,310)">
       <line y1="0" x2="${xStep * sizes.length}" stroke="black" />
-      ${sizes.map((size, index) => `<text x="${xStep * index}" y="14" text-anchor="start">${size} file${size > 1 ? "s" : ""}</text>`).join("\n")}
+      ${sizes.map((size, index) => `<text x="${xStep * index}" y="18" text-anchor="start">${size} file${size > 1 ? "s" : ""}</text>`).join("\n")}
     </g>`;
 
   let maxBytes = lines
@@ -84,9 +84,9 @@ export function generateChart(lines: Chartline[]): string {
   // paint y-axis
   if (maxBytes < 1024 * 100) {
     maxBytes = 1024 * 100;
-    svg += `<g transform="translate(90, 20)" >
+    svg += `<g transform="translate(110, 20)" >
       <line x1="0" x2="0" y1="0" y2="290" stroke="black" />
-      <g transform="rotate(-90), translate(-150,-60)">
+      <g transform="rotate(-90), translate(-150,-85)">
         <text text-anchor="middle">Bundle size - minified and compressed</text>
       </g>
     `;
@@ -95,7 +95,7 @@ export function generateChart(lines: Chartline[]): string {
       const y = (yMax / labels) * i;
       const bytes = maxBytes - (maxBytes / labels) * i;
       const label = `${Math.floor(bytes / 1024)} KiB`;
-      svg += `<text x="-5" y="${y + 4}" text-anchor="end">${label}</text>\n`;
+      svg += `<text x="-10" y="${y + 4}" text-anchor="end">${label}</text>\n`;
       if (i < labels) {
         svg += `<line x1="0" x2="${xStep * sizes.length}" y1="${y}" y2="${y}" stroke="#ebebeb" />\n`;
       }
@@ -114,19 +114,19 @@ export function generateChart(lines: Chartline[]): string {
       return { ...p, x, y };
     });
     const polylinePoints = points.map((p) => `${p.x},${p.y}`).join(" ");
-    svg += `<g transform="translate(90, 20)">\n`;
+    svg += `<g transform="translate(110, 20)">\n`;
     svg += `  <polyline fill="none" stroke="${line.color}" stroke-width="2" points="${polylinePoints}">\n`;
     svg += `    <title>${line.name}</title>\n`;
     svg += `  </polyline>\n`;
     for (const p of points) {
-      svg += `<circle cx="${p.x}" cy="${p.y}" r="3" fill="${line.color}"><title>${line.name} ${formatKibibytes(p.bytes)} for ${p.files} files</title></circle>\n`;
+      svg += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="${line.color}"><title>${line.name} ${formatKibibytes(p.bytes)} for ${p.files} files</title></circle>\n`;
     }
     svg += `</g>\n`;
   }
   // legend
-  svg += `<g transform="translate(105, 30)">\n`;
+  svg += `<g transform="translate(125, 30)">\n`;
   for (let i = 0; i < lines.length; i++) {
-    svg += `<g transform="translate(0, ${i * 18})">
+    svg += `<g transform="translate(0, ${i * 22})">
       <rect width="15" height="6" fill="${lines[i].color}"/>
       <text x="20" y="6">${lines[i].name}</text>
     </g>\n`;

@@ -10,6 +10,8 @@ usually do. We repeat this for an increasing number of files.
 
 ![chart](./chart.svg)
 
+<details><summary>Tabular data</summary>
+
 <!--- TABLE-START -->
 | code generator  | files    | bundle size             | minified               | compressed         |
 |-----------------|----------|------------------------:|-----------------------:|-------------------:|
@@ -24,3 +26,5 @@ usually do. We repeat this for an increasing number of files.
 | protobuf-javascript | 16 | 548,365 b | 378,100 b | 52,204 b |
 | protobuf-javascript | 32 | 1,240,889 b | 819,610 b | 78,780 b |
 <!--- TABLE-END -->
+
+</details>
