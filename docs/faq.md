@@ -10,7 +10,7 @@ Some additional features that set it apart from the others:
 - ECMAScript module support
 - First-class TypeScript support
 - Generation of idiomatic JavaScript and TypeScript code.
-- Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-bench)
+- Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size)
 - Implementation of all proto3 features, including the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json).
 - Implementation of all proto2 features, except for the text format.
 - Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
@@ -172,7 +172,7 @@ Because of this, we want to provide a solid, modern alternative with Protobuf-ES
 The main differences of the generated code:
 - we use plain properties for fields, where protoc uses getter and setter methods
 - we implement the canonical JSON format
-- we generate [much smaller bundles](packages/protobuf-bench)
+- we generate [much smaller bundles](packages/bundle-size)
 - we rely on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
 
 ### <a name="options"></a>What is your stance on adding options to the plugin?
