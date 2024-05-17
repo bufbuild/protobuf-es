@@ -21,8 +21,7 @@ import {
   ValueDesc,
 } from "@bufbuild/protobuf/wkt";
 import type { Value } from "@bufbuild/protobuf/wkt";
-import { create } from "@bufbuild/protobuf";
-import { createRegistry } from "@bufbuild/protobuf/reflect";
+import { create, createRegistry } from "@bufbuild/protobuf";
 
 describe("google.protobuf.Any", () => {
   test(`is correctly identifies by message and type name`, () => {
