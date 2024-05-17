@@ -13,11 +13,11 @@
 // limitations under the License.
 
 import { create, protoInt64 } from "@bufbuild/protobuf";
-import type { SupportedEdition } from "@bufbuild/protobuf";
 import {
+  type SupportedEdition,
   minimumEdition as minimumEditionUpstream,
   maximumEdition as maximumEditionUpstream,
-} from "@bufbuild/protobuf/reflect";
+} from "@bufbuild/protobuf";
 import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
 import {
   CodeGeneratorResponse_Feature,

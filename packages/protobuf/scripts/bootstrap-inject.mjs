@@ -17,8 +17,8 @@ import { join as joinPath } from "node:path";
 import assert from "node:assert";
 import { stdout, stderr, argv } from "node:process";
 import { UpstreamProtobuf } from "upstream-protobuf";
-import { createFileRegistry, reflect } from "@bufbuild/protobuf/reflect";
-import { fromBinary } from "@bufbuild/protobuf";
+import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
+import { reflect } from "@bufbuild/protobuf/reflect";
 import {
   Edition,
   FeatureSetDefaultsDesc,

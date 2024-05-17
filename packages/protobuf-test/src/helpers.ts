@@ -13,8 +13,7 @@
 // limitations under the License.
 
 import { UpstreamProtobuf } from "upstream-protobuf";
-import { createFileRegistry } from "@bufbuild/protobuf/reflect";
-import { fromBinary } from "@bufbuild/protobuf";
+import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/wkt";
 import { FileDescriptorSetDesc } from "@bufbuild/protobuf/wkt";
 import assert from "node:assert";

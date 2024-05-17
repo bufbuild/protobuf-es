@@ -18,9 +18,6 @@ import {
   type FileRegistry,
   createFileRegistry,
   createRegistry,
-  protoCamelCase,
-} from "@bufbuild/protobuf/reflect";
-import {
   type DescEnum,
   type DescExtension,
   type DescFile,
@@ -30,6 +27,7 @@ import {
   LongType,
   ScalarType,
 } from "@bufbuild/protobuf";
+import { protoCamelCase } from "@bufbuild/protobuf/reflect";
 import {
   type FileDescriptorSet,
   Edition,
@@ -45,7 +43,7 @@ import {
   compileMessage,
   compileMethod,
   compileService,
-} from "../helpers.js";
+} from "./helpers.js";
 
 describe("createRegistry()", function () {
   let testReg: FileRegistry;

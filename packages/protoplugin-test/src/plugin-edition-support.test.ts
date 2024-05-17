@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { fromBinary } from "@bufbuild/protobuf";
+import { fromBinary, minimumEdition } from "@bufbuild/protobuf";
 import {
   CodeGeneratorRequestDesc,
   CodeGeneratorResponse_Feature,
@@ -22,7 +22,6 @@ import {
 import { createTestPluginAndRun } from "./helpers.js";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import { minimumEdition } from "@bufbuild/protobuf/reflect";
 import type { SupportedEdition } from "@bufbuild/protobuf";
 
 async function runPlugin(
