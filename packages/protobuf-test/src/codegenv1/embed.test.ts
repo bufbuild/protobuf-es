@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import { compileFile, compileFileDescriptorSet } from "../helpers.js";
 import { embedFileDesc } from "@bufbuild/protobuf/codegenv1";
 import assert from "node:assert";
-import { createFileRegistry } from "@bufbuild/protobuf/reflect";
+import { createFileRegistry } from "@bufbuild/protobuf";
 
 describe("embedFileDesc()", () => {
   test("embeds file descriptor", async () => {

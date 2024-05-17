@@ -14,6 +14,10 @@
 
 import { describe, expect, test } from "@jest/globals";
 import {
+  type MessageInitShape,
+  type DescMessage,
+  type JsonValue,
+  createRegistry,
   create,
   toJson,
   fromJson,
@@ -21,12 +25,6 @@ import {
   setExtension,
   getExtension,
 } from "@bufbuild/protobuf";
-import type {
-  MessageInitShape,
-  DescMessage,
-  JsonValue,
-} from "@bufbuild/protobuf";
-import { createRegistry } from "@bufbuild/protobuf/reflect";
 import {
   RepeatedScalarValuesMessageDesc,
   ScalarValuesMessageDesc,

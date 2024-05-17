@@ -22,8 +22,8 @@ import {
   type MessageShape,
   toBinary,
   toJsonString,
+  createRegistry,
 } from "@bufbuild/protobuf";
-import { createRegistry } from "@bufbuild/protobuf/reflect";
 import {
   type ConformanceRequest,
   type ConformanceResponse,

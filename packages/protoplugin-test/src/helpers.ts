@@ -20,10 +20,8 @@ import {
   CodeGeneratorRequestDesc,
   FileDescriptorSetDesc,
 } from "@bufbuild/protobuf/wkt";
-import { fromBinary } from "@bufbuild/protobuf";
-import { createFileRegistry } from "@bufbuild/protobuf/reflect";
-import type { Plugin } from "@bufbuild/protoplugin";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
+import { type Plugin, createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type {
   GeneratedFile,
   Schema,
