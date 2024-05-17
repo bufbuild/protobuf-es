@@ -1,5 +1,5 @@
 {
-  "name": "@bufbuild/protobuf-bench",
+  "name": "@bufbuild/bundle-size",
   "private": true,
   "scripts": {
     "report": "tsx src/report.ts",
