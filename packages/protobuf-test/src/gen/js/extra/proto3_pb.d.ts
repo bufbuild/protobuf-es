@@ -142,6 +142,45 @@ export declare class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMes
 }
 
 /**
+ * @generated from message spec.Proto3Message
+ */
+export declare class Proto3Message extends Message<Proto3Message> {
+  /**
+   * @generated from field: string string_field = 1;
+   */
+  stringField: string;
+
+  /**
+   * @generated from field: bytes bytes_field = 2;
+   */
+  bytesField: Uint8Array;
+
+  /**
+   * @generated from field: spec.Proto3Enum enum_field = 3;
+   */
+  enumField: Proto3Enum;
+
+  /**
+   * @generated from field: spec.Proto3Message message_field = 4;
+   */
+  messageField?: Proto3Message;
+
+  constructor(data?: PartialMessage<Proto3Message>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "spec.Proto3Message";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3Message;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3Message;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3Message;
+
+  static equals(a: Proto3Message | PlainMessage<Proto3Message> | undefined, b: Proto3Message | PlainMessage<Proto3Message> | undefined): boolean;
+}
+
+/**
  * @generated from message spec.Proto3OptionalMessage
  */
 export declare class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {

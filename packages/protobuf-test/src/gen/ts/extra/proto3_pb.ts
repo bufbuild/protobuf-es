@@ -193,6 +193,61 @@ export class Proto3UnlabelledMessage extends Message<Proto3UnlabelledMessage> {
 }
 
 /**
+ * @generated from message spec.Proto3Message
+ */
+export class Proto3Message extends Message<Proto3Message> {
+  /**
+   * @generated from field: string string_field = 1;
+   */
+  stringField = "";
+
+  /**
+   * @generated from field: bytes bytes_field = 2;
+   */
+  bytesField = new Uint8Array(0);
+
+  /**
+   * @generated from field: spec.Proto3Enum enum_field = 3;
+   */
+  enumField = Proto3Enum.UNSPECIFIED;
+
+  /**
+   * @generated from field: spec.Proto3Message message_field = 4;
+   */
+  messageField?: Proto3Message;
+
+  constructor(data?: PartialMessage<Proto3Message>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "spec.Proto3Message";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum) },
+    { no: 4, name: "message_field", kind: "message", T: Proto3Message },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Proto3Message {
+    return new Proto3Message().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Proto3Message {
+    return new Proto3Message().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Proto3Message {
+    return new Proto3Message().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Proto3Message | PlainMessage<Proto3Message> | undefined, b: Proto3Message | PlainMessage<Proto3Message> | undefined): boolean {
+    return proto3.util.equals(Proto3Message, a, b);
+  }
+}
+
+/**
  * @generated from message spec.Proto3OptionalMessage
  */
 export class Proto3OptionalMessage extends Message<Proto3OptionalMessage> {

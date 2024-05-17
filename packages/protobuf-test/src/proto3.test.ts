@@ -15,7 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import * as TS from "./gen/ts/extra/proto3_pb.js";
 import * as JS from "./gen/js/extra/proto3_pb.js";
-import { describeMT } from "./helpers.js";
+import { describeMT, testMT } from "./helpers.js";
 
 describe("proto3 field info packed", () => {
   // Also see msg-scalars.test.ts
@@ -70,4 +70,15 @@ describe("proto3 field info optional / required", () => {
       });
     },
   );
+});
+
+describe("proto3 toBinary", () => {
+  describe("toBinary does not raise an error with fields that were set to undefined", () => {
+    testMT({ ts: TS.Proto3Message, js: JS.Proto3Message }, (messageType) => {
+      const message = new messageType();
+      message.stringField = undefined as unknown as string;
+      const serializedMessage = message.toBinary();
+      expect(serializedMessage).toBeDefined();
+    });
+  });
 });

@@ -143,7 +143,7 @@ export function makeBinaryFormat(): BinaryFormat {
         const value = field.oneof
           ? (message as AnyMessage)[field.oneof.localName].value
           : (message as AnyMessage)[field.localName];
-        writeField(field, value, writer, options);
+        this.writeField(field, value, writer, options);
       }
       if (options.writeUnknownFields) {
         this.writeUnknownFields(message, writer);

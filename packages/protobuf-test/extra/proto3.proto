@@ -35,6 +35,13 @@ message Proto3UnlabelledMessage {
   repeated uint64 uint64_field = 3;
 }
 
+message Proto3Message {
+  string string_field = 1;
+  bytes bytes_field = 2;
+  Proto3Enum enum_field = 3;
+  Proto3Message message_field = 4;
+}
+
 message Proto3OptionalMessage {
   optional string string_field = 1;
   optional bytes bytes_field = 2;

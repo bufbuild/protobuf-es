@@ -67,6 +67,19 @@ export const Proto3UnlabelledMessage = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * @generated from message spec.Proto3Message
+ */
+export const Proto3Message = /*@__PURE__*/ proto3.makeMessageType(
+  "spec.Proto3Message",
+  () => [
+    { no: 1, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "bytes_field", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: "enum_field", kind: "enum", T: proto3.getEnumType(Proto3Enum) },
+    { no: 4, name: "message_field", kind: "message", T: Proto3Message },
+  ],
+);
+
+/**
  * @generated from message spec.Proto3OptionalMessage
  */
 export const Proto3OptionalMessage = /*@__PURE__*/ proto3.makeMessageType(
