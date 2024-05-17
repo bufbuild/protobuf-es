@@ -81,8 +81,8 @@ $(GEN)/protobuf-example: $(BUILD)/protoc-gen-es packages/protobuf-example/buf.ge
 	@mkdir -p $(@D)
 	@touch $(@)
 
-$(GEN)/protobuf-bench: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es packages/protobuf-bench Makefile
-	npm run -w packages/protobuf-bench generate
+$(GEN)/bundle-size: $(BUILD)/protoplugin $(BUILD)/protoc-gen-es $(shell find packages/bundle-size/src -name '*.ts' -maxdepth 1) packages/bundle-size/buf.gen.yaml Makefile
+	npm run -w packages/bundle-size generate
 	@mkdir -p $(@D)
 	@touch $(@)
 
@@ -92,10 +92,10 @@ help: ## Describe useful make targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s %s\n", $$1, $$2}'
 
 .PHONY: all
-all: build test format lint bench bootstrap ## build, test, format, lint, bench, and bootstrap (default)
+all: build test format lint bundle-size bootstrap ## build, test, format, lint, bundle-size, and bootstrap (default)
 
 .PHONY: ci
-ci: build test-protobuf test-protoplugin test-protoplugin-example test-conformance format bench bootstrap #
+ci: build test-protobuf test-protoplugin test-protoplugin-example test-conformance format bundle-size bootstrap #
 	$(MAKE) checkdiff
 
 .PHONY: clean
@@ -130,7 +130,7 @@ test-ts-compat: $(GEN)/protobuf-test $(BUILD)/protobuf node_modules
 	node packages/typescript-compat/typescript-compat.mjs
 
 .PHONY: lint
-lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(BUILD)/protoplugin $(GEN)/protobuf-bench $(GEN)/protobuf-example ## Lint all files
+lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(BUILD)/protoplugin $(GEN)/bundle-size $(GEN)/protobuf-example ## Lint all files
 	npx eslint --max-warnings 0 .
 	@# Check type exports on npm packages to verify they're correct
 	npm run -w packages/protobuf attw
@@ -141,9 +141,9 @@ format: node_modules ## Format all files, adding license headers
 	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs,cjs}' --log-level error
 	npx license-header --ignore 'packages/protobuf/src/**/varint.ts'
 
-.PHONY: bench
-bench: node_modules $(GEN)/protobuf-bench $(BUILD)/protobuf ## Benchmark code size
-	npm run -w packages/protobuf-bench report
+.PHONY: bundle-size
+bundle-size: node_modules $(GEN)/bundle-size $(BUILD)/protobuf ## Benchmark bundle-size
+	npm run -w packages/bundle-size report
 
 .PHONY: perf
 perf: $(BUILD)/protobuf-test

@@ -8,7 +8,7 @@
     "./packages/protoplugin-example",
     "./packages/protobuf-test",
     "./packages/protobuf-conformance",
-    "./packages/protobuf-bench",
+    "./packages/bundle-size",
     "./packages/protobuf-example",
     "./packages/upstream-protobuf",
     "./packages/typescript-compat/*"
