@@ -20,7 +20,6 @@ import {
   type DescMessage,
   type DescService,
   protoInt64,
-  LongType,
   ScalarType,
 } from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
@@ -420,16 +419,13 @@ function printableToEl(opt: PrintableToElOpt, printables: Printable[]): void {
               el.push(escapeString(p.value));
               break;
             case "es_proto_int64":
-              switch (p.longType) {
-                case LongType.STRING:
-                  el.push(escapeString(p.value.toString()));
-                  break;
-                case LongType.BIGINT:
-                  if (p.value == protoInt64.zero) {
-                    // Loose comparison will match between 0n and 0.
-                    el.push(opt.runtime.protoInt64, ".zero");
-                    break;
-                  }
+              if (p.longAsString) {
+                el.push(escapeString(p.value.toString()));
+              } else {
+                if (p.value == protoInt64.zero) {
+                  // Loose comparison will match between 0n and 0.
+                  el.push(opt.runtime.protoInt64, ".zero");
+                } else {
                   switch (p.type) {
                     case ScalarType.UINT64:
                     case ScalarType.FIXED64:
@@ -449,6 +445,7 @@ function printableToEl(opt: PrintableToElOpt, printables: Printable[]): void {
                       );
                       break;
                   }
+                }
               }
               break;
             default:

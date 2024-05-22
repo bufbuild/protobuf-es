@@ -24,7 +24,6 @@ import {
   type DescMessage,
   type DescOneof,
   type DescService,
-  LongType,
   ScalarType,
 } from "@bufbuild/protobuf";
 import { protoCamelCase } from "@bufbuild/protobuf/reflect";
@@ -951,8 +950,8 @@ describe("DescField", () => {
       ).toBe(false);
     });
   });
-  describe("longType", () => {
-    test("returns default LongType.BIGINT for option omitted", async () => {
+  describe("longAsString", () => {
+    test("returns default false for option omitted", async () => {
       const { fields } = await compileMessage(`
         syntax="proto3";
         message M {
@@ -978,17 +977,17 @@ describe("DescField", () => {
           field.fieldKind == "scalar" ||
           (field.fieldKind == "list" && field.listKind == "scalar")
         ) {
-          expect(field.longType).toBe(LongType.BIGINT);
+          expect(field.longAsString).toBe(false);
         }
       }
     });
     test.each([
-      { jstype: "JS_NORMAL", longType: "BIGINT" },
-      { jstype: "JS_NUMBER", longType: "BIGINT" },
-      { jstype: "JS_STRING", longType: "STRING" },
+      { jstype: "JS_NORMAL", longAsString: false },
+      { jstype: "JS_NUMBER", longAsString: false },
+      { jstype: "JS_STRING", longAsString: true },
     ] as const)(
       "returns default LongType.$longType for jstype=$jstype",
-      async ({ jstype, longType }) => {
+      async ({ jstype, longAsString }) => {
         const { fields } = await compileMessage(`
         syntax="proto3";
         message M {
@@ -1014,7 +1013,7 @@ describe("DescField", () => {
             field.fieldKind == "scalar" ||
             (field.fieldKind == "list" && field.listKind == "scalar")
           ) {
-            expect(field.longType).toBe(LongType[longType]);
+            expect(field.longAsString).toBe(longAsString);
           }
         }
       },
@@ -1314,7 +1313,7 @@ describe("DescField", () => {
       }
       case "scalar": {
         // exclusive to scalar (list and singular)
-        field.longType;
+        field.longAsString;
 
         // exclusive to list
         // @ts-expect-error TS2339
@@ -1378,7 +1377,7 @@ describe("DescField", () => {
 
         switch (field.listKind) {
           case "scalar": {
-            field.longType;
+            field.longAsString;
             const scalar: ScalarType = field.scalar;
             const message: undefined = field.message;
             const enumeration: undefined = field.enum;

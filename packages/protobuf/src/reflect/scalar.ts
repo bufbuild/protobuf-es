@@ -14,7 +14,7 @@
 
 import { protoInt64 } from "../proto-int64.js";
 import { getTextEncoding } from "../wire/text-encoding.js";
-import { LongType, ScalarType } from "../descriptors.js";
+import { ScalarType } from "../descriptors.js";
 
 /**
  * ScalarValue maps from a scalar field type to a TypeScript value type.
@@ -22,7 +22,7 @@ import { LongType, ScalarType } from "../descriptors.js";
 // prettier-ignore
 export type ScalarValue<
   T = ScalarType,
-  L extends LongType = LongType.STRING | LongType.BIGINT,
+  LongAsString extends boolean = false,
 > =
     T extends ScalarType.STRING   ? string
   : T extends ScalarType.INT32    ? number
@@ -32,11 +32,11 @@ export type ScalarValue<
   : T extends ScalarType.SFIXED32 ? number
   : T extends ScalarType.FLOAT    ? number
   : T extends ScalarType.DOUBLE   ? number
-  : T extends ScalarType.INT64    ? L extends LongType.STRING ? string : bigint
-  : T extends ScalarType.SINT64   ? L extends LongType.STRING ? string : bigint
-  : T extends ScalarType.SFIXED64 ? L extends LongType.STRING ? string : bigint
-  : T extends ScalarType.UINT64   ? L extends LongType.STRING ? string : bigint
-  : T extends ScalarType.FIXED64  ? L extends LongType.STRING ? string : bigint
+  : T extends ScalarType.INT64    ? LongAsString extends true ? string : bigint
+  : T extends ScalarType.SINT64   ? LongAsString extends true ? string : bigint
+  : T extends ScalarType.SFIXED64 ? LongAsString extends true ? string : bigint
+  : T extends ScalarType.UINT64   ? LongAsString extends true ? string : bigint
+  : T extends ScalarType.FIXED64  ? LongAsString extends true ? string : bigint
   : T extends ScalarType.BOOL     ? boolean
   : T extends ScalarType.BYTES    ? Uint8Array
   : never;
@@ -87,33 +87,33 @@ export function scalarEquals(
 /**
  * Returns the zero value for the given scalar type.
  */
-export function scalarZeroValue<T extends ScalarType, L extends LongType>(
-  type: T,
-  longType: L,
-): ScalarValue<T, L> {
+export function scalarZeroValue<
+  T extends ScalarType,
+  LongAsString extends boolean,
+>(type: T, longAsString: LongAsString): ScalarValue<T, LongAsString> {
   switch (type) {
     case ScalarType.STRING:
-      return "" as ScalarValue<T>;
+      return "" as ScalarValue<T, LongAsString>;
     case ScalarType.BOOL:
-      return false as ScalarValue<T>;
+      return false as ScalarValue<T, LongAsString>;
     default:
       // Handles INT32, UINT32, SINT32, FIXED32, SFIXED32.
       // We do not use individual cases to save a few bytes code size.
-      return 0 as ScalarValue<T>;
+      return 0 as ScalarValue<T, LongAsString>;
     case ScalarType.DOUBLE:
     case ScalarType.FLOAT:
-      return 0.0 as ScalarValue<T>;
+      return 0.0 as ScalarValue<T, LongAsString>;
     case ScalarType.INT64:
     case ScalarType.UINT64:
     case ScalarType.SFIXED64:
     case ScalarType.FIXED64:
     case ScalarType.SINT64:
-      return ((longType as number) == 0 ? protoInt64.zero : "0") as ScalarValue<
+      return (longAsString ? "0" : protoInt64.zero) as ScalarValue<
         T,
-        L
+        LongAsString
       >;
     case ScalarType.BYTES:
-      return new Uint8Array(0) as ScalarValue<T>;
+      return new Uint8Array(0) as ScalarValue<T, LongAsString>;
   }
 }
 
@@ -266,7 +266,7 @@ export function scalarTypeDescription(scalar: ScalarType): string {
 
 export function scalarTypeScriptType(
   scalar: ScalarType,
-  long: LongType,
+  longAsString: boolean,
 ):
   | "string"
   | "boolean"
@@ -284,7 +284,7 @@ export function scalarTypeScriptType(
     case ScalarType.FIXED64:
     case ScalarType.SINT64:
     case ScalarType.INT64:
-      return long == LongType.STRING ? "string" : "bigint";
+      return longAsString ? "string" : "bigint";
     case ScalarType.BYTES:
       return "Uint8Array";
     default:

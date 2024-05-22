@@ -19,7 +19,6 @@ import type {
   DescMessage,
   DescService,
   ScalarType,
-  LongType,
 } from "@bufbuild/protobuf";
 import type { ImportSymbol } from "./import-symbol.js";
 
@@ -55,7 +54,7 @@ export type LiteralProtoInt64 = {
     | ScalarType.SFIXED64
     | ScalarType.UINT64
     | ScalarType.FIXED64;
-  longType: LongType;
+  longAsString: boolean;
   value: bigint | string;
 };
 

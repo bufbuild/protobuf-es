@@ -15,7 +15,6 @@
 import {
   type DescExtension,
   type DescField,
-  LongType,
   ScalarType,
 } from "@bufbuild/protobuf";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/reflect";
@@ -30,13 +29,13 @@ export function fieldTypeScriptType(field: DescField | DescExtension): {
   let optional = false;
   switch (field.fieldKind) {
     case "scalar":
-      typing.push(scalarTypeScriptType(field.scalar, field.longType));
+      typing.push(scalarTypeScriptType(field.scalar, field.longAsString));
       optional = field.proto.proto3Optional;
       break;
     case "message": {
       if (!field.oneof && isWrapperDesc(field.message)) {
         const baseType = field.message.fields[0].scalar;
-        typing.push(scalarTypeScriptType(baseType, LongType.BIGINT));
+        typing.push(scalarTypeScriptType(baseType, false));
       } else {
         typing.push({
           kind: "es_shape_ref",
@@ -66,7 +65,10 @@ export function fieldTypeScriptType(field: DescField | DescExtension): {
           );
           break;
         case "scalar":
-          typing.push(scalarTypeScriptType(field.scalar, field.longType), "[]");
+          typing.push(
+            scalarTypeScriptType(field.scalar, field.longAsString),
+            "[]",
+          );
           break;
         case "message": {
           typing.push(
@@ -97,7 +99,7 @@ export function fieldTypeScriptType(field: DescField | DescExtension): {
       let valueType: Printable;
       switch (field.mapKind) {
         case "scalar":
-          valueType = scalarTypeScriptType(field.scalar, LongType.BIGINT);
+          valueType = scalarTypeScriptType(field.scalar, false);
           break;
         case "message":
           valueType = {

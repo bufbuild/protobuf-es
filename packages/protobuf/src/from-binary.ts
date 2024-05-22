@@ -12,12 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  type DescField,
-  type DescMessage,
-  LongType,
-  ScalarType,
-} from "./descriptors.js";
+import { type DescField, type DescMessage, ScalarType } from "./descriptors.js";
 import type { MessageShape } from "./types.js";
 import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
@@ -200,12 +195,12 @@ function readMapEntry(
     }
   }
   if (key === undefined) {
-    key = scalarZeroValue(field.mapKey, LongType.BIGINT);
+    key = scalarZeroValue(field.mapKey, false);
   }
   if (val === undefined) {
     switch (field.mapKind) {
       case "scalar":
-        val = scalarZeroValue(field.scalar, LongType.BIGINT);
+        val = scalarZeroValue(field.scalar, false);
         break;
       case "enum":
         val = field.enum.values[0].number;

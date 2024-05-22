@@ -158,7 +158,7 @@ export function unsafeClear(
         target[name] = field.enum.values[0].number;
         break;
       case "scalar":
-        target[name] = scalarZeroValue(field.scalar, field.longType);
+        target[name] = scalarZeroValue(field.scalar, field.longAsString);
         break;
     }
   }

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { protoInt64, LongType, ScalarType } from "@bufbuild/protobuf";
+import { protoInt64, ScalarType } from "@bufbuild/protobuf";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createImportSymbol } from "@bufbuild/protoplugin/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
@@ -89,36 +89,36 @@ describe("GeneratedFile.print", () => {
   });
 
   describe(`should print "es_proto_int64" Printable`, () => {
-    test("should honor LongType.STRING", async () => {
+    test("should honor longAsString", async () => {
       const lines = await testGenerate((f) => {
         f.print({
           kind: "es_proto_int64",
           type: ScalarType.INT64,
-          longType: LongType.STRING,
+          longAsString: true,
           value: 123n,
         });
       });
       expect(lines).toStrictEqual([`"123"`]);
     });
 
-    test("should honor LongType.STRING for 0", async () => {
+    test("should honor longAsString for 0", async () => {
       const lines = await testGenerate((f) => {
         f.print({
           kind: "es_proto_int64",
           type: ScalarType.INT64,
-          longType: LongType.STRING,
+          longAsString: true,
           value: 0n,
         });
       });
       expect(lines).toStrictEqual([`"0"`]);
     });
 
-    test("should honor LongType.STRING for string value", async () => {
+    test("should honor longAsString for string value", async () => {
       const lines = await testGenerate((f) => {
         f.print({
           kind: "es_proto_int64",
           type: ScalarType.INT64,
-          longType: LongType.STRING,
+          longAsString: true,
           value: "123",
         });
       });
@@ -136,7 +136,7 @@ describe("GeneratedFile.print", () => {
           f.print({
             kind: "es_proto_int64",
             type: t,
-            longType: LongType.BIGINT,
+            longAsString: false,
             value: 0n,
           });
         });
@@ -151,7 +151,7 @@ describe("GeneratedFile.print", () => {
           f.print({
             kind: "es_proto_int64",
             type: t,
-            longType: LongType.BIGINT,
+            longAsString: false,
             value: 123n,
           });
         });
@@ -170,7 +170,7 @@ describe("GeneratedFile.print", () => {
           f.print({
             kind: "es_proto_int64",
             type: t,
-            longType: LongType.BIGINT,
+            longAsString: false,
             value: 0n,
           });
         });
@@ -185,7 +185,7 @@ describe("GeneratedFile.print", () => {
           f.print({
             kind: "es_proto_int64",
             type: t,
-            longType: LongType.BIGINT,
+            longAsString: false,
             value: 123n,
           });
         });
