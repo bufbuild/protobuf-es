@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* eslint-disable no-case-declarations */
+/* eslint-disable no-case-declarations,@typescript-eslint/restrict-template-expressions */
 
 import {
   type DescEnum,
@@ -162,11 +162,7 @@ function readMessage(
     return;
   }
   if (json == null || Array.isArray(json) || typeof json != "object") {
-    throw new Error(
-      `cannot decode message ${msg.desc.typeName} from JSON: ${formatVal(
-        json,
-      )}`,
-    );
+    throw new Error(`cannot decode ${msg.desc} from JSON: ${formatVal(json)}`);
   }
   const oneofSeen = new Map<DescOneof, string>();
   const jsonNames = new Map<string, DescField>();
@@ -184,7 +180,7 @@ function readMessage(
         const seen = oneofSeen.get(field.oneof);
         if (seen !== undefined) {
           throw new Error(
-            `cannot decode message ${msg.desc.typeName} from JSON: multiple keys for oneof "${field.oneof.name}" present: "${seen}", "${jsonKey}"`,
+            `cannot decode ${msg.desc} from JSON: multiple keys for oneof "${field.oneof.name}" present: "${seen}", "${jsonKey}"`,
           );
         }
         oneofSeen.set(field.oneof, jsonKey);
@@ -206,7 +202,7 @@ function readMessage(
       }
       if (!extension && !opts.ignoreUnknownFields) {
         throw new Error(
-          `cannot decode message ${msg.desc.typeName} from JSON: key "${jsonKey}" is unknown`,
+          `cannot decode ${msg.desc} from JSON: key "${jsonKey}" is unknown`,
         );
       }
     }
@@ -248,21 +244,17 @@ function readMapField(
     return;
   }
   if (typeof json != "object" || Array.isArray(json)) {
-    throw new Error(
-      `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(json)}`,
-    );
+    throw new Error(`cannot decode ${field} from JSON: ${formatVal(json)}`);
   }
   for (const [jsonMapKey, jsonMapValue] of Object.entries(json)) {
     if (jsonMapValue === null) {
-      throw new Error(
-        `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: map value null`,
-      );
+      throw new Error(`cannot decode ${field} from JSON: map value null`);
     }
     let key: MapEntryKey;
     try {
       key = readMapKey(field.mapKey, jsonMapKey);
     } catch (e) {
-      let m = `cannot decode map key for field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonMapKey)}`;
+      let m = `cannot decode map key for ${field} from JSON: ${formatVal(jsonMapKey)}`;
       if (e instanceof Error && e.message.length > 0) {
         m += `: ${e.message}`;
       }
@@ -293,7 +285,7 @@ function readMapField(
             readScalar(field.scalar, jsonMapValue, true),
           );
         } catch (e) {
-          let m = `cannot decode map value for field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonMapValue)}`;
+          let m = `cannot decode map value for ${field} from JSON: ${formatVal(jsonMapValue)}`;
           if (e instanceof Error && e.message.length > 0) {
             m += `: ${e.message}`;
           }
@@ -314,14 +306,12 @@ function readListField(
     return;
   }
   if (!Array.isArray(json)) {
-    throw new Error(
-      `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(json)}`,
-    );
+    throw new Error(`cannot decode ${field} from JSON: ${formatVal(json)}`);
   }
   for (const jsonItem of json) {
     if (jsonItem === null) {
       throw new Error(
-        `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonItem)}`,
+        `cannot decode ${field} from JSON: ${formatVal(jsonItem)}`,
       );
     }
     switch (field.listKind) {
@@ -345,7 +335,7 @@ function readListField(
         try {
           msg.addListItem(field, readScalar(field.scalar, jsonItem, true));
         } catch (e) {
-          let m = `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(jsonItem)}`;
+          let m = `cannot decode ${field} from JSON: ${formatVal(jsonItem)}`;
           if (e instanceof Error && e.message.length > 0) {
             m += `: ${e.message}`;
           }
@@ -398,7 +388,7 @@ function readScalarField(
       msg.set(field, scalarValue);
     }
   } catch (e) {
-    let m = `cannot decode field ${msg.desc.typeName}.${field.name} from JSON: ${formatVal(json)}`;
+    let m = `cannot decode ${field} from JSON: ${formatVal(json)}`;
     if (e instanceof Error && e.message.length > 0) {
       m += `: ${e.message}`;
     }
@@ -466,9 +456,7 @@ function readEnum(
       }
       break;
   }
-  throw new Error(
-    `cannot decode enum ${desc.typeName} from JSON: ${formatVal(json)}`,
-  );
+  throw new Error(`cannot decode ${desc} from JSON: ${formatVal(json)}`);
 }
 
 const tokenNull = Symbol();
@@ -702,7 +690,7 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
     ms > Date.parse("9999-12-31T23:59:59Z")
   ) {
     throw new Error(
-      `cannot decode message ${timestamp.$typeName} from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
+      `cannot decode ${timestamp.$typeName} from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
     );
   }
   timestamp.seconds = protoInt64.parse(ms / 1000);
