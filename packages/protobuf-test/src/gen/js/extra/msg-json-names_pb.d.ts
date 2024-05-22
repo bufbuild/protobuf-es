@@ -52,6 +52,11 @@ export declare type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
    * @generated from field: string c = 5 [json_name = "@type"];
    */
   c: string;
+
+  /**
+   * @generated from field: string d = 6 [json_name = "1d"];
+   */
+  d: string;
 };
 
 /**

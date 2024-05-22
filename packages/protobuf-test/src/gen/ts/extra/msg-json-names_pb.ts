@@ -24,7 +24,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/msg-json-names.proto.
  */
 export const fileDesc_extra_msg_json_names: GenDescFile = /*@__PURE__*/
-  fileDesc("ChpleHRyYS9tc2ctanNvbi1uYW1lcy5wcm90bxIEc3BlYyKjAQoQSnNvbk5hbWVzTWVzc2FnZRIpCgxzY2FsYXJfZmllbGQYASABKAlSE3NjYWxhckZpZWxkSnNvbk5hbWUSOgoVcmVwZWF0ZWRfc2NhbGFyX2ZpZWxkGAIgAygJUhtyZXBlYXRlZFNjYWxhckZpZWxkSnNvbk5hbWUSCQoBYRgDIAEoCRILCgFiGAQgASgJUgASEAoBYxgFIAEoCVIFQHR5cGViBnByb3RvMw");
+  fileDesc("ChpleHRyYS9tc2ctanNvbi1uYW1lcy5wcm90bxIEc3BlYyKyAQoQSnNvbk5hbWVzTWVzc2FnZRIpCgxzY2FsYXJfZmllbGQYASABKAlSE3NjYWxhckZpZWxkSnNvbk5hbWUSOgoVcmVwZWF0ZWRfc2NhbGFyX2ZpZWxkGAIgAygJUhtyZXBlYXRlZFNjYWxhckZpZWxkSnNvbk5hbWUSCQoBYRgDIAEoCRILCgFiGAQgASgJUgASEAoBYxgFIAEoCVIFQHR5cGUSDQoBZBgGIAEoCVICMWRiBnByb3RvMw");
 
 /**
  * @generated from message spec.JsonNamesMessage
@@ -54,6 +54,11 @@ export type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
    * @generated from field: string c = 5 [json_name = "@type"];
    */
   c: string;
+
+  /**
+   * @generated from field: string d = 6 [json_name = "1d"];
+   */
+  d: string;
 };
 
 /**
