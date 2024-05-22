@@ -17,12 +17,10 @@ package spec;
 
 
 message JsonNamesMessage {
-
-    string scalar_field = 1 [json_name = "scalarFieldJsonName"];
-    repeated string repeated_scalar_field = 2 [json_name = "repeatedScalarFieldJsonName"];
-
-    string a = 3;
-    string b = 4 [json_name = ""];
-    string c = 5 [json_name = "@type"];
-
+  string scalar_field = 1 [json_name = "scalarFieldJsonName"];
+  repeated string repeated_scalar_field = 2 [json_name = "repeatedScalarFieldJsonName"];
+  string a = 3;
+  string b = 4 [json_name = ""];
+  string c = 5 [json_name = "@type"];
+  string d = 6 [json_name = "1d"];
 }

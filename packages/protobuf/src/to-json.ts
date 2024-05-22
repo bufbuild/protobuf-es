@@ -140,7 +140,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
     if (!msg.isSet(f)) {
       if (f.presence == LEGACY_REQUIRED) {
         throw new Error(
-          `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,
+          `cannot encode field ${msg.desc.typeName}.${f.name} to JSON: required field not set`,
         );
       }
       if (!opts.emitDefaultValues || f.presence !== IMPLICIT) {
