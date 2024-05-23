@@ -26,6 +26,7 @@ import {
   FileDescriptorSetDesc,
   FieldDescriptorProtoDesc,
   FieldOptionsDesc,
+  EnumDescriptorProtoDesc,
 } from "@bufbuild/protobuf/wkt";
 import assert from "node:assert";
 import {
@@ -100,6 +101,10 @@ describe("bootFileDescriptorProto()", () => {
       if (f.options) {
         clearField(f.options, FieldOptionsDesc.field.featureSupport);
       }
+    }
+    for (const e of d.enumType) {
+      clearField(e, EnumDescriptorProtoDesc.field.reservedRange);
+      clearField(e, EnumDescriptorProtoDesc.field.reservedName);
     }
     for (const n of d.nestedType) {
       stripLikeBoot(n);
