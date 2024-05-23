@@ -233,6 +233,16 @@ export enum EnumFeature {
    * @generated from enum value: VALUE15 = 15;
    */
   VALUE15 = 15,
+
+  /**
+   * @generated from enum value: VALUE_EMPTY_SUPPORT = 98;
+   */
+  VALUE_EMPTY_SUPPORT = 98,
+
+  /**
+   * @generated from enum value: VALUE_FUTURE = 99;
+   */
+  VALUE_FUTURE = 99,
 }
 
 /**

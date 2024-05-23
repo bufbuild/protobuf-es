@@ -189,7 +189,6 @@ function createDescriptorBoot(proto: DescriptorProto) {
   assert(proto.extension.length == 0);
   assert(!proto.oneofDecl.length);
   assert(!proto.options);
-  assert(!proto.reservedName.length); // we're also dropping reserved_range
   const b: DescriptorProtoBoot = {
     name: proto.name,
   };
@@ -281,8 +280,6 @@ function createFieldOptionsBoot(proto: FieldOptions): FieldOptionsBoot {
 function createEnumDescriptorBoot(
   proto: EnumDescriptorProto,
 ): EnumDescriptorProtoBoot {
-  assert(!proto.reservedName.length);
-  assert(!proto.reservedRange.length);
   assert(!proto.options);
   return {
     name: proto.name,
