@@ -20,7 +20,6 @@ import {
   type DescField,
   type DescMessage,
   type DescOneof,
-  LongType,
   ScalarType,
 } from "./descriptors.js";
 import type { JsonValue } from "./json-value.js";
@@ -478,7 +477,7 @@ function readScalar(
 ): ScalarValue | typeof tokenNull {
   if (json === null) {
     if (nullAsZeroValue) {
-      return scalarZeroValue(type, LongType.BIGINT);
+      return scalarZeroValue(type, false);
     }
     return tokenNull;
   }

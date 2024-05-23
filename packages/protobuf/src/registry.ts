@@ -43,7 +43,6 @@ import {
   type DescMethod,
   type DescOneof,
   type DescService,
-  LongType,
   ScalarType,
   type SupportedEdition,
 } from "./descriptors.js";
@@ -801,7 +800,7 @@ function newField(
     mapKey: undefined,
     delimitedEncoding: undefined,
     packed: undefined,
-    longType: undefined,
+    longAsString: false,
     getDefaultValue: undefined,
   };
   if (isExtension) {
@@ -883,8 +882,7 @@ function newField(
       default:
         field.listKind = "scalar";
         field.scalar = type;
-        field.longType =
-          jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
+        field.longAsString = jstype == JS_STRING;
         break;
     }
     field.packed = isPackedField(proto, parentOrFile);
@@ -921,7 +919,7 @@ function newField(
     default: {
       field.fieldKind = "scalar";
       field.scalar = type;
-      field.longType = jstype == JS_STRING ? LongType.STRING : LongType.BIGINT;
+      field.longAsString = jstype == JS_STRING;
       field.getDefaultValue = () => {
         return unsafeIsSetExplicit(proto, "defaultValue")
           ? parseTextFormatScalarValue(

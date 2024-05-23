@@ -16,7 +16,6 @@ import {
   type DescField,
   type DescMessage,
   type DescOneof,
-  LongType,
 } from "../descriptors.js";
 import { FieldError } from "./error.js";
 import { unsafeLocal } from "./unsafe.js";
@@ -284,7 +283,7 @@ export type ReflectGetValue<Field extends DescField = DescField> = (
   Field extends { fieldKind: "map" } ? (
     Field extends { mapKind: "message" } ? ReflectMap<MapEntryKey, ReflectMessage> :
     Field extends { mapKind: "enum" } ? ReflectMap<MapEntryKey, enumVal> :
-    Field extends { mapKind: "scalar"; scalar: infer T } ? ReflectMap<MapEntryKey, ScalarValue<T, LongType.BIGINT>> :
+    Field extends { mapKind: "scalar"; scalar: infer T } ? ReflectMap<MapEntryKey, ScalarValue<T>> :
     never
   ) :
   Field extends { fieldKind: "list" } ? ReflectList :
@@ -325,6 +324,6 @@ export type ReflectAddListItemValue<Field extends DescField & { fieldKind: "list
 export type ReflectSetMapEntryValue<Field extends DescField & { fieldKind: "map" }> = (
   Field extends { mapKind: "enum" } ? enumVal :
   Field extends { mapKind: "message" } ? ReflectMessage :
-  Field extends { mapKind: "scalar"; scalar: infer T } ? ScalarValue<T, LongType.BIGINT> :
+  Field extends { mapKind: "scalar"; scalar: infer T } ? ScalarValue<T> :
   never
 );

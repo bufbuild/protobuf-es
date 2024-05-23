@@ -16,7 +16,6 @@ import {
   type DescField,
   type DescMessage,
   type DescOneof,
-  LongType,
   ScalarType,
 } from "../descriptors.js";
 import type { Message, MessageShape, UnknownField } from "../types.js";
@@ -171,7 +170,7 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
       case "scalar":
         return (
           value === undefined
-            ? scalarZeroValue(field.scalar, LongType.BIGINT)
+            ? scalarZeroValue(field.scalar, false)
             : longToReflect(field, value)
         ) as ReflectGetValue<Field>;
       case "enum":
@@ -190,7 +189,7 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
         return err;
       }
     }
-    let local: unknown = value;
+    let local: unknown;
     if (isReflectMap(value) || isReflectList(value)) {
       local = value[unsafeLocal];
     } else if (isReflectMessage(value)) {
@@ -571,8 +570,8 @@ function longToReflect(field: DescField, value: unknown): unknown {
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
       if (
-        "longType" in field &&
-        field.longType == LongType.STRING &&
+        "longAsString" in field &&
+        field.longAsString &&
         typeof value == "string"
       ) {
         value = protoInt64.parse(value);
@@ -581,8 +580,8 @@ function longToReflect(field: DescField, value: unknown): unknown {
     case ScalarType.FIXED64:
     case ScalarType.UINT64:
       if (
-        "longType" in field &&
-        field.longType == LongType.STRING &&
+        "longAsString" in field &&
+        field.longAsString &&
         typeof value == "string"
       ) {
         value = protoInt64.uParse(value);
@@ -598,7 +597,7 @@ function longToLocal(field: DescField, value: unknown) {
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
-      if ("longType" in field && field.longType == LongType.STRING) {
+      if ("longAsString" in field && field.longAsString) {
         value = String(value);
       } else if (typeof value == "string" || typeof value == "number") {
         value = protoInt64.parse(value);
@@ -606,7 +605,7 @@ function longToLocal(field: DescField, value: unknown) {
       break;
     case ScalarType.FIXED64:
     case ScalarType.UINT64:
-      if ("longType" in field && field.longType == LongType.STRING) {
+      if ("longAsString" in field && field.longAsString) {
         value = String(value);
       } else if (typeof value == "string" || typeof value == "number") {
         value = protoInt64.uParse(value);

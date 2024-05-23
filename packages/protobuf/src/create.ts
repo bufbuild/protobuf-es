@@ -17,7 +17,6 @@ import {
   type DescField,
   type DescMessage,
   type DescOneof,
-  LongType,
   ScalarType,
 } from "./descriptors.js";
 import type { Message, MessageInitShape, MessageShape } from "./types.js";
@@ -273,11 +272,11 @@ function createZeroField(
   }
   const defaultValue = field.getDefaultValue();
   if (defaultValue !== undefined) {
-    return field.fieldKind == "scalar" && field.longType == LongType.STRING
+    return field.fieldKind == "scalar" && field.longAsString
       ? defaultValue.toString()
       : defaultValue;
   }
   return field.fieldKind == "scalar"
-    ? scalarZeroValue(field.scalar, field.longType)
+    ? scalarZeroValue(field.scalar, field.longAsString)
     : field.enum.values[0].number;
 }

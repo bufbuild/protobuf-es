@@ -78,35 +78,6 @@ export enum ScalarType {
 }
 
 /**
- * JavaScript representation of fields with 64 bit integral types (int64, uint64,
- * sint64, fixed64, sfixed64).
- *
- * This is a subset of google.protobuf.FieldOptions.JSType, which defines JS_NORMAL,
- * JS_STRING, and JS_NUMBER. Protobuf-ES uses BigInt by default, but will use
- * String if `[jstype = JS_STRING]` is specified.
- *
- * ```protobuf
- * uint64 field_a = 1; // BigInt
- * uint64 field_b = 2 [jstype = JS_NORMAL]; // BigInt
- * uint64 field_b = 2 [jstype = JS_NUMBER]; // BigInt
- * uint64 field_b = 2 [jstype = JS_STRING]; // String
- * ```
- */
-export enum LongType {
-  /**
-   * Use JavaScript BigInt.
-   */
-  BIGINT = 0,
-
-  /**
-   * Use JavaScript String.
-   *
-   * Field option `[jstype = JS_STRING]`.
-   */
-  STRING = 1,
-}
-
-/**
  * A union of all descriptors, discriminated by a `kind` property.
  */
 export type AnyDesc =
@@ -419,10 +390,13 @@ type descFieldScalar<T extends ScalarType = ScalarType> = T extends T
        */
       readonly scalar: T;
       /**
-       * JavaScript type for 64 bit integral types (int64, uint64,
-       * sint64, fixed64, sfixed64).
+       * By default, 64-bit integral types (int64, uint64, sint64, fixed64,
+       * sfixed64) are represented with BigInt.
+       *
+       * If the field option `jstype = JS_STRING` is set, this property
+       * is true, and 64-bit integral types are represented with String.
        */
-      readonly longType: LongType;
+      readonly longAsString: boolean;
       /**
        * The message type, if it is a message field.
        */
@@ -517,10 +491,13 @@ type descFieldListScalar<T extends ScalarType = ScalarType> = T extends T
        */
       readonly scalar: T;
       /**
-       * JavaScript type for 64 bit integral types (int64, uint64,
-       * sint64, fixed64, sfixed64).
+       * By default, 64-bit integral types (int64, uint64, sint64, fixed64,
+       * sfixed64) are represented with BigInt.
+       *
+       * If the field option `jstype = JS_STRING` is set, this property
+       * is true, and 64-bit integral types are represented with String.
        */
-      readonly longType: LongType;
+      readonly longAsString: boolean;
     }
   : never;
 

@@ -241,7 +241,7 @@ export function createExtensionContainer<Desc extends DescExtension>(
         if (isWrapperDesc(desc)) {
           return scalarZeroValue(
             desc.fields[0].scalar,
-            desc.fields[0].longType,
+            desc.fields[0].longAsString,
           ) as ExtensionValueShape<Desc>;
         }
         return create(desc) as ExtensionValueShape<Desc>;
