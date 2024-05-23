@@ -19,12 +19,12 @@
 import type { Extension, FileOptions } from "@bufbuild/protobuf";
 
 /**
- * @generated from extension: uint32 uint32_ext = 1001;
+ * @generated from extension: uint32 uint32_ext = 7001;
  */
 export declare const uint32_ext: Extension<FileOptions, number>;
 
 /**
- * @generated from extension: optional uint32 optional_uint32_ext = 1002;
+ * @generated from extension: optional uint32 optional_uint32_ext = 7002;
  */
 export declare const optional_uint32_ext: Extension<FileOptions, number>;
 

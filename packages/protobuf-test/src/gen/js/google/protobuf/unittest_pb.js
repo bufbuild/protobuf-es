@@ -1538,6 +1538,7 @@ export const TestOneof2_NestedMessage = /*@__PURE__*/ proto2.makeMessageType(
   () => [
     { no: 1, name: "moo_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
     { no: 2, name: "corge_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 3, name: "child", kind: "message", T: TestOneof2_NestedMessage, opt: true },
   ],
   {localName: "TestOneof2_NestedMessage"},
 );

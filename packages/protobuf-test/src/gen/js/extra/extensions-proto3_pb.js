@@ -19,21 +19,21 @@
 import { FileOptions, proto3 } from "@bufbuild/protobuf";
 
 /**
- * @generated from extension: uint32 uint32_ext = 1001;
+ * @generated from extension: uint32 uint32_ext = 7001;
  */
 export const uint32_ext = proto3.makeExtension(
   "proto3ext.uint32_ext", 
   FileOptions, 
-  { no: 1001, kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+  { no: 7001, kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
 );
 
 /**
- * @generated from extension: optional uint32 optional_uint32_ext = 1002;
+ * @generated from extension: optional uint32 optional_uint32_ext = 7002;
  */
 export const optional_uint32_ext = proto3.makeExtension(
   "proto3ext.optional_uint32_ext", 
   FileOptions, 
-  { no: 1002, kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+  { no: 7002, kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
 );
 
 /**

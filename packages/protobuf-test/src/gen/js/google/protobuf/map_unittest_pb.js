@@ -66,6 +66,27 @@ export const TestMap = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
+ * @generated from message protobuf_unittest.TestMapWithMessages
+ */
+export const TestMapWithMessages = /*@__PURE__*/ proto3.makeMessageType(
+  "protobuf_unittest.TestMapWithMessages",
+  () => [
+    { no: 1, name: "map_int32_all_types", kind: "map", K: 5 /* ScalarType.INT32 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 2, name: "map_int64_all_types", kind: "map", K: 3 /* ScalarType.INT64 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 3, name: "map_uint32_all_types", kind: "map", K: 13 /* ScalarType.UINT32 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 4, name: "map_uint64_all_types", kind: "map", K: 4 /* ScalarType.UINT64 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 5, name: "map_sint32_all_types", kind: "map", K: 17 /* ScalarType.SINT32 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 6, name: "map_sint64_all_types", kind: "map", K: 18 /* ScalarType.SINT64 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 7, name: "map_fixed32_all_types", kind: "map", K: 7 /* ScalarType.FIXED32 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 8, name: "map_fixed64_all_types", kind: "map", K: 6 /* ScalarType.FIXED64 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 9, name: "map_sfixed32_all_types", kind: "map", K: 15 /* ScalarType.SFIXED32 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 10, name: "map_sfixed64_all_types", kind: "map", K: 16 /* ScalarType.SFIXED64 */, V: {kind: "message", T: TestAllTypes} },
+    { no: 11, name: "map_bool_all_types", kind: "map", K: 8 /* ScalarType.BOOL */, V: {kind: "message", T: TestAllTypes} },
+    { no: 12, name: "map_string_all_types", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: TestAllTypes} },
+  ],
+);
+
+/**
  * @generated from message protobuf_unittest.TestMapSubmessage
  */
 export const TestMapSubmessage = /*@__PURE__*/ proto3.makeMessageType(

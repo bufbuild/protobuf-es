@@ -161,6 +161,85 @@ export declare class TestMap extends Message<TestMap> {
 }
 
 /**
+ * @generated from message protobuf_unittest.TestMapWithMessages
+ */
+export declare class TestMapWithMessages extends Message<TestMapWithMessages> {
+  /**
+   * @generated from field: map<int32, protobuf_unittest.TestAllTypes> map_int32_all_types = 1;
+   */
+  mapInt32AllTypes: { [key: number]: TestAllTypes };
+
+  /**
+   * @generated from field: map<int64, protobuf_unittest.TestAllTypes> map_int64_all_types = 2;
+   */
+  mapInt64AllTypes: { [key: string]: TestAllTypes };
+
+  /**
+   * @generated from field: map<uint32, protobuf_unittest.TestAllTypes> map_uint32_all_types = 3;
+   */
+  mapUint32AllTypes: { [key: number]: TestAllTypes };
+
+  /**
+   * @generated from field: map<uint64, protobuf_unittest.TestAllTypes> map_uint64_all_types = 4;
+   */
+  mapUint64AllTypes: { [key: string]: TestAllTypes };
+
+  /**
+   * @generated from field: map<sint32, protobuf_unittest.TestAllTypes> map_sint32_all_types = 5;
+   */
+  mapSint32AllTypes: { [key: number]: TestAllTypes };
+
+  /**
+   * @generated from field: map<sint64, protobuf_unittest.TestAllTypes> map_sint64_all_types = 6;
+   */
+  mapSint64AllTypes: { [key: string]: TestAllTypes };
+
+  /**
+   * @generated from field: map<fixed32, protobuf_unittest.TestAllTypes> map_fixed32_all_types = 7;
+   */
+  mapFixed32AllTypes: { [key: number]: TestAllTypes };
+
+  /**
+   * @generated from field: map<fixed64, protobuf_unittest.TestAllTypes> map_fixed64_all_types = 8;
+   */
+  mapFixed64AllTypes: { [key: string]: TestAllTypes };
+
+  /**
+   * @generated from field: map<sfixed32, protobuf_unittest.TestAllTypes> map_sfixed32_all_types = 9;
+   */
+  mapSfixed32AllTypes: { [key: number]: TestAllTypes };
+
+  /**
+   * @generated from field: map<sfixed64, protobuf_unittest.TestAllTypes> map_sfixed64_all_types = 10;
+   */
+  mapSfixed64AllTypes: { [key: string]: TestAllTypes };
+
+  /**
+   * @generated from field: map<bool, protobuf_unittest.TestAllTypes> map_bool_all_types = 11;
+   */
+  mapBoolAllTypes: { [key: string]: TestAllTypes };
+
+  /**
+   * @generated from field: map<string, protobuf_unittest.TestAllTypes> map_string_all_types = 12;
+   */
+  mapStringAllTypes: { [key: string]: TestAllTypes };
+
+  constructor(data?: PartialMessage<TestMapWithMessages>);
+
+  static readonly runtime: typeof proto3;
+  static readonly typeName = "protobuf_unittest.TestMapWithMessages";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestMapWithMessages;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestMapWithMessages;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestMapWithMessages;
+
+  static equals(a: TestMapWithMessages | PlainMessage<TestMapWithMessages> | undefined, b: TestMapWithMessages | PlainMessage<TestMapWithMessages> | undefined): boolean;
+}
+
+/**
  * @generated from message protobuf_unittest.TestMapSubmessage
  */
 export declare class TestMapSubmessage extends Message<TestMapSubmessage> {

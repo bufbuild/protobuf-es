@@ -41,11 +41,11 @@ export const ImplicitlyDeprecatedMessage = /*@__PURE__*/ proto3.makeMessageType(
 );
 
 /**
- * @generated from extension: int32 implicitly_deprecated_option = 2001;
+ * @generated from extension: int32 implicitly_deprecated_option = 2002;
  */
 export const implicitly_deprecated_option = proto3.makeExtension(
   "spec.implicitly_deprecated_option", 
   FieldOptions, 
-  { no: 2001, kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  { no: 2002, kind: "scalar", T: 5 /* ScalarType.INT32 */ },
 );
 

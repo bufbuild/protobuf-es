@@ -31,7 +31,7 @@ function getFeatureSetDefaults(
 ): FeatureSetDefaults {
   return FeatureSetDefaults.fromBinary(
     protoBase64.dec(
-      /*upstream-inject-feature-defaults-start*/ "ChESDAgBEAIYAiADKAEwAhjmBwoREgwIAhABGAEgAigBMAEY5wcKERIMCAEQARgBIAIoATABGOgHIOYHKOgH" /*upstream-inject-feature-defaults-end*/,
+      /*upstream-inject-feature-defaults-start*/ "ChMY5gciACoMCAEQAhgCIAMoATACChMY5wciACoMCAIQARgBIAIoATABChMY6AciDAgBEAEYASACKAEwASoAIOYHKOgH" /*upstream-inject-feature-defaults-end*/,
     ),
     options,
   );
@@ -93,9 +93,20 @@ export function createFeatureResolver(
     if (highestMatch !== undefined && highestMatch.e > e) {
       continue;
     }
+    let f: FeatureSet;
+    if (c.fixedFeatures && c.overridableFeatures) {
+      f = c.fixedFeatures;
+      f.fromBinary(c.overridableFeatures.toBinary());
+    } else if (c.fixedFeatures) {
+      f = c.fixedFeatures;
+    } else if (c.overridableFeatures) {
+      f = c.overridableFeatures;
+    } else {
+      f = new FeatureSet();
+    }
     highestMatch = {
       e,
-      f: c.features ?? new FeatureSet(),
+      f,
     };
   }
   if (highestMatch === undefined) {

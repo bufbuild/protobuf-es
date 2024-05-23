@@ -578,6 +578,11 @@ export declare class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
   data?: TestAllTypesProto2_Data;
 
   /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField multiwordgroupfield = 204;
+   */
+  multiwordgroupfield?: TestAllTypesProto2_MultiWordGroupField;
+
+  /**
    * default values
    *
    * @generated from field: optional int32 default_int32 = 241 [default = -123456789];
@@ -850,6 +855,35 @@ export declare class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_
 }
 
 /**
+ * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField
+ */
+export declare class TestAllTypesProto2_MultiWordGroupField extends Message<TestAllTypesProto2_MultiWordGroupField> {
+  /**
+   * @generated from field: optional int32 group_int32 = 205;
+   */
+  groupInt32?: number;
+
+  /**
+   * @generated from field: optional uint32 group_uint32 = 206;
+   */
+  groupUint32?: number;
+
+  constructor(data?: PartialMessage<TestAllTypesProto2_MultiWordGroupField>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesProto2_MultiWordGroupField;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypesProto2_MultiWordGroupField;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_MultiWordGroupField;
+
+  static equals(a: TestAllTypesProto2_MultiWordGroupField | PlainMessage<TestAllTypesProto2_MultiWordGroupField> | undefined, b: TestAllTypesProto2_MultiWordGroupField | PlainMessage<TestAllTypesProto2_MultiWordGroupField> | undefined): boolean;
+}
+
+/**
  * message_set test case.
  *
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
@@ -950,6 +984,35 @@ export declare class ForeignMessageProto2 extends Message<ForeignMessageProto2> 
   static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ForeignMessageProto2;
 
   static equals(a: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined, b: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined): boolean;
+}
+
+/**
+ * @generated from message protobuf_test_messages.proto2.GroupField
+ */
+export declare class GroupField extends Message<GroupField> {
+  /**
+   * @generated from field: optional int32 group_int32 = 122;
+   */
+  groupInt32?: number;
+
+  /**
+   * @generated from field: optional uint32 group_uint32 = 123;
+   */
+  groupUint32?: number;
+
+  constructor(data?: PartialMessage<GroupField>);
+
+  static readonly runtime: typeof proto2;
+  static readonly typeName = "protobuf_test_messages.proto2.GroupField";
+  static readonly fields: FieldList;
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GroupField;
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GroupField;
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GroupField;
+
+  static equals(a: GroupField | PlainMessage<GroupField> | undefined, b: GroupField | PlainMessage<GroupField> | undefined): boolean;
 }
 
 /**
@@ -1529,4 +1592,9 @@ export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension2_mess
  * @generated from extension: optional int32 extension_int32 = 120;
  */
 export declare const extension_int32: Extension<TestAllTypesProto2, number>;
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.GroupField groupfield = 121;
+ */
+export declare const groupfield: Extension<TestAllTypesProto2, GroupField>;
 

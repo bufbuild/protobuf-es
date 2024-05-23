@@ -4313,6 +4313,11 @@ export declare class TestOneof2_NestedMessage extends Message<TestOneof2_NestedM
    */
   corgeInt: number[];
 
+  /**
+   * @generated from field: optional protobuf_unittest.TestOneof2.NestedMessage child = 3;
+   */
+  child?: TestOneof2_NestedMessage;
+
   constructor(data?: PartialMessage<TestOneof2_NestedMessage>);
 
   static readonly runtime: typeof proto2;

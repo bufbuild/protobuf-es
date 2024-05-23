@@ -19,6 +19,33 @@
 import { FeatureSet, proto2 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum pb.EnumFeature
+ */
+export const EnumFeature = /*@__PURE__*/ proto2.makeEnum(
+  "pb.EnumFeature",
+  [
+    {no: 0, name: "TEST_ENUM_FEATURE_UNKNOWN"},
+    {no: 1, name: "VALUE1"},
+    {no: 2, name: "VALUE2"},
+    {no: 3, name: "VALUE3"},
+    {no: 4, name: "VALUE4"},
+    {no: 5, name: "VALUE5"},
+    {no: 6, name: "VALUE6"},
+    {no: 7, name: "VALUE7"},
+    {no: 8, name: "VALUE8"},
+    {no: 9, name: "VALUE9"},
+    {no: 10, name: "VALUE10"},
+    {no: 11, name: "VALUE11"},
+    {no: 12, name: "VALUE12"},
+    {no: 13, name: "VALUE13"},
+    {no: 14, name: "VALUE14"},
+    {no: 15, name: "VALUE15"},
+    {no: 98, name: "VALUE_EMPTY_SUPPORT"},
+    {no: 99, name: "VALUE_FUTURE"},
+  ],
+);
+
+/**
  * @generated from message pb.TestMessage
  */
 export const TestMessage = /*@__PURE__*/ proto2.makeMessageType(
@@ -59,52 +86,23 @@ export const TestMessage_test_message = proto2.makeExtension(
 export const TestFeatures = /*@__PURE__*/ proto2.makeMessageType(
   "pb.TestFeatures",
   () => [
-    { no: 1, name: "int_file_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "int_extension_range_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 3, name: "int_message_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 4, name: "int_field_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 5, name: "int_oneof_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 6, name: "int_enum_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 7, name: "int_enum_entry_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 8, name: "int_service_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 9, name: "int_method_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 10, name: "int_multiple_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1, name: "file_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 2, name: "extension_range_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 3, name: "message_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 4, name: "field_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 5, name: "oneof_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 6, name: "enum_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 7, name: "enum_entry_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 8, name: "service_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 9, name: "method_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 10, name: "multiple_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
     { no: 11, name: "bool_field_feature", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
-    { no: 12, name: "float_field_feature", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
-    { no: 13, name: "message_field_feature", kind: "message", T: TestFeatures_MessageFeature, opt: true },
-    { no: 14, name: "enum_field_feature", kind: "enum", T: proto2.getEnumType(TestFeatures_EnumFeature), opt: true },
-    { no: 15, name: "int_source_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 16, name: "string_source_feature", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 15, name: "source_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 16, name: "source_feature2", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 17, name: "removed_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 18, name: "future_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 19, name: "legacy_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
   ],
-);
-
-/**
- * @generated from enum pb.TestFeatures.EnumFeature
- */
-export const TestFeatures_EnumFeature = /*@__PURE__*/ proto2.makeEnum(
-  "pb.TestFeatures.EnumFeature",
-  [
-    {no: 0, name: "TEST_ENUM_FEATURE_UNKNOWN"},
-    {no: 1, name: "ENUM_VALUE1"},
-    {no: 2, name: "ENUM_VALUE2"},
-    {no: 3, name: "ENUM_VALUE3"},
-    {no: 4, name: "ENUM_VALUE4"},
-    {no: 5, name: "ENUM_VALUE5"},
-  ],
-);
-
-/**
- * @generated from message pb.TestFeatures.MessageFeature
- */
-export const TestFeatures_MessageFeature = /*@__PURE__*/ proto2.makeMessageType(
-  "pb.TestFeatures.MessageFeature",
-  () => [
-    { no: 1, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
-    { no: 2, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 3, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
-    { no: 4, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-  ],
-  {localName: "TestFeatures_MessageFeature"},
 );
 
 /**
