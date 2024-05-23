@@ -78,7 +78,7 @@ export declare const ImplicitlyDeprecatedService: GenDescService<{
 >;
 
 /**
- * @generated from extension: int32 implicitly_deprecated_option = 2001;
+ * @generated from extension: int32 implicitly_deprecated_option = 2002;
  * @deprecated
  */
 export declare const implicitly_deprecated_option: GenDescExtension<FieldOptions, number>;
