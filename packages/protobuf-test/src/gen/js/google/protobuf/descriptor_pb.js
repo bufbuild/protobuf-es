@@ -35,6 +35,7 @@ export const Edition = /*@__PURE__*/ proto2.makeEnum(
   "google.protobuf.Edition",
   [
     {no: 0, name: "EDITION_UNKNOWN"},
+    {no: 900, name: "EDITION_LEGACY"},
     {no: 998, name: "EDITION_PROTO2"},
     {no: 999, name: "EDITION_PROTO3"},
     {no: 1000, name: "EDITION_2023"},
@@ -408,6 +409,7 @@ export const FieldOptions = /*@__PURE__*/ proto2.makeMessageType(
     { no: 19, name: "targets", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionTargetType), repeated: true },
     { no: 20, name: "edition_defaults", kind: "message", T: FieldOptions_EditionDefault, repeated: true },
     { no: 21, name: "features", kind: "message", T: FeatureSet, opt: true },
+    { no: 22, name: "feature_support", kind: "message", T: FieldOptions_FeatureSupport, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );
@@ -489,6 +491,22 @@ export const FieldOptions_EditionDefault = /*@__PURE__*/ proto2.makeMessageType(
 );
 
 /**
+ * Information about the support window of a feature.
+ *
+ * @generated from message google.protobuf.FieldOptions.FeatureSupport
+ */
+export const FieldOptions_FeatureSupport = /*@__PURE__*/ proto2.makeMessageType(
+  "google.protobuf.FieldOptions.FeatureSupport",
+  () => [
+    { no: 1, name: "edition_introduced", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+    { no: 2, name: "edition_deprecated", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+    { no: 3, name: "deprecation_warning", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "edition_removed", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+  ],
+  {localName: "FieldOptions_FeatureSupport"},
+);
+
+/**
  * @generated from message google.protobuf.OneofOptions
  */
 export const OneofOptions = /*@__PURE__*/ proto2.makeMessageType(
@@ -522,6 +540,7 @@ export const EnumValueOptions = /*@__PURE__*/ proto2.makeMessageType(
     { no: 1, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 2, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 3, name: "debug_redact", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
+    { no: 4, name: "feature_support", kind: "message", T: FieldOptions_FeatureSupport, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ],
 );
@@ -732,7 +751,8 @@ export const FeatureSetDefaults_FeatureSetEditionDefault = /*@__PURE__*/ proto2.
   "google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault",
   () => [
     { no: 3, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
-    { no: 2, name: "features", kind: "message", T: FeatureSet, opt: true },
+    { no: 4, name: "overridable_features", kind: "message", T: FeatureSet, opt: true },
+    { no: 5, name: "fixed_features", kind: "message", T: FeatureSet, opt: true },
   ],
   {localName: "FeatureSetDefaults_FeatureSetEditionDefault"},
 );

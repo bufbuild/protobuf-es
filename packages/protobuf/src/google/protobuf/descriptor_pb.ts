@@ -45,6 +45,14 @@ export enum Edition {
   EDITION_UNKNOWN = 0,
 
   /**
+   * A placeholder edition for specifying default behaviors *before* a feature
+   * was first introduced.  This is effectively an "infinite past".
+   *
+   * @generated from enum value: EDITION_LEGACY = 900;
+   */
+  EDITION_LEGACY = 900,
+
+  /**
    * Legacy syntax "editions".  These pre-date editions, but behave much like
    * distinct editions.  These can't be used to specify the edition of proto
    * files, but feature definitions must supply proto2/proto3 defaults for
@@ -113,6 +121,7 @@ export enum Edition {
 // Retrieve enum metadata with: proto2.getEnumType(Edition)
 proto2.util.setEnumType(Edition, "google.protobuf.Edition", [
   { no: 0, name: "EDITION_UNKNOWN" },
+  { no: 900, name: "EDITION_LEGACY" },
   { no: 998, name: "EDITION_PROTO2" },
   { no: 999, name: "EDITION_PROTO3" },
   { no: 1000, name: "EDITION_2023" },
@@ -1379,12 +1388,16 @@ export class FileOptions extends Message<FileOptions> {
   javaGenerateEqualsAndHash?: boolean;
 
   /**
-   * If set true, then the Java2 code generator will generate code that
-   * throws an exception whenever an attempt is made to assign a non-UTF-8
-   * byte sequence to a string field.
-   * Message reflection will do the same.
-   * However, an extension field still accepts non-UTF-8 byte sequences.
-   * This option has no effect on when used with the lite runtime.
+   * A proto2 file can set this to true to opt in to UTF-8 checking for Java,
+   * which will throw an exception if invalid UTF-8 is parsed from the wire or
+   * assigned to a string field.
+   *
+   * TODO: clarify exactly what kinds of field types this option
+   * applies to, and update these docs accordingly.
+   *
+   * Proto3 files already perform these checks. Setting the option explicitly to
+   * false has no effect: it cannot be used to opt proto3 files out of UTF-8
+   * checks.
    *
    * @generated from field: optional bool java_string_check_utf8 = 27 [default = false];
    */
@@ -1879,6 +1892,11 @@ export class FieldOptions extends Message<FieldOptions> {
   features?: FeatureSet;
 
   /**
+   * @generated from field: optional google.protobuf.FieldOptions.FeatureSupport feature_support = 22;
+   */
+  featureSupport?: FieldOptions_FeatureSupport;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -1905,6 +1923,7 @@ export class FieldOptions extends Message<FieldOptions> {
     { no: 19, name: "targets", kind: "enum", T: proto2.getEnumType(FieldOptions_OptionTargetType), repeated: true },
     { no: 20, name: "edition_defaults", kind: "message", T: FieldOptions_EditionDefault, repeated: true },
     { no: 21, name: "features", kind: "message", T: FeatureSet, opt: true },
+    { no: 22, name: "feature_support", kind: "message", T: FieldOptions_FeatureSupport, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -2141,6 +2160,77 @@ export class FieldOptions_EditionDefault extends Message<FieldOptions_EditionDef
 }
 
 /**
+ * Information about the support window of a feature.
+ *
+ * @generated from message google.protobuf.FieldOptions.FeatureSupport
+ */
+export class FieldOptions_FeatureSupport extends Message<FieldOptions_FeatureSupport> {
+  /**
+   * The edition that this feature was first available in.  In editions
+   * earlier than this one, the default assigned to EDITION_LEGACY will be
+   * used, and proto files will not be able to override it.
+   *
+   * @generated from field: optional google.protobuf.Edition edition_introduced = 1;
+   */
+  editionIntroduced?: Edition;
+
+  /**
+   * The edition this feature becomes deprecated in.  Using this after this
+   * edition may trigger warnings.
+   *
+   * @generated from field: optional google.protobuf.Edition edition_deprecated = 2;
+   */
+  editionDeprecated?: Edition;
+
+  /**
+   * The deprecation warning text if this feature is used after the edition it
+   * was marked deprecated in.
+   *
+   * @generated from field: optional string deprecation_warning = 3;
+   */
+  deprecationWarning?: string;
+
+  /**
+   * The edition this feature is no longer available in.  In editions after
+   * this one, the last default assigned will be used, and proto files will
+   * not be able to override it.
+   *
+   * @generated from field: optional google.protobuf.Edition edition_removed = 4;
+   */
+  editionRemoved?: Edition;
+
+  constructor(data?: PartialMessage<FieldOptions_FeatureSupport>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "google.protobuf.FieldOptions.FeatureSupport";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 1, name: "edition_introduced", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+    { no: 2, name: "edition_deprecated", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+    { no: 3, name: "deprecation_warning", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 4, name: "edition_removed", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FieldOptions_FeatureSupport {
+    return new FieldOptions_FeatureSupport().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FieldOptions_FeatureSupport {
+    return new FieldOptions_FeatureSupport().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FieldOptions_FeatureSupport {
+    return new FieldOptions_FeatureSupport().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FieldOptions_FeatureSupport | PlainMessage<FieldOptions_FeatureSupport> | undefined, b: FieldOptions_FeatureSupport | PlainMessage<FieldOptions_FeatureSupport> | undefined): boolean {
+    return proto2.util.equals(FieldOptions_FeatureSupport, a, b);
+  }
+}
+
+/**
  * @generated from message google.protobuf.OneofOptions
  */
 export class OneofOptions extends Message<OneofOptions> {
@@ -2299,6 +2389,13 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
   debugRedact?: boolean;
 
   /**
+   * Information about the support window of a feature value.
+   *
+   * @generated from field: optional google.protobuf.FieldOptions.FeatureSupport feature_support = 4;
+   */
+  featureSupport?: FieldOptions_FeatureSupport;
+
+  /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -2316,6 +2413,7 @@ export class EnumValueOptions extends Message<EnumValueOptions> {
     { no: 1, name: "deprecated", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
     { no: 2, name: "features", kind: "message", T: FeatureSet, opt: true },
     { no: 3, name: "debug_redact", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true, default: false },
+    { no: 4, name: "feature_support", kind: "message", T: FieldOptions_FeatureSupport, opt: true },
     { no: 999, name: "uninterpreted_option", kind: "message", T: UninterpretedOption, repeated: true },
   ]);
 
@@ -2935,9 +3033,18 @@ export class FeatureSetDefaults_FeatureSetEditionDefault extends Message<Feature
   edition?: Edition;
 
   /**
-   * @generated from field: optional google.protobuf.FeatureSet features = 2;
+   * Defaults of features that can be overridden in this edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet overridable_features = 4;
    */
-  features?: FeatureSet;
+  overridableFeatures?: FeatureSet;
+
+  /**
+   * Defaults of features that can't be overridden in this edition.
+   *
+   * @generated from field: optional google.protobuf.FeatureSet fixed_features = 5;
+   */
+  fixedFeatures?: FeatureSet;
 
   constructor(data?: PartialMessage<FeatureSetDefaults_FeatureSetEditionDefault>) {
     super();
@@ -2948,7 +3055,8 @@ export class FeatureSetDefaults_FeatureSetEditionDefault extends Message<Feature
   static readonly typeName = "google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 3, name: "edition", kind: "enum", T: proto2.getEnumType(Edition), opt: true },
-    { no: 2, name: "features", kind: "message", T: FeatureSet, opt: true },
+    { no: 4, name: "overridable_features", kind: "message", T: FeatureSet, opt: true },
+    { no: 5, name: "fixed_features", kind: "message", T: FeatureSet, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FeatureSetDefaults_FeatureSetEditionDefault {

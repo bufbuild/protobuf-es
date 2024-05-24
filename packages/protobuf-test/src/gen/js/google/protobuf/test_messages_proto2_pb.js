@@ -146,6 +146,7 @@ export const TestAllTypesProto2 = /*@__PURE__*/ proto2.makeMessageType(
     { no: 118, name: "oneof_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "oneof_field" },
     { no: 119, name: "oneof_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesProto2_NestedEnum), oneof: "oneof_field" },
     { no: 201, name: "data", kind: "message", T: TestAllTypesProto2_Data, delimited: true, opt: true },
+    { no: 204, name: "multiwordgroupfield", kind: "message", T: TestAllTypesProto2_MultiWordGroupField, delimited: true, opt: true },
     { no: 241, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: -123456789 },
     { no: 242, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-9123456789123456789") },
     { no: 243, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 2123456789 },
@@ -222,6 +223,18 @@ export const TestAllTypesProto2_Data = /*@__PURE__*/ proto2.makeMessageType(
 );
 
 /**
+ * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField
+ */
+export const TestAllTypesProto2_MultiWordGroupField = /*@__PURE__*/ proto2.makeMessageType(
+  "protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField",
+  () => [
+    { no: 205, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 206, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+  ],
+  {localName: "TestAllTypesProto2_MultiWordGroupField"},
+);
+
+/**
  * message_set test case.
  *
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
@@ -279,6 +292,17 @@ export const ForeignMessageProto2 = /*@__PURE__*/ proto2.makeMessageType(
   "protobuf_test_messages.proto2.ForeignMessageProto2",
   () => [
     { no: 1, name: "c", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+  ],
+);
+
+/**
+ * @generated from message protobuf_test_messages.proto2.GroupField
+ */
+export const GroupField = /*@__PURE__*/ proto2.makeMessageType(
+  "protobuf_test_messages.proto2.GroupField",
+  () => [
+    { no: 122, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 123, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
   ],
 );
 
@@ -503,5 +527,14 @@ export const extension_int32 = proto2.makeExtension(
   "protobuf_test_messages.proto2.extension_int32", 
   TestAllTypesProto2, 
   { no: 120, kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+);
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.GroupField groupfield = 121;
+ */
+export const groupfield = proto2.makeExtension(
+  "protobuf_test_messages.proto2.groupfield", 
+  TestAllTypesProto2, 
+  () => ({ no: 121, kind: "message", T: GroupField, delimited: true, opt: true }),
 );
 

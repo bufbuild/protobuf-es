@@ -5859,6 +5859,11 @@ export class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> 
    */
   corgeInt: number[] = [];
 
+  /**
+   * @generated from field: optional protobuf_unittest.TestOneof2.NestedMessage child = 3;
+   */
+  child?: TestOneof2_NestedMessage;
+
   constructor(data?: PartialMessage<TestOneof2_NestedMessage>) {
     super();
     proto2.util.initPartial(data, this);
@@ -5869,6 +5874,7 @@ export class TestOneof2_NestedMessage extends Message<TestOneof2_NestedMessage> 
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
     { no: 1, name: "moo_int", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
     { no: 2, name: "corge_int", kind: "scalar", T: 5 /* ScalarType.INT32 */, repeated: true },
+    { no: 3, name: "child", kind: "message", T: TestOneof2_NestedMessage, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestOneof2_NestedMessage {

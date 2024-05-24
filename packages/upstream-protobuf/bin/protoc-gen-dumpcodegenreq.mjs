@@ -21,8 +21,20 @@ import { stdin, stdout } from "node:process";
 stdin.pipe(createWriteStream("dumpcodegenreq.binpb"));
 
 // Write a minimal a google.protobuf.CodeGenerateResponse to stdout.
-// This is just the field supported_features set to a bitwise "or" of
-// FEATURE_PROTO3_OPTIONAL and FEATURE_SUPPORTS_EDITIONS. See the code snippet
-// below.
-const minimalResponse = new Uint8Array([16, 3]);
+/*
+import {CodeGeneratorResponse_Feature, CodeGeneratorResponse, Edition} from "@bufbuild/protobuf";
+const res = new CodeGeneratorResponse({
+  supportedFeatures: BigInt(
+    CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS | CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
+  ),
+  minimumEdition: Edition.EDITION_LEGACY,
+  maximumEdition: Edition.EDITION_MAX,
+});
+console.log(
+  res.toBinary()
+);
+*/
+const minimalResponse = new Uint8Array([
+  16, 3, 24, 132, 7, 32, 255, 255, 255, 255, 7,
+]);
 stdout.write(minimalResponse);

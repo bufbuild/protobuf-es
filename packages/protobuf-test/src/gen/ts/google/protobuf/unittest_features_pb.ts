@@ -20,6 +20,122 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { FeatureSet, Message, proto2 } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum pb.EnumFeature
+ */
+export enum EnumFeature {
+  /**
+   * @generated from enum value: TEST_ENUM_FEATURE_UNKNOWN = 0;
+   */
+  TEST_ENUM_FEATURE_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: VALUE1 = 1;
+   */
+  VALUE1 = 1,
+
+  /**
+   * @generated from enum value: VALUE2 = 2;
+   */
+  VALUE2 = 2,
+
+  /**
+   * @generated from enum value: VALUE3 = 3;
+   */
+  VALUE3 = 3,
+
+  /**
+   * @generated from enum value: VALUE4 = 4;
+   */
+  VALUE4 = 4,
+
+  /**
+   * @generated from enum value: VALUE5 = 5;
+   */
+  VALUE5 = 5,
+
+  /**
+   * @generated from enum value: VALUE6 = 6;
+   */
+  VALUE6 = 6,
+
+  /**
+   * @generated from enum value: VALUE7 = 7;
+   */
+  VALUE7 = 7,
+
+  /**
+   * @generated from enum value: VALUE8 = 8;
+   */
+  VALUE8 = 8,
+
+  /**
+   * @generated from enum value: VALUE9 = 9;
+   */
+  VALUE9 = 9,
+
+  /**
+   * @generated from enum value: VALUE10 = 10;
+   */
+  VALUE10 = 10,
+
+  /**
+   * @generated from enum value: VALUE11 = 11;
+   */
+  VALUE11 = 11,
+
+  /**
+   * @generated from enum value: VALUE12 = 12;
+   */
+  VALUE12 = 12,
+
+  /**
+   * @generated from enum value: VALUE13 = 13;
+   */
+  VALUE13 = 13,
+
+  /**
+   * @generated from enum value: VALUE14 = 14;
+   */
+  VALUE14 = 14,
+
+  /**
+   * @generated from enum value: VALUE15 = 15;
+   */
+  VALUE15 = 15,
+
+  /**
+   * @generated from enum value: VALUE_EMPTY_SUPPORT = 98;
+   */
+  VALUE_EMPTY_SUPPORT = 98,
+
+  /**
+   * @generated from enum value: VALUE_FUTURE = 99;
+   */
+  VALUE_FUTURE = 99,
+}
+// Retrieve enum metadata with: proto2.getEnumType(EnumFeature)
+proto2.util.setEnumType(EnumFeature, "pb.EnumFeature", [
+  { no: 0, name: "TEST_ENUM_FEATURE_UNKNOWN" },
+  { no: 1, name: "VALUE1" },
+  { no: 2, name: "VALUE2" },
+  { no: 3, name: "VALUE3" },
+  { no: 4, name: "VALUE4" },
+  { no: 5, name: "VALUE5" },
+  { no: 6, name: "VALUE6" },
+  { no: 7, name: "VALUE7" },
+  { no: 8, name: "VALUE8" },
+  { no: 9, name: "VALUE9" },
+  { no: 10, name: "VALUE10" },
+  { no: 11, name: "VALUE11" },
+  { no: 12, name: "VALUE12" },
+  { no: 13, name: "VALUE13" },
+  { no: 14, name: "VALUE14" },
+  { no: 15, name: "VALUE15" },
+  { no: 98, name: "VALUE_EMPTY_SUPPORT" },
+  { no: 99, name: "VALUE_FUTURE" },
+]);
+
+/**
  * @generated from message pb.TestMessage
  */
 export class TestMessage extends Message<TestMessage> {
@@ -104,54 +220,54 @@ export const TestMessage_test_message = proto2.makeExtension<FeatureSet, TestFea
  */
 export class TestFeatures extends Message<TestFeatures> {
   /**
-   * @generated from field: optional int32 int_file_feature = 1;
+   * @generated from field: optional pb.EnumFeature file_feature = 1;
    */
-  intFileFeature?: number;
+  fileFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_extension_range_feature = 2;
+   * @generated from field: optional pb.EnumFeature extension_range_feature = 2;
    */
-  intExtensionRangeFeature?: number;
+  extensionRangeFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_message_feature = 3;
+   * @generated from field: optional pb.EnumFeature message_feature = 3;
    */
-  intMessageFeature?: number;
+  messageFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_field_feature = 4;
+   * @generated from field: optional pb.EnumFeature field_feature = 4;
    */
-  intFieldFeature?: number;
+  fieldFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_oneof_feature = 5;
+   * @generated from field: optional pb.EnumFeature oneof_feature = 5;
    */
-  intOneofFeature?: number;
+  oneofFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_enum_feature = 6;
+   * @generated from field: optional pb.EnumFeature enum_feature = 6;
    */
-  intEnumFeature?: number;
+  enumFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_enum_entry_feature = 7;
+   * @generated from field: optional pb.EnumFeature enum_entry_feature = 7;
    */
-  intEnumEntryFeature?: number;
+  enumEntryFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_service_feature = 8;
+   * @generated from field: optional pb.EnumFeature service_feature = 8;
    */
-  intServiceFeature?: number;
+  serviceFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_method_feature = 9;
+   * @generated from field: optional pb.EnumFeature method_feature = 9;
    */
-  intMethodFeature?: number;
+  methodFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_multiple_feature = 10;
+   * @generated from field: optional pb.EnumFeature multiple_feature = 10;
    */
-  intMultipleFeature?: number;
+  multipleFeature?: EnumFeature;
 
   /**
    * @generated from field: optional bool bool_field_feature = 11;
@@ -159,29 +275,29 @@ export class TestFeatures extends Message<TestFeatures> {
   boolFieldFeature?: boolean;
 
   /**
-   * @generated from field: optional float float_field_feature = 12;
+   * @generated from field: optional pb.EnumFeature source_feature = 15;
    */
-  floatFieldFeature?: number;
+  sourceFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional pb.TestFeatures.MessageFeature message_field_feature = 13;
+   * @generated from field: optional pb.EnumFeature source_feature2 = 16;
    */
-  messageFieldFeature?: TestFeatures_MessageFeature;
+  sourceFeature2?: EnumFeature;
 
   /**
-   * @generated from field: optional pb.TestFeatures.EnumFeature enum_field_feature = 14;
+   * @generated from field: optional pb.EnumFeature removed_feature = 17;
    */
-  enumFieldFeature?: TestFeatures_EnumFeature;
+  removedFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional int32 int_source_feature = 15;
+   * @generated from field: optional pb.EnumFeature future_feature = 18;
    */
-  intSourceFeature?: number;
+  futureFeature?: EnumFeature;
 
   /**
-   * @generated from field: optional string string_source_feature = 16;
+   * @generated from field: optional pb.EnumFeature legacy_feature = 19;
    */
-  stringSourceFeature?: string;
+  legacyFeature?: EnumFeature;
 
   constructor(data?: PartialMessage<TestFeatures>) {
     super();
@@ -191,22 +307,22 @@ export class TestFeatures extends Message<TestFeatures> {
   static readonly runtime: typeof proto2 = proto2;
   static readonly typeName = "pb.TestFeatures";
   static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "int_file_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 2, name: "int_extension_range_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 3, name: "int_message_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 4, name: "int_field_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 5, name: "int_oneof_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 6, name: "int_enum_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 7, name: "int_enum_entry_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 8, name: "int_service_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 9, name: "int_method_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 10, name: "int_multiple_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 1, name: "file_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 2, name: "extension_range_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 3, name: "message_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 4, name: "field_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 5, name: "oneof_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 6, name: "enum_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 7, name: "enum_entry_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 8, name: "service_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 9, name: "method_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 10, name: "multiple_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
     { no: 11, name: "bool_field_feature", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
-    { no: 12, name: "float_field_feature", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
-    { no: 13, name: "message_field_feature", kind: "message", T: TestFeatures_MessageFeature, opt: true },
-    { no: 14, name: "enum_field_feature", kind: "enum", T: proto2.getEnumType(TestFeatures_EnumFeature), opt: true },
-    { no: 15, name: "int_source_feature", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 16, name: "string_source_feature", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 15, name: "source_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 16, name: "source_feature2", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 17, name: "removed_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 18, name: "future_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
+    { no: 19, name: "legacy_feature", kind: "enum", T: proto2.getEnumType(EnumFeature), opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestFeatures {
@@ -223,105 +339,6 @@ export class TestFeatures extends Message<TestFeatures> {
 
   static equals(a: TestFeatures | PlainMessage<TestFeatures> | undefined, b: TestFeatures | PlainMessage<TestFeatures> | undefined): boolean {
     return proto2.util.equals(TestFeatures, a, b);
-  }
-}
-
-/**
- * @generated from enum pb.TestFeatures.EnumFeature
- */
-export enum TestFeatures_EnumFeature {
-  /**
-   * @generated from enum value: TEST_ENUM_FEATURE_UNKNOWN = 0;
-   */
-  TEST_ENUM_FEATURE_UNKNOWN = 0,
-
-  /**
-   * @generated from enum value: ENUM_VALUE1 = 1;
-   */
-  ENUM_VALUE1 = 1,
-
-  /**
-   * @generated from enum value: ENUM_VALUE2 = 2;
-   */
-  ENUM_VALUE2 = 2,
-
-  /**
-   * @generated from enum value: ENUM_VALUE3 = 3;
-   */
-  ENUM_VALUE3 = 3,
-
-  /**
-   * @generated from enum value: ENUM_VALUE4 = 4;
-   */
-  ENUM_VALUE4 = 4,
-
-  /**
-   * @generated from enum value: ENUM_VALUE5 = 5;
-   */
-  ENUM_VALUE5 = 5,
-}
-// Retrieve enum metadata with: proto2.getEnumType(TestFeatures_EnumFeature)
-proto2.util.setEnumType(TestFeatures_EnumFeature, "pb.TestFeatures.EnumFeature", [
-  { no: 0, name: "TEST_ENUM_FEATURE_UNKNOWN" },
-  { no: 1, name: "ENUM_VALUE1" },
-  { no: 2, name: "ENUM_VALUE2" },
-  { no: 3, name: "ENUM_VALUE3" },
-  { no: 4, name: "ENUM_VALUE4" },
-  { no: 5, name: "ENUM_VALUE5" },
-]);
-
-/**
- * @generated from message pb.TestFeatures.MessageFeature
- */
-export class TestFeatures_MessageFeature extends Message<TestFeatures_MessageFeature> {
-  /**
-   * @generated from field: optional bool bool_field = 1;
-   */
-  boolField?: boolean;
-
-  /**
-   * @generated from field: optional int32 int_field = 2;
-   */
-  intField?: number;
-
-  /**
-   * @generated from field: optional float float_field = 3;
-   */
-  floatField?: number;
-
-  /**
-   * @generated from field: optional string string_field = 4;
-   */
-  stringField?: string;
-
-  constructor(data?: PartialMessage<TestFeatures_MessageFeature>) {
-    super();
-    proto2.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto2 = proto2;
-  static readonly typeName = "pb.TestFeatures.MessageFeature";
-  static readonly fields: FieldList = proto2.util.newFieldList(() => [
-    { no: 1, name: "bool_field", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
-    { no: 2, name: "int_field", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
-    { no: 3, name: "float_field", kind: "scalar", T: 2 /* ScalarType.FLOAT */, opt: true },
-    { no: 4, name: "string_field", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestFeatures_MessageFeature {
-    return new TestFeatures_MessageFeature().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestFeatures_MessageFeature {
-    return new TestFeatures_MessageFeature().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestFeatures_MessageFeature {
-    return new TestFeatures_MessageFeature().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TestFeatures_MessageFeature | PlainMessage<TestFeatures_MessageFeature> | undefined, b: TestFeatures_MessageFeature | PlainMessage<TestFeatures_MessageFeature> | undefined): boolean {
-    return proto2.util.equals(TestFeatures_MessageFeature, a, b);
   }
 }
 

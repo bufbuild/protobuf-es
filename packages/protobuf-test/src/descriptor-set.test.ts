@@ -41,6 +41,7 @@ import {
   TestNestedExtension,
 } from "./gen/ts/google/protobuf/unittest_pb.js";
 import {
+  EnumFeature,
   test as test_ext,
   TestFeatures,
 } from "./gen/ts/google/protobuf/unittest_features_pb.js";
@@ -323,7 +324,7 @@ describe("DescriptorSet", () => {
       expect(file).toBeDefined();
       if (file !== undefined) {
         const tf = getTestFeatures(file);
-        expect(tf.intFileFeature).toBe(1);
+        expect(tf.fileFeature).toBe(EnumFeature.VALUE3);
       }
     });
     test("overrides can be read from unknown fields of getFeatures()", async () => {
@@ -334,7 +335,7 @@ describe("DescriptorSet", () => {
             edition = "2023";
             package protobuf_unittest;
             import "google/protobuf/unittest_features.proto";
-            option features.(pb.test).int_file_feature = 8;
+            option features.(pb.test).file_feature = VALUE8;
             `,
         },
         { includeImports: true },
@@ -344,7 +345,7 @@ describe("DescriptorSet", () => {
       expect(file).toBeDefined();
       if (file !== undefined) {
         const tf = getTestFeatures(file);
-        expect(tf.intFileFeature).toBe(8);
+        expect(tf.fileFeature).toBe(EnumFeature.VALUE8);
       }
     });
 
