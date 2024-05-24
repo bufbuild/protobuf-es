@@ -33,5 +33,5 @@ service ImplicitlyDeprecatedService {
 }
 
 extend google.protobuf.FieldOptions {
-  int32 implicitly_deprecated_option = 2001;
+  int32 implicitly_deprecated_option = 2002;
 }
