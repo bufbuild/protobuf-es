@@ -61,16 +61,6 @@ export class UpstreamProtobuf {
     "!google/protobuf/*_features.proto",
   ];
 
-  // TODO add the following files again once we have sufficient support for editions:
-  //  - google/protobuf/unittest_preserve_unknown_enum2.proto
-  //  - google/protobuf/unittest_preserve_unknown_enum.proto
-  //  - google/protobuf/unittest_no_field_presence.proto
-  //  - google/protobuf/unittest_lazy_dependencies_enum.proto
-  //  - google/protobuf/unittest_lazy_dependencies.proto
-  //  - google/protobuf/unittest_arena.proto
-  //  - google/protobuf/unittest_drop_unknown_fields.proto
-  //  - google/protobuf/unittest_lazy_dependencies_custom_option.proto
-  //  - google/protobuf/unittest_legacy_features.proto
   /**
    * Relevant proto files for testing in upstream protobuf.
    *
@@ -79,8 +69,15 @@ export class UpstreamProtobuf {
   #testprotos = [
     "src/google/protobuf/test_messages_*.proto",
     "src/google/protobuf/*unittest*.proto",
-    "src/google/protobuf/editions/**/*.proto",
+    "!src/google/protobuf/edition_unittest.proto",
     "!src/google/protobuf/map_proto3_unittest.proto",
+    "!src/google/protobuf/unittest_lite.proto",
+    "!src/google/protobuf/unittest_import_public_lite.proto",
+    "!src/google/protobuf/unittest_import_lite.proto",
+    "!src/google/protobuf/map_lite_unittest.proto",
+    "!src/google/protobuf/unittest_delimited.proto",
+    "!src/google/protobuf/unittest_delimited_import.proto",
+    "!src/google/protobuf/unittest_string_view.proto",
     "!src/google/protobuf/editions/**/*.proto",
     "!src/google/protobuf/unittest_arena.proto",
     "!src/google/protobuf/unittest_drop_unknown_fields.proto",
@@ -154,7 +151,6 @@ export class UpstreamProtobuf {
       writeTree(Object.entries(files), tempDir);
       const outPath = joinPath(tempDir, "desc.binpb");
       const args = [
-        "--experimental_editions",
         "--descriptor_set_out",
         outPath,
         "--proto_path",
@@ -199,7 +195,6 @@ export class UpstreamProtobuf {
     try {
       writeTree(Object.entries(files), tempDir);
       const args = [
-        "--experimental_editions",
         "--dumpcodegenreq_out",
         ".",
         "--proto_path",
@@ -243,16 +238,16 @@ export class UpstreamProtobuf {
     try {
       writeTree(Object.entries(files), tempDir);
       const args = [
-        "--experimental_edition_defaults_out",
+        "--edition_defaults_out",
         "defaults.binpb",
         "google/protobuf/descriptor.proto",
         ...Object.keys(files),
       ];
       if (minimumEdition !== undefined) {
-        args.push("--experimental_edition_defaults_minimum", minimumEdition);
+        args.push("--edition_defaults_minimum", minimumEdition);
       }
       if (maximumEdition !== undefined) {
-        args.push("--experimental_edition_defaults_maximum", maximumEdition);
+        args.push("--edition_defaults_maximum", maximumEdition);
       }
       execFileSync(protocPath, args, {
         shell: false,

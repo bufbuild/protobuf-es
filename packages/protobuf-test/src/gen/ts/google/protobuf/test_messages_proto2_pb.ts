@@ -584,6 +584,11 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
   data?: TestAllTypesProto2_Data;
 
   /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField multiwordgroupfield = 204;
+   */
+  multiwordgroupfield?: TestAllTypesProto2_MultiWordGroupField;
+
+  /**
    * default values
    *
    * @generated from field: optional int32 default_int32 = 241 [default = -123456789];
@@ -861,6 +866,7 @@ export class TestAllTypesProto2 extends Message<TestAllTypesProto2> {
     { no: 118, name: "oneof_double", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "oneof_field" },
     { no: 119, name: "oneof_enum", kind: "enum", T: proto2.getEnumType(TestAllTypesProto2_NestedEnum), oneof: "oneof_field" },
     { no: 201, name: "data", kind: "message", T: TestAllTypesProto2_Data, delimited: true, opt: true },
+    { no: 204, name: "multiwordgroupfield", kind: "message", T: TestAllTypesProto2_MultiWordGroupField, delimited: true, opt: true },
     { no: 241, name: "default_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true, default: -123456789 },
     { no: 242, name: "default_int64", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true, default: protoInt64.parse("-9123456789123456789") },
     { no: 243, name: "default_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true, default: 2123456789 },
@@ -1036,6 +1042,49 @@ export class TestAllTypesProto2_Data extends Message<TestAllTypesProto2_Data> {
 }
 
 /**
+ * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField
+ */
+export class TestAllTypesProto2_MultiWordGroupField extends Message<TestAllTypesProto2_MultiWordGroupField> {
+  /**
+   * @generated from field: optional int32 group_int32 = 205;
+   */
+  groupInt32?: number;
+
+  /**
+   * @generated from field: optional uint32 group_uint32 = 206;
+   */
+  groupUint32?: number;
+
+  constructor(data?: PartialMessage<TestAllTypesProto2_MultiWordGroupField>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 205, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 206, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TestAllTypesProto2_MultiWordGroupField {
+    return new TestAllTypesProto2_MultiWordGroupField().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TestAllTypesProto2_MultiWordGroupField {
+    return new TestAllTypesProto2_MultiWordGroupField().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TestAllTypesProto2_MultiWordGroupField {
+    return new TestAllTypesProto2_MultiWordGroupField().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TestAllTypesProto2_MultiWordGroupField | PlainMessage<TestAllTypesProto2_MultiWordGroupField> | undefined, b: TestAllTypesProto2_MultiWordGroupField | PlainMessage<TestAllTypesProto2_MultiWordGroupField> | undefined): boolean {
+    return proto2.util.equals(TestAllTypesProto2_MultiWordGroupField, a, b);
+  }
+}
+
+/**
  * message_set test case.
  *
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect
@@ -1194,6 +1243,49 @@ export class ForeignMessageProto2 extends Message<ForeignMessageProto2> {
 
   static equals(a: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined, b: ForeignMessageProto2 | PlainMessage<ForeignMessageProto2> | undefined): boolean {
     return proto2.util.equals(ForeignMessageProto2, a, b);
+  }
+}
+
+/**
+ * @generated from message protobuf_test_messages.proto2.GroupField
+ */
+export class GroupField extends Message<GroupField> {
+  /**
+   * @generated from field: optional int32 group_int32 = 122;
+   */
+  groupInt32?: number;
+
+  /**
+   * @generated from field: optional uint32 group_uint32 = 123;
+   */
+  groupUint32?: number;
+
+  constructor(data?: PartialMessage<GroupField>) {
+    super();
+    proto2.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto2 = proto2;
+  static readonly typeName = "protobuf_test_messages.proto2.GroupField";
+  static readonly fields: FieldList = proto2.util.newFieldList(() => [
+    { no: 122, name: "group_int32", kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+    { no: 123, name: "group_uint32", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GroupField {
+    return new GroupField().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GroupField {
+    return new GroupField().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GroupField {
+    return new GroupField().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GroupField | PlainMessage<GroupField> | undefined, b: GroupField | PlainMessage<GroupField> | undefined): boolean {
+    return proto2.util.equals(GroupField, a, b);
   }
 }
 
@@ -1998,5 +2090,14 @@ export const extension_int32 = proto2.makeExtension<TestAllTypesProto2, number>(
   "protobuf_test_messages.proto2.extension_int32", 
   TestAllTypesProto2, 
   { no: 120, kind: "scalar", T: 5 /* ScalarType.INT32 */, opt: true },
+);
+
+/**
+ * @generated from extension: optional protobuf_test_messages.proto2.GroupField groupfield = 121;
+ */
+export const groupfield = proto2.makeExtension<TestAllTypesProto2, GroupField>(
+  "protobuf_test_messages.proto2.groupfield", 
+  TestAllTypesProto2, 
+  () => ({ no: 121, kind: "message", T: GroupField, delimited: true, opt: true }),
 );
 

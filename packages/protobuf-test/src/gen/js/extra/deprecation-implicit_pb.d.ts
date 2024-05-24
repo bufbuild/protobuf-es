@@ -56,7 +56,7 @@ export declare class ImplicitlyDeprecatedMessage extends Message<ImplicitlyDepre
 }
 
 /**
- * @generated from extension: int32 implicitly_deprecated_option = 2001;
+ * @generated from extension: int32 implicitly_deprecated_option = 2002;
  */
 export declare const implicitly_deprecated_option: Extension<FieldOptions, number>;
 
