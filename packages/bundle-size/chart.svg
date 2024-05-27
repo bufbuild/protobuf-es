@@ -43,14 +43,14 @@
 <text x="-10" y="294" text-anchor="end">0 KiB</text>
 </g>
 <g transform="translate(110, 20)">
-  <polyline fill="none" stroke="#ffa600" stroke-width="2" points="0,247.67529296875 140,245.7580078125 280,244.25986328125 420,237.62724609375 560,222.17568359375">
+  <polyline fill="none" stroke="#ffa600" stroke-width="2" points="0,247.5818359375 140,245.61357421875 280,244.16640625 420,237.60458984375 560,222.23798828125">
     <title>protobuf-es</title>
   </polyline>
-<circle cx="0" cy="247.67529296875" r="4" fill="#ffa600"><title>protobuf-es 14.59 KiB for 1 files</title></circle>
-<circle cx="140" cy="245.7580078125" r="4" fill="#ffa600"><title>protobuf-es 15.26 KiB for 4 files</title></circle>
-<circle cx="280" cy="244.25986328125" r="4" fill="#ffa600"><title>protobuf-es 15.77 KiB for 8 files</title></circle>
-<circle cx="420" cy="237.62724609375" r="4" fill="#ffa600"><title>protobuf-es 18.06 KiB for 16 files</title></circle>
-<circle cx="560" cy="222.17568359375" r="4" fill="#ffa600"><title>protobuf-es 23.39 KiB for 32 files</title></circle>
+<circle cx="0" cy="247.5818359375" r="4" fill="#ffa600"><title>protobuf-es 14.63 KiB for 1 files</title></circle>
+<circle cx="140" cy="245.61357421875" r="4" fill="#ffa600"><title>protobuf-es 15.31 KiB for 4 files</title></circle>
+<circle cx="280" cy="244.16640625" r="4" fill="#ffa600"><title>protobuf-es 15.8 KiB for 8 files</title></circle>
+<circle cx="420" cy="237.60458984375" r="4" fill="#ffa600"><title>protobuf-es 18.07 KiB for 16 files</title></circle>
+<circle cx="560" cy="222.23798828125" r="4" fill="#ffa600"><title>protobuf-es 23.37 KiB for 32 files</title></circle>
 </g>
 <g transform="translate(110, 20)">
   <polyline fill="none" stroke="#ff6361" stroke-width="2" points="0,169.69248046875 140,165.63984375 280,162.4509765625 420,142.15664062500002 560,66.892578125">

@@ -845,23 +845,13 @@ function newField(
     if (mapEntry) {
       // map field
       field.fieldKind = "map";
-      const keyField = mapEntry.fields.find((f) => f.number === 1);
-      assert(keyField);
-      assert(keyField.fieldKind == "scalar");
-      assert(
-        keyField.scalar != ScalarType.BYTES &&
-          keyField.scalar != ScalarType.FLOAT &&
-          keyField.scalar != ScalarType.DOUBLE,
-      );
-      const valueField = mapEntry.fields.find((f) => f.number === 2);
-      assert(valueField);
-      assert(valueField.fieldKind != "list" && valueField.fieldKind != "map");
-      field.mapKey = keyField.scalar;
-      field.mapKind = valueField.fieldKind;
-      field.message = valueField.message;
+      const { key, value } = findMapEntryFields(mapEntry);
+      field.mapKey = key.scalar;
+      field.mapKind = value.fieldKind;
+      field.message = value.message;
       field.delimitedEncoding = false; // map fields are always LENGTH_PREFIXED
-      field.enum = valueField.enum;
-      field.scalar = valueField.scalar;
+      field.enum = value.enum;
+      field.scalar = value.scalar;
       return field as DescField;
     }
     // list field
@@ -1135,6 +1125,28 @@ function isPackedField(
       parent,
     })
   );
+}
+
+/**
+ * Find the key and value fields of a synthetic map entry message.
+ */
+function findMapEntryFields(mapEntry: DescMessage): {
+  key: DescField & { fieldKind: "scalar" };
+  value: DescField & { fieldKind: "enum" | "scalar" | "message" };
+} {
+  const key = mapEntry.fields.find((f) => f.number === 1);
+  const value = mapEntry.fields.find((f) => f.number === 2);
+  assert(
+    key &&
+      key.fieldKind == "scalar" &&
+      key.scalar != ScalarType.BYTES &&
+      key.scalar != ScalarType.FLOAT &&
+      key.scalar != ScalarType.DOUBLE &&
+      value &&
+      value.fieldKind != "list" &&
+      value.fieldKind != "map",
+  );
+  return { key, value };
 }
 
 /**
