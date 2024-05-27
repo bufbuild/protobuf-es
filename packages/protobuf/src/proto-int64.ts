@@ -12,12 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { assert } from "./reflect/assert.js";
 import {
   int64FromString,
   int64ToString,
   uInt64ToString,
 } from "./wire/varint.js";
+
+/**
+ * Int64Support for the current environment.
+ */
+export const protoInt64: Int64Support = /*@__PURE__*/ makeInt64Support();
 
 /**
  * We use the `bigint` primitive to represent 64-bit integral types. If bigint
@@ -137,14 +141,14 @@ function makeInt64Support(): Int64Support {
       parse(value: string | number | bigint): bigint {
         const bi = typeof value == "bigint" ? value : BigInt(value);
         if (bi > MAX || bi < MIN) {
-          throw new Error(`int64 invalid: ${value}`);
+          throw new Error(`invalid int64: ${value}`);
         }
         return bi;
       },
       uParse(value: string | number | bigint): bigint {
         const bi = typeof value == "bigint" ? value : BigInt(value);
         if (bi > UMAX || bi < UMIN) {
-          throw new Error(`uint64 invalid: ${value}`);
+          throw new Error(`invalid uint64: ${value}`);
         }
         return bi;
       },
@@ -174,10 +178,6 @@ function makeInt64Support(): Int64Support {
       },
     };
   }
-  const assertInt64String = (value: string) =>
-    assert(/^-?[0-9]+$/.test(value), `int64 invalid: ${value}`);
-  const assertUInt64String = (value: string) =>
-    assert(/^[0-9]+$/.test(value), `uint64 invalid: ${value}`);
   return {
     zero: "0" as unknown as 0n,
     supported: false,
@@ -218,4 +218,14 @@ function makeInt64Support(): Int64Support {
   };
 }
 
-export const protoInt64: Int64Support = makeInt64Support();
+function assertInt64String(value: string) {
+  if (!/^-?[0-9]+$/.test(value)) {
+    throw new Error("invalid int64: " + value);
+  }
+}
+
+function assertUInt64String(value: string) {
+  if (!/^[0-9]+$/.test(value)) {
+    throw new Error("invalid uint64: " + value);
+  }
+}

@@ -29,7 +29,6 @@ import type {
 import type { DescFile } from "../descriptors.js";
 import { restoreJsonNames } from "./restore-json-names.js";
 import { createFileRegistry } from "../registry.js";
-import { assert } from "../reflect/assert.js";
 
 /**
  * Hydrate a file descriptor for google/protobuf/descriptor.proto from a plain
@@ -43,9 +42,8 @@ export function boot(boot: FileDescriptorProtoBoot): DescFile {
   const root = bootFileDescriptorProto(boot);
   root.messageType.forEach(restoreJsonNames);
   const reg = createFileRegistry(root, () => undefined);
-  const file = reg.getFile(root.name);
-  assert(file);
-  return file;
+  // non-null assertion because we just created the registry from the file we look up
+  return reg.getFile(root.name)!;
 }
 
 /**

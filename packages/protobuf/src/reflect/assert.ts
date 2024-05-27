@@ -32,19 +32,18 @@ const FLOAT32_MAX = 3.4028234663852886e38,
  * Assert a valid signed protobuf 32-bit integer.
  */
 export function assertInt32(arg: unknown): asserts arg is number {
-  if (typeof arg !== "number") throw new Error("invalid int 32: " + typeof arg);
+  if (typeof arg !== "number") throw new Error("invalid int32: " + typeof arg);
   if (!Number.isInteger(arg) || arg > INT32_MAX || arg < INT32_MIN)
-    throw new Error("invalid int 32: " + arg); // eslint-disable-line @typescript-eslint/restrict-plus-operands -- we want the implicit conversion to string
+    throw new Error("invalid int32: " + arg);
 }
 
 /**
  * Assert a valid unsigned protobuf 32-bit integer.
  */
 export function assertUInt32(arg: unknown): asserts arg is number {
-  if (typeof arg !== "number")
-    throw new Error("invalid uint 32: " + typeof arg);
+  if (typeof arg !== "number") throw new Error("invalid uint32: " + typeof arg);
   if (!Number.isInteger(arg) || arg > UINT32_MAX || arg < 0)
-    throw new Error("invalid uint 32: " + arg); // eslint-disable-line @typescript-eslint/restrict-plus-operands -- we want the implicit conversion to string
+    throw new Error("invalid uint32: " + arg);
 }
 
 /**
@@ -52,8 +51,7 @@ export function assertUInt32(arg: unknown): asserts arg is number {
  */
 export function assertFloat32(arg: unknown): asserts arg is number {
   if (typeof arg !== "number")
-    throw new Error("invalid float 32: " + typeof arg);
-  if (!Number.isFinite(arg)) return;
-  if (arg > FLOAT32_MAX || arg < FLOAT32_MIN)
-    throw new Error("invalid float 32: " + arg); // eslint-disable-line @typescript-eslint/restrict-plus-operands -- we want the implicit conversion to string
+    throw new Error("invalid float32: " + typeof arg);
+  if (Number.isFinite(arg) && (arg > FLOAT32_MAX || arg < FLOAT32_MIN))
+    throw new Error("invalid float32: " + arg);
 }

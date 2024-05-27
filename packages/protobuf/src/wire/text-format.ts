@@ -13,8 +13,9 @@
 // limitations under the License.
 
 import { type DescEnum, ScalarType } from "../descriptors.js";
-import { assert } from "../reflect/assert.js";
 import { protoInt64 } from "../proto-int64.js";
+
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 
 /**
  * Parse an enum value from the Protobuf text format.
@@ -26,7 +27,9 @@ export function parseTextFormatEnumValue(
   value: string,
 ): number {
   const enumValue = descEnum.values.find((v) => v.name === value);
-  assert(enumValue, `cannot parse ${descEnum.name} default value: ${value}`);
+  if (!enumValue) {
+    throw new Error(`cannot parse ${descEnum} default value: ${value}`);
+  }
   return enumValue.number;
 }
 

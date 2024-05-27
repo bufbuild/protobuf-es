@@ -826,7 +826,7 @@ describe("JSON parse errors", () => {
   test("singular scalar", () => {
     expectJsonParseError(
       { optionalInt32: "abc" },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: "abc": invalid int 32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: "abc": invalid int32: NaN`,
     );
     expectJsonParseError(
       { optionalInt32: true },
@@ -865,7 +865,7 @@ describe("JSON parse errors", () => {
     );
     expectJsonParseError(
       { repeatedInt32: ["abc"] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: "abc": invalid int 32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: "abc": invalid int32: NaN`,
     );
     expectJsonParseError(
       { repeatedInt32: [true] },
@@ -958,7 +958,7 @@ describe("JSON parse errors", () => {
     );
     expectJsonParseError(
       { recursiveMessage: { optionalInt32: "abc" } },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: "abc": invalid int 32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: "abc": invalid int32: NaN`,
     );
   });
 
@@ -981,7 +981,7 @@ describe("JSON parse errors", () => {
     );
     expectJsonParseError(
       { repeatedNestedMessage: [{ corecursive: { optionalInt32: "abc" } }] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: "abc": invalid int 32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: "abc": invalid int32: NaN`,
     );
   });
 
@@ -1008,11 +1008,11 @@ describe("JSON parse errors", () => {
     );
     expectJsonParseError(
       { mapInt32Int32: { "not-an-int32": 123 } },
-      `cannot decode map key for field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: "not-an-int32": invalid int 32: NaN`,
+      `cannot decode map key for field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: "not-an-int32": invalid int32: NaN`,
     );
     expectJsonParseError(
       { mapInt32Int32: { 123: "not-an-int32" } },
-      `cannot decode map value for field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: "not-an-int32": invalid int 32: NaN`,
+      `cannot decode map value for field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: "not-an-int32": invalid int32: NaN`,
     );
   });
 

@@ -24,7 +24,6 @@ import type {
   DescOneof,
   DescService,
 } from "./descriptors.js";
-import { assert } from "./reflect/assert.js";
 import { create } from "./create.js";
 import { readField } from "./from-binary.js";
 import type { ReflectMessage } from "./reflect/reflect-types.js";
@@ -252,8 +251,9 @@ export function createExtensionContainer<Desc extends DescExtension>(
 }
 
 function assertExtendee(extension: DescExtension, message: Message) {
-  assert(
-    extension.extendee.typeName == message.$typeName,
-    `extension ${extension.typeName} can only be applied to message ${extension.extendee.typeName}`,
-  );
+  if (extension.extendee.typeName != message.$typeName) {
+    throw new Error(
+      `extension ${extension.typeName} can only be applied to message ${extension.extendee.typeName}`,
+    );
+  }
 }
