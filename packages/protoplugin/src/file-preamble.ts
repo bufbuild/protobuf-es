@@ -18,7 +18,7 @@ import {
   getPackageComments,
   getSyntaxComments,
   getFeatureOptionStrings,
-} from "../source-code-info.js";
+} from "./source-code-info.js";
 
 export function makeFilePreamble(
   file: DescFile,

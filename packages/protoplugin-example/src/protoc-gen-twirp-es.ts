@@ -14,9 +14,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
+import {
+  createEcmaScriptPlugin,
+  runNodeJs,
+  type Schema,
+  safeIdentifier,
+} from "@bufbuild/protoplugin";
 import { getOption, hasOption } from "@bufbuild/protobuf";
-import { type Schema, safeIdentifier } from "@bufbuild/protoplugin/ecmascript";
 import { default_host } from "./gen/customoptions/default_host_pb.js";
 import { version } from "../package.json";
 

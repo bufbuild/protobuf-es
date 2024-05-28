@@ -23,12 +23,12 @@ import {
   CodeGeneratorResponse_Feature,
   CodeGeneratorResponseDesc,
 } from "@bufbuild/protobuf/wkt";
-import { createSchema } from "./ecmascript/schema.js";
-import type { Schema } from "./ecmascript/schema.js";
-import type { FileInfo } from "./ecmascript/generated-file.js";
+import { createSchema } from "./schema.js";
+import type { Schema } from "./schema.js";
+import type { FileInfo } from "./generated-file.js";
 import type { Plugin } from "./plugin.js";
-import { transpile } from "./ecmascript/transpile.js";
-import { parseParameter } from "./ecmascript/parameter.js";
+import { transpile } from "./transpile.js";
+import { parseParameter } from "./parameter.js";
 
 interface PluginInit {
   /**

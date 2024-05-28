@@ -17,7 +17,7 @@ import {
   getComments,
   getDeclarationString,
   getFeatureOptionStrings,
-} from "../source-code-info.js";
+} from "./source-code-info.js";
 import { parentTypes } from "@bufbuild/protobuf/reflect";
 
 export function createJsDocTextFromDesc(desc: Exclude<AnyDesc, DescFile>) {

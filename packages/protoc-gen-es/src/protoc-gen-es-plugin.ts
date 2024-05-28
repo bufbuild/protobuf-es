@@ -26,7 +26,7 @@ import type {
   Printable,
   Schema,
   Target,
-} from "@bufbuild/protoplugin/ecmascript";
+} from "@bufbuild/protoplugin";
 import { arrayLiteral, fieldTypeScriptType, functionCall } from "./util";
 import { version } from "../package.json";
 

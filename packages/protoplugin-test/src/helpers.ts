@@ -21,12 +21,13 @@ import {
   FileDescriptorSetDesc,
 } from "@bufbuild/protobuf/wkt";
 import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
-import { type Plugin, createEcmaScriptPlugin } from "@bufbuild/protoplugin";
+import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type {
   GeneratedFile,
   Schema,
   Target,
-} from "@bufbuild/protoplugin/ecmascript";
+  Plugin,
+} from "@bufbuild/protoplugin";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { expect } from "@jest/globals";
 import assert from "node:assert";
@@ -41,27 +42,27 @@ type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | unde
     returnLinesOfFirstFile?: ReturnLinesOfFirstFile;
   }
   &
-    {
-      proto: string | Record<string, string>;
-      filesToGenerate?: string[];
-      parameter?: string;
-      name?: PluginInit["name"];
-      version?: PluginInit["version"];
-      parseOption?: PluginInit["parseOption"];
-      minimumEdition?: PluginInit["minimumEdition"];
-      maximumEdition?: PluginInit["maximumEdition"];
-    }
+  {
+    proto: string | Record<string, string>;
+    filesToGenerate?: string[];
+    parameter?: string;
+    name?: PluginInit["name"];
+    version?: PluginInit["version"];
+    parseOption?: PluginInit["parseOption"];
+    minimumEdition?: PluginInit["minimumEdition"];
+    maximumEdition?: PluginInit["maximumEdition"];
+  }
   &
-    (
-      {
-        generateTs: PluginInit["generateTs"];
-        generateJs?: PluginInit["generateJs"];
-        generateDts?: PluginInit["generateDts"];
-        transpile?: PluginInit["transpile"];
-      }
+  (
+    {
+      generateTs: PluginInit["generateTs"];
+      generateJs?: PluginInit["generateJs"];
+      generateDts?: PluginInit["generateDts"];
+      transpile?: PluginInit["transpile"];
+    }
     |
-      { generateAny: (f: GeneratedFile, schema: Schema, target: Target) => void; }
-    );
+    { generateAny: (f: GeneratedFile, schema: Schema, target: Target) => void; }
+  );
 
 export async function createTestPluginAndRun(
   opt: CreateTestPluginAndRunOptions<false | undefined>,

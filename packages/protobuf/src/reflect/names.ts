@@ -65,7 +65,7 @@ const reservedObjectProperties = new Set([
 /**
  * Escapes names that are reserved for ECMAScript built-in object properties.
  *
- * Also see safeIdentifier() from @bufbuild/protoplugin/ecmascript.
+ * Also see safeIdentifier() from @bufbuild/protoplugin.
  */
 export function safeObjectProperty(name: string): string {
   return reservedObjectProperties.has(name) ? name + "$" : name;

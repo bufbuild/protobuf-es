@@ -19,7 +19,7 @@ import {
 } from "@bufbuild/protobuf";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/reflect";
 import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
-import type { Printable } from "@bufbuild/protoplugin/ecmascript";
+import type { Printable } from "@bufbuild/protoplugin";
 
 export function fieldTypeScriptType(field: DescField | DescExtension): {
   typing: Printable;
