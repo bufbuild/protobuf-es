@@ -21,3 +21,11 @@ export {
   getPackageComments,
   getSyntaxComments,
 } from "./source-code-info.js";
+
+export type { Target } from "./target.js";
+export type { Schema } from "./schema.js";
+export type { GeneratedFile, FileInfo } from "./generated-file.js";
+export type { ImportSymbol } from "./import-symbol.js";
+export { createImportSymbol } from "./import-symbol.js";
+export type { Printable } from "./printable.js";
+export { safeIdentifier } from "./safe-identifier.js";

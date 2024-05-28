@@ -16,7 +16,7 @@
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { DescMessage } from "@bufbuild/protobuf";
-import { type Schema } from "@bufbuild/protoplugin/ecmascript";
+import type { Schema } from "@bufbuild/protoplugin";
 import { files, sizes } from "./constants.js";
 
 runNodeJs(

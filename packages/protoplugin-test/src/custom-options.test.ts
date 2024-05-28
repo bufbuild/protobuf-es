@@ -25,7 +25,7 @@ import {
   type CodeGeneratorRequest,
   CodeGeneratorRequestDesc,
 } from "@bufbuild/protobuf/wkt";
-import type { Schema } from "@bufbuild/protoplugin/ecmascript";
+import type { Schema } from "@bufbuild/protoplugin";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { compileFile, createTestPluginAndRun } from "./helpers.js";
 import assert from "node:assert";

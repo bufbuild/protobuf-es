@@ -22,17 +22,6 @@
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./ecmascript": {
-      "import": "./dist/esm/ecmascript/index.js",
-      "require": "./dist/cjs/ecmascript/index.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "ecmascript": [
-        "./dist/cjs/ecmascript/index.d.ts"
-      ]
     }
   },
   "dependencies": {

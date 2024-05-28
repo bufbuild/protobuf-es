@@ -429,7 +429,7 @@ export const default_host: Extension<ServiceOptions, string> = ...
 Now we can utilize this extension to read custom options in our plugin:
 
 ```ts
-import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
+import type { GeneratedFile } from "@bufbuild/protoplugin";
 import { ServiceOptions, ServiceDesc, hasExtension, getExtension } from "@bufbuild/protobuf";
 import { default_host } from "./customoptions/default_host_pb.js";
 

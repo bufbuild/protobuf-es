@@ -14,7 +14,7 @@
 
 import type { Target } from "./target.js";
 import type { RewriteImports } from "./import-path.js";
-import { PluginOptionError } from "../error.js";
+import { PluginOptionError } from "./error.js";
 
 export interface ParsedParameter {
   targets: Target[];
