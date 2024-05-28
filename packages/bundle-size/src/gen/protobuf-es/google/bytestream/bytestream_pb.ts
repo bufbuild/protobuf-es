@@ -263,8 +263,8 @@ export const ByteStream: GenDescService<{
    */
   read: {
     kind: "server_streaming";
-    I: ReadRequest;
-    O: ReadResponse;
+    I: typeof ReadRequestDesc;
+    O: typeof ReadResponseDesc;
   },
   /**
    * `Write()` is used to send the contents of a resource as a sequence of
@@ -294,8 +294,8 @@ export const ByteStream: GenDescService<{
    */
   write: {
     kind: "client_streaming";
-    I: WriteRequest;
-    O: WriteResponse;
+    I: typeof WriteRequestDesc;
+    O: typeof WriteResponseDesc;
   },
   /**
    * `QueryWriteStatus()` is used to find the `committed_size` for a resource
@@ -317,8 +317,8 @@ export const ByteStream: GenDescService<{
    */
   queryWriteStatus: {
     kind: "unary";
-    I: QueryWriteStatusRequest;
-    O: QueryWriteStatusResponse;
+    I: typeof QueryWriteStatusRequestDesc;
+    O: typeof QueryWriteStatusResponseDesc;
   },
 }
 > = /*@__PURE__*/

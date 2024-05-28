@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, test, expect } from "@jest/globals";
-import type { Int32Value, StringValue } from "@bufbuild/protobuf/wkt";
+import type { Int32ValueDesc, StringValueDesc } from "@bufbuild/protobuf/wkt";
 import { hasExtension } from "@bufbuild/protobuf";
 import type { GenDescService } from "@bufbuild/protobuf/codegenv1";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
@@ -159,23 +159,23 @@ test("service generates as expected", () => {
   type Expected = {
     unary: {
       kind: "unary";
-      I: StringValue;
-      O: Int32Value;
+      I: typeof StringValueDesc;
+      O: typeof Int32ValueDesc;
     };
     serverStream: {
       kind: "server_streaming";
-      I: StringValue;
-      O: Int32Value;
+      I: typeof StringValueDesc;
+      O: typeof Int32ValueDesc;
     };
     clientStream: {
       kind: "client_streaming";
-      I: StringValue;
-      O: Int32Value;
+      I: typeof StringValueDesc;
+      O: typeof Int32ValueDesc;
     };
     bidi: {
       kind: "bidi_streaming";
-      I: StringValue;
-      O: Int32Value;
+      I: typeof StringValueDesc;
+      O: typeof Int32ValueDesc;
     };
   };
   type Actual<T> = T extends GenDescService<infer Shape> ? Shape : never;

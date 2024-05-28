@@ -20,7 +20,7 @@ import type { GenDescExtension, GenDescFile, GenDescMessage, GenDescService } fr
 import { extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc_google_api_annotations } from "../api/annotations_pb";
 import { fileDesc_google_api_client } from "../api/client_pb";
-import type { Any, Duration, Empty, MethodOptions } from "@bufbuild/protobuf/wkt";
+import type { Any, Duration, EmptyDesc, MethodOptions } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_descriptor, fileDesc_google_protobuf_duration, fileDesc_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 import type { Status } from "../rpc/status_pb";
 import { fileDesc_google_rpc_status } from "../rpc/status_pb";
@@ -351,8 +351,8 @@ export const Operations: GenDescService<{
    */
   listOperations: {
     kind: "unary";
-    I: ListOperationsRequest;
-    O: ListOperationsResponse;
+    I: typeof ListOperationsRequestDesc;
+    O: typeof ListOperationsResponseDesc;
   },
   /**
    * Gets the latest state of a long-running operation.  Clients can use this
@@ -363,8 +363,8 @@ export const Operations: GenDescService<{
    */
   getOperation: {
     kind: "unary";
-    I: GetOperationRequest;
-    O: Operation;
+    I: typeof GetOperationRequestDesc;
+    O: typeof OperationDesc;
   },
   /**
    * Deletes a long-running operation. This method indicates that the client is
@@ -376,8 +376,8 @@ export const Operations: GenDescService<{
    */
   deleteOperation: {
     kind: "unary";
-    I: DeleteOperationRequest;
-    O: Empty;
+    I: typeof DeleteOperationRequestDesc;
+    O: typeof EmptyDesc;
   },
   /**
    * Starts asynchronous cancellation on a long-running operation.  The server
@@ -395,8 +395,8 @@ export const Operations: GenDescService<{
    */
   cancelOperation: {
     kind: "unary";
-    I: CancelOperationRequest;
-    O: Empty;
+    I: typeof CancelOperationRequestDesc;
+    O: typeof EmptyDesc;
   },
   /**
    * Waits until the specified long-running operation is done or reaches at most
@@ -413,8 +413,8 @@ export const Operations: GenDescService<{
    */
   waitOperation: {
     kind: "unary";
-    I: WaitOperationRequest;
-    O: Operation;
+    I: typeof WaitOperationRequestDesc;
+    O: typeof OperationDesc;
   },
 }
 > = /*@__PURE__*/

@@ -981,32 +981,32 @@ export declare const ReservedPropertyNamesService: GenDescService<{
    */
   constructor$: {
     kind: "unary";
-    I: Error;
-    O: Error;
+    I: typeof ErrorDesc;
+    O: typeof ErrorDesc;
   },
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.toString
    */
   toString$: {
     kind: "unary";
-    I: Error;
-    O: Error;
+    I: typeof ErrorDesc;
+    O: typeof ErrorDesc;
   },
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.to_JSON
    */
   to_JSON: {
     kind: "unary";
-    I: Error;
-    O: Error;
+    I: typeof ErrorDesc;
+    O: typeof ErrorDesc;
   },
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.value_of
    */
   value_of: {
     kind: "unary";
-    I: Error;
-    O: Error;
+    I: typeof ErrorDesc;
+    O: typeof ErrorDesc;
   },
 }
 >;

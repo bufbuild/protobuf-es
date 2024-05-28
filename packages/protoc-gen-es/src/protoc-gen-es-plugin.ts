@@ -59,7 +59,7 @@ function generateTs(schema: Schema) {
       switch (desc.kind) {
         case "message": {
           generateMessageShape(f, desc, "ts");
-          const {GenDescMessage, messageDesc} = f.runtime.codegen;
+          const { GenDescMessage, messageDesc } = f.runtime.codegen;
           const MessageShape = f.importShape(desc);
           const name = f.importDesc(desc).name;
           generateDescDoc(f, desc);
@@ -71,7 +71,7 @@ function generateTs(schema: Schema) {
         }
         case "enum": {
           generateEnumShape(f, desc);
-          const {GenDescEnum, enumDesc} = f.runtime.codegen;
+          const { GenDescEnum, enumDesc } = f.runtime.codegen;
           const EnumShape = f.importShape(desc);
           generateDescDoc(f, desc);
           const name = f.importDesc(desc).name;
@@ -94,7 +94,7 @@ function generateTs(schema: Schema) {
           break;
         }
         case "service": {
-          const { GenDescService, serviceDesc} = f.runtime.codegen;
+          const { GenDescService, serviceDesc } = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           const call = functionCall(serviceDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
@@ -121,7 +121,7 @@ function generateJs(schema: Schema) {
     for (const desc of schema.typesInFile(file)) {
       switch (desc.kind) {
         case "message": {
-          const { messageDesc} = f.runtime.codegen;
+          const { messageDesc } = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           generateDescDoc(f, desc);
           const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
@@ -163,7 +163,7 @@ function generateJs(schema: Schema) {
           break;
         }
         case "service": {
-          const { serviceDesc} = f.runtime.codegen;
+          const { serviceDesc } = f.runtime.codegen;
           const name = f.importDesc(desc).name;
           f.print(f.jsDoc(desc));
           const call = functionCall(serviceDesc, [fileDesc, ...pathInFileDesc(desc)]);
@@ -300,8 +300,8 @@ function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable 
     print(f.jsDoc(method, "  "));
     print("  ", method.localName, ": {");
     print("    kind: ", f.string(method.methodKind), ";");
-    print("    I: ", f.importShape(method.input), ";");
-    print("    O: ", f.importShape(method.output), ";");
+    print("    I: typeof ", f.importDesc(method.input, true), ";");
+    print("    O: typeof ", f.importDesc(method.output, true), ";");
     print("  },");
   }
   print("}");
