@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Int32Value, StringValue } from "@bufbuild/protobuf/wkt";
+import type { Int32ValueDesc, StringValueDesc } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 
 /**
@@ -36,24 +36,24 @@ export const ServiceAll: GenDescService<{
    */
   unary: {
     kind: "unary";
-    I: StringValue;
-    O: Int32Value;
+    I: typeof StringValueDesc;
+    O: typeof Int32ValueDesc;
   },
   /**
    * @generated from rpc spec.ServiceAll.ServerStream
    */
   serverStream: {
     kind: "server_streaming";
-    I: StringValue;
-    O: Int32Value;
+    I: typeof StringValueDesc;
+    O: typeof Int32ValueDesc;
   },
   /**
    * @generated from rpc spec.ServiceAll.ClientStream
    */
   clientStream: {
     kind: "client_streaming";
-    I: StringValue;
-    O: Int32Value;
+    I: typeof StringValueDesc;
+    O: typeof Int32ValueDesc;
   },
   /**
    * @generated from rpc spec.ServiceAll.Bidi
@@ -61,8 +61,8 @@ export const ServiceAll: GenDescService<{
    */
   bidi: {
     kind: "bidi_streaming";
-    I: StringValue;
-    O: Int32Value;
+    I: typeof StringValueDesc;
+    O: typeof Int32ValueDesc;
   },
 }
 > = /*@__PURE__*/

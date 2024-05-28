@@ -721,8 +721,8 @@ export const TestServiceWithCustomOptions: GenDescService<{
    */
   foo: {
     kind: "unary";
-    I: CustomOptionFooRequest;
-    O: CustomOptionFooResponse;
+    I: typeof CustomOptionFooRequestDesc;
+    O: typeof CustomOptionFooResponseDesc;
   },
 }
 > = /*@__PURE__*/
@@ -737,8 +737,8 @@ export const AggregateService: GenDescService<{
    */
   method: {
     kind: "unary";
-    I: AggregateMessage;
-    O: AggregateMessage;
+    I: typeof AggregateMessageDesc;
+    O: typeof AggregateMessageDesc;
   },
 }
 > = /*@__PURE__*/

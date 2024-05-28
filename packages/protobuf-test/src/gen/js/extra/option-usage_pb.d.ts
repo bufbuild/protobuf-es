@@ -75,8 +75,8 @@ export declare const ServiceWithOptions: GenDescService<{
    */
   foo: {
     kind: "unary";
-    I: MessageWithOptions;
-    O: MessageWithOptions;
+    I: typeof MessageWithOptionsDesc;
+    O: typeof MessageWithOptionsDesc;
   },
 }
 >;

@@ -150,32 +150,32 @@ export declare const ExampleService: GenDescService<{
    */
   unary: {
     kind: "unary";
-    I: ExampleRequest;
-    O: ExampleResponse;
+    I: typeof ExampleRequestDesc;
+    O: typeof ExampleResponseDesc;
   },
   /**
    * @generated from rpc spec.ExampleService.ServerStream
    */
   serverStream: {
     kind: "server_streaming";
-    I: ExampleRequest;
-    O: ExampleResponse;
+    I: typeof ExampleRequestDesc;
+    O: typeof ExampleResponseDesc;
   },
   /**
    * @generated from rpc spec.ExampleService.ClientStream
    */
   clientStream: {
     kind: "client_streaming";
-    I: ExampleRequest;
-    O: ExampleResponse;
+    I: typeof ExampleRequestDesc;
+    O: typeof ExampleResponseDesc;
   },
   /**
    * @generated from rpc spec.ExampleService.Bidi
    */
   bidi: {
     kind: "bidi_streaming";
-    I: ExampleRequest;
-    O: ExampleResponse;
+    I: typeof ExampleRequestDesc;
+    O: typeof ExampleResponseDesc;
   },
 }
 >;

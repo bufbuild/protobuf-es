@@ -70,8 +70,8 @@ export const TestService: GenDescService<{
    */
   foo: {
     kind: "unary";
-    I: TestMessage;
-    O: TestMessage;
+    I: typeof TestMessageDesc;
+    O: typeof TestMessageDesc;
   },
 }
 > = /*@__PURE__*/

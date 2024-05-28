@@ -78,8 +78,8 @@ export const ElizaService: GenDescService<{
    */
   say: {
     kind: "unary";
-    I: SayRequest;
-    O: SayResponse;
+    I: typeof SayRequestDesc;
+    O: typeof SayResponseDesc;
   },
 }
 > = /*@__PURE__*/

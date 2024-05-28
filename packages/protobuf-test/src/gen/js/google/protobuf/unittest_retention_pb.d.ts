@@ -148,8 +148,8 @@ export declare const Service: GenDescService<{
    */
   doStuff: {
     kind: "unary";
-    I: TopLevelMessage;
-    O: TopLevelMessage;
+    I: typeof TopLevelMessageDesc;
+    O: typeof TopLevelMessageDesc;
   },
 }
 >;

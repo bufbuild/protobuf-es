@@ -18,7 +18,7 @@
 
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Empty, FieldOptions } from "@bufbuild/protobuf/wkt";
+import type { EmptyDesc, FieldOptions } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_descriptor, fileDesc_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -139,8 +139,8 @@ export const DeprecatedService: GenDescService<{
    */
   deprecated: {
     kind: "unary";
-    I: Empty;
-    O: Empty;
+    I: typeof EmptyDesc;
+    O: typeof EmptyDesc;
   },
 }
 > = /*@__PURE__*/
@@ -158,16 +158,16 @@ export const DeprecatedRpcService: GenDescService<{
    */
   deprecated: {
     kind: "unary";
-    I: Empty;
-    O: Empty;
+    I: typeof EmptyDesc;
+    O: typeof EmptyDesc;
   },
   /**
    * @generated from rpc spec.DeprecatedRpcService.NotDeprecated
    */
   notDeprecated: {
     kind: "unary";
-    I: Empty;
-    O: Empty;
+    I: typeof EmptyDesc;
+    O: typeof EmptyDesc;
   },
 }
 > = /*@__PURE__*/

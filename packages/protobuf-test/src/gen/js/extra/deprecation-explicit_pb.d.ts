@@ -18,7 +18,7 @@
 
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { Empty, FieldOptions } from "@bufbuild/protobuf/wkt";
+import type { EmptyDesc, FieldOptions } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/deprecation-explicit.proto.
@@ -132,8 +132,8 @@ export declare const DeprecatedService: GenDescService<{
    */
   deprecated: {
     kind: "unary";
-    I: Empty;
-    O: Empty;
+    I: typeof EmptyDesc;
+    O: typeof EmptyDesc;
   },
 }
 >;
@@ -150,16 +150,16 @@ export declare const DeprecatedRpcService: GenDescService<{
    */
   deprecated: {
     kind: "unary";
-    I: Empty;
-    O: Empty;
+    I: typeof EmptyDesc;
+    O: typeof EmptyDesc;
   },
   /**
    * @generated from rpc spec.DeprecatedRpcService.NotDeprecated
    */
   notDeprecated: {
     kind: "unary";
-    I: Empty;
-    O: Empty;
+    I: typeof EmptyDesc;
+    O: typeof EmptyDesc;
   },
 }
 >;

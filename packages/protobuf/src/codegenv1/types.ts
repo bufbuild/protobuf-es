@@ -83,8 +83,8 @@ export type GenDescService<RuntimeShape extends GenDescServiceShape> =
 export type GenDescServiceShape = {
   [localName: string]: {
     kind: "unary" | "server_streaming" | "client_streaming" | "bidi_streaming";
-    I: Message;
-    O: Message;
+    I: DescMessage;
+    O: DescMessage;
   };
 };
 
