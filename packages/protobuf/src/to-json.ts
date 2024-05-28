@@ -391,7 +391,7 @@ function durationToJson(val: Duration) {
     Number(val.seconds) < -315576000000
   ) {
     throw new Error(
-      `cannot encode ${val.$typeName} to JSON: value out of range`,
+      `cannot encode message ${val.$typeName} to JSON: value out of range`,
     );
   }
   let text = val.seconds.toString();
@@ -417,7 +417,7 @@ function fieldMaskToJson(val: FieldMask) {
       // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
       if (p.match(/_[0-9]?_/g) || p.match(/[A-Z]/g)) {
         throw new Error(
-          `cannot encode ${val.$typeName} to JSON: lowerCamelCase of path name "` +
+          `cannot encode message ${val.$typeName} to JSON: lowerCamelCase of path name "` +
             p +
             '" is irreversible',
         );
@@ -468,12 +468,12 @@ function timestampToJson(val: Timestamp) {
     ms > Date.parse("9999-12-31T23:59:59Z")
   ) {
     throw new Error(
-      `cannot encode ${val.$typeName} to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
+      `cannot encode message ${val.$typeName} to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
     );
   }
   if (val.nanos < 0) {
     throw new Error(
-      `cannot encode ${val.$typeName} to JSON: nanos must not be negative`,
+      `cannot encode message ${val.$typeName} to JSON: nanos must not be negative`,
     );
   }
   let z = "Z";
