@@ -22,17 +22,40 @@
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./transpile": {
+      "import": "./dist/esm/transpile/index.js",
+      "require": "./dist/cjs/transpile/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "transpile": [
+        "./dist/cjs/transpile/index.d.ts"
+      ]
     }
   },
   "dependencies": {
-    "@bufbuild/protobuf": "2.0.0-alpha.2",
-    "@typescript/vfs": "^1.4.0",
-    "typescript": "4.5.2"
+    "@bufbuild/protobuf": "2.0.0-alpha.2"
+  },
+  "peerDependencies": {
+    "@typescript/vfs": "1.5.0",
+    "typescript": "5.4.5"
+  },
+  "peerDependenciesMeta": {
+    "@typescript/vfs": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    }
   },
   "files": [
     "dist/**"
   ],
   "devDependencies": {
-    "@types/lz-string": "^1.5.0"
+    "@types/lz-string": "^1.5.0",
+    "@typescript/vfs": "1.5.0",
+    "typescript": "5.4.5"
   }
 }

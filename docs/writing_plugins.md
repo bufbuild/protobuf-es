@@ -85,13 +85,13 @@ Generator functions are functions that are used to generate the actual file cont
 
 Of the three, only `generateTs` is required.  These functions will be passed as part of your plugin initialization and as the plugin runs, the framework will invoke the functions depending on which target outputs were specified by the plugin consumer.  
 
-Since `generateJs` and `generateDts` are both optional, if they are not provided, the plugin framework will attempt to transpile your generated TypeScript files to generate any desired `js` or `dts` outputs if necessary.
+Since `generateJs` and `generateDts` are both optional, if they are not provided, the plugin framework will attempt to transpile your generated TypeScript files to generate any desired `js` or `dts` outputs if necessary using the `transpile` option. Plugin authors should provide either the generate function or the transpile function. An implementation of the transpile function is available at `@bufbuild/protoplugin/transpile`. If included it needs `typescript` and `@typescript/vfs` to be added as dependencies.
 
-In most cases, implementing the `generateTs` function only and letting the plugin framework transpile any additionally required files should be sufficient.  However, the transpilation process is somewhat expensive and if plugin performance is a concern, then it is recommended to implement `generateJs` and `generateDts` functions also as the generation processing is much faster than transpilation.
+In most cases, implementing the `generateTs` function only and using the transpile function provided by the plugin framework should be sufficient.  However, the transpilation process is somewhat expensive and if plugin performance is a concern, then it is recommended to implement `generateJs` and `generateDts` functions also as the generation processing is much faster than transpilation.
 
 #### Overriding transpilation
 
-As mentioned, if you do not provide a `generateJs` and/or a `generateDts` function and either `js` or `dts` is specified as a target out, the plugin framework will use its own TypeScript compiler to generate these files for you.  This process uses a stable version of TypeScript with lenient compiler options so that files are generated under most conditions.  However, if this is not sufficient, you also have the option of providing your own `transpile` function, which can be used to override the plugin framework's transpilation process.  
+As mentioned, if you do not provide a `generateJs` and/or a `generateDts` function and either `js` or `dts` is specified as a target out, the plugin framework will look for the `transpile` function. The default implementation uses a stable version of TypeScript with lenient compiler options so that files are generated under most conditions.  However, if this is not sufficient, you also have the option of providing your own `transpile` function, which can be used to override the plugin framework's transpilation process.  
 
 ```ts
 transpile(
@@ -113,10 +113,13 @@ However, those functions will take precedence.  This means that if `generateJs`,
 A sample invocation of `createEcmaScriptPlugin` after the above steps will look similar to:
 
 ```ts
+import { transpile } from "@bufbuild/protoplugin/transpile";
+
 export const protocGenFoo = createEcmaScriptPlugin({
    name: "protoc-gen-foo",
    version: "v0.1.0",
    generateTs,
+   transpile,
 });
 ```
 

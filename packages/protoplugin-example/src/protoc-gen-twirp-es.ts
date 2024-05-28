@@ -23,11 +23,13 @@ import {
 import { getOption, hasOption } from "@bufbuild/protobuf";
 import { default_host } from "./gen/customoptions/default_host_pb.js";
 import { version } from "../package.json";
+import { transpile } from "@bufbuild/protoplugin/transpile";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
   version: `v${String(version)}`,
   generateTs,
+  transpile,
 });
 
 // prettier-ignore

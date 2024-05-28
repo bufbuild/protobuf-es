@@ -27,7 +27,6 @@ import { createSchema } from "./schema.js";
 import type { Schema } from "./schema.js";
 import type { FileInfo } from "./generated-file.js";
 import type { Plugin } from "./plugin.js";
-import { transpile } from "./transpile.js";
 import { parseParameter } from "./parameter.js";
 
 interface PluginInit {
@@ -74,8 +73,8 @@ interface PluginInit {
    *
    * If this function is not provided, the plugin framework will then check if
    * a transpile function is provided.  If so, it will be invoked to transpile
-   * JavaScript files.  If not, the plugin framework will transpile the files
-   * itself.
+   * JavaScript files.  An implementation of the transpile function is exported
+   * from the `/transpile` sub path.
    */
   generateJs?: (schema: Schema, target: "js") => void;
 
@@ -86,8 +85,8 @@ interface PluginInit {
    *
    * If this function is not provided, the plugin framework will then check if
    * a transpile function is provided.  If so, it will be invoked to transpile
-   * declaration files.  If not, the plugin framework will transpile the files
-   * itself.
+   * declaration files. An implementation of the transpile function is exported
+   * from the `/transpile` sub path.
    */
   generateDts?: (schema: Schema, target: "dts") => void;
 
@@ -202,7 +201,12 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
       // but no generate function was provided.  This also means that we will
       // have generated .ts files above.
       if (transpileJs || transpileDts) {
-        const transpileFn = init.transpile ?? transpile;
+        const transpileFn = init.transpile;
+        if (transpileFn === undefined) {
+          throw new Error(
+            "failed to generate .js/.d.ts files either the generators or the transpiler is required",
+          );
+        }
         // Transpile the TypeScript files and add to the master list of files
         const transpiledFiles = transpileFn(
           tsFiles,

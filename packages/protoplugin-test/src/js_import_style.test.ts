@@ -14,6 +14,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 import type { Schema } from "@bufbuild/protoplugin";
+import { transpile } from "@bufbuild/protoplugin/transpile";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("js_import_style", () => {
@@ -122,6 +123,7 @@ describe("js_import_style", () => {
         ? undefined
         : generateImportAndExportExamples,
       generateDts: generateImportAndExportExamples,
+      transpile: useBuiltInTranspileFromTsToJs ? transpile : undefined,
       returnLinesOfFirstFile: true,
     });
   }
