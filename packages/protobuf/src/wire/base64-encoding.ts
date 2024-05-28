@@ -51,7 +51,7 @@ export function base64Decode(base64Str: string) {
         case " ":
           continue; // skip white-space, and padding
         default:
-          throw Error("invalid base64 string.");
+          throw Error("invalid base64 string");
       }
     }
     switch (groupPos) {
@@ -75,7 +75,7 @@ export function base64Decode(base64Str: string) {
         break;
     }
   }
-  if (groupPos == 1) throw Error("invalid base64 string.");
+  if (groupPos == 1) throw Error("invalid base64 string");
   return bytes.subarray(0, bytePos);
 }
 

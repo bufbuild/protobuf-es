@@ -24,6 +24,7 @@ import {
   fromJsonString,
   setExtension,
   getExtension,
+  mergeFromJsonString,
 } from "@bufbuild/protobuf";
 import {
   RepeatedScalarValuesMessageDesc,
@@ -469,7 +470,7 @@ describe("JSON serialization", () => {
         expect(() => {
           toJson(FieldMaskDesc, fieldMask);
         }).toThrow(
-          'cannot encode google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
         );
       });
       test("fromJson fails on invalid json", () => {
@@ -477,7 +478,7 @@ describe("JSON serialization", () => {
         expect(() => {
           fromJson(FieldMaskDesc, json);
         }).toThrow(
-          "cannot decode google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
         );
       });
     });
@@ -816,6 +817,21 @@ describe("JsonWriteOptions", () => {
 // We do not cover all cases here. Map fields and oneofs are incomplete,
 // and bytes, string, and other scalar types are not tested.
 describe("JSON parse errors", () => {
+  test("fromJsonString() with invalid JSON", () => {
+    expect(() => fromJsonString(TestAllTypesProto3Desc, "}")).toThrow(
+      /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
+    );
+  });
+
+  test("mergeFromJsonString() with invalid JSON", () => {
+    const target = create(TestAllTypesProto3Desc);
+    expect(() =>
+      mergeFromJsonString(TestAllTypesProto3Desc, target, "}"),
+    ).toThrow(
+      /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
+    );
+  });
+
   test("unknown field", () => {
     expectJsonParseError(
       { notAKnownField: "abc" },
@@ -823,61 +839,111 @@ describe("JSON parse errors", () => {
     );
   });
 
+  describe("Any", () => {
+    test("without @type", () => {
+      expect(() =>
+        fromJson(AnyDesc, {
+          value: 123,
+        }),
+      ).toThrow(
+        /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
+      );
+    });
+    test("with blank @type", () => {
+      expect(() =>
+        fromJson(AnyDesc, {
+          "@type": "",
+        }),
+      ).toThrow(
+        /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
+      );
+    });
+    test("with invalid type url in @type", () => {
+      expect(() =>
+        fromJson(AnyDesc, {
+          "@type": "/",
+        }),
+      ).toThrow(
+        /^cannot decode message google.protobuf.Any from JSON: "@type" is invalid/,
+      );
+    });
+  });
+
   test("singular scalar", () => {
     expectJsonParseError(
+      { optionalDouble: "" },
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_double from JSON: expected number (float64), got ""`,
+    );
+    expectJsonParseError(
+      { optionalDouble: "-1.89769e+308" },
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_double from JSON: expected number (float64), got "-1.89769e+308"`,
+    );
+    expectJsonParseError(
+      { optionalDouble: Number.POSITIVE_INFINITY },
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_double from JSON: unexpected infinite number`,
+    );
+    expectJsonParseError(
+      { optionalDouble: Number.NaN },
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_double from JSON: unexpected NaN number`,
+    );
+    expectJsonParseError(
+      { optionalBytes: "not base 64" },
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_bytes from JSON: invalid base64 string`,
+    );
+    expectJsonParseError(
       { optionalInt32: "abc" },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: "abc": invalid int32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: expected number (int32), got "abc"`,
     );
     expectJsonParseError(
       { optionalInt32: true },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: true`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: expected number (int32), got true`,
     );
     expectJsonParseError(
       { optionalInt32: {} },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: object`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: expected number (int32), got object`,
     );
     expectJsonParseError(
       { optionalInt32: [] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: Array(0)`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: expected number (int32), got Array(0)`,
     );
   });
 
   test("repeated scalar", () => {
     expectJsonParseError(
       { repeatedInt32: "abc" },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: "abc"`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: expected Array, got "abc"`,
     );
     expectJsonParseError(
       { repeatedInt32: 123 },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: 123`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: expected Array, got 123`,
     );
     expectJsonParseError(
       { repeatedInt32: true },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: true`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: expected Array, got true`,
     );
     expectJsonParseError(
       { repeatedInt32: { x: 1 } },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: object`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: expected Array, got object`,
     );
     expectJsonParseError(
       { repeatedInt32: [1, null] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: null`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: list item must not be null`,
     );
     expectJsonParseError(
       { repeatedInt32: ["abc"] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: "abc": invalid int32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: list item #1: expected number (int32), got "abc"`,
     );
     expectJsonParseError(
       { repeatedInt32: [true] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: true`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: list item #1: expected number (int32), got true`,
     );
     expectJsonParseError(
       { repeatedInt32: [{}] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: object`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: list item #1: expected number (int32), got object`,
     );
     expectJsonParseError(
       { repeatedInt32: [[]] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: Array(0)`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_int32 from JSON: list item #1: expected number (int32), got Array(0)`,
     );
   });
 
@@ -903,23 +969,23 @@ describe("JSON parse errors", () => {
   test("repeated enum", () => {
     expectJsonParseError(
       { repeatedForeignEnum: "abc" },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: "abc"`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: expected Array, got "abc"`,
     );
     expectJsonParseError(
       { repeatedForeignEnum: 123 },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: 123`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: expected Array, got 123`,
     );
     expectJsonParseError(
       { repeatedForeignEnum: true },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: true`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: expected Array, got true`,
     );
     expectJsonParseError(
       { repeatedForeignEnum: {} },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: object`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: expected Array, got object`,
     );
     expectJsonParseError(
       { repeatedForeignEnum: [1, null] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: null`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_foreign_enum from JSON: list item must not be null`,
     );
     expectJsonParseError(
       { repeatedForeignEnum: [true] },
@@ -958,68 +1024,68 @@ describe("JSON parse errors", () => {
     );
     expectJsonParseError(
       { recursiveMessage: { optionalInt32: "abc" } },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: "abc": invalid int32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: expected number (int32), got "abc"`,
     );
   });
 
   test("repeated message", () => {
     expectJsonParseError(
       { repeatedNestedMessage: "abc" },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_nested_message from JSON: "abc"`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_nested_message from JSON: expected Array, got "abc"`,
     );
     expectJsonParseError(
       { repeatedNestedMessage: 123 },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_nested_message from JSON: 123`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_nested_message from JSON: expected Array, got 123`,
     );
     expectJsonParseError(
       { repeatedNestedMessage: [null] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_nested_message from JSON: null`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_nested_message from JSON: list item must not be null`,
     );
     expectJsonParseError(
       { repeatedNestedMessage: {} },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_nested_message from JSON: object`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.repeated_nested_message from JSON: expected Array, got object`,
     );
     expectJsonParseError(
       { repeatedNestedMessage: [{ corecursive: { optionalInt32: "abc" } }] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: "abc": invalid int32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_int32 from JSON: expected number (int32), got "abc"`,
     );
   });
 
   test("map scalar", () => {
     expectJsonParseError(
       { mapInt32Int32: "abc" },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: "abc"`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: expected object, got "abc"`,
     );
     expectJsonParseError(
       { mapInt32Int32: [] },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: Array(0)`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: expected object, got Array(0)`,
     );
     expectJsonParseError(
       { mapInt32Int32: 123 },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: 123`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: expected object, got 123`,
     );
     expectJsonParseError(
       { mapInt32Int32: true },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: true`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: expected object, got true`,
     );
     expectJsonParseError(
       { mapInt32Int32: { 123: null } },
-      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: map value null`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: map value must not be null`,
     );
     expectJsonParseError(
       { mapInt32Int32: { "not-an-int32": 123 } },
-      `cannot decode map key for field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: "not-an-int32": invalid int32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: invalid map key: expected number (int32), got "not-an-int32"`,
     );
     expectJsonParseError(
       { mapInt32Int32: { 123: "not-an-int32" } },
-      `cannot decode map value for field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: "not-an-int32": invalid int32: NaN`,
+      `cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.map_int32_int32 from JSON: map entry 123: expected number (int32), got "not-an-int32"`,
     );
   });
 
   test("oneof", () => {
     expectJsonParseError(
       { oneofUint32: 1, oneofString: "a" },
-      `cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: multiple keys for oneof "oneof_field" present: "oneofUint32", "oneofString"`,
+      `cannot decode oneof protobuf_test_messages.proto3.TestAllTypesProto3.oneof_field from JSON: oneof set multiple times by oneof_uint32 and oneof_string`,
     );
   });
 

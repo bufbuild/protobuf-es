@@ -23,17 +23,16 @@ import {
   ScalarType,
 } from "./descriptors.js";
 import type { JsonValue } from "./json-value.js";
-import { assertFloat32, assertInt32, assertUInt32 } from "./reflect/assert.js";
 import { protoInt64 } from "./proto-int64.js";
 import { create } from "./create.js";
 import type { Registry } from "./registry.js";
-import type { MapEntryKey, ReflectMessage } from "./reflect/reflect-types.js";
+import type { ReflectMessage } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
+import { FieldError, isFieldError } from "./reflect/error.js";
 import { formatVal } from "./reflect/reflect-check.js";
 import { type ScalarValue, scalarZeroValue } from "./reflect/scalar.js";
 import type { MessageShape } from "./types.js";
 import { base64Decode } from "./wire/base64-encoding.js";
-import { getTextEncoding } from "./wire/text-encoding.js";
 import type {
   Any,
   Duration,
@@ -44,13 +43,13 @@ import type {
   Value,
 } from "./wkt/index.js";
 import {
+  isWrapperDesc,
   anyPack,
   ListValueDesc,
   NullValue,
   StructDesc,
   ValueDesc,
 } from "./wkt/index.js";
-import { isWrapperDesc } from "./wkt/wrappers.js";
 import { createExtensionContainer, setExtension } from "./extensions.js";
 
 /**
@@ -129,7 +128,17 @@ export function fromJson<Desc extends DescMessage>(
   options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
   const msg = reflect(messageDesc);
-  readMessage(msg, json, makeReadOptions(options));
+  try {
+    readMessage(msg, json, makeReadOptions(options));
+  } catch (e) {
+    if (isFieldError(e)) {
+      // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
+      throw new Error(`cannot decode ${e.field()} from JSON: ${e.message}`, {
+        cause: e,
+      });
+    }
+    throw e;
+  }
   return msg.message as MessageShape<Desc>;
 }
 
@@ -148,7 +157,17 @@ export function mergeFromJson<Desc extends DescMessage>(
   json: JsonValue,
   options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
-  readMessage(reflect(messageDesc, target), json, makeReadOptions(options));
+  try {
+    readMessage(reflect(messageDesc, target), json, makeReadOptions(options));
+  } catch (e) {
+    if (isFieldError(e)) {
+      // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
+      throw new Error(`cannot decode ${e.field()} from JSON: ${e.message}`, {
+        cause: e,
+      });
+    }
+    throw e;
+  }
   return target;
 }
 
@@ -163,7 +182,7 @@ function readMessage(
   if (json == null || Array.isArray(json) || typeof json != "object") {
     throw new Error(`cannot decode ${msg.desc} from JSON: ${formatVal(json)}`);
   }
-  const oneofSeen = new Map<DescOneof, string>();
+  const oneofSeen = new Map<DescOneof, DescField>();
   const jsonNames = new Map<string, DescField>();
   for (const field of msg.desc.fields) {
     jsonNames.set(field.name, field).set(field.jsonName, field);
@@ -178,11 +197,12 @@ function readMessage(
         }
         const seen = oneofSeen.get(field.oneof);
         if (seen !== undefined) {
-          throw new Error(
-            `cannot decode ${msg.desc} from JSON: multiple keys for oneof "${field.oneof.name}" present: "${seen}", "${jsonKey}"`,
+          throw new FieldError(
+            field.oneof,
+            `oneof set multiple times by ${seen.name} and ${field.name}`,
           );
         }
-        oneofSeen.set(field.oneof, jsonKey);
+        oneofSeen.set(field.oneof, field);
       }
       readField(msg, field, jsonValue, opts);
     } else {
@@ -243,27 +263,23 @@ function readMapField(
     return;
   }
   if (typeof json != "object" || Array.isArray(json)) {
-    throw new Error(`cannot decode ${field} from JSON: ${formatVal(json)}`);
+    throw new FieldError(field, "expected object, got " + formatVal(json));
   }
   for (const [jsonMapKey, jsonMapValue] of Object.entries(json)) {
     if (jsonMapValue === null) {
-      throw new Error(`cannot decode ${field} from JSON: map value null`);
+      throw new FieldError(field, "map value must not be null");
     }
-    let key: MapEntryKey;
-    try {
-      key = readMapKey(field.mapKey, jsonMapKey);
-    } catch (e) {
-      let m = `cannot decode map key for ${field} from JSON: ${formatVal(jsonMapKey)}`;
-      if (e instanceof Error && e.message.length > 0) {
-        m += `: ${e.message}`;
-      }
-      throw new Error(m);
-    }
+    const key = mapKeyFromJson(field.mapKey, jsonMapKey);
     switch (field.mapKind) {
       case "message":
         const msgValue = reflect(field.message);
         readMessage(msgValue, jsonMapValue, opts);
-        msg.setMapEntry(field, key, msgValue);
+        // TODO fix types
+        // @ts-expect-error TODO
+        const err = msg.setMapEntry(field, key, msgValue);
+        if (err) {
+          throw err;
+        }
         break;
       case "enum":
         const enumValue = readEnum(
@@ -273,22 +289,24 @@ function readMapField(
           true,
         );
         if (enumValue !== tokenIgnoredUnknownEnum) {
-          msg.setMapEntry(field, key, enumValue);
+          // TODO fix types
+          // @ts-expect-error TODO
+          const err = msg.setMapEntry(field, key, enumValue);
+          if (err) {
+            throw err;
+          }
         }
         break;
       case "scalar":
-        try {
-          msg.setMapEntry(
-            field,
-            key,
-            readScalar(field.scalar, jsonMapValue, true),
-          );
-        } catch (e) {
-          let m = `cannot decode map value for ${field} from JSON: ${formatVal(jsonMapValue)}`;
-          if (e instanceof Error && e.message.length > 0) {
-            m += `: ${e.message}`;
-          }
-          throw new Error(m);
+        const err2 = msg.setMapEntry(
+          field,
+          // TODO fix types
+          // @ts-expect-error TODO
+          key,
+          scalarFromJson(field, jsonMapValue, true),
+        );
+        if (err2) {
+          throw err2;
         }
         break;
     }
@@ -305,13 +323,11 @@ function readListField(
     return;
   }
   if (!Array.isArray(json)) {
-    throw new Error(`cannot decode ${field} from JSON: ${formatVal(json)}`);
+    throw new FieldError(field, "expected Array, got " + formatVal(json));
   }
   for (const jsonItem of json) {
     if (jsonItem === null) {
-      throw new Error(
-        `cannot decode ${field} from JSON: ${formatVal(jsonItem)}`,
-      );
+      throw new FieldError(field, "list item must not be null");
     }
     switch (field.listKind) {
       case "message":
@@ -331,14 +347,12 @@ function readListField(
         }
         break;
       case "scalar":
-        try {
-          msg.addListItem(field, readScalar(field.scalar, jsonItem, true));
-        } catch (e) {
-          let m = `cannot decode ${field} from JSON: ${formatVal(jsonItem)}`;
-          if (e instanceof Error && e.message.length > 0) {
-            m += `: ${e.message}`;
-          }
-          throw new Error(m);
+        const err = msg.addListItem(
+          field,
+          scalarFromJson(field, jsonItem, true),
+        );
+        if (err) {
+          throw err;
         }
         break;
     }
@@ -379,37 +393,17 @@ function readScalarField(
   field: DescField & { fieldKind: "scalar" },
   json: JsonValue,
 ) {
-  try {
-    const scalarValue = readScalar(field.scalar, json, false);
-    if (scalarValue === tokenNull) {
-      msg.clear(field);
-    } else {
-      msg.set(field, scalarValue);
-    }
-  } catch (e) {
-    let m = `cannot decode ${field} from JSON: ${formatVal(json)}`;
-    if (e instanceof Error && e.message.length > 0) {
-      m += `: ${e.message}`;
-    }
-    throw new Error(m);
-  }
-}
-
-function readMapKey(type: ScalarType, json: JsonValue) {
-  if (type === ScalarType.BOOL) {
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
-    switch (json) {
-      case "true":
-        json = true;
-        break;
-      case "false":
-        json = false;
-        break;
+  const scalarValue = scalarFromJson(field, json, false);
+  if (scalarValue === tokenNull) {
+    msg.clear(field);
+  } else {
+    // TODO fix type error
+    // @ts-expect-error TODO
+    const err = msg.set(field, scalarValue);
+    if (err) {
+      throw err;
     }
   }
-  return readScalar(type, json, true) as ScalarValue<
-    Exclude<ScalarType, ScalarType.BYTES | ScalarType.DOUBLE | ScalarType.FLOAT>
-  >;
 }
 
 const tokenIgnoredUnknownEnum = Symbol();
@@ -460,59 +454,82 @@ function readEnum(
 
 const tokenNull = Symbol();
 
-function readScalar(
-  type: ScalarType,
+/**
+ * Try to parse a scalar value from a JSON value.
+ *
+ * Returns the input if the JSON value cannot be converted to the representation
+ * expected by reflect. Raises a FieldError if conversion would be ambiguous.
+ *
+ * JSON null returns the scalar zero value.
+ */
+function scalarFromJson(
+  field: DescField & { scalar: ScalarType },
   json: JsonValue,
   nullAsZeroValue: true,
 ): ScalarValue;
-function readScalar(
-  type: ScalarType,
+/**
+ * Try to parse a scalar value from a JSON value.
+ *
+ * Returns the input if the JSON value cannot be converted to the representation
+ * expected by reflect. Raises a FieldError if conversion would be ambiguous.
+ *
+ * JSON null returns the symbol `tokenNull`.
+ */
+function scalarFromJson(
+  field: DescField & { scalar: ScalarType },
   json: JsonValue,
   nullAsZeroValue: false,
-): ScalarValue | typeof tokenNull;
-function readScalar(
-  type: ScalarType,
+): ScalarValue | typeof tokenNull | JsonValue;
+function scalarFromJson(
+  field: DescField & { scalar: ScalarType },
   json: JsonValue,
   nullAsZeroValue: boolean,
-): ScalarValue | typeof tokenNull {
+): ScalarValue | typeof tokenNull | JsonValue {
   if (json === null) {
     if (nullAsZeroValue) {
-      return scalarZeroValue(type, false);
+      return scalarZeroValue(field.scalar, false);
     }
     return tokenNull;
   }
-  // every valid case in the switch below returns, and every fall
-  // through is regarded as a failure.
-  switch (type) {
+  // int64, sfixed64, sint64, fixed64, uint64: Reflect supports string and number.
+  // string, bool: Supported by reflect.
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+  switch (field.scalar) {
     // float, double: JSON value will be a number or one of the special string values "NaN", "Infinity", and "-Infinity".
     // Either numbers or strings are accepted. Exponent notation is also accepted.
     case ScalarType.DOUBLE:
     case ScalarType.FLOAT:
-      if (json === "NaN") return Number.NaN;
+      if (json === "NaN") return NaN;
       if (json === "Infinity") return Number.POSITIVE_INFINITY;
       if (json === "-Infinity") return Number.NEGATIVE_INFINITY;
-      if (json === "") {
-        // empty string is not a number
+      if (typeof json == "number") {
+        if (isNaN(json)) {
+          // NaN must be encoded with string constants
+          throw new FieldError(field, "unexpected NaN number");
+        }
+        if (!isFinite(json)) {
+          // Infinity must be encoded with string constants
+          throw new FieldError(field, "unexpected infinite number");
+        }
         break;
       }
-      if (typeof json == "string" && json.trim().length !== json.length) {
-        // extra whitespace
-        break;
+      if (typeof json == "string") {
+        if (json === "") {
+          // empty string is not a number
+          break;
+        }
+        if (json.trim().length !== json.length) {
+          // extra whitespace
+          break;
+        }
+        const float = Number(json);
+        if (!isFinite(float)) {
+          // Infinity and NaN must be encoded with string constants
+          break;
+        }
+        return float;
       }
-      if (typeof json != "string" && typeof json != "number") {
-        break;
-      }
-      const float = Number(json);
-      if (Number.isNaN(float)) {
-        // not a number
-        break;
-      }
-      if (!Number.isFinite(float)) {
-        // infinity and -infinity are handled by string representation above, so this is an error
-        break;
-      }
-      if (type == ScalarType.FLOAT) assertFloat32(float);
-      return float;
+      break;
 
     // int32, fixed32, uint32: JSON value will be a decimal number. Either numbers or strings are accepted.
     case ScalarType.INT32:
@@ -520,62 +537,96 @@ function readScalar(
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
     case ScalarType.UINT32:
-      let int32: number | undefined;
-      if (typeof json == "number") int32 = json;
-      else if (typeof json == "string" && json.length > 0) {
-        if (json.trim().length === json.length) int32 = Number(json);
-      }
-      if (int32 === undefined) break;
-      if (type == ScalarType.UINT32 || type == ScalarType.FIXED32)
-        assertUInt32(int32);
-      else assertInt32(int32);
-      return int32;
-
-    // int64, fixed64, uint64: JSON value will be a decimal string. Either numbers or strings are accepted.
-    case ScalarType.INT64:
-    case ScalarType.SFIXED64:
-    case ScalarType.SINT64:
-      if (typeof json != "number" && typeof json != "string") break;
-      return protoInt64.parse(json);
-    case ScalarType.FIXED64:
-    case ScalarType.UINT64:
-      if (typeof json != "number" && typeof json != "string") break;
-      return protoInt64.uParse(json);
-
-    // bool:
-    case ScalarType.BOOL:
-      if (typeof json !== "boolean") break;
-      return json;
-
-    // string:
-    case ScalarType.STRING:
-      if (typeof json !== "string") {
-        break;
-      }
-      // A string must always contain UTF-8 encoded or 7-bit ASCII.
-      if (!getTextEncoding().checkUtf8(json)) {
-        throw new Error("invalid UTF8");
-      }
-      return json;
+      return int32FromJson(json);
 
     // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
     case ScalarType.BYTES:
-      if (json === "") return new Uint8Array(0);
-      if (typeof json !== "string") break;
-      return base64Decode(json);
+      if (typeof json == "string") {
+        if (json === "") {
+          return new Uint8Array(0);
+        }
+        try {
+          return base64Decode(json);
+        } catch (e) {
+          const message = e instanceof Error ? e.message : String(e);
+          throw new FieldError(field, message);
+        }
+      }
+      break;
   }
-  throw new Error();
+  return json;
+}
+
+/**
+ * Try to parse a map key from a JSON value.
+ *
+ * Returns the input if the JSON value cannot be converted to the representation
+ * expected by reflect.
+ */
+function mapKeyFromJson(
+  type: Exclude<
+    ScalarType,
+    ScalarType.BYTES | ScalarType.DOUBLE | ScalarType.FLOAT
+  >,
+  json: JsonValue,
+) {
+  switch (type) {
+    case ScalarType.BOOL:
+      // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+      switch (json) {
+        case "true":
+          return true;
+        case "false":
+          return false;
+      }
+      return json;
+    case ScalarType.INT32:
+    case ScalarType.FIXED32:
+    case ScalarType.UINT32:
+    case ScalarType.SFIXED32:
+    case ScalarType.SINT32:
+      return int32FromJson(json);
+    default:
+      return json;
+  }
+}
+
+/**
+ * Try to parse a 32-bit integer from a JSON value.
+ *
+ * Returns the input if the JSON value cannot be converted to the representation
+ * expected by reflect.
+ */
+function int32FromJson(json: JsonValue) {
+  if (typeof json == "string") {
+    if (json === "") {
+      // empty string is not a number
+      return json;
+    }
+    if (json.trim().length !== json.length) {
+      // extra whitespace
+      return json;
+    }
+    const num = Number(json);
+    if (Number.isNaN(num)) {
+      // not a number
+      return json;
+    }
+    return num;
+  }
+  return json;
 }
 
 function parseJsonString(jsonString: string, typeName: string) {
   try {
     return JSON.parse(jsonString) as JsonValue;
   } catch (e) {
+    const message = e instanceof Error ? e.message : String(e);
     throw new Error(
-      `cannot decode ${typeName} from JSON: ${
-        e instanceof Error ? e.message : String(e)
-      }`,
+      `cannot decode message ${typeName} from JSON: ${message}`,
+      // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
+      { cause: e },
     );
   }
 }
@@ -616,7 +667,13 @@ function tryWktFromJson(
         if (jsonValue === null) {
           msg.clear(valueField);
         } else {
-          msg.set(valueField, readScalar(valueField.scalar, jsonValue, true));
+          const err = msg.set(
+            valueField,
+            scalarFromJson(valueField, jsonValue, true),
+          );
+          if (err) {
+            throw err;
+          }
         }
         return true;
       }
@@ -627,7 +684,7 @@ function tryWktFromJson(
 function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
   if (json === null || Array.isArray(json) || typeof json != "object") {
     throw new Error(
-      `cannot decode message ${any.$typeName} from JSON: expected object but got ${json === null ? "null" : Array.isArray(json) ? "array" : typeof json}`,
+      `cannot decode message ${any.$typeName} from JSON: expected object but got ${formatVal(json)}`,
     );
   }
   if (Object.keys(json).length == 0) {
@@ -639,8 +696,15 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
       `cannot decode message ${any.$typeName} from JSON: "@type" is empty`,
     );
   }
-  const typeName = typeUrlToName(typeUrl),
-    desc = opts.registry?.getMessage(typeName);
+  const typeName = typeUrl.includes("/")
+    ? typeUrl.substring(typeUrl.lastIndexOf("/") + 1)
+    : typeUrl;
+  if (!typeName.length) {
+    throw new Error(
+      `cannot decode message ${any.$typeName} from JSON: "@type" is invalid`,
+    );
+  }
+  const desc = opts.registry?.getMessage(typeName);
   if (!desc) {
     throw new Error(
       `cannot decode message ${any.$typeName} from JSON: ${typeUrl} is not in the type registry`,
@@ -664,7 +728,7 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
 function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
-      `cannot decode ${timestamp.$typeName} from JSON: ${formatVal(json)}`,
+      `cannot decode message ${timestamp.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   const matches = json.match(
@@ -672,7 +736,7 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
   );
   if (!matches) {
     throw new Error(
-      `cannot decode ${timestamp.$typeName} from JSON: invalid RFC 3339 string`,
+      `cannot decode message ${timestamp.$typeName} from JSON: invalid RFC 3339 string`,
     );
   }
   const ms = Date.parse(
@@ -681,7 +745,7 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
   );
   if (Number.isNaN(ms)) {
     throw new Error(
-      `cannot decode ${timestamp.$typeName} from JSON: invalid RFC 3339 string`,
+      `cannot decode message ${timestamp.$typeName} from JSON: invalid RFC 3339 string`,
     );
   }
   if (
@@ -689,7 +753,7 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
     ms > Date.parse("9999-12-31T23:59:59Z")
   ) {
     throw new Error(
-      `cannot decode ${timestamp.$typeName} from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
+      `cannot decode message ${timestamp.$typeName} from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
     );
   }
   timestamp.seconds = protoInt64.parse(ms / 1000);
@@ -704,19 +768,19 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
 function durationFromJson(duration: Duration, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
-      `cannot decode ${duration.$typeName} from JSON: ${formatVal(json)}`,
+      `cannot decode message ${duration.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   const match = json.match(/^(-?[0-9]+)(?:\.([0-9]+))?s/);
   if (match === null) {
     throw new Error(
-      `cannot decode ${duration.$typeName} from JSON: ${formatVal(json)}`,
+      `cannot decode message ${duration.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   const longSeconds = Number(match[1]);
   if (longSeconds > 315576000000 || longSeconds < -315576000000) {
     throw new Error(
-      `cannot decode ${duration.$typeName} from JSON: ${formatVal(json)}`,
+      `cannot decode message ${duration.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   duration.seconds = protoInt64.parse(longSeconds);
@@ -733,7 +797,7 @@ function durationFromJson(duration: Duration, json: JsonValue) {
 function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
-      `cannot decode ${fieldMask.$typeName} from JSON: ${formatVal(json)}`,
+      `cannot decode message ${fieldMask.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
   if (json === "") {
@@ -742,7 +806,7 @@ function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
   function camelToSnake(str: string) {
     if (str.includes("_")) {
       throw new Error(
-        `cannot decode ${fieldMask.$typeName} from JSON: path names must be lowerCamelCase`,
+        `cannot decode message ${fieldMask.$typeName} from JSON: path names must be lowerCamelCase`,
       );
     }
     const sc = str.replace(/[A-Z]/g, (letter) => "_" + letter.toLowerCase());
@@ -754,7 +818,7 @@ function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
 function structFromJson(struct: Struct, json: JsonValue) {
   if (typeof json != "object" || json == null || Array.isArray(json)) {
     throw new Error(
-      `cannot decode ${struct.$typeName} from JSON ${formatVal(json)}`,
+      `cannot decode message ${struct.$typeName} from JSON ${formatVal(json)}`,
     );
   }
   for (const [k, v] of Object.entries(json)) {
@@ -790,7 +854,7 @@ function valueFromJson(value: Value, json: JsonValue) {
       break;
     default:
       throw new Error(
-        `cannot decode ${value.$typeName} from JSON ${formatVal(json)}`,
+        `cannot decode message ${value.$typeName} from JSON ${formatVal(json)}`,
       );
   }
   return value;
@@ -799,7 +863,7 @@ function valueFromJson(value: Value, json: JsonValue) {
 function listValueFromJson(listValue: ListValue, json: JsonValue) {
   if (!Array.isArray(json)) {
     throw new Error(
-      `cannot decode ${listValue.$typeName} from JSON ${formatVal(json)}`,
+      `cannot decode message ${listValue.$typeName} from JSON ${formatVal(json)}`,
     );
   }
   for (const e of json) {
@@ -807,16 +871,4 @@ function listValueFromJson(listValue: ListValue, json: JsonValue) {
     valueFromJson(value, e);
     listValue.values.push(value);
   }
-}
-
-function typeUrlToName(url: string): string {
-  if (!url.length) {
-    throw new Error(`invalid type url: ${url}`);
-  }
-  const slash = url.lastIndexOf("/");
-  const name = slash >= 0 ? url.substring(slash + 1) : url;
-  if (!name.length) {
-    throw new Error(`invalid type url: ${url}`);
-  }
-  return name;
 }
