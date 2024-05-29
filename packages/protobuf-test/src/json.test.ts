@@ -1100,6 +1100,58 @@ describe("JSON parse errors", () => {
   }
 });
 
+describe("JSON serialize errors", () => {
+  const desc = proto3_ts.Proto3MessageDesc;
+  test("enum field not a number throws", () => {
+    const msg = create(desc);
+    // @ts-expect-error TS2322
+    msg.singularEnumField = "abc";
+    expect(() => toJson(desc, msg)).toThrow(
+      /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
+    );
+  });
+  test("INT32 field not a number throws", () => {
+    const msg = create(desc);
+    // @ts-expect-error TS2322
+    msg.singularInt32Field = "abc";
+    expect(() => toJson(desc, msg)).toThrow(
+      /^cannot encode field spec.Proto3Message.singular_int32_field to JSON: expected number \(int32\), got "abc"$/,
+    );
+  });
+  test("STRING field not a number throws", () => {
+    const msg = create(desc);
+    // @ts-expect-error TS2322
+    msg.singularStringField = 123;
+    expect(() => toJson(desc, msg)).toThrow(
+      /^cannot encode field spec.Proto3Message.singular_string_field to JSON: expected string, got 123$/,
+    );
+  });
+  test("BOOL field not a boolean throws", () => {
+    const msg = create(desc);
+    // @ts-expect-error TS2322
+    msg.optionalBoolField = "abc";
+    expect(() => toJson(desc, msg)).toThrow(
+      /^cannot encode field spec.Proto3Message.optional_bool_field to JSON: expected boolean, got "abc"$/,
+    );
+  });
+  test("INT64 field not a bigint throws", () => {
+    const msg = create(desc);
+    // @ts-expect-error TS2322
+    msg.singularInt64Field = true;
+    expect(() => toJson(desc, msg)).toThrow(
+      /^cannot encode field spec.Proto3Message.singular_int64_field to JSON: expected bigint \(int64\), got true$/,
+    );
+  });
+  test("BYTES field not a Uint8Array throws", () => {
+    const msg = create(desc);
+    // @ts-expect-error TS2322
+    msg.singularBytesField = true;
+    expect(() => toJson(desc, msg)).toThrow(
+      /^cannot encode field spec.Proto3Message.singular_bytes_field to JSON: expected Uint8Array, got true$/,
+    );
+  });
+});
+
 function testJson<Desc extends DescMessage>(
   desc: Desc,
   init: MessageInitShape<Desc>,

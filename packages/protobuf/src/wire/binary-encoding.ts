@@ -18,7 +18,6 @@ import {
   varint64read,
   varint64write,
 } from "./varint.js";
-import { assertFloat32, assertInt32, assertUInt32 } from "../reflect/assert.js";
 import { protoInt64 } from "../proto-int64.js";
 import { getTextEncoding } from "./text-encoding.js";
 
@@ -70,6 +69,31 @@ export enum WireType {
    */
   Bit32 = 5,
 }
+
+/**
+ * Maximum value for a 32-bit floating point value (Protobuf FLOAT).
+ */
+export const FLOAT32_MAX = 3.4028234663852886e38;
+
+/**
+ * Minimum value for a 32-bit floating point value (Protobuf FLOAT).
+ */
+export const FLOAT32_MIN = -3.4028234663852886e38;
+
+/**
+ * Maximum value for an unsigned 32-bit integer (Protobuf UINT32, FIXED32).
+ */
+export const UINT32_MAX = 0xffffffff;
+
+/**
+ * Maximum value for a signed 32-bit integer (Protobuf INT32, SFIXED32, SINT32).
+ */
+export const INT32_MAX = 0x7fffffff;
+
+/**
+ * Minimum value for a signed 32-bit integer (Protobuf INT32, SFIXED32, SINT32).
+ */
+export const INT32_MIN = -0x80000000;
 
 export class BinaryWriter {
   /**
@@ -541,4 +565,32 @@ export class BinaryReader {
   string(): string {
     return this.decodeUtf8(this.bytes());
   }
+}
+
+/**
+ * Assert a valid signed protobuf 32-bit integer.
+ */
+function assertInt32(arg: unknown): asserts arg is number {
+  if (typeof arg !== "number") throw new Error("invalid int32: " + typeof arg);
+  if (!Number.isInteger(arg) || arg > INT32_MAX || arg < INT32_MIN)
+    throw new Error("invalid int32: " + arg);
+}
+
+/**
+ * Assert a valid unsigned protobuf 32-bit integer.
+ */
+function assertUInt32(arg: unknown): asserts arg is number {
+  if (typeof arg !== "number") throw new Error("invalid uint32: " + typeof arg);
+  if (!Number.isInteger(arg) || arg > UINT32_MAX || arg < 0)
+    throw new Error("invalid uint32: " + arg);
+}
+
+/**
+ * Assert a valid protobuf float value.
+ */
+function assertFloat32(arg: unknown): asserts arg is number {
+  if (typeof arg !== "number")
+    throw new Error("invalid float32: " + typeof arg);
+  if (Number.isFinite(arg) && (arg > FLOAT32_MAX || arg < FLOAT32_MIN))
+    throw new Error("invalid float32: " + arg);
 }

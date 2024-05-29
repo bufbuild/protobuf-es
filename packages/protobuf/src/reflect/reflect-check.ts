@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { scalarTypeDescription } from "./scalar.js";
-import type { InvalidScalarValueErr } from "./scalar.js";
-import { checkScalarValue } from "./scalar.js";
 import {
   type DescEnum,
   type DescField,
@@ -24,7 +21,19 @@ import {
 import { isMessage } from "../is-message.js";
 import { FieldError } from "./error.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
+import {
+  FLOAT32_MAX,
+  FLOAT32_MIN,
+  INT32_MAX,
+  INT32_MIN,
+  UINT32_MAX,
+} from "../wire/binary-encoding.js";
+import { getTextEncoding } from "../wire/text-encoding.js";
+import { protoInt64 } from "../proto-int64.js";
 
+/**
+ * Check whether the given field value is valid for the reflect API.
+ */
 export function checkField(
   field: DescField,
   value: unknown,
@@ -53,6 +62,9 @@ export function checkField(
   return new FieldError(field, reason);
 }
 
+/**
+ * Check whether the given list item is valid for the reflect API.
+ */
 export function checkListItem(
   field: DescField & { fieldKind: "list" },
   index: number,
@@ -68,6 +80,9 @@ export function checkListItem(
   return undefined;
 }
 
+/**
+ * Check whether the given map key and value are valid for the reflect API.
+ */
 export function checkMapEntry(
   field: DescField & { fieldKind: "map" },
   key: unknown,
@@ -104,6 +119,94 @@ function checkSingular(
     return field.enum.values.some((v) => v.number === value);
   }
   return isReflectMessage(value, field.message);
+}
+
+type InvalidScalarValueErr = false | "invalid UTF8" | `${string} out of range`;
+
+function checkScalarValue(
+  value: unknown,
+  scalar: ScalarType,
+): true | InvalidScalarValueErr {
+  switch (scalar) {
+    case ScalarType.DOUBLE:
+      return typeof value == "number";
+    case ScalarType.FLOAT:
+      if (typeof value != "number") {
+        return false;
+      }
+      if (Number.isNaN(value) || !Number.isFinite(value)) {
+        return true;
+      }
+      if (value > FLOAT32_MAX || value < FLOAT32_MIN) {
+        return `${value.toFixed()} out of range`;
+      }
+      return true;
+    case ScalarType.INT32:
+    case ScalarType.SFIXED32:
+    case ScalarType.SINT32:
+      // signed
+      if (typeof value !== "number" || !Number.isInteger(value)) {
+        return false;
+      }
+      if (value > INT32_MAX || value < INT32_MIN) {
+        return `${value.toFixed()} out of range`;
+      }
+      return true;
+    case ScalarType.FIXED32:
+    case ScalarType.UINT32:
+      // unsigned
+      if (typeof value !== "number" || !Number.isInteger(value)) {
+        return false;
+      }
+      if (value > UINT32_MAX || value < 0) {
+        return `${value.toFixed()} out of range`;
+      }
+      return true;
+    case ScalarType.BOOL:
+      return typeof value == "boolean";
+    case ScalarType.STRING:
+      if (typeof value != "string") {
+        return false;
+      }
+      return getTextEncoding().checkUtf8(value) || "invalid UTF8";
+    case ScalarType.BYTES:
+      return value instanceof Uint8Array;
+
+    case ScalarType.INT64:
+    case ScalarType.SFIXED64:
+    case ScalarType.SINT64:
+      // signed
+      if (
+        typeof value != "string" &&
+        typeof value !== "bigint" &&
+        typeof value !== "number"
+      ) {
+        return false;
+      }
+      try {
+        protoInt64.parse(value);
+      } catch (e) {
+        return `${value} out of range`;
+      }
+      return true;
+
+    case ScalarType.FIXED64:
+    case ScalarType.UINT64:
+      // unsigned
+      if (
+        typeof value != "string" &&
+        typeof value !== "bigint" &&
+        typeof value !== "number"
+      ) {
+        return false;
+      }
+      try {
+        protoInt64.uParse(value);
+      } catch (e) {
+        return `${value} out of range`;
+      }
+      return true;
+  }
 }
 
 function reasonSingular(
@@ -186,5 +289,34 @@ function formatReflectMap(field: DescField & { fieldKind: "map" }) {
       return `ReflectMap (${ScalarType[field.mapKey]}, ${field.enum.toString()})`;
     case "scalar":
       return `ReflectMap (${ScalarType[field.mapKey]}, ${ScalarType[field.scalar]})`;
+  }
+}
+
+function scalarTypeDescription(scalar: ScalarType): string {
+  switch (scalar) {
+    case ScalarType.STRING:
+      return "string";
+    case ScalarType.BOOL:
+      return "boolean";
+    case ScalarType.INT64:
+    case ScalarType.SINT64:
+    case ScalarType.SFIXED64:
+      return "bigint (int64)";
+    case ScalarType.UINT64:
+    case ScalarType.FIXED64:
+      return "bigint (uint64)";
+    case ScalarType.BYTES:
+      return "Uint8Array";
+    case ScalarType.DOUBLE:
+      return "number (float64)";
+    case ScalarType.FLOAT:
+      return "number (float32)";
+    case ScalarType.FIXED32:
+    case ScalarType.UINT32:
+      return "number (uint32)";
+    case ScalarType.INT32:
+    case ScalarType.SFIXED32:
+    case ScalarType.SINT32:
+      return "number (int32)";
   }
 }

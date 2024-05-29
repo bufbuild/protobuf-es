@@ -19,7 +19,6 @@ import {
   ScalarType,
 } from "./descriptors.js";
 import type { JsonObject, JsonValue } from "./json-value.js";
-import { assert } from "./reflect/assert.js";
 import { protoCamelCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
 import type { Registry } from "./registry.js";
@@ -43,6 +42,9 @@ import { anyUnpack } from "./wkt/index.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
 import { base64Encode } from "./wire/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
+import { checkField, formatVal } from "./reflect/reflect-check.js";
+
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
 const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
@@ -179,7 +181,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
 function fieldToJson(f: DescField, val: unknown, opts: JsonWriteOptions) {
   switch (f.fieldKind) {
     case "scalar":
-      return scalarToJson(f.scalar, val);
+      return scalarToJson(f, val);
     case "message":
       return reflectToJson(val as ReflectMessage, opts);
     case "enum":
@@ -197,7 +199,7 @@ function mapToJson(map: ReflectMap, opts: JsonWriteOptions) {
   switch (f.mapKind) {
     case "scalar":
       for (const [entryKey, entryValue] of map) {
-        jsonObj[entryKey.toString()] = scalarToJson(f.scalar, entryValue); // JSON standard allows only (double quoted) string as property key
+        jsonObj[entryKey.toString()] = scalarToJson(f, entryValue); // JSON standard allows only (double quoted) string as property key
       }
       break;
     case "message":
@@ -229,7 +231,7 @@ function listToJson(list: ReflectList, opts: JsonWriteOptions) {
   switch (f.listKind) {
     case "scalar":
       for (const item of list) {
-        jsonArr.push(scalarToJson(f.scalar, item) as JsonValue);
+        jsonArr.push(scalarToJson(f, item) as JsonValue);
       }
       break;
     case "enum":
@@ -251,7 +253,11 @@ function enumToJson(
   value: unknown,
   enumAsInteger: boolean,
 ): string | number | null {
-  assert(typeof value == "number");
+  if (typeof value != "number") {
+    throw new Error(
+      `cannot encode ${desc} to JSON: expected number, got ${formatVal(value)}`,
+    );
+  }
   if (desc.typeName == "google.protobuf.NullValue") {
     return null;
   }
@@ -263,38 +269,53 @@ function enumToJson(
 }
 
 function scalarToJson(
-  type: ScalarType,
+  field: DescField & { scalar: ScalarType },
   value: unknown,
 ): string | number | boolean {
-  switch (type) {
+  switch (field.scalar) {
     // int32, fixed32, uint32: JSON value will be a decimal number. Either numbers or strings are accepted.
     case ScalarType.INT32:
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
     case ScalarType.FIXED32:
     case ScalarType.UINT32:
-      assert(typeof value == "number");
+      if (typeof value != "number") {
+        throw new Error(
+          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
+        );
+      }
       return value;
 
     // float, double: JSON value will be a number or one of the special string values "NaN", "Infinity", and "-Infinity".
     // Either numbers or strings are accepted. Exponent notation is also accepted.
     case ScalarType.FLOAT:
-    // assertFloat32(value);
     case ScalarType.DOUBLE: // eslint-disable-line no-fallthrough
-      assert(typeof value == "number");
-      if (Number.isNaN(value)) return "NaN";
+      if (typeof value != "number") {
+        throw new Error(
+          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
+        );
+      }
+      if (isNaN(value)) return "NaN";
       if (value === Number.POSITIVE_INFINITY) return "Infinity";
       if (value === Number.NEGATIVE_INFINITY) return "-Infinity";
       return value;
 
     // string:
     case ScalarType.STRING:
-      assert(typeof value == "string");
+      if (typeof value != "string") {
+        throw new Error(
+          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
+        );
+      }
       return value;
 
     // bool:
     case ScalarType.BOOL:
-      assert(typeof value == "boolean");
+      if (typeof value != "boolean") {
+        throw new Error(
+          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
+        );
+      }
       return value;
 
     // JSON value will be a decimal string. Either numbers or strings are accepted.
@@ -303,18 +324,22 @@ function scalarToJson(
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
-      assert(
-        typeof value == "bigint" ||
-          typeof value == "string" ||
-          typeof value == "number",
-      );
+      if (typeof value != "bigint" && typeof value != "string") {
+        throw new Error(
+          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
+        );
+      }
       return value.toString();
 
     // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
     case ScalarType.BYTES:
-      assert(value instanceof Uint8Array);
-      return base64Encode(value);
+      if (value instanceof Uint8Array) {
+        return base64Encode(value);
+      }
+      throw new Error(
+        `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
+      );
   }
 }
 
@@ -348,7 +373,7 @@ function tryWktToJson(
     default:
       if (isWrapperDesc(msg.desc)) {
         const valueField = msg.desc.fields[0];
-        return scalarToJson(valueField.scalar, msg.get(valueField));
+        return scalarToJson(valueField, msg.get(valueField));
       }
       return undefined;
   }
