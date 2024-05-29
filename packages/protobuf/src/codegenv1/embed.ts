@@ -295,7 +295,7 @@ function createEnumDescriptorBoot(
 /**
  * Assert that condition is truthy or throw error.
  */
-export function assert(condition: unknown): asserts condition {
+function assert(condition: unknown): asserts condition {
   // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- we want the implicit conversion to boolean
   if (!condition) {
     throw new Error();
