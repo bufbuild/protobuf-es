@@ -988,7 +988,8 @@ Options for `Message.toJson` and `Message.toJsonString`:
 - `alwaysEmitImplicit?: boolean`<br/>
   By default, fields with implicit presence are not serialized if they are
   unset. For example, an empty list field or a proto3 in32 field with 0 is
-  not serialized. With this option, such fields are included in the output.
+  not serialized. With this option enabled, such fields are included in the 
+  output.
 - `enumAsInteger?: boolean`<br/>
   The name of an enum value is used by default in JSON output. This option
   overrides the behavior to use the numeric value of the enum value instead.
