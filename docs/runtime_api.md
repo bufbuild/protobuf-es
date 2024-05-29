@@ -985,10 +985,10 @@ Options for `Message.fromJson` and `Message.fromJsonString`:
 
 Options for `Message.toJson` and `Message.toJsonString`:
 
-- `emitDefaultValues?: boolean`<br/>
-  Fields with default values are omitted by default in JSON output.
-  This option overrides this behavior and outputs fields with
-  their default values.
+- `alwaysEmitImplicit?: boolean`<br/>
+  By default, fields with implicit presence are not serialized if they are
+  unset. For example, an empty list field or a proto3 in32 field with 0 is
+  not serialized. With this option, such fields are included in the output.
 - `enumAsInteger?: boolean`<br/>
   The name of an enum value is used by default in JSON output. This option
   overrides the behavior to use the numeric value of the enum value instead.
@@ -1020,7 +1020,7 @@ this function directly.
 
 Serializing a message with `JSON.stringify()` is equivalent to calling `toJsonString`
 on the message, with the [serialization option](#json-serialization-options)
-`emitDefaultValues: true`.
+`alwaysEmitImplicit: true`.
 
 
 ### Unknown fields
