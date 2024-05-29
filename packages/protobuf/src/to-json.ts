@@ -55,11 +55,12 @@ const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
  */
 export interface JsonWriteOptions {
   /**
-   * Emit fields with default values: Fields with default values are omitted
-   * by default in proto3 JSON output. This option overrides this behavior
-   * and outputs fields with their default values.
+   * By default, fields with implicit presence are not serialized if they are
+   * unset. For example, an empty list field or a proto3 int32 field with 0 is
+   * not serialized. With this option enabled, such fields are included in the
+   * output.
    */
-  emitDefaultValues: boolean;
+  alwaysEmitImplicit: boolean;
 
   /**
    * Emit enum values as integers instead of strings: The name of an enum
@@ -94,7 +95,7 @@ export interface JsonWriteStringOptions extends JsonWriteOptions {
 
 // Default options for serializing to JSON.
 const jsonWriteDefaults: Readonly<JsonWriteOptions> = {
-  emitDefaultValues: false,
+  alwaysEmitImplicit: false,
   enumAsInteger: false,
   useProtoFieldName: false,
 };
@@ -143,7 +144,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
           `cannot encode field ${msg.desc.typeName}.${f.name} to JSON: required field not set`,
         );
       }
-      if (!opts.emitDefaultValues || f.presence !== IMPLICIT) {
+      if (!opts.alwaysEmitImplicit || f.presence !== IMPLICIT) {
         // Fields with implicit presence omit zero values (e.g. empty string) by default
         continue;
       }
@@ -220,7 +221,7 @@ function mapToJson(map: ReflectMap, opts: JsonWriteOptions) {
       }
       break;
   }
-  return opts.emitDefaultValues || map.size > 0 ? jsonObj : undefined;
+  return opts.alwaysEmitImplicit || map.size > 0 ? jsonObj : undefined;
 }
 
 function listToJson(list: ReflectList, opts: JsonWriteOptions) {
@@ -243,7 +244,7 @@ function listToJson(list: ReflectList, opts: JsonWriteOptions) {
       }
       break;
   }
-  return opts.emitDefaultValues || jsonArr.length > 0 ? jsonArr : undefined;
+  return opts.alwaysEmitImplicit || jsonArr.length > 0 ? jsonArr : undefined;
 }
 
 function enumToJson(

@@ -704,7 +704,7 @@ describe("extensions in JSON", () => {
 });
 
 describe("JsonWriteOptions", () => {
-  describe("emitDefaultValues", () => {
+  describe("alwaysEmitImplicit", () => {
     test("emits proto3 implicit fields", async () => {
       const descMessage = await compileMessage(`
         syntax="proto3";
@@ -716,7 +716,7 @@ describe("JsonWriteOptions", () => {
         }
       `);
       const json = toJson(descMessage, create(descMessage), {
-        emitDefaultValues: true,
+        alwaysEmitImplicit: true,
       });
       expect(json).toStrictEqual({
         int32Field: 0,
@@ -736,7 +736,7 @@ describe("JsonWriteOptions", () => {
         }
       `);
       const json = toJson(descMessage, create(descMessage), {
-        emitDefaultValues: true,
+        alwaysEmitImplicit: true,
       });
       expect(json).toStrictEqual({});
     });
@@ -750,7 +750,7 @@ describe("JsonWriteOptions", () => {
         }
       `);
       const json = toJson(descMessage, create(descMessage), {
-        emitDefaultValues: true,
+        alwaysEmitImplicit: true,
       });
       expect(json).toStrictEqual({
         listField: [],
