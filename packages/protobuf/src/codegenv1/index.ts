@@ -20,4 +20,5 @@ export * from "./file.js";
 export * from "./message.js";
 export * from "./service.js";
 export * from "./symbols.js";
+export * from "./scalar.js";
 export * from "./types.js";

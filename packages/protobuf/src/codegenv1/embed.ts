@@ -19,7 +19,6 @@ import type {
   DescService,
 } from "../descriptors.js";
 import { protoCamelCase } from "../reflect/names.js";
-import { assert } from "../reflect/assert.js";
 import { isFieldSet, clearField } from "../fields.js";
 import { base64Encode } from "../wire/base64-encoding.js";
 import { toBinary } from "../to-binary.js";
@@ -291,4 +290,14 @@ function createEnumDescriptorBoot(
       };
     }),
   };
+}
+
+/**
+ * Assert that condition is truthy or throw error.
+ */
+function assert(condition: unknown): asserts condition {
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- we want the implicit conversion to boolean
+  if (!condition) {
+    throw new Error();
+  }
 }

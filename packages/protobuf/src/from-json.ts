@@ -455,10 +455,10 @@ function readEnum(
 const tokenNull = Symbol();
 
 /**
- * Try to parse a scalar value from a JSON value.
+ * Try to parse a JSON value to a scalar value for the reflect API.
  *
- * Returns the input if the JSON value cannot be converted to the representation
- * expected by reflect. Raises a FieldError if conversion would be ambiguous.
+ * Returns the input if the JSON value cannot be converted. Raises a FieldError
+ * if conversion would be ambiguous.
  *
  * JSON null returns the scalar zero value.
  */
@@ -468,10 +468,10 @@ function scalarFromJson(
   nullAsZeroValue: true,
 ): ScalarValue;
 /**
- * Try to parse a scalar value from a JSON value.
+ * Try to parse a JSON value to a scalar value for the reflect API.
  *
- * Returns the input if the JSON value cannot be converted to the representation
- * expected by reflect. Raises a FieldError if conversion would be ambiguous.
+ * Returns the input if the JSON value cannot be converted. Raises a FieldError
+ * if conversion would be ambiguous.
  *
  * JSON null returns the symbol `tokenNull`.
  */
@@ -559,10 +559,9 @@ function scalarFromJson(
 }
 
 /**
- * Try to parse a map key from a JSON value.
+ * Try to parse a JSON value to a map key for the reflect API.
  *
- * Returns the input if the JSON value cannot be converted to the representation
- * expected by reflect.
+ * Returns the input if the JSON value cannot be converted.
  */
 function mapKeyFromJson(
   type: Exclude<
@@ -593,10 +592,9 @@ function mapKeyFromJson(
 }
 
 /**
- * Try to parse a 32-bit integer from a JSON value.
+ * Try to parse a JSON value to a 32-bit integer for the reflect API.
  *
- * Returns the input if the JSON value cannot be converted to the representation
- * expected by reflect.
+ * Returns the input if the JSON value cannot be converted.
  */
 function int32FromJson(json: JsonValue) {
   if (typeof json == "string") {

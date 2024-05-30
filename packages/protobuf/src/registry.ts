@@ -33,7 +33,6 @@ import type {
   ServiceDescriptorProto,
   EnumValueDescriptorProto,
 } from "./wkt/gen/google/protobuf/descriptor_pb.js";
-import { assert } from "./reflect/assert.js";
 import {
   type DescEnum,
   type DescExtension,
@@ -1230,4 +1229,14 @@ function resolveFeature<Name extends keyof Features>(
     return editionDefaults[name] as unknown as ResolvedFeature<Name>;
   }
   return resolveFeature(name, ref.parent);
+}
+
+/**
+ * Assert that condition is truthy or throw error (with message)
+ */
+function assert(condition: unknown, msg?: string): asserts condition {
+  // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- we want the implicit conversion to boolean
+  if (!condition) {
+    throw new Error(msg);
+  }
 }

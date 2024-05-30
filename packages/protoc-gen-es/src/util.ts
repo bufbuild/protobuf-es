@@ -17,7 +17,7 @@ import {
   type DescField,
   ScalarType,
 } from "@bufbuild/protobuf";
-import { scalarTypeScriptType } from "@bufbuild/protobuf/reflect";
+import { scalarTypeScriptType } from "@bufbuild/protobuf/codegenv1";
 import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
 import type { Printable } from "@bufbuild/protoplugin";
 
