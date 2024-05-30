@@ -35,10 +35,16 @@ export type TestMessage = Message<"pb.TestMessage"> & {
 };
 
 /**
+ * JSON type for the message pb.TestMessage.
+ */
+export type TestMessageJson = {
+};
+
+/**
  * Describes the message pb.TestMessage.
  * Use `create(TestMessageDesc)` to create a new message.
  */
-export const TestMessageDesc: GenDescMessage<TestMessage> = /*@__PURE__*/
+export const TestMessageDesc: GenDescMessage<TestMessage, TestMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 0);
 
 /**
@@ -48,10 +54,16 @@ export type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
 };
 
 /**
+ * JSON type for the message pb.TestMessage.Nested.
+ */
+export type TestMessage_NestedJson = {
+};
+
+/**
  * Describes the message pb.TestMessage.Nested.
  * Use `create(TestMessage_NestedDesc)` to create a new message.
  */
-export const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested> = /*@__PURE__*/
+export const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested, TestMessage_NestedJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 0, 0);
 
 /**
@@ -152,10 +164,95 @@ export type TestFeatures = Message<"pb.TestFeatures"> & {
 };
 
 /**
+ * JSON type for the message pb.TestFeatures.
+ */
+export type TestFeaturesJson = {
+  /**
+   * @generated from field: optional pb.EnumFeature file_feature = 1;
+   */
+  fileFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature extension_range_feature = 2;
+   */
+  extensionRangeFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature message_feature = 3;
+   */
+  messageFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature field_feature = 4;
+   */
+  fieldFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature oneof_feature = 5;
+   */
+  oneofFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature enum_feature = 6;
+   */
+  enumFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature enum_entry_feature = 7;
+   */
+  enumEntryFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature service_feature = 8;
+   */
+  serviceFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature method_feature = 9;
+   */
+  methodFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature multiple_feature = 10;
+   */
+  multipleFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional bool bool_field_feature = 11;
+   */
+  boolFieldFeature?: boolean;
+
+  /**
+   * @generated from field: optional pb.EnumFeature source_feature = 15;
+   */
+  sourceFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature source_feature2 = 16;
+   */
+  sourceFeature2?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature removed_feature = 17;
+   */
+  removedFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature future_feature = 18;
+   */
+  futureFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature legacy_feature = 19;
+   */
+  legacyFeature?: EnumFeatureJson;
+};
+
+/**
  * Describes the message pb.TestFeatures.
  * Use `create(TestFeaturesDesc)` to create a new message.
  */
-export const TestFeaturesDesc: GenDescMessage<TestFeatures> = /*@__PURE__*/
+export const TestFeaturesDesc: GenDescMessage<TestFeatures, TestFeaturesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 1);
 
 /**
@@ -254,9 +351,14 @@ export enum EnumFeature {
 }
 
 /**
+ * JSON type for the enum pb.EnumFeature.
+ */
+export type EnumFeatureJson = "TEST_ENUM_FEATURE_UNKNOWN" | "VALUE1" | "VALUE2" | "VALUE3" | "VALUE4" | "VALUE5" | "VALUE6" | "VALUE7" | "VALUE8" | "VALUE9" | "VALUE10" | "VALUE11" | "VALUE12" | "VALUE13" | "VALUE14" | "VALUE15" | "VALUE_EMPTY_SUPPORT" | "VALUE_FUTURE";
+
+/**
  * Describes the enum pb.EnumFeature.
  */
-export const EnumFeatureDesc: GenDescEnum<EnumFeature> = /*@__PURE__*/
+export const EnumFeatureDesc: GenDescEnum<EnumFeature, EnumFeatureJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_features, 0);
 
 /**

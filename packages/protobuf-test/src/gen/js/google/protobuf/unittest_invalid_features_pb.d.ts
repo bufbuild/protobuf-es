@@ -36,10 +36,20 @@ export declare type TestInvalidFeatures = Message<"pb.TestInvalidFeatures"> & {
 };
 
 /**
+ * JSON type for the message pb.TestInvalidFeatures.
+ */
+export declare type TestInvalidFeaturesJson = {
+  /**
+   * @generated from field: repeated int32 repeated_feature = 1;
+   */
+  repeatedFeature?: number[];
+};
+
+/**
  * Describes the message pb.TestInvalidFeatures.
  * Use `create(TestInvalidFeaturesDesc)` to create a new message.
  */
-export declare const TestInvalidFeaturesDesc: GenDescMessage<TestInvalidFeatures>;
+export declare const TestInvalidFeaturesDesc: GenDescMessage<TestInvalidFeatures, TestInvalidFeaturesJson>;
 
 /**
  * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;

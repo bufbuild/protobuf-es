@@ -46,10 +46,20 @@ export declare type ImportMessage = Message<"protobuf_unittest_import.ImportMess
 };
 
 /**
+ * JSON type for the message protobuf_unittest_import.ImportMessage.
+ */
+export declare type ImportMessageJson = {
+  /**
+   * @generated from field: optional int32 d = 1;
+   */
+  d?: number;
+};
+
+/**
  * Describes the message protobuf_unittest_import.ImportMessage.
  * Use `create(ImportMessageDesc)` to create a new message.
  */
-export declare const ImportMessageDesc: GenDescMessage<ImportMessage>;
+export declare const ImportMessageDesc: GenDescMessage<ImportMessage, ImportMessageJson>;
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnum
@@ -72,9 +82,14 @@ export enum ImportEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest_import.ImportEnum.
+ */
+export declare type ImportEnumJson = "IMPORT_FOO" | "IMPORT_BAR" | "IMPORT_BAZ";
+
+/**
  * Describes the enum protobuf_unittest_import.ImportEnum.
  */
-export declare const ImportEnumDesc: GenDescEnum<ImportEnum>;
+export declare const ImportEnumDesc: GenDescEnum<ImportEnum, ImportEnumJson>;
 
 /**
  * To use an enum in a map, it must has the first value as 0.
@@ -99,7 +114,12 @@ export enum ImportEnumForMap {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest_import.ImportEnumForMap.
+ */
+export declare type ImportEnumForMapJson = "UNKNOWN" | "FOO" | "BAR";
+
+/**
  * Describes the enum protobuf_unittest_import.ImportEnumForMap.
  */
-export declare const ImportEnumForMapDesc: GenDescEnum<ImportEnumForMap>;
+export declare const ImportEnumForMapDesc: GenDescEnum<ImportEnumForMap, ImportEnumForMapJson>;
 

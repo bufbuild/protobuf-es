@@ -39,10 +39,16 @@ export declare type TestMessageSet = Message<"proto2_wireformat_unittest.TestMes
 };
 
 /**
+ * JSON type for the message proto2_wireformat_unittest.TestMessageSet.
+ */
+export declare type TestMessageSetJson = {
+};
+
+/**
  * Describes the message proto2_wireformat_unittest.TestMessageSet.
  * Use `create(TestMessageSetDesc)` to create a new message.
  */
-export declare const TestMessageSetDesc: GenDescMessage<TestMessageSet>;
+export declare const TestMessageSetDesc: GenDescMessage<TestMessageSet, TestMessageSetJson>;
 
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
@@ -55,8 +61,18 @@ export declare type TestMessageSetWireFormatContainer = Message<"proto2_wireform
 };
 
 /**
+ * JSON type for the message proto2_wireformat_unittest.TestMessageSetWireFormatContainer.
+ */
+export declare type TestMessageSetWireFormatContainerJson = {
+  /**
+   * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
+   */
+  messageSet?: TestMessageSetJson;
+};
+
+/**
  * Describes the message proto2_wireformat_unittest.TestMessageSetWireFormatContainer.
  * Use `create(TestMessageSetWireFormatContainerDesc)` to create a new message.
  */
-export declare const TestMessageSetWireFormatContainerDesc: GenDescMessage<TestMessageSetWireFormatContainer>;
+export declare const TestMessageSetWireFormatContainerDesc: GenDescMessage<TestMessageSetWireFormatContainer, TestMessageSetWireFormatContainerJson>;
 

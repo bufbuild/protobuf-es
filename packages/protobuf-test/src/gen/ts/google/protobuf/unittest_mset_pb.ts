@@ -25,7 +25,7 @@
 
 import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { TestMessageSet } from "./unittest_mset_wire_format_pb.js";
+import type { TestMessageSet, TestMessageSetJson } from "./unittest_mset_wire_format_pb.js";
 import { fileDesc_google_protobuf_unittest_mset_wire_format } from "./unittest_mset_wire_format_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -46,10 +46,20 @@ export type TestMessageSetContainer = Message<"protobuf_unittest.TestMessageSetC
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMessageSetContainer.
+ */
+export type TestMessageSetContainerJson = {
+  /**
+   * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
+   */
+  messageSet?: TestMessageSetJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMessageSetContainer.
  * Use `create(TestMessageSetContainerDesc)` to create a new message.
  */
-export const TestMessageSetContainerDesc: GenDescMessage<TestMessageSetContainer> = /*@__PURE__*/
+export const TestMessageSetContainerDesc: GenDescMessage<TestMessageSetContainer, TestMessageSetContainerJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 0);
 
 /**
@@ -73,10 +83,30 @@ export type NestedTestMessageSetContainer = Message<"protobuf_unittest.NestedTes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.NestedTestMessageSetContainer.
+ */
+export type NestedTestMessageSetContainerJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestMessageSetContainer container = 1;
+   */
+  container?: TestMessageSetContainerJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestMessageSetContainer child = 2;
+   */
+  child?: NestedTestMessageSetContainerJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestMessageSetContainer lazy_child = 3;
+   */
+  lazyChild?: NestedTestMessageSetContainerJson;
+};
+
+/**
  * Describes the message protobuf_unittest.NestedTestMessageSetContainer.
  * Use `create(NestedTestMessageSetContainerDesc)` to create a new message.
  */
-export const NestedTestMessageSetContainerDesc: GenDescMessage<NestedTestMessageSetContainer> = /*@__PURE__*/
+export const NestedTestMessageSetContainerDesc: GenDescMessage<NestedTestMessageSetContainer, NestedTestMessageSetContainerJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 1);
 
 /**
@@ -100,10 +130,30 @@ export type NestedTestInt = Message<"protobuf_unittest.NestedTestInt"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.NestedTestInt.
+ */
+export type NestedTestIntJson = {
+  /**
+   * @generated from field: optional fixed32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 3;
+   */
+  b?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestInt child = 2;
+   */
+  child?: NestedTestIntJson;
+};
+
+/**
  * Describes the message protobuf_unittest.NestedTestInt.
  * Use `create(NestedTestIntDesc)` to create a new message.
  */
-export const NestedTestIntDesc: GenDescMessage<NestedTestInt> = /*@__PURE__*/
+export const NestedTestIntDesc: GenDescMessage<NestedTestInt, NestedTestIntJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 2);
 
 /**
@@ -127,10 +177,30 @@ export type TestMessageSetExtension1 = Message<"protobuf_unittest.TestMessageSet
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMessageSetExtension1.
+ */
+export type TestMessageSetExtension1Json = {
+  /**
+   * @generated from field: optional int32 i = 15;
+   */
+  i?: number;
+
+  /**
+   * @generated from field: optional proto2_wireformat_unittest.TestMessageSet recursive = 16;
+   */
+  recursive?: TestMessageSetJson;
+
+  /**
+   * @generated from field: optional string test_aliasing = 17;
+   */
+  testAliasing?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMessageSetExtension1.
  * Use `create(TestMessageSetExtension1Desc)` to create a new message.
  */
-export const TestMessageSetExtension1Desc: GenDescMessage<TestMessageSetExtension1> = /*@__PURE__*/
+export const TestMessageSetExtension1Desc: GenDescMessage<TestMessageSetExtension1, TestMessageSetExtension1Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 3);
 
 /**
@@ -150,10 +220,20 @@ export type TestMessageSetExtension2 = Message<"protobuf_unittest.TestMessageSet
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMessageSetExtension2.
+ */
+export type TestMessageSetExtension2Json = {
+  /**
+   * @generated from field: optional string str = 25;
+   */
+  str?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMessageSetExtension2.
  * Use `create(TestMessageSetExtension2Desc)` to create a new message.
  */
-export const TestMessageSetExtension2Desc: GenDescMessage<TestMessageSetExtension2> = /*@__PURE__*/
+export const TestMessageSetExtension2Desc: GenDescMessage<TestMessageSetExtension2, TestMessageSetExtension2Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 4);
 
 /**
@@ -178,10 +258,25 @@ export type TestMessageSetExtension3 = Message<"protobuf_unittest.TestMessageSet
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMessageSetExtension3.
+ */
+export type TestMessageSetExtension3Json = {
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestInt msg = 35;
+   */
+  msg?: NestedTestIntJson;
+
+  /**
+   * @generated from field: required int32 required_int = 36;
+   */
+  requiredInt?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMessageSetExtension3.
  * Use `create(TestMessageSetExtension3Desc)` to create a new message.
  */
-export const TestMessageSetExtension3Desc: GenDescMessage<TestMessageSetExtension3> = /*@__PURE__*/
+export const TestMessageSetExtension3Desc: GenDescMessage<TestMessageSetExtension3, TestMessageSetExtension3Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 5);
 
 /**
@@ -203,10 +298,20 @@ export type RawMessageSet = Message<"protobuf_unittest.RawMessageSet"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.RawMessageSet.
+ */
+export type RawMessageSetJson = {
+  /**
+   * @generated from field: repeated protobuf_unittest.RawMessageSet.Item item = 1;
+   */
+  item?: RawMessageSet_ItemJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.RawMessageSet.
  * Use `create(RawMessageSetDesc)` to create a new message.
  */
-export const RawMessageSetDesc: GenDescMessage<RawMessageSet> = /*@__PURE__*/
+export const RawMessageSetDesc: GenDescMessage<RawMessageSet, RawMessageSetJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 6);
 
 /**
@@ -225,9 +330,24 @@ export type RawMessageSet_Item = Message<"protobuf_unittest.RawMessageSet.Item">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.RawMessageSet.Item.
+ */
+export type RawMessageSet_ItemJson = {
+  /**
+   * @generated from field: required int32 type_id = 2;
+   */
+  typeId?: number;
+
+  /**
+   * @generated from field: required bytes message = 3;
+   */
+  message?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.RawMessageSet.Item.
  * Use `create(RawMessageSet_ItemDesc)` to create a new message.
  */
-export const RawMessageSet_ItemDesc: GenDescMessage<RawMessageSet_Item> = /*@__PURE__*/
+export const RawMessageSet_ItemDesc: GenDescMessage<RawMessageSet_Item, RawMessageSet_ItemJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 6, 0);
 

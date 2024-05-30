@@ -62,9 +62,44 @@ export type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
 };
 
 /**
+ * JSON type for the message spec.JsonNamesMessage.
+ */
+export type JsonNamesMessageJson = {
+  /**
+   * @generated from field: string scalar_field = 1 [json_name = "scalarFieldJsonName"];
+   */
+  scalarFieldJsonName?: string;
+
+  /**
+   * @generated from field: repeated string repeated_scalar_field = 2 [json_name = "repeatedScalarFieldJsonName"];
+   */
+  repeatedScalarFieldJsonName?: string[];
+
+  /**
+   * @generated from field: string a = 3;
+   */
+  a?: string;
+
+  /**
+   * @generated from field: string b = 4 [json_name = ""];
+   */
+  ""?: string;
+
+  /**
+   * @generated from field: string c = 5 [json_name = "@type"];
+   */
+  "@type"?: string;
+
+  /**
+   * @generated from field: string d = 6 [json_name = "1d"];
+   */
+  "1d"?: string;
+};
+
+/**
  * Describes the message spec.JsonNamesMessage.
  * Use `create(JsonNamesMessageDesc)` to create a new message.
  */
-export const JsonNamesMessageDesc: GenDescMessage<JsonNamesMessage> = /*@__PURE__*/
+export const JsonNamesMessageDesc: GenDescMessage<JsonNamesMessage, JsonNamesMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_json_names, 0);
 

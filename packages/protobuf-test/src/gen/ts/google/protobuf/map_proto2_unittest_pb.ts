@@ -22,7 +22,7 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { ImportEnumForMap } from "./unittest_import_pb.js";
+import type { ImportEnumForMap, ImportEnumForMapJson } from "./unittest_import_pb.js";
 import { fileDesc_google_protobuf_unittest_import } from "./unittest_import_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -110,10 +110,85 @@ export type TestEnumMap = Message<"protobuf_unittest.TestEnumMap"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestEnumMap.
+ */
+export type TestEnumMapJson = {
+  /**
+   * @generated from field: map<int32, protobuf_unittest.Proto2MapEnum> known_map_field = 101;
+   */
+  knownMapField?: { [key: number]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<int32, protobuf_unittest.Proto2MapEnum> unknown_map_field = 102;
+   */
+  unknownMapField?: { [key: number]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<int64, protobuf_unittest.Proto2MapEnum> unknown_map_field_int64 = 200;
+   */
+  unknownMapFieldInt64?: { [key: string]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<uint64, protobuf_unittest.Proto2MapEnum> unknown_map_field_uint64 = 201;
+   */
+  unknownMapFieldUint64?: { [key: string]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<int32, protobuf_unittest.Proto2MapEnum> unknown_map_field_int32 = 202;
+   */
+  unknownMapFieldInt32?: { [key: number]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<uint32, protobuf_unittest.Proto2MapEnum> unknown_map_field_uint32 = 203;
+   */
+  unknownMapFieldUint32?: { [key: number]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<fixed32, protobuf_unittest.Proto2MapEnum> unknown_map_field_fixed32 = 204;
+   */
+  unknownMapFieldFixed32?: { [key: number]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<fixed64, protobuf_unittest.Proto2MapEnum> unknown_map_field_fixed64 = 205;
+   */
+  unknownMapFieldFixed64?: { [key: string]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<bool, protobuf_unittest.Proto2MapEnum> unknown_map_field_bool = 206;
+   */
+  unknownMapFieldBool?: { [key: string]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<string, protobuf_unittest.Proto2MapEnum> unknown_map_field_string = 207;
+   */
+  unknownMapFieldString?: { [key: string]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<sint32, protobuf_unittest.Proto2MapEnum> unknown_map_field_sint32 = 208;
+   */
+  unknownMapFieldSint32?: { [key: number]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<sint64, protobuf_unittest.Proto2MapEnum> unknown_map_field_sint64 = 209;
+   */
+  unknownMapFieldSint64?: { [key: string]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<sfixed32, protobuf_unittest.Proto2MapEnum> unknown_map_field_sfixed32 = 210;
+   */
+  unknownMapFieldSfixed32?: { [key: number]: Proto2MapEnumJson };
+
+  /**
+   * @generated from field: map<sfixed64, protobuf_unittest.Proto2MapEnum> unknown_map_field_sfixed64 = 211;
+   */
+  unknownMapFieldSfixed64?: { [key: string]: Proto2MapEnumJson };
+};
+
+/**
  * Describes the message protobuf_unittest.TestEnumMap.
  * Use `create(TestEnumMapDesc)` to create a new message.
  */
-export const TestEnumMapDesc: GenDescMessage<TestEnumMap> = /*@__PURE__*/
+export const TestEnumMapDesc: GenDescMessage<TestEnumMap, TestEnumMapJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 0);
 
 /**
@@ -194,10 +269,85 @@ export type TestEnumMapPlusExtra = Message<"protobuf_unittest.TestEnumMapPlusExt
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestEnumMapPlusExtra.
+ */
+export type TestEnumMapPlusExtraJson = {
+  /**
+   * @generated from field: map<int32, protobuf_unittest.Proto2MapEnumPlusExtra> known_map_field = 101;
+   */
+  knownMapField?: { [key: number]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<int32, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field = 102;
+   */
+  unknownMapField?: { [key: number]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<int64, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_int64 = 200;
+   */
+  unknownMapFieldInt64?: { [key: string]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<uint64, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_uint64 = 201;
+   */
+  unknownMapFieldUint64?: { [key: string]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<int32, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_int32 = 202;
+   */
+  unknownMapFieldInt32?: { [key: number]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<uint32, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_uint32 = 203;
+   */
+  unknownMapFieldUint32?: { [key: number]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<fixed32, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_fixed32 = 204;
+   */
+  unknownMapFieldFixed32?: { [key: number]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<fixed64, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_fixed64 = 205;
+   */
+  unknownMapFieldFixed64?: { [key: string]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<bool, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_bool = 206;
+   */
+  unknownMapFieldBool?: { [key: string]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<string, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_string = 207;
+   */
+  unknownMapFieldString?: { [key: string]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<sint32, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_sint32 = 208;
+   */
+  unknownMapFieldSint32?: { [key: number]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<sint64, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_sint64 = 209;
+   */
+  unknownMapFieldSint64?: { [key: string]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<sfixed32, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_sfixed32 = 210;
+   */
+  unknownMapFieldSfixed32?: { [key: number]: Proto2MapEnumPlusExtraJson };
+
+  /**
+   * @generated from field: map<sfixed64, protobuf_unittest.Proto2MapEnumPlusExtra> unknown_map_field_sfixed64 = 211;
+   */
+  unknownMapFieldSfixed64?: { [key: string]: Proto2MapEnumPlusExtraJson };
+};
+
+/**
  * Describes the message protobuf_unittest.TestEnumMapPlusExtra.
  * Use `create(TestEnumMapPlusExtraDesc)` to create a new message.
  */
-export const TestEnumMapPlusExtraDesc: GenDescMessage<TestEnumMapPlusExtra> = /*@__PURE__*/
+export const TestEnumMapPlusExtraDesc: GenDescMessage<TestEnumMapPlusExtra, TestEnumMapPlusExtraJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 1);
 
 /**
@@ -211,10 +361,20 @@ export type TestImportEnumMap = Message<"protobuf_unittest.TestImportEnumMap"> &
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestImportEnumMap.
+ */
+export type TestImportEnumMapJson = {
+  /**
+   * @generated from field: map<int32, protobuf_unittest_import.ImportEnumForMap> import_enum_amp = 1;
+   */
+  importEnumAmp?: { [key: number]: ImportEnumForMapJson };
+};
+
+/**
  * Describes the message protobuf_unittest.TestImportEnumMap.
  * Use `create(TestImportEnumMapDesc)` to create a new message.
  */
-export const TestImportEnumMapDesc: GenDescMessage<TestImportEnumMap> = /*@__PURE__*/
+export const TestImportEnumMapDesc: GenDescMessage<TestImportEnumMap, TestImportEnumMapJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 2);
 
 /**
@@ -228,10 +388,20 @@ export type TestIntIntMap = Message<"protobuf_unittest.TestIntIntMap"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestIntIntMap.
+ */
+export type TestIntIntMapJson = {
+  /**
+   * @generated from field: map<int32, int32> m = 1;
+   */
+  m?: { [key: number]: number };
+};
+
+/**
  * Describes the message protobuf_unittest.TestIntIntMap.
  * Use `create(TestIntIntMapDesc)` to create a new message.
  */
-export const TestIntIntMapDesc: GenDescMessage<TestIntIntMap> = /*@__PURE__*/
+export const TestIntIntMapDesc: GenDescMessage<TestIntIntMap, TestIntIntMapJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 3);
 
 /**
@@ -302,10 +472,75 @@ export type TestMaps = Message<"protobuf_unittest.TestMaps"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMaps.
+ */
+export type TestMapsJson = {
+  /**
+   * @generated from field: map<int32, protobuf_unittest.TestIntIntMap> m_int32 = 1;
+   */
+  mInt32?: { [key: number]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<int64, protobuf_unittest.TestIntIntMap> m_int64 = 2;
+   */
+  mInt64?: { [key: string]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<uint32, protobuf_unittest.TestIntIntMap> m_uint32 = 3;
+   */
+  mUint32?: { [key: number]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<uint64, protobuf_unittest.TestIntIntMap> m_uint64 = 4;
+   */
+  mUint64?: { [key: string]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<sint32, protobuf_unittest.TestIntIntMap> m_sint32 = 5;
+   */
+  mSint32?: { [key: number]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<sint64, protobuf_unittest.TestIntIntMap> m_sint64 = 6;
+   */
+  mSint64?: { [key: string]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<fixed32, protobuf_unittest.TestIntIntMap> m_fixed32 = 7;
+   */
+  mFixed32?: { [key: number]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<fixed64, protobuf_unittest.TestIntIntMap> m_fixed64 = 8;
+   */
+  mFixed64?: { [key: string]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<sfixed32, protobuf_unittest.TestIntIntMap> m_sfixed32 = 9;
+   */
+  mSfixed32?: { [key: number]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<sfixed64, protobuf_unittest.TestIntIntMap> m_sfixed64 = 10;
+   */
+  mSfixed64?: { [key: string]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<bool, protobuf_unittest.TestIntIntMap> m_bool = 11;
+   */
+  mBool?: { [key: string]: TestIntIntMapJson };
+
+  /**
+   * @generated from field: map<string, protobuf_unittest.TestIntIntMap> m_string = 12;
+   */
+  mString?: { [key: string]: TestIntIntMapJson };
+};
+
+/**
  * Describes the message protobuf_unittest.TestMaps.
  * Use `create(TestMapsDesc)` to create a new message.
  */
-export const TestMapsDesc: GenDescMessage<TestMaps> = /*@__PURE__*/
+export const TestMapsDesc: GenDescMessage<TestMaps, TestMapsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 4);
 
 /**
@@ -321,10 +556,20 @@ export type TestSubmessageMaps = Message<"protobuf_unittest.TestSubmessageMaps">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestSubmessageMaps.
+ */
+export type TestSubmessageMapsJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestMaps m = 1;
+   */
+  m?: TestMapsJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestSubmessageMaps.
  * Use `create(TestSubmessageMapsDesc)` to create a new message.
  */
-export const TestSubmessageMapsDesc: GenDescMessage<TestSubmessageMaps> = /*@__PURE__*/
+export const TestSubmessageMapsDesc: GenDescMessage<TestSubmessageMaps, TestSubmessageMapsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 5);
 
 /**
@@ -343,10 +588,25 @@ export type TestProto2BytesMap = Message<"protobuf_unittest.TestProto2BytesMap">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestProto2BytesMap.
+ */
+export type TestProto2BytesMapJson = {
+  /**
+   * @generated from field: map<int32, bytes> map_bytes = 1;
+   */
+  mapBytes?: { [key: number]: string };
+
+  /**
+   * @generated from field: map<int32, string> map_string = 2;
+   */
+  mapString?: { [key: number]: string };
+};
+
+/**
  * Describes the message protobuf_unittest.TestProto2BytesMap.
  * Use `create(TestProto2BytesMapDesc)` to create a new message.
  */
-export const TestProto2BytesMapDesc: GenDescMessage<TestProto2BytesMap> = /*@__PURE__*/
+export const TestProto2BytesMapDesc: GenDescMessage<TestProto2BytesMap, TestProto2BytesMapJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_map_proto2_unittest, 6);
 
 /**
@@ -370,9 +630,14 @@ export enum Proto2MapEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.Proto2MapEnum.
+ */
+export type Proto2MapEnumJson = "PROTO2_MAP_ENUM_FOO" | "PROTO2_MAP_ENUM_BAR" | "PROTO2_MAP_ENUM_BAZ";
+
+/**
  * Describes the enum protobuf_unittest.Proto2MapEnum.
  */
-export const Proto2MapEnumDesc: GenDescEnum<Proto2MapEnum> = /*@__PURE__*/
+export const Proto2MapEnumDesc: GenDescEnum<Proto2MapEnum, Proto2MapEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_map_proto2_unittest, 0);
 
 /**
@@ -401,8 +666,13 @@ export enum Proto2MapEnumPlusExtra {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.Proto2MapEnumPlusExtra.
+ */
+export type Proto2MapEnumPlusExtraJson = "E_PROTO2_MAP_ENUM_FOO" | "E_PROTO2_MAP_ENUM_BAR" | "E_PROTO2_MAP_ENUM_BAZ" | "E_PROTO2_MAP_ENUM_EXTRA";
+
+/**
  * Describes the enum protobuf_unittest.Proto2MapEnumPlusExtra.
  */
-export const Proto2MapEnumPlusExtraDesc: GenDescEnum<Proto2MapEnumPlusExtra> = /*@__PURE__*/
+export const Proto2MapEnumPlusExtraDesc: GenDescEnum<Proto2MapEnumPlusExtra, Proto2MapEnumPlusExtraJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_map_proto2_unittest, 1);
 

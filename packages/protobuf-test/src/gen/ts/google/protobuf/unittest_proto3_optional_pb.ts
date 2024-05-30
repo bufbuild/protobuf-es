@@ -143,10 +143,120 @@ export type TestProto3Optional = Message<"protobuf_unittest.TestProto3Optional">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestProto3Optional.
+ */
+export type TestProto3OptionalJson = {
+  /**
+   * @generated from field: optional int32 optional_int32 = 1;
+   */
+  optionalInt32?: number;
+
+  /**
+   * @generated from field: optional int64 optional_int64 = 2;
+   */
+  optionalInt64?: string;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32 = 3;
+   */
+  optionalUint32?: number;
+
+  /**
+   * @generated from field: optional uint64 optional_uint64 = 4;
+   */
+  optionalUint64?: string;
+
+  /**
+   * @generated from field: optional sint32 optional_sint32 = 5;
+   */
+  optionalSint32?: number;
+
+  /**
+   * @generated from field: optional sint64 optional_sint64 = 6;
+   */
+  optionalSint64?: string;
+
+  /**
+   * @generated from field: optional fixed32 optional_fixed32 = 7;
+   */
+  optionalFixed32?: number;
+
+  /**
+   * @generated from field: optional fixed64 optional_fixed64 = 8;
+   */
+  optionalFixed64?: string;
+
+  /**
+   * @generated from field: optional sfixed32 optional_sfixed32 = 9;
+   */
+  optionalSfixed32?: number;
+
+  /**
+   * @generated from field: optional sfixed64 optional_sfixed64 = 10;
+   */
+  optionalSfixed64?: string;
+
+  /**
+   * @generated from field: optional float optional_float = 11;
+   */
+  optionalFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional double optional_double = 12;
+   */
+  optionalDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional bool optional_bool = 13;
+   */
+  optionalBool?: boolean;
+
+  /**
+   * @generated from field: optional string optional_string = 14;
+   */
+  optionalString?: string;
+
+  /**
+   * @generated from field: optional bytes optional_bytes = 15;
+   */
+  optionalBytes?: string;
+
+  /**
+   * @generated from field: optional string optional_cord = 16;
+   */
+  optionalCord?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestProto3Optional.NestedMessage optional_nested_message = 18;
+   */
+  optionalNestedMessage?: TestProto3Optional_NestedMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestProto3Optional.NestedMessage lazy_nested_message = 19;
+   */
+  lazyNestedMessage?: TestProto3Optional_NestedMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestProto3Optional.NestedEnum optional_nested_enum = 21;
+   */
+  optionalNestedEnum?: TestProto3Optional_NestedEnumJson;
+
+  /**
+   * @generated from field: int32 singular_int32 = 22;
+   */
+  singularInt32?: number;
+
+  /**
+   * @generated from field: int64 singular_int64 = 23;
+   */
+  singularInt64?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestProto3Optional.
  * Use `create(TestProto3OptionalDesc)` to create a new message.
  */
-export const TestProto3OptionalDesc: GenDescMessage<TestProto3Optional> = /*@__PURE__*/
+export const TestProto3OptionalDesc: GenDescMessage<TestProto3Optional, TestProto3OptionalJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0);
 
 /**
@@ -164,10 +274,20 @@ export type TestProto3Optional_NestedMessage = Message<"protobuf_unittest.TestPr
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestProto3Optional.NestedMessage.
+ */
+export type TestProto3Optional_NestedMessageJson = {
+  /**
+   * @generated from field: optional int32 bb = 1;
+   */
+  bb?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestProto3Optional.NestedMessage.
  * Use `create(TestProto3Optional_NestedMessageDesc)` to create a new message.
  */
-export const TestProto3Optional_NestedMessageDesc: GenDescMessage<TestProto3Optional_NestedMessage> = /*@__PURE__*/
+export const TestProto3Optional_NestedMessageDesc: GenDescMessage<TestProto3Optional_NestedMessage, TestProto3Optional_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0, 0);
 
 /**
@@ -203,9 +323,14 @@ export enum TestProto3Optional_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestProto3Optional.NestedEnum.
+ */
+export type TestProto3Optional_NestedEnumJson = "UNSPECIFIED" | "FOO" | "BAR" | "BAZ" | "NEG";
+
+/**
  * Describes the enum protobuf_unittest.TestProto3Optional.NestedEnum.
  */
-export const TestProto3Optional_NestedEnumDesc: GenDescEnum<TestProto3Optional_NestedEnum> = /*@__PURE__*/
+export const TestProto3Optional_NestedEnumDesc: GenDescEnum<TestProto3Optional_NestedEnum, TestProto3Optional_NestedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0, 0);
 
 /**
@@ -224,10 +349,25 @@ export type TestProto3OptionalMessage = Message<"protobuf_unittest.TestProto3Opt
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestProto3OptionalMessage.
+ */
+export type TestProto3OptionalMessageJson = {
+  /**
+   * @generated from field: protobuf_unittest.TestProto3OptionalMessage.NestedMessage nested_message = 1;
+   */
+  nestedMessage?: TestProto3OptionalMessage_NestedMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestProto3OptionalMessage.NestedMessage optional_nested_message = 2;
+   */
+  optionalNestedMessage?: TestProto3OptionalMessage_NestedMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestProto3OptionalMessage.
  * Use `create(TestProto3OptionalMessageDesc)` to create a new message.
  */
-export const TestProto3OptionalMessageDesc: GenDescMessage<TestProto3OptionalMessage> = /*@__PURE__*/
+export const TestProto3OptionalMessageDesc: GenDescMessage<TestProto3OptionalMessage, TestProto3OptionalMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 1);
 
 /**
@@ -241,10 +381,20 @@ export type TestProto3OptionalMessage_NestedMessage = Message<"protobuf_unittest
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestProto3OptionalMessage.NestedMessage.
+ */
+export type TestProto3OptionalMessage_NestedMessageJson = {
+  /**
+   * @generated from field: string s = 1;
+   */
+  s?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestProto3OptionalMessage.NestedMessage.
  * Use `create(TestProto3OptionalMessage_NestedMessageDesc)` to create a new message.
  */
-export const TestProto3OptionalMessage_NestedMessageDesc: GenDescMessage<TestProto3OptionalMessage_NestedMessage> = /*@__PURE__*/
+export const TestProto3OptionalMessage_NestedMessageDesc: GenDescMessage<TestProto3OptionalMessage_NestedMessage, TestProto3OptionalMessage_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 1, 0);
 
 /**
@@ -254,10 +404,16 @@ export type Proto3OptionalExtensions = Message<"protobuf_unittest.Proto3Optional
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Proto3OptionalExtensions.
+ */
+export type Proto3OptionalExtensionsJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.Proto3OptionalExtensions.
  * Use `create(Proto3OptionalExtensionsDesc)` to create a new message.
  */
-export const Proto3OptionalExtensionsDesc: GenDescMessage<Proto3OptionalExtensions> = /*@__PURE__*/
+export const Proto3OptionalExtensionsDesc: GenDescMessage<Proto3OptionalExtensions, Proto3OptionalExtensionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 2);
 
 /**

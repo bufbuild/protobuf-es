@@ -42,10 +42,25 @@ export type MessageFieldMessage = Message<"spec.MessageFieldMessage"> & {
 };
 
 /**
+ * JSON type for the message spec.MessageFieldMessage.
+ */
+export type MessageFieldMessageJson = {
+  /**
+   * @generated from field: spec.MessageFieldMessage.TestMessage message_field = 1;
+   */
+  messageField?: MessageFieldMessage_TestMessageJson;
+
+  /**
+   * @generated from field: repeated spec.MessageFieldMessage.TestMessage repeated_message_field = 2;
+   */
+  repeatedMessageField?: MessageFieldMessage_TestMessageJson[];
+};
+
+/**
  * Describes the message spec.MessageFieldMessage.
  * Use `create(MessageFieldMessageDesc)` to create a new message.
  */
-export const MessageFieldMessageDesc: GenDescMessage<MessageFieldMessage> = /*@__PURE__*/
+export const MessageFieldMessageDesc: GenDescMessage<MessageFieldMessage, MessageFieldMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_message, 0);
 
 /**
@@ -59,9 +74,19 @@ export type MessageFieldMessage_TestMessage = Message<"spec.MessageFieldMessage.
 };
 
 /**
+ * JSON type for the message spec.MessageFieldMessage.TestMessage.
+ */
+export type MessageFieldMessage_TestMessageJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+};
+
+/**
  * Describes the message spec.MessageFieldMessage.TestMessage.
  * Use `create(MessageFieldMessage_TestMessageDesc)` to create a new message.
  */
-export const MessageFieldMessage_TestMessageDesc: GenDescMessage<MessageFieldMessage_TestMessage> = /*@__PURE__*/
+export const MessageFieldMessage_TestMessageDesc: GenDescMessage<MessageFieldMessage_TestMessage, MessageFieldMessage_TestMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_message, 0, 0);
 

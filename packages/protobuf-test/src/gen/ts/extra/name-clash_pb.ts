@@ -18,7 +18,7 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { User as User$1 } from "./example_pb.js";
+import type { User as User$1, UserJson as UserJson$1 } from "./example_pb.js";
 import { fileDesc_extra_example } from "./example_pb.js";
 import type { Message as Message$1 } from "@bufbuild/protobuf";
 
@@ -43,10 +43,20 @@ export type User = Message$1<"spec.User"> & {
 };
 
 /**
+ * JSON type for the message spec.User.
+ */
+export type UserJson = {
+  /**
+   * @generated from field: docs.User u = 1;
+   */
+  u?: UserJson$1;
+};
+
+/**
  * Describes the message spec.User.
  * Use `create(UserDesc)` to create a new message.
  */
-export const UserDesc: GenDescMessage<User> = /*@__PURE__*/
+export const UserDesc: GenDescMessage<User, UserJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 0);
 
 /**
@@ -56,10 +66,16 @@ export type ReservedPropertyNames = Message$1<"spec.ReservedPropertyNames"> & {
 };
 
 /**
+ * JSON type for the message spec.ReservedPropertyNames.
+ */
+export type ReservedPropertyNamesJson = {
+};
+
+/**
  * Describes the message spec.ReservedPropertyNames.
  * Use `create(ReservedPropertyNamesDesc)` to create a new message.
  */
-export const ReservedPropertyNamesDesc: GenDescMessage<ReservedPropertyNames> = /*@__PURE__*/
+export const ReservedPropertyNamesDesc: GenDescMessage<ReservedPropertyNames, ReservedPropertyNamesJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 1);
 
 /**
@@ -96,10 +112,35 @@ export type ReservedPropertyNames_BuiltIn = Message$1<"spec.ReservedPropertyName
 };
 
 /**
+ * JSON type for the message spec.ReservedPropertyNames.BuiltIn.
+ */
+export type ReservedPropertyNames_BuiltInJson = {
+  /**
+   * @generated from field: string constructor = 2;
+   */
+  constructor?: string;
+
+  /**
+   * @generated from field: string to_string = 3;
+   */
+  toString?: string;
+
+  /**
+   * @generated from field: string to_JSON = 4;
+   */
+  toJSON?: string;
+
+  /**
+   * @generated from field: string value_of = 5;
+   */
+  valueOf?: string;
+};
+
+/**
  * Describes the message spec.ReservedPropertyNames.BuiltIn.
  * Use `create(ReservedPropertyNames_BuiltInDesc)` to create a new message.
  */
-export const ReservedPropertyNames_BuiltInDesc: GenDescMessage<ReservedPropertyNames_BuiltIn> = /*@__PURE__*/
+export const ReservedPropertyNames_BuiltInDesc: GenDescMessage<ReservedPropertyNames_BuiltIn, ReservedPropertyNames_BuiltInJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 1, 0);
 
 /**
@@ -171,10 +212,60 @@ export type ReservedPropertyNames_Runtime = Message$1<"spec.ReservedPropertyName
 };
 
 /**
+ * JSON type for the message spec.ReservedPropertyNames.Runtime.
+ */
+export type ReservedPropertyNames_RuntimeJson = {
+  /**
+   * @generated from field: string to_json = 4;
+   */
+  toJson?: string;
+
+  /**
+   * @generated from field: string type = 6;
+   */
+  type?: string;
+
+  /**
+   * @generated from field: string clone = 7;
+   */
+  clone?: string;
+
+  /**
+   * @generated from field: string equals = 8;
+   */
+  equals?: string;
+
+  /**
+   * @generated from field: string from_binary = 9;
+   */
+  fromBinary?: string;
+
+  /**
+   * @generated from field: string from_json = 10;
+   */
+  fromJson?: string;
+
+  /**
+   * @generated from field: string from_json_string = 11;
+   */
+  fromJsonString?: string;
+
+  /**
+   * @generated from field: string to_binary = 12;
+   */
+  toBinary?: string;
+
+  /**
+   * @generated from field: string to_json_string = 14;
+   */
+  toJsonString?: string;
+};
+
+/**
  * Describes the message spec.ReservedPropertyNames.Runtime.
  * Use `create(ReservedPropertyNames_RuntimeDesc)` to create a new message.
  */
-export const ReservedPropertyNames_RuntimeDesc: GenDescMessage<ReservedPropertyNames_Runtime> = /*@__PURE__*/
+export const ReservedPropertyNames_RuntimeDesc: GenDescMessage<ReservedPropertyNames_Runtime, ReservedPropertyNames_RuntimeJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 1, 1);
 
 /**
@@ -212,10 +303,35 @@ export type ReservedPropertyNames_OneofBultIn = Message$1<"spec.ReservedProperty
 };
 
 /**
+ * JSON type for the message spec.ReservedPropertyNames.OneofBultIn.
+ */
+export type ReservedPropertyNames_OneofBultInJson = {
+  /**
+   * @generated from field: string constructor = 1;
+   */
+  constructor?: string;
+
+  /**
+   * @generated from field: string to_string = 2;
+   */
+  toString?: string;
+
+  /**
+   * @generated from field: string to_JSON = 3;
+   */
+  toJSON?: string;
+
+  /**
+   * @generated from field: string value_of = 4;
+   */
+  valueOf?: string;
+};
+
+/**
  * Describes the message spec.ReservedPropertyNames.OneofBultIn.
  * Use `create(ReservedPropertyNames_OneofBultInDesc)` to create a new message.
  */
-export const ReservedPropertyNames_OneofBultInDesc: GenDescMessage<ReservedPropertyNames_OneofBultIn> = /*@__PURE__*/
+export const ReservedPropertyNames_OneofBultInDesc: GenDescMessage<ReservedPropertyNames_OneofBultIn, ReservedPropertyNames_OneofBultInJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 1, 2);
 
 /**
@@ -283,10 +399,60 @@ export type ReservedPropertyNames_OneofRuntime = Message$1<"spec.ReservedPropert
 };
 
 /**
+ * JSON type for the message spec.ReservedPropertyNames.OneofRuntime.
+ */
+export type ReservedPropertyNames_OneofRuntimeJson = {
+  /**
+   * @generated from field: string to_json = 5;
+   */
+  toJson?: string;
+
+  /**
+   * @generated from field: string type = 6;
+   */
+  type?: string;
+
+  /**
+   * @generated from field: string clone = 7;
+   */
+  clone?: string;
+
+  /**
+   * @generated from field: string equals = 8;
+   */
+  equals?: string;
+
+  /**
+   * @generated from field: string from_binary = 9;
+   */
+  fromBinary?: string;
+
+  /**
+   * @generated from field: string from_json = 10;
+   */
+  fromJson?: string;
+
+  /**
+   * @generated from field: string from_json_string = 11;
+   */
+  fromJsonString?: string;
+
+  /**
+   * @generated from field: string to_binary = 12;
+   */
+  toBinary?: string;
+
+  /**
+   * @generated from field: string to_json_string = 14;
+   */
+  toJsonString?: string;
+};
+
+/**
  * Describes the message spec.ReservedPropertyNames.OneofRuntime.
  * Use `create(ReservedPropertyNames_OneofRuntimeDesc)` to create a new message.
  */
-export const ReservedPropertyNames_OneofRuntimeDesc: GenDescMessage<ReservedPropertyNames_OneofRuntime> = /*@__PURE__*/
+export const ReservedPropertyNames_OneofRuntimeDesc: GenDescMessage<ReservedPropertyNames_OneofRuntime, ReservedPropertyNames_OneofRuntimeJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 1, 3);
 
 /**
@@ -315,9 +481,14 @@ export enum ReservedPropertyNames_EnumBuiltIn {
 }
 
 /**
+ * JSON type for the enum spec.ReservedPropertyNames.EnumBuiltIn.
+ */
+export type ReservedPropertyNames_EnumBuiltInJson = "constructor" | "toString" | "toJSON" | "valueOf";
+
+/**
  * Describes the enum spec.ReservedPropertyNames.EnumBuiltIn.
  */
-export const ReservedPropertyNames_EnumBuiltInDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltIn> = /*@__PURE__*/
+export const ReservedPropertyNames_EnumBuiltInDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltIn, ReservedPropertyNames_EnumBuiltInJson> = /*@__PURE__*/
   enumDesc(fileDesc_extra_name_clash, 1, 0);
 
 /**
@@ -346,9 +517,14 @@ export enum ReservedPropertyNames_EnumBuiltInPrefixed {
 }
 
 /**
+ * JSON type for the enum spec.ReservedPropertyNames.EnumBuiltInPrefixed.
+ */
+export type ReservedPropertyNames_EnumBuiltInPrefixedJson = "ENUM_BUILT_IN_PREFIXED_constructor" | "ENUM_BUILT_IN_PREFIXED_toString" | "ENUM_BUILT_IN_PREFIXED_toJSON" | "ENUM_BUILT_IN_PREFIXED_valueOf";
+
+/**
  * Describes the enum spec.ReservedPropertyNames.EnumBuiltInPrefixed.
  */
-export const ReservedPropertyNames_EnumBuiltInPrefixedDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltInPrefixed> = /*@__PURE__*/
+export const ReservedPropertyNames_EnumBuiltInPrefixedDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltInPrefixed, ReservedPropertyNames_EnumBuiltInPrefixedJson> = /*@__PURE__*/
   enumDesc(fileDesc_extra_name_clash, 1, 1);
 
 /**
@@ -402,9 +578,14 @@ export enum ReservedPropertyNames_EnumRuntime {
 }
 
 /**
+ * JSON type for the enum spec.ReservedPropertyNames.EnumRuntime.
+ */
+export type ReservedPropertyNames_EnumRuntimeJson = "toJson" | "type" | "clone" | "equals" | "fromBinary" | "fromJson" | "fromJsonString" | "toBinary" | "toJsonString";
+
+/**
  * Describes the enum spec.ReservedPropertyNames.EnumRuntime.
  */
-export const ReservedPropertyNames_EnumRuntimeDesc: GenDescEnum<ReservedPropertyNames_EnumRuntime> = /*@__PURE__*/
+export const ReservedPropertyNames_EnumRuntimeDesc: GenDescEnum<ReservedPropertyNames_EnumRuntime, ReservedPropertyNames_EnumRuntimeJson> = /*@__PURE__*/
   enumDesc(fileDesc_extra_name_clash, 1, 2);
 
 /**
@@ -416,10 +597,16 @@ export type interface$ = Message$1<"spec.interface"> & {
 };
 
 /**
+ * JSON type for the message spec.interface.
+ */
+export type interface$Json = {
+};
+
+/**
  * Describes the message spec.interface.
  * Use `create(interface$Desc)` to create a new message.
  */
-export const interface$Desc: GenDescMessage<interface$> = /*@__PURE__*/
+export const interface$Desc: GenDescMessage<interface$, interface$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 2);
 
 /**
@@ -431,10 +618,16 @@ export type function$ = Message$1<"spec.function"> & {
 };
 
 /**
+ * JSON type for the message spec.function.
+ */
+export type function$Json = {
+};
+
+/**
  * Describes the message spec.function.
  * Use `create(function$Desc)` to create a new message.
  */
-export const function$Desc: GenDescMessage<function$> = /*@__PURE__*/
+export const function$Desc: GenDescMessage<function$, function$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 3);
 
 /**
@@ -446,10 +639,16 @@ export type instanceof$ = Message$1<"spec.instanceof"> & {
 };
 
 /**
+ * JSON type for the message spec.instanceof.
+ */
+export type instanceof$Json = {
+};
+
+/**
  * Describes the message spec.instanceof.
  * Use `create(instanceof$Desc)` to create a new message.
  */
-export const instanceof$Desc: GenDescMessage<instanceof$> = /*@__PURE__*/
+export const instanceof$Desc: GenDescMessage<instanceof$, instanceof$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 4);
 
 /**
@@ -461,10 +660,16 @@ export type switch$ = Message$1<"spec.switch"> & {
 };
 
 /**
+ * JSON type for the message spec.switch.
+ */
+export type switch$Json = {
+};
+
+/**
  * Describes the message spec.switch.
  * Use `create(switch$Desc)` to create a new message.
  */
-export const switch$Desc: GenDescMessage<switch$> = /*@__PURE__*/
+export const switch$Desc: GenDescMessage<switch$, switch$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 5);
 
 /**
@@ -476,10 +681,16 @@ export type case$ = Message$1<"spec.case"> & {
 };
 
 /**
+ * JSON type for the message spec.case.
+ */
+export type case$Json = {
+};
+
+/**
  * Describes the message spec.case.
  * Use `create(case$Desc)` to create a new message.
  */
-export const case$Desc: GenDescMessage<case$> = /*@__PURE__*/
+export const case$Desc: GenDescMessage<case$, case$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 6);
 
 /**
@@ -491,10 +702,16 @@ export type return$ = Message$1<"spec.return"> & {
 };
 
 /**
+ * JSON type for the message spec.return.
+ */
+export type return$Json = {
+};
+
+/**
  * Describes the message spec.return.
  * Use `create(return$Desc)` to create a new message.
  */
-export const return$Desc: GenDescMessage<return$> = /*@__PURE__*/
+export const return$Desc: GenDescMessage<return$, return$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 7);
 
 /**
@@ -506,10 +723,16 @@ export type Message = Message$1<"spec.Message"> & {
 };
 
 /**
+ * JSON type for the message spec.Message.
+ */
+export type MessageJson = {
+};
+
+/**
  * Describes the message spec.Message.
  * Use `create(MessageDesc)` to create a new message.
  */
-export const MessageDesc: GenDescMessage<Message> = /*@__PURE__*/
+export const MessageDesc: GenDescMessage<Message, MessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 8);
 
 /**
@@ -521,10 +744,16 @@ export type PartialMessage = Message$1<"spec.PartialMessage"> & {
 };
 
 /**
+ * JSON type for the message spec.PartialMessage.
+ */
+export type PartialMessageJson = {
+};
+
+/**
  * Describes the message spec.PartialMessage.
  * Use `create(PartialMessageDesc)` to create a new message.
  */
-export const PartialMessageDesc: GenDescMessage<PartialMessage> = /*@__PURE__*/
+export const PartialMessageDesc: GenDescMessage<PartialMessage, PartialMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 9);
 
 /**
@@ -536,10 +765,16 @@ export type PlainMessage = Message$1<"spec.PlainMessage"> & {
 };
 
 /**
+ * JSON type for the message spec.PlainMessage.
+ */
+export type PlainMessageJson = {
+};
+
+/**
  * Describes the message spec.PlainMessage.
  * Use `create(PlainMessageDesc)` to create a new message.
  */
-export const PlainMessageDesc: GenDescMessage<PlainMessage> = /*@__PURE__*/
+export const PlainMessageDesc: GenDescMessage<PlainMessage, PlainMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 10);
 
 /**
@@ -562,10 +797,25 @@ export type Error = Message$1<"spec.Error"> & {
 };
 
 /**
+ * JSON type for the message spec.Error.
+ */
+export type ErrorJson = {
+  /**
+   * @generated from field: string field_name = 1;
+   */
+  fieldName?: string;
+
+  /**
+   * @generated from field: string message = 2;
+   */
+  message?: string;
+};
+
+/**
  * Describes the message spec.Error.
  * Use `create(ErrorDesc)` to create a new message.
  */
-export const ErrorDesc: GenDescMessage<Error> = /*@__PURE__*/
+export const ErrorDesc: GenDescMessage<Error, ErrorJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 11);
 
 /**
@@ -577,10 +827,16 @@ export type Object$ = Message$1<"spec.Object"> & {
 };
 
 /**
+ * JSON type for the message spec.Object.
+ */
+export type Object$Json = {
+};
+
+/**
  * Describes the message spec.Object.
  * Use `create(Object$Desc)` to create a new message.
  */
-export const Object$Desc: GenDescMessage<Object$> = /*@__PURE__*/
+export const Object$Desc: GenDescMessage<Object$, Object$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 12);
 
 /**
@@ -590,10 +846,16 @@ export type object$ = Message$1<"spec.object"> & {
 };
 
 /**
+ * JSON type for the message spec.object.
+ */
+export type object$Json = {
+};
+
+/**
  * Describes the message spec.object.
  * Use `create(object$Desc)` to create a new message.
  */
-export const object$Desc: GenDescMessage<object$> = /*@__PURE__*/
+export const object$Desc: GenDescMessage<object$, object$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 13);
 
 /**
@@ -605,10 +867,16 @@ export type array = Message$1<"spec.array"> & {
 };
 
 /**
+ * JSON type for the message spec.array.
+ */
+export type arrayJson = {
+};
+
+/**
  * Describes the message spec.array.
  * Use `create(arrayDesc)` to create a new message.
  */
-export const arrayDesc: GenDescMessage<array> = /*@__PURE__*/
+export const arrayDesc: GenDescMessage<array, arrayJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 14);
 
 /**
@@ -620,10 +888,16 @@ export type string$ = Message$1<"spec.string"> & {
 };
 
 /**
+ * JSON type for the message spec.string.
+ */
+export type string$Json = {
+};
+
+/**
  * Describes the message spec.string.
  * Use `create(string$Desc)` to create a new message.
  */
-export const string$Desc: GenDescMessage<string$> = /*@__PURE__*/
+export const string$Desc: GenDescMessage<string$, string$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 15);
 
 /**
@@ -635,10 +909,16 @@ export type number$ = Message$1<"spec.number"> & {
 };
 
 /**
+ * JSON type for the message spec.number.
+ */
+export type number$Json = {
+};
+
+/**
  * Describes the message spec.number.
  * Use `create(number$Desc)` to create a new message.
  */
-export const number$Desc: GenDescMessage<number$> = /*@__PURE__*/
+export const number$Desc: GenDescMessage<number$, number$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 16);
 
 /**
@@ -650,10 +930,16 @@ export type boolean$ = Message$1<"spec.boolean"> & {
 };
 
 /**
+ * JSON type for the message spec.boolean.
+ */
+export type boolean$Json = {
+};
+
+/**
  * Describes the message spec.boolean.
  * Use `create(boolean$Desc)` to create a new message.
  */
-export const boolean$Desc: GenDescMessage<boolean$> = /*@__PURE__*/
+export const boolean$Desc: GenDescMessage<boolean$, boolean$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 17);
 
 /**
@@ -665,10 +951,16 @@ export type bigint$ = Message$1<"spec.bigint"> & {
 };
 
 /**
+ * JSON type for the message spec.bigint.
+ */
+export type bigint$Json = {
+};
+
+/**
  * Describes the message spec.bigint.
  * Use `create(bigint$Desc)` to create a new message.
  */
-export const bigint$Desc: GenDescMessage<bigint$> = /*@__PURE__*/
+export const bigint$Desc: GenDescMessage<bigint$, bigint$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 18);
 
 /**
@@ -680,10 +972,16 @@ export type Uint8Array$ = Message$1<"spec.Uint8Array"> & {
 };
 
 /**
+ * JSON type for the message spec.Uint8Array.
+ */
+export type Uint8Array$Json = {
+};
+
+/**
  * Describes the message spec.Uint8Array.
  * Use `create(Uint8Array$Desc)` to create a new message.
  */
-export const Uint8Array$Desc: GenDescMessage<Uint8Array$> = /*@__PURE__*/
+export const Uint8Array$Desc: GenDescMessage<Uint8Array$, Uint8Array$Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 19);
 
 /**
@@ -695,10 +993,16 @@ export type Array = Message$1<"spec.Array"> & {
 };
 
 /**
+ * JSON type for the message spec.Array.
+ */
+export type ArrayJson = {
+};
+
+/**
  * Describes the message spec.Array.
  * Use `create(ArrayDesc)` to create a new message.
  */
-export const ArrayDesc: GenDescMessage<Array> = /*@__PURE__*/
+export const ArrayDesc: GenDescMessage<Array, ArrayJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 20);
 
 /**
@@ -710,10 +1014,16 @@ export type String = Message$1<"spec.String"> & {
 };
 
 /**
+ * JSON type for the message spec.String.
+ */
+export type StringJson = {
+};
+
+/**
  * Describes the message spec.String.
  * Use `create(StringDesc)` to create a new message.
  */
-export const StringDesc: GenDescMessage<String> = /*@__PURE__*/
+export const StringDesc: GenDescMessage<String, StringJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 21);
 
 /**
@@ -725,10 +1035,16 @@ export type Number = Message$1<"spec.Number"> & {
 };
 
 /**
+ * JSON type for the message spec.Number.
+ */
+export type NumberJson = {
+};
+
+/**
  * Describes the message spec.Number.
  * Use `create(NumberDesc)` to create a new message.
  */
-export const NumberDesc: GenDescMessage<Number> = /*@__PURE__*/
+export const NumberDesc: GenDescMessage<Number, NumberJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 22);
 
 /**
@@ -740,10 +1056,16 @@ export type Boolean = Message$1<"spec.Boolean"> & {
 };
 
 /**
+ * JSON type for the message spec.Boolean.
+ */
+export type BooleanJson = {
+};
+
+/**
  * Describes the message spec.Boolean.
  * Use `create(BooleanDesc)` to create a new message.
  */
-export const BooleanDesc: GenDescMessage<Boolean> = /*@__PURE__*/
+export const BooleanDesc: GenDescMessage<Boolean, BooleanJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 23);
 
 /**
@@ -755,10 +1077,16 @@ export type BigInt = Message$1<"spec.BigInt"> & {
 };
 
 /**
+ * JSON type for the message spec.BigInt.
+ */
+export type BigIntJson = {
+};
+
+/**
  * Describes the message spec.BigInt.
  * Use `create(BigIntDesc)` to create a new message.
  */
-export const BigIntDesc: GenDescMessage<BigInt> = /*@__PURE__*/
+export const BigIntDesc: GenDescMessage<BigInt, BigIntJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 24);
 
 /**
@@ -768,10 +1096,16 @@ export type ClashParent = Message$1<"spec.ClashParent"> & {
 };
 
 /**
+ * JSON type for the message spec.ClashParent.
+ */
+export type ClashParentJson = {
+};
+
+/**
  * Describes the message spec.ClashParent.
  * Use `create(ClashParentDesc)` to create a new message.
  */
-export const ClashParentDesc: GenDescMessage<ClashParent> = /*@__PURE__*/
+export const ClashParentDesc: GenDescMessage<ClashParent, ClashParentJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 25);
 
 /**
@@ -783,10 +1117,16 @@ export type ClashParent_ClashChild = Message$1<"spec.ClashParent.ClashChild"> & 
 };
 
 /**
+ * JSON type for the message spec.ClashParent.ClashChild.
+ */
+export type ClashParent_ClashChildJson = {
+};
+
+/**
  * Describes the message spec.ClashParent.ClashChild.
  * Use `create(ClashParent_ClashChildDesc)` to create a new message.
  */
-export const ClashParent_ClashChildDesc: GenDescMessage<ClashParent_ClashChild> = /*@__PURE__*/
+export const ClashParent_ClashChildDesc: GenDescMessage<ClashParent_ClashChild, ClashParent_ClashChildJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 25, 0);
 
 /**
@@ -837,10 +1177,45 @@ export type NoClashFields = Message$1<"spec.NoClashFields"> & {
 };
 
 /**
+ * JSON type for the message spec.NoClashFields.
+ */
+export type NoClashFieldsJson = {
+  /**
+   * @generated from field: string const = 1;
+   */
+  const?: string;
+
+  /**
+   * @generated from field: string switch = 2;
+   */
+  switch?: string;
+
+  /**
+   * @generated from field: string case = 3;
+   */
+  case?: string;
+
+  /**
+   * @generated from field: string function = 4;
+   */
+  function?: string;
+
+  /**
+   * @generated from field: string interface = 5;
+   */
+  interface?: string;
+
+  /**
+   * @generated from field: string return = 6;
+   */
+  return?: string;
+};
+
+/**
  * Describes the message spec.NoClashFields.
  * Use `create(NoClashFieldsDesc)` to create a new message.
  */
-export const NoClashFieldsDesc: GenDescMessage<NoClashFields> = /*@__PURE__*/
+export const NoClashFieldsDesc: GenDescMessage<NoClashFields, NoClashFieldsJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 26);
 
 /**
@@ -902,10 +1277,45 @@ export type NoClashOneof = Message$1<"spec.NoClashOneof"> & {
 };
 
 /**
+ * JSON type for the message spec.NoClashOneof.
+ */
+export type NoClashOneofJson = {
+  /**
+   * @generated from field: string const = 1;
+   */
+  const?: string;
+
+  /**
+   * @generated from field: string switch = 2;
+   */
+  switch?: string;
+
+  /**
+   * @generated from field: string case = 3;
+   */
+  case?: string;
+
+  /**
+   * @generated from field: string function = 4;
+   */
+  function?: string;
+
+  /**
+   * @generated from field: string interface = 5;
+   */
+  interface?: string;
+
+  /**
+   * @generated from field: string return = 6;
+   */
+  return?: string;
+};
+
+/**
  * Describes the message spec.NoClashOneof.
  * Use `create(NoClashOneofDesc)` to create a new message.
  */
-export const NoClashOneofDesc: GenDescMessage<NoClashOneof> = /*@__PURE__*/
+export const NoClashOneofDesc: GenDescMessage<NoClashOneof, NoClashOneofJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 27);
 
 /**
@@ -919,10 +1329,20 @@ export type NoClashOneofADT = Message$1<"spec.NoClashOneofADT"> & {
 };
 
 /**
+ * JSON type for the message spec.NoClashOneofADT.
+ */
+export type NoClashOneofADTJson = {
+  /**
+   * @generated from field: spec.NoClashOneofADT.M m = 1;
+   */
+  m?: NoClashOneofADT_MJson;
+};
+
+/**
  * Describes the message spec.NoClashOneofADT.
  * Use `create(NoClashOneofADTDesc)` to create a new message.
  */
-export const NoClashOneofADTDesc: GenDescMessage<NoClashOneofADT> = /*@__PURE__*/
+export const NoClashOneofADTDesc: GenDescMessage<NoClashOneofADT, NoClashOneofADTJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 28);
 
 /**
@@ -941,10 +1361,25 @@ export type NoClashOneofADT_M = Message$1<"spec.NoClashOneofADT.M"> & {
 };
 
 /**
+ * JSON type for the message spec.NoClashOneofADT.M.
+ */
+export type NoClashOneofADT_MJson = {
+  /**
+   * @generated from field: string case = 1;
+   */
+  case?: string;
+
+  /**
+   * @generated from field: optional string value = 2;
+   */
+  value?: string;
+};
+
+/**
  * Describes the message spec.NoClashOneofADT.M.
  * Use `create(NoClashOneofADT_MDesc)` to create a new message.
  */
-export const NoClashOneofADT_MDesc: GenDescMessage<NoClashOneofADT_M> = /*@__PURE__*/
+export const NoClashOneofADT_MDesc: GenDescMessage<NoClashOneofADT_M, NoClashOneofADT_MJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 28, 0);
 
 /**
@@ -956,10 +1391,16 @@ export type NoClashEnumWrap = Message$1<"spec.NoClashEnumWrap"> & {
 };
 
 /**
+ * JSON type for the message spec.NoClashEnumWrap.
+ */
+export type NoClashEnumWrapJson = {
+};
+
+/**
  * Describes the message spec.NoClashEnumWrap.
  * Use `create(NoClashEnumWrapDesc)` to create a new message.
  */
-export const NoClashEnumWrapDesc: GenDescMessage<NoClashEnumWrap> = /*@__PURE__*/
+export const NoClashEnumWrapDesc: GenDescMessage<NoClashEnumWrap, NoClashEnumWrapJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 29);
 
 /**
@@ -1010,9 +1451,14 @@ export enum NoClashEnumWrap_X {
 }
 
 /**
+ * JSON type for the enum spec.NoClashEnumWrap.X.
+ */
+export type NoClashEnumWrap_XJson = "instanceof" | "switch" | "case" | "function" | "interface" | "return";
+
+/**
  * Describes the enum spec.NoClashEnumWrap.X.
  */
-export const NoClashEnumWrap_XDesc: GenDescEnum<NoClashEnumWrap_X> = /*@__PURE__*/
+export const NoClashEnumWrap_XDesc: GenDescEnum<NoClashEnumWrap_X, NoClashEnumWrap_XJson> = /*@__PURE__*/
   enumDesc(fileDesc_extra_name_clash, 29, 0);
 
 /**

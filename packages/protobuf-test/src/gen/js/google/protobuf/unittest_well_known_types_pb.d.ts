@@ -18,8 +18,8 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
-import type { Type } from "./type_pb.js";
+import type { Any, AnyJson, Api, ApiJson, BoolValue, BoolValueJson, BytesValue, BytesValueJson, DoubleValue, DoubleValueJson, Duration, DurationJson, Empty, EmptyJson, FieldMask, FieldMaskJson, FloatValue, FloatValueJson, Int32Value, Int32ValueJson, Int64Value, Int64ValueJson, SourceContext, SourceContextJson, StringValue, StringValueJson, Struct, StructJson, Timestamp, TimestampJson, UInt32Value, UInt32ValueJson, UInt64Value, UInt64ValueJson, Value, ValueJson } from "@bufbuild/protobuf/wkt";
+import type { Type, TypeJson } from "./type_pb.js";
 
 /**
  * Describes the file google/protobuf/unittest_well_known_types.proto.
@@ -133,10 +133,110 @@ export declare type TestWellKnownTypes = Message<"protobuf_unittest.TestWellKnow
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestWellKnownTypes.
+ */
+export declare type TestWellKnownTypesJson = {
+  /**
+   * @generated from field: google.protobuf.Any any_field = 1;
+   */
+  anyField?: AnyJson;
+
+  /**
+   * @generated from field: google.protobuf.Api api_field = 2;
+   */
+  apiField?: ApiJson;
+
+  /**
+   * @generated from field: google.protobuf.Duration duration_field = 3;
+   */
+  durationField?: DurationJson;
+
+  /**
+   * @generated from field: google.protobuf.Empty empty_field = 4;
+   */
+  emptyField?: EmptyJson;
+
+  /**
+   * @generated from field: google.protobuf.FieldMask field_mask_field = 5;
+   */
+  fieldMaskField?: FieldMaskJson;
+
+  /**
+   * @generated from field: google.protobuf.SourceContext source_context_field = 6;
+   */
+  sourceContextField?: SourceContextJson;
+
+  /**
+   * @generated from field: google.protobuf.Struct struct_field = 7;
+   */
+  structField?: StructJson;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp timestamp_field = 8;
+   */
+  timestampField?: TimestampJson;
+
+  /**
+   * @generated from field: google.protobuf.Type type_field = 9;
+   */
+  typeField?: TypeJson;
+
+  /**
+   * @generated from field: google.protobuf.DoubleValue double_field = 10;
+   */
+  doubleField?: DoubleValueJson;
+
+  /**
+   * @generated from field: google.protobuf.FloatValue float_field = 11;
+   */
+  floatField?: FloatValueJson;
+
+  /**
+   * @generated from field: google.protobuf.Int64Value int64_field = 12;
+   */
+  int64Field?: Int64ValueJson;
+
+  /**
+   * @generated from field: google.protobuf.UInt64Value uint64_field = 13;
+   */
+  uint64Field?: UInt64ValueJson;
+
+  /**
+   * @generated from field: google.protobuf.Int32Value int32_field = 14;
+   */
+  int32Field?: Int32ValueJson;
+
+  /**
+   * @generated from field: google.protobuf.UInt32Value uint32_field = 15;
+   */
+  uint32Field?: UInt32ValueJson;
+
+  /**
+   * @generated from field: google.protobuf.BoolValue bool_field = 16;
+   */
+  boolField?: BoolValueJson;
+
+  /**
+   * @generated from field: google.protobuf.StringValue string_field = 17;
+   */
+  stringField?: StringValueJson;
+
+  /**
+   * @generated from field: google.protobuf.BytesValue bytes_field = 18;
+   */
+  bytesField?: BytesValueJson;
+
+  /**
+   * @generated from field: google.protobuf.Value value_field = 19;
+   */
+  valueField?: ValueJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestWellKnownTypes.
  * Use `create(TestWellKnownTypesDesc)` to create a new message.
  */
-export declare const TestWellKnownTypesDesc: GenDescMessage<TestWellKnownTypes>;
+export declare const TestWellKnownTypesDesc: GenDescMessage<TestWellKnownTypes, TestWellKnownTypesJson>;
 
 /**
  * A repeated field for each well-known type.
@@ -238,10 +338,105 @@ export declare type RepeatedWellKnownTypes = Message<"protobuf_unittest.Repeated
 };
 
 /**
+ * JSON type for the message protobuf_unittest.RepeatedWellKnownTypes.
+ */
+export declare type RepeatedWellKnownTypesJson = {
+  /**
+   * @generated from field: repeated google.protobuf.Any any_field = 1;
+   */
+  anyField?: AnyJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Api api_field = 2;
+   */
+  apiField?: ApiJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Duration duration_field = 3;
+   */
+  durationField?: DurationJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Empty empty_field = 4;
+   */
+  emptyField?: EmptyJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.FieldMask field_mask_field = 5;
+   */
+  fieldMaskField?: FieldMaskJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.SourceContext source_context_field = 6;
+   */
+  sourceContextField?: SourceContextJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Struct struct_field = 7;
+   */
+  structField?: StructJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Timestamp timestamp_field = 8;
+   */
+  timestampField?: TimestampJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Type type_field = 9;
+   */
+  typeField?: TypeJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.DoubleValue double_field = 10;
+   */
+  doubleField?: DoubleValueJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.FloatValue float_field = 11;
+   */
+  floatField?: FloatValueJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Int64Value int64_field = 12;
+   */
+  int64Field?: Int64ValueJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.UInt64Value uint64_field = 13;
+   */
+  uint64Field?: UInt64ValueJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Int32Value int32_field = 14;
+   */
+  int32Field?: Int32ValueJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.UInt32Value uint32_field = 15;
+   */
+  uint32Field?: UInt32ValueJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.BoolValue bool_field = 16;
+   */
+  boolField?: BoolValueJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.StringValue string_field = 17;
+   */
+  stringField?: StringValueJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.BytesValue bytes_field = 18;
+   */
+  bytesField?: BytesValueJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.RepeatedWellKnownTypes.
  * Use `create(RepeatedWellKnownTypesDesc)` to create a new message.
  */
-export declare const RepeatedWellKnownTypesDesc: GenDescMessage<RepeatedWellKnownTypes>;
+export declare const RepeatedWellKnownTypesDesc: GenDescMessage<RepeatedWellKnownTypes, RepeatedWellKnownTypesJson>;
 
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
@@ -362,10 +557,105 @@ export declare type OneofWellKnownTypes = Message<"protobuf_unittest.OneofWellKn
 };
 
 /**
+ * JSON type for the message protobuf_unittest.OneofWellKnownTypes.
+ */
+export declare type OneofWellKnownTypesJson = {
+  /**
+   * @generated from field: google.protobuf.Any any_field = 1;
+   */
+  anyField?: AnyJson;
+
+  /**
+   * @generated from field: google.protobuf.Api api_field = 2;
+   */
+  apiField?: ApiJson;
+
+  /**
+   * @generated from field: google.protobuf.Duration duration_field = 3;
+   */
+  durationField?: DurationJson;
+
+  /**
+   * @generated from field: google.protobuf.Empty empty_field = 4;
+   */
+  emptyField?: EmptyJson;
+
+  /**
+   * @generated from field: google.protobuf.FieldMask field_mask_field = 5;
+   */
+  fieldMaskField?: FieldMaskJson;
+
+  /**
+   * @generated from field: google.protobuf.SourceContext source_context_field = 6;
+   */
+  sourceContextField?: SourceContextJson;
+
+  /**
+   * @generated from field: google.protobuf.Struct struct_field = 7;
+   */
+  structField?: StructJson;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp timestamp_field = 8;
+   */
+  timestampField?: TimestampJson;
+
+  /**
+   * @generated from field: google.protobuf.Type type_field = 9;
+   */
+  typeField?: TypeJson;
+
+  /**
+   * @generated from field: google.protobuf.DoubleValue double_field = 10;
+   */
+  doubleField?: DoubleValueJson;
+
+  /**
+   * @generated from field: google.protobuf.FloatValue float_field = 11;
+   */
+  floatField?: FloatValueJson;
+
+  /**
+   * @generated from field: google.protobuf.Int64Value int64_field = 12;
+   */
+  int64Field?: Int64ValueJson;
+
+  /**
+   * @generated from field: google.protobuf.UInt64Value uint64_field = 13;
+   */
+  uint64Field?: UInt64ValueJson;
+
+  /**
+   * @generated from field: google.protobuf.Int32Value int32_field = 14;
+   */
+  int32Field?: Int32ValueJson;
+
+  /**
+   * @generated from field: google.protobuf.UInt32Value uint32_field = 15;
+   */
+  uint32Field?: UInt32ValueJson;
+
+  /**
+   * @generated from field: google.protobuf.BoolValue bool_field = 16;
+   */
+  boolField?: BoolValueJson;
+
+  /**
+   * @generated from field: google.protobuf.StringValue string_field = 17;
+   */
+  stringField?: StringValueJson;
+
+  /**
+   * @generated from field: google.protobuf.BytesValue bytes_field = 18;
+   */
+  bytesField?: BytesValueJson;
+};
+
+/**
  * Describes the message protobuf_unittest.OneofWellKnownTypes.
  * Use `create(OneofWellKnownTypesDesc)` to create a new message.
  */
-export declare const OneofWellKnownTypesDesc: GenDescMessage<OneofWellKnownTypes>;
+export declare const OneofWellKnownTypesDesc: GenDescMessage<OneofWellKnownTypes, OneofWellKnownTypesJson>;
 
 /**
  * A map field for each well-known type. We only
@@ -467,8 +757,103 @@ export declare type MapWellKnownTypes = Message<"protobuf_unittest.MapWellKnownT
 };
 
 /**
+ * JSON type for the message protobuf_unittest.MapWellKnownTypes.
+ */
+export declare type MapWellKnownTypesJson = {
+  /**
+   * @generated from field: map<int32, google.protobuf.Any> any_field = 1;
+   */
+  anyField?: { [key: number]: AnyJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.Api> api_field = 2;
+   */
+  apiField?: { [key: number]: ApiJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.Duration> duration_field = 3;
+   */
+  durationField?: { [key: number]: DurationJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.Empty> empty_field = 4;
+   */
+  emptyField?: { [key: number]: EmptyJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.FieldMask> field_mask_field = 5;
+   */
+  fieldMaskField?: { [key: number]: FieldMaskJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.SourceContext> source_context_field = 6;
+   */
+  sourceContextField?: { [key: number]: SourceContextJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.Struct> struct_field = 7;
+   */
+  structField?: { [key: number]: StructJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.Timestamp> timestamp_field = 8;
+   */
+  timestampField?: { [key: number]: TimestampJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.Type> type_field = 9;
+   */
+  typeField?: { [key: number]: TypeJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.DoubleValue> double_field = 10;
+   */
+  doubleField?: { [key: number]: DoubleValueJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.FloatValue> float_field = 11;
+   */
+  floatField?: { [key: number]: FloatValueJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.Int64Value> int64_field = 12;
+   */
+  int64Field?: { [key: number]: Int64ValueJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.UInt64Value> uint64_field = 13;
+   */
+  uint64Field?: { [key: number]: UInt64ValueJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.Int32Value> int32_field = 14;
+   */
+  int32Field?: { [key: number]: Int32ValueJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.UInt32Value> uint32_field = 15;
+   */
+  uint32Field?: { [key: number]: UInt32ValueJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.BoolValue> bool_field = 16;
+   */
+  boolField?: { [key: number]: BoolValueJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.StringValue> string_field = 17;
+   */
+  stringField?: { [key: number]: StringValueJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.BytesValue> bytes_field = 18;
+   */
+  bytesField?: { [key: number]: BytesValueJson };
+};
+
+/**
  * Describes the message protobuf_unittest.MapWellKnownTypes.
  * Use `create(MapWellKnownTypesDesc)` to create a new message.
  */
-export declare const MapWellKnownTypesDesc: GenDescMessage<MapWellKnownTypes>;
+export declare const MapWellKnownTypesDesc: GenDescMessage<MapWellKnownTypes, MapWellKnownTypesJson>;
 

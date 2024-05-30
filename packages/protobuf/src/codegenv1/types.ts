@@ -21,6 +21,7 @@ import type {
   DescMessage,
   DescService,
 } from "../descriptors.js";
+import type { JsonValue } from "../json-value.js";
 
 /**
  * Describes a protobuf source file.
@@ -29,6 +30,7 @@ import type {
  */
 export type GenDescFile = DescFile;
 
+// TODO make JsonType parameter mandatory?
 /**
  * Describes a message declaration in a protobuf source file.
  *
@@ -38,11 +40,12 @@ export type GenDescFile = DescFile;
  * @private
  */
 // prettier-ignore
-export type GenDescMessage<RuntimeShape extends Message> =
+export type GenDescMessage<RuntimeShape extends Message, JsonType = JsonValue> =
   & Omit<DescMessage, "field">
   & { field: Record<MessageFieldNames<RuntimeShape>, DescField> }
-  & brand<RuntimeShape>;
+  & brand<RuntimeShape, JsonType>;
 
+// TODO make JsonType parameter mandatory?
 /**
  * Describes an enumeration in a protobuf source file.
  *
@@ -51,7 +54,10 @@ export type GenDescMessage<RuntimeShape extends Message> =
  *
  * @private
  */
-export type GenDescEnum<RuntimeShape> = DescEnum & brand<RuntimeShape>;
+export type GenDescEnum<
+  RuntimeShape,
+  JsonType extends JsonValue = JsonValue,
+> = DescEnum & brand<RuntimeShape, JsonType>;
 
 /**
  * Describes an extension in a protobuf source file.

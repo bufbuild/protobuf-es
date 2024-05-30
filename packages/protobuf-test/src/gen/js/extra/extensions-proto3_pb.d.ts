@@ -38,10 +38,20 @@ export declare type Proto3ExtMessage = Message<"proto3ext.Proto3ExtMessage"> & {
 };
 
 /**
+ * JSON type for the message proto3ext.Proto3ExtMessage.
+ */
+export declare type Proto3ExtMessageJson = {
+  /**
+   * @generated from field: string string_field = 1;
+   */
+  stringField?: string;
+};
+
+/**
  * Describes the message proto3ext.Proto3ExtMessage.
  * Use `create(Proto3ExtMessageDesc)` to create a new message.
  */
-export declare const Proto3ExtMessageDesc: GenDescMessage<Proto3ExtMessage>;
+export declare const Proto3ExtMessageDesc: GenDescMessage<Proto3ExtMessage, Proto3ExtMessageJson>;
 
 /**
  * @generated from extension: uint32 uint32_ext = 1001;

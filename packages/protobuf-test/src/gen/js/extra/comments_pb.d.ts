@@ -89,10 +89,40 @@ export declare type MessageWithComments = Message<"spec.MessageWithComments"> & 
 };
 
 /**
+ * JSON type for the message spec.MessageWithComments.
+ */
+export declare type MessageWithCommentsJson = {
+  /**
+   * @generated from field: string foo = 1;
+   */
+  foo?: string;
+
+  /**
+   * @generated from field: int32 value = 2;
+   */
+  value?: number;
+
+  /**
+   * @generated from field: string error = 3;
+   */
+  error?: string;
+
+  /**
+   * @generated from field: string this_field_has_an_empty_comment = 4;
+   */
+  thisFieldHasAnEmptyComment?: string;
+
+  /**
+   * @generated from field: string this_field_is_deprecated = 5 [json_name = "sdf", deprecated = true];
+   */
+  sdf?: string;
+};
+
+/**
  * Describes the message spec.MessageWithComments.
  * Use `create(MessageWithCommentsDesc)` to create a new message.
  */
-export declare const MessageWithCommentsDesc: GenDescMessage<MessageWithComments>;
+export declare const MessageWithCommentsDesc: GenDescMessage<MessageWithComments, MessageWithCommentsJson>;
 
 /**
  * Comment within empty message.
@@ -103,10 +133,16 @@ export declare type EmptyMessageWithComment = Message<"spec.EmptyMessageWithComm
 };
 
 /**
+ * JSON type for the message spec.EmptyMessageWithComment.
+ */
+export declare type EmptyMessageWithCommentJson = {
+};
+
+/**
  * Describes the message spec.EmptyMessageWithComment.
  * Use `create(EmptyMessageWithCommentDesc)` to create a new message.
  */
-export declare const EmptyMessageWithCommentDesc: GenDescMessage<EmptyMessageWithComment>;
+export declare const EmptyMessageWithCommentDesc: GenDescMessage<EmptyMessageWithComment, EmptyMessageWithCommentJson>;
 
 /**
  * see https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
@@ -164,10 +200,45 @@ export declare type GoogleCommentExample = Message<"spec.GoogleCommentExample"> 
 };
 
 /**
+ * JSON type for the message spec.GoogleCommentExample.
+ */
+export declare type GoogleCommentExampleJson = {
+  /**
+   * @generated from field: int32 foo = 1;
+   */
+  foo?: number;
+
+  /**
+   * @generated from field: int32 bar = 2;
+   */
+  bar?: number;
+
+  /**
+   * @generated from field: string baz = 3;
+   */
+  baz?: string;
+
+  /**
+   * @generated from field: double qux = 4;
+   */
+  qux?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: string corge = 5;
+   */
+  corge?: string;
+
+  /**
+   * @generated from field: int32 grault = 6;
+   */
+  grault?: number;
+};
+
+/**
  * Describes the message spec.GoogleCommentExample.
  * Use `create(GoogleCommentExampleDesc)` to create a new message.
  */
-export declare const GoogleCommentExampleDesc: GenDescMessage<GoogleCommentExample>;
+export declare const GoogleCommentExampleDesc: GenDescMessage<GoogleCommentExample, GoogleCommentExampleJson>;
 
 /**
  * Leading comment for enum.
@@ -188,9 +259,14 @@ export enum EnumWithComments {
 }
 
 /**
+ * JSON type for the enum spec.EnumWithComments.
+ */
+export declare type EnumWithCommentsJson = "VALUE";
+
+/**
  * Describes the enum spec.EnumWithComments.
  */
-export declare const EnumWithCommentsDesc: GenDescEnum<EnumWithComments>;
+export declare const EnumWithCommentsDesc: GenDescEnum<EnumWithComments, EnumWithCommentsJson>;
 
 /**
  * Leading comment for deprecated enum
@@ -211,10 +287,15 @@ export enum DeprecatedEnumWithComment {
 }
 
 /**
+ * JSON type for the enum spec.DeprecatedEnumWithComment.
+ */
+export declare type DeprecatedEnumWithCommentJson = "DEPRECATED_ENUM_WITH_COMMENT_A" | "DEPRECATED_ENUM_WITH_COMMENT_B";
+
+/**
  * Describes the enum spec.DeprecatedEnumWithComment.
  * @deprecated
  */
-export declare const DeprecatedEnumWithCommentDesc: GenDescEnum<DeprecatedEnumWithComment>;
+export declare const DeprecatedEnumWithCommentDesc: GenDescEnum<DeprecatedEnumWithComment, DeprecatedEnumWithCommentJson>;
 
 /**
  * @generated from enum spec.DeprecatedEnumNoComment
@@ -233,8 +314,13 @@ export enum DeprecatedEnumNoComment {
 }
 
 /**
+ * JSON type for the enum spec.DeprecatedEnumNoComment.
+ */
+export declare type DeprecatedEnumNoCommentJson = "DEPRECATED_ENUM_NO_COMMENT_A" | "DEPRECATED_ENUM_NO_COMMENT_B";
+
+/**
  * Describes the enum spec.DeprecatedEnumNoComment.
  * @deprecated
  */
-export declare const DeprecatedEnumNoCommentDesc: GenDescEnum<DeprecatedEnumNoComment>;
+export declare const DeprecatedEnumNoCommentDesc: GenDescEnum<DeprecatedEnumNoComment, DeprecatedEnumNoCommentJson>;
 

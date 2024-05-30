@@ -41,10 +41,20 @@ export type Proto3ExtMessage = Message<"proto3ext.Proto3ExtMessage"> & {
 };
 
 /**
+ * JSON type for the message proto3ext.Proto3ExtMessage.
+ */
+export type Proto3ExtMessageJson = {
+  /**
+   * @generated from field: string string_field = 1;
+   */
+  stringField?: string;
+};
+
+/**
  * Describes the message proto3ext.Proto3ExtMessage.
  * Use `create(Proto3ExtMessageDesc)` to create a new message.
  */
-export const Proto3ExtMessageDesc: GenDescMessage<Proto3ExtMessage> = /*@__PURE__*/
+export const Proto3ExtMessageDesc: GenDescMessage<Proto3ExtMessage, Proto3ExtMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto3, 0);
 
 /**

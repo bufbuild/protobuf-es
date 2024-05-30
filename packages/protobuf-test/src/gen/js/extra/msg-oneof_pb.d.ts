@@ -87,10 +87,50 @@ export declare type OneofMessage = Message<"spec.OneofMessage"> & {
 };
 
 /**
+ * JSON type for the message spec.OneofMessage.
+ */
+export declare type OneofMessageJson = {
+  /**
+   * @generated from field: int32 value = 1;
+   */
+  value?: number;
+
+  /**
+   * @generated from field: string error = 2;
+   */
+  error?: string;
+
+  /**
+   * @generated from field: bytes bytes = 3;
+   */
+  bytes?: string;
+
+  /**
+   * @generated from field: spec.OneofMessageFoo foo = 11;
+   */
+  foo?: OneofMessageFooJson;
+
+  /**
+   * @generated from field: spec.OneofMessageBar bar = 12;
+   */
+  bar?: OneofMessageBarJson;
+
+  /**
+   * @generated from field: spec.OneofMessageBar baz = 13;
+   */
+  baz?: OneofMessageBarJson;
+
+  /**
+   * @generated from field: spec.OneofEnum e = 21;
+   */
+  e?: OneofEnumJson;
+};
+
+/**
  * Describes the message spec.OneofMessage.
  * Use `create(OneofMessageDesc)` to create a new message.
  */
-export declare const OneofMessageDesc: GenDescMessage<OneofMessage>;
+export declare const OneofMessageDesc: GenDescMessage<OneofMessage, OneofMessageJson>;
 
 /**
  * @generated from message spec.OneofMessageFoo
@@ -108,10 +148,25 @@ export declare type OneofMessageFoo = Message<"spec.OneofMessageFoo"> & {
 };
 
 /**
+ * JSON type for the message spec.OneofMessageFoo.
+ */
+export declare type OneofMessageFooJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: bool toggle = 2;
+   */
+  toggle?: boolean;
+};
+
+/**
  * Describes the message spec.OneofMessageFoo.
  * Use `create(OneofMessageFooDesc)` to create a new message.
  */
-export declare const OneofMessageFooDesc: GenDescMessage<OneofMessageFoo>;
+export declare const OneofMessageFooDesc: GenDescMessage<OneofMessageFoo, OneofMessageFooJson>;
 
 /**
  * @generated from message spec.OneofMessageBar
@@ -129,10 +184,25 @@ export declare type OneofMessageBar = Message<"spec.OneofMessageBar"> & {
 };
 
 /**
+ * JSON type for the message spec.OneofMessageBar.
+ */
+export declare type OneofMessageBarJson = {
+  /**
+   * @generated from field: int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: int32 b = 2;
+   */
+  b?: number;
+};
+
+/**
  * Describes the message spec.OneofMessageBar.
  * Use `create(OneofMessageBarDesc)` to create a new message.
  */
-export declare const OneofMessageBarDesc: GenDescMessage<OneofMessageBar>;
+export declare const OneofMessageBarDesc: GenDescMessage<OneofMessageBar, OneofMessageBarJson>;
 
 /**
  * @generated from enum spec.OneofEnum
@@ -155,7 +225,12 @@ export enum OneofEnum {
 }
 
 /**
+ * JSON type for the enum spec.OneofEnum.
+ */
+export declare type OneofEnumJson = "ONEOF_ENUM_UNSPECIFIED" | "ONEOF_ENUM_A" | "ONEOF_ENUM_B";
+
+/**
  * Describes the enum spec.OneofEnum.
  */
-export declare const OneofEnumDesc: GenDescEnum<OneofEnum>;
+export declare const OneofEnumDesc: GenDescEnum<OneofEnum, OneofEnumJson>;
 

@@ -107,10 +107,90 @@ export type ScalarValuesMessage = Message<"spec.ScalarValuesMessage"> & {
 };
 
 /**
+ * JSON type for the message spec.ScalarValuesMessage.
+ */
+export type ScalarValuesMessageJson = {
+  /**
+   * @generated from field: double double_field = 1;
+   */
+  doubleField?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: float float_field = 2;
+   */
+  floatField?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: int64 int64_field = 3;
+   */
+  int64Field?: string;
+
+  /**
+   * @generated from field: uint64 uint64_field = 4;
+   */
+  uint64Field?: string;
+
+  /**
+   * @generated from field: int32 int32_field = 5;
+   */
+  int32Field?: number;
+
+  /**
+   * @generated from field: fixed64 fixed64_field = 6;
+   */
+  fixed64Field?: string;
+
+  /**
+   * @generated from field: fixed32 fixed32_field = 7;
+   */
+  fixed32Field?: number;
+
+  /**
+   * @generated from field: bool bool_field = 8;
+   */
+  boolField?: boolean;
+
+  /**
+   * @generated from field: string string_field = 9;
+   */
+  stringField?: string;
+
+  /**
+   * @generated from field: bytes bytes_field = 11;
+   */
+  bytesField?: string;
+
+  /**
+   * @generated from field: uint32 uint32_field = 12;
+   */
+  uint32Field?: number;
+
+  /**
+   * @generated from field: sfixed32 sfixed32_field = 14;
+   */
+  sfixed32Field?: number;
+
+  /**
+   * @generated from field: sfixed64 sfixed64_field = 15;
+   */
+  sfixed64Field?: string;
+
+  /**
+   * @generated from field: sint32 sint32_field = 16;
+   */
+  sint32Field?: number;
+
+  /**
+   * @generated from field: sint64 sint64_field = 17;
+   */
+  sint64Field?: string;
+};
+
+/**
  * Describes the message spec.ScalarValuesMessage.
  * Use `create(ScalarValuesMessageDesc)` to create a new message.
  */
-export const ScalarValuesMessageDesc: GenDescMessage<ScalarValuesMessage> = /*@__PURE__*/
+export const ScalarValuesMessageDesc: GenDescMessage<ScalarValuesMessage, ScalarValuesMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_scalar, 0);
 
 /**
@@ -194,9 +274,89 @@ export type RepeatedScalarValuesMessage = Message<"spec.RepeatedScalarValuesMess
 };
 
 /**
+ * JSON type for the message spec.RepeatedScalarValuesMessage.
+ */
+export type RepeatedScalarValuesMessageJson = {
+  /**
+   * @generated from field: repeated double double_field = 1;
+   */
+  doubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated float float_field = 2;
+   */
+  floatField?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated int64 int64_field = 3;
+   */
+  int64Field?: string[];
+
+  /**
+   * @generated from field: repeated uint64 uint64_field = 4;
+   */
+  uint64Field?: string[];
+
+  /**
+   * @generated from field: repeated int32 int32_field = 5;
+   */
+  int32Field?: number[];
+
+  /**
+   * @generated from field: repeated fixed64 fixed64_field = 6;
+   */
+  fixed64Field?: string[];
+
+  /**
+   * @generated from field: repeated fixed32 fixed32_field = 7;
+   */
+  fixed32Field?: number[];
+
+  /**
+   * @generated from field: repeated bool bool_field = 8;
+   */
+  boolField?: boolean[];
+
+  /**
+   * @generated from field: repeated string string_field = 9;
+   */
+  stringField?: string[];
+
+  /**
+   * @generated from field: repeated bytes bytes_field = 11;
+   */
+  bytesField?: string[];
+
+  /**
+   * @generated from field: repeated uint32 uint32_field = 12;
+   */
+  uint32Field?: number[];
+
+  /**
+   * @generated from field: repeated sfixed32 sfixed32_field = 14;
+   */
+  sfixed32Field?: number[];
+
+  /**
+   * @generated from field: repeated sfixed64 sfixed64_field = 15;
+   */
+  sfixed64Field?: string[];
+
+  /**
+   * @generated from field: repeated sint32 sint32_field = 16;
+   */
+  sint32Field?: number[];
+
+  /**
+   * @generated from field: repeated sint64 sint64_field = 17;
+   */
+  sint64Field?: string[];
+};
+
+/**
  * Describes the message spec.RepeatedScalarValuesMessage.
  * Use `create(RepeatedScalarValuesMessageDesc)` to create a new message.
  */
-export const RepeatedScalarValuesMessageDesc: GenDescMessage<RepeatedScalarValuesMessage> = /*@__PURE__*/
+export const RepeatedScalarValuesMessageDesc: GenDescMessage<RepeatedScalarValuesMessage, RepeatedScalarValuesMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_scalar, 1);
 

@@ -36,9 +36,14 @@ export enum GID {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.GID.
+ */
+export declare type GIDJson = "GID_UNUSED";
+
+/**
  * Describes the enum protobuf_unittest.GID.
  */
-export declare const GIDDesc: GenDescEnum<GID>;
+export declare const GIDDesc: GenDescEnum<GID, GIDJson>;
 
 /**
  * This generates `UID_MAX`, which is a mcro in some circumstances.
@@ -53,9 +58,14 @@ export enum UID {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.UID.
+ */
+export declare type UIDJson = "UID_UNUSED";
+
+/**
  * Describes the enum protobuf_unittest.UID.
  */
-export declare const UIDDesc: GenDescEnum<UID>;
+export declare const UIDDesc: GenDescEnum<UID, UIDJson>;
 
 /**
  * Just a container for bad macro names. Some of these do not follow the normal
@@ -243,7 +253,12 @@ export enum BadNames {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.BadNames.
+ */
+export declare type BadNamesJson = "PACKAGE" | "PACKED" | "linux" | "DOMAIN" | "TRUE" | "FALSE" | "CREATE_NEW" | "DELETE" | "DOUBLE_CLICK" | "ERROR" | "ERROR_BUSY" | "ERROR_INSTALL_FAILED" | "ERROR_NOT_FOUND" | "GetClassName" | "GetCurrentTime" | "GetMessage" | "GetObject" | "IGNORE" | "IN" | "INPUT_KEYBOARD" | "NO_ERROR" | "OUT" | "OPTIONAL" | "NEAR" | "NO_DATA" | "REASON_UNKNOWN" | "SERVICE_DISABLED" | "SEVERITY_ERROR" | "STATUS_PENDING" | "STRICT" | "TYPE_BOOL" | "DEBUG";
+
+/**
  * Describes the enum protobuf_unittest.BadNames.
  */
-export declare const BadNamesDesc: GenDescEnum<BadNames>;
+export declare const BadNamesDesc: GenDescEnum<BadNames, BadNamesJson>;
 

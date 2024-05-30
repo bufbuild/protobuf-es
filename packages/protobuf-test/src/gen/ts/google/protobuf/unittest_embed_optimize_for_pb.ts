@@ -24,7 +24,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { TestOptimizedForSize } from "./unittest_optimize_for_pb.js";
+import type { TestOptimizedForSize, TestOptimizedForSizeJson } from "./unittest_optimize_for_pb.js";
 import { fileDesc_google_protobuf_unittest_optimize_for } from "./unittest_optimize_for_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -53,9 +53,24 @@ export type TestEmbedOptimizedForSize = Message<"protobuf_unittest.TestEmbedOpti
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestEmbedOptimizedForSize.
+ */
+export type TestEmbedOptimizedForSizeJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestOptimizedForSize optional_message = 1;
+   */
+  optionalMessage?: TestOptimizedForSizeJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestOptimizedForSize repeated_message = 2;
+   */
+  repeatedMessage?: TestOptimizedForSizeJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestEmbedOptimizedForSize.
  * Use `create(TestEmbedOptimizedForSizeDesc)` to create a new message.
  */
-export const TestEmbedOptimizedForSizeDesc: GenDescMessage<TestEmbedOptimizedForSize> = /*@__PURE__*/
+export const TestEmbedOptimizedForSizeDesc: GenDescMessage<TestEmbedOptimizedForSize, TestEmbedOptimizedForSizeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_embed_optimize_for, 0);
 

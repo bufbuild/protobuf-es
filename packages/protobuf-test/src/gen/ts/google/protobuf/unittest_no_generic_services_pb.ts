@@ -39,10 +39,20 @@ export type TestMessage = Message<"protobuf_unittest.no_generic_services_test.Te
 };
 
 /**
+ * JSON type for the message protobuf_unittest.no_generic_services_test.TestMessage.
+ */
+export type TestMessageJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.no_generic_services_test.TestMessage.
  * Use `create(TestMessageDesc)` to create a new message.
  */
-export const TestMessageDesc: GenDescMessage<TestMessage> = /*@__PURE__*/
+export const TestMessageDesc: GenDescMessage<TestMessage, TestMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_no_generic_services, 0);
 
 /**
@@ -56,9 +66,14 @@ export enum TestEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.no_generic_services_test.TestEnum.
+ */
+export type TestEnumJson = "FOO";
+
+/**
  * Describes the enum protobuf_unittest.no_generic_services_test.TestEnum.
  */
-export const TestEnumDesc: GenDescEnum<TestEnum> = /*@__PURE__*/
+export const TestEnumDesc: GenDescEnum<TestEnum, TestEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_no_generic_services, 0);
 
 /**

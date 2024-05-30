@@ -60,11 +60,36 @@ export declare type ExampleRequest = Message<"spec.ExampleRequest"> & {
 };
 
 /**
+ * JSON type for the message spec.ExampleRequest.
+ */
+export declare type ExampleRequestJson = {
+  /**
+   * @generated from field: string question = 1;
+   */
+  question?: string;
+
+  /**
+   * @generated from field: spec.FailRequest please_fail = 2;
+   */
+  pleaseFail?: FailRequestJson;
+
+  /**
+   * @generated from field: int32 please_delay_response_ms = 3;
+   */
+  pleaseDelayResponseMs?: number;
+
+  /**
+   * @generated from field: bool disable_sending_example_response_headers = 4;
+   */
+  disableSendingExampleResponseHeaders?: boolean;
+};
+
+/**
  * Describes the message spec.ExampleRequest.
  * Use `create(ExampleRequestDesc)` to create a new message.
  * @deprecated
  */
-export declare const ExampleRequestDesc: GenDescMessage<ExampleRequest>;
+export declare const ExampleRequestDesc: GenDescMessage<ExampleRequest, ExampleRequestJson>;
 
 /**
  * @generated from message spec.ExampleResponse
@@ -101,11 +126,36 @@ export declare type ExampleResponse = Message<"spec.ExampleResponse"> & {
 };
 
 /**
+ * JSON type for the message spec.ExampleResponse.
+ */
+export declare type ExampleResponseJson = {
+  /**
+   * @generated from field: string answer = 1;
+   */
+  answer?: string;
+
+  /**
+   * @generated from field: map<string, string> your_request_headers = 2;
+   */
+  yourRequestHeaders?: { [key: string]: string };
+
+  /**
+   * @generated from field: string your_deadline = 3;
+   */
+  yourDeadline?: string;
+
+  /**
+   * @generated from field: spec.FailRequest your_fail_request = 4;
+   */
+  yourFailRequest?: FailRequestJson;
+};
+
+/**
  * Describes the message spec.ExampleResponse.
  * Use `create(ExampleResponseDesc)` to create a new message.
  * @deprecated
  */
-export declare const ExampleResponseDesc: GenDescMessage<ExampleResponse>;
+export declare const ExampleResponseDesc: GenDescMessage<ExampleResponse, ExampleResponseJson>;
 
 /**
  * @generated from enum spec.FailRequest
@@ -135,10 +185,15 @@ export enum FailRequest {
 }
 
 /**
+ * JSON type for the enum spec.FailRequest.
+ */
+export declare type FailRequestJson = "FAIL_REQUEST_NONE" | "MESSAGE_THEN_ERROR_STATUS" | "ERROR_STATUS_ONLY";
+
+/**
  * Describes the enum spec.FailRequest.
  * @deprecated
  */
-export declare const FailRequestDesc: GenDescEnum<FailRequest>;
+export declare const FailRequestDesc: GenDescEnum<FailRequest, FailRequestJson>;
 
 /**
  * @generated from service spec.ExampleService

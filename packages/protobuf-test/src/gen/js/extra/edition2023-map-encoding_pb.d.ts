@@ -46,10 +46,25 @@ export declare type Edition2023MapEncodingMessage = Message<"spec.Edition2023Map
 };
 
 /**
+ * JSON type for the message spec.Edition2023MapEncodingMessage.
+ */
+export declare type Edition2023MapEncodingMessageJson = {
+  /**
+   * @generated from field: map<int32, string> string_map = 77;
+   */
+  stringMap?: { [key: number]: string };
+
+  /**
+   * @generated from field: map<int32, spec.Edition2023MapEncodingMessage.Child> message_map = 88;
+   */
+  messageMap?: { [key: number]: Edition2023MapEncodingMessage_ChildJson };
+};
+
+/**
  * Describes the message spec.Edition2023MapEncodingMessage.
  * Use `create(Edition2023MapEncodingMessageDesc)` to create a new message.
  */
-export declare const Edition2023MapEncodingMessageDesc: GenDescMessage<Edition2023MapEncodingMessage>;
+export declare const Edition2023MapEncodingMessageDesc: GenDescMessage<Edition2023MapEncodingMessage, Edition2023MapEncodingMessageJson>;
 
 /**
  * @generated from message spec.Edition2023MapEncodingMessage.Child
@@ -58,8 +73,14 @@ export declare type Edition2023MapEncodingMessage_Child = Message<"spec.Edition2
 };
 
 /**
+ * JSON type for the message spec.Edition2023MapEncodingMessage.Child.
+ */
+export declare type Edition2023MapEncodingMessage_ChildJson = {
+};
+
+/**
  * Describes the message spec.Edition2023MapEncodingMessage.Child.
  * Use `create(Edition2023MapEncodingMessage_ChildDesc)` to create a new message.
  */
-export declare const Edition2023MapEncodingMessage_ChildDesc: GenDescMessage<Edition2023MapEncodingMessage_Child>;
+export declare const Edition2023MapEncodingMessage_ChildDesc: GenDescMessage<Edition2023MapEncodingMessage_Child, Edition2023MapEncodingMessage_ChildJson>;
 

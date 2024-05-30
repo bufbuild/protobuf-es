@@ -37,10 +37,20 @@ export declare type TestMessage = Message<"protobuf_unittest.no_generic_services
 };
 
 /**
+ * JSON type for the message protobuf_unittest.no_generic_services_test.TestMessage.
+ */
+export declare type TestMessageJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.no_generic_services_test.TestMessage.
  * Use `create(TestMessageDesc)` to create a new message.
  */
-export declare const TestMessageDesc: GenDescMessage<TestMessage>;
+export declare const TestMessageDesc: GenDescMessage<TestMessage, TestMessageJson>;
 
 /**
  * @generated from enum protobuf_unittest.no_generic_services_test.TestEnum
@@ -53,9 +63,14 @@ export enum TestEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.no_generic_services_test.TestEnum.
+ */
+export declare type TestEnumJson = "FOO";
+
+/**
  * Describes the enum protobuf_unittest.no_generic_services_test.TestEnum.
  */
-export declare const TestEnumDesc: GenDescEnum<TestEnum>;
+export declare const TestEnumDesc: GenDescEnum<TestEnum, TestEnumJson>;
 
 /**
  * @generated from service protobuf_unittest.no_generic_services_test.TestService

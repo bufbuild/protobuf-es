@@ -31,7 +31,7 @@ import { reflect } from "./reflect/reflect.js";
 import { FieldError, isFieldError } from "./reflect/error.js";
 import { formatVal } from "./reflect/reflect-check.js";
 import { type ScalarValue, scalarZeroValue } from "./reflect/scalar.js";
-import type { MessageShape } from "./types.js";
+import type { EnumJsonType, EnumShape, MessageShape } from "./types.js";
 import { base64Decode } from "./wire/base64-encoding.js";
 import type {
   Any,
@@ -169,6 +169,32 @@ export function mergeFromJson<Desc extends DescMessage>(
     throw e;
   }
   return target;
+}
+
+/**
+ * Parses an enum value from JSON.
+ */
+export function enumFromJson<Desc extends DescEnum>(
+  descEnum: Desc,
+  json: EnumJsonType<Desc>,
+): EnumShape<Desc> {
+  const val = readEnum(descEnum, json, false, false);
+  if (val === tokenIgnoredUnknownEnum) {
+    throw new Error(
+      `cannot decode ${String(descEnum)} from JSON: ${formatVal(json)}`,
+    );
+  }
+  return val as EnumShape<Desc>;
+}
+
+/**
+ * Is the given value a JSON enum value?
+ */
+export function isEnumJson<Desc extends DescEnum>(
+  descEnum: Desc,
+  value: unknown,
+): value is EnumJsonType<Desc> {
+  return undefined !== descEnum.values.find((v) => v.name === value);
 }
 
 function readMessage(

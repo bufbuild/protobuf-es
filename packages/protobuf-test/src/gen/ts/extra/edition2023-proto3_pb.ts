@@ -64,10 +64,45 @@ export type Proto3MessageForEdition2023 = Message<"spec.Proto3MessageForEdition2
 };
 
 /**
+ * JSON type for the message spec.Proto3MessageForEdition2023.
+ */
+export type Proto3MessageForEdition2023Json = {
+  /**
+   * @generated from field: bool implicit_bool_field = 1;
+   */
+  implicitBoolField?: boolean;
+
+  /**
+   * @generated from field: spec.Proto3EnumForEdition2023 implicit_open_enum_field = 2;
+   */
+  implicitOpenEnumField?: Proto3EnumForEdition2023Json;
+
+  /**
+   * @generated from field: optional bool explicit_bool_field = 5;
+   */
+  explicitBoolField?: boolean;
+
+  /**
+   * @generated from field: optional spec.Proto3EnumForEdition2023 explicit_open_enum_field = 6;
+   */
+  explicitOpenEnumField?: Proto3EnumForEdition2023Json;
+
+  /**
+   * @generated from field: repeated double packed_double_field = 9 [packed = true];
+   */
+  packedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated double unpacked_double_field = 10 [packed = false];
+   */
+  unpackedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+};
+
+/**
  * Describes the message spec.Proto3MessageForEdition2023.
  * Use `create(Proto3MessageForEdition2023Desc)` to create a new message.
  */
-export const Proto3MessageForEdition2023Desc: GenDescMessage<Proto3MessageForEdition2023> = /*@__PURE__*/
+export const Proto3MessageForEdition2023Desc: GenDescMessage<Proto3MessageForEdition2023, Proto3MessageForEdition2023Json> = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_proto3, 0);
 
 /**
@@ -86,8 +121,13 @@ export enum Proto3EnumForEdition2023 {
 }
 
 /**
+ * JSON type for the enum spec.Proto3EnumForEdition2023.
+ */
+export type Proto3EnumForEdition2023Json = "PROTO3_ENUM_FOR_EDITION2023_UNSPECIFIED" | "PROTO3_ENUM_FOR_EDITION2023_A";
+
+/**
  * Describes the enum spec.Proto3EnumForEdition2023.
  */
-export const Proto3EnumForEdition2023Desc: GenDescEnum<Proto3EnumForEdition2023> = /*@__PURE__*/
+export const Proto3EnumForEdition2023Desc: GenDescEnum<Proto3EnumForEdition2023, Proto3EnumForEdition2023Json> = /*@__PURE__*/
   enumDesc(fileDesc_extra_edition2023_proto3, 0);
 

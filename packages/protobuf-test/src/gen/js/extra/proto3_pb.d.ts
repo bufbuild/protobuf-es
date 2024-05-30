@@ -18,7 +18,7 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { UInt32Value } from "@bufbuild/protobuf/wkt";
+import type { UInt32Value, UInt32ValueJson } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/proto3.proto.
@@ -334,10 +334,300 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
 };
 
 /**
+ * JSON type for the message spec.Proto3Message.
+ */
+export declare type Proto3MessageJson = {
+  /**
+   * @generated from field: string singular_string_field = 1;
+   */
+  singularStringField?: string;
+
+  /**
+   * @generated from field: bytes singular_bytes_field = 2;
+   */
+  singularBytesField?: string;
+
+  /**
+   * @generated from field: int32 singular_int32_field = 3;
+   */
+  singularInt32Field?: number;
+
+  /**
+   * @generated from field: int64 singular_int64_field = 4;
+   */
+  singularInt64Field?: string;
+
+  /**
+   * @generated from field: int64 singular_int64_js_number_field = 103 [jstype = JS_NUMBER];
+   */
+  singularInt64JsNumberField?: string;
+
+  /**
+   * @generated from field: int64 singular_int64_js_string_field = 102 [jstype = JS_STRING];
+   */
+  singularInt64JsStringField?: string;
+
+  /**
+   * @generated from field: float singular_float_field = 5;
+   */
+  singularFloatField?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: bool singular_bool_field = 6;
+   */
+  singularBoolField?: boolean;
+
+  /**
+   * @generated from field: spec.Proto3Enum singular_enum_field = 7;
+   */
+  singularEnumField?: Proto3EnumJson;
+
+  /**
+   * @generated from field: spec.Proto3Message singular_message_field = 8;
+   */
+  singularMessageField?: Proto3MessageJson;
+
+  /**
+   * @generated from field: google.protobuf.UInt32Value singular_wrapped_uint32_field = 211;
+   */
+  singularWrappedUint32Field?: UInt32ValueJson;
+
+  /**
+   * @generated from field: optional string optional_string_field = 9;
+   */
+  optionalStringField?: string;
+
+  /**
+   * @generated from field: optional bytes optional_bytes_field = 10;
+   */
+  optionalBytesField?: string;
+
+  /**
+   * @generated from field: optional int32 optional_int32_field = 11;
+   */
+  optionalInt32Field?: number;
+
+  /**
+   * @generated from field: optional int64 optional_int64_field = 12;
+   */
+  optionalInt64Field?: string;
+
+  /**
+   * @generated from field: optional int64 optional_int64_js_number_field = 106 [jstype = JS_NUMBER];
+   */
+  optionalInt64JsNumberField?: string;
+
+  /**
+   * @generated from field: optional int64 optional_int64_js_string_field = 105 [jstype = JS_STRING];
+   */
+  optionalInt64JsStringField?: string;
+
+  /**
+   * @generated from field: optional float optional_float_field = 13;
+   */
+  optionalFloatField?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional bool optional_bool_field = 14;
+   */
+  optionalBoolField?: boolean;
+
+  /**
+   * @generated from field: optional spec.Proto3Enum optional_enum_field = 15;
+   */
+  optionalEnumField?: Proto3EnumJson;
+
+  /**
+   * @generated from field: optional spec.Proto3Message optional_message_field = 16;
+   */
+  optionalMessageField?: Proto3MessageJson;
+
+  /**
+   * @generated from field: optional google.protobuf.UInt32Value optional_wrapped_uint32_field = 212;
+   */
+  optionalWrappedUint32Field?: UInt32ValueJson;
+
+  /**
+   * @generated from field: repeated string repeated_string_field = 17;
+   */
+  repeatedStringField?: string[];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes_field = 18;
+   */
+  repeatedBytesField?: string[];
+
+  /**
+   * @generated from field: repeated int32 repeated_int32_field = 19;
+   */
+  repeatedInt32Field?: number[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_field = 20;
+   */
+  repeatedInt64Field?: string[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_js_number_field = 109 [jstype = JS_NUMBER];
+   */
+  repeatedInt64JsNumberField?: string[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_js_string_field = 108 [jstype = JS_STRING];
+   */
+  repeatedInt64JsStringField?: string[];
+
+  /**
+   * @generated from field: repeated float repeated_float_field = 21;
+   */
+  repeatedFloatField?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated bool repeated_bool_field = 22;
+   */
+  repeatedBoolField?: boolean[];
+
+  /**
+   * @generated from field: repeated spec.Proto3Enum repeated_enum_field = 23;
+   */
+  repeatedEnumField?: Proto3EnumJson[];
+
+  /**
+   * @generated from field: repeated spec.Proto3Message repeated_message_field = 24;
+   */
+  repeatedMessageField?: Proto3MessageJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.UInt32Value repeated_wrapped_uint32_field = 213;
+   */
+  repeatedWrappedUint32Field?: UInt32ValueJson[];
+
+  /**
+   * @generated from field: repeated double packed_double_field = 25 [packed = true];
+   */
+  packedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated uint32 packed_uint32_field = 26 [packed = true];
+   */
+  packedUint32Field?: number[];
+
+  /**
+   * @generated from field: repeated uint64 packed_uint64_field = 27 [packed = true];
+   */
+  packedUint64Field?: string[];
+
+  /**
+   * @generated from field: repeated double unpacked_double_field = 28 [packed = false];
+   */
+  unpackedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated uint32 unpacked_uint32_field = 29 [packed = false];
+   */
+  unpackedUint32Field?: number[];
+
+  /**
+   * @generated from field: repeated uint64 unpacked_uint64_field = 30 [packed = false];
+   */
+  unpackedUint64Field?: string[];
+
+  /**
+   * @generated from field: string oneof_string_field = 31;
+   */
+  oneofStringField?: string;
+
+  /**
+   * @generated from field: bytes oneof_bytes_field = 32;
+   */
+  oneofBytesField?: string;
+
+  /**
+   * @generated from field: int32 oneof_int32_field = 33;
+   */
+  oneofInt32Field?: number;
+
+  /**
+   * @generated from field: int64 oneof_int64_field = 34;
+   */
+  oneofInt64Field?: string;
+
+  /**
+   * @generated from field: int64 oneof_int64_js_number_field = 112 [jstype = JS_NUMBER];
+   */
+  oneofInt64JsNumberField?: string;
+
+  /**
+   * @generated from field: int64 oneof_int64_js_string_field = 111 [jstype = JS_STRING];
+   */
+  oneofInt64JsStringField?: string;
+
+  /**
+   * @generated from field: float oneof_float_field = 35;
+   */
+  oneofFloatField?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: bool oneof_bool_field = 36;
+   */
+  oneofBoolField?: boolean;
+
+  /**
+   * @generated from field: spec.Proto3Enum oneof_enum_field = 37;
+   */
+  oneofEnumField?: Proto3EnumJson;
+
+  /**
+   * @generated from field: spec.Proto3Message oneof_message_field = 38;
+   */
+  oneofMessageField?: Proto3MessageJson;
+
+  /**
+   * @generated from field: google.protobuf.UInt32Value oneof_wrapped_uint32_field = 204;
+   */
+  oneofWrappedUint32Field?: UInt32ValueJson;
+
+  /**
+   * @generated from field: map<string, string> map_string_string_field = 39;
+   */
+  mapStringStringField?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<int32, int32> map_int32_int32_field = 40;
+   */
+  mapInt32Int32Field?: { [key: number]: number };
+
+  /**
+   * @generated from field: map<bool, bool> map_bool_bool_field = 41;
+   */
+  mapBoolBoolField?: { [key: string]: boolean };
+
+  /**
+   * @generated from field: map<int64, int64> map_int64_int64_field = 42;
+   */
+  mapInt64Int64Field?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<int32, spec.Proto3Enum> map_int32_enum_field = 43;
+   */
+  mapInt32EnumField?: { [key: number]: Proto3EnumJson };
+
+  /**
+   * @generated from field: map<int32, spec.Proto3Message> map_int32_message_field = 44;
+   */
+  mapInt32MessageField?: { [key: number]: Proto3MessageJson };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.UInt32Value> map_int32_wrapped_uint32_field = 205;
+   */
+  mapInt32WrappedUint32Field?: { [key: number]: UInt32ValueJson };
+};
+
+/**
  * Describes the message spec.Proto3Message.
  * Use `create(Proto3MessageDesc)` to create a new message.
  */
-export declare const Proto3MessageDesc: GenDescMessage<Proto3Message>;
+export declare const Proto3MessageDesc: GenDescMessage<Proto3Message, Proto3MessageJson>;
 
 /**
  * @generated from enum spec.Proto3Enum
@@ -360,7 +650,12 @@ export enum Proto3Enum {
 }
 
 /**
+ * JSON type for the enum spec.Proto3Enum.
+ */
+export declare type Proto3EnumJson = "PROTO3_ENUM_UNSPECIFIED" | "PROTO3_ENUM_YES" | "PROTO3_ENUM_NO";
+
+/**
  * Describes the enum spec.Proto3Enum.
  */
-export declare const Proto3EnumDesc: GenDescEnum<Proto3Enum>;
+export declare const Proto3EnumDesc: GenDescEnum<Proto3Enum, Proto3EnumJson>;
 

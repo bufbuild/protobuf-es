@@ -49,10 +49,20 @@ export type ImportMessage = Message<"protobuf_unittest_import.ImportMessage"> & 
 };
 
 /**
+ * JSON type for the message protobuf_unittest_import.ImportMessage.
+ */
+export type ImportMessageJson = {
+  /**
+   * @generated from field: optional int32 d = 1;
+   */
+  d?: number;
+};
+
+/**
  * Describes the message protobuf_unittest_import.ImportMessage.
  * Use `create(ImportMessageDesc)` to create a new message.
  */
-export const ImportMessageDesc: GenDescMessage<ImportMessage> = /*@__PURE__*/
+export const ImportMessageDesc: GenDescMessage<ImportMessage, ImportMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_import, 0);
 
 /**
@@ -76,9 +86,14 @@ export enum ImportEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest_import.ImportEnum.
+ */
+export type ImportEnumJson = "IMPORT_FOO" | "IMPORT_BAR" | "IMPORT_BAZ";
+
+/**
  * Describes the enum protobuf_unittest_import.ImportEnum.
  */
-export const ImportEnumDesc: GenDescEnum<ImportEnum> = /*@__PURE__*/
+export const ImportEnumDesc: GenDescEnum<ImportEnum, ImportEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_import, 0);
 
 /**
@@ -104,8 +119,13 @@ export enum ImportEnumForMap {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest_import.ImportEnumForMap.
+ */
+export type ImportEnumForMapJson = "UNKNOWN" | "FOO" | "BAR";
+
+/**
  * Describes the enum protobuf_unittest_import.ImportEnumForMap.
  */
-export const ImportEnumForMapDesc: GenDescEnum<ImportEnumForMap> = /*@__PURE__*/
+export const ImportEnumForMapDesc: GenDescEnum<ImportEnumForMap, ImportEnumForMapJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_import, 1);
 

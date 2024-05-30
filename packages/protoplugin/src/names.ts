@@ -54,7 +54,7 @@ export function localDescName(
   const name = descNames.get(desc);
   if (name === undefined) {
     throw new Error(
-      `unable to determine unique identifier for ${desc.toString()}`,
+      `unable to determine unique descriptor name for ${desc.toString()}`,
     );
   }
   return name;
@@ -65,7 +65,18 @@ export function localShapeName(desc: DescEnum | DescMessage): string {
   const name = shapeNames.get(desc);
   if (name === undefined) {
     throw new Error(
-      `unable to determine unique identifier for ${desc.toString()}`,
+      `unable to determine unique shape name for ${desc.toString()}`,
+    );
+  }
+  return name;
+}
+
+export function localJsonTypeName(desc: DescEnum | DescMessage): string {
+  const { jsonTypeNames } = allNames(desc.file);
+  const name = jsonTypeNames.get(desc);
+  if (name === undefined) {
+    throw new Error(
+      `unable to determine unique json type name for ${desc.toString()}`,
     );
   }
   return name;
@@ -99,6 +110,11 @@ function idealShapeName(desc: DescEnum | DescMessage, i: number): string {
   return baseName(desc) + escape;
 }
 
+function idealJsonTypeName(desc: DescEnum | DescMessage, i: number): string {
+  const escape = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
+  return baseName(desc) + "Json" + escape;
+}
+
 function baseName(
   desc: DescEnum | DescMessage | DescExtension | DescService,
 ): string {
@@ -115,23 +131,32 @@ function allNames(file: DescFile) {
     DescFile | DescEnum | DescMessage | DescExtension | DescService,
     string
   >();
+  const jsonTypeNames = new Map<DescEnum | DescMessage, string>();
   for (const desc of [file, ...nestedTypes(file)]) {
     switch (desc.kind) {
       case "enum":
       case "message": {
         let descName: string;
         let shapeName: string;
+        let jsonTypeName: string;
         for (let i = 0; ; i++) {
           descName = idealDescName(desc, i);
           shapeName = idealShapeName(desc, i);
-          if (!taken.has(descName) && !taken.has(shapeName)) {
+          jsonTypeName = idealJsonTypeName(desc, i);
+          if (
+            !taken.has(descName) &&
+            !taken.has(shapeName) &&
+            !taken.has(jsonTypeName)
+          ) {
             break;
           }
         }
         taken.add(descName);
         taken.add(shapeName);
+        taken.add(jsonTypeName);
         descNames.set(desc, descName);
         shapeNames.set(desc, shapeName);
+        jsonTypeNames.set(desc, jsonTypeName);
         break;
       }
       default: {
@@ -148,5 +173,5 @@ function allNames(file: DescFile) {
       }
     }
   }
-  return { shapeNames, descNames };
+  return { shapeNames, jsonTypeNames, descNames };
 }

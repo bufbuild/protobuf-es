@@ -32,10 +32,16 @@ export declare type TestMessage = Message<"pb.TestMessage"> & {
 };
 
 /**
+ * JSON type for the message pb.TestMessage.
+ */
+export declare type TestMessageJson = {
+};
+
+/**
  * Describes the message pb.TestMessage.
  * Use `create(TestMessageDesc)` to create a new message.
  */
-export declare const TestMessageDesc: GenDescMessage<TestMessage>;
+export declare const TestMessageDesc: GenDescMessage<TestMessage, TestMessageJson>;
 
 /**
  * @generated from message pb.TestMessage.Nested
@@ -44,10 +50,16 @@ export declare type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
 };
 
 /**
+ * JSON type for the message pb.TestMessage.Nested.
+ */
+export declare type TestMessage_NestedJson = {
+};
+
+/**
  * Describes the message pb.TestMessage.Nested.
  * Use `create(TestMessage_NestedDesc)` to create a new message.
  */
-export declare const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested>;
+export declare const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested, TestMessage_NestedJson>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test_nested = 9997;
@@ -145,10 +157,95 @@ export declare type TestFeatures = Message<"pb.TestFeatures"> & {
 };
 
 /**
+ * JSON type for the message pb.TestFeatures.
+ */
+export declare type TestFeaturesJson = {
+  /**
+   * @generated from field: optional pb.EnumFeature file_feature = 1;
+   */
+  fileFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature extension_range_feature = 2;
+   */
+  extensionRangeFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature message_feature = 3;
+   */
+  messageFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature field_feature = 4;
+   */
+  fieldFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature oneof_feature = 5;
+   */
+  oneofFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature enum_feature = 6;
+   */
+  enumFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature enum_entry_feature = 7;
+   */
+  enumEntryFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature service_feature = 8;
+   */
+  serviceFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature method_feature = 9;
+   */
+  methodFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature multiple_feature = 10;
+   */
+  multipleFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional bool bool_field_feature = 11;
+   */
+  boolFieldFeature?: boolean;
+
+  /**
+   * @generated from field: optional pb.EnumFeature source_feature = 15;
+   */
+  sourceFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature source_feature2 = 16;
+   */
+  sourceFeature2?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature removed_feature = 17;
+   */
+  removedFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature future_feature = 18;
+   */
+  futureFeature?: EnumFeatureJson;
+
+  /**
+   * @generated from field: optional pb.EnumFeature legacy_feature = 19;
+   */
+  legacyFeature?: EnumFeatureJson;
+};
+
+/**
  * Describes the message pb.TestFeatures.
  * Use `create(TestFeaturesDesc)` to create a new message.
  */
-export declare const TestFeaturesDesc: GenDescMessage<TestFeatures>;
+export declare const TestFeaturesDesc: GenDescMessage<TestFeatures, TestFeaturesJson>;
 
 /**
  * @generated from enum pb.EnumFeature
@@ -246,9 +343,14 @@ export enum EnumFeature {
 }
 
 /**
+ * JSON type for the enum pb.EnumFeature.
+ */
+export declare type EnumFeatureJson = "TEST_ENUM_FEATURE_UNKNOWN" | "VALUE1" | "VALUE2" | "VALUE3" | "VALUE4" | "VALUE5" | "VALUE6" | "VALUE7" | "VALUE8" | "VALUE9" | "VALUE10" | "VALUE11" | "VALUE12" | "VALUE13" | "VALUE14" | "VALUE15" | "VALUE_EMPTY_SUPPORT" | "VALUE_FUTURE";
+
+/**
  * Describes the enum pb.EnumFeature.
  */
-export declare const EnumFeatureDesc: GenDescEnum<EnumFeature>;
+export declare const EnumFeatureDesc: GenDescEnum<EnumFeature, EnumFeatureJson>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test = 9999;

@@ -38,11 +38,21 @@ export declare type ImplicitlyDeprecatedMessage = Message<"spec.ImplicitlyDeprec
 };
 
 /**
+ * JSON type for the message spec.ImplicitlyDeprecatedMessage.
+ */
+export declare type ImplicitlyDeprecatedMessageJson = {
+  /**
+   * @generated from field: string implicitly_deprecated_field = 1;
+   */
+  implicitlyDeprecatedField?: string;
+};
+
+/**
  * Describes the message spec.ImplicitlyDeprecatedMessage.
  * Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new message.
  * @deprecated
  */
-export declare const ImplicitlyDeprecatedMessageDesc: GenDescMessage<ImplicitlyDeprecatedMessage>;
+export declare const ImplicitlyDeprecatedMessageDesc: GenDescMessage<ImplicitlyDeprecatedMessage, ImplicitlyDeprecatedMessageJson>;
 
 /**
  * @generated from enum spec.ImplicitlyDeprecatedEnum
@@ -56,10 +66,15 @@ export enum ImplicitlyDeprecatedEnum {
 }
 
 /**
+ * JSON type for the enum spec.ImplicitlyDeprecatedEnum.
+ */
+export declare type ImplicitlyDeprecatedEnumJson = "IMPLICITLY_DEPRECATED_ENUM_UNSPECIFIED";
+
+/**
  * Describes the enum spec.ImplicitlyDeprecatedEnum.
  * @deprecated
  */
-export declare const ImplicitlyDeprecatedEnumDesc: GenDescEnum<ImplicitlyDeprecatedEnum>;
+export declare const ImplicitlyDeprecatedEnumDesc: GenDescEnum<ImplicitlyDeprecatedEnum, ImplicitlyDeprecatedEnumJson>;
 
 /**
  * @generated from service spec.ImplicitlyDeprecatedService

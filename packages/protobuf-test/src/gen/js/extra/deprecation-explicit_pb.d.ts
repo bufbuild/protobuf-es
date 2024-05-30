@@ -39,11 +39,21 @@ export declare type DeprecatedMessage = Message<"spec.DeprecatedMessage"> & {
 };
 
 /**
+ * JSON type for the message spec.DeprecatedMessage.
+ */
+export declare type DeprecatedMessageJson = {
+  /**
+   * @generated from field: string field = 1;
+   */
+  field?: string;
+};
+
+/**
  * Describes the message spec.DeprecatedMessage.
  * Use `create(DeprecatedMessageDesc)` to create a new message.
  * @deprecated
  */
-export declare const DeprecatedMessageDesc: GenDescMessage<DeprecatedMessage>;
+export declare const DeprecatedMessageDesc: GenDescMessage<DeprecatedMessage, DeprecatedMessageJson>;
 
 /**
  * A single field of this message is deprecated
@@ -68,10 +78,25 @@ export declare type DeprecatedFieldMessage = Message<"spec.DeprecatedFieldMessag
 };
 
 /**
+ * JSON type for the message spec.DeprecatedFieldMessage.
+ */
+export declare type DeprecatedFieldMessageJson = {
+  /**
+   * @generated from field: string deprecated_field = 1 [deprecated = true];
+   */
+  deprecatedField?: string;
+
+  /**
+   * @generated from field: string current_field = 2;
+   */
+  currentField?: string;
+};
+
+/**
  * Describes the message spec.DeprecatedFieldMessage.
  * Use `create(DeprecatedFieldMessageDesc)` to create a new message.
  */
-export declare const DeprecatedFieldMessageDesc: GenDescMessage<DeprecatedFieldMessage>;
+export declare const DeprecatedFieldMessageDesc: GenDescMessage<DeprecatedFieldMessage, DeprecatedFieldMessageJson>;
 
 /**
  * The entire enum is deprecated
@@ -92,10 +117,15 @@ export enum DeprecatedEnum {
 }
 
 /**
+ * JSON type for the enum spec.DeprecatedEnum.
+ */
+export declare type DeprecatedEnumJson = "DEPRECATED_ENUM_A" | "DEPRECATED_ENUM_B";
+
+/**
  * Describes the enum spec.DeprecatedEnum.
  * @deprecated
  */
-export declare const DeprecatedEnumDesc: GenDescEnum<DeprecatedEnum>;
+export declare const DeprecatedEnumDesc: GenDescEnum<DeprecatedEnum, DeprecatedEnumJson>;
 
 /**
  * Only a single enum value is deprecated
@@ -116,9 +146,14 @@ export enum DeprecatedValueEnum {
 }
 
 /**
+ * JSON type for the enum spec.DeprecatedValueEnum.
+ */
+export declare type DeprecatedValueEnumJson = "DEPRECATED_VALUE_ENUM_UNSPECIFIED" | "DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE";
+
+/**
  * Describes the enum spec.DeprecatedValueEnum.
  */
-export declare const DeprecatedValueEnumDesc: GenDescEnum<DeprecatedValueEnum>;
+export declare const DeprecatedValueEnumDesc: GenDescEnum<DeprecatedValueEnum, DeprecatedValueEnumJson>;
 
 /**
  * The entire service is deprecated

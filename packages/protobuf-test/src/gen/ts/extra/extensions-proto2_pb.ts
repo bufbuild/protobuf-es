@@ -42,10 +42,20 @@ export type Proto2Extendee = Message<"proto2ext.Proto2Extendee"> & {
 };
 
 /**
+ * JSON type for the message proto2ext.Proto2Extendee.
+ */
+export type Proto2ExtendeeJson = {
+  /**
+   * @generated from field: optional int32 own_field = 1;
+   */
+  ownField?: number;
+};
+
+/**
  * Describes the message proto2ext.Proto2Extendee.
  * Use `create(Proto2ExtendeeDesc)` to create a new message.
  */
-export const Proto2ExtendeeDesc: GenDescMessage<Proto2Extendee> = /*@__PURE__*/
+export const Proto2ExtendeeDesc: GenDescMessage<Proto2Extendee, Proto2ExtendeeJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 0);
 
 /**
@@ -61,10 +71,20 @@ export type Proto2ExtMessage = Message<"proto2ext.Proto2ExtMessage"> & {
 };
 
 /**
+ * JSON type for the message proto2ext.Proto2ExtMessage.
+ */
+export type Proto2ExtMessageJson = {
+  /**
+   * @generated from field: optional string string_field = 1;
+   */
+  stringField?: string;
+};
+
+/**
  * Describes the message proto2ext.Proto2ExtMessage.
  * Use `create(Proto2ExtMessageDesc)` to create a new message.
  */
-export const Proto2ExtMessageDesc: GenDescMessage<Proto2ExtMessage> = /*@__PURE__*/
+export const Proto2ExtMessageDesc: GenDescMessage<Proto2ExtMessage, Proto2ExtMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 1);
 
 /**
@@ -83,10 +103,25 @@ export type GroupExt = Message<"proto2ext.GroupExt"> & {
 };
 
 /**
+ * JSON type for the message proto2ext.GroupExt.
+ */
+export type GroupExtJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 2;
+   */
+  b?: number;
+};
+
+/**
  * Describes the message proto2ext.GroupExt.
  * Use `create(GroupExtDesc)` to create a new message.
  */
-export const GroupExtDesc: GenDescMessage<GroupExt> = /*@__PURE__*/
+export const GroupExtDesc: GenDescMessage<GroupExt, GroupExtJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 2);
 
 /**
@@ -105,10 +140,25 @@ export type RepeatedGroupExt = Message<"proto2ext.RepeatedGroupExt"> & {
 };
 
 /**
+ * JSON type for the message proto2ext.RepeatedGroupExt.
+ */
+export type RepeatedGroupExtJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 2;
+   */
+  b?: number;
+};
+
+/**
  * Describes the message proto2ext.RepeatedGroupExt.
  * Use `create(RepeatedGroupExtDesc)` to create a new message.
  */
-export const RepeatedGroupExtDesc: GenDescMessage<RepeatedGroupExt> = /*@__PURE__*/
+export const RepeatedGroupExtDesc: GenDescMessage<RepeatedGroupExt, RepeatedGroupExtJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 3);
 
 /**
@@ -120,10 +170,16 @@ export type Proto2ExtContainer = Message<"proto2ext.Proto2ExtContainer"> & {
 };
 
 /**
+ * JSON type for the message proto2ext.Proto2ExtContainer.
+ */
+export type Proto2ExtContainerJson = {
+};
+
+/**
  * Describes the message proto2ext.Proto2ExtContainer.
  * Use `create(Proto2ExtContainerDesc)` to create a new message.
  */
-export const Proto2ExtContainerDesc: GenDescMessage<Proto2ExtContainer> = /*@__PURE__*/
+export const Proto2ExtContainerDesc: GenDescMessage<Proto2ExtContainer, Proto2ExtContainerJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 4);
 
 /**
@@ -133,10 +189,16 @@ export type Proto2ExtContainer_Child = Message<"proto2ext.Proto2ExtContainer.Chi
 };
 
 /**
+ * JSON type for the message proto2ext.Proto2ExtContainer.Child.
+ */
+export type Proto2ExtContainer_ChildJson = {
+};
+
+/**
  * Describes the message proto2ext.Proto2ExtContainer.Child.
  * Use `create(Proto2ExtContainer_ChildDesc)` to create a new message.
  */
-export const Proto2ExtContainer_ChildDesc: GenDescMessage<Proto2ExtContainer_Child> = /*@__PURE__*/
+export const Proto2ExtContainer_ChildDesc: GenDescMessage<Proto2ExtContainer_Child, Proto2ExtContainer_ChildJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 4, 0);
 
 /**
@@ -169,9 +231,14 @@ export enum Proto2ExtEnum {
 }
 
 /**
+ * JSON type for the enum proto2ext.Proto2ExtEnum.
+ */
+export type Proto2ExtEnumJson = "PROTO2_EXT_ENUM_YES" | "PROTO2_EXT_ENUM_NO";
+
+/**
  * Describes the enum proto2ext.Proto2ExtEnum.
  */
-export const Proto2ExtEnumDesc: GenDescEnum<Proto2ExtEnum> = /*@__PURE__*/
+export const Proto2ExtEnumDesc: GenDescEnum<Proto2ExtEnum, Proto2ExtEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_extra_extensions_proto2, 0);
 
 /**

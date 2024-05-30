@@ -20,6 +20,7 @@ import type {
 import type { DescEnum, DescExtension, DescMessage } from "./descriptors.js";
 import type { OneofADT } from "./reflect/guard.js";
 import type { WireType } from "./wire/index.js";
+import type { JsonValue } from "./json-value.js";
 
 /**
  * The type `Message` contains the properties shared by all messages.
@@ -42,6 +43,12 @@ export type MessageShape<Desc extends DescMessage> =
   Desc extends GenDescMessage<infer RuntimeShape> ? RuntimeShape : Message;
 
 /**
+ * Extract the message JSON type from a message descriptor.
+ */
+export type MessageJsonType<Desc extends DescMessage> =
+  Desc extends GenDescMessage<Message, infer JsonType> ? JsonType : JsonValue;
+
+/**
  * Extract the init type from a message descriptor.
  * The init type is accepted by the function create().
  */
@@ -55,6 +62,12 @@ export type MessageInitShape<Desc extends DescMessage> =
  */
 export type EnumShape<Desc extends DescEnum> =
   Desc extends GenDescEnum<infer RuntimeShape> ? RuntimeShape : number;
+
+/**
+ * Extract the enum JSON type from a enum descriptor.
+ */
+export type EnumJsonType<Desc extends DescEnum> =
+  Desc extends GenDescEnum<unknown, infer JsonType> ? JsonType : string | null;
 
 /**
  * Extract the value type from an extension descriptor.

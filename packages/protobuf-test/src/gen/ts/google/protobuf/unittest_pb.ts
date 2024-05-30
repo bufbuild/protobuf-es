@@ -30,10 +30,10 @@
 
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { ImportEnum, ImportMessage } from "./unittest_import_pb.js";
+import type { ImportEnum, ImportEnumJson, ImportMessage, ImportMessageJson } from "./unittest_import_pb.js";
 import { fileDesc_google_protobuf_unittest_import } from "./unittest_import_pb.js";
 import type { Message } from "@bufbuild/protobuf";
-import type { PublicImportMessage } from "./unittest_import_public_pb.js";
+import type { PublicImportMessage, PublicImportMessageJson } from "./unittest_import_public_pb.js";
 
 /**
  * Describes the file google/protobuf/unittest.proto.
@@ -467,10 +467,410 @@ export type TestAllTypes = Message<"protobuf_unittest.TestAllTypes"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestAllTypes.
+ */
+export type TestAllTypesJson = {
+  /**
+   * @generated from field: optional int32 optional_int32 = 1;
+   */
+  optionalInt32?: number;
+
+  /**
+   * @generated from field: optional int64 optional_int64 = 2;
+   */
+  optionalInt64?: string;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32 = 3;
+   */
+  optionalUint32?: number;
+
+  /**
+   * @generated from field: optional uint64 optional_uint64 = 4;
+   */
+  optionalUint64?: string;
+
+  /**
+   * @generated from field: optional sint32 optional_sint32 = 5;
+   */
+  optionalSint32?: number;
+
+  /**
+   * @generated from field: optional sint64 optional_sint64 = 6;
+   */
+  optionalSint64?: string;
+
+  /**
+   * @generated from field: optional fixed32 optional_fixed32 = 7;
+   */
+  optionalFixed32?: number;
+
+  /**
+   * @generated from field: optional fixed64 optional_fixed64 = 8;
+   */
+  optionalFixed64?: string;
+
+  /**
+   * @generated from field: optional sfixed32 optional_sfixed32 = 9;
+   */
+  optionalSfixed32?: number;
+
+  /**
+   * @generated from field: optional sfixed64 optional_sfixed64 = 10;
+   */
+  optionalSfixed64?: string;
+
+  /**
+   * @generated from field: optional float optional_float = 11;
+   */
+  optionalFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional double optional_double = 12;
+   */
+  optionalDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional bool optional_bool = 13;
+   */
+  optionalBool?: boolean;
+
+  /**
+   * @generated from field: optional string optional_string = 14;
+   */
+  optionalString?: string;
+
+  /**
+   * @generated from field: optional bytes optional_bytes = 15;
+   */
+  optionalBytes?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.OptionalGroup optionalgroup = 16;
+   */
+  optionalgroup?: TestAllTypes_OptionalGroupJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
+   */
+  optionalNestedMessage?: TestAllTypes_NestedMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignMessage optional_foreign_message = 19;
+   */
+  optionalForeignMessage?: ForeignMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest_import.ImportMessage optional_import_message = 20;
+   */
+  optionalImportMessage?: ImportMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedEnum optional_nested_enum = 21;
+   */
+  optionalNestedEnum?: TestAllTypes_NestedEnumJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignEnum optional_foreign_enum = 22;
+   */
+  optionalForeignEnum?: ForeignEnumJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest_import.ImportEnum optional_import_enum = 23;
+   */
+  optionalImportEnum?: ImportEnumJson;
+
+  /**
+   * @generated from field: optional string optional_string_piece = 24;
+   */
+  optionalStringPiece?: string;
+
+  /**
+   * @generated from field: optional string optional_cord = 25;
+   */
+  optionalCord?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest_import.PublicImportMessage optional_public_import_message = 26;
+   */
+  optionalPublicImportMessage?: PublicImportMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage optional_lazy_message = 27;
+   */
+  optionalLazyMessage?: TestAllTypes_NestedMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message = 28;
+   */
+  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessageJson;
+
+  /**
+   * @generated from field: repeated int32 repeated_int32 = 31;
+   */
+  repeatedInt32?: number[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64 = 32;
+   */
+  repeatedInt64?: string[];
+
+  /**
+   * @generated from field: repeated uint32 repeated_uint32 = 33;
+   */
+  repeatedUint32?: number[];
+
+  /**
+   * @generated from field: repeated uint64 repeated_uint64 = 34;
+   */
+  repeatedUint64?: string[];
+
+  /**
+   * @generated from field: repeated sint32 repeated_sint32 = 35;
+   */
+  repeatedSint32?: number[];
+
+  /**
+   * @generated from field: repeated sint64 repeated_sint64 = 36;
+   */
+  repeatedSint64?: string[];
+
+  /**
+   * @generated from field: repeated fixed32 repeated_fixed32 = 37;
+   */
+  repeatedFixed32?: number[];
+
+  /**
+   * @generated from field: repeated fixed64 repeated_fixed64 = 38;
+   */
+  repeatedFixed64?: string[];
+
+  /**
+   * @generated from field: repeated sfixed32 repeated_sfixed32 = 39;
+   */
+  repeatedSfixed32?: number[];
+
+  /**
+   * @generated from field: repeated sfixed64 repeated_sfixed64 = 40;
+   */
+  repeatedSfixed64?: string[];
+
+  /**
+   * @generated from field: repeated float repeated_float = 41;
+   */
+  repeatedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated double repeated_double = 42;
+   */
+  repeatedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated bool repeated_bool = 43;
+   */
+  repeatedBool?: boolean[];
+
+  /**
+   * @generated from field: repeated string repeated_string = 44;
+   */
+  repeatedString?: string[];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes = 45;
+   */
+  repeatedBytes?: string[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes.RepeatedGroup repeatedgroup = 46;
+   */
+  repeatedgroup?: TestAllTypes_RepeatedGroupJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes.NestedMessage repeated_nested_message = 48;
+   */
+  repeatedNestedMessage?: TestAllTypes_NestedMessageJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.ForeignMessage repeated_foreign_message = 49;
+   */
+  repeatedForeignMessage?: ForeignMessageJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest_import.ImportMessage repeated_import_message = 50;
+   */
+  repeatedImportMessage?: ImportMessageJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes.NestedEnum repeated_nested_enum = 51;
+   */
+  repeatedNestedEnum?: TestAllTypes_NestedEnumJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.ForeignEnum repeated_foreign_enum = 52;
+   */
+  repeatedForeignEnum?: ForeignEnumJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest_import.ImportEnum repeated_import_enum = 53;
+   */
+  repeatedImportEnum?: ImportEnumJson[];
+
+  /**
+   * @generated from field: repeated string repeated_string_piece = 54;
+   */
+  repeatedStringPiece?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_cord = 55;
+   */
+  repeatedCord?: string[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes.NestedMessage repeated_lazy_message = 57;
+   */
+  repeatedLazyMessage?: TestAllTypes_NestedMessageJson[];
+
+  /**
+   * @generated from field: optional int32 default_int32 = 61 [default = 41];
+   */
+  defaultInt32?: number;
+
+  /**
+   * @generated from field: optional int64 default_int64 = 62 [default = 42];
+   */
+  defaultInt64?: string;
+
+  /**
+   * @generated from field: optional uint32 default_uint32 = 63 [default = 43];
+   */
+  defaultUint32?: number;
+
+  /**
+   * @generated from field: optional uint64 default_uint64 = 64 [default = 44];
+   */
+  defaultUint64?: string;
+
+  /**
+   * @generated from field: optional sint32 default_sint32 = 65 [default = -45];
+   */
+  defaultSint32?: number;
+
+  /**
+   * @generated from field: optional sint64 default_sint64 = 66 [default = 46];
+   */
+  defaultSint64?: string;
+
+  /**
+   * @generated from field: optional fixed32 default_fixed32 = 67 [default = 47];
+   */
+  defaultFixed32?: number;
+
+  /**
+   * @generated from field: optional fixed64 default_fixed64 = 68 [default = 48];
+   */
+  defaultFixed64?: string;
+
+  /**
+   * @generated from field: optional sfixed32 default_sfixed32 = 69 [default = 49];
+   */
+  defaultSfixed32?: number;
+
+  /**
+   * @generated from field: optional sfixed64 default_sfixed64 = 70 [default = -50];
+   */
+  defaultSfixed64?: string;
+
+  /**
+   * @generated from field: optional float default_float = 71 [default = 51.5];
+   */
+  defaultFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional double default_double = 72 [default = 52000];
+   */
+  defaultDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional bool default_bool = 73 [default = true];
+   */
+  defaultBool?: boolean;
+
+  /**
+   * @generated from field: optional string default_string = 74 [default = "hello"];
+   */
+  defaultString?: string;
+
+  /**
+   * @generated from field: optional bytes default_bytes = 75 [default = "world"];
+   */
+  defaultBytes?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedEnum default_nested_enum = 81 [default = BAR];
+   */
+  defaultNestedEnum?: TestAllTypes_NestedEnumJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignEnum default_foreign_enum = 82 [default = FOREIGN_BAR];
+   */
+  defaultForeignEnum?: ForeignEnumJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest_import.ImportEnum default_import_enum = 83 [default = IMPORT_BAR];
+   */
+  defaultImportEnum?: ImportEnumJson;
+
+  /**
+   * @generated from field: optional string default_string_piece = 84 [default = "abc"];
+   */
+  defaultStringPiece?: string;
+
+  /**
+   * @generated from field: optional string default_cord = 85 [default = "123"];
+   */
+  defaultCord?: string;
+
+  /**
+   * @generated from field: uint32 oneof_uint32 = 111;
+   */
+  oneofUint32?: number;
+
+  /**
+   * @generated from field: protobuf_unittest.TestAllTypes.NestedMessage oneof_nested_message = 112;
+   */
+  oneofNestedMessage?: TestAllTypes_NestedMessageJson;
+
+  /**
+   * @generated from field: string oneof_string = 113;
+   */
+  oneofString?: string;
+
+  /**
+   * @generated from field: bytes oneof_bytes = 114;
+   */
+  oneofBytes?: string;
+
+  /**
+   * @generated from field: string oneof_cord = 115;
+   */
+  oneofCord?: string;
+
+  /**
+   * @generated from field: string oneof_string_piece = 116;
+   */
+  oneofStringPiece?: string;
+
+  /**
+   * @generated from field: protobuf_unittest.TestAllTypes.NestedMessage oneof_lazy_nested_message = 117;
+   */
+  oneofLazyNestedMessage?: TestAllTypes_NestedMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestAllTypes.
  * Use `create(TestAllTypesDesc)` to create a new message.
  */
-export const TestAllTypesDesc: GenDescMessage<TestAllTypes> = /*@__PURE__*/
+export const TestAllTypesDesc: GenDescMessage<TestAllTypes, TestAllTypesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 0);
 
 /**
@@ -488,10 +888,20 @@ export type TestAllTypes_NestedMessage = Message<"protobuf_unittest.TestAllTypes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestAllTypes.NestedMessage.
+ */
+export type TestAllTypes_NestedMessageJson = {
+  /**
+   * @generated from field: optional int32 bb = 1;
+   */
+  bb?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestAllTypes.NestedMessage.
  * Use `create(TestAllTypes_NestedMessageDesc)` to create a new message.
  */
-export const TestAllTypes_NestedMessageDesc: GenDescMessage<TestAllTypes_NestedMessage> = /*@__PURE__*/
+export const TestAllTypes_NestedMessageDesc: GenDescMessage<TestAllTypes_NestedMessage, TestAllTypes_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 0, 0);
 
 /**
@@ -505,10 +915,20 @@ export type TestAllTypes_OptionalGroup = Message<"protobuf_unittest.TestAllTypes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestAllTypes.OptionalGroup.
+ */
+export type TestAllTypes_OptionalGroupJson = {
+  /**
+   * @generated from field: optional int32 a = 17;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestAllTypes.OptionalGroup.
  * Use `create(TestAllTypes_OptionalGroupDesc)` to create a new message.
  */
-export const TestAllTypes_OptionalGroupDesc: GenDescMessage<TestAllTypes_OptionalGroup> = /*@__PURE__*/
+export const TestAllTypes_OptionalGroupDesc: GenDescMessage<TestAllTypes_OptionalGroup, TestAllTypes_OptionalGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 0, 1);
 
 /**
@@ -522,10 +942,20 @@ export type TestAllTypes_RepeatedGroup = Message<"protobuf_unittest.TestAllTypes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestAllTypes.RepeatedGroup.
+ */
+export type TestAllTypes_RepeatedGroupJson = {
+  /**
+   * @generated from field: optional int32 a = 47;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestAllTypes.RepeatedGroup.
  * Use `create(TestAllTypes_RepeatedGroupDesc)` to create a new message.
  */
-export const TestAllTypes_RepeatedGroupDesc: GenDescMessage<TestAllTypes_RepeatedGroup> = /*@__PURE__*/
+export const TestAllTypes_RepeatedGroupDesc: GenDescMessage<TestAllTypes_RepeatedGroup, TestAllTypes_RepeatedGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 0, 2);
 
 /**
@@ -556,9 +986,14 @@ export enum TestAllTypes_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestAllTypes.NestedEnum.
+ */
+export type TestAllTypes_NestedEnumJson = "FOO" | "BAR" | "BAZ" | "NEG";
+
+/**
  * Describes the enum protobuf_unittest.TestAllTypes.NestedEnum.
  */
-export const TestAllTypes_NestedEnumDesc: GenDescEnum<TestAllTypes_NestedEnum> = /*@__PURE__*/
+export const TestAllTypes_NestedEnumDesc: GenDescEnum<TestAllTypes_NestedEnum, TestAllTypes_NestedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 0, 0);
 
 /**
@@ -594,10 +1029,40 @@ export type NestedTestAllTypes = Message<"protobuf_unittest.NestedTestAllTypes">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.NestedTestAllTypes.
+ */
+export type NestedTestAllTypesJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestAllTypes child = 1;
+   */
+  child?: NestedTestAllTypesJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes payload = 2;
+   */
+  payload?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.NestedTestAllTypes repeated_child = 3;
+   */
+  repeatedChild?: NestedTestAllTypesJson[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestAllTypes lazy_child = 4;
+   */
+  lazyChild?: NestedTestAllTypesJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes eager_child = 5;
+   */
+  eagerChild?: TestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.NestedTestAllTypes.
  * Use `create(NestedTestAllTypesDesc)` to create a new message.
  */
-export const NestedTestAllTypesDesc: GenDescMessage<NestedTestAllTypes> = /*@__PURE__*/
+export const NestedTestAllTypesDesc: GenDescMessage<NestedTestAllTypes, NestedTestAllTypesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 1);
 
 /**
@@ -641,10 +1106,40 @@ export type TestDeprecatedFields = Message<"protobuf_unittest.TestDeprecatedFiel
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestDeprecatedFields.
+ */
+export type TestDeprecatedFieldsJson = {
+  /**
+   * @generated from field: optional int32 deprecated_int32 = 1 [deprecated = true];
+   */
+  deprecatedInt32?: number;
+
+  /**
+   * @generated from field: repeated string deprecated_repeated_string = 4 [deprecated = true];
+   */
+  deprecatedRepeatedString?: string[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage deprecated_message = 3 [deprecated = true];
+   */
+  deprecatedMessage?: TestAllTypes_NestedMessageJson;
+
+  /**
+   * @generated from field: int32 deprecated_int32_in_oneof = 2 [deprecated = true];
+   */
+  deprecatedInt32InOneof?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestDeprecatedFields nested = 5;
+   */
+  nested?: TestDeprecatedFieldsJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestDeprecatedFields.
  * Use `create(TestDeprecatedFieldsDesc)` to create a new message.
  */
-export const TestDeprecatedFieldsDesc: GenDescMessage<TestDeprecatedFields> = /*@__PURE__*/
+export const TestDeprecatedFieldsDesc: GenDescMessage<TestDeprecatedFields, TestDeprecatedFieldsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 2);
 
 /**
@@ -655,11 +1150,17 @@ export type TestDeprecatedMessage = Message<"protobuf_unittest.TestDeprecatedMes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestDeprecatedMessage.
+ */
+export type TestDeprecatedMessageJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestDeprecatedMessage.
  * Use `create(TestDeprecatedMessageDesc)` to create a new message.
  * @deprecated
  */
-export const TestDeprecatedMessageDesc: GenDescMessage<TestDeprecatedMessage> = /*@__PURE__*/
+export const TestDeprecatedMessageDesc: GenDescMessage<TestDeprecatedMessage, TestDeprecatedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 3);
 
 /**
@@ -681,10 +1182,25 @@ export type ForeignMessage = Message<"protobuf_unittest.ForeignMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.ForeignMessage.
+ */
+export type ForeignMessageJson = {
+  /**
+   * @generated from field: optional int32 c = 1;
+   */
+  c?: number;
+
+  /**
+   * @generated from field: optional int32 d = 2;
+   */
+  d?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.ForeignMessage.
  * Use `create(ForeignMessageDesc)` to create a new message.
  */
-export const ForeignMessageDesc: GenDescMessage<ForeignMessage> = /*@__PURE__*/
+export const ForeignMessageDesc: GenDescMessage<ForeignMessage, ForeignMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 4);
 
 /**
@@ -694,10 +1210,16 @@ export type TestReservedFields = Message<"protobuf_unittest.TestReservedFields">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestReservedFields.
+ */
+export type TestReservedFieldsJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestReservedFields.
  * Use `create(TestReservedFieldsDesc)` to create a new message.
  */
-export const TestReservedFieldsDesc: GenDescMessage<TestReservedFields> = /*@__PURE__*/
+export const TestReservedFieldsDesc: GenDescMessage<TestReservedFields, TestReservedFieldsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 5);
 
 /**
@@ -707,10 +1229,16 @@ export type TestAllExtensions = Message<"protobuf_unittest.TestAllExtensions"> &
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestAllExtensions.
+ */
+export type TestAllExtensionsJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestAllExtensions.
  * Use `create(TestAllExtensionsDesc)` to create a new message.
  */
-export const TestAllExtensionsDesc: GenDescMessage<TestAllExtensions> = /*@__PURE__*/
+export const TestAllExtensionsDesc: GenDescMessage<TestAllExtensions, TestAllExtensionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 6);
 
 /**
@@ -724,10 +1252,20 @@ export type OptionalGroup_extension = Message<"protobuf_unittest.OptionalGroup_e
 };
 
 /**
+ * JSON type for the message protobuf_unittest.OptionalGroup_extension.
+ */
+export type OptionalGroup_extensionJson = {
+  /**
+   * @generated from field: optional int32 a = 17;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.OptionalGroup_extension.
  * Use `create(OptionalGroup_extensionDesc)` to create a new message.
  */
-export const OptionalGroup_extensionDesc: GenDescMessage<OptionalGroup_extension> = /*@__PURE__*/
+export const OptionalGroup_extensionDesc: GenDescMessage<OptionalGroup_extension, OptionalGroup_extensionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 7);
 
 /**
@@ -741,10 +1279,20 @@ export type RepeatedGroup_extension = Message<"protobuf_unittest.RepeatedGroup_e
 };
 
 /**
+ * JSON type for the message protobuf_unittest.RepeatedGroup_extension.
+ */
+export type RepeatedGroup_extensionJson = {
+  /**
+   * @generated from field: optional int32 a = 47;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.RepeatedGroup_extension.
  * Use `create(RepeatedGroup_extensionDesc)` to create a new message.
  */
-export const RepeatedGroup_extensionDesc: GenDescMessage<RepeatedGroup_extension> = /*@__PURE__*/
+export const RepeatedGroup_extensionDesc: GenDescMessage<RepeatedGroup_extension, RepeatedGroup_extensionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 8);
 
 /**
@@ -763,10 +1311,25 @@ export type TestMixedFieldsAndExtensions = Message<"protobuf_unittest.TestMixedF
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMixedFieldsAndExtensions.
+ */
+export type TestMixedFieldsAndExtensionsJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: repeated fixed32 b = 3;
+   */
+  b?: number[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestMixedFieldsAndExtensions.
  * Use `create(TestMixedFieldsAndExtensionsDesc)` to create a new message.
  */
-export const TestMixedFieldsAndExtensionsDesc: GenDescMessage<TestMixedFieldsAndExtensions> = /*@__PURE__*/
+export const TestMixedFieldsAndExtensionsDesc: GenDescMessage<TestMixedFieldsAndExtensions, TestMixedFieldsAndExtensionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 9);
 
 /**
@@ -797,10 +1360,25 @@ export type TestGroup = Message<"protobuf_unittest.TestGroup"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestGroup.
+ */
+export type TestGroupJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestGroup.OptionalGroup optionalgroup = 16;
+   */
+  optionalgroup?: TestGroup_OptionalGroupJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignEnum optional_foreign_enum = 22;
+   */
+  optionalForeignEnum?: ForeignEnumJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestGroup.
  * Use `create(TestGroupDesc)` to create a new message.
  */
-export const TestGroupDesc: GenDescMessage<TestGroup> = /*@__PURE__*/
+export const TestGroupDesc: GenDescMessage<TestGroup, TestGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 10);
 
 /**
@@ -821,10 +1399,25 @@ export type TestGroup_OptionalGroup = Message<"protobuf_unittest.TestGroup.Optio
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestGroup.OptionalGroup.
+ */
+export type TestGroup_OptionalGroupJson = {
+  /**
+   * @generated from field: optional int32 a = 17;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 zz = 89;
+   */
+  zz?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestGroup.OptionalGroup.
  * Use `create(TestGroup_OptionalGroupDesc)` to create a new message.
  */
-export const TestGroup_OptionalGroupDesc: GenDescMessage<TestGroup_OptionalGroup> = /*@__PURE__*/
+export const TestGroup_OptionalGroupDesc: GenDescMessage<TestGroup_OptionalGroup, TestGroup_OptionalGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 10, 0);
 
 /**
@@ -834,10 +1427,16 @@ export type TestGroupExtension = Message<"protobuf_unittest.TestGroupExtension">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestGroupExtension.
+ */
+export type TestGroupExtensionJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestGroupExtension.
  * Use `create(TestGroupExtensionDesc)` to create a new message.
  */
-export const TestGroupExtensionDesc: GenDescMessage<TestGroupExtension> = /*@__PURE__*/
+export const TestGroupExtensionDesc: GenDescMessage<TestGroupExtension, TestGroupExtensionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 11);
 
 /**
@@ -847,10 +1446,16 @@ export type TestNestedExtension = Message<"protobuf_unittest.TestNestedExtension
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedExtension.
+ */
+export type TestNestedExtensionJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedExtension.
  * Use `create(TestNestedExtensionDesc)` to create a new message.
  */
-export const TestNestedExtensionDesc: GenDescMessage<TestNestedExtension> = /*@__PURE__*/
+export const TestNestedExtensionDesc: GenDescMessage<TestNestedExtension, TestNestedExtensionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 12);
 
 /**
@@ -864,10 +1469,20 @@ export type TestNestedExtension_OptionalGroup_extension = Message<"protobuf_unit
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedExtension.OptionalGroup_extension.
+ */
+export type TestNestedExtension_OptionalGroup_extensionJson = {
+  /**
+   * @generated from field: optional int32 a = 17;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedExtension.OptionalGroup_extension.
  * Use `create(TestNestedExtension_OptionalGroup_extensionDesc)` to create a new message.
  */
-export const TestNestedExtension_OptionalGroup_extensionDesc: GenDescMessage<TestNestedExtension_OptionalGroup_extension> = /*@__PURE__*/
+export const TestNestedExtension_OptionalGroup_extensionDesc: GenDescMessage<TestNestedExtension_OptionalGroup_extension, TestNestedExtension_OptionalGroup_extensionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 12, 0);
 
 /**
@@ -921,10 +1536,30 @@ export type TestChildExtension = Message<"protobuf_unittest.TestChildExtension">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestChildExtension.
+ */
+export type TestChildExtensionJson = {
+  /**
+   * @generated from field: optional string a = 1;
+   */
+  a?: string;
+
+  /**
+   * @generated from field: optional string b = 2;
+   */
+  b?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllExtensions optional_extension = 3;
+   */
+  optionalExtension?: TestAllExtensionsJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestChildExtension.
  * Use `create(TestChildExtensionDesc)` to create a new message.
  */
-export const TestChildExtensionDesc: GenDescMessage<TestChildExtension> = /*@__PURE__*/
+export const TestChildExtensionDesc: GenDescMessage<TestChildExtension, TestChildExtensionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 13);
 
 /**
@@ -951,10 +1586,30 @@ export type TestChildExtensionData = Message<"protobuf_unittest.TestChildExtensi
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestChildExtensionData.
+ */
+export type TestChildExtensionDataJson = {
+  /**
+   * @generated from field: optional string a = 1;
+   */
+  a?: string;
+
+  /**
+   * @generated from field: optional string b = 2;
+   */
+  b?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData optional_extension = 3;
+   */
+  optionalExtension?: TestChildExtensionData_NestedTestAllExtensionsDataJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestChildExtensionData.
  * Use `create(TestChildExtensionDataDesc)` to create a new message.
  */
-export const TestChildExtensionDataDesc: GenDescMessage<TestChildExtensionData> = /*@__PURE__*/
+export const TestChildExtensionDataDesc: GenDescMessage<TestChildExtensionData, TestChildExtensionDataJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 14);
 
 /**
@@ -968,10 +1623,20 @@ export type TestChildExtensionData_NestedTestAllExtensionsData = Message<"protob
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.
+ */
+export type TestChildExtensionData_NestedTestAllExtensionsDataJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions dynamic = 409707008;
+   */
+  dynamic?: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.
  * Use `create(TestChildExtensionData_NestedTestAllExtensionsDataDesc)` to create a new message.
  */
-export const TestChildExtensionData_NestedTestAllExtensionsDataDesc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData> = /*@__PURE__*/
+export const TestChildExtensionData_NestedTestAllExtensionsDataDesc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData, TestChildExtensionData_NestedTestAllExtensionsDataJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 14, 0);
 
 /**
@@ -990,10 +1655,25 @@ export type TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExte
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions.
+ */
+export type TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 b = 2;
+   */
+  b?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions.
  * Use `create(TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsDesc)` to create a new message.
  */
-export const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsDesc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions> = /*@__PURE__*/
+export const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsDesc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions, TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 14, 0, 0);
 
 /**
@@ -1012,10 +1692,25 @@ export type TestNestedChildExtension = Message<"protobuf_unittest.TestNestedChil
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedChildExtension.
+ */
+export type TestNestedChildExtensionJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestChildExtension child = 2;
+   */
+  child?: TestChildExtensionJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedChildExtension.
  * Use `create(TestNestedChildExtensionDesc)` to create a new message.
  */
-export const TestNestedChildExtensionDesc: GenDescMessage<TestNestedChildExtension> = /*@__PURE__*/
+export const TestNestedChildExtensionDesc: GenDescMessage<TestNestedChildExtension, TestNestedChildExtensionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 15);
 
 /**
@@ -1037,10 +1732,25 @@ export type TestNestedChildExtensionData = Message<"protobuf_unittest.TestNested
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedChildExtensionData.
+ */
+export type TestNestedChildExtensionDataJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestChildExtensionData child = 2;
+   */
+  child?: TestChildExtensionDataJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedChildExtensionData.
  * Use `create(TestNestedChildExtensionDataDesc)` to create a new message.
  */
-export const TestNestedChildExtensionDataDesc: GenDescMessage<TestNestedChildExtensionData> = /*@__PURE__*/
+export const TestNestedChildExtensionDataDesc: GenDescMessage<TestNestedChildExtensionData, TestNestedChildExtensionDataJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 16);
 
 /**
@@ -1064,10 +1774,25 @@ export type TestRequiredEnum = Message<"protobuf_unittest.TestRequiredEnum"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequiredEnum.
+ */
+export type TestRequiredEnumJson = {
+  /**
+   * @generated from field: required protobuf_unittest.ForeignEnum required_enum = 1;
+   */
+  requiredEnum?: ForeignEnumJson;
+
+  /**
+   * @generated from field: optional int32 a = 2;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequiredEnum.
  * Use `create(TestRequiredEnumDesc)` to create a new message.
  */
-export const TestRequiredEnumDesc: GenDescMessage<TestRequiredEnum> = /*@__PURE__*/
+export const TestRequiredEnumDesc: GenDescMessage<TestRequiredEnum, TestRequiredEnumJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 17);
 
 /**
@@ -1090,10 +1815,25 @@ export type TestRequiredEnumNoMask = Message<"protobuf_unittest.TestRequiredEnum
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequiredEnumNoMask.
+ */
+export type TestRequiredEnumNoMaskJson = {
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredEnumNoMask.NestedEnum required_enum = 1;
+   */
+  requiredEnum?: TestRequiredEnumNoMask_NestedEnumJson;
+
+  /**
+   * @generated from field: optional int32 a = 2;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequiredEnumNoMask.
  * Use `create(TestRequiredEnumNoMaskDesc)` to create a new message.
  */
-export const TestRequiredEnumNoMaskDesc: GenDescMessage<TestRequiredEnumNoMask> = /*@__PURE__*/
+export const TestRequiredEnumNoMaskDesc: GenDescMessage<TestRequiredEnumNoMask, TestRequiredEnumNoMaskJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 18);
 
 /**
@@ -1124,9 +1864,14 @@ export enum TestRequiredEnumNoMask_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestRequiredEnumNoMask.NestedEnum.
+ */
+export type TestRequiredEnumNoMask_NestedEnumJson = "UNSPECIFIED" | "FOO" | "BAR" | "BAZ";
+
+/**
  * Describes the enum protobuf_unittest.TestRequiredEnumNoMask.NestedEnum.
  */
-export const TestRequiredEnumNoMask_NestedEnumDesc: GenDescEnum<TestRequiredEnumNoMask_NestedEnum> = /*@__PURE__*/
+export const TestRequiredEnumNoMask_NestedEnumDesc: GenDescEnum<TestRequiredEnumNoMask_NestedEnum, TestRequiredEnumNoMask_NestedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 18, 0);
 
 /**
@@ -1158,10 +1903,35 @@ export type TestRequiredEnumMulti = Message<"protobuf_unittest.TestRequiredEnumM
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequiredEnumMulti.
+ */
+export type TestRequiredEnumMultiJson = {
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_4 = 4;
+   */
+  requiredEnum4?: TestRequiredEnumMulti_NestedEnumJson;
+
+  /**
+   * @generated from field: optional int32 a_3 = 3;
+   */
+  a3?: number;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredEnumMulti.NestedEnum required_enum_2 = 2;
+   */
+  requiredEnum2?: TestRequiredEnumMulti_NestedEnumJson;
+
+  /**
+   * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
+   */
+  requiredEnum1?: ForeignEnumJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequiredEnumMulti.
  * Use `create(TestRequiredEnumMultiDesc)` to create a new message.
  */
-export const TestRequiredEnumMultiDesc: GenDescMessage<TestRequiredEnumMulti> = /*@__PURE__*/
+export const TestRequiredEnumMultiDesc: GenDescMessage<TestRequiredEnumMulti, TestRequiredEnumMultiJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 19);
 
 /**
@@ -1190,9 +1960,14 @@ export enum TestRequiredEnumMulti_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestRequiredEnumMulti.NestedEnum.
+ */
+export type TestRequiredEnumMulti_NestedEnumJson = "UNSPECIFIED" | "FOO" | "BAR" | "BAZ";
+
+/**
  * Describes the enum protobuf_unittest.TestRequiredEnumMulti.NestedEnum.
  */
-export const TestRequiredEnumMulti_NestedEnumDesc: GenDescEnum<TestRequiredEnumMulti_NestedEnum> = /*@__PURE__*/
+export const TestRequiredEnumMulti_NestedEnumDesc: GenDescEnum<TestRequiredEnumMulti_NestedEnum, TestRequiredEnumMulti_NestedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 19, 0);
 
 /**
@@ -1240,10 +2015,50 @@ export type TestRequiredNoMaskMulti = Message<"protobuf_unittest.TestRequiredNoM
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequiredNoMaskMulti.
+ */
+export type TestRequiredNoMaskMultiJson = {
+  /**
+   * @generated from field: required fixed32 required_fixed32_80 = 80;
+   */
+  requiredFixed3280?: number;
+
+  /**
+   * @generated from field: required fixed32 required_fixed32_70 = 70;
+   */
+  requiredFixed3270?: number;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_64 = 64;
+   */
+  requiredEnum64?: TestRequiredNoMaskMulti_NestedEnumJson;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_4 = 4;
+   */
+  requiredEnum4?: TestRequiredNoMaskMulti_NestedEnumJson;
+
+  /**
+   * @generated from field: optional int32 a_3 = 3;
+   */
+  a3?: number;
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum required_enum_2 = 2;
+   */
+  requiredEnum2?: TestRequiredNoMaskMulti_NestedEnumJson;
+
+  /**
+   * @generated from field: required protobuf_unittest.ForeignEnum required_enum_1 = 1;
+   */
+  requiredEnum1?: ForeignEnumJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequiredNoMaskMulti.
  * Use `create(TestRequiredNoMaskMultiDesc)` to create a new message.
  */
-export const TestRequiredNoMaskMultiDesc: GenDescMessage<TestRequiredNoMaskMulti> = /*@__PURE__*/
+export const TestRequiredNoMaskMultiDesc: GenDescMessage<TestRequiredNoMaskMulti, TestRequiredNoMaskMultiJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 20);
 
 /**
@@ -1272,9 +2087,14 @@ export enum TestRequiredNoMaskMulti_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum.
+ */
+export type TestRequiredNoMaskMulti_NestedEnumJson = "UNSPECIFIED" | "FOO" | "BAR" | "BAZ";
+
+/**
  * Describes the enum protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum.
  */
-export const TestRequiredNoMaskMulti_NestedEnumDesc: GenDescEnum<TestRequiredNoMaskMulti_NestedEnum> = /*@__PURE__*/
+export const TestRequiredNoMaskMulti_NestedEnumDesc: GenDescEnum<TestRequiredNoMaskMulti_NestedEnum, TestRequiredNoMaskMulti_NestedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 20, 0);
 
 /**
@@ -1464,10 +2284,185 @@ export type TestRequired = Message<"protobuf_unittest.TestRequired"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequired.
+ */
+export type TestRequiredJson = {
+  /**
+   * @generated from field: required int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 dummy2 = 2;
+   */
+  dummy2?: number;
+
+  /**
+   * @generated from field: required int32 b = 3;
+   */
+  b?: number;
+
+  /**
+   * @generated from field: optional int32 dummy4 = 4;
+   */
+  dummy4?: number;
+
+  /**
+   * @generated from field: optional int32 dummy5 = 5;
+   */
+  dummy5?: number;
+
+  /**
+   * @generated from field: optional int32 dummy6 = 6;
+   */
+  dummy6?: number;
+
+  /**
+   * @generated from field: optional int32 dummy7 = 7;
+   */
+  dummy7?: number;
+
+  /**
+   * @generated from field: optional int32 dummy8 = 8;
+   */
+  dummy8?: number;
+
+  /**
+   * @generated from field: optional int32 dummy9 = 9;
+   */
+  dummy9?: number;
+
+  /**
+   * @generated from field: optional int32 dummy10 = 10;
+   */
+  dummy10?: number;
+
+  /**
+   * @generated from field: optional int32 dummy11 = 11;
+   */
+  dummy11?: number;
+
+  /**
+   * @generated from field: optional int32 dummy12 = 12;
+   */
+  dummy12?: number;
+
+  /**
+   * @generated from field: optional int32 dummy13 = 13;
+   */
+  dummy13?: number;
+
+  /**
+   * @generated from field: optional int32 dummy14 = 14;
+   */
+  dummy14?: number;
+
+  /**
+   * @generated from field: optional int32 dummy15 = 15;
+   */
+  dummy15?: number;
+
+  /**
+   * @generated from field: optional int32 dummy16 = 16;
+   */
+  dummy16?: number;
+
+  /**
+   * @generated from field: optional int32 dummy17 = 17;
+   */
+  dummy17?: number;
+
+  /**
+   * @generated from field: optional int32 dummy18 = 18;
+   */
+  dummy18?: number;
+
+  /**
+   * @generated from field: optional int32 dummy19 = 19;
+   */
+  dummy19?: number;
+
+  /**
+   * @generated from field: optional int32 dummy20 = 20;
+   */
+  dummy20?: number;
+
+  /**
+   * @generated from field: optional int32 dummy21 = 21;
+   */
+  dummy21?: number;
+
+  /**
+   * @generated from field: optional int32 dummy22 = 22;
+   */
+  dummy22?: number;
+
+  /**
+   * @generated from field: optional int32 dummy23 = 23;
+   */
+  dummy23?: number;
+
+  /**
+   * @generated from field: optional int32 dummy24 = 24;
+   */
+  dummy24?: number;
+
+  /**
+   * @generated from field: optional int32 dummy25 = 25;
+   */
+  dummy25?: number;
+
+  /**
+   * @generated from field: optional int32 dummy26 = 26;
+   */
+  dummy26?: number;
+
+  /**
+   * @generated from field: optional int32 dummy27 = 27;
+   */
+  dummy27?: number;
+
+  /**
+   * @generated from field: optional int32 dummy28 = 28;
+   */
+  dummy28?: number;
+
+  /**
+   * @generated from field: optional int32 dummy29 = 29;
+   */
+  dummy29?: number;
+
+  /**
+   * @generated from field: optional int32 dummy30 = 30;
+   */
+  dummy30?: number;
+
+  /**
+   * @generated from field: optional int32 dummy31 = 31;
+   */
+  dummy31?: number;
+
+  /**
+   * @generated from field: optional int32 dummy32 = 32;
+   */
+  dummy32?: number;
+
+  /**
+   * @generated from field: required int32 c = 33;
+   */
+  c?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignMessage optional_foreign = 34;
+   */
+  optionalForeign?: ForeignMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequired.
  * Use `create(TestRequiredDesc)` to create a new message.
  */
-export const TestRequiredDesc: GenDescMessage<TestRequired> = /*@__PURE__*/
+export const TestRequiredDesc: GenDescMessage<TestRequired, TestRequiredJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 21);
 
 /**
@@ -1510,10 +2505,35 @@ export type TestRequiredForeign = Message<"protobuf_unittest.TestRequiredForeign
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequiredForeign.
+ */
+export type TestRequiredForeignJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequired optional_message = 1;
+   */
+  optionalMessage?: TestRequiredJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestRequired repeated_message = 2;
+   */
+  repeatedMessage?: TestRequiredJson[];
+
+  /**
+   * @generated from field: optional int32 dummy = 3;
+   */
+  dummy?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.NestedTestAllTypes optional_lazy_message = 4;
+   */
+  optionalLazyMessage?: NestedTestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequiredForeign.
  * Use `create(TestRequiredForeignDesc)` to create a new message.
  */
-export const TestRequiredForeignDesc: GenDescMessage<TestRequiredForeign> = /*@__PURE__*/
+export const TestRequiredForeignDesc: GenDescMessage<TestRequiredForeign, TestRequiredForeignJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 22);
 
 /**
@@ -1537,10 +2557,30 @@ export type TestRequiredMessage = Message<"protobuf_unittest.TestRequiredMessage
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequiredMessage.
+ */
+export type TestRequiredMessageJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequired optional_message = 1;
+   */
+  optionalMessage?: TestRequiredJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestRequired repeated_message = 2;
+   */
+  repeatedMessage?: TestRequiredJson[];
+
+  /**
+   * @generated from field: required protobuf_unittest.TestRequired required_message = 3;
+   */
+  requiredMessage?: TestRequiredJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequiredMessage.
  * Use `create(TestRequiredMessageDesc)` to create a new message.
  */
-export const TestRequiredMessageDesc: GenDescMessage<TestRequiredMessage> = /*@__PURE__*/
+export const TestRequiredMessageDesc: GenDescMessage<TestRequiredMessage, TestRequiredMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 23);
 
 /**
@@ -1586,10 +2626,50 @@ export type TestNestedRequiredForeign = Message<"protobuf_unittest.TestNestedReq
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedRequiredForeign.
+ */
+export type TestNestedRequiredForeignJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedRequiredForeign child = 1;
+   */
+  child?: TestNestedRequiredForeignJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredForeign payload = 2;
+   */
+  payload?: TestRequiredForeignJson;
+
+  /**
+   * @generated from field: optional int32 dummy = 3;
+   */
+  dummy?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredEnum required_enum = 5;
+   */
+  requiredEnum?: TestRequiredEnumJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredEnumNoMask required_enum_no_mask = 6;
+   */
+  requiredEnumNoMask?: TestRequiredEnumNoMaskJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredEnumMulti required_enum_multi = 7;
+   */
+  requiredEnumMulti?: TestRequiredEnumMultiJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredNoMaskMulti required_no_mask = 9;
+   */
+  requiredNoMask?: TestRequiredNoMaskMultiJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedRequiredForeign.
  * Use `create(TestNestedRequiredForeignDesc)` to create a new message.
  */
-export const TestNestedRequiredForeignDesc: GenDescMessage<TestNestedRequiredForeign> = /*@__PURE__*/
+export const TestNestedRequiredForeignDesc: GenDescMessage<TestNestedRequiredForeign, TestNestedRequiredForeignJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 24);
 
 /**
@@ -1605,10 +2685,20 @@ export type TestForeignNested = Message<"protobuf_unittest.TestForeignNested"> &
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestForeignNested.
+ */
+export type TestForeignNestedJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes.NestedMessage foreign_nested = 1;
+   */
+  foreignNested?: TestAllTypes_NestedMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestForeignNested.
  * Use `create(TestForeignNestedDesc)` to create a new message.
  */
-export const TestForeignNestedDesc: GenDescMessage<TestForeignNested> = /*@__PURE__*/
+export const TestForeignNestedDesc: GenDescMessage<TestForeignNested, TestForeignNestedJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 25);
 
 /**
@@ -1620,10 +2710,16 @@ export type TestEmptyMessage = Message<"protobuf_unittest.TestEmptyMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestEmptyMessage.
+ */
+export type TestEmptyMessageJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestEmptyMessage.
  * Use `create(TestEmptyMessageDesc)` to create a new message.
  */
-export const TestEmptyMessageDesc: GenDescMessage<TestEmptyMessage> = /*@__PURE__*/
+export const TestEmptyMessageDesc: GenDescMessage<TestEmptyMessage, TestEmptyMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 26);
 
 /**
@@ -1636,10 +2732,16 @@ export type TestEmptyMessageWithExtensions = Message<"protobuf_unittest.TestEmpt
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestEmptyMessageWithExtensions.
+ */
+export type TestEmptyMessageWithExtensionsJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestEmptyMessageWithExtensions.
  * Use `create(TestEmptyMessageWithExtensionsDesc)` to create a new message.
  */
-export const TestEmptyMessageWithExtensionsDesc: GenDescMessage<TestEmptyMessageWithExtensions> = /*@__PURE__*/
+export const TestEmptyMessageWithExtensionsDesc: GenDescMessage<TestEmptyMessageWithExtensions, TestEmptyMessageWithExtensionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 27);
 
 /**
@@ -1651,10 +2753,16 @@ export type TestPickleNestedMessage = Message<"protobuf_unittest.TestPickleNeste
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestPickleNestedMessage.
+ */
+export type TestPickleNestedMessageJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestPickleNestedMessage.
  * Use `create(TestPickleNestedMessageDesc)` to create a new message.
  */
-export const TestPickleNestedMessageDesc: GenDescMessage<TestPickleNestedMessage> = /*@__PURE__*/
+export const TestPickleNestedMessageDesc: GenDescMessage<TestPickleNestedMessage, TestPickleNestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 28);
 
 /**
@@ -1668,10 +2776,20 @@ export type TestPickleNestedMessage_NestedMessage = Message<"protobuf_unittest.T
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestPickleNestedMessage.NestedMessage.
+ */
+export type TestPickleNestedMessage_NestedMessageJson = {
+  /**
+   * @generated from field: optional int32 bb = 1;
+   */
+  bb?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestPickleNestedMessage.NestedMessage.
  * Use `create(TestPickleNestedMessage_NestedMessageDesc)` to create a new message.
  */
-export const TestPickleNestedMessage_NestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage> = /*@__PURE__*/
+export const TestPickleNestedMessage_NestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage, TestPickleNestedMessage_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 28, 0);
 
 /**
@@ -1685,10 +2803,20 @@ export type TestPickleNestedMessage_NestedMessage_NestedNestedMessage = Message<
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage.
+ */
+export type TestPickleNestedMessage_NestedMessage_NestedNestedMessageJson = {
+  /**
+   * @generated from field: optional int32 cc = 1;
+   */
+  cc?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage.
  * Use `create(TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc)` to create a new message.
  */
-export const TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> = /*@__PURE__*/
+export const TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage, TestPickleNestedMessage_NestedMessage_NestedNestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 28, 0, 0);
 
 /**
@@ -1698,10 +2826,16 @@ export type TestMultipleExtensionRanges = Message<"protobuf_unittest.TestMultipl
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMultipleExtensionRanges.
+ */
+export type TestMultipleExtensionRangesJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestMultipleExtensionRanges.
  * Use `create(TestMultipleExtensionRangesDesc)` to create a new message.
  */
-export const TestMultipleExtensionRangesDesc: GenDescMessage<TestMultipleExtensionRanges> = /*@__PURE__*/
+export const TestMultipleExtensionRangesDesc: GenDescMessage<TestMultipleExtensionRanges, TestMultipleExtensionRangesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 29);
 
 /**
@@ -1725,10 +2859,25 @@ export type TestReallyLargeTagNumber = Message<"protobuf_unittest.TestReallyLarg
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestReallyLargeTagNumber.
+ */
+export type TestReallyLargeTagNumberJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional int32 bb = 268435455;
+   */
+  bb?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestReallyLargeTagNumber.
  * Use `create(TestReallyLargeTagNumberDesc)` to create a new message.
  */
-export const TestReallyLargeTagNumberDesc: GenDescMessage<TestReallyLargeTagNumber> = /*@__PURE__*/
+export const TestReallyLargeTagNumberDesc: GenDescMessage<TestReallyLargeTagNumber, TestReallyLargeTagNumberJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 30);
 
 /**
@@ -1747,10 +2896,25 @@ export type TestRecursiveMessage = Message<"protobuf_unittest.TestRecursiveMessa
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRecursiveMessage.
+ */
+export type TestRecursiveMessageJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestRecursiveMessage a = 1;
+   */
+  a?: TestRecursiveMessageJson;
+
+  /**
+   * @generated from field: optional int32 i = 2;
+   */
+  i?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRecursiveMessage.
  * Use `create(TestRecursiveMessageDesc)` to create a new message.
  */
-export const TestRecursiveMessageDesc: GenDescMessage<TestRecursiveMessage> = /*@__PURE__*/
+export const TestRecursiveMessageDesc: GenDescMessage<TestRecursiveMessage, TestRecursiveMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 31);
 
 /**
@@ -1776,10 +2940,30 @@ export type TestMutualRecursionA = Message<"protobuf_unittest.TestMutualRecursio
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMutualRecursionA.
+ */
+export type TestMutualRecursionAJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestMutualRecursionB bb = 1;
+   */
+  bb?: TestMutualRecursionBJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestMutualRecursionA.SubGroup subgroup = 2;
+   */
+  subgroup?: TestMutualRecursionA_SubGroupJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestMutualRecursionA.SubGroupR subgroupr = 5;
+   */
+  subgroupr?: TestMutualRecursionA_SubGroupRJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestMutualRecursionA.
  * Use `create(TestMutualRecursionADesc)` to create a new message.
  */
-export const TestMutualRecursionADesc: GenDescMessage<TestMutualRecursionA> = /*@__PURE__*/
+export const TestMutualRecursionADesc: GenDescMessage<TestMutualRecursionA, TestMutualRecursionAJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 32);
 
 /**
@@ -1793,10 +2977,20 @@ export type TestMutualRecursionA_SubMessage = Message<"protobuf_unittest.TestMut
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMutualRecursionA.SubMessage.
+ */
+export type TestMutualRecursionA_SubMessageJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestMutualRecursionB b = 1;
+   */
+  b?: TestMutualRecursionBJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMutualRecursionA.SubMessage.
  * Use `create(TestMutualRecursionA_SubMessageDesc)` to create a new message.
  */
-export const TestMutualRecursionA_SubMessageDesc: GenDescMessage<TestMutualRecursionA_SubMessage> = /*@__PURE__*/
+export const TestMutualRecursionA_SubMessageDesc: GenDescMessage<TestMutualRecursionA_SubMessage, TestMutualRecursionA_SubMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 32, 0);
 
 /**
@@ -1817,10 +3011,25 @@ export type TestMutualRecursionA_SubGroup = Message<"protobuf_unittest.TestMutua
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMutualRecursionA.SubGroup.
+ */
+export type TestMutualRecursionA_SubGroupJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestMutualRecursionA.SubMessage sub_message = 3;
+   */
+  subMessage?: TestMutualRecursionA_SubMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes not_in_this_scc = 4;
+   */
+  notInThisScc?: TestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMutualRecursionA.SubGroup.
  * Use `create(TestMutualRecursionA_SubGroupDesc)` to create a new message.
  */
-export const TestMutualRecursionA_SubGroupDesc: GenDescMessage<TestMutualRecursionA_SubGroup> = /*@__PURE__*/
+export const TestMutualRecursionA_SubGroupDesc: GenDescMessage<TestMutualRecursionA_SubGroup, TestMutualRecursionA_SubGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 32, 1);
 
 /**
@@ -1834,10 +3043,20 @@ export type TestMutualRecursionA_SubGroupR = Message<"protobuf_unittest.TestMutu
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMutualRecursionA.SubGroupR.
+ */
+export type TestMutualRecursionA_SubGroupRJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes payload = 6;
+   */
+  payload?: TestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMutualRecursionA.SubGroupR.
  * Use `create(TestMutualRecursionA_SubGroupRDesc)` to create a new message.
  */
-export const TestMutualRecursionA_SubGroupRDesc: GenDescMessage<TestMutualRecursionA_SubGroupR> = /*@__PURE__*/
+export const TestMutualRecursionA_SubGroupRDesc: GenDescMessage<TestMutualRecursionA_SubGroupR, TestMutualRecursionA_SubGroupRJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 32, 2);
 
 /**
@@ -1856,10 +3075,25 @@ export type TestMutualRecursionB = Message<"protobuf_unittest.TestMutualRecursio
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMutualRecursionB.
+ */
+export type TestMutualRecursionBJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestMutualRecursionA a = 1;
+   */
+  a?: TestMutualRecursionAJson;
+
+  /**
+   * @generated from field: optional int32 optional_int32 = 2;
+   */
+  optionalInt32?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMutualRecursionB.
  * Use `create(TestMutualRecursionBDesc)` to create a new message.
  */
-export const TestMutualRecursionBDesc: GenDescMessage<TestMutualRecursionB> = /*@__PURE__*/
+export const TestMutualRecursionBDesc: GenDescMessage<TestMutualRecursionB, TestMutualRecursionBJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 33);
 
 /**
@@ -1873,10 +3107,20 @@ export type TestIsInitialized = Message<"protobuf_unittest.TestIsInitialized"> &
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestIsInitialized.
+ */
+export type TestIsInitializedJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestIsInitialized.SubMessage sub_message = 1;
+   */
+  subMessage?: TestIsInitialized_SubMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestIsInitialized.
  * Use `create(TestIsInitializedDesc)` to create a new message.
  */
-export const TestIsInitializedDesc: GenDescMessage<TestIsInitialized> = /*@__PURE__*/
+export const TestIsInitializedDesc: GenDescMessage<TestIsInitialized, TestIsInitializedJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 34);
 
 /**
@@ -1890,10 +3134,20 @@ export type TestIsInitialized_SubMessage = Message<"protobuf_unittest.TestIsInit
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestIsInitialized.SubMessage.
+ */
+export type TestIsInitialized_SubMessageJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestIsInitialized.SubMessage.SubGroup subgroup = 1;
+   */
+  subgroup?: TestIsInitialized_SubMessage_SubGroupJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestIsInitialized.SubMessage.
  * Use `create(TestIsInitialized_SubMessageDesc)` to create a new message.
  */
-export const TestIsInitialized_SubMessageDesc: GenDescMessage<TestIsInitialized_SubMessage> = /*@__PURE__*/
+export const TestIsInitialized_SubMessageDesc: GenDescMessage<TestIsInitialized_SubMessage, TestIsInitialized_SubMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 34, 0);
 
 /**
@@ -1907,10 +3161,20 @@ export type TestIsInitialized_SubMessage_SubGroup = Message<"protobuf_unittest.T
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup.
+ */
+export type TestIsInitialized_SubMessage_SubGroupJson = {
+  /**
+   * @generated from field: required int32 i = 2;
+   */
+  i?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup.
  * Use `create(TestIsInitialized_SubMessage_SubGroupDesc)` to create a new message.
  */
-export const TestIsInitialized_SubMessage_SubGroupDesc: GenDescMessage<TestIsInitialized_SubMessage_SubGroup> = /*@__PURE__*/
+export const TestIsInitialized_SubMessage_SubGroupDesc: GenDescMessage<TestIsInitialized_SubMessage_SubGroup, TestIsInitialized_SubMessage_SubGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 34, 0, 0);
 
 /**
@@ -1943,10 +3207,30 @@ export type TestDupFieldNumber = Message<"protobuf_unittest.TestDupFieldNumber">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestDupFieldNumber.
+ */
+export type TestDupFieldNumberJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestDupFieldNumber.Foo foo = 2;
+   */
+  foo?: TestDupFieldNumber_FooJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestDupFieldNumber.Bar bar = 3;
+   */
+  bar?: TestDupFieldNumber_BarJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestDupFieldNumber.
  * Use `create(TestDupFieldNumberDesc)` to create a new message.
  */
-export const TestDupFieldNumberDesc: GenDescMessage<TestDupFieldNumber> = /*@__PURE__*/
+export const TestDupFieldNumberDesc: GenDescMessage<TestDupFieldNumber, TestDupFieldNumberJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 35);
 
 /**
@@ -1960,10 +3244,20 @@ export type TestDupFieldNumber_Foo = Message<"protobuf_unittest.TestDupFieldNumb
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestDupFieldNumber.Foo.
+ */
+export type TestDupFieldNumber_FooJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestDupFieldNumber.Foo.
  * Use `create(TestDupFieldNumber_FooDesc)` to create a new message.
  */
-export const TestDupFieldNumber_FooDesc: GenDescMessage<TestDupFieldNumber_Foo> = /*@__PURE__*/
+export const TestDupFieldNumber_FooDesc: GenDescMessage<TestDupFieldNumber_Foo, TestDupFieldNumber_FooJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 35, 0);
 
 /**
@@ -1977,10 +3271,20 @@ export type TestDupFieldNumber_Bar = Message<"protobuf_unittest.TestDupFieldNumb
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestDupFieldNumber.Bar.
+ */
+export type TestDupFieldNumber_BarJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestDupFieldNumber.Bar.
  * Use `create(TestDupFieldNumber_BarDesc)` to create a new message.
  */
-export const TestDupFieldNumber_BarDesc: GenDescMessage<TestDupFieldNumber_Bar> = /*@__PURE__*/
+export const TestDupFieldNumber_BarDesc: GenDescMessage<TestDupFieldNumber_Bar, TestDupFieldNumber_BarJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 35, 1);
 
 /**
@@ -1996,10 +3300,20 @@ export type TestEagerMessage = Message<"protobuf_unittest.TestEagerMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestEagerMessage.
+ */
+export type TestEagerMessageJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes sub_message = 1;
+   */
+  subMessage?: TestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestEagerMessage.
  * Use `create(TestEagerMessageDesc)` to create a new message.
  */
-export const TestEagerMessageDesc: GenDescMessage<TestEagerMessage> = /*@__PURE__*/
+export const TestEagerMessageDesc: GenDescMessage<TestEagerMessage, TestEagerMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 36);
 
 /**
@@ -2013,10 +3327,20 @@ export type TestLazyMessage = Message<"protobuf_unittest.TestLazyMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestLazyMessage.
+ */
+export type TestLazyMessageJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes sub_message = 1;
+   */
+  subMessage?: TestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestLazyMessage.
  * Use `create(TestLazyMessageDesc)` to create a new message.
  */
-export const TestLazyMessageDesc: GenDescMessage<TestLazyMessage> = /*@__PURE__*/
+export const TestLazyMessageDesc: GenDescMessage<TestLazyMessage, TestLazyMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 37);
 
 /**
@@ -2030,10 +3354,20 @@ export type TestLazyMessageRepeated = Message<"protobuf_unittest.TestLazyMessage
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestLazyMessageRepeated.
+ */
+export type TestLazyMessageRepeatedJson = {
+  /**
+   * @generated from field: repeated protobuf_unittest.TestLazyMessage repeated_message = 1;
+   */
+  repeatedMessage?: TestLazyMessageJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestLazyMessageRepeated.
  * Use `create(TestLazyMessageRepeatedDesc)` to create a new message.
  */
-export const TestLazyMessageRepeatedDesc: GenDescMessage<TestLazyMessageRepeated> = /*@__PURE__*/
+export const TestLazyMessageRepeatedDesc: GenDescMessage<TestLazyMessageRepeated, TestLazyMessageRepeatedJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 38);
 
 /**
@@ -2057,10 +3391,30 @@ export type TestEagerMaybeLazy = Message<"protobuf_unittest.TestEagerMaybeLazy">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestEagerMaybeLazy.
+ */
+export type TestEagerMaybeLazyJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes message_foo = 1;
+   */
+  messageFoo?: TestAllTypesJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes message_bar = 2;
+   */
+  messageBar?: TestAllTypesJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestEagerMaybeLazy.NestedMessage message_baz = 3;
+   */
+  messageBaz?: TestEagerMaybeLazy_NestedMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestEagerMaybeLazy.
  * Use `create(TestEagerMaybeLazyDesc)` to create a new message.
  */
-export const TestEagerMaybeLazyDesc: GenDescMessage<TestEagerMaybeLazy> = /*@__PURE__*/
+export const TestEagerMaybeLazyDesc: GenDescMessage<TestEagerMaybeLazy, TestEagerMaybeLazyJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 39);
 
 /**
@@ -2074,10 +3428,20 @@ export type TestEagerMaybeLazy_NestedMessage = Message<"protobuf_unittest.TestEa
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestEagerMaybeLazy.NestedMessage.
+ */
+export type TestEagerMaybeLazy_NestedMessageJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestPackedTypes packed = 1;
+   */
+  packed?: TestPackedTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestEagerMaybeLazy.NestedMessage.
  * Use `create(TestEagerMaybeLazy_NestedMessageDesc)` to create a new message.
  */
-export const TestEagerMaybeLazy_NestedMessageDesc: GenDescMessage<TestEagerMaybeLazy_NestedMessage> = /*@__PURE__*/
+export const TestEagerMaybeLazy_NestedMessageDesc: GenDescMessage<TestEagerMaybeLazy_NestedMessage, TestEagerMaybeLazy_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 39, 0);
 
 /**
@@ -2093,10 +3457,20 @@ export type TestNestedMessageHasBits = Message<"protobuf_unittest.TestNestedMess
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedMessageHasBits.
+ */
+export type TestNestedMessageHasBitsJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedMessageHasBits.NestedMessage optional_nested_message = 1;
+   */
+  optionalNestedMessage?: TestNestedMessageHasBits_NestedMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedMessageHasBits.
  * Use `create(TestNestedMessageHasBitsDesc)` to create a new message.
  */
-export const TestNestedMessageHasBitsDesc: GenDescMessage<TestNestedMessageHasBits> = /*@__PURE__*/
+export const TestNestedMessageHasBitsDesc: GenDescMessage<TestNestedMessageHasBits, TestNestedMessageHasBitsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 40);
 
 /**
@@ -2115,10 +3489,25 @@ export type TestNestedMessageHasBits_NestedMessage = Message<"protobuf_unittest.
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedMessageHasBits.NestedMessage.
+ */
+export type TestNestedMessageHasBits_NestedMessageJson = {
+  /**
+   * @generated from field: repeated int32 nestedmessage_repeated_int32 = 1;
+   */
+  nestedmessageRepeatedInt32?: number[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.ForeignMessage nestedmessage_repeated_foreignmessage = 2;
+   */
+  nestedmessageRepeatedForeignmessage?: ForeignMessageJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedMessageHasBits.NestedMessage.
  * Use `create(TestNestedMessageHasBits_NestedMessageDesc)` to create a new message.
  */
-export const TestNestedMessageHasBits_NestedMessageDesc: GenDescMessage<TestNestedMessageHasBits_NestedMessage> = /*@__PURE__*/
+export const TestNestedMessageHasBits_NestedMessageDesc: GenDescMessage<TestNestedMessageHasBits_NestedMessage, TestNestedMessageHasBits_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 40, 0);
 
 /**
@@ -2190,10 +3579,75 @@ export type TestCamelCaseFieldNames = Message<"protobuf_unittest.TestCamelCaseFi
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestCamelCaseFieldNames.
+ */
+export type TestCamelCaseFieldNamesJson = {
+  /**
+   * @generated from field: optional int32 PrimitiveField = 1;
+   */
+  PrimitiveField?: number;
+
+  /**
+   * @generated from field: optional string StringField = 2;
+   */
+  StringField?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignEnum EnumField = 3;
+   */
+  EnumField?: ForeignEnumJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignMessage MessageField = 4;
+   */
+  MessageField?: ForeignMessageJson;
+
+  /**
+   * @generated from field: optional string StringPieceField = 5;
+   */
+  StringPieceField?: string;
+
+  /**
+   * @generated from field: optional string CordField = 6;
+   */
+  CordField?: string;
+
+  /**
+   * @generated from field: repeated int32 RepeatedPrimitiveField = 7;
+   */
+  RepeatedPrimitiveField?: number[];
+
+  /**
+   * @generated from field: repeated string RepeatedStringField = 8;
+   */
+  RepeatedStringField?: string[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.ForeignEnum RepeatedEnumField = 9;
+   */
+  RepeatedEnumField?: ForeignEnumJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.ForeignMessage RepeatedMessageField = 10;
+   */
+  RepeatedMessageField?: ForeignMessageJson[];
+
+  /**
+   * @generated from field: repeated string RepeatedStringPieceField = 11;
+   */
+  RepeatedStringPieceField?: string[];
+
+  /**
+   * @generated from field: repeated string RepeatedCordField = 12;
+   */
+  RepeatedCordField?: string[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestCamelCaseFieldNames.
  * Use `create(TestCamelCaseFieldNamesDesc)` to create a new message.
  */
-export const TestCamelCaseFieldNamesDesc: GenDescMessage<TestCamelCaseFieldNames> = /*@__PURE__*/
+export const TestCamelCaseFieldNamesDesc: GenDescMessage<TestCamelCaseFieldNames, TestCamelCaseFieldNamesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 41);
 
 /**
@@ -2225,10 +3679,35 @@ export type TestFieldOrderings = Message<"protobuf_unittest.TestFieldOrderings">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestFieldOrderings.
+ */
+export type TestFieldOrderingsJson = {
+  /**
+   * @generated from field: optional string my_string = 11;
+   */
+  myString?: string;
+
+  /**
+   * @generated from field: optional int64 my_int = 1;
+   */
+  myInt?: string;
+
+  /**
+   * @generated from field: optional float my_float = 101;
+   */
+  myFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestFieldOrderings.NestedMessage optional_nested_message = 200;
+   */
+  optionalNestedMessage?: TestFieldOrderings_NestedMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestFieldOrderings.
  * Use `create(TestFieldOrderingsDesc)` to create a new message.
  */
-export const TestFieldOrderingsDesc: GenDescMessage<TestFieldOrderings> = /*@__PURE__*/
+export const TestFieldOrderingsDesc: GenDescMessage<TestFieldOrderings, TestFieldOrderingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 42);
 
 /**
@@ -2251,10 +3730,25 @@ export type TestFieldOrderings_NestedMessage = Message<"protobuf_unittest.TestFi
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestFieldOrderings.NestedMessage.
+ */
+export type TestFieldOrderings_NestedMessageJson = {
+  /**
+   * @generated from field: optional int64 oo = 2;
+   */
+  oo?: string;
+
+  /**
+   * @generated from field: optional int32 bb = 1;
+   */
+  bb?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestFieldOrderings.NestedMessage.
  * Use `create(TestFieldOrderings_NestedMessageDesc)` to create a new message.
  */
-export const TestFieldOrderings_NestedMessageDesc: GenDescMessage<TestFieldOrderings_NestedMessage> = /*@__PURE__*/
+export const TestFieldOrderings_NestedMessageDesc: GenDescMessage<TestFieldOrderings_NestedMessage, TestFieldOrderings_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 42, 0);
 
 /**
@@ -2268,10 +3762,20 @@ export type TestExtensionOrderings1 = Message<"protobuf_unittest.TestExtensionOr
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtensionOrderings1.
+ */
+export type TestExtensionOrderings1Json = {
+  /**
+   * @generated from field: optional string my_string = 1;
+   */
+  myString?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtensionOrderings1.
  * Use `create(TestExtensionOrderings1Desc)` to create a new message.
  */
-export const TestExtensionOrderings1Desc: GenDescMessage<TestExtensionOrderings1> = /*@__PURE__*/
+export const TestExtensionOrderings1Desc: GenDescMessage<TestExtensionOrderings1, TestExtensionOrderings1Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 43);
 
 /**
@@ -2291,10 +3795,20 @@ export type TestExtensionOrderings2 = Message<"protobuf_unittest.TestExtensionOr
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtensionOrderings2.
+ */
+export type TestExtensionOrderings2Json = {
+  /**
+   * @generated from field: optional string my_string = 1;
+   */
+  myString?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtensionOrderings2.
  * Use `create(TestExtensionOrderings2Desc)` to create a new message.
  */
-export const TestExtensionOrderings2Desc: GenDescMessage<TestExtensionOrderings2> = /*@__PURE__*/
+export const TestExtensionOrderings2Desc: GenDescMessage<TestExtensionOrderings2, TestExtensionOrderings2Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 44);
 
 /**
@@ -2308,10 +3822,20 @@ export type TestExtensionOrderings2_TestExtensionOrderings3 = Message<"protobuf_
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3.
+ */
+export type TestExtensionOrderings2_TestExtensionOrderings3Json = {
+  /**
+   * @generated from field: optional string my_string = 1;
+   */
+  myString?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3.
  * Use `create(TestExtensionOrderings2_TestExtensionOrderings3Desc)` to create a new message.
  */
-export const TestExtensionOrderings2_TestExtensionOrderings3Desc: GenDescMessage<TestExtensionOrderings2_TestExtensionOrderings3> = /*@__PURE__*/
+export const TestExtensionOrderings2_TestExtensionOrderings3Desc: GenDescMessage<TestExtensionOrderings2_TestExtensionOrderings3, TestExtensionOrderings2_TestExtensionOrderings3Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 44, 0);
 
 /**
@@ -2485,10 +4009,150 @@ export type TestExtremeDefaultValues = Message<"protobuf_unittest.TestExtremeDef
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtremeDefaultValues.
+ */
+export type TestExtremeDefaultValuesJson = {
+  /**
+   * @generated from field: optional bytes escaped_bytes = 1 [default = "\000\001\007\010\014\n\r\t\013\\\'\\"\376"];
+   */
+  escapedBytes?: string;
+
+  /**
+   * @generated from field: optional uint32 large_uint32 = 2 [default = 4294967295];
+   */
+  largeUint32?: number;
+
+  /**
+   * @generated from field: optional uint64 large_uint64 = 3 [default = 18446744073709551615];
+   */
+  largeUint64?: string;
+
+  /**
+   * @generated from field: optional int32 small_int32 = 4 [default = -2147483647];
+   */
+  smallInt32?: number;
+
+  /**
+   * @generated from field: optional int64 small_int64 = 5 [default = -9223372036854775807];
+   */
+  smallInt64?: string;
+
+  /**
+   * @generated from field: optional int32 really_small_int32 = 21 [default = -2147483648];
+   */
+  reallySmallInt32?: number;
+
+  /**
+   * @generated from field: optional int64 really_small_int64 = 22 [default = -9223372036854775808];
+   */
+  reallySmallInt64?: string;
+
+  /**
+   * @generated from field: optional string utf8_string = 6 [default = "ሴ"];
+   */
+  utf8String?: string;
+
+  /**
+   * @generated from field: optional float zero_float = 7 [default = 0];
+   */
+  zeroFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional float one_float = 8 [default = 1];
+   */
+  oneFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional float small_float = 9 [default = 1.5];
+   */
+  smallFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional float negative_one_float = 10 [default = -1];
+   */
+  negativeOneFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional float negative_float = 11 [default = -1.5];
+   */
+  negativeFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional float large_float = 12 [default = 2e+08];
+   */
+  largeFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional float small_negative_float = 13 [default = -8e-28];
+   */
+  smallNegativeFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional double inf_double = 14 [default = inf];
+   */
+  infDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional double neg_inf_double = 15 [default = -inf];
+   */
+  negInfDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional double nan_double = 16 [default = nan];
+   */
+  nanDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional float inf_float = 17 [default = inf];
+   */
+  infFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional float neg_inf_float = 18 [default = -inf];
+   */
+  negInfFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional float nan_float = 19 [default = nan];
+   */
+  nanFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional string cpp_trigraph = 20 [default = "? ? ?? ?? ??? ??/ ??-"];
+   */
+  cppTrigraph?: string;
+
+  /**
+   * @generated from field: optional string string_with_zero = 23 [default = "hel lo"];
+   */
+  stringWithZero?: string;
+
+  /**
+   * @generated from field: optional bytes bytes_with_zero = 24 [default = "wor\000ld"];
+   */
+  bytesWithZero?: string;
+
+  /**
+   * @generated from field: optional string string_piece_with_zero = 25 [default = "ab c"];
+   */
+  stringPieceWithZero?: string;
+
+  /**
+   * @generated from field: optional string cord_with_zero = 26 [default = "12 3"];
+   */
+  cordWithZero?: string;
+
+  /**
+   * @generated from field: optional string replacement_string = 27 [default = "${unknown}"];
+   */
+  replacementString?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtremeDefaultValues.
  * Use `create(TestExtremeDefaultValuesDesc)` to create a new message.
  */
-export const TestExtremeDefaultValuesDesc: GenDescMessage<TestExtremeDefaultValues> = /*@__PURE__*/
+export const TestExtremeDefaultValuesDesc: GenDescMessage<TestExtremeDefaultValues, TestExtremeDefaultValuesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 45);
 
 /**
@@ -2502,10 +4166,20 @@ export type SparseEnumMessage = Message<"protobuf_unittest.SparseEnumMessage"> &
 };
 
 /**
+ * JSON type for the message protobuf_unittest.SparseEnumMessage.
+ */
+export type SparseEnumMessageJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestSparseEnum sparse_enum = 1;
+   */
+  sparseEnum?: TestSparseEnumJson;
+};
+
+/**
  * Describes the message protobuf_unittest.SparseEnumMessage.
  * Use `create(SparseEnumMessageDesc)` to create a new message.
  */
-export const SparseEnumMessageDesc: GenDescMessage<SparseEnumMessage> = /*@__PURE__*/
+export const SparseEnumMessageDesc: GenDescMessage<SparseEnumMessage, SparseEnumMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 46);
 
 /**
@@ -2521,10 +4195,20 @@ export type OneString = Message<"protobuf_unittest.OneString"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.OneString.
+ */
+export type OneStringJson = {
+  /**
+   * @generated from field: optional string data = 1;
+   */
+  data?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.OneString.
  * Use `create(OneStringDesc)` to create a new message.
  */
-export const OneStringDesc: GenDescMessage<OneString> = /*@__PURE__*/
+export const OneStringDesc: GenDescMessage<OneString, OneStringJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 47);
 
 /**
@@ -2538,10 +4222,20 @@ export type MoreString = Message<"protobuf_unittest.MoreString"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.MoreString.
+ */
+export type MoreStringJson = {
+  /**
+   * @generated from field: repeated string data = 1;
+   */
+  data?: string[];
+};
+
+/**
  * Describes the message protobuf_unittest.MoreString.
  * Use `create(MoreStringDesc)` to create a new message.
  */
-export const MoreStringDesc: GenDescMessage<MoreString> = /*@__PURE__*/
+export const MoreStringDesc: GenDescMessage<MoreString, MoreStringJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 48);
 
 /**
@@ -2555,10 +4249,20 @@ export type OneBytes = Message<"protobuf_unittest.OneBytes"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.OneBytes.
+ */
+export type OneBytesJson = {
+  /**
+   * @generated from field: optional bytes data = 1;
+   */
+  data?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.OneBytes.
  * Use `create(OneBytesDesc)` to create a new message.
  */
-export const OneBytesDesc: GenDescMessage<OneBytes> = /*@__PURE__*/
+export const OneBytesDesc: GenDescMessage<OneBytes, OneBytesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 49);
 
 /**
@@ -2572,10 +4276,20 @@ export type MoreBytes = Message<"protobuf_unittest.MoreBytes"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.MoreBytes.
+ */
+export type MoreBytesJson = {
+  /**
+   * @generated from field: repeated bytes data = 1;
+   */
+  data?: string[];
+};
+
+/**
  * Describes the message protobuf_unittest.MoreBytes.
  * Use `create(MoreBytesDesc)` to create a new message.
  */
-export const MoreBytesDesc: GenDescMessage<MoreBytes> = /*@__PURE__*/
+export const MoreBytesDesc: GenDescMessage<MoreBytes, MoreBytesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 50);
 
 /**
@@ -2744,10 +4458,175 @@ export type ManyOptionalString = Message<"protobuf_unittest.ManyOptionalString">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.ManyOptionalString.
+ */
+export type ManyOptionalStringJson = {
+  /**
+   * @generated from field: optional string str1 = 1;
+   */
+  str1?: string;
+
+  /**
+   * @generated from field: optional string str2 = 2;
+   */
+  str2?: string;
+
+  /**
+   * @generated from field: optional string str3 = 3;
+   */
+  str3?: string;
+
+  /**
+   * @generated from field: optional string str4 = 4;
+   */
+  str4?: string;
+
+  /**
+   * @generated from field: optional string str5 = 5;
+   */
+  str5?: string;
+
+  /**
+   * @generated from field: optional string str6 = 6;
+   */
+  str6?: string;
+
+  /**
+   * @generated from field: optional string str7 = 7;
+   */
+  str7?: string;
+
+  /**
+   * @generated from field: optional string str8 = 8;
+   */
+  str8?: string;
+
+  /**
+   * @generated from field: optional string str9 = 9;
+   */
+  str9?: string;
+
+  /**
+   * @generated from field: optional string str10 = 10;
+   */
+  str10?: string;
+
+  /**
+   * @generated from field: optional string str11 = 11;
+   */
+  str11?: string;
+
+  /**
+   * @generated from field: optional string str12 = 12;
+   */
+  str12?: string;
+
+  /**
+   * @generated from field: optional string str13 = 13;
+   */
+  str13?: string;
+
+  /**
+   * @generated from field: optional string str14 = 14;
+   */
+  str14?: string;
+
+  /**
+   * @generated from field: optional string str15 = 15;
+   */
+  str15?: string;
+
+  /**
+   * @generated from field: optional string str16 = 16;
+   */
+  str16?: string;
+
+  /**
+   * @generated from field: optional string str17 = 17;
+   */
+  str17?: string;
+
+  /**
+   * @generated from field: optional string str18 = 18;
+   */
+  str18?: string;
+
+  /**
+   * @generated from field: optional string str19 = 19;
+   */
+  str19?: string;
+
+  /**
+   * @generated from field: optional string str20 = 20;
+   */
+  str20?: string;
+
+  /**
+   * @generated from field: optional string str21 = 21;
+   */
+  str21?: string;
+
+  /**
+   * @generated from field: optional string str22 = 22;
+   */
+  str22?: string;
+
+  /**
+   * @generated from field: optional string str23 = 23;
+   */
+  str23?: string;
+
+  /**
+   * @generated from field: optional string str24 = 24;
+   */
+  str24?: string;
+
+  /**
+   * @generated from field: optional string str25 = 25;
+   */
+  str25?: string;
+
+  /**
+   * @generated from field: optional string str26 = 26;
+   */
+  str26?: string;
+
+  /**
+   * @generated from field: optional string str27 = 27;
+   */
+  str27?: string;
+
+  /**
+   * @generated from field: optional string str28 = 28;
+   */
+  str28?: string;
+
+  /**
+   * @generated from field: optional string str29 = 29;
+   */
+  str29?: string;
+
+  /**
+   * @generated from field: optional string str30 = 30;
+   */
+  str30?: string;
+
+  /**
+   * @generated from field: optional string str31 = 31;
+   */
+  str31?: string;
+
+  /**
+   * @generated from field: optional string str32 = 32;
+   */
+  str32?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.ManyOptionalString.
  * Use `create(ManyOptionalStringDesc)` to create a new message.
  */
-export const ManyOptionalStringDesc: GenDescMessage<ManyOptionalString> = /*@__PURE__*/
+export const ManyOptionalStringDesc: GenDescMessage<ManyOptionalString, ManyOptionalStringJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 51);
 
 /**
@@ -2763,10 +4642,20 @@ export type Int32Message = Message<"protobuf_unittest.Int32Message"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Int32Message.
+ */
+export type Int32MessageJson = {
+  /**
+   * @generated from field: optional int32 data = 1;
+   */
+  data?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.Int32Message.
  * Use `create(Int32MessageDesc)` to create a new message.
  */
-export const Int32MessageDesc: GenDescMessage<Int32Message> = /*@__PURE__*/
+export const Int32MessageDesc: GenDescMessage<Int32Message, Int32MessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 52);
 
 /**
@@ -2780,10 +4669,20 @@ export type Uint32Message = Message<"protobuf_unittest.Uint32Message"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Uint32Message.
+ */
+export type Uint32MessageJson = {
+  /**
+   * @generated from field: optional uint32 data = 1;
+   */
+  data?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.Uint32Message.
  * Use `create(Uint32MessageDesc)` to create a new message.
  */
-export const Uint32MessageDesc: GenDescMessage<Uint32Message> = /*@__PURE__*/
+export const Uint32MessageDesc: GenDescMessage<Uint32Message, Uint32MessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 53);
 
 /**
@@ -2797,10 +4696,20 @@ export type Int64Message = Message<"protobuf_unittest.Int64Message"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Int64Message.
+ */
+export type Int64MessageJson = {
+  /**
+   * @generated from field: optional int64 data = 1;
+   */
+  data?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.Int64Message.
  * Use `create(Int64MessageDesc)` to create a new message.
  */
-export const Int64MessageDesc: GenDescMessage<Int64Message> = /*@__PURE__*/
+export const Int64MessageDesc: GenDescMessage<Int64Message, Int64MessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 54);
 
 /**
@@ -2814,10 +4723,20 @@ export type Uint64Message = Message<"protobuf_unittest.Uint64Message"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Uint64Message.
+ */
+export type Uint64MessageJson = {
+  /**
+   * @generated from field: optional uint64 data = 1;
+   */
+  data?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.Uint64Message.
  * Use `create(Uint64MessageDesc)` to create a new message.
  */
-export const Uint64MessageDesc: GenDescMessage<Uint64Message> = /*@__PURE__*/
+export const Uint64MessageDesc: GenDescMessage<Uint64Message, Uint64MessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 55);
 
 /**
@@ -2831,10 +4750,20 @@ export type BoolMessage = Message<"protobuf_unittest.BoolMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.BoolMessage.
+ */
+export type BoolMessageJson = {
+  /**
+   * @generated from field: optional bool data = 1;
+   */
+  data?: boolean;
+};
+
+/**
  * Describes the message protobuf_unittest.BoolMessage.
  * Use `create(BoolMessageDesc)` to create a new message.
  */
-export const BoolMessageDesc: GenDescMessage<BoolMessage> = /*@__PURE__*/
+export const BoolMessageDesc: GenDescMessage<BoolMessage, BoolMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 56);
 
 /**
@@ -2874,10 +4803,35 @@ export type TestOneof = Message<"protobuf_unittest.TestOneof"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestOneof.
+ */
+export type TestOneofJson = {
+  /**
+   * @generated from field: int32 foo_int = 1;
+   */
+  fooInt?: number;
+
+  /**
+   * @generated from field: string foo_string = 2;
+   */
+  fooString?: string;
+
+  /**
+   * @generated from field: protobuf_unittest.TestAllTypes foo_message = 3;
+   */
+  fooMessage?: TestAllTypesJson;
+
+  /**
+   * @generated from field: protobuf_unittest.TestOneof.FooGroup foogroup = 4;
+   */
+  foogroup?: TestOneof_FooGroupJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestOneof.
  * Use `create(TestOneofDesc)` to create a new message.
  */
-export const TestOneofDesc: GenDescMessage<TestOneof> = /*@__PURE__*/
+export const TestOneofDesc: GenDescMessage<TestOneof, TestOneofJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 57);
 
 /**
@@ -2896,10 +4850,25 @@ export type TestOneof_FooGroup = Message<"protobuf_unittest.TestOneof.FooGroup">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestOneof.FooGroup.
+ */
+export type TestOneof_FooGroupJson = {
+  /**
+   * @generated from field: optional int32 a = 5;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional string b = 6;
+   */
+  b?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestOneof.FooGroup.
  * Use `create(TestOneof_FooGroupDesc)` to create a new message.
  */
-export const TestOneof_FooGroupDesc: GenDescMessage<TestOneof_FooGroup> = /*@__PURE__*/
+export const TestOneof_FooGroupDesc: GenDescMessage<TestOneof_FooGroup, TestOneof_FooGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 57, 0);
 
 /**
@@ -2928,10 +4897,35 @@ export type TestOneofBackwardsCompatible = Message<"protobuf_unittest.TestOneofB
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestOneofBackwardsCompatible.
+ */
+export type TestOneofBackwardsCompatibleJson = {
+  /**
+   * @generated from field: optional int32 foo_int = 1;
+   */
+  fooInt?: number;
+
+  /**
+   * @generated from field: optional string foo_string = 2;
+   */
+  fooString?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes foo_message = 3;
+   */
+  fooMessage?: TestAllTypesJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestOneofBackwardsCompatible.FooGroup foogroup = 4;
+   */
+  foogroup?: TestOneofBackwardsCompatible_FooGroupJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestOneofBackwardsCompatible.
  * Use `create(TestOneofBackwardsCompatibleDesc)` to create a new message.
  */
-export const TestOneofBackwardsCompatibleDesc: GenDescMessage<TestOneofBackwardsCompatible> = /*@__PURE__*/
+export const TestOneofBackwardsCompatibleDesc: GenDescMessage<TestOneofBackwardsCompatible, TestOneofBackwardsCompatibleJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 58);
 
 /**
@@ -2950,10 +4944,25 @@ export type TestOneofBackwardsCompatible_FooGroup = Message<"protobuf_unittest.T
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestOneofBackwardsCompatible.FooGroup.
+ */
+export type TestOneofBackwardsCompatible_FooGroupJson = {
+  /**
+   * @generated from field: optional int32 a = 5;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional string b = 6;
+   */
+  b?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestOneofBackwardsCompatible.FooGroup.
  * Use `create(TestOneofBackwardsCompatible_FooGroupDesc)` to create a new message.
  */
-export const TestOneofBackwardsCompatible_FooGroupDesc: GenDescMessage<TestOneofBackwardsCompatible_FooGroup> = /*@__PURE__*/
+export const TestOneofBackwardsCompatible_FooGroupDesc: GenDescMessage<TestOneofBackwardsCompatible_FooGroup, TestOneofBackwardsCompatible_FooGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 58, 0);
 
 /**
@@ -3102,10 +5111,125 @@ export type TestOneof2 = Message<"protobuf_unittest.TestOneof2"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestOneof2.
+ */
+export type TestOneof2Json = {
+  /**
+   * @generated from field: int32 foo_int = 1;
+   */
+  fooInt?: number;
+
+  /**
+   * @generated from field: string foo_string = 2;
+   */
+  fooString?: string;
+
+  /**
+   * @generated from field: string foo_cord = 3;
+   */
+  fooCord?: string;
+
+  /**
+   * @generated from field: string foo_string_piece = 4;
+   */
+  fooStringPiece?: string;
+
+  /**
+   * @generated from field: bytes foo_bytes = 5;
+   */
+  fooBytes?: string;
+
+  /**
+   * @generated from field: protobuf_unittest.TestOneof2.NestedEnum foo_enum = 6;
+   */
+  fooEnum?: TestOneof2_NestedEnumJson;
+
+  /**
+   * @generated from field: protobuf_unittest.TestOneof2.NestedMessage foo_message = 7;
+   */
+  fooMessage?: TestOneof2_NestedMessageJson;
+
+  /**
+   * @generated from field: protobuf_unittest.TestOneof2.FooGroup foogroup = 8;
+   */
+  foogroup?: TestOneof2_FooGroupJson;
+
+  /**
+   * @generated from field: protobuf_unittest.TestOneof2.NestedMessage foo_lazy_message = 11;
+   */
+  fooLazyMessage?: TestOneof2_NestedMessageJson;
+
+  /**
+   * @generated from field: bytes foo_bytes_cord = 30;
+   */
+  fooBytesCord?: string;
+
+  /**
+   * @generated from field: int32 bar_int = 12 [default = 5];
+   */
+  barInt?: number;
+
+  /**
+   * @generated from field: string bar_string = 13 [default = "STRING"];
+   */
+  barString?: string;
+
+  /**
+   * @generated from field: string bar_cord = 14 [default = "CORD"];
+   */
+  barCord?: string;
+
+  /**
+   * @generated from field: string bar_string_piece = 15 [default = "SPIECE"];
+   */
+  barStringPiece?: string;
+
+  /**
+   * @generated from field: bytes bar_bytes = 16 [default = "BYTES"];
+   */
+  barBytes?: string;
+
+  /**
+   * @generated from field: protobuf_unittest.TestOneof2.NestedEnum bar_enum = 17 [default = BAR];
+   */
+  barEnum?: TestOneof2_NestedEnumJson;
+
+  /**
+   * @generated from field: string bar_string_with_empty_default = 20 [default = ""];
+   */
+  barStringWithEmptyDefault?: string;
+
+  /**
+   * @generated from field: string bar_cord_with_empty_default = 21 [default = ""];
+   */
+  barCordWithEmptyDefault?: string;
+
+  /**
+   * @generated from field: string bar_string_piece_with_empty_default = 22 [default = ""];
+   */
+  barStringPieceWithEmptyDefault?: string;
+
+  /**
+   * @generated from field: bytes bar_bytes_with_empty_default = 23 [default = ""];
+   */
+  barBytesWithEmptyDefault?: string;
+
+  /**
+   * @generated from field: optional int32 baz_int = 18;
+   */
+  bazInt?: number;
+
+  /**
+   * @generated from field: optional string baz_string = 19 [default = "BAZ"];
+   */
+  bazString?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestOneof2.
  * Use `create(TestOneof2Desc)` to create a new message.
  */
-export const TestOneof2Desc: GenDescMessage<TestOneof2> = /*@__PURE__*/
+export const TestOneof2Desc: GenDescMessage<TestOneof2, TestOneof2Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 59);
 
 /**
@@ -3124,10 +5248,25 @@ export type TestOneof2_FooGroup = Message<"protobuf_unittest.TestOneof2.FooGroup
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestOneof2.FooGroup.
+ */
+export type TestOneof2_FooGroupJson = {
+  /**
+   * @generated from field: optional int32 a = 9;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional string b = 10;
+   */
+  b?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestOneof2.FooGroup.
  * Use `create(TestOneof2_FooGroupDesc)` to create a new message.
  */
-export const TestOneof2_FooGroupDesc: GenDescMessage<TestOneof2_FooGroup> = /*@__PURE__*/
+export const TestOneof2_FooGroupDesc: GenDescMessage<TestOneof2_FooGroup, TestOneof2_FooGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 59, 0);
 
 /**
@@ -3151,10 +5290,30 @@ export type TestOneof2_NestedMessage = Message<"protobuf_unittest.TestOneof2.Nes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestOneof2.NestedMessage.
+ */
+export type TestOneof2_NestedMessageJson = {
+  /**
+   * @generated from field: optional int64 moo_int = 1;
+   */
+  mooInt?: string;
+
+  /**
+   * @generated from field: repeated int32 corge_int = 2;
+   */
+  corgeInt?: number[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestOneof2.NestedMessage child = 3;
+   */
+  child?: TestOneof2_NestedMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestOneof2.NestedMessage.
  * Use `create(TestOneof2_NestedMessageDesc)` to create a new message.
  */
-export const TestOneof2_NestedMessageDesc: GenDescMessage<TestOneof2_NestedMessage> = /*@__PURE__*/
+export const TestOneof2_NestedMessageDesc: GenDescMessage<TestOneof2_NestedMessage, TestOneof2_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 59, 1);
 
 /**
@@ -3178,9 +5337,14 @@ export enum TestOneof2_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestOneof2.NestedEnum.
+ */
+export type TestOneof2_NestedEnumJson = "FOO" | "BAR" | "BAZ";
+
+/**
  * Describes the enum protobuf_unittest.TestOneof2.NestedEnum.
  */
-export const TestOneof2_NestedEnumDesc: GenDescEnum<TestOneof2_NestedEnum> = /*@__PURE__*/
+export const TestOneof2_NestedEnumDesc: GenDescEnum<TestOneof2_NestedEnum, TestOneof2_NestedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 59, 0);
 
 /**
@@ -3218,10 +5382,35 @@ export type TestRequiredOneof = Message<"protobuf_unittest.TestRequiredOneof"> &
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequiredOneof.
+ */
+export type TestRequiredOneofJson = {
+  /**
+   * @generated from field: int32 foo_int = 1;
+   */
+  fooInt?: number;
+
+  /**
+   * @generated from field: string foo_string = 2;
+   */
+  fooString?: string;
+
+  /**
+   * @generated from field: protobuf_unittest.TestRequiredOneof.NestedMessage foo_message = 3;
+   */
+  fooMessage?: TestRequiredOneof_NestedMessageJson;
+
+  /**
+   * @generated from field: protobuf_unittest.TestRequiredOneof.NestedMessage foo_lazy_message = 4;
+   */
+  fooLazyMessage?: TestRequiredOneof_NestedMessageJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequiredOneof.
  * Use `create(TestRequiredOneofDesc)` to create a new message.
  */
-export const TestRequiredOneofDesc: GenDescMessage<TestRequiredOneof> = /*@__PURE__*/
+export const TestRequiredOneofDesc: GenDescMessage<TestRequiredOneof, TestRequiredOneofJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 60);
 
 /**
@@ -3235,10 +5424,20 @@ export type TestRequiredOneof_NestedMessage = Message<"protobuf_unittest.TestReq
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequiredOneof.NestedMessage.
+ */
+export type TestRequiredOneof_NestedMessageJson = {
+  /**
+   * @generated from field: required double required_double = 1;
+   */
+  requiredDouble?: number | "NaN" | "Infinity" | "-Infinity";
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequiredOneof.NestedMessage.
  * Use `create(TestRequiredOneof_NestedMessageDesc)` to create a new message.
  */
-export const TestRequiredOneof_NestedMessageDesc: GenDescMessage<TestRequiredOneof_NestedMessage> = /*@__PURE__*/
+export const TestRequiredOneof_NestedMessageDesc: GenDescMessage<TestRequiredOneof_NestedMessage, TestRequiredOneof_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 60, 0);
 
 /**
@@ -3317,10 +5516,85 @@ export type TestPackedTypes = Message<"protobuf_unittest.TestPackedTypes"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestPackedTypes.
+ */
+export type TestPackedTypesJson = {
+  /**
+   * @generated from field: repeated int32 packed_int32 = 90 [packed = true];
+   */
+  packedInt32?: number[];
+
+  /**
+   * @generated from field: repeated int64 packed_int64 = 91 [packed = true];
+   */
+  packedInt64?: string[];
+
+  /**
+   * @generated from field: repeated uint32 packed_uint32 = 92 [packed = true];
+   */
+  packedUint32?: number[];
+
+  /**
+   * @generated from field: repeated uint64 packed_uint64 = 93 [packed = true];
+   */
+  packedUint64?: string[];
+
+  /**
+   * @generated from field: repeated sint32 packed_sint32 = 94 [packed = true];
+   */
+  packedSint32?: number[];
+
+  /**
+   * @generated from field: repeated sint64 packed_sint64 = 95 [packed = true];
+   */
+  packedSint64?: string[];
+
+  /**
+   * @generated from field: repeated fixed32 packed_fixed32 = 96 [packed = true];
+   */
+  packedFixed32?: number[];
+
+  /**
+   * @generated from field: repeated fixed64 packed_fixed64 = 97 [packed = true];
+   */
+  packedFixed64?: string[];
+
+  /**
+   * @generated from field: repeated sfixed32 packed_sfixed32 = 98 [packed = true];
+   */
+  packedSfixed32?: number[];
+
+  /**
+   * @generated from field: repeated sfixed64 packed_sfixed64 = 99 [packed = true];
+   */
+  packedSfixed64?: string[];
+
+  /**
+   * @generated from field: repeated float packed_float = 100 [packed = true];
+   */
+  packedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated double packed_double = 101 [packed = true];
+   */
+  packedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated bool packed_bool = 102 [packed = true];
+   */
+  packedBool?: boolean[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.ForeignEnum packed_enum = 103 [packed = true];
+   */
+  packedEnum?: ForeignEnumJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestPackedTypes.
  * Use `create(TestPackedTypesDesc)` to create a new message.
  */
-export const TestPackedTypesDesc: GenDescMessage<TestPackedTypes> = /*@__PURE__*/
+export const TestPackedTypesDesc: GenDescMessage<TestPackedTypes, TestPackedTypesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 61);
 
 /**
@@ -3402,10 +5676,85 @@ export type TestUnpackedTypes = Message<"protobuf_unittest.TestUnpackedTypes"> &
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestUnpackedTypes.
+ */
+export type TestUnpackedTypesJson = {
+  /**
+   * @generated from field: repeated int32 unpacked_int32 = 90 [packed = false];
+   */
+  unpackedInt32?: number[];
+
+  /**
+   * @generated from field: repeated int64 unpacked_int64 = 91 [packed = false];
+   */
+  unpackedInt64?: string[];
+
+  /**
+   * @generated from field: repeated uint32 unpacked_uint32 = 92 [packed = false];
+   */
+  unpackedUint32?: number[];
+
+  /**
+   * @generated from field: repeated uint64 unpacked_uint64 = 93 [packed = false];
+   */
+  unpackedUint64?: string[];
+
+  /**
+   * @generated from field: repeated sint32 unpacked_sint32 = 94 [packed = false];
+   */
+  unpackedSint32?: number[];
+
+  /**
+   * @generated from field: repeated sint64 unpacked_sint64 = 95 [packed = false];
+   */
+  unpackedSint64?: string[];
+
+  /**
+   * @generated from field: repeated fixed32 unpacked_fixed32 = 96 [packed = false];
+   */
+  unpackedFixed32?: number[];
+
+  /**
+   * @generated from field: repeated fixed64 unpacked_fixed64 = 97 [packed = false];
+   */
+  unpackedFixed64?: string[];
+
+  /**
+   * @generated from field: repeated sfixed32 unpacked_sfixed32 = 98 [packed = false];
+   */
+  unpackedSfixed32?: number[];
+
+  /**
+   * @generated from field: repeated sfixed64 unpacked_sfixed64 = 99 [packed = false];
+   */
+  unpackedSfixed64?: string[];
+
+  /**
+   * @generated from field: repeated float unpacked_float = 100 [packed = false];
+   */
+  unpackedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated double unpacked_double = 101 [packed = false];
+   */
+  unpackedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated bool unpacked_bool = 102 [packed = false];
+   */
+  unpackedBool?: boolean[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.ForeignEnum unpacked_enum = 103 [packed = false];
+   */
+  unpackedEnum?: ForeignEnumJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestUnpackedTypes.
  * Use `create(TestUnpackedTypesDesc)` to create a new message.
  */
-export const TestUnpackedTypesDesc: GenDescMessage<TestUnpackedTypes> = /*@__PURE__*/
+export const TestUnpackedTypesDesc: GenDescMessage<TestUnpackedTypes, TestUnpackedTypesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 62);
 
 /**
@@ -3415,10 +5764,16 @@ export type TestPackedExtensions = Message<"protobuf_unittest.TestPackedExtensio
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestPackedExtensions.
+ */
+export type TestPackedExtensionsJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestPackedExtensions.
  * Use `create(TestPackedExtensionsDesc)` to create a new message.
  */
-export const TestPackedExtensionsDesc: GenDescMessage<TestPackedExtensions> = /*@__PURE__*/
+export const TestPackedExtensionsDesc: GenDescMessage<TestPackedExtensions, TestPackedExtensionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 63);
 
 /**
@@ -3428,10 +5783,16 @@ export type TestUnpackedExtensions = Message<"protobuf_unittest.TestUnpackedExte
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestUnpackedExtensions.
+ */
+export type TestUnpackedExtensionsJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestUnpackedExtensions.
  * Use `create(TestUnpackedExtensionsDesc)` to create a new message.
  */
-export const TestUnpackedExtensionsDesc: GenDescMessage<TestUnpackedExtensions> = /*@__PURE__*/
+export const TestUnpackedExtensionsDesc: GenDescMessage<TestUnpackedExtensions, TestUnpackedExtensionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 64);
 
 /**
@@ -3479,10 +5840,50 @@ export type TestDynamicExtensions = Message<"protobuf_unittest.TestDynamicExtens
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestDynamicExtensions.
+ */
+export type TestDynamicExtensionsJson = {
+  /**
+   * @generated from field: optional fixed32 scalar_extension = 2000;
+   */
+  scalarExtension?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignEnum enum_extension = 2001;
+   */
+  enumExtension?: ForeignEnumJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestDynamicExtensions.DynamicEnumType dynamic_enum_extension = 2002;
+   */
+  dynamicEnumExtension?: TestDynamicExtensions_DynamicEnumTypeJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignMessage message_extension = 2003;
+   */
+  messageExtension?: ForeignMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestDynamicExtensions.DynamicMessageType dynamic_message_extension = 2004;
+   */
+  dynamicMessageExtension?: TestDynamicExtensions_DynamicMessageTypeJson;
+
+  /**
+   * @generated from field: repeated string repeated_extension = 2005;
+   */
+  repeatedExtension?: string[];
+
+  /**
+   * @generated from field: repeated sint32 packed_extension = 2006 [packed = true];
+   */
+  packedExtension?: number[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestDynamicExtensions.
  * Use `create(TestDynamicExtensionsDesc)` to create a new message.
  */
-export const TestDynamicExtensionsDesc: GenDescMessage<TestDynamicExtensions> = /*@__PURE__*/
+export const TestDynamicExtensionsDesc: GenDescMessage<TestDynamicExtensions, TestDynamicExtensionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 65);
 
 /**
@@ -3496,10 +5897,20 @@ export type TestDynamicExtensions_DynamicMessageType = Message<"protobuf_unittes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestDynamicExtensions.DynamicMessageType.
+ */
+export type TestDynamicExtensions_DynamicMessageTypeJson = {
+  /**
+   * @generated from field: optional int32 dynamic_field = 2100;
+   */
+  dynamicField?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestDynamicExtensions.DynamicMessageType.
  * Use `create(TestDynamicExtensions_DynamicMessageTypeDesc)` to create a new message.
  */
-export const TestDynamicExtensions_DynamicMessageTypeDesc: GenDescMessage<TestDynamicExtensions_DynamicMessageType> = /*@__PURE__*/
+export const TestDynamicExtensions_DynamicMessageTypeDesc: GenDescMessage<TestDynamicExtensions_DynamicMessageType, TestDynamicExtensions_DynamicMessageTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 65, 0);
 
 /**
@@ -3523,9 +5934,14 @@ export enum TestDynamicExtensions_DynamicEnumType {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestDynamicExtensions.DynamicEnumType.
+ */
+export type TestDynamicExtensions_DynamicEnumTypeJson = "DYNAMIC_FOO" | "DYNAMIC_BAR" | "DYNAMIC_BAZ";
+
+/**
  * Describes the enum protobuf_unittest.TestDynamicExtensions.DynamicEnumType.
  */
-export const TestDynamicExtensions_DynamicEnumTypeDesc: GenDescEnum<TestDynamicExtensions_DynamicEnumType> = /*@__PURE__*/
+export const TestDynamicExtensions_DynamicEnumTypeDesc: GenDescEnum<TestDynamicExtensions_DynamicEnumType, TestDynamicExtensions_DynamicEnumTypeJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 65, 0);
 
 /**
@@ -3554,10 +5970,35 @@ export type TestRepeatedString = Message<"protobuf_unittest.TestRepeatedString">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRepeatedString.
+ */
+export type TestRepeatedStringJson = {
+  /**
+   * @generated from field: repeated string repeated_string1 = 1;
+   */
+  repeatedString1?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string2 = 2;
+   */
+  repeatedString2?: string[];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes11 = 11;
+   */
+  repeatedBytes11?: string[];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes12 = 12;
+   */
+  repeatedBytes12?: string[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestRepeatedString.
  * Use `create(TestRepeatedStringDesc)` to create a new message.
  */
-export const TestRepeatedStringDesc: GenDescMessage<TestRepeatedString> = /*@__PURE__*/
+export const TestRepeatedStringDesc: GenDescMessage<TestRepeatedString, TestRepeatedStringJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 66);
 
 /**
@@ -3606,10 +6047,45 @@ export type TestRepeatedScalarDifferentTagSizes = Message<"protobuf_unittest.Tes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRepeatedScalarDifferentTagSizes.
+ */
+export type TestRepeatedScalarDifferentTagSizesJson = {
+  /**
+   * @generated from field: repeated fixed32 repeated_fixed32 = 12;
+   */
+  repeatedFixed32?: number[];
+
+  /**
+   * @generated from field: repeated int32 repeated_int32 = 13;
+   */
+  repeatedInt32?: number[];
+
+  /**
+   * @generated from field: repeated fixed64 repeated_fixed64 = 2046;
+   */
+  repeatedFixed64?: string[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64 = 2047;
+   */
+  repeatedInt64?: string[];
+
+  /**
+   * @generated from field: repeated float repeated_float = 262142;
+   */
+  repeatedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated uint64 repeated_uint64 = 262143;
+   */
+  repeatedUint64?: string[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestRepeatedScalarDifferentTagSizes.
  * Use `create(TestRepeatedScalarDifferentTagSizesDesc)` to create a new message.
  */
-export const TestRepeatedScalarDifferentTagSizesDesc: GenDescMessage<TestRepeatedScalarDifferentTagSizes> = /*@__PURE__*/
+export const TestRepeatedScalarDifferentTagSizesDesc: GenDescMessage<TestRepeatedScalarDifferentTagSizes, TestRepeatedScalarDifferentTagSizesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 67);
 
 /**
@@ -3646,10 +6122,40 @@ export type TestParsingMerge = Message<"protobuf_unittest.TestParsingMerge"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestParsingMerge.
+ */
+export type TestParsingMergeJson = {
+  /**
+   * @generated from field: required protobuf_unittest.TestAllTypes required_all_types = 1;
+   */
+  requiredAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 2;
+   */
+  optionalAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 3;
+   */
+  repeatedAllTypes?: TestAllTypesJson[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestParsingMerge.OptionalGroup optionalgroup = 10;
+   */
+  optionalgroup?: TestParsingMerge_OptionalGroupJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestParsingMerge.RepeatedGroup repeatedgroup = 20;
+   */
+  repeatedgroup?: TestParsingMerge_RepeatedGroupJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestParsingMerge.
  * Use `create(TestParsingMergeDesc)` to create a new message.
  */
-export const TestParsingMergeDesc: GenDescMessage<TestParsingMerge> = /*@__PURE__*/
+export const TestParsingMergeDesc: GenDescMessage<TestParsingMerge, TestParsingMergeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68);
 
 /**
@@ -3699,10 +6205,50 @@ export type TestParsingMerge_RepeatedFieldsGenerator = Message<"protobuf_unittes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.
+ */
+export type TestParsingMerge_RepeatedFieldsGeneratorJson = {
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes field1 = 1;
+   */
+  field1?: TestAllTypesJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes field2 = 2;
+   */
+  field2?: TestAllTypesJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes field3 = 3;
+   */
+  field3?: TestAllTypesJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1 group1 = 10;
+   */
+  group1?: TestParsingMerge_RepeatedFieldsGenerator_Group1Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2 group2 = 20;
+   */
+  group2?: TestParsingMerge_RepeatedFieldsGenerator_Group2Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes ext1 = 1000;
+   */
+  ext1?: TestAllTypesJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes ext2 = 1001;
+   */
+  ext2?: TestAllTypesJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.
  * Use `create(TestParsingMerge_RepeatedFieldsGeneratorDesc)` to create a new message.
  */
-export const TestParsingMerge_RepeatedFieldsGeneratorDesc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator> = /*@__PURE__*/
+export const TestParsingMerge_RepeatedFieldsGeneratorDesc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator, TestParsingMerge_RepeatedFieldsGeneratorJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 0);
 
 /**
@@ -3716,10 +6262,20 @@ export type TestParsingMerge_RepeatedFieldsGenerator_Group1 = Message<"protobuf_
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1.
+ */
+export type TestParsingMerge_RepeatedFieldsGenerator_Group1Json = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes field1 = 11;
+   */
+  field1?: TestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1.
  * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group1Desc)` to create a new message.
  */
-export const TestParsingMerge_RepeatedFieldsGenerator_Group1Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> = /*@__PURE__*/
+export const TestParsingMerge_RepeatedFieldsGenerator_Group1Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1, TestParsingMerge_RepeatedFieldsGenerator_Group1Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 0, 0);
 
 /**
@@ -3733,10 +6289,20 @@ export type TestParsingMerge_RepeatedFieldsGenerator_Group2 = Message<"protobuf_
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2.
+ */
+export type TestParsingMerge_RepeatedFieldsGenerator_Group2Json = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes field1 = 21;
+   */
+  field1?: TestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2.
  * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group2Desc)` to create a new message.
  */
-export const TestParsingMerge_RepeatedFieldsGenerator_Group2Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> = /*@__PURE__*/
+export const TestParsingMerge_RepeatedFieldsGenerator_Group2Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2, TestParsingMerge_RepeatedFieldsGenerator_Group2Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 0, 1);
 
 /**
@@ -3750,10 +6316,20 @@ export type TestParsingMerge_OptionalGroup = Message<"protobuf_unittest.TestPars
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestParsingMerge.OptionalGroup.
+ */
+export type TestParsingMerge_OptionalGroupJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_group_all_types = 11;
+   */
+  optionalGroupAllTypes?: TestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestParsingMerge.OptionalGroup.
  * Use `create(TestParsingMerge_OptionalGroupDesc)` to create a new message.
  */
-export const TestParsingMerge_OptionalGroupDesc: GenDescMessage<TestParsingMerge_OptionalGroup> = /*@__PURE__*/
+export const TestParsingMerge_OptionalGroupDesc: GenDescMessage<TestParsingMerge_OptionalGroup, TestParsingMerge_OptionalGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 1);
 
 /**
@@ -3767,10 +6343,20 @@ export type TestParsingMerge_RepeatedGroup = Message<"protobuf_unittest.TestPars
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestParsingMerge.RepeatedGroup.
+ */
+export type TestParsingMerge_RepeatedGroupJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes repeated_group_all_types = 21;
+   */
+  repeatedGroupAllTypes?: TestAllTypesJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedGroup.
  * Use `create(TestParsingMerge_RepeatedGroupDesc)` to create a new message.
  */
-export const TestParsingMerge_RepeatedGroupDesc: GenDescMessage<TestParsingMerge_RepeatedGroup> = /*@__PURE__*/
+export const TestParsingMerge_RepeatedGroupDesc: GenDescMessage<TestParsingMerge_RepeatedGroup, TestParsingMerge_RepeatedGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 2);
 
 /**
@@ -3799,10 +6385,20 @@ export type TestMergeException = Message<"protobuf_unittest.TestMergeException">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMergeException.
+ */
+export type TestMergeExceptionJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllExtensions all_extensions = 1;
+   */
+  allExtensions?: TestAllExtensionsJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMergeException.
  * Use `create(TestMergeExceptionDesc)` to create a new message.
  */
-export const TestMergeExceptionDesc: GenDescMessage<TestMergeException> = /*@__PURE__*/
+export const TestMergeExceptionDesc: GenDescMessage<TestMergeException, TestMergeExceptionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 69);
 
 /**
@@ -3818,10 +6414,20 @@ export type TestCommentInjectionMessage = Message<"protobuf_unittest.TestComment
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestCommentInjectionMessage.
+ */
+export type TestCommentInjectionMessageJson = {
+  /**
+   * @generated from field: optional string a = 1 [default = "*\/ <- Neither should this."];
+   */
+  a?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestCommentInjectionMessage.
  * Use `create(TestCommentInjectionMessageDesc)` to create a new message.
  */
-export const TestCommentInjectionMessageDesc: GenDescMessage<TestCommentInjectionMessage> = /*@__PURE__*/
+export const TestCommentInjectionMessageDesc: GenDescMessage<TestCommentInjectionMessage, TestCommentInjectionMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 70);
 
 /**
@@ -3863,10 +6469,45 @@ export type TestMessageSize = Message<"protobuf_unittest.TestMessageSize"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMessageSize.
+ */
+export type TestMessageSizeJson = {
+  /**
+   * @generated from field: optional bool m1 = 1;
+   */
+  m1?: boolean;
+
+  /**
+   * @generated from field: optional int64 m2 = 2;
+   */
+  m2?: string;
+
+  /**
+   * @generated from field: optional bool m3 = 3;
+   */
+  m3?: boolean;
+
+  /**
+   * @generated from field: optional string m4 = 4;
+   */
+  m4?: string;
+
+  /**
+   * @generated from field: optional int32 m5 = 5;
+   */
+  m5?: number;
+
+  /**
+   * @generated from field: optional int64 m6 = 6;
+   */
+  m6?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestMessageSize.
  * Use `create(TestMessageSizeDesc)` to create a new message.
  */
-export const TestMessageSizeDesc: GenDescMessage<TestMessageSize> = /*@__PURE__*/
+export const TestMessageSizeDesc: GenDescMessage<TestMessageSize, TestMessageSizeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 71);
 
 /**
@@ -3878,10 +6519,16 @@ export type FooRequest = Message<"protobuf_unittest.FooRequest"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.FooRequest.
+ */
+export type FooRequestJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.FooRequest.
  * Use `create(FooRequestDesc)` to create a new message.
  */
-export const FooRequestDesc: GenDescMessage<FooRequest> = /*@__PURE__*/
+export const FooRequestDesc: GenDescMessage<FooRequest, FooRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 72);
 
 /**
@@ -3891,10 +6538,16 @@ export type FooResponse = Message<"protobuf_unittest.FooResponse"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.FooResponse.
+ */
+export type FooResponseJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.FooResponse.
  * Use `create(FooResponseDesc)` to create a new message.
  */
-export const FooResponseDesc: GenDescMessage<FooResponse> = /*@__PURE__*/
+export const FooResponseDesc: GenDescMessage<FooResponse, FooResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 73);
 
 /**
@@ -3904,10 +6557,16 @@ export type FooClientMessage = Message<"protobuf_unittest.FooClientMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.FooClientMessage.
+ */
+export type FooClientMessageJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.FooClientMessage.
  * Use `create(FooClientMessageDesc)` to create a new message.
  */
-export const FooClientMessageDesc: GenDescMessage<FooClientMessage> = /*@__PURE__*/
+export const FooClientMessageDesc: GenDescMessage<FooClientMessage, FooClientMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 74);
 
 /**
@@ -3917,10 +6576,16 @@ export type FooServerMessage = Message<"protobuf_unittest.FooServerMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.FooServerMessage.
+ */
+export type FooServerMessageJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.FooServerMessage.
  * Use `create(FooServerMessageDesc)` to create a new message.
  */
-export const FooServerMessageDesc: GenDescMessage<FooServerMessage> = /*@__PURE__*/
+export const FooServerMessageDesc: GenDescMessage<FooServerMessage, FooServerMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 75);
 
 /**
@@ -3930,10 +6595,16 @@ export type BarRequest = Message<"protobuf_unittest.BarRequest"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.BarRequest.
+ */
+export type BarRequestJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.BarRequest.
  * Use `create(BarRequestDesc)` to create a new message.
  */
-export const BarRequestDesc: GenDescMessage<BarRequest> = /*@__PURE__*/
+export const BarRequestDesc: GenDescMessage<BarRequest, BarRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 76);
 
 /**
@@ -3943,10 +6614,16 @@ export type BarResponse = Message<"protobuf_unittest.BarResponse"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.BarResponse.
+ */
+export type BarResponseJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.BarResponse.
  * Use `create(BarResponseDesc)` to create a new message.
  */
-export const BarResponseDesc: GenDescMessage<BarResponse> = /*@__PURE__*/
+export const BarResponseDesc: GenDescMessage<BarResponse, BarResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 77);
 
 /**
@@ -3990,10 +6667,50 @@ export type TestJsonName = Message<"protobuf_unittest.TestJsonName"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestJsonName.
+ */
+export type TestJsonNameJson = {
+  /**
+   * @generated from field: optional int32 field_name1 = 1;
+   */
+  fieldName1?: number;
+
+  /**
+   * @generated from field: optional int32 fieldName2 = 2;
+   */
+  fieldName2?: number;
+
+  /**
+   * @generated from field: optional int32 FieldName3 = 3;
+   */
+  FieldName3?: number;
+
+  /**
+   * @generated from field: optional int32 _field_name4 = 4;
+   */
+  FieldName4?: number;
+
+  /**
+   * @generated from field: optional int32 FIELD_NAME5 = 5;
+   */
+  FIELDNAME5?: number;
+
+  /**
+   * @generated from field: optional int32 field_name6 = 6 [json_name = "@type"];
+   */
+  "@type"?: number;
+
+  /**
+   * @generated from field: optional int32 fieldname7 = 7;
+   */
+  fieldname7?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestJsonName.
  * Use `create(TestJsonNameDesc)` to create a new message.
  */
-export const TestJsonNameDesc: GenDescMessage<TestJsonName> = /*@__PURE__*/
+export const TestJsonNameDesc: GenDescMessage<TestJsonName, TestJsonNameJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 78);
 
 /**
@@ -4081,10 +6798,85 @@ export type TestHugeFieldNumbers = Message<"protobuf_unittest.TestHugeFieldNumbe
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestHugeFieldNumbers.
+ */
+export type TestHugeFieldNumbersJson = {
+  /**
+   * @generated from field: optional int32 optional_int32 = 536870000;
+   */
+  optionalInt32?: number;
+
+  /**
+   * @generated from field: optional int32 fixed_32 = 536870001;
+   */
+  fixed32?: number;
+
+  /**
+   * @generated from field: repeated int32 repeated_int32 = 536870002 [packed = false];
+   */
+  repeatedInt32?: number[];
+
+  /**
+   * @generated from field: repeated int32 packed_int32 = 536870003 [packed = true];
+   */
+  packedInt32?: number[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignEnum optional_enum = 536870004;
+   */
+  optionalEnum?: ForeignEnumJson;
+
+  /**
+   * @generated from field: optional string optional_string = 536870005;
+   */
+  optionalString?: string;
+
+  /**
+   * @generated from field: optional bytes optional_bytes = 536870006;
+   */
+  optionalBytes?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignMessage optional_message = 536870007;
+   */
+  optionalMessage?: ForeignMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestHugeFieldNumbers.OptionalGroup optionalgroup = 536870008;
+   */
+  optionalgroup?: TestHugeFieldNumbers_OptionalGroupJson;
+
+  /**
+   * @generated from field: map<string, string> string_string_map = 536870010;
+   */
+  stringStringMap?: { [key: string]: string };
+
+  /**
+   * @generated from field: uint32 oneof_uint32 = 536870011;
+   */
+  oneofUint32?: number;
+
+  /**
+   * @generated from field: protobuf_unittest.TestAllTypes oneof_test_all_types = 536870012;
+   */
+  oneofTestAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: string oneof_string = 536870013;
+   */
+  oneofString?: string;
+
+  /**
+   * @generated from field: bytes oneof_bytes = 536870014;
+   */
+  oneofBytes?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestHugeFieldNumbers.
  * Use `create(TestHugeFieldNumbersDesc)` to create a new message.
  */
-export const TestHugeFieldNumbersDesc: GenDescMessage<TestHugeFieldNumbers> = /*@__PURE__*/
+export const TestHugeFieldNumbersDesc: GenDescMessage<TestHugeFieldNumbers, TestHugeFieldNumbersJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 79);
 
 /**
@@ -4098,10 +6890,20 @@ export type TestHugeFieldNumbers_OptionalGroup = Message<"protobuf_unittest.Test
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestHugeFieldNumbers.OptionalGroup.
+ */
+export type TestHugeFieldNumbers_OptionalGroupJson = {
+  /**
+   * @generated from field: optional int32 group_a = 536870009;
+   */
+  groupA?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestHugeFieldNumbers.OptionalGroup.
  * Use `create(TestHugeFieldNumbers_OptionalGroupDesc)` to create a new message.
  */
-export const TestHugeFieldNumbers_OptionalGroupDesc: GenDescMessage<TestHugeFieldNumbers_OptionalGroup> = /*@__PURE__*/
+export const TestHugeFieldNumbers_OptionalGroupDesc: GenDescMessage<TestHugeFieldNumbers_OptionalGroup, TestHugeFieldNumbers_OptionalGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 79, 0);
 
 /**
@@ -4155,10 +6957,60 @@ export type TestExtensionInsideTable = Message<"protobuf_unittest.TestExtensionI
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtensionInsideTable.
+ */
+export type TestExtensionInsideTableJson = {
+  /**
+   * @generated from field: optional int32 field1 = 1;
+   */
+  field1?: number;
+
+  /**
+   * @generated from field: optional int32 field2 = 2;
+   */
+  field2?: number;
+
+  /**
+   * @generated from field: optional int32 field3 = 3;
+   */
+  field3?: number;
+
+  /**
+   * @generated from field: optional int32 field4 = 4;
+   */
+  field4?: number;
+
+  /**
+   * @generated from field: optional int32 field6 = 6;
+   */
+  field6?: number;
+
+  /**
+   * @generated from field: optional int32 field7 = 7;
+   */
+  field7?: number;
+
+  /**
+   * @generated from field: optional int32 field8 = 8;
+   */
+  field8?: number;
+
+  /**
+   * @generated from field: optional int32 field9 = 9;
+   */
+  field9?: number;
+
+  /**
+   * @generated from field: optional int32 field10 = 10;
+   */
+  field10?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtensionInsideTable.
  * Use `create(TestExtensionInsideTableDesc)` to create a new message.
  */
-export const TestExtensionInsideTableDesc: GenDescMessage<TestExtensionInsideTable> = /*@__PURE__*/
+export const TestExtensionInsideTableDesc: GenDescMessage<TestExtensionInsideTable, TestExtensionInsideTableJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 80);
 
 /**
@@ -4174,10 +7026,20 @@ export type TestNestedGroupExtensionOuter = Message<"protobuf_unittest.TestNeste
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedGroupExtensionOuter.
+ */
+export type TestNestedGroupExtensionOuterJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup layer1optionalgroup = 1;
+   */
+  layer1optionalgroup?: TestNestedGroupExtensionOuter_Layer1OptionalGroupJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.
  * Use `create(TestNestedGroupExtensionOuterDesc)` to create a new message.
  */
-export const TestNestedGroupExtensionOuterDesc: GenDescMessage<TestNestedGroupExtensionOuter> = /*@__PURE__*/
+export const TestNestedGroupExtensionOuterDesc: GenDescMessage<TestNestedGroupExtensionOuter, TestNestedGroupExtensionOuterJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 81);
 
 /**
@@ -4196,10 +7058,25 @@ export type TestNestedGroupExtensionOuter_Layer1OptionalGroup = Message<"protobu
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.
+ */
+export type TestNestedGroupExtensionOuter_Layer1OptionalGroupJson = {
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup layer2repeatedgroup = 2;
+   */
+  layer2repeatedgroup?: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup layer2anotheroptionalrepeatedgroup = 4;
+   */
+  layer2anotheroptionalrepeatedgroup?: TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.
  * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroupDesc)` to create a new message.
  */
-export const TestNestedGroupExtensionOuter_Layer1OptionalGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup> = /*@__PURE__*/
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup, TestNestedGroupExtensionOuter_Layer1OptionalGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 81, 0);
 
 /**
@@ -4213,10 +7090,20 @@ export type TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGrou
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup.
+ */
+export type TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupJson = {
+  /**
+   * @generated from field: optional string another_field = 6;
+   */
+  anotherField?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup.
  * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupDesc)` to create a new message.
  */
-export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> = /*@__PURE__*/
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 81, 0, 0);
 
 /**
@@ -4230,10 +7117,20 @@ export type TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptio
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup.
+ */
+export type TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupJson = {
+  /**
+   * @generated from field: optional string but_why_tho = 5;
+   */
+  butWhyTho?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup.
  * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupDesc)` to create a new message.
  */
-export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> = /*@__PURE__*/
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup, TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 81, 0, 1);
 
 /**
@@ -4247,10 +7144,20 @@ export type TestNestedGroupExtensionInnerExtension = Message<"protobuf_unittest.
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedGroupExtensionInnerExtension.
+ */
+export type TestNestedGroupExtensionInnerExtensionJson = {
+  /**
+   * @generated from field: optional string inner_name = 1;
+   */
+  innerName?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionInnerExtension.
  * Use `create(TestNestedGroupExtensionInnerExtensionDesc)` to create a new message.
  */
-export const TestNestedGroupExtensionInnerExtensionDesc: GenDescMessage<TestNestedGroupExtensionInnerExtension> = /*@__PURE__*/
+export const TestNestedGroupExtensionInnerExtensionDesc: GenDescMessage<TestNestedGroupExtensionInnerExtension, TestNestedGroupExtensionInnerExtensionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 82);
 
 /**
@@ -4279,10 +7186,35 @@ export type TestExtensionRangeSerialize = Message<"protobuf_unittest.TestExtensi
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtensionRangeSerialize.
+ */
+export type TestExtensionRangeSerializeJson = {
+  /**
+   * @generated from field: optional int32 foo_one = 1;
+   */
+  fooOne?: number;
+
+  /**
+   * @generated from field: optional int32 foo_two = 6;
+   */
+  fooTwo?: number;
+
+  /**
+   * @generated from field: optional int32 foo_three = 7;
+   */
+  fooThree?: number;
+
+  /**
+   * @generated from field: optional int32 foo_four = 13;
+   */
+  fooFour?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtensionRangeSerialize.
  * Use `create(TestExtensionRangeSerializeDesc)` to create a new message.
  */
-export const TestExtensionRangeSerializeDesc: GenDescMessage<TestExtensionRangeSerialize> = /*@__PURE__*/
+export const TestExtensionRangeSerializeDesc: GenDescMessage<TestExtensionRangeSerialize, TestExtensionRangeSerializeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 83);
 
 /**
@@ -4341,10 +7273,35 @@ export type TestVerifyInt32Simple = Message<"protobuf_unittest.TestVerifyInt32Si
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyInt32Simple.
+ */
+export type TestVerifyInt32SimpleJson = {
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyInt32Simple.
  * Use `create(TestVerifyInt32SimpleDesc)` to create a new message.
  */
-export const TestVerifyInt32SimpleDesc: GenDescMessage<TestVerifyInt32Simple> = /*@__PURE__*/
+export const TestVerifyInt32SimpleDesc: GenDescMessage<TestVerifyInt32Simple, TestVerifyInt32SimpleJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 84);
 
 /**
@@ -4383,10 +7340,45 @@ export type TestVerifyInt32 = Message<"protobuf_unittest.TestVerifyInt32"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyInt32.
+ */
+export type TestVerifyInt32Json = {
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes?: TestAllTypesJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyInt32.
  * Use `create(TestVerifyInt32Desc)` to create a new message.
  */
-export const TestVerifyInt32Desc: GenDescMessage<TestVerifyInt32> = /*@__PURE__*/
+export const TestVerifyInt32Desc: GenDescMessage<TestVerifyInt32, TestVerifyInt32Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 85);
 
 /**
@@ -4440,10 +7432,60 @@ export type TestVerifyMostlyInt32 = Message<"protobuf_unittest.TestVerifyMostlyI
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyMostlyInt32.
+ */
+export type TestVerifyMostlyInt32Json = {
+  /**
+   * @generated from field: optional int64 optional_int64_30 = 30;
+   */
+  optionalInt6430?: string;
+
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_3 = 3;
+   */
+  optionalInt323?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_4 = 4;
+   */
+  optionalInt324?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes?: TestAllTypesJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyMostlyInt32.
  * Use `create(TestVerifyMostlyInt32Desc)` to create a new message.
  */
-export const TestVerifyMostlyInt32Desc: GenDescMessage<TestVerifyMostlyInt32> = /*@__PURE__*/
+export const TestVerifyMostlyInt32Desc: GenDescMessage<TestVerifyMostlyInt32, TestVerifyMostlyInt32Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 86);
 
 /**
@@ -4502,10 +7544,65 @@ export type TestVerifyMostlyInt32BigFieldNumber = Message<"protobuf_unittest.Tes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber.
+ */
+export type TestVerifyMostlyInt32BigFieldNumberJson = {
+  /**
+   * @generated from field: optional int64 optional_int64_30 = 30;
+   */
+  optionalInt6430?: string;
+
+  /**
+   * @generated from field: optional int32 optional_int32_300 = 300;
+   */
+  optionalInt32300?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_3 = 3;
+   */
+  optionalInt323?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_4 = 4;
+   */
+  optionalInt324?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes?: TestAllTypesJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyMostlyInt32BigFieldNumber.
  * Use `create(TestVerifyMostlyInt32BigFieldNumberDesc)` to create a new message.
  */
-export const TestVerifyMostlyInt32BigFieldNumberDesc: GenDescMessage<TestVerifyMostlyInt32BigFieldNumber> = /*@__PURE__*/
+export const TestVerifyMostlyInt32BigFieldNumberDesc: GenDescMessage<TestVerifyMostlyInt32BigFieldNumber, TestVerifyMostlyInt32BigFieldNumberJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 87);
 
 /**
@@ -4534,10 +7631,35 @@ export type TestVerifyUint32Simple = Message<"protobuf_unittest.TestVerifyUint32
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyUint32Simple.
+ */
+export type TestVerifyUint32SimpleJson = {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyUint32Simple.
  * Use `create(TestVerifyUint32SimpleDesc)` to create a new message.
  */
-export const TestVerifyUint32SimpleDesc: GenDescMessage<TestVerifyUint32Simple> = /*@__PURE__*/
+export const TestVerifyUint32SimpleDesc: GenDescMessage<TestVerifyUint32Simple, TestVerifyUint32SimpleJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 88);
 
 /**
@@ -4576,10 +7698,45 @@ export type TestVerifyUint32 = Message<"protobuf_unittest.TestVerifyUint32"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyUint32.
+ */
+export type TestVerifyUint32Json = {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes?: TestAllTypesJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyUint32.
  * Use `create(TestVerifyUint32Desc)` to create a new message.
  */
-export const TestVerifyUint32Desc: GenDescMessage<TestVerifyUint32> = /*@__PURE__*/
+export const TestVerifyUint32Desc: GenDescMessage<TestVerifyUint32, TestVerifyUint32Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 89);
 
 /**
@@ -4618,10 +7775,45 @@ export type TestVerifyOneUint32 = Message<"protobuf_unittest.TestVerifyOneUint32
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyOneUint32.
+ */
+export type TestVerifyOneUint32Json = {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes?: TestAllTypesJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyOneUint32.
  * Use `create(TestVerifyOneUint32Desc)` to create a new message.
  */
-export const TestVerifyOneUint32Desc: GenDescMessage<TestVerifyOneUint32> = /*@__PURE__*/
+export const TestVerifyOneUint32Desc: GenDescMessage<TestVerifyOneUint32, TestVerifyOneUint32Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 90);
 
 /**
@@ -4665,10 +7857,50 @@ export type TestVerifyOneInt32BigFieldNumber = Message<"protobuf_unittest.TestVe
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyOneInt32BigFieldNumber.
+ */
+export type TestVerifyOneInt32BigFieldNumberJson = {
+  /**
+   * @generated from field: optional int32 optional_int32_65 = 65;
+   */
+  optionalInt3265?: number;
+
+  /**
+   * @generated from field: optional int64 optional_int64_1 = 1;
+   */
+  optionalInt641?: string;
+
+  /**
+   * @generated from field: optional int64 optional_int64_2 = 2;
+   */
+  optionalInt642?: string;
+
+  /**
+   * @generated from field: optional int64 optional_int64_63 = 63;
+   */
+  optionalInt6463?: string;
+
+  /**
+   * @generated from field: optional int64 optional_int64_64 = 64;
+   */
+  optionalInt6464?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes?: TestAllTypesJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyOneInt32BigFieldNumber.
  * Use `create(TestVerifyOneInt32BigFieldNumberDesc)` to create a new message.
  */
-export const TestVerifyOneInt32BigFieldNumberDesc: GenDescMessage<TestVerifyOneInt32BigFieldNumber> = /*@__PURE__*/
+export const TestVerifyOneInt32BigFieldNumberDesc: GenDescMessage<TestVerifyOneInt32BigFieldNumber, TestVerifyOneInt32BigFieldNumberJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 91);
 
 /**
@@ -4717,10 +7949,55 @@ export type TestVerifyInt32BigFieldNumber = Message<"protobuf_unittest.TestVerif
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyInt32BigFieldNumber.
+ */
+export type TestVerifyInt32BigFieldNumberJson = {
+  /**
+   * @generated from field: optional int32 optional_int32_1000 = 1000;
+   */
+  optionalInt321000?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_65 = 65;
+   */
+  optionalInt3265?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_1 = 1;
+   */
+  optionalInt321?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_2 = 2;
+   */
+  optionalInt322?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_63 = 63;
+   */
+  optionalInt3263?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_64 = 64;
+   */
+  optionalInt3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes?: TestAllTypesJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyInt32BigFieldNumber.
  * Use `create(TestVerifyInt32BigFieldNumberDesc)` to create a new message.
  */
-export const TestVerifyInt32BigFieldNumberDesc: GenDescMessage<TestVerifyInt32BigFieldNumber> = /*@__PURE__*/
+export const TestVerifyInt32BigFieldNumberDesc: GenDescMessage<TestVerifyInt32BigFieldNumber, TestVerifyInt32BigFieldNumberJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 92);
 
 /**
@@ -4769,10 +8046,55 @@ export type TestVerifyUint32BigFieldNumber = Message<"protobuf_unittest.TestVeri
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyUint32BigFieldNumber.
+ */
+export type TestVerifyUint32BigFieldNumberJson = {
+  /**
+   * @generated from field: optional uint32 optional_uint32_1000 = 1000;
+   */
+  optionalUint321000?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_65 = 65;
+   */
+  optionalUint3265?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes optional_all_types = 9;
+   */
+  optionalAllTypes?: TestAllTypesJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestAllTypes repeated_all_types = 10;
+   */
+  repeatedAllTypes?: TestAllTypesJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyUint32BigFieldNumber.
  * Use `create(TestVerifyUint32BigFieldNumberDesc)` to create a new message.
  */
-export const TestVerifyUint32BigFieldNumberDesc: GenDescMessage<TestVerifyUint32BigFieldNumber> = /*@__PURE__*/
+export const TestVerifyUint32BigFieldNumberDesc: GenDescMessage<TestVerifyUint32BigFieldNumber, TestVerifyUint32BigFieldNumberJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 93);
 
 /**
@@ -4786,10 +8108,20 @@ export type TestVerifyBigFieldNumberUint32 = Message<"protobuf_unittest.TestVeri
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyBigFieldNumberUint32.
+ */
+export type TestVerifyBigFieldNumberUint32Json = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 1;
+   */
+  optionalNested?: TestVerifyBigFieldNumberUint32_NestedJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyBigFieldNumberUint32.
  * Use `create(TestVerifyBigFieldNumberUint32Desc)` to create a new message.
  */
-export const TestVerifyBigFieldNumberUint32Desc: GenDescMessage<TestVerifyBigFieldNumberUint32> = /*@__PURE__*/
+export const TestVerifyBigFieldNumberUint32Desc: GenDescMessage<TestVerifyBigFieldNumberUint32, TestVerifyBigFieldNumberUint32Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 94);
 
 /**
@@ -4848,10 +8180,65 @@ export type TestVerifyBigFieldNumberUint32_Nested = Message<"protobuf_unittest.T
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested.
+ */
+export type TestVerifyBigFieldNumberUint32_NestedJson = {
+  /**
+   * @generated from field: optional uint32 optional_uint32_5000 = 5000;
+   */
+  optionalUint325000?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_1000 = 1000;
+   */
+  optionalUint321000?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_66 = 66;
+   */
+  optionalUint3266?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_65 = 65;
+   */
+  optionalUint3265?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_1 = 1;
+   */
+  optionalUint321?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_2 = 2;
+   */
+  optionalUint322?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_63 = 63;
+   */
+  optionalUint3263?: number;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32_64 = 64;
+   */
+  optionalUint3264?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 9;
+   */
+  optionalNested?: TestVerifyBigFieldNumberUint32_NestedJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested repeated_nested = 10;
+   */
+  repeatedNested?: TestVerifyBigFieldNumberUint32_NestedJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested.
  * Use `create(TestVerifyBigFieldNumberUint32_NestedDesc)` to create a new message.
  */
-export const TestVerifyBigFieldNumberUint32_NestedDesc: GenDescMessage<TestVerifyBigFieldNumberUint32_Nested> = /*@__PURE__*/
+export const TestVerifyBigFieldNumberUint32_NestedDesc: GenDescMessage<TestVerifyBigFieldNumberUint32_Nested, TestVerifyBigFieldNumberUint32_NestedJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 94, 0);
 
 /**
@@ -5050,10 +8437,200 @@ export type EnumParseTester = Message<"protobuf_unittest.EnumParseTester"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.EnumParseTester.
+ */
+export type EnumParseTesterJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall0 optional_seq_small_0_lowfield = 1;
+   */
+  optionalSeqSmall0Lowfield?: EnumParseTester_SeqSmall0Json;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall0 optional_seq_small_0_midfield = 1001;
+   */
+  optionalSeqSmall0Midfield?: EnumParseTester_SeqSmall0Json;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall0 optional_seq_small_0_hifield = 1000001;
+   */
+  optionalSeqSmall0Hifield?: EnumParseTester_SeqSmall0Json;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 repeated_seq_small_0_lowfield = 2;
+   */
+  repeatedSeqSmall0Lowfield?: EnumParseTester_SeqSmall0Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 repeated_seq_small_0_midfield = 1002;
+   */
+  repeatedSeqSmall0Midfield?: EnumParseTester_SeqSmall0Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 repeated_seq_small_0_hifield = 1000002;
+   */
+  repeatedSeqSmall0Hifield?: EnumParseTester_SeqSmall0Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 packed_seq_small_0_lowfield = 3 [packed = true];
+   */
+  packedSeqSmall0Lowfield?: EnumParseTester_SeqSmall0Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 packed_seq_small_0_midfield = 1003 [packed = true];
+   */
+  packedSeqSmall0Midfield?: EnumParseTester_SeqSmall0Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall0 packed_seq_small_0_hifield = 1000003 [packed = true];
+   */
+  packedSeqSmall0Hifield?: EnumParseTester_SeqSmall0Json[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall1 optional_seq_small_1_lowfield = 4;
+   */
+  optionalSeqSmall1Lowfield?: EnumParseTester_SeqSmall1Json;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall1 optional_seq_small_1_midfield = 1004;
+   */
+  optionalSeqSmall1Midfield?: EnumParseTester_SeqSmall1Json;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqSmall1 optional_seq_small_1_hifield = 1000004;
+   */
+  optionalSeqSmall1Hifield?: EnumParseTester_SeqSmall1Json;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 repeated_seq_small_1_lowfield = 5;
+   */
+  repeatedSeqSmall1Lowfield?: EnumParseTester_SeqSmall1Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 repeated_seq_small_1_midfield = 1005;
+   */
+  repeatedSeqSmall1Midfield?: EnumParseTester_SeqSmall1Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 repeated_seq_small_1_hifield = 1000005;
+   */
+  repeatedSeqSmall1Hifield?: EnumParseTester_SeqSmall1Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 packed_seq_small_1_lowfield = 6 [packed = true];
+   */
+  packedSeqSmall1Lowfield?: EnumParseTester_SeqSmall1Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 packed_seq_small_1_midfield = 1006 [packed = true];
+   */
+  packedSeqSmall1Midfield?: EnumParseTester_SeqSmall1Json[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqSmall1 packed_seq_small_1_hifield = 1000006 [packed = true];
+   */
+  packedSeqSmall1Hifield?: EnumParseTester_SeqSmall1Json[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqLarge optional_seq_large_lowfield = 7;
+   */
+  optionalSeqLargeLowfield?: EnumParseTester_SeqLargeJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqLarge optional_seq_large_midfield = 1007;
+   */
+  optionalSeqLargeMidfield?: EnumParseTester_SeqLargeJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.SeqLarge optional_seq_large_hifield = 1000007;
+   */
+  optionalSeqLargeHifield?: EnumParseTester_SeqLargeJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge repeated_seq_large_lowfield = 8;
+   */
+  repeatedSeqLargeLowfield?: EnumParseTester_SeqLargeJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge repeated_seq_large_midfield = 1008;
+   */
+  repeatedSeqLargeMidfield?: EnumParseTester_SeqLargeJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge repeated_seq_large_hifield = 1000008;
+   */
+  repeatedSeqLargeHifield?: EnumParseTester_SeqLargeJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge packed_seq_large_lowfield = 9 [packed = true];
+   */
+  packedSeqLargeLowfield?: EnumParseTester_SeqLargeJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge packed_seq_large_midfield = 1009 [packed = true];
+   */
+  packedSeqLargeMidfield?: EnumParseTester_SeqLargeJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.SeqLarge packed_seq_large_hifield = 1000009 [packed = true];
+   */
+  packedSeqLargeHifield?: EnumParseTester_SeqLargeJson[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_lowfield = 10;
+   */
+  optionalArbitraryLowfield?: EnumParseTester_ArbitraryJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_midfield = 1010;
+   */
+  optionalArbitraryMidfield?: EnumParseTester_ArbitraryJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_hifield = 1000010;
+   */
+  optionalArbitraryHifield?: EnumParseTester_ArbitraryJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary repeated_arbitrary_lowfield = 11;
+   */
+  repeatedArbitraryLowfield?: EnumParseTester_ArbitraryJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary repeated_arbitrary_midfield = 1011;
+   */
+  repeatedArbitraryMidfield?: EnumParseTester_ArbitraryJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary repeated_arbitrary_hifield = 1000011;
+   */
+  repeatedArbitraryHifield?: EnumParseTester_ArbitraryJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary packed_arbitrary_lowfield = 12 [packed = true];
+   */
+  packedArbitraryLowfield?: EnumParseTester_ArbitraryJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary packed_arbitrary_midfield = 1012 [packed = true];
+   */
+  packedArbitraryMidfield?: EnumParseTester_ArbitraryJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.EnumParseTester.Arbitrary packed_arbitrary_hifield = 1000012 [packed = true];
+   */
+  packedArbitraryHifield?: EnumParseTester_ArbitraryJson[];
+
+  /**
+   * @generated from field: optional int32 other_field = 99;
+   */
+  otherField?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.EnumParseTester.
  * Use `create(EnumParseTesterDesc)` to create a new message.
  */
-export const EnumParseTesterDesc: GenDescMessage<EnumParseTester> = /*@__PURE__*/
+export const EnumParseTesterDesc: GenDescMessage<EnumParseTester, EnumParseTesterJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 95);
 
 /**
@@ -5077,9 +8654,14 @@ export enum EnumParseTester_SeqSmall0 {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.EnumParseTester.SeqSmall0.
+ */
+export type EnumParseTester_SeqSmall0Json = "SEQ_SMALL_0_DEFAULT" | "SEQ_SMALL_0_1" | "SEQ_SMALL_0_2";
+
+/**
  * Describes the enum protobuf_unittest.EnumParseTester.SeqSmall0.
  */
-export const EnumParseTester_SeqSmall0Desc: GenDescEnum<EnumParseTester_SeqSmall0> = /*@__PURE__*/
+export const EnumParseTester_SeqSmall0Desc: GenDescEnum<EnumParseTester_SeqSmall0, EnumParseTester_SeqSmall0Json> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 95, 0);
 
 /**
@@ -5103,9 +8685,14 @@ export enum EnumParseTester_SeqSmall1 {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.EnumParseTester.SeqSmall1.
+ */
+export type EnumParseTester_SeqSmall1Json = "SEQ_SMALL_1_DEFAULT" | "SEQ_SMALL_1_2" | "SEQ_SMALL_1_3";
+
+/**
  * Describes the enum protobuf_unittest.EnumParseTester.SeqSmall1.
  */
-export const EnumParseTester_SeqSmall1Desc: GenDescEnum<EnumParseTester_SeqSmall1> = /*@__PURE__*/
+export const EnumParseTester_SeqSmall1Desc: GenDescEnum<EnumParseTester_SeqSmall1, EnumParseTester_SeqSmall1Json> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 95, 1);
 
 /**
@@ -5289,9 +8876,14 @@ export enum EnumParseTester_SeqLarge {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.EnumParseTester.SeqLarge.
+ */
+export type EnumParseTester_SeqLargeJson = "SEQ_LARGE_DEFAULT" | "SEQ_LARGE_0" | "SEQ_LARGE_1" | "SEQ_LARGE_2" | "SEQ_LARGE_3" | "SEQ_LARGE_4" | "SEQ_LARGE_5" | "SEQ_LARGE_6" | "SEQ_LARGE_7" | "SEQ_LARGE_8" | "SEQ_LARGE_9" | "SEQ_LARGE_10" | "SEQ_LARGE_11" | "SEQ_LARGE_12" | "SEQ_LARGE_13" | "SEQ_LARGE_14" | "SEQ_LARGE_15" | "SEQ_LARGE_16" | "SEQ_LARGE_17" | "SEQ_LARGE_18" | "SEQ_LARGE_19" | "SEQ_LARGE_20" | "SEQ_LARGE_21" | "SEQ_LARGE_22" | "SEQ_LARGE_23" | "SEQ_LARGE_24" | "SEQ_LARGE_25" | "SEQ_LARGE_26" | "SEQ_LARGE_27" | "SEQ_LARGE_28" | "SEQ_LARGE_29" | "SEQ_LARGE_30" | "SEQ_LARGE_31" | "SEQ_LARGE_32" | "SEQ_LARGE_33";
+
+/**
  * Describes the enum protobuf_unittest.EnumParseTester.SeqLarge.
  */
-export const EnumParseTester_SeqLargeDesc: GenDescEnum<EnumParseTester_SeqLarge> = /*@__PURE__*/
+export const EnumParseTester_SeqLargeDesc: GenDescEnum<EnumParseTester_SeqLarge, EnumParseTester_SeqLargeJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 95, 2);
 
 /**
@@ -5330,9 +8922,14 @@ export enum EnumParseTester_Arbitrary {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.EnumParseTester.Arbitrary.
+ */
+export type EnumParseTester_ArbitraryJson = "ARBITRARY_DEFAULT" | "ARBITRARY_1" | "ARBITRARY_2" | "ARBITRARY_3" | "ARBITRARY_MIN" | "ARBITRARY_MAX";
+
+/**
  * Describes the enum protobuf_unittest.EnumParseTester.Arbitrary.
  */
-export const EnumParseTester_ArbitraryDesc: GenDescEnum<EnumParseTester_Arbitrary> = /*@__PURE__*/
+export const EnumParseTester_ArbitraryDesc: GenDescEnum<EnumParseTester_Arbitrary, EnumParseTester_ArbitraryJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 95, 3);
 
 /**
@@ -5414,10 +9011,65 @@ export type BoolParseTester = Message<"protobuf_unittest.BoolParseTester"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.BoolParseTester.
+ */
+export type BoolParseTesterJson = {
+  /**
+   * @generated from field: optional bool optional_bool_lowfield = 1;
+   */
+  optionalBoolLowfield?: boolean;
+
+  /**
+   * @generated from field: optional bool optional_bool_midfield = 1001;
+   */
+  optionalBoolMidfield?: boolean;
+
+  /**
+   * @generated from field: optional bool optional_bool_hifield = 1000001;
+   */
+  optionalBoolHifield?: boolean;
+
+  /**
+   * @generated from field: repeated bool repeated_bool_lowfield = 2;
+   */
+  repeatedBoolLowfield?: boolean[];
+
+  /**
+   * @generated from field: repeated bool repeated_bool_midfield = 1002;
+   */
+  repeatedBoolMidfield?: boolean[];
+
+  /**
+   * @generated from field: repeated bool repeated_bool_hifield = 1000002;
+   */
+  repeatedBoolHifield?: boolean[];
+
+  /**
+   * @generated from field: repeated bool packed_bool_lowfield = 3 [packed = true];
+   */
+  packedBoolLowfield?: boolean[];
+
+  /**
+   * @generated from field: repeated bool packed_bool_midfield = 1003 [packed = true];
+   */
+  packedBoolMidfield?: boolean[];
+
+  /**
+   * @generated from field: repeated bool packed_bool_hifield = 1000003 [packed = true];
+   */
+  packedBoolHifield?: boolean[];
+
+  /**
+   * @generated from field: optional int32 other_field = 99;
+   */
+  otherField?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.BoolParseTester.
  * Use `create(BoolParseTesterDesc)` to create a new message.
  */
-export const BoolParseTesterDesc: GenDescMessage<BoolParseTester> = /*@__PURE__*/
+export const BoolParseTesterDesc: GenDescMessage<BoolParseTester, BoolParseTesterJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 96);
 
 /**
@@ -5496,10 +9148,65 @@ export type Int32ParseTester = Message<"protobuf_unittest.Int32ParseTester"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Int32ParseTester.
+ */
+export type Int32ParseTesterJson = {
+  /**
+   * @generated from field: optional int32 optional_int32_lowfield = 1;
+   */
+  optionalInt32Lowfield?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_midfield = 1001;
+   */
+  optionalInt32Midfield?: number;
+
+  /**
+   * @generated from field: optional int32 optional_int32_hifield = 1000001;
+   */
+  optionalInt32Hifield?: number;
+
+  /**
+   * @generated from field: repeated int32 repeated_int32_lowfield = 2;
+   */
+  repeatedInt32Lowfield?: number[];
+
+  /**
+   * @generated from field: repeated int32 repeated_int32_midfield = 1002;
+   */
+  repeatedInt32Midfield?: number[];
+
+  /**
+   * @generated from field: repeated int32 repeated_int32_hifield = 1000002;
+   */
+  repeatedInt32Hifield?: number[];
+
+  /**
+   * @generated from field: repeated int32 packed_int32_lowfield = 3 [packed = true];
+   */
+  packedInt32Lowfield?: number[];
+
+  /**
+   * @generated from field: repeated int32 packed_int32_midfield = 1003 [packed = true];
+   */
+  packedInt32Midfield?: number[];
+
+  /**
+   * @generated from field: repeated int32 packed_int32_hifield = 1000003 [packed = true];
+   */
+  packedInt32Hifield?: number[];
+
+  /**
+   * @generated from field: optional int32 other_field = 99;
+   */
+  otherField?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.Int32ParseTester.
  * Use `create(Int32ParseTesterDesc)` to create a new message.
  */
-export const Int32ParseTesterDesc: GenDescMessage<Int32ParseTester> = /*@__PURE__*/
+export const Int32ParseTesterDesc: GenDescMessage<Int32ParseTester, Int32ParseTesterJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 97);
 
 /**
@@ -5578,10 +9285,65 @@ export type Int64ParseTester = Message<"protobuf_unittest.Int64ParseTester"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Int64ParseTester.
+ */
+export type Int64ParseTesterJson = {
+  /**
+   * @generated from field: optional int64 optional_int64_lowfield = 1;
+   */
+  optionalInt64Lowfield?: string;
+
+  /**
+   * @generated from field: optional int64 optional_int64_midfield = 1001;
+   */
+  optionalInt64Midfield?: string;
+
+  /**
+   * @generated from field: optional int64 optional_int64_hifield = 1000001;
+   */
+  optionalInt64Hifield?: string;
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_lowfield = 2;
+   */
+  repeatedInt64Lowfield?: string[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_midfield = 1002;
+   */
+  repeatedInt64Midfield?: string[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64_hifield = 1000002;
+   */
+  repeatedInt64Hifield?: string[];
+
+  /**
+   * @generated from field: repeated int64 packed_int64_lowfield = 3 [packed = true];
+   */
+  packedInt64Lowfield?: string[];
+
+  /**
+   * @generated from field: repeated int64 packed_int64_midfield = 1003 [packed = true];
+   */
+  packedInt64Midfield?: string[];
+
+  /**
+   * @generated from field: repeated int64 packed_int64_hifield = 1000003 [packed = true];
+   */
+  packedInt64Hifield?: string[];
+
+  /**
+   * @generated from field: optional int32 other_field = 99;
+   */
+  otherField?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.Int64ParseTester.
  * Use `create(Int64ParseTesterDesc)` to create a new message.
  */
-export const Int64ParseTesterDesc: GenDescMessage<Int64ParseTester> = /*@__PURE__*/
+export const Int64ParseTesterDesc: GenDescMessage<Int64ParseTester, Int64ParseTesterJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 98);
 
 /**
@@ -5637,10 +9399,35 @@ export type InlinedStringIdxRegressionProto = Message<"protobuf_unittest.Inlined
 };
 
 /**
+ * JSON type for the message protobuf_unittest.InlinedStringIdxRegressionProto.
+ */
+export type InlinedStringIdxRegressionProtoJson = {
+  /**
+   * @generated from field: optional string str1 = 1;
+   */
+  str1?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.InlinedStringIdxRegressionProto sub = 2;
+   */
+  sub?: InlinedStringIdxRegressionProtoJson;
+
+  /**
+   * @generated from field: optional string str2 = 3;
+   */
+  str2?: string;
+
+  /**
+   * @generated from field: optional bytes str3 = 4;
+   */
+  str3?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.InlinedStringIdxRegressionProto.
  * Use `create(InlinedStringIdxRegressionProtoDesc)` to create a new message.
  */
-export const InlinedStringIdxRegressionProtoDesc: GenDescMessage<InlinedStringIdxRegressionProto> = /*@__PURE__*/
+export const InlinedStringIdxRegressionProtoDesc: GenDescMessage<InlinedStringIdxRegressionProto, InlinedStringIdxRegressionProtoJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 99);
 
 /**
@@ -5679,10 +9466,45 @@ export type StringParseTester = Message<"protobuf_unittest.StringParseTester"> &
 };
 
 /**
+ * JSON type for the message protobuf_unittest.StringParseTester.
+ */
+export type StringParseTesterJson = {
+  /**
+   * @generated from field: optional string optional_string_lowfield = 1;
+   */
+  optionalStringLowfield?: string;
+
+  /**
+   * @generated from field: optional string optional_string_midfield = 1001;
+   */
+  optionalStringMidfield?: string;
+
+  /**
+   * @generated from field: optional string optional_string_hifield = 1000001;
+   */
+  optionalStringHifield?: string;
+
+  /**
+   * @generated from field: repeated string repeated_string_lowfield = 2;
+   */
+  repeatedStringLowfield?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_midfield = 1002;
+   */
+  repeatedStringMidfield?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_hifield = 1000002;
+   */
+  repeatedStringHifield?: string[];
+};
+
+/**
  * Describes the message protobuf_unittest.StringParseTester.
  * Use `create(StringParseTesterDesc)` to create a new message.
  */
-export const StringParseTesterDesc: GenDescMessage<StringParseTester> = /*@__PURE__*/
+export const StringParseTesterDesc: GenDescMessage<StringParseTester, StringParseTesterJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 100);
 
 /**
@@ -5713,10 +9535,25 @@ export type BadFieldNames = Message<"protobuf_unittest.BadFieldNames"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.BadFieldNames.
+ */
+export type BadFieldNamesJson = {
+  /**
+   * @generated from field: optional int32 OptionalInt32 = 1;
+   */
+  OptionalInt32?: number;
+
+  /**
+   * @generated from field: optional int32 for = 2;
+   */
+  for?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.BadFieldNames.
  * Use `create(BadFieldNamesDesc)` to create a new message.
  */
-export const BadFieldNamesDesc: GenDescMessage<BadFieldNames> = /*@__PURE__*/
+export const BadFieldNamesDesc: GenDescMessage<BadFieldNames, BadFieldNamesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 101);
 
 /**
@@ -5735,10 +9572,25 @@ export type TestNestedMessageRedaction = Message<"protobuf_unittest.TestNestedMe
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestNestedMessageRedaction.
+ */
+export type TestNestedMessageRedactionJson = {
+  /**
+   * @generated from field: optional string optional_unredacted_nested_string = 1;
+   */
+  optionalUnredactedNestedString?: string;
+
+  /**
+   * @generated from field: optional string optional_redacted_nested_string = 2;
+   */
+  optionalRedactedNestedString?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestNestedMessageRedaction.
  * Use `create(TestNestedMessageRedactionDesc)` to create a new message.
  */
-export const TestNestedMessageRedactionDesc: GenDescMessage<TestNestedMessageRedaction> = /*@__PURE__*/
+export const TestNestedMessageRedactionDesc: GenDescMessage<TestNestedMessageRedaction, TestNestedMessageRedactionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 102);
 
 /**
@@ -5797,10 +9649,65 @@ export type RedactedFields = Message<"protobuf_unittest.RedactedFields"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.RedactedFields.
+ */
+export type RedactedFieldsJson = {
+  /**
+   * @generated from field: optional string optional_redacted_string = 1;
+   */
+  optionalRedactedString?: string;
+
+  /**
+   * @generated from field: optional string optional_unredacted_string = 2;
+   */
+  optionalUnredactedString?: string;
+
+  /**
+   * @generated from field: repeated string repeated_redacted_string = 3;
+   */
+  repeatedRedactedString?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_unredacted_string = 4;
+   */
+  repeatedUnredactedString?: string[];
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedMessageRedaction optional_redacted_message = 5;
+   */
+  optionalRedactedMessage?: TestNestedMessageRedactionJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestNestedMessageRedaction optional_unredacted_message = 6;
+   */
+  optionalUnredactedMessage?: TestNestedMessageRedactionJson;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedMessageRedaction repeated_redacted_message = 7;
+   */
+  repeatedRedactedMessage?: TestNestedMessageRedactionJson[];
+
+  /**
+   * @generated from field: repeated protobuf_unittest.TestNestedMessageRedaction repeated_unredacted_message = 8;
+   */
+  repeatedUnredactedMessage?: TestNestedMessageRedactionJson[];
+
+  /**
+   * @generated from field: map<string, string> map_redacted_string = 9;
+   */
+  mapRedactedString?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, string> map_unredacted_string = 10;
+   */
+  mapUnredactedString?: { [key: string]: string };
+};
+
+/**
  * Describes the message protobuf_unittest.RedactedFields.
  * Use `create(RedactedFieldsDesc)` to create a new message.
  */
-export const RedactedFieldsDesc: GenDescMessage<RedactedFields> = /*@__PURE__*/
+export const RedactedFieldsDesc: GenDescMessage<RedactedFields, RedactedFieldsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 103);
 
 /**
@@ -5819,10 +9726,25 @@ export type TestCord = Message<"protobuf_unittest.TestCord"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestCord.
+ */
+export type TestCordJson = {
+  /**
+   * @generated from field: optional bytes optional_bytes_cord = 1;
+   */
+  optionalBytesCord?: string;
+
+  /**
+   * @generated from field: optional bytes optional_bytes_cord_default = 2 [default = "hello"];
+   */
+  optionalBytesCordDefault?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestCord.
  * Use `create(TestCordDesc)` to create a new message.
  */
-export const TestCordDesc: GenDescMessage<TestCord> = /*@__PURE__*/
+export const TestCordDesc: GenDescMessage<TestCord, TestCordJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 104);
 
 /**
@@ -5836,10 +9758,20 @@ export type TestPackedEnumSmallRange = Message<"protobuf_unittest.TestPackedEnum
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestPackedEnumSmallRange.
+ */
+export type TestPackedEnumSmallRangeJson = {
+  /**
+   * @generated from field: repeated protobuf_unittest.TestPackedEnumSmallRange.NestedEnum vals = 1 [packed = true];
+   */
+  vals?: TestPackedEnumSmallRange_NestedEnumJson[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestPackedEnumSmallRange.
  * Use `create(TestPackedEnumSmallRangeDesc)` to create a new message.
  */
-export const TestPackedEnumSmallRangeDesc: GenDescMessage<TestPackedEnumSmallRange> = /*@__PURE__*/
+export const TestPackedEnumSmallRangeDesc: GenDescMessage<TestPackedEnumSmallRange, TestPackedEnumSmallRangeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 105);
 
 /**
@@ -5868,9 +9800,14 @@ export enum TestPackedEnumSmallRange_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestPackedEnumSmallRange.NestedEnum.
+ */
+export type TestPackedEnumSmallRange_NestedEnumJson = "UNSPECIFIED" | "FOO" | "BAR" | "BAZ";
+
+/**
  * Describes the enum protobuf_unittest.TestPackedEnumSmallRange.NestedEnum.
  */
-export const TestPackedEnumSmallRange_NestedEnumDesc: GenDescEnum<TestPackedEnumSmallRange_NestedEnum> = /*@__PURE__*/
+export const TestPackedEnumSmallRange_NestedEnumDesc: GenDescEnum<TestPackedEnumSmallRange_NestedEnum, TestPackedEnumSmallRange_NestedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 105, 0);
 
 /**
@@ -5880,10 +9817,16 @@ export type EnumsForBenchmark = Message<"protobuf_unittest.EnumsForBenchmark"> &
 };
 
 /**
+ * JSON type for the message protobuf_unittest.EnumsForBenchmark.
+ */
+export type EnumsForBenchmarkJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.EnumsForBenchmark.
  * Use `create(EnumsForBenchmarkDesc)` to create a new message.
  */
-export const EnumsForBenchmarkDesc: GenDescMessage<EnumsForBenchmark> = /*@__PURE__*/
+export const EnumsForBenchmarkDesc: GenDescMessage<EnumsForBenchmark, EnumsForBenchmarkJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 106);
 
 /**
@@ -5972,9 +9915,14 @@ export enum EnumsForBenchmark_Flat {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.EnumsForBenchmark.Flat.
+ */
+export type EnumsForBenchmark_FlatJson = "A0" | "A1" | "A2" | "A3" | "A4" | "A5" | "A6" | "A7" | "A8" | "A9" | "A10" | "A11" | "A12" | "A13" | "A14" | "A15";
+
+/**
  * Describes the enum protobuf_unittest.EnumsForBenchmark.Flat.
  */
-export const EnumsForBenchmark_FlatDesc: GenDescEnum<EnumsForBenchmark_Flat> = /*@__PURE__*/
+export const EnumsForBenchmark_FlatDesc: GenDescEnum<EnumsForBenchmark_Flat, EnumsForBenchmark_FlatJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 106, 0);
 
 /**
@@ -6065,9 +10013,14 @@ export enum EnumsForBenchmark_AlmostFlat {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.EnumsForBenchmark.AlmostFlat.
+ */
+export type EnumsForBenchmark_AlmostFlatJson = "B0" | "B1" | "B2" | "B3" | "B5" | "B6" | "B7" | "B8" | "B9" | "B11" | "B12" | "B13" | "B14" | "B15" | "B17" | "B19";
+
+/**
  * Describes the enum protobuf_unittest.EnumsForBenchmark.AlmostFlat.
  */
-export const EnumsForBenchmark_AlmostFlatDesc: GenDescEnum<EnumsForBenchmark_AlmostFlat> = /*@__PURE__*/
+export const EnumsForBenchmark_AlmostFlatDesc: GenDescEnum<EnumsForBenchmark_AlmostFlat, EnumsForBenchmark_AlmostFlatJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 106, 1);
 
 /**
@@ -6156,9 +10109,14 @@ export enum EnumsForBenchmark_Sparse {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.EnumsForBenchmark.Sparse.
+ */
+export type EnumsForBenchmark_SparseJson = "C536" | "C8387" | "C9673" | "C10285" | "C13318" | "C15963" | "C16439" | "C18197" | "C19430" | "C20361" | "C20706" | "C21050" | "C21906" | "C27265" | "C30109" | "C31670";
+
+/**
  * Describes the enum protobuf_unittest.EnumsForBenchmark.Sparse.
  */
-export const EnumsForBenchmark_SparseDesc: GenDescEnum<EnumsForBenchmark_Sparse> = /*@__PURE__*/
+export const EnumsForBenchmark_SparseDesc: GenDescEnum<EnumsForBenchmark_Sparse, EnumsForBenchmark_SparseJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 106, 2);
 
 /**
@@ -6327,10 +10285,175 @@ export type TestMessageWithManyRepeatedPtrFields = Message<"protobuf_unittest.Te
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMessageWithManyRepeatedPtrFields.
+ */
+export type TestMessageWithManyRepeatedPtrFieldsJson = {
+  /**
+   * @generated from field: repeated string repeated_string_1 = 1;
+   */
+  repeatedString1?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_2 = 2;
+   */
+  repeatedString2?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_3 = 3;
+   */
+  repeatedString3?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_4 = 4;
+   */
+  repeatedString4?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_5 = 5;
+   */
+  repeatedString5?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_6 = 6;
+   */
+  repeatedString6?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_7 = 7;
+   */
+  repeatedString7?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_8 = 8;
+   */
+  repeatedString8?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_9 = 9;
+   */
+  repeatedString9?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_10 = 10;
+   */
+  repeatedString10?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_11 = 11;
+   */
+  repeatedString11?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_12 = 12;
+   */
+  repeatedString12?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_13 = 13;
+   */
+  repeatedString13?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_14 = 14;
+   */
+  repeatedString14?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_15 = 15;
+   */
+  repeatedString15?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_16 = 16;
+   */
+  repeatedString16?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_17 = 17;
+   */
+  repeatedString17?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_18 = 18;
+   */
+  repeatedString18?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_19 = 19;
+   */
+  repeatedString19?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_20 = 20;
+   */
+  repeatedString20?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_21 = 21;
+   */
+  repeatedString21?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_22 = 22;
+   */
+  repeatedString22?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_23 = 23;
+   */
+  repeatedString23?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_24 = 24;
+   */
+  repeatedString24?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_25 = 25;
+   */
+  repeatedString25?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_26 = 26;
+   */
+  repeatedString26?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_27 = 27;
+   */
+  repeatedString27?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_28 = 28;
+   */
+  repeatedString28?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_29 = 29;
+   */
+  repeatedString29?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_30 = 30;
+   */
+  repeatedString30?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_31 = 31;
+   */
+  repeatedString31?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_string_32 = 32;
+   */
+  repeatedString32?: string[];
+};
+
+/**
  * Describes the message protobuf_unittest.TestMessageWithManyRepeatedPtrFields.
  * Use `create(TestMessageWithManyRepeatedPtrFieldsDesc)` to create a new message.
  */
-export const TestMessageWithManyRepeatedPtrFieldsDesc: GenDescMessage<TestMessageWithManyRepeatedPtrFields> = /*@__PURE__*/
+export const TestMessageWithManyRepeatedPtrFieldsDesc: GenDescMessage<TestMessageWithManyRepeatedPtrFields, TestMessageWithManyRepeatedPtrFieldsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 107);
 
 /**
@@ -6361,9 +10484,14 @@ export enum ForeignEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.ForeignEnum.
+ */
+export type ForeignEnumJson = "FOREIGN_FOO" | "FOREIGN_BAR" | "FOREIGN_BAZ" | "FOREIGN_BAX";
+
+/**
  * Describes the enum protobuf_unittest.ForeignEnum.
  */
-export const ForeignEnumDesc: GenDescEnum<ForeignEnum> = /*@__PURE__*/
+export const ForeignEnumDesc: GenDescEnum<ForeignEnum, ForeignEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 0);
 
 /**
@@ -6377,9 +10505,14 @@ export enum TestReservedEnumFields {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestReservedEnumFields.
+ */
+export type TestReservedEnumFieldsJson = "UNKNOWN";
+
+/**
  * Describes the enum protobuf_unittest.TestReservedEnumFields.
  */
-export const TestReservedEnumFieldsDesc: GenDescEnum<TestReservedEnumFields> = /*@__PURE__*/
+export const TestReservedEnumFieldsDesc: GenDescEnum<TestReservedEnumFields, TestReservedEnumFieldsJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 1);
 
 /**
@@ -6415,9 +10548,14 @@ export enum TestEnumWithDupValue {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestEnumWithDupValue.
+ */
+export type TestEnumWithDupValueJson = "FOO1" | "BAR1" | "BAZ" | "FOO2" | "BAR2";
+
+/**
  * Describes the enum protobuf_unittest.TestEnumWithDupValue.
  */
-export const TestEnumWithDupValueDesc: GenDescEnum<TestEnumWithDupValue> = /*@__PURE__*/
+export const TestEnumWithDupValueDesc: GenDescEnum<TestEnumWithDupValue, TestEnumWithDupValueJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 2);
 
 /**
@@ -6463,9 +10601,14 @@ export enum TestSparseEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestSparseEnum.
+ */
+export type TestSparseEnumJson = "SPARSE_A" | "SPARSE_B" | "SPARSE_C" | "SPARSE_D" | "SPARSE_E" | "SPARSE_F" | "SPARSE_G";
+
+/**
  * Describes the enum protobuf_unittest.TestSparseEnum.
  */
-export const TestSparseEnumDesc: GenDescEnum<TestSparseEnum> = /*@__PURE__*/
+export const TestSparseEnumDesc: GenDescEnum<TestSparseEnum, TestSparseEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 3);
 
 /**
@@ -6979,9 +11122,14 @@ export enum VeryLargeEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.VeryLargeEnum.
+ */
+export type VeryLargeEnumJson = "ENUM_LABEL_DEFAULT" | "ENUM_LABEL_1" | "ENUM_LABEL_2" | "ENUM_LABEL_3" | "ENUM_LABEL_4" | "ENUM_LABEL_5" | "ENUM_LABEL_6" | "ENUM_LABEL_7" | "ENUM_LABEL_8" | "ENUM_LABEL_9" | "ENUM_LABEL_10" | "ENUM_LABEL_11" | "ENUM_LABEL_12" | "ENUM_LABEL_13" | "ENUM_LABEL_14" | "ENUM_LABEL_15" | "ENUM_LABEL_16" | "ENUM_LABEL_17" | "ENUM_LABEL_18" | "ENUM_LABEL_19" | "ENUM_LABEL_20" | "ENUM_LABEL_21" | "ENUM_LABEL_22" | "ENUM_LABEL_23" | "ENUM_LABEL_24" | "ENUM_LABEL_25" | "ENUM_LABEL_26" | "ENUM_LABEL_27" | "ENUM_LABEL_28" | "ENUM_LABEL_29" | "ENUM_LABEL_30" | "ENUM_LABEL_31" | "ENUM_LABEL_32" | "ENUM_LABEL_33" | "ENUM_LABEL_34" | "ENUM_LABEL_35" | "ENUM_LABEL_36" | "ENUM_LABEL_37" | "ENUM_LABEL_38" | "ENUM_LABEL_39" | "ENUM_LABEL_40" | "ENUM_LABEL_41" | "ENUM_LABEL_42" | "ENUM_LABEL_43" | "ENUM_LABEL_44" | "ENUM_LABEL_45" | "ENUM_LABEL_46" | "ENUM_LABEL_47" | "ENUM_LABEL_48" | "ENUM_LABEL_49" | "ENUM_LABEL_50" | "ENUM_LABEL_51" | "ENUM_LABEL_52" | "ENUM_LABEL_53" | "ENUM_LABEL_54" | "ENUM_LABEL_55" | "ENUM_LABEL_56" | "ENUM_LABEL_57" | "ENUM_LABEL_58" | "ENUM_LABEL_59" | "ENUM_LABEL_60" | "ENUM_LABEL_61" | "ENUM_LABEL_62" | "ENUM_LABEL_63" | "ENUM_LABEL_64" | "ENUM_LABEL_65" | "ENUM_LABEL_66" | "ENUM_LABEL_67" | "ENUM_LABEL_68" | "ENUM_LABEL_69" | "ENUM_LABEL_70" | "ENUM_LABEL_71" | "ENUM_LABEL_72" | "ENUM_LABEL_73" | "ENUM_LABEL_74" | "ENUM_LABEL_75" | "ENUM_LABEL_76" | "ENUM_LABEL_77" | "ENUM_LABEL_78" | "ENUM_LABEL_79" | "ENUM_LABEL_80" | "ENUM_LABEL_81" | "ENUM_LABEL_82" | "ENUM_LABEL_83" | "ENUM_LABEL_84" | "ENUM_LABEL_85" | "ENUM_LABEL_86" | "ENUM_LABEL_87" | "ENUM_LABEL_88" | "ENUM_LABEL_89" | "ENUM_LABEL_90" | "ENUM_LABEL_91" | "ENUM_LABEL_92" | "ENUM_LABEL_93" | "ENUM_LABEL_94" | "ENUM_LABEL_95" | "ENUM_LABEL_96" | "ENUM_LABEL_97" | "ENUM_LABEL_98" | "ENUM_LABEL_99" | "ENUM_LABEL_100";
+
+/**
  * Describes the enum protobuf_unittest.VeryLargeEnum.
  */
-export const VeryLargeEnumDesc: GenDescEnum<VeryLargeEnum> = /*@__PURE__*/
+export const VeryLargeEnumDesc: GenDescEnum<VeryLargeEnum, VeryLargeEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 4);
 
 /**

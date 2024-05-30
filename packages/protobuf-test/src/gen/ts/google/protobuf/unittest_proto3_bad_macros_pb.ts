@@ -38,9 +38,14 @@ export enum GID {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.GID.
+ */
+export type GIDJson = "GID_UNUSED";
+
+/**
  * Describes the enum protobuf_unittest.GID.
  */
-export const GIDDesc: GenDescEnum<GID> = /*@__PURE__*/
+export const GIDDesc: GenDescEnum<GID, GIDJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 0);
 
 /**
@@ -56,9 +61,14 @@ export enum UID {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.UID.
+ */
+export type UIDJson = "UID_UNUSED";
+
+/**
  * Describes the enum protobuf_unittest.UID.
  */
-export const UIDDesc: GenDescEnum<UID> = /*@__PURE__*/
+export const UIDDesc: GenDescEnum<UID, UIDJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 1);
 
 /**
@@ -247,8 +257,13 @@ export enum BadNames {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.BadNames.
+ */
+export type BadNamesJson = "PACKAGE" | "PACKED" | "linux" | "DOMAIN" | "TRUE" | "FALSE" | "CREATE_NEW" | "DELETE" | "DOUBLE_CLICK" | "ERROR" | "ERROR_BUSY" | "ERROR_INSTALL_FAILED" | "ERROR_NOT_FOUND" | "GetClassName" | "GetCurrentTime" | "GetMessage" | "GetObject" | "IGNORE" | "IN" | "INPUT_KEYBOARD" | "NO_ERROR" | "OUT" | "OPTIONAL" | "NEAR" | "NO_DATA" | "REASON_UNKNOWN" | "SERVICE_DISABLED" | "SEVERITY_ERROR" | "STATUS_PENDING" | "STRICT" | "TYPE_BOOL" | "DEBUG";
+
+/**
  * Describes the enum protobuf_unittest.BadNames.
  */
-export const BadNamesDesc: GenDescEnum<BadNames> = /*@__PURE__*/
+export const BadNamesDesc: GenDescEnum<BadNames, BadNamesJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_bad_macros, 2);
 

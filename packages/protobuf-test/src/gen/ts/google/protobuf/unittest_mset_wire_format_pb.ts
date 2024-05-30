@@ -41,10 +41,16 @@ export type TestMessageSet = Message<"proto2_wireformat_unittest.TestMessageSet"
 };
 
 /**
+ * JSON type for the message proto2_wireformat_unittest.TestMessageSet.
+ */
+export type TestMessageSetJson = {
+};
+
+/**
  * Describes the message proto2_wireformat_unittest.TestMessageSet.
  * Use `create(TestMessageSetDesc)` to create a new message.
  */
-export const TestMessageSetDesc: GenDescMessage<TestMessageSet> = /*@__PURE__*/
+export const TestMessageSetDesc: GenDescMessage<TestMessageSet, TestMessageSetJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 0);
 
 /**
@@ -58,9 +64,19 @@ export type TestMessageSetWireFormatContainer = Message<"proto2_wireformat_unitt
 };
 
 /**
+ * JSON type for the message proto2_wireformat_unittest.TestMessageSetWireFormatContainer.
+ */
+export type TestMessageSetWireFormatContainerJson = {
+  /**
+   * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
+   */
+  messageSet?: TestMessageSetJson;
+};
+
+/**
  * Describes the message proto2_wireformat_unittest.TestMessageSetWireFormatContainer.
  * Use `create(TestMessageSetWireFormatContainerDesc)` to create a new message.
  */
-export const TestMessageSetWireFormatContainerDesc: GenDescMessage<TestMessageSetWireFormatContainer> = /*@__PURE__*/
+export const TestMessageSetWireFormatContainerDesc: GenDescMessage<TestMessageSetWireFormatContainer, TestMessageSetWireFormatContainerJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset_wire_format, 1);
 

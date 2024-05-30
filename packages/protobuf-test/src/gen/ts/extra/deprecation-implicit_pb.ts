@@ -41,11 +41,21 @@ export type ImplicitlyDeprecatedMessage = Message<"spec.ImplicitlyDeprecatedMess
 };
 
 /**
+ * JSON type for the message spec.ImplicitlyDeprecatedMessage.
+ */
+export type ImplicitlyDeprecatedMessageJson = {
+  /**
+   * @generated from field: string implicitly_deprecated_field = 1;
+   */
+  implicitlyDeprecatedField?: string;
+};
+
+/**
  * Describes the message spec.ImplicitlyDeprecatedMessage.
  * Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new message.
  * @deprecated
  */
-export const ImplicitlyDeprecatedMessageDesc: GenDescMessage<ImplicitlyDeprecatedMessage> = /*@__PURE__*/
+export const ImplicitlyDeprecatedMessageDesc: GenDescMessage<ImplicitlyDeprecatedMessage, ImplicitlyDeprecatedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_deprecation_implicit, 0);
 
 /**
@@ -60,10 +70,15 @@ export enum ImplicitlyDeprecatedEnum {
 }
 
 /**
+ * JSON type for the enum spec.ImplicitlyDeprecatedEnum.
+ */
+export type ImplicitlyDeprecatedEnumJson = "IMPLICITLY_DEPRECATED_ENUM_UNSPECIFIED";
+
+/**
  * Describes the enum spec.ImplicitlyDeprecatedEnum.
  * @deprecated
  */
-export const ImplicitlyDeprecatedEnumDesc: GenDescEnum<ImplicitlyDeprecatedEnum> = /*@__PURE__*/
+export const ImplicitlyDeprecatedEnumDesc: GenDescEnum<ImplicitlyDeprecatedEnum, ImplicitlyDeprecatedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_extra_deprecation_implicit, 0);
 
 /**

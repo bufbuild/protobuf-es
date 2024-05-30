@@ -41,10 +41,16 @@ export type TestExtensionSet = Message<"protobuf_unittest.TestExtensionSet"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtensionSet.
+ */
+export type TestExtensionSetJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtensionSet.
  * Use `create(TestExtensionSetDesc)` to create a new message.
  */
-export const TestExtensionSetDesc: GenDescMessage<TestExtensionSet> = /*@__PURE__*/
+export const TestExtensionSetDesc: GenDescMessage<TestExtensionSet, TestExtensionSetJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_extension_set, 0);
 
 /**
@@ -58,9 +64,19 @@ export type TestExtensionSetContainer = Message<"protobuf_unittest.TestExtension
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtensionSetContainer.
+ */
+export type TestExtensionSetContainerJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestExtensionSet extension = 1;
+   */
+  extension?: TestExtensionSetJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtensionSetContainer.
  * Use `create(TestExtensionSetContainerDesc)` to create a new message.
  */
-export const TestExtensionSetContainerDesc: GenDescMessage<TestExtensionSetContainer> = /*@__PURE__*/
+export const TestExtensionSetContainerDesc: GenDescMessage<TestExtensionSetContainer, TestExtensionSetContainerJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_extension_set, 1);
 

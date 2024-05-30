@@ -20,14 +20,21 @@ import type {
 } from "@bufbuild/protobuf";
 import { parentTypes } from "@bufbuild/protobuf/reflect";
 import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv1";
-import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import type {
-  GeneratedFile,
-  Printable,
-  Schema,
-  Target,
+import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
+import {
+  createEcmaScriptPlugin,
+  getDeclarationString,
+  type GeneratedFile,
+  type Printable,
+  type Schema,
+  type Target,
 } from "@bufbuild/protoplugin";
-import { arrayLiteral, fieldTypeScriptType, functionCall } from "./util";
+import {
+  arrayLiteral,
+  fieldJsonType,
+  fieldTypeScriptType,
+  functionCall,
+} from "./util";
 import { version } from "../package.json";
 
 export const protocGenEs = createEcmaScriptPlugin({
@@ -59,24 +66,28 @@ function generateTs(schema: Schema) {
       switch (desc.kind) {
         case "message": {
           generateMessageShape(f, desc, "ts");
+          generateMessageJsonShape(f, desc, "ts");
           const { GenDescMessage, messageDesc } = f.runtime.codegen;
-          const MessageShape = f.importShape(desc);
+          const Shape = f.importShape(desc);
+          const JsonType = f.importJson(desc);
           const name = f.importDesc(desc).name;
           generateDescDoc(f, desc);
           const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
-          f.print(f.export("const", name), ": ", GenDescMessage, "<", MessageShape, ">", " = ", pure);
+          f.print(f.export("const", name), ": ", GenDescMessage, "<", Shape, ", ", JsonType, ">", " = ", pure);
           f.print("  ", call, ";");
           f.print();
           break;
         }
         case "enum": {
           generateEnumShape(f, desc);
+          generateEnumJsonShape(f, desc, "ts");
           const { GenDescEnum, enumDesc } = f.runtime.codegen;
-          const EnumShape = f.importShape(desc);
+          const Shape = f.importShape(desc);
+          const JsonType = f.importJson(desc);
           generateDescDoc(f, desc);
           const name = f.importDesc(desc).name;
           const call = functionCall(enumDesc, [fileDesc, ...pathInFileDesc(desc)]);
-          f.print(f.export("const", name), ": ", GenDescEnum, "<", EnumShape, ">", " = ", pure);
+          f.print(f.export("const", name), ": ", GenDescEnum, "<", Shape, ", ", JsonType, ">", " = ", pure);
           f.print("  ", call, ";");
           f.print();
           break;
@@ -191,21 +202,25 @@ function generateDts(schema: Schema) {
       switch (desc.kind) {
         case "message": {
           generateMessageShape(f, desc, "dts");
+          generateMessageJsonShape(f, desc, "dts");
           const { GenDescMessage } = f.runtime.codegen;
-          const MessageShape = f.importShape(desc);
+          const Shape = f.importShape(desc);
+          const JsonType = f.importJson(desc);
           const name = f.importDesc(desc).name;
           generateDescDoc(f, desc);
-          f.print(f.export("declare const", name), ": ", GenDescMessage, "<", MessageShape, ">", ";");
+          f.print(f.export("declare const", name), ": ", GenDescMessage, "<", Shape, ", ", JsonType, ">", ";");
           f.print();
           break;
         }
         case "enum": {
           generateEnumShape(f, desc);
+          generateEnumJsonShape(f, desc, "dts");
           const { GenDescEnum } = f.runtime.codegen;
-          const EnumShape = f.importShape(desc);
+          const Shape = f.importShape(desc);
+          const JsonType = f.importJson(desc);
           generateDescDoc(f, desc);
           const name = f.importDesc(desc).name;
-          f.print(f.export("declare const", name), ": ", GenDescEnum, "<", EnumShape, ">;");
+          f.print(f.export("declare const", name), ": ", GenDescEnum, "<", Shape, ", ", JsonType, ">;");
           f.print();
           break;
         }
@@ -324,6 +339,25 @@ function generateEnumShape(f: GeneratedFile, enumeration: DescEnum) {
 }
 
 // prettier-ignore
+function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: Extract<Target, "ts" | "dts">) {
+  f.print(f.jsDoc(`JSON type for the ${enumeration.toString()}.`));
+  const declaration = target == "ts" ? "type" : "declare type";
+  const values: Printable[] = [];
+  if (enumeration.typeName == "google.protobuf.NullValue") {
+    values.push("null");
+  } else {
+    for (const v of enumeration.values) {
+      if (enumeration.values.indexOf(v) > 0) {
+        values.push(" | ");
+      }
+      values.push(f.string(v.name));
+    }
+  }
+  f.print(f.export(declaration, f.importJson(enumeration).name), " = ", values, ";");
+  f.print();
+}
+
+// prettier-ignore
 function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Extract<Target, "ts" | "dts">) {
   const { Message } = f.runtime;
   const declaration = target == "ts" ? "type" : "declare type";
@@ -361,5 +395,65 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
     }
   }
   f.print("};");
+  f.print();
+}
+
+// prettier-ignore
+function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target: Extract<Target, "ts" | "dts">) {
+  const exp = f.export(target == "ts" ? "type" : "declare type", f.importJson(message).name);
+  f.print(f.jsDoc(`JSON type for the ${message.toString()}.`));
+  switch (message.typeName) {
+    case "google.protobuf.Any":
+      f.print(exp, " = {");
+      f.print(`  "@type"?: string`);
+      f.print("};");
+      break;
+    case "google.protobuf.Timestamp":
+      f.print(exp, " = string;");
+      break;
+    case "google.protobuf.Duration":
+      f.print(exp, " = string;");
+      break;
+    case "google.protobuf.FieldMask":
+      f.print(exp, " = string;");
+      break;
+    case "google.protobuf.Struct":
+      f.print(exp, " = ", f.runtime.JsonObject, ";");
+      break;
+    case "google.protobuf.Value":
+      f.print(exp, " = ", f.runtime.JsonValue, ";");
+      break;
+    case "google.protobuf.ListValue":
+      f.print(exp, " = ", f.runtime.JsonValue, "[];");
+      break;
+    case "google.protobuf.Empty":
+      f.print(exp, " = Record<string, never>;");
+      break;
+    default:
+      if (isWrapperDesc(message)) {
+        f.print(exp, " = ", fieldJsonType(message.fields[0]), ";");
+      } else {
+        f.print(exp, " = {");
+        for (const field of message.fields) {
+          switch (field.kind) {
+            default:
+              f.print(f.jsDoc(`@generated from field: ${getDeclarationString(field)};`, "  "));
+              // eslint-disable-next-line no-case-declarations
+              let jsonName: Printable = field.jsonName;
+              if (jsonName === ""
+                || /^[0-9]/.test(jsonName)
+                || jsonName.indexOf("@") > -1) {
+                jsonName = f.string(jsonName);
+              }
+              f.print("  ", jsonName, "?: ", fieldJsonType(field), ";");
+              break;
+          }
+          if (message.fields.indexOf(field) < message.fields.length - 1) {
+            f.print();
+          }
+        }
+        f.print("};");
+      }
+  }
   f.print();
 }

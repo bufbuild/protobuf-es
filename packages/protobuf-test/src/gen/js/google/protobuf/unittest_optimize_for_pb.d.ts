@@ -24,7 +24,7 @@
 
 import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { ForeignMessage } from "./unittest_pb.js";
+import type { ForeignMessage, ForeignMessageJson } from "./unittest_pb.js";
 
 /**
  * Describes the file google/protobuf/unittest_optimize_for.proto.
@@ -64,10 +64,35 @@ export declare type TestOptimizedForSize = Message<"protobuf_unittest.TestOptimi
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestOptimizedForSize.
+ */
+export declare type TestOptimizedForSizeJson = {
+  /**
+   * @generated from field: optional int32 i = 1;
+   */
+  i?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ForeignMessage msg = 19;
+   */
+  msg?: ForeignMessageJson;
+
+  /**
+   * @generated from field: int32 integer_field = 2;
+   */
+  integerField?: number;
+
+  /**
+   * @generated from field: string string_field = 3;
+   */
+  stringField?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TestOptimizedForSize.
  * Use `create(TestOptimizedForSizeDesc)` to create a new message.
  */
-export declare const TestOptimizedForSizeDesc: GenDescMessage<TestOptimizedForSize>;
+export declare const TestOptimizedForSizeDesc: GenDescMessage<TestOptimizedForSize, TestOptimizedForSizeJson>;
 
 /**
  * @generated from extension: optional int32 test_extension = 1234;
@@ -90,10 +115,20 @@ export declare type TestRequiredOptimizedForSize = Message<"protobuf_unittest.Te
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestRequiredOptimizedForSize.
+ */
+export declare type TestRequiredOptimizedForSizeJson = {
+  /**
+   * @generated from field: required int32 x = 1;
+   */
+  x?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.TestRequiredOptimizedForSize.
  * Use `create(TestRequiredOptimizedForSizeDesc)` to create a new message.
  */
-export declare const TestRequiredOptimizedForSizeDesc: GenDescMessage<TestRequiredOptimizedForSize>;
+export declare const TestRequiredOptimizedForSizeDesc: GenDescMessage<TestRequiredOptimizedForSize, TestRequiredOptimizedForSizeJson>;
 
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
@@ -106,8 +141,18 @@ export declare type TestOptionalOptimizedForSize = Message<"protobuf_unittest.Te
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestOptionalOptimizedForSize.
+ */
+export declare type TestOptionalOptimizedForSizeJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequiredOptimizedForSize o = 1;
+   */
+  o?: TestRequiredOptimizedForSizeJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestOptionalOptimizedForSize.
  * Use `create(TestOptionalOptimizedForSizeDesc)` to create a new message.
  */
-export declare const TestOptionalOptimizedForSizeDesc: GenDescMessage<TestOptionalOptimizedForSize>;
+export declare const TestOptionalOptimizedForSizeDesc: GenDescMessage<TestOptionalOptimizedForSize, TestOptionalOptimizedForSizeJson>;
 

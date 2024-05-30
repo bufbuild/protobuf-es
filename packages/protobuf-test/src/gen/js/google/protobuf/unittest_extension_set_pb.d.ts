@@ -39,10 +39,16 @@ export declare type TestExtensionSet = Message<"protobuf_unittest.TestExtensionS
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtensionSet.
+ */
+export declare type TestExtensionSetJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtensionSet.
  * Use `create(TestExtensionSetDesc)` to create a new message.
  */
-export declare const TestExtensionSetDesc: GenDescMessage<TestExtensionSet>;
+export declare const TestExtensionSetDesc: GenDescMessage<TestExtensionSet, TestExtensionSetJson>;
 
 /**
  * @generated from message protobuf_unittest.TestExtensionSetContainer
@@ -55,8 +61,18 @@ export declare type TestExtensionSetContainer = Message<"protobuf_unittest.TestE
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestExtensionSetContainer.
+ */
+export declare type TestExtensionSetContainerJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestExtensionSet extension = 1;
+   */
+  extension?: TestExtensionSetJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestExtensionSetContainer.
  * Use `create(TestExtensionSetContainerDesc)` to create a new message.
  */
-export declare const TestExtensionSetContainerDesc: GenDescMessage<TestExtensionSetContainer>;
+export declare const TestExtensionSetContainerDesc: GenDescMessage<TestExtensionSetContainer, TestExtensionSetContainerJson>;
 

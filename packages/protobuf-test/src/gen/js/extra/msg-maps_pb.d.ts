@@ -100,10 +100,85 @@ export declare type MapsMessage = Message<"spec.MapsMessage"> & {
 };
 
 /**
+ * JSON type for the message spec.MapsMessage.
+ */
+export declare type MapsMessageJson = {
+  /**
+   * @generated from field: map<string, string> str_str_field = 1;
+   */
+  strStrField?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, int32> str_int32_field = 2;
+   */
+  strInt32Field?: { [key: string]: number };
+
+  /**
+   * @generated from field: map<string, int64> str_int64_field = 3;
+   */
+  strInt64Field?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, bool> str_bool_field = 4;
+   */
+  strBoolField?: { [key: string]: boolean };
+
+  /**
+   * @generated from field: map<string, bytes> str_bytes_field = 5;
+   */
+  strBytesField?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<int32, string> int32_str_field = 6;
+   */
+  int32StrField?: { [key: number]: string };
+
+  /**
+   * @generated from field: map<int64, string> int64_str_field = 7;
+   */
+  int64StrField?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<bool, string> bool_str_field = 8;
+   */
+  boolStrField?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, spec.MapsMessage> str_msg_field = 9;
+   */
+  strMsgField?: { [key: string]: MapsMessageJson };
+
+  /**
+   * @generated from field: map<int32, spec.MapsMessage> int32_msg_field = 10;
+   */
+  int32MsgField?: { [key: number]: MapsMessageJson };
+
+  /**
+   * @generated from field: map<int64, spec.MapsMessage> int64_msg_field = 11;
+   */
+  int64MsgField?: { [key: string]: MapsMessageJson };
+
+  /**
+   * @generated from field: map<string, spec.MapsEnum> str_enu_field = 12;
+   */
+  strEnuField?: { [key: string]: MapsEnumJson };
+
+  /**
+   * @generated from field: map<int32, spec.MapsEnum> int32_enu_field = 13;
+   */
+  int32EnuField?: { [key: number]: MapsEnumJson };
+
+  /**
+   * @generated from field: map<int64, spec.MapsEnum> int64_enu_field = 14;
+   */
+  int64EnuField?: { [key: string]: MapsEnumJson };
+};
+
+/**
  * Describes the message spec.MapsMessage.
  * Use `create(MapsMessageDesc)` to create a new message.
  */
-export declare const MapsMessageDesc: GenDescMessage<MapsMessage>;
+export declare const MapsMessageDesc: GenDescMessage<MapsMessage, MapsMessageJson>;
 
 /**
  * @generated from enum spec.MapsEnum
@@ -126,7 +201,12 @@ export enum MapsEnum {
 }
 
 /**
+ * JSON type for the enum spec.MapsEnum.
+ */
+export declare type MapsEnumJson = "MAPS_ENUM_ANY" | "MAPS_ENUM_YES" | "MAPS_ENUM_NO";
+
+/**
  * Describes the enum spec.MapsEnum.
  */
-export declare const MapsEnumDesc: GenDescEnum<MapsEnum>;
+export declare const MapsEnumDesc: GenDescEnum<MapsEnum, MapsEnumJson>;
 

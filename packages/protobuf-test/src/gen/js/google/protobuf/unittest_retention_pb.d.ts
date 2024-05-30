@@ -48,10 +48,30 @@ export declare type OptionsMessage = Message<"protobuf_unittest.OptionsMessage">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.OptionsMessage.
+ */
+export declare type OptionsMessageJson = {
+  /**
+   * @generated from field: optional int32 plain_field = 1;
+   */
+  plainField?: number;
+
+  /**
+   * @generated from field: optional int32 runtime_retention_field = 2;
+   */
+  runtimeRetentionField?: number;
+
+  /**
+   * @generated from field: optional int32 source_retention_field = 3;
+   */
+  sourceRetentionField?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.OptionsMessage.
  * Use `create(OptionsMessageDesc)` to create a new message.
  */
-export declare const OptionsMessageDesc: GenDescMessage<OptionsMessage>;
+export declare const OptionsMessageDesc: GenDescMessage<OptionsMessage, OptionsMessageJson>;
 
 /**
  * @generated from message protobuf_unittest.Extendee
@@ -60,10 +80,16 @@ export declare type Extendee = Message<"protobuf_unittest.Extendee"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Extendee.
+ */
+export declare type ExtendeeJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.Extendee.
  * Use `create(ExtendeeDesc)` to create a new message.
  */
-export declare const ExtendeeDesc: GenDescMessage<Extendee>;
+export declare const ExtendeeDesc: GenDescMessage<Extendee, ExtendeeJson>;
 
 /**
  * @generated from message protobuf_unittest.TopLevelMessage
@@ -87,10 +113,25 @@ export declare type TopLevelMessage = Message<"protobuf_unittest.TopLevelMessage
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TopLevelMessage.
+ */
+export declare type TopLevelMessageJson = {
+  /**
+   * @generated from field: optional float f = 1;
+   */
+  f?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: int64 i = 2;
+   */
+  i?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TopLevelMessage.
  * Use `create(TopLevelMessageDesc)` to create a new message.
  */
-export declare const TopLevelMessageDesc: GenDescMessage<TopLevelMessage>;
+export declare const TopLevelMessageDesc: GenDescMessage<TopLevelMessage, TopLevelMessageJson>;
 
 /**
  * @generated from message protobuf_unittest.TopLevelMessage.NestedMessage
@@ -99,10 +140,16 @@ export declare type TopLevelMessage_NestedMessage = Message<"protobuf_unittest.T
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TopLevelMessage.NestedMessage.
+ */
+export declare type TopLevelMessage_NestedMessageJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TopLevelMessage.NestedMessage.
  * Use `create(TopLevelMessage_NestedMessageDesc)` to create a new message.
  */
-export declare const TopLevelMessage_NestedMessageDesc: GenDescMessage<TopLevelMessage_NestedMessage>;
+export declare const TopLevelMessage_NestedMessageDesc: GenDescMessage<TopLevelMessage_NestedMessage, TopLevelMessage_NestedMessageJson>;
 
 /**
  * @generated from enum protobuf_unittest.TopLevelMessage.NestedEnum
@@ -115,9 +162,14 @@ export enum TopLevelMessage_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TopLevelMessage.NestedEnum.
+ */
+export declare type TopLevelMessage_NestedEnumJson = "NESTED_UNKNOWN";
+
+/**
  * Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
  */
-export declare const TopLevelMessage_NestedEnumDesc: GenDescEnum<TopLevelMessage_NestedEnum>;
+export declare const TopLevelMessage_NestedEnumDesc: GenDescEnum<TopLevelMessage_NestedEnum, TopLevelMessage_NestedEnumJson>;
 
 /**
  * @generated from extension: optional string s = 2;
@@ -135,9 +187,14 @@ export enum TopLevelEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TopLevelEnum.
+ */
+export declare type TopLevelEnumJson = "TOP_LEVEL_UNKNOWN";
+
+/**
  * Describes the enum protobuf_unittest.TopLevelEnum.
  */
-export declare const TopLevelEnumDesc: GenDescEnum<TopLevelEnum>;
+export declare const TopLevelEnumDesc: GenDescEnum<TopLevelEnum, TopLevelEnumJson>;
 
 /**
  * @generated from service protobuf_unittest.Service

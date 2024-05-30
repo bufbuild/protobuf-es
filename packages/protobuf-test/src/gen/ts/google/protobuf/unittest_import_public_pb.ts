@@ -39,9 +39,19 @@ export type PublicImportMessage = Message<"protobuf_unittest_import.PublicImport
 };
 
 /**
+ * JSON type for the message protobuf_unittest_import.PublicImportMessage.
+ */
+export type PublicImportMessageJson = {
+  /**
+   * @generated from field: optional int32 e = 1;
+   */
+  e?: number;
+};
+
+/**
  * Describes the message protobuf_unittest_import.PublicImportMessage.
  * Use `create(PublicImportMessageDesc)` to create a new message.
  */
-export const PublicImportMessageDesc: GenDescMessage<PublicImportMessage> = /*@__PURE__*/
+export const PublicImportMessageDesc: GenDescMessage<PublicImportMessage, PublicImportMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_import_public, 0);
 

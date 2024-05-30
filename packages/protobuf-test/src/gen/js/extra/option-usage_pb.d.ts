@@ -46,10 +46,25 @@ export declare type MessageWithOptions = Message<"spec.MessageWithOptions"> & {
 };
 
 /**
+ * JSON type for the message spec.MessageWithOptions.
+ */
+export declare type MessageWithOptionsJson = {
+  /**
+   * @generated from field: int32 field = 1;
+   */
+  field?: number;
+
+  /**
+   * @generated from field: int32 oneof_field = 2;
+   */
+  oneofField?: number;
+};
+
+/**
  * Describes the message spec.MessageWithOptions.
  * Use `create(MessageWithOptionsDesc)` to create a new message.
  */
-export declare const MessageWithOptionsDesc: GenDescMessage<MessageWithOptions>;
+export declare const MessageWithOptionsDesc: GenDescMessage<MessageWithOptions, MessageWithOptionsJson>;
 
 /**
  * @generated from enum spec.EnumWithOptions
@@ -62,9 +77,14 @@ export enum EnumWithOptions {
 }
 
 /**
+ * JSON type for the enum spec.EnumWithOptions.
+ */
+export declare type EnumWithOptionsJson = "ENUM_WITH_OPTIONS_UNSPECIFIED";
+
+/**
  * Describes the enum spec.EnumWithOptions.
  */
-export declare const EnumWithOptionsDesc: GenDescEnum<EnumWithOptions>;
+export declare const EnumWithOptionsDesc: GenDescEnum<EnumWithOptions, EnumWithOptionsJson>;
 
 /**
  * @generated from service spec.ServiceWithOptions

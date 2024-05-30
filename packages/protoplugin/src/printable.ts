@@ -38,6 +38,7 @@ export type Printable =
   | LiteralProtoInt64
   | DescImport
   | ShapeImport
+  | JsonTypeImport
   | Printable[];
 
 export type ExportStatement = {
@@ -71,6 +72,11 @@ export type DescImport = {
 
 export type ShapeImport = {
   readonly kind: "es_shape_ref";
+  desc: DescMessage | DescEnum;
+};
+
+export type JsonTypeImport = {
+  readonly kind: "es_json_type_ref";
   desc: DescMessage | DescEnum;
 };
 

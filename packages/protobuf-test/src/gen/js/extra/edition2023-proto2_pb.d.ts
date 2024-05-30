@@ -82,10 +82,65 @@ export declare type Proto2MessageForEdition2023 = Message<"spec.Proto2MessageFor
 };
 
 /**
+ * JSON type for the message spec.Proto2MessageForEdition2023.
+ */
+export declare type Proto2MessageForEdition2023Json = {
+  /**
+   * @generated from field: optional bool optional_bool_field = 1;
+   */
+  optionalBoolField?: boolean;
+
+  /**
+   * @generated from field: optional spec.Proto2EnumForEdition2023 optional_closed_enum_field = 2;
+   */
+  optionalClosedEnumField?: Proto2EnumForEdition2023Json;
+
+  /**
+   * @generated from field: optional string optional_string_field_with_default = 3 [default = ""];
+   */
+  optionalStringFieldWithDefault?: string;
+
+  /**
+   * @generated from field: optional spec.Proto2MessageForEdition2023.OptionalGroup optionalgroup = 4;
+   */
+  optionalgroup?: Proto2MessageForEdition2023_OptionalGroupJson;
+
+  /**
+   * @generated from field: required bool required_bool_field = 5;
+   */
+  requiredBoolField?: boolean;
+
+  /**
+   * @generated from field: required spec.Proto2EnumForEdition2023 required_closed_enum_field = 6;
+   */
+  requiredClosedEnumField?: Proto2EnumForEdition2023Json;
+
+  /**
+   * @generated from field: required string required_string_field_with_default = 7 [default = "hello \" *\/ "];
+   */
+  requiredStringFieldWithDefault?: string;
+
+  /**
+   * @generated from field: required spec.Proto2MessageForEdition2023.RequiredGroup requiredgroup = 8;
+   */
+  requiredgroup?: Proto2MessageForEdition2023_RequiredGroupJson;
+
+  /**
+   * @generated from field: repeated double packed_double_field = 9 [packed = true];
+   */
+  packedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated double unpacked_double_field = 10 [packed = false];
+   */
+  unpackedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+};
+
+/**
  * Describes the message spec.Proto2MessageForEdition2023.
  * Use `create(Proto2MessageForEdition2023Desc)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023Desc: GenDescMessage<Proto2MessageForEdition2023>;
+export declare const Proto2MessageForEdition2023Desc: GenDescMessage<Proto2MessageForEdition2023, Proto2MessageForEdition2023Json>;
 
 /**
  * @generated from message spec.Proto2MessageForEdition2023.OptionalGroup
@@ -98,10 +153,20 @@ export declare type Proto2MessageForEdition2023_OptionalGroup = Message<"spec.Pr
 };
 
 /**
+ * JSON type for the message spec.Proto2MessageForEdition2023.OptionalGroup.
+ */
+export declare type Proto2MessageForEdition2023_OptionalGroupJson = {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field?: number;
+};
+
+/**
  * Describes the message spec.Proto2MessageForEdition2023.OptionalGroup.
  * Use `create(Proto2MessageForEdition2023_OptionalGroupDesc)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023_OptionalGroupDesc: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup>;
+export declare const Proto2MessageForEdition2023_OptionalGroupDesc: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup, Proto2MessageForEdition2023_OptionalGroupJson>;
 
 /**
  * @generated from message spec.Proto2MessageForEdition2023.RequiredGroup
@@ -114,10 +179,20 @@ export declare type Proto2MessageForEdition2023_RequiredGroup = Message<"spec.Pr
 };
 
 /**
+ * JSON type for the message spec.Proto2MessageForEdition2023.RequiredGroup.
+ */
+export declare type Proto2MessageForEdition2023_RequiredGroupJson = {
+  /**
+   * @generated from field: optional int32 int32_field = 1;
+   */
+  int32Field?: number;
+};
+
+/**
  * Describes the message spec.Proto2MessageForEdition2023.RequiredGroup.
  * Use `create(Proto2MessageForEdition2023_RequiredGroupDesc)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023_RequiredGroupDesc: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup>;
+export declare const Proto2MessageForEdition2023_RequiredGroupDesc: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup, Proto2MessageForEdition2023_RequiredGroupJson>;
 
 /**
  * @generated from enum spec.Proto2EnumForEdition2023
@@ -130,7 +205,12 @@ export enum Proto2EnumForEdition2023 {
 }
 
 /**
+ * JSON type for the enum spec.Proto2EnumForEdition2023.
+ */
+export declare type Proto2EnumForEdition2023Json = "PROTO2_ENUM_FOR_EDITION2023_A";
+
+/**
  * Describes the enum spec.Proto2EnumForEdition2023.
  */
-export declare const Proto2EnumForEdition2023Desc: GenDescEnum<Proto2EnumForEdition2023>;
+export declare const Proto2EnumForEdition2023Desc: GenDescEnum<Proto2EnumForEdition2023, Proto2EnumForEdition2023Json>;
 

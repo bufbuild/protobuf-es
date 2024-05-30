@@ -51,10 +51,30 @@ export type OptionsMessage = Message<"protobuf_unittest.OptionsMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.OptionsMessage.
+ */
+export type OptionsMessageJson = {
+  /**
+   * @generated from field: optional int32 plain_field = 1;
+   */
+  plainField?: number;
+
+  /**
+   * @generated from field: optional int32 runtime_retention_field = 2;
+   */
+  runtimeRetentionField?: number;
+
+  /**
+   * @generated from field: optional int32 source_retention_field = 3;
+   */
+  sourceRetentionField?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.OptionsMessage.
  * Use `create(OptionsMessageDesc)` to create a new message.
  */
-export const OptionsMessageDesc: GenDescMessage<OptionsMessage> = /*@__PURE__*/
+export const OptionsMessageDesc: GenDescMessage<OptionsMessage, OptionsMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_retention, 0);
 
 /**
@@ -64,10 +84,16 @@ export type Extendee = Message<"protobuf_unittest.Extendee"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Extendee.
+ */
+export type ExtendeeJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.Extendee.
  * Use `create(ExtendeeDesc)` to create a new message.
  */
-export const ExtendeeDesc: GenDescMessage<Extendee> = /*@__PURE__*/
+export const ExtendeeDesc: GenDescMessage<Extendee, ExtendeeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_retention, 1);
 
 /**
@@ -92,10 +118,25 @@ export type TopLevelMessage = Message<"protobuf_unittest.TopLevelMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TopLevelMessage.
+ */
+export type TopLevelMessageJson = {
+  /**
+   * @generated from field: optional float f = 1;
+   */
+  f?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: int64 i = 2;
+   */
+  i?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.TopLevelMessage.
  * Use `create(TopLevelMessageDesc)` to create a new message.
  */
-export const TopLevelMessageDesc: GenDescMessage<TopLevelMessage> = /*@__PURE__*/
+export const TopLevelMessageDesc: GenDescMessage<TopLevelMessage, TopLevelMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_retention, 2);
 
 /**
@@ -105,10 +146,16 @@ export type TopLevelMessage_NestedMessage = Message<"protobuf_unittest.TopLevelM
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TopLevelMessage.NestedMessage.
+ */
+export type TopLevelMessage_NestedMessageJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TopLevelMessage.NestedMessage.
  * Use `create(TopLevelMessage_NestedMessageDesc)` to create a new message.
  */
-export const TopLevelMessage_NestedMessageDesc: GenDescMessage<TopLevelMessage_NestedMessage> = /*@__PURE__*/
+export const TopLevelMessage_NestedMessageDesc: GenDescMessage<TopLevelMessage_NestedMessage, TopLevelMessage_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_retention, 2, 0);
 
 /**
@@ -122,9 +169,14 @@ export enum TopLevelMessage_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TopLevelMessage.NestedEnum.
+ */
+export type TopLevelMessage_NestedEnumJson = "NESTED_UNKNOWN";
+
+/**
  * Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
  */
-export const TopLevelMessage_NestedEnumDesc: GenDescEnum<TopLevelMessage_NestedEnum> = /*@__PURE__*/
+export const TopLevelMessage_NestedEnumDesc: GenDescEnum<TopLevelMessage_NestedEnum, TopLevelMessage_NestedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_retention, 2, 0);
 
 /**
@@ -144,9 +196,14 @@ export enum TopLevelEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TopLevelEnum.
+ */
+export type TopLevelEnumJson = "TOP_LEVEL_UNKNOWN";
+
+/**
  * Describes the enum protobuf_unittest.TopLevelEnum.
  */
-export const TopLevelEnumDesc: GenDescEnum<TopLevelEnum> = /*@__PURE__*/
+export const TopLevelEnumDesc: GenDescEnum<TopLevelEnum, TopLevelEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_retention, 0);
 
 /**

@@ -37,8 +37,18 @@ export declare type PublicImportMessage = Message<"protobuf_unittest_import.Publ
 };
 
 /**
+ * JSON type for the message protobuf_unittest_import.PublicImportMessage.
+ */
+export declare type PublicImportMessageJson = {
+  /**
+   * @generated from field: optional int32 e = 1;
+   */
+  e?: number;
+};
+
+/**
  * Describes the message protobuf_unittest_import.PublicImportMessage.
  * Use `create(PublicImportMessageDesc)` to create a new message.
  */
-export declare const PublicImportMessageDesc: GenDescMessage<PublicImportMessage>;
+export declare const PublicImportMessageDesc: GenDescMessage<PublicImportMessage, PublicImportMessageJson>;
 

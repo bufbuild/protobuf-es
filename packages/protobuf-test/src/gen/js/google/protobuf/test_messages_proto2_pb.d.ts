@@ -739,10 +739,685 @@ export declare type TestAllTypesProto2 = Message<"protobuf_test_messages.proto2.
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllTypesProto2.
+ */
+export declare type TestAllTypesProto2Json = {
+  /**
+   * @generated from field: optional int32 optional_int32 = 1;
+   */
+  optionalInt32?: number;
+
+  /**
+   * @generated from field: optional int64 optional_int64 = 2;
+   */
+  optionalInt64?: string;
+
+  /**
+   * @generated from field: optional uint32 optional_uint32 = 3;
+   */
+  optionalUint32?: number;
+
+  /**
+   * @generated from field: optional uint64 optional_uint64 = 4;
+   */
+  optionalUint64?: string;
+
+  /**
+   * @generated from field: optional sint32 optional_sint32 = 5;
+   */
+  optionalSint32?: number;
+
+  /**
+   * @generated from field: optional sint64 optional_sint64 = 6;
+   */
+  optionalSint64?: string;
+
+  /**
+   * @generated from field: optional fixed32 optional_fixed32 = 7;
+   */
+  optionalFixed32?: number;
+
+  /**
+   * @generated from field: optional fixed64 optional_fixed64 = 8;
+   */
+  optionalFixed64?: string;
+
+  /**
+   * @generated from field: optional sfixed32 optional_sfixed32 = 9;
+   */
+  optionalSfixed32?: number;
+
+  /**
+   * @generated from field: optional sfixed64 optional_sfixed64 = 10;
+   */
+  optionalSfixed64?: string;
+
+  /**
+   * @generated from field: optional float optional_float = 11;
+   */
+  optionalFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional double optional_double = 12;
+   */
+  optionalDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional bool optional_bool = 13;
+   */
+  optionalBool?: boolean;
+
+  /**
+   * @generated from field: optional string optional_string = 14;
+   */
+  optionalString?: string;
+
+  /**
+   * @generated from field: optional bytes optional_bytes = 15;
+   */
+  optionalBytes?: string;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage optional_nested_message = 18;
+   */
+  optionalNestedMessage?: TestAllTypesProto2_NestedMessageJson;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.ForeignMessageProto2 optional_foreign_message = 19;
+   */
+  optionalForeignMessage?: ForeignMessageProto2Json;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum optional_nested_enum = 21;
+   */
+  optionalNestedEnum?: TestAllTypesProto2_NestedEnumJson;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.ForeignEnumProto2 optional_foreign_enum = 22;
+   */
+  optionalForeignEnum?: ForeignEnumProto2Json;
+
+  /**
+   * @generated from field: optional string optional_string_piece = 24;
+   */
+  optionalStringPiece?: string;
+
+  /**
+   * @generated from field: optional string optional_cord = 25;
+   */
+  optionalCord?: string;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2 recursive_message = 27;
+   */
+  recursiveMessage?: TestAllTypesProto2Json;
+
+  /**
+   * @generated from field: repeated int32 repeated_int32 = 31;
+   */
+  repeatedInt32?: number[];
+
+  /**
+   * @generated from field: repeated int64 repeated_int64 = 32;
+   */
+  repeatedInt64?: string[];
+
+  /**
+   * @generated from field: repeated uint32 repeated_uint32 = 33;
+   */
+  repeatedUint32?: number[];
+
+  /**
+   * @generated from field: repeated uint64 repeated_uint64 = 34;
+   */
+  repeatedUint64?: string[];
+
+  /**
+   * @generated from field: repeated sint32 repeated_sint32 = 35;
+   */
+  repeatedSint32?: number[];
+
+  /**
+   * @generated from field: repeated sint64 repeated_sint64 = 36;
+   */
+  repeatedSint64?: string[];
+
+  /**
+   * @generated from field: repeated fixed32 repeated_fixed32 = 37;
+   */
+  repeatedFixed32?: number[];
+
+  /**
+   * @generated from field: repeated fixed64 repeated_fixed64 = 38;
+   */
+  repeatedFixed64?: string[];
+
+  /**
+   * @generated from field: repeated sfixed32 repeated_sfixed32 = 39;
+   */
+  repeatedSfixed32?: number[];
+
+  /**
+   * @generated from field: repeated sfixed64 repeated_sfixed64 = 40;
+   */
+  repeatedSfixed64?: string[];
+
+  /**
+   * @generated from field: repeated float repeated_float = 41;
+   */
+  repeatedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated double repeated_double = 42;
+   */
+  repeatedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated bool repeated_bool = 43;
+   */
+  repeatedBool?: boolean[];
+
+  /**
+   * @generated from field: repeated string repeated_string = 44;
+   */
+  repeatedString?: string[];
+
+  /**
+   * @generated from field: repeated bytes repeated_bytes = 45;
+   */
+  repeatedBytes?: string[];
+
+  /**
+   * @generated from field: repeated protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage repeated_nested_message = 48;
+   */
+  repeatedNestedMessage?: TestAllTypesProto2_NestedMessageJson[];
+
+  /**
+   * @generated from field: repeated protobuf_test_messages.proto2.ForeignMessageProto2 repeated_foreign_message = 49;
+   */
+  repeatedForeignMessage?: ForeignMessageProto2Json[];
+
+  /**
+   * @generated from field: repeated protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum repeated_nested_enum = 51;
+   */
+  repeatedNestedEnum?: TestAllTypesProto2_NestedEnumJson[];
+
+  /**
+   * @generated from field: repeated protobuf_test_messages.proto2.ForeignEnumProto2 repeated_foreign_enum = 52;
+   */
+  repeatedForeignEnum?: ForeignEnumProto2Json[];
+
+  /**
+   * @generated from field: repeated string repeated_string_piece = 54;
+   */
+  repeatedStringPiece?: string[];
+
+  /**
+   * @generated from field: repeated string repeated_cord = 55;
+   */
+  repeatedCord?: string[];
+
+  /**
+   * @generated from field: repeated int32 packed_int32 = 75 [packed = true];
+   */
+  packedInt32?: number[];
+
+  /**
+   * @generated from field: repeated int64 packed_int64 = 76 [packed = true];
+   */
+  packedInt64?: string[];
+
+  /**
+   * @generated from field: repeated uint32 packed_uint32 = 77 [packed = true];
+   */
+  packedUint32?: number[];
+
+  /**
+   * @generated from field: repeated uint64 packed_uint64 = 78 [packed = true];
+   */
+  packedUint64?: string[];
+
+  /**
+   * @generated from field: repeated sint32 packed_sint32 = 79 [packed = true];
+   */
+  packedSint32?: number[];
+
+  /**
+   * @generated from field: repeated sint64 packed_sint64 = 80 [packed = true];
+   */
+  packedSint64?: string[];
+
+  /**
+   * @generated from field: repeated fixed32 packed_fixed32 = 81 [packed = true];
+   */
+  packedFixed32?: number[];
+
+  /**
+   * @generated from field: repeated fixed64 packed_fixed64 = 82 [packed = true];
+   */
+  packedFixed64?: string[];
+
+  /**
+   * @generated from field: repeated sfixed32 packed_sfixed32 = 83 [packed = true];
+   */
+  packedSfixed32?: number[];
+
+  /**
+   * @generated from field: repeated sfixed64 packed_sfixed64 = 84 [packed = true];
+   */
+  packedSfixed64?: string[];
+
+  /**
+   * @generated from field: repeated float packed_float = 85 [packed = true];
+   */
+  packedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated double packed_double = 86 [packed = true];
+   */
+  packedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated bool packed_bool = 87 [packed = true];
+   */
+  packedBool?: boolean[];
+
+  /**
+   * @generated from field: repeated protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum packed_nested_enum = 88 [packed = true];
+   */
+  packedNestedEnum?: TestAllTypesProto2_NestedEnumJson[];
+
+  /**
+   * @generated from field: repeated int32 unpacked_int32 = 89 [packed = false];
+   */
+  unpackedInt32?: number[];
+
+  /**
+   * @generated from field: repeated int64 unpacked_int64 = 90 [packed = false];
+   */
+  unpackedInt64?: string[];
+
+  /**
+   * @generated from field: repeated uint32 unpacked_uint32 = 91 [packed = false];
+   */
+  unpackedUint32?: number[];
+
+  /**
+   * @generated from field: repeated uint64 unpacked_uint64 = 92 [packed = false];
+   */
+  unpackedUint64?: string[];
+
+  /**
+   * @generated from field: repeated sint32 unpacked_sint32 = 93 [packed = false];
+   */
+  unpackedSint32?: number[];
+
+  /**
+   * @generated from field: repeated sint64 unpacked_sint64 = 94 [packed = false];
+   */
+  unpackedSint64?: string[];
+
+  /**
+   * @generated from field: repeated fixed32 unpacked_fixed32 = 95 [packed = false];
+   */
+  unpackedFixed32?: number[];
+
+  /**
+   * @generated from field: repeated fixed64 unpacked_fixed64 = 96 [packed = false];
+   */
+  unpackedFixed64?: string[];
+
+  /**
+   * @generated from field: repeated sfixed32 unpacked_sfixed32 = 97 [packed = false];
+   */
+  unpackedSfixed32?: number[];
+
+  /**
+   * @generated from field: repeated sfixed64 unpacked_sfixed64 = 98 [packed = false];
+   */
+  unpackedSfixed64?: string[];
+
+  /**
+   * @generated from field: repeated float unpacked_float = 99 [packed = false];
+   */
+  unpackedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated double unpacked_double = 100 [packed = false];
+   */
+  unpackedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+
+  /**
+   * @generated from field: repeated bool unpacked_bool = 101 [packed = false];
+   */
+  unpackedBool?: boolean[];
+
+  /**
+   * @generated from field: repeated protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum unpacked_nested_enum = 102 [packed = false];
+   */
+  unpackedNestedEnum?: TestAllTypesProto2_NestedEnumJson[];
+
+  /**
+   * @generated from field: map<int32, int32> map_int32_int32 = 56;
+   */
+  mapInt32Int32?: { [key: number]: number };
+
+  /**
+   * @generated from field: map<int64, int64> map_int64_int64 = 57;
+   */
+  mapInt64Int64?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<uint32, uint32> map_uint32_uint32 = 58;
+   */
+  mapUint32Uint32?: { [key: number]: number };
+
+  /**
+   * @generated from field: map<uint64, uint64> map_uint64_uint64 = 59;
+   */
+  mapUint64Uint64?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<sint32, sint32> map_sint32_sint32 = 60;
+   */
+  mapSint32Sint32?: { [key: number]: number };
+
+  /**
+   * @generated from field: map<sint64, sint64> map_sint64_sint64 = 61;
+   */
+  mapSint64Sint64?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<fixed32, fixed32> map_fixed32_fixed32 = 62;
+   */
+  mapFixed32Fixed32?: { [key: number]: number };
+
+  /**
+   * @generated from field: map<fixed64, fixed64> map_fixed64_fixed64 = 63;
+   */
+  mapFixed64Fixed64?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<sfixed32, sfixed32> map_sfixed32_sfixed32 = 64;
+   */
+  mapSfixed32Sfixed32?: { [key: number]: number };
+
+  /**
+   * @generated from field: map<sfixed64, sfixed64> map_sfixed64_sfixed64 = 65;
+   */
+  mapSfixed64Sfixed64?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<int32, float> map_int32_float = 66;
+   */
+  mapInt32Float?: { [key: number]: number | "NaN" | "Infinity" | "-Infinity" };
+
+  /**
+   * @generated from field: map<int32, double> map_int32_double = 67;
+   */
+  mapInt32Double?: { [key: number]: number | "NaN" | "Infinity" | "-Infinity" };
+
+  /**
+   * @generated from field: map<bool, bool> map_bool_bool = 68;
+   */
+  mapBoolBool?: { [key: string]: boolean };
+
+  /**
+   * @generated from field: map<string, string> map_string_string = 69;
+   */
+  mapStringString?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, bytes> map_string_bytes = 70;
+   */
+  mapStringBytes?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage> map_string_nested_message = 71;
+   */
+  mapStringNestedMessage?: { [key: string]: TestAllTypesProto2_NestedMessageJson };
+
+  /**
+   * @generated from field: map<string, protobuf_test_messages.proto2.ForeignMessageProto2> map_string_foreign_message = 72;
+   */
+  mapStringForeignMessage?: { [key: string]: ForeignMessageProto2Json };
+
+  /**
+   * @generated from field: map<string, protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum> map_string_nested_enum = 73;
+   */
+  mapStringNestedEnum?: { [key: string]: TestAllTypesProto2_NestedEnumJson };
+
+  /**
+   * @generated from field: map<string, protobuf_test_messages.proto2.ForeignEnumProto2> map_string_foreign_enum = 74;
+   */
+  mapStringForeignEnum?: { [key: string]: ForeignEnumProto2Json };
+
+  /**
+   * @generated from field: uint32 oneof_uint32 = 111;
+   */
+  oneofUint32?: number;
+
+  /**
+   * @generated from field: protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage oneof_nested_message = 112;
+   */
+  oneofNestedMessage?: TestAllTypesProto2_NestedMessageJson;
+
+  /**
+   * @generated from field: string oneof_string = 113;
+   */
+  oneofString?: string;
+
+  /**
+   * @generated from field: bytes oneof_bytes = 114;
+   */
+  oneofBytes?: string;
+
+  /**
+   * @generated from field: bool oneof_bool = 115;
+   */
+  oneofBool?: boolean;
+
+  /**
+   * @generated from field: uint64 oneof_uint64 = 116;
+   */
+  oneofUint64?: string;
+
+  /**
+   * @generated from field: float oneof_float = 117;
+   */
+  oneofFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: double oneof_double = 118;
+   */
+  oneofDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum oneof_enum = 119;
+   */
+  oneofEnum?: TestAllTypesProto2_NestedEnumJson;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.Data data = 201;
+   */
+  data?: TestAllTypesProto2_DataJson;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField multiwordgroupfield = 204;
+   */
+  multiwordgroupfield?: TestAllTypesProto2_MultiWordGroupFieldJson;
+
+  /**
+   * @generated from field: optional int32 default_int32 = 241 [default = -123456789];
+   */
+  defaultInt32?: number;
+
+  /**
+   * @generated from field: optional int64 default_int64 = 242 [default = -9123456789123456789];
+   */
+  defaultInt64?: string;
+
+  /**
+   * @generated from field: optional uint32 default_uint32 = 243 [default = 2123456789];
+   */
+  defaultUint32?: number;
+
+  /**
+   * @generated from field: optional uint64 default_uint64 = 244 [default = 10123456789123456789];
+   */
+  defaultUint64?: string;
+
+  /**
+   * @generated from field: optional sint32 default_sint32 = 245 [default = -123456789];
+   */
+  defaultSint32?: number;
+
+  /**
+   * @generated from field: optional sint64 default_sint64 = 246 [default = -9123456789123456789];
+   */
+  defaultSint64?: string;
+
+  /**
+   * @generated from field: optional fixed32 default_fixed32 = 247 [default = 2123456789];
+   */
+  defaultFixed32?: number;
+
+  /**
+   * @generated from field: optional fixed64 default_fixed64 = 248 [default = 10123456789123456789];
+   */
+  defaultFixed64?: string;
+
+  /**
+   * @generated from field: optional sfixed32 default_sfixed32 = 249 [default = -123456789];
+   */
+  defaultSfixed32?: number;
+
+  /**
+   * @generated from field: optional sfixed64 default_sfixed64 = 250 [default = -9123456789123456789];
+   */
+  defaultSfixed64?: string;
+
+  /**
+   * @generated from field: optional float default_float = 251 [default = 9e+09];
+   */
+  defaultFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional double default_double = 252 [default = 7e+22];
+   */
+  defaultDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: optional bool default_bool = 253 [default = true];
+   */
+  defaultBool?: boolean;
+
+  /**
+   * @generated from field: optional string default_string = 254 [default = "Rosebud"];
+   */
+  defaultString?: string;
+
+  /**
+   * @generated from field: optional bytes default_bytes = 255 [default = "joshua"];
+   */
+  defaultBytes?: string;
+
+  /**
+   * @generated from field: optional int32 fieldname1 = 401;
+   */
+  fieldname1?: number;
+
+  /**
+   * @generated from field: optional int32 field_name2 = 402;
+   */
+  fieldName2?: number;
+
+  /**
+   * @generated from field: optional int32 _field_name3 = 403;
+   */
+  FieldName3?: number;
+
+  /**
+   * @generated from field: optional int32 field__name4_ = 404;
+   */
+  fieldName4?: number;
+
+  /**
+   * @generated from field: optional int32 field0name5 = 405;
+   */
+  field0name5?: number;
+
+  /**
+   * @generated from field: optional int32 field_0_name6 = 406;
+   */
+  field0Name6?: number;
+
+  /**
+   * @generated from field: optional int32 fieldName7 = 407;
+   */
+  fieldName7?: number;
+
+  /**
+   * @generated from field: optional int32 FieldName8 = 408;
+   */
+  FieldName8?: number;
+
+  /**
+   * @generated from field: optional int32 field_Name9 = 409;
+   */
+  fieldName9?: number;
+
+  /**
+   * @generated from field: optional int32 Field_Name10 = 410;
+   */
+  FieldName10?: number;
+
+  /**
+   * @generated from field: optional int32 FIELD_NAME11 = 411;
+   */
+  FIELDNAME11?: number;
+
+  /**
+   * @generated from field: optional int32 FIELD_name12 = 412;
+   */
+  FIELDName12?: number;
+
+  /**
+   * @generated from field: optional int32 __field_name13 = 413;
+   */
+  FieldName13?: number;
+
+  /**
+   * @generated from field: optional int32 __Field_name14 = 414;
+   */
+  FieldName14?: number;
+
+  /**
+   * @generated from field: optional int32 field__name15 = 415;
+   */
+  fieldName15?: number;
+
+  /**
+   * @generated from field: optional int32 field__Name16 = 416;
+   */
+  fieldName16?: number;
+
+  /**
+   * @generated from field: optional int32 field_name17__ = 417;
+   */
+  fieldName17?: number;
+
+  /**
+   * @generated from field: optional int32 Field_name18__ = 418;
+   */
+  FieldName18?: number;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.
  * Use `create(TestAllTypesProto2Desc)` to create a new message.
  */
-export declare const TestAllTypesProto2Desc: GenDescMessage<TestAllTypesProto2>;
+export declare const TestAllTypesProto2Desc: GenDescMessage<TestAllTypesProto2, TestAllTypesProto2Json>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage
@@ -760,10 +1435,25 @@ export declare type TestAllTypesProto2_NestedMessage = Message<"protobuf_test_me
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage.
+ */
+export declare type TestAllTypesProto2_NestedMessageJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2 corecursive = 2;
+   */
+  corecursive?: TestAllTypesProto2Json;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage.
  * Use `create(TestAllTypesProto2_NestedMessageDesc)` to create a new message.
  */
-export declare const TestAllTypesProto2_NestedMessageDesc: GenDescMessage<TestAllTypesProto2_NestedMessage>;
+export declare const TestAllTypesProto2_NestedMessageDesc: GenDescMessage<TestAllTypesProto2_NestedMessage, TestAllTypesProto2_NestedMessageJson>;
 
 /**
  * groups
@@ -783,10 +1473,25 @@ export declare type TestAllTypesProto2_Data = Message<"protobuf_test_messages.pr
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllTypesProto2.Data.
+ */
+export declare type TestAllTypesProto2_DataJson = {
+  /**
+   * @generated from field: optional int32 group_int32 = 202;
+   */
+  groupInt32?: number;
+
+  /**
+   * @generated from field: optional uint32 group_uint32 = 203;
+   */
+  groupUint32?: number;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.Data.
  * Use `create(TestAllTypesProto2_DataDesc)` to create a new message.
  */
-export declare const TestAllTypesProto2_DataDesc: GenDescMessage<TestAllTypesProto2_Data>;
+export declare const TestAllTypesProto2_DataDesc: GenDescMessage<TestAllTypesProto2_Data, TestAllTypesProto2_DataJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField
@@ -804,10 +1509,25 @@ export declare type TestAllTypesProto2_MultiWordGroupField = Message<"protobuf_t
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField.
+ */
+export declare type TestAllTypesProto2_MultiWordGroupFieldJson = {
+  /**
+   * @generated from field: optional int32 group_int32 = 205;
+   */
+  groupInt32?: number;
+
+  /**
+   * @generated from field: optional uint32 group_uint32 = 206;
+   */
+  groupUint32?: number;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField.
  * Use `create(TestAllTypesProto2_MultiWordGroupFieldDesc)` to create a new message.
  */
-export declare const TestAllTypesProto2_MultiWordGroupFieldDesc: GenDescMessage<TestAllTypesProto2_MultiWordGroupField>;
+export declare const TestAllTypesProto2_MultiWordGroupFieldDesc: GenDescMessage<TestAllTypesProto2_MultiWordGroupField, TestAllTypesProto2_MultiWordGroupFieldJson>;
 
 /**
  * message_set test case.
@@ -818,10 +1538,16 @@ export declare type TestAllTypesProto2_MessageSetCorrect = Message<"protobuf_tes
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect.
+ */
+export declare type TestAllTypesProto2_MessageSetCorrectJson = {
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect.
  * Use `create(TestAllTypesProto2_MessageSetCorrectDesc)` to create a new message.
  */
-export declare const TestAllTypesProto2_MessageSetCorrectDesc: GenDescMessage<TestAllTypesProto2_MessageSetCorrect>;
+export declare const TestAllTypesProto2_MessageSetCorrectDesc: GenDescMessage<TestAllTypesProto2_MessageSetCorrect, TestAllTypesProto2_MessageSetCorrectJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1
@@ -834,10 +1560,20 @@ export declare type TestAllTypesProto2_MessageSetCorrectExtension1 = Message<"pr
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.
+ */
+export declare type TestAllTypesProto2_MessageSetCorrectExtension1Json = {
+  /**
+   * @generated from field: optional string str = 25;
+   */
+  str?: string;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.
  * Use `create(TestAllTypesProto2_MessageSetCorrectExtension1Desc)` to create a new message.
  */
-export declare const TestAllTypesProto2_MessageSetCorrectExtension1Desc: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension1>;
+export declare const TestAllTypesProto2_MessageSetCorrectExtension1Desc: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension1, TestAllTypesProto2_MessageSetCorrectExtension1Json>;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
@@ -855,10 +1591,20 @@ export declare type TestAllTypesProto2_MessageSetCorrectExtension2 = Message<"pr
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.
+ */
+export declare type TestAllTypesProto2_MessageSetCorrectExtension2Json = {
+  /**
+   * @generated from field: optional int32 i = 9;
+   */
+  i?: number;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.
  * Use `create(TestAllTypesProto2_MessageSetCorrectExtension2Desc)` to create a new message.
  */
-export declare const TestAllTypesProto2_MessageSetCorrectExtension2Desc: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension2>;
+export declare const TestAllTypesProto2_MessageSetCorrectExtension2Desc: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension2, TestAllTypesProto2_MessageSetCorrectExtension2Json>;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
@@ -893,9 +1639,14 @@ export enum TestAllTypesProto2_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum.
+ */
+export declare type TestAllTypesProto2_NestedEnumJson = "FOO" | "BAR" | "BAZ" | "NEG";
+
+/**
  * Describes the enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum.
  */
-export declare const TestAllTypesProto2_NestedEnumDesc: GenDescEnum<TestAllTypesProto2_NestedEnum>;
+export declare const TestAllTypesProto2_NestedEnumDesc: GenDescEnum<TestAllTypesProto2_NestedEnum, TestAllTypesProto2_NestedEnumJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
@@ -908,10 +1659,20 @@ export declare type ForeignMessageProto2 = Message<"protobuf_test_messages.proto
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.ForeignMessageProto2.
+ */
+export declare type ForeignMessageProto2Json = {
+  /**
+   * @generated from field: optional int32 c = 1;
+   */
+  c?: number;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.ForeignMessageProto2.
  * Use `create(ForeignMessageProto2Desc)` to create a new message.
  */
-export declare const ForeignMessageProto2Desc: GenDescMessage<ForeignMessageProto2>;
+export declare const ForeignMessageProto2Desc: GenDescMessage<ForeignMessageProto2, ForeignMessageProto2Json>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.GroupField
@@ -929,10 +1690,25 @@ export declare type GroupField = Message<"protobuf_test_messages.proto2.GroupFie
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.GroupField.
+ */
+export declare type GroupFieldJson = {
+  /**
+   * @generated from field: optional int32 group_int32 = 122;
+   */
+  groupInt32?: number;
+
+  /**
+   * @generated from field: optional uint32 group_uint32 = 123;
+   */
+  groupUint32?: number;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.GroupField.
  * Use `create(GroupFieldDesc)` to create a new message.
  */
-export declare const GroupFieldDesc: GenDescMessage<GroupField>;
+export declare const GroupFieldDesc: GenDescMessage<GroupField, GroupFieldJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes
@@ -970,10 +1746,45 @@ export declare type UnknownToTestAllTypes = Message<"protobuf_test_messages.prot
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.UnknownToTestAllTypes.
+ */
+export declare type UnknownToTestAllTypesJson = {
+  /**
+   * @generated from field: optional int32 optional_int32 = 1001;
+   */
+  optionalInt32?: number;
+
+  /**
+   * @generated from field: optional string optional_string = 1002;
+   */
+  optionalString?: string;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.ForeignMessageProto2 nested_message = 1003;
+   */
+  nestedMessage?: ForeignMessageProto2Json;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup optionalgroup = 1004;
+   */
+  optionalgroup?: UnknownToTestAllTypes_OptionalGroupJson;
+
+  /**
+   * @generated from field: optional bool optional_bool = 1006;
+   */
+  optionalBool?: boolean;
+
+  /**
+   * @generated from field: repeated int32 repeated_int32 = 1011;
+   */
+  repeatedInt32?: number[];
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.UnknownToTestAllTypes.
  * Use `create(UnknownToTestAllTypesDesc)` to create a new message.
  */
-export declare const UnknownToTestAllTypesDesc: GenDescMessage<UnknownToTestAllTypes>;
+export declare const UnknownToTestAllTypesDesc: GenDescMessage<UnknownToTestAllTypes, UnknownToTestAllTypesJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup
@@ -986,10 +1797,20 @@ export declare type UnknownToTestAllTypes_OptionalGroup = Message<"protobuf_test
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup.
+ */
+export declare type UnknownToTestAllTypes_OptionalGroupJson = {
+  /**
+   * @generated from field: optional int32 a = 1;
+   */
+  a?: number;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup.
  * Use `create(UnknownToTestAllTypes_OptionalGroupDesc)` to create a new message.
  */
-export declare const UnknownToTestAllTypes_OptionalGroupDesc: GenDescMessage<UnknownToTestAllTypes_OptionalGroup>;
+export declare const UnknownToTestAllTypes_OptionalGroupDesc: GenDescMessage<UnknownToTestAllTypes_OptionalGroup, UnknownToTestAllTypes_OptionalGroupJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.NullHypothesisProto2
@@ -998,10 +1819,16 @@ export declare type NullHypothesisProto2 = Message<"protobuf_test_messages.proto
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.NullHypothesisProto2.
+ */
+export declare type NullHypothesisProto2Json = {
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.NullHypothesisProto2.
  * Use `create(NullHypothesisProto2Desc)` to create a new message.
  */
-export declare const NullHypothesisProto2Desc: GenDescMessage<NullHypothesisProto2>;
+export declare const NullHypothesisProto2Desc: GenDescMessage<NullHypothesisProto2, NullHypothesisProto2Json>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.EnumOnlyProto2
@@ -1010,10 +1837,16 @@ export declare type EnumOnlyProto2 = Message<"protobuf_test_messages.proto2.Enum
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.EnumOnlyProto2.
+ */
+export declare type EnumOnlyProto2Json = {
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.EnumOnlyProto2.
  * Use `create(EnumOnlyProto2Desc)` to create a new message.
  */
-export declare const EnumOnlyProto2Desc: GenDescMessage<EnumOnlyProto2>;
+export declare const EnumOnlyProto2Desc: GenDescMessage<EnumOnlyProto2, EnumOnlyProto2Json>;
 
 /**
  * @generated from enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool
@@ -1031,9 +1864,14 @@ export enum EnumOnlyProto2_Bool {
 }
 
 /**
+ * JSON type for the enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool.
+ */
+export declare type EnumOnlyProto2_BoolJson = "kFalse" | "kTrue";
+
+/**
  * Describes the enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool.
  */
-export declare const EnumOnlyProto2_BoolDesc: GenDescEnum<EnumOnlyProto2_Bool>;
+export declare const EnumOnlyProto2_BoolDesc: GenDescEnum<EnumOnlyProto2_Bool, EnumOnlyProto2_BoolJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.OneStringProto2
@@ -1046,10 +1884,20 @@ export declare type OneStringProto2 = Message<"protobuf_test_messages.proto2.One
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.OneStringProto2.
+ */
+export declare type OneStringProto2Json = {
+  /**
+   * @generated from field: optional string data = 1;
+   */
+  data?: string;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.OneStringProto2.
  * Use `create(OneStringProto2Desc)` to create a new message.
  */
-export declare const OneStringProto2Desc: GenDescMessage<OneStringProto2>;
+export declare const OneStringProto2Desc: GenDescMessage<OneStringProto2, OneStringProto2Json>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.ProtoWithKeywords
@@ -1072,10 +1920,30 @@ export declare type ProtoWithKeywords = Message<"protobuf_test_messages.proto2.P
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.ProtoWithKeywords.
+ */
+export declare type ProtoWithKeywordsJson = {
+  /**
+   * @generated from field: optional int32 inline = 1;
+   */
+  inline?: number;
+
+  /**
+   * @generated from field: optional string concept = 2;
+   */
+  concept?: string;
+
+  /**
+   * @generated from field: repeated string requires = 3;
+   */
+  requires?: string[];
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.ProtoWithKeywords.
  * Use `create(ProtoWithKeywordsDesc)` to create a new message.
  */
-export declare const ProtoWithKeywordsDesc: GenDescMessage<ProtoWithKeywords>;
+export declare const ProtoWithKeywordsDesc: GenDescMessage<ProtoWithKeywords, ProtoWithKeywordsJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2
@@ -1282,10 +2150,210 @@ export declare type TestAllRequiredTypesProto2 = Message<"protobuf_test_messages
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.
+ */
+export declare type TestAllRequiredTypesProto2Json = {
+  /**
+   * @generated from field: required int32 required_int32 = 1;
+   */
+  requiredInt32?: number;
+
+  /**
+   * @generated from field: required int64 required_int64 = 2;
+   */
+  requiredInt64?: string;
+
+  /**
+   * @generated from field: required uint32 required_uint32 = 3;
+   */
+  requiredUint32?: number;
+
+  /**
+   * @generated from field: required uint64 required_uint64 = 4;
+   */
+  requiredUint64?: string;
+
+  /**
+   * @generated from field: required sint32 required_sint32 = 5;
+   */
+  requiredSint32?: number;
+
+  /**
+   * @generated from field: required sint64 required_sint64 = 6;
+   */
+  requiredSint64?: string;
+
+  /**
+   * @generated from field: required fixed32 required_fixed32 = 7;
+   */
+  requiredFixed32?: number;
+
+  /**
+   * @generated from field: required fixed64 required_fixed64 = 8;
+   */
+  requiredFixed64?: string;
+
+  /**
+   * @generated from field: required sfixed32 required_sfixed32 = 9;
+   */
+  requiredSfixed32?: number;
+
+  /**
+   * @generated from field: required sfixed64 required_sfixed64 = 10;
+   */
+  requiredSfixed64?: string;
+
+  /**
+   * @generated from field: required float required_float = 11;
+   */
+  requiredFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: required double required_double = 12;
+   */
+  requiredDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: required bool required_bool = 13;
+   */
+  requiredBool?: boolean;
+
+  /**
+   * @generated from field: required string required_string = 14;
+   */
+  requiredString?: string;
+
+  /**
+   * @generated from field: required bytes required_bytes = 15;
+   */
+  requiredBytes?: string;
+
+  /**
+   * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage required_nested_message = 18;
+   */
+  requiredNestedMessage?: TestAllRequiredTypesProto2_NestedMessageJson;
+
+  /**
+   * @generated from field: required protobuf_test_messages.proto2.ForeignMessageProto2 required_foreign_message = 19;
+   */
+  requiredForeignMessage?: ForeignMessageProto2Json;
+
+  /**
+   * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum required_nested_enum = 21;
+   */
+  requiredNestedEnum?: TestAllRequiredTypesProto2_NestedEnumJson;
+
+  /**
+   * @generated from field: required protobuf_test_messages.proto2.ForeignEnumProto2 required_foreign_enum = 22;
+   */
+  requiredForeignEnum?: ForeignEnumProto2Json;
+
+  /**
+   * @generated from field: required string required_string_piece = 24;
+   */
+  requiredStringPiece?: string;
+
+  /**
+   * @generated from field: required string required_cord = 25;
+   */
+  requiredCord?: string;
+
+  /**
+   * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2 recursive_message = 27;
+   */
+  recursiveMessage?: TestAllRequiredTypesProto2Json;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2 optional_recursive_message = 28;
+   */
+  optionalRecursiveMessage?: TestAllRequiredTypesProto2Json;
+
+  /**
+   * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data data = 201;
+   */
+  data?: TestAllRequiredTypesProto2_DataJson;
+
+  /**
+   * @generated from field: required int32 default_int32 = 241 [default = -123456789];
+   */
+  defaultInt32?: number;
+
+  /**
+   * @generated from field: required int64 default_int64 = 242 [default = -9123456789123456789];
+   */
+  defaultInt64?: string;
+
+  /**
+   * @generated from field: required uint32 default_uint32 = 243 [default = 2123456789];
+   */
+  defaultUint32?: number;
+
+  /**
+   * @generated from field: required uint64 default_uint64 = 244 [default = 10123456789123456789];
+   */
+  defaultUint64?: string;
+
+  /**
+   * @generated from field: required sint32 default_sint32 = 245 [default = -123456789];
+   */
+  defaultSint32?: number;
+
+  /**
+   * @generated from field: required sint64 default_sint64 = 246 [default = -9123456789123456789];
+   */
+  defaultSint64?: string;
+
+  /**
+   * @generated from field: required fixed32 default_fixed32 = 247 [default = 2123456789];
+   */
+  defaultFixed32?: number;
+
+  /**
+   * @generated from field: required fixed64 default_fixed64 = 248 [default = 10123456789123456789];
+   */
+  defaultFixed64?: string;
+
+  /**
+   * @generated from field: required sfixed32 default_sfixed32 = 249 [default = -123456789];
+   */
+  defaultSfixed32?: number;
+
+  /**
+   * @generated from field: required sfixed64 default_sfixed64 = 250 [default = -9123456789123456789];
+   */
+  defaultSfixed64?: string;
+
+  /**
+   * @generated from field: required float default_float = 251 [default = 9e+09];
+   */
+  defaultFloat?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: required double default_double = 252 [default = 7e+22];
+   */
+  defaultDouble?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: required bool default_bool = 253 [default = true];
+   */
+  defaultBool?: boolean;
+
+  /**
+   * @generated from field: required string default_string = 254 [default = "Rosebud"];
+   */
+  defaultString?: string;
+
+  /**
+   * @generated from field: required bytes default_bytes = 255 [default = "joshua"];
+   */
+  defaultBytes?: string;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.
  * Use `create(TestAllRequiredTypesProto2Desc)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2Desc: GenDescMessage<TestAllRequiredTypesProto2>;
+export declare const TestAllRequiredTypesProto2Desc: GenDescMessage<TestAllRequiredTypesProto2, TestAllRequiredTypesProto2Json>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage
@@ -1308,10 +2376,30 @@ export declare type TestAllRequiredTypesProto2_NestedMessage = Message<"protobuf
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage.
+ */
+export declare type TestAllRequiredTypesProto2_NestedMessageJson = {
+  /**
+   * @generated from field: required int32 a = 1;
+   */
+  a?: number;
+
+  /**
+   * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2 corecursive = 2;
+   */
+  corecursive?: TestAllRequiredTypesProto2Json;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2 optional_corecursive = 3;
+   */
+  optionalCorecursive?: TestAllRequiredTypesProto2Json;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage.
  * Use `create(TestAllRequiredTypesProto2_NestedMessageDesc)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_NestedMessageDesc: GenDescMessage<TestAllRequiredTypesProto2_NestedMessage>;
+export declare const TestAllRequiredTypesProto2_NestedMessageDesc: GenDescMessage<TestAllRequiredTypesProto2_NestedMessage, TestAllRequiredTypesProto2_NestedMessageJson>;
 
 /**
  * groups
@@ -1331,10 +2419,25 @@ export declare type TestAllRequiredTypesProto2_Data = Message<"protobuf_test_mes
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data.
+ */
+export declare type TestAllRequiredTypesProto2_DataJson = {
+  /**
+   * @generated from field: required int32 group_int32 = 202;
+   */
+  groupInt32?: number;
+
+  /**
+   * @generated from field: required uint32 group_uint32 = 203;
+   */
+  groupUint32?: number;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data.
  * Use `create(TestAllRequiredTypesProto2_DataDesc)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_DataDesc: GenDescMessage<TestAllRequiredTypesProto2_Data>;
+export declare const TestAllRequiredTypesProto2_DataDesc: GenDescMessage<TestAllRequiredTypesProto2_Data, TestAllRequiredTypesProto2_DataJson>;
 
 /**
  * message_set test case.
@@ -1345,10 +2448,16 @@ export declare type TestAllRequiredTypesProto2_MessageSetCorrect = Message<"prot
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect.
+ */
+export declare type TestAllRequiredTypesProto2_MessageSetCorrectJson = {
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect.
  * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectDesc)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_MessageSetCorrectDesc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrect>;
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectDesc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrect, TestAllRequiredTypesProto2_MessageSetCorrectJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1
@@ -1361,10 +2470,20 @@ export declare type TestAllRequiredTypesProto2_MessageSetCorrectExtension1 = Mes
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.
+ */
+export declare type TestAllRequiredTypesProto2_MessageSetCorrectExtension1Json = {
+  /**
+   * @generated from field: required string str = 25;
+   */
+  str?: string;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.
  * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension1Desc)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension1Desc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension1>;
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension1Desc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension1, TestAllRequiredTypesProto2_MessageSetCorrectExtension1Json>;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
@@ -1382,10 +2501,20 @@ export declare type TestAllRequiredTypesProto2_MessageSetCorrectExtension2 = Mes
 };
 
 /**
+ * JSON type for the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.
+ */
+export declare type TestAllRequiredTypesProto2_MessageSetCorrectExtension2Json = {
+  /**
+   * @generated from field: required int32 i = 9;
+   */
+  i?: number;
+};
+
+/**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.
  * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension2Desc)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension2Desc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2>;
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension2Desc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2, TestAllRequiredTypesProto2_MessageSetCorrectExtension2Json>;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
@@ -1420,9 +2549,14 @@ export enum TestAllRequiredTypesProto2_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum.
+ */
+export declare type TestAllRequiredTypesProto2_NestedEnumJson = "FOO" | "BAR" | "BAZ" | "NEG";
+
+/**
  * Describes the enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum.
  */
-export declare const TestAllRequiredTypesProto2_NestedEnumDesc: GenDescEnum<TestAllRequiredTypesProto2_NestedEnum>;
+export declare const TestAllRequiredTypesProto2_NestedEnumDesc: GenDescEnum<TestAllRequiredTypesProto2_NestedEnum, TestAllRequiredTypesProto2_NestedEnumJson>;
 
 /**
  * @generated from enum protobuf_test_messages.proto2.ForeignEnumProto2
@@ -1445,9 +2579,14 @@ export enum ForeignEnumProto2 {
 }
 
 /**
+ * JSON type for the enum protobuf_test_messages.proto2.ForeignEnumProto2.
+ */
+export declare type ForeignEnumProto2Json = "FOREIGN_FOO" | "FOREIGN_BAR" | "FOREIGN_BAZ";
+
+/**
  * Describes the enum protobuf_test_messages.proto2.ForeignEnumProto2.
  */
-export declare const ForeignEnumProto2Desc: GenDescEnum<ForeignEnumProto2>;
+export declare const ForeignEnumProto2Desc: GenDescEnum<ForeignEnumProto2, ForeignEnumProto2Json>;
 
 /**
  * @generated from extension: optional int32 extension_int32 = 120;

@@ -27,7 +27,7 @@
 
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any, EnumOptions, EnumValueOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson, EnumOptions, EnumValueOptions, FieldOptions, FileOptions, FileOptionsJson, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -67,10 +67,30 @@ export type TestMessageWithCustomOptions = Message<"protobuf_unittest.TestMessag
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMessageWithCustomOptions.
+ */
+export type TestMessageWithCustomOptionsJson = {
+  /**
+   * @generated from field: optional string field1 = 1;
+   */
+  field1?: string;
+
+  /**
+   * @generated from field: int32 oneof_field = 2;
+   */
+  oneofField?: number;
+
+  /**
+   * @generated from field: map<string, string> map_field = 3;
+   */
+  mapField?: { [key: string]: string };
+};
+
+/**
  * Describes the message protobuf_unittest.TestMessageWithCustomOptions.
  * Use `create(TestMessageWithCustomOptionsDesc)` to create a new message.
  */
-export const TestMessageWithCustomOptionsDesc: GenDescMessage<TestMessageWithCustomOptions> = /*@__PURE__*/
+export const TestMessageWithCustomOptionsDesc: GenDescMessage<TestMessageWithCustomOptions, TestMessageWithCustomOptionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 0);
 
 /**
@@ -89,9 +109,14 @@ export enum TestMessageWithCustomOptions_AnEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum.
+ */
+export type TestMessageWithCustomOptions_AnEnumJson = "ANENUM_VAL1" | "ANENUM_VAL2";
+
+/**
  * Describes the enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum.
  */
-export const TestMessageWithCustomOptions_AnEnumDesc: GenDescEnum<TestMessageWithCustomOptions_AnEnum> = /*@__PURE__*/
+export const TestMessageWithCustomOptions_AnEnumDesc: GenDescEnum<TestMessageWithCustomOptions_AnEnum, TestMessageWithCustomOptions_AnEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 0, 0);
 
 /**
@@ -104,10 +129,16 @@ export type CustomOptionFooRequest = Message<"protobuf_unittest.CustomOptionFooR
 };
 
 /**
+ * JSON type for the message protobuf_unittest.CustomOptionFooRequest.
+ */
+export type CustomOptionFooRequestJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.CustomOptionFooRequest.
  * Use `create(CustomOptionFooRequestDesc)` to create a new message.
  */
-export const CustomOptionFooRequestDesc: GenDescMessage<CustomOptionFooRequest> = /*@__PURE__*/
+export const CustomOptionFooRequestDesc: GenDescMessage<CustomOptionFooRequest, CustomOptionFooRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 1);
 
 /**
@@ -117,10 +148,16 @@ export type CustomOptionFooResponse = Message<"protobuf_unittest.CustomOptionFoo
 };
 
 /**
+ * JSON type for the message protobuf_unittest.CustomOptionFooResponse.
+ */
+export type CustomOptionFooResponseJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.CustomOptionFooResponse.
  * Use `create(CustomOptionFooResponseDesc)` to create a new message.
  */
-export const CustomOptionFooResponseDesc: GenDescMessage<CustomOptionFooResponse> = /*@__PURE__*/
+export const CustomOptionFooResponseDesc: GenDescMessage<CustomOptionFooResponse, CustomOptionFooResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 2);
 
 /**
@@ -130,10 +167,16 @@ export type CustomOptionFooClientMessage = Message<"protobuf_unittest.CustomOpti
 };
 
 /**
+ * JSON type for the message protobuf_unittest.CustomOptionFooClientMessage.
+ */
+export type CustomOptionFooClientMessageJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.CustomOptionFooClientMessage.
  * Use `create(CustomOptionFooClientMessageDesc)` to create a new message.
  */
-export const CustomOptionFooClientMessageDesc: GenDescMessage<CustomOptionFooClientMessage> = /*@__PURE__*/
+export const CustomOptionFooClientMessageDesc: GenDescMessage<CustomOptionFooClientMessage, CustomOptionFooClientMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 3);
 
 /**
@@ -143,10 +186,16 @@ export type CustomOptionFooServerMessage = Message<"protobuf_unittest.CustomOpti
 };
 
 /**
+ * JSON type for the message protobuf_unittest.CustomOptionFooServerMessage.
+ */
+export type CustomOptionFooServerMessageJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.CustomOptionFooServerMessage.
  * Use `create(CustomOptionFooServerMessageDesc)` to create a new message.
  */
-export const CustomOptionFooServerMessageDesc: GenDescMessage<CustomOptionFooServerMessage> = /*@__PURE__*/
+export const CustomOptionFooServerMessageDesc: GenDescMessage<CustomOptionFooServerMessage, CustomOptionFooServerMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 4);
 
 /**
@@ -156,10 +205,16 @@ export type DummyMessageContainingEnum = Message<"protobuf_unittest.DummyMessage
 };
 
 /**
+ * JSON type for the message protobuf_unittest.DummyMessageContainingEnum.
+ */
+export type DummyMessageContainingEnumJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.DummyMessageContainingEnum.
  * Use `create(DummyMessageContainingEnumDesc)` to create a new message.
  */
-export const DummyMessageContainingEnumDesc: GenDescMessage<DummyMessageContainingEnum> = /*@__PURE__*/
+export const DummyMessageContainingEnumDesc: GenDescMessage<DummyMessageContainingEnum, DummyMessageContainingEnumJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 5);
 
 /**
@@ -178,9 +233,14 @@ export enum DummyMessageContainingEnum_TestEnumType {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType.
+ */
+export type DummyMessageContainingEnum_TestEnumTypeJson = "TEST_OPTION_ENUM_TYPE1" | "TEST_OPTION_ENUM_TYPE2";
+
+/**
  * Describes the enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType.
  */
-export const DummyMessageContainingEnum_TestEnumTypeDesc: GenDescEnum<DummyMessageContainingEnum_TestEnumType> = /*@__PURE__*/
+export const DummyMessageContainingEnum_TestEnumTypeDesc: GenDescEnum<DummyMessageContainingEnum_TestEnumType, DummyMessageContainingEnum_TestEnumTypeJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 5, 0);
 
 /**
@@ -190,10 +250,16 @@ export type DummyMessageInvalidAsOptionType = Message<"protobuf_unittest.DummyMe
 };
 
 /**
+ * JSON type for the message protobuf_unittest.DummyMessageInvalidAsOptionType.
+ */
+export type DummyMessageInvalidAsOptionTypeJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.DummyMessageInvalidAsOptionType.
  * Use `create(DummyMessageInvalidAsOptionTypeDesc)` to create a new message.
  */
-export const DummyMessageInvalidAsOptionTypeDesc: GenDescMessage<DummyMessageInvalidAsOptionType> = /*@__PURE__*/
+export const DummyMessageInvalidAsOptionTypeDesc: GenDescMessage<DummyMessageInvalidAsOptionType, DummyMessageInvalidAsOptionTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 6);
 
 /**
@@ -203,10 +269,16 @@ export type CustomOptionMinIntegerValues = Message<"protobuf_unittest.CustomOpti
 };
 
 /**
+ * JSON type for the message protobuf_unittest.CustomOptionMinIntegerValues.
+ */
+export type CustomOptionMinIntegerValuesJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.CustomOptionMinIntegerValues.
  * Use `create(CustomOptionMinIntegerValuesDesc)` to create a new message.
  */
-export const CustomOptionMinIntegerValuesDesc: GenDescMessage<CustomOptionMinIntegerValues> = /*@__PURE__*/
+export const CustomOptionMinIntegerValuesDesc: GenDescMessage<CustomOptionMinIntegerValues, CustomOptionMinIntegerValuesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 7);
 
 /**
@@ -216,10 +288,16 @@ export type CustomOptionMaxIntegerValues = Message<"protobuf_unittest.CustomOpti
 };
 
 /**
+ * JSON type for the message protobuf_unittest.CustomOptionMaxIntegerValues.
+ */
+export type CustomOptionMaxIntegerValuesJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.CustomOptionMaxIntegerValues.
  * Use `create(CustomOptionMaxIntegerValuesDesc)` to create a new message.
  */
-export const CustomOptionMaxIntegerValuesDesc: GenDescMessage<CustomOptionMaxIntegerValues> = /*@__PURE__*/
+export const CustomOptionMaxIntegerValuesDesc: GenDescMessage<CustomOptionMaxIntegerValues, CustomOptionMaxIntegerValuesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 8);
 
 /**
@@ -229,10 +307,16 @@ export type CustomOptionOtherValues = Message<"protobuf_unittest.CustomOptionOth
 };
 
 /**
+ * JSON type for the message protobuf_unittest.CustomOptionOtherValues.
+ */
+export type CustomOptionOtherValuesJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.CustomOptionOtherValues.
  * Use `create(CustomOptionOtherValuesDesc)` to create a new message.
  */
-export const CustomOptionOtherValuesDesc: GenDescMessage<CustomOptionOtherValues> = /*@__PURE__*/
+export const CustomOptionOtherValuesDesc: GenDescMessage<CustomOptionOtherValues, CustomOptionOtherValuesJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 9);
 
 /**
@@ -242,10 +326,16 @@ export type SettingRealsFromPositiveInts = Message<"protobuf_unittest.SettingRea
 };
 
 /**
+ * JSON type for the message protobuf_unittest.SettingRealsFromPositiveInts.
+ */
+export type SettingRealsFromPositiveIntsJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.SettingRealsFromPositiveInts.
  * Use `create(SettingRealsFromPositiveIntsDesc)` to create a new message.
  */
-export const SettingRealsFromPositiveIntsDesc: GenDescMessage<SettingRealsFromPositiveInts> = /*@__PURE__*/
+export const SettingRealsFromPositiveIntsDesc: GenDescMessage<SettingRealsFromPositiveInts, SettingRealsFromPositiveIntsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 10);
 
 /**
@@ -255,10 +345,16 @@ export type SettingRealsFromNegativeInts = Message<"protobuf_unittest.SettingRea
 };
 
 /**
+ * JSON type for the message protobuf_unittest.SettingRealsFromNegativeInts.
+ */
+export type SettingRealsFromNegativeIntsJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.SettingRealsFromNegativeInts.
  * Use `create(SettingRealsFromNegativeIntsDesc)` to create a new message.
  */
-export const SettingRealsFromNegativeIntsDesc: GenDescMessage<SettingRealsFromNegativeInts> = /*@__PURE__*/
+export const SettingRealsFromNegativeIntsDesc: GenDescMessage<SettingRealsFromNegativeInts, SettingRealsFromNegativeIntsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 11);
 
 /**
@@ -287,10 +383,35 @@ export type ComplexOptionType1 = Message<"protobuf_unittest.ComplexOptionType1">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.ComplexOptionType1.
+ */
+export type ComplexOptionType1Json = {
+  /**
+   * @generated from field: optional int32 foo = 1;
+   */
+  foo?: number;
+
+  /**
+   * @generated from field: optional int32 foo2 = 2;
+   */
+  foo2?: number;
+
+  /**
+   * @generated from field: optional int32 foo3 = 3;
+   */
+  foo3?: number;
+
+  /**
+   * @generated from field: repeated int32 foo4 = 4;
+   */
+  foo4?: number[];
+};
+
+/**
  * Describes the message protobuf_unittest.ComplexOptionType1.
  * Use `create(ComplexOptionType1Desc)` to create a new message.
  */
-export const ComplexOptionType1Desc: GenDescMessage<ComplexOptionType1> = /*@__PURE__*/
+export const ComplexOptionType1Desc: GenDescMessage<ComplexOptionType1, ComplexOptionType1Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 12);
 
 /**
@@ -319,10 +440,35 @@ export type ComplexOptionType2 = Message<"protobuf_unittest.ComplexOptionType2">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.ComplexOptionType2.
+ */
+export type ComplexOptionType2Json = {
+  /**
+   * @generated from field: optional protobuf_unittest.ComplexOptionType1 bar = 1;
+   */
+  bar?: ComplexOptionType1Json;
+
+  /**
+   * @generated from field: optional int32 baz = 2;
+   */
+  baz?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 fred = 3;
+   */
+  fred?: ComplexOptionType2_ComplexOptionType4Json;
+
+  /**
+   * @generated from field: repeated protobuf_unittest.ComplexOptionType2.ComplexOptionType4 barney = 4;
+   */
+  barney?: ComplexOptionType2_ComplexOptionType4Json[];
+};
+
+/**
  * Describes the message protobuf_unittest.ComplexOptionType2.
  * Use `create(ComplexOptionType2Desc)` to create a new message.
  */
-export const ComplexOptionType2Desc: GenDescMessage<ComplexOptionType2> = /*@__PURE__*/
+export const ComplexOptionType2Desc: GenDescMessage<ComplexOptionType2, ComplexOptionType2Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 13);
 
 /**
@@ -336,10 +482,20 @@ export type ComplexOptionType2_ComplexOptionType4 = Message<"protobuf_unittest.C
 };
 
 /**
+ * JSON type for the message protobuf_unittest.ComplexOptionType2.ComplexOptionType4.
+ */
+export type ComplexOptionType2_ComplexOptionType4Json = {
+  /**
+   * @generated from field: optional int32 waldo = 1;
+   */
+  waldo?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.ComplexOptionType2.ComplexOptionType4.
  * Use `create(ComplexOptionType2_ComplexOptionType4Desc)` to create a new message.
  */
-export const ComplexOptionType2_ComplexOptionType4Desc: GenDescMessage<ComplexOptionType2_ComplexOptionType4> = /*@__PURE__*/
+export const ComplexOptionType2_ComplexOptionType4Desc: GenDescMessage<ComplexOptionType2_ComplexOptionType4, ComplexOptionType2_ComplexOptionType4Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 13, 0);
 
 /**
@@ -364,10 +520,25 @@ export type ComplexOptionType3 = Message<"protobuf_unittest.ComplexOptionType3">
 };
 
 /**
+ * JSON type for the message protobuf_unittest.ComplexOptionType3.
+ */
+export type ComplexOptionType3Json = {
+  /**
+   * @generated from field: optional int32 moo = 1;
+   */
+  moo?: number;
+
+  /**
+   * @generated from field: optional protobuf_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
+   */
+  complexoptiontype5?: ComplexOptionType3_ComplexOptionType5Json;
+};
+
+/**
  * Describes the message protobuf_unittest.ComplexOptionType3.
  * Use `create(ComplexOptionType3Desc)` to create a new message.
  */
-export const ComplexOptionType3Desc: GenDescMessage<ComplexOptionType3> = /*@__PURE__*/
+export const ComplexOptionType3Desc: GenDescMessage<ComplexOptionType3, ComplexOptionType3Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 14);
 
 /**
@@ -381,10 +552,20 @@ export type ComplexOptionType3_ComplexOptionType5 = Message<"protobuf_unittest.C
 };
 
 /**
+ * JSON type for the message protobuf_unittest.ComplexOptionType3.ComplexOptionType5.
+ */
+export type ComplexOptionType3_ComplexOptionType5Json = {
+  /**
+   * @generated from field: optional int32 plugh = 3;
+   */
+  plugh?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.ComplexOptionType3.ComplexOptionType5.
  * Use `create(ComplexOptionType3_ComplexOptionType5Desc)` to create a new message.
  */
-export const ComplexOptionType3_ComplexOptionType5Desc: GenDescMessage<ComplexOptionType3_ComplexOptionType5> = /*@__PURE__*/
+export const ComplexOptionType3_ComplexOptionType5Desc: GenDescMessage<ComplexOptionType3_ComplexOptionType5, ComplexOptionType3_ComplexOptionType5Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 14, 0);
 
 /**
@@ -398,10 +579,20 @@ export type ComplexOpt6 = Message<"protobuf_unittest.ComplexOpt6"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.ComplexOpt6.
+ */
+export type ComplexOpt6Json = {
+  /**
+   * @generated from field: optional int32 xyzzy = 7593951;
+   */
+  xyzzy?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.ComplexOpt6.
  * Use `create(ComplexOpt6Desc)` to create a new message.
  */
-export const ComplexOpt6Desc: GenDescMessage<ComplexOpt6> = /*@__PURE__*/
+export const ComplexOpt6Desc: GenDescMessage<ComplexOpt6, ComplexOpt6Json> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 15);
 
 /**
@@ -413,10 +604,16 @@ export type VariousComplexOptions = Message<"protobuf_unittest.VariousComplexOpt
 };
 
 /**
+ * JSON type for the message protobuf_unittest.VariousComplexOptions.
+ */
+export type VariousComplexOptionsJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.VariousComplexOptions.
  * Use `create(VariousComplexOptionsDesc)` to create a new message.
  */
-export const VariousComplexOptionsDesc: GenDescMessage<VariousComplexOptions> = /*@__PURE__*/
+export const VariousComplexOptionsDesc: GenDescMessage<VariousComplexOptions, VariousComplexOptionsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 16);
 
 /**
@@ -426,10 +623,16 @@ export type AggregateMessageSet = Message<"protobuf_unittest.AggregateMessageSet
 };
 
 /**
+ * JSON type for the message protobuf_unittest.AggregateMessageSet.
+ */
+export type AggregateMessageSetJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.AggregateMessageSet.
  * Use `create(AggregateMessageSetDesc)` to create a new message.
  */
-export const AggregateMessageSetDesc: GenDescMessage<AggregateMessageSet> = /*@__PURE__*/
+export const AggregateMessageSetDesc: GenDescMessage<AggregateMessageSet, AggregateMessageSetJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 17);
 
 /**
@@ -443,10 +646,20 @@ export type AggregateMessageSetElement = Message<"protobuf_unittest.AggregateMes
 };
 
 /**
+ * JSON type for the message protobuf_unittest.AggregateMessageSetElement.
+ */
+export type AggregateMessageSetElementJson = {
+  /**
+   * @generated from field: optional string s = 1;
+   */
+  s?: string;
+};
+
+/**
  * Describes the message protobuf_unittest.AggregateMessageSetElement.
  * Use `create(AggregateMessageSetElementDesc)` to create a new message.
  */
-export const AggregateMessageSetElementDesc: GenDescMessage<AggregateMessageSetElement> = /*@__PURE__*/
+export const AggregateMessageSetElementDesc: GenDescMessage<AggregateMessageSetElement, AggregateMessageSetElementJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 18);
 
 /**
@@ -501,10 +714,45 @@ export type Aggregate = Message<"protobuf_unittest.Aggregate"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.Aggregate.
+ */
+export type AggregateJson = {
+  /**
+   * @generated from field: optional int32 i = 1;
+   */
+  i?: number;
+
+  /**
+   * @generated from field: optional string s = 2;
+   */
+  s?: string;
+
+  /**
+   * @generated from field: optional protobuf_unittest.Aggregate sub = 3;
+   */
+  sub?: AggregateJson;
+
+  /**
+   * @generated from field: optional google.protobuf.FileOptions file = 4;
+   */
+  file?: FileOptionsJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.AggregateMessageSet mset = 5;
+   */
+  mset?: AggregateMessageSetJson;
+
+  /**
+   * @generated from field: optional google.protobuf.Any any = 6;
+   */
+  any?: AnyJson;
+};
+
+/**
  * Describes the message protobuf_unittest.Aggregate.
  * Use `create(AggregateDesc)` to create a new message.
  */
-export const AggregateDesc: GenDescMessage<Aggregate> = /*@__PURE__*/
+export const AggregateDesc: GenDescMessage<Aggregate, AggregateJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 19);
 
 /**
@@ -524,10 +772,20 @@ export type AggregateMessage = Message<"protobuf_unittest.AggregateMessage"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.AggregateMessage.
+ */
+export type AggregateMessageJson = {
+  /**
+   * @generated from field: optional int32 fieldname = 1;
+   */
+  fieldname?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.AggregateMessage.
  * Use `create(AggregateMessageDesc)` to create a new message.
  */
-export const AggregateMessageDesc: GenDescMessage<AggregateMessage> = /*@__PURE__*/
+export const AggregateMessageDesc: GenDescMessage<AggregateMessage, AggregateMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 20);
 
 /**
@@ -539,10 +797,16 @@ export type NestedOptionType = Message<"protobuf_unittest.NestedOptionType"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.NestedOptionType.
+ */
+export type NestedOptionTypeJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.NestedOptionType.
  * Use `create(NestedOptionTypeDesc)` to create a new message.
  */
-export const NestedOptionTypeDesc: GenDescMessage<NestedOptionType> = /*@__PURE__*/
+export const NestedOptionTypeDesc: GenDescMessage<NestedOptionType, NestedOptionTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 21);
 
 /**
@@ -556,10 +820,20 @@ export type NestedOptionType_NestedMessage = Message<"protobuf_unittest.NestedOp
 };
 
 /**
+ * JSON type for the message protobuf_unittest.NestedOptionType.NestedMessage.
+ */
+export type NestedOptionType_NestedMessageJson = {
+  /**
+   * @generated from field: optional int32 nested_field = 1;
+   */
+  nestedField?: number;
+};
+
+/**
  * Describes the message protobuf_unittest.NestedOptionType.NestedMessage.
  * Use `create(NestedOptionType_NestedMessageDesc)` to create a new message.
  */
-export const NestedOptionType_NestedMessageDesc: GenDescMessage<NestedOptionType_NestedMessage> = /*@__PURE__*/
+export const NestedOptionType_NestedMessageDesc: GenDescMessage<NestedOptionType_NestedMessage, NestedOptionType_NestedMessageJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 21, 0);
 
 /**
@@ -573,9 +847,14 @@ export enum NestedOptionType_NestedEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.NestedOptionType.NestedEnum.
+ */
+export type NestedOptionType_NestedEnumJson = "NESTED_ENUM_VALUE";
+
+/**
  * Describes the enum protobuf_unittest.NestedOptionType.NestedEnum.
  */
-export const NestedOptionType_NestedEnumDesc: GenDescEnum<NestedOptionType_NestedEnum> = /*@__PURE__*/
+export const NestedOptionType_NestedEnumDesc: GenDescEnum<NestedOptionType_NestedEnum, NestedOptionType_NestedEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 21, 0);
 
 /**
@@ -598,10 +877,20 @@ export type OldOptionType = Message<"protobuf_unittest.OldOptionType"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.OldOptionType.
+ */
+export type OldOptionTypeJson = {
+  /**
+   * @generated from field: required protobuf_unittest.OldOptionType.TestEnum value = 1;
+   */
+  value?: OldOptionType_TestEnumJson;
+};
+
+/**
  * Describes the message protobuf_unittest.OldOptionType.
  * Use `create(OldOptionTypeDesc)` to create a new message.
  */
-export const OldOptionTypeDesc: GenDescMessage<OldOptionType> = /*@__PURE__*/
+export const OldOptionTypeDesc: GenDescMessage<OldOptionType, OldOptionTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 22);
 
 /**
@@ -615,9 +904,14 @@ export enum OldOptionType_TestEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.OldOptionType.TestEnum.
+ */
+export type OldOptionType_TestEnumJson = "OLD_VALUE";
+
+/**
  * Describes the enum protobuf_unittest.OldOptionType.TestEnum.
  */
-export const OldOptionType_TestEnumDesc: GenDescEnum<OldOptionType_TestEnum> = /*@__PURE__*/
+export const OldOptionType_TestEnumDesc: GenDescEnum<OldOptionType_TestEnum, OldOptionType_TestEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 22, 0);
 
 /**
@@ -633,10 +927,20 @@ export type NewOptionType = Message<"protobuf_unittest.NewOptionType"> & {
 };
 
 /**
+ * JSON type for the message protobuf_unittest.NewOptionType.
+ */
+export type NewOptionTypeJson = {
+  /**
+   * @generated from field: required protobuf_unittest.NewOptionType.TestEnum value = 1;
+   */
+  value?: NewOptionType_TestEnumJson;
+};
+
+/**
  * Describes the message protobuf_unittest.NewOptionType.
  * Use `create(NewOptionTypeDesc)` to create a new message.
  */
-export const NewOptionTypeDesc: GenDescMessage<NewOptionType> = /*@__PURE__*/
+export const NewOptionTypeDesc: GenDescMessage<NewOptionType, NewOptionTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 23);
 
 /**
@@ -655,9 +959,14 @@ export enum NewOptionType_TestEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.NewOptionType.TestEnum.
+ */
+export type NewOptionType_TestEnumJson = "OLD_VALUE" | "NEW_VALUE";
+
+/**
  * Describes the enum protobuf_unittest.NewOptionType.TestEnum.
  */
-export const NewOptionType_TestEnumDesc: GenDescEnum<NewOptionType_TestEnum> = /*@__PURE__*/
+export const NewOptionType_TestEnumDesc: GenDescEnum<NewOptionType_TestEnum, NewOptionType_TestEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 23, 0);
 
 /**
@@ -669,10 +978,16 @@ export type TestMessageWithRequiredEnumOption = Message<"protobuf_unittest.TestM
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestMessageWithRequiredEnumOption.
+ */
+export type TestMessageWithRequiredEnumOptionJson = {
+};
+
+/**
  * Describes the message protobuf_unittest.TestMessageWithRequiredEnumOption.
  * Use `create(TestMessageWithRequiredEnumOptionDesc)` to create a new message.
  */
-export const TestMessageWithRequiredEnumOptionDesc: GenDescMessage<TestMessageWithRequiredEnumOption> = /*@__PURE__*/
+export const TestMessageWithRequiredEnumOptionDesc: GenDescMessage<TestMessageWithRequiredEnumOption, TestMessageWithRequiredEnumOptionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 24);
 
 /**
@@ -691,9 +1006,14 @@ export enum MethodOpt1 {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.MethodOpt1.
+ */
+export type MethodOpt1Json = "METHODOPT1_VAL1" | "METHODOPT1_VAL2";
+
+/**
  * Describes the enum protobuf_unittest.MethodOpt1.
  */
-export const MethodOpt1Desc: GenDescEnum<MethodOpt1> = /*@__PURE__*/
+export const MethodOpt1Desc: GenDescEnum<MethodOpt1, MethodOpt1Json> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 0);
 
 /**
@@ -707,9 +1027,14 @@ export enum AggregateEnum {
 }
 
 /**
+ * JSON type for the enum protobuf_unittest.AggregateEnum.
+ */
+export type AggregateEnumJson = "VALUE";
+
+/**
  * Describes the enum protobuf_unittest.AggregateEnum.
  */
-export const AggregateEnumDesc: GenDescEnum<AggregateEnum> = /*@__PURE__*/
+export const AggregateEnumDesc: GenDescEnum<AggregateEnum, AggregateEnumJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 1);
 
 /**

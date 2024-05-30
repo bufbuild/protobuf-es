@@ -38,7 +38,12 @@ import type { Target } from "./target.js";
 import { deriveImportPath, rewriteImportPath } from "./import-path.js";
 import type { ParsedParameter } from "./parameter.js";
 import { makeFilePreamble } from "./file-preamble.js";
-import { localDescName, localShapeName, generateFilePath } from "./names.js";
+import {
+  localDescName,
+  localShapeName,
+  generateFilePath,
+  localJsonTypeName,
+} from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";
 
 /**
@@ -117,6 +122,12 @@ export function createSchema(
       generateFilePath(desc.file, parameter.bootstrapWkt, filesToGenerate),
       true,
     );
+  const resolveJsonImport: ResolveShapeImportFn = (desc) =>
+    createImportSymbol(
+      localJsonTypeName(desc),
+      generateFilePath(desc.file, parameter.bootstrapWkt, filesToGenerate),
+      true,
+    );
   const createPreamble: CreatePreambleFn = (descFile) =>
     makeFilePreamble(
       descFile,
@@ -150,6 +161,7 @@ export function createSchema(
         rewriteImport,
         resolveDescImport,
         resolveShapeImport,
+        resolveJsonImport,
         createPreamble,
         runtime,
       );

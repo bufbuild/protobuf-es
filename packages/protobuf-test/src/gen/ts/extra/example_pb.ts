@@ -62,9 +62,44 @@ export type User = Message<"docs.User"> & {
 };
 
 /**
+ * JSON type for the message docs.User.
+ */
+export type UserJson = {
+  /**
+   * @generated from field: string first_name = 1;
+   */
+  firstName?: string;
+
+  /**
+   * @generated from field: string last_name = 2;
+   */
+  lastName?: string;
+
+  /**
+   * @generated from field: bool active = 3;
+   */
+  active?: boolean;
+
+  /**
+   * @generated from field: docs.User manager = 4;
+   */
+  manager?: UserJson;
+
+  /**
+   * @generated from field: repeated string locations = 5;
+   */
+  locations?: string[];
+
+  /**
+   * @generated from field: map<string, string> projects = 6;
+   */
+  projects?: { [key: string]: string };
+};
+
+/**
  * Describes the message docs.User.
  * Use `create(UserDesc)` to create a new message.
  */
-export const UserDesc: GenDescMessage<User> = /*@__PURE__*/
+export const UserDesc: GenDescMessage<User, UserJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_example, 0);
 

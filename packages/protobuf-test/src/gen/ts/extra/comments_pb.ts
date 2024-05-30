@@ -91,10 +91,40 @@ export type MessageWithComments = Message<"spec.MessageWithComments"> & {
 };
 
 /**
+ * JSON type for the message spec.MessageWithComments.
+ */
+export type MessageWithCommentsJson = {
+  /**
+   * @generated from field: string foo = 1;
+   */
+  foo?: string;
+
+  /**
+   * @generated from field: int32 value = 2;
+   */
+  value?: number;
+
+  /**
+   * @generated from field: string error = 3;
+   */
+  error?: string;
+
+  /**
+   * @generated from field: string this_field_has_an_empty_comment = 4;
+   */
+  thisFieldHasAnEmptyComment?: string;
+
+  /**
+   * @generated from field: string this_field_is_deprecated = 5 [json_name = "sdf", deprecated = true];
+   */
+  sdf?: string;
+};
+
+/**
  * Describes the message spec.MessageWithComments.
  * Use `create(MessageWithCommentsDesc)` to create a new message.
  */
-export const MessageWithCommentsDesc: GenDescMessage<MessageWithComments> = /*@__PURE__*/
+export const MessageWithCommentsDesc: GenDescMessage<MessageWithComments, MessageWithCommentsJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 0);
 
 /**
@@ -106,10 +136,16 @@ export type EmptyMessageWithComment = Message<"spec.EmptyMessageWithComment"> & 
 };
 
 /**
+ * JSON type for the message spec.EmptyMessageWithComment.
+ */
+export type EmptyMessageWithCommentJson = {
+};
+
+/**
  * Describes the message spec.EmptyMessageWithComment.
  * Use `create(EmptyMessageWithCommentDesc)` to create a new message.
  */
-export const EmptyMessageWithCommentDesc: GenDescMessage<EmptyMessageWithComment> = /*@__PURE__*/
+export const EmptyMessageWithCommentDesc: GenDescMessage<EmptyMessageWithComment, EmptyMessageWithCommentJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 1);
 
 /**
@@ -168,10 +204,45 @@ export type GoogleCommentExample = Message<"spec.GoogleCommentExample"> & {
 };
 
 /**
+ * JSON type for the message spec.GoogleCommentExample.
+ */
+export type GoogleCommentExampleJson = {
+  /**
+   * @generated from field: int32 foo = 1;
+   */
+  foo?: number;
+
+  /**
+   * @generated from field: int32 bar = 2;
+   */
+  bar?: number;
+
+  /**
+   * @generated from field: string baz = 3;
+   */
+  baz?: string;
+
+  /**
+   * @generated from field: double qux = 4;
+   */
+  qux?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: string corge = 5;
+   */
+  corge?: string;
+
+  /**
+   * @generated from field: int32 grault = 6;
+   */
+  grault?: number;
+};
+
+/**
  * Describes the message spec.GoogleCommentExample.
  * Use `create(GoogleCommentExampleDesc)` to create a new message.
  */
-export const GoogleCommentExampleDesc: GenDescMessage<GoogleCommentExample> = /*@__PURE__*/
+export const GoogleCommentExampleDesc: GenDescMessage<GoogleCommentExample, GoogleCommentExampleJson> = /*@__PURE__*/
   messageDesc(fileDesc_extra_comments, 2);
 
 /**
@@ -193,9 +264,14 @@ export enum EnumWithComments {
 }
 
 /**
+ * JSON type for the enum spec.EnumWithComments.
+ */
+export type EnumWithCommentsJson = "VALUE";
+
+/**
  * Describes the enum spec.EnumWithComments.
  */
-export const EnumWithCommentsDesc: GenDescEnum<EnumWithComments> = /*@__PURE__*/
+export const EnumWithCommentsDesc: GenDescEnum<EnumWithComments, EnumWithCommentsJson> = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 0);
 
 /**
@@ -217,10 +293,15 @@ export enum DeprecatedEnumWithComment {
 }
 
 /**
+ * JSON type for the enum spec.DeprecatedEnumWithComment.
+ */
+export type DeprecatedEnumWithCommentJson = "DEPRECATED_ENUM_WITH_COMMENT_A" | "DEPRECATED_ENUM_WITH_COMMENT_B";
+
+/**
  * Describes the enum spec.DeprecatedEnumWithComment.
  * @deprecated
  */
-export const DeprecatedEnumWithCommentDesc: GenDescEnum<DeprecatedEnumWithComment> = /*@__PURE__*/
+export const DeprecatedEnumWithCommentDesc: GenDescEnum<DeprecatedEnumWithComment, DeprecatedEnumWithCommentJson> = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 1);
 
 /**
@@ -240,9 +321,14 @@ export enum DeprecatedEnumNoComment {
 }
 
 /**
+ * JSON type for the enum spec.DeprecatedEnumNoComment.
+ */
+export type DeprecatedEnumNoCommentJson = "DEPRECATED_ENUM_NO_COMMENT_A" | "DEPRECATED_ENUM_NO_COMMENT_B";
+
+/**
  * Describes the enum spec.DeprecatedEnumNoComment.
  * @deprecated
  */
-export const DeprecatedEnumNoCommentDesc: GenDescEnum<DeprecatedEnumNoComment> = /*@__PURE__*/
+export const DeprecatedEnumNoCommentDesc: GenDescEnum<DeprecatedEnumNoComment, DeprecatedEnumNoCommentJson> = /*@__PURE__*/
   enumDesc(fileDesc_extra_comments, 2);
 

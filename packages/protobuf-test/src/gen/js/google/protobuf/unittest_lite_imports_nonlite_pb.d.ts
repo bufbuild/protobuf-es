@@ -22,7 +22,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { TestAllTypes, TestRequired } from "./unittest_pb.js";
+import type { TestAllTypes, TestAllTypesJson, TestRequired, TestRequiredJson } from "./unittest_pb.js";
 
 /**
  * Describes the file google/protobuf/unittest_lite_imports_nonlite.proto.
@@ -47,8 +47,23 @@ export declare type TestLiteImportsNonlite = Message<"protobuf_unittest.TestLite
 };
 
 /**
+ * JSON type for the message protobuf_unittest.TestLiteImportsNonlite.
+ */
+export declare type TestLiteImportsNonliteJson = {
+  /**
+   * @generated from field: optional protobuf_unittest.TestAllTypes message = 1;
+   */
+  message?: TestAllTypesJson;
+
+  /**
+   * @generated from field: optional protobuf_unittest.TestRequired message_with_required = 2;
+   */
+  messageWithRequired?: TestRequiredJson;
+};
+
+/**
  * Describes the message protobuf_unittest.TestLiteImportsNonlite.
  * Use `create(TestLiteImportsNonliteDesc)` to create a new message.
  */
-export declare const TestLiteImportsNonliteDesc: GenDescMessage<TestLiteImportsNonlite>;
+export declare const TestLiteImportsNonliteDesc: GenDescMessage<TestLiteImportsNonlite, TestLiteImportsNonliteJson>;
 

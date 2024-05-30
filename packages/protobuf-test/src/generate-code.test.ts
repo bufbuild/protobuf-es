@@ -90,6 +90,20 @@ test("source retention options are unavailable in generated code", () => {
   ).toBe(false);
 });
 
+describe("JSON types", () => {
+  const ok: proto3_ts.Proto3MessageJson = {
+    singularBoolField: true,
+    singularInt32Field: 123,
+    singularInt64Field: "456",
+    singularEnumField: "PROTO3_ENUM_YES",
+    singularBytesField: "",
+    singularFloatField: "Infinity",
+    repeatedEnumField: ["PROTO3_ENUM_YES", "PROTO3_ENUM_NO"],
+    singularWrappedUint32Field: 123,
+  };
+  expect(ok).toBeDefined();
+});
+
 test("ts generated code is assignable to js", () => {
   expect([
     function f(ts: proto2_ts.Proto2Enum, js: proto2_js.Proto2Enum) {
