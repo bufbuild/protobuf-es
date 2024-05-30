@@ -483,7 +483,7 @@ export type Proto3MessageJson = {
   /**
    * @generated from field: repeated float repeated_float_field = 21;
    */
-  repeatedFloatField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedFloatField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool repeated_bool_field = 22;
@@ -508,7 +508,7 @@ export type Proto3MessageJson = {
   /**
    * @generated from field: repeated double packed_double_field = 25 [packed = true];
    */
-  packedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated uint32 packed_uint32_field = 26 [packed = true];
@@ -523,7 +523,7 @@ export type Proto3MessageJson = {
   /**
    * @generated from field: repeated double unpacked_double_field = 28 [packed = false];
    */
-  unpackedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated uint32 unpacked_uint32_field = 29 [packed = false];

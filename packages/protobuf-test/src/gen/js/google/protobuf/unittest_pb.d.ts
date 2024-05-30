@@ -655,12 +655,12 @@ export declare type TestAllTypesJson = {
   /**
    * @generated from field: repeated float repeated_float = 41;
    */
-  repeatedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double repeated_double = 42;
    */
-  repeatedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool repeated_bool = 43;
@@ -5467,12 +5467,12 @@ export declare type TestPackedTypesJson = {
   /**
    * @generated from field: repeated float packed_float = 100 [packed = true];
    */
-  packedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double packed_double = 101 [packed = true];
    */
-  packedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool packed_bool = 102 [packed = true];
@@ -5626,12 +5626,12 @@ export declare type TestUnpackedTypesJson = {
   /**
    * @generated from field: repeated float unpacked_float = 100 [packed = false];
    */
-  unpackedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double unpacked_double = 101 [packed = false];
    */
-  unpackedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool unpacked_bool = 102 [packed = false];
@@ -5960,7 +5960,7 @@ export declare type TestRepeatedScalarDifferentTagSizesJson = {
   /**
    * @generated from field: repeated float repeated_float = 262142;
    */
-  repeatedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated uint64 repeated_uint64 = 262143;

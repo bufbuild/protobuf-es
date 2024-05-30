@@ -751,7 +751,7 @@ export declare type Proto2MessageJson = {
   /**
    * @generated from field: repeated float repeated_float_field = 41;
    */
-  repeatedFloatField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedFloatField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool repeated_bool_field = 42;
@@ -781,7 +781,7 @@ export declare type Proto2MessageJson = {
   /**
    * @generated from field: repeated double packed_double_field = 46 [packed = true];
    */
-  packedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated uint32 packed_uint32_field = 47 [packed = true];
@@ -796,7 +796,7 @@ export declare type Proto2MessageJson = {
   /**
    * @generated from field: repeated double unpacked_double_field = 49 [packed = false];
    */
-  unpackedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated uint32 unpacked_uint32_field = 50 [packed = false];

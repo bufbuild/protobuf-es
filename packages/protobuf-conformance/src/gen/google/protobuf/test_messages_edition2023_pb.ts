@@ -727,12 +727,12 @@ export type TestAllTypesEdition2023Json = {
   /**
    * @generated from field: repeated float repeated_float = 41;
    */
-  repeatedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double repeated_double = 42;
    */
-  repeatedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool repeated_bool = 43;
@@ -832,12 +832,12 @@ export type TestAllTypesEdition2023Json = {
   /**
    * @generated from field: repeated float packed_float = 85 [features.repeated_field_encoding = PACKED];
    */
-  packedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double packed_double = 86 [features.repeated_field_encoding = PACKED];
    */
-  packedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool packed_bool = 87 [features.repeated_field_encoding = PACKED];
@@ -902,12 +902,12 @@ export type TestAllTypesEdition2023Json = {
   /**
    * @generated from field: repeated float unpacked_float = 99 [features.repeated_field_encoding = EXPANDED];
    */
-  unpackedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double unpacked_double = 100 [features.repeated_field_encoding = EXPANDED];
    */
-  unpackedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool unpacked_bool = 101 [features.repeated_field_encoding = EXPANDED];

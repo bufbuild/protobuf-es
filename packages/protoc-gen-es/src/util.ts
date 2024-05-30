@@ -149,8 +149,13 @@ export function fieldJsonType(field: DescField | DescExtension): Printable {
             },
             "[]",
           ];
-        case "scalar":
-          return [scalarJsonType(field.scalar), "[]"];
+        case "scalar": {
+          const t = scalarJsonType(field.scalar);
+          if (t.includes("|")) {
+            return ["(", t, ")[]"];
+          }
+          return [t, "[]"];
+        }
         case "message":
           return [
             {

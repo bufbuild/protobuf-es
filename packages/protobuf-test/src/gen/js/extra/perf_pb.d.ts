@@ -352,7 +352,7 @@ export declare type PerfMessageJson = {
   /**
    * @generated from field: repeated double repeated_double_field = 19;
    */
-  repeatedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated int32 repeated_int32_field = 20;

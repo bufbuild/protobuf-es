@@ -90,12 +90,12 @@ export type Proto3MessageForEdition2023Json = {
   /**
    * @generated from field: repeated double packed_double_field = 9 [packed = true];
    */
-  packedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double unpacked_double_field = 10 [packed = false];
    */
-  unpackedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 };
 
 /**

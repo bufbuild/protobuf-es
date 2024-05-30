@@ -732,7 +732,7 @@ export declare type Edition2023MessageJson = {
   /**
    * @generated from field: repeated float repeated_float_field = 407;
    */
-  repeatedFloatField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedFloatField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool repeated_bool_field = 408;
@@ -767,7 +767,7 @@ export declare type Edition2023MessageJson = {
   /**
    * @generated from field: repeated double packed_double_field = 414 [features.repeated_field_encoding = PACKED];
    */
-  packedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated uint32 packed_uint32_field = 415 [features.repeated_field_encoding = PACKED];
@@ -782,7 +782,7 @@ export declare type Edition2023MessageJson = {
   /**
    * @generated from field: repeated double unpacked_double_field = 417 [features.repeated_field_encoding = EXPANDED];
    */
-  unpackedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated uint32 unpacked_uint32_field = 418 [features.repeated_field_encoding = EXPANDED];
@@ -1034,12 +1034,12 @@ export declare type Edition2023FromProto2MessageJson = {
   /**
    * @generated from field: repeated double packed_double_field = 9 [features.repeated_field_encoding = PACKED];
    */
-  packedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double unpacked_double_field = 10 [features.repeated_field_encoding = EXPANDED];
    */
-  unpackedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 };
 
 /**
@@ -1165,12 +1165,12 @@ export declare type Edition2023FromProto3MessageJson = {
   /**
    * @generated from field: repeated double packed_double_field = 9 [features.repeated_field_encoding = PACKED];
    */
-  packedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double unpacked_double_field = 10 [features.repeated_field_encoding = EXPANDED];
    */
-  unpackedDoubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  unpackedDoubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 };
 
 /**

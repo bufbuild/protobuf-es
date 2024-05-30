@@ -277,12 +277,12 @@ export declare type RepeatedScalarValuesMessageJson = {
   /**
    * @generated from field: repeated double double_field = 1;
    */
-  doubleField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  doubleField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated float float_field = 2;
    */
-  floatField?: number | "NaN" | "Infinity" | "-Infinity"[];
+  floatField?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated int64 int64_field = 3;

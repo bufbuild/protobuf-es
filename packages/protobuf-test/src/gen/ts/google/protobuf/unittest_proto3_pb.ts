@@ -504,12 +504,12 @@ export type TestAllTypesJson = {
   /**
    * @generated from field: repeated float repeated_float = 41;
    */
-  repeatedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double repeated_double = 42;
    */
-  repeatedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool repeated_bool = 43;
@@ -800,12 +800,12 @@ export type TestPackedTypesJson = {
   /**
    * @generated from field: repeated float packed_float = 100 [packed = true];
    */
-  packedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double packed_double = 101 [packed = true];
    */
-  packedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+  packedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool packed_bool = 102 [packed = true];
@@ -959,12 +959,12 @@ export type TestUnpackedTypesJson = {
   /**
    * @generated from field: repeated float repeated_float = 11 [packed = false];
    */
-  repeatedFloat?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated double repeated_double = 12 [packed = false];
    */
-  repeatedDouble?: number | "NaN" | "Infinity" | "-Infinity"[];
+  repeatedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
 
   /**
    * @generated from field: repeated bool repeated_bool = 13 [packed = false];
