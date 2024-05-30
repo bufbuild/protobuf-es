@@ -38,7 +38,7 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         const localName = member.localName,
           t = target as AnyMessage,
           s = source as PartialMessage<AnyMessage>;
-        if (s[localName] === undefined) {
+        if (s[localName] == null) {
           // TODO if source is a Message instance, we should use isFieldSet() here to support future field presence
           continue;
         }
