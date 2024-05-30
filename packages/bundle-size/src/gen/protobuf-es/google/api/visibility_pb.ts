@@ -67,10 +67,20 @@ export type Visibility = Message<"google.api.Visibility"> & {
 };
 
 /**
+ * JSON type for the message google.api.Visibility.
+ */
+export type VisibilityJson = {
+  /**
+   * @generated from field: repeated google.api.VisibilityRule rules = 1;
+   */
+  rules?: VisibilityRuleJson[];
+};
+
+/**
  * Describes the message google.api.Visibility.
  * Use `create(VisibilityDesc)` to create a new message.
  */
-export const VisibilityDesc: GenDescMessage<Visibility> = /*@__PURE__*/
+export const VisibilityDesc: GenDescMessage<Visibility, VisibilityJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_visibility, 0);
 
 /**
@@ -113,10 +123,25 @@ export type VisibilityRule = Message<"google.api.VisibilityRule"> & {
 };
 
 /**
+ * JSON type for the message google.api.VisibilityRule.
+ */
+export type VisibilityRuleJson = {
+  /**
+   * @generated from field: string selector = 1;
+   */
+  selector?: string;
+
+  /**
+   * @generated from field: string restriction = 2;
+   */
+  restriction?: string;
+};
+
+/**
  * Describes the message google.api.VisibilityRule.
  * Use `create(VisibilityRuleDesc)` to create a new message.
  */
-export const VisibilityRuleDesc: GenDescMessage<VisibilityRule> = /*@__PURE__*/
+export const VisibilityRuleDesc: GenDescMessage<VisibilityRule, VisibilityRuleJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_visibility, 1);
 
 /**

@@ -65,10 +65,30 @@ export type ReadRequest = Message<"google.bytestream.ReadRequest"> & {
 };
 
 /**
+ * JSON type for the message google.bytestream.ReadRequest.
+ */
+export type ReadRequestJson = {
+  /**
+   * @generated from field: string resource_name = 1;
+   */
+  resourceName?: string;
+
+  /**
+   * @generated from field: int64 read_offset = 2;
+   */
+  readOffset?: string;
+
+  /**
+   * @generated from field: int64 read_limit = 3;
+   */
+  readLimit?: string;
+};
+
+/**
  * Describes the message google.bytestream.ReadRequest.
  * Use `create(ReadRequestDesc)` to create a new message.
  */
-export const ReadRequestDesc: GenDescMessage<ReadRequest> = /*@__PURE__*/
+export const ReadRequestDesc: GenDescMessage<ReadRequest, ReadRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_bytestream_bytestream, 0);
 
 /**
@@ -89,10 +109,20 @@ export type ReadResponse = Message<"google.bytestream.ReadResponse"> & {
 };
 
 /**
+ * JSON type for the message google.bytestream.ReadResponse.
+ */
+export type ReadResponseJson = {
+  /**
+   * @generated from field: bytes data = 10;
+   */
+  data?: string;
+};
+
+/**
  * Describes the message google.bytestream.ReadResponse.
  * Use `create(ReadResponseDesc)` to create a new message.
  */
-export const ReadResponseDesc: GenDescMessage<ReadResponse> = /*@__PURE__*/
+export const ReadResponseDesc: GenDescMessage<ReadResponse, ReadResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_bytestream_bytestream, 1);
 
 /**
@@ -149,10 +179,35 @@ export type WriteRequest = Message<"google.bytestream.WriteRequest"> & {
 };
 
 /**
+ * JSON type for the message google.bytestream.WriteRequest.
+ */
+export type WriteRequestJson = {
+  /**
+   * @generated from field: string resource_name = 1;
+   */
+  resourceName?: string;
+
+  /**
+   * @generated from field: int64 write_offset = 2;
+   */
+  writeOffset?: string;
+
+  /**
+   * @generated from field: bool finish_write = 3;
+   */
+  finishWrite?: boolean;
+
+  /**
+   * @generated from field: bytes data = 10;
+   */
+  data?: string;
+};
+
+/**
  * Describes the message google.bytestream.WriteRequest.
  * Use `create(WriteRequestDesc)` to create a new message.
  */
-export const WriteRequestDesc: GenDescMessage<WriteRequest> = /*@__PURE__*/
+export const WriteRequestDesc: GenDescMessage<WriteRequest, WriteRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_bytestream_bytestream, 2);
 
 /**
@@ -170,10 +225,20 @@ export type WriteResponse = Message<"google.bytestream.WriteResponse"> & {
 };
 
 /**
+ * JSON type for the message google.bytestream.WriteResponse.
+ */
+export type WriteResponseJson = {
+  /**
+   * @generated from field: int64 committed_size = 1;
+   */
+  committedSize?: string;
+};
+
+/**
  * Describes the message google.bytestream.WriteResponse.
  * Use `create(WriteResponseDesc)` to create a new message.
  */
-export const WriteResponseDesc: GenDescMessage<WriteResponse> = /*@__PURE__*/
+export const WriteResponseDesc: GenDescMessage<WriteResponse, WriteResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_bytestream_bytestream, 3);
 
 /**
@@ -191,10 +256,20 @@ export type QueryWriteStatusRequest = Message<"google.bytestream.QueryWriteStatu
 };
 
 /**
+ * JSON type for the message google.bytestream.QueryWriteStatusRequest.
+ */
+export type QueryWriteStatusRequestJson = {
+  /**
+   * @generated from field: string resource_name = 1;
+   */
+  resourceName?: string;
+};
+
+/**
  * Describes the message google.bytestream.QueryWriteStatusRequest.
  * Use `create(QueryWriteStatusRequestDesc)` to create a new message.
  */
-export const QueryWriteStatusRequestDesc: GenDescMessage<QueryWriteStatusRequest> = /*@__PURE__*/
+export const QueryWriteStatusRequestDesc: GenDescMessage<QueryWriteStatusRequest, QueryWriteStatusRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_bytestream_bytestream, 4);
 
 /**
@@ -220,10 +295,25 @@ export type QueryWriteStatusResponse = Message<"google.bytestream.QueryWriteStat
 };
 
 /**
+ * JSON type for the message google.bytestream.QueryWriteStatusResponse.
+ */
+export type QueryWriteStatusResponseJson = {
+  /**
+   * @generated from field: int64 committed_size = 1;
+   */
+  committedSize?: string;
+
+  /**
+   * @generated from field: bool complete = 2;
+   */
+  complete?: boolean;
+};
+
+/**
  * Describes the message google.bytestream.QueryWriteStatusResponse.
  * Use `create(QueryWriteStatusResponseDesc)` to create a new message.
  */
-export const QueryWriteStatusResponseDesc: GenDescMessage<QueryWriteStatusResponse> = /*@__PURE__*/
+export const QueryWriteStatusResponseDesc: GenDescMessage<QueryWriteStatusResponse, QueryWriteStatusResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_bytestream_bytestream, 5);
 
 /**

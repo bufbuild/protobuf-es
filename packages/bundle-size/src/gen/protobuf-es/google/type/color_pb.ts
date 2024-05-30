@@ -18,6 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { FloatValueJson } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -196,9 +197,34 @@ export type Color = Message<"google.type.Color"> & {
 };
 
 /**
+ * JSON type for the message google.type.Color.
+ */
+export type ColorJson = {
+  /**
+   * @generated from field: float red = 1;
+   */
+  red?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: float green = 2;
+   */
+  green?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: float blue = 3;
+   */
+  blue?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: google.protobuf.FloatValue alpha = 4;
+   */
+  alpha?: FloatValueJson;
+};
+
+/**
  * Describes the message google.type.Color.
  * Use `create(ColorDesc)` to create a new message.
  */
-export const ColorDesc: GenDescMessage<Color> = /*@__PURE__*/
+export const ColorDesc: GenDescMessage<Color, ColorJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_type_color, 0);
 

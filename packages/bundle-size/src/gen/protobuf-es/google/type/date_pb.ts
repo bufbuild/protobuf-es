@@ -71,9 +71,29 @@ export type Date = Message<"google.type.Date"> & {
 };
 
 /**
+ * JSON type for the message google.type.Date.
+ */
+export type DateJson = {
+  /**
+   * @generated from field: int32 year = 1;
+   */
+  year?: number;
+
+  /**
+   * @generated from field: int32 month = 2;
+   */
+  month?: number;
+
+  /**
+   * @generated from field: int32 day = 3;
+   */
+  day?: number;
+};
+
+/**
  * Describes the message google.type.Date.
  * Use `create(DateDesc)` to create a new message.
  */
-export const DateDesc: GenDescMessage<Date> = /*@__PURE__*/
+export const DateDesc: GenDescMessage<Date, DateJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_type_date, 0);
 

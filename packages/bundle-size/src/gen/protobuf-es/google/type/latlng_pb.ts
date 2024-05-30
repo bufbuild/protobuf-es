@@ -52,9 +52,24 @@ export type LatLng = Message<"google.type.LatLng"> & {
 };
 
 /**
+ * JSON type for the message google.type.LatLng.
+ */
+export type LatLngJson = {
+  /**
+   * @generated from field: double latitude = 1;
+   */
+  latitude?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: double longitude = 2;
+   */
+  longitude?: number | "NaN" | "Infinity" | "-Infinity";
+};
+
+/**
  * Describes the message google.type.LatLng.
  * Use `create(LatLngDesc)` to create a new message.
  */
-export const LatLngDesc: GenDescMessage<LatLng> = /*@__PURE__*/
+export const LatLngDesc: GenDescMessage<LatLng, LatLngJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_type_latlng, 0);
 

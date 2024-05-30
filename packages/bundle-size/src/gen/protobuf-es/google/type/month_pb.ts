@@ -124,8 +124,13 @@ export enum Month {
 }
 
 /**
+ * JSON type for the enum google.type.Month.
+ */
+export type MonthJson = "MONTH_UNSPECIFIED" | "JANUARY" | "FEBRUARY" | "MARCH" | "APRIL" | "MAY" | "JUNE" | "JULY" | "AUGUST" | "SEPTEMBER" | "OCTOBER" | "NOVEMBER" | "DECEMBER";
+
+/**
  * Describes the enum google.type.Month.
  */
-export const MonthDesc: GenDescEnum<Month> = /*@__PURE__*/
+export const MonthDesc: GenDescEnum<Month, MonthJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_type_month, 0);
 

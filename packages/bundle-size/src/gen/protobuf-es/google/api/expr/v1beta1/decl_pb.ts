@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Expr } from "./expr_pb";
+import type { Expr, ExprJson } from "./expr_pb";
 import { fileDesc_google_api_expr_v1beta1_expr } from "./expr_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -80,10 +80,40 @@ export type Decl = Message<"google.api.expr.v1beta1.Decl"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Decl.
+ */
+export type DeclJson = {
+  /**
+   * @generated from field: int32 id = 1;
+   */
+  id?: number;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: string doc = 3;
+   */
+  doc?: string;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.IdentDecl ident = 4;
+   */
+  ident?: IdentDeclJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.FunctionDecl function = 5;
+   */
+  function?: FunctionDeclJson;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Decl.
  * Use `create(DeclDesc)` to create a new message.
  */
-export const DeclDesc: GenDescMessage<Decl> = /*@__PURE__*/
+export const DeclDesc: GenDescMessage<Decl, DeclJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_decl, 0);
 
 /**
@@ -119,10 +149,30 @@ export type DeclType = Message<"google.api.expr.v1beta1.DeclType"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.DeclType.
+ */
+export type DeclTypeJson = {
+  /**
+   * @generated from field: int32 id = 1;
+   */
+  id?: number;
+
+  /**
+   * @generated from field: string type = 2;
+   */
+  type?: string;
+
+  /**
+   * @generated from field: repeated google.api.expr.v1beta1.DeclType type_params = 4;
+   */
+  typeParams?: DeclTypeJson[];
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.DeclType.
  * Use `create(DeclTypeDesc)` to create a new message.
  */
-export const DeclTypeDesc: GenDescMessage<DeclType> = /*@__PURE__*/
+export const DeclTypeDesc: GenDescMessage<DeclType, DeclTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_decl, 1);
 
 /**
@@ -147,10 +197,25 @@ export type IdentDecl = Message<"google.api.expr.v1beta1.IdentDecl"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.IdentDecl.
+ */
+export type IdentDeclJson = {
+  /**
+   * @generated from field: google.api.expr.v1beta1.DeclType type = 3;
+   */
+  type?: DeclTypeJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr value = 4;
+   */
+  value?: ExprJson;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.IdentDecl.
  * Use `create(IdentDeclDesc)` to create a new message.
  */
-export const IdentDeclDesc: GenDescMessage<IdentDecl> = /*@__PURE__*/
+export const IdentDeclDesc: GenDescMessage<IdentDecl, IdentDeclJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_decl, 2);
 
 /**
@@ -182,9 +247,29 @@ export type FunctionDecl = Message<"google.api.expr.v1beta1.FunctionDecl"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.FunctionDecl.
+ */
+export type FunctionDeclJson = {
+  /**
+   * @generated from field: repeated google.api.expr.v1beta1.IdentDecl args = 1;
+   */
+  args?: IdentDeclJson[];
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.DeclType return_type = 2;
+   */
+  returnType?: DeclTypeJson;
+
+  /**
+   * @generated from field: bool receiver_function = 3;
+   */
+  receiverFunction?: boolean;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.FunctionDecl.
  * Use `create(FunctionDeclDesc)` to create a new message.
  */
-export const FunctionDeclDesc: GenDescMessage<FunctionDecl> = /*@__PURE__*/
+export const FunctionDeclDesc: GenDescMessage<FunctionDecl, FunctionDeclJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_decl, 3);
 

@@ -20,9 +20,9 @@ import type { GenDescExtension, GenDescFile, GenDescMessage, GenDescService } fr
 import { extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc_google_api_annotations } from "../api/annotations_pb";
 import { fileDesc_google_api_client } from "../api/client_pb";
-import type { Any, Duration, EmptyDesc, MethodOptions } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson, Duration, DurationJson, EmptyDesc, MethodOptions } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_descriptor, fileDesc_google_protobuf_duration, fileDesc_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
-import type { Status } from "../rpc/status_pb";
+import type { Status, StatusJson } from "../rpc/status_pb";
 import { fileDesc_google_rpc_status } from "../rpc/status_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -101,10 +101,40 @@ export type Operation = Message<"google.longrunning.Operation"> & {
 };
 
 /**
+ * JSON type for the message google.longrunning.Operation.
+ */
+export type OperationJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: google.protobuf.Any metadata = 2;
+   */
+  metadata?: AnyJson;
+
+  /**
+   * @generated from field: bool done = 3;
+   */
+  done?: boolean;
+
+  /**
+   * @generated from field: google.rpc.Status error = 4;
+   */
+  error?: StatusJson;
+
+  /**
+   * @generated from field: google.protobuf.Any response = 5;
+   */
+  response?: AnyJson;
+};
+
+/**
  * Describes the message google.longrunning.Operation.
  * Use `create(OperationDesc)` to create a new message.
  */
-export const OperationDesc: GenDescMessage<Operation> = /*@__PURE__*/
+export const OperationDesc: GenDescMessage<Operation, OperationJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_longrunning_operations, 0);
 
 /**
@@ -122,10 +152,20 @@ export type GetOperationRequest = Message<"google.longrunning.GetOperationReques
 };
 
 /**
+ * JSON type for the message google.longrunning.GetOperationRequest.
+ */
+export type GetOperationRequestJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+};
+
+/**
  * Describes the message google.longrunning.GetOperationRequest.
  * Use `create(GetOperationRequestDesc)` to create a new message.
  */
-export const GetOperationRequestDesc: GenDescMessage<GetOperationRequest> = /*@__PURE__*/
+export const GetOperationRequestDesc: GenDescMessage<GetOperationRequest, GetOperationRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_longrunning_operations, 1);
 
 /**
@@ -164,10 +204,35 @@ export type ListOperationsRequest = Message<"google.longrunning.ListOperationsRe
 };
 
 /**
+ * JSON type for the message google.longrunning.ListOperationsRequest.
+ */
+export type ListOperationsRequestJson = {
+  /**
+   * @generated from field: string name = 4;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: string filter = 1;
+   */
+  filter?: string;
+
+  /**
+   * @generated from field: int32 page_size = 2;
+   */
+  pageSize?: number;
+
+  /**
+   * @generated from field: string page_token = 3;
+   */
+  pageToken?: string;
+};
+
+/**
  * Describes the message google.longrunning.ListOperationsRequest.
  * Use `create(ListOperationsRequestDesc)` to create a new message.
  */
-export const ListOperationsRequestDesc: GenDescMessage<ListOperationsRequest> = /*@__PURE__*/
+export const ListOperationsRequestDesc: GenDescMessage<ListOperationsRequest, ListOperationsRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_longrunning_operations, 2);
 
 /**
@@ -192,10 +257,25 @@ export type ListOperationsResponse = Message<"google.longrunning.ListOperationsR
 };
 
 /**
+ * JSON type for the message google.longrunning.ListOperationsResponse.
+ */
+export type ListOperationsResponseJson = {
+  /**
+   * @generated from field: repeated google.longrunning.Operation operations = 1;
+   */
+  operations?: OperationJson[];
+
+  /**
+   * @generated from field: string next_page_token = 2;
+   */
+  nextPageToken?: string;
+};
+
+/**
  * Describes the message google.longrunning.ListOperationsResponse.
  * Use `create(ListOperationsResponseDesc)` to create a new message.
  */
-export const ListOperationsResponseDesc: GenDescMessage<ListOperationsResponse> = /*@__PURE__*/
+export const ListOperationsResponseDesc: GenDescMessage<ListOperationsResponse, ListOperationsResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_longrunning_operations, 3);
 
 /**
@@ -213,10 +293,20 @@ export type CancelOperationRequest = Message<"google.longrunning.CancelOperation
 };
 
 /**
+ * JSON type for the message google.longrunning.CancelOperationRequest.
+ */
+export type CancelOperationRequestJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+};
+
+/**
  * Describes the message google.longrunning.CancelOperationRequest.
  * Use `create(CancelOperationRequestDesc)` to create a new message.
  */
-export const CancelOperationRequestDesc: GenDescMessage<CancelOperationRequest> = /*@__PURE__*/
+export const CancelOperationRequestDesc: GenDescMessage<CancelOperationRequest, CancelOperationRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_longrunning_operations, 4);
 
 /**
@@ -234,10 +324,20 @@ export type DeleteOperationRequest = Message<"google.longrunning.DeleteOperation
 };
 
 /**
+ * JSON type for the message google.longrunning.DeleteOperationRequest.
+ */
+export type DeleteOperationRequestJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+};
+
+/**
  * Describes the message google.longrunning.DeleteOperationRequest.
  * Use `create(DeleteOperationRequestDesc)` to create a new message.
  */
-export const DeleteOperationRequestDesc: GenDescMessage<DeleteOperationRequest> = /*@__PURE__*/
+export const DeleteOperationRequestDesc: GenDescMessage<DeleteOperationRequest, DeleteOperationRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_longrunning_operations, 5);
 
 /**
@@ -264,10 +364,25 @@ export type WaitOperationRequest = Message<"google.longrunning.WaitOperationRequ
 };
 
 /**
+ * JSON type for the message google.longrunning.WaitOperationRequest.
+ */
+export type WaitOperationRequestJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: google.protobuf.Duration timeout = 2;
+   */
+  timeout?: DurationJson;
+};
+
+/**
  * Describes the message google.longrunning.WaitOperationRequest.
  * Use `create(WaitOperationRequestDesc)` to create a new message.
  */
-export const WaitOperationRequestDesc: GenDescMessage<WaitOperationRequest> = /*@__PURE__*/
+export const WaitOperationRequestDesc: GenDescMessage<WaitOperationRequest, WaitOperationRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_longrunning_operations, 6);
 
 /**
@@ -315,10 +430,25 @@ export type OperationInfo = Message<"google.longrunning.OperationInfo"> & {
 };
 
 /**
+ * JSON type for the message google.longrunning.OperationInfo.
+ */
+export type OperationInfoJson = {
+  /**
+   * @generated from field: string response_type = 1;
+   */
+  responseType?: string;
+
+  /**
+   * @generated from field: string metadata_type = 2;
+   */
+  metadataType?: string;
+};
+
+/**
  * Describes the message google.longrunning.OperationInfo.
  * Use `create(OperationInfoDesc)` to create a new message.
  */
-export const OperationInfoDesc: GenDescMessage<OperationInfo> = /*@__PURE__*/
+export const OperationInfoDesc: GenDescMessage<OperationInfo, OperationInfoJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_longrunning_operations, 7);
 
 /**

@@ -49,9 +49,24 @@ export type Fraction = Message<"google.type.Fraction"> & {
 };
 
 /**
+ * JSON type for the message google.type.Fraction.
+ */
+export type FractionJson = {
+  /**
+   * @generated from field: int64 numerator = 1;
+   */
+  numerator?: string;
+
+  /**
+   * @generated from field: int64 denominator = 2;
+   */
+  denominator?: string;
+};
+
+/**
  * Describes the message google.type.Fraction.
  * Use `create(FractionDesc)` to create a new message.
  */
-export const FractionDesc: GenDescMessage<Fraction> = /*@__PURE__*/
+export const FractionDesc: GenDescMessage<Fraction, FractionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_type_fraction, 0);
 

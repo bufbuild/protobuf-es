@@ -18,7 +18,7 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Timestamp } from "@bufbuild/protobuf/wkt";
+import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -61,10 +61,40 @@ export type Person = Message<"example.Person"> & {
 };
 
 /**
+ * JSON type for the message example.Person.
+ */
+export type PersonJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: int32 id = 2;
+   */
+  id?: number;
+
+  /**
+   * @generated from field: string email = 3;
+   */
+  email?: string;
+
+  /**
+   * @generated from field: repeated example.Person.PhoneNumber phones = 4;
+   */
+  phones?: Person_PhoneNumberJson[];
+
+  /**
+   * @generated from field: google.protobuf.Timestamp last_updated = 5;
+   */
+  lastUpdated?: TimestampJson;
+};
+
+/**
  * Describes the message example.Person.
  * Use `create(PersonDesc)` to create a new message.
  */
-export const PersonDesc: GenDescMessage<Person> = /*@__PURE__*/
+export const PersonDesc: GenDescMessage<Person, PersonJson> = /*@__PURE__*/
   messageDesc(fileDesc_addressbook, 0);
 
 /**
@@ -83,10 +113,25 @@ export type Person_PhoneNumber = Message<"example.Person.PhoneNumber"> & {
 };
 
 /**
+ * JSON type for the message example.Person.PhoneNumber.
+ */
+export type Person_PhoneNumberJson = {
+  /**
+   * @generated from field: string number = 1;
+   */
+  number?: string;
+
+  /**
+   * @generated from field: example.Person.PhoneType type = 2;
+   */
+  type?: Person_PhoneTypeJson;
+};
+
+/**
  * Describes the message example.Person.PhoneNumber.
  * Use `create(Person_PhoneNumberDesc)` to create a new message.
  */
-export const Person_PhoneNumberDesc: GenDescMessage<Person_PhoneNumber> = /*@__PURE__*/
+export const Person_PhoneNumberDesc: GenDescMessage<Person_PhoneNumber, Person_PhoneNumberJson> = /*@__PURE__*/
   messageDesc(fileDesc_addressbook, 0, 0);
 
 /**
@@ -110,9 +155,14 @@ export enum Person_PhoneType {
 }
 
 /**
+ * JSON type for the enum example.Person.PhoneType.
+ */
+export type Person_PhoneTypeJson = "MOBILE" | "HOME" | "WORK";
+
+/**
  * Describes the enum example.Person.PhoneType.
  */
-export const Person_PhoneTypeDesc: GenDescEnum<Person_PhoneType> = /*@__PURE__*/
+export const Person_PhoneTypeDesc: GenDescEnum<Person_PhoneType, Person_PhoneTypeJson> = /*@__PURE__*/
   enumDesc(fileDesc_addressbook, 0, 0);
 
 /**
@@ -128,9 +178,19 @@ export type AddressBook = Message<"example.AddressBook"> & {
 };
 
 /**
+ * JSON type for the message example.AddressBook.
+ */
+export type AddressBookJson = {
+  /**
+   * @generated from field: repeated example.Person people = 1;
+   */
+  people?: PersonJson[];
+};
+
+/**
  * Describes the message example.AddressBook.
  * Use `create(AddressBookDesc)` to create a new message.
  */
-export const AddressBookDesc: GenDescMessage<AddressBook> = /*@__PURE__*/
+export const AddressBookDesc: GenDescMessage<AddressBook, AddressBookJson> = /*@__PURE__*/
   messageDesc(fileDesc_addressbook, 1);
 

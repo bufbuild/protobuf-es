@@ -111,8 +111,13 @@ export enum LaunchStage {
 }
 
 /**
+ * JSON type for the enum google.api.LaunchStage.
+ */
+export type LaunchStageJson = "LAUNCH_STAGE_UNSPECIFIED" | "UNIMPLEMENTED" | "PRELAUNCH" | "EARLY_ACCESS" | "ALPHA" | "BETA" | "GA" | "DEPRECATED";
+
+/**
  * Describes the enum google.api.LaunchStage.
  */
-export const LaunchStageDesc: GenDescEnum<LaunchStage> = /*@__PURE__*/
+export const LaunchStageDesc: GenDescEnum<LaunchStage, LaunchStageJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_launch_stage, 0);
 

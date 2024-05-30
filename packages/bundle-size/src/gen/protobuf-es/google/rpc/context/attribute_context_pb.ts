@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any, Duration, Struct, Timestamp } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson, Duration, DurationJson, Struct, StructJson, Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_duration, fileDesc_google_protobuf_struct, fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -116,10 +116,55 @@ export type AttributeContext = Message<"google.rpc.context.AttributeContext"> & 
 };
 
 /**
+ * JSON type for the message google.rpc.context.AttributeContext.
+ */
+export type AttributeContextJson = {
+  /**
+   * @generated from field: google.rpc.context.AttributeContext.Peer origin = 7;
+   */
+  origin?: AttributeContext_PeerJson;
+
+  /**
+   * @generated from field: google.rpc.context.AttributeContext.Peer source = 1;
+   */
+  source?: AttributeContext_PeerJson;
+
+  /**
+   * @generated from field: google.rpc.context.AttributeContext.Peer destination = 2;
+   */
+  destination?: AttributeContext_PeerJson;
+
+  /**
+   * @generated from field: google.rpc.context.AttributeContext.Request request = 3;
+   */
+  request?: AttributeContext_RequestJson;
+
+  /**
+   * @generated from field: google.rpc.context.AttributeContext.Response response = 4;
+   */
+  response?: AttributeContext_ResponseJson;
+
+  /**
+   * @generated from field: google.rpc.context.AttributeContext.Resource resource = 5;
+   */
+  resource?: AttributeContext_ResourceJson;
+
+  /**
+   * @generated from field: google.rpc.context.AttributeContext.Api api = 6;
+   */
+  api?: AttributeContext_ApiJson;
+
+  /**
+   * @generated from field: repeated google.protobuf.Any extensions = 8;
+   */
+  extensions?: AnyJson[];
+};
+
+/**
  * Describes the message google.rpc.context.AttributeContext.
  * Use `create(AttributeContextDesc)` to create a new message.
  */
-export const AttributeContextDesc: GenDescMessage<AttributeContext> = /*@__PURE__*/
+export const AttributeContextDesc: GenDescMessage<AttributeContext, AttributeContextJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0);
 
 /**
@@ -172,10 +217,40 @@ export type AttributeContext_Peer = Message<"google.rpc.context.AttributeContext
 };
 
 /**
+ * JSON type for the message google.rpc.context.AttributeContext.Peer.
+ */
+export type AttributeContext_PeerJson = {
+  /**
+   * @generated from field: string ip = 1;
+   */
+  ip?: string;
+
+  /**
+   * @generated from field: int64 port = 2;
+   */
+  port?: string;
+
+  /**
+   * @generated from field: map<string, string> labels = 6;
+   */
+  labels?: { [key: string]: string };
+
+  /**
+   * @generated from field: string principal = 7;
+   */
+  principal?: string;
+
+  /**
+   * @generated from field: string region_code = 8;
+   */
+  regionCode?: string;
+};
+
+/**
  * Describes the message google.rpc.context.AttributeContext.Peer.
  * Use `create(AttributeContext_PeerDesc)` to create a new message.
  */
-export const AttributeContext_PeerDesc: GenDescMessage<AttributeContext_Peer> = /*@__PURE__*/
+export const AttributeContext_PeerDesc: GenDescMessage<AttributeContext_Peer, AttributeContext_PeerJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 0);
 
 /**
@@ -222,10 +297,35 @@ export type AttributeContext_Api = Message<"google.rpc.context.AttributeContext.
 };
 
 /**
+ * JSON type for the message google.rpc.context.AttributeContext.Api.
+ */
+export type AttributeContext_ApiJson = {
+  /**
+   * @generated from field: string service = 1;
+   */
+  service?: string;
+
+  /**
+   * @generated from field: string operation = 2;
+   */
+  operation?: string;
+
+  /**
+   * @generated from field: string protocol = 3;
+   */
+  protocol?: string;
+
+  /**
+   * @generated from field: string version = 4;
+   */
+  version?: string;
+};
+
+/**
  * Describes the message google.rpc.context.AttributeContext.Api.
  * Use `create(AttributeContext_ApiDesc)` to create a new message.
  */
-export const AttributeContext_ApiDesc: GenDescMessage<AttributeContext_Api> = /*@__PURE__*/
+export const AttributeContext_ApiDesc: GenDescMessage<AttributeContext_Api, AttributeContext_ApiJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 1);
 
 /**
@@ -313,10 +413,40 @@ export type AttributeContext_Auth = Message<"google.rpc.context.AttributeContext
 };
 
 /**
+ * JSON type for the message google.rpc.context.AttributeContext.Auth.
+ */
+export type AttributeContext_AuthJson = {
+  /**
+   * @generated from field: string principal = 1;
+   */
+  principal?: string;
+
+  /**
+   * @generated from field: repeated string audiences = 2;
+   */
+  audiences?: string[];
+
+  /**
+   * @generated from field: string presenter = 3;
+   */
+  presenter?: string;
+
+  /**
+   * @generated from field: google.protobuf.Struct claims = 4;
+   */
+  claims?: StructJson;
+
+  /**
+   * @generated from field: repeated string access_levels = 5;
+   */
+  accessLevels?: string[];
+};
+
+/**
  * Describes the message google.rpc.context.AttributeContext.Auth.
  * Use `create(AttributeContext_AuthDesc)` to create a new message.
  */
-export const AttributeContext_AuthDesc: GenDescMessage<AttributeContext_Auth> = /*@__PURE__*/
+export const AttributeContext_AuthDesc: GenDescMessage<AttributeContext_Auth, AttributeContext_AuthJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 2);
 
 /**
@@ -424,10 +554,75 @@ export type AttributeContext_Request = Message<"google.rpc.context.AttributeCont
 };
 
 /**
+ * JSON type for the message google.rpc.context.AttributeContext.Request.
+ */
+export type AttributeContext_RequestJson = {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id?: string;
+
+  /**
+   * @generated from field: string method = 2;
+   */
+  method?: string;
+
+  /**
+   * @generated from field: map<string, string> headers = 3;
+   */
+  headers?: { [key: string]: string };
+
+  /**
+   * @generated from field: string path = 4;
+   */
+  path?: string;
+
+  /**
+   * @generated from field: string host = 5;
+   */
+  host?: string;
+
+  /**
+   * @generated from field: string scheme = 6;
+   */
+  scheme?: string;
+
+  /**
+   * @generated from field: string query = 7;
+   */
+  query?: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp time = 9;
+   */
+  time?: TimestampJson;
+
+  /**
+   * @generated from field: int64 size = 10;
+   */
+  size?: string;
+
+  /**
+   * @generated from field: string protocol = 11;
+   */
+  protocol?: string;
+
+  /**
+   * @generated from field: string reason = 12;
+   */
+  reason?: string;
+
+  /**
+   * @generated from field: google.rpc.context.AttributeContext.Auth auth = 13;
+   */
+  auth?: AttributeContext_AuthJson;
+};
+
+/**
  * Describes the message google.rpc.context.AttributeContext.Request.
  * Use `create(AttributeContext_RequestDesc)` to create a new message.
  */
-export const AttributeContext_RequestDesc: GenDescMessage<AttributeContext_Request> = /*@__PURE__*/
+export const AttributeContext_RequestDesc: GenDescMessage<AttributeContext_Request, AttributeContext_RequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 3);
 
 /**
@@ -480,10 +675,40 @@ export type AttributeContext_Response = Message<"google.rpc.context.AttributeCon
 };
 
 /**
+ * JSON type for the message google.rpc.context.AttributeContext.Response.
+ */
+export type AttributeContext_ResponseJson = {
+  /**
+   * @generated from field: int64 code = 1;
+   */
+  code?: string;
+
+  /**
+   * @generated from field: int64 size = 2;
+   */
+  size?: string;
+
+  /**
+   * @generated from field: map<string, string> headers = 3;
+   */
+  headers?: { [key: string]: string };
+
+  /**
+   * @generated from field: google.protobuf.Timestamp time = 4;
+   */
+  time?: TimestampJson;
+
+  /**
+   * @generated from field: google.protobuf.Duration backend_latency = 5;
+   */
+  backendLatency?: DurationJson;
+};
+
+/**
  * Describes the message google.rpc.context.AttributeContext.Response.
  * Use `create(AttributeContext_ResponseDesc)` to create a new message.
  */
-export const AttributeContext_ResponseDesc: GenDescMessage<AttributeContext_Response> = /*@__PURE__*/
+export const AttributeContext_ResponseDesc: GenDescMessage<AttributeContext_Response, AttributeContext_ResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 4);
 
 /**
@@ -619,9 +844,74 @@ export type AttributeContext_Resource = Message<"google.rpc.context.AttributeCon
 };
 
 /**
+ * JSON type for the message google.rpc.context.AttributeContext.Resource.
+ */
+export type AttributeContext_ResourceJson = {
+  /**
+   * @generated from field: string service = 1;
+   */
+  service?: string;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: string type = 3;
+   */
+  type?: string;
+
+  /**
+   * @generated from field: map<string, string> labels = 4;
+   */
+  labels?: { [key: string]: string };
+
+  /**
+   * @generated from field: string uid = 5;
+   */
+  uid?: string;
+
+  /**
+   * @generated from field: map<string, string> annotations = 6;
+   */
+  annotations?: { [key: string]: string };
+
+  /**
+   * @generated from field: string display_name = 7;
+   */
+  displayName?: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp create_time = 8;
+   */
+  createTime?: TimestampJson;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp update_time = 9;
+   */
+  updateTime?: TimestampJson;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp delete_time = 10;
+   */
+  deleteTime?: TimestampJson;
+
+  /**
+   * @generated from field: string etag = 11;
+   */
+  etag?: string;
+
+  /**
+   * @generated from field: string location = 12;
+   */
+  location?: string;
+};
+
+/**
  * Describes the message google.rpc.context.AttributeContext.Resource.
  * Use `create(AttributeContext_ResourceDesc)` to create a new message.
  */
-export const AttributeContext_ResourceDesc: GenDescMessage<AttributeContext_Resource> = /*@__PURE__*/
+export const AttributeContext_ResourceDesc: GenDescMessage<AttributeContext_Resource, AttributeContext_ResourceJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 5);
 

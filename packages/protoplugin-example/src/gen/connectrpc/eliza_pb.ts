@@ -40,10 +40,20 @@ export type SayRequest = Message<"connectrpc.eliza.v1.SayRequest"> & {
 };
 
 /**
+ * JSON type for the message connectrpc.eliza.v1.SayRequest.
+ */
+export type SayRequestJson = {
+  /**
+   * @generated from field: string sentence = 1;
+   */
+  sentence?: string;
+};
+
+/**
  * Describes the message connectrpc.eliza.v1.SayRequest.
  * Use `create(SayRequestDesc)` to create a new message.
  */
-export const SayRequestDesc: GenDescMessage<SayRequest> = /*@__PURE__*/
+export const SayRequestDesc: GenDescMessage<SayRequest, SayRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_connectrpc_eliza, 0);
 
 /**
@@ -59,10 +69,20 @@ export type SayResponse = Message<"connectrpc.eliza.v1.SayResponse"> & {
 };
 
 /**
+ * JSON type for the message connectrpc.eliza.v1.SayResponse.
+ */
+export type SayResponseJson = {
+  /**
+   * @generated from field: string sentence = 1;
+   */
+  sentence?: string;
+};
+
+/**
  * Describes the message connectrpc.eliza.v1.SayResponse.
  * Use `create(SayResponseDesc)` to create a new message.
  */
-export const SayResponseDesc: GenDescMessage<SayResponse> = /*@__PURE__*/
+export const SayResponseDesc: GenDescMessage<SayResponse, SayResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_connectrpc_eliza, 1);
 
 /**

@@ -18,9 +18,9 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Constant, Expr, SourceInfo } from "./syntax_pb";
+import type { Constant, ConstantJson, Expr, ExprJson, SourceInfo, SourceInfoJson } from "./syntax_pb";
 import { fileDesc_google_api_expr_v1alpha1_syntax } from "./syntax_pb";
-import type { Empty, NullValue } from "@bufbuild/protobuf/wkt";
+import type { Empty, EmptyJson, NullValue, NullValueJson } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_empty, fileDesc_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -99,10 +99,40 @@ export type CheckedExpr = Message<"google.api.expr.v1alpha1.CheckedExpr"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.CheckedExpr.
+ */
+export type CheckedExprJson = {
+  /**
+   * @generated from field: map<int64, google.api.expr.v1alpha1.Reference> reference_map = 2;
+   */
+  referenceMap?: { [key: string]: ReferenceJson };
+
+  /**
+   * @generated from field: map<int64, google.api.expr.v1alpha1.Type> type_map = 3;
+   */
+  typeMap?: { [key: string]: TypeJson };
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.SourceInfo source_info = 5;
+   */
+  sourceInfo?: SourceInfoJson;
+
+  /**
+   * @generated from field: string expr_version = 6;
+   */
+  exprVersion?: string;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Expr expr = 4;
+   */
+  expr?: ExprJson;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.CheckedExpr.
  * Use `create(CheckedExprDesc)` to create a new message.
  */
-export const CheckedExprDesc: GenDescMessage<CheckedExpr> = /*@__PURE__*/
+export const CheckedExprDesc: GenDescMessage<CheckedExpr, CheckedExprJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 0);
 
 /**
@@ -238,10 +268,80 @@ export type Type = Message<"google.api.expr.v1alpha1.Type"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Type.
+ */
+export type TypeJson = {
+  /**
+   * @generated from field: google.protobuf.Empty dyn = 1;
+   */
+  dyn?: EmptyJson;
+
+  /**
+   * @generated from field: google.protobuf.NullValue null = 2;
+   */
+  null?: NullValueJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type.PrimitiveType primitive = 3;
+   */
+  primitive?: Type_PrimitiveTypeJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type.PrimitiveType wrapper = 4;
+   */
+  wrapper?: Type_PrimitiveTypeJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type.WellKnownType well_known = 5;
+   */
+  wellKnown?: Type_WellKnownTypeJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type.ListType list_type = 6;
+   */
+  listType?: Type_ListTypeJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type.MapType map_type = 7;
+   */
+  mapType?: Type_MapTypeJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type.FunctionType function = 8;
+   */
+  function?: Type_FunctionTypeJson;
+
+  /**
+   * @generated from field: string message_type = 9;
+   */
+  messageType?: string;
+
+  /**
+   * @generated from field: string type_param = 10;
+   */
+  typeParam?: string;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type type = 11;
+   */
+  type?: TypeJson;
+
+  /**
+   * @generated from field: google.protobuf.Empty error = 12;
+   */
+  error?: EmptyJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type.AbstractType abstract_type = 14;
+   */
+  abstractType?: Type_AbstractTypeJson;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Type.
  * Use `create(TypeDesc)` to create a new message.
  */
-export const TypeDesc: GenDescMessage<Type> = /*@__PURE__*/
+export const TypeDesc: GenDescMessage<Type, TypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 1);
 
 /**
@@ -259,10 +359,20 @@ export type Type_ListType = Message<"google.api.expr.v1alpha1.Type.ListType"> & 
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Type.ListType.
+ */
+export type Type_ListTypeJson = {
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type elem_type = 1;
+   */
+  elemType?: TypeJson;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Type.ListType.
  * Use `create(Type_ListTypeDesc)` to create a new message.
  */
-export const Type_ListTypeDesc: GenDescMessage<Type_ListType> = /*@__PURE__*/
+export const Type_ListTypeDesc: GenDescMessage<Type_ListType, Type_ListTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 0);
 
 /**
@@ -287,10 +397,25 @@ export type Type_MapType = Message<"google.api.expr.v1alpha1.Type.MapType"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Type.MapType.
+ */
+export type Type_MapTypeJson = {
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type key_type = 1;
+   */
+  keyType?: TypeJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type value_type = 2;
+   */
+  valueType?: TypeJson;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Type.MapType.
  * Use `create(Type_MapTypeDesc)` to create a new message.
  */
-export const Type_MapTypeDesc: GenDescMessage<Type_MapType> = /*@__PURE__*/
+export const Type_MapTypeDesc: GenDescMessage<Type_MapType, Type_MapTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 1);
 
 /**
@@ -315,10 +440,25 @@ export type Type_FunctionType = Message<"google.api.expr.v1alpha1.Type.FunctionT
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Type.FunctionType.
+ */
+export type Type_FunctionTypeJson = {
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type result_type = 1;
+   */
+  resultType?: TypeJson;
+
+  /**
+   * @generated from field: repeated google.api.expr.v1alpha1.Type arg_types = 2;
+   */
+  argTypes?: TypeJson[];
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Type.FunctionType.
  * Use `create(Type_FunctionTypeDesc)` to create a new message.
  */
-export const Type_FunctionTypeDesc: GenDescMessage<Type_FunctionType> = /*@__PURE__*/
+export const Type_FunctionTypeDesc: GenDescMessage<Type_FunctionType, Type_FunctionTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 2);
 
 /**
@@ -343,10 +483,25 @@ export type Type_AbstractType = Message<"google.api.expr.v1alpha1.Type.AbstractT
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Type.AbstractType.
+ */
+export type Type_AbstractTypeJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: repeated google.api.expr.v1alpha1.Type parameter_types = 2;
+   */
+  parameterTypes?: TypeJson[];
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Type.AbstractType.
  * Use `create(Type_AbstractTypeDesc)` to create a new message.
  */
-export const Type_AbstractTypeDesc: GenDescMessage<Type_AbstractType> = /*@__PURE__*/
+export const Type_AbstractTypeDesc: GenDescMessage<Type_AbstractType, Type_AbstractTypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 3);
 
 /**
@@ -412,9 +567,14 @@ export enum Type_PrimitiveType {
 }
 
 /**
+ * JSON type for the enum google.api.expr.v1alpha1.Type.PrimitiveType.
+ */
+export type Type_PrimitiveTypeJson = "PRIMITIVE_TYPE_UNSPECIFIED" | "BOOL" | "INT64" | "UINT64" | "DOUBLE" | "STRING" | "BYTES";
+
+/**
  * Describes the enum google.api.expr.v1alpha1.Type.PrimitiveType.
  */
-export const Type_PrimitiveTypeDesc: GenDescEnum<Type_PrimitiveType> = /*@__PURE__*/
+export const Type_PrimitiveTypeDesc: GenDescEnum<Type_PrimitiveType, Type_PrimitiveTypeJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 0);
 
 /**
@@ -457,9 +617,14 @@ export enum Type_WellKnownType {
 }
 
 /**
+ * JSON type for the enum google.api.expr.v1alpha1.Type.WellKnownType.
+ */
+export type Type_WellKnownTypeJson = "WELL_KNOWN_TYPE_UNSPECIFIED" | "ANY" | "TIMESTAMP" | "DURATION";
+
+/**
  * Describes the enum google.api.expr.v1alpha1.Type.WellKnownType.
  */
-export const Type_WellKnownTypeDesc: GenDescEnum<Type_WellKnownType> = /*@__PURE__*/
+export const Type_WellKnownTypeDesc: GenDescEnum<Type_WellKnownType, Type_WellKnownTypeJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 1);
 
 /**
@@ -512,10 +677,30 @@ export type Decl = Message<"google.api.expr.v1alpha1.Decl"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Decl.
+ */
+export type DeclJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Decl.IdentDecl ident = 2;
+   */
+  ident?: Decl_IdentDeclJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Decl.FunctionDecl function = 3;
+   */
+  function?: Decl_FunctionDeclJson;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Decl.
  * Use `create(DeclDesc)` to create a new message.
  */
-export const DeclDesc: GenDescMessage<Decl> = /*@__PURE__*/
+export const DeclDesc: GenDescMessage<Decl, DeclJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 2);
 
 /**
@@ -553,10 +738,30 @@ export type Decl_IdentDecl = Message<"google.api.expr.v1alpha1.Decl.IdentDecl"> 
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Decl.IdentDecl.
+ */
+export type Decl_IdentDeclJson = {
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type type = 1;
+   */
+  type?: TypeJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Constant value = 2;
+   */
+  value?: ConstantJson;
+
+  /**
+   * @generated from field: string doc = 3;
+   */
+  doc?: string;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Decl.IdentDecl.
  * Use `create(Decl_IdentDeclDesc)` to create a new message.
  */
-export const Decl_IdentDeclDesc: GenDescMessage<Decl_IdentDecl> = /*@__PURE__*/
+export const Decl_IdentDeclDesc: GenDescMessage<Decl_IdentDecl, Decl_IdentDeclJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 2, 0);
 
 /**
@@ -578,10 +783,20 @@ export type Decl_FunctionDecl = Message<"google.api.expr.v1alpha1.Decl.FunctionD
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Decl.FunctionDecl.
+ */
+export type Decl_FunctionDeclJson = {
+  /**
+   * @generated from field: repeated google.api.expr.v1alpha1.Decl.FunctionDecl.Overload overloads = 1;
+   */
+  overloads?: Decl_FunctionDecl_OverloadJson[];
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Decl.FunctionDecl.
  * Use `create(Decl_FunctionDeclDesc)` to create a new message.
  */
-export const Decl_FunctionDeclDesc: GenDescMessage<Decl_FunctionDecl> = /*@__PURE__*/
+export const Decl_FunctionDeclDesc: GenDescMessage<Decl_FunctionDecl, Decl_FunctionDeclJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 2, 1);
 
 /**
@@ -666,10 +881,45 @@ export type Decl_FunctionDecl_Overload = Message<"google.api.expr.v1alpha1.Decl.
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Decl.FunctionDecl.Overload.
+ */
+export type Decl_FunctionDecl_OverloadJson = {
+  /**
+   * @generated from field: string overload_id = 1;
+   */
+  overloadId?: string;
+
+  /**
+   * @generated from field: repeated google.api.expr.v1alpha1.Type params = 2;
+   */
+  params?: TypeJson[];
+
+  /**
+   * @generated from field: repeated string type_params = 3;
+   */
+  typeParams?: string[];
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Type result_type = 4;
+   */
+  resultType?: TypeJson;
+
+  /**
+   * @generated from field: bool is_instance_function = 5;
+   */
+  isInstanceFunction?: boolean;
+
+  /**
+   * @generated from field: string doc = 6;
+   */
+  doc?: string;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Decl.FunctionDecl.Overload.
  * Use `create(Decl_FunctionDecl_OverloadDesc)` to create a new message.
  */
-export const Decl_FunctionDecl_OverloadDesc: GenDescMessage<Decl_FunctionDecl_Overload> = /*@__PURE__*/
+export const Decl_FunctionDecl_OverloadDesc: GenDescMessage<Decl_FunctionDecl_Overload, Decl_FunctionDecl_OverloadJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 2, 1, 0);
 
 /**
@@ -710,9 +960,29 @@ export type Reference = Message<"google.api.expr.v1alpha1.Reference"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.Reference.
+ */
+export type ReferenceJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: repeated string overload_id = 3;
+   */
+  overloadId?: string[];
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Constant value = 4;
+   */
+  value?: ConstantJson;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.Reference.
  * Use `create(ReferenceDesc)` to create a new message.
  */
-export const ReferenceDesc: GenDescMessage<Reference> = /*@__PURE__*/
+export const ReferenceDesc: GenDescMessage<Reference, ReferenceJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 3);
 

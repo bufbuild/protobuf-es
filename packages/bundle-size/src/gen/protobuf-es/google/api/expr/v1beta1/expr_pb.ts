@@ -18,9 +18,9 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { SourceInfo } from "./source_pb";
+import type { SourceInfo, SourceInfoJson } from "./source_pb";
 import { fileDesc_google_api_expr_v1beta1_source } from "./source_pb";
-import type { NullValue } from "@bufbuild/protobuf/wkt";
+import type { NullValue, NullValueJson } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -59,10 +59,30 @@ export type ParsedExpr = Message<"google.api.expr.v1beta1.ParsedExpr"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.ParsedExpr.
+ */
+export type ParsedExprJson = {
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr expr = 2;
+   */
+  expr?: ExprJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.SourceInfo source_info = 3;
+   */
+  sourceInfo?: SourceInfoJson;
+
+  /**
+   * @generated from field: string syntax_version = 4;
+   */
+  syntaxVersion?: string;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.ParsedExpr.
  * Use `create(ParsedExprDesc)` to create a new message.
  */
-export const ParsedExprDesc: GenDescMessage<ParsedExpr> = /*@__PURE__*/
+export const ParsedExprDesc: GenDescMessage<ParsedExpr, ParsedExprJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 0);
 
 /**
@@ -159,10 +179,55 @@ export type Expr = Message<"google.api.expr.v1beta1.Expr"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Expr.
+ */
+export type ExprJson = {
+  /**
+   * @generated from field: int32 id = 2;
+   */
+  id?: number;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Literal literal_expr = 3;
+   */
+  literalExpr?: LiteralJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr.Ident ident_expr = 4;
+   */
+  identExpr?: Expr_IdentJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr.Select select_expr = 5;
+   */
+  selectExpr?: Expr_SelectJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr.Call call_expr = 6;
+   */
+  callExpr?: Expr_CallJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr.CreateList list_expr = 7;
+   */
+  listExpr?: Expr_CreateListJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr.CreateStruct struct_expr = 8;
+   */
+  structExpr?: Expr_CreateStructJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr.Comprehension comprehension_expr = 9;
+   */
+  comprehensionExpr?: Expr_ComprehensionJson;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Expr.
  * Use `create(ExprDesc)` to create a new message.
  */
-export const ExprDesc: GenDescMessage<Expr> = /*@__PURE__*/
+export const ExprDesc: GenDescMessage<Expr, ExprJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1);
 
 /**
@@ -183,10 +248,20 @@ export type Expr_Ident = Message<"google.api.expr.v1beta1.Expr.Ident"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Expr.Ident.
+ */
+export type Expr_IdentJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Expr.Ident.
  * Use `create(Expr_IdentDesc)` to create a new message.
  */
-export const Expr_IdentDesc: GenDescMessage<Expr_Ident> = /*@__PURE__*/
+export const Expr_IdentDesc: GenDescMessage<Expr_Ident, Expr_IdentJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 0);
 
 /**
@@ -226,10 +301,30 @@ export type Expr_Select = Message<"google.api.expr.v1beta1.Expr.Select"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Expr.Select.
+ */
+export type Expr_SelectJson = {
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr operand = 1;
+   */
+  operand?: ExprJson;
+
+  /**
+   * @generated from field: string field = 2;
+   */
+  field?: string;
+
+  /**
+   * @generated from field: bool test_only = 3;
+   */
+  testOnly?: boolean;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Expr.Select.
  * Use `create(Expr_SelectDesc)` to create a new message.
  */
-export const Expr_SelectDesc: GenDescMessage<Expr_Select> = /*@__PURE__*/
+export const Expr_SelectDesc: GenDescMessage<Expr_Select, Expr_SelectJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 1);
 
 /**
@@ -264,10 +359,30 @@ export type Expr_Call = Message<"google.api.expr.v1beta1.Expr.Call"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Expr.Call.
+ */
+export type Expr_CallJson = {
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr target = 1;
+   */
+  target?: ExprJson;
+
+  /**
+   * @generated from field: string function = 2;
+   */
+  function?: string;
+
+  /**
+   * @generated from field: repeated google.api.expr.v1beta1.Expr args = 3;
+   */
+  args?: ExprJson[];
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Expr.Call.
  * Use `create(Expr_CallDesc)` to create a new message.
  */
-export const Expr_CallDesc: GenDescMessage<Expr_Call> = /*@__PURE__*/
+export const Expr_CallDesc: GenDescMessage<Expr_Call, Expr_CallJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 2);
 
 /**
@@ -288,10 +403,20 @@ export type Expr_CreateList = Message<"google.api.expr.v1beta1.Expr.CreateList">
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Expr.CreateList.
+ */
+export type Expr_CreateListJson = {
+  /**
+   * @generated from field: repeated google.api.expr.v1beta1.Expr elements = 1;
+   */
+  elements?: ExprJson[];
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Expr.CreateList.
  * Use `create(Expr_CreateListDesc)` to create a new message.
  */
-export const Expr_CreateListDesc: GenDescMessage<Expr_CreateList> = /*@__PURE__*/
+export const Expr_CreateListDesc: GenDescMessage<Expr_CreateList, Expr_CreateListJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 3);
 
 /**
@@ -321,10 +446,25 @@ export type Expr_CreateStruct = Message<"google.api.expr.v1beta1.Expr.CreateStru
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Expr.CreateStruct.
+ */
+export type Expr_CreateStructJson = {
+  /**
+   * @generated from field: string type = 1;
+   */
+  type?: string;
+
+  /**
+   * @generated from field: repeated google.api.expr.v1beta1.Expr.CreateStruct.Entry entries = 2;
+   */
+  entries?: Expr_CreateStruct_EntryJson[];
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Expr.CreateStruct.
  * Use `create(Expr_CreateStructDesc)` to create a new message.
  */
-export const Expr_CreateStructDesc: GenDescMessage<Expr_CreateStruct> = /*@__PURE__*/
+export const Expr_CreateStructDesc: GenDescMessage<Expr_CreateStruct, Expr_CreateStructJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 4);
 
 /**
@@ -374,10 +514,35 @@ export type Expr_CreateStruct_Entry = Message<"google.api.expr.v1beta1.Expr.Crea
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Expr.CreateStruct.Entry.
+ */
+export type Expr_CreateStruct_EntryJson = {
+  /**
+   * @generated from field: int32 id = 1;
+   */
+  id?: number;
+
+  /**
+   * @generated from field: string field_key = 2;
+   */
+  fieldKey?: string;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr map_key = 3;
+   */
+  mapKey?: ExprJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr value = 4;
+   */
+  value?: ExprJson;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Expr.CreateStruct.Entry.
  * Use `create(Expr_CreateStruct_EntryDesc)` to create a new message.
  */
-export const Expr_CreateStruct_EntryDesc: GenDescMessage<Expr_CreateStruct_Entry> = /*@__PURE__*/
+export const Expr_CreateStruct_EntryDesc: GenDescMessage<Expr_CreateStruct_Entry, Expr_CreateStruct_EntryJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 4, 0);
 
 /**
@@ -469,10 +634,50 @@ export type Expr_Comprehension = Message<"google.api.expr.v1beta1.Expr.Comprehen
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Expr.Comprehension.
+ */
+export type Expr_ComprehensionJson = {
+  /**
+   * @generated from field: string iter_var = 1;
+   */
+  iterVar?: string;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr iter_range = 2;
+   */
+  iterRange?: ExprJson;
+
+  /**
+   * @generated from field: string accu_var = 3;
+   */
+  accuVar?: string;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr accu_init = 4;
+   */
+  accuInit?: ExprJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr loop_condition = 5;
+   */
+  loopCondition?: ExprJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr loop_step = 6;
+   */
+  loopStep?: ExprJson;
+
+  /**
+   * @generated from field: google.api.expr.v1beta1.Expr result = 7;
+   */
+  result?: ExprJson;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Expr.Comprehension.
  * Use `create(Expr_ComprehensionDesc)` to create a new message.
  */
-export const Expr_ComprehensionDesc: GenDescMessage<Expr_Comprehension> = /*@__PURE__*/
+export const Expr_ComprehensionDesc: GenDescMessage<Expr_Comprehension, Expr_ComprehensionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 5);
 
 /**
@@ -556,9 +761,49 @@ export type Literal = Message<"google.api.expr.v1beta1.Literal"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1beta1.Literal.
+ */
+export type LiteralJson = {
+  /**
+   * @generated from field: google.protobuf.NullValue null_value = 1;
+   */
+  nullValue?: NullValueJson;
+
+  /**
+   * @generated from field: bool bool_value = 2;
+   */
+  boolValue?: boolean;
+
+  /**
+   * @generated from field: int64 int64_value = 3;
+   */
+  int64Value?: string;
+
+  /**
+   * @generated from field: uint64 uint64_value = 4;
+   */
+  uint64Value?: string;
+
+  /**
+   * @generated from field: double double_value = 5;
+   */
+  doubleValue?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: string string_value = 6;
+   */
+  stringValue?: string;
+
+  /**
+   * @generated from field: bytes bytes_value = 7;
+   */
+  bytesValue?: string;
+};
+
+/**
  * Describes the message google.api.expr.v1beta1.Literal.
  * Use `create(LiteralDesc)` to create a new message.
  */
-export const LiteralDesc: GenDescMessage<Literal> = /*@__PURE__*/
+export const LiteralDesc: GenDescMessage<Literal, LiteralJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 2);
 

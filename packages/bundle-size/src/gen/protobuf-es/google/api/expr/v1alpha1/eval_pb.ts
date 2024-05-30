@@ -18,9 +18,9 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Value } from "./value_pb";
+import type { Value, ValueJson } from "./value_pb";
 import { fileDesc_google_api_expr_v1alpha1_value } from "./value_pb";
-import type { Status } from "../../../rpc/status_pb";
+import type { Status, StatusJson } from "../../../rpc/status_pb";
 import { fileDesc_google_rpc_status } from "../../../rpc/status_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -57,10 +57,25 @@ export type EvalState = Message<"google.api.expr.v1alpha1.EvalState"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.EvalState.
+ */
+export type EvalStateJson = {
+  /**
+   * @generated from field: repeated google.api.expr.v1alpha1.ExprValue values = 1;
+   */
+  values?: ExprValueJson[];
+
+  /**
+   * @generated from field: repeated google.api.expr.v1alpha1.EvalState.Result results = 3;
+   */
+  results?: EvalState_ResultJson[];
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.EvalState.
  * Use `create(EvalStateDesc)` to create a new message.
  */
-export const EvalStateDesc: GenDescMessage<EvalState> = /*@__PURE__*/
+export const EvalStateDesc: GenDescMessage<EvalState, EvalStateJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 0);
 
 /**
@@ -85,10 +100,25 @@ export type EvalState_Result = Message<"google.api.expr.v1alpha1.EvalState.Resul
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.EvalState.Result.
+ */
+export type EvalState_ResultJson = {
+  /**
+   * @generated from field: int64 expr = 1;
+   */
+  expr?: string;
+
+  /**
+   * @generated from field: int64 value = 2;
+   */
+  value?: string;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.EvalState.Result.
  * Use `create(EvalState_ResultDesc)` to create a new message.
  */
-export const EvalState_ResultDesc: GenDescMessage<EvalState_Result> = /*@__PURE__*/
+export const EvalState_ResultDesc: GenDescMessage<EvalState_Result, EvalState_ResultJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 0, 0);
 
 /**
@@ -168,10 +198,30 @@ export type ExprValue = Message<"google.api.expr.v1alpha1.ExprValue"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.ExprValue.
+ */
+export type ExprValueJson = {
+  /**
+   * @generated from field: google.api.expr.v1alpha1.Value value = 1;
+   */
+  value?: ValueJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.ErrorSet error = 2;
+   */
+  error?: ErrorSetJson;
+
+  /**
+   * @generated from field: google.api.expr.v1alpha1.UnknownSet unknown = 3;
+   */
+  unknown?: UnknownSetJson;
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.ExprValue.
  * Use `create(ExprValueDesc)` to create a new message.
  */
-export const ExprValueDesc: GenDescMessage<ExprValue> = /*@__PURE__*/
+export const ExprValueDesc: GenDescMessage<ExprValue, ExprValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 1);
 
 /**
@@ -191,10 +241,20 @@ export type ErrorSet = Message<"google.api.expr.v1alpha1.ErrorSet"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.ErrorSet.
+ */
+export type ErrorSetJson = {
+  /**
+   * @generated from field: repeated google.rpc.Status errors = 1;
+   */
+  errors?: StatusJson[];
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.ErrorSet.
  * Use `create(ErrorSetDesc)` to create a new message.
  */
-export const ErrorSetDesc: GenDescMessage<ErrorSet> = /*@__PURE__*/
+export const ErrorSetDesc: GenDescMessage<ErrorSet, ErrorSetJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 2);
 
 /**
@@ -214,9 +274,19 @@ export type UnknownSet = Message<"google.api.expr.v1alpha1.UnknownSet"> & {
 };
 
 /**
+ * JSON type for the message google.api.expr.v1alpha1.UnknownSet.
+ */
+export type UnknownSetJson = {
+  /**
+   * @generated from field: repeated int64 exprs = 1;
+   */
+  exprs?: string[];
+};
+
+/**
  * Describes the message google.api.expr.v1alpha1.UnknownSet.
  * Use `create(UnknownSetDesc)` to create a new message.
  */
-export const UnknownSetDesc: GenDescMessage<UnknownSet> = /*@__PURE__*/
+export const UnknownSetDesc: GenDescMessage<UnknownSet, UnknownSetJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 3);
 

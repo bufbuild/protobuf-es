@@ -97,9 +97,34 @@ export type Expr = Message<"google.type.Expr"> & {
 };
 
 /**
+ * JSON type for the message google.type.Expr.
+ */
+export type ExprJson = {
+  /**
+   * @generated from field: string expression = 1;
+   */
+  expression?: string;
+
+  /**
+   * @generated from field: string title = 2;
+   */
+  title?: string;
+
+  /**
+   * @generated from field: string description = 3;
+   */
+  description?: string;
+
+  /**
+   * @generated from field: string location = 4;
+   */
+  location?: string;
+};
+
+/**
  * Describes the message google.type.Expr.
  * Use `create(ExprDesc)` to create a new message.
  */
-export const ExprDesc: GenDescMessage<Expr> = /*@__PURE__*/
+export const ExprDesc: GenDescMessage<Expr, ExprJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_type_expr, 0);
 

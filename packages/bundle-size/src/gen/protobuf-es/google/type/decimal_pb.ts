@@ -106,9 +106,19 @@ export type Decimal = Message<"google.type.Decimal"> & {
 };
 
 /**
+ * JSON type for the message google.type.Decimal.
+ */
+export type DecimalJson = {
+  /**
+   * @generated from field: string value = 1;
+   */
+  value?: string;
+};
+
+/**
  * Describes the message google.type.Decimal.
  * Use `create(DecimalDesc)` to create a new message.
  */
-export const DecimalDesc: GenDescMessage<Decimal> = /*@__PURE__*/
+export const DecimalDesc: GenDescMessage<Decimal, DecimalJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_type_decimal, 0);
 

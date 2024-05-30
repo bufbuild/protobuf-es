@@ -95,8 +95,13 @@ export enum CalendarPeriod {
 }
 
 /**
+ * JSON type for the enum google.type.CalendarPeriod.
+ */
+export type CalendarPeriodJson = "CALENDAR_PERIOD_UNSPECIFIED" | "DAY" | "WEEK" | "FORTNIGHT" | "MONTH" | "QUARTER" | "HALF" | "YEAR";
+
+/**
  * Describes the enum google.type.CalendarPeriod.
  */
-export const CalendarPeriodDesc: GenDescEnum<CalendarPeriod> = /*@__PURE__*/
+export const CalendarPeriodDesc: GenDescEnum<CalendarPeriod, CalendarPeriodJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_type_calendar_period, 0);
 

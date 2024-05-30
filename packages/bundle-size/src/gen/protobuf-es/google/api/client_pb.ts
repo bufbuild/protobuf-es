@@ -18,9 +18,9 @@
 
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { LaunchStage } from "./launch_stage_pb";
+import type { LaunchStage, LaunchStageJson } from "./launch_stage_pb";
 import { fileDesc_google_api_launch_stage } from "./launch_stage_pb";
-import type { Duration, MethodOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
+import type { Duration, DurationJson, MethodOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_descriptor, fileDesc_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -54,10 +54,25 @@ export type CommonLanguageSettings = Message<"google.api.CommonLanguageSettings"
 };
 
 /**
+ * JSON type for the message google.api.CommonLanguageSettings.
+ */
+export type CommonLanguageSettingsJson = {
+  /**
+   * @generated from field: string reference_docs_uri = 1 [deprecated = true];
+   */
+  referenceDocsUri?: string;
+
+  /**
+   * @generated from field: repeated google.api.ClientLibraryDestination destinations = 2;
+   */
+  destinations?: ClientLibraryDestinationJson[];
+};
+
+/**
  * Describes the message google.api.CommonLanguageSettings.
  * Use `create(CommonLanguageSettingsDesc)` to create a new message.
  */
-export const CommonLanguageSettingsDesc: GenDescMessage<CommonLanguageSettings> = /*@__PURE__*/
+export const CommonLanguageSettingsDesc: GenDescMessage<CommonLanguageSettings, CommonLanguageSettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 0);
 
 /**
@@ -148,10 +163,70 @@ export type ClientLibrarySettings = Message<"google.api.ClientLibrarySettings"> 
 };
 
 /**
+ * JSON type for the message google.api.ClientLibrarySettings.
+ */
+export type ClientLibrarySettingsJson = {
+  /**
+   * @generated from field: string version = 1;
+   */
+  version?: string;
+
+  /**
+   * @generated from field: google.api.LaunchStage launch_stage = 2;
+   */
+  launchStage?: LaunchStageJson;
+
+  /**
+   * @generated from field: bool rest_numeric_enums = 3;
+   */
+  restNumericEnums?: boolean;
+
+  /**
+   * @generated from field: google.api.JavaSettings java_settings = 21;
+   */
+  javaSettings?: JavaSettingsJson;
+
+  /**
+   * @generated from field: google.api.CppSettings cpp_settings = 22;
+   */
+  cppSettings?: CppSettingsJson;
+
+  /**
+   * @generated from field: google.api.PhpSettings php_settings = 23;
+   */
+  phpSettings?: PhpSettingsJson;
+
+  /**
+   * @generated from field: google.api.PythonSettings python_settings = 24;
+   */
+  pythonSettings?: PythonSettingsJson;
+
+  /**
+   * @generated from field: google.api.NodeSettings node_settings = 25;
+   */
+  nodeSettings?: NodeSettingsJson;
+
+  /**
+   * @generated from field: google.api.DotnetSettings dotnet_settings = 26;
+   */
+  dotnetSettings?: DotnetSettingsJson;
+
+  /**
+   * @generated from field: google.api.RubySettings ruby_settings = 27;
+   */
+  rubySettings?: RubySettingsJson;
+
+  /**
+   * @generated from field: google.api.GoSettings go_settings = 28;
+   */
+  goSettings?: GoSettingsJson;
+};
+
+/**
  * Describes the message google.api.ClientLibrarySettings.
  * Use `create(ClientLibrarySettingsDesc)` to create a new message.
  */
-export const ClientLibrarySettingsDesc: GenDescMessage<ClientLibrarySettings> = /*@__PURE__*/
+export const ClientLibrarySettingsDesc: GenDescMessage<ClientLibrarySettings, ClientLibrarySettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 1);
 
 /**
@@ -252,10 +327,70 @@ export type Publishing = Message<"google.api.Publishing"> & {
 };
 
 /**
+ * JSON type for the message google.api.Publishing.
+ */
+export type PublishingJson = {
+  /**
+   * @generated from field: repeated google.api.MethodSettings method_settings = 2;
+   */
+  methodSettings?: MethodSettingsJson[];
+
+  /**
+   * @generated from field: string new_issue_uri = 101;
+   */
+  newIssueUri?: string;
+
+  /**
+   * @generated from field: string documentation_uri = 102;
+   */
+  documentationUri?: string;
+
+  /**
+   * @generated from field: string api_short_name = 103;
+   */
+  apiShortName?: string;
+
+  /**
+   * @generated from field: string github_label = 104;
+   */
+  githubLabel?: string;
+
+  /**
+   * @generated from field: repeated string codeowner_github_teams = 105;
+   */
+  codeownerGithubTeams?: string[];
+
+  /**
+   * @generated from field: string doc_tag_prefix = 106;
+   */
+  docTagPrefix?: string;
+
+  /**
+   * @generated from field: google.api.ClientLibraryOrganization organization = 107;
+   */
+  organization?: ClientLibraryOrganizationJson;
+
+  /**
+   * @generated from field: repeated google.api.ClientLibrarySettings library_settings = 109;
+   */
+  librarySettings?: ClientLibrarySettingsJson[];
+
+  /**
+   * @generated from field: string proto_reference_documentation_uri = 110;
+   */
+  protoReferenceDocumentationUri?: string;
+
+  /**
+   * @generated from field: string rest_reference_documentation_uri = 111;
+   */
+  restReferenceDocumentationUri?: string;
+};
+
+/**
  * Describes the message google.api.Publishing.
  * Use `create(PublishingDesc)` to create a new message.
  */
-export const PublishingDesc: GenDescMessage<Publishing> = /*@__PURE__*/
+export const PublishingDesc: GenDescMessage<Publishing, PublishingJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 2);
 
 /**
@@ -310,10 +445,30 @@ export type JavaSettings = Message<"google.api.JavaSettings"> & {
 };
 
 /**
+ * JSON type for the message google.api.JavaSettings.
+ */
+export type JavaSettingsJson = {
+  /**
+   * @generated from field: string library_package = 1;
+   */
+  libraryPackage?: string;
+
+  /**
+   * @generated from field: map<string, string> service_class_names = 2;
+   */
+  serviceClassNames?: { [key: string]: string };
+
+  /**
+   * @generated from field: google.api.CommonLanguageSettings common = 3;
+   */
+  common?: CommonLanguageSettingsJson;
+};
+
+/**
  * Describes the message google.api.JavaSettings.
  * Use `create(JavaSettingsDesc)` to create a new message.
  */
-export const JavaSettingsDesc: GenDescMessage<JavaSettings> = /*@__PURE__*/
+export const JavaSettingsDesc: GenDescMessage<JavaSettings, JavaSettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 3);
 
 /**
@@ -331,10 +486,20 @@ export type CppSettings = Message<"google.api.CppSettings"> & {
 };
 
 /**
+ * JSON type for the message google.api.CppSettings.
+ */
+export type CppSettingsJson = {
+  /**
+   * @generated from field: google.api.CommonLanguageSettings common = 1;
+   */
+  common?: CommonLanguageSettingsJson;
+};
+
+/**
  * Describes the message google.api.CppSettings.
  * Use `create(CppSettingsDesc)` to create a new message.
  */
-export const CppSettingsDesc: GenDescMessage<CppSettings> = /*@__PURE__*/
+export const CppSettingsDesc: GenDescMessage<CppSettings, CppSettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 4);
 
 /**
@@ -352,10 +517,20 @@ export type PhpSettings = Message<"google.api.PhpSettings"> & {
 };
 
 /**
+ * JSON type for the message google.api.PhpSettings.
+ */
+export type PhpSettingsJson = {
+  /**
+   * @generated from field: google.api.CommonLanguageSettings common = 1;
+   */
+  common?: CommonLanguageSettingsJson;
+};
+
+/**
  * Describes the message google.api.PhpSettings.
  * Use `create(PhpSettingsDesc)` to create a new message.
  */
-export const PhpSettingsDesc: GenDescMessage<PhpSettings> = /*@__PURE__*/
+export const PhpSettingsDesc: GenDescMessage<PhpSettings, PhpSettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 5);
 
 /**
@@ -373,10 +548,20 @@ export type PythonSettings = Message<"google.api.PythonSettings"> & {
 };
 
 /**
+ * JSON type for the message google.api.PythonSettings.
+ */
+export type PythonSettingsJson = {
+  /**
+   * @generated from field: google.api.CommonLanguageSettings common = 1;
+   */
+  common?: CommonLanguageSettingsJson;
+};
+
+/**
  * Describes the message google.api.PythonSettings.
  * Use `create(PythonSettingsDesc)` to create a new message.
  */
-export const PythonSettingsDesc: GenDescMessage<PythonSettings> = /*@__PURE__*/
+export const PythonSettingsDesc: GenDescMessage<PythonSettings, PythonSettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 6);
 
 /**
@@ -394,10 +579,20 @@ export type NodeSettings = Message<"google.api.NodeSettings"> & {
 };
 
 /**
+ * JSON type for the message google.api.NodeSettings.
+ */
+export type NodeSettingsJson = {
+  /**
+   * @generated from field: google.api.CommonLanguageSettings common = 1;
+   */
+  common?: CommonLanguageSettingsJson;
+};
+
+/**
  * Describes the message google.api.NodeSettings.
  * Use `create(NodeSettingsDesc)` to create a new message.
  */
-export const NodeSettingsDesc: GenDescMessage<NodeSettings> = /*@__PURE__*/
+export const NodeSettingsDesc: GenDescMessage<NodeSettings, NodeSettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 7);
 
 /**
@@ -465,10 +660,45 @@ export type DotnetSettings = Message<"google.api.DotnetSettings"> & {
 };
 
 /**
+ * JSON type for the message google.api.DotnetSettings.
+ */
+export type DotnetSettingsJson = {
+  /**
+   * @generated from field: google.api.CommonLanguageSettings common = 1;
+   */
+  common?: CommonLanguageSettingsJson;
+
+  /**
+   * @generated from field: map<string, string> renamed_services = 2;
+   */
+  renamedServices?: { [key: string]: string };
+
+  /**
+   * @generated from field: map<string, string> renamed_resources = 3;
+   */
+  renamedResources?: { [key: string]: string };
+
+  /**
+   * @generated from field: repeated string ignored_resources = 4;
+   */
+  ignoredResources?: string[];
+
+  /**
+   * @generated from field: repeated string forced_namespace_aliases = 5;
+   */
+  forcedNamespaceAliases?: string[];
+
+  /**
+   * @generated from field: repeated string handwritten_signatures = 6;
+   */
+  handwrittenSignatures?: string[];
+};
+
+/**
  * Describes the message google.api.DotnetSettings.
  * Use `create(DotnetSettingsDesc)` to create a new message.
  */
-export const DotnetSettingsDesc: GenDescMessage<DotnetSettings> = /*@__PURE__*/
+export const DotnetSettingsDesc: GenDescMessage<DotnetSettings, DotnetSettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 8);
 
 /**
@@ -486,10 +716,20 @@ export type RubySettings = Message<"google.api.RubySettings"> & {
 };
 
 /**
+ * JSON type for the message google.api.RubySettings.
+ */
+export type RubySettingsJson = {
+  /**
+   * @generated from field: google.api.CommonLanguageSettings common = 1;
+   */
+  common?: CommonLanguageSettingsJson;
+};
+
+/**
  * Describes the message google.api.RubySettings.
  * Use `create(RubySettingsDesc)` to create a new message.
  */
-export const RubySettingsDesc: GenDescMessage<RubySettings> = /*@__PURE__*/
+export const RubySettingsDesc: GenDescMessage<RubySettings, RubySettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 9);
 
 /**
@@ -507,10 +747,20 @@ export type GoSettings = Message<"google.api.GoSettings"> & {
 };
 
 /**
+ * JSON type for the message google.api.GoSettings.
+ */
+export type GoSettingsJson = {
+  /**
+   * @generated from field: google.api.CommonLanguageSettings common = 1;
+   */
+  common?: CommonLanguageSettingsJson;
+};
+
+/**
  * Describes the message google.api.GoSettings.
  * Use `create(GoSettingsDesc)` to create a new message.
  */
-export const GoSettingsDesc: GenDescMessage<GoSettings> = /*@__PURE__*/
+export const GoSettingsDesc: GenDescMessage<GoSettings, GoSettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 10);
 
 /**
@@ -569,10 +819,30 @@ export type MethodSettings = Message<"google.api.MethodSettings"> & {
 };
 
 /**
+ * JSON type for the message google.api.MethodSettings.
+ */
+export type MethodSettingsJson = {
+  /**
+   * @generated from field: string selector = 1;
+   */
+  selector?: string;
+
+  /**
+   * @generated from field: google.api.MethodSettings.LongRunning long_running = 2;
+   */
+  longRunning?: MethodSettings_LongRunningJson;
+
+  /**
+   * @generated from field: repeated string auto_populated_fields = 3;
+   */
+  autoPopulatedFields?: string[];
+};
+
+/**
  * Describes the message google.api.MethodSettings.
  * Use `create(MethodSettingsDesc)` to create a new message.
  */
-export const MethodSettingsDesc: GenDescMessage<MethodSettings> = /*@__PURE__*/
+export const MethodSettingsDesc: GenDescMessage<MethodSettings, MethodSettingsJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 11);
 
 /**
@@ -620,10 +890,35 @@ export type MethodSettings_LongRunning = Message<"google.api.MethodSettings.Long
 };
 
 /**
+ * JSON type for the message google.api.MethodSettings.LongRunning.
+ */
+export type MethodSettings_LongRunningJson = {
+  /**
+   * @generated from field: google.protobuf.Duration initial_poll_delay = 1;
+   */
+  initialPollDelay?: DurationJson;
+
+  /**
+   * @generated from field: float poll_delay_multiplier = 2;
+   */
+  pollDelayMultiplier?: number | "NaN" | "Infinity" | "-Infinity";
+
+  /**
+   * @generated from field: google.protobuf.Duration max_poll_delay = 3;
+   */
+  maxPollDelay?: DurationJson;
+
+  /**
+   * @generated from field: google.protobuf.Duration total_poll_timeout = 4;
+   */
+  totalPollTimeout?: DurationJson;
+};
+
+/**
  * Describes the message google.api.MethodSettings.LongRunning.
  * Use `create(MethodSettings_LongRunningDesc)` to create a new message.
  */
-export const MethodSettings_LongRunningDesc: GenDescMessage<MethodSettings_LongRunning> = /*@__PURE__*/
+export const MethodSettings_LongRunningDesc: GenDescMessage<MethodSettings_LongRunning, MethodSettings_LongRunningJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 11, 0);
 
 /**
@@ -691,9 +986,14 @@ export enum ClientLibraryOrganization {
 }
 
 /**
+ * JSON type for the enum google.api.ClientLibraryOrganization.
+ */
+export type ClientLibraryOrganizationJson = "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED" | "CLOUD" | "ADS" | "PHOTOS" | "STREET_VIEW" | "SHOPPING" | "GEO" | "GENERATIVE_AI";
+
+/**
  * Describes the enum google.api.ClientLibraryOrganization.
  */
-export const ClientLibraryOrganizationDesc: GenDescEnum<ClientLibraryOrganization> = /*@__PURE__*/
+export const ClientLibraryOrganizationDesc: GenDescEnum<ClientLibraryOrganization, ClientLibraryOrganizationJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_client, 0);
 
 /**
@@ -727,9 +1027,14 @@ export enum ClientLibraryDestination {
 }
 
 /**
+ * JSON type for the enum google.api.ClientLibraryDestination.
+ */
+export type ClientLibraryDestinationJson = "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED" | "GITHUB" | "PACKAGE_MANAGER";
+
+/**
  * Describes the enum google.api.ClientLibraryDestination.
  */
-export const ClientLibraryDestinationDesc: GenDescEnum<ClientLibraryDestination> = /*@__PURE__*/
+export const ClientLibraryDestinationDesc: GenDescEnum<ClientLibraryDestination, ClientLibraryDestinationJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_client, 1);
 
 /**

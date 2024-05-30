@@ -61,9 +61,29 @@ export type Money = Message<"google.type.Money"> & {
 };
 
 /**
+ * JSON type for the message google.type.Money.
+ */
+export type MoneyJson = {
+  /**
+   * @generated from field: string currency_code = 1;
+   */
+  currencyCode?: string;
+
+  /**
+   * @generated from field: int64 units = 2;
+   */
+  units?: string;
+
+  /**
+   * @generated from field: int32 nanos = 3;
+   */
+  nanos?: number;
+};
+
+/**
  * Describes the message google.type.Money.
  * Use `create(MoneyDesc)` to create a new message.
  */
-export const MoneyDesc: GenDescMessage<Money> = /*@__PURE__*/
+export const MoneyDesc: GenDescMessage<Money, MoneyJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_type_money, 0);
 

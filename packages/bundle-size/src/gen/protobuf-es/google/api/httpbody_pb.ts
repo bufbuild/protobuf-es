@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson } from "@bufbuild/protobuf/wkt";
 import { fileDesc_google_protobuf_any } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -100,9 +100,29 @@ export type HttpBody = Message<"google.api.HttpBody"> & {
 };
 
 /**
+ * JSON type for the message google.api.HttpBody.
+ */
+export type HttpBodyJson = {
+  /**
+   * @generated from field: string content_type = 1;
+   */
+  contentType?: string;
+
+  /**
+   * @generated from field: bytes data = 2;
+   */
+  data?: string;
+
+  /**
+   * @generated from field: repeated google.protobuf.Any extensions = 3;
+   */
+  extensions?: AnyJson[];
+};
+
+/**
  * Describes the message google.api.HttpBody.
  * Use `create(HttpBodyDesc)` to create a new message.
  */
-export const HttpBodyDesc: GenDescMessage<HttpBody> = /*@__PURE__*/
+export const HttpBodyDesc: GenDescMessage<HttpBody, HttpBodyJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_httpbody, 0);
 
