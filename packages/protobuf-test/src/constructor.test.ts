@@ -21,6 +21,8 @@ import { TestAllTypesProto3 as JS_TestAllTypesProto3 } from "./gen/js/google/pro
 import { JSTypeStringMessage as TS_JSTypeStringMessage } from "./gen/ts/extra/jstype_pb.js";
 import { JSTypeStringMessage as JS_JSTypeStringMessage } from "./gen/js/extra/jstype_pb.js";
 import { testMT } from "./helpers.js";
+import { Proto3OptionalMessage as TS_Proto3OptionalMessage } from "./gen/ts/extra/proto3_pb.js";
+import { Proto3OptionalMessage as JS_Proto3OptionalMessage } from "./gen/js/extra/proto3_pb.js";
 
 describe("constructor initializes jstype=JS_STRING with string", function () {
   testMT(
@@ -176,6 +178,50 @@ describe("constructor takes partial message for map value", function () {
         t.repeatedNestedMessage[0]?.corecursive?.repeatedNestedMessage[0]
           ?.corecursive?.repeatedNestedMessage[0]?.a,
       ).toBe(0);
+    },
+  );
+});
+
+describe("constructor skips undefined values", () => {
+  testMT(
+    { ts: TS_Proto3OptionalMessage, js: JS_Proto3OptionalMessage },
+    (messageType) => {
+      const m = new messageType({
+        stringField: undefined,
+      });
+      expect(m.stringField).toBeUndefined();
+    },
+  );
+  testMT(
+    { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
+    (messageType) => {
+      const m = new messageType({
+        optionalInt32: undefined,
+      });
+      expect(m.optionalInt32).toBe(0);
+    },
+  );
+});
+
+describe("constructor skips null values", () => {
+  testMT(
+    { ts: TS_Proto3OptionalMessage, js: JS_Proto3OptionalMessage },
+    (messageType) => {
+      const m = new messageType({
+        // @ts-expect-error TS 2322
+        stringField: null,
+      });
+      expect(m.stringField).toBeUndefined();
+    },
+  );
+  testMT(
+    { ts: TS_TestAllTypesProto3, js: JS_TestAllTypesProto3 },
+    (messageType) => {
+      const m = new messageType({
+        // @ts-expect-error TS 2322
+        optionalInt32: null,
+      });
+      expect(m.optionalInt32).toBe(0);
     },
   );
 });
