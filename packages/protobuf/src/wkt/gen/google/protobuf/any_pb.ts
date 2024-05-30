@@ -162,9 +162,16 @@ export type Any = Message<"google.protobuf.Any"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Any.
+ */
+export type AnyJson = {
+  "@type"?: string
+};
+
+/**
  * Describes the message google.protobuf.Any.
  * Use `create(AnyDesc)` to create a new message.
  */
-export const AnyDesc: GenDescMessage<Any> = /*@__PURE__*/
+export const AnyDesc: GenDescMessage<Any, AnyJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_any, 0);
 

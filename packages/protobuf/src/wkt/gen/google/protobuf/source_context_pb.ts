@@ -44,9 +44,19 @@ export type SourceContext = Message<"google.protobuf.SourceContext"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.SourceContext.
+ */
+export type SourceContextJson = {
+  /**
+   * @generated from field: string file_name = 1;
+   */
+  fileName?: string;
+};
+
+/**
  * Describes the message google.protobuf.SourceContext.
  * Use `create(SourceContextDesc)` to create a new message.
  */
-export const SourceContextDesc: GenDescMessage<SourceContext> = /*@__PURE__*/
+export const SourceContextDesc: GenDescMessage<SourceContext, SourceContextJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_source_context, 0);
 

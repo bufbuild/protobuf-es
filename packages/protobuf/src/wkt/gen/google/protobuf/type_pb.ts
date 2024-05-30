@@ -18,9 +18,9 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
-import type { Any } from "./any_pb.js";
+import type { Any, AnyJson } from "./any_pb.js";
 import { fileDesc_google_protobuf_any } from "./any_pb.js";
-import type { SourceContext } from "./source_context_pb.js";
+import type { SourceContext, SourceContextJson } from "./source_context_pb.js";
 import { fileDesc_google_protobuf_source_context } from "./source_context_pb.js";
 import type { Message } from "../../../../types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
@@ -89,10 +89,50 @@ export type Type = Message<"google.protobuf.Type"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Type.
+ */
+export type TypeJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: repeated google.protobuf.Field fields = 2;
+   */
+  fields?: FieldJson[];
+
+  /**
+   * @generated from field: repeated string oneofs = 3;
+   */
+  oneofs?: string[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Option options = 4;
+   */
+  options?: OptionJson[];
+
+  /**
+   * @generated from field: google.protobuf.SourceContext source_context = 5;
+   */
+  sourceContext?: SourceContextJson;
+
+  /**
+   * @generated from field: google.protobuf.Syntax syntax = 6;
+   */
+  syntax?: SyntaxJson;
+
+  /**
+   * @generated from field: string edition = 7;
+   */
+  edition?: string;
+};
+
+/**
  * Describes the message google.protobuf.Type.
  * Use `create(TypeDesc)` to create a new message.
  */
-export const TypeDesc: GenDescMessage<Type> = /*@__PURE__*/
+export const TypeDesc: GenDescMessage<Type, TypeJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 0);
 
 /**
@@ -175,10 +215,65 @@ export type Field = Message<"google.protobuf.Field"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Field.
+ */
+export type FieldJson = {
+  /**
+   * @generated from field: google.protobuf.Field.Kind kind = 1;
+   */
+  kind?: Field_KindJson;
+
+  /**
+   * @generated from field: google.protobuf.Field.Cardinality cardinality = 2;
+   */
+  cardinality?: Field_CardinalityJson;
+
+  /**
+   * @generated from field: int32 number = 3;
+   */
+  number?: number;
+
+  /**
+   * @generated from field: string name = 4;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: string type_url = 6;
+   */
+  typeUrl?: string;
+
+  /**
+   * @generated from field: int32 oneof_index = 7;
+   */
+  oneofIndex?: number;
+
+  /**
+   * @generated from field: bool packed = 8;
+   */
+  packed?: boolean;
+
+  /**
+   * @generated from field: repeated google.protobuf.Option options = 9;
+   */
+  options?: OptionJson[];
+
+  /**
+   * @generated from field: string json_name = 10;
+   */
+  jsonName?: string;
+
+  /**
+   * @generated from field: string default_value = 11;
+   */
+  defaultValue?: string;
+};
+
+/**
  * Describes the message google.protobuf.Field.
  * Use `create(FieldDesc)` to create a new message.
  */
-export const FieldDesc: GenDescMessage<Field> = /*@__PURE__*/
+export const FieldDesc: GenDescMessage<Field, FieldJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 1);
 
 /**
@@ -322,9 +417,14 @@ export enum Field_Kind {
 }
 
 /**
+ * JSON type for the enum google.protobuf.Field.Kind.
+ */
+export type Field_KindJson = "TYPE_UNKNOWN" | "TYPE_DOUBLE" | "TYPE_FLOAT" | "TYPE_INT64" | "TYPE_UINT64" | "TYPE_INT32" | "TYPE_FIXED64" | "TYPE_FIXED32" | "TYPE_BOOL" | "TYPE_STRING" | "TYPE_GROUP" | "TYPE_MESSAGE" | "TYPE_BYTES" | "TYPE_UINT32" | "TYPE_ENUM" | "TYPE_SFIXED32" | "TYPE_SFIXED64" | "TYPE_SINT32" | "TYPE_SINT64";
+
+/**
  * Describes the enum google.protobuf.Field.Kind.
  */
-export const Field_KindDesc: GenDescEnum<Field_Kind> = /*@__PURE__*/
+export const Field_KindDesc: GenDescEnum<Field_Kind, Field_KindJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 0);
 
 /**
@@ -363,9 +463,14 @@ export enum Field_Cardinality {
 }
 
 /**
+ * JSON type for the enum google.protobuf.Field.Cardinality.
+ */
+export type Field_CardinalityJson = "CARDINALITY_UNKNOWN" | "CARDINALITY_OPTIONAL" | "CARDINALITY_REQUIRED" | "CARDINALITY_REPEATED";
+
+/**
  * Describes the enum google.protobuf.Field.Cardinality.
  */
-export const Field_CardinalityDesc: GenDescEnum<Field_Cardinality> = /*@__PURE__*/
+export const Field_CardinalityDesc: GenDescEnum<Field_Cardinality, Field_CardinalityJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 1);
 
 /**
@@ -418,10 +523,45 @@ export type Enum = Message<"google.protobuf.Enum"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Enum.
+ */
+export type EnumJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: repeated google.protobuf.EnumValue enumvalue = 2;
+   */
+  enumvalue?: EnumValueJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Option options = 3;
+   */
+  options?: OptionJson[];
+
+  /**
+   * @generated from field: google.protobuf.SourceContext source_context = 4;
+   */
+  sourceContext?: SourceContextJson;
+
+  /**
+   * @generated from field: google.protobuf.Syntax syntax = 5;
+   */
+  syntax?: SyntaxJson;
+
+  /**
+   * @generated from field: string edition = 6;
+   */
+  edition?: string;
+};
+
+/**
  * Describes the message google.protobuf.Enum.
  * Use `create(EnumDesc)` to create a new message.
  */
-export const EnumDesc: GenDescMessage<Enum> = /*@__PURE__*/
+export const EnumDesc: GenDescMessage<Enum, EnumJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 2);
 
 /**
@@ -453,10 +593,30 @@ export type EnumValue = Message<"google.protobuf.EnumValue"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.EnumValue.
+ */
+export type EnumValueJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: int32 number = 2;
+   */
+  number?: number;
+
+  /**
+   * @generated from field: repeated google.protobuf.Option options = 3;
+   */
+  options?: OptionJson[];
+};
+
+/**
  * Describes the message google.protobuf.EnumValue.
  * Use `create(EnumValueDesc)` to create a new message.
  */
-export const EnumValueDesc: GenDescMessage<EnumValue> = /*@__PURE__*/
+export const EnumValueDesc: GenDescMessage<EnumValue, EnumValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 3);
 
 /**
@@ -488,10 +648,25 @@ export type Option = Message<"google.protobuf.Option"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Option.
+ */
+export type OptionJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: google.protobuf.Any value = 2;
+   */
+  value?: AnyJson;
+};
+
+/**
  * Describes the message google.protobuf.Option.
  * Use `create(OptionDesc)` to create a new message.
  */
-export const OptionDesc: GenDescMessage<Option> = /*@__PURE__*/
+export const OptionDesc: GenDescMessage<Option, OptionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_type, 4);
 
 /**
@@ -523,8 +698,13 @@ export enum Syntax {
 }
 
 /**
+ * JSON type for the enum google.protobuf.Syntax.
+ */
+export type SyntaxJson = "SYNTAX_PROTO2" | "SYNTAX_PROTO3" | "SYNTAX_EDITIONS";
+
+/**
  * Describes the enum google.protobuf.Syntax.
  */
-export const SyntaxDesc: GenDescEnum<Syntax> = /*@__PURE__*/
+export const SyntaxDesc: GenDescEnum<Syntax, SyntaxJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 0);
 

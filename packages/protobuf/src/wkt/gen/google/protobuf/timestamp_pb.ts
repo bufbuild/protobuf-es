@@ -143,9 +143,14 @@ export type Timestamp = Message<"google.protobuf.Timestamp"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Timestamp.
+ */
+export type TimestampJson = string;
+
+/**
  * Describes the message google.protobuf.Timestamp.
  * Use `create(TimestampDesc)` to create a new message.
  */
-export const TimestampDesc: GenDescMessage<Timestamp> = /*@__PURE__*/
+export const TimestampDesc: GenDescMessage<Timestamp, TimestampJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_timestamp, 0);
 

@@ -18,9 +18,9 @@
 
 import type { GenDescFile, GenDescMessage } from "../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
-import type { SourceContext } from "./source_context_pb.js";
+import type { SourceContext, SourceContextJson } from "./source_context_pb.js";
 import { fileDesc_google_protobuf_source_context } from "./source_context_pb.js";
-import type { Option, Syntax } from "./type_pb.js";
+import type { Option, OptionJson, Syntax, SyntaxJson } from "./type_pb.js";
 import { fileDesc_google_protobuf_type } from "./type_pb.js";
 import type { Message } from "../../../../types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
@@ -117,10 +117,50 @@ export type Api = Message<"google.protobuf.Api"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Api.
+ */
+export type ApiJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: repeated google.protobuf.Method methods = 2;
+   */
+  methods?: MethodJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Option options = 3;
+   */
+  options?: OptionJson[];
+
+  /**
+   * @generated from field: string version = 4;
+   */
+  version?: string;
+
+  /**
+   * @generated from field: google.protobuf.SourceContext source_context = 5;
+   */
+  sourceContext?: SourceContextJson;
+
+  /**
+   * @generated from field: repeated google.protobuf.Mixin mixins = 6;
+   */
+  mixins?: MixinJson[];
+
+  /**
+   * @generated from field: google.protobuf.Syntax syntax = 7;
+   */
+  syntax?: SyntaxJson;
+};
+
+/**
  * Describes the message google.protobuf.Api.
  * Use `create(ApiDesc)` to create a new message.
  */
-export const ApiDesc: GenDescMessage<Api> = /*@__PURE__*/
+export const ApiDesc: GenDescMessage<Api, ApiJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_api, 0);
 
 /**
@@ -180,10 +220,50 @@ export type Method = Message<"google.protobuf.Method"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Method.
+ */
+export type MethodJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: string request_type_url = 2;
+   */
+  requestTypeUrl?: string;
+
+  /**
+   * @generated from field: bool request_streaming = 3;
+   */
+  requestStreaming?: boolean;
+
+  /**
+   * @generated from field: string response_type_url = 4;
+   */
+  responseTypeUrl?: string;
+
+  /**
+   * @generated from field: bool response_streaming = 5;
+   */
+  responseStreaming?: boolean;
+
+  /**
+   * @generated from field: repeated google.protobuf.Option options = 6;
+   */
+  options?: OptionJson[];
+
+  /**
+   * @generated from field: google.protobuf.Syntax syntax = 7;
+   */
+  syntax?: SyntaxJson;
+};
+
+/**
  * Describes the message google.protobuf.Method.
  * Use `create(MethodDesc)` to create a new message.
  */
-export const MethodDesc: GenDescMessage<Method> = /*@__PURE__*/
+export const MethodDesc: GenDescMessage<Method, MethodJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_api, 1);
 
 /**
@@ -286,9 +366,24 @@ export type Mixin = Message<"google.protobuf.Mixin"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Mixin.
+ */
+export type MixinJson = {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: string root = 2;
+   */
+  root?: string;
+};
+
+/**
  * Describes the message google.protobuf.Mixin.
  * Use `create(MixinDesc)` to create a new message.
  */
-export const MixinDesc: GenDescMessage<Mixin> = /*@__PURE__*/
+export const MixinDesc: GenDescMessage<Mixin, MixinJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_api, 2);
 

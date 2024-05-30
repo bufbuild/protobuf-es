@@ -43,9 +43,14 @@ export type Empty = Message<"google.protobuf.Empty"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Empty.
+ */
+export type EmptyJson = Record<string, never>;
+
+/**
  * Describes the message google.protobuf.Empty.
  * Use `create(EmptyDesc)` to create a new message.
  */
-export const EmptyDesc: GenDescMessage<Empty> = /*@__PURE__*/
+export const EmptyDesc: GenDescMessage<Empty, EmptyJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_empty, 0);
 

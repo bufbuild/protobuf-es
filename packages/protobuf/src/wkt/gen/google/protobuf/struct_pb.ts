@@ -19,6 +19,7 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
+import type { JsonObject, JsonValue } from "../../../../json-value.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 import { enumDesc } from "../../../../codegenv1/enum.js";
 
@@ -50,10 +51,15 @@ export type Struct = Message<"google.protobuf.Struct"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Struct.
+ */
+export type StructJson = JsonObject;
+
+/**
  * Describes the message google.protobuf.Struct.
  * Use `create(StructDesc)` to create a new message.
  */
-export const StructDesc: GenDescMessage<Struct> = /*@__PURE__*/
+export const StructDesc: GenDescMessage<Struct, StructJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_struct, 0);
 
 /**
@@ -124,10 +130,15 @@ export type Value = Message<"google.protobuf.Value"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Value.
+ */
+export type ValueJson = JsonValue;
+
+/**
  * Describes the message google.protobuf.Value.
  * Use `create(ValueDesc)` to create a new message.
  */
-export const ValueDesc: GenDescMessage<Value> = /*@__PURE__*/
+export const ValueDesc: GenDescMessage<Value, ValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_struct, 1);
 
 /**
@@ -147,10 +158,15 @@ export type ListValue = Message<"google.protobuf.ListValue"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.ListValue.
+ */
+export type ListValueJson = JsonValue[];
+
+/**
  * Describes the message google.protobuf.ListValue.
  * Use `create(ListValueDesc)` to create a new message.
  */
-export const ListValueDesc: GenDescMessage<ListValue> = /*@__PURE__*/
+export const ListValueDesc: GenDescMessage<ListValue, ListValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_struct, 2);
 
 /**
@@ -171,8 +187,13 @@ export enum NullValue {
 }
 
 /**
+ * JSON type for the enum google.protobuf.NullValue.
+ */
+export type NullValueJson = null;
+
+/**
  * Describes the enum google.protobuf.NullValue.
  */
-export const NullValueDesc: GenDescEnum<NullValue> = /*@__PURE__*/
+export const NullValueDesc: GenDescEnum<NullValue, NullValueJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_struct, 0);
 

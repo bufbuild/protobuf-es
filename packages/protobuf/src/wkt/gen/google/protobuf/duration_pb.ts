@@ -114,9 +114,14 @@ export type Duration = Message<"google.protobuf.Duration"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Duration.
+ */
+export type DurationJson = string;
+
+/**
  * Describes the message google.protobuf.Duration.
  * Use `create(DurationDesc)` to create a new message.
  */
-export const DurationDesc: GenDescMessage<Duration> = /*@__PURE__*/
+export const DurationDesc: GenDescMessage<Duration, DurationJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_duration, 0);
 

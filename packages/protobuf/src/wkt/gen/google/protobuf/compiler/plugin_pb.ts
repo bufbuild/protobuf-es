@@ -31,7 +31,7 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "../../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../../codegenv1/file.js";
-import type { FileDescriptorProto, GeneratedCodeInfo } from "../descriptor_pb.js";
+import type { FileDescriptorProto, FileDescriptorProtoJson, GeneratedCodeInfo, GeneratedCodeInfoJson } from "../descriptor_pb.js";
 import { fileDesc_google_protobuf_descriptor } from "../descriptor_pb.js";
 import type { Message } from "../../../../../types.js";
 import { messageDesc } from "../../../../../codegenv1/message.js";
@@ -74,10 +74,35 @@ export type Version = Message<"google.protobuf.compiler.Version"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.compiler.Version.
+ */
+export type VersionJson = {
+  /**
+   * @generated from field: optional int32 major = 1;
+   */
+  major?: number;
+
+  /**
+   * @generated from field: optional int32 minor = 2;
+   */
+  minor?: number;
+
+  /**
+   * @generated from field: optional int32 patch = 3;
+   */
+  patch?: number;
+
+  /**
+   * @generated from field: optional string suffix = 4;
+   */
+  suffix?: string;
+};
+
+/**
  * Describes the message google.protobuf.compiler.Version.
  * Use `create(VersionDesc)` to create a new message.
  */
-export const VersionDesc: GenDescMessage<Version> = /*@__PURE__*/
+export const VersionDesc: GenDescMessage<Version, VersionJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_compiler_plugin, 0);
 
 /**
@@ -145,10 +170,40 @@ export type CodeGeneratorRequest = Message<"google.protobuf.compiler.CodeGenerat
 };
 
 /**
+ * JSON type for the message google.protobuf.compiler.CodeGeneratorRequest.
+ */
+export type CodeGeneratorRequestJson = {
+  /**
+   * @generated from field: repeated string file_to_generate = 1;
+   */
+  fileToGenerate?: string[];
+
+  /**
+   * @generated from field: optional string parameter = 2;
+   */
+  parameter?: string;
+
+  /**
+   * @generated from field: repeated google.protobuf.FileDescriptorProto proto_file = 15;
+   */
+  protoFile?: FileDescriptorProtoJson[];
+
+  /**
+   * @generated from field: repeated google.protobuf.FileDescriptorProto source_file_descriptors = 17;
+   */
+  sourceFileDescriptors?: FileDescriptorProtoJson[];
+
+  /**
+   * @generated from field: optional google.protobuf.compiler.Version compiler_version = 3;
+   */
+  compilerVersion?: VersionJson;
+};
+
+/**
  * Describes the message google.protobuf.compiler.CodeGeneratorRequest.
  * Use `create(CodeGeneratorRequestDesc)` to create a new message.
  */
-export const CodeGeneratorRequestDesc: GenDescMessage<CodeGeneratorRequest> = /*@__PURE__*/
+export const CodeGeneratorRequestDesc: GenDescMessage<CodeGeneratorRequest, CodeGeneratorRequestJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_compiler_plugin, 1);
 
 /**
@@ -206,10 +261,40 @@ export type CodeGeneratorResponse = Message<"google.protobuf.compiler.CodeGenera
 };
 
 /**
+ * JSON type for the message google.protobuf.compiler.CodeGeneratorResponse.
+ */
+export type CodeGeneratorResponseJson = {
+  /**
+   * @generated from field: optional string error = 1;
+   */
+  error?: string;
+
+  /**
+   * @generated from field: optional uint64 supported_features = 2;
+   */
+  supportedFeatures?: string;
+
+  /**
+   * @generated from field: optional int32 minimum_edition = 3;
+   */
+  minimumEdition?: number;
+
+  /**
+   * @generated from field: optional int32 maximum_edition = 4;
+   */
+  maximumEdition?: number;
+
+  /**
+   * @generated from field: repeated google.protobuf.compiler.CodeGeneratorResponse.File file = 15;
+   */
+  file?: CodeGeneratorResponse_FileJson[];
+};
+
+/**
  * Describes the message google.protobuf.compiler.CodeGeneratorResponse.
  * Use `create(CodeGeneratorResponseDesc)` to create a new message.
  */
-export const CodeGeneratorResponseDesc: GenDescMessage<CodeGeneratorResponse> = /*@__PURE__*/
+export const CodeGeneratorResponseDesc: GenDescMessage<CodeGeneratorResponse, CodeGeneratorResponseJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_compiler_plugin, 2);
 
 /**
@@ -296,10 +381,35 @@ export type CodeGeneratorResponse_File = Message<"google.protobuf.compiler.CodeG
 };
 
 /**
+ * JSON type for the message google.protobuf.compiler.CodeGeneratorResponse.File.
+ */
+export type CodeGeneratorResponse_FileJson = {
+  /**
+   * @generated from field: optional string name = 1;
+   */
+  name?: string;
+
+  /**
+   * @generated from field: optional string insertion_point = 2;
+   */
+  insertionPoint?: string;
+
+  /**
+   * @generated from field: optional string content = 15;
+   */
+  content?: string;
+
+  /**
+   * @generated from field: optional google.protobuf.GeneratedCodeInfo generated_code_info = 16;
+   */
+  generatedCodeInfo?: GeneratedCodeInfoJson;
+};
+
+/**
  * Describes the message google.protobuf.compiler.CodeGeneratorResponse.File.
  * Use `create(CodeGeneratorResponse_FileDesc)` to create a new message.
  */
-export const CodeGeneratorResponse_FileDesc: GenDescMessage<CodeGeneratorResponse_File> = /*@__PURE__*/
+export const CodeGeneratorResponse_FileDesc: GenDescMessage<CodeGeneratorResponse_File, CodeGeneratorResponse_FileJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_compiler_plugin, 2, 0);
 
 /**
@@ -325,8 +435,13 @@ export enum CodeGeneratorResponse_Feature {
 }
 
 /**
+ * JSON type for the enum google.protobuf.compiler.CodeGeneratorResponse.Feature.
+ */
+export type CodeGeneratorResponse_FeatureJson = "FEATURE_NONE" | "FEATURE_PROTO3_OPTIONAL" | "FEATURE_SUPPORTS_EDITIONS";
+
+/**
  * Describes the enum google.protobuf.compiler.CodeGeneratorResponse.Feature.
  */
-export const CodeGeneratorResponse_FeatureDesc: GenDescEnum<CodeGeneratorResponse_Feature> = /*@__PURE__*/
+export const CodeGeneratorResponse_FeatureDesc: GenDescEnum<CodeGeneratorResponse_Feature, CodeGeneratorResponse_FeatureJson> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_compiler_plugin, 2, 0);
 

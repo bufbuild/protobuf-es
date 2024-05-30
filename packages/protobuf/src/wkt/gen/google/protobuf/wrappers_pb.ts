@@ -44,10 +44,15 @@ export type DoubleValue = Message<"google.protobuf.DoubleValue"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.DoubleValue.
+ */
+export type DoubleValueJson = number | "NaN" | "Infinity" | "-Infinity";
+
+/**
  * Describes the message google.protobuf.DoubleValue.
  * Use `create(DoubleValueDesc)` to create a new message.
  */
-export const DoubleValueDesc: GenDescMessage<DoubleValue> = /*@__PURE__*/
+export const DoubleValueDesc: GenDescMessage<DoubleValue, DoubleValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 0);
 
 /**
@@ -67,10 +72,15 @@ export type FloatValue = Message<"google.protobuf.FloatValue"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.FloatValue.
+ */
+export type FloatValueJson = number | "NaN" | "Infinity" | "-Infinity";
+
+/**
  * Describes the message google.protobuf.FloatValue.
  * Use `create(FloatValueDesc)` to create a new message.
  */
-export const FloatValueDesc: GenDescMessage<FloatValue> = /*@__PURE__*/
+export const FloatValueDesc: GenDescMessage<FloatValue, FloatValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 1);
 
 /**
@@ -90,10 +100,15 @@ export type Int64Value = Message<"google.protobuf.Int64Value"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Int64Value.
+ */
+export type Int64ValueJson = string;
+
+/**
  * Describes the message google.protobuf.Int64Value.
  * Use `create(Int64ValueDesc)` to create a new message.
  */
-export const Int64ValueDesc: GenDescMessage<Int64Value> = /*@__PURE__*/
+export const Int64ValueDesc: GenDescMessage<Int64Value, Int64ValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 2);
 
 /**
@@ -113,10 +128,15 @@ export type UInt64Value = Message<"google.protobuf.UInt64Value"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.UInt64Value.
+ */
+export type UInt64ValueJson = string;
+
+/**
  * Describes the message google.protobuf.UInt64Value.
  * Use `create(UInt64ValueDesc)` to create a new message.
  */
-export const UInt64ValueDesc: GenDescMessage<UInt64Value> = /*@__PURE__*/
+export const UInt64ValueDesc: GenDescMessage<UInt64Value, UInt64ValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 3);
 
 /**
@@ -136,10 +156,15 @@ export type Int32Value = Message<"google.protobuf.Int32Value"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.Int32Value.
+ */
+export type Int32ValueJson = number;
+
+/**
  * Describes the message google.protobuf.Int32Value.
  * Use `create(Int32ValueDesc)` to create a new message.
  */
-export const Int32ValueDesc: GenDescMessage<Int32Value> = /*@__PURE__*/
+export const Int32ValueDesc: GenDescMessage<Int32Value, Int32ValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 4);
 
 /**
@@ -159,10 +184,15 @@ export type UInt32Value = Message<"google.protobuf.UInt32Value"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.UInt32Value.
+ */
+export type UInt32ValueJson = number;
+
+/**
  * Describes the message google.protobuf.UInt32Value.
  * Use `create(UInt32ValueDesc)` to create a new message.
  */
-export const UInt32ValueDesc: GenDescMessage<UInt32Value> = /*@__PURE__*/
+export const UInt32ValueDesc: GenDescMessage<UInt32Value, UInt32ValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 5);
 
 /**
@@ -182,10 +212,15 @@ export type BoolValue = Message<"google.protobuf.BoolValue"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.BoolValue.
+ */
+export type BoolValueJson = boolean;
+
+/**
  * Describes the message google.protobuf.BoolValue.
  * Use `create(BoolValueDesc)` to create a new message.
  */
-export const BoolValueDesc: GenDescMessage<BoolValue> = /*@__PURE__*/
+export const BoolValueDesc: GenDescMessage<BoolValue, BoolValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 6);
 
 /**
@@ -205,10 +240,15 @@ export type StringValue = Message<"google.protobuf.StringValue"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.StringValue.
+ */
+export type StringValueJson = string;
+
+/**
  * Describes the message google.protobuf.StringValue.
  * Use `create(StringValueDesc)` to create a new message.
  */
-export const StringValueDesc: GenDescMessage<StringValue> = /*@__PURE__*/
+export const StringValueDesc: GenDescMessage<StringValue, StringValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 7);
 
 /**
@@ -228,9 +268,14 @@ export type BytesValue = Message<"google.protobuf.BytesValue"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.BytesValue.
+ */
+export type BytesValueJson = string;
+
+/**
  * Describes the message google.protobuf.BytesValue.
  * Use `create(BytesValueDesc)` to create a new message.
  */
-export const BytesValueDesc: GenDescMessage<BytesValue> = /*@__PURE__*/
+export const BytesValueDesc: GenDescMessage<BytesValue, BytesValueJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_wrappers, 8);
 

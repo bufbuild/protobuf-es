@@ -240,9 +240,14 @@ export type FieldMask = Message<"google.protobuf.FieldMask"> & {
 };
 
 /**
+ * JSON type for the message google.protobuf.FieldMask.
+ */
+export type FieldMaskJson = string;
+
+/**
  * Describes the message google.protobuf.FieldMask.
  * Use `create(FieldMaskDesc)` to create a new message.
  */
-export const FieldMaskDesc: GenDescMessage<FieldMask> = /*@__PURE__*/
+export const FieldMaskDesc: GenDescMessage<FieldMask, FieldMaskJson> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_field_mask, 0);
 
