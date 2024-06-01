@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "fflate": "^0.8.1",
-    "micromatch": "^4.0.5"
+    "micromatch": "^4.0.7"
   }
 }
