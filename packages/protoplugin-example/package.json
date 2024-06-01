@@ -10,7 +10,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@bufbuild/buf": "^1.31.0",
+    "@bufbuild/buf": "^1.32.2",
     "@bufbuild/protobuf": "^1.10.0",
     "@bufbuild/protoc-gen-es": "^1.10.0",
     "@bufbuild/protoplugin": "^1.10.0",
