@@ -44,18 +44,21 @@ function cloneReflect(i: ReflectMessage): ReflectMessage {
         break;
       }
       case "list":
+        // eslint-disable-next-line no-case-declarations
+        const list = o.get(f);
         for (const item of i.get(f)) {
-          // TODO fix type error
-          // @ts-expect-error TODO
-          const err = o.addListItem(f, cloneSingular(f, item));
+          const err = list.add(cloneSingular(f, item));
           if (err) {
             throw err;
           }
         }
         break;
       case "map":
+        // eslint-disable-next-line no-case-declarations
+        const map = o.get(f);
         for (const entry of i.get(f).entries()) {
-          const err = o.setMapEntry(f, entry[0], cloneSingular(f, entry[1]));
+          // @ts-expect-error TODO fix type error
+          const err = map.set(entry[0], cloneSingular(f, entry[1]));
           if (err) {
             throw err;
           }
