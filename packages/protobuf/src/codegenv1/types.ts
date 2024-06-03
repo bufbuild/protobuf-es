@@ -75,7 +75,7 @@ export type GenDescExtension<
  *
  * @private
  */
-export type GenDescService<RuntimeShape extends GenDescServiceShape> = Omit<
+export type GenDescService<RuntimeShape extends GenDescServiceMethods> = Omit<
   DescService,
   "method"
 > & {
@@ -85,13 +85,10 @@ export type GenDescService<RuntimeShape extends GenDescServiceShape> = Omit<
 /**
  * @private
  */
-export type GenDescServiceShape = {
-  [localName: string]: {
-    input: DescMessage;
-    output: DescMessage;
-    methodKind: DescMethod["methodKind"];
-  };
-};
+export type GenDescServiceMethods = Record<
+  string,
+  Pick<DescMethod, "input" | "output" | "methodKind">
+>;
 
 class brand<A, B = unknown> {
   protected a: A | boolean = false;
