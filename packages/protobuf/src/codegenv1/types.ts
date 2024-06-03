@@ -19,6 +19,7 @@ import type {
   DescField,
   DescFile,
   DescMessage,
+  DescMethod,
   DescService,
 } from "../descriptors.js";
 
@@ -75,16 +76,18 @@ export type GenDescExtension<
  * @private
  */
 export type GenDescService<RuntimeShape extends GenDescServiceShape> =
-  DescService & brand<RuntimeShape>;
+  DescService & {
+    method: { [K in keyof RuntimeShape]: RuntimeShape[K] & DescMethod };
+  };
 
 /**
  * @private
  */
 export type GenDescServiceShape = {
   [localName: string]: {
-    kind: "unary" | "server_streaming" | "client_streaming" | "bidi_streaming";
-    I: DescMessage;
-    O: DescMessage;
+    input: DescMessage;
+    output: DescMessage;
+    methodKind: DescMethod["methodKind"];
   };
 };
 

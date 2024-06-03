@@ -77,9 +77,9 @@ export const ElizaService: GenDescService<{
    * @generated from rpc connectrpc.eliza.v1.ElizaService.Say
    */
   say: {
-    kind: "unary";
-    I: typeof SayRequestDesc;
-    O: typeof SayResponseDesc;
+    methodKind: "unary";
+    input: typeof SayRequestDesc;
+    output: typeof SayResponseDesc;
   },
 }
 > = /*@__PURE__*/
