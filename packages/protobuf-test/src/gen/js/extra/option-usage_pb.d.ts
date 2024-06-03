@@ -74,9 +74,9 @@ export declare const ServiceWithOptions: GenDescService<{
    * @generated from rpc spec.ServiceWithOptions.Foo
    */
   foo: {
-    kind: "unary";
-    I: typeof MessageWithOptionsDesc;
-    O: typeof MessageWithOptionsDesc;
+    methodKind: "unary";
+    input: typeof MessageWithOptionsDesc;
+    output: typeof MessageWithOptionsDesc;
   },
 }
 >;

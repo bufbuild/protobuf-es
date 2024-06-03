@@ -69,9 +69,9 @@ export const TestService: GenDescService<{
    * @generated from rpc protobuf_unittest.no_generic_services_test.TestService.Foo
    */
   foo: {
-    kind: "unary";
-    I: typeof TestMessageDesc;
-    O: typeof TestMessageDesc;
+    methodKind: "unary";
+    input: typeof TestMessageDesc;
+    output: typeof TestMessageDesc;
   },
 }
 > = /*@__PURE__*/

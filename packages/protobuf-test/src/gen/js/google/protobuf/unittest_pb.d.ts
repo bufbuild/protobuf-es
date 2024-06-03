@@ -6794,17 +6794,17 @@ export declare const TestService: GenDescService<{
    * @generated from rpc protobuf_unittest.TestService.Foo
    */
   foo: {
-    kind: "unary";
-    I: typeof FooRequestDesc;
-    O: typeof FooResponseDesc;
+    methodKind: "unary";
+    input: typeof FooRequestDesc;
+    output: typeof FooResponseDesc;
   },
   /**
    * @generated from rpc protobuf_unittest.TestService.Bar
    */
   bar: {
-    kind: "unary";
-    I: typeof BarRequestDesc;
-    O: typeof BarResponseDesc;
+    methodKind: "unary";
+    input: typeof BarRequestDesc;
+    output: typeof BarResponseDesc;
   },
 }
 >;

@@ -75,9 +75,9 @@ export const ImplicitlyDeprecatedService: GenDescService<{
    * @generated from rpc spec.ImplicitlyDeprecatedService.ImplicitlyDeprecatedRpc
    */
   implicitlyDeprecatedRpc: {
-    kind: "unary";
-    I: typeof EmptyDesc;
-    O: typeof EmptyDesc;
+    methodKind: "unary";
+    input: typeof EmptyDesc;
+    output: typeof EmptyDesc;
   },
 }
 > = /*@__PURE__*/

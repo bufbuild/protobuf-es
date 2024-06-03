@@ -1023,33 +1023,33 @@ export const ReservedPropertyNamesService: GenDescService<{
    * @generated from rpc spec.ReservedPropertyNamesService.constructor
    */
   constructor$: {
-    kind: "unary";
-    I: typeof ErrorDesc;
-    O: typeof ErrorDesc;
+    methodKind: "unary";
+    input: typeof ErrorDesc;
+    output: typeof ErrorDesc;
   },
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.toString
    */
   toString$: {
-    kind: "unary";
-    I: typeof ErrorDesc;
-    O: typeof ErrorDesc;
+    methodKind: "unary";
+    input: typeof ErrorDesc;
+    output: typeof ErrorDesc;
   },
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.to_JSON
    */
   to_JSON: {
-    kind: "unary";
-    I: typeof ErrorDesc;
-    O: typeof ErrorDesc;
+    methodKind: "unary";
+    input: typeof ErrorDesc;
+    output: typeof ErrorDesc;
   },
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.value_of
    */
   value_of: {
-    kind: "unary";
-    I: typeof ErrorDesc;
-    O: typeof ErrorDesc;
+    methodKind: "unary";
+    input: typeof ErrorDesc;
+    output: typeof ErrorDesc;
   },
 }
 > = /*@__PURE__*/

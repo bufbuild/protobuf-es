@@ -350,9 +350,9 @@ export const Operations: GenDescService<{
    * @generated from rpc google.longrunning.Operations.ListOperations
    */
   listOperations: {
-    kind: "unary";
-    I: typeof ListOperationsRequestDesc;
-    O: typeof ListOperationsResponseDesc;
+    methodKind: "unary";
+    input: typeof ListOperationsRequestDesc;
+    output: typeof ListOperationsResponseDesc;
   },
   /**
    * Gets the latest state of a long-running operation.  Clients can use this
@@ -362,9 +362,9 @@ export const Operations: GenDescService<{
    * @generated from rpc google.longrunning.Operations.GetOperation
    */
   getOperation: {
-    kind: "unary";
-    I: typeof GetOperationRequestDesc;
-    O: typeof OperationDesc;
+    methodKind: "unary";
+    input: typeof GetOperationRequestDesc;
+    output: typeof OperationDesc;
   },
   /**
    * Deletes a long-running operation. This method indicates that the client is
@@ -375,9 +375,9 @@ export const Operations: GenDescService<{
    * @generated from rpc google.longrunning.Operations.DeleteOperation
    */
   deleteOperation: {
-    kind: "unary";
-    I: typeof DeleteOperationRequestDesc;
-    O: typeof EmptyDesc;
+    methodKind: "unary";
+    input: typeof DeleteOperationRequestDesc;
+    output: typeof EmptyDesc;
   },
   /**
    * Starts asynchronous cancellation on a long-running operation.  The server
@@ -394,9 +394,9 @@ export const Operations: GenDescService<{
    * @generated from rpc google.longrunning.Operations.CancelOperation
    */
   cancelOperation: {
-    kind: "unary";
-    I: typeof CancelOperationRequestDesc;
-    O: typeof EmptyDesc;
+    methodKind: "unary";
+    input: typeof CancelOperationRequestDesc;
+    output: typeof EmptyDesc;
   },
   /**
    * Waits until the specified long-running operation is done or reaches at most
@@ -412,9 +412,9 @@ export const Operations: GenDescService<{
    * @generated from rpc google.longrunning.Operations.WaitOperation
    */
   waitOperation: {
-    kind: "unary";
-    I: typeof WaitOperationRequestDesc;
-    O: typeof OperationDesc;
+    methodKind: "unary";
+    input: typeof WaitOperationRequestDesc;
+    output: typeof OperationDesc;
   },
 }
 > = /*@__PURE__*/

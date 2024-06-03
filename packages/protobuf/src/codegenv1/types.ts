@@ -19,6 +19,7 @@ import type {
   DescField,
   DescFile,
   DescMessage,
+  DescMethod,
   DescService,
 } from "../descriptors.js";
 
@@ -74,19 +75,20 @@ export type GenDescExtension<
  *
  * @private
  */
-export type GenDescService<RuntimeShape extends GenDescServiceShape> =
-  DescService & brand<RuntimeShape>;
+export type GenDescService<RuntimeShape extends GenDescServiceMethods> = Omit<
+  DescService,
+  "method"
+> & {
+  method: { [K in keyof RuntimeShape]: RuntimeShape[K] & DescMethod };
+};
 
 /**
  * @private
  */
-export type GenDescServiceShape = {
-  [localName: string]: {
-    kind: "unary" | "server_streaming" | "client_streaming" | "bidi_streaming";
-    I: DescMessage;
-    O: DescMessage;
-  };
-};
+export type GenDescServiceMethods = Record<
+  string,
+  Pick<DescMethod, "input" | "output" | "methodKind">
+>;
 
 class brand<A, B = unknown> {
   protected a: A | boolean = false;
@@ -101,9 +103,9 @@ class brand<A, B = unknown> {
 type MessageFieldNames<T extends Message> = Message extends T ? string :
   Exclude<keyof {
     [P in keyof T as
-      P extends ("$typeName" | "$unknown") ? never
-        : T[P] extends Oneof<infer K> ? K
-          : P
+    P extends ("$typeName" | "$unknown") ? never
+    : T[P] extends Oneof<infer K> ? K
+    : P
     ]-?: true;
   }, number | symbol>;
 
