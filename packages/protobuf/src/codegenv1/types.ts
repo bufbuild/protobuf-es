@@ -75,10 +75,12 @@ export type GenDescExtension<
  *
  * @private
  */
-export type GenDescService<RuntimeShape extends GenDescServiceShape> =
-  DescService & {
-    method: { [K in keyof RuntimeShape]: RuntimeShape[K] & DescMethod };
-  };
+export type GenDescService<RuntimeShape extends GenDescServiceShape> = Omit<
+  DescService,
+  "method"
+> & {
+  method: { [K in keyof RuntimeShape]: RuntimeShape[K] & DescMethod };
+};
 
 /**
  * @private
@@ -104,9 +106,9 @@ class brand<A, B = unknown> {
 type MessageFieldNames<T extends Message> = Message extends T ? string :
   Exclude<keyof {
     [P in keyof T as
-      P extends ("$typeName" | "$unknown") ? never
-        : T[P] extends Oneof<infer K> ? K
-          : P
+    P extends ("$typeName" | "$unknown") ? never
+    : T[P] extends Oneof<infer K> ? K
+    : P
     ]-?: true;
   }, number | symbol>;
 
