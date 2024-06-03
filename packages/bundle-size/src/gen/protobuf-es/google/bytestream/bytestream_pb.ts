@@ -262,9 +262,9 @@ export const ByteStream: GenDescService<{
    * @generated from rpc google.bytestream.ByteStream.Read
    */
   read: {
-    kind: "server_streaming";
-    I: typeof ReadRequestDesc;
-    O: typeof ReadResponseDesc;
+    methodKind: "server_streaming";
+    input: typeof ReadRequestDesc;
+    output: typeof ReadResponseDesc;
   },
   /**
    * `Write()` is used to send the contents of a resource as a sequence of
@@ -293,9 +293,9 @@ export const ByteStream: GenDescService<{
    * @generated from rpc google.bytestream.ByteStream.Write
    */
   write: {
-    kind: "client_streaming";
-    I: typeof WriteRequestDesc;
-    O: typeof WriteResponseDesc;
+    methodKind: "client_streaming";
+    input: typeof WriteRequestDesc;
+    output: typeof WriteResponseDesc;
   },
   /**
    * `QueryWriteStatus()` is used to find the `committed_size` for a resource
@@ -316,9 +316,9 @@ export const ByteStream: GenDescService<{
    * @generated from rpc google.bytestream.ByteStream.QueryWriteStatus
    */
   queryWriteStatus: {
-    kind: "unary";
-    I: typeof QueryWriteStatusRequestDesc;
-    O: typeof QueryWriteStatusResponseDesc;
+    methodKind: "unary";
+    input: typeof QueryWriteStatusRequestDesc;
+    output: typeof QueryWriteStatusResponseDesc;
   },
 }
 > = /*@__PURE__*/

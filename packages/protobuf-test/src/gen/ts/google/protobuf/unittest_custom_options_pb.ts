@@ -720,9 +720,9 @@ export const TestServiceWithCustomOptions: GenDescService<{
    * @generated from rpc protobuf_unittest.TestServiceWithCustomOptions.Foo
    */
   foo: {
-    kind: "unary";
-    I: typeof CustomOptionFooRequestDesc;
-    O: typeof CustomOptionFooResponseDesc;
+    methodKind: "unary";
+    input: typeof CustomOptionFooRequestDesc;
+    output: typeof CustomOptionFooResponseDesc;
   },
 }
 > = /*@__PURE__*/
@@ -736,9 +736,9 @@ export const AggregateService: GenDescService<{
    * @generated from rpc protobuf_unittest.AggregateService.Method
    */
   method: {
-    kind: "unary";
-    I: typeof AggregateMessageDesc;
-    O: typeof AggregateMessageDesc;
+    methodKind: "unary";
+    input: typeof AggregateMessageDesc;
+    output: typeof AggregateMessageDesc;
   },
 }
 > = /*@__PURE__*/

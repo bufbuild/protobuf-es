@@ -138,9 +138,9 @@ export const DeprecatedService: GenDescService<{
    * @generated from rpc spec.DeprecatedService.Deprecated
    */
   deprecated: {
-    kind: "unary";
-    I: typeof EmptyDesc;
-    O: typeof EmptyDesc;
+    methodKind: "unary";
+    input: typeof EmptyDesc;
+    output: typeof EmptyDesc;
   },
 }
 > = /*@__PURE__*/
@@ -157,17 +157,17 @@ export const DeprecatedRpcService: GenDescService<{
    * @deprecated
    */
   deprecated: {
-    kind: "unary";
-    I: typeof EmptyDesc;
-    O: typeof EmptyDesc;
+    methodKind: "unary";
+    input: typeof EmptyDesc;
+    output: typeof EmptyDesc;
   },
   /**
    * @generated from rpc spec.DeprecatedRpcService.NotDeprecated
    */
   notDeprecated: {
-    kind: "unary";
-    I: typeof EmptyDesc;
-    O: typeof EmptyDesc;
+    methodKind: "unary";
+    input: typeof EmptyDesc;
+    output: typeof EmptyDesc;
   },
 }
 > = /*@__PURE__*/

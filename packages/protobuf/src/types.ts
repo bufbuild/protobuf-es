@@ -80,9 +80,6 @@ export type UnknownField = {
   readonly data: Uint8Array;
 };
 
-// TODO ServiceShape?
-// TODO MethodShape?
-
 /**
  * The init type for a message, which makes all fields optional.
  * The init type is accepted by the function create().

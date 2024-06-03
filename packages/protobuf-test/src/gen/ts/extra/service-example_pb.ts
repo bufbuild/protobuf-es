@@ -154,33 +154,33 @@ export const ExampleService: GenDescService<{
    * @generated from rpc spec.ExampleService.Unary
    */
   unary: {
-    kind: "unary";
-    I: typeof ExampleRequestDesc;
-    O: typeof ExampleResponseDesc;
+    methodKind: "unary";
+    input: typeof ExampleRequestDesc;
+    output: typeof ExampleResponseDesc;
   },
   /**
    * @generated from rpc spec.ExampleService.ServerStream
    */
   serverStream: {
-    kind: "server_streaming";
-    I: typeof ExampleRequestDesc;
-    O: typeof ExampleResponseDesc;
+    methodKind: "server_streaming";
+    input: typeof ExampleRequestDesc;
+    output: typeof ExampleResponseDesc;
   },
   /**
    * @generated from rpc spec.ExampleService.ClientStream
    */
   clientStream: {
-    kind: "client_streaming";
-    I: typeof ExampleRequestDesc;
-    O: typeof ExampleResponseDesc;
+    methodKind: "client_streaming";
+    input: typeof ExampleRequestDesc;
+    output: typeof ExampleResponseDesc;
   },
   /**
    * @generated from rpc spec.ExampleService.Bidi
    */
   bidi: {
-    kind: "bidi_streaming";
-    I: typeof ExampleRequestDesc;
-    O: typeof ExampleResponseDesc;
+    methodKind: "bidi_streaming";
+    input: typeof ExampleRequestDesc;
+    output: typeof ExampleResponseDesc;
   },
 }
 > = /*@__PURE__*/

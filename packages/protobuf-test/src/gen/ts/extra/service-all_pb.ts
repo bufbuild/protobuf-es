@@ -35,34 +35,34 @@ export const ServiceAll: GenDescService<{
    * @generated from rpc spec.ServiceAll.Unary
    */
   unary: {
-    kind: "unary";
-    I: typeof StringValueDesc;
-    O: typeof Int32ValueDesc;
+    methodKind: "unary";
+    input: typeof StringValueDesc;
+    output: typeof Int32ValueDesc;
   },
   /**
    * @generated from rpc spec.ServiceAll.ServerStream
    */
   serverStream: {
-    kind: "server_streaming";
-    I: typeof StringValueDesc;
-    O: typeof Int32ValueDesc;
+    methodKind: "server_streaming";
+    input: typeof StringValueDesc;
+    output: typeof Int32ValueDesc;
   },
   /**
    * @generated from rpc spec.ServiceAll.ClientStream
    */
   clientStream: {
-    kind: "client_streaming";
-    I: typeof StringValueDesc;
-    O: typeof Int32ValueDesc;
+    methodKind: "client_streaming";
+    input: typeof StringValueDesc;
+    output: typeof Int32ValueDesc;
   },
   /**
    * @generated from rpc spec.ServiceAll.Bidi
    * @deprecated
    */
   bidi: {
-    kind: "bidi_streaming";
-    I: typeof StringValueDesc;
-    O: typeof Int32ValueDesc;
+    methodKind: "bidi_streaming";
+    input: typeof StringValueDesc;
+    output: typeof Int32ValueDesc;
   },
 }
 > = /*@__PURE__*/

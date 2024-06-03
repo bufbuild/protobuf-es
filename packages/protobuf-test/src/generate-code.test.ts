@@ -158,24 +158,24 @@ test("ts generated code is assignable to js", () => {
 test("service generates as expected", () => {
   type Expected = {
     unary: {
-      kind: "unary";
-      I: typeof StringValueDesc;
-      O: typeof Int32ValueDesc;
+      methodKind: "unary";
+      input: typeof StringValueDesc;
+      output: typeof Int32ValueDesc;
     };
     serverStream: {
-      kind: "server_streaming";
-      I: typeof StringValueDesc;
-      O: typeof Int32ValueDesc;
+      methodKind: "server_streaming";
+      input: typeof StringValueDesc;
+      output: typeof Int32ValueDesc;
     };
     clientStream: {
-      kind: "client_streaming";
-      I: typeof StringValueDesc;
-      O: typeof Int32ValueDesc;
+      methodKind: "client_streaming";
+      input: typeof StringValueDesc;
+      output: typeof Int32ValueDesc;
     };
     bidi: {
-      kind: "bidi_streaming";
-      I: typeof StringValueDesc;
-      O: typeof Int32ValueDesc;
+      methodKind: "bidi_streaming";
+      input: typeof StringValueDesc;
+      output: typeof Int32ValueDesc;
     };
   };
   type Actual<T> = T extends GenDescService<infer Shape> ? Shape : never;

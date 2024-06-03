@@ -157,9 +157,9 @@ export const Service: GenDescService<{
    * @generated from rpc protobuf_unittest.Service.DoStuff
    */
   doStuff: {
-    kind: "unary";
-    I: typeof TopLevelMessageDesc;
-    O: typeof TopLevelMessageDesc;
+    methodKind: "unary";
+    input: typeof TopLevelMessageDesc;
+    output: typeof TopLevelMessageDesc;
   },
 }
 > = /*@__PURE__*/
