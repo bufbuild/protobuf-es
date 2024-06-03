@@ -110,8 +110,8 @@ export function mergeFromJsonString<Desc extends DescMessage>(
   target: MessageShape<Desc>,
   json: string,
   options?: Partial<JsonReadOptions>,
-): MessageShape<Desc> {
-  return mergeFromJson(
+): void {
+  mergeFromJson(
     messageDesc,
     target,
     parseJsonString(json, messageDesc.typeName),
@@ -156,7 +156,7 @@ export function mergeFromJson<Desc extends DescMessage>(
   target: MessageShape<Desc>,
   json: JsonValue,
   options?: Partial<JsonReadOptions>,
-): MessageShape<Desc> {
+): void {
   try {
     readMessage(reflect(messageDesc, target), json, makeReadOptions(options));
   } catch (e) {
@@ -168,7 +168,6 @@ export function mergeFromJson<Desc extends DescMessage>(
     }
     throw e;
   }
-  return target;
 }
 
 function readMessage(

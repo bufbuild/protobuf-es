@@ -77,7 +77,7 @@ export function mergeFromBinary<Desc extends DescMessage>(
   target: MessageShape<Desc>,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
-): MessageShape<Desc> {
+): void {
   readMessage(
     reflect(messageDesc, target),
     new BinaryReader(bytes),
@@ -85,7 +85,6 @@ export function mergeFromBinary<Desc extends DescMessage>(
     false,
     bytes.byteLength,
   );
-  return target;
 }
 
 /**
