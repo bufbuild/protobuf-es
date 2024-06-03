@@ -14,7 +14,12 @@
 
 import { type DescField, type DescMessage, ScalarType } from "./descriptors.js";
 import type { MessageShape } from "./types.js";
-import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
+import type {
+  MapEntryKey,
+  ReflectList,
+  ReflectMap,
+  ReflectMessage,
+} from "./reflect/index.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
@@ -77,7 +82,7 @@ export function mergeFromBinary<Desc extends DescMessage>(
   target: MessageShape<Desc>,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
-): void {
+): MessageShape<Desc> {
   readMessage(
     reflect(messageDesc, target),
     new BinaryReader(bytes),
@@ -85,6 +90,7 @@ export function mergeFromBinary<Desc extends DescMessage>(
     false,
     bytes.byteLength,
   );
+  return target;
 }
 
 /**
@@ -154,21 +160,21 @@ export function readField(
       );
       break;
     case "list":
-      readListField(message, reader, options, field, wireType);
+      readListField(reader, wireType, message.get(field), options);
       break;
     case "map":
-      readMapEntry(message, field, reader, options);
+      readMapEntry(reader, message.get(field), options);
       break;
   }
 }
 
 // Read a map field, expecting key field = 1, value field = 2
 function readMapEntry(
-  message: ReflectMessage,
-  field: DescField & { fieldKind: "map" },
   reader: BinaryReader,
+  map: ReflectMap,
   options: BinaryReadOptions,
 ): void {
+  const field = map.field();
   let key: MapEntryKey | undefined,
     val: ScalarValue | ReflectMessage | undefined;
   const end = reader.pos + reader.uint32();
@@ -209,21 +215,18 @@ function readMapEntry(
         break;
     }
   }
-  message.setMapEntry(field, key, val);
+  map.set(key, val);
 }
 
 function readListField(
-  message: ReflectMessage,
   reader: BinaryReader,
-  options: BinaryReadOptions,
-  field: DescField & { fieldKind: "list" },
   wireType: WireType,
+  list: ReflectList,
+  options: BinaryReadOptions,
 ) {
+  const field = list.field();
   if (field.listKind === "message") {
-    message.addListItem(
-      field,
-      readMessageField(reader, options, field) as never, // TODO: Investigate the type issue.
-    );
+    list.add(readMessageField(reader, options, field));
     return;
   }
   const scalarType = field.scalar ?? ScalarType.INT32;
@@ -232,12 +235,12 @@ function readListField(
     scalarType != ScalarType.STRING &&
     scalarType != ScalarType.BYTES;
   if (!packed) {
-    message.addListItem(field, readScalar(reader, scalarType));
+    list.add(readScalar(reader, scalarType));
     return;
   }
   const e = reader.uint32() + reader.pos;
   while (reader.pos < e) {
-    message.addListItem(field, readScalar(reader, scalarType));
+    list.add(readScalar(reader, scalarType));
   }
 }
 

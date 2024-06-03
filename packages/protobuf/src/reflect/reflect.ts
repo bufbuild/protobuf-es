@@ -23,8 +23,6 @@ import { checkField, checkListItem, checkMapEntry } from "./reflect-check.js";
 import { FieldError } from "./error.js";
 import type {
   MapEntryKey,
-  ReflectAddListItemValue,
-  ReflectSetMapEntryValue,
   ReflectGetValue,
   ReflectList,
   ReflectMap,
@@ -32,14 +30,12 @@ import type {
   ReflectSetValue,
 } from "./reflect-types.js";
 import {
-  unsafeAddListItem,
   unsafeClear,
   unsafeGet,
   unsafeIsSet,
   unsafeLocal,
   unsafeOneofCase,
   unsafeSet,
-  unsafeSetMapEntry,
 } from "./unsafe.js";
 import { create } from "../create.js";
 import { isWrapper, isWrapperDesc } from "../wkt/wrappers.js";
@@ -94,6 +90,8 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
   private readonly check: boolean;
   private _fieldsByNumber: Map<number, DescField> | undefined;
   private _sortedFields: DescField[] | undefined;
+  private lists = new Map<DescField, ReflectList>();
+  private maps = new Map<DescField, ReflectMap>();
 
   constructor(
     messageDesc: Desc,
@@ -138,19 +136,29 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
     let value = unsafeGet(this.message, field);
     switch (field.fieldKind) {
       case "list":
-        return new ReflectListImpl(
-          field,
-          value as unknown[],
-          this.check,
-        ) as ReflectGetValue<Field>;
+        // eslint-disable-next-line no-case-declarations
+        let list = this.lists.get(field);
+        if (!list || list[unsafeLocal] !== value) {
+          this.lists.set(
+            field,
+            (list = new ReflectListImpl(field, value as unknown[], this.check)),
+          );
+        }
+        return list as ReflectGetValue<Field>;
       case "map":
-        // TODO fix types
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return reflectMap(
-          field,
-          value as Record<string, unknown>,
-          this.check,
-        ) as any; // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return
+        // eslint-disable-next-line no-case-declarations
+        let map = this.maps.get(field);
+        if (!map || map[unsafeLocal] !== value) {
+          this.maps.set(
+            field,
+            (map = new ReflectMapImpl(
+              field,
+              value as Record<string, unknown>,
+              this.check,
+            )),
+          );
+        }
+        return map as ReflectGetValue<Field>;
       case "message":
         if (
           value !== undefined &&
@@ -202,68 +210,12 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
     return undefined;
   }
 
-  addListItem<
-    Field extends DescField & {
-      fieldKind: "list";
-    },
-  >(
-    field: Field,
-    value: ReflectAddListItemValue<Field>,
-  ): FieldError | undefined {
-    assertOwn(this.message, field);
-    assertKind(field, "list");
-    if (this.check) {
-      if (checkListItem(field, 0, value)) {
-        const arr = unsafeGet(this.message, field) as unknown[];
-        return checkListItem(field, arr.length, value);
-      }
-    }
-    unsafeAddListItem(this.message, field, listItemToLocal(field, value));
-    return undefined;
-  }
-
-  setMapEntry<
-    Field extends DescField & {
-      fieldKind: "map";
-    },
-  >(
-    field: Field,
-    key: MapEntryKey,
-    value: ReflectSetMapEntryValue<Field>,
-  ): FieldError | undefined {
-    assertOwn(this.message, field);
-    assertKind(field, "map");
-    if (this.check) {
-      const err = checkMapEntry(field, key, value);
-      if (err) {
-        return err;
-      }
-    }
-    unsafeSetMapEntry(
-      this.message,
-      field,
-      mapKeyToLocal(key),
-      mapValueToLocal(field, value),
-    );
-    return undefined;
-  }
-
   getUnknown(): UnknownField[] | undefined {
     return this.message.$unknown;
   }
 
   setUnknown(value: UnknownField[]): void {
     this.message.$unknown = value;
-  }
-}
-
-function assertKind(field: DescField, kind: DescField["fieldKind"]) {
-  if (field.fieldKind != kind) {
-    throw new FieldError(
-      field,
-      `${field.toString()} is ${field.fieldKind}`,
-      "ForeignFieldError",
-    );
   }
 }
 
