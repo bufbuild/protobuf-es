@@ -568,29 +568,55 @@ export class BinaryReader {
 }
 
 /**
- * Assert a valid signed protobuf 32-bit integer.
+ * Assert a valid signed protobuf 32-bit integer as a number or string.
  */
 function assertInt32(arg: unknown): asserts arg is number {
-  if (typeof arg !== "number") throw new Error("invalid int32: " + typeof arg);
-  if (!Number.isInteger(arg) || arg > INT32_MAX || arg < INT32_MIN)
+  if (typeof arg == "string") {
+    arg = Number(arg);
+  } else if (typeof arg != "number") {
+    throw new Error("invalid int32: " + typeof arg);
+  }
+  if (
+    !Number.isInteger(arg) ||
+    (arg as number) > INT32_MAX ||
+    (arg as number) < INT32_MIN
+  )
     throw new Error("invalid int32: " + arg);
 }
 
 /**
- * Assert a valid unsigned protobuf 32-bit integer.
+ * Assert a valid unsigned protobuf 32-bit integer as a number or string.
  */
 function assertUInt32(arg: unknown): asserts arg is number {
-  if (typeof arg !== "number") throw new Error("invalid uint32: " + typeof arg);
-  if (!Number.isInteger(arg) || arg > UINT32_MAX || arg < 0)
+  if (typeof arg == "string") {
+    arg = Number(arg);
+  } else if (typeof arg != "number") {
+    throw new Error("invalid uint32: " + typeof arg);
+  }
+  if (
+    !Number.isInteger(arg) ||
+    (arg as number) > UINT32_MAX ||
+    (arg as number) < 0
+  )
     throw new Error("invalid uint32: " + arg);
 }
 
 /**
- * Assert a valid protobuf float value.
+ * Assert a valid protobuf float value as a number or string.
  */
 function assertFloat32(arg: unknown): asserts arg is number {
-  if (typeof arg !== "number")
+  if (typeof arg == "string") {
+    const o = arg;
+    arg = Number(arg);
+    if (isNaN(arg as number) && o !== "NaN") {
+      throw new Error("invalid float32: " + o);
+    }
+  } else if (typeof arg != "number") {
     throw new Error("invalid float32: " + typeof arg);
-  if (Number.isFinite(arg) && (arg > FLOAT32_MAX || arg < FLOAT32_MIN))
+  }
+  if (
+    Number.isFinite(arg) &&
+    ((arg as number) > FLOAT32_MAX || (arg as number) < FLOAT32_MIN)
+  )
     throw new Error("invalid float32: " + arg);
 }
