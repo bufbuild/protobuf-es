@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "upstream-protobuf": "*",
-    "@bufbuild/protoplugin": "2.0.0-alpha.3"
+    "@bufbuild/protoplugin": "2.0.0-alpha.4"
   }
 }
