@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@bufbuild/protobuf": "2.0.0-alpha.4",
-    "@typescript/vfs": "^1.4.0",
-    "typescript": "4.5.2"
+    "@typescript/vfs": "^1.5.2",
+    "typescript": "5.4.5"
   },
   "files": [
     "dist/**"
