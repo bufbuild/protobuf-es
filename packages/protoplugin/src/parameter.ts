@@ -16,7 +16,7 @@ import type { Target } from "./target.js";
 import type { RewriteImports } from "./import-path.js";
 import { PluginOptionError } from "./error.js";
 
-export interface ParsedParameter {
+export interface EcmaScriptPluginParameters {
   targets: Target[];
   tsNocheck: boolean;
   bootstrapWkt: boolean;
@@ -24,13 +24,19 @@ export interface ParsedParameter {
   rewriteImports: RewriteImports;
   importExtension: string;
   jsImportStyle: "module" | "legacy_commonjs";
-  sanitizedParameter: string;
 }
 
-export function parseParameter(
+export interface ParsedParameter<T> {
+  parsed: T & EcmaScriptPluginParameters;
+  sanitized: string;
+}
+
+export function parseParameter<T extends object>(
   parameter: string,
-  parseExtraOption: ((key: string, value: string) => void) | undefined,
-): ParsedParameter {
+  parseExtraOptions:
+    | ((rawOptions: { key: string; value: string }[]) => T)
+    | undefined,
+): ParsedParameter<T> {
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = false;
   let bootstrapWkt = false;
@@ -38,6 +44,8 @@ export function parseParameter(
   const rewriteImports: RewriteImports = [];
   let importExtension = "";
   let jsImportStyle: "module" | "legacy_commonjs" = "module";
+  const extraParameters: { key: string; value: string }[] = [];
+  const extraParametersRaw: string[] = [];
   const rawParameters: string[] = [];
   for (const { key, value, raw } of splitParameter(parameter)) {
     // Whether this key/value plugin parameter pair should be
@@ -136,24 +144,19 @@ export function parseParameter(
         break;
       }
       default:
-        if (parseExtraOption === undefined) {
+        if (parseExtraOptions === undefined) {
           throw new PluginOptionError(raw);
         }
-        try {
-          parseExtraOption(key, value);
-        } catch (e) {
-          throw new PluginOptionError(raw, e);
-        }
+        extraParameters.push({ key, value });
+        extraParametersRaw.push(raw);
         break;
     }
     if (!sanitize) {
       rawParameters.push(raw);
     }
   }
-
-  const sanitizedParameter = rawParameters.join(",");
-
-  return {
+  const sanitizedParameters = rawParameters.join(",");
+  const ecmaScriptPluginParameters = {
     targets,
     tsNocheck,
     bootstrapWkt,
@@ -161,8 +164,24 @@ export function parseParameter(
     importExtension,
     jsImportStyle,
     keepEmptyFiles,
-    sanitizedParameter,
   };
+  if (parseExtraOptions === undefined || extraParameters.length === 0) {
+    return {
+      parsed: ecmaScriptPluginParameters as T & EcmaScriptPluginParameters,
+      sanitized: sanitizedParameters,
+    };
+  }
+  try {
+    return {
+      parsed: Object.assign(
+        ecmaScriptPluginParameters,
+        parseExtraOptions(extraParameters),
+      ),
+      sanitized: sanitizedParameters,
+    };
+  } catch (err) {
+    throw new PluginOptionError(extraParametersRaw.join(","), err);
+  }
 }
 
 function splitParameter(

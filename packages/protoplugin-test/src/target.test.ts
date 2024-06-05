@@ -22,7 +22,9 @@ import type {
 import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
 
 describe("target", () => {
-  type PluginInit = Parameters<typeof createEcmaScriptPlugin>[0];
+  type PluginInit = Parameters<
+    typeof createEcmaScriptPlugin<Record<string, never>>
+  >[0];
   let generateTs: jest.Mock<PluginInit["generateTs"]>;
   let generateJs: jest.Mock<Required<PluginInit>["generateJs"]>;
   let generateDts: jest.Mock<Required<PluginInit>["generateDts"]>;
