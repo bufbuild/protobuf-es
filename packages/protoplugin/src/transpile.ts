@@ -29,7 +29,7 @@ const defaultOptions: ts.CompilerOptions = {
 
   // modules
   module: ts.ModuleKind.ES2020,
-  moduleResolution: ts.ModuleResolutionKind.NodeJs,
+  moduleResolution: ts.ModuleResolutionKind.Node10,
   noResolve: true,
   resolveJsonModule: false,
 
