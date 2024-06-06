@@ -28,10 +28,11 @@ const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
   version: `v${String(version)}`,
   generateTs,
+  parseOptions,
 });
 
 // prettier-ignore
-function generateTs(schema: Schema) {
+function generateTs(schema: Schema<PluginOptions>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_twirp.ts");
     f.preamble(file);
@@ -66,6 +67,9 @@ function generateTs(schema: Schema) {
           f.print("    async ", method.localName, "(request: ", inputType, "): Promise<", outputType, "> {");
           f.print("        const headers = new Headers([]);");
           f.print("        headers.set('content-type', 'application/json');");
+          if (schema.options.logRequests) {
+            f.print("        console.log(`POST ${this.baseUrl}/", service.typeName, "/", method.name,"`, request);");
+          }
           f.print("        const fetchResponse = await fetch(");
           f.print("            `${this.baseUrl}/", service.typeName, "/", method.name, "`,");
           f.print("            {");
@@ -85,6 +89,34 @@ function generateTs(schema: Schema) {
       f.print("}");
     }
   }
+}
+
+interface PluginOptions {
+  logRequests: boolean;
+}
+
+// Our example plugin support the option "log_requests". We parse it here.
+function parseOptions(
+  options: {
+    key: string;
+    value: string;
+  }[],
+): PluginOptions {
+  let logRequests = false;
+  for (const { key, value } of options) {
+    switch (key) {
+      case "log_requests": {
+        if (!["true", "false"].includes(value)) {
+          throw "please provide true or false";
+        }
+        logRequests = value === "true";
+        break;
+      }
+      default:
+        throw new Error();
+    }
+  }
+  return { logRequests };
 }
 
 runNodeJs(protocGenTwirpEs);
