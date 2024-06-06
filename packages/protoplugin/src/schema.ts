@@ -62,7 +62,8 @@ export interface Schema<Options extends object = object> {
   readonly targets: readonly Target[];
 
   /**
-   * Parsed plugin options. They include the default options available by all ecmascript plugins.
+   * Parsed plugin options. They include the standard options for all
+   * plugins, and options parsed by your plugin.
    */
   readonly options: Options & EcmaScriptPluginOptions;
 
