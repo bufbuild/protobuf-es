@@ -16,26 +16,83 @@ import type { Target } from "./target.js";
 import type { RewriteImports } from "./import-path.js";
 import { PluginOptionError } from "./error.js";
 
-export interface EcmaScriptPluginParameters {
+/**
+ * Standard plugin options that every ECMAScript plugin supports.
+ */
+export interface EcmaScriptPluginOptions {
+  /**
+   * Controls whether the plugin generates JavaScript, TypeScript,
+   * or TypeScript declaration files.
+   *
+   * The default is ["js", "dts].
+   */
   targets: Target[];
-  tsNocheck: boolean;
-  bootstrapWkt: boolean;
-  keepEmptyFiles: boolean;
-  rewriteImports: RewriteImports;
+  /**
+   * Add an extension to every import, for example ".js" or ".ts".
+   *
+   * The default is "".
+   */
   importExtension: string;
+  /**
+   * Generate `import` statements or `require()` calls.
+   *
+   * The default is "module".
+   */
   jsImportStyle: "module" | "legacy_commonjs";
+  /**
+   * Generate an annotation at the top of each file to skip type checks:
+   * `// @ts-nocheck`.
+   *
+   * The default is false.
+   */
+  tsNocheck: boolean;
+  /**
+   * Prune empty files from the output.
+   *
+   * The default is false.
+   */
+  keepEmptyFiles: boolean;
+  /**
+   * @private
+   */
+  bootstrapWkt: boolean;
+  /**
+   * @private
+   */
+  rewriteImports: RewriteImports;
 }
 
 export interface ParsedParameter<T> {
-  parsed: T & EcmaScriptPluginParameters;
+  parsed: T & EcmaScriptPluginOptions;
   sanitized: string;
 }
 
+/**
+ * Raw options to parse.
+ *
+ * For example, if a plugin is run with the options foo=123,bar,baz=a,baz=b
+ * the raw options are:
+ *
+ * ```ts
+ * [
+ *   { key: "foo", value: "123" },
+ *   { key: "bar", value: "" },
+ *   { key: "baz", value: "a" },
+ *   { key: "baz", value: "b" },
+ * ]
+ * ```
+ *
+ * If your plugin does not recognize an option, it must throw an Error in
+ * parseOptions.
+ */
+export type RawPluginOptions = {
+  key: string;
+  value: string;
+}[];
+
 export function parseParameter<T extends object>(
   parameter: string,
-  parseExtraOptions:
-    | ((rawOptions: { key: string; value: string }[]) => T)
-    | undefined,
+  parseExtraOptions: ((rawOptions: RawPluginOptions) => T) | undefined,
 ): ParsedParameter<T> {
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = false;
@@ -44,7 +101,7 @@ export function parseParameter<T extends object>(
   const rewriteImports: RewriteImports = [];
   let importExtension = "";
   let jsImportStyle: "module" | "legacy_commonjs" = "module";
-  const extraParameters: { key: string; value: string }[] = [];
+  const extraParameters: RawPluginOptions = [];
   const extraParametersRaw: string[] = [];
   const rawParameters: string[] = [];
   for (const { key, value, raw } of splitParameter(parameter)) {
@@ -156,7 +213,7 @@ export function parseParameter<T extends object>(
     }
   }
   const sanitizedParameters = rawParameters.join(",");
-  const ecmaScriptPluginParameters = {
+  const ecmaScriptPluginOptions = {
     targets,
     tsNocheck,
     bootstrapWkt,
@@ -167,14 +224,14 @@ export function parseParameter<T extends object>(
   };
   if (parseExtraOptions === undefined || extraParameters.length === 0) {
     return {
-      parsed: ecmaScriptPluginParameters as T & EcmaScriptPluginParameters,
+      parsed: ecmaScriptPluginOptions as T & EcmaScriptPluginOptions,
       sanitized: sanitizedParameters,
     };
   }
   try {
     return {
       parsed: Object.assign(
-        ecmaScriptPluginParameters,
+        ecmaScriptPluginOptions,
         parseExtraOptions(extraParameters),
       ),
       sanitized: sanitizedParameters,

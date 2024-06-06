@@ -29,6 +29,7 @@ import type { FileInfo } from "./generated-file.js";
 import type { Plugin } from "./plugin.js";
 import { transpile } from "./transpile.js";
 import { parseParameter } from "./parameter.js";
+import type { RawPluginOptions } from "./parameter.js";
 
 interface PluginInit<Options extends object> {
   /**
@@ -45,7 +46,7 @@ interface PluginInit<Options extends object> {
    * An optional parsing function which can be used to parse your own plugin
    * options.
    */
-  parseOptions?: (rawOptions: { key: string; value: string }[]) => Options;
+  parseOptions?: (rawOptions: RawPluginOptions) => Options;
 
   /**
    * The earliest edition supported by this plugin. Defaults to the minimum
