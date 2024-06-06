@@ -24,6 +24,7 @@ import { protoInt64 } from "@bufbuild/protobuf";
 import { UserDesc } from "../gen/ts/extra/example_pb.js";
 import { create } from "@bufbuild/protobuf";
 import assert from "node:assert";
+import { catchFieldError } from "../helpers.js";
 
 describe("reflectMap()", () => {
   test("creates ReflectMap", () => {
@@ -166,15 +167,15 @@ describe("ReflectMap", () => {
     test("sets entry", () => {
       const local = {};
       const map = reflectMap(mapStringStringField, local);
-      expect(map.set("a", "A")).toBeUndefined();
+      map.set("a", "A");
       expect(local).toStrictEqual({ a: "A" });
     });
     test("converts key", () => {
       const local = {};
       const map = reflectMap(mapInt64Int64Field, local);
-      expect(map.set(1, n11)).toBeUndefined();
-      expect(map.set(n2, n22)).toBeUndefined();
-      expect(map.set("3", n33)).toBeUndefined();
+      map.set(1, n11);
+      map.set(n2, n22);
+      map.set("3", n33);
       expect(local).toStrictEqual({
         "1": n11,
         "2": n22,
@@ -184,32 +185,32 @@ describe("ReflectMap", () => {
     test("converts long value", () => {
       const local = {};
       const map = reflectMap(mapInt64Int64Field, local);
-      expect(map.set(n1, n11)).toBeUndefined();
-      expect(map.set(n2, 22)).toBeUndefined();
-      expect(map.set(n3, "33")).toBeUndefined();
+      map.set(n1, n11);
+      map.set(n2, n22);
+      map.set(n3, n33);
       expect(local).toStrictEqual({
         "1": n11,
         "2": n22,
         "3": n33,
       });
     });
-    test("returns error for invalid key", () => {
+    test("throws error for invalid key", () => {
       const map = reflectMap(mapInt32Int32Field, {});
-      const err = map.set(true, "A");
+      const err = catchFieldError(() => map.set(true, "A"));
       expect(err?.message).toMatch(
         /^invalid map key: expected number \(int32\), got true$/,
       );
     });
-    test("returns error for invalid scalar value", () => {
+    test("throws error for invalid scalar value", () => {
       const map = reflectMap(mapStringStringField, {});
-      const err = map.set("a", true);
+      const err = catchFieldError(() => map.set("a", true));
       expect(err?.message).toMatch(
         /^map entry "a": expected string, got true$/,
       );
     });
-    test("returns error for wrong message type", () => {
+    test("throws error for wrong message type", () => {
       const map = reflectMap(mapInt32MessageField, {});
-      const err = map.set(1, reflect(UserDesc));
+      const err = catchFieldError(() => map.set(1, reflect(UserDesc)));
       expect(err?.message).toMatch(
         /^map entry 1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );

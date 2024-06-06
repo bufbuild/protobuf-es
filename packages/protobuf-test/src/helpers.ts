@@ -16,7 +16,19 @@ import { UpstreamProtobuf } from "upstream-protobuf";
 import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/wkt";
 import { FileDescriptorSetDesc } from "@bufbuild/protobuf/wkt";
+import { FieldError } from "@bufbuild/protobuf/reflect";
 import assert from "node:assert";
+
+export function catchFieldError(fn: () => unknown): FieldError | undefined {
+  try {
+    fn();
+  } catch (e) {
+    if (e instanceof FieldError) {
+      return e;
+    }
+  }
+  return undefined;
+}
 
 let upstreamProtobuf: UpstreamProtobuf | undefined;
 

@@ -23,6 +23,7 @@ import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import { create, protoInt64 } from "@bufbuild/protobuf";
 import { UserDesc } from "../gen/ts/extra/example_pb.js";
 import assert from "node:assert";
+import { catchFieldError } from "../helpers.js";
 
 describe("reflectList()", () => {
   test("creates ReflectList", () => {
@@ -95,48 +96,49 @@ describe("ReflectList", () => {
     test("adds item", () => {
       const local: unknown[] = ["a"];
       const list = reflectList(repeatedStringField, local);
-      expect(list.add("b")).toBeUndefined();
-      expect(list.add("c")).toBeUndefined();
+      list.add("b");
+      list.add("c");
       expect(local).toStrictEqual(["a", "b", "c"]);
     });
     test("adds items", () => {
       const local: unknown[] = [];
       const list = reflectList(repeatedStringField, local);
-      expect(list.add("a", "b", "c")).toBeUndefined();
+      list.add("a", "b", "c");
       expect(local).toStrictEqual(["a", "b", "c"]);
     });
     test("does not add any item if one of several items is invalid", () => {
       const local: unknown[] = [];
       const list = reflectList(repeatedStringField, local);
-      expect(list.add("a", "b", true)).toBeDefined();
+      const err = catchFieldError(() => list.add("a", "b", true));
+      expect(err).toBeDefined();
       expect(local).toStrictEqual([]);
     });
     test("converts number, string, bigint to bigint for 64-bit integer field", () => {
       const local: unknown[] = [];
       const list = reflectList(repeatedInt64Field, local);
-      expect(list.add(1)).toBeUndefined();
-      expect(list.add("2")).toBeUndefined();
-      expect(list.add(n3)).toBeUndefined();
+      list.add(1);
+      list.add("2");
+      list.add(n3);
       expect(local).toStrictEqual([n1, n2, n3]);
     });
     test("converts number, string, bigint to string for 64-bit integer field with jstype=JS_STRING", () => {
       const local: unknown[] = [];
       const list = reflectList(repeatedInt64JsStringField, local);
-      expect(list.add(1)).toBeUndefined();
-      expect(list.add("2")).toBeUndefined();
-      expect(list.add(n3)).toBeUndefined();
+      list.add(1);
+      list.add("2");
+      list.add(n3);
       expect(local).toStrictEqual(["1", "2", "3"]);
     });
     test("returns error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, []);
-      const err = list.add(reflect(UserDesc));
+      const err = catchFieldError(() => list.add(reflect(UserDesc)));
       expect(err?.message).toMatch(
         /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );
     });
     test("returns error for invalid scalar", () => {
       const list = reflectList(repeatedStringField, []);
-      const err = list.add(true);
+      const err = catchFieldError(() => list.add(true));
       expect(err?.message).toMatch(/^list item #1: expected string, got true$/);
     });
   });
@@ -144,38 +146,38 @@ describe("ReflectList", () => {
     test("replaces item at index", () => {
       const local: unknown[] = ["a", "b"];
       const list = reflectList(repeatedStringField, local);
-      expect(list.set(0, "c")).toBeUndefined();
+      list.set(0, "c");
       expect(local).toStrictEqual(["c", "b"]);
     });
     test("converts number, string, bigint to bigint for 64-bit integer field", () => {
       const local: unknown[] = [n0, n0, n0];
       const list = reflectList(repeatedInt64Field, local);
-      expect(list.set(0, 1)).toBeUndefined();
-      expect(list.set(1, "2")).toBeUndefined();
-      expect(list.set(2, n3)).toBeUndefined();
+      list.set(0, 1);
+      list.set(1, "2");
+      list.set(2, n3);
       expect(local).toStrictEqual([n1, n2, n3]);
     });
     test("converts number, string, bigint to string for 64-bit integer field with jstype=JS_STRING", () => {
       const local: unknown[] = ["0", "0", "0"];
       const list = reflectList(repeatedInt64JsStringField, local);
-      expect(list.set(0, 1)).toBeUndefined();
-      expect(list.set(1, "2")).toBeUndefined();
-      expect(list.set(2, n3)).toBeUndefined();
+      list.set(0, 1);
+      list.set(1, "2");
+      list.set(2, n3);
       expect(local).toStrictEqual(["1", "2", "3"]);
     });
-    test("returns error if out of range", () => {
+    test("throws error if out of range", () => {
       const list = reflectList(repeatedStringField, []);
-      const err = list.set(0, "abc");
+      const err = catchFieldError(() => list.set(0, "abc"));
       expect(err?.message).toMatch(/^list item #1: out of range$/);
     });
-    test("returns error for invalid scalar", () => {
+    test("throws error for invalid scalar", () => {
       const list = reflectList(repeatedStringField, [null]);
-      const err = list.set(0, true);
+      const err = catchFieldError(() => list.set(0, true));
       expect(err?.message).toMatch(/^list item #1: expected string, got true$/);
     });
-    test("returns error for wrong message type", () => {
+    test("throws error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, [null]);
-      const err = list.set(0, reflect(UserDesc));
+      const err = catchFieldError(() => list.set(0, reflect(UserDesc)));
       expect(err?.message).toMatch(
         /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );

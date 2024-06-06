@@ -27,7 +27,7 @@ import {
   isReflectList,
   isReflectMap,
 } from "@bufbuild/protobuf/reflect";
-import { compileMessage } from "../helpers.js";
+import { catchFieldError, compileMessage } from "../helpers.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import * as example_ts from "../gen/ts/extra/example_pb.js";
 import assert from "node:assert";
@@ -52,8 +52,7 @@ describe("reflect()", () => {
     const field = r.findNumber(3);
     expect(field?.name).toBe("singular_int32_field");
     if (field) {
-      const err = r.set(field, "not a int 32");
-      expect(err).toBeUndefined();
+      r.set(field, "not a int 32");
     }
   });
 });
@@ -248,70 +247,63 @@ describe("ReflectMessage", () => {
     });
     test("sets enum", () => {
       const f = desc.field.singularEnumField;
-      const err = r.set(f, proto3_ts.Proto3Enum.YES);
-      expect(err).toBeUndefined();
+      r.set(f, proto3_ts.Proto3Enum.YES);
       expect(msg.singularEnumField).toBe(proto3_ts.Proto3Enum.YES);
     });
     test("sets string", () => {
       const f = desc.field.singularStringField;
-      const err = r.set(f, "abc");
-      expect(err).toBeUndefined();
+      r.set(f, "abc");
       expect(msg.singularStringField).toBe("abc");
     });
     test("sets ReflectMap", () => {
       const f = desc.field.mapStringStringField;
       assert(f.fieldKind == "map");
       const map = reflectMap(f);
-      expect(map.set("foo", "bar")).toBeUndefined();
-      const err = r.set(f, map);
-      expect(err).toBeUndefined();
+      map.set("foo", "bar");
+      r.set(f, map);
       expect(msg.mapStringStringField).toStrictEqual({ foo: "bar" });
     });
     test("sets ReflectList", () => {
       const f = desc.field.repeatedStringField;
       assert(f.fieldKind == "list");
       const list = reflectList(f);
-      expect(list.add("foo")).toBeUndefined();
-      const err = r.set(f, list);
-      expect(err).toBeUndefined();
+      list.add("foo");
+      r.set(f, list);
       expect(msg.repeatedStringField).toStrictEqual(["foo"]);
     });
     test("sets ReflectMessage", () => {
       const f = desc.field.singularMessageField;
       const testMessage = create(proto3_ts.Proto3MessageDesc);
-      const err = r.set(f, reflect(proto3_ts.Proto3MessageDesc, testMessage));
-      expect(err).toBeUndefined();
+      r.set(f, reflect(proto3_ts.Proto3MessageDesc, testMessage));
       expect(msg.singularMessageField).toBe(testMessage);
     });
     test("sets number, string, bigint as bigint for 64-bit integer field", () => {
       const f = desc.field.singularInt64Field;
-      expect(r.set(f, protoInt64.parse(123))).toBeUndefined();
+      r.set(f, protoInt64.parse(123));
       expect(msg.singularInt64Field === protoInt64.parse(123)).toBe(true);
-      expect(r.set(f, 123)).toBeUndefined();
+      r.set(f, 123);
       expect(msg.singularInt64Field === protoInt64.parse(123)).toBe(true);
-      expect(r.set(f, "123")).toBeUndefined();
+      r.set(f, "123");
       expect(msg.singularInt64Field === protoInt64.parse(123)).toBe(true);
     });
     test("sets number, string, bigint as string for 64-bit integer field with jstype=JS_STRING", () => {
       const f = desc.field.singularInt64JsStringField;
-      expect(r.set(f, protoInt64.parse(123))).toBeUndefined();
+      r.set(f, protoInt64.parse(123));
       expect(msg.singularInt64JsStringField).toBe("123");
-      expect(r.set(f, 123)).toBeUndefined();
+      r.set(f, 123);
       expect(msg.singularInt64JsStringField).toBe("123");
-      expect(r.set(f, "123")).toBeUndefined();
+      r.set(f, "123");
       expect(msg.singularInt64JsStringField).toBe("123");
     });
     test("sets unwrapped value for wrapper field", () => {
       const f = desc.field.singularWrappedUint32Field;
       const wrapper = create(UInt32ValueDesc, { value: 123 });
-      const err = r.set(f, reflect(UInt32ValueDesc, wrapper));
-      expect(err).toBeUndefined();
+      r.set(f, reflect(UInt32ValueDesc, wrapper));
       expect(msg.singularWrappedUint32Field).toBe(123);
     });
     test("sets unknown value for open enum", () => {
       const f = desc.field.singularEnumField;
-      const err = r.set(f, 99);
-      expect(err).toBeUndefined();
+      r.set(f, 99);
       expect(msg.singularEnumField).toBe(99);
     });
     test("selects oneof field", () => {
@@ -351,7 +343,7 @@ describe("ReflectMessage", () => {
     });
     test("returns error setting number out of range", () => {
       const f = desc.field.singularInt32Field;
-      const err = r.set(f, Number.MAX_SAFE_INTEGER);
+      const err = catchFieldError(() => r.set(f, Number.MAX_SAFE_INTEGER));
       expect(err?.message).toMatch(
         /^expected number \(int32\): 9007199254740991 out of range$/,
       );
@@ -359,14 +351,14 @@ describe("ReflectMessage", () => {
     });
     test("returns error setting float for int", () => {
       const f = desc.field.singularInt32Field;
-      const err = r.set(f, 3.142);
+      const err = catchFieldError(() => r.set(f, 3.142));
       expect(err?.message).toMatch(/^expected number \(int32\), got 3.142$/);
       expect(err?.name).toMatch("FieldValueInvalidError");
     });
     describe("returns error setting undefined", () => {
       test.each(desc.fields)("for proto3 field $name", (f) => {
-        // @ts-expect-error TS2345
-        const err = r.set(f, undefined);
+        // @ts-expect-error ignore to test runtime behavior
+        const err = catchFieldError(() => r.set(f, undefined));
         expect(err).toBeDefined();
         expect(err?.message).toMatch(/^expected .*, got undefined/);
         expect(err?.name).toMatch("FieldValueInvalidError");
@@ -375,99 +367,101 @@ describe("ReflectMessage", () => {
     describe("returns error setting null", () => {
       test.each(desc.fields)("for proto3 field $name", (f) => {
         // @ts-expect-error ignore to test runtime behavior
-        const err = r.set(f, null);
+        const err = catchFieldError(() => r.set(f, null));
         expect(err).toBeDefined();
         expect(err?.message).toMatch(/^expected .*, got null/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
     });
-    describe("returns error setting array", () => {
+    describe("throws error setting array", () => {
       test.each(desc.fields)("$name", (f) => {
-        // @ts-expect-error testing
-        const err = r.set(f, [1, 2]);
+        // @ts-expect-error ignore to test runtime behavior
+        const err = catchFieldError(() => r.set(f, [1, 2]));
         expect(err?.message).toMatch(/^expected .*, got Array\(2\)$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
     });
-    describe("returns error setting object", () => {
+    describe("throws error setting object", () => {
       test.each(desc.fields)("$name", (f) => {
         // @ts-expect-error ignore for test
-        const err = r.set(f, new Date());
+        const err = catchFieldError(() => r.set(f, new Date()));
         expect(err?.message).toMatch(/^expected .*, got object$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
     });
-    describe("returns error setting message", () => {
+    describe("throws error setting message", () => {
       test.each(desc.fields)("$name", (f) => {
-        // @ts-expect-error ignore to test runtime behavior
-        const err = r.set(f, create(proto3_ts.Proto3MessageDesc));
+        const err = catchFieldError(() =>
+          // @ts-expect-error ignore to test runtime behavior
+          r.set(f, create(proto3_ts.Proto3MessageDesc)),
+        );
         expect(err?.message).toMatch(
           /^expected .*, got message spec.Proto3Message$/,
         );
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
     });
-    describe("returns error setting scalar value for message field", () => {
+    describe("throws error setting scalar value for message field", () => {
       const fields = desc.fields.filter((f) => f.fieldKind == "message");
       test.each(fields)("set $name true", (f) => {
-        const err = r.set(f, true);
+        const err = catchFieldError(() => r.set(f, true));
         expect(err?.message).toMatch(/^expected .*, got true$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
       test.each(fields)("set $name 'abc'", (f) => {
-        const err = r.set(f, "abc");
+        const err = catchFieldError(() => r.set(f, "abc"));
         expect(err?.message).toMatch(/^expected .*, got "abc"$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
       test.each(fields)("set $name 123", (f) => {
-        const err = r.set(f, 123);
+        const err = catchFieldError(() => r.set(f, 123));
         expect(err?.message).toMatch(/^expected .*, got 123$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
     });
-    describe("returns error setting non-integer value for enum field", () => {
+    describe("throws error setting non-integer value for enum field", () => {
       const fields = desc.fields.filter((f) => f.fieldKind == "enum");
       test.each(fields)("set $name true", (f) => {
-        const err = r.set(f, true);
+        const err = catchFieldError(() => r.set(f, true));
         expect(err?.message).toMatch(/^expected enum .*, got true$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
       test.each(fields)("set $name 'abc'", (f) => {
-        const err = r.set(f, "abc");
+        const err = catchFieldError(() => r.set(f, "abc"));
         expect(err?.message).toMatch(/^expected enum .*, got "abc"$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
       test.each(fields)("set $name 3.142", (f) => {
-        const err = r.set(f, 3.142);
+        const err = catchFieldError(() => r.set(f, 3.142));
         expect(err?.message).toMatch(/^expected enum .*, got 3.142$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
     });
-    test("returns error setting incompatible ReflectMessage", () => {
+    test("throws error setting incompatible ReflectMessage", () => {
       const f = desc.field.singularMessageField;
-      const err = r.set(f, reflect(example_ts.UserDesc));
+      const err = catchFieldError(() => r.set(f, reflect(example_ts.UserDesc)));
       expect(err?.message).toMatch(
         /^expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );
       expect(err?.name).toMatch("FieldValueInvalidError");
     });
-    test("returns error setting incompatible ReflectMap", () => {
+    test("throws error setting incompatible ReflectMap", () => {
       const { mapStringStringField, mapInt32Int32Field } = desc.field;
       assert(mapStringStringField.fieldKind == "map");
       assert(mapInt32Int32Field.fieldKind == "map");
       const map = reflectMap(mapStringStringField);
-      const err = r.set(mapInt32Int32Field, map);
+      const err = catchFieldError(() => r.set(mapInt32Int32Field, map));
       expect(err?.message).toMatch(
         /^expected ReflectMap \(INT32, INT32\), got ReflectMap \(STRING, STRING\)$/,
       );
       expect(err?.name).toMatch("FieldValueInvalidError");
     });
-    test("returns error setting incompatible ReflectList", () => {
+    test("throws error setting incompatible ReflectList", () => {
       const { repeatedStringField, repeatedInt32Field } = desc.field;
       assert(repeatedStringField.fieldKind == "list");
       assert(repeatedInt32Field.fieldKind == "list");
       const list = reflectList(repeatedStringField);
-      const err = r.set(repeatedInt32Field, list);
+      const err = catchFieldError(() => r.set(repeatedInt32Field, list));
       expect(err?.message).toMatch(
         /^expected ReflectList \(INT32\), got ReflectList \(STRING\)$/,
       );

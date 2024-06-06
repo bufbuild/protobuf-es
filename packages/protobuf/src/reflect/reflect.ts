@@ -189,12 +189,12 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
   set<Field extends DescField>(
     field: Field,
     value: ReflectSetValue<Field>,
-  ): FieldError | undefined {
+  ): void {
     assertOwn(this.message, field);
     if (this.check) {
       const err = checkField(field, value);
       if (err) {
-        return err;
+        throw err;
       }
     }
     let local: unknown;
@@ -207,7 +207,6 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
       local = longToLocal(field, value);
     }
     unsafeSet(this.message, field, local);
-    return undefined;
   }
 
   getUnknown(): UnknownField[] | undefined {
@@ -270,7 +269,7 @@ class ReflectListImpl<V> implements ReflectList<V> {
   }
   set(index: number, item: V) {
     if (index < 0 || index >= this._arr.length) {
-      return new FieldError(
+      throw new FieldError(
         this._field,
         `list item #${index + 1}: out of range`,
       );
@@ -278,18 +277,17 @@ class ReflectListImpl<V> implements ReflectList<V> {
     if (this.check) {
       const err = checkListItem(this._field, index, item);
       if (err) {
-        return err;
+        throw err;
       }
     }
     this._arr[index] = listItemToLocal(this._field, item);
-    return undefined;
   }
   add(...items: V[]) {
     if (this.check) {
       for (let i = 0; i < items.length; i++) {
         const err = checkListItem(this._field, this._arr.length + i, items[i]);
         if (err) {
-          return err;
+          throw err;
         }
       }
     }
@@ -352,11 +350,11 @@ class ReflectMapImpl<K extends MapEntryKey, V> implements ReflectMap<K, V> {
     if (this.check) {
       const err = checkMapEntry(this._field, key, value);
       if (err) {
-        return err;
+        throw err;
       }
     }
     this.obj[mapKeyToLocal(key)] = mapValueToLocal(this._field, value);
-    return undefined;
+    return this;
   }
   delete(key: K) {
     const k = mapKeyToLocal(key);

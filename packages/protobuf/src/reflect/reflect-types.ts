@@ -17,7 +17,6 @@ import {
   type DescMessage,
   type DescOneof,
 } from "../descriptors.js";
-import { FieldError } from "./error.js";
 import { unsafeLocal } from "./unsafe.js";
 import type { Message, UnknownField } from "../types.js";
 import type { ScalarValue } from "./scalar.js";
@@ -135,13 +134,13 @@ export interface ReflectMessage {
    * - Map fields:
    *   ReflectMap.
    *
-   * Returns an error if the value is invalid for the field. `undefined` is not
+   * Throws an error if the value is invalid for the field. `undefined` is not
    * a valid value. To reset a field, use clear().
    */
   set<Field extends DescField>(
     field: Field,
     value: ReflectSetValue<Field>,
-  ): FieldError | undefined;
+  ): void;
 
   /**
    * Returns the unknown fields of the message.
@@ -186,16 +185,16 @@ export interface ReflectList<V = unknown> extends Iterable<V> {
 
   /**
    * Adds an item - or several items - at the end of the list.
-   * Returns an error if an item is invalid for this list.
+   * Throws an error if an item is invalid for this list.
    */
-  add(...item: V[]): FieldError | undefined;
+  add(...item: V[]): void;
 
   /**
    * Replaces the item at the specified index with the specified item.
-   * Returns an error if the index is out of range (index < 0 || index >= size).
-   * Returns an error if the item is invalid for this list.
+   * Throws an error if the index is out of range (index < 0 || index >= size).
+   * Throws an error if the item is invalid for this list.
    */
-  set(index: number, item: V): FieldError | undefined;
+  set(index: number, item: V): void;
 
   /**
    * Removes all items from the list.
@@ -239,9 +238,9 @@ export interface ReflectMap<K extends MapEntryKey = MapEntryKey, V = unknown>
 
   /**
    * Sets or replaces the item at the specified key with the specified value.
-   * Returns an error if the key or value is invalid for this map.
+   * Throws an error if the key or value is invalid for this map.
    */
-  set(key: K, value: V): FieldError | undefined;
+  set(key: K, value: V): this;
 
   /**
    * Removes all entries from the map.

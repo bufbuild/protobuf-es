@@ -294,10 +294,7 @@ function readMapField(map: ReflectMap, json: JsonValue, opts: JsonReadOptions) {
     const key = mapKeyFromJson(field.mapKey, jsonMapKey);
     // TODO fix types
     // @ts-expect-error TODO
-    const err = map.set(key, value);
-    if (err) {
-      throw err;
-    }
+    map.set(key, value);
   }
 }
 
@@ -335,10 +332,7 @@ function readListField(
         }
         break;
       case "scalar":
-        const err = list.add(scalarFromJson(field, jsonItem, true));
-        if (err) {
-          throw err;
-        }
+        list.add(scalarFromJson(field, jsonItem, true));
         break;
     }
   }
@@ -384,10 +378,7 @@ function readScalarField(
   } else {
     // TODO fix type error
     // @ts-expect-error TODO
-    const err = msg.set(field, scalarValue);
-    if (err) {
-      throw err;
-    }
+    msg.set(field, scalarValue);
   }
 }
 
@@ -650,13 +641,7 @@ function tryWktFromJson(
         if (jsonValue === null) {
           msg.clear(valueField);
         } else {
-          const err = msg.set(
-            valueField,
-            scalarFromJson(valueField, jsonValue, true),
-          );
-          if (err) {
-            throw err;
-          }
+          msg.set(valueField, scalarFromJson(valueField, jsonValue, true));
         }
         return true;
       }
