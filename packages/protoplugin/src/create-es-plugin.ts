@@ -29,8 +29,9 @@ import type { FileInfo } from "./generated-file.js";
 import type { Plugin } from "./plugin.js";
 import { transpile } from "./transpile.js";
 import { parseParameter } from "./parameter.js";
+import type { RawPluginOptions } from "./parameter.js";
 
-interface PluginInit {
+interface PluginInit<Options extends object> {
   /**
    * Name of this code generator plugin.
    */
@@ -45,7 +46,7 @@ interface PluginInit {
    * An optional parsing function which can be used to parse your own plugin
    * options.
    */
-  parseOption?: (key: string, value: string) => void;
+  parseOptions?: (rawOptions: RawPluginOptions) => Options;
 
   /**
    * The earliest edition supported by this plugin. Defaults to the minimum
@@ -65,7 +66,7 @@ interface PluginInit {
    *
    * Note that this is required to be provided for plugin initialization.
    */
-  generateTs: (schema: Schema, target: "ts") => void;
+  generateTs: (schema: Schema<Options>, target: "ts") => void;
 
   /**
    * A optional function which will generate JavaScript files based on proto
@@ -77,7 +78,7 @@ interface PluginInit {
    * JavaScript files.  If not, the plugin framework will transpile the files
    * itself.
    */
-  generateJs?: (schema: Schema, target: "js") => void;
+  generateJs?: (schema: Schema<Options>, target: "js") => void;
 
   /**
    * A optional function which will generate TypeScript declaration files
@@ -89,7 +90,7 @@ interface PluginInit {
    * declaration files.  If not, the plugin framework will transpile the files
    * itself.
    */
-  generateDts?: (schema: Schema, target: "dts") => void;
+  generateDts?: (schema: Schema<Options>, target: "dts") => void;
 
   /**
    * An optional function which will transpile a given set of files.
@@ -117,7 +118,9 @@ interface PluginInit {
  * The plugin can generate JavaScript, TypeScript, or TypeScript declaration
  * files.
  */
-export function createEcmaScriptPlugin(init: PluginInit): Plugin {
+export function createEcmaScriptPlugin<Options extends object = object>(
+  init: PluginInit<Options>,
+): Plugin {
   let transpileJs = false;
   let transpileDts = false;
   return {
@@ -126,7 +129,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
     run(req) {
       const minimumEdition = init.minimumEdition ?? minimumEditionUpstream;
       const maximumEdition = init.maximumEdition ?? maximumEditionUpstream;
-      const parameter = parseParameter(req.parameter, init.parseOption);
+      const parameter = parseParameter(req.parameter, init.parseOptions);
       const schema = createSchema(
         req,
         parameter,
@@ -208,7 +211,7 @@ export function createEcmaScriptPlugin(init: PluginInit): Plugin {
           tsFiles,
           transpileJs,
           transpileDts,
-          parameter.jsImportStyle,
+          parameter.parsed.jsImportStyle,
         );
         files.push(...transpiledFiles);
       }

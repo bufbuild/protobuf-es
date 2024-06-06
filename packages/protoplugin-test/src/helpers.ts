@@ -34,7 +34,9 @@ import assert from "node:assert";
 
 let upstreamProtobuf: UpstreamProtobuf | undefined;
 
-type PluginInit = Parameters<typeof createEcmaScriptPlugin>[0];
+type PluginInit = Parameters<
+  typeof createEcmaScriptPlugin<Record<string, never>>
+>[0];
 
 // prettier-ignore
 type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | undefined> =
@@ -48,7 +50,7 @@ type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | unde
     parameter?: string;
     name?: PluginInit["name"];
     version?: PluginInit["version"];
-    parseOption?: PluginInit["parseOption"];
+    parseOptions?: PluginInit["parseOptions"];
     minimumEdition?: PluginInit["minimumEdition"];
     maximumEdition?: PluginInit["maximumEdition"];
   }

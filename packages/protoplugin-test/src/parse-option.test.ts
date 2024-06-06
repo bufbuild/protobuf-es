@@ -12,86 +12,94 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeEach, describe, expect, test } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
 import { CodeGeneratorRequestDesc } from "@bufbuild/protobuf/wkt";
-import { create } from "@bufbuild/protobuf";
-import type { Plugin } from "@bufbuild/protoplugin";
+import { create, type MessageInitShape } from "@bufbuild/protobuf";
+import type { Schema } from "@bufbuild/protoplugin";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 
 describe("parse custom plugin option", () => {
-  let foo: number | undefined;
-  let bar = false;
-  let baz: string[] = [];
-  let plugin: Plugin;
-  beforeEach(() => {
-    foo = undefined;
-    bar = false;
-    baz = [];
-    const noop = () => {
-      //
-    };
-    plugin = createEcmaScriptPlugin({
+  interface Options {
+    foo?: number;
+    bar: boolean;
+    baz: string[];
+  }
+  const runPlugin = (
+    onOptions: (options: Options) => void,
+    req: MessageInitShape<typeof CodeGeneratorRequestDesc>,
+  ) => {
+    const generate = ({ options }: Schema<Options>) => onOptions(options);
+    createEcmaScriptPlugin({
       name: "test",
       version: "v1",
-      parseOption(key, value) {
-        switch (key) {
-          case "foo":
-            foo = parseInt(value);
-            if (isNaN(foo)) {
-              throw "please provide an integer for foo";
+      parseOptions(options): Options {
+        const parsed: Options = { bar: false, baz: [] };
+        for (const { key, value } of options) {
+          switch (key) {
+            case "foo": {
+              const foo = parseInt(value);
+              if (isNaN(foo)) {
+                throw "please provide an integer for foo";
+              }
+              parsed.foo = foo;
+              break;
             }
-            break;
-          case "bar":
-            if (value.length > 0) {
-              throw "bar does not take a value";
-            }
-            bar = true;
-            break;
-          case "baz":
-            if (value.length == 0) {
-              throw "please provide a value";
-            }
-            baz.push(value);
-            break;
-          default:
-            throw new Error();
+            case "bar":
+              if (value.length > 0) {
+                throw "bar does not take a value";
+              }
+              parsed.bar = true;
+              break;
+            case "baz":
+              if (value.length == 0) {
+                throw "please provide a value";
+              }
+              parsed.baz.push(value);
+              break;
+            default:
+              throw new Error();
+          }
         }
+        return parsed;
       },
-      generateTs: noop,
-      generateJs: noop,
-      generateDts: noop,
-    });
-  });
+      generateTs: generate,
+      generateJs: generate,
+      generateDts: generate,
+    }).run(create(CodeGeneratorRequestDesc, req));
+  };
   test("parse as expected on the happy path", () => {
-    plugin.run(
+    runPlugin(
+      (options) => {
+        expect(options.foo).toBe(123);
+        expect(options.bar).toBe(true);
+        expect(options.baz).toStrictEqual(["a", "b"]);
+      },
       create(CodeGeneratorRequestDesc, {
         parameter: "foo=123,bar,baz=a,baz=b",
       }),
     );
-    expect(foo).toBe(123);
-    expect(bar).toBe(true);
-    expect(baz).toStrictEqual(["a", "b"]);
   });
   test("error from parseOption is wrapped", () => {
-    const req = create(CodeGeneratorRequestDesc, {
-      parameter: "foo=abc",
-    });
-    expect(() => plugin.run(req)).toThrowError(
+    expect(() =>
+      runPlugin(() => {}, {
+        parameter: "foo=abc",
+      }),
+    ).toThrowError(
       /^invalid option "foo=abc": please provide an integer for foo$/,
     );
   });
   test("unknown option raises an error", () => {
-    const req = create(CodeGeneratorRequestDesc, {
-      parameter: "unknown",
-    });
-    expect(() => plugin.run(req)).toThrowError(/^invalid option "unknown"$/);
+    expect(() =>
+      runPlugin(() => {}, {
+        parameter: "unknown",
+      }),
+    ).toThrowError(/^invalid option "unknown"$/);
   });
   test("unknown option with value raises an error", () => {
-    const req = create(CodeGeneratorRequestDesc, {
-      parameter: "unknown=bar",
-    });
-    expect(() => plugin.run(req)).toThrowError(
-      /^invalid option "unknown=bar"$/,
-    );
+    expect(() =>
+      runPlugin(() => {}, {
+        parameter: "unknown=bar",
+      }),
+    ).toThrowError(/^invalid option "unknown=bar"$/);
   });
 });

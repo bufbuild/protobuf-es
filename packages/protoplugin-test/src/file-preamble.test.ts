@@ -187,8 +187,9 @@ describe("GeneratedFile.preamble", () => {
           "const placeholder = 1; // ensure file is not considered empty",
         );
       },
-      parseOption() {
+      parseOptions() {
         // accept all options
+        return {};
       },
       returnLinesOfFirstFile: true,
     });
