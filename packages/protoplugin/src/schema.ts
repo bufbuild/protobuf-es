@@ -36,10 +36,7 @@ import { createGeneratedFile } from "./generated-file.js";
 import { createImportSymbol } from "./import-symbol.js";
 import type { Target } from "./target.js";
 import { deriveImportPath, rewriteImportPath } from "./import-path.js";
-import type {
-  EcmaScriptPluginParameters,
-  ParsedParameter,
-} from "./parameter.js";
+import type { EcmaScriptPluginOptions, ParsedParameter } from "./parameter.js";
 import { makeFilePreamble } from "./file-preamble.js";
 import { localDescName, localShapeName, generateFilePath } from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";
@@ -67,7 +64,7 @@ export interface Schema<Options extends object = object> {
   /**
    * Parsed plugin options. They include the default options available by all ecmascript plugins.
    */
-  readonly options: Options & EcmaScriptPluginParameters;
+  readonly options: Options & EcmaScriptPluginOptions;
 
   /**
    * Generate a new file with the given name.
