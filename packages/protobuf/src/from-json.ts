@@ -292,8 +292,6 @@ function readMapField(map: ReflectMap, json: JsonValue, opts: JsonReadOptions) {
         break;
     }
     const key = mapKeyFromJson(field.mapKey, jsonMapKey);
-    // TODO fix types
-    // @ts-expect-error TODO
     map.set(key, value);
   }
 }
@@ -376,8 +374,6 @@ function readScalarField(
   if (scalarValue === tokenNull) {
     msg.clear(field);
   } else {
-    // TODO fix type error
-    // @ts-expect-error TODO
     msg.set(field, scalarValue);
   }
 }

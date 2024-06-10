@@ -355,7 +355,6 @@ describe("ReflectMessage", () => {
     });
     describe("returns error setting undefined", () => {
       test.each(desc.fields)("for proto3 field $name", (f) => {
-        // @ts-expect-error ignore to test runtime behavior
         const err = catchFieldError(() => r.set(f, undefined));
         expect(err).toBeDefined();
         expect(err?.message).toMatch(/^expected .*, got undefined/);
@@ -364,7 +363,6 @@ describe("ReflectMessage", () => {
     });
     describe("returns error setting null", () => {
       test.each(desc.fields)("for proto3 field $name", (f) => {
-        // @ts-expect-error ignore to test runtime behavior
         const err = catchFieldError(() => r.set(f, null));
         expect(err).toBeDefined();
         expect(err?.message).toMatch(/^expected .*, got null/);
@@ -373,7 +371,6 @@ describe("ReflectMessage", () => {
     });
     describe("throws error setting array", () => {
       test.each(desc.fields)("$name", (f) => {
-        // @ts-expect-error ignore to test runtime behavior
         const err = catchFieldError(() => r.set(f, [1, 2]));
         expect(err?.message).toMatch(/^expected .*, got Array\(2\)$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
@@ -381,7 +378,6 @@ describe("ReflectMessage", () => {
     });
     describe("throws error setting object", () => {
       test.each(desc.fields)("$name", (f) => {
-        // @ts-expect-error ignore for test
         const err = catchFieldError(() => r.set(f, new Date()));
         expect(err?.message).toMatch(/^expected .*, got object$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
@@ -390,7 +386,6 @@ describe("ReflectMessage", () => {
     describe("throws error setting message", () => {
       test.each(desc.fields)("$name", (f) => {
         const err = catchFieldError(() =>
-          // @ts-expect-error ignore to test runtime behavior
           r.set(f, create(proto3_ts.Proto3MessageDesc)),
         );
         expect(err?.message).toMatch(

@@ -51,7 +51,6 @@ function cloneReflect(i: ReflectMessage): ReflectMessage {
         // eslint-disable-next-line no-case-declarations
         const map = o.get(f);
         for (const entry of i.get(f).entries()) {
-          // @ts-expect-error TODO fix type error
           map.set(entry[0], cloneSingular(f, entry[1]));
         }
         break;

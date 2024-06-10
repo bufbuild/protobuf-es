@@ -289,7 +289,7 @@ function createMutableRegistry(): MutableRegistry {
         case "file":
           files.set(desc.proto.name, desc);
           break;
-        // @ts-expect-error TS7029
+        // @ts-expect-error TS7029: Fallthrough case in switch
         case "extension":
           // eslint-disable-next-line no-case-declarations
           let numberToExt = extendees.get(desc.extendee.typeName);
