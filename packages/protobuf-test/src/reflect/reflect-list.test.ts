@@ -100,19 +100,6 @@ describe("ReflectList", () => {
       list.add("c");
       expect(local).toStrictEqual(["a", "b", "c"]);
     });
-    test("adds items", () => {
-      const local: unknown[] = [];
-      const list = reflectList(repeatedStringField, local);
-      list.add("a", "b", "c");
-      expect(local).toStrictEqual(["a", "b", "c"]);
-    });
-    test("does not add any item if one of several items is invalid", () => {
-      const local: unknown[] = [];
-      const list = reflectList(repeatedStringField, local);
-      const err = catchFieldError(() => list.add("a", "b", true));
-      expect(err).toBeDefined();
-      expect(local).toStrictEqual([]);
-    });
     test("converts number, string, bigint to bigint for 64-bit integer field", () => {
       const local: unknown[] = [];
       const list = reflectList(repeatedInt64Field, local);
@@ -129,14 +116,14 @@ describe("ReflectList", () => {
       list.add(n3);
       expect(local).toStrictEqual(["1", "2", "3"]);
     });
-    test("returns error for wrong message type", () => {
+    test("throws error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, []);
       const err = catchFieldError(() => list.add(reflect(UserDesc)));
       expect(err?.message).toMatch(
         /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );
     });
-    test("returns error for invalid scalar", () => {
+    test("throws error for invalid scalar", () => {
       const list = reflectList(repeatedStringField, []);
       const err = catchFieldError(() => list.add(true));
       expect(err?.message).toMatch(/^list item #1: expected string, got true$/);

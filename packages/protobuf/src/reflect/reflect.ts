@@ -49,27 +49,16 @@ import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
 export function reflect<Desc extends DescMessage>(
   messageDesc: Desc,
   message?: MessageShape<Desc>,
-  // TODO either remove this option, or support it in reflect-list and reflect-map as well
-  opt?: {
-    /**
-     * By default, field values are validated when setting them. For example,
-     * a value for an uint32 field must be a ECMAScript Number >= 0.
-     *
-     * Note that setting a message field validates the type of the message,
-     * but does not check its fields.
-     *
-     * In some contexts, field values are trusted, and performance can be
-     * improved by disabling validation by setting disableFieldValueCheck to
-     * `false`.
-     */
-    disableFieldValueCheck?: boolean;
-  },
+  /**
+   * By default, field values are validated when setting them. For example,
+   * a value for an uint32 field must be a ECMAScript Number >= 0.
+   *
+   * When field values are trusted, performance can be improved by disabling
+   * checks.
+   */
+  check = true,
 ): ReflectMessage {
-  return new ReflectMessageImpl<Desc>(
-    messageDesc,
-    message,
-    opt?.disableFieldValueCheck !== true,
-  );
+  return new ReflectMessageImpl<Desc>(messageDesc, message, check);
 }
 
 class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
@@ -93,12 +82,7 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
   private lists = new Map<DescField, ReflectList>();
   private maps = new Map<DescField, ReflectMap>();
 
-  constructor(
-    messageDesc: Desc,
-    message?: MessageShape<Desc>,
-    // TODO either remove this option, or support it in reflect-list and reflect-map as well
-    check = true,
-  ) {
+  constructor(messageDesc: Desc, message?: MessageShape<Desc>, check = true) {
     this.check = check;
     this.desc = messageDesc;
     this.message = this[unsafeLocal] = message ?? create(messageDesc);
@@ -234,6 +218,13 @@ function assertOwn(owner: Message, member: DescField | DescOneof) {
 export function reflectList<V>(
   field: DescField & { fieldKind: "list" },
   unsafeInput?: unknown[],
+  /**
+   * By default, field values are validated when setting them. For example,
+   * a value for an uint32 field must be a ECMAScript Number >= 0.
+   *
+   * When field values are trusted, performance can be improved by disabling
+   * checks.
+   */
   check = true,
 ): ReflectList<V> {
   return new ReflectListImpl<V>(field, unsafeInput ?? [], check);
@@ -282,18 +273,14 @@ class ReflectListImpl<V> implements ReflectList<V> {
     }
     this._arr[index] = listItemToLocal(this._field, item);
   }
-  add(...items: V[]) {
+  add(item: V) {
     if (this.check) {
-      for (let i = 0; i < items.length; i++) {
-        const err = checkListItem(this._field, this._arr.length + i, items[i]);
-        if (err) {
-          throw err;
-        }
+      const err = checkListItem(this._field, this._arr.length, item);
+      if (err) {
+        throw err;
       }
     }
-    for (const item of items) {
-      this._arr.push(listItemToLocal(this._field, item));
-    }
+    this._arr.push(listItemToLocal(this._field, item));
     return undefined;
   }
   clear() {
@@ -323,6 +310,13 @@ class ReflectListImpl<V> implements ReflectList<V> {
 export function reflectMap<K extends MapEntryKey, V>(
   field: DescField & { fieldKind: "map" },
   unsafeInput?: Record<string, unknown>,
+  /**
+   * By default, field values are validated when setting them. For example,
+   * a value for an uint32 field must be a ECMAScript Number >= 0.
+   *
+   * When field values are trusted, performance can be improved by disabling
+   * checks.
+   */
   check = true,
 ): ReflectMap<K, V> {
   return new ReflectMapImpl(field, unsafeInput, check);

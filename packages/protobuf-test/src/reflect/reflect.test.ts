@@ -46,9 +46,7 @@ describe("reflect()", () => {
   });
   test("accepts option to disable field check", () => {
     const msg = create(proto3_ts.Proto3MessageDesc);
-    const r = reflect(proto3_ts.Proto3MessageDesc, msg, {
-      disableFieldValueCheck: true,
-    });
+    const r = reflect(proto3_ts.Proto3MessageDesc, msg, false);
     const field = r.findNumber(3);
     expect(field?.name).toBe("singular_int32_field");
     if (field) {
