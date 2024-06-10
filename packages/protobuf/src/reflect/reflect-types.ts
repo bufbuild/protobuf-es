@@ -184,10 +184,10 @@ export interface ReflectList<V = unknown> extends Iterable<V> {
   get(index: number): V | undefined;
 
   /**
-   * Adds an item - or several items - at the end of the list.
+   * Adds an item at the end of the list.
    * Throws an error if an item is invalid for this list.
    */
-  add(...item: V[]): void;
+  add(item: V): void;
 
   /**
    * Replaces the item at the specified index with the specified item.

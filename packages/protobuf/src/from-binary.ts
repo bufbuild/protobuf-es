@@ -57,7 +57,7 @@ export function fromBinary<Desc extends DescMessage>(
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc> {
-  const msg = reflect(messageDesc);
+  const msg = reflect(messageDesc, undefined, false);
   readMessage(
     msg,
     new BinaryReader(bytes),
@@ -84,7 +84,7 @@ export function mergeFromBinary<Desc extends DescMessage>(
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc> {
   readMessage(
-    reflect(messageDesc, target),
+    reflect(messageDesc, target, false),
     new BinaryReader(bytes),
     makeReadOptions(options),
     false,
@@ -211,7 +211,7 @@ function readMapEntry(
         val = field.enum.values[0].number;
         break;
       case "message":
-        val = reflect(field.message);
+        val = reflect(field.message, undefined, false);
         break;
     }
   }
@@ -251,7 +251,7 @@ function readMessageField(
   mergeMessage?: ReflectMessage,
 ): ReflectMessage {
   const delimited = field.delimitedEncoding;
-  const message = mergeMessage ?? reflect(field.message);
+  const message = mergeMessage ?? reflect(field.message, undefined, false);
   readMessage(
     message,
     reader,
