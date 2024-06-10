@@ -58,11 +58,7 @@ export function reflect<Desc extends DescMessage>(
    */
   check = true,
 ): ReflectMessage {
-  return new ReflectMessageImpl<Desc>(
-    messageDesc,
-    message,
-    check,
-  );
+  return new ReflectMessageImpl<Desc>(messageDesc, message, check);
 }
 
 class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
@@ -86,11 +82,7 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
   private lists = new Map<DescField, ReflectList>();
   private maps = new Map<DescField, ReflectMap>();
 
-  constructor(
-    messageDesc: Desc,
-    message?: MessageShape<Desc>,
-    check = true,
-  ) {
+  constructor(messageDesc: Desc, message?: MessageShape<Desc>, check = true) {
     this.check = check;
     this.desc = messageDesc;
     this.message = this[unsafeLocal] = message ?? create(messageDesc);
