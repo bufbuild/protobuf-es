@@ -46,7 +46,7 @@ export type ScalarValue<
 export function scalarEquals(
   type: ScalarType,
   a: ScalarValue | undefined,
-  b: ScalarValue | Uint8Array | undefined,
+  b: ScalarValue | undefined,
 ): boolean {
   if (a === b) {
     // This correctly matches equal values except BYTES and (possibly) 64-bit integers.
