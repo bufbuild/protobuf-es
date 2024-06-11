@@ -156,7 +156,7 @@ class ReflectMessageImpl implements ReflectMessage {
           field.message,
           value as Message | undefined,
           this.check,
-        ) as ReflectMessage as ReflectMessageGet<Field>;
+        ) as ReflectMessageGet<Field>;
       case "scalar":
         return (
           value === undefined

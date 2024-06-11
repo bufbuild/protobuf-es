@@ -256,6 +256,6 @@ export type ReflectMessageGet<Field extends DescField = DescField> = (
   Field extends { fieldKind: "list" } ? ReflectList :
   Field extends { fieldKind: "enum" } ? number :
   Field extends { fieldKind: "message" } ? ReflectMessage :
-  Field extends { fieldKind: "scalar" } ? ScalarValue :
+  Field extends { fieldKind: "scalar"; scalar: infer T } ? ScalarValue<T> :
   never
 );
