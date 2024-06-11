@@ -1323,16 +1323,6 @@ describe("DescField", () => {
         const def: string | number | bigint | boolean | Uint8Array | undefined =
           field.getDefaultValue();
 
-        switch (field.scalar) {
-          case ScalarType.BOOL: {
-            const defBool: boolean | undefined = field.getDefaultValue();
-            assert([defBool].length > 0);
-            break;
-          }
-          default:
-            break;
-        }
-
         // exclusive to map
         // @ts-expect-error TS2339
         field.mapKey;

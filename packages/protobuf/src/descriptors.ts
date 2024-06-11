@@ -382,35 +382,33 @@ type descFieldSingularCommon = {
   readonly oneof: DescOneof | undefined;
 };
 
-type descFieldScalar<T extends ScalarType = ScalarType> = T extends T
-  ? {
-      readonly fieldKind: "scalar";
-      /**
-       * Scalar type, if it is a scalar field.
-       */
-      readonly scalar: T;
-      /**
-       * By default, 64-bit integral types (int64, uint64, sint64, fixed64,
-       * sfixed64) are represented with BigInt.
-       *
-       * If the field option `jstype = JS_STRING` is set, this property
-       * is true, and 64-bit integral types are represented with String.
-       */
-      readonly longAsString: boolean;
-      /**
-       * The message type, if it is a message field.
-       */
-      readonly message: undefined;
-      /**
-       * The enum type, if it is an enum field.
-       */
-      readonly enum: undefined;
-      /**
-       * Return the default value specified in the protobuf source.
-       */
-      getDefaultValue(): ScalarValue<T> | undefined;
-    } & descFieldSingularCommon
-  : never;
+type descFieldScalar = descFieldSingularCommon & {
+  readonly fieldKind: "scalar";
+  /**
+   * Scalar type, if it is a scalar field.
+   */
+  readonly scalar: ScalarType;
+  /**
+   * By default, 64-bit integral types (int64, uint64, sint64, fixed64,
+   * sfixed64) are represented with BigInt.
+   *
+   * If the field option `jstype = JS_STRING` is set, this property
+   * is true, and 64-bit integral types are represented with String.
+   */
+  readonly longAsString: boolean;
+  /**
+   * The message type, if it is a message field.
+   */
+  readonly message: undefined;
+  /**
+   * The enum type, if it is an enum field.
+   */
+  readonly enum: undefined;
+  /**
+   * Return the default value specified in the protobuf source.
+   */
+  getDefaultValue(): ScalarValue | undefined;
+};
 
 type descFieldMessage = {
   readonly fieldKind: "message";
@@ -475,31 +473,29 @@ type descFieldListCommon = {
   readonly oneof: undefined;
 };
 
-type descFieldListScalar<T extends ScalarType = ScalarType> = T extends T
-  ? {
-      readonly listKind: "scalar";
-      /**
-       * The enum list element type.
-       */
-      readonly enum: undefined;
-      /**
-       * The message list element type.
-       */
-      readonly message: undefined;
-      /**
-       * Scalar list element type.
-       */
-      readonly scalar: T;
-      /**
-       * By default, 64-bit integral types (int64, uint64, sint64, fixed64,
-       * sfixed64) are represented with BigInt.
-       *
-       * If the field option `jstype = JS_STRING` is set, this property
-       * is true, and 64-bit integral types are represented with String.
-       */
-      readonly longAsString: boolean;
-    }
-  : never;
+type descFieldListScalar = {
+  readonly listKind: "scalar";
+  /**
+   * The enum list element type.
+   */
+  readonly enum: undefined;
+  /**
+   * The message list element type.
+   */
+  readonly message: undefined;
+  /**
+   * Scalar list element type.
+   */
+  readonly scalar: ScalarType;
+  /**
+   * By default, 64-bit integral types (int64, uint64, sint64, fixed64,
+   * sfixed64) are represented with BigInt.
+   *
+   * If the field option `jstype = JS_STRING` is set, this property
+   * is true, and 64-bit integral types are represented with String.
+   */
+  readonly longAsString: boolean;
+};
 
 type descFieldListEnum = {
   readonly listKind: "enum";
@@ -544,7 +540,7 @@ type descFieldMap =
   | (descFieldMapMessage & descFieldMapCommon);
 
 // prettier-ignore
-type descFieldMapCommon<T extends ScalarType = ScalarType> = T extends Exclude<ScalarType, ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES> ? {
+type descFieldMapCommon<T extends Exclude<ScalarType, ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES> = Exclude<ScalarType, ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES>> = {
   readonly fieldKind: "map";
   /**
    * The scalar map key type.
@@ -560,25 +556,24 @@ type descFieldMapCommon<T extends ScalarType = ScalarType> = T extends Exclude<S
    * and also applies to map values, if they are messages.
    */
   readonly delimitedEncoding: false;
-} : never;
+};
 
-type descFieldMapScalar<T extends ScalarType = ScalarType> = T extends T
-  ? {
-      readonly mapKind: "scalar";
-      /**
-       * The enum map value type.
-       */
-      readonly enum: undefined;
-      /**
-       * The message map value type.
-       */
-      readonly message: undefined;
-      /**
-       * Scalar map value type.
-       */
-      readonly scalar: T;
-    }
-  : never;
+type descFieldMapScalar = {
+  readonly mapKind: "scalar";
+  /**
+   * The enum map value type.
+   */
+  readonly enum: undefined;
+  /**
+   * The message map value type.
+   */
+  readonly message: undefined;
+  /**
+   * Scalar map value type.
+   */
+  readonly scalar: ScalarType;
+};
+
 type descFieldMapEnum = {
   readonly mapKind: "enum";
   /**
