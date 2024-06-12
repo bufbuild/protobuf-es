@@ -21,7 +21,6 @@ import { protoInt64 } from "../proto-int64.js";
  * Create a google.protobuf.Timestamp for the current time.
  */
 export function timestampNow(): Timestamp {
-  Date.now();
   return timestampFromDate(new Date());
 }
 
