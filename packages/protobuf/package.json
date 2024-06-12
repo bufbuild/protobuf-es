@@ -26,6 +26,17 @@
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./wire": {
+      "import": "./dist/esm/wire/index.js",
+      "require": "./dist/cjs/wire/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "wire": [
+        "./dist/cjs/wire/index.d.ts"
+      ]
     }
   },
   "devDependencies": {

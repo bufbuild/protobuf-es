@@ -12,9 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { JsonValue } from "../json-format.js";
-
-/**
- *
- */
-export type OptionsMap = { readonly [extensionName: string]: JsonValue };
+export * from "./binary-encoding.js";
+export * from "./text-encoding.js";
