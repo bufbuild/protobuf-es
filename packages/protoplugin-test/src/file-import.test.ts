@@ -52,4 +52,14 @@ describe("GeneratedFile.import", () => {
       },
     });
   });
+  test("should honor typeOnly argument", async function () {
+    await createTestPluginAndRun({
+      proto: `syntax="proto3";`,
+      parameter: "target=ts",
+      generateAny(f) {
+        const imp = f.import("Foo", "@scope/pkg", true);
+        expect(imp.typeOnly).toBe(true);
+      },
+    });
+  });
 });
