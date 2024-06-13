@@ -83,7 +83,7 @@ function initMessage<Desc extends DescMessage>(
     // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- no need to convert enum
     switch (field.fieldKind) {
       case "message":
-        if (isWrapperDesc(field.message)) {
+        if (!field.oneof && isWrapperDesc(field.message)) {
           value = initScalar(field.message.fields[0], value);
         } else {
           value = toMessage(value, field.message);
