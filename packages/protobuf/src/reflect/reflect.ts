@@ -22,12 +22,10 @@ import type { Message, MessageShape, UnknownField } from "../types.js";
 import { checkField, checkListItem, checkMapEntry } from "./reflect-check.js";
 import { FieldError } from "./error.js";
 import type {
-  MapEntryKey,
-  ReflectGetValue,
+  ReflectMessageGet,
   ReflectList,
   ReflectMap,
   ReflectMessage,
-  ReflectSetValue,
 } from "./reflect-types.js";
 import {
   unsafeClear,
@@ -58,10 +56,10 @@ export function reflect<Desc extends DescMessage>(
    */
   check = true,
 ): ReflectMessage {
-  return new ReflectMessageImpl<Desc>(messageDesc, message, check);
+  return new ReflectMessageImpl(messageDesc, message, check);
 }
 
-class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
+class ReflectMessageImpl implements ReflectMessage {
   readonly desc: DescMessage;
   readonly fields: readonly DescField[];
   get sortedFields() {
@@ -82,7 +80,7 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
   private lists = new Map<DescField, ReflectList>();
   private maps = new Map<DescField, ReflectMap>();
 
-  constructor(messageDesc: Desc, message?: MessageShape<Desc>, check = true) {
+  constructor(messageDesc: DescMessage, message?: Message, check = true) {
     this.check = check;
     this.desc = messageDesc;
     this.message = this[unsafeLocal] = message ?? create(messageDesc);
@@ -115,7 +113,7 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
     unsafeClear(this.message, field);
   }
 
-  get<Field extends DescField>(field: Field): ReflectGetValue<Field> {
+  get<Field extends DescField>(field: Field): ReflectMessageGet<Field> {
     assertOwn(this.message, field);
     let value = unsafeGet(this.message, field);
     switch (field.fieldKind) {
@@ -128,7 +126,7 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
             (list = new ReflectListImpl(field, value as unknown[], this.check)),
           );
         }
-        return list as ReflectGetValue<Field>;
+        return list as ReflectMessageGet<Field>;
       case "map":
         // eslint-disable-next-line no-case-declarations
         let map = this.maps.get(field);
@@ -142,7 +140,7 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
             )),
           );
         }
-        return map as ReflectGetValue<Field>;
+        return map as ReflectMessageGet<Field>;
       case "message":
         if (
           value !== undefined &&
@@ -158,22 +156,20 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
           field.message,
           value as Message | undefined,
           this.check,
-        ) as ReflectGetValue<Field>;
+        ) as ReflectMessageGet<Field>;
       case "scalar":
         return (
           value === undefined
             ? scalarZeroValue(field.scalar, false)
             : longToReflect(field, value)
-        ) as ReflectGetValue<Field>;
+        ) as ReflectMessageGet<Field>;
       case "enum":
-        return (value ?? field.enum.values[0].number) as ReflectGetValue<Field>;
+        return (value ??
+          field.enum.values[0].number) as ReflectMessageGet<Field>;
     }
   }
 
-  set<Field extends DescField>(
-    field: Field,
-    value: ReflectSetValue<Field>,
-  ): void {
+  set<Field extends DescField>(field: Field, value: unknown): void {
     assertOwn(this.message, field);
     if (this.check) {
       const err = checkField(field, value);
@@ -307,7 +303,7 @@ class ReflectListImpl<V> implements ReflectList<V> {
 /**
  * Create a ReflectMap.
  */
-export function reflectMap<K extends MapEntryKey, V>(
+export function reflectMap<K = unknown, V = unknown>(
   field: DescField & { fieldKind: "map" },
   unsafeInput?: Record<string, unknown>,
   /**
@@ -322,7 +318,7 @@ export function reflectMap<K extends MapEntryKey, V>(
   return new ReflectMapImpl(field, unsafeInput, check);
 }
 
-class ReflectMapImpl<K extends MapEntryKey, V> implements ReflectMap<K, V> {
+class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
   private readonly check: boolean;
   private readonly _field: DescField & { fieldKind: "map" };
   [unsafeLocal]: Record<string, unknown>;

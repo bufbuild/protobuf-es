@@ -200,13 +200,12 @@ function mapToJson(map: ReflectMap, opts: JsonWriteOptions) {
   switch (f.mapKind) {
     case "scalar":
       for (const [entryKey, entryValue] of map) {
-        jsonObj[entryKey.toString()] = scalarToJson(f, entryValue); // JSON standard allows only (double quoted) string as property key
+        jsonObj[entryKey as keyof object] = scalarToJson(f, entryValue);
       }
       break;
     case "message":
       for (const [entryKey, entryValue] of map) {
-        // JSON standard allows only (double quoted) string as property key
-        jsonObj[entryKey.toString()] = reflectToJson(
+        jsonObj[entryKey as keyof object] = reflectToJson(
           entryValue as ReflectMessage,
           opts,
         );
@@ -214,8 +213,7 @@ function mapToJson(map: ReflectMap, opts: JsonWriteOptions) {
       break;
     case "enum":
       for (const [entryKey, entryValue] of map) {
-        // JSON standard allows only (double quoted) string as property key
-        jsonObj[entryKey.toString()] = enumToJson(
+        jsonObj[entryKey as keyof object] = enumToJson(
           f.enum,
           entryValue,
           opts.enumAsInteger,

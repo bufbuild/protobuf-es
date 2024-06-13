@@ -15,7 +15,6 @@
 import { type DescField, type DescMessage, ScalarType } from "./descriptors.js";
 import type { MessageShape } from "./types.js";
 import type {
-  MapEntryKey,
   ReflectList,
   ReflectMap,
   ReflectMessage,
@@ -175,14 +174,14 @@ function readMapEntry(
   options: BinaryReadOptions,
 ): void {
   const field = map.field();
-  let key: MapEntryKey | undefined,
+  let key: ScalarValue | undefined,
     val: ScalarValue | ReflectMessage | undefined;
   const end = reader.pos + reader.uint32();
   while (reader.pos < end) {
     const [fieldNo] = reader.tag();
     switch (fieldNo) {
       case 1:
-        key = readScalar(reader, field.mapKey) as MapEntryKey;
+        key = readScalar(reader, field.mapKey);
         break;
       case 2:
         switch (field.mapKind) {

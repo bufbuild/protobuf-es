@@ -13,10 +13,10 @@
 // limitations under the License.
 
 import type { MessageShape } from "./types.js";
-import { scalarEquals } from "./reflect/scalar.js";
+import { scalarEquals, type ScalarValue } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
 import type { DescField, DescMessage } from "./descriptors.js";
-import type { MapEntryKey, ReflectMessage } from "./reflect/index.js";
+import type { ReflectMessage } from "./reflect/index.js";
 
 /**
  * Compare two messages of the same type.
@@ -71,7 +71,7 @@ function fieldEquals(
     case "map": {
       const ma = a.get(f);
       const mb = b.get(f);
-      const keysA: MapEntryKey[] = [];
+      const keysA: unknown[] = [];
       for (const k of ma.keys()) {
         if (!mb.has(k)) {
           return false;
@@ -93,16 +93,12 @@ function fieldEquals(
           case "enum":
             return false;
           case "message":
-            // TODO fix type error
-            // @ts-expect-error TODO
-            if (!reflectEquals(va, vb)) {
+            if (!reflectEquals(va as ReflectMessage, vb as ReflectMessage)) {
               return false;
             }
             break;
           case "scalar":
-            // TODO fix type error
-            // @ts-expect-error TODO
-            if (!scalarEquals(f.scalar, va, vb)) {
+            if (!scalarEquals(f.scalar, va as ScalarValue, vb as ScalarValue)) {
               return false;
             }
             break;
@@ -117,23 +113,21 @@ function fieldEquals(
         return false;
       }
       for (let i = 0; i < la.size; i++) {
-        if (la.get(i) === lb.get(i)) {
+        const va = la.get(i);
+        const vb = lb.get(i);
+        if (va === vb) {
           continue;
         }
         switch (f.listKind) {
           case "enum":
             return false;
           case "message":
-            // TODO fix type error
-            // @ts-expect-error TODO
-            if (!reflectEquals(la.get(i), lb.get(i))) {
+            if (!reflectEquals(va as ReflectMessage, vb as ReflectMessage)) {
               return false;
             }
             break;
           case "scalar":
-            // TODO fix type error
-            // @ts-expect-error TODO
-            if (!scalarEquals(f.scalar, la.get(i), lb.get(i))) {
+            if (!scalarEquals(f.scalar, va as ScalarValue, vb as ScalarValue)) {
               return false;
             }
             break;

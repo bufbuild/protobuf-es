@@ -115,7 +115,7 @@ export interface ReflectMessage {
    * Note that get() never returns `undefined`. To determine whether a field is
    * set, use isSet().
    */
-  get<Field extends DescField>(field: Field): ReflectGetValue<Field>;
+  get<Field extends DescField>(field: Field): ReflectMessageGet<Field>;
 
   /**
    * Set a field value.
@@ -137,10 +137,7 @@ export interface ReflectMessage {
    * Throws an error if the value is invalid for the field. `undefined` is not
    * a valid value. To reset a field, use clear().
    */
-  set<Field extends DescField>(
-    field: Field,
-    value: ReflectSetValue<Field>,
-  ): void;
+  set<Field extends DescField>(field: Field, value: unknown): void;
 
   /**
    * Returns the unknown fields of the message.
@@ -223,7 +220,7 @@ export interface ReflectList<V = unknown> extends Iterable<V> {
  *   ReflectMap converts keys to their closest possible type in TypeScript.
  * - Messages are wrapped in a ReflectMessage.
  */
-export interface ReflectMap<K extends MapEntryKey = MapEntryKey, V = unknown>
+export interface ReflectMap<K = unknown, V = unknown>
   extends ReadonlyMap<K, V> {
   /**
    * Returns the map field.
@@ -251,35 +248,10 @@ export interface ReflectMap<K extends MapEntryKey = MapEntryKey, V = unknown>
 }
 
 /**
- * A ReflectMap key.
- */
-export type MapEntryKey = string | number | bigint | boolean;
-
-type enumVal = number;
-
-/**
  * The return type of ReflectMessage.get()
  */
 // prettier-ignore
-export type ReflectGetValue<Field extends DescField = DescField> = (
-  Field extends { fieldKind: "map" } ? (
-    Field extends { mapKind: "message" } ? ReflectMap<MapEntryKey, ReflectMessage> :
-    Field extends { mapKind: "enum" } ? ReflectMap<MapEntryKey, enumVal> :
-    Field extends { mapKind: "scalar"; scalar: infer T } ? ReflectMap<MapEntryKey, ScalarValue<T>> :
-    never
-  ) :
-  Field extends { fieldKind: "list" } ? ReflectList :
-  Field extends { fieldKind: "enum" } ? number :
-  Field extends { fieldKind: "message" } ? ReflectMessage :
-  Field extends { fieldKind: "scalar"; scalar: infer T } ? ScalarValue<T> :
-  never
-);
-
-/**
- * The type of the "value" argument of ReflectMessage.set()
- */
-// prettier-ignore
-export type ReflectSetValue<Field extends DescField = DescField> = (
+export type ReflectMessageGet<Field extends DescField = DescField> = (
   Field extends { fieldKind: "map" } ? ReflectMap :
   Field extends { fieldKind: "list" } ? ReflectList :
   Field extends { fieldKind: "enum" } ? number :
