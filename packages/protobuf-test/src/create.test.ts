@@ -846,9 +846,7 @@ describe("create()", () => {
               value: 123,
             },
           },
-          repeatedWrappedUint32Field: [
-            { value: 123 }
-          ],
+          repeatedWrappedUint32Field: [{ value: 123 }],
           mapInt32WrappedUint32Field: {
             123: {
               value: 123,
@@ -858,13 +856,19 @@ describe("create()", () => {
         expect(msg.singularWrappedUint32Field).toBe(123);
         expect(msg.either.case).toBe("oneofWrappedUint32Field");
         if (msg.either.case == "oneofWrappedUint32Field") {
-          expect(msg.either.value.$typeName).toBe("google.protobuf.UInt32Value");
+          expect(msg.either.value.$typeName).toBe(
+            "google.protobuf.UInt32Value",
+          );
           expect(msg.either.value.value).toBe(123);
         }
         expect(msg.repeatedWrappedUint32Field.length).toBe(1);
-        expect(msg.repeatedWrappedUint32Field[0].$typeName).toBe("google.protobuf.UInt32Value");
+        expect(msg.repeatedWrappedUint32Field[0].$typeName).toBe(
+          "google.protobuf.UInt32Value",
+        );
         expect(msg.repeatedWrappedUint32Field[0].value).toBe(123);
-        expect(msg.mapInt32WrappedUint32Field[123].$typeName).toBe("google.protobuf.UInt32Value");
+        expect(msg.mapInt32WrappedUint32Field[123].$typeName).toBe(
+          "google.protobuf.UInt32Value",
+        );
         expect(msg.mapInt32WrappedUint32Field[123].value).toBe(123);
       });
     });
