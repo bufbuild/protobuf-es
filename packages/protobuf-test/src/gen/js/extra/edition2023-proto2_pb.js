@@ -33,16 +33,16 @@ export const Proto2MessageForEdition2023Desc = /*@__PURE__*/
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.OptionalGroup.
- * Use `create(Proto2MessageForEdition2023_OptionalGroup_Desc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_OptionalGroupDesc)` to create a new message.
  */
-export const Proto2MessageForEdition2023_OptionalGroup_Desc = /*@__PURE__*/
+export const Proto2MessageForEdition2023_OptionalGroupDesc = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_proto2, 0, 0);
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.RequiredGroup.
- * Use `create(Proto2MessageForEdition2023_RequiredGroup_Desc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_RequiredGroupDesc)` to create a new message.
  */
-export const Proto2MessageForEdition2023_RequiredGroup_Desc = /*@__PURE__*/
+export const Proto2MessageForEdition2023_RequiredGroupDesc = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_proto2, 0, 1);
 
 /**

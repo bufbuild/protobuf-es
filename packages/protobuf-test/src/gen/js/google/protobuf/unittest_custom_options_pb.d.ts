@@ -87,7 +87,7 @@ export enum TestMessageWithCustomOptions_AnEnum {
 /**
  * Describes the enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum.
  */
-export declare const TestMessageWithCustomOptions_AnEnum_Desc: GenDescEnum<TestMessageWithCustomOptions_AnEnum>;
+export declare const TestMessageWithCustomOptions_AnEnumDesc: GenDescEnum<TestMessageWithCustomOptions_AnEnum>;
 
 /**
  * A test RPC service with custom options at all possible locations (and also
@@ -170,7 +170,7 @@ export enum DummyMessageContainingEnum_TestEnumType {
 /**
  * Describes the enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType.
  */
-export declare const DummyMessageContainingEnum_TestEnumType_Desc: GenDescEnum<DummyMessageContainingEnum_TestEnumType>;
+export declare const DummyMessageContainingEnum_TestEnumTypeDesc: GenDescEnum<DummyMessageContainingEnum_TestEnumType>;
 
 /**
  * @generated from message protobuf_unittest.DummyMessageInvalidAsOptionType
@@ -318,9 +318,9 @@ export declare type ComplexOptionType2_ComplexOptionType4 = Message<"protobuf_un
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType2.ComplexOptionType4.
- * Use `create(ComplexOptionType2_ComplexOptionType4_Desc)` to create a new message.
+ * Use `create(ComplexOptionType2_ComplexOptionType4Desc)` to create a new message.
  */
-export declare const ComplexOptionType2_ComplexOptionType4_Desc: GenDescMessage<ComplexOptionType2_ComplexOptionType4>;
+export declare const ComplexOptionType2_ComplexOptionType4Desc: GenDescMessage<ComplexOptionType2_ComplexOptionType4>;
 
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 complex_opt4 = 7633546;
@@ -360,9 +360,9 @@ export declare type ComplexOptionType3_ComplexOptionType5 = Message<"protobuf_un
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType3.ComplexOptionType5.
- * Use `create(ComplexOptionType3_ComplexOptionType5_Desc)` to create a new message.
+ * Use `create(ComplexOptionType3_ComplexOptionType5Desc)` to create a new message.
  */
-export declare const ComplexOptionType3_ComplexOptionType5_Desc: GenDescMessage<ComplexOptionType3_ComplexOptionType5>;
+export declare const ComplexOptionType3_ComplexOptionType5Desc: GenDescMessage<ComplexOptionType3_ComplexOptionType5>;
 
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
@@ -525,9 +525,9 @@ export declare type NestedOptionType_NestedMessage = Message<"protobuf_unittest.
 
 /**
  * Describes the message protobuf_unittest.NestedOptionType.NestedMessage.
- * Use `create(NestedOptionType_NestedMessage_Desc)` to create a new message.
+ * Use `create(NestedOptionType_NestedMessageDesc)` to create a new message.
  */
-export declare const NestedOptionType_NestedMessage_Desc: GenDescMessage<NestedOptionType_NestedMessage>;
+export declare const NestedOptionType_NestedMessageDesc: GenDescMessage<NestedOptionType_NestedMessage>;
 
 /**
  * @generated from enum protobuf_unittest.NestedOptionType.NestedEnum
@@ -542,7 +542,7 @@ export enum NestedOptionType_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.NestedOptionType.NestedEnum.
  */
-export declare const NestedOptionType_NestedEnum_Desc: GenDescEnum<NestedOptionType_NestedEnum>;
+export declare const NestedOptionType_NestedEnumDesc: GenDescEnum<NestedOptionType_NestedEnum>;
 
 /**
  * @generated from extension: optional int32 nested_extension = 7912573;
@@ -581,7 +581,7 @@ export enum OldOptionType_TestEnum {
 /**
  * Describes the enum protobuf_unittest.OldOptionType.TestEnum.
  */
-export declare const OldOptionType_TestEnum_Desc: GenDescEnum<OldOptionType_TestEnum>;
+export declare const OldOptionType_TestEnumDesc: GenDescEnum<OldOptionType_TestEnum>;
 
 /**
  * Updated version of the custom option above.
@@ -619,7 +619,7 @@ export enum NewOptionType_TestEnum {
 /**
  * Describes the enum protobuf_unittest.NewOptionType.TestEnum.
  */
-export declare const NewOptionType_TestEnum_Desc: GenDescEnum<NewOptionType_TestEnum>;
+export declare const NewOptionType_TestEnumDesc: GenDescEnum<NewOptionType_TestEnum>;
 
 /**
  * Test message using the "required_enum_opt" option defined above.

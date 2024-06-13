@@ -226,8 +226,8 @@ export type RawMessageSet_Item = Message<"protobuf_unittest.RawMessageSet.Item">
 
 /**
  * Describes the message protobuf_unittest.RawMessageSet.Item.
- * Use `create(RawMessageSet_Item_Desc)` to create a new message.
+ * Use `create(RawMessageSet_ItemDesc)` to create a new message.
  */
-export const RawMessageSet_Item_Desc: GenDescMessage<RawMessageSet_Item> = /*@__PURE__*/
+export const RawMessageSet_ItemDesc: GenDescMessage<RawMessageSet_Item> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_mset, 6, 0);
 

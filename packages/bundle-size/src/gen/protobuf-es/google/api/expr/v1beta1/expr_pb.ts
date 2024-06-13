@@ -184,9 +184,9 @@ export type Expr_Ident = Message<"google.api.expr.v1beta1.Expr.Ident"> & {
 
 /**
  * Describes the message google.api.expr.v1beta1.Expr.Ident.
- * Use `create(Expr_Ident_Desc)` to create a new message.
+ * Use `create(Expr_IdentDesc)` to create a new message.
  */
-export const Expr_Ident_Desc: GenDescMessage<Expr_Ident> = /*@__PURE__*/
+export const Expr_IdentDesc: GenDescMessage<Expr_Ident> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 0);
 
 /**
@@ -227,9 +227,9 @@ export type Expr_Select = Message<"google.api.expr.v1beta1.Expr.Select"> & {
 
 /**
  * Describes the message google.api.expr.v1beta1.Expr.Select.
- * Use `create(Expr_Select_Desc)` to create a new message.
+ * Use `create(Expr_SelectDesc)` to create a new message.
  */
-export const Expr_Select_Desc: GenDescMessage<Expr_Select> = /*@__PURE__*/
+export const Expr_SelectDesc: GenDescMessage<Expr_Select> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 1);
 
 /**
@@ -265,9 +265,9 @@ export type Expr_Call = Message<"google.api.expr.v1beta1.Expr.Call"> & {
 
 /**
  * Describes the message google.api.expr.v1beta1.Expr.Call.
- * Use `create(Expr_Call_Desc)` to create a new message.
+ * Use `create(Expr_CallDesc)` to create a new message.
  */
-export const Expr_Call_Desc: GenDescMessage<Expr_Call> = /*@__PURE__*/
+export const Expr_CallDesc: GenDescMessage<Expr_Call> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 2);
 
 /**
@@ -289,9 +289,9 @@ export type Expr_CreateList = Message<"google.api.expr.v1beta1.Expr.CreateList">
 
 /**
  * Describes the message google.api.expr.v1beta1.Expr.CreateList.
- * Use `create(Expr_CreateList_Desc)` to create a new message.
+ * Use `create(Expr_CreateListDesc)` to create a new message.
  */
-export const Expr_CreateList_Desc: GenDescMessage<Expr_CreateList> = /*@__PURE__*/
+export const Expr_CreateListDesc: GenDescMessage<Expr_CreateList> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 3);
 
 /**
@@ -322,9 +322,9 @@ export type Expr_CreateStruct = Message<"google.api.expr.v1beta1.Expr.CreateStru
 
 /**
  * Describes the message google.api.expr.v1beta1.Expr.CreateStruct.
- * Use `create(Expr_CreateStruct_Desc)` to create a new message.
+ * Use `create(Expr_CreateStructDesc)` to create a new message.
  */
-export const Expr_CreateStruct_Desc: GenDescMessage<Expr_CreateStruct> = /*@__PURE__*/
+export const Expr_CreateStructDesc: GenDescMessage<Expr_CreateStruct> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 4);
 
 /**
@@ -375,9 +375,9 @@ export type Expr_CreateStruct_Entry = Message<"google.api.expr.v1beta1.Expr.Crea
 
 /**
  * Describes the message google.api.expr.v1beta1.Expr.CreateStruct.Entry.
- * Use `create(Expr_CreateStruct_Entry_Desc)` to create a new message.
+ * Use `create(Expr_CreateStruct_EntryDesc)` to create a new message.
  */
-export const Expr_CreateStruct_Entry_Desc: GenDescMessage<Expr_CreateStruct_Entry> = /*@__PURE__*/
+export const Expr_CreateStruct_EntryDesc: GenDescMessage<Expr_CreateStruct_Entry> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 4, 0);
 
 /**
@@ -470,9 +470,9 @@ export type Expr_Comprehension = Message<"google.api.expr.v1beta1.Expr.Comprehen
 
 /**
  * Describes the message google.api.expr.v1beta1.Expr.Comprehension.
- * Use `create(Expr_Comprehension_Desc)` to create a new message.
+ * Use `create(Expr_ComprehensionDesc)` to create a new message.
  */
-export const Expr_Comprehension_Desc: GenDescMessage<Expr_Comprehension> = /*@__PURE__*/
+export const Expr_ComprehensionDesc: GenDescMessage<Expr_Comprehension> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_expr, 1, 5);
 
 /**

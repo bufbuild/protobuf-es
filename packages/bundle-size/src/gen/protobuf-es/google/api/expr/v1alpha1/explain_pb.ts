@@ -90,9 +90,9 @@ export type Explain_ExprStep = Message<"google.api.expr.v1alpha1.Explain.ExprSte
 
 /**
  * Describes the message google.api.expr.v1alpha1.Explain.ExprStep.
- * Use `create(Explain_ExprStep_Desc)` to create a new message.
+ * Use `create(Explain_ExprStepDesc)` to create a new message.
  * @deprecated
  */
-export const Explain_ExprStep_Desc: GenDescMessage<Explain_ExprStep> = /*@__PURE__*/
+export const Explain_ExprStepDesc: GenDescMessage<Explain_ExprStep> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_explain, 0, 0);
 

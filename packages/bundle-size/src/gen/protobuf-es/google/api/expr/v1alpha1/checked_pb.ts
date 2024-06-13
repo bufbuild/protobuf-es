@@ -260,9 +260,9 @@ export type Type_ListType = Message<"google.api.expr.v1alpha1.Type.ListType"> & 
 
 /**
  * Describes the message google.api.expr.v1alpha1.Type.ListType.
- * Use `create(Type_ListType_Desc)` to create a new message.
+ * Use `create(Type_ListTypeDesc)` to create a new message.
  */
-export const Type_ListType_Desc: GenDescMessage<Type_ListType> = /*@__PURE__*/
+export const Type_ListTypeDesc: GenDescMessage<Type_ListType> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 0);
 
 /**
@@ -288,9 +288,9 @@ export type Type_MapType = Message<"google.api.expr.v1alpha1.Type.MapType"> & {
 
 /**
  * Describes the message google.api.expr.v1alpha1.Type.MapType.
- * Use `create(Type_MapType_Desc)` to create a new message.
+ * Use `create(Type_MapTypeDesc)` to create a new message.
  */
-export const Type_MapType_Desc: GenDescMessage<Type_MapType> = /*@__PURE__*/
+export const Type_MapTypeDesc: GenDescMessage<Type_MapType> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 1);
 
 /**
@@ -316,9 +316,9 @@ export type Type_FunctionType = Message<"google.api.expr.v1alpha1.Type.FunctionT
 
 /**
  * Describes the message google.api.expr.v1alpha1.Type.FunctionType.
- * Use `create(Type_FunctionType_Desc)` to create a new message.
+ * Use `create(Type_FunctionTypeDesc)` to create a new message.
  */
-export const Type_FunctionType_Desc: GenDescMessage<Type_FunctionType> = /*@__PURE__*/
+export const Type_FunctionTypeDesc: GenDescMessage<Type_FunctionType> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 2);
 
 /**
@@ -344,9 +344,9 @@ export type Type_AbstractType = Message<"google.api.expr.v1alpha1.Type.AbstractT
 
 /**
  * Describes the message google.api.expr.v1alpha1.Type.AbstractType.
- * Use `create(Type_AbstractType_Desc)` to create a new message.
+ * Use `create(Type_AbstractTypeDesc)` to create a new message.
  */
-export const Type_AbstractType_Desc: GenDescMessage<Type_AbstractType> = /*@__PURE__*/
+export const Type_AbstractTypeDesc: GenDescMessage<Type_AbstractType> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 3);
 
 /**
@@ -414,7 +414,7 @@ export enum Type_PrimitiveType {
 /**
  * Describes the enum google.api.expr.v1alpha1.Type.PrimitiveType.
  */
-export const Type_PrimitiveType_Desc: GenDescEnum<Type_PrimitiveType> = /*@__PURE__*/
+export const Type_PrimitiveTypeDesc: GenDescEnum<Type_PrimitiveType> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 0);
 
 /**
@@ -459,7 +459,7 @@ export enum Type_WellKnownType {
 /**
  * Describes the enum google.api.expr.v1alpha1.Type.WellKnownType.
  */
-export const Type_WellKnownType_Desc: GenDescEnum<Type_WellKnownType> = /*@__PURE__*/
+export const Type_WellKnownTypeDesc: GenDescEnum<Type_WellKnownType> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_expr_v1alpha1_checked, 1, 1);
 
 /**
@@ -554,9 +554,9 @@ export type Decl_IdentDecl = Message<"google.api.expr.v1alpha1.Decl.IdentDecl"> 
 
 /**
  * Describes the message google.api.expr.v1alpha1.Decl.IdentDecl.
- * Use `create(Decl_IdentDecl_Desc)` to create a new message.
+ * Use `create(Decl_IdentDeclDesc)` to create a new message.
  */
-export const Decl_IdentDecl_Desc: GenDescMessage<Decl_IdentDecl> = /*@__PURE__*/
+export const Decl_IdentDeclDesc: GenDescMessage<Decl_IdentDecl> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 2, 0);
 
 /**
@@ -579,9 +579,9 @@ export type Decl_FunctionDecl = Message<"google.api.expr.v1alpha1.Decl.FunctionD
 
 /**
  * Describes the message google.api.expr.v1alpha1.Decl.FunctionDecl.
- * Use `create(Decl_FunctionDecl_Desc)` to create a new message.
+ * Use `create(Decl_FunctionDeclDesc)` to create a new message.
  */
-export const Decl_FunctionDecl_Desc: GenDescMessage<Decl_FunctionDecl> = /*@__PURE__*/
+export const Decl_FunctionDeclDesc: GenDescMessage<Decl_FunctionDecl> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 2, 1);
 
 /**
@@ -667,9 +667,9 @@ export type Decl_FunctionDecl_Overload = Message<"google.api.expr.v1alpha1.Decl.
 
 /**
  * Describes the message google.api.expr.v1alpha1.Decl.FunctionDecl.Overload.
- * Use `create(Decl_FunctionDecl_Overload_Desc)` to create a new message.
+ * Use `create(Decl_FunctionDecl_OverloadDesc)` to create a new message.
  */
-export const Decl_FunctionDecl_Overload_Desc: GenDescMessage<Decl_FunctionDecl_Overload> = /*@__PURE__*/
+export const Decl_FunctionDecl_OverloadDesc: GenDescMessage<Decl_FunctionDecl_Overload> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1alpha1_checked, 2, 1, 0);
 
 /**

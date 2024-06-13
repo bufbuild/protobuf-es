@@ -324,7 +324,7 @@ export enum Field_Kind {
 /**
  * Describes the enum google.protobuf.Field.Kind.
  */
-export const Field_Kind_Desc: GenDescEnum<Field_Kind> = /*@__PURE__*/
+export const Field_KindDesc: GenDescEnum<Field_Kind> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 0);
 
 /**
@@ -365,7 +365,7 @@ export enum Field_Cardinality {
 /**
  * Describes the enum google.protobuf.Field.Cardinality.
  */
-export const Field_Cardinality_Desc: GenDescEnum<Field_Cardinality> = /*@__PURE__*/
+export const Field_CardinalityDesc: GenDescEnum<Field_Cardinality> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 1);
 
 /**

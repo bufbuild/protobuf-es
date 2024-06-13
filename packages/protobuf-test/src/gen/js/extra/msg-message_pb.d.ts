@@ -57,7 +57,7 @@ export declare type MessageFieldMessage_TestMessage = Message<"spec.MessageField
 
 /**
  * Describes the message spec.MessageFieldMessage.TestMessage.
- * Use `create(MessageFieldMessage_TestMessage_Desc)` to create a new message.
+ * Use `create(MessageFieldMessage_TestMessageDesc)` to create a new message.
  */
-export declare const MessageFieldMessage_TestMessage_Desc: GenDescMessage<MessageFieldMessage_TestMessage>;
+export declare const MessageFieldMessage_TestMessageDesc: GenDescMessage<MessageFieldMessage_TestMessage>;
 

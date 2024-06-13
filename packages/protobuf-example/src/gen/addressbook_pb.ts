@@ -84,9 +84,9 @@ export type Person_PhoneNumber = Message<"example.Person.PhoneNumber"> & {
 
 /**
  * Describes the message example.Person.PhoneNumber.
- * Use `create(Person_PhoneNumber_Desc)` to create a new message.
+ * Use `create(Person_PhoneNumberDesc)` to create a new message.
  */
-export const Person_PhoneNumber_Desc: GenDescMessage<Person_PhoneNumber> = /*@__PURE__*/
+export const Person_PhoneNumberDesc: GenDescMessage<Person_PhoneNumber> = /*@__PURE__*/
   messageDesc(fileDesc_addressbook, 0, 0);
 
 /**
@@ -112,7 +112,7 @@ export enum Person_PhoneType {
 /**
  * Describes the enum example.Person.PhoneType.
  */
-export const Person_PhoneType_Desc: GenDescEnum<Person_PhoneType> = /*@__PURE__*/
+export const Person_PhoneTypeDesc: GenDescEnum<Person_PhoneType> = /*@__PURE__*/
   enumDesc(fileDesc_addressbook, 0, 0);
 
 /**

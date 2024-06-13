@@ -25,7 +25,7 @@ import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
 import * as edition2023_proto2_ts from "./gen/ts/extra/edition2023-proto2_pb.js";
 import * as edition2023_proto3_ts from "./gen/ts/extra/edition2023-proto3_pb.js";
 import {
-  Edition2023MapEncodingMessage_Child_Desc,
+  Edition2023MapEncodingMessage_ChildDesc,
   Edition2023MapEncodingMessageDesc,
 } from "./gen/ts/extra/edition2023-map-encoding_pb.js";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
@@ -96,7 +96,7 @@ describe("edition2023 serialization", () => {
       msg.optionalClosedEnumField = edition2023_ts.Edition2023EnumClosed.A;
       msg.optionalStringFieldWithDefault = "";
       msg.optionalgroup = create(
-        edition2023_ts.Edition2023FromProto2Message_OptionalGroup_Desc,
+        edition2023_ts.Edition2023FromProto2Message_OptionalGroupDesc,
         {
           int32Field: 123,
         },
@@ -105,7 +105,7 @@ describe("edition2023 serialization", () => {
       msg.requiredClosedEnumField = edition2023_ts.Edition2023EnumClosed.A;
       msg.requiredStringFieldWithDefault = "";
       msg.requiredgroup = create(
-        edition2023_ts.Edition2023FromProto2Message_RequiredGroup_Desc,
+        edition2023_ts.Edition2023FromProto2Message_RequiredGroupDesc,
         {
           int32Field: 123,
         },
@@ -123,7 +123,7 @@ describe("edition2023 serialization", () => {
         edition2023_proto2_ts.Proto2EnumForEdition2023.A;
       msg.optionalStringFieldWithDefault = "";
       msg.optionalgroup = create(
-        edition2023_proto2_ts.Proto2MessageForEdition2023_OptionalGroup_Desc,
+        edition2023_proto2_ts.Proto2MessageForEdition2023_OptionalGroupDesc,
         {
           int32Field: 123,
         },
@@ -133,7 +133,7 @@ describe("edition2023 serialization", () => {
         edition2023_proto2_ts.Proto2EnumForEdition2023.A;
       msg.requiredStringFieldWithDefault = "";
       msg.requiredgroup = create(
-        edition2023_proto2_ts.Proto2MessageForEdition2023_RequiredGroup_Desc,
+        edition2023_proto2_ts.Proto2MessageForEdition2023_RequiredGroupDesc,
         {
           int32Field: 123,
         },
@@ -244,7 +244,7 @@ describe("edition2023 serialization", () => {
       const bytes = w.finish();
       const msg = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
       expect(msg.messageMap).toStrictEqual({
-        123: create(Edition2023MapEncodingMessage_Child_Desc),
+        123: create(Edition2023MapEncodingMessage_ChildDesc),
       });
     });
     test("should serialize map entry LENGTH_PREFIXED", () => {
@@ -275,7 +275,7 @@ describe("edition2023 serialization", () => {
     });
     test("should serialize map value message LENGTH_PREFIXED", () => {
       const msg = create(Edition2023MapEncodingMessageDesc);
-      msg.messageMap[123] = create(Edition2023MapEncodingMessage_Child_Desc);
+      msg.messageMap[123] = create(Edition2023MapEncodingMessage_ChildDesc);
       const bytes = toBinary(Edition2023MapEncodingMessageDesc, msg);
       const r = new BinaryReader(bytes);
       {

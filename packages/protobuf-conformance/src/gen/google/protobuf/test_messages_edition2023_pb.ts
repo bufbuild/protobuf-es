@@ -584,9 +584,9 @@ export type TestAllTypesEdition2023_NestedMessage = Message<"protobuf_test_messa
 
 /**
  * Describes the message protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage.
- * Use `create(TestAllTypesEdition2023_NestedMessage_Desc)` to create a new message.
+ * Use `create(TestAllTypesEdition2023_NestedMessageDesc)` to create a new message.
  */
-export const TestAllTypesEdition2023_NestedMessage_Desc: GenDescMessage<TestAllTypesEdition2023_NestedMessage> = /*@__PURE__*/
+export const TestAllTypesEdition2023_NestedMessageDesc: GenDescMessage<TestAllTypesEdition2023_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_edition2023, 0, 0);
 
 /**
@@ -608,9 +608,9 @@ export type TestAllTypesEdition2023_GroupLikeType = Message<"protobuf_test_messa
 
 /**
  * Describes the message protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType.
- * Use `create(TestAllTypesEdition2023_GroupLikeType_Desc)` to create a new message.
+ * Use `create(TestAllTypesEdition2023_GroupLikeTypeDesc)` to create a new message.
  */
-export const TestAllTypesEdition2023_GroupLikeType_Desc: GenDescMessage<TestAllTypesEdition2023_GroupLikeType> = /*@__PURE__*/
+export const TestAllTypesEdition2023_GroupLikeTypeDesc: GenDescMessage<TestAllTypesEdition2023_GroupLikeType> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_edition2023, 0, 1);
 
 /**
@@ -643,7 +643,7 @@ export enum TestAllTypesEdition2023_NestedEnum {
 /**
  * Describes the enum protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum.
  */
-export const TestAllTypesEdition2023_NestedEnum_Desc: GenDescEnum<TestAllTypesEdition2023_NestedEnum> = /*@__PURE__*/
+export const TestAllTypesEdition2023_NestedEnumDesc: GenDescEnum<TestAllTypesEdition2023_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_edition2023, 0, 0);
 
 /**

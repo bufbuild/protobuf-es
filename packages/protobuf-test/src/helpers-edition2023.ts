@@ -101,10 +101,10 @@ export function fillEdition2023Message(msg: edition2023_ts.Edition2023Message) {
   msg.requiredEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
   msg.requiredEnumClosedField = edition2023_ts.Edition2023EnumClosed.A;
   msg.requiredMessageField = create(
-    edition2023_ts.Edition2023Message_Child_Desc,
+    edition2023_ts.Edition2023Message_ChildDesc,
   );
   msg.requiredMessageDelimitedField = create(
-    edition2023_ts.Edition2023Message_Child_Desc,
+    edition2023_ts.Edition2023Message_ChildDesc,
   );
   msg.requiredWrappedUint32Field = 66;
 
@@ -143,10 +143,10 @@ function fillEdition2023Required(msg: edition2023_ts.Edition2023Message) {
   msg.requiredEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
   msg.requiredEnumClosedField = edition2023_ts.Edition2023EnumClosed.A;
   msg.requiredMessageField = create(
-    edition2023_ts.Edition2023Message_Child_Desc,
+    edition2023_ts.Edition2023Message_ChildDesc,
   );
   msg.requiredMessageDelimitedField = create(
-    edition2023_ts.Edition2023Message_Child_Desc,
+    edition2023_ts.Edition2023Message_ChildDesc,
   );
   msg.requiredWrappedUint32Field = 66;
 

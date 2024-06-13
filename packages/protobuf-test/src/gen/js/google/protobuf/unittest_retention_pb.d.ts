@@ -100,9 +100,9 @@ export declare type TopLevelMessage_NestedMessage = Message<"protobuf_unittest.T
 
 /**
  * Describes the message protobuf_unittest.TopLevelMessage.NestedMessage.
- * Use `create(TopLevelMessage_NestedMessage_Desc)` to create a new message.
+ * Use `create(TopLevelMessage_NestedMessageDesc)` to create a new message.
  */
-export declare const TopLevelMessage_NestedMessage_Desc: GenDescMessage<TopLevelMessage_NestedMessage>;
+export declare const TopLevelMessage_NestedMessageDesc: GenDescMessage<TopLevelMessage_NestedMessage>;
 
 /**
  * @generated from enum protobuf_unittest.TopLevelMessage.NestedEnum
@@ -117,7 +117,7 @@ export enum TopLevelMessage_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
  */
-export declare const TopLevelMessage_NestedEnum_Desc: GenDescEnum<TopLevelMessage_NestedEnum>;
+export declare const TopLevelMessage_NestedEnumDesc: GenDescEnum<TopLevelMessage_NestedEnum>;
 
 /**
  * @generated from extension: optional string s = 2;

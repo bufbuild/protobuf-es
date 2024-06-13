@@ -72,7 +72,7 @@ export function fillProto2Message(msg: proto2_ts.Proto2Message) {
   msg.requiredInt64JsStringField = "456";
   msg.requiredEnumField = proto2_ts.Proto2Enum.YES;
   msg.requiredMessageField = create(desc);
-  msg.requiredgroup = create(proto2_ts.Proto2Message_RequiredGroup_Desc);
+  msg.requiredgroup = create(proto2_ts.Proto2Message_RequiredGroupDesc);
   msg.requiredWrappedUint32Field = 66;
   // required with default
   msg.requiredDefaultStringField = "non-zero";
@@ -82,7 +82,7 @@ export function fillProto2Message(msg: proto2_ts.Proto2Message) {
   msg.requiredDefaultEnumField = proto2_ts.Proto2Enum.YES;
   msg.requiredDefaultMessageField = create(desc);
   msg.requireddefaultgroup = create(
-    proto2_ts.Proto2Message_RequiredDefaultGroup_Desc,
+    proto2_ts.Proto2Message_RequiredDefaultGroupDesc,
   );
   msg.requiredDefaultWrappedUint32Field = 66;
   // optional
@@ -92,7 +92,7 @@ export function fillProto2Message(msg: proto2_ts.Proto2Message) {
   msg.optionalInt64JsStringField = "0";
   msg.optionalEnumField = proto2_ts.Proto2Enum.YES;
   msg.optionalMessageField = create(desc);
-  msg.optionalgroup = create(proto2_ts.Proto2Message_OptionalGroup_Desc);
+  msg.optionalgroup = create(proto2_ts.Proto2Message_OptionalGroupDesc);
   msg.optionalWrappedUint32Field = 66;
   // optional with default
   msg.optionalDefaultStringField = "";
@@ -102,7 +102,7 @@ export function fillProto2Message(msg: proto2_ts.Proto2Message) {
   msg.optionalDefaultEnumField = proto2_ts.Proto2Enum.YES;
   msg.optionalDefaultMessageField = create(desc);
   msg.optionaldefaultgroup = create(
-    proto2_ts.Proto2Message_OptionalDefaultGroup_Desc,
+    proto2_ts.Proto2Message_OptionalDefaultGroupDesc,
   );
   msg.optionalDefaultWrappedUint32Field = 66;
   // repeated

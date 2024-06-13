@@ -92,16 +92,15 @@ function idealDescName(
     const name = "fileDesc_" + desc.name.replace(/[^a-zA-Z0-9_]+/g, "_");
     return safeIdentifier(name + escape);
   }
-  const id = identifier(desc);
   switch (desc.kind) {
     case "enum":
-      return safeIdentifier(id.name + (id.nested ? "_Desc" : "Desc") + escape);
+      return safeIdentifier(identifier(desc) + "Desc" + escape);
     case "message":
-      return safeIdentifier(id.name + (id.nested ? "_Desc" : "Desc") + escape);
+      return safeIdentifier(identifier(desc) + "Desc" + escape);
     case "extension":
-      return safeIdentifier(id.name + escape);
+      return safeIdentifier(identifier(desc) + escape);
     case "service":
-      return safeIdentifier(id.name + escape);
+      return safeIdentifier(identifier(desc) + escape);
   }
 }
 
@@ -110,7 +109,7 @@ function idealDescName(
  */
 function idealShapeName(desc: DescEnum | DescMessage, i: number): string {
   const escape = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
-  return safeIdentifier(identifier(desc).name + escape);
+  return safeIdentifier(identifier(desc) + escape);
 }
 
 /**
@@ -126,15 +125,11 @@ function idealShapeName(desc: DescEnum | DescMessage, i: number): string {
  */
 function identifier(
   desc: DescEnum | DescMessage | DescExtension | DescService,
-): { name: string; nested: boolean } {
+): string {
   const pkg = desc.file.proto.package;
   const offset = pkg.length > 0 ? pkg.length + 1 : 0;
   const nameWithoutPkg = desc.typeName.substring(offset);
-  const name = nameWithoutPkg.replace(/\./g, "_");
-  return {
-    name,
-    nested: nameWithoutPkg.includes("."),
-  };
+  return nameWithoutPkg.replace(/\./g, "_");
 }
 
 /**

@@ -45,9 +45,9 @@ export declare type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
 
 /**
  * Describes the message pb.TestMessage.Nested.
- * Use `create(TestMessage_Nested_Desc)` to create a new message.
+ * Use `create(TestMessage_NestedDesc)` to create a new message.
  */
-export declare const TestMessage_Nested_Desc: GenDescMessage<TestMessage_Nested>;
+export declare const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test_nested = 9997;

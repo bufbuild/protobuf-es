@@ -35,37 +35,37 @@ export const TestAllTypesProto2Desc = /*@__PURE__*/
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage.
- * Use `create(TestAllTypesProto2_NestedMessage_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_NestedMessageDesc)` to create a new message.
  */
-export const TestAllTypesProto2_NestedMessage_Desc = /*@__PURE__*/
+export const TestAllTypesProto2_NestedMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 0);
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.Data.
- * Use `create(TestAllTypesProto2_Data_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_DataDesc)` to create a new message.
  */
-export const TestAllTypesProto2_Data_Desc = /*@__PURE__*/
+export const TestAllTypesProto2_DataDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 1);
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField.
- * Use `create(TestAllTypesProto2_MultiWordGroupField_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_MultiWordGroupFieldDesc)` to create a new message.
  */
-export const TestAllTypesProto2_MultiWordGroupField_Desc = /*@__PURE__*/
+export const TestAllTypesProto2_MultiWordGroupFieldDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 2);
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect.
- * Use `create(TestAllTypesProto2_MessageSetCorrect_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_MessageSetCorrectDesc)` to create a new message.
  */
-export const TestAllTypesProto2_MessageSetCorrect_Desc = /*@__PURE__*/
+export const TestAllTypesProto2_MessageSetCorrectDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 3);
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.
- * Use `create(TestAllTypesProto2_MessageSetCorrectExtension1_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_MessageSetCorrectExtension1Desc)` to create a new message.
  */
-export const TestAllTypesProto2_MessageSetCorrectExtension1_Desc = /*@__PURE__*/
+export const TestAllTypesProto2_MessageSetCorrectExtension1Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 4);
 
 /**
@@ -76,9 +76,9 @@ export const TestAllTypesProto2_MessageSetCorrectExtension1_message_set_extensio
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.
- * Use `create(TestAllTypesProto2_MessageSetCorrectExtension2_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_MessageSetCorrectExtension2Desc)` to create a new message.
  */
-export const TestAllTypesProto2_MessageSetCorrectExtension2_Desc = /*@__PURE__*/
+export const TestAllTypesProto2_MessageSetCorrectExtension2Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 5);
 
 /**
@@ -90,14 +90,14 @@ export const TestAllTypesProto2_MessageSetCorrectExtension2_message_set_extensio
 /**
  * Describes the enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum.
  */
-export const TestAllTypesProto2_NestedEnum_Desc = /*@__PURE__*/
+export const TestAllTypesProto2_NestedEnumDesc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 0);
 
 /**
  * @generated from enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum
  */
 export const TestAllTypesProto2_NestedEnum = /*@__PURE__*/
-  tsEnum(TestAllTypesProto2_NestedEnum_Desc);
+  tsEnum(TestAllTypesProto2_NestedEnumDesc);
 
 /**
  * Describes the message protobuf_test_messages.proto2.ForeignMessageProto2.
@@ -122,9 +122,9 @@ export const UnknownToTestAllTypesDesc = /*@__PURE__*/
 
 /**
  * Describes the message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup.
- * Use `create(UnknownToTestAllTypes_OptionalGroup_Desc)` to create a new message.
+ * Use `create(UnknownToTestAllTypes_OptionalGroupDesc)` to create a new message.
  */
-export const UnknownToTestAllTypes_OptionalGroup_Desc = /*@__PURE__*/
+export const UnknownToTestAllTypes_OptionalGroupDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 3, 0);
 
 /**
@@ -144,14 +144,14 @@ export const EnumOnlyProto2Desc = /*@__PURE__*/
 /**
  * Describes the enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool.
  */
-export const EnumOnlyProto2_Bool_Desc = /*@__PURE__*/
+export const EnumOnlyProto2_BoolDesc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto2, 5, 0);
 
 /**
  * @generated from enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool
  */
 export const EnumOnlyProto2_Bool = /*@__PURE__*/
-  tsEnum(EnumOnlyProto2_Bool_Desc);
+  tsEnum(EnumOnlyProto2_BoolDesc);
 
 /**
  * Describes the message protobuf_test_messages.proto2.OneStringProto2.
@@ -176,30 +176,30 @@ export const TestAllRequiredTypesProto2Desc = /*@__PURE__*/
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage.
- * Use `create(TestAllRequiredTypesProto2_NestedMessage_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_NestedMessageDesc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_NestedMessage_Desc = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_NestedMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 0);
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data.
- * Use `create(TestAllRequiredTypesProto2_Data_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_DataDesc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_Data_Desc = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_DataDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 1);
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect.
- * Use `create(TestAllRequiredTypesProto2_MessageSetCorrect_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectDesc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_MessageSetCorrect_Desc = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_MessageSetCorrectDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 2);
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.
- * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension1_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension1Desc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_MessageSetCorrectExtension1_Desc = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension1Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 3);
 
 /**
@@ -210,9 +210,9 @@ export const TestAllRequiredTypesProto2_MessageSetCorrectExtension1_message_set_
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.
- * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension2_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension2Desc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2_Desc = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 4);
 
 /**
@@ -224,14 +224,14 @@ export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2_message_set_
 /**
  * Describes the enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum.
  */
-export const TestAllRequiredTypesProto2_NestedEnum_Desc = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_NestedEnumDesc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 0);
 
 /**
  * @generated from enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum
  */
 export const TestAllRequiredTypesProto2_NestedEnum = /*@__PURE__*/
-  tsEnum(TestAllRequiredTypesProto2_NestedEnum_Desc);
+  tsEnum(TestAllRequiredTypesProto2_NestedEnumDesc);
 
 /**
  * Describes the enum protobuf_test_messages.proto2.ForeignEnumProto2.

@@ -99,9 +99,9 @@ export declare type Proto2MessageForEdition2023_OptionalGroup = Message<"spec.Pr
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.OptionalGroup.
- * Use `create(Proto2MessageForEdition2023_OptionalGroup_Desc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_OptionalGroupDesc)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023_OptionalGroup_Desc: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup>;
+export declare const Proto2MessageForEdition2023_OptionalGroupDesc: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup>;
 
 /**
  * @generated from message spec.Proto2MessageForEdition2023.RequiredGroup
@@ -115,9 +115,9 @@ export declare type Proto2MessageForEdition2023_RequiredGroup = Message<"spec.Pr
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.RequiredGroup.
- * Use `create(Proto2MessageForEdition2023_RequiredGroup_Desc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_RequiredGroupDesc)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023_RequiredGroup_Desc: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup>;
+export declare const Proto2MessageForEdition2023_RequiredGroupDesc: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup>;
 
 /**
  * @generated from enum spec.Proto2EnumForEdition2023

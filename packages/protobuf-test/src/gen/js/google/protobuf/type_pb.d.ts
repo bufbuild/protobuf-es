@@ -315,7 +315,7 @@ export enum Field_Kind {
 /**
  * Describes the enum google.protobuf.Field.Kind.
  */
-export declare const Field_Kind_Desc: GenDescEnum<Field_Kind>;
+export declare const Field_KindDesc: GenDescEnum<Field_Kind>;
 
 /**
  * Whether a field is optional, required, or repeated.
@@ -355,7 +355,7 @@ export enum Field_Cardinality {
 /**
  * Describes the enum google.protobuf.Field.Cardinality.
  */
-export declare const Field_Cardinality_Desc: GenDescEnum<Field_Cardinality>;
+export declare const Field_CardinalityDesc: GenDescEnum<Field_Cardinality>;
 
 /**
  * Enum type definition.

@@ -186,25 +186,12 @@ message ClashParent_ClashChild {
 }
 
 // message shape should clash with enum descriptor
-message EnumDescClashWithMessageShape_Desc {}
-enum EnumDescClashWithMessageShape { MessageDescClashWithEnumDesc_Desc_zero = 0; }
+message EnumDescClashWithMessageShapeDesc {}
+enum EnumDescClashWithMessageShape { MessageDescClashWithEnumDescDesc_zero = 0; }
 
 // enum shape should clash with message descriptor
-enum EnumShapeClashWithMessageDesc_Desc { EnumShapeClashWithMessageDesc_Desc_zero = 0; }
+enum EnumShapeClashWithMessageDescDesc { EnumShapeClashWithMessageDescDesc_zero = 0; }
 message EnumShapeClashWithMessageDesc {}
-
-message ClashParent2 {
-  message Child {
-    // should clash with message descriptor for ClashParent2.Child
-    message Desc {}
-  }
-  message Child2 {
-    // should clash with enum descriptor for ClashParent2.Child2
-    enum Desc {
-      UNSPECIFIED = 0;
-    }
-  }
-}
 
 message NoClashFields {
     // ok as object property

@@ -173,9 +173,9 @@ export type AttributeContext_Peer = Message<"google.rpc.context.AttributeContext
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Peer.
- * Use `create(AttributeContext_Peer_Desc)` to create a new message.
+ * Use `create(AttributeContext_PeerDesc)` to create a new message.
  */
-export const AttributeContext_Peer_Desc: GenDescMessage<AttributeContext_Peer> = /*@__PURE__*/
+export const AttributeContext_PeerDesc: GenDescMessage<AttributeContext_Peer> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 0);
 
 /**
@@ -223,9 +223,9 @@ export type AttributeContext_Api = Message<"google.rpc.context.AttributeContext.
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Api.
- * Use `create(AttributeContext_Api_Desc)` to create a new message.
+ * Use `create(AttributeContext_ApiDesc)` to create a new message.
  */
-export const AttributeContext_Api_Desc: GenDescMessage<AttributeContext_Api> = /*@__PURE__*/
+export const AttributeContext_ApiDesc: GenDescMessage<AttributeContext_Api> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 1);
 
 /**
@@ -314,9 +314,9 @@ export type AttributeContext_Auth = Message<"google.rpc.context.AttributeContext
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Auth.
- * Use `create(AttributeContext_Auth_Desc)` to create a new message.
+ * Use `create(AttributeContext_AuthDesc)` to create a new message.
  */
-export const AttributeContext_Auth_Desc: GenDescMessage<AttributeContext_Auth> = /*@__PURE__*/
+export const AttributeContext_AuthDesc: GenDescMessage<AttributeContext_Auth> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 2);
 
 /**
@@ -425,9 +425,9 @@ export type AttributeContext_Request = Message<"google.rpc.context.AttributeCont
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Request.
- * Use `create(AttributeContext_Request_Desc)` to create a new message.
+ * Use `create(AttributeContext_RequestDesc)` to create a new message.
  */
-export const AttributeContext_Request_Desc: GenDescMessage<AttributeContext_Request> = /*@__PURE__*/
+export const AttributeContext_RequestDesc: GenDescMessage<AttributeContext_Request> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 3);
 
 /**
@@ -481,9 +481,9 @@ export type AttributeContext_Response = Message<"google.rpc.context.AttributeCon
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Response.
- * Use `create(AttributeContext_Response_Desc)` to create a new message.
+ * Use `create(AttributeContext_ResponseDesc)` to create a new message.
  */
-export const AttributeContext_Response_Desc: GenDescMessage<AttributeContext_Response> = /*@__PURE__*/
+export const AttributeContext_ResponseDesc: GenDescMessage<AttributeContext_Response> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 4);
 
 /**
@@ -620,8 +620,8 @@ export type AttributeContext_Resource = Message<"google.rpc.context.AttributeCon
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Resource.
- * Use `create(AttributeContext_Resource_Desc)` to create a new message.
+ * Use `create(AttributeContext_ResourceDesc)` to create a new message.
  */
-export const AttributeContext_Resource_Desc: GenDescMessage<AttributeContext_Resource> = /*@__PURE__*/
+export const AttributeContext_ResourceDesc: GenDescMessage<AttributeContext_Resource> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 5);
 

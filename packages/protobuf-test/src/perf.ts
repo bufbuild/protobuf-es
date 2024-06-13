@@ -22,7 +22,7 @@ import { RepeatedScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js
 import { MapsMessageDesc } from "./gen/ts/extra/msg-maps_pb.js";
 import {
   MessageFieldMessageDesc,
-  MessageFieldMessage_TestMessage_Desc,
+  MessageFieldMessage_TestMessageDesc,
 } from "./gen/ts/extra/msg-message_pb.js";
 import { PerfMessageDesc } from "./gen/ts/extra/perf_pb.js";
 
@@ -236,7 +236,7 @@ function setupTests(): Test[] {
     const message = create(desc);
     for (let i = 0; i < 1000; i++) {
       message.repeatedMessageField.push(
-        create(MessageFieldMessage_TestMessage_Desc),
+        create(MessageFieldMessage_TestMessageDesc),
       );
     }
     const data = toBinary(desc, message);

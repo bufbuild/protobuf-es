@@ -92,9 +92,9 @@ export declare type ReservedPropertyNames_BuiltIn = Message$1<"spec.ReservedProp
 
 /**
  * Describes the message spec.ReservedPropertyNames.BuiltIn.
- * Use `create(ReservedPropertyNames_BuiltIn_Desc)` to create a new message.
+ * Use `create(ReservedPropertyNames_BuiltInDesc)` to create a new message.
  */
-export declare const ReservedPropertyNames_BuiltIn_Desc: GenDescMessage<ReservedPropertyNames_BuiltIn>;
+export declare const ReservedPropertyNames_BuiltInDesc: GenDescMessage<ReservedPropertyNames_BuiltIn>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.Runtime
@@ -166,9 +166,9 @@ export declare type ReservedPropertyNames_Runtime = Message$1<"spec.ReservedProp
 
 /**
  * Describes the message spec.ReservedPropertyNames.Runtime.
- * Use `create(ReservedPropertyNames_Runtime_Desc)` to create a new message.
+ * Use `create(ReservedPropertyNames_RuntimeDesc)` to create a new message.
  */
-export declare const ReservedPropertyNames_Runtime_Desc: GenDescMessage<ReservedPropertyNames_Runtime>;
+export declare const ReservedPropertyNames_RuntimeDesc: GenDescMessage<ReservedPropertyNames_Runtime>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofBultIn
@@ -206,9 +206,9 @@ export declare type ReservedPropertyNames_OneofBultIn = Message$1<"spec.Reserved
 
 /**
  * Describes the message spec.ReservedPropertyNames.OneofBultIn.
- * Use `create(ReservedPropertyNames_OneofBultIn_Desc)` to create a new message.
+ * Use `create(ReservedPropertyNames_OneofBultInDesc)` to create a new message.
  */
-export declare const ReservedPropertyNames_OneofBultIn_Desc: GenDescMessage<ReservedPropertyNames_OneofBultIn>;
+export declare const ReservedPropertyNames_OneofBultInDesc: GenDescMessage<ReservedPropertyNames_OneofBultIn>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofRuntime
@@ -276,9 +276,9 @@ export declare type ReservedPropertyNames_OneofRuntime = Message$1<"spec.Reserve
 
 /**
  * Describes the message spec.ReservedPropertyNames.OneofRuntime.
- * Use `create(ReservedPropertyNames_OneofRuntime_Desc)` to create a new message.
+ * Use `create(ReservedPropertyNames_OneofRuntimeDesc)` to create a new message.
  */
-export declare const ReservedPropertyNames_OneofRuntime_Desc: GenDescMessage<ReservedPropertyNames_OneofRuntime>;
+export declare const ReservedPropertyNames_OneofRuntimeDesc: GenDescMessage<ReservedPropertyNames_OneofRuntime>;
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumBuiltIn
@@ -308,7 +308,7 @@ export enum ReservedPropertyNames_EnumBuiltIn {
 /**
  * Describes the enum spec.ReservedPropertyNames.EnumBuiltIn.
  */
-export declare const ReservedPropertyNames_EnumBuiltIn_Desc: GenDescEnum<ReservedPropertyNames_EnumBuiltIn>;
+export declare const ReservedPropertyNames_EnumBuiltInDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltIn>;
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumBuiltInPrefixed
@@ -338,7 +338,7 @@ export enum ReservedPropertyNames_EnumBuiltInPrefixed {
 /**
  * Describes the enum spec.ReservedPropertyNames.EnumBuiltInPrefixed.
  */
-export declare const ReservedPropertyNames_EnumBuiltInPrefixed_Desc: GenDescEnum<ReservedPropertyNames_EnumBuiltInPrefixed>;
+export declare const ReservedPropertyNames_EnumBuiltInPrefixedDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltInPrefixed>;
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
@@ -393,7 +393,7 @@ export enum ReservedPropertyNames_EnumRuntime {
 /**
  * Describes the enum spec.ReservedPropertyNames.EnumRuntime.
  */
-export declare const ReservedPropertyNames_EnumRuntime_Desc: GenDescEnum<ReservedPropertyNames_EnumRuntime>;
+export declare const ReservedPropertyNames_EnumRuntimeDesc: GenDescEnum<ReservedPropertyNames_EnumRuntime>;
 
 /**
  * reserved identifier
@@ -748,9 +748,9 @@ export declare type ClashParent_ClashChild = Message$1<"spec.ClashParent.ClashCh
 
 /**
  * Describes the message spec.ClashParent.ClashChild.
- * Use `create(ClashParent_ClashChild_Desc)` to create a new message.
+ * Use `create(ClashParent_ClashChildDesc)` to create a new message.
  */
-export declare const ClashParent_ClashChild_Desc: GenDescMessage<ClashParent_ClashChild>;
+export declare const ClashParent_ClashChildDesc: GenDescMessage<ClashParent_ClashChild>;
 
 /**
  * should clash with name of ClashParent.ClashChild
@@ -762,23 +762,23 @@ export declare type ClashParent_ClashChild$ = Message$1<"spec.ClashParent_ClashC
 
 /**
  * Describes the message spec.ClashParent_ClashChild.
- * Use `create(ClashParent_ClashChildDesc)` to create a new message.
+ * Use `create(ClashParent_ClashChildDesc$)` to create a new message.
  */
-export declare const ClashParent_ClashChildDesc: GenDescMessage<ClashParent_ClashChild$>;
+export declare const ClashParent_ClashChildDesc$: GenDescMessage<ClashParent_ClashChild$>;
 
 /**
  * message shape should clash with enum descriptor
  *
- * @generated from message spec.EnumDescClashWithMessageShape_Desc
+ * @generated from message spec.EnumDescClashWithMessageShapeDesc
  */
-export declare type EnumDescClashWithMessageShape_Desc = Message$1<"spec.EnumDescClashWithMessageShape_Desc"> & {
+export declare type EnumDescClashWithMessageShapeDesc = Message$1<"spec.EnumDescClashWithMessageShapeDesc"> & {
 };
 
 /**
- * Describes the message spec.EnumDescClashWithMessageShape_Desc.
- * Use `create(EnumDescClashWithMessageShape_DescDesc)` to create a new message.
+ * Describes the message spec.EnumDescClashWithMessageShapeDesc.
+ * Use `create(EnumDescClashWithMessageShapeDescDesc)` to create a new message.
  */
-export declare const EnumDescClashWithMessageShape_DescDesc: GenDescMessage<EnumDescClashWithMessageShape_Desc>;
+export declare const EnumDescClashWithMessageShapeDescDesc: GenDescMessage<EnumDescClashWithMessageShapeDesc>;
 
 /**
  * @generated from message spec.EnumShapeClashWithMessageDesc
@@ -788,76 +788,9 @@ export declare type EnumShapeClashWithMessageDesc = Message$1<"spec.EnumShapeCla
 
 /**
  * Describes the message spec.EnumShapeClashWithMessageDesc.
- * Use `create(EnumShapeClashWithMessageDescDesc)` to create a new message.
+ * Use `create(EnumShapeClashWithMessageDescDesc$)` to create a new message.
  */
-export declare const EnumShapeClashWithMessageDescDesc: GenDescMessage<EnumShapeClashWithMessageDesc>;
-
-/**
- * @generated from message spec.ClashParent2
- */
-export declare type ClashParent2 = Message$1<"spec.ClashParent2"> & {
-};
-
-/**
- * Describes the message spec.ClashParent2.
- * Use `create(ClashParent2Desc)` to create a new message.
- */
-export declare const ClashParent2Desc: GenDescMessage<ClashParent2>;
-
-/**
- * @generated from message spec.ClashParent2.Child
- */
-export declare type ClashParent2_Child = Message$1<"spec.ClashParent2.Child"> & {
-};
-
-/**
- * Describes the message spec.ClashParent2.Child.
- * Use `create(ClashParent2_Child_Desc$)` to create a new message.
- */
-export declare const ClashParent2_Child_Desc$: GenDescMessage<ClashParent2_Child>;
-
-/**
- * should clash with message descriptor for ClashParent2.Child
- *
- * @generated from message spec.ClashParent2.Child.Desc
- */
-export declare type ClashParent2_Child_Desc = Message$1<"spec.ClashParent2.Child.Desc"> & {
-};
-
-/**
- * Describes the message spec.ClashParent2.Child.Desc.
- * Use `create(ClashParent2_Child_Desc_Desc)` to create a new message.
- */
-export declare const ClashParent2_Child_Desc_Desc: GenDescMessage<ClashParent2_Child_Desc>;
-
-/**
- * @generated from message spec.ClashParent2.Child2
- */
-export declare type ClashParent2_Child2 = Message$1<"spec.ClashParent2.Child2"> & {
-};
-
-/**
- * Describes the message spec.ClashParent2.Child2.
- * Use `create(ClashParent2_Child2_Desc$)` to create a new message.
- */
-export declare const ClashParent2_Child2_Desc$: GenDescMessage<ClashParent2_Child2>;
-
-/**
- * should clash with enum descriptor for ClashParent2.Child2
- *
- * @generated from enum spec.ClashParent2.Child2.Desc
- */
-export enum ClashParent2_Child2_Desc {
-  /**
-   * @generated from enum value: UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-}
-
-/**
- * Describes the enum spec.ClashParent2.Child2.Desc.
- */
-export declare const ClashParent2_Child2_Desc_Desc: GenDescEnum<ClashParent2_Child2_Desc>;
+export declare const EnumShapeClashWithMessageDescDesc$: GenDescMessage<EnumShapeClashWithMessageDesc>;
 
 /**
  * @generated from message spec.NoClashFields
@@ -1009,9 +942,9 @@ export declare type NoClashOneofADT_M = Message$1<"spec.NoClashOneofADT.M"> & {
 
 /**
  * Describes the message spec.NoClashOneofADT.M.
- * Use `create(NoClashOneofADT_M_Desc)` to create a new message.
+ * Use `create(NoClashOneofADT_MDesc)` to create a new message.
  */
-export declare const NoClashOneofADT_M_Desc: GenDescMessage<NoClashOneofADT_M>;
+export declare const NoClashOneofADT_MDesc: GenDescMessage<NoClashOneofADT_M>;
 
 /**
  * just here as a "namespace" for the enum
@@ -1077,39 +1010,39 @@ export enum NoClashEnumWrap_X {
 /**
  * Describes the enum spec.NoClashEnumWrap.X.
  */
-export declare const NoClashEnumWrap_X_Desc: GenDescEnum<NoClashEnumWrap_X>;
+export declare const NoClashEnumWrap_XDesc: GenDescEnum<NoClashEnumWrap_X>;
 
 /**
  * @generated from enum spec.EnumDescClashWithMessageShape
  */
 export enum EnumDescClashWithMessageShape {
   /**
-   * @generated from enum value: MessageDescClashWithEnumDesc_Desc_zero = 0;
+   * @generated from enum value: MessageDescClashWithEnumDescDesc_zero = 0;
    */
-  MessageDescClashWithEnumDesc_Desc_zero = 0,
+  MessageDescClashWithEnumDescDesc_zero = 0,
 }
 
 /**
  * Describes the enum spec.EnumDescClashWithMessageShape.
  */
-export declare const EnumDescClashWithMessageShapeDesc: GenDescEnum<EnumDescClashWithMessageShape>;
+export declare const EnumDescClashWithMessageShapeDesc$: GenDescEnum<EnumDescClashWithMessageShape>;
 
 /**
  * enum shape should clash with message descriptor
  *
- * @generated from enum spec.EnumShapeClashWithMessageDesc_Desc
+ * @generated from enum spec.EnumShapeClashWithMessageDescDesc
  */
-export enum EnumShapeClashWithMessageDesc_Desc {
+export enum EnumShapeClashWithMessageDescDesc {
   /**
-   * @generated from enum value: EnumShapeClashWithMessageDesc_Desc_zero = 0;
+   * @generated from enum value: EnumShapeClashWithMessageDescDesc_zero = 0;
    */
-  EnumShapeClashWithMessageDesc_Desc_zero = 0,
+  EnumShapeClashWithMessageDescDesc_zero = 0,
 }
 
 /**
- * Describes the enum spec.EnumShapeClashWithMessageDesc_Desc.
+ * Describes the enum spec.EnumShapeClashWithMessageDescDesc.
  */
-export declare const EnumShapeClashWithMessageDesc_DescDesc: GenDescEnum<EnumShapeClashWithMessageDesc_Desc>;
+export declare const EnumShapeClashWithMessageDescDescDesc: GenDescEnum<EnumShapeClashWithMessageDescDesc>;
 
 /**
  * @generated from service spec.ReservedPropertyNamesService

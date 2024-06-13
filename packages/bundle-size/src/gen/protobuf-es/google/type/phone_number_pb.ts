@@ -158,8 +158,8 @@ export type PhoneNumber_ShortCode = Message<"google.type.PhoneNumber.ShortCode">
 
 /**
  * Describes the message google.type.PhoneNumber.ShortCode.
- * Use `create(PhoneNumber_ShortCode_Desc)` to create a new message.
+ * Use `create(PhoneNumber_ShortCodeDesc)` to create a new message.
  */
-export const PhoneNumber_ShortCode_Desc: GenDescMessage<PhoneNumber_ShortCode> = /*@__PURE__*/
+export const PhoneNumber_ShortCodeDesc: GenDescMessage<PhoneNumber_ShortCode> = /*@__PURE__*/
   messageDesc(fileDesc_google_type_phone_number, 0, 0);
 

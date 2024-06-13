@@ -764,9 +764,9 @@ export type TestAllTypesProto2_NestedMessage = Message<"protobuf_test_messages.p
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage.
- * Use `create(TestAllTypesProto2_NestedMessage_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_NestedMessageDesc)` to create a new message.
  */
-export const TestAllTypesProto2_NestedMessage_Desc: GenDescMessage<TestAllTypesProto2_NestedMessage> = /*@__PURE__*/
+export const TestAllTypesProto2_NestedMessageDesc: GenDescMessage<TestAllTypesProto2_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 0);
 
 /**
@@ -788,9 +788,9 @@ export type TestAllTypesProto2_Data = Message<"protobuf_test_messages.proto2.Tes
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.Data.
- * Use `create(TestAllTypesProto2_Data_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_DataDesc)` to create a new message.
  */
-export const TestAllTypesProto2_Data_Desc: GenDescMessage<TestAllTypesProto2_Data> = /*@__PURE__*/
+export const TestAllTypesProto2_DataDesc: GenDescMessage<TestAllTypesProto2_Data> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 1);
 
 /**
@@ -810,9 +810,9 @@ export type TestAllTypesProto2_MultiWordGroupField = Message<"protobuf_test_mess
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField.
- * Use `create(TestAllTypesProto2_MultiWordGroupField_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_MultiWordGroupFieldDesc)` to create a new message.
  */
-export const TestAllTypesProto2_MultiWordGroupField_Desc: GenDescMessage<TestAllTypesProto2_MultiWordGroupField> = /*@__PURE__*/
+export const TestAllTypesProto2_MultiWordGroupFieldDesc: GenDescMessage<TestAllTypesProto2_MultiWordGroupField> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 2);
 
 /**
@@ -825,9 +825,9 @@ export type TestAllTypesProto2_MessageSetCorrect = Message<"protobuf_test_messag
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect.
- * Use `create(TestAllTypesProto2_MessageSetCorrect_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_MessageSetCorrectDesc)` to create a new message.
  */
-export const TestAllTypesProto2_MessageSetCorrect_Desc: GenDescMessage<TestAllTypesProto2_MessageSetCorrect> = /*@__PURE__*/
+export const TestAllTypesProto2_MessageSetCorrectDesc: GenDescMessage<TestAllTypesProto2_MessageSetCorrect> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 3);
 
 /**
@@ -842,9 +842,9 @@ export type TestAllTypesProto2_MessageSetCorrectExtension1 = Message<"protobuf_t
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.
- * Use `create(TestAllTypesProto2_MessageSetCorrectExtension1_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_MessageSetCorrectExtension1Desc)` to create a new message.
  */
-export const TestAllTypesProto2_MessageSetCorrectExtension1_Desc: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension1> = /*@__PURE__*/
+export const TestAllTypesProto2_MessageSetCorrectExtension1Desc: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension1> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 4);
 
 /**
@@ -865,9 +865,9 @@ export type TestAllTypesProto2_MessageSetCorrectExtension2 = Message<"protobuf_t
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.
- * Use `create(TestAllTypesProto2_MessageSetCorrectExtension2_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto2_MessageSetCorrectExtension2Desc)` to create a new message.
  */
-export const TestAllTypesProto2_MessageSetCorrectExtension2_Desc: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension2> = /*@__PURE__*/
+export const TestAllTypesProto2_MessageSetCorrectExtension2Desc: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension2> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 5);
 
 /**
@@ -906,7 +906,7 @@ export enum TestAllTypesProto2_NestedEnum {
 /**
  * Describes the enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum.
  */
-export const TestAllTypesProto2_NestedEnum_Desc: GenDescEnum<TestAllTypesProto2_NestedEnum> = /*@__PURE__*/
+export const TestAllTypesProto2_NestedEnumDesc: GenDescEnum<TestAllTypesProto2_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto2, 0, 0);
 
 /**
@@ -1002,9 +1002,9 @@ export type UnknownToTestAllTypes_OptionalGroup = Message<"protobuf_test_message
 
 /**
  * Describes the message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup.
- * Use `create(UnknownToTestAllTypes_OptionalGroup_Desc)` to create a new message.
+ * Use `create(UnknownToTestAllTypes_OptionalGroupDesc)` to create a new message.
  */
-export const UnknownToTestAllTypes_OptionalGroup_Desc: GenDescMessage<UnknownToTestAllTypes_OptionalGroup> = /*@__PURE__*/
+export const UnknownToTestAllTypes_OptionalGroupDesc: GenDescMessage<UnknownToTestAllTypes_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 3, 0);
 
 /**
@@ -1051,7 +1051,7 @@ export enum EnumOnlyProto2_Bool {
 /**
  * Describes the enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool.
  */
-export const EnumOnlyProto2_Bool_Desc: GenDescEnum<EnumOnlyProto2_Bool> = /*@__PURE__*/
+export const EnumOnlyProto2_BoolDesc: GenDescEnum<EnumOnlyProto2_Bool> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto2, 5, 0);
 
 /**
@@ -1331,9 +1331,9 @@ export type TestAllRequiredTypesProto2_NestedMessage = Message<"protobuf_test_me
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage.
- * Use `create(TestAllRequiredTypesProto2_NestedMessage_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_NestedMessageDesc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_NestedMessage_Desc: GenDescMessage<TestAllRequiredTypesProto2_NestedMessage> = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_NestedMessageDesc: GenDescMessage<TestAllRequiredTypesProto2_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 0);
 
 /**
@@ -1355,9 +1355,9 @@ export type TestAllRequiredTypesProto2_Data = Message<"protobuf_test_messages.pr
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data.
- * Use `create(TestAllRequiredTypesProto2_Data_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_DataDesc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_Data_Desc: GenDescMessage<TestAllRequiredTypesProto2_Data> = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_DataDesc: GenDescMessage<TestAllRequiredTypesProto2_Data> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 1);
 
 /**
@@ -1370,9 +1370,9 @@ export type TestAllRequiredTypesProto2_MessageSetCorrect = Message<"protobuf_tes
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect.
- * Use `create(TestAllRequiredTypesProto2_MessageSetCorrect_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectDesc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_MessageSetCorrect_Desc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrect> = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_MessageSetCorrectDesc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrect> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 2);
 
 /**
@@ -1387,9 +1387,9 @@ export type TestAllRequiredTypesProto2_MessageSetCorrectExtension1 = Message<"pr
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.
- * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension1_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension1Desc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_MessageSetCorrectExtension1_Desc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension1> = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension1Desc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension1> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 3);
 
 /**
@@ -1410,9 +1410,9 @@ export type TestAllRequiredTypesProto2_MessageSetCorrectExtension2 = Message<"pr
 
 /**
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.
- * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension2_Desc)` to create a new message.
+ * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension2Desc)` to create a new message.
  */
-export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2_Desc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2> = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_MessageSetCorrectExtension2Desc: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 4);
 
 /**
@@ -1451,7 +1451,7 @@ export enum TestAllRequiredTypesProto2_NestedEnum {
 /**
  * Describes the enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum.
  */
-export const TestAllRequiredTypesProto2_NestedEnum_Desc: GenDescEnum<TestAllRequiredTypesProto2_NestedEnum> = /*@__PURE__*/
+export const TestAllRequiredTypesProto2_NestedEnumDesc: GenDescEnum<TestAllRequiredTypesProto2_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto2, 8, 0);
 
 /**

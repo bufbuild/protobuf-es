@@ -34,34 +34,34 @@ export const TestAllTypesProto3Desc = /*@__PURE__*/
 
 /**
  * Describes the message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage.
- * Use `create(TestAllTypesProto3_NestedMessage_Desc)` to create a new message.
+ * Use `create(TestAllTypesProto3_NestedMessageDesc)` to create a new message.
  */
-export const TestAllTypesProto3_NestedMessage_Desc = /*@__PURE__*/
+export const TestAllTypesProto3_NestedMessageDesc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_test_messages_proto3, 0, 0);
 
 /**
  * Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum.
  */
-export const TestAllTypesProto3_NestedEnum_Desc = /*@__PURE__*/
+export const TestAllTypesProto3_NestedEnumDesc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto3, 0, 0);
 
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum
  */
 export const TestAllTypesProto3_NestedEnum = /*@__PURE__*/
-  tsEnum(TestAllTypesProto3_NestedEnum_Desc);
+  tsEnum(TestAllTypesProto3_NestedEnumDesc);
 
 /**
  * Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum.
  */
-export const TestAllTypesProto3_AliasedEnum_Desc = /*@__PURE__*/
+export const TestAllTypesProto3_AliasedEnumDesc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto3, 0, 1);
 
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum
  */
 export const TestAllTypesProto3_AliasedEnum = /*@__PURE__*/
-  tsEnum(TestAllTypesProto3_AliasedEnum_Desc);
+  tsEnum(TestAllTypesProto3_AliasedEnumDesc);
 
 /**
  * Describes the message protobuf_test_messages.proto3.ForeignMessage.
@@ -87,14 +87,14 @@ export const EnumOnlyProto3Desc = /*@__PURE__*/
 /**
  * Describes the enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool.
  */
-export const EnumOnlyProto3_Bool_Desc = /*@__PURE__*/
+export const EnumOnlyProto3_BoolDesc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_test_messages_proto3, 3, 0);
 
 /**
  * @generated from enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool
  */
 export const EnumOnlyProto3_Bool = /*@__PURE__*/
-  tsEnum(EnumOnlyProto3_Bool_Desc);
+  tsEnum(EnumOnlyProto3_BoolDesc);
 
 /**
  * Describes the enum protobuf_test_messages.proto3.ForeignEnum.
