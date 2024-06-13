@@ -37,28 +37,21 @@ function cloneReflect(i: ReflectMessage): ReflectMessage {
     }
     switch (f.fieldKind) {
       default: {
-        const err = o.set(f, cloneSingular(f, i.get(f)));
-        if (err) {
-          throw err;
-        }
+        o.set(f, cloneSingular(f, i.get(f)));
         break;
       }
       case "list":
+        // eslint-disable-next-line no-case-declarations
+        const list = o.get(f);
         for (const item of i.get(f)) {
-          // TODO fix type error
-          // @ts-expect-error TODO
-          const err = o.addListItem(f, cloneSingular(f, item));
-          if (err) {
-            throw err;
-          }
+          list.add(cloneSingular(f, item));
         }
         break;
       case "map":
+        // eslint-disable-next-line no-case-declarations
+        const map = o.get(f);
         for (const entry of i.get(f).entries()) {
-          const err = o.setMapEntry(f, entry[0], cloneSingular(f, entry[1]));
-          if (err) {
-            throw err;
-          }
+          map.set(entry[0], cloneSingular(f, entry[1]));
         }
         break;
     }

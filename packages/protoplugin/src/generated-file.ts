@@ -139,11 +139,16 @@ export interface GeneratedFile {
    * relative to the project root. The import path is automatically made
    * relative to the current file.
    */
-  import(name: string, from: string): ImportSymbol;
+  import(name: string, from: string, typeOnly?: boolean): ImportSymbol;
 
   /**
    * In case you need full control over exports and imports, use print() and
    * formulate your own imports and exports based on this property.
+   *
+   * With the plugin option `js_import_style=legacy_commonjs`, this property
+   * reports "legacy_commonjs", but only if the current target is "js".
+   * This matches the behavior of import(), which also only generates CommonJS
+   * under this condition.
    */
   readonly jsImportStyle: "module" | "legacy_commonjs";
 
@@ -249,8 +254,8 @@ export function createGeneratedFile(
     importJson(desc) {
       return resolveJsonImport(desc);
     },
-    import(name, from) {
-      return createImportSymbol(name, from);
+    import(name, from, typeOnly = false) {
+      return createImportSymbol(name, from, typeOnly);
     },
     jsImportStyle,
     runtime,

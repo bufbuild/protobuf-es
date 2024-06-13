@@ -837,11 +837,39 @@ describe("create()", () => {
       });
     });
     describe("wkt wrapper field", () => {
-      test("accepts unwrapped value", () => {
+      test("accepts unwrapped value only for singular field", () => {
         const msg = create(proto3_ts.Proto3MessageDesc, {
           singularWrappedUint32Field: 123,
+          either: {
+            case: "oneofWrappedUint32Field",
+            value: {
+              value: 123,
+            },
+          },
+          repeatedWrappedUint32Field: [{ value: 123 }],
+          mapInt32WrappedUint32Field: {
+            123: {
+              value: 123,
+            },
+          },
         });
         expect(msg.singularWrappedUint32Field).toBe(123);
+        expect(msg.either.case).toBe("oneofWrappedUint32Field");
+        if (msg.either.case == "oneofWrappedUint32Field") {
+          expect(msg.either.value.$typeName).toBe(
+            "google.protobuf.UInt32Value",
+          );
+          expect(msg.either.value.value).toBe(123);
+        }
+        expect(msg.repeatedWrappedUint32Field.length).toBe(1);
+        expect(msg.repeatedWrappedUint32Field[0].$typeName).toBe(
+          "google.protobuf.UInt32Value",
+        );
+        expect(msg.repeatedWrappedUint32Field[0].value).toBe(123);
+        expect(msg.mapInt32WrappedUint32Field[123].$typeName).toBe(
+          "google.protobuf.UInt32Value",
+        );
+        expect(msg.mapInt32WrappedUint32Field[123].value).toBe(123);
       });
     });
   });

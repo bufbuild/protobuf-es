@@ -21,7 +21,6 @@ import type {
 } from "./reflect-types.js";
 import { unsafeLocal } from "./unsafe.js";
 import type { DescField, DescMessage } from "../descriptors.js";
-import { isMessage } from "../is-message.js";
 
 export function isObject(arg: unknown): arg is Record<string, unknown> {
   return arg !== null && typeof arg == "object" && !Array.isArray(arg);
@@ -102,8 +101,9 @@ export function isReflectMessage(
   return (
     isObject(arg) &&
     unsafeLocal in arg &&
-    "message" in arg &&
-    isMessage(arg.message) &&
-    (messageDesc === undefined || arg.message.$typeName == messageDesc.typeName)
+    "desc" in arg &&
+    isObject(arg.desc) &&
+    arg.desc.kind === "message" &&
+    (messageDesc === undefined || arg.desc.typeName == messageDesc.typeName)
   );
 }

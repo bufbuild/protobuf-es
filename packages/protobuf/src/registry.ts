@@ -289,7 +289,7 @@ function createMutableRegistry(): MutableRegistry {
         case "file":
           files.set(desc.proto.name, desc);
           break;
-        // @ts-expect-error TS7029
+        // @ts-expect-error TS7029: Fallthrough case in switch
         case "extension":
           // eslint-disable-next-line no-case-declarations
           let numberToExt = extendees.get(desc.extendee.typeName);
@@ -670,6 +670,7 @@ function addService(
     name: proto.name,
     typeName: makeTypeName(proto, undefined, file),
     methods: [],
+    method: {},
     toString(): string {
       return `service ${this.typeName}`;
     },
@@ -677,7 +678,9 @@ function addService(
   file.services.push(desc);
   reg.add(desc);
   for (const methodProto of proto.method) {
-    desc.methods.push(newMethod(methodProto, desc, reg));
+    const method = newMethod(methodProto, desc, reg);
+    desc.methods.push(method);
+    desc.method[method.localName] = method;
   }
 }
 

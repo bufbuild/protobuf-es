@@ -11,5 +11,5 @@ plugins:
     # Override the path to the plugin binary.
     # See https://buf.build/docs/configuration/v1/buf-gen-yaml#path
     path: ["tsx", "./src/protoc-gen-twirp-es.ts"]
-    opt: target=ts
+    opt: target=ts,log_requests=true
     out: src/gen

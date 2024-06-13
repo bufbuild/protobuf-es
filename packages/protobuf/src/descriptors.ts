@@ -667,6 +667,10 @@ export interface DescService {
    */
   readonly methods: DescMethod[];
   /**
+   * All methods of this service by their "localName".
+   */
+  readonly method: Record<string, DescMethod>;
+  /**
    * Marked as deprecated in the protobuf source.
    */
   readonly deprecated: boolean;

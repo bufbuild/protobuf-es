@@ -31,7 +31,7 @@ describe("BinaryWriter", () => {
     expect(user.firstName).toBe("Homer");
     expect(user.active).toBe(true);
   });
-  describe("float32", () => {
+  describe("float32()", () => {
     it.each([
       1024,
       3.142,
@@ -41,13 +41,20 @@ describe("BinaryWriter", () => {
       Number.NEGATIVE_INFINITY,
       Number.NaN,
     ])("should encode %s", (val) => {
-      expect(new BinaryWriter().float(val).finish().length).toBeGreaterThan(0);
+      const bytes = new BinaryWriter().float(val).finish();
+      expect(bytes.length).toBeGreaterThan(0);
+      // @ts-expect-error test string
+      const bytesStr = new BinaryWriter().float(val.toString()).finish();
+      expect(bytesStr.length).toBeGreaterThan(0);
+      expect(bytesStr).toStrictEqual(bytes);
     });
     it.each([
-      { val: "123", err: /^invalid float32: string/ },
-      { val: true, err: /^invalid float32: bool/ },
+      { val: null, err: "invalid float32: object" },
+      { val: new Date(), err: "invalid float32: object" },
+      { val: undefined, err: "invalid float32: undefined" },
+      { val: true, err: "invalid float32: bool" },
     ])("should error for wrong type $val", ({ val, err }) => {
-      // @ts-expect-error TS2345
+      // @ts-expect-error test wrong type
       expect(() => new BinaryWriter().float(val)).toThrow(err);
     });
     it.each([Number.MAX_VALUE, -Number.MAX_VALUE])(
@@ -56,40 +63,76 @@ describe("BinaryWriter", () => {
         expect(() => new BinaryWriter().float(val)).toThrow(
           /^invalid float32: .*/,
         );
+        // @ts-expect-error test string
+        expect(() => new BinaryWriter().float(val.toString())).toThrow(
+          /^invalid float32: .*/,
+        );
       },
     );
   });
-  describe("int32", () => {
+  // sfixed32, sint32, and int32 are signed 32-bit integers, just with different encoding
+  describe.each(["sfixed32", "sint32", "int32"] as const)("%s()", (type) => {
     it.each([-0x80000000, 1024, 0x7fffffff])("should encode %s", (val) => {
-      expect(new BinaryWriter().int32(val).finish().length).toBeGreaterThan(0);
+      const bytes = new BinaryWriter()[type](val).finish();
+      expect(bytes.length).toBeGreaterThan(0);
+      // @ts-expect-error test string
+      const bytesStr = new BinaryWriter()[type](val.toString()).finish();
+      expect(bytesStr.length).toBeGreaterThan(0);
+      expect(bytesStr).toStrictEqual(bytes);
     });
     it.each([
-      { val: "123", err: /^invalid int32: string/ },
-      { val: true, err: /^invalid int32: bool/ },
+      { val: null, err: "invalid int32: object" },
+      { val: new Date(), err: "invalid int32: object" },
+      { val: undefined, err: "invalid int32: undefined" },
+      { val: true, err: "invalid int32: bool" },
     ])("should error for wrong type $val", ({ val, err }) => {
       // @ts-expect-error TS2345
-      expect(() => new BinaryWriter().int32(val)).toThrow(err);
+      expect(() => new BinaryWriter()[type](val)).toThrow(err);
     });
-    it.each([0x7fffffff + 1, -0x80000000 - 1])(
+    it.each([0x7fffffff + 1, -0x80000000 - 1, 3.142])(
       "should error for value out of range %s",
       (val) => {
-        expect(() => new BinaryWriter().int32(val)).toThrow(
+        expect(() => new BinaryWriter()[type](val)).toThrow(
+          /^invalid int32: .*/,
+        );
+        // @ts-expect-error test string
+        expect(() => new BinaryWriter()[type](val.toString())).toThrow(
           /^invalid int32: .*/,
         );
       },
     );
   });
-  describe("uint32", () => {
+  // fixed32 and uint32 are unsigned 32-bit integers, just with different encoding
+  describe.each(["fixed32", "uint32"] as const)("%s()", (type) => {
     it.each([0, 1024, 0xffffffff])("should encode %s", (val) => {
-      expect(new BinaryWriter().uint32(val).finish().length).toBeGreaterThan(0);
+      const bytes = new BinaryWriter()[type](val).finish();
+      expect(bytes.length).toBeGreaterThan(0);
+      // @ts-expect-error test string
+      const bytesStr = new BinaryWriter()[type](val.toString()).finish();
+      expect(bytesStr.length).toBeGreaterThan(0);
+      expect(bytesStr).toStrictEqual(bytes);
     });
     it.each([
-      { val: "123", err: /^invalid uint32: string/ },
-      { val: true, err: /^invalid uint32: bool/ },
-    ])("should error for wrong type$val", ({ val, err }) => {
+      { val: null, err: `invalid uint32: object` },
+      { val: new Date(), err: `invalid uint32: object` },
+      { val: undefined, err: `invalid uint32: undefined` },
+      { val: true, err: `invalid uint32: bool` },
+    ])("should error for wrong type $val", ({ val, err }) => {
       // @ts-expect-error TS2345
-      expect(() => new BinaryWriter().uint32(val)).toThrow(err);
+      expect(() => new BinaryWriter()[type](val)).toThrow(err);
     });
+    it.each([0xffffffff + 1, -1, 3.142])(
+      "should error for value out of range %s",
+      (val) => {
+        expect(() => new BinaryWriter()[type](val)).toThrow(
+          /^invalid uint32: .*/,
+        );
+        // @ts-expect-error test string
+        expect(() => new BinaryWriter()[type](val.toString())).toThrow(
+          /^invalid uint32: .*/,
+        );
+      },
+    );
   });
 });
 

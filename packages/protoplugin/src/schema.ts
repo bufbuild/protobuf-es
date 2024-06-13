@@ -36,11 +36,11 @@ import { createGeneratedFile } from "./generated-file.js";
 import { createImportSymbol } from "./import-symbol.js";
 import type { Target } from "./target.js";
 import { deriveImportPath, rewriteImportPath } from "./import-path.js";
-import type { ParsedParameter } from "./parameter.js";
+import type { EcmaScriptPluginOptions, ParsedParameter } from "./parameter.js";
 import { makeFilePreamble } from "./file-preamble.js";
 import {
-  localDescName,
-  localShapeName,
+  generatedDescName,
+  generatedShapeName,
   generateFilePath,
   localJsonTypeName,
 } from "./names.js";
@@ -50,7 +50,7 @@ import { createRuntimeImports } from "./runtime-imports.js";
  * Schema describes the files and types that the plugin is requested to
  * generate.
  */
-export interface Schema {
+export interface Schema<Options extends object = object> {
   /**
    * The files we are asked to generate.
    */
@@ -65,6 +65,12 @@ export interface Schema {
    * The plugin option `target`. A code generator should support all targets.
    */
   readonly targets: readonly Target[];
+
+  /**
+   * Parsed plugin options. They include the standard options for all
+   * plugins, and options parsed by your plugin.
+   */
+  readonly options: Options & EcmaScriptPluginOptions;
 
   /**
    * Generate a new file with the given name.
@@ -85,19 +91,19 @@ export interface Schema {
   readonly proto: CodeGeneratorRequest;
 }
 
-interface SchemaController extends Schema {
+interface SchemaController<Options extends object> extends Schema<Options> {
   getFileInfo: () => FileInfo[];
   prepareGenerate(target: Target): void;
 }
 
-export function createSchema(
+export function createSchema<T extends object>(
   request: CodeGeneratorRequest,
-  parameter: ParsedParameter,
+  parameter: ParsedParameter<T>,
   pluginName: string,
   pluginVersion: string,
   minimumEdition: Edition,
   maximumEdition: Edition,
-): SchemaController {
+): SchemaController<T> {
   const { allFiles, filesToGenerate } = getFilesToGenerate(
     request,
     minimumEdition,
@@ -105,27 +111,35 @@ export function createSchema(
   );
   let target: Target | undefined;
   const generatedFiles: GeneratedFileController[] = [];
-  const runtime = createRuntimeImports(parameter.bootstrapWkt);
+  const runtime = createRuntimeImports(parameter.parsed.bootstrapWkt);
   const resolveDescImport: ResolveDescImportFn = (desc, typeOnly) =>
     createImportSymbol(
-      localDescName(desc),
+      generatedDescName(desc),
       generateFilePath(
         desc.kind == "file" ? desc : desc.file,
-        parameter.bootstrapWkt,
+        parameter.parsed.bootstrapWkt,
         filesToGenerate,
       ),
       typeOnly,
     );
   const resolveShapeImport: ResolveShapeImportFn = (desc) =>
     createImportSymbol(
-      localShapeName(desc),
-      generateFilePath(desc.file, parameter.bootstrapWkt, filesToGenerate),
+      generatedShapeName(desc),
+      generateFilePath(
+        desc.file,
+        parameter.parsed.bootstrapWkt,
+        filesToGenerate,
+      ),
       true,
     );
   const resolveJsonImport: ResolveShapeImportFn = (desc) =>
     createImportSymbol(
       localJsonTypeName(desc),
-      generateFilePath(desc.file, parameter.bootstrapWkt, filesToGenerate),
+      generateFilePath(
+        desc.file,
+        parameter.parsed.bootstrapWkt,
+        filesToGenerate,
+      ),
       true,
     );
   const createPreamble: CreatePreambleFn = (descFile) =>
@@ -133,20 +147,21 @@ export function createSchema(
       descFile,
       pluginName,
       pluginVersion,
-      parameter.sanitizedParameter,
-      parameter.tsNocheck,
+      parameter.sanitized,
+      parameter.parsed.tsNocheck,
     );
   const rewriteImport: RewriteImportFn = (importPath) =>
     rewriteImportPath(
       importPath,
-      parameter.rewriteImports,
-      parameter.importExtension,
+      parameter.parsed.rewriteImports,
+      parameter.parsed.importExtension,
     );
   return {
-    targets: parameter.targets,
+    targets: parameter.parsed.targets,
     proto: request,
     files: filesToGenerate,
     allFiles: allFiles,
+    options: parameter.parsed,
     typesInFile: nestedTypes,
     generateFile(name) {
       if (target === undefined) {
@@ -157,7 +172,7 @@ export function createSchema(
       const genFile = createGeneratedFile(
         name,
         deriveImportPath(name),
-        target === "js" ? parameter.jsImportStyle : "module", // ts and dts always use import/export, only js may use commonjs
+        target === "js" ? parameter.parsed.jsImportStyle : "module", // ts and dts always use import/export, only js may use commonjs
         rewriteImport,
         resolveDescImport,
         resolveShapeImport,
@@ -171,7 +186,9 @@ export function createSchema(
     getFileInfo() {
       return generatedFiles
         .map((f) => f.getFileInfo())
-        .filter((fi) => parameter.keepEmptyFiles || fi.content.length > 0);
+        .filter(
+          (fi) => parameter.parsed.keepEmptyFiles || fi.content.length > 0,
+        );
     },
     prepareGenerate(newTarget) {
       target = newTarget;

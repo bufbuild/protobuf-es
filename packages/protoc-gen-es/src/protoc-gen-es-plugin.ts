@@ -314,9 +314,9 @@ function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable 
   for (const method of service.methods) {
     print(f.jsDoc(method, "  "));
     print("  ", method.localName, ": {");
-    print("    kind: ", f.string(method.methodKind), ";");
-    print("    I: typeof ", f.importDesc(method.input, true), ";");
-    print("    O: typeof ", f.importDesc(method.output, true), ";");
+    print("    methodKind: ", f.string(method.methodKind), ";");
+    print("    input: typeof ", f.importDesc(method.input, true), ";");
+    print("    output: typeof ", f.importDesc(method.output, true), ";");
     print("  },");
   }
   print("}");

@@ -163,30 +163,3 @@ export function unsafeClear(
     }
   }
 }
-
-/**
- * Add an item to a list field.
- *
- * @private
- */
-export function unsafeAddListItem(
-  target: Record<string, unknown>,
-  field: DescField & { fieldKind: "list" },
-  value: unknown,
-) {
-  (target[field.localName] as unknown[]).push(value);
-}
-
-/**
- * Set a map entry.
- *
- * @private
- */
-export function unsafeSetMapEntry(
-  target: Record<string, unknown>,
-  field: DescField & { fieldKind: "map" },
-  key: string | number,
-  value: unknown,
-) {
-  (target[field.localName] as Record<string | number, unknown>)[key] = value;
-}

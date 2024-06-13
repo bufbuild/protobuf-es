@@ -17,7 +17,6 @@ import {
   type DescMessage,
   type DescOneof,
 } from "../descriptors.js";
-import { FieldError } from "./error.js";
 import { unsafeLocal } from "./unsafe.js";
 import type { Message, UnknownField } from "../types.js";
 import type { ScalarValue } from "./scalar.js";
@@ -116,7 +115,7 @@ export interface ReflectMessage {
    * Note that get() never returns `undefined`. To determine whether a field is
    * set, use isSet().
    */
-  get<Field extends DescField>(field: Field): ReflectGetValue<Field>;
+  get<Field extends DescField>(field: Field): ReflectMessageGet<Field>;
 
   /**
    * Set a field value.
@@ -135,30 +134,10 @@ export interface ReflectMessage {
    * - Map fields:
    *   ReflectMap.
    *
-   * Returns an error if the value is invalid for the field. `undefined` is not
+   * Throws an error if the value is invalid for the field. `undefined` is not
    * a valid value. To reset a field, use clear().
    */
-  set<Field extends DescField>(
-    field: Field,
-    value: ReflectSetValue<Field>,
-  ): FieldError | undefined;
-
-  /**
-   * Add an item to a list field.
-   */
-  addListItem<Field extends DescField & { fieldKind: "list" }>(
-    field: Field,
-    value: ReflectAddListItemValue<Field>,
-  ): FieldError | undefined;
-
-  /**
-   * Set a map entry.
-   */
-  setMapEntry<Field extends DescField & { fieldKind: "map" }>(
-    field: Field,
-    key: MapEntryKey,
-    value: ReflectSetMapEntryValue<Field>,
-  ): FieldError | undefined;
+  set<Field extends DescField>(field: Field, value: unknown): void;
 
   /**
    * Returns the unknown fields of the message.
@@ -202,17 +181,17 @@ export interface ReflectList<V = unknown> extends Iterable<V> {
   get(index: number): V | undefined;
 
   /**
-   * Adds an item - or several items - at the end of the list.
-   * Returns an error if an item is invalid for this list.
+   * Adds an item at the end of the list.
+   * Throws an error if an item is invalid for this list.
    */
-  add(...item: V[]): FieldError | undefined;
+  add(item: V): void;
 
   /**
    * Replaces the item at the specified index with the specified item.
-   * Returns an error if the index is out of range (index < 0 || index >= size).
-   * Returns an error if the item is invalid for this list.
+   * Throws an error if the index is out of range (index < 0 || index >= size).
+   * Throws an error if the item is invalid for this list.
    */
-  set(index: number, item: V): FieldError | undefined;
+  set(index: number, item: V): void;
 
   /**
    * Removes all items from the list.
@@ -241,7 +220,7 @@ export interface ReflectList<V = unknown> extends Iterable<V> {
  *   ReflectMap converts keys to their closest possible type in TypeScript.
  * - Messages are wrapped in a ReflectMessage.
  */
-export interface ReflectMap<K extends MapEntryKey = MapEntryKey, V = unknown>
+export interface ReflectMap<K = unknown, V = unknown>
   extends ReadonlyMap<K, V> {
   /**
    * Returns the map field.
@@ -256,9 +235,9 @@ export interface ReflectMap<K extends MapEntryKey = MapEntryKey, V = unknown>
 
   /**
    * Sets or replaces the item at the specified key with the specified value.
-   * Returns an error if the key or value is invalid for this map.
+   * Throws an error if the key or value is invalid for this map.
    */
-  set(key: K, value: V): FieldError | undefined;
+  set(key: K, value: V): this;
 
   /**
    * Removes all entries from the map.
@@ -269,61 +248,14 @@ export interface ReflectMap<K extends MapEntryKey = MapEntryKey, V = unknown>
 }
 
 /**
- * A ReflectMap key.
- */
-export type MapEntryKey = string | number | bigint | boolean;
-
-type enumVal = number;
-
-/**
  * The return type of ReflectMessage.get()
  */
 // prettier-ignore
-export type ReflectGetValue<Field extends DescField = DescField> = (
-  Field extends { fieldKind: "map" } ? (
-    Field extends { mapKind: "message" } ? ReflectMap<MapEntryKey, ReflectMessage> :
-    Field extends { mapKind: "enum" } ? ReflectMap<MapEntryKey, enumVal> :
-    Field extends { mapKind: "scalar"; scalar: infer T } ? ReflectMap<MapEntryKey, ScalarValue<T>> :
-    never
-  ) :
-  Field extends { fieldKind: "list" } ? ReflectList :
-  Field extends { fieldKind: "enum" } ? number :
-  Field extends { fieldKind: "message" } ? ReflectMessage :
-  Field extends { fieldKind: "scalar"; scalar: infer T } ? ScalarValue<T> :
-  never
-);
-
-/**
- * The type of the "value" argument of ReflectMessage.set()
- */
-// prettier-ignore
-export type ReflectSetValue<Field extends DescField = DescField> = (
+export type ReflectMessageGet<Field extends DescField = DescField> = (
   Field extends { fieldKind: "map" } ? ReflectMap :
   Field extends { fieldKind: "list" } ? ReflectList :
   Field extends { fieldKind: "enum" } ? number :
   Field extends { fieldKind: "message" } ? ReflectMessage :
   Field extends { fieldKind: "scalar"; scalar: infer T } ? ScalarValue<T> :
-  never
-);
-
-/**
- * The type of the "value" argument of ReflectMessage.addListItem()
- */
-// prettier-ignore
-export type ReflectAddListItemValue<Field extends DescField & { fieldKind: "list" }> = (
-  Field extends { listKind: "scalar"; scalar: infer T } ? ScalarValue<T> :
-  Field extends { listKind: "enum" } ? enumVal :
-  Field extends { listKind: "message" } ? ReflectMessage :
-  never
-);
-
-/**
- * The type of the "value" argument of ReflectMessage.setMapEntry()
- */
-// prettier-ignore
-export type ReflectSetMapEntryValue<Field extends DescField & { fieldKind: "map" }> = (
-  Field extends { mapKind: "enum" } ? enumVal :
-  Field extends { mapKind: "message" } ? ReflectMessage :
-  Field extends { mapKind: "scalar"; scalar: infer T } ? ScalarValue<T> :
   never
 );

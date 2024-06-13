@@ -369,13 +369,13 @@ automatically generate the correct export for CommonJS.
 
 ### Parsing plugin options
 
-The plugin framework recognizes a set of pre-defined key/value pairs that can be passed to all plugins when executed (i.e. `target`, `keep_empty_files`, etc.), but if your plugin needs to be passed additional parameters, you can specify a `parseOption` function as part of your plugin initialization.  
+The plugin framework recognizes a set of pre-defined key/value pairs that can be passed to all plugins when executed (i.e. `target`, `keep_empty_files`, etc.), but if your plugin needs to be passed additional parameters, you can specify a `parseOptions` function as part of your plugin initialization.  
 
 ```ts
-parseOption(key: string, value: string | undefined): void;
+parseOptions(rawOptions: {key: string, value: string}[]): T;
 ```
 
-This function will be invoked by the framework, passing in any key/value pairs that it does not recognize from its pre-defined list.
+This function will be invoked by the framework, passing in any key/value pairs that it does not recognize from its pre-defined list. The returned option will be merged with the pre-defined options and passed to the generate functions along via the `options` property of the schema.
 
 ### Using custom Protobuf options
 

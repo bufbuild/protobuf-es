@@ -29,7 +29,7 @@ const defaultOptions: ts.CompilerOptions = {
 
   // modules
   module: ts.ModuleKind.ES2020,
-  moduleResolution: ts.ModuleResolutionKind.NodeJs,
+  moduleResolution: ts.ModuleResolutionKind.Node10,
   noResolve: true,
   resolveJsonModule: false,
 
@@ -45,7 +45,7 @@ const defaultOptions: ts.CompilerOptions = {
 
   // Language and Environment
   lib: [],
-  moduleDetection: "force",
+  moduleDetection: ts.ModuleDetectionKind.Force,
   target: ts.ScriptTarget.ES2017,
 
   // Completeness

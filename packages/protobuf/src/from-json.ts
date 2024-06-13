@@ -26,7 +26,11 @@ import type { JsonValue } from "./json-value.js";
 import { protoInt64 } from "./proto-int64.js";
 import { create } from "./create.js";
 import type { Registry } from "./registry.js";
-import type { ReflectMessage } from "./reflect/reflect-types.js";
+import type {
+  ReflectList,
+  ReflectMap,
+  ReflectMessage,
+} from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { FieldError, isFieldError } from "./reflect/error.js";
 import { formatVal } from "./reflect/reflect-check.js";
@@ -271,23 +275,19 @@ function readField(
       readMessageField(msg, field, json, opts);
       break;
     case "list":
-      readListField(msg, field, json, opts);
+      readListField(msg.get(field), json, opts);
       break;
     case "map":
-      readMapField(msg, field, json, opts);
+      readMapField(msg.get(field), json, opts);
       break;
   }
 }
 
-function readMapField(
-  msg: ReflectMessage,
-  field: DescField & { fieldKind: "map" },
-  json: JsonValue,
-  opts: JsonReadOptions,
-) {
+function readMapField(map: ReflectMap, json: JsonValue, opts: JsonReadOptions) {
   if (json === null) {
     return;
   }
+  const field = map.field();
   if (typeof json != "object" || Array.isArray(json)) {
     throw new FieldError(field, "expected object, got " + formatVal(json));
   }
@@ -295,59 +295,42 @@ function readMapField(
     if (jsonMapValue === null) {
       throw new FieldError(field, "map value must not be null");
     }
-    const key = mapKeyFromJson(field.mapKey, jsonMapKey);
+    let value: unknown;
     switch (field.mapKind) {
       case "message":
         const msgValue = reflect(field.message);
         readMessage(msgValue, jsonMapValue, opts);
-        // TODO fix types
-        // @ts-expect-error TODO
-        const err = msg.setMapEntry(field, key, msgValue);
-        if (err) {
-          throw err;
-        }
+        value = msgValue;
         break;
       case "enum":
-        const enumValue = readEnum(
+        value = readEnum(
           field.enum,
           jsonMapValue,
           opts.ignoreUnknownFields,
           true,
         );
-        if (enumValue !== tokenIgnoredUnknownEnum) {
-          // TODO fix types
-          // @ts-expect-error TODO
-          const err = msg.setMapEntry(field, key, enumValue);
-          if (err) {
-            throw err;
-          }
+        if (value === tokenIgnoredUnknownEnum) {
+          return;
         }
         break;
       case "scalar":
-        const err2 = msg.setMapEntry(
-          field,
-          // TODO fix types
-          // @ts-expect-error TODO
-          key,
-          scalarFromJson(field, jsonMapValue, true),
-        );
-        if (err2) {
-          throw err2;
-        }
+        value = scalarFromJson(field, jsonMapValue, true);
         break;
     }
+    const key = mapKeyFromJson(field.mapKey, jsonMapKey);
+    map.set(key, value);
   }
 }
 
 function readListField(
-  msg: ReflectMessage,
-  field: DescField & { fieldKind: "list" },
+  list: ReflectList,
   json: JsonValue,
   opts: JsonReadOptions,
 ) {
   if (json === null) {
     return;
   }
+  const field = list.field();
   if (!Array.isArray(json)) {
     throw new FieldError(field, "expected Array, got " + formatVal(json));
   }
@@ -359,7 +342,7 @@ function readListField(
       case "message":
         const msgValue = reflect(field.message);
         readMessage(msgValue, jsonItem, opts);
-        msg.addListItem(field, msgValue);
+        list.add(msgValue);
         break;
       case "enum":
         const enumValue = readEnum(
@@ -369,17 +352,11 @@ function readListField(
           true,
         );
         if (enumValue !== tokenIgnoredUnknownEnum) {
-          msg.addListItem(field, enumValue);
+          list.add(enumValue);
         }
         break;
       case "scalar":
-        const err = msg.addListItem(
-          field,
-          scalarFromJson(field, jsonItem, true),
-        );
-        if (err) {
-          throw err;
-        }
+        list.add(scalarFromJson(field, jsonItem, true));
         break;
     }
   }
@@ -423,12 +400,7 @@ function readScalarField(
   if (scalarValue === tokenNull) {
     msg.clear(field);
   } else {
-    // TODO fix type error
-    // @ts-expect-error TODO
-    const err = msg.set(field, scalarValue);
-    if (err) {
-      throw err;
-    }
+    msg.set(field, scalarValue);
   }
 }
 
@@ -691,13 +663,7 @@ function tryWktFromJson(
         if (jsonValue === null) {
           msg.clear(valueField);
         } else {
-          const err = msg.set(
-            valueField,
-            scalarFromJson(valueField, jsonValue, true),
-          );
-          if (err) {
-            throw err;
-          }
+          msg.set(valueField, scalarFromJson(valueField, jsonValue, true));
         }
         return true;
       }

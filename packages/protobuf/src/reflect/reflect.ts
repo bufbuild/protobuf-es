@@ -22,24 +22,18 @@ import type { Message, MessageShape, UnknownField } from "../types.js";
 import { checkField, checkListItem, checkMapEntry } from "./reflect-check.js";
 import { FieldError } from "./error.js";
 import type {
-  MapEntryKey,
-  ReflectAddListItemValue,
-  ReflectSetMapEntryValue,
-  ReflectGetValue,
+  ReflectMessageGet,
   ReflectList,
   ReflectMap,
   ReflectMessage,
-  ReflectSetValue,
 } from "./reflect-types.js";
 import {
-  unsafeAddListItem,
   unsafeClear,
   unsafeGet,
   unsafeIsSet,
   unsafeLocal,
   unsafeOneofCase,
   unsafeSet,
-  unsafeSetMapEntry,
 } from "./unsafe.js";
 import { create } from "../create.js";
 import { isWrapper, isWrapperDesc } from "../wkt/wrappers.js";
@@ -53,30 +47,19 @@ import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
 export function reflect<Desc extends DescMessage>(
   messageDesc: Desc,
   message?: MessageShape<Desc>,
-  // TODO either remove this option, or support it in reflect-list and reflect-map as well
-  opt?: {
-    /**
-     * By default, field values are validated when setting them. For example,
-     * a value for an uint32 field must be a ECMAScript Number >= 0.
-     *
-     * Note that setting a message field validates the type of the message,
-     * but does not check its fields.
-     *
-     * In some contexts, field values are trusted, and performance can be
-     * improved by disabling validation by setting disableFieldValueCheck to
-     * `false`.
-     */
-    disableFieldValueCheck?: boolean;
-  },
+  /**
+   * By default, field values are validated when setting them. For example,
+   * a value for an uint32 field must be a ECMAScript Number >= 0.
+   *
+   * When field values are trusted, performance can be improved by disabling
+   * checks.
+   */
+  check = true,
 ): ReflectMessage {
-  return new ReflectMessageImpl<Desc>(
-    messageDesc,
-    message,
-    opt?.disableFieldValueCheck !== true,
-  );
+  return new ReflectMessageImpl(messageDesc, message, check);
 }
 
-class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
+class ReflectMessageImpl implements ReflectMessage {
   readonly desc: DescMessage;
   readonly fields: readonly DescField[];
   get sortedFields() {
@@ -94,13 +77,10 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
   private readonly check: boolean;
   private _fieldsByNumber: Map<number, DescField> | undefined;
   private _sortedFields: DescField[] | undefined;
+  private lists = new Map<DescField, ReflectList>();
+  private maps = new Map<DescField, ReflectMap>();
 
-  constructor(
-    messageDesc: Desc,
-    message?: MessageShape<Desc>,
-    // TODO either remove this option, or support it in reflect-list and reflect-map as well
-    check = true,
-  ) {
+  constructor(messageDesc: DescMessage, message?: Message, check = true) {
     this.check = check;
     this.desc = messageDesc;
     this.message = this[unsafeLocal] = message ?? create(messageDesc);
@@ -133,24 +113,34 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
     unsafeClear(this.message, field);
   }
 
-  get<Field extends DescField>(field: Field): ReflectGetValue<Field> {
+  get<Field extends DescField>(field: Field): ReflectMessageGet<Field> {
     assertOwn(this.message, field);
     let value = unsafeGet(this.message, field);
     switch (field.fieldKind) {
       case "list":
-        return new ReflectListImpl(
-          field,
-          value as unknown[],
-          this.check,
-        ) as ReflectGetValue<Field>;
+        // eslint-disable-next-line no-case-declarations
+        let list = this.lists.get(field);
+        if (!list || list[unsafeLocal] !== value) {
+          this.lists.set(
+            field,
+            (list = new ReflectListImpl(field, value as unknown[], this.check)),
+          );
+        }
+        return list as ReflectMessageGet<Field>;
       case "map":
-        // TODO fix types
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return reflectMap(
-          field,
-          value as Record<string, unknown>,
-          this.check,
-        ) as any; // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return
+        // eslint-disable-next-line no-case-declarations
+        let map = this.maps.get(field);
+        if (!map || map[unsafeLocal] !== value) {
+          this.maps.set(
+            field,
+            (map = new ReflectMapImpl(
+              field,
+              value as Record<string, unknown>,
+              this.check,
+            )),
+          );
+        }
+        return map as ReflectMessageGet<Field>;
       case "message":
         if (
           value !== undefined &&
@@ -166,27 +156,25 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
           field.message,
           value as Message | undefined,
           this.check,
-        ) as ReflectGetValue<Field>;
+        ) as ReflectMessageGet<Field>;
       case "scalar":
         return (
           value === undefined
             ? scalarZeroValue(field.scalar, false)
             : longToReflect(field, value)
-        ) as ReflectGetValue<Field>;
+        ) as ReflectMessageGet<Field>;
       case "enum":
-        return (value ?? field.enum.values[0].number) as ReflectGetValue<Field>;
+        return (value ??
+          field.enum.values[0].number) as ReflectMessageGet<Field>;
     }
   }
 
-  set<Field extends DescField>(
-    field: Field,
-    value: ReflectSetValue<Field>,
-  ): FieldError | undefined {
+  set<Field extends DescField>(field: Field, value: unknown): void {
     assertOwn(this.message, field);
     if (this.check) {
       const err = checkField(field, value);
       if (err) {
-        return err;
+        throw err;
       }
     }
     let local: unknown;
@@ -199,53 +187,6 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
       local = longToLocal(field, value);
     }
     unsafeSet(this.message, field, local);
-    return undefined;
-  }
-
-  addListItem<
-    Field extends DescField & {
-      fieldKind: "list";
-    },
-  >(
-    field: Field,
-    value: ReflectAddListItemValue<Field>,
-  ): FieldError | undefined {
-    assertOwn(this.message, field);
-    assertKind(field, "list");
-    if (this.check) {
-      if (checkListItem(field, 0, value)) {
-        const arr = unsafeGet(this.message, field) as unknown[];
-        return checkListItem(field, arr.length, value);
-      }
-    }
-    unsafeAddListItem(this.message, field, listItemToLocal(field, value));
-    return undefined;
-  }
-
-  setMapEntry<
-    Field extends DescField & {
-      fieldKind: "map";
-    },
-  >(
-    field: Field,
-    key: MapEntryKey,
-    value: ReflectSetMapEntryValue<Field>,
-  ): FieldError | undefined {
-    assertOwn(this.message, field);
-    assertKind(field, "map");
-    if (this.check) {
-      const err = checkMapEntry(field, key, value);
-      if (err) {
-        return err;
-      }
-    }
-    unsafeSetMapEntry(
-      this.message,
-      field,
-      mapKeyToLocal(key),
-      mapValueToLocal(field, value),
-    );
-    return undefined;
   }
 
   getUnknown(): UnknownField[] | undefined {
@@ -254,16 +195,6 @@ class ReflectMessageImpl<Desc extends DescMessage> implements ReflectMessage {
 
   setUnknown(value: UnknownField[]): void {
     this.message.$unknown = value;
-  }
-}
-
-function assertKind(field: DescField, kind: DescField["fieldKind"]) {
-  if (field.fieldKind != kind) {
-    throw new FieldError(
-      field,
-      `${field.toString()} is ${field.fieldKind}`,
-      "ForeignFieldError",
-    );
   }
 }
 
@@ -283,6 +214,13 @@ function assertOwn(owner: Message, member: DescField | DescOneof) {
 export function reflectList<V>(
   field: DescField & { fieldKind: "list" },
   unsafeInput?: unknown[],
+  /**
+   * By default, field values are validated when setting them. For example,
+   * a value for an uint32 field must be a ECMAScript Number >= 0.
+   *
+   * When field values are trusted, performance can be improved by disabling
+   * checks.
+   */
   check = true,
 ): ReflectList<V> {
   return new ReflectListImpl<V>(field, unsafeInput ?? [], check);
@@ -318,7 +256,7 @@ class ReflectListImpl<V> implements ReflectList<V> {
   }
   set(index: number, item: V) {
     if (index < 0 || index >= this._arr.length) {
-      return new FieldError(
+      throw new FieldError(
         this._field,
         `list item #${index + 1}: out of range`,
       );
@@ -326,24 +264,19 @@ class ReflectListImpl<V> implements ReflectList<V> {
     if (this.check) {
       const err = checkListItem(this._field, index, item);
       if (err) {
-        return err;
+        throw err;
       }
     }
     this._arr[index] = listItemToLocal(this._field, item);
-    return undefined;
   }
-  add(...items: V[]) {
+  add(item: V) {
     if (this.check) {
-      for (let i = 0; i < items.length; i++) {
-        const err = checkListItem(this._field, this._arr.length + i, items[i]);
-        if (err) {
-          return err;
-        }
+      const err = checkListItem(this._field, this._arr.length, item);
+      if (err) {
+        throw err;
       }
     }
-    for (const item of items) {
-      this._arr.push(listItemToLocal(this._field, item));
-    }
+    this._arr.push(listItemToLocal(this._field, item));
     return undefined;
   }
   clear() {
@@ -370,15 +303,22 @@ class ReflectListImpl<V> implements ReflectList<V> {
 /**
  * Create a ReflectMap.
  */
-export function reflectMap<K extends MapEntryKey, V>(
+export function reflectMap<K = unknown, V = unknown>(
   field: DescField & { fieldKind: "map" },
   unsafeInput?: Record<string, unknown>,
+  /**
+   * By default, field values are validated when setting them. For example,
+   * a value for an uint32 field must be a ECMAScript Number >= 0.
+   *
+   * When field values are trusted, performance can be improved by disabling
+   * checks.
+   */
   check = true,
 ): ReflectMap<K, V> {
   return new ReflectMapImpl(field, unsafeInput, check);
 }
 
-class ReflectMapImpl<K extends MapEntryKey, V> implements ReflectMap<K, V> {
+class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
   private readonly check: boolean;
   private readonly _field: DescField & { fieldKind: "map" };
   [unsafeLocal]: Record<string, unknown>;
@@ -400,11 +340,11 @@ class ReflectMapImpl<K extends MapEntryKey, V> implements ReflectMap<K, V> {
     if (this.check) {
       const err = checkMapEntry(this._field, key, value);
       if (err) {
-        return err;
+        throw err;
       }
     }
     this.obj[mapKeyToLocal(key)] = mapValueToLocal(this._field, value);
-    return undefined;
+    return this;
   }
   delete(key: K) {
     const k = mapKeyToLocal(key);
