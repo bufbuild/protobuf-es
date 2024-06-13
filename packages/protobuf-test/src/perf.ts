@@ -16,15 +16,15 @@ import Benchmark from "benchmark";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
-import { UserDesc } from "./gen/ts/extra/example_pb.js";
-import { ScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
-import { RepeatedScalarValuesMessageDesc } from "./gen/ts/extra/msg-scalar_pb.js";
-import { MapsMessageDesc } from "./gen/ts/extra/msg-maps_pb.js";
+import { UserSchema } from "./gen/ts/extra/example_pb.js";
+import { ScalarValuesMessageSchema } from "./gen/ts/extra/msg-scalar_pb.js";
+import { RepeatedScalarValuesMessageSchema } from "./gen/ts/extra/msg-scalar_pb.js";
+import { MapsMessageSchema } from "./gen/ts/extra/msg-maps_pb.js";
 import {
-  MessageFieldMessageDesc,
-  MessageFieldMessage_TestMessageDesc,
+  MessageFieldMessageSchema,
+  MessageFieldMessage_TestMessageSchema,
 } from "./gen/ts/extra/msg-message_pb.js";
-import { PerfMessageDesc } from "./gen/ts/extra/perf_pb.js";
+import { PerfMessageSchema } from "./gen/ts/extra/perf_pb.js";
 
 /* eslint-disable no-console, import/no-named-as-default-member */
 
@@ -102,12 +102,12 @@ function setupTests(): Test[] {
     tests.push({
       name: `fromBinary perf-payload.bin`,
       fn: () => {
-        fromBinary(PerfMessageDesc, bytes);
+        fromBinary(PerfMessageSchema, bytes);
       },
     });
   }
   {
-    const desc = UserDesc;
+    const desc = UserSchema;
     const tinyUser = create(desc, {
       active: false,
       manager: { active: true },
@@ -121,7 +121,7 @@ function setupTests(): Test[] {
     });
   }
   {
-    const desc = UserDesc;
+    const desc = UserSchema;
     const normalUser = create(desc, {
       firstName: "Jane",
       lastName: "Doe",
@@ -139,8 +139,8 @@ function setupTests(): Test[] {
     });
   }
   {
-    const desc = ScalarValuesMessageDesc;
-    const message = create(ScalarValuesMessageDesc, {
+    const desc = ScalarValuesMessageSchema;
+    const message = create(ScalarValuesMessageSchema, {
       doubleField: 0.75,
       floatField: -0.75,
       int64Field: protoInt64.parse(-1),
@@ -168,7 +168,7 @@ function setupTests(): Test[] {
     });
   }
   {
-    const desc = RepeatedScalarValuesMessageDesc;
+    const desc = RepeatedScalarValuesMessageSchema;
     const message = create(desc, {
       doubleField: [0.75, 0, 1],
       floatField: [0.75, -0.75],
@@ -205,7 +205,7 @@ function setupTests(): Test[] {
     });
   }
   {
-    const desc = MapsMessageDesc;
+    const desc = MapsMessageSchema;
     const message = create(desc, {
       strStrField: { a: "str", b: "xx" },
       strInt32Field: { a: 123, b: 455 },
@@ -232,11 +232,11 @@ function setupTests(): Test[] {
     });
   }
   {
-    const desc = MessageFieldMessageDesc;
+    const desc = MessageFieldMessageSchema;
     const message = create(desc);
     for (let i = 0; i < 1000; i++) {
       message.repeatedMessageField.push(
-        create(MessageFieldMessage_TestMessageDesc),
+        create(MessageFieldMessage_TestMessageSchema),
       );
     }
     const data = toBinary(desc, message);
@@ -248,7 +248,7 @@ function setupTests(): Test[] {
     });
   }
   {
-    const desc = MapsMessageDesc;
+    const desc = MapsMessageSchema;
     const message = create(desc);
     for (let i = 0; i < 1000; i++) {
       message.strMsgField[i.toString()] = create(desc);

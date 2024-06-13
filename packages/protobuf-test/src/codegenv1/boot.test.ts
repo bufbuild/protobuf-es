@@ -21,12 +21,12 @@ import { clearField, equals, fromBinary, toBinary } from "@bufbuild/protobuf";
 import {
   type DescriptorProto,
   type FileDescriptorProto,
-  DescriptorProtoDesc,
-  FileDescriptorProtoDesc,
-  FileDescriptorSetDesc,
-  FieldDescriptorProtoDesc,
-  FieldOptionsDesc,
-  EnumDescriptorProtoDesc,
+  DescriptorProtoSchema,
+  FileDescriptorProtoSchema,
+  FileDescriptorSetSchema,
+  FieldDescriptorProtoSchema,
+  FieldOptionsSchema,
+  EnumDescriptorProtoSchema,
 } from "@bufbuild/protobuf/wkt";
 import assert from "node:assert";
 import {
@@ -59,7 +59,7 @@ describe("createFileDescriptorProtoBoot()", () => {
         retainOptions: true,
       },
     );
-    const fileDescriptorProto = fromBinary(FileDescriptorSetDesc, bytes)
+    const fileDescriptorProto = fromBinary(FileDescriptorSetSchema, bytes)
       .file[0];
     expect(() => createFileDescriptorProtoBoot(fileDescriptorProto)).toThrow();
   });
@@ -81,11 +81,11 @@ describe("bootFileDescriptorProto()", () => {
     );
     stripLikeBoot(compiled);
 
-    const eq = equals(FileDescriptorProtoDesc, compiled, booted);
+    const eq = equals(FileDescriptorProtoSchema, compiled, booted);
     expect(eq).toBe(true);
 
-    const compiledBytes = toBinary(FileDescriptorProtoDesc, compiled);
-    const bootedBytes = toBinary(FileDescriptorProtoDesc, booted);
+    const compiledBytes = toBinary(FileDescriptorProtoSchema, compiled);
+    const bootedBytes = toBinary(FileDescriptorProtoSchema, booted);
     expect(bootedBytes).toStrictEqual(compiledBytes);
   });
   function stripLikeBoot(d: FileDescriptorProto | DescriptorProto): void {
@@ -94,17 +94,17 @@ describe("bootFileDescriptorProto()", () => {
       d.messageType.forEach(stripLikeBoot);
       return;
     }
-    clearField(d, DescriptorProtoDesc.field.reservedRange);
-    clearField(d, DescriptorProtoDesc.field.reservedName);
+    clearField(d, DescriptorProtoSchema.field.reservedRange);
+    clearField(d, DescriptorProtoSchema.field.reservedName);
     for (const f of d.field) {
-      clearField(f, FieldDescriptorProtoDesc.field.jsonName);
+      clearField(f, FieldDescriptorProtoSchema.field.jsonName);
       if (f.options) {
-        clearField(f.options, FieldOptionsDesc.field.featureSupport);
+        clearField(f.options, FieldOptionsSchema.field.featureSupport);
       }
     }
     for (const e of d.enumType) {
-      clearField(e, EnumDescriptorProtoDesc.field.reservedRange);
-      clearField(e, EnumDescriptorProtoDesc.field.reservedName);
+      clearField(e, EnumDescriptorProtoSchema.field.reservedRange);
+      clearField(e, EnumDescriptorProtoSchema.field.reservedName);
     }
     for (const n of d.nestedType) {
       stripLikeBoot(n);
@@ -124,7 +124,7 @@ async function compileGoogleProtobufDescriptorProto(
     },
     opt,
   );
-  const fds = fromBinary(FileDescriptorSetDesc, fdsBytes);
+  const fds = fromBinary(FileDescriptorSetSchema, fdsBytes);
   assert(fds.file.length == 1);
   const file = fds.file[0];
   assert(file.name == path);

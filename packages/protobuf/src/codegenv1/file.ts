@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { base64Decode } from "../wire/base64-encoding.js";
-import { FileDescriptorProtoDesc } from "../wkt/gen/google/protobuf/descriptor_pb.js";
+import { FileDescriptorProtoSchema } from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import type { DescFile } from "../descriptors.js";
 import { createFileRegistry } from "../registry.js";
 import { restoreJsonNames } from "./restore-json-names.js";
@@ -25,7 +25,7 @@ import { fromBinary } from "../from-binary.js";
  * @private
  */
 export function fileDesc(b64: string, imports?: DescFile[]): DescFile {
-  const root = fromBinary(FileDescriptorProtoDesc, base64Decode(b64));
+  const root = fromBinary(FileDescriptorProtoSchema, base64Decode(b64));
   root.messageType.forEach(restoreJsonNames);
   root.dependency = imports?.map((f) => f.proto.name) ?? [];
   const reg = createFileRegistry(root, (protoFileName) =>

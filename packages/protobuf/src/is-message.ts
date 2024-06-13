@@ -21,7 +21,7 @@ import type { DescMessage } from "./descriptors.js";
  */
 export function isMessage<Desc extends DescMessage>(
   arg: unknown,
-  desc?: Desc,
+  schema?: Desc,
 ): arg is MessageShape<Desc> {
   const isMessage =
     arg !== null &&
@@ -31,8 +31,8 @@ export function isMessage<Desc extends DescMessage>(
   if (!isMessage) {
     return false;
   }
-  if (desc === undefined) {
+  if (schema === undefined) {
     return true;
   }
-  return desc.typeName === arg.$typeName;
+  return schema.typeName === arg.$typeName;
 }

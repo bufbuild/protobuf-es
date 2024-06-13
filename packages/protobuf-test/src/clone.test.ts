@@ -22,20 +22,20 @@ import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 
 describe("clone()", () => {
   test("clones unknown fields", () => {
-    const msg = create(proto3_ts.Proto3MessageDesc);
+    const msg = create(proto3_ts.Proto3MessageSchema);
     msg.$unknown = [
       { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
     ];
-    const copy = clone(proto3_ts.Proto3MessageDesc, msg);
+    const copy = clone(proto3_ts.Proto3MessageSchema, msg);
     expect(copy.$unknown).toStrictEqual(msg.$unknown);
   });
   test("clones unknown fields in message field", () => {
-    const msg = create(proto3_ts.Proto3MessageDesc);
-    msg.singularMessageField = create(proto3_ts.Proto3MessageDesc);
+    const msg = create(proto3_ts.Proto3MessageSchema);
+    msg.singularMessageField = create(proto3_ts.Proto3MessageSchema);
     msg.singularMessageField.$unknown = [
       { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
     ];
-    const copy = clone(proto3_ts.Proto3MessageDesc, msg);
+    const copy = clone(proto3_ts.Proto3MessageSchema, msg);
     expect(copy.singularMessageField?.$unknown).toStrictEqual(
       msg.singularMessageField.$unknown,
     );
@@ -45,7 +45,7 @@ describe("clone()", () => {
     );
   });
   describe("clones proto3 message", () => {
-    const desc = proto3_ts.Proto3MessageDesc;
+    const desc = proto3_ts.Proto3MessageSchema;
     let msg: proto3_ts.Proto3Message;
     beforeEach(() => {
       msg = create(desc);
@@ -154,7 +154,7 @@ describe("clone()", () => {
     });
   });
   describe("clones proto2 message", () => {
-    const desc = proto2_ts.Proto2MessageDesc;
+    const desc = proto2_ts.Proto2MessageSchema;
     let msg: proto2_ts.Proto2Message;
     beforeEach(() => {
       msg = create(desc);
@@ -167,7 +167,7 @@ describe("clone()", () => {
       msg.requiredInt64JsStringField = "456";
       msg.requiredEnumField = proto2_ts.Proto2Enum.YES;
       msg.requiredMessageField = create(desc);
-      msg.requiredgroup = create(proto2_ts.Proto2Message_RequiredGroupDesc);
+      msg.requiredgroup = create(proto2_ts.Proto2Message_RequiredGroupSchema);
       msg.requiredWrappedUint32Field = 456;
 
       // required with default
@@ -180,7 +180,7 @@ describe("clone()", () => {
       msg.requiredDefaultEnumField = proto2_ts.Proto2Enum.YES;
       msg.requiredDefaultMessageField = create(desc);
       msg.requireddefaultgroup = create(
-        proto2_ts.Proto2Message_RequiredDefaultGroupDesc,
+        proto2_ts.Proto2Message_RequiredDefaultGroupSchema,
       );
       msg.requiredDefaultWrappedUint32Field = 456;
 
@@ -192,7 +192,7 @@ describe("clone()", () => {
       msg.optionalEnumField = proto2_ts.Proto2Enum.YES;
       msg.optionalMessageField = create(desc);
       msg.optionalWrappedUint32Field = 0;
-      msg.optionalgroup = create(proto2_ts.Proto2Message_OptionalGroupDesc);
+      msg.optionalgroup = create(proto2_ts.Proto2Message_OptionalGroupSchema);
 
       // optional with default
       msg.optionalDefaultStringField = "";
@@ -203,7 +203,7 @@ describe("clone()", () => {
       msg.optionalDefaultMessageField = create(desc);
       msg.optionalDefaultWrappedUint32Field = 0;
       msg.optionaldefaultgroup = create(
-        proto2_ts.Proto2Message_OptionalDefaultGroupDesc,
+        proto2_ts.Proto2Message_OptionalDefaultGroupSchema,
       );
 
       // repeated

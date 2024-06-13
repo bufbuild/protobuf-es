@@ -17,8 +17,8 @@ import type {
   FileDescriptorSet,
 } from "@bufbuild/protobuf/wkt";
 import {
-  CodeGeneratorRequestDesc,
-  FileDescriptorSetDesc,
+  CodeGeneratorRequestSchema,
+  FileDescriptorSetSchema,
 } from "@bufbuild/protobuf/wkt";
 import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
@@ -82,7 +82,7 @@ export async function createTestPluginAndRun(
     protoFiles,
     opt,
   );
-  const req = fromBinary(CodeGeneratorRequestDesc, reqBytes);
+  const req = fromBinary(CodeGeneratorRequestSchema, reqBytes);
   let plugin: Plugin;
   const defaultPluginInit = {
     name: "test",
@@ -130,7 +130,7 @@ export async function compileFileDescriptorSet(
   const bytes = await upstreamProtobuf.compileToDescriptorSet(files, {
     includeImports: true,
   });
-  return fromBinary(FileDescriptorSetDesc, bytes);
+  return fromBinary(FileDescriptorSetSchema, bytes);
 }
 
 export async function compileFile(proto: string) {
@@ -145,7 +145,7 @@ export async function compileFile(proto: string) {
       includeSourceInfo: true,
     },
   );
-  const fds = fromBinary(FileDescriptorSetDesc, bytes);
+  const fds = fromBinary(FileDescriptorSetSchema, bytes);
   const reg = createFileRegistry(fds);
   const file = reg.getFile("input.proto");
   assert(file);

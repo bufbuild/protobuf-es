@@ -19,14 +19,14 @@
 import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { FeatureSet } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_invalid_features.proto.
  */
-export const fileDesc_google_protobuf_unittest_invalid_features: GenDescFile = /*@__PURE__*/
-  fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW52YWxpZF9mZWF0dXJlcy5wcm90bxICcGIiQAoTVGVzdEludmFsaWRGZWF0dXJlcxIpChByZXBlYXRlZF9mZWF0dXJlGAEgAygFQg+IAQGYAQSiAQYSATMY6Ac6WAoMdGVzdF9pbnZhbGlkEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYjE4gASgLMhcucGIuVGVzdEludmFsaWRGZWF0dXJlc1ILdGVzdEludmFsaWQ", [fileDesc_google_protobuf_descriptor]);
+export const file_google_protobuf_unittest_invalid_features: GenDescFile = /*@__PURE__*/
+  fileDesc("Ci9nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW52YWxpZF9mZWF0dXJlcy5wcm90bxICcGIiQAoTVGVzdEludmFsaWRGZWF0dXJlcxIpChByZXBlYXRlZF9mZWF0dXJlGAEgAygFQg+IAQGYAQSiAQYSATMY6Ac6WAoMdGVzdF9pbnZhbGlkEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYjE4gASgLMhcucGIuVGVzdEludmFsaWRGZWF0dXJlc1ILdGVzdEludmFsaWQ", [file_google_protobuf_descriptor]);
 
 /**
  * @generated from message pb.TestInvalidFeatures
@@ -40,14 +40,14 @@ export type TestInvalidFeatures = Message<"pb.TestInvalidFeatures"> & {
 
 /**
  * Describes the message pb.TestInvalidFeatures.
- * Use `create(TestInvalidFeaturesDesc)` to create a new message.
+ * Use `create(TestInvalidFeaturesSchema)` to create a new message.
  */
-export const TestInvalidFeaturesDesc: GenDescMessage<TestInvalidFeatures> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_invalid_features, 0);
+export const TestInvalidFeaturesSchema: GenDescMessage<TestInvalidFeatures> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_invalid_features, 0);
 
 /**
  * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;
  */
 export const test_invalid: GenDescExtension<FeatureSet, TestInvalidFeatures> = /*@__PURE__*/
-  extDesc(fileDesc_google_protobuf_unittest_invalid_features, 0);
+  extDesc(file_google_protobuf_unittest_invalid_features, 0);
 

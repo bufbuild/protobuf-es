@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/msg-oneof.proto.
  */
-export declare const fileDesc_extra_msg_oneof: GenDescFile;
+export declare const file_extra_msg_oneof: GenDescFile;
 
 /**
  * @generated from message spec.OneofMessage
@@ -88,9 +88,9 @@ export declare type OneofMessage = Message<"spec.OneofMessage"> & {
 
 /**
  * Describes the message spec.OneofMessage.
- * Use `create(OneofMessageDesc)` to create a new message.
+ * Use `create(OneofMessageSchema)` to create a new message.
  */
-export declare const OneofMessageDesc: GenDescMessage<OneofMessage>;
+export declare const OneofMessageSchema: GenDescMessage<OneofMessage>;
 
 /**
  * @generated from message spec.OneofMessageFoo
@@ -109,9 +109,9 @@ export declare type OneofMessageFoo = Message<"spec.OneofMessageFoo"> & {
 
 /**
  * Describes the message spec.OneofMessageFoo.
- * Use `create(OneofMessageFooDesc)` to create a new message.
+ * Use `create(OneofMessageFooSchema)` to create a new message.
  */
-export declare const OneofMessageFooDesc: GenDescMessage<OneofMessageFoo>;
+export declare const OneofMessageFooSchema: GenDescMessage<OneofMessageFoo>;
 
 /**
  * @generated from message spec.OneofMessageBar
@@ -130,9 +130,9 @@ export declare type OneofMessageBar = Message<"spec.OneofMessageBar"> & {
 
 /**
  * Describes the message spec.OneofMessageBar.
- * Use `create(OneofMessageBarDesc)` to create a new message.
+ * Use `create(OneofMessageBarSchema)` to create a new message.
  */
-export declare const OneofMessageBarDesc: GenDescMessage<OneofMessageBar>;
+export declare const OneofMessageBarSchema: GenDescMessage<OneofMessageBar>;
 
 /**
  * @generated from enum spec.OneofEnum
@@ -157,5 +157,5 @@ export enum OneofEnum {
 /**
  * Describes the enum spec.OneofEnum.
  */
-export declare const OneofEnumDesc: GenDescEnum<OneofEnum>;
+export declare const OneofEnumSchema: GenDescEnum<OneofEnum>;
 

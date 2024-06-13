@@ -23,16 +23,16 @@ import {
 } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf";
 import { describe, expect, it, beforeEach } from "@jest/globals";
-import { UserDesc } from "./gen/ts/extra/example_pb.js";
+import { UserSchema } from "./gen/ts/extra/example_pb.js";
 import type { Proto2Extendee } from "./gen/ts/extra/extensions-proto2_pb.js";
 import {
-  GroupExtDesc,
+  GroupExtSchema,
   Proto2ExtContainer_Child_uint32_ext,
   Proto2ExtContainer_uint32_ext,
   Proto2ExtEnum,
-  Proto2ExtMessageDesc,
-  Proto2ExtendeeDesc,
-  RepeatedGroupExtDesc,
+  Proto2ExtMessageSchema,
+  Proto2ExtendeeSchema,
+  RepeatedGroupExtSchema,
   bytes_ext,
   bytes_ext_with_default,
   enum_ext,
@@ -57,7 +57,7 @@ import {
 } from "./gen/ts/extra/extensions-proto2_pb.js";
 import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import type { DescExtension, DescMessage } from "@bufbuild/protobuf";
-import { UInt32ValueDesc, FileOptionsDesc } from "@bufbuild/protobuf/wkt";
+import { UInt32ValueSchema, FileOptionsSchema } from "@bufbuild/protobuf/wkt";
 import { setExtension } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
 import {
@@ -89,12 +89,12 @@ const goldenValues: extensionWithValueCollection = [
   { ext: enum_ext_with_default, val: Proto2ExtEnum.NO },
   {
     ext: message_ext,
-    val: create(Proto2ExtMessageDesc, { stringField: "abc" }),
+    val: create(Proto2ExtMessageSchema, { stringField: "abc" }),
   },
-  { ext: message_ext_proto3, val: create(UserDesc, { firstName: "John" }) },
+  { ext: message_ext_proto3, val: create(UserSchema, { firstName: "John" }) },
   {
     ext: repeated_message_ext,
-    val: [create(Proto2ExtMessageDesc, { stringField: "abc" })],
+    val: [create(Proto2ExtMessageSchema, { stringField: "abc" })],
   },
   { ext: repeated_enum_ext, val: [Proto2ExtEnum.YES, Proto2ExtEnum.NO] },
   { ext: repeated_string_ext, val: ["a", "b", "c"] },
@@ -102,12 +102,12 @@ const goldenValues: extensionWithValueCollection = [
   { ext: unpacked_uint32_ext, val: [4, 5, 6] },
   { ext: repeated_uint64_ext_js_string, val: ["1", "2", "3"] },
   { ext: wrapper_ext, val: 123 },
-  { ext: groupext, val: create(GroupExtDesc, { a: 123 }) },
+  { ext: groupext, val: create(GroupExtSchema, { a: 123 }) },
   {
     ext: repeatedgroupext,
     val: [
-      create(RepeatedGroupExtDesc, { a: 123 }),
-      create(RepeatedGroupExtDesc, { a: 456 }),
+      create(RepeatedGroupExtSchema, { a: 123 }),
+      create(RepeatedGroupExtSchema, { a: 456 }),
     ],
   },
   { ext: Proto2ExtContainer_uint32_ext, val: 1234 },
@@ -125,8 +125,8 @@ const goldenValuesZero: extensionWithValueCollection = [
   { ext: bytes_ext_with_default, val: new Uint8Array([]) },
   { ext: enum_ext, val: Proto2ExtEnum.YES },
   { ext: enum_ext_with_default, val: Proto2ExtEnum.YES },
-  { ext: message_ext, val: create(Proto2ExtMessageDesc) },
-  { ext: message_ext_proto3, val: create(UserDesc) },
+  { ext: message_ext, val: create(Proto2ExtMessageSchema) },
+  { ext: message_ext_proto3, val: create(UserSchema) },
   { ext: repeated_message_ext, val: [] },
   { ext: repeated_enum_ext, val: [] },
   { ext: repeated_string_ext, val: [] },
@@ -134,7 +134,7 @@ const goldenValuesZero: extensionWithValueCollection = [
   { ext: unpacked_uint32_ext, val: [] },
   { ext: repeated_uint64_ext_js_string, val: [] },
   { ext: wrapper_ext, val: 0 },
-  { ext: groupext, val: create(GroupExtDesc) },
+  { ext: groupext, val: create(GroupExtSchema) },
   { ext: repeatedgroupext, val: [] },
   { ext: Proto2ExtContainer_uint32_ext, val: 0 },
   { ext: Proto2ExtContainer_Child_uint32_ext, val: 0 },
@@ -142,7 +142,7 @@ const goldenValuesZero: extensionWithValueCollection = [
 
 describe("getExtension()", () => {
   it("should throw error if extendee does not match", () => {
-    const msg = create(UserDesc);
+    const msg = create(UserSchema);
     expect(() =>
       getExtension(msg as unknown as Proto2Extendee, uint32_ext),
     ).toThrow(
@@ -151,7 +151,7 @@ describe("getExtension()", () => {
   });
   describe("for scalar", () => {
     it("should parse from unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
           no: uint32_ext.number,
@@ -162,7 +162,7 @@ describe("getExtension()", () => {
       expect(getExtension(msg, uint32_ext)).toBe(123);
     });
     it("should parse last value from unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
           no: uint32_ext.number,
@@ -178,21 +178,21 @@ describe("getExtension()", () => {
       expect(getExtension(msg, uint32_ext)).toBe(456);
     });
     it("should return zero value if unset", () => {
-      expect(getExtension(create(Proto2ExtendeeDesc), string_ext)).toBe("");
-      expect(getExtension(create(Proto2ExtendeeDesc), uint32_ext)).toBe(0);
+      expect(getExtension(create(Proto2ExtendeeSchema), string_ext)).toBe("");
+      expect(getExtension(create(Proto2ExtendeeSchema), uint32_ext)).toBe(0);
     });
     it("should return default value if unset", () => {
       expect(
-        getExtension(create(Proto2ExtendeeDesc), string_ext_with_default),
+        getExtension(create(Proto2ExtendeeSchema), string_ext_with_default),
       ).toBe(`hello " */ `);
       expect(
-        getExtension(create(Proto2ExtendeeDesc), uint32_ext_with_default),
+        getExtension(create(Proto2ExtendeeSchema), uint32_ext_with_default),
       ).toBe(999);
     });
   });
   describe("for repeated scalar", () => {
     it("should parse from unpacked unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
           no: unpacked_uint32_ext.number,
@@ -208,7 +208,7 @@ describe("getExtension()", () => {
       expect(getExtension(msg, unpacked_uint32_ext)).toStrictEqual([123, 456]);
     });
     it("should parse from packed unknown field", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
           no: packed_uint32_ext.number,
@@ -224,7 +224,7 @@ describe("getExtension()", () => {
       expect(getExtension(msg, packed_uint32_ext)).toStrictEqual([123, 456]);
     });
     it("should parse from string unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
           no: repeated_string_ext.number,
@@ -241,13 +241,13 @@ describe("getExtension()", () => {
     });
     it("should return zero value if unset", () => {
       expect(
-        getExtension(create(Proto2ExtendeeDesc), unpacked_uint32_ext),
+        getExtension(create(Proto2ExtendeeSchema), unpacked_uint32_ext),
       ).toStrictEqual([]);
     });
   });
   describe("for enum", () => {
     it("should parse from unknown fields", () => {
-      const message = create(Proto2ExtendeeDesc);
+      const message = create(Proto2ExtendeeSchema);
       message.$unknown = [
         {
           no: enum_ext.number,
@@ -258,7 +258,7 @@ describe("getExtension()", () => {
       expect(getExtension(message, enum_ext)).toBe(Proto2ExtEnum.NO);
     });
     it("should parse last value from unknown fields", () => {
-      const message = create(Proto2ExtendeeDesc);
+      const message = create(Proto2ExtendeeSchema);
       message.$unknown = [
         {
           no: enum_ext.number,
@@ -274,19 +274,19 @@ describe("getExtension()", () => {
       expect(getExtension(message, enum_ext)).toBe(Proto2ExtEnum.NO);
     });
     it("should return zero value if unset", () => {
-      expect(getExtension(create(Proto2ExtendeeDesc), enum_ext)).toBe(
+      expect(getExtension(create(Proto2ExtendeeSchema), enum_ext)).toBe(
         Proto2ExtEnum.YES,
       );
     });
     it("should return default value if unset", () => {
       expect(
-        getExtension(create(Proto2ExtendeeDesc), enum_ext_with_default),
+        getExtension(create(Proto2ExtendeeSchema), enum_ext_with_default),
       ).toBe(Proto2ExtEnum.NO);
     });
   });
   describe("for repeated enum", () => {
     it("should parse from unknown fields", () => {
-      const message = create(Proto2ExtendeeDesc);
+      const message = create(Proto2ExtendeeSchema);
       message.$unknown = [
         {
           no: repeated_enum_ext.number,
@@ -302,7 +302,7 @@ describe("getExtension()", () => {
       expect(getExtension(message, repeated_enum_ext)).toStrictEqual([1, 2]);
     });
     it("should parse from packed unknown field", () => {
-      const message = create(Proto2ExtendeeDesc);
+      const message = create(Proto2ExtendeeSchema);
       message.$unknown = [
         {
           no: repeated_enum_ext.number,
@@ -314,7 +314,7 @@ describe("getExtension()", () => {
     });
     it("should return zero value if unset", () => {
       expect(
-        getExtension(create(Proto2ExtendeeDesc), repeated_enum_ext),
+        getExtension(create(Proto2ExtendeeSchema), repeated_enum_ext),
       ).toStrictEqual([]);
     });
   });
@@ -336,69 +336,69 @@ describe("getExtension()", () => {
     }
 
     it("should return value parsed from unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       addUnknownMessageField(
         msg,
         message_ext_proto3.number,
-        UserDesc,
-        create(UserDesc, {
+        UserSchema,
+        create(UserSchema, {
           firstName: "John",
         }),
       );
       const value = getExtension(msg, message_ext_proto3);
-      expect(isMessage(value, UserDesc)).toBeTruthy();
+      expect(isMessage(value, UserSchema)).toBeTruthy();
       expect(value.firstName).toBe("John");
     });
     it("should return merged value parsed from multiple unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       addUnknownMessageField(
         msg,
         message_ext_proto3.number,
-        UserDesc,
-        create(UserDesc, {
+        UserSchema,
+        create(UserSchema, {
           firstName: "John",
         }),
       );
       addUnknownMessageField(
         msg,
         message_ext_proto3.number,
-        UserDesc,
-        create(UserDesc, {
+        UserSchema,
+        create(UserSchema, {
           lastName: "Doe",
         }),
       );
       const value = getExtension(msg, message_ext_proto3);
-      expect(isMessage(value, UserDesc)).toBeTruthy();
+      expect(isMessage(value, UserSchema)).toBeTruthy();
       expect(value.firstName).toBe("John");
       expect(value.lastName).toBe("Doe");
     });
     it("should return empty proto3 message if unset", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       const value = getExtension(msg, message_ext_proto3);
-      expect(isMessage(value, UserDesc)).toBeTruthy();
-      expect(equals(UserDesc, value, create(UserDesc))).toBeTruthy();
+      expect(isMessage(value, UserSchema)).toBeTruthy();
+      expect(equals(UserSchema, value, create(UserSchema))).toBeTruthy();
     });
     it("should return empty proto2 message if unset", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       const value = getExtension(msg, message_ext);
-      expect(isMessage(value, Proto2ExtMessageDesc)).toBeTruthy();
+      expect(isMessage(value, Proto2ExtMessageSchema)).toBeTruthy();
       expect(
-        equals(Proto2ExtMessageDesc, value, create(Proto2ExtMessageDesc)),
+        equals(Proto2ExtMessageSchema, value, create(Proto2ExtMessageSchema)),
       ).toBeTruthy();
     });
     describe("with WKT wrapper", () => {
       it("should return unwrapped default value if unset", () => {
-        const msg = create(Proto2ExtendeeDesc);
+        const msg = create(Proto2ExtendeeSchema);
         const value = getExtension(msg, wrapper_ext);
         expect(value).toBe(0);
       });
       it("should return unwrapped value if set", () => {
-        const msg = create(Proto2ExtendeeDesc);
+        const msg = create(Proto2ExtendeeSchema);
         addUnknownMessageField(
           msg,
           wrapper_ext.number,
-          UInt32ValueDesc,
-          create(UInt32ValueDesc, {
+          UInt32ValueSchema,
+          create(UInt32ValueSchema, {
             value: 123,
           }),
         );
@@ -426,20 +426,20 @@ describe("getExtension()", () => {
     }
 
     it("should parse from unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       addUnknownMessageField(
         msg,
         repeated_message_ext.number,
-        Proto2ExtMessageDesc,
-        create(Proto2ExtMessageDesc, {
+        Proto2ExtMessageSchema,
+        create(Proto2ExtMessageSchema, {
           stringField: "a",
         }),
       );
       addUnknownMessageField(
         msg,
         repeated_message_ext.number,
-        Proto2ExtMessageDesc,
-        create(Proto2ExtMessageDesc, {
+        Proto2ExtMessageSchema,
+        create(Proto2ExtMessageSchema, {
           stringField: "b",
         }),
       );
@@ -449,7 +449,7 @@ describe("getExtension()", () => {
       expect(arr[1].stringField).toBe("b");
     });
     it("should return zero value if unset", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       expect(getExtension(msg, repeated_message_ext)).toStrictEqual([]);
     });
   });
@@ -474,47 +474,49 @@ describe("getExtension()", () => {
     }
 
     it("should return value parsed from unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       addUnknownGroupField(
         msg,
         groupext.number,
-        GroupExtDesc,
-        create(GroupExtDesc, {
+        GroupExtSchema,
+        create(GroupExtSchema, {
           a: 123,
         }),
       );
       const value = getExtension(msg, groupext);
-      expect(isMessage(value, GroupExtDesc)).toBeTruthy();
+      expect(isMessage(value, GroupExtSchema)).toBeTruthy();
       expect(value.a).toBe(123);
     });
     it("should return merged value parsed from multiple unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       addUnknownGroupField(
         msg,
         groupext.number,
-        GroupExtDesc,
-        create(GroupExtDesc, {
+        GroupExtSchema,
+        create(GroupExtSchema, {
           a: 123,
         }),
       );
       addUnknownGroupField(
         msg,
         groupext.number,
-        GroupExtDesc,
-        create(GroupExtDesc, {
+        GroupExtSchema,
+        create(GroupExtSchema, {
           b: 456,
         }),
       );
       const value = getExtension(msg, groupext);
-      expect(isMessage(value, GroupExtDesc)).toBeTruthy();
+      expect(isMessage(value, GroupExtSchema)).toBeTruthy();
       expect(value.a).toBe(123);
       expect(value.b).toBe(456);
     });
     it("should return empty group if unset", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       const value = getExtension(msg, groupext);
-      expect(isMessage(value, GroupExtDesc)).toBeTruthy();
-      expect(equals(GroupExtDesc, value, create(GroupExtDesc))).toBeTruthy();
+      expect(isMessage(value, GroupExtSchema)).toBeTruthy();
+      expect(
+        equals(GroupExtSchema, value, create(GroupExtSchema)),
+      ).toBeTruthy();
     });
   });
   describe("for repeated group", () => {
@@ -538,20 +540,20 @@ describe("getExtension()", () => {
     }
 
     it("should parse from unknown fields", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       addUnknownGroupField(
         msg,
         repeatedgroupext.number,
-        RepeatedGroupExtDesc,
-        create(RepeatedGroupExtDesc, {
+        RepeatedGroupExtSchema,
+        create(RepeatedGroupExtSchema, {
           a: 123,
         }),
       );
       addUnknownGroupField(
         msg,
         repeatedgroupext.number,
-        RepeatedGroupExtDesc,
-        create(RepeatedGroupExtDesc, {
+        RepeatedGroupExtSchema,
+        create(RepeatedGroupExtSchema, {
           a: 456,
         }),
       );
@@ -561,7 +563,7 @@ describe("getExtension()", () => {
       expect(arr[1].a).toBe(456);
     });
     it("should return zero value if unset", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       expect(getExtension(msg, repeatedgroupext)).toStrictEqual([]);
     });
   });
@@ -571,7 +573,7 @@ describe("hasExtension()", () => {
   let msg: Proto2Extendee;
   let ext: DescExtension;
   beforeEach(() => {
-    msg = create(Proto2ExtendeeDesc);
+    msg = create(Proto2ExtendeeSchema);
     msg.$unknown = [
       {
         no: 1001,
@@ -589,7 +591,7 @@ describe("hasExtension()", () => {
     expect(hasExtension(msg, ext)).toBeFalsy();
   });
   it("should return false if extendee does not match", () => {
-    ext = { ...ext, extendee: UserDesc };
+    ext = { ...ext, extendee: UserSchema };
     expect(hasExtension(msg, ext)).toBeFalsy();
   });
   it("does not honor extension range", () => {
@@ -611,7 +613,7 @@ describe("clearExtension()", () => {
     (message.$unknown ?? []).map((uf) => uf.no);
   let msg: Proto2Extendee;
   beforeEach(() => {
-    msg = create(Proto2ExtendeeDesc);
+    msg = create(Proto2ExtendeeSchema);
     msg.$unknown = [];
     for (const no of [500, 1001, 1001, 1500]) {
       msg.$unknown.push({
@@ -629,7 +631,7 @@ describe("clearExtension()", () => {
     expect(listUnknownFieldNumbers(msg)).toStrictEqual([500, 1500]);
   });
   it("should throw error if extendee does not match", () => {
-    const msg = create(UserDesc);
+    const msg = create(UserSchema);
     expect(() =>
       clearExtension(msg as unknown as Proto2Extendee, uint32_ext),
     ).toThrow(
@@ -640,7 +642,7 @@ describe("clearExtension()", () => {
 
 describe("setExtension()", () => {
   it("should throw error if extendee does not match", () => {
-    const msg = create(UserDesc);
+    const msg = create(UserSchema);
     expect(() =>
       setExtension(msg as unknown as Proto2Extendee, uint32_ext, 123),
     ).toThrow(
@@ -650,7 +652,7 @@ describe("setExtension()", () => {
   it.each(goldenValues)(
     "should set $ext.typeName as expected",
     ({ ext, val }) => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       expect(hasExtension(msg, ext)).toBeFalsy();
       setExtension(msg, ext, val);
       expect(hasExtension(msg, ext)).toBeTruthy();
@@ -660,7 +662,7 @@ describe("setExtension()", () => {
   it.each(goldenValuesZero)(
     "should set zero $ext.typeName as expected",
     ({ ext, val }) => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       expect(hasExtension(msg, ext)).toBeFalsy();
       setExtension(msg, ext, val);
       if (ext.fieldKind === "list") {
@@ -673,7 +675,7 @@ describe("setExtension()", () => {
   );
   describe("setting repeated extension twice", () => {
     it("should not merge", () => {
-      const msg = create(Proto2ExtendeeDesc);
+      const msg = create(Proto2ExtendeeSchema);
       setExtension(msg, repeated_string_ext, ["a"]);
       setExtension(msg, repeated_string_ext, ["b"]);
       expect(getExtension(msg, repeated_string_ext)).toStrictEqual(["b"]);
@@ -683,14 +685,14 @@ describe("setExtension()", () => {
     describe("singular scalar", () => {
       const ext = proto3_uint32_ext;
       it("should set non-zero value as expected", () => {
-        const msg = create(FileOptionsDesc);
+        const msg = create(FileOptionsSchema);
         setExtension(msg, ext, 123);
         expect(hasExtension(msg, ext)).toBeTruthy();
         expect(getExtension(msg, ext)).toStrictEqual(123);
       });
       it("should set zero value, even without optional keyword", () => {
         // Implicit presence does not apply to extensions, see https://github.com/protocolbuffers/protobuf/issues/8234
-        const msg = create(FileOptionsDesc);
+        const msg = create(FileOptionsSchema);
         setExtension(msg, ext, 0);
         expect(hasExtension(msg, ext)).toBeTruthy();
         expect(getExtension(msg, ext)).toStrictEqual(0);
@@ -699,13 +701,13 @@ describe("setExtension()", () => {
     describe("optional scalar", () => {
       const ext = proto3_optional_uint32_ext;
       it("should set non-zero value as expected", () => {
-        const msg = create(FileOptionsDesc);
+        const msg = create(FileOptionsSchema);
         setExtension(msg, ext, 123);
         expect(hasExtension(msg, ext)).toBeTruthy();
         expect(getExtension(msg, ext)).toStrictEqual(123);
       });
       it("should set zero value", () => {
-        const msg = create(FileOptionsDesc);
+        const msg = create(FileOptionsSchema);
         setExtension(msg, ext, 0);
         expect(hasExtension(msg, ext)).toBeTruthy();
         expect(getExtension(msg, ext)).toStrictEqual(0);
@@ -713,7 +715,7 @@ describe("setExtension()", () => {
     });
     describe("packed repeated extension", () => {
       it("should set expected unknown fields", () => {
-        const msg = create(FileOptionsDesc);
+        const msg = create(FileOptionsSchema);
         setExtension(msg, proto3_packed_uint32_ext, [1, 2, 3]);
         const unknownFields = (msg.$unknown ?? []).filter(
           (uf) => uf.no === packed_uint32_ext.number,
@@ -727,7 +729,7 @@ describe("setExtension()", () => {
     });
     describe("unpacked repeated extension", () => {
       it("should set expected unknown fields", () => {
-        const msg = create(FileOptionsDesc);
+        const msg = create(FileOptionsSchema);
         setExtension(msg, proto3_unpacked_uint32_ext, [1, 2, 3]);
         const unknownFields = (msg.$unknown ?? []).filter(
           (uf) => uf.no === unpacked_uint32_ext.number,

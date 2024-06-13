@@ -18,9 +18,9 @@ import type { MessageShape, EnumShape, Message } from "@bufbuild/protobuf";
 import type { DescEnum, DescMessage } from "@bufbuild/protobuf";
 import type { Timestamp, Duration } from "@bufbuild/protobuf/wkt";
 import type { Proto3Message, Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
-import { Proto3EnumDesc } from "./gen/ts/extra/proto3_pb.js";
+import { Proto3EnumSchema } from "./gen/ts/extra/proto3_pb.js";
 import type { User } from "./gen/ts/extra/example_pb.js";
-import { UserDesc } from "./gen/ts/extra/example_pb.js";
+import { UserSchema } from "./gen/ts/extra/example_pb.js";
 
 describe("type Message", () => {
   describe("assigning different messages with same shape to each other", () => {
@@ -36,7 +36,7 @@ describe("type Message", () => {
     });
   });
   describe("narrow down from message shape union", () => {
-    const msg = create(UserDesc) as unknown as Proto3Message | User;
+    const msg = create(UserSchema) as unknown as Proto3Message | User;
     test("can switch on Message.$typeName against literal string type", () => {
       switch (msg.$typeName) {
         case "docs.User":
@@ -48,7 +48,7 @@ describe("type Message", () => {
     });
     test("cannot switch on Message.$typeName against embedded desc's typeName", () => {
       switch (msg.$typeName) {
-        case UserDesc.typeName:
+        case UserSchema.typeName:
           // @ts-expect-error TS2339
           expect(msg.firstName).toBeDefined();
           break;
@@ -61,7 +61,7 @@ describe("type Message", () => {
 
 describe("type MessageShape", () => {
   test("derives generated shape", () => {
-    function t(derived: MessageShape<typeof UserDesc>, direct: User) {
+    function t(derived: MessageShape<typeof UserSchema>, direct: User) {
       derived = direct;
       direct = derived;
     }
@@ -78,7 +78,10 @@ describe("type MessageShape", () => {
 
 describe("type EnumShape", () => {
   test("derives generated shape", () => {
-    function t(derived: EnumShape<typeof Proto3EnumDesc>, direct: Proto3Enum) {
+    function t(
+      derived: EnumShape<typeof Proto3EnumSchema>,
+      direct: Proto3Enum,
+    ) {
       derived = direct;
       direct = derived;
     }

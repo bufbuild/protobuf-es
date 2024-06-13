@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import {
-  AddressBookDesc,
-  PersonDesc,
-  Person_PhoneNumberDesc,
+  AddressBookSchema,
+  PersonSchema,
+  Person_PhoneNumberSchema,
   Person_PhoneType,
 } from "./gen/addressbook_pb.js";
 import { createInterface } from "readline";
@@ -28,14 +28,14 @@ async function main() {
   }
   const addressBookFile = process.argv[2];
 
-  const person = create(PersonDesc, {
+  const person = create(PersonSchema, {
     id: parseInt(await prompt("Enter person ID number: ")),
     name: await prompt("Enter name: "),
     email: await prompt("Enter email address (blank for none): "),
   });
 
   for (;;) {
-    const phoneNumber = create(Person_PhoneNumberDesc, {
+    const phoneNumber = create(Person_PhoneNumberSchema, {
       number: await prompt("Enter a phone number (or leave blank to finish): "),
     });
     if (phoneNumber.number === "") {
@@ -58,16 +58,16 @@ async function main() {
     }
   }
 
-  const addressBook = create(AddressBookDesc);
+  const addressBook = create(AddressBookSchema);
   if (existsSync(addressBookFile)) {
     const bytes = readFileSync(addressBookFile);
-    mergeFromBinary(AddressBookDesc, addressBook, bytes);
+    mergeFromBinary(AddressBookSchema, addressBook, bytes);
   } else {
     print("File not found. Creating new file.");
   }
 
   addressBook.people.push(person);
-  writeFileSync(addressBookFile, toBinary(AddressBookDesc, addressBook));
+  writeFileSync(addressBookFile, toBinary(AddressBookSchema, addressBook));
 }
 
 main().catch((e) => {

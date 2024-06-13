@@ -17,12 +17,12 @@
 /* eslint-disable */
 
 import type { GenDescFile, GenDescService } from "@bufbuild/protobuf/codegenv1";
-import type { Int32ValueDesc, StringValueDesc } from "@bufbuild/protobuf/wkt";
+import type { Int32ValueSchema, StringValueSchema } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/service-all.proto.
  */
-export declare const fileDesc_extra_service_all: GenDescFile;
+export declare const file_extra_service_all: GenDescFile;
 
 /**
  * @generated from service spec.ServiceAll
@@ -33,24 +33,24 @@ export declare const ServiceAll: GenDescService<{
    */
   unary: {
     methodKind: "unary";
-    input: typeof StringValueDesc;
-    output: typeof Int32ValueDesc;
+    input: typeof StringValueSchema;
+    output: typeof Int32ValueSchema;
   },
   /**
    * @generated from rpc spec.ServiceAll.ServerStream
    */
   serverStream: {
     methodKind: "server_streaming";
-    input: typeof StringValueDesc;
-    output: typeof Int32ValueDesc;
+    input: typeof StringValueSchema;
+    output: typeof Int32ValueSchema;
   },
   /**
    * @generated from rpc spec.ServiceAll.ClientStream
    */
   clientStream: {
     methodKind: "client_streaming";
-    input: typeof StringValueDesc;
-    output: typeof Int32ValueDesc;
+    input: typeof StringValueSchema;
+    output: typeof Int32ValueSchema;
   },
   /**
    * @generated from rpc spec.ServiceAll.Bidi
@@ -58,8 +58,8 @@ export declare const ServiceAll: GenDescService<{
    */
   bidi: {
     methodKind: "bidi_streaming";
-    input: typeof StringValueDesc;
-    output: typeof Int32ValueDesc;
+    input: typeof StringValueSchema;
+    output: typeof Int32ValueSchema;
   },
 }
 >;

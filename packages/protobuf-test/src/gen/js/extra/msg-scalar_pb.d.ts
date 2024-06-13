@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/msg-scalar.proto.
  */
-export declare const fileDesc_extra_msg_scalar: GenDescFile;
+export declare const file_extra_msg_scalar: GenDescFile;
 
 /**
  * @generated from message spec.ScalarValuesMessage
@@ -106,9 +106,9 @@ export declare type ScalarValuesMessage = Message<"spec.ScalarValuesMessage"> & 
 
 /**
  * Describes the message spec.ScalarValuesMessage.
- * Use `create(ScalarValuesMessageDesc)` to create a new message.
+ * Use `create(ScalarValuesMessageSchema)` to create a new message.
  */
-export declare const ScalarValuesMessageDesc: GenDescMessage<ScalarValuesMessage>;
+export declare const ScalarValuesMessageSchema: GenDescMessage<ScalarValuesMessage>;
 
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
@@ -192,7 +192,7 @@ export declare type RepeatedScalarValuesMessage = Message<"spec.RepeatedScalarVa
 
 /**
  * Describes the message spec.RepeatedScalarValuesMessage.
- * Use `create(RepeatedScalarValuesMessageDesc)` to create a new message.
+ * Use `create(RepeatedScalarValuesMessageSchema)` to create a new message.
  */
-export declare const RepeatedScalarValuesMessageDesc: GenDescMessage<RepeatedScalarValuesMessage>;
+export declare const RepeatedScalarValuesMessageSchema: GenDescMessage<RepeatedScalarValuesMessage>;
 

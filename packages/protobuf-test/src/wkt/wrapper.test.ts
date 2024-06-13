@@ -16,41 +16,41 @@ import { describe, expect, test } from "@jest/globals";
 import { create } from "@bufbuild/protobuf";
 import { isWrapper, isWrapperDesc } from "@bufbuild/protobuf/wkt";
 import {
-  DoubleValueDesc,
-  BoolValueDesc,
-  BytesValueDesc,
-  FloatValueDesc,
-  Int32ValueDesc,
-  Int64ValueDesc,
-  StringValueDesc,
-  UInt32ValueDesc,
-  UInt64ValueDesc,
+  DoubleValueSchema,
+  BoolValueSchema,
+  BytesValueSchema,
+  FloatValueSchema,
+  Int32ValueSchema,
+  Int64ValueSchema,
+  StringValueSchema,
+  UInt32ValueSchema,
+  UInt64ValueSchema,
 } from "@bufbuild/protobuf/wkt";
 
 describe("isWrapper()", () => {
   test("returns true for any of the wrapper messages from wrappers.proto", () => {
-    expect(isWrapper(create(DoubleValueDesc))).toBe(true);
-    expect(isWrapper(create(FloatValueDesc))).toBe(true);
-    expect(isWrapper(create(Int64ValueDesc))).toBe(true);
-    expect(isWrapper(create(UInt64ValueDesc))).toBe(true);
-    expect(isWrapper(create(Int32ValueDesc))).toBe(true);
-    expect(isWrapper(create(UInt32ValueDesc))).toBe(true);
-    expect(isWrapper(create(BoolValueDesc))).toBe(true);
-    expect(isWrapper(create(StringValueDesc))).toBe(true);
-    expect(isWrapper(create(BytesValueDesc))).toBe(true);
+    expect(isWrapper(create(DoubleValueSchema))).toBe(true);
+    expect(isWrapper(create(FloatValueSchema))).toBe(true);
+    expect(isWrapper(create(Int64ValueSchema))).toBe(true);
+    expect(isWrapper(create(UInt64ValueSchema))).toBe(true);
+    expect(isWrapper(create(Int32ValueSchema))).toBe(true);
+    expect(isWrapper(create(UInt32ValueSchema))).toBe(true);
+    expect(isWrapper(create(BoolValueSchema))).toBe(true);
+    expect(isWrapper(create(StringValueSchema))).toBe(true);
+    expect(isWrapper(create(BytesValueSchema))).toBe(true);
   });
 });
 
 describe("isWrapperDesc()", () => {
   test("returns true for any of the wrapper messages from wrappers.proto", () => {
-    expect(isWrapperDesc(DoubleValueDesc)).toBe(true);
-    expect(isWrapperDesc(FloatValueDesc)).toBe(true);
-    expect(isWrapperDesc(Int64ValueDesc)).toBe(true);
-    expect(isWrapperDesc(UInt64ValueDesc)).toBe(true);
-    expect(isWrapperDesc(Int32ValueDesc)).toBe(true);
-    expect(isWrapperDesc(UInt32ValueDesc)).toBe(true);
-    expect(isWrapperDesc(BoolValueDesc)).toBe(true);
-    expect(isWrapperDesc(StringValueDesc)).toBe(true);
-    expect(isWrapperDesc(BytesValueDesc)).toBe(true);
+    expect(isWrapperDesc(DoubleValueSchema)).toBe(true);
+    expect(isWrapperDesc(FloatValueSchema)).toBe(true);
+    expect(isWrapperDesc(Int64ValueSchema)).toBe(true);
+    expect(isWrapperDesc(UInt64ValueSchema)).toBe(true);
+    expect(isWrapperDesc(Int32ValueSchema)).toBe(true);
+    expect(isWrapperDesc(UInt32ValueSchema)).toBe(true);
+    expect(isWrapperDesc(BoolValueSchema)).toBe(true);
+    expect(isWrapperDesc(StringValueSchema)).toBe(true);
+    expect(isWrapperDesc(BytesValueSchema)).toBe(true);
   });
 });

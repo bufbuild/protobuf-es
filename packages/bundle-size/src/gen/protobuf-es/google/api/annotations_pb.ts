@@ -19,15 +19,15 @@
 import type { GenDescExtension, GenDescFile } from "@bufbuild/protobuf/codegenv1";
 import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 import type { HttpRule } from "./http_pb";
-import { fileDesc_google_api_http } from "./http_pb";
+import { file_google_api_http } from "./http_pb";
 import type { MethodOptions } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/api/annotations.proto.
  */
-export const fileDesc_google_api_annotations: GenDescFile = /*@__PURE__*/
-  fileDesc("Chxnb29nbGUvYXBpL2Fubm90YXRpb25zLnByb3RvEgpnb29nbGUuYXBpOksKBGh0dHASHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxiwyrwiIAEoCzIULmdvb2dsZS5hcGkuSHR0cFJ1bGVSBGh0dHBCbgoOY29tLmdvb2dsZS5hcGlCEEFubm90YXRpb25zUHJvdG9QAVpBZ29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvYW5ub3RhdGlvbnM7YW5ub3RhdGlvbnOiAgRHQVBJYgZwcm90bzM", [fileDesc_google_api_http, fileDesc_google_protobuf_descriptor]);
+export const file_google_api_annotations: GenDescFile = /*@__PURE__*/
+  fileDesc("Chxnb29nbGUvYXBpL2Fubm90YXRpb25zLnByb3RvEgpnb29nbGUuYXBpOksKBGh0dHASHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxiwyrwiIAEoCzIULmdvb2dsZS5hcGkuSHR0cFJ1bGVSBGh0dHBCbgoOY29tLmdvb2dsZS5hcGlCEEFubm90YXRpb25zUHJvdG9QAVpBZ29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvYW5ub3RhdGlvbnM7YW5ub3RhdGlvbnOiAgRHQVBJYgZwcm90bzM", [file_google_api_http, file_google_protobuf_descriptor]);
 
 /**
  * See `HttpRule`.
@@ -35,5 +35,5 @@ export const fileDesc_google_api_annotations: GenDescFile = /*@__PURE__*/
  * @generated from extension: google.api.HttpRule http = 72295728;
  */
 export const http: GenDescExtension<MethodOptions, HttpRule> = /*@__PURE__*/
-  extDesc(fileDesc_google_api_annotations, 0);
+  extDesc(file_google_api_annotations, 0);
 

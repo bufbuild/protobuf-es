@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { CodeGeneratorRequestDesc } from "@bufbuild/protobuf/wkt";
+import { CodeGeneratorRequestSchema } from "@bufbuild/protobuf/wkt";
 import { create, type MessageInitShape } from "@bufbuild/protobuf";
 import type { Schema } from "@bufbuild/protoplugin";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
@@ -26,7 +26,7 @@ describe("parse custom plugin option", () => {
   }
   const runPlugin = (
     onOptions: (options: Options) => void,
-    req: MessageInitShape<typeof CodeGeneratorRequestDesc>,
+    req: MessageInitShape<typeof CodeGeneratorRequestSchema>,
   ) => {
     const generate = ({ options }: Schema<Options>) => onOptions(options);
     createEcmaScriptPlugin({
@@ -65,7 +65,7 @@ describe("parse custom plugin option", () => {
       generateTs: generate,
       generateJs: generate,
       generateDts: generate,
-    }).run(create(CodeGeneratorRequestDesc, req));
+    }).run(create(CodeGeneratorRequestSchema, req));
   };
   test("parse as expected on the happy path", () => {
     runPlugin(
@@ -74,7 +74,7 @@ describe("parse custom plugin option", () => {
         expect(options.bar).toBe(true);
         expect(options.baz).toStrictEqual(["a", "b"]);
       },
-      create(CodeGeneratorRequestDesc, {
+      create(CodeGeneratorRequestSchema, {
         parameter: "foo=123,bar,baz=a,baz=b",
       }),
     );

@@ -22,13 +22,13 @@ import {
   WireType,
 } from "@bufbuild/protobuf/wire";
 import { create, toBinary } from "@bufbuild/protobuf";
-import { TestAllTypesProto3Desc } from "../gen/ts/google/protobuf/test_messages_proto3_pb.js";
+import { TestAllTypesProto3Schema } from "../gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { join } from "path";
 import { tmpdir } from "os";
 import { createReadStream, createWriteStream } from "fs";
 
 describe("sizeDelimitedEncode()", () => {
-  const desc = TestAllTypesProto3Desc;
+  const desc = TestAllTypesProto3Schema;
   const msg = create(desc, {
     optionalBool: true,
   });
@@ -53,7 +53,7 @@ describe("sizeDelimitedEncode()", () => {
 
 describe("sizeDelimitedDecodeStream()", () => {
   describe("with async generator", function () {
-    const desc = TestAllTypesProto3Desc;
+    const desc = TestAllTypesProto3Schema;
     const testMessages = [
       create(desc, {
         optionalBool: true,
@@ -95,7 +95,7 @@ describe("sizeDelimitedDecodeStream()", () => {
   });
   describe("with Node.js APIS", function () {
     it("should decode stream", async function () {
-      const desc = TestAllTypesProto3Desc;
+      const desc = TestAllTypesProto3Schema;
       const testMessages = [
         create(desc, {
           optionalBool: true,
@@ -158,7 +158,7 @@ describe("sizeDelimitedPeek()", () => {
     });
   });
   describe("with size and message", function () {
-    const desc = TestAllTypesProto3Desc;
+    const desc = TestAllTypesProto3Schema;
     const msg = create(desc, {
       optionalBool: true,
     });

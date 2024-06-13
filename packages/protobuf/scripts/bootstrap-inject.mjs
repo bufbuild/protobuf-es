@@ -21,9 +21,9 @@ import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
 import { reflect } from "@bufbuild/protobuf/reflect";
 import {
   Edition,
-  FeatureSetDefaultsDesc,
-  FeatureSetDesc,
-  FileDescriptorSetDesc,
+  FeatureSetDefaultsSchema,
+  FeatureSetSchema,
+  FileDescriptorSetSchema,
 } from "@bufbuild/protobuf/wkt";
 
 const injectComment = "// bootstrap-inject";
@@ -155,7 +155,7 @@ async function processFile(filePath, content, descriptorProto, upstream) {
           lines.push(`  // ${Edition[def.edition]}`);
           lines.push(`  ${def.edition}: {`);
           const r = reflect(
-            FeatureSetDesc,
+            FeatureSetSchema,
             featureSetHasAllSet(def.overridableFeatures)
               ? def.overridableFeatures
               : def.fixedFeatures,
@@ -229,11 +229,11 @@ async function compileDefaults(upstream, minimumEdition, maximumEdition) {
     maximumEdition,
   );
   const featureSetDefaults = fromBinary(
-    FeatureSetDefaultsDesc,
+    FeatureSetDefaultsSchema,
     featureSetDefaultsBytes,
   );
   if (!validateDefaults(featureSetDefaults)) {
-    throw new Error(`invalid ${FeatureSetDefaultsDesc.typeName}`);
+    throw new Error(`invalid ${FeatureSetDefaultsSchema.typeName}`);
   }
   return featureSetDefaults;
 }
@@ -293,7 +293,7 @@ async function compileDescriptorProto(upstream) {
       retainOptions: false,
     },
   );
-  const fds = fromBinary(FileDescriptorSetDesc, fdsBytes);
+  const fds = fromBinary(FileDescriptorSetSchema, fdsBytes);
   const set = createFileRegistry(fds);
   const file = set.getFile(path);
   assert(file);

@@ -23,7 +23,7 @@ import {
 } from "@bufbuild/protobuf";
 import {
   type CodeGeneratorRequest,
-  CodeGeneratorRequestDesc,
+  CodeGeneratorRequestSchema,
 } from "@bufbuild/protobuf/wkt";
 import type { Schema } from "@bufbuild/protoplugin";
 import { UpstreamProtobuf } from "upstream-protobuf";
@@ -117,7 +117,7 @@ describe("option retention", () => {
           filesToGenerate: ["a.proto"],
         },
       );
-      req = fromBinary(CodeGeneratorRequestDesc, reqBytes);
+      req = fromBinary(CodeGeneratorRequestSchema, reqBytes);
       [opt_unknown, opt_source, opt_runtime] = (
         await compileFile(proto["options.proto"])
       ).extensions;

@@ -14,38 +14,40 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { FieldError, isFieldError } from "@bufbuild/protobuf/reflect";
-import { UserDesc } from "../gen/ts/extra/example_pb.js";
+import { UserSchema } from "../gen/ts/extra/example_pb.js";
 import type { DescField, DescOneof } from "@bufbuild/protobuf";
 
 describe("FieldError", () => {
   test("is JSON serializable", () => {
-    const err = new FieldError(UserDesc.fields[0], "foo");
+    const err = new FieldError(UserSchema.fields[0], "foo");
     expect(JSON.stringify(err)).toBeDefined();
   });
   describe("field()", () => {
     test("returns field", () => {
-      const err = new FieldError(UserDesc.fields[0], "foo");
-      expect(err.field()).toBe(UserDesc.fields[0]);
+      const err = new FieldError(UserSchema.fields[0], "foo");
+      expect(err.field()).toBe(UserSchema.fields[0]);
     });
   });
 });
 
 describe("isFieldError()", () => {
   test("returns true for FieldError instances", () => {
-    expect(isFieldError(new FieldError(UserDesc.fields[0], "foo"))).toBe(true);
+    expect(isFieldError(new FieldError(UserSchema.fields[0], "foo"))).toBe(
+      true,
+    );
     expect(
       isFieldError(
-        new FieldError(UserDesc.fields[0], "foo", "FieldValueInvalidError"),
+        new FieldError(UserSchema.fields[0], "foo", "FieldValueInvalidError"),
       ),
     ).toBe(true);
     expect(
       isFieldError(
-        new FieldError(UserDesc.fields[0], "foo", "FieldListRangeError"),
+        new FieldError(UserSchema.fields[0], "foo", "FieldListRangeError"),
       ),
     ).toBe(true);
     expect(
       isFieldError(
-        new FieldError(UserDesc.fields[0], "foo", "ForeignFieldError"),
+        new FieldError(UserSchema.fields[0], "foo", "ForeignFieldError"),
       ),
     ).toBe(true);
   });

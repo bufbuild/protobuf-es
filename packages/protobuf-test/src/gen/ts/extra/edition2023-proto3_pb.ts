@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/edition2023-proto3.proto.
  */
-export const fileDesc_extra_edition2023_proto3: GenDescFile = /*@__PURE__*/
+export const file_extra_edition2023_proto3: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5leHRyYS9lZGl0aW9uMjAyMy1wcm90bzMucHJvdG8SBHNwZWMi3gIKG1Byb3RvM01lc3NhZ2VGb3JFZGl0aW9uMjAyMxIbChNpbXBsaWNpdF9ib29sX2ZpZWxkGAEgASgIEkAKGGltcGxpY2l0X29wZW5fZW51bV9maWVsZBgCIAEoDjIeLnNwZWMuUHJvdG8zRW51bUZvckVkaXRpb24yMDIzEiAKE2V4cGxpY2l0X2Jvb2xfZmllbGQYBSABKAhIAIgBARJFChhleHBsaWNpdF9vcGVuX2VudW1fZmllbGQYBiABKA4yHi5zcGVjLlByb3RvM0VudW1Gb3JFZGl0aW9uMjAyM0gBiAEBEh8KE3BhY2tlZF9kb3VibGVfZmllbGQYCSADKAFCAhABEiEKFXVucGFja2VkX2RvdWJsZV9maWVsZBgKIAMoAUICEABCFgoUX2V4cGxpY2l0X2Jvb2xfZmllbGRCGwoZX2V4cGxpY2l0X29wZW5fZW51bV9maWVsZCpqChhQcm90bzNFbnVtRm9yRWRpdGlvbjIwMjMSKwonUFJPVE8zX0VOVU1fRk9SX0VESVRJT04yMDIzX1VOU1BFQ0lGSUVEEAASIQodUFJPVE8zX0VOVU1fRk9SX0VESVRJT04yMDIzX0EQAWIGcHJvdG8z");
 
 /**
@@ -65,10 +65,10 @@ export type Proto3MessageForEdition2023 = Message<"spec.Proto3MessageForEdition2
 
 /**
  * Describes the message spec.Proto3MessageForEdition2023.
- * Use `create(Proto3MessageForEdition2023Desc)` to create a new message.
+ * Use `create(Proto3MessageForEdition2023Schema)` to create a new message.
  */
-export const Proto3MessageForEdition2023Desc: GenDescMessage<Proto3MessageForEdition2023> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_edition2023_proto3, 0);
+export const Proto3MessageForEdition2023Schema: GenDescMessage<Proto3MessageForEdition2023> = /*@__PURE__*/
+  messageDesc(file_extra_edition2023_proto3, 0);
 
 /**
  * @generated from enum spec.Proto3EnumForEdition2023
@@ -88,6 +88,6 @@ export enum Proto3EnumForEdition2023 {
 /**
  * Describes the enum spec.Proto3EnumForEdition2023.
  */
-export const Proto3EnumForEdition2023Desc: GenDescEnum<Proto3EnumForEdition2023> = /*@__PURE__*/
-  enumDesc(fileDesc_extra_edition2023_proto3, 0);
+export const Proto3EnumForEdition2023Schema: GenDescEnum<Proto3EnumForEdition2023> = /*@__PURE__*/
+  enumDesc(file_extra_edition2023_proto3, 0);
 

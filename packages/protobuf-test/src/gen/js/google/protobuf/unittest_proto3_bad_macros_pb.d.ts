@@ -21,7 +21,7 @@ import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/codegenv1";
 /**
  * Describes the file google/protobuf/unittest_proto3_bad_macros.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_proto3_bad_macros: GenDescFile;
+export declare const file_google_protobuf_unittest_proto3_bad_macros: GenDescFile;
 
 /**
  * This generates `GID_MAX`, which is a macro in some circumstances.
@@ -38,7 +38,7 @@ export enum GID {
 /**
  * Describes the enum protobuf_unittest.GID.
  */
-export declare const GIDDesc: GenDescEnum<GID>;
+export declare const GIDSchema: GenDescEnum<GID>;
 
 /**
  * This generates `UID_MAX`, which is a mcro in some circumstances.
@@ -55,7 +55,7 @@ export enum UID {
 /**
  * Describes the enum protobuf_unittest.UID.
  */
-export declare const UIDDesc: GenDescEnum<UID>;
+export declare const UIDSchema: GenDescEnum<UID>;
 
 /**
  * Just a container for bad macro names. Some of these do not follow the normal
@@ -245,5 +245,5 @@ export enum BadNames {
 /**
  * Describes the enum protobuf_unittest.BadNames.
  */
-export declare const BadNamesDesc: GenDescEnum<BadNames>;
+export declare const BadNamesSchema: GenDescEnum<BadNames>;
 

@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_no_generic_services.proto.
  */
-export const fileDesc_google_protobuf_unittest_no_generic_services: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_unittest_no_generic_services: GenDescFile = /*@__PURE__*/
   fileDesc("CjJnb29nbGUvcHJvdG9idWYvdW5pdHRlc3Rfbm9fZ2VuZXJpY19zZXJ2aWNlcy5wcm90bxIqcHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0IiMKC1Rlc3RNZXNzYWdlEgkKAWEYASABKAUqCQjoBxCAgICAAioTCghUZXN0RW51bRIHCgNGT08QATKGAQoLVGVzdFNlcnZpY2USdwoDRm9vEjcucHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0LlRlc3RNZXNzYWdlGjcucHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0LlRlc3RNZXNzYWdlOl8KDnRlc3RfZXh0ZW5zaW9uEjcucHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0LlRlc3RNZXNzYWdlGOgHIAEoBVINdGVzdEV4dGVuc2lvbg");
 
 /**
@@ -40,10 +40,10 @@ export type TestMessage = Message<"protobuf_unittest.no_generic_services_test.Te
 
 /**
  * Describes the message protobuf_unittest.no_generic_services_test.TestMessage.
- * Use `create(TestMessageDesc)` to create a new message.
+ * Use `create(TestMessageSchema)` to create a new message.
  */
-export const TestMessageDesc: GenDescMessage<TestMessage> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_no_generic_services, 0);
+export const TestMessageSchema: GenDescMessage<TestMessage> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_no_generic_services, 0);
 
 /**
  * @generated from enum protobuf_unittest.no_generic_services_test.TestEnum
@@ -58,8 +58,8 @@ export enum TestEnum {
 /**
  * Describes the enum protobuf_unittest.no_generic_services_test.TestEnum.
  */
-export const TestEnumDesc: GenDescEnum<TestEnum> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_unittest_no_generic_services, 0);
+export const TestEnumSchema: GenDescEnum<TestEnum> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_no_generic_services, 0);
 
 /**
  * @generated from service protobuf_unittest.no_generic_services_test.TestService
@@ -70,16 +70,16 @@ export const TestService: GenDescService<{
    */
   foo: {
     methodKind: "unary";
-    input: typeof TestMessageDesc;
-    output: typeof TestMessageDesc;
+    input: typeof TestMessageSchema;
+    output: typeof TestMessageSchema;
   },
 }
 > = /*@__PURE__*/
-  serviceDesc(fileDesc_google_protobuf_unittest_no_generic_services, 0);
+  serviceDesc(file_google_protobuf_unittest_no_generic_services, 0);
 
 /**
  * @generated from extension: optional int32 test_extension = 1000;
  */
 export const test_extension: GenDescExtension<TestMessage, number> = /*@__PURE__*/
-  extDesc(fileDesc_google_protobuf_unittest_no_generic_services, 0);
+  extDesc(file_google_protobuf_unittest_no_generic_services, 0);
 

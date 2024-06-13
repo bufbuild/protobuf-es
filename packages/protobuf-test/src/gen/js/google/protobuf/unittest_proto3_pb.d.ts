@@ -24,7 +24,7 @@ import type { PublicImportMessage } from "./unittest_import_public_pb.js";
 /**
  * Describes the file google/protobuf/unittest_proto3.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_proto3: GenDescFile;
+export declare const file_google_protobuf_unittest_proto3: GenDescFile;
 
 /**
  * This proto includes every type of field in both singular and repeated
@@ -316,9 +316,9 @@ export declare type TestAllTypes = Message<"proto3_unittest.TestAllTypes"> & {
 
 /**
  * Describes the message proto3_unittest.TestAllTypes.
- * Use `create(TestAllTypesDesc)` to create a new message.
+ * Use `create(TestAllTypesSchema)` to create a new message.
  */
-export declare const TestAllTypesDesc: GenDescMessage<TestAllTypes>;
+export declare const TestAllTypesSchema: GenDescMessage<TestAllTypes>;
 
 /**
  * @generated from message proto3_unittest.TestAllTypes.NestedMessage
@@ -336,9 +336,9 @@ export declare type TestAllTypes_NestedMessage = Message<"proto3_unittest.TestAl
 
 /**
  * Describes the message proto3_unittest.TestAllTypes.NestedMessage.
- * Use `create(TestAllTypes_NestedMessageDesc)` to create a new message.
+ * Use `create(TestAllTypes_NestedMessageSchema)` to create a new message.
  */
-export declare const TestAllTypes_NestedMessageDesc: GenDescMessage<TestAllTypes_NestedMessage>;
+export declare const TestAllTypes_NestedMessageSchema: GenDescMessage<TestAllTypes_NestedMessage>;
 
 /**
  * @generated from enum proto3_unittest.TestAllTypes.NestedEnum
@@ -375,7 +375,7 @@ export enum TestAllTypes_NestedEnum {
 /**
  * Describes the enum proto3_unittest.TestAllTypes.NestedEnum.
  */
-export declare const TestAllTypes_NestedEnumDesc: GenDescEnum<TestAllTypes_NestedEnum>;
+export declare const TestAllTypes_NestedEnumSchema: GenDescEnum<TestAllTypes_NestedEnum>;
 
 /**
  * @generated from message proto3_unittest.TestPackedTypes
@@ -454,9 +454,9 @@ export declare type TestPackedTypes = Message<"proto3_unittest.TestPackedTypes">
 
 /**
  * Describes the message proto3_unittest.TestPackedTypes.
- * Use `create(TestPackedTypesDesc)` to create a new message.
+ * Use `create(TestPackedTypesSchema)` to create a new message.
  */
-export declare const TestPackedTypesDesc: GenDescMessage<TestPackedTypes>;
+export declare const TestPackedTypesSchema: GenDescMessage<TestPackedTypes>;
 
 /**
  * Explicitly set packed to false
@@ -537,9 +537,9 @@ export declare type TestUnpackedTypes = Message<"proto3_unittest.TestUnpackedTyp
 
 /**
  * Describes the message proto3_unittest.TestUnpackedTypes.
- * Use `create(TestUnpackedTypesDesc)` to create a new message.
+ * Use `create(TestUnpackedTypesSchema)` to create a new message.
  */
-export declare const TestUnpackedTypesDesc: GenDescMessage<TestUnpackedTypes>;
+export declare const TestUnpackedTypesSchema: GenDescMessage<TestUnpackedTypes>;
 
 /**
  * This proto includes a recursively nested message.
@@ -560,9 +560,9 @@ export declare type NestedTestAllTypes = Message<"proto3_unittest.NestedTestAllT
 
 /**
  * Describes the message proto3_unittest.NestedTestAllTypes.
- * Use `create(NestedTestAllTypesDesc)` to create a new message.
+ * Use `create(NestedTestAllTypesSchema)` to create a new message.
  */
-export declare const NestedTestAllTypesDesc: GenDescMessage<NestedTestAllTypes>;
+export declare const NestedTestAllTypesSchema: GenDescMessage<NestedTestAllTypes>;
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -579,9 +579,9 @@ export declare type ForeignMessage = Message<"proto3_unittest.ForeignMessage"> &
 
 /**
  * Describes the message proto3_unittest.ForeignMessage.
- * Use `create(ForeignMessageDesc)` to create a new message.
+ * Use `create(ForeignMessageSchema)` to create a new message.
  */
-export declare const ForeignMessageDesc: GenDescMessage<ForeignMessage>;
+export declare const ForeignMessageSchema: GenDescMessage<ForeignMessage>;
 
 /**
  * TestEmptyMessage is used to test behavior of unknown fields.
@@ -593,9 +593,9 @@ export declare type TestEmptyMessage = Message<"proto3_unittest.TestEmptyMessage
 
 /**
  * Describes the message proto3_unittest.TestEmptyMessage.
- * Use `create(TestEmptyMessageDesc)` to create a new message.
+ * Use `create(TestEmptyMessageSchema)` to create a new message.
  */
-export declare const TestEmptyMessageDesc: GenDescMessage<TestEmptyMessage>;
+export declare const TestEmptyMessageSchema: GenDescMessage<TestEmptyMessage>;
 
 /**
  * TestMessageWithDummy is also used to test behavior of unknown fields.
@@ -614,9 +614,9 @@ export declare type TestMessageWithDummy = Message<"proto3_unittest.TestMessageW
 
 /**
  * Describes the message proto3_unittest.TestMessageWithDummy.
- * Use `create(TestMessageWithDummyDesc)` to create a new message.
+ * Use `create(TestMessageWithDummySchema)` to create a new message.
  */
-export declare const TestMessageWithDummyDesc: GenDescMessage<TestMessageWithDummy>;
+export declare const TestMessageWithDummySchema: GenDescMessage<TestMessageWithDummy>;
 
 /**
  * Same layout as TestOneof2 in unittest.proto to test unknown enum value
@@ -639,9 +639,9 @@ export declare type TestOneof2 = Message<"proto3_unittest.TestOneof2"> & {
 
 /**
  * Describes the message proto3_unittest.TestOneof2.
- * Use `create(TestOneof2Desc)` to create a new message.
+ * Use `create(TestOneof2Schema)` to create a new message.
  */
-export declare const TestOneof2Desc: GenDescMessage<TestOneof2>;
+export declare const TestOneof2Schema: GenDescMessage<TestOneof2>;
 
 /**
  * @generated from enum proto3_unittest.TestOneof2.NestedEnum
@@ -671,7 +671,7 @@ export enum TestOneof2_NestedEnum {
 /**
  * Describes the enum proto3_unittest.TestOneof2.NestedEnum.
  */
-export declare const TestOneof2_NestedEnumDesc: GenDescEnum<TestOneof2_NestedEnum>;
+export declare const TestOneof2_NestedEnumSchema: GenDescEnum<TestOneof2_NestedEnum>;
 
 /**
  * @generated from enum proto3_unittest.ForeignEnum
@@ -701,5 +701,5 @@ export enum ForeignEnum {
 /**
  * Describes the enum proto3_unittest.ForeignEnum.
  */
-export declare const ForeignEnumDesc: GenDescEnum<ForeignEnum>;
+export declare const ForeignEnumSchema: GenDescEnum<ForeignEnum>;
 

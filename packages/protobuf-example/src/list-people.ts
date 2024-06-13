@@ -14,7 +14,7 @@
 
 import {
   AddressBook,
-  AddressBookDesc,
+  AddressBookSchema,
   Person_PhoneType,
 } from "./gen/addressbook_pb.js";
 import { fromBinary } from "@bufbuild/protobuf";
@@ -26,7 +26,7 @@ if (process.argv.length !== 3) {
 }
 const addressBookFile = process.argv[2];
 const bytes = readFileSync(addressBookFile);
-const addressBook = fromBinary(AddressBookDesc, bytes);
+const addressBook = fromBinary(AddressBookSchema, bytes);
 printAddressBook(addressBook);
 
 function printAddressBook(addressBook: AddressBook): void {

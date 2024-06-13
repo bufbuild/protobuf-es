@@ -15,7 +15,7 @@
 import * as assert from "node:assert/strict";
 import { describe, it, mock } from "node:test";
 import { create } from "@bufbuild/protobuf";
-import { SayRequestDesc } from "../src/gen/connectrpc/eliza_pb";
+import { SayRequestSchema } from "../src/gen/connectrpc/eliza_pb";
 import { ElizaServiceClient } from "../src/gen/connectrpc/eliza_twirp";
 
 describe("custom plugin", async () => {
@@ -49,7 +49,7 @@ describe("custom plugin", async () => {
           }),
       );
       const client = new ElizaServiceClient("https://example.com");
-      const req = create(SayRequestDesc, { sentence: "hi" });
+      const req = create(SayRequestSchema, { sentence: "hi" });
       const res = await client.say(req);
       assert.equal(res.sentence, "ho");
       assert.equal(fetch.mock.callCount(), 1);

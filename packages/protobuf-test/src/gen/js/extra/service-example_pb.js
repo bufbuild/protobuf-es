@@ -22,43 +22,43 @@ import { enumDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/
  * Describes the file extra/service-example.proto.
  * @deprecated
  */
-export const fileDesc_extra_service_example = /*@__PURE__*/
+export const file_extra_service_example = /*@__PURE__*/
   fileDesc("ChtleHRyYS9zZXJ2aWNlLWV4YW1wbGUucHJvdG8SBHNwZWMingEKDkV4YW1wbGVSZXF1ZXN0EhAKCHF1ZXN0aW9uGAEgASgJEiYKC3BsZWFzZV9mYWlsGAIgASgOMhEuc3BlYy5GYWlsUmVxdWVzdBIgChhwbGVhc2VfZGVsYXlfcmVzcG9uc2VfbXMYAyABKAUSMAooZGlzYWJsZV9zZW5kaW5nX2V4YW1wbGVfcmVzcG9uc2VfaGVhZGVycxgEIAEoCCLuAQoPRXhhbXBsZVJlc3BvbnNlEg4KBmFuc3dlchgBIAEoCRJLChR5b3VyX3JlcXVlc3RfaGVhZGVycxgCIAMoCzItLnNwZWMuRXhhbXBsZVJlc3BvbnNlLllvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EhUKDXlvdXJfZGVhZGxpbmUYAyABKAkSLAoReW91cl9mYWlsX3JlcXVlc3QYBCABKA4yES5zcGVjLkZhaWxSZXF1ZXN0GjkKF1lvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEqWgoLRmFpbFJlcXVlc3QSFQoRRkFJTF9SRVFVRVNUX05PTkUQABIdChlNRVNTQUdFX1RIRU5fRVJST1JfU1RBVFVTEAESFQoRRVJST1JfU1RBVFVTX09OTFkQAjL9AQoORXhhbXBsZVNlcnZpY2USNAoFVW5hcnkSFC5zcGVjLkV4YW1wbGVSZXF1ZXN0GhUuc3BlYy5FeGFtcGxlUmVzcG9uc2USPQoMU2VydmVyU3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlMAESPQoMQ2xpZW50U3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlKAESNwoEQmlkaRIULnNwZWMuRXhhbXBsZVJlcXVlc3QaFS5zcGVjLkV4YW1wbGVSZXNwb25zZSgBMAFCA7gBAWIGcHJvdG8z");
 
 /**
  * Describes the message spec.ExampleRequest.
- * Use `create(ExampleRequestDesc)` to create a new message.
+ * Use `create(ExampleRequestSchema)` to create a new message.
  * @deprecated
  */
-export const ExampleRequestDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_service_example, 0);
+export const ExampleRequestSchema = /*@__PURE__*/
+  messageDesc(file_extra_service_example, 0);
 
 /**
  * Describes the message spec.ExampleResponse.
- * Use `create(ExampleResponseDesc)` to create a new message.
+ * Use `create(ExampleResponseSchema)` to create a new message.
  * @deprecated
  */
-export const ExampleResponseDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_service_example, 1);
+export const ExampleResponseSchema = /*@__PURE__*/
+  messageDesc(file_extra_service_example, 1);
 
 /**
  * Describes the enum spec.FailRequest.
  * @deprecated
  */
-export const FailRequestDesc = /*@__PURE__*/
-  enumDesc(fileDesc_extra_service_example, 0);
+export const FailRequestSchema = /*@__PURE__*/
+  enumDesc(file_extra_service_example, 0);
 
 /**
  * @generated from enum spec.FailRequest
  * @deprecated
  */
 export const FailRequest = /*@__PURE__*/
-  tsEnum(FailRequestDesc);
+  tsEnum(FailRequestSchema);
 
 /**
  * @generated from service spec.ExampleService
  * @deprecated
  */
 export const ExampleService = /*@__PURE__*/
-  serviceDesc(fileDesc_extra_service_example, 0);
+  serviceDesc(file_extra_service_example, 0);
 

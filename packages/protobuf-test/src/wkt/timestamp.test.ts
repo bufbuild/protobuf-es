@@ -20,7 +20,7 @@ import {
   timestampFromMs,
   timestampMs,
 } from "@bufbuild/protobuf/wkt";
-import { TimestampDesc } from "@bufbuild/protobuf/wkt";
+import { TimestampSchema } from "@bufbuild/protobuf/wkt";
 import { protoInt64 } from "@bufbuild/protobuf";
 import { create } from "@bufbuild/protobuf";
 
@@ -39,7 +39,7 @@ describe("timestampMs()", () => {
   test("converts Timestamp to unix timestamp with milliseconds", () => {
     expect(
       timestampMs(
-        create(TimestampDesc, {
+        create(TimestampSchema, {
           seconds: protoInt64.zero,
           nanos: 0,
         }),
@@ -47,7 +47,7 @@ describe("timestampMs()", () => {
     ).toBe(0);
     expect(
       timestampMs(
-        create(TimestampDesc, {
+        create(TimestampSchema, {
           seconds: protoInt64.parse(818035920),
           nanos: 123456789,
         }),
@@ -80,12 +80,12 @@ describe("timestampFromDate()", () => {
 
 describe("timestampDate()", () => {
   test("converts Timestamp to Date", () => {
-    const timestampZero = create(TimestampDesc, {
+    const timestampZero = create(TimestampSchema, {
       seconds: protoInt64.zero,
       nanos: 0,
     });
     expect(timestampDate(timestampZero).getTime()).toBe(0);
-    const timestampWithMs = create(TimestampDesc, {
+    const timestampWithMs = create(TimestampSchema, {
       seconds: protoInt64.parse(818035920),
       nanos: 123000000,
     });

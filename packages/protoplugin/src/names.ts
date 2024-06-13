@@ -89,14 +89,14 @@ function idealDescName(
 ): string {
   const escape = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
   if (desc.kind == "file") {
-    const name = "fileDesc_" + desc.name.replace(/[^a-zA-Z0-9_]+/g, "_");
+    const name = "file_" + desc.name.replace(/[^a-zA-Z0-9_]+/g, "_");
     return safeIdentifier(name + escape);
   }
   switch (desc.kind) {
     case "enum":
-      return safeIdentifier(identifier(desc) + "Desc" + escape);
+      return safeIdentifier(identifier(desc) + "Schema" + escape);
     case "message":
-      return safeIdentifier(identifier(desc) + "Desc" + escape);
+      return safeIdentifier(identifier(desc) + "Schema" + escape);
     case "extension":
       return safeIdentifier(identifier(desc) + escape);
     case "service":

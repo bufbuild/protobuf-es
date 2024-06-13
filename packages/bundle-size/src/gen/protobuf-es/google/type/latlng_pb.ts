@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/latlng.proto.
  */
-export const fileDesc_google_type_latlng: GenDescFile = /*@__PURE__*/
+export const file_google_type_latlng: GenDescFile = /*@__PURE__*/
   fileDesc("Chhnb29nbGUvdHlwZS9sYXRsbmcucHJvdG8SC2dvb2dsZS50eXBlIi0KBkxhdExuZxIQCghsYXRpdHVkZRgBIAEoARIRCglsb25naXR1ZGUYAiABKAFCYwoPY29tLmdvb2dsZS50eXBlQgtMYXRMbmdQcm90b1ABWjhnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvbGF0bG5nO2xhdGxuZ/gBAaICA0dUUGIGcHJvdG8z");
 
 /**
@@ -53,8 +53,8 @@ export type LatLng = Message<"google.type.LatLng"> & {
 
 /**
  * Describes the message google.type.LatLng.
- * Use `create(LatLngDesc)` to create a new message.
+ * Use `create(LatLngSchema)` to create a new message.
  */
-export const LatLngDesc: GenDescMessage<LatLng> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_latlng, 0);
+export const LatLngSchema: GenDescMessage<LatLng> = /*@__PURE__*/
+  messageDesc(file_google_type_latlng, 0);
 

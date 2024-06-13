@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/localized_text.proto.
  */
-export const fileDesc_google_type_localized_text: GenDescFile = /*@__PURE__*/
+export const file_google_type_localized_text: GenDescFile = /*@__PURE__*/
   fileDesc("CiBnb29nbGUvdHlwZS9sb2NhbGl6ZWRfdGV4dC5wcm90bxILZ29vZ2xlLnR5cGUiNAoNTG9jYWxpemVkVGV4dBIMCgR0ZXh0GAEgASgJEhUKDWxhbmd1YWdlX2NvZGUYAiABKAlCegoPY29tLmdvb2dsZS50eXBlQhJMb2NhbGl6ZWRUZXh0UHJvdG9QAVpIZ29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy90eXBlL2xvY2FsaXplZF90ZXh0O2xvY2FsaXplZF90ZXh0+AEBogIDR1RQYgZwcm90bzM");
 
 /**
@@ -52,8 +52,8 @@ export type LocalizedText = Message<"google.type.LocalizedText"> & {
 
 /**
  * Describes the message google.type.LocalizedText.
- * Use `create(LocalizedTextDesc)` to create a new message.
+ * Use `create(LocalizedTextSchema)` to create a new message.
  */
-export const LocalizedTextDesc: GenDescMessage<LocalizedText> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_localized_text, 0);
+export const LocalizedTextSchema: GenDescMessage<LocalizedText> = /*@__PURE__*/
+  messageDesc(file_google_type_localized_text, 0);
 

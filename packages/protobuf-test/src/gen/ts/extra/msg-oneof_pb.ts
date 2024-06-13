@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/msg-oneof.proto.
  */
-export const fileDesc_extra_msg_oneof: GenDescFile = /*@__PURE__*/
+export const file_extra_msg_oneof: GenDescFile = /*@__PURE__*/
   fileDesc("ChVleHRyYS9tc2ctb25lb2YucHJvdG8SBHNwZWMi7gEKDE9uZW9mTWVzc2FnZRIPCgV2YWx1ZRgBIAEoBUgAEg8KBWVycm9yGAIgASgJSAASDwoFYnl0ZXMYAyABKAxIABIkCgNmb28YCyABKAsyFS5zcGVjLk9uZW9mTWVzc2FnZUZvb0gBEiQKA2JhchgMIAEoCzIVLnNwZWMuT25lb2ZNZXNzYWdlQmFySAESJAoDYmF6GA0gASgLMhUuc3BlYy5PbmVvZk1lc3NhZ2VCYXJIARIcCgFlGBUgASgOMg8uc3BlYy5PbmVvZkVudW1IAkIICgZzY2FsYXJCCQoHbWVzc2FnZUIGCgRlbnVtIi8KD09uZW9mTWVzc2FnZUZvbxIMCgRuYW1lGAEgASgJEg4KBnRvZ2dsZRgCIAEoCCInCg9PbmVvZk1lc3NhZ2VCYXISCQoBYRgBIAEoBRIJCgFiGAIgASgFKksKCU9uZW9mRW51bRIaChZPTkVPRl9FTlVNX1VOU1BFQ0lGSUVEEAASEAoMT05FT0ZfRU5VTV9BEAESEAoMT05FT0ZfRU5VTV9CEAJiBnByb3RvMw");
 
 /**
@@ -90,10 +90,10 @@ export type OneofMessage = Message<"spec.OneofMessage"> & {
 
 /**
  * Describes the message spec.OneofMessage.
- * Use `create(OneofMessageDesc)` to create a new message.
+ * Use `create(OneofMessageSchema)` to create a new message.
  */
-export const OneofMessageDesc: GenDescMessage<OneofMessage> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_msg_oneof, 0);
+export const OneofMessageSchema: GenDescMessage<OneofMessage> = /*@__PURE__*/
+  messageDesc(file_extra_msg_oneof, 0);
 
 /**
  * @generated from message spec.OneofMessageFoo
@@ -112,10 +112,10 @@ export type OneofMessageFoo = Message<"spec.OneofMessageFoo"> & {
 
 /**
  * Describes the message spec.OneofMessageFoo.
- * Use `create(OneofMessageFooDesc)` to create a new message.
+ * Use `create(OneofMessageFooSchema)` to create a new message.
  */
-export const OneofMessageFooDesc: GenDescMessage<OneofMessageFoo> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_msg_oneof, 1);
+export const OneofMessageFooSchema: GenDescMessage<OneofMessageFoo> = /*@__PURE__*/
+  messageDesc(file_extra_msg_oneof, 1);
 
 /**
  * @generated from message spec.OneofMessageBar
@@ -134,10 +134,10 @@ export type OneofMessageBar = Message<"spec.OneofMessageBar"> & {
 
 /**
  * Describes the message spec.OneofMessageBar.
- * Use `create(OneofMessageBarDesc)` to create a new message.
+ * Use `create(OneofMessageBarSchema)` to create a new message.
  */
-export const OneofMessageBarDesc: GenDescMessage<OneofMessageBar> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_msg_oneof, 2);
+export const OneofMessageBarSchema: GenDescMessage<OneofMessageBar> = /*@__PURE__*/
+  messageDesc(file_extra_msg_oneof, 2);
 
 /**
  * @generated from enum spec.OneofEnum
@@ -162,6 +162,6 @@ export enum OneofEnum {
 /**
  * Describes the enum spec.OneofEnum.
  */
-export const OneofEnumDesc: GenDescEnum<OneofEnum> = /*@__PURE__*/
-  enumDesc(fileDesc_extra_msg_oneof, 0);
+export const OneofEnumSchema: GenDescEnum<OneofEnum> = /*@__PURE__*/
+  enumDesc(file_extra_msg_oneof, 0);
 

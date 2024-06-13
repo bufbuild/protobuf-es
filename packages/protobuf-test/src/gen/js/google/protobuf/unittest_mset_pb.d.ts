@@ -30,7 +30,7 @@ import type { TestMessageSet } from "./unittest_mset_wire_format_pb.js";
 /**
  * Describes the file google/protobuf/unittest_mset.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_mset: GenDescFile;
+export declare const file_google_protobuf_unittest_mset: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetContainer
@@ -44,9 +44,9 @@ export declare type TestMessageSetContainer = Message<"protobuf_unittest.TestMes
 
 /**
  * Describes the message protobuf_unittest.TestMessageSetContainer.
- * Use `create(TestMessageSetContainerDesc)` to create a new message.
+ * Use `create(TestMessageSetContainerSchema)` to create a new message.
  */
-export declare const TestMessageSetContainerDesc: GenDescMessage<TestMessageSetContainer>;
+export declare const TestMessageSetContainerSchema: GenDescMessage<TestMessageSetContainer>;
 
 /**
  * @generated from message protobuf_unittest.NestedTestMessageSetContainer
@@ -70,9 +70,9 @@ export declare type NestedTestMessageSetContainer = Message<"protobuf_unittest.N
 
 /**
  * Describes the message protobuf_unittest.NestedTestMessageSetContainer.
- * Use `create(NestedTestMessageSetContainerDesc)` to create a new message.
+ * Use `create(NestedTestMessageSetContainerSchema)` to create a new message.
  */
-export declare const NestedTestMessageSetContainerDesc: GenDescMessage<NestedTestMessageSetContainer>;
+export declare const NestedTestMessageSetContainerSchema: GenDescMessage<NestedTestMessageSetContainer>;
 
 /**
  * @generated from message protobuf_unittest.NestedTestInt
@@ -96,9 +96,9 @@ export declare type NestedTestInt = Message<"protobuf_unittest.NestedTestInt"> &
 
 /**
  * Describes the message protobuf_unittest.NestedTestInt.
- * Use `create(NestedTestIntDesc)` to create a new message.
+ * Use `create(NestedTestIntSchema)` to create a new message.
  */
-export declare const NestedTestIntDesc: GenDescMessage<NestedTestInt>;
+export declare const NestedTestIntSchema: GenDescMessage<NestedTestInt>;
 
 /**
  * @generated from message protobuf_unittest.TestMessageSetExtension1
@@ -122,9 +122,9 @@ export declare type TestMessageSetExtension1 = Message<"protobuf_unittest.TestMe
 
 /**
  * Describes the message protobuf_unittest.TestMessageSetExtension1.
- * Use `create(TestMessageSetExtension1Desc)` to create a new message.
+ * Use `create(TestMessageSetExtension1Schema)` to create a new message.
  */
-export declare const TestMessageSetExtension1Desc: GenDescMessage<TestMessageSetExtension1>;
+export declare const TestMessageSetExtension1Schema: GenDescMessage<TestMessageSetExtension1>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestMessageSetExtension1 message_set_extension = 1545008;
@@ -143,9 +143,9 @@ export declare type TestMessageSetExtension2 = Message<"protobuf_unittest.TestMe
 
 /**
  * Describes the message protobuf_unittest.TestMessageSetExtension2.
- * Use `create(TestMessageSetExtension2Desc)` to create a new message.
+ * Use `create(TestMessageSetExtension2Schema)` to create a new message.
  */
-export declare const TestMessageSetExtension2Desc: GenDescMessage<TestMessageSetExtension2>;
+export declare const TestMessageSetExtension2Schema: GenDescMessage<TestMessageSetExtension2>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestMessageSetExtension2 message_set_extension = 1547769;
@@ -169,9 +169,9 @@ export declare type TestMessageSetExtension3 = Message<"protobuf_unittest.TestMe
 
 /**
  * Describes the message protobuf_unittest.TestMessageSetExtension3.
- * Use `create(TestMessageSetExtension3Desc)` to create a new message.
+ * Use `create(TestMessageSetExtension3Schema)` to create a new message.
  */
-export declare const TestMessageSetExtension3Desc: GenDescMessage<TestMessageSetExtension3>;
+export declare const TestMessageSetExtension3Schema: GenDescMessage<TestMessageSetExtension3>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestMessageSetExtension3 message_set_extension = 195273129;
@@ -192,9 +192,9 @@ export declare type RawMessageSet = Message<"protobuf_unittest.RawMessageSet"> &
 
 /**
  * Describes the message protobuf_unittest.RawMessageSet.
- * Use `create(RawMessageSetDesc)` to create a new message.
+ * Use `create(RawMessageSetSchema)` to create a new message.
  */
-export declare const RawMessageSetDesc: GenDescMessage<RawMessageSet>;
+export declare const RawMessageSetSchema: GenDescMessage<RawMessageSet>;
 
 /**
  * @generated from message protobuf_unittest.RawMessageSet.Item
@@ -213,7 +213,7 @@ export declare type RawMessageSet_Item = Message<"protobuf_unittest.RawMessageSe
 
 /**
  * Describes the message protobuf_unittest.RawMessageSet.Item.
- * Use `create(RawMessageSet_ItemDesc)` to create a new message.
+ * Use `create(RawMessageSet_ItemSchema)` to create a new message.
  */
-export declare const RawMessageSet_ItemDesc: GenDescMessage<RawMessageSet_Item>;
+export declare const RawMessageSet_ItemSchema: GenDescMessage<RawMessageSet_Item>;
 

@@ -24,7 +24,7 @@ import { messageDesc } from "../../../../codegenv1/message.js";
 /**
  * Describes the file google/protobuf/field_mask.proto.
  */
-export const fileDesc_google_protobuf_field_mask: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_field_mask: GenDescFile = /*@__PURE__*/
   fileDesc("CiBnb29nbGUvcHJvdG9idWYvZmllbGRfbWFzay5wcm90bxIPZ29vZ2xlLnByb3RvYnVmIhoKCUZpZWxkTWFzaxINCgVwYXRocxgBIAMoCUKFAQoTY29tLmdvb2dsZS5wcm90b2J1ZkIORmllbGRNYXNrUHJvdG9QAVoyZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vZmllbGRtYXNrcGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
 
 /**
@@ -241,8 +241,8 @@ export type FieldMask = Message<"google.protobuf.FieldMask"> & {
 
 /**
  * Describes the message google.protobuf.FieldMask.
- * Use `create(FieldMaskDesc)` to create a new message.
+ * Use `create(FieldMaskSchema)` to create a new message.
  */
-export const FieldMaskDesc: GenDescMessage<FieldMask> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_field_mask, 0);
+export const FieldMaskSchema: GenDescMessage<FieldMask> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_field_mask, 0);
 

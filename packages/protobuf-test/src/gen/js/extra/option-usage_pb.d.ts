@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/option-usage.proto.
  */
-export declare const fileDesc_extra_option_usage: GenDescFile;
+export declare const file_extra_option_usage: GenDescFile;
 
 /**
  * @generated from message spec.MessageWithOptions
@@ -47,9 +47,9 @@ export declare type MessageWithOptions = Message<"spec.MessageWithOptions"> & {
 
 /**
  * Describes the message spec.MessageWithOptions.
- * Use `create(MessageWithOptionsDesc)` to create a new message.
+ * Use `create(MessageWithOptionsSchema)` to create a new message.
  */
-export declare const MessageWithOptionsDesc: GenDescMessage<MessageWithOptions>;
+export declare const MessageWithOptionsSchema: GenDescMessage<MessageWithOptions>;
 
 /**
  * @generated from enum spec.EnumWithOptions
@@ -64,7 +64,7 @@ export enum EnumWithOptions {
 /**
  * Describes the enum spec.EnumWithOptions.
  */
-export declare const EnumWithOptionsDesc: GenDescEnum<EnumWithOptions>;
+export declare const EnumWithOptionsSchema: GenDescEnum<EnumWithOptions>;
 
 /**
  * @generated from service spec.ServiceWithOptions
@@ -75,8 +75,8 @@ export declare const ServiceWithOptions: GenDescService<{
    */
   foo: {
     methodKind: "unary";
-    input: typeof MessageWithOptionsDesc;
-    output: typeof MessageWithOptionsDesc;
+    input: typeof MessageWithOptionsSchema;
+    output: typeof MessageWithOptionsSchema;
   },
 }
 >;

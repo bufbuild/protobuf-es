@@ -23,7 +23,7 @@ import type { UInt32Value } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file extra/proto3.proto.
  */
-export declare const fileDesc_extra_proto3: GenDescFile;
+export declare const file_extra_proto3: GenDescFile;
 
 /**
  * Note: We do not exhaust all field types
@@ -335,9 +335,9 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
 
 /**
  * Describes the message spec.Proto3Message.
- * Use `create(Proto3MessageDesc)` to create a new message.
+ * Use `create(Proto3MessageSchema)` to create a new message.
  */
-export declare const Proto3MessageDesc: GenDescMessage<Proto3Message>;
+export declare const Proto3MessageSchema: GenDescMessage<Proto3Message>;
 
 /**
  * @generated from enum spec.Proto3Enum
@@ -362,5 +362,5 @@ export enum Proto3Enum {
 /**
  * Describes the enum spec.Proto3Enum.
  */
-export declare const Proto3EnumDesc: GenDescEnum<Proto3Enum>;
+export declare const Proto3EnumSchema: GenDescEnum<Proto3Enum>;
 

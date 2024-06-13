@@ -13,7 +13,10 @@
 // limitations under the License.
 
 import { describe, test, expect } from "@jest/globals";
-import type { Int32ValueDesc, StringValueDesc } from "@bufbuild/protobuf/wkt";
+import type {
+  Int32ValueSchema,
+  StringValueSchema,
+} from "@bufbuild/protobuf/wkt";
 import { hasExtension } from "@bufbuild/protobuf";
 import type { GenDescService } from "@bufbuild/protobuf/codegenv1";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
@@ -34,40 +37,40 @@ import * as options_ts from "./gen/ts/extra/options_pb.js";
 import * as option_usage_ts from "./gen/ts/extra/option-usage_pb.js";
 
 test("source retention options are unavailable in generated code", () => {
-  const fileOptions = option_usage_ts.fileDesc_extra_option_usage.proto.options;
+  const fileOptions = option_usage_ts.file_extra_option_usage.proto.options;
   expect(
     !!fileOptions &&
       hasExtension(fileOptions, options_ts.file_option_retention_source),
   ).toBe(false);
 
-  const messageOptions = option_usage_ts.MessageWithOptionsDesc.proto.options;
+  const messageOptions = option_usage_ts.MessageWithOptionsSchema.proto.options;
   expect(
     !!messageOptions &&
       hasExtension(messageOptions, options_ts.message_option_retention_source),
   ).toBe(false);
 
   const fieldOptions =
-    option_usage_ts.MessageWithOptionsDesc.fields[0].proto.options;
+    option_usage_ts.MessageWithOptionsSchema.fields[0].proto.options;
   expect(
     !!fieldOptions &&
       hasExtension(fieldOptions, options_ts.field_option_retention_source),
   ).toBe(false);
 
   const oneofOptions =
-    option_usage_ts.MessageWithOptionsDesc.oneofs[0].proto.options;
+    option_usage_ts.MessageWithOptionsSchema.oneofs[0].proto.options;
   expect(
     !!oneofOptions &&
       hasExtension(oneofOptions, options_ts.oneof_option_retention_source),
   ).toBe(false);
 
-  const enumOptions = option_usage_ts.EnumWithOptionsDesc.proto.options;
+  const enumOptions = option_usage_ts.EnumWithOptionsSchema.proto.options;
   expect(
     !!enumOptions &&
       hasExtension(enumOptions, options_ts.enum_option_retention_source),
   ).toBe(false);
 
   const enumValueOptions =
-    option_usage_ts.EnumWithOptionsDesc.values[0].proto.options;
+    option_usage_ts.EnumWithOptionsSchema.values[0].proto.options;
   expect(
     !!enumValueOptions &&
       hasExtension(
@@ -159,23 +162,23 @@ test("service generates as expected", () => {
   type Expected = {
     unary: {
       methodKind: "unary";
-      input: typeof StringValueDesc;
-      output: typeof Int32ValueDesc;
+      input: typeof StringValueSchema;
+      output: typeof Int32ValueSchema;
     };
     serverStream: {
       methodKind: "server_streaming";
-      input: typeof StringValueDesc;
-      output: typeof Int32ValueDesc;
+      input: typeof StringValueSchema;
+      output: typeof Int32ValueSchema;
     };
     clientStream: {
       methodKind: "client_streaming";
-      input: typeof StringValueDesc;
-      output: typeof Int32ValueDesc;
+      input: typeof StringValueSchema;
+      output: typeof Int32ValueSchema;
     };
     bidi: {
       methodKind: "bidi_streaming";
-      input: typeof StringValueDesc;
-      output: typeof Int32ValueDesc;
+      input: typeof StringValueSchema;
+      output: typeof Int32ValueSchema;
     };
   };
   type Actual<T> = T extends GenDescService<infer Shape> ? Shape : never;
@@ -245,8 +248,8 @@ describe("ts generated code is equal to js generated code", () => {
 
 describe("GenDescMessage.field", () => {
   test("is type safe", () => {
-    proto3_ts.Proto3MessageDesc.field.optionalStringField;
+    proto3_ts.Proto3MessageSchema.field.optionalStringField;
     // @ts-expect-error TS2339: Property foo does not exist on type
-    proto3_ts.Proto3MessageDesc.field.foo;
+    proto3_ts.Proto3MessageSchema.field.foo;
   });
 });

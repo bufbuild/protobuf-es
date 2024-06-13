@@ -23,7 +23,7 @@ import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file google/protobuf/unittest_features.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_features: GenDescFile;
+export declare const file_google_protobuf_unittest_features: GenDescFile;
 
 /**
  * @generated from message pb.TestMessage
@@ -33,9 +33,9 @@ export declare type TestMessage = Message<"pb.TestMessage"> & {
 
 /**
  * Describes the message pb.TestMessage.
- * Use `create(TestMessageDesc)` to create a new message.
+ * Use `create(TestMessageSchema)` to create a new message.
  */
-export declare const TestMessageDesc: GenDescMessage<TestMessage>;
+export declare const TestMessageSchema: GenDescMessage<TestMessage>;
 
 /**
  * @generated from message pb.TestMessage.Nested
@@ -45,9 +45,9 @@ export declare type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
 
 /**
  * Describes the message pb.TestMessage.Nested.
- * Use `create(TestMessage_NestedDesc)` to create a new message.
+ * Use `create(TestMessage_NestedSchema)` to create a new message.
  */
-export declare const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested>;
+export declare const TestMessage_NestedSchema: GenDescMessage<TestMessage_Nested>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test_nested = 9997;
@@ -146,9 +146,9 @@ export declare type TestFeatures = Message<"pb.TestFeatures"> & {
 
 /**
  * Describes the message pb.TestFeatures.
- * Use `create(TestFeaturesDesc)` to create a new message.
+ * Use `create(TestFeaturesSchema)` to create a new message.
  */
-export declare const TestFeaturesDesc: GenDescMessage<TestFeatures>;
+export declare const TestFeaturesSchema: GenDescMessage<TestFeatures>;
 
 /**
  * @generated from enum pb.EnumFeature
@@ -248,7 +248,7 @@ export enum EnumFeature {
 /**
  * Describes the enum pb.EnumFeature.
  */
-export declare const EnumFeatureDesc: GenDescEnum<EnumFeature>;
+export declare const EnumFeatureSchema: GenDescEnum<EnumFeature>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test = 9999;

@@ -27,38 +27,38 @@ import {
 import {
   type ConformanceRequest,
   type ConformanceResponse,
-  ConformanceRequestDesc,
-  ConformanceResponseDesc,
-  FailureSetDesc,
+  ConformanceRequestSchema,
+  ConformanceResponseSchema,
+  FailureSetSchema,
   TestCategory,
   WireFormat,
 } from "./gen/conformance/conformance_pb.js";
-import { fileDesc_google_protobuf_test_messages_proto3 } from "./gen/google/protobuf/test_messages_proto3_pb.js";
-import { fileDesc_google_protobuf_test_messages_proto2 } from "./gen/google/protobuf/test_messages_proto2_pb.js";
-import { fileDesc_google_protobuf_test_messages_edition2023 } from "./gen/google/protobuf/test_messages_edition2023_pb.js";
-import { fileDesc_google_protobuf_test_messages_proto2_editions } from "./gen/google/protobuf/test_messages_proto2_editions_pb.js";
-import { fileDesc_google_protobuf_test_messages_proto3_editions } from "./gen/google/protobuf/test_messages_proto3_editions_pb.js";
+import { file_google_protobuf_test_messages_proto3 } from "./gen/google/protobuf/test_messages_proto3_pb.js";
+import { file_google_protobuf_test_messages_proto2 } from "./gen/google/protobuf/test_messages_proto2_pb.js";
+import { file_google_protobuf_test_messages_edition2023 } from "./gen/google/protobuf/test_messages_edition2023_pb.js";
+import { file_google_protobuf_test_messages_proto2_editions } from "./gen/google/protobuf/test_messages_proto2_editions_pb.js";
+import { file_google_protobuf_test_messages_proto3_editions } from "./gen/google/protobuf/test_messages_proto3_editions_pb.js";
 import {
-  fileDesc_google_protobuf_any,
-  fileDesc_google_protobuf_duration,
-  fileDesc_google_protobuf_field_mask,
-  fileDesc_google_protobuf_struct,
-  fileDesc_google_protobuf_timestamp,
-  fileDesc_google_protobuf_wrappers,
+  file_google_protobuf_any,
+  file_google_protobuf_duration,
+  file_google_protobuf_field_mask,
+  file_google_protobuf_struct,
+  file_google_protobuf_timestamp,
+  file_google_protobuf_wrappers,
 } from "@bufbuild/protobuf/wkt";
 
 const registry = createRegistry(
-  fileDesc_google_protobuf_test_messages_proto2,
-  fileDesc_google_protobuf_test_messages_proto3,
-  fileDesc_google_protobuf_test_messages_edition2023,
-  fileDesc_google_protobuf_test_messages_proto2_editions,
-  fileDesc_google_protobuf_test_messages_proto3_editions,
-  fileDesc_google_protobuf_any,
-  fileDesc_google_protobuf_struct,
-  fileDesc_google_protobuf_field_mask,
-  fileDesc_google_protobuf_timestamp,
-  fileDesc_google_protobuf_duration,
-  fileDesc_google_protobuf_wrappers,
+  file_google_protobuf_test_messages_proto2,
+  file_google_protobuf_test_messages_proto3,
+  file_google_protobuf_test_messages_edition2023,
+  file_google_protobuf_test_messages_proto2_editions,
+  file_google_protobuf_test_messages_proto3_editions,
+  file_google_protobuf_any,
+  file_google_protobuf_struct,
+  file_google_protobuf_field_mask,
+  file_google_protobuf_timestamp,
+  file_google_protobuf_duration,
+  file_google_protobuf_wrappers,
 );
 
 void main();
@@ -66,17 +66,17 @@ void main();
 async function main() {
   let testCount = 0;
   try {
-    const requests = readMessages(process.stdin, ConformanceRequestDesc);
+    const requests = readMessages(process.stdin, ConformanceRequestSchema);
     const responses = processMessages(
       requests,
       (request: ConformanceRequest): ConformanceResponse => {
         testCount += 1;
-        return create(ConformanceResponseDesc, {
+        return create(ConformanceResponseSchema, {
           result: test(request),
         });
       },
     );
-    await writeMessages(process.stdout, ConformanceResponseDesc, responses);
+    await writeMessages(process.stdout, ConformanceResponseSchema, responses);
   } catch (e) {
     process.stderr.write(
       `conformance.ts: exiting after ${testCount} tests: ${String(e)}`,
@@ -86,14 +86,14 @@ async function main() {
 }
 
 function test(request: ConformanceRequest): ConformanceResponse["result"] {
-  if (request.messageType === FailureSetDesc.typeName) {
+  if (request.messageType === FailureSetSchema.typeName) {
     // > The conformance runner will request a list of failures as the first request.
     // > This will be known by message_type == "conformance.FailureSet", a conformance
     // > test should return a serialized FailureSet in protobuf_payload.
-    const failureSet = create(FailureSetDesc);
+    const failureSet = create(FailureSetSchema);
     return {
       case: "protobufPayload",
-      value: toBinary(FailureSetDesc, failureSet),
+      value: toBinary(FailureSetSchema, failureSet),
     };
   }
 
