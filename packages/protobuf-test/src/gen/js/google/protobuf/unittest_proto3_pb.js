@@ -34,22 +34,22 @@ export const TestAllTypesDesc = /*@__PURE__*/
 
 /**
  * Describes the message proto3_unittest.TestAllTypes.NestedMessage.
- * Use `create(TestAllTypes_NestedMessageDesc)` to create a new message.
+ * Use `create(TestAllTypes_NestedMessage_Desc)` to create a new message.
  */
-export const TestAllTypes_NestedMessageDesc = /*@__PURE__*/
+export const TestAllTypes_NestedMessage_Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3, 0, 0);
 
 /**
  * Describes the enum proto3_unittest.TestAllTypes.NestedEnum.
  */
-export const TestAllTypes_NestedEnumDesc = /*@__PURE__*/
+export const TestAllTypes_NestedEnum_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3, 0, 0);
 
 /**
  * @generated from enum proto3_unittest.TestAllTypes.NestedEnum
  */
 export const TestAllTypes_NestedEnum = /*@__PURE__*/
-  tsEnum(TestAllTypes_NestedEnumDesc);
+  tsEnum(TestAllTypes_NestedEnum_Desc);
 
 /**
  * Describes the message proto3_unittest.TestPackedTypes.
@@ -103,14 +103,14 @@ export const TestOneof2Desc = /*@__PURE__*/
 /**
  * Describes the enum proto3_unittest.TestOneof2.NestedEnum.
  */
-export const TestOneof2_NestedEnumDesc = /*@__PURE__*/
+export const TestOneof2_NestedEnum_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3, 7, 0);
 
 /**
  * @generated from enum proto3_unittest.TestOneof2.NestedEnum
  */
 export const TestOneof2_NestedEnum = /*@__PURE__*/
-  tsEnum(TestOneof2_NestedEnumDesc);
+  tsEnum(TestOneof2_NestedEnum_Desc);
 
 /**
  * Describes the enum proto3_unittest.ForeignEnum.

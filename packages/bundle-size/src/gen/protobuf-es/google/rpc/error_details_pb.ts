@@ -226,9 +226,9 @@ export type QuotaFailure_Violation = Message<"google.rpc.QuotaFailure.Violation"
 
 /**
  * Describes the message google.rpc.QuotaFailure.Violation.
- * Use `create(QuotaFailure_ViolationDesc)` to create a new message.
+ * Use `create(QuotaFailure_Violation_Desc)` to create a new message.
  */
-export const QuotaFailure_ViolationDesc: GenDescMessage<QuotaFailure_Violation> = /*@__PURE__*/
+export const QuotaFailure_Violation_Desc: GenDescMessage<QuotaFailure_Violation> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_error_details, 3, 0);
 
 /**
@@ -293,9 +293,9 @@ export type PreconditionFailure_Violation = Message<"google.rpc.PreconditionFail
 
 /**
  * Describes the message google.rpc.PreconditionFailure.Violation.
- * Use `create(PreconditionFailure_ViolationDesc)` to create a new message.
+ * Use `create(PreconditionFailure_Violation_Desc)` to create a new message.
  */
-export const PreconditionFailure_ViolationDesc: GenDescMessage<PreconditionFailure_Violation> = /*@__PURE__*/
+export const PreconditionFailure_Violation_Desc: GenDescMessage<PreconditionFailure_Violation> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_error_details, 4, 0);
 
 /**
@@ -379,9 +379,9 @@ export type BadRequest_FieldViolation = Message<"google.rpc.BadRequest.FieldViol
 
 /**
  * Describes the message google.rpc.BadRequest.FieldViolation.
- * Use `create(BadRequest_FieldViolationDesc)` to create a new message.
+ * Use `create(BadRequest_FieldViolation_Desc)` to create a new message.
  */
-export const BadRequest_FieldViolationDesc: GenDescMessage<BadRequest_FieldViolation> = /*@__PURE__*/
+export const BadRequest_FieldViolation_Desc: GenDescMessage<BadRequest_FieldViolation> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_error_details, 5, 0);
 
 /**
@@ -514,9 +514,9 @@ export type Help_Link = Message<"google.rpc.Help.Link"> & {
 
 /**
  * Describes the message google.rpc.Help.Link.
- * Use `create(Help_LinkDesc)` to create a new message.
+ * Use `create(Help_Link_Desc)` to create a new message.
  */
-export const Help_LinkDesc: GenDescMessage<Help_Link> = /*@__PURE__*/
+export const Help_Link_Desc: GenDescMessage<Help_Link> = /*@__PURE__*/
   messageDesc(fileDesc_google_rpc_error_details, 8, 0);
 
 /**

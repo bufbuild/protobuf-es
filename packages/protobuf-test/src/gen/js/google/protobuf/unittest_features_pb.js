@@ -34,9 +34,9 @@ export const TestMessageDesc = /*@__PURE__*/
 
 /**
  * Describes the message pb.TestMessage.Nested.
- * Use `create(TestMessage_NestedDesc)` to create a new message.
+ * Use `create(TestMessage_Nested_Desc)` to create a new message.
  */
-export const TestMessage_NestedDesc = /*@__PURE__*/
+export const TestMessage_Nested_Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_features, 0, 0);
 
 /**

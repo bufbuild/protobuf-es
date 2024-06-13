@@ -60,8 +60,8 @@ export type MessageFieldMessage_TestMessage = Message<"spec.MessageFieldMessage.
 
 /**
  * Describes the message spec.MessageFieldMessage.TestMessage.
- * Use `create(MessageFieldMessage_TestMessageDesc)` to create a new message.
+ * Use `create(MessageFieldMessage_TestMessage_Desc)` to create a new message.
  */
-export const MessageFieldMessage_TestMessageDesc: GenDescMessage<MessageFieldMessage_TestMessage> = /*@__PURE__*/
+export const MessageFieldMessage_TestMessage_Desc: GenDescMessage<MessageFieldMessage_TestMessage> = /*@__PURE__*/
   messageDesc(fileDesc_extra_msg_message, 0, 0);
 

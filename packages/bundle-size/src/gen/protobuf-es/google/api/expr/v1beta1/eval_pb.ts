@@ -86,9 +86,9 @@ export type EvalState_Result = Message<"google.api.expr.v1beta1.EvalState.Result
 
 /**
  * Describes the message google.api.expr.v1beta1.EvalState.Result.
- * Use `create(EvalState_ResultDesc)` to create a new message.
+ * Use `create(EvalState_Result_Desc)` to create a new message.
  */
-export const EvalState_ResultDesc: GenDescMessage<EvalState_Result> = /*@__PURE__*/
+export const EvalState_Result_Desc: GenDescMessage<EvalState_Result> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_eval, 0, 0);
 
 /**

@@ -167,7 +167,7 @@ describe("clone()", () => {
       msg.requiredInt64JsStringField = "456";
       msg.requiredEnumField = proto2_ts.Proto2Enum.YES;
       msg.requiredMessageField = create(desc);
-      msg.requiredgroup = create(proto2_ts.Proto2Message_RequiredGroupDesc);
+      msg.requiredgroup = create(proto2_ts.Proto2Message_RequiredGroup_Desc);
       msg.requiredWrappedUint32Field = 456;
 
       // required with default
@@ -180,7 +180,7 @@ describe("clone()", () => {
       msg.requiredDefaultEnumField = proto2_ts.Proto2Enum.YES;
       msg.requiredDefaultMessageField = create(desc);
       msg.requireddefaultgroup = create(
-        proto2_ts.Proto2Message_RequiredDefaultGroupDesc,
+        proto2_ts.Proto2Message_RequiredDefaultGroup_Desc,
       );
       msg.requiredDefaultWrappedUint32Field = 456;
 
@@ -192,7 +192,7 @@ describe("clone()", () => {
       msg.optionalEnumField = proto2_ts.Proto2Enum.YES;
       msg.optionalMessageField = create(desc);
       msg.optionalWrappedUint32Field = 0;
-      msg.optionalgroup = create(proto2_ts.Proto2Message_OptionalGroupDesc);
+      msg.optionalgroup = create(proto2_ts.Proto2Message_OptionalGroup_Desc);
 
       // optional with default
       msg.optionalDefaultStringField = "";
@@ -203,7 +203,7 @@ describe("clone()", () => {
       msg.optionalDefaultMessageField = create(desc);
       msg.optionalDefaultWrappedUint32Field = 0;
       msg.optionaldefaultgroup = create(
-        proto2_ts.Proto2Message_OptionalDefaultGroupDesc,
+        proto2_ts.Proto2Message_OptionalDefaultGroup_Desc,
       );
 
       // repeated

@@ -494,9 +494,9 @@ export type Edition2023Message_Child = Message<"spec.Edition2023Message.Child"> 
 
 /**
  * Describes the message spec.Edition2023Message.Child.
- * Use `create(Edition2023Message_ChildDesc)` to create a new message.
+ * Use `create(Edition2023Message_Child_Desc)` to create a new message.
  */
-export const Edition2023Message_ChildDesc: GenDescMessage<Edition2023Message_Child> = /*@__PURE__*/
+export const Edition2023Message_Child_Desc: GenDescMessage<Edition2023Message_Child> = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023, 0, 0);
 
 /**
@@ -576,9 +576,9 @@ export type Edition2023FromProto2Message_OptionalGroup = Message<"spec.Edition20
 
 /**
  * Describes the message spec.Edition2023FromProto2Message.OptionalGroup.
- * Use `create(Edition2023FromProto2Message_OptionalGroupDesc)` to create a new message.
+ * Use `create(Edition2023FromProto2Message_OptionalGroup_Desc)` to create a new message.
  */
-export const Edition2023FromProto2Message_OptionalGroupDesc: GenDescMessage<Edition2023FromProto2Message_OptionalGroup> = /*@__PURE__*/
+export const Edition2023FromProto2Message_OptionalGroup_Desc: GenDescMessage<Edition2023FromProto2Message_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023, 1, 0);
 
 /**
@@ -593,9 +593,9 @@ export type Edition2023FromProto2Message_RequiredGroup = Message<"spec.Edition20
 
 /**
  * Describes the message spec.Edition2023FromProto2Message.RequiredGroup.
- * Use `create(Edition2023FromProto2Message_RequiredGroupDesc)` to create a new message.
+ * Use `create(Edition2023FromProto2Message_RequiredGroup_Desc)` to create a new message.
  */
-export const Edition2023FromProto2Message_RequiredGroupDesc: GenDescMessage<Edition2023FromProto2Message_RequiredGroup> = /*@__PURE__*/
+export const Edition2023FromProto2Message_RequiredGroup_Desc: GenDescMessage<Edition2023FromProto2Message_RequiredGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023, 1, 1);
 
 /**

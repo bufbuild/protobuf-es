@@ -489,9 +489,9 @@ export type TestAllTypes_NestedMessage = Message<"protobuf_unittest.TestAllTypes
 
 /**
  * Describes the message protobuf_unittest.TestAllTypes.NestedMessage.
- * Use `create(TestAllTypes_NestedMessageDesc)` to create a new message.
+ * Use `create(TestAllTypes_NestedMessage_Desc)` to create a new message.
  */
-export const TestAllTypes_NestedMessageDesc: GenDescMessage<TestAllTypes_NestedMessage> = /*@__PURE__*/
+export const TestAllTypes_NestedMessage_Desc: GenDescMessage<TestAllTypes_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 0, 0);
 
 /**
@@ -506,9 +506,9 @@ export type TestAllTypes_OptionalGroup = Message<"protobuf_unittest.TestAllTypes
 
 /**
  * Describes the message protobuf_unittest.TestAllTypes.OptionalGroup.
- * Use `create(TestAllTypes_OptionalGroupDesc)` to create a new message.
+ * Use `create(TestAllTypes_OptionalGroup_Desc)` to create a new message.
  */
-export const TestAllTypes_OptionalGroupDesc: GenDescMessage<TestAllTypes_OptionalGroup> = /*@__PURE__*/
+export const TestAllTypes_OptionalGroup_Desc: GenDescMessage<TestAllTypes_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 0, 1);
 
 /**
@@ -523,9 +523,9 @@ export type TestAllTypes_RepeatedGroup = Message<"protobuf_unittest.TestAllTypes
 
 /**
  * Describes the message protobuf_unittest.TestAllTypes.RepeatedGroup.
- * Use `create(TestAllTypes_RepeatedGroupDesc)` to create a new message.
+ * Use `create(TestAllTypes_RepeatedGroup_Desc)` to create a new message.
  */
-export const TestAllTypes_RepeatedGroupDesc: GenDescMessage<TestAllTypes_RepeatedGroup> = /*@__PURE__*/
+export const TestAllTypes_RepeatedGroup_Desc: GenDescMessage<TestAllTypes_RepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 0, 2);
 
 /**
@@ -558,7 +558,7 @@ export enum TestAllTypes_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestAllTypes.NestedEnum.
  */
-export const TestAllTypes_NestedEnumDesc: GenDescEnum<TestAllTypes_NestedEnum> = /*@__PURE__*/
+export const TestAllTypes_NestedEnum_Desc: GenDescEnum<TestAllTypes_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 0, 0);
 
 /**
@@ -822,9 +822,9 @@ export type TestGroup_OptionalGroup = Message<"protobuf_unittest.TestGroup.Optio
 
 /**
  * Describes the message protobuf_unittest.TestGroup.OptionalGroup.
- * Use `create(TestGroup_OptionalGroupDesc)` to create a new message.
+ * Use `create(TestGroup_OptionalGroup_Desc)` to create a new message.
  */
-export const TestGroup_OptionalGroupDesc: GenDescMessage<TestGroup_OptionalGroup> = /*@__PURE__*/
+export const TestGroup_OptionalGroup_Desc: GenDescMessage<TestGroup_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 10, 0);
 
 /**
@@ -865,9 +865,9 @@ export type TestNestedExtension_OptionalGroup_extension = Message<"protobuf_unit
 
 /**
  * Describes the message protobuf_unittest.TestNestedExtension.OptionalGroup_extension.
- * Use `create(TestNestedExtension_OptionalGroup_extensionDesc)` to create a new message.
+ * Use `create(TestNestedExtension_OptionalGroup_extension_Desc)` to create a new message.
  */
-export const TestNestedExtension_OptionalGroup_extensionDesc: GenDescMessage<TestNestedExtension_OptionalGroup_extension> = /*@__PURE__*/
+export const TestNestedExtension_OptionalGroup_extension_Desc: GenDescMessage<TestNestedExtension_OptionalGroup_extension> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 12, 0);
 
 /**
@@ -969,9 +969,9 @@ export type TestChildExtensionData_NestedTestAllExtensionsData = Message<"protob
 
 /**
  * Describes the message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.
- * Use `create(TestChildExtensionData_NestedTestAllExtensionsDataDesc)` to create a new message.
+ * Use `create(TestChildExtensionData_NestedTestAllExtensionsData_Desc)` to create a new message.
  */
-export const TestChildExtensionData_NestedTestAllExtensionsDataDesc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData> = /*@__PURE__*/
+export const TestChildExtensionData_NestedTestAllExtensionsData_Desc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 14, 0);
 
 /**
@@ -991,9 +991,9 @@ export type TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExte
 
 /**
  * Describes the message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions.
- * Use `create(TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsDesc)` to create a new message.
+ * Use `create(TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions_Desc)` to create a new message.
  */
-export const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsDesc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions> = /*@__PURE__*/
+export const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions_Desc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 14, 0, 0);
 
 /**
@@ -1126,7 +1126,7 @@ export enum TestRequiredEnumNoMask_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestRequiredEnumNoMask.NestedEnum.
  */
-export const TestRequiredEnumNoMask_NestedEnumDesc: GenDescEnum<TestRequiredEnumNoMask_NestedEnum> = /*@__PURE__*/
+export const TestRequiredEnumNoMask_NestedEnum_Desc: GenDescEnum<TestRequiredEnumNoMask_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 18, 0);
 
 /**
@@ -1192,7 +1192,7 @@ export enum TestRequiredEnumMulti_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestRequiredEnumMulti.NestedEnum.
  */
-export const TestRequiredEnumMulti_NestedEnumDesc: GenDescEnum<TestRequiredEnumMulti_NestedEnum> = /*@__PURE__*/
+export const TestRequiredEnumMulti_NestedEnum_Desc: GenDescEnum<TestRequiredEnumMulti_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 19, 0);
 
 /**
@@ -1274,7 +1274,7 @@ export enum TestRequiredNoMaskMulti_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum.
  */
-export const TestRequiredNoMaskMulti_NestedEnumDesc: GenDescEnum<TestRequiredNoMaskMulti_NestedEnum> = /*@__PURE__*/
+export const TestRequiredNoMaskMulti_NestedEnum_Desc: GenDescEnum<TestRequiredNoMaskMulti_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 20, 0);
 
 /**
@@ -1669,9 +1669,9 @@ export type TestPickleNestedMessage_NestedMessage = Message<"protobuf_unittest.T
 
 /**
  * Describes the message protobuf_unittest.TestPickleNestedMessage.NestedMessage.
- * Use `create(TestPickleNestedMessage_NestedMessageDesc)` to create a new message.
+ * Use `create(TestPickleNestedMessage_NestedMessage_Desc)` to create a new message.
  */
-export const TestPickleNestedMessage_NestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage> = /*@__PURE__*/
+export const TestPickleNestedMessage_NestedMessage_Desc: GenDescMessage<TestPickleNestedMessage_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 28, 0);
 
 /**
@@ -1686,9 +1686,9 @@ export type TestPickleNestedMessage_NestedMessage_NestedNestedMessage = Message<
 
 /**
  * Describes the message protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage.
- * Use `create(TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc)` to create a new message.
+ * Use `create(TestPickleNestedMessage_NestedMessage_NestedNestedMessage_Desc)` to create a new message.
  */
-export const TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> = /*@__PURE__*/
+export const TestPickleNestedMessage_NestedMessage_NestedNestedMessage_Desc: GenDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 28, 0, 0);
 
 /**
@@ -1794,9 +1794,9 @@ export type TestMutualRecursionA_SubMessage = Message<"protobuf_unittest.TestMut
 
 /**
  * Describes the message protobuf_unittest.TestMutualRecursionA.SubMessage.
- * Use `create(TestMutualRecursionA_SubMessageDesc)` to create a new message.
+ * Use `create(TestMutualRecursionA_SubMessage_Desc)` to create a new message.
  */
-export const TestMutualRecursionA_SubMessageDesc: GenDescMessage<TestMutualRecursionA_SubMessage> = /*@__PURE__*/
+export const TestMutualRecursionA_SubMessage_Desc: GenDescMessage<TestMutualRecursionA_SubMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 32, 0);
 
 /**
@@ -1818,9 +1818,9 @@ export type TestMutualRecursionA_SubGroup = Message<"protobuf_unittest.TestMutua
 
 /**
  * Describes the message protobuf_unittest.TestMutualRecursionA.SubGroup.
- * Use `create(TestMutualRecursionA_SubGroupDesc)` to create a new message.
+ * Use `create(TestMutualRecursionA_SubGroup_Desc)` to create a new message.
  */
-export const TestMutualRecursionA_SubGroupDesc: GenDescMessage<TestMutualRecursionA_SubGroup> = /*@__PURE__*/
+export const TestMutualRecursionA_SubGroup_Desc: GenDescMessage<TestMutualRecursionA_SubGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 32, 1);
 
 /**
@@ -1835,9 +1835,9 @@ export type TestMutualRecursionA_SubGroupR = Message<"protobuf_unittest.TestMutu
 
 /**
  * Describes the message protobuf_unittest.TestMutualRecursionA.SubGroupR.
- * Use `create(TestMutualRecursionA_SubGroupRDesc)` to create a new message.
+ * Use `create(TestMutualRecursionA_SubGroupR_Desc)` to create a new message.
  */
-export const TestMutualRecursionA_SubGroupRDesc: GenDescMessage<TestMutualRecursionA_SubGroupR> = /*@__PURE__*/
+export const TestMutualRecursionA_SubGroupR_Desc: GenDescMessage<TestMutualRecursionA_SubGroupR> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 32, 2);
 
 /**
@@ -1891,9 +1891,9 @@ export type TestIsInitialized_SubMessage = Message<"protobuf_unittest.TestIsInit
 
 /**
  * Describes the message protobuf_unittest.TestIsInitialized.SubMessage.
- * Use `create(TestIsInitialized_SubMessageDesc)` to create a new message.
+ * Use `create(TestIsInitialized_SubMessage_Desc)` to create a new message.
  */
-export const TestIsInitialized_SubMessageDesc: GenDescMessage<TestIsInitialized_SubMessage> = /*@__PURE__*/
+export const TestIsInitialized_SubMessage_Desc: GenDescMessage<TestIsInitialized_SubMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 34, 0);
 
 /**
@@ -1908,9 +1908,9 @@ export type TestIsInitialized_SubMessage_SubGroup = Message<"protobuf_unittest.T
 
 /**
  * Describes the message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup.
- * Use `create(TestIsInitialized_SubMessage_SubGroupDesc)` to create a new message.
+ * Use `create(TestIsInitialized_SubMessage_SubGroup_Desc)` to create a new message.
  */
-export const TestIsInitialized_SubMessage_SubGroupDesc: GenDescMessage<TestIsInitialized_SubMessage_SubGroup> = /*@__PURE__*/
+export const TestIsInitialized_SubMessage_SubGroup_Desc: GenDescMessage<TestIsInitialized_SubMessage_SubGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 34, 0, 0);
 
 /**
@@ -1961,9 +1961,9 @@ export type TestDupFieldNumber_Foo = Message<"protobuf_unittest.TestDupFieldNumb
 
 /**
  * Describes the message protobuf_unittest.TestDupFieldNumber.Foo.
- * Use `create(TestDupFieldNumber_FooDesc)` to create a new message.
+ * Use `create(TestDupFieldNumber_Foo_Desc)` to create a new message.
  */
-export const TestDupFieldNumber_FooDesc: GenDescMessage<TestDupFieldNumber_Foo> = /*@__PURE__*/
+export const TestDupFieldNumber_Foo_Desc: GenDescMessage<TestDupFieldNumber_Foo> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 35, 0);
 
 /**
@@ -1978,9 +1978,9 @@ export type TestDupFieldNumber_Bar = Message<"protobuf_unittest.TestDupFieldNumb
 
 /**
  * Describes the message protobuf_unittest.TestDupFieldNumber.Bar.
- * Use `create(TestDupFieldNumber_BarDesc)` to create a new message.
+ * Use `create(TestDupFieldNumber_Bar_Desc)` to create a new message.
  */
-export const TestDupFieldNumber_BarDesc: GenDescMessage<TestDupFieldNumber_Bar> = /*@__PURE__*/
+export const TestDupFieldNumber_Bar_Desc: GenDescMessage<TestDupFieldNumber_Bar> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 35, 1);
 
 /**
@@ -2075,9 +2075,9 @@ export type TestEagerMaybeLazy_NestedMessage = Message<"protobuf_unittest.TestEa
 
 /**
  * Describes the message protobuf_unittest.TestEagerMaybeLazy.NestedMessage.
- * Use `create(TestEagerMaybeLazy_NestedMessageDesc)` to create a new message.
+ * Use `create(TestEagerMaybeLazy_NestedMessage_Desc)` to create a new message.
  */
-export const TestEagerMaybeLazy_NestedMessageDesc: GenDescMessage<TestEagerMaybeLazy_NestedMessage> = /*@__PURE__*/
+export const TestEagerMaybeLazy_NestedMessage_Desc: GenDescMessage<TestEagerMaybeLazy_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 39, 0);
 
 /**
@@ -2116,9 +2116,9 @@ export type TestNestedMessageHasBits_NestedMessage = Message<"protobuf_unittest.
 
 /**
  * Describes the message protobuf_unittest.TestNestedMessageHasBits.NestedMessage.
- * Use `create(TestNestedMessageHasBits_NestedMessageDesc)` to create a new message.
+ * Use `create(TestNestedMessageHasBits_NestedMessage_Desc)` to create a new message.
  */
-export const TestNestedMessageHasBits_NestedMessageDesc: GenDescMessage<TestNestedMessageHasBits_NestedMessage> = /*@__PURE__*/
+export const TestNestedMessageHasBits_NestedMessage_Desc: GenDescMessage<TestNestedMessageHasBits_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 40, 0);
 
 /**
@@ -2252,9 +2252,9 @@ export type TestFieldOrderings_NestedMessage = Message<"protobuf_unittest.TestFi
 
 /**
  * Describes the message protobuf_unittest.TestFieldOrderings.NestedMessage.
- * Use `create(TestFieldOrderings_NestedMessageDesc)` to create a new message.
+ * Use `create(TestFieldOrderings_NestedMessage_Desc)` to create a new message.
  */
-export const TestFieldOrderings_NestedMessageDesc: GenDescMessage<TestFieldOrderings_NestedMessage> = /*@__PURE__*/
+export const TestFieldOrderings_NestedMessage_Desc: GenDescMessage<TestFieldOrderings_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 42, 0);
 
 /**
@@ -2309,9 +2309,9 @@ export type TestExtensionOrderings2_TestExtensionOrderings3 = Message<"protobuf_
 
 /**
  * Describes the message protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3.
- * Use `create(TestExtensionOrderings2_TestExtensionOrderings3Desc)` to create a new message.
+ * Use `create(TestExtensionOrderings2_TestExtensionOrderings3_Desc)` to create a new message.
  */
-export const TestExtensionOrderings2_TestExtensionOrderings3Desc: GenDescMessage<TestExtensionOrderings2_TestExtensionOrderings3> = /*@__PURE__*/
+export const TestExtensionOrderings2_TestExtensionOrderings3_Desc: GenDescMessage<TestExtensionOrderings2_TestExtensionOrderings3> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 44, 0);
 
 /**
@@ -2897,9 +2897,9 @@ export type TestOneof_FooGroup = Message<"protobuf_unittest.TestOneof.FooGroup">
 
 /**
  * Describes the message protobuf_unittest.TestOneof.FooGroup.
- * Use `create(TestOneof_FooGroupDesc)` to create a new message.
+ * Use `create(TestOneof_FooGroup_Desc)` to create a new message.
  */
-export const TestOneof_FooGroupDesc: GenDescMessage<TestOneof_FooGroup> = /*@__PURE__*/
+export const TestOneof_FooGroup_Desc: GenDescMessage<TestOneof_FooGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 57, 0);
 
 /**
@@ -2951,9 +2951,9 @@ export type TestOneofBackwardsCompatible_FooGroup = Message<"protobuf_unittest.T
 
 /**
  * Describes the message protobuf_unittest.TestOneofBackwardsCompatible.FooGroup.
- * Use `create(TestOneofBackwardsCompatible_FooGroupDesc)` to create a new message.
+ * Use `create(TestOneofBackwardsCompatible_FooGroup_Desc)` to create a new message.
  */
-export const TestOneofBackwardsCompatible_FooGroupDesc: GenDescMessage<TestOneofBackwardsCompatible_FooGroup> = /*@__PURE__*/
+export const TestOneofBackwardsCompatible_FooGroup_Desc: GenDescMessage<TestOneofBackwardsCompatible_FooGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 58, 0);
 
 /**
@@ -3125,9 +3125,9 @@ export type TestOneof2_FooGroup = Message<"protobuf_unittest.TestOneof2.FooGroup
 
 /**
  * Describes the message protobuf_unittest.TestOneof2.FooGroup.
- * Use `create(TestOneof2_FooGroupDesc)` to create a new message.
+ * Use `create(TestOneof2_FooGroup_Desc)` to create a new message.
  */
-export const TestOneof2_FooGroupDesc: GenDescMessage<TestOneof2_FooGroup> = /*@__PURE__*/
+export const TestOneof2_FooGroup_Desc: GenDescMessage<TestOneof2_FooGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 59, 0);
 
 /**
@@ -3152,9 +3152,9 @@ export type TestOneof2_NestedMessage = Message<"protobuf_unittest.TestOneof2.Nes
 
 /**
  * Describes the message protobuf_unittest.TestOneof2.NestedMessage.
- * Use `create(TestOneof2_NestedMessageDesc)` to create a new message.
+ * Use `create(TestOneof2_NestedMessage_Desc)` to create a new message.
  */
-export const TestOneof2_NestedMessageDesc: GenDescMessage<TestOneof2_NestedMessage> = /*@__PURE__*/
+export const TestOneof2_NestedMessage_Desc: GenDescMessage<TestOneof2_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 59, 1);
 
 /**
@@ -3180,7 +3180,7 @@ export enum TestOneof2_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestOneof2.NestedEnum.
  */
-export const TestOneof2_NestedEnumDesc: GenDescEnum<TestOneof2_NestedEnum> = /*@__PURE__*/
+export const TestOneof2_NestedEnum_Desc: GenDescEnum<TestOneof2_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 59, 0);
 
 /**
@@ -3236,9 +3236,9 @@ export type TestRequiredOneof_NestedMessage = Message<"protobuf_unittest.TestReq
 
 /**
  * Describes the message protobuf_unittest.TestRequiredOneof.NestedMessage.
- * Use `create(TestRequiredOneof_NestedMessageDesc)` to create a new message.
+ * Use `create(TestRequiredOneof_NestedMessage_Desc)` to create a new message.
  */
-export const TestRequiredOneof_NestedMessageDesc: GenDescMessage<TestRequiredOneof_NestedMessage> = /*@__PURE__*/
+export const TestRequiredOneof_NestedMessage_Desc: GenDescMessage<TestRequiredOneof_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 60, 0);
 
 /**
@@ -3497,9 +3497,9 @@ export type TestDynamicExtensions_DynamicMessageType = Message<"protobuf_unittes
 
 /**
  * Describes the message protobuf_unittest.TestDynamicExtensions.DynamicMessageType.
- * Use `create(TestDynamicExtensions_DynamicMessageTypeDesc)` to create a new message.
+ * Use `create(TestDynamicExtensions_DynamicMessageType_Desc)` to create a new message.
  */
-export const TestDynamicExtensions_DynamicMessageTypeDesc: GenDescMessage<TestDynamicExtensions_DynamicMessageType> = /*@__PURE__*/
+export const TestDynamicExtensions_DynamicMessageType_Desc: GenDescMessage<TestDynamicExtensions_DynamicMessageType> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 65, 0);
 
 /**
@@ -3525,7 +3525,7 @@ export enum TestDynamicExtensions_DynamicEnumType {
 /**
  * Describes the enum protobuf_unittest.TestDynamicExtensions.DynamicEnumType.
  */
-export const TestDynamicExtensions_DynamicEnumTypeDesc: GenDescEnum<TestDynamicExtensions_DynamicEnumType> = /*@__PURE__*/
+export const TestDynamicExtensions_DynamicEnumType_Desc: GenDescEnum<TestDynamicExtensions_DynamicEnumType> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 65, 0);
 
 /**
@@ -3700,9 +3700,9 @@ export type TestParsingMerge_RepeatedFieldsGenerator = Message<"protobuf_unittes
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.
- * Use `create(TestParsingMerge_RepeatedFieldsGeneratorDesc)` to create a new message.
+ * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Desc)` to create a new message.
  */
-export const TestParsingMerge_RepeatedFieldsGeneratorDesc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator> = /*@__PURE__*/
+export const TestParsingMerge_RepeatedFieldsGenerator_Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 0);
 
 /**
@@ -3717,9 +3717,9 @@ export type TestParsingMerge_RepeatedFieldsGenerator_Group1 = Message<"protobuf_
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1.
- * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group1Desc)` to create a new message.
+ * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group1_Desc)` to create a new message.
  */
-export const TestParsingMerge_RepeatedFieldsGenerator_Group1Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> = /*@__PURE__*/
+export const TestParsingMerge_RepeatedFieldsGenerator_Group1_Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 0, 0);
 
 /**
@@ -3734,9 +3734,9 @@ export type TestParsingMerge_RepeatedFieldsGenerator_Group2 = Message<"protobuf_
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2.
- * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group2Desc)` to create a new message.
+ * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group2_Desc)` to create a new message.
  */
-export const TestParsingMerge_RepeatedFieldsGenerator_Group2Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> = /*@__PURE__*/
+export const TestParsingMerge_RepeatedFieldsGenerator_Group2_Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 0, 1);
 
 /**
@@ -3751,9 +3751,9 @@ export type TestParsingMerge_OptionalGroup = Message<"protobuf_unittest.TestPars
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.OptionalGroup.
- * Use `create(TestParsingMerge_OptionalGroupDesc)` to create a new message.
+ * Use `create(TestParsingMerge_OptionalGroup_Desc)` to create a new message.
  */
-export const TestParsingMerge_OptionalGroupDesc: GenDescMessage<TestParsingMerge_OptionalGroup> = /*@__PURE__*/
+export const TestParsingMerge_OptionalGroup_Desc: GenDescMessage<TestParsingMerge_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 1);
 
 /**
@@ -3768,9 +3768,9 @@ export type TestParsingMerge_RepeatedGroup = Message<"protobuf_unittest.TestPars
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedGroup.
- * Use `create(TestParsingMerge_RepeatedGroupDesc)` to create a new message.
+ * Use `create(TestParsingMerge_RepeatedGroup_Desc)` to create a new message.
  */
-export const TestParsingMerge_RepeatedGroupDesc: GenDescMessage<TestParsingMerge_RepeatedGroup> = /*@__PURE__*/
+export const TestParsingMerge_RepeatedGroup_Desc: GenDescMessage<TestParsingMerge_RepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 68, 2);
 
 /**
@@ -4099,9 +4099,9 @@ export type TestHugeFieldNumbers_OptionalGroup = Message<"protobuf_unittest.Test
 
 /**
  * Describes the message protobuf_unittest.TestHugeFieldNumbers.OptionalGroup.
- * Use `create(TestHugeFieldNumbers_OptionalGroupDesc)` to create a new message.
+ * Use `create(TestHugeFieldNumbers_OptionalGroup_Desc)` to create a new message.
  */
-export const TestHugeFieldNumbers_OptionalGroupDesc: GenDescMessage<TestHugeFieldNumbers_OptionalGroup> = /*@__PURE__*/
+export const TestHugeFieldNumbers_OptionalGroup_Desc: GenDescMessage<TestHugeFieldNumbers_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 79, 0);
 
 /**
@@ -4197,9 +4197,9 @@ export type TestNestedGroupExtensionOuter_Layer1OptionalGroup = Message<"protobu
 
 /**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.
- * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroupDesc)` to create a new message.
+ * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Desc)` to create a new message.
  */
-export const TestNestedGroupExtensionOuter_Layer1OptionalGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup> = /*@__PURE__*/
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Desc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 81, 0);
 
 /**
@@ -4214,9 +4214,9 @@ export type TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGrou
 
 /**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup.
- * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupDesc)` to create a new message.
+ * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup_Desc)` to create a new message.
  */
-export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> = /*@__PURE__*/
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup_Desc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 81, 0, 0);
 
 /**
@@ -4231,9 +4231,9 @@ export type TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptio
 
 /**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup.
- * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupDesc)` to create a new message.
+ * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup_Desc)` to create a new message.
  */
-export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> = /*@__PURE__*/
+export const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup_Desc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 81, 0, 1);
 
 /**
@@ -4849,9 +4849,9 @@ export type TestVerifyBigFieldNumberUint32_Nested = Message<"protobuf_unittest.T
 
 /**
  * Describes the message protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested.
- * Use `create(TestVerifyBigFieldNumberUint32_NestedDesc)` to create a new message.
+ * Use `create(TestVerifyBigFieldNumberUint32_Nested_Desc)` to create a new message.
  */
-export const TestVerifyBigFieldNumberUint32_NestedDesc: GenDescMessage<TestVerifyBigFieldNumberUint32_Nested> = /*@__PURE__*/
+export const TestVerifyBigFieldNumberUint32_Nested_Desc: GenDescMessage<TestVerifyBigFieldNumberUint32_Nested> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest, 94, 0);
 
 /**
@@ -5079,7 +5079,7 @@ export enum EnumParseTester_SeqSmall0 {
 /**
  * Describes the enum protobuf_unittest.EnumParseTester.SeqSmall0.
  */
-export const EnumParseTester_SeqSmall0Desc: GenDescEnum<EnumParseTester_SeqSmall0> = /*@__PURE__*/
+export const EnumParseTester_SeqSmall0_Desc: GenDescEnum<EnumParseTester_SeqSmall0> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 95, 0);
 
 /**
@@ -5105,7 +5105,7 @@ export enum EnumParseTester_SeqSmall1 {
 /**
  * Describes the enum protobuf_unittest.EnumParseTester.SeqSmall1.
  */
-export const EnumParseTester_SeqSmall1Desc: GenDescEnum<EnumParseTester_SeqSmall1> = /*@__PURE__*/
+export const EnumParseTester_SeqSmall1_Desc: GenDescEnum<EnumParseTester_SeqSmall1> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 95, 1);
 
 /**
@@ -5291,7 +5291,7 @@ export enum EnumParseTester_SeqLarge {
 /**
  * Describes the enum protobuf_unittest.EnumParseTester.SeqLarge.
  */
-export const EnumParseTester_SeqLargeDesc: GenDescEnum<EnumParseTester_SeqLarge> = /*@__PURE__*/
+export const EnumParseTester_SeqLarge_Desc: GenDescEnum<EnumParseTester_SeqLarge> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 95, 2);
 
 /**
@@ -5332,7 +5332,7 @@ export enum EnumParseTester_Arbitrary {
 /**
  * Describes the enum protobuf_unittest.EnumParseTester.Arbitrary.
  */
-export const EnumParseTester_ArbitraryDesc: GenDescEnum<EnumParseTester_Arbitrary> = /*@__PURE__*/
+export const EnumParseTester_Arbitrary_Desc: GenDescEnum<EnumParseTester_Arbitrary> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 95, 3);
 
 /**
@@ -5870,7 +5870,7 @@ export enum TestPackedEnumSmallRange_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestPackedEnumSmallRange.NestedEnum.
  */
-export const TestPackedEnumSmallRange_NestedEnumDesc: GenDescEnum<TestPackedEnumSmallRange_NestedEnum> = /*@__PURE__*/
+export const TestPackedEnumSmallRange_NestedEnum_Desc: GenDescEnum<TestPackedEnumSmallRange_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 105, 0);
 
 /**
@@ -5974,7 +5974,7 @@ export enum EnumsForBenchmark_Flat {
 /**
  * Describes the enum protobuf_unittest.EnumsForBenchmark.Flat.
  */
-export const EnumsForBenchmark_FlatDesc: GenDescEnum<EnumsForBenchmark_Flat> = /*@__PURE__*/
+export const EnumsForBenchmark_Flat_Desc: GenDescEnum<EnumsForBenchmark_Flat> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 106, 0);
 
 /**
@@ -6067,7 +6067,7 @@ export enum EnumsForBenchmark_AlmostFlat {
 /**
  * Describes the enum protobuf_unittest.EnumsForBenchmark.AlmostFlat.
  */
-export const EnumsForBenchmark_AlmostFlatDesc: GenDescEnum<EnumsForBenchmark_AlmostFlat> = /*@__PURE__*/
+export const EnumsForBenchmark_AlmostFlat_Desc: GenDescEnum<EnumsForBenchmark_AlmostFlat> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 106, 1);
 
 /**
@@ -6158,7 +6158,7 @@ export enum EnumsForBenchmark_Sparse {
 /**
  * Describes the enum protobuf_unittest.EnumsForBenchmark.Sparse.
  */
-export const EnumsForBenchmark_SparseDesc: GenDescEnum<EnumsForBenchmark_Sparse> = /*@__PURE__*/
+export const EnumsForBenchmark_Sparse_Desc: GenDescEnum<EnumsForBenchmark_Sparse> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest, 106, 2);
 
 /**

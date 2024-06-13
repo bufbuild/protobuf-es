@@ -34,8 +34,8 @@ export const Edition2023MapEncodingMessageDesc = /*@__PURE__*/
 
 /**
  * Describes the message spec.Edition2023MapEncodingMessage.Child.
- * Use `create(Edition2023MapEncodingMessage_ChildDesc)` to create a new message.
+ * Use `create(Edition2023MapEncodingMessage_Child_Desc)` to create a new message.
  */
-export const Edition2023MapEncodingMessage_ChildDesc = /*@__PURE__*/
+export const Edition2023MapEncodingMessage_Child_Desc = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_map_encoding, 0, 0);
 

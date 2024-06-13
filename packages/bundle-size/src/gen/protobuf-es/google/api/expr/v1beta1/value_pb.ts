@@ -253,8 +253,8 @@ export type MapValue_Entry = Message<"google.api.expr.v1beta1.MapValue.Entry"> &
 
 /**
  * Describes the message google.api.expr.v1beta1.MapValue.Entry.
- * Use `create(MapValue_EntryDesc)` to create a new message.
+ * Use `create(MapValue_Entry_Desc)` to create a new message.
  */
-export const MapValue_EntryDesc: GenDescMessage<MapValue_Entry> = /*@__PURE__*/
+export const MapValue_Entry_Desc: GenDescMessage<MapValue_Entry> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_expr_v1beta1_value, 3, 0);
 

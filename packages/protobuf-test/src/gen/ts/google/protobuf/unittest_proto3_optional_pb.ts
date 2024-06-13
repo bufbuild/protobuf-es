@@ -165,9 +165,9 @@ export type TestProto3Optional_NestedMessage = Message<"protobuf_unittest.TestPr
 
 /**
  * Describes the message protobuf_unittest.TestProto3Optional.NestedMessage.
- * Use `create(TestProto3Optional_NestedMessageDesc)` to create a new message.
+ * Use `create(TestProto3Optional_NestedMessage_Desc)` to create a new message.
  */
-export const TestProto3Optional_NestedMessageDesc: GenDescMessage<TestProto3Optional_NestedMessage> = /*@__PURE__*/
+export const TestProto3Optional_NestedMessage_Desc: GenDescMessage<TestProto3Optional_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0, 0);
 
 /**
@@ -205,7 +205,7 @@ export enum TestProto3Optional_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestProto3Optional.NestedEnum.
  */
-export const TestProto3Optional_NestedEnumDesc: GenDescEnum<TestProto3Optional_NestedEnum> = /*@__PURE__*/
+export const TestProto3Optional_NestedEnum_Desc: GenDescEnum<TestProto3Optional_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0, 0);
 
 /**
@@ -242,9 +242,9 @@ export type TestProto3OptionalMessage_NestedMessage = Message<"protobuf_unittest
 
 /**
  * Describes the message protobuf_unittest.TestProto3OptionalMessage.NestedMessage.
- * Use `create(TestProto3OptionalMessage_NestedMessageDesc)` to create a new message.
+ * Use `create(TestProto3OptionalMessage_NestedMessage_Desc)` to create a new message.
  */
-export const TestProto3OptionalMessage_NestedMessageDesc: GenDescMessage<TestProto3OptionalMessage_NestedMessage> = /*@__PURE__*/
+export const TestProto3OptionalMessage_NestedMessage_Desc: GenDescMessage<TestProto3OptionalMessage_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 1, 0);
 
 /**

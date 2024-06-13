@@ -42,7 +42,7 @@ export const FieldDesc = /*@__PURE__*/
 /**
  * Describes the enum google.protobuf.Field.Kind.
  */
-export const Field_KindDesc = /*@__PURE__*/
+export const Field_Kind_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 0);
 
 /**
@@ -51,12 +51,12 @@ export const Field_KindDesc = /*@__PURE__*/
  * @generated from enum google.protobuf.Field.Kind
  */
 export const Field_Kind = /*@__PURE__*/
-  tsEnum(Field_KindDesc);
+  tsEnum(Field_Kind_Desc);
 
 /**
  * Describes the enum google.protobuf.Field.Cardinality.
  */
-export const Field_CardinalityDesc = /*@__PURE__*/
+export const Field_Cardinality_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_type, 1, 1);
 
 /**
@@ -65,7 +65,7 @@ export const Field_CardinalityDesc = /*@__PURE__*/
  * @generated from enum google.protobuf.Field.Cardinality
  */
 export const Field_Cardinality = /*@__PURE__*/
-  tsEnum(Field_CardinalityDesc);
+  tsEnum(Field_Cardinality_Desc);
 
 /**
  * Describes the message google.protobuf.Enum.

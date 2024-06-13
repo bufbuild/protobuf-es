@@ -102,9 +102,9 @@ export type Proto2MessageForEdition2023_OptionalGroup = Message<"spec.Proto2Mess
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.OptionalGroup.
- * Use `create(Proto2MessageForEdition2023_OptionalGroupDesc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_OptionalGroup_Desc)` to create a new message.
  */
-export const Proto2MessageForEdition2023_OptionalGroupDesc: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup> = /*@__PURE__*/
+export const Proto2MessageForEdition2023_OptionalGroup_Desc: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_proto2, 0, 0);
 
 /**
@@ -119,9 +119,9 @@ export type Proto2MessageForEdition2023_RequiredGroup = Message<"spec.Proto2Mess
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.RequiredGroup.
- * Use `create(Proto2MessageForEdition2023_RequiredGroupDesc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_RequiredGroup_Desc)` to create a new message.
  */
-export const Proto2MessageForEdition2023_RequiredGroupDesc: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup> = /*@__PURE__*/
+export const Proto2MessageForEdition2023_RequiredGroup_Desc: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup> = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_proto2, 0, 1);
 
 /**

@@ -110,7 +110,7 @@ export enum FieldInfo_Format {
 /**
  * Describes the enum google.api.FieldInfo.Format.
  */
-export const FieldInfo_FormatDesc: GenDescEnum<FieldInfo_Format> = /*@__PURE__*/
+export const FieldInfo_Format_Desc: GenDescEnum<FieldInfo_Format> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_field_info, 0, 0);
 
 /**

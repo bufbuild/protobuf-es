@@ -125,9 +125,9 @@ export declare type Proto2ExtContainer_Child = Message<"proto2ext.Proto2ExtConta
 
 /**
  * Describes the message proto2ext.Proto2ExtContainer.Child.
- * Use `create(Proto2ExtContainer_ChildDesc)` to create a new message.
+ * Use `create(Proto2ExtContainer_Child_Desc)` to create a new message.
  */
-export declare const Proto2ExtContainer_ChildDesc: GenDescMessage<Proto2ExtContainer_Child>;
+export declare const Proto2ExtContainer_Child_Desc: GenDescMessage<Proto2ExtContainer_Child>;
 
 /**
  * @generated from extension: optional uint32 uint32_ext = 9010;

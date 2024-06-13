@@ -225,7 +225,7 @@ export enum ResourceDescriptor_History {
 /**
  * Describes the enum google.api.ResourceDescriptor.History.
  */
-export const ResourceDescriptor_HistoryDesc: GenDescEnum<ResourceDescriptor_History> = /*@__PURE__*/
+export const ResourceDescriptor_History_Desc: GenDescEnum<ResourceDescriptor_History> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_resource, 0, 0);
 
 /**
@@ -259,7 +259,7 @@ export enum ResourceDescriptor_Style {
 /**
  * Describes the enum google.api.ResourceDescriptor.Style.
  */
-export const ResourceDescriptor_StyleDesc: GenDescEnum<ResourceDescriptor_Style> = /*@__PURE__*/
+export const ResourceDescriptor_Style_Desc: GenDescEnum<ResourceDescriptor_Style> = /*@__PURE__*/
   enumDesc(fileDesc_google_api_resource, 0, 1);
 
 /**

@@ -846,9 +846,9 @@ export declare type TestAllTypesProto3_NestedMessage = Message<"protobuf_test_me
 
 /**
  * Describes the message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage.
- * Use `create(TestAllTypesProto3_NestedMessageDesc)` to create a new message.
+ * Use `create(TestAllTypesProto3_NestedMessage_Desc)` to create a new message.
  */
-export declare const TestAllTypesProto3_NestedMessageDesc: GenDescMessage<TestAllTypesProto3_NestedMessage>;
+export declare const TestAllTypesProto3_NestedMessage_Desc: GenDescMessage<TestAllTypesProto3_NestedMessage>;
 
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum
@@ -880,7 +880,7 @@ export enum TestAllTypesProto3_NestedEnum {
 /**
  * Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum.
  */
-export declare const TestAllTypesProto3_NestedEnumDesc: GenDescEnum<TestAllTypesProto3_NestedEnum>;
+export declare const TestAllTypesProto3_NestedEnum_Desc: GenDescEnum<TestAllTypesProto3_NestedEnum>;
 
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum
@@ -920,7 +920,7 @@ export enum TestAllTypesProto3_AliasedEnum {
 /**
  * Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum.
  */
-export declare const TestAllTypesProto3_AliasedEnumDesc: GenDescEnum<TestAllTypesProto3_AliasedEnum>;
+export declare const TestAllTypesProto3_AliasedEnum_Desc: GenDescEnum<TestAllTypesProto3_AliasedEnum>;
 
 /**
  * @generated from message protobuf_test_messages.proto3.ForeignMessage
@@ -980,7 +980,7 @@ export enum EnumOnlyProto3_Bool {
 /**
  * Describes the enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool.
  */
-export declare const EnumOnlyProto3_BoolDesc: GenDescEnum<EnumOnlyProto3_Bool>;
+export declare const EnumOnlyProto3_Bool_Desc: GenDescEnum<EnumOnlyProto3_Bool>;
 
 /**
  * @generated from enum protobuf_test_messages.proto3.ForeignEnum

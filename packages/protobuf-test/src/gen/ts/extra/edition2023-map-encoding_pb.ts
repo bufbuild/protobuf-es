@@ -62,8 +62,8 @@ export type Edition2023MapEncodingMessage_Child = Message<"spec.Edition2023MapEn
 
 /**
  * Describes the message spec.Edition2023MapEncodingMessage.Child.
- * Use `create(Edition2023MapEncodingMessage_ChildDesc)` to create a new message.
+ * Use `create(Edition2023MapEncodingMessage_Child_Desc)` to create a new message.
  */
-export const Edition2023MapEncodingMessage_ChildDesc: GenDescMessage<Edition2023MapEncodingMessage_Child> = /*@__PURE__*/
+export const Edition2023MapEncodingMessage_Child_Desc: GenDescMessage<Edition2023MapEncodingMessage_Child> = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023_map_encoding, 0, 0);
 

@@ -38,7 +38,11 @@ import type { Target } from "./target.js";
 import { deriveImportPath, rewriteImportPath } from "./import-path.js";
 import type { EcmaScriptPluginOptions, ParsedParameter } from "./parameter.js";
 import { makeFilePreamble } from "./file-preamble.js";
-import { localDescName, localShapeName, generateFilePath } from "./names.js";
+import {
+  generatedDescName,
+  generatedShapeName,
+  generateFilePath,
+} from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";
 
 /**
@@ -109,7 +113,7 @@ export function createSchema<T extends object>(
   const runtime = createRuntimeImports(parameter.parsed.bootstrapWkt);
   const resolveDescImport: ResolveDescImportFn = (desc, typeOnly) =>
     createImportSymbol(
-      localDescName(desc),
+      generatedDescName(desc),
       generateFilePath(
         desc.kind == "file" ? desc : desc.file,
         parameter.parsed.bootstrapWkt,
@@ -119,7 +123,7 @@ export function createSchema<T extends object>(
     );
   const resolveShapeImport: ResolveShapeImportFn = (desc) =>
     createImportSymbol(
-      localShapeName(desc),
+      generatedShapeName(desc),
       generateFilePath(
         desc.file,
         parameter.parsed.bootstrapWkt,

@@ -15,7 +15,7 @@
 import {
   AddressBookDesc,
   PersonDesc,
-  Person_PhoneNumberDesc,
+  Person_PhoneNumber_Desc,
   Person_PhoneType,
 } from "./gen/addressbook_pb.js";
 import { createInterface } from "readline";
@@ -35,7 +35,7 @@ async function main() {
   });
 
   for (;;) {
-    const phoneNumber = create(Person_PhoneNumberDesc, {
+    const phoneNumber = create(Person_PhoneNumber_Desc, {
       number: await prompt("Enter a phone number (or leave blank to finish): "),
     });
     if (phoneNumber.number === "") {

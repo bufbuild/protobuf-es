@@ -134,9 +134,9 @@ export type Proto2ExtContainer_Child = Message<"proto2ext.Proto2ExtContainer.Chi
 
 /**
  * Describes the message proto2ext.Proto2ExtContainer.Child.
- * Use `create(Proto2ExtContainer_ChildDesc)` to create a new message.
+ * Use `create(Proto2ExtContainer_Child_Desc)` to create a new message.
  */
-export const Proto2ExtContainer_ChildDesc: GenDescMessage<Proto2ExtContainer_Child> = /*@__PURE__*/
+export const Proto2ExtContainer_Child_Desc: GenDescMessage<Proto2ExtContainer_Child> = /*@__PURE__*/
   messageDesc(fileDesc_extra_extensions_proto2, 4, 0);
 
 /**

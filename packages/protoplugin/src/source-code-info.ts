@@ -32,7 +32,7 @@ import {
   FieldOptions_JSType,
   FieldOptionsDesc,
   FeatureSetDesc,
-  SourceCodeInfo_LocationDesc,
+  SourceCodeInfo_Location_Desc,
   FileDescriptorProtoDesc,
   DescriptorProtoDesc,
   EnumDescriptorProtoDesc,
@@ -311,13 +311,13 @@ function findComments(
       leadingDetached: location.leadingDetachedComments,
       leading: isFieldSet(
         location,
-        SourceCodeInfo_LocationDesc.field.leadingComments,
+        SourceCodeInfo_Location_Desc.field.leadingComments,
       )
         ? location.leadingComments
         : undefined,
       trailing: isFieldSet(
         location,
-        SourceCodeInfo_LocationDesc.field.trailingComments,
+        SourceCodeInfo_Location_Desc.field.trailingComments,
       )
         ? location.trailingComments
         : undefined,

@@ -91,7 +91,7 @@ export enum TestMessageWithCustomOptions_AnEnum {
 /**
  * Describes the enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum.
  */
-export const TestMessageWithCustomOptions_AnEnumDesc: GenDescEnum<TestMessageWithCustomOptions_AnEnum> = /*@__PURE__*/
+export const TestMessageWithCustomOptions_AnEnum_Desc: GenDescEnum<TestMessageWithCustomOptions_AnEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 0, 0);
 
 /**
@@ -180,7 +180,7 @@ export enum DummyMessageContainingEnum_TestEnumType {
 /**
  * Describes the enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType.
  */
-export const DummyMessageContainingEnum_TestEnumTypeDesc: GenDescEnum<DummyMessageContainingEnum_TestEnumType> = /*@__PURE__*/
+export const DummyMessageContainingEnum_TestEnumType_Desc: GenDescEnum<DummyMessageContainingEnum_TestEnumType> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 5, 0);
 
 /**
@@ -337,9 +337,9 @@ export type ComplexOptionType2_ComplexOptionType4 = Message<"protobuf_unittest.C
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType2.ComplexOptionType4.
- * Use `create(ComplexOptionType2_ComplexOptionType4Desc)` to create a new message.
+ * Use `create(ComplexOptionType2_ComplexOptionType4_Desc)` to create a new message.
  */
-export const ComplexOptionType2_ComplexOptionType4Desc: GenDescMessage<ComplexOptionType2_ComplexOptionType4> = /*@__PURE__*/
+export const ComplexOptionType2_ComplexOptionType4_Desc: GenDescMessage<ComplexOptionType2_ComplexOptionType4> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 13, 0);
 
 /**
@@ -382,9 +382,9 @@ export type ComplexOptionType3_ComplexOptionType5 = Message<"protobuf_unittest.C
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType3.ComplexOptionType5.
- * Use `create(ComplexOptionType3_ComplexOptionType5Desc)` to create a new message.
+ * Use `create(ComplexOptionType3_ComplexOptionType5_Desc)` to create a new message.
  */
-export const ComplexOptionType3_ComplexOptionType5Desc: GenDescMessage<ComplexOptionType3_ComplexOptionType5> = /*@__PURE__*/
+export const ComplexOptionType3_ComplexOptionType5_Desc: GenDescMessage<ComplexOptionType3_ComplexOptionType5> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 14, 0);
 
 /**
@@ -557,9 +557,9 @@ export type NestedOptionType_NestedMessage = Message<"protobuf_unittest.NestedOp
 
 /**
  * Describes the message protobuf_unittest.NestedOptionType.NestedMessage.
- * Use `create(NestedOptionType_NestedMessageDesc)` to create a new message.
+ * Use `create(NestedOptionType_NestedMessage_Desc)` to create a new message.
  */
-export const NestedOptionType_NestedMessageDesc: GenDescMessage<NestedOptionType_NestedMessage> = /*@__PURE__*/
+export const NestedOptionType_NestedMessage_Desc: GenDescMessage<NestedOptionType_NestedMessage> = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 21, 0);
 
 /**
@@ -575,7 +575,7 @@ export enum NestedOptionType_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.NestedOptionType.NestedEnum.
  */
-export const NestedOptionType_NestedEnumDesc: GenDescEnum<NestedOptionType_NestedEnum> = /*@__PURE__*/
+export const NestedOptionType_NestedEnum_Desc: GenDescEnum<NestedOptionType_NestedEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 21, 0);
 
 /**
@@ -617,7 +617,7 @@ export enum OldOptionType_TestEnum {
 /**
  * Describes the enum protobuf_unittest.OldOptionType.TestEnum.
  */
-export const OldOptionType_TestEnumDesc: GenDescEnum<OldOptionType_TestEnum> = /*@__PURE__*/
+export const OldOptionType_TestEnum_Desc: GenDescEnum<OldOptionType_TestEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 22, 0);
 
 /**
@@ -657,7 +657,7 @@ export enum NewOptionType_TestEnum {
 /**
  * Describes the enum protobuf_unittest.NewOptionType.TestEnum.
  */
-export const NewOptionType_TestEnumDesc: GenDescEnum<NewOptionType_TestEnum> = /*@__PURE__*/
+export const NewOptionType_TestEnum_Desc: GenDescEnum<NewOptionType_TestEnum> = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 23, 0);
 
 /**

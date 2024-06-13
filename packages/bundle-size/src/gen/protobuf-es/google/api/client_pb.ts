@@ -621,9 +621,9 @@ export type MethodSettings_LongRunning = Message<"google.api.MethodSettings.Long
 
 /**
  * Describes the message google.api.MethodSettings.LongRunning.
- * Use `create(MethodSettings_LongRunningDesc)` to create a new message.
+ * Use `create(MethodSettings_LongRunning_Desc)` to create a new message.
  */
-export const MethodSettings_LongRunningDesc: GenDescMessage<MethodSettings_LongRunning> = /*@__PURE__*/
+export const MethodSettings_LongRunning_Desc: GenDescMessage<MethodSettings_LongRunning> = /*@__PURE__*/
   messageDesc(fileDesc_google_api_client, 11, 0);
 
 /**

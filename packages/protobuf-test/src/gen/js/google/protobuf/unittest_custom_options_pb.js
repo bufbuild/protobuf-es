@@ -44,14 +44,14 @@ export const TestMessageWithCustomOptionsDesc = /*@__PURE__*/
 /**
  * Describes the enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum.
  */
-export const TestMessageWithCustomOptions_AnEnumDesc = /*@__PURE__*/
+export const TestMessageWithCustomOptions_AnEnum_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 0, 0);
 
 /**
  * @generated from enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum
  */
 export const TestMessageWithCustomOptions_AnEnum = /*@__PURE__*/
-  tsEnum(TestMessageWithCustomOptions_AnEnumDesc);
+  tsEnum(TestMessageWithCustomOptions_AnEnum_Desc);
 
 /**
  * Describes the message protobuf_unittest.CustomOptionFooRequest.
@@ -91,14 +91,14 @@ export const DummyMessageContainingEnumDesc = /*@__PURE__*/
 /**
  * Describes the enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType.
  */
-export const DummyMessageContainingEnum_TestEnumTypeDesc = /*@__PURE__*/
+export const DummyMessageContainingEnum_TestEnumType_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 5, 0);
 
 /**
  * @generated from enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType
  */
 export const DummyMessageContainingEnum_TestEnumType = /*@__PURE__*/
-  tsEnum(DummyMessageContainingEnum_TestEnumTypeDesc);
+  tsEnum(DummyMessageContainingEnum_TestEnumType_Desc);
 
 /**
  * Describes the message protobuf_unittest.DummyMessageInvalidAsOptionType.
@@ -158,9 +158,9 @@ export const ComplexOptionType2Desc = /*@__PURE__*/
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType2.ComplexOptionType4.
- * Use `create(ComplexOptionType2_ComplexOptionType4Desc)` to create a new message.
+ * Use `create(ComplexOptionType2_ComplexOptionType4_Desc)` to create a new message.
  */
-export const ComplexOptionType2_ComplexOptionType4Desc = /*@__PURE__*/
+export const ComplexOptionType2_ComplexOptionType4_Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 13, 0);
 
 /**
@@ -178,9 +178,9 @@ export const ComplexOptionType3Desc = /*@__PURE__*/
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType3.ComplexOptionType5.
- * Use `create(ComplexOptionType3_ComplexOptionType5Desc)` to create a new message.
+ * Use `create(ComplexOptionType3_ComplexOptionType5_Desc)` to create a new message.
  */
-export const ComplexOptionType3_ComplexOptionType5Desc = /*@__PURE__*/
+export const ComplexOptionType3_ComplexOptionType5_Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 14, 0);
 
 /**
@@ -246,22 +246,22 @@ export const NestedOptionTypeDesc = /*@__PURE__*/
 
 /**
  * Describes the message protobuf_unittest.NestedOptionType.NestedMessage.
- * Use `create(NestedOptionType_NestedMessageDesc)` to create a new message.
+ * Use `create(NestedOptionType_NestedMessage_Desc)` to create a new message.
  */
-export const NestedOptionType_NestedMessageDesc = /*@__PURE__*/
+export const NestedOptionType_NestedMessage_Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_custom_options, 21, 0);
 
 /**
  * Describes the enum protobuf_unittest.NestedOptionType.NestedEnum.
  */
-export const NestedOptionType_NestedEnumDesc = /*@__PURE__*/
+export const NestedOptionType_NestedEnum_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 21, 0);
 
 /**
  * @generated from enum protobuf_unittest.NestedOptionType.NestedEnum
  */
 export const NestedOptionType_NestedEnum = /*@__PURE__*/
-  tsEnum(NestedOptionType_NestedEnumDesc);
+  tsEnum(NestedOptionType_NestedEnum_Desc);
 
 /**
  * @generated from extension: optional int32 nested_extension = 7912573;
@@ -279,14 +279,14 @@ export const OldOptionTypeDesc = /*@__PURE__*/
 /**
  * Describes the enum protobuf_unittest.OldOptionType.TestEnum.
  */
-export const OldOptionType_TestEnumDesc = /*@__PURE__*/
+export const OldOptionType_TestEnum_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 22, 0);
 
 /**
  * @generated from enum protobuf_unittest.OldOptionType.TestEnum
  */
 export const OldOptionType_TestEnum = /*@__PURE__*/
-  tsEnum(OldOptionType_TestEnumDesc);
+  tsEnum(OldOptionType_TestEnum_Desc);
 
 /**
  * Describes the message protobuf_unittest.NewOptionType.
@@ -298,14 +298,14 @@ export const NewOptionTypeDesc = /*@__PURE__*/
 /**
  * Describes the enum protobuf_unittest.NewOptionType.TestEnum.
  */
-export const NewOptionType_TestEnumDesc = /*@__PURE__*/
+export const NewOptionType_TestEnum_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_custom_options, 23, 0);
 
 /**
  * @generated from enum protobuf_unittest.NewOptionType.TestEnum
  */
 export const NewOptionType_TestEnum = /*@__PURE__*/
-  tsEnum(NewOptionType_TestEnumDesc);
+  tsEnum(NewOptionType_TestEnum_Desc);
 
 /**
  * Describes the message protobuf_unittest.TestMessageWithRequiredEnumOption.

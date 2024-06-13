@@ -485,9 +485,9 @@ export declare type TestAllTypes_NestedMessage = Message<"protobuf_unittest.Test
 
 /**
  * Describes the message protobuf_unittest.TestAllTypes.NestedMessage.
- * Use `create(TestAllTypes_NestedMessageDesc)` to create a new message.
+ * Use `create(TestAllTypes_NestedMessage_Desc)` to create a new message.
  */
-export declare const TestAllTypes_NestedMessageDesc: GenDescMessage<TestAllTypes_NestedMessage>;
+export declare const TestAllTypes_NestedMessage_Desc: GenDescMessage<TestAllTypes_NestedMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestAllTypes.OptionalGroup
@@ -501,9 +501,9 @@ export declare type TestAllTypes_OptionalGroup = Message<"protobuf_unittest.Test
 
 /**
  * Describes the message protobuf_unittest.TestAllTypes.OptionalGroup.
- * Use `create(TestAllTypes_OptionalGroupDesc)` to create a new message.
+ * Use `create(TestAllTypes_OptionalGroup_Desc)` to create a new message.
  */
-export declare const TestAllTypes_OptionalGroupDesc: GenDescMessage<TestAllTypes_OptionalGroup>;
+export declare const TestAllTypes_OptionalGroup_Desc: GenDescMessage<TestAllTypes_OptionalGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestAllTypes.RepeatedGroup
@@ -517,9 +517,9 @@ export declare type TestAllTypes_RepeatedGroup = Message<"protobuf_unittest.Test
 
 /**
  * Describes the message protobuf_unittest.TestAllTypes.RepeatedGroup.
- * Use `create(TestAllTypes_RepeatedGroupDesc)` to create a new message.
+ * Use `create(TestAllTypes_RepeatedGroup_Desc)` to create a new message.
  */
-export declare const TestAllTypes_RepeatedGroupDesc: GenDescMessage<TestAllTypes_RepeatedGroup>;
+export declare const TestAllTypes_RepeatedGroup_Desc: GenDescMessage<TestAllTypes_RepeatedGroup>;
 
 /**
  * @generated from enum protobuf_unittest.TestAllTypes.NestedEnum
@@ -551,7 +551,7 @@ export enum TestAllTypes_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestAllTypes.NestedEnum.
  */
-export declare const TestAllTypes_NestedEnumDesc: GenDescEnum<TestAllTypes_NestedEnum>;
+export declare const TestAllTypes_NestedEnum_Desc: GenDescEnum<TestAllTypes_NestedEnum>;
 
 /**
  * This proto includes a recursively nested message.
@@ -802,9 +802,9 @@ export declare type TestGroup_OptionalGroup = Message<"protobuf_unittest.TestGro
 
 /**
  * Describes the message protobuf_unittest.TestGroup.OptionalGroup.
- * Use `create(TestGroup_OptionalGroupDesc)` to create a new message.
+ * Use `create(TestGroup_OptionalGroup_Desc)` to create a new message.
  */
-export declare const TestGroup_OptionalGroupDesc: GenDescMessage<TestGroup_OptionalGroup>;
+export declare const TestGroup_OptionalGroup_Desc: GenDescMessage<TestGroup_OptionalGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestGroupExtension
@@ -842,9 +842,9 @@ export declare type TestNestedExtension_OptionalGroup_extension = Message<"proto
 
 /**
  * Describes the message protobuf_unittest.TestNestedExtension.OptionalGroup_extension.
- * Use `create(TestNestedExtension_OptionalGroup_extensionDesc)` to create a new message.
+ * Use `create(TestNestedExtension_OptionalGroup_extension_Desc)` to create a new message.
  */
-export declare const TestNestedExtension_OptionalGroup_extensionDesc: GenDescMessage<TestNestedExtension_OptionalGroup_extension>;
+export declare const TestNestedExtension_OptionalGroup_extension_Desc: GenDescMessage<TestNestedExtension_OptionalGroup_extension>;
 
 /**
  * Check for bug where string extensions declared in tested scope did not
@@ -939,9 +939,9 @@ export declare type TestChildExtensionData_NestedTestAllExtensionsData = Message
 
 /**
  * Describes the message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.
- * Use `create(TestChildExtensionData_NestedTestAllExtensionsDataDesc)` to create a new message.
+ * Use `create(TestChildExtensionData_NestedTestAllExtensionsData_Desc)` to create a new message.
  */
-export declare const TestChildExtensionData_NestedTestAllExtensionsDataDesc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData>;
+export declare const TestChildExtensionData_NestedTestAllExtensionsData_Desc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData>;
 
 /**
  * @generated from message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions
@@ -960,9 +960,9 @@ export declare type TestChildExtensionData_NestedTestAllExtensionsData_NestedDyn
 
 /**
  * Describes the message protobuf_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions.
- * Use `create(TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsDesc)` to create a new message.
+ * Use `create(TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions_Desc)` to create a new message.
  */
-export declare const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensionsDesc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions>;
+export declare const TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions_Desc: GenDescMessage<TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions>;
 
 /**
  * @generated from message protobuf_unittest.TestNestedChildExtension
@@ -1090,7 +1090,7 @@ export enum TestRequiredEnumNoMask_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestRequiredEnumNoMask.NestedEnum.
  */
-export declare const TestRequiredEnumNoMask_NestedEnumDesc: GenDescEnum<TestRequiredEnumNoMask_NestedEnum>;
+export declare const TestRequiredEnumNoMask_NestedEnum_Desc: GenDescEnum<TestRequiredEnumNoMask_NestedEnum>;
 
 /**
  * @generated from message protobuf_unittest.TestRequiredEnumMulti
@@ -1154,7 +1154,7 @@ export enum TestRequiredEnumMulti_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestRequiredEnumMulti.NestedEnum.
  */
-export declare const TestRequiredEnumMulti_NestedEnumDesc: GenDescEnum<TestRequiredEnumMulti_NestedEnum>;
+export declare const TestRequiredEnumMulti_NestedEnum_Desc: GenDescEnum<TestRequiredEnumMulti_NestedEnum>;
 
 /**
  * @generated from message protobuf_unittest.TestRequiredNoMaskMulti
@@ -1234,7 +1234,7 @@ export enum TestRequiredNoMaskMulti_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestRequiredNoMaskMulti.NestedEnum.
  */
-export declare const TestRequiredNoMaskMulti_NestedEnumDesc: GenDescEnum<TestRequiredNoMaskMulti_NestedEnum>;
+export declare const TestRequiredNoMaskMulti_NestedEnum_Desc: GenDescEnum<TestRequiredNoMaskMulti_NestedEnum>;
 
 /**
  * We have separate messages for testing required fields because it's
@@ -1618,9 +1618,9 @@ export declare type TestPickleNestedMessage_NestedMessage = Message<"protobuf_un
 
 /**
  * Describes the message protobuf_unittest.TestPickleNestedMessage.NestedMessage.
- * Use `create(TestPickleNestedMessage_NestedMessageDesc)` to create a new message.
+ * Use `create(TestPickleNestedMessage_NestedMessage_Desc)` to create a new message.
  */
-export declare const TestPickleNestedMessage_NestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage>;
+export declare const TestPickleNestedMessage_NestedMessage_Desc: GenDescMessage<TestPickleNestedMessage_NestedMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage
@@ -1634,9 +1634,9 @@ export declare type TestPickleNestedMessage_NestedMessage_NestedNestedMessage = 
 
 /**
  * Describes the message protobuf_unittest.TestPickleNestedMessage.NestedMessage.NestedNestedMessage.
- * Use `create(TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc)` to create a new message.
+ * Use `create(TestPickleNestedMessage_NestedMessage_NestedNestedMessage_Desc)` to create a new message.
  */
-export declare const TestPickleNestedMessage_NestedMessage_NestedNestedMessageDesc: GenDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage>;
+export declare const TestPickleNestedMessage_NestedMessage_NestedNestedMessage_Desc: GenDescMessage<TestPickleNestedMessage_NestedMessage_NestedNestedMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestMultipleExtensionRanges
@@ -1737,9 +1737,9 @@ export declare type TestMutualRecursionA_SubMessage = Message<"protobuf_unittest
 
 /**
  * Describes the message protobuf_unittest.TestMutualRecursionA.SubMessage.
- * Use `create(TestMutualRecursionA_SubMessageDesc)` to create a new message.
+ * Use `create(TestMutualRecursionA_SubMessage_Desc)` to create a new message.
  */
-export declare const TestMutualRecursionA_SubMessageDesc: GenDescMessage<TestMutualRecursionA_SubMessage>;
+export declare const TestMutualRecursionA_SubMessage_Desc: GenDescMessage<TestMutualRecursionA_SubMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroup
@@ -1760,9 +1760,9 @@ export declare type TestMutualRecursionA_SubGroup = Message<"protobuf_unittest.T
 
 /**
  * Describes the message protobuf_unittest.TestMutualRecursionA.SubGroup.
- * Use `create(TestMutualRecursionA_SubGroupDesc)` to create a new message.
+ * Use `create(TestMutualRecursionA_SubGroup_Desc)` to create a new message.
  */
-export declare const TestMutualRecursionA_SubGroupDesc: GenDescMessage<TestMutualRecursionA_SubGroup>;
+export declare const TestMutualRecursionA_SubGroup_Desc: GenDescMessage<TestMutualRecursionA_SubGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionA.SubGroupR
@@ -1776,9 +1776,9 @@ export declare type TestMutualRecursionA_SubGroupR = Message<"protobuf_unittest.
 
 /**
  * Describes the message protobuf_unittest.TestMutualRecursionA.SubGroupR.
- * Use `create(TestMutualRecursionA_SubGroupRDesc)` to create a new message.
+ * Use `create(TestMutualRecursionA_SubGroupR_Desc)` to create a new message.
  */
-export declare const TestMutualRecursionA_SubGroupRDesc: GenDescMessage<TestMutualRecursionA_SubGroupR>;
+export declare const TestMutualRecursionA_SubGroupR_Desc: GenDescMessage<TestMutualRecursionA_SubGroupR>;
 
 /**
  * @generated from message protobuf_unittest.TestMutualRecursionB
@@ -1829,9 +1829,9 @@ export declare type TestIsInitialized_SubMessage = Message<"protobuf_unittest.Te
 
 /**
  * Describes the message protobuf_unittest.TestIsInitialized.SubMessage.
- * Use `create(TestIsInitialized_SubMessageDesc)` to create a new message.
+ * Use `create(TestIsInitialized_SubMessage_Desc)` to create a new message.
  */
-export declare const TestIsInitialized_SubMessageDesc: GenDescMessage<TestIsInitialized_SubMessage>;
+export declare const TestIsInitialized_SubMessage_Desc: GenDescMessage<TestIsInitialized_SubMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup
@@ -1845,9 +1845,9 @@ export declare type TestIsInitialized_SubMessage_SubGroup = Message<"protobuf_un
 
 /**
  * Describes the message protobuf_unittest.TestIsInitialized.SubMessage.SubGroup.
- * Use `create(TestIsInitialized_SubMessage_SubGroupDesc)` to create a new message.
+ * Use `create(TestIsInitialized_SubMessage_SubGroup_Desc)` to create a new message.
  */
-export declare const TestIsInitialized_SubMessage_SubGroupDesc: GenDescMessage<TestIsInitialized_SubMessage_SubGroup>;
+export declare const TestIsInitialized_SubMessage_SubGroup_Desc: GenDescMessage<TestIsInitialized_SubMessage_SubGroup>;
 
 /**
  * Test that groups have disjoint field numbers from their siblings and
@@ -1896,9 +1896,9 @@ export declare type TestDupFieldNumber_Foo = Message<"protobuf_unittest.TestDupF
 
 /**
  * Describes the message protobuf_unittest.TestDupFieldNumber.Foo.
- * Use `create(TestDupFieldNumber_FooDesc)` to create a new message.
+ * Use `create(TestDupFieldNumber_Foo_Desc)` to create a new message.
  */
-export declare const TestDupFieldNumber_FooDesc: GenDescMessage<TestDupFieldNumber_Foo>;
+export declare const TestDupFieldNumber_Foo_Desc: GenDescMessage<TestDupFieldNumber_Foo>;
 
 /**
  * @generated from message protobuf_unittest.TestDupFieldNumber.Bar
@@ -1912,9 +1912,9 @@ export declare type TestDupFieldNumber_Bar = Message<"protobuf_unittest.TestDupF
 
 /**
  * Describes the message protobuf_unittest.TestDupFieldNumber.Bar.
- * Use `create(TestDupFieldNumber_BarDesc)` to create a new message.
+ * Use `create(TestDupFieldNumber_Bar_Desc)` to create a new message.
  */
-export declare const TestDupFieldNumber_BarDesc: GenDescMessage<TestDupFieldNumber_Bar>;
+export declare const TestDupFieldNumber_Bar_Desc: GenDescMessage<TestDupFieldNumber_Bar>;
 
 /**
  * Additional messages for testing lazy fields.
@@ -2004,9 +2004,9 @@ export declare type TestEagerMaybeLazy_NestedMessage = Message<"protobuf_unittes
 
 /**
  * Describes the message protobuf_unittest.TestEagerMaybeLazy.NestedMessage.
- * Use `create(TestEagerMaybeLazy_NestedMessageDesc)` to create a new message.
+ * Use `create(TestEagerMaybeLazy_NestedMessage_Desc)` to create a new message.
  */
-export declare const TestEagerMaybeLazy_NestedMessageDesc: GenDescMessage<TestEagerMaybeLazy_NestedMessage>;
+export declare const TestEagerMaybeLazy_NestedMessage_Desc: GenDescMessage<TestEagerMaybeLazy_NestedMessage>;
 
 /**
  * Needed for a Python test.
@@ -2043,9 +2043,9 @@ export declare type TestNestedMessageHasBits_NestedMessage = Message<"protobuf_u
 
 /**
  * Describes the message protobuf_unittest.TestNestedMessageHasBits.NestedMessage.
- * Use `create(TestNestedMessageHasBits_NestedMessageDesc)` to create a new message.
+ * Use `create(TestNestedMessageHasBits_NestedMessage_Desc)` to create a new message.
  */
-export declare const TestNestedMessageHasBits_NestedMessageDesc: GenDescMessage<TestNestedMessageHasBits_NestedMessage>;
+export declare const TestNestedMessageHasBits_NestedMessage_Desc: GenDescMessage<TestNestedMessageHasBits_NestedMessage>;
 
 /**
  * Test message with CamelCase field names.  This violates Protocol Buffer
@@ -2176,9 +2176,9 @@ export declare type TestFieldOrderings_NestedMessage = Message<"protobuf_unittes
 
 /**
  * Describes the message protobuf_unittest.TestFieldOrderings.NestedMessage.
- * Use `create(TestFieldOrderings_NestedMessageDesc)` to create a new message.
+ * Use `create(TestFieldOrderings_NestedMessage_Desc)` to create a new message.
  */
-export declare const TestFieldOrderings_NestedMessageDesc: GenDescMessage<TestFieldOrderings_NestedMessage>;
+export declare const TestFieldOrderings_NestedMessage_Desc: GenDescMessage<TestFieldOrderings_NestedMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestExtensionOrderings1
@@ -2229,9 +2229,9 @@ export declare type TestExtensionOrderings2_TestExtensionOrderings3 = Message<"p
 
 /**
  * Describes the message protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3.
- * Use `create(TestExtensionOrderings2_TestExtensionOrderings3Desc)` to create a new message.
+ * Use `create(TestExtensionOrderings2_TestExtensionOrderings3_Desc)` to create a new message.
  */
-export declare const TestExtensionOrderings2_TestExtensionOrderings3Desc: GenDescMessage<TestExtensionOrderings2_TestExtensionOrderings3>;
+export declare const TestExtensionOrderings2_TestExtensionOrderings3_Desc: GenDescMessage<TestExtensionOrderings2_TestExtensionOrderings3>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestExtensionOrderings2.TestExtensionOrderings3 test_ext_orderings3 = 14;
@@ -2801,9 +2801,9 @@ export declare type TestOneof_FooGroup = Message<"protobuf_unittest.TestOneof.Fo
 
 /**
  * Describes the message protobuf_unittest.TestOneof.FooGroup.
- * Use `create(TestOneof_FooGroupDesc)` to create a new message.
+ * Use `create(TestOneof_FooGroup_Desc)` to create a new message.
  */
-export declare const TestOneof_FooGroupDesc: GenDescMessage<TestOneof_FooGroup>;
+export declare const TestOneof_FooGroup_Desc: GenDescMessage<TestOneof_FooGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestOneofBackwardsCompatible
@@ -2853,9 +2853,9 @@ export declare type TestOneofBackwardsCompatible_FooGroup = Message<"protobuf_un
 
 /**
  * Describes the message protobuf_unittest.TestOneofBackwardsCompatible.FooGroup.
- * Use `create(TestOneofBackwardsCompatible_FooGroupDesc)` to create a new message.
+ * Use `create(TestOneofBackwardsCompatible_FooGroup_Desc)` to create a new message.
  */
-export declare const TestOneofBackwardsCompatible_FooGroupDesc: GenDescMessage<TestOneofBackwardsCompatible_FooGroup>;
+export declare const TestOneofBackwardsCompatible_FooGroup_Desc: GenDescMessage<TestOneofBackwardsCompatible_FooGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestOneof2
@@ -3025,9 +3025,9 @@ export declare type TestOneof2_FooGroup = Message<"protobuf_unittest.TestOneof2.
 
 /**
  * Describes the message protobuf_unittest.TestOneof2.FooGroup.
- * Use `create(TestOneof2_FooGroupDesc)` to create a new message.
+ * Use `create(TestOneof2_FooGroup_Desc)` to create a new message.
  */
-export declare const TestOneof2_FooGroupDesc: GenDescMessage<TestOneof2_FooGroup>;
+export declare const TestOneof2_FooGroup_Desc: GenDescMessage<TestOneof2_FooGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestOneof2.NestedMessage
@@ -3051,9 +3051,9 @@ export declare type TestOneof2_NestedMessage = Message<"protobuf_unittest.TestOn
 
 /**
  * Describes the message protobuf_unittest.TestOneof2.NestedMessage.
- * Use `create(TestOneof2_NestedMessageDesc)` to create a new message.
+ * Use `create(TestOneof2_NestedMessage_Desc)` to create a new message.
  */
-export declare const TestOneof2_NestedMessageDesc: GenDescMessage<TestOneof2_NestedMessage>;
+export declare const TestOneof2_NestedMessage_Desc: GenDescMessage<TestOneof2_NestedMessage>;
 
 /**
  * @generated from enum protobuf_unittest.TestOneof2.NestedEnum
@@ -3078,7 +3078,7 @@ export enum TestOneof2_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestOneof2.NestedEnum.
  */
-export declare const TestOneof2_NestedEnumDesc: GenDescEnum<TestOneof2_NestedEnum>;
+export declare const TestOneof2_NestedEnum_Desc: GenDescEnum<TestOneof2_NestedEnum>;
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOneof
@@ -3132,9 +3132,9 @@ export declare type TestRequiredOneof_NestedMessage = Message<"protobuf_unittest
 
 /**
  * Describes the message protobuf_unittest.TestRequiredOneof.NestedMessage.
- * Use `create(TestRequiredOneof_NestedMessageDesc)` to create a new message.
+ * Use `create(TestRequiredOneof_NestedMessage_Desc)` to create a new message.
  */
-export declare const TestRequiredOneof_NestedMessageDesc: GenDescMessage<TestRequiredOneof_NestedMessage>;
+export declare const TestRequiredOneof_NestedMessage_Desc: GenDescMessage<TestRequiredOneof_NestedMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestPackedTypes
@@ -3387,9 +3387,9 @@ export declare type TestDynamicExtensions_DynamicMessageType = Message<"protobuf
 
 /**
  * Describes the message protobuf_unittest.TestDynamicExtensions.DynamicMessageType.
- * Use `create(TestDynamicExtensions_DynamicMessageTypeDesc)` to create a new message.
+ * Use `create(TestDynamicExtensions_DynamicMessageType_Desc)` to create a new message.
  */
-export declare const TestDynamicExtensions_DynamicMessageTypeDesc: GenDescMessage<TestDynamicExtensions_DynamicMessageType>;
+export declare const TestDynamicExtensions_DynamicMessageType_Desc: GenDescMessage<TestDynamicExtensions_DynamicMessageType>;
 
 /**
  * @generated from enum protobuf_unittest.TestDynamicExtensions.DynamicEnumType
@@ -3414,7 +3414,7 @@ export enum TestDynamicExtensions_DynamicEnumType {
 /**
  * Describes the enum protobuf_unittest.TestDynamicExtensions.DynamicEnumType.
  */
-export declare const TestDynamicExtensions_DynamicEnumTypeDesc: GenDescEnum<TestDynamicExtensions_DynamicEnumType>;
+export declare const TestDynamicExtensions_DynamicEnumType_Desc: GenDescEnum<TestDynamicExtensions_DynamicEnumType>;
 
 /**
  * @generated from message protobuf_unittest.TestRepeatedString
@@ -3585,9 +3585,9 @@ export declare type TestParsingMerge_RepeatedFieldsGenerator = Message<"protobuf
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.
- * Use `create(TestParsingMerge_RepeatedFieldsGeneratorDesc)` to create a new message.
+ * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Desc)` to create a new message.
  */
-export declare const TestParsingMerge_RepeatedFieldsGeneratorDesc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator>;
+export declare const TestParsingMerge_RepeatedFieldsGenerator_Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator>;
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1
@@ -3601,9 +3601,9 @@ export declare type TestParsingMerge_RepeatedFieldsGenerator_Group1 = Message<"p
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group1.
- * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group1Desc)` to create a new message.
+ * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group1_Desc)` to create a new message.
  */
-export declare const TestParsingMerge_RepeatedFieldsGenerator_Group1Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1>;
+export declare const TestParsingMerge_RepeatedFieldsGenerator_Group1_Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group1>;
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2
@@ -3617,9 +3617,9 @@ export declare type TestParsingMerge_RepeatedFieldsGenerator_Group2 = Message<"p
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedFieldsGenerator.Group2.
- * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group2Desc)` to create a new message.
+ * Use `create(TestParsingMerge_RepeatedFieldsGenerator_Group2_Desc)` to create a new message.
  */
-export declare const TestParsingMerge_RepeatedFieldsGenerator_Group2Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2>;
+export declare const TestParsingMerge_RepeatedFieldsGenerator_Group2_Desc: GenDescMessage<TestParsingMerge_RepeatedFieldsGenerator_Group2>;
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.OptionalGroup
@@ -3633,9 +3633,9 @@ export declare type TestParsingMerge_OptionalGroup = Message<"protobuf_unittest.
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.OptionalGroup.
- * Use `create(TestParsingMerge_OptionalGroupDesc)` to create a new message.
+ * Use `create(TestParsingMerge_OptionalGroup_Desc)` to create a new message.
  */
-export declare const TestParsingMerge_OptionalGroupDesc: GenDescMessage<TestParsingMerge_OptionalGroup>;
+export declare const TestParsingMerge_OptionalGroup_Desc: GenDescMessage<TestParsingMerge_OptionalGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestParsingMerge.RepeatedGroup
@@ -3649,9 +3649,9 @@ export declare type TestParsingMerge_RepeatedGroup = Message<"protobuf_unittest.
 
 /**
  * Describes the message protobuf_unittest.TestParsingMerge.RepeatedGroup.
- * Use `create(TestParsingMerge_RepeatedGroupDesc)` to create a new message.
+ * Use `create(TestParsingMerge_RepeatedGroup_Desc)` to create a new message.
  */
-export declare const TestParsingMerge_RepeatedGroupDesc: GenDescMessage<TestParsingMerge_RepeatedGroup>;
+export declare const TestParsingMerge_RepeatedGroup_Desc: GenDescMessage<TestParsingMerge_RepeatedGroup>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestAllTypes optional_ext = 1000;
@@ -3966,9 +3966,9 @@ export declare type TestHugeFieldNumbers_OptionalGroup = Message<"protobuf_unitt
 
 /**
  * Describes the message protobuf_unittest.TestHugeFieldNumbers.OptionalGroup.
- * Use `create(TestHugeFieldNumbers_OptionalGroupDesc)` to create a new message.
+ * Use `create(TestHugeFieldNumbers_OptionalGroup_Desc)` to create a new message.
  */
-export declare const TestHugeFieldNumbers_OptionalGroupDesc: GenDescMessage<TestHugeFieldNumbers_OptionalGroup>;
+export declare const TestHugeFieldNumbers_OptionalGroup_Desc: GenDescMessage<TestHugeFieldNumbers_OptionalGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestExtensionInsideTable
@@ -4061,9 +4061,9 @@ export declare type TestNestedGroupExtensionOuter_Layer1OptionalGroup = Message<
 
 /**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.
- * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroupDesc)` to create a new message.
+ * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Desc)` to create a new message.
  */
-export declare const TestNestedGroupExtensionOuter_Layer1OptionalGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup>;
+export declare const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Desc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup
@@ -4077,9 +4077,9 @@ export declare type TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2Repe
 
 /**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2RepeatedGroup.
- * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupDesc)` to create a new message.
+ * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup_Desc)` to create a new message.
  */
-export declare const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup>;
+export declare const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup_Desc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup
@@ -4093,9 +4093,9 @@ export declare type TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2Anot
 
 /**
  * Describes the message protobuf_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup.Layer2AnotherOptionalRepeatedGroup.
- * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupDesc)` to create a new message.
+ * Use `create(TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup_Desc)` to create a new message.
  */
-export declare const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroupDesc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup>;
+export declare const TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup_Desc: GenDescMessage<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2AnotherOptionalRepeatedGroup>;
 
 /**
  * @generated from message protobuf_unittest.TestNestedGroupExtensionInnerExtension
@@ -4692,9 +4692,9 @@ export declare type TestVerifyBigFieldNumberUint32_Nested = Message<"protobuf_un
 
 /**
  * Describes the message protobuf_unittest.TestVerifyBigFieldNumberUint32.Nested.
- * Use `create(TestVerifyBigFieldNumberUint32_NestedDesc)` to create a new message.
+ * Use `create(TestVerifyBigFieldNumberUint32_Nested_Desc)` to create a new message.
  */
-export declare const TestVerifyBigFieldNumberUint32_NestedDesc: GenDescMessage<TestVerifyBigFieldNumberUint32_Nested>;
+export declare const TestVerifyBigFieldNumberUint32_Nested_Desc: GenDescMessage<TestVerifyBigFieldNumberUint32_Nested>;
 
 /**
  * This message contains different kind of enums to exercise the different
@@ -4920,7 +4920,7 @@ export enum EnumParseTester_SeqSmall0 {
 /**
  * Describes the enum protobuf_unittest.EnumParseTester.SeqSmall0.
  */
-export declare const EnumParseTester_SeqSmall0Desc: GenDescEnum<EnumParseTester_SeqSmall0>;
+export declare const EnumParseTester_SeqSmall0_Desc: GenDescEnum<EnumParseTester_SeqSmall0>;
 
 /**
  * @generated from enum protobuf_unittest.EnumParseTester.SeqSmall1
@@ -4945,7 +4945,7 @@ export enum EnumParseTester_SeqSmall1 {
 /**
  * Describes the enum protobuf_unittest.EnumParseTester.SeqSmall1.
  */
-export declare const EnumParseTester_SeqSmall1Desc: GenDescEnum<EnumParseTester_SeqSmall1>;
+export declare const EnumParseTester_SeqSmall1_Desc: GenDescEnum<EnumParseTester_SeqSmall1>;
 
 /**
  * @generated from enum protobuf_unittest.EnumParseTester.SeqLarge
@@ -5130,7 +5130,7 @@ export enum EnumParseTester_SeqLarge {
 /**
  * Describes the enum protobuf_unittest.EnumParseTester.SeqLarge.
  */
-export declare const EnumParseTester_SeqLargeDesc: GenDescEnum<EnumParseTester_SeqLarge>;
+export declare const EnumParseTester_SeqLarge_Desc: GenDescEnum<EnumParseTester_SeqLarge>;
 
 /**
  * @generated from enum protobuf_unittest.EnumParseTester.Arbitrary
@@ -5170,7 +5170,7 @@ export enum EnumParseTester_Arbitrary {
 /**
  * Describes the enum protobuf_unittest.EnumParseTester.Arbitrary.
  */
-export declare const EnumParseTester_ArbitraryDesc: GenDescEnum<EnumParseTester_Arbitrary>;
+export declare const EnumParseTester_Arbitrary_Desc: GenDescEnum<EnumParseTester_Arbitrary>;
 
 /**
  * @generated from extension: optional protobuf_unittest.EnumParseTester.Arbitrary optional_arbitrary_ext = 2000000;
@@ -5683,7 +5683,7 @@ export enum TestPackedEnumSmallRange_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestPackedEnumSmallRange.NestedEnum.
  */
-export declare const TestPackedEnumSmallRange_NestedEnumDesc: GenDescEnum<TestPackedEnumSmallRange_NestedEnum>;
+export declare const TestPackedEnumSmallRange_NestedEnum_Desc: GenDescEnum<TestPackedEnumSmallRange_NestedEnum>;
 
 /**
  * @generated from message protobuf_unittest.EnumsForBenchmark
@@ -5785,7 +5785,7 @@ export enum EnumsForBenchmark_Flat {
 /**
  * Describes the enum protobuf_unittest.EnumsForBenchmark.Flat.
  */
-export declare const EnumsForBenchmark_FlatDesc: GenDescEnum<EnumsForBenchmark_Flat>;
+export declare const EnumsForBenchmark_Flat_Desc: GenDescEnum<EnumsForBenchmark_Flat>;
 
 /**
  * Has a few holes, bitmap can be used.
@@ -5877,7 +5877,7 @@ export enum EnumsForBenchmark_AlmostFlat {
 /**
  * Describes the enum protobuf_unittest.EnumsForBenchmark.AlmostFlat.
  */
-export declare const EnumsForBenchmark_AlmostFlatDesc: GenDescEnum<EnumsForBenchmark_AlmostFlat>;
+export declare const EnumsForBenchmark_AlmostFlat_Desc: GenDescEnum<EnumsForBenchmark_AlmostFlat>;
 
 /**
  * @generated from enum protobuf_unittest.EnumsForBenchmark.Sparse
@@ -5967,7 +5967,7 @@ export enum EnumsForBenchmark_Sparse {
 /**
  * Describes the enum protobuf_unittest.EnumsForBenchmark.Sparse.
  */
-export declare const EnumsForBenchmark_SparseDesc: GenDescEnum<EnumsForBenchmark_Sparse>;
+export declare const EnumsForBenchmark_Sparse_Desc: GenDescEnum<EnumsForBenchmark_Sparse>;
 
 /**
  * @generated from message protobuf_unittest.TestMessageWithManyRepeatedPtrFields

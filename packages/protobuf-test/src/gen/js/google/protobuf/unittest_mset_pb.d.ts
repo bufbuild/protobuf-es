@@ -213,7 +213,7 @@ export declare type RawMessageSet_Item = Message<"protobuf_unittest.RawMessageSe
 
 /**
  * Describes the message protobuf_unittest.RawMessageSet.Item.
- * Use `create(RawMessageSet_ItemDesc)` to create a new message.
+ * Use `create(RawMessageSet_Item_Desc)` to create a new message.
  */
-export declare const RawMessageSet_ItemDesc: GenDescMessage<RawMessageSet_Item>;
+export declare const RawMessageSet_Item_Desc: GenDescMessage<RawMessageSet_Item>;
 

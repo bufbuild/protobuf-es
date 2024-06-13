@@ -34,9 +34,9 @@ export const Edition2023MessageDesc = /*@__PURE__*/
 
 /**
  * Describes the message spec.Edition2023Message.Child.
- * Use `create(Edition2023Message_ChildDesc)` to create a new message.
+ * Use `create(Edition2023Message_Child_Desc)` to create a new message.
  */
-export const Edition2023Message_ChildDesc = /*@__PURE__*/
+export const Edition2023Message_Child_Desc = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023, 0, 0);
 
 /**
@@ -48,16 +48,16 @@ export const Edition2023FromProto2MessageDesc = /*@__PURE__*/
 
 /**
  * Describes the message spec.Edition2023FromProto2Message.OptionalGroup.
- * Use `create(Edition2023FromProto2Message_OptionalGroupDesc)` to create a new message.
+ * Use `create(Edition2023FromProto2Message_OptionalGroup_Desc)` to create a new message.
  */
-export const Edition2023FromProto2Message_OptionalGroupDesc = /*@__PURE__*/
+export const Edition2023FromProto2Message_OptionalGroup_Desc = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023, 1, 0);
 
 /**
  * Describes the message spec.Edition2023FromProto2Message.RequiredGroup.
- * Use `create(Edition2023FromProto2Message_RequiredGroupDesc)` to create a new message.
+ * Use `create(Edition2023FromProto2Message_RequiredGroup_Desc)` to create a new message.
  */
-export const Edition2023FromProto2Message_RequiredGroupDesc = /*@__PURE__*/
+export const Edition2023FromProto2Message_RequiredGroup_Desc = /*@__PURE__*/
   messageDesc(fileDesc_extra_edition2023, 1, 1);
 
 /**

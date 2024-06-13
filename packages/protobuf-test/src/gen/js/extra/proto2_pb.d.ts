@@ -492,9 +492,9 @@ export declare type Proto2Message_RequiredGroup = Message<"spec.Proto2Message.Re
 
 /**
  * Describes the message spec.Proto2Message.RequiredGroup.
- * Use `create(Proto2Message_RequiredGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_RequiredGroup_Desc)` to create a new message.
  */
-export declare const Proto2Message_RequiredGroupDesc: GenDescMessage<Proto2Message_RequiredGroup>;
+export declare const Proto2Message_RequiredGroup_Desc: GenDescMessage<Proto2Message_RequiredGroup>;
 
 /**
  * @generated from message spec.Proto2Message.RequiredDefaultGroup
@@ -508,9 +508,9 @@ export declare type Proto2Message_RequiredDefaultGroup = Message<"spec.Proto2Mes
 
 /**
  * Describes the message spec.Proto2Message.RequiredDefaultGroup.
- * Use `create(Proto2Message_RequiredDefaultGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_RequiredDefaultGroup_Desc)` to create a new message.
  */
-export declare const Proto2Message_RequiredDefaultGroupDesc: GenDescMessage<Proto2Message_RequiredDefaultGroup>;
+export declare const Proto2Message_RequiredDefaultGroup_Desc: GenDescMessage<Proto2Message_RequiredDefaultGroup>;
 
 /**
  * @generated from message spec.Proto2Message.OptionalGroup
@@ -524,9 +524,9 @@ export declare type Proto2Message_OptionalGroup = Message<"spec.Proto2Message.Op
 
 /**
  * Describes the message spec.Proto2Message.OptionalGroup.
- * Use `create(Proto2Message_OptionalGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_OptionalGroup_Desc)` to create a new message.
  */
-export declare const Proto2Message_OptionalGroupDesc: GenDescMessage<Proto2Message_OptionalGroup>;
+export declare const Proto2Message_OptionalGroup_Desc: GenDescMessage<Proto2Message_OptionalGroup>;
 
 /**
  * @generated from message spec.Proto2Message.OptionalDefaultGroup
@@ -540,9 +540,9 @@ export declare type Proto2Message_OptionalDefaultGroup = Message<"spec.Proto2Mes
 
 /**
  * Describes the message spec.Proto2Message.OptionalDefaultGroup.
- * Use `create(Proto2Message_OptionalDefaultGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_OptionalDefaultGroup_Desc)` to create a new message.
  */
-export declare const Proto2Message_OptionalDefaultGroupDesc: GenDescMessage<Proto2Message_OptionalDefaultGroup>;
+export declare const Proto2Message_OptionalDefaultGroup_Desc: GenDescMessage<Proto2Message_OptionalDefaultGroup>;
 
 /**
  * @generated from message spec.Proto2Message.RepeatedGroup
@@ -556,9 +556,9 @@ export declare type Proto2Message_RepeatedGroup = Message<"spec.Proto2Message.Re
 
 /**
  * Describes the message spec.Proto2Message.RepeatedGroup.
- * Use `create(Proto2Message_RepeatedGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_RepeatedGroup_Desc)` to create a new message.
  */
-export declare const Proto2Message_RepeatedGroupDesc: GenDescMessage<Proto2Message_RepeatedGroup>;
+export declare const Proto2Message_RepeatedGroup_Desc: GenDescMessage<Proto2Message_RepeatedGroup>;
 
 /**
  * @generated from message spec.Proto2Message.OneofGroup
@@ -572,9 +572,9 @@ export declare type Proto2Message_OneofGroup = Message<"spec.Proto2Message.Oneof
 
 /**
  * Describes the message spec.Proto2Message.OneofGroup.
- * Use `create(Proto2Message_OneofGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_OneofGroup_Desc)` to create a new message.
  */
-export declare const Proto2Message_OneofGroupDesc: GenDescMessage<Proto2Message_OneofGroup>;
+export declare const Proto2Message_OneofGroup_Desc: GenDescMessage<Proto2Message_OneofGroup>;
 
 /**
  * @generated from enum spec.Proto2Enum

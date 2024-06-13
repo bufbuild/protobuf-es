@@ -48,22 +48,22 @@ export const TopLevelMessageDesc = /*@__PURE__*/
 
 /**
  * Describes the message protobuf_unittest.TopLevelMessage.NestedMessage.
- * Use `create(TopLevelMessage_NestedMessageDesc)` to create a new message.
+ * Use `create(TopLevelMessage_NestedMessage_Desc)` to create a new message.
  */
-export const TopLevelMessage_NestedMessageDesc = /*@__PURE__*/
+export const TopLevelMessage_NestedMessage_Desc = /*@__PURE__*/
   messageDesc(fileDesc_google_protobuf_unittest_retention, 2, 0);
 
 /**
  * Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
  */
-export const TopLevelMessage_NestedEnumDesc = /*@__PURE__*/
+export const TopLevelMessage_NestedEnum_Desc = /*@__PURE__*/
   enumDesc(fileDesc_google_protobuf_unittest_retention, 2, 0);
 
 /**
  * @generated from enum protobuf_unittest.TopLevelMessage.NestedEnum
  */
 export const TopLevelMessage_NestedEnum = /*@__PURE__*/
-  tsEnum(TopLevelMessage_NestedEnumDesc);
+  tsEnum(TopLevelMessage_NestedEnum_Desc);
 
 /**
  * @generated from extension: optional string s = 2;

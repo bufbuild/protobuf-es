@@ -490,9 +490,9 @@ export declare type Edition2023Message_Child = Message<"spec.Edition2023Message.
 
 /**
  * Describes the message spec.Edition2023Message.Child.
- * Use `create(Edition2023Message_ChildDesc)` to create a new message.
+ * Use `create(Edition2023Message_Child_Desc)` to create a new message.
  */
-export declare const Edition2023Message_ChildDesc: GenDescMessage<Edition2023Message_Child>;
+export declare const Edition2023Message_Child_Desc: GenDescMessage<Edition2023Message_Child>;
 
 /**
  * this is an exact replication of spec.Proto3MessageForEdition2023 in editions
@@ -570,9 +570,9 @@ export declare type Edition2023FromProto2Message_OptionalGroup = Message<"spec.E
 
 /**
  * Describes the message spec.Edition2023FromProto2Message.OptionalGroup.
- * Use `create(Edition2023FromProto2Message_OptionalGroupDesc)` to create a new message.
+ * Use `create(Edition2023FromProto2Message_OptionalGroup_Desc)` to create a new message.
  */
-export declare const Edition2023FromProto2Message_OptionalGroupDesc: GenDescMessage<Edition2023FromProto2Message_OptionalGroup>;
+export declare const Edition2023FromProto2Message_OptionalGroup_Desc: GenDescMessage<Edition2023FromProto2Message_OptionalGroup>;
 
 /**
  * @generated from message spec.Edition2023FromProto2Message.RequiredGroup
@@ -586,9 +586,9 @@ export declare type Edition2023FromProto2Message_RequiredGroup = Message<"spec.E
 
 /**
  * Describes the message spec.Edition2023FromProto2Message.RequiredGroup.
- * Use `create(Edition2023FromProto2Message_RequiredGroupDesc)` to create a new message.
+ * Use `create(Edition2023FromProto2Message_RequiredGroup_Desc)` to create a new message.
  */
-export declare const Edition2023FromProto2Message_RequiredGroupDesc: GenDescMessage<Edition2023FromProto2Message_RequiredGroup>;
+export declare const Edition2023FromProto2Message_RequiredGroup_Desc: GenDescMessage<Edition2023FromProto2Message_RequiredGroup>;
 
 /**
  * this is an exact replication of spec.Proto2MessageForEdition2023 in editions
