@@ -26,7 +26,7 @@ import type { Message as Message$1 } from "@bufbuild/protobuf";
  * Describes the file extra/name-clash.proto.
  */
 export const fileDesc_extra_name_clash: GenDescFile = /*@__PURE__*/
-  fileDesc("ChZleHRyYS9uYW1lLWNsYXNoLnByb3RvEgRzcGVjIh0KBFVzZXISFQoBdRgBIAEoCzIKLmRvY3MuVXNlciLtBwoVUmVzZXJ2ZWRQcm9wZXJ0eU5hbWVzGlQKB0J1aWx0SW4SEwoLY29uc3RydWN0b3IYAiABKAkSEQoJdG9fc3RyaW5nGAMgASgJEg8KB3RvX0pTT04YBCABKAkSEAoIdmFsdWVfb2YYBSABKAkatAEKB1J1bnRpbWUSDwoHdG9fanNvbhgEIAEoCRIMCgR0eXBlGAYgASgJEg0KBWNsb25lGAcgASgJEg4KBmVxdWFscxgIIAEoCRITCgtmcm9tX2JpbmFyeRgJIAEoCRIRCglmcm9tX2pzb24YCiABKAkSGAoQZnJvbV9qc29uX3N0cmluZxgLIAEoCRIRCgl0b19iaW5hcnkYDCABKAkSFgoOdG9fanNvbl9zdHJpbmcYDiABKAkabAoLT25lb2ZCdWx0SW4SFQoLY29uc3RydWN0b3IYASABKAlIABITCgl0b19zdHJpbmcYAiABKAlIABIRCgd0b19KU09OGAMgASgJSAASEgoIdmFsdWVfb2YYBCABKAlIAEIKCghidWlsdF9pbhrWAQoMT25lb2ZSdW50aW1lEhEKB3RvX2pzb24YBSABKAlIABIOCgR0eXBlGAYgASgJSAASDwoFY2xvbmUYByABKAlIABIQCgZlcXVhbHMYCCABKAlIABIVCgtmcm9tX2JpbmFyeRgJIAEoCUgAEhMKCWZyb21fanNvbhgKIAEoCUgAEhoKEGZyb21fanNvbl9zdHJpbmcYCyABKAlIABITCgl0b19iaW5hcnkYDCABKAlIABIYCg50b19qc29uX3N0cmluZxgOIAEoCUgAQgkKB3J1bnRpbWUiRQoLRW51bUJ1aWx0SW4SDwoLY29uc3RydWN0b3IQABIMCgh0b1N0cmluZxABEgoKBnRvSlNPThACEgsKB3ZhbHVlT2YQAyKpAQoTRW51bUJ1aWx0SW5QcmVmaXhlZBImCiJFTlVNX0JVSUxUX0lOX1BSRUZJWEVEX2NvbnN0cnVjdG9yEAASIwofRU5VTV9CVUlMVF9JTl9QUkVGSVhFRF90b1N0cmluZxABEiEKHUVOVU1fQlVJTFRfSU5fUFJFRklYRURfdG9KU09OEAISIgoeRU5VTV9CVUlMVF9JTl9QUkVGSVhFRF92YWx1ZU9mEAMijAEKC0VudW1SdW50aW1lEgoKBnRvSnNvbhAAEggKBHR5cGUQBhIJCgVjbG9uZRAHEgoKBmVxdWFscxAIEg4KCmZyb21CaW5hcnkQCRIMCghmcm9tSnNvbhAKEhIKDmZyb21Kc29uU3RyaW5nEAsSDAoIdG9CaW5hcnkQDBIQCgx0b0pzb25TdHJpbmcQDiILCglpbnRlcmZhY2UiCgoIZnVuY3Rpb24iDAoKaW5zdGFuY2VvZiIICgZzd2l0Y2giBgoEY2FzZSIICgZyZXR1cm4iCQoHTWVzc2FnZSIQCg5QYXJ0aWFsTWVzc2FnZSIOCgxQbGFpbk1lc3NhZ2UiLAoFRXJyb3ISEgoKZmllbGRfbmFtZRgBIAEoCRIPCgdtZXNzYWdlGAIgASgJIggKBk9iamVjdCIICgZvYmplY3QiBwoFYXJyYXkiCAoGc3RyaW5nIggKBm51bWJlciIJCgdib29sZWFuIggKBmJpZ2ludCIMCgpVaW50OEFycmF5IgcKBUFycmF5IggKBlN0cmluZyIICgZOdW1iZXIiCQoHQm9vbGVhbiIICgZCaWdJbnQiGwoLQ2xhc2hQYXJlbnQaDAoKQ2xhc2hDaGlsZCJxCg1Ob0NsYXNoRmllbGRzEg0KBWNvbnN0GAEgASgJEg4KBnN3aXRjaBgCIAEoCRIMCgRjYXNlGAMgASgJEhAKCGZ1bmN0aW9uGAQgASgJEhEKCWludGVyZmFjZRgFIAEoCRIOCgZyZXR1cm4YBiABKAkihAEKDE5vQ2xhc2hPbmVvZhIPCgVjb25zdBgBIAEoCUgAEhAKBnN3aXRjaBgCIAEoCUgAEg4KBGNhc2UYAyABKAlIABISCghmdW5jdGlvbhgEIAEoCUgAEhMKCWludGVyZmFjZRgFIAEoCUgAEhAKBnJldHVybhgGIAEoCUgAQgYKBGtpbmQiZgoPTm9DbGFzaE9uZW9mQURUEiIKAW0YASABKAsyFy5zcGVjLk5vQ2xhc2hPbmVvZkFEVC5NGi8KAU0SDAoEY2FzZRgBIAEoCRISCgV2YWx1ZRgCIAEoCUgAiAEBQggKBl92YWx1ZSJlCg9Ob0NsYXNoRW51bVdyYXAiUgoBWBIOCgppbnN0YW5jZW9mEAASCgoGc3dpdGNoEAESCAoEY2FzZRADEgwKCGZ1bmN0aW9uEAQSDQoJaW50ZXJmYWNlEAUSCgoGcmV0dXJuEAYyuAEKHFJlc2VydmVkUHJvcGVydHlOYW1lc1NlcnZpY2USJwoLY29uc3RydWN0b3ISCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh0b1N0cmluZxILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yEiMKB3RvX0pTT04SCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIkCgh2YWx1ZV9vZhILLnNwZWMuRXJyb3IaCy5zcGVjLkVycm9yYgZwcm90bzM", [fileDesc_extra_example]);
+  fileDesc("ChZleHRyYS9uYW1lLWNsYXNoLnByb3RvEgRzcGVjIh0KBFVzZXISFQoBdRgBIAEoCzIKLmRvY3MuVXNlciLtBwoVUmVzZXJ2ZWRQcm9wZXJ0eU5hbWVzGlQKB0J1aWx0SW4SEwoLY29uc3RydWN0b3IYAiABKAkSEQoJdG9fc3RyaW5nGAMgASgJEg8KB3RvX0pTT04YBCABKAkSEAoIdmFsdWVfb2YYBSABKAkatAEKB1J1bnRpbWUSDwoHdG9fanNvbhgEIAEoCRIMCgR0eXBlGAYgASgJEg0KBWNsb25lGAcgASgJEg4KBmVxdWFscxgIIAEoCRITCgtmcm9tX2JpbmFyeRgJIAEoCRIRCglmcm9tX2pzb24YCiABKAkSGAoQZnJvbV9qc29uX3N0cmluZxgLIAEoCRIRCgl0b19iaW5hcnkYDCABKAkSFgoOdG9fanNvbl9zdHJpbmcYDiABKAkabAoLT25lb2ZCdWx0SW4SFQoLY29uc3RydWN0b3IYASABKAlIABITCgl0b19zdHJpbmcYAiABKAlIABIRCgd0b19KU09OGAMgASgJSAASEgoIdmFsdWVfb2YYBCABKAlIAEIKCghidWlsdF9pbhrWAQoMT25lb2ZSdW50aW1lEhEKB3RvX2pzb24YBSABKAlIABIOCgR0eXBlGAYgASgJSAASDwoFY2xvbmUYByABKAlIABIQCgZlcXVhbHMYCCABKAlIABIVCgtmcm9tX2JpbmFyeRgJIAEoCUgAEhMKCWZyb21fanNvbhgKIAEoCUgAEhoKEGZyb21fanNvbl9zdHJpbmcYCyABKAlIABITCgl0b19iaW5hcnkYDCABKAlIABIYCg50b19qc29uX3N0cmluZxgOIAEoCUgAQgkKB3J1bnRpbWUiRQoLRW51bUJ1aWx0SW4SDwoLY29uc3RydWN0b3IQABIMCgh0b1N0cmluZxABEgoKBnRvSlNPThACEgsKB3ZhbHVlT2YQAyKpAQoTRW51bUJ1aWx0SW5QcmVmaXhlZBImCiJFTlVNX0JVSUxUX0lOX1BSRUZJWEVEX2NvbnN0cnVjdG9yEAASIwofRU5VTV9CVUlMVF9JTl9QUkVGSVhFRF90b1N0cmluZxABEiEKHUVOVU1fQlVJTFRfSU5fUFJFRklYRURfdG9KU09OEAISIgoeRU5VTV9CVUlMVF9JTl9QUkVGSVhFRF92YWx1ZU9mEAMijAEKC0VudW1SdW50aW1lEgoKBnRvSnNvbhAAEggKBHR5cGUQBhIJCgVjbG9uZRAHEgoKBmVxdWFscxAIEg4KCmZyb21CaW5hcnkQCRIMCghmcm9tSnNvbhAKEhIKDmZyb21Kc29uU3RyaW5nEAsSDAoIdG9CaW5hcnkQDBIQCgx0b0pzb25TdHJpbmcQDiILCglpbnRlcmZhY2UiCgoIZnVuY3Rpb24iDAoKaW5zdGFuY2VvZiIICgZzd2l0Y2giBgoEY2FzZSIICgZyZXR1cm4iCQoHTWVzc2FnZSIQCg5QYXJ0aWFsTWVzc2FnZSIOCgxQbGFpbk1lc3NhZ2UiLAoFRXJyb3ISEgoKZmllbGRfbmFtZRgBIAEoCRIPCgdtZXNzYWdlGAIgASgJIggKBk9iamVjdCIICgZvYmplY3QiBwoFYXJyYXkiCAoGc3RyaW5nIggKBm51bWJlciIJCgdib29sZWFuIggKBmJpZ2ludCIMCgpVaW50OEFycmF5IgcKBUFycmF5IggKBlN0cmluZyIICgZOdW1iZXIiCQoHQm9vbGVhbiIICgZCaWdJbnQiGwoLQ2xhc2hQYXJlbnQaDAoKQ2xhc2hDaGlsZCIYChZDbGFzaFBhcmVudF9DbGFzaENoaWxkIiMKIUVudW1EZXNjQ2xhc2hXaXRoTWVzc2FnZVNoYXBlRGVzYyIfCh1FbnVtU2hhcGVDbGFzaFdpdGhNZXNzYWdlRGVzYyJxCg1Ob0NsYXNoRmllbGRzEg0KBWNvbnN0GAEgASgJEg4KBnN3aXRjaBgCIAEoCRIMCgRjYXNlGAMgASgJEhAKCGZ1bmN0aW9uGAQgASgJEhEKCWludGVyZmFjZRgFIAEoCRIOCgZyZXR1cm4YBiABKAkihAEKDE5vQ2xhc2hPbmVvZhIPCgVjb25zdBgBIAEoCUgAEhAKBnN3aXRjaBgCIAEoCUgAEg4KBGNhc2UYAyABKAlIABISCghmdW5jdGlvbhgEIAEoCUgAEhMKCWludGVyZmFjZRgFIAEoCUgAEhAKBnJldHVybhgGIAEoCUgAQgYKBGtpbmQiZgoPTm9DbGFzaE9uZW9mQURUEiIKAW0YASABKAsyFy5zcGVjLk5vQ2xhc2hPbmVvZkFEVC5NGi8KAU0SDAoEY2FzZRgBIAEoCRISCgV2YWx1ZRgCIAEoCUgAiAEBQggKBl92YWx1ZSJlCg9Ob0NsYXNoRW51bVdyYXAiUgoBWBIOCgppbnN0YW5jZW9mEAASCgoGc3dpdGNoEAESCAoEY2FzZRADEgwKCGZ1bmN0aW9uEAQSDQoJaW50ZXJmYWNlEAUSCgoGcmV0dXJuEAYqSgodRW51bURlc2NDbGFzaFdpdGhNZXNzYWdlU2hhcGUSKQolTWVzc2FnZURlc2NDbGFzaFdpdGhFbnVtRGVzY0Rlc2NfemVybxAAKk8KIUVudW1TaGFwZUNsYXNoV2l0aE1lc3NhZ2VEZXNjRGVzYxIqCiZFbnVtU2hhcGVDbGFzaFdpdGhNZXNzYWdlRGVzY0Rlc2NfemVybxAAMrgBChxSZXNlcnZlZFByb3BlcnR5TmFtZXNTZXJ2aWNlEicKC2NvbnN0cnVjdG9yEgsuc3BlYy5FcnJvchoLLnNwZWMuRXJyb3ISJAoIdG9TdHJpbmcSCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIjCgd0b19KU09OEgsuc3BlYy5FcnJvchoLLnNwZWMuRXJyb3ISJAoIdmFsdWVfb2YSCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvcmIGcHJvdG8z", [fileDesc_extra_example]);
 
 /**
  * This message class will clash with the imported message class
@@ -417,9 +417,9 @@ export type interface$ = Message$1<"spec.interface"> & {
 
 /**
  * Describes the message spec.interface.
- * Use `create(interface$Desc)` to create a new message.
+ * Use `create(interfaceDesc)` to create a new message.
  */
-export const interface$Desc: GenDescMessage<interface$> = /*@__PURE__*/
+export const interfaceDesc: GenDescMessage<interface$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 2);
 
 /**
@@ -432,9 +432,9 @@ export type function$ = Message$1<"spec.function"> & {
 
 /**
  * Describes the message spec.function.
- * Use `create(function$Desc)` to create a new message.
+ * Use `create(functionDesc)` to create a new message.
  */
-export const function$Desc: GenDescMessage<function$> = /*@__PURE__*/
+export const functionDesc: GenDescMessage<function$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 3);
 
 /**
@@ -447,9 +447,9 @@ export type instanceof$ = Message$1<"spec.instanceof"> & {
 
 /**
  * Describes the message spec.instanceof.
- * Use `create(instanceof$Desc)` to create a new message.
+ * Use `create(instanceofDesc)` to create a new message.
  */
-export const instanceof$Desc: GenDescMessage<instanceof$> = /*@__PURE__*/
+export const instanceofDesc: GenDescMessage<instanceof$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 4);
 
 /**
@@ -462,9 +462,9 @@ export type switch$ = Message$1<"spec.switch"> & {
 
 /**
  * Describes the message spec.switch.
- * Use `create(switch$Desc)` to create a new message.
+ * Use `create(switchDesc)` to create a new message.
  */
-export const switch$Desc: GenDescMessage<switch$> = /*@__PURE__*/
+export const switchDesc: GenDescMessage<switch$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 5);
 
 /**
@@ -477,9 +477,9 @@ export type case$ = Message$1<"spec.case"> & {
 
 /**
  * Describes the message spec.case.
- * Use `create(case$Desc)` to create a new message.
+ * Use `create(caseDesc)` to create a new message.
  */
-export const case$Desc: GenDescMessage<case$> = /*@__PURE__*/
+export const caseDesc: GenDescMessage<case$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 6);
 
 /**
@@ -492,9 +492,9 @@ export type return$ = Message$1<"spec.return"> & {
 
 /**
  * Describes the message spec.return.
- * Use `create(return$Desc)` to create a new message.
+ * Use `create(returnDesc)` to create a new message.
  */
-export const return$Desc: GenDescMessage<return$> = /*@__PURE__*/
+export const returnDesc: GenDescMessage<return$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 7);
 
 /**
@@ -578,9 +578,9 @@ export type Object$ = Message$1<"spec.Object"> & {
 
 /**
  * Describes the message spec.Object.
- * Use `create(Object$Desc)` to create a new message.
+ * Use `create(ObjectDesc)` to create a new message.
  */
-export const Object$Desc: GenDescMessage<Object$> = /*@__PURE__*/
+export const ObjectDesc: GenDescMessage<Object$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 12);
 
 /**
@@ -591,9 +591,9 @@ export type object$ = Message$1<"spec.object"> & {
 
 /**
  * Describes the message spec.object.
- * Use `create(object$Desc)` to create a new message.
+ * Use `create(objectDesc)` to create a new message.
  */
-export const object$Desc: GenDescMessage<object$> = /*@__PURE__*/
+export const objectDesc: GenDescMessage<object$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 13);
 
 /**
@@ -621,9 +621,9 @@ export type string$ = Message$1<"spec.string"> & {
 
 /**
  * Describes the message spec.string.
- * Use `create(string$Desc)` to create a new message.
+ * Use `create(stringDesc)` to create a new message.
  */
-export const string$Desc: GenDescMessage<string$> = /*@__PURE__*/
+export const stringDesc: GenDescMessage<string$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 15);
 
 /**
@@ -636,9 +636,9 @@ export type number$ = Message$1<"spec.number"> & {
 
 /**
  * Describes the message spec.number.
- * Use `create(number$Desc)` to create a new message.
+ * Use `create(numberDesc)` to create a new message.
  */
-export const number$Desc: GenDescMessage<number$> = /*@__PURE__*/
+export const numberDesc: GenDescMessage<number$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 16);
 
 /**
@@ -651,9 +651,9 @@ export type boolean$ = Message$1<"spec.boolean"> & {
 
 /**
  * Describes the message spec.boolean.
- * Use `create(boolean$Desc)` to create a new message.
+ * Use `create(booleanDesc)` to create a new message.
  */
-export const boolean$Desc: GenDescMessage<boolean$> = /*@__PURE__*/
+export const booleanDesc: GenDescMessage<boolean$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 17);
 
 /**
@@ -666,9 +666,9 @@ export type bigint$ = Message$1<"spec.bigint"> & {
 
 /**
  * Describes the message spec.bigint.
- * Use `create(bigint$Desc)` to create a new message.
+ * Use `create(bigintDesc)` to create a new message.
  */
-export const bigint$Desc: GenDescMessage<bigint$> = /*@__PURE__*/
+export const bigintDesc: GenDescMessage<bigint$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 18);
 
 /**
@@ -681,9 +681,9 @@ export type Uint8Array$ = Message$1<"spec.Uint8Array"> & {
 
 /**
  * Describes the message spec.Uint8Array.
- * Use `create(Uint8Array$Desc)` to create a new message.
+ * Use `create(Uint8ArrayDesc)` to create a new message.
  */
-export const Uint8Array$Desc: GenDescMessage<Uint8Array$> = /*@__PURE__*/
+export const Uint8ArrayDesc: GenDescMessage<Uint8Array$> = /*@__PURE__*/
   messageDesc(fileDesc_extra_name_clash, 19);
 
 /**
@@ -790,6 +790,49 @@ export const ClashParent_ClashChildDesc: GenDescMessage<ClashParent_ClashChild> 
   messageDesc(fileDesc_extra_name_clash, 25, 0);
 
 /**
+ * should clash with name of ClashParent.ClashChild
+ *
+ * @generated from message spec.ClashParent_ClashChild
+ */
+export type ClashParent_ClashChild$ = Message$1<"spec.ClashParent_ClashChild"> & {
+};
+
+/**
+ * Describes the message spec.ClashParent_ClashChild.
+ * Use `create(ClashParent_ClashChildDesc$)` to create a new message.
+ */
+export const ClashParent_ClashChildDesc$: GenDescMessage<ClashParent_ClashChild$> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 26);
+
+/**
+ * message shape should clash with enum descriptor
+ *
+ * @generated from message spec.EnumDescClashWithMessageShapeDesc
+ */
+export type EnumDescClashWithMessageShapeDesc = Message$1<"spec.EnumDescClashWithMessageShapeDesc"> & {
+};
+
+/**
+ * Describes the message spec.EnumDescClashWithMessageShapeDesc.
+ * Use `create(EnumDescClashWithMessageShapeDescDesc)` to create a new message.
+ */
+export const EnumDescClashWithMessageShapeDescDesc: GenDescMessage<EnumDescClashWithMessageShapeDesc> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 27);
+
+/**
+ * @generated from message spec.EnumShapeClashWithMessageDesc
+ */
+export type EnumShapeClashWithMessageDesc = Message$1<"spec.EnumShapeClashWithMessageDesc"> & {
+};
+
+/**
+ * Describes the message spec.EnumShapeClashWithMessageDesc.
+ * Use `create(EnumShapeClashWithMessageDescDesc$)` to create a new message.
+ */
+export const EnumShapeClashWithMessageDescDesc$: GenDescMessage<EnumShapeClashWithMessageDesc> = /*@__PURE__*/
+  messageDesc(fileDesc_extra_name_clash, 28);
+
+/**
  * @generated from message spec.NoClashFields
  */
 export type NoClashFields = Message$1<"spec.NoClashFields"> & {
@@ -841,7 +884,7 @@ export type NoClashFields = Message$1<"spec.NoClashFields"> & {
  * Use `create(NoClashFieldsDesc)` to create a new message.
  */
 export const NoClashFieldsDesc: GenDescMessage<NoClashFields> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 26);
+  messageDesc(fileDesc_extra_name_clash, 29);
 
 /**
  * @generated from message spec.NoClashOneof
@@ -906,7 +949,7 @@ export type NoClashOneof = Message$1<"spec.NoClashOneof"> & {
  * Use `create(NoClashOneofDesc)` to create a new message.
  */
 export const NoClashOneofDesc: GenDescMessage<NoClashOneof> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 27);
+  messageDesc(fileDesc_extra_name_clash, 30);
 
 /**
  * @generated from message spec.NoClashOneofADT
@@ -923,7 +966,7 @@ export type NoClashOneofADT = Message$1<"spec.NoClashOneofADT"> & {
  * Use `create(NoClashOneofADTDesc)` to create a new message.
  */
 export const NoClashOneofADTDesc: GenDescMessage<NoClashOneofADT> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 28);
+  messageDesc(fileDesc_extra_name_clash, 31);
 
 /**
  * @generated from message spec.NoClashOneofADT.M
@@ -945,7 +988,7 @@ export type NoClashOneofADT_M = Message$1<"spec.NoClashOneofADT.M"> & {
  * Use `create(NoClashOneofADT_MDesc)` to create a new message.
  */
 export const NoClashOneofADT_MDesc: GenDescMessage<NoClashOneofADT_M> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 28, 0);
+  messageDesc(fileDesc_extra_name_clash, 31, 0);
 
 /**
  * just here as a "namespace" for the enum
@@ -960,7 +1003,7 @@ export type NoClashEnumWrap = Message$1<"spec.NoClashEnumWrap"> & {
  * Use `create(NoClashEnumWrapDesc)` to create a new message.
  */
 export const NoClashEnumWrapDesc: GenDescMessage<NoClashEnumWrap> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_name_clash, 29);
+  messageDesc(fileDesc_extra_name_clash, 32);
 
 /**
  * @generated from enum spec.NoClashEnumWrap.X
@@ -1013,7 +1056,41 @@ export enum NoClashEnumWrap_X {
  * Describes the enum spec.NoClashEnumWrap.X.
  */
 export const NoClashEnumWrap_XDesc: GenDescEnum<NoClashEnumWrap_X> = /*@__PURE__*/
-  enumDesc(fileDesc_extra_name_clash, 29, 0);
+  enumDesc(fileDesc_extra_name_clash, 32, 0);
+
+/**
+ * @generated from enum spec.EnumDescClashWithMessageShape
+ */
+export enum EnumDescClashWithMessageShape {
+  /**
+   * @generated from enum value: MessageDescClashWithEnumDescDesc_zero = 0;
+   */
+  MessageDescClashWithEnumDescDesc_zero = 0,
+}
+
+/**
+ * Describes the enum spec.EnumDescClashWithMessageShape.
+ */
+export const EnumDescClashWithMessageShapeDesc$: GenDescEnum<EnumDescClashWithMessageShape> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_name_clash, 0);
+
+/**
+ * enum shape should clash with message descriptor
+ *
+ * @generated from enum spec.EnumShapeClashWithMessageDescDesc
+ */
+export enum EnumShapeClashWithMessageDescDesc {
+  /**
+   * @generated from enum value: EnumShapeClashWithMessageDescDesc_zero = 0;
+   */
+  EnumShapeClashWithMessageDescDesc_zero = 0,
+}
+
+/**
+ * Describes the enum spec.EnumShapeClashWithMessageDescDesc.
+ */
+export const EnumShapeClashWithMessageDescDescDesc: GenDescEnum<EnumShapeClashWithMessageDescDesc> = /*@__PURE__*/
+  enumDesc(fileDesc_extra_name_clash, 1);
 
 /**
  * @generated from service spec.ReservedPropertyNamesService
