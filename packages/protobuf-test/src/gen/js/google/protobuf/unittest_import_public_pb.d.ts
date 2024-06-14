@@ -24,7 +24,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_import_public.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_import_public: GenDescFile;
+export declare const file_google_protobuf_unittest_import_public: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest_import.PublicImportMessage
@@ -48,7 +48,7 @@ export declare type PublicImportMessageJson = {
 
 /**
  * Describes the message protobuf_unittest_import.PublicImportMessage.
- * Use `create(PublicImportMessageDesc)` to create a new message.
+ * Use `create(PublicImportMessageSchema)` to create a new message.
  */
-export declare const PublicImportMessageDesc: GenDescMessage<PublicImportMessage, PublicImportMessageJson>;
+export declare const PublicImportMessageSchema: GenDescMessage<PublicImportMessage, PublicImportMessageJson>;
 

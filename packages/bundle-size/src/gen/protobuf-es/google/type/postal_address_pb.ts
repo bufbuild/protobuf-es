@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/postal_address.proto.
  */
-export const fileDesc_google_type_postal_address: GenDescFile = /*@__PURE__*/
+export const file_google_type_postal_address: GenDescFile = /*@__PURE__*/
   fileDesc("CiBnb29nbGUvdHlwZS9wb3N0YWxfYWRkcmVzcy5wcm90bxILZ29vZ2xlLnR5cGUi/QEKDVBvc3RhbEFkZHJlc3MSEAoIcmV2aXNpb24YASABKAUSEwoLcmVnaW9uX2NvZGUYAiABKAkSFQoNbGFuZ3VhZ2VfY29kZRgDIAEoCRITCgtwb3N0YWxfY29kZRgEIAEoCRIUCgxzb3J0aW5nX2NvZGUYBSABKAkSGwoTYWRtaW5pc3RyYXRpdmVfYXJlYRgGIAEoCRIQCghsb2NhbGl0eRgHIAEoCRITCgtzdWJsb2NhbGl0eRgIIAEoCRIVCg1hZGRyZXNzX2xpbmVzGAkgAygJEhIKCnJlY2lwaWVudHMYCiADKAkSFAoMb3JnYW5pemF0aW9uGAsgASgJQngKD2NvbS5nb29nbGUudHlwZUISUG9zdGFsQWRkcmVzc1Byb3RvUAFaRmdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvdHlwZS9wb3N0YWxhZGRyZXNzO3Bvc3RhbGFkZHJlc3P4AQGiAgNHVFBiBnByb3RvMw");
 
 /**
@@ -246,8 +246,8 @@ export type PostalAddressJson = {
 
 /**
  * Describes the message google.type.PostalAddress.
- * Use `create(PostalAddressDesc)` to create a new message.
+ * Use `create(PostalAddressSchema)` to create a new message.
  */
-export const PostalAddressDesc: GenDescMessage<PostalAddress, PostalAddressJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_postal_address, 0);
+export const PostalAddressSchema: GenDescMessage<PostalAddress, PostalAddressJson> = /*@__PURE__*/
+  messageDesc(file_google_type_postal_address, 0);
 

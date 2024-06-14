@@ -52,11 +52,11 @@ function makeReadOptions(
  * Parse serialized binary data.
  */
 export function fromBinary<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc> {
-  const msg = reflect(messageDesc, undefined, false);
+  const msg = reflect(schema, undefined, false);
   readMessage(
     msg,
     new BinaryReader(bytes),
@@ -77,13 +77,13 @@ export function fromBinary<Desc extends DescMessage>(
  * new data.
  */
 export function mergeFromBinary<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   target: MessageShape<Desc>,
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc> {
   readMessage(
-    reflect(messageDesc, target, false),
+    reflect(schema, target, false),
     new BinaryReader(bytes),
     makeReadOptions(options),
     false,

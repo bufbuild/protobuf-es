@@ -19,14 +19,14 @@
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { FieldOptions, FileOptions, MessageOptions } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/api/resource.proto.
  */
-export const fileDesc_google_api_resource: GenDescFile = /*@__PURE__*/
-  fileDesc("Chlnb29nbGUvYXBpL3Jlc291cmNlLnByb3RvEgpnb29nbGUuYXBpIu4CChJSZXNvdXJjZURlc2NyaXB0b3ISDAoEdHlwZRgBIAEoCRIPCgdwYXR0ZXJuGAIgAygJEhIKCm5hbWVfZmllbGQYAyABKAkSNwoHaGlzdG9yeRgEIAEoDjImLmdvb2dsZS5hcGkuUmVzb3VyY2VEZXNjcmlwdG9yLkhpc3RvcnkSDgoGcGx1cmFsGAUgASgJEhAKCHNpbmd1bGFyGAYgASgJEjMKBXN0eWxlGAogAygOMiQuZ29vZ2xlLmFwaS5SZXNvdXJjZURlc2NyaXB0b3IuU3R5bGUiWwoHSGlzdG9yeRIXChNISVNUT1JZX1VOU1BFQ0lGSUVEEAASHQoZT1JJR0lOQUxMWV9TSU5HTEVfUEFUVEVSThABEhgKFEZVVFVSRV9NVUxUSV9QQVRURVJOEAIiOAoFU3R5bGUSFQoRU1RZTEVfVU5TUEVDSUZJRUQQABIYChRERUNMQVJBVElWRV9GUklFTkRMWRABIjUKEVJlc291cmNlUmVmZXJlbmNlEgwKBHR5cGUYASABKAkSEgoKY2hpbGRfdHlwZRgCIAEoCTpsChJyZXNvdXJjZV9yZWZlcmVuY2USHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGJ8IIAEoCzIdLmdvb2dsZS5hcGkuUmVzb3VyY2VSZWZlcmVuY2VSEXJlc291cmNlUmVmZXJlbmNlOm4KE3Jlc291cmNlX2RlZmluaXRpb24SHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMYnQggAygLMh4uZ29vZ2xlLmFwaS5SZXNvdXJjZURlc2NyaXB0b3JSEnJlc291cmNlRGVmaW5pdGlvbjpcCghyZXNvdXJjZRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxidCCABKAsyHi5nb29nbGUuYXBpLlJlc291cmNlRGVzY3JpcHRvclIIcmVzb3VyY2VCbgoOY29tLmdvb2dsZS5hcGlCDVJlc291cmNlUHJvdG9QAVpBZ29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvYW5ub3RhdGlvbnM7YW5ub3RhdGlvbnP4AQGiAgRHQVBJYgZwcm90bzM", [fileDesc_google_protobuf_descriptor]);
+export const file_google_api_resource: GenDescFile = /*@__PURE__*/
+  fileDesc("Chlnb29nbGUvYXBpL3Jlc291cmNlLnByb3RvEgpnb29nbGUuYXBpIu4CChJSZXNvdXJjZURlc2NyaXB0b3ISDAoEdHlwZRgBIAEoCRIPCgdwYXR0ZXJuGAIgAygJEhIKCm5hbWVfZmllbGQYAyABKAkSNwoHaGlzdG9yeRgEIAEoDjImLmdvb2dsZS5hcGkuUmVzb3VyY2VEZXNjcmlwdG9yLkhpc3RvcnkSDgoGcGx1cmFsGAUgASgJEhAKCHNpbmd1bGFyGAYgASgJEjMKBXN0eWxlGAogAygOMiQuZ29vZ2xlLmFwaS5SZXNvdXJjZURlc2NyaXB0b3IuU3R5bGUiWwoHSGlzdG9yeRIXChNISVNUT1JZX1VOU1BFQ0lGSUVEEAASHQoZT1JJR0lOQUxMWV9TSU5HTEVfUEFUVEVSThABEhgKFEZVVFVSRV9NVUxUSV9QQVRURVJOEAIiOAoFU3R5bGUSFQoRU1RZTEVfVU5TUEVDSUZJRUQQABIYChRERUNMQVJBVElWRV9GUklFTkRMWRABIjUKEVJlc291cmNlUmVmZXJlbmNlEgwKBHR5cGUYASABKAkSEgoKY2hpbGRfdHlwZRgCIAEoCTpsChJyZXNvdXJjZV9yZWZlcmVuY2USHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGJ8IIAEoCzIdLmdvb2dsZS5hcGkuUmVzb3VyY2VSZWZlcmVuY2VSEXJlc291cmNlUmVmZXJlbmNlOm4KE3Jlc291cmNlX2RlZmluaXRpb24SHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMYnQggAygLMh4uZ29vZ2xlLmFwaS5SZXNvdXJjZURlc2NyaXB0b3JSEnJlc291cmNlRGVmaW5pdGlvbjpcCghyZXNvdXJjZRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxidCCABKAsyHi5nb29nbGUuYXBpLlJlc291cmNlRGVzY3JpcHRvclIIcmVzb3VyY2VCbgoOY29tLmdvb2dsZS5hcGlCDVJlc291cmNlUHJvdG9QAVpBZ29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvYW5ub3RhdGlvbnM7YW5ub3RhdGlvbnP4AQGiAgRHQVBJYgZwcm90bzM", [file_google_protobuf_descriptor]);
 
 /**
  * A simple descriptor of a resource type.
@@ -225,10 +225,10 @@ export type ResourceDescriptorJson = {
 
 /**
  * Describes the message google.api.ResourceDescriptor.
- * Use `create(ResourceDescriptorDesc)` to create a new message.
+ * Use `create(ResourceDescriptorSchema)` to create a new message.
  */
-export const ResourceDescriptorDesc: GenDescMessage<ResourceDescriptor, ResourceDescriptorJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_resource, 0);
+export const ResourceDescriptorSchema: GenDescMessage<ResourceDescriptor, ResourceDescriptorJson> = /*@__PURE__*/
+  messageDesc(file_google_api_resource, 0);
 
 /**
  * A description of the historical or future-looking state of the
@@ -270,8 +270,8 @@ export type ResourceDescriptor_HistoryJson = "HISTORY_UNSPECIFIED" | "ORIGINALLY
 /**
  * Describes the enum google.api.ResourceDescriptor.History.
  */
-export const ResourceDescriptor_HistoryDesc: GenDescEnum<ResourceDescriptor_History, ResourceDescriptor_HistoryJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_api_resource, 0, 0);
+export const ResourceDescriptor_HistorySchema: GenDescEnum<ResourceDescriptor_History, ResourceDescriptor_HistoryJson> = /*@__PURE__*/
+  enumDesc(file_google_api_resource, 0, 0);
 
 /**
  * A flag representing a specific style that a resource claims to conform to.
@@ -309,8 +309,8 @@ export type ResourceDescriptor_StyleJson = "STYLE_UNSPECIFIED" | "DECLARATIVE_FR
 /**
  * Describes the enum google.api.ResourceDescriptor.Style.
  */
-export const ResourceDescriptor_StyleDesc: GenDescEnum<ResourceDescriptor_Style, ResourceDescriptor_StyleJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_api_resource, 0, 1);
+export const ResourceDescriptor_StyleSchema: GenDescEnum<ResourceDescriptor_Style, ResourceDescriptor_StyleJson> = /*@__PURE__*/
+  enumDesc(file_google_api_resource, 0, 1);
 
 /**
  * Defines a proto annotation that describes a string field that refers to
@@ -380,10 +380,10 @@ export type ResourceReferenceJson = {
 
 /**
  * Describes the message google.api.ResourceReference.
- * Use `create(ResourceReferenceDesc)` to create a new message.
+ * Use `create(ResourceReferenceSchema)` to create a new message.
  */
-export const ResourceReferenceDesc: GenDescMessage<ResourceReference, ResourceReferenceJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_resource, 1);
+export const ResourceReferenceSchema: GenDescMessage<ResourceReference, ResourceReferenceJson> = /*@__PURE__*/
+  messageDesc(file_google_api_resource, 1);
 
 /**
  * An annotation that describes a resource reference, see
@@ -392,7 +392,7 @@ export const ResourceReferenceDesc: GenDescMessage<ResourceReference, ResourceRe
  * @generated from extension: google.api.ResourceReference resource_reference = 1055;
  */
 export const resource_reference: GenDescExtension<FieldOptions, ResourceReference> = /*@__PURE__*/
-  extDesc(fileDesc_google_api_resource, 0);
+  extDesc(file_google_api_resource, 0);
 
 /**
  * An annotation that describes a resource definition without a corresponding
@@ -401,7 +401,7 @@ export const resource_reference: GenDescExtension<FieldOptions, ResourceReferenc
  * @generated from extension: repeated google.api.ResourceDescriptor resource_definition = 1053;
  */
 export const resource_definition: GenDescExtension<FileOptions, ResourceDescriptor[]> = /*@__PURE__*/
-  extDesc(fileDesc_google_api_resource, 1);
+  extDesc(file_google_api_resource, 1);
 
 /**
  * An annotation that describes a resource definition, see
@@ -410,5 +410,5 @@ export const resource_definition: GenDescExtension<FileOptions, ResourceDescript
  * @generated from extension: google.api.ResourceDescriptor resource = 1053;
  */
 export const resource: GenDescExtension<MessageOptions, ResourceDescriptor> = /*@__PURE__*/
-  extDesc(fileDesc_google_api_resource, 2);
+  extDesc(file_google_api_resource, 2);
 

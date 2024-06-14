@@ -22,11 +22,10 @@ import { isReflectMessage } from "./reflect/guard.js";
  * Create a deep copy of a message, including extensions and unknown fields.
  */
 export function clone<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
 ): MessageShape<Desc> {
-  return cloneReflect(reflect(messageDesc, message))
-    .message as MessageShape<Desc>;
+  return cloneReflect(reflect(schema, message)).message as MessageShape<Desc>;
 }
 
 function cloneReflect(i: ReflectMessage): ReflectMessage {

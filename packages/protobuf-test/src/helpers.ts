@@ -15,7 +15,7 @@
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
 import type { FileDescriptorSet } from "@bufbuild/protobuf/wkt";
-import { FileDescriptorSetDesc } from "@bufbuild/protobuf/wkt";
+import { FileDescriptorSetSchema } from "@bufbuild/protobuf/wkt";
 import { FieldError } from "@bufbuild/protobuf/reflect";
 import assert from "node:assert";
 
@@ -40,7 +40,7 @@ export async function compileFileDescriptorSet(
     includeImports: true,
     retainOptions: true,
   });
-  return fromBinary(FileDescriptorSetDesc, bytes);
+  return fromBinary(FileDescriptorSetSchema, bytes);
 }
 
 export async function compileFile(proto: string, name = "input.proto") {
@@ -55,7 +55,7 @@ export async function compileFile(proto: string, name = "input.proto") {
       includeSourceInfo: true,
     },
   );
-  const fds = fromBinary(FileDescriptorSetDesc, bytes);
+  const fds = fromBinary(FileDescriptorSetSchema, bytes);
   const reg = createFileRegistry(fds);
   const file = reg.getFile(name);
   assert(file);

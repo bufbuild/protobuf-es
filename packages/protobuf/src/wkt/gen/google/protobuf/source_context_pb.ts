@@ -24,7 +24,7 @@ import { messageDesc } from "../../../../codegenv1/message.js";
 /**
  * Describes the file google/protobuf/source_context.proto.
  */
-export const fileDesc_google_protobuf_source_context: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_source_context: GenDescFile = /*@__PURE__*/
   fileDesc("CiRnb29nbGUvcHJvdG9idWYvc291cmNlX2NvbnRleHQucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIiCg1Tb3VyY2VDb250ZXh0EhEKCWZpbGVfbmFtZRgBIAEoCUKKAQoTY29tLmdvb2dsZS5wcm90b2J1ZkISU291cmNlQ29udGV4dFByb3RvUAFaNmdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL3NvdXJjZWNvbnRleHRwYqICA0dQQqoCHkdvb2dsZS5Qcm90b2J1Zi5XZWxsS25vd25UeXBlc2IGcHJvdG8z");
 
 /**
@@ -55,8 +55,8 @@ export type SourceContextJson = {
 
 /**
  * Describes the message google.protobuf.SourceContext.
- * Use `create(SourceContextDesc)` to create a new message.
+ * Use `create(SourceContextSchema)` to create a new message.
  */
-export const SourceContextDesc: GenDescMessage<SourceContext, SourceContextJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_source_context, 0);
+export const SourceContextSchema: GenDescMessage<SourceContext, SourceContextJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_source_context, 0);
 

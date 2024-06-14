@@ -17,48 +17,48 @@
 /* eslint-disable */
 
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc_google_protobuf_descriptor, fileDesc_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_descriptor, file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/deprecation-implicit.proto.
  * @deprecated
  */
-export const fileDesc_extra_deprecation_implicit = /*@__PURE__*/
-  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyJCChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2USIwobaW1wbGljaXRseV9kZXByZWNhdGVkX2ZpZWxkGAEgASgJKkYKGEltcGxpY2l0bHlEZXByZWNhdGVkRW51bRIqCiZJTVBMSUNJVExZX0RFUFJFQ0FURURfRU5VTV9VTlNQRUNJRklFRBAAMmgKG0ltcGxpY2l0bHlEZXByZWNhdGVkU2VydmljZRJJChdJbXBsaWNpdGx5RGVwcmVjYXRlZFJwYxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eTpgChxpbXBsaWNpdGx5X2RlcHJlY2F0ZWRfb3B0aW9uEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjSDyABKAVSGmltcGxpY2l0bHlEZXByZWNhdGVkT3B0aW9uQgO4AQFiBnByb3RvMw", [fileDesc_google_protobuf_empty, fileDesc_google_protobuf_descriptor]);
+export const file_extra_deprecation_implicit = /*@__PURE__*/
+  fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyJCChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2USIwobaW1wbGljaXRseV9kZXByZWNhdGVkX2ZpZWxkGAEgASgJKkYKGEltcGxpY2l0bHlEZXByZWNhdGVkRW51bRIqCiZJTVBMSUNJVExZX0RFUFJFQ0FURURfRU5VTV9VTlNQRUNJRklFRBAAMmgKG0ltcGxpY2l0bHlEZXByZWNhdGVkU2VydmljZRJJChdJbXBsaWNpdGx5RGVwcmVjYXRlZFJwYxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eTpgChxpbXBsaWNpdGx5X2RlcHJlY2F0ZWRfb3B0aW9uEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjSDyABKAVSGmltcGxpY2l0bHlEZXByZWNhdGVkT3B0aW9uQgO4AQFiBnByb3RvMw", [file_google_protobuf_empty, file_google_protobuf_descriptor]);
 
 /**
  * Describes the message spec.ImplicitlyDeprecatedMessage.
- * Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new message.
+ * Use `create(ImplicitlyDeprecatedMessageSchema)` to create a new message.
  * @deprecated
  */
-export const ImplicitlyDeprecatedMessageDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_deprecation_implicit, 0);
+export const ImplicitlyDeprecatedMessageSchema = /*@__PURE__*/
+  messageDesc(file_extra_deprecation_implicit, 0);
 
 /**
  * Describes the enum spec.ImplicitlyDeprecatedEnum.
  * @deprecated
  */
-export const ImplicitlyDeprecatedEnumDesc = /*@__PURE__*/
-  enumDesc(fileDesc_extra_deprecation_implicit, 0);
+export const ImplicitlyDeprecatedEnumSchema = /*@__PURE__*/
+  enumDesc(file_extra_deprecation_implicit, 0);
 
 /**
  * @generated from enum spec.ImplicitlyDeprecatedEnum
  * @deprecated
  */
 export const ImplicitlyDeprecatedEnum = /*@__PURE__*/
-  tsEnum(ImplicitlyDeprecatedEnumDesc);
+  tsEnum(ImplicitlyDeprecatedEnumSchema);
 
 /**
  * @generated from service spec.ImplicitlyDeprecatedService
  * @deprecated
  */
 export const ImplicitlyDeprecatedService = /*@__PURE__*/
-  serviceDesc(fileDesc_extra_deprecation_implicit, 0);
+  serviceDesc(file_extra_deprecation_implicit, 0);
 
 /**
  * @generated from extension: int32 implicitly_deprecated_option = 2002;
  * @deprecated
  */
 export const implicitly_deprecated_option = /*@__PURE__*/
-  extDesc(fileDesc_extra_deprecation_implicit, 0);
+  extDesc(file_extra_deprecation_implicit, 0);
 

@@ -23,7 +23,7 @@ import type { UInt32Value, UInt32ValueJson } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file extra/proto2.proto.
  */
-export declare const fileDesc_extra_proto2: GenDescFile;
+export declare const file_extra_proto2: GenDescFile;
 
 /**
  * Note: We do not exhaust all field types
@@ -906,9 +906,9 @@ export declare type Proto2MessageJson = {
 
 /**
  * Describes the message spec.Proto2Message.
- * Use `create(Proto2MessageDesc)` to create a new message.
+ * Use `create(Proto2MessageSchema)` to create a new message.
  */
-export declare const Proto2MessageDesc: GenDescMessage<Proto2Message, Proto2MessageJson>;
+export declare const Proto2MessageSchema: GenDescMessage<Proto2Message, Proto2MessageJson>;
 
 /**
  * @generated from message spec.Proto2Message.RequiredGroup
@@ -932,9 +932,9 @@ export declare type Proto2Message_RequiredGroupJson = {
 
 /**
  * Describes the message spec.Proto2Message.RequiredGroup.
- * Use `create(Proto2Message_RequiredGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_RequiredGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_RequiredGroupDesc: GenDescMessage<Proto2Message_RequiredGroup, Proto2Message_RequiredGroupJson>;
+export declare const Proto2Message_RequiredGroupSchema: GenDescMessage<Proto2Message_RequiredGroup, Proto2Message_RequiredGroupJson>;
 
 /**
  * @generated from message spec.Proto2Message.RequiredDefaultGroup
@@ -958,9 +958,9 @@ export declare type Proto2Message_RequiredDefaultGroupJson = {
 
 /**
  * Describes the message spec.Proto2Message.RequiredDefaultGroup.
- * Use `create(Proto2Message_RequiredDefaultGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_RequiredDefaultGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_RequiredDefaultGroupDesc: GenDescMessage<Proto2Message_RequiredDefaultGroup, Proto2Message_RequiredDefaultGroupJson>;
+export declare const Proto2Message_RequiredDefaultGroupSchema: GenDescMessage<Proto2Message_RequiredDefaultGroup, Proto2Message_RequiredDefaultGroupJson>;
 
 /**
  * @generated from message spec.Proto2Message.OptionalGroup
@@ -984,9 +984,9 @@ export declare type Proto2Message_OptionalGroupJson = {
 
 /**
  * Describes the message spec.Proto2Message.OptionalGroup.
- * Use `create(Proto2Message_OptionalGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_OptionalGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_OptionalGroupDesc: GenDescMessage<Proto2Message_OptionalGroup, Proto2Message_OptionalGroupJson>;
+export declare const Proto2Message_OptionalGroupSchema: GenDescMessage<Proto2Message_OptionalGroup, Proto2Message_OptionalGroupJson>;
 
 /**
  * @generated from message spec.Proto2Message.OptionalDefaultGroup
@@ -1010,9 +1010,9 @@ export declare type Proto2Message_OptionalDefaultGroupJson = {
 
 /**
  * Describes the message spec.Proto2Message.OptionalDefaultGroup.
- * Use `create(Proto2Message_OptionalDefaultGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_OptionalDefaultGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_OptionalDefaultGroupDesc: GenDescMessage<Proto2Message_OptionalDefaultGroup, Proto2Message_OptionalDefaultGroupJson>;
+export declare const Proto2Message_OptionalDefaultGroupSchema: GenDescMessage<Proto2Message_OptionalDefaultGroup, Proto2Message_OptionalDefaultGroupJson>;
 
 /**
  * @generated from message spec.Proto2Message.RepeatedGroup
@@ -1036,9 +1036,9 @@ export declare type Proto2Message_RepeatedGroupJson = {
 
 /**
  * Describes the message spec.Proto2Message.RepeatedGroup.
- * Use `create(Proto2Message_RepeatedGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_RepeatedGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_RepeatedGroupDesc: GenDescMessage<Proto2Message_RepeatedGroup, Proto2Message_RepeatedGroupJson>;
+export declare const Proto2Message_RepeatedGroupSchema: GenDescMessage<Proto2Message_RepeatedGroup, Proto2Message_RepeatedGroupJson>;
 
 /**
  * @generated from message spec.Proto2Message.OneofGroup
@@ -1062,9 +1062,9 @@ export declare type Proto2Message_OneofGroupJson = {
 
 /**
  * Describes the message spec.Proto2Message.OneofGroup.
- * Use `create(Proto2Message_OneofGroupDesc)` to create a new message.
+ * Use `create(Proto2Message_OneofGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_OneofGroupDesc: GenDescMessage<Proto2Message_OneofGroup, Proto2Message_OneofGroupJson>;
+export declare const Proto2Message_OneofGroupSchema: GenDescMessage<Proto2Message_OneofGroup, Proto2Message_OneofGroupJson>;
 
 /**
  * @generated from enum spec.Proto2Enum
@@ -1089,7 +1089,7 @@ export declare type Proto2EnumJson = "PROTO2_ENUM_YES" | "PROTO2_ENUM_NO";
 /**
  * Describes the enum spec.Proto2Enum.
  */
-export declare const Proto2EnumDesc: GenDescEnum<Proto2Enum, Proto2EnumJson>;
+export declare const Proto2EnumSchema: GenDescEnum<Proto2Enum, Proto2EnumJson>;
 
 /**
  * First enum value must be 0 when used as map value type
@@ -1116,5 +1116,5 @@ export declare type Proto2EnumWithZeroJson = "PROTO2_ENUM_WITH_ZERO_ZERO" | "PRO
 /**
  * Describes the enum spec.Proto2EnumWithZero.
  */
-export declare const Proto2EnumWithZeroDesc: GenDescEnum<Proto2EnumWithZero, Proto2EnumWithZeroJson>;
+export declare const Proto2EnumWithZeroSchema: GenDescEnum<Proto2EnumWithZero, Proto2EnumWithZeroJson>;
 

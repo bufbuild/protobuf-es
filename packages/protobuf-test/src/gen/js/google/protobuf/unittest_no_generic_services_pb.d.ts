@@ -24,7 +24,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_no_generic_services.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_no_generic_services: GenDescFile;
+export declare const file_google_protobuf_unittest_no_generic_services: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.no_generic_services_test.TestMessage
@@ -48,9 +48,9 @@ export declare type TestMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.no_generic_services_test.TestMessage.
- * Use `create(TestMessageDesc)` to create a new message.
+ * Use `create(TestMessageSchema)` to create a new message.
  */
-export declare const TestMessageDesc: GenDescMessage<TestMessage, TestMessageJson>;
+export declare const TestMessageSchema: GenDescMessage<TestMessage, TestMessageJson>;
 
 /**
  * @generated from enum protobuf_unittest.no_generic_services_test.TestEnum
@@ -70,7 +70,7 @@ export declare type TestEnumJson = "FOO";
 /**
  * Describes the enum protobuf_unittest.no_generic_services_test.TestEnum.
  */
-export declare const TestEnumDesc: GenDescEnum<TestEnum, TestEnumJson>;
+export declare const TestEnumSchema: GenDescEnum<TestEnum, TestEnumJson>;
 
 /**
  * @generated from service protobuf_unittest.no_generic_services_test.TestService
@@ -81,8 +81,8 @@ export declare const TestService: GenDescService<{
    */
   foo: {
     methodKind: "unary";
-    input: typeof TestMessageDesc;
-    output: typeof TestMessageDesc;
+    input: typeof TestMessageSchema;
+    output: typeof TestMessageSchema;
   },
 }
 >;

@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/jstype-proto2.proto.
  */
-export declare const fileDesc_extra_jstype_proto2: GenDescFile;
+export declare const file_extra_jstype_proto2: GenDescFile;
 
 /**
  * @generated from message spec.JSTypeProto2OmittedMessage
@@ -136,9 +136,9 @@ export declare type JSTypeProto2OmittedMessageJson = {
 
 /**
  * Describes the message spec.JSTypeProto2OmittedMessage.
- * Use `create(JSTypeProto2OmittedMessageDesc)` to create a new message.
+ * Use `create(JSTypeProto2OmittedMessageSchema)` to create a new message.
  */
-export declare const JSTypeProto2OmittedMessageDesc: GenDescMessage<JSTypeProto2OmittedMessage, JSTypeProto2OmittedMessageJson>;
+export declare const JSTypeProto2OmittedMessageSchema: GenDescMessage<JSTypeProto2OmittedMessage, JSTypeProto2OmittedMessageJson>;
 
 /**
  * @generated from message spec.JSTypeProto2NormalMessage
@@ -252,9 +252,9 @@ export declare type JSTypeProto2NormalMessageJson = {
 
 /**
  * Describes the message spec.JSTypeProto2NormalMessage.
- * Use `create(JSTypeProto2NormalMessageDesc)` to create a new message.
+ * Use `create(JSTypeProto2NormalMessageSchema)` to create a new message.
  */
-export declare const JSTypeProto2NormalMessageDesc: GenDescMessage<JSTypeProto2NormalMessage, JSTypeProto2NormalMessageJson>;
+export declare const JSTypeProto2NormalMessageSchema: GenDescMessage<JSTypeProto2NormalMessage, JSTypeProto2NormalMessageJson>;
 
 /**
  * @generated from message spec.JSTypeProto2StringMessage
@@ -368,9 +368,9 @@ export declare type JSTypeProto2StringMessageJson = {
 
 /**
  * Describes the message spec.JSTypeProto2StringMessage.
- * Use `create(JSTypeProto2StringMessageDesc)` to create a new message.
+ * Use `create(JSTypeProto2StringMessageSchema)` to create a new message.
  */
-export declare const JSTypeProto2StringMessageDesc: GenDescMessage<JSTypeProto2StringMessage, JSTypeProto2StringMessageJson>;
+export declare const JSTypeProto2StringMessageSchema: GenDescMessage<JSTypeProto2StringMessage, JSTypeProto2StringMessageJson>;
 
 /**
  * @generated from message spec.JSTypeProto2NumberMessage
@@ -484,7 +484,7 @@ export declare type JSTypeProto2NumberMessageJson = {
 
 /**
  * Describes the message spec.JSTypeProto2NumberMessage.
- * Use `create(JSTypeProto2NumberMessageDesc)` to create a new message.
+ * Use `create(JSTypeProto2NumberMessageSchema)` to create a new message.
  */
-export declare const JSTypeProto2NumberMessageDesc: GenDescMessage<JSTypeProto2NumberMessage, JSTypeProto2NumberMessageJson>;
+export declare const JSTypeProto2NumberMessageSchema: GenDescMessage<JSTypeProto2NumberMessage, JSTypeProto2NumberMessageJson>;
 

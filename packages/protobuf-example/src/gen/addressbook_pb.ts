@@ -19,14 +19,14 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file addressbook.proto.
  */
-export const fileDesc_addressbook: GenDescFile = /*@__PURE__*/
-  fileDesc("ChFhZGRyZXNzYm9vay5wcm90bxIHZXhhbXBsZSKFAgoGUGVyc29uEgwKBG5hbWUYASABKAkSCgoCaWQYAiABKAUSDQoFZW1haWwYAyABKAkSKwoGcGhvbmVzGAQgAygLMhsuZXhhbXBsZS5QZXJzb24uUGhvbmVOdW1iZXISMAoMbGFzdF91cGRhdGVkGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBpGCgtQaG9uZU51bWJlchIOCgZudW1iZXIYASABKAkSJwoEdHlwZRgCIAEoDjIZLmV4YW1wbGUuUGVyc29uLlBob25lVHlwZSIrCglQaG9uZVR5cGUSCgoGTU9CSUxFEAASCAoESE9NRRABEggKBFdPUksQAiIuCgtBZGRyZXNzQm9vaxIfCgZwZW9wbGUYASADKAsyDy5leGFtcGxlLlBlcnNvbmIGcHJvdG8z", [fileDesc_google_protobuf_timestamp]);
+export const file_addressbook: GenDescFile = /*@__PURE__*/
+  fileDesc("ChFhZGRyZXNzYm9vay5wcm90bxIHZXhhbXBsZSKFAgoGUGVyc29uEgwKBG5hbWUYASABKAkSCgoCaWQYAiABKAUSDQoFZW1haWwYAyABKAkSKwoGcGhvbmVzGAQgAygLMhsuZXhhbXBsZS5QZXJzb24uUGhvbmVOdW1iZXISMAoMbGFzdF91cGRhdGVkGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBpGCgtQaG9uZU51bWJlchIOCgZudW1iZXIYASABKAkSJwoEdHlwZRgCIAEoDjIZLmV4YW1wbGUuUGVyc29uLlBob25lVHlwZSIrCglQaG9uZVR5cGUSCgoGTU9CSUxFEAASCAoESE9NRRABEggKBFdPUksQAiIuCgtBZGRyZXNzQm9vaxIfCgZwZW9wbGUYASADKAsyDy5leGFtcGxlLlBlcnNvbmIGcHJvdG8z", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message example.Person
@@ -92,10 +92,10 @@ export type PersonJson = {
 
 /**
  * Describes the message example.Person.
- * Use `create(PersonDesc)` to create a new message.
+ * Use `create(PersonSchema)` to create a new message.
  */
-export const PersonDesc: GenDescMessage<Person, PersonJson> = /*@__PURE__*/
-  messageDesc(fileDesc_addressbook, 0);
+export const PersonSchema: GenDescMessage<Person, PersonJson> = /*@__PURE__*/
+  messageDesc(file_addressbook, 0);
 
 /**
  * @generated from message example.Person.PhoneNumber
@@ -129,10 +129,10 @@ export type Person_PhoneNumberJson = {
 
 /**
  * Describes the message example.Person.PhoneNumber.
- * Use `create(Person_PhoneNumberDesc)` to create a new message.
+ * Use `create(Person_PhoneNumberSchema)` to create a new message.
  */
-export const Person_PhoneNumberDesc: GenDescMessage<Person_PhoneNumber, Person_PhoneNumberJson> = /*@__PURE__*/
-  messageDesc(fileDesc_addressbook, 0, 0);
+export const Person_PhoneNumberSchema: GenDescMessage<Person_PhoneNumber, Person_PhoneNumberJson> = /*@__PURE__*/
+  messageDesc(file_addressbook, 0, 0);
 
 /**
  * @generated from enum example.Person.PhoneType
@@ -162,8 +162,8 @@ export type Person_PhoneTypeJson = "MOBILE" | "HOME" | "WORK";
 /**
  * Describes the enum example.Person.PhoneType.
  */
-export const Person_PhoneTypeDesc: GenDescEnum<Person_PhoneType, Person_PhoneTypeJson> = /*@__PURE__*/
-  enumDesc(fileDesc_addressbook, 0, 0);
+export const Person_PhoneTypeSchema: GenDescEnum<Person_PhoneType, Person_PhoneTypeJson> = /*@__PURE__*/
+  enumDesc(file_addressbook, 0, 0);
 
 /**
  * Our address book file is just one of these.
@@ -189,8 +189,8 @@ export type AddressBookJson = {
 
 /**
  * Describes the message example.AddressBook.
- * Use `create(AddressBookDesc)` to create a new message.
+ * Use `create(AddressBookSchema)` to create a new message.
  */
-export const AddressBookDesc: GenDescMessage<AddressBook, AddressBookJson> = /*@__PURE__*/
-  messageDesc(fileDesc_addressbook, 1);
+export const AddressBookSchema: GenDescMessage<AddressBook, AddressBookJson> = /*@__PURE__*/
+  messageDesc(file_addressbook, 1);
 

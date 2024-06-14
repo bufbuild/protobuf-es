@@ -23,7 +23,7 @@ import type { Any, AnyJson, SourceContext, SourceContextJson } from "@bufbuild/p
 /**
  * Describes the file google/protobuf/type.proto.
  */
-export declare const fileDesc_google_protobuf_type: GenDescFile;
+export declare const file_google_protobuf_type: GenDescFile;
 
 /**
  * A protocol buffer message type.
@@ -123,9 +123,9 @@ export declare type TypeJson = {
 
 /**
  * Describes the message google.protobuf.Type.
- * Use `create(TypeDesc)` to create a new message.
+ * Use `create(TypeSchema)` to create a new message.
  */
-export declare const TypeDesc: GenDescMessage<Type, TypeJson>;
+export declare const TypeSchema: GenDescMessage<Type, TypeJson>;
 
 /**
  * A single field of a message type.
@@ -263,9 +263,9 @@ export declare type FieldJson = {
 
 /**
  * Describes the message google.protobuf.Field.
- * Use `create(FieldDesc)` to create a new message.
+ * Use `create(FieldSchema)` to create a new message.
  */
-export declare const FieldDesc: GenDescMessage<Field, FieldJson>;
+export declare const FieldSchema: GenDescMessage<Field, FieldJson>;
 
 /**
  * Basic field types.
@@ -415,7 +415,7 @@ export declare type Field_KindJson = "TYPE_UNKNOWN" | "TYPE_DOUBLE" | "TYPE_FLOA
 /**
  * Describes the enum google.protobuf.Field.Kind.
  */
-export declare const Field_KindDesc: GenDescEnum<Field_Kind, Field_KindJson>;
+export declare const Field_KindSchema: GenDescEnum<Field_Kind, Field_KindJson>;
 
 /**
  * Whether a field is optional, required, or repeated.
@@ -460,7 +460,7 @@ export declare type Field_CardinalityJson = "CARDINALITY_UNKNOWN" | "CARDINALITY
 /**
  * Describes the enum google.protobuf.Field.Cardinality.
  */
-export declare const Field_CardinalityDesc: GenDescEnum<Field_Cardinality, Field_CardinalityJson>;
+export declare const Field_CardinalitySchema: GenDescEnum<Field_Cardinality, Field_CardinalityJson>;
 
 /**
  * Enum type definition.
@@ -548,9 +548,9 @@ export declare type EnumJson = {
 
 /**
  * Describes the message google.protobuf.Enum.
- * Use `create(EnumDesc)` to create a new message.
+ * Use `create(EnumSchema)` to create a new message.
  */
-export declare const EnumDesc: GenDescMessage<Enum, EnumJson>;
+export declare const EnumSchema: GenDescMessage<Enum, EnumJson>;
 
 /**
  * Enum value definition.
@@ -602,9 +602,9 @@ export declare type EnumValueJson = {
 
 /**
  * Describes the message google.protobuf.EnumValue.
- * Use `create(EnumValueDesc)` to create a new message.
+ * Use `create(EnumValueSchema)` to create a new message.
  */
-export declare const EnumValueDesc: GenDescMessage<EnumValue, EnumValueJson>;
+export declare const EnumValueSchema: GenDescMessage<EnumValue, EnumValueJson>;
 
 /**
  * A protocol buffer option, which can be attached to a message, field,
@@ -651,9 +651,9 @@ export declare type OptionJson = {
 
 /**
  * Describes the message google.protobuf.Option.
- * Use `create(OptionDesc)` to create a new message.
+ * Use `create(OptionSchema)` to create a new message.
  */
-export declare const OptionDesc: GenDescMessage<Option, OptionJson>;
+export declare const OptionSchema: GenDescMessage<Option, OptionJson>;
 
 /**
  * The syntax in which a protocol buffer element is defined.
@@ -691,5 +691,5 @@ export declare type SyntaxJson = "SYNTAX_PROTO2" | "SYNTAX_PROTO3" | "SYNTAX_EDI
 /**
  * Describes the enum google.protobuf.Syntax.
  */
-export declare const SyntaxDesc: GenDescEnum<Syntax, SyntaxJson>;
+export declare const SyntaxSchema: GenDescEnum<Syntax, SyntaxJson>;
 

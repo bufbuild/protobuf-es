@@ -23,7 +23,7 @@ import type { Any, AnyJson, BoolValue, BoolValueJson, BytesValue, BytesValueJson
 /**
  * Describes the file google/protobuf/test_messages_proto3.proto.
  */
-export declare const fileDesc_google_protobuf_test_messages_proto3: GenDescFile;
+export declare const file_google_protobuf_test_messages_proto3: GenDescFile;
 
 /**
  * This proto includes every type of field in both singular and repeated
@@ -1585,9 +1585,9 @@ export declare type TestAllTypesProto3Json = {
 
 /**
  * Describes the message protobuf_test_messages.proto3.TestAllTypesProto3.
- * Use `create(TestAllTypesProto3Desc)` to create a new message.
+ * Use `create(TestAllTypesProto3Schema)` to create a new message.
  */
-export declare const TestAllTypesProto3Desc: GenDescMessage<TestAllTypesProto3, TestAllTypesProto3Json>;
+export declare const TestAllTypesProto3Schema: GenDescMessage<TestAllTypesProto3, TestAllTypesProto3Json>;
 
 /**
  * @generated from message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage
@@ -1621,9 +1621,9 @@ export declare type TestAllTypesProto3_NestedMessageJson = {
 
 /**
  * Describes the message protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage.
- * Use `create(TestAllTypesProto3_NestedMessageDesc)` to create a new message.
+ * Use `create(TestAllTypesProto3_NestedMessageSchema)` to create a new message.
  */
-export declare const TestAllTypesProto3_NestedMessageDesc: GenDescMessage<TestAllTypesProto3_NestedMessage, TestAllTypesProto3_NestedMessageJson>;
+export declare const TestAllTypesProto3_NestedMessageSchema: GenDescMessage<TestAllTypesProto3_NestedMessage, TestAllTypesProto3_NestedMessageJson>;
 
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum
@@ -1660,7 +1660,7 @@ export declare type TestAllTypesProto3_NestedEnumJson = "FOO" | "BAR" | "BAZ" | 
 /**
  * Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum.
  */
-export declare const TestAllTypesProto3_NestedEnumDesc: GenDescEnum<TestAllTypesProto3_NestedEnum, TestAllTypesProto3_NestedEnumJson>;
+export declare const TestAllTypesProto3_NestedEnumSchema: GenDescEnum<TestAllTypesProto3_NestedEnum, TestAllTypesProto3_NestedEnumJson>;
 
 /**
  * @generated from enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum
@@ -1705,7 +1705,7 @@ export declare type TestAllTypesProto3_AliasedEnumJson = "ALIAS_FOO" | "ALIAS_BA
 /**
  * Describes the enum protobuf_test_messages.proto3.TestAllTypesProto3.AliasedEnum.
  */
-export declare const TestAllTypesProto3_AliasedEnumDesc: GenDescEnum<TestAllTypesProto3_AliasedEnum, TestAllTypesProto3_AliasedEnumJson>;
+export declare const TestAllTypesProto3_AliasedEnumSchema: GenDescEnum<TestAllTypesProto3_AliasedEnum, TestAllTypesProto3_AliasedEnumJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto3.ForeignMessage
@@ -1729,9 +1729,9 @@ export declare type ForeignMessageJson = {
 
 /**
  * Describes the message protobuf_test_messages.proto3.ForeignMessage.
- * Use `create(ForeignMessageDesc)` to create a new message.
+ * Use `create(ForeignMessageSchema)` to create a new message.
  */
-export declare const ForeignMessageDesc: GenDescMessage<ForeignMessage, ForeignMessageJson>;
+export declare const ForeignMessageSchema: GenDescMessage<ForeignMessage, ForeignMessageJson>;
 
 /**
  * @generated from message protobuf_test_messages.proto3.NullHypothesisProto3
@@ -1747,9 +1747,9 @@ export declare type NullHypothesisProto3Json = {
 
 /**
  * Describes the message protobuf_test_messages.proto3.NullHypothesisProto3.
- * Use `create(NullHypothesisProto3Desc)` to create a new message.
+ * Use `create(NullHypothesisProto3Schema)` to create a new message.
  */
-export declare const NullHypothesisProto3Desc: GenDescMessage<NullHypothesisProto3, NullHypothesisProto3Json>;
+export declare const NullHypothesisProto3Schema: GenDescMessage<NullHypothesisProto3, NullHypothesisProto3Json>;
 
 /**
  * @generated from message protobuf_test_messages.proto3.EnumOnlyProto3
@@ -1765,9 +1765,9 @@ export declare type EnumOnlyProto3Json = {
 
 /**
  * Describes the message protobuf_test_messages.proto3.EnumOnlyProto3.
- * Use `create(EnumOnlyProto3Desc)` to create a new message.
+ * Use `create(EnumOnlyProto3Schema)` to create a new message.
  */
-export declare const EnumOnlyProto3Desc: GenDescMessage<EnumOnlyProto3, EnumOnlyProto3Json>;
+export declare const EnumOnlyProto3Schema: GenDescMessage<EnumOnlyProto3, EnumOnlyProto3Json>;
 
 /**
  * @generated from enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool
@@ -1792,7 +1792,7 @@ export declare type EnumOnlyProto3_BoolJson = "kFalse" | "kTrue";
 /**
  * Describes the enum protobuf_test_messages.proto3.EnumOnlyProto3.Bool.
  */
-export declare const EnumOnlyProto3_BoolDesc: GenDescEnum<EnumOnlyProto3_Bool, EnumOnlyProto3_BoolJson>;
+export declare const EnumOnlyProto3_BoolSchema: GenDescEnum<EnumOnlyProto3_Bool, EnumOnlyProto3_BoolJson>;
 
 /**
  * @generated from enum protobuf_test_messages.proto3.ForeignEnum
@@ -1822,5 +1822,5 @@ export declare type ForeignEnumJson = "FOREIGN_FOO" | "FOREIGN_BAR" | "FOREIGN_B
 /**
  * Describes the enum protobuf_test_messages.proto3.ForeignEnum.
  */
-export declare const ForeignEnumDesc: GenDescEnum<ForeignEnum, ForeignEnumJson>;
+export declare const ForeignEnumSchema: GenDescEnum<ForeignEnum, ForeignEnumJson>;
 

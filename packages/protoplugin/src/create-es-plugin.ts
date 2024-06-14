@@ -21,7 +21,7 @@ import {
 import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
 import {
   CodeGeneratorResponse_Feature,
-  CodeGeneratorResponseDesc,
+  CodeGeneratorResponseSchema,
 } from "@bufbuild/protobuf/wkt";
 import { createSchema } from "./schema.js";
 import type { Schema } from "./schema.js";
@@ -226,7 +226,7 @@ function toResponse(
   minimumEdition: SupportedEdition,
   maximumEdition: SupportedEdition,
 ): CodeGeneratorResponse {
-  return create(CodeGeneratorResponseDesc, {
+  return create(CodeGeneratorResponseSchema, {
     supportedFeatures: protoInt64.parse(
       CodeGeneratorResponse_Feature.PROTO3_OPTIONAL |
         CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS,

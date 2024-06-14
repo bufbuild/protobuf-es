@@ -32,7 +32,7 @@ import type { Any, AnyJson, EnumOptions, EnumValueOptions, FieldOptions, FileOpt
 /**
  * Describes the file google/protobuf/unittest_custom_options.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_custom_options: GenDescFile;
+export declare const file_google_protobuf_unittest_custom_options: GenDescFile;
 
 /**
  * A test message with custom options at all possible locations (and also some
@@ -85,9 +85,9 @@ export declare type TestMessageWithCustomOptionsJson = {
 
 /**
  * Describes the message protobuf_unittest.TestMessageWithCustomOptions.
- * Use `create(TestMessageWithCustomOptionsDesc)` to create a new message.
+ * Use `create(TestMessageWithCustomOptionsSchema)` to create a new message.
  */
-export declare const TestMessageWithCustomOptionsDesc: GenDescMessage<TestMessageWithCustomOptions, TestMessageWithCustomOptionsJson>;
+export declare const TestMessageWithCustomOptionsSchema: GenDescMessage<TestMessageWithCustomOptions, TestMessageWithCustomOptionsJson>;
 
 /**
  * @generated from enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum
@@ -112,7 +112,7 @@ export declare type TestMessageWithCustomOptions_AnEnumJson = "ANENUM_VAL1" | "A
 /**
  * Describes the enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum.
  */
-export declare const TestMessageWithCustomOptions_AnEnumDesc: GenDescEnum<TestMessageWithCustomOptions_AnEnum, TestMessageWithCustomOptions_AnEnumJson>;
+export declare const TestMessageWithCustomOptions_AnEnumSchema: GenDescEnum<TestMessageWithCustomOptions_AnEnum, TestMessageWithCustomOptions_AnEnumJson>;
 
 /**
  * A test RPC service with custom options at all possible locations (and also
@@ -131,9 +131,9 @@ export declare type CustomOptionFooRequestJson = {
 
 /**
  * Describes the message protobuf_unittest.CustomOptionFooRequest.
- * Use `create(CustomOptionFooRequestDesc)` to create a new message.
+ * Use `create(CustomOptionFooRequestSchema)` to create a new message.
  */
-export declare const CustomOptionFooRequestDesc: GenDescMessage<CustomOptionFooRequest, CustomOptionFooRequestJson>;
+export declare const CustomOptionFooRequestSchema: GenDescMessage<CustomOptionFooRequest, CustomOptionFooRequestJson>;
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooResponse
@@ -149,9 +149,9 @@ export declare type CustomOptionFooResponseJson = {
 
 /**
  * Describes the message protobuf_unittest.CustomOptionFooResponse.
- * Use `create(CustomOptionFooResponseDesc)` to create a new message.
+ * Use `create(CustomOptionFooResponseSchema)` to create a new message.
  */
-export declare const CustomOptionFooResponseDesc: GenDescMessage<CustomOptionFooResponse, CustomOptionFooResponseJson>;
+export declare const CustomOptionFooResponseSchema: GenDescMessage<CustomOptionFooResponse, CustomOptionFooResponseJson>;
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooClientMessage
@@ -167,9 +167,9 @@ export declare type CustomOptionFooClientMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.CustomOptionFooClientMessage.
- * Use `create(CustomOptionFooClientMessageDesc)` to create a new message.
+ * Use `create(CustomOptionFooClientMessageSchema)` to create a new message.
  */
-export declare const CustomOptionFooClientMessageDesc: GenDescMessage<CustomOptionFooClientMessage, CustomOptionFooClientMessageJson>;
+export declare const CustomOptionFooClientMessageSchema: GenDescMessage<CustomOptionFooClientMessage, CustomOptionFooClientMessageJson>;
 
 /**
  * @generated from message protobuf_unittest.CustomOptionFooServerMessage
@@ -185,9 +185,9 @@ export declare type CustomOptionFooServerMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.CustomOptionFooServerMessage.
- * Use `create(CustomOptionFooServerMessageDesc)` to create a new message.
+ * Use `create(CustomOptionFooServerMessageSchema)` to create a new message.
  */
-export declare const CustomOptionFooServerMessageDesc: GenDescMessage<CustomOptionFooServerMessage, CustomOptionFooServerMessageJson>;
+export declare const CustomOptionFooServerMessageSchema: GenDescMessage<CustomOptionFooServerMessage, CustomOptionFooServerMessageJson>;
 
 /**
  * @generated from message protobuf_unittest.DummyMessageContainingEnum
@@ -203,9 +203,9 @@ export declare type DummyMessageContainingEnumJson = {
 
 /**
  * Describes the message protobuf_unittest.DummyMessageContainingEnum.
- * Use `create(DummyMessageContainingEnumDesc)` to create a new message.
+ * Use `create(DummyMessageContainingEnumSchema)` to create a new message.
  */
-export declare const DummyMessageContainingEnumDesc: GenDescMessage<DummyMessageContainingEnum, DummyMessageContainingEnumJson>;
+export declare const DummyMessageContainingEnumSchema: GenDescMessage<DummyMessageContainingEnum, DummyMessageContainingEnumJson>;
 
 /**
  * @generated from enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType
@@ -230,7 +230,7 @@ export declare type DummyMessageContainingEnum_TestEnumTypeJson = "TEST_OPTION_E
 /**
  * Describes the enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType.
  */
-export declare const DummyMessageContainingEnum_TestEnumTypeDesc: GenDescEnum<DummyMessageContainingEnum_TestEnumType, DummyMessageContainingEnum_TestEnumTypeJson>;
+export declare const DummyMessageContainingEnum_TestEnumTypeSchema: GenDescEnum<DummyMessageContainingEnum_TestEnumType, DummyMessageContainingEnum_TestEnumTypeJson>;
 
 /**
  * @generated from message protobuf_unittest.DummyMessageInvalidAsOptionType
@@ -246,9 +246,9 @@ export declare type DummyMessageInvalidAsOptionTypeJson = {
 
 /**
  * Describes the message protobuf_unittest.DummyMessageInvalidAsOptionType.
- * Use `create(DummyMessageInvalidAsOptionTypeDesc)` to create a new message.
+ * Use `create(DummyMessageInvalidAsOptionTypeSchema)` to create a new message.
  */
-export declare const DummyMessageInvalidAsOptionTypeDesc: GenDescMessage<DummyMessageInvalidAsOptionType, DummyMessageInvalidAsOptionTypeJson>;
+export declare const DummyMessageInvalidAsOptionTypeSchema: GenDescMessage<DummyMessageInvalidAsOptionType, DummyMessageInvalidAsOptionTypeJson>;
 
 /**
  * @generated from message protobuf_unittest.CustomOptionMinIntegerValues
@@ -264,9 +264,9 @@ export declare type CustomOptionMinIntegerValuesJson = {
 
 /**
  * Describes the message protobuf_unittest.CustomOptionMinIntegerValues.
- * Use `create(CustomOptionMinIntegerValuesDesc)` to create a new message.
+ * Use `create(CustomOptionMinIntegerValuesSchema)` to create a new message.
  */
-export declare const CustomOptionMinIntegerValuesDesc: GenDescMessage<CustomOptionMinIntegerValues, CustomOptionMinIntegerValuesJson>;
+export declare const CustomOptionMinIntegerValuesSchema: GenDescMessage<CustomOptionMinIntegerValues, CustomOptionMinIntegerValuesJson>;
 
 /**
  * @generated from message protobuf_unittest.CustomOptionMaxIntegerValues
@@ -282,9 +282,9 @@ export declare type CustomOptionMaxIntegerValuesJson = {
 
 /**
  * Describes the message protobuf_unittest.CustomOptionMaxIntegerValues.
- * Use `create(CustomOptionMaxIntegerValuesDesc)` to create a new message.
+ * Use `create(CustomOptionMaxIntegerValuesSchema)` to create a new message.
  */
-export declare const CustomOptionMaxIntegerValuesDesc: GenDescMessage<CustomOptionMaxIntegerValues, CustomOptionMaxIntegerValuesJson>;
+export declare const CustomOptionMaxIntegerValuesSchema: GenDescMessage<CustomOptionMaxIntegerValues, CustomOptionMaxIntegerValuesJson>;
 
 /**
  * @generated from message protobuf_unittest.CustomOptionOtherValues
@@ -300,9 +300,9 @@ export declare type CustomOptionOtherValuesJson = {
 
 /**
  * Describes the message protobuf_unittest.CustomOptionOtherValues.
- * Use `create(CustomOptionOtherValuesDesc)` to create a new message.
+ * Use `create(CustomOptionOtherValuesSchema)` to create a new message.
  */
-export declare const CustomOptionOtherValuesDesc: GenDescMessage<CustomOptionOtherValues, CustomOptionOtherValuesJson>;
+export declare const CustomOptionOtherValuesSchema: GenDescMessage<CustomOptionOtherValues, CustomOptionOtherValuesJson>;
 
 /**
  * @generated from message protobuf_unittest.SettingRealsFromPositiveInts
@@ -318,9 +318,9 @@ export declare type SettingRealsFromPositiveIntsJson = {
 
 /**
  * Describes the message protobuf_unittest.SettingRealsFromPositiveInts.
- * Use `create(SettingRealsFromPositiveIntsDesc)` to create a new message.
+ * Use `create(SettingRealsFromPositiveIntsSchema)` to create a new message.
  */
-export declare const SettingRealsFromPositiveIntsDesc: GenDescMessage<SettingRealsFromPositiveInts, SettingRealsFromPositiveIntsJson>;
+export declare const SettingRealsFromPositiveIntsSchema: GenDescMessage<SettingRealsFromPositiveInts, SettingRealsFromPositiveIntsJson>;
 
 /**
  * @generated from message protobuf_unittest.SettingRealsFromNegativeInts
@@ -336,9 +336,9 @@ export declare type SettingRealsFromNegativeIntsJson = {
 
 /**
  * Describes the message protobuf_unittest.SettingRealsFromNegativeInts.
- * Use `create(SettingRealsFromNegativeIntsDesc)` to create a new message.
+ * Use `create(SettingRealsFromNegativeIntsSchema)` to create a new message.
  */
-export declare const SettingRealsFromNegativeIntsDesc: GenDescMessage<SettingRealsFromNegativeInts, SettingRealsFromNegativeIntsJson>;
+export declare const SettingRealsFromNegativeIntsSchema: GenDescMessage<SettingRealsFromNegativeInts, SettingRealsFromNegativeIntsJson>;
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType1
@@ -392,9 +392,9 @@ export declare type ComplexOptionType1Json = {
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType1.
- * Use `create(ComplexOptionType1Desc)` to create a new message.
+ * Use `create(ComplexOptionType1Schema)` to create a new message.
  */
-export declare const ComplexOptionType1Desc: GenDescMessage<ComplexOptionType1, ComplexOptionType1Json>;
+export declare const ComplexOptionType1Schema: GenDescMessage<ComplexOptionType1, ComplexOptionType1Json>;
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2
@@ -448,9 +448,9 @@ export declare type ComplexOptionType2Json = {
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType2.
- * Use `create(ComplexOptionType2Desc)` to create a new message.
+ * Use `create(ComplexOptionType2Schema)` to create a new message.
  */
-export declare const ComplexOptionType2Desc: GenDescMessage<ComplexOptionType2, ComplexOptionType2Json>;
+export declare const ComplexOptionType2Schema: GenDescMessage<ComplexOptionType2, ComplexOptionType2Json>;
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType2.ComplexOptionType4
@@ -474,9 +474,9 @@ export declare type ComplexOptionType2_ComplexOptionType4Json = {
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType2.ComplexOptionType4.
- * Use `create(ComplexOptionType2_ComplexOptionType4Desc)` to create a new message.
+ * Use `create(ComplexOptionType2_ComplexOptionType4Schema)` to create a new message.
  */
-export declare const ComplexOptionType2_ComplexOptionType4Desc: GenDescMessage<ComplexOptionType2_ComplexOptionType4, ComplexOptionType2_ComplexOptionType4Json>;
+export declare const ComplexOptionType2_ComplexOptionType4Schema: GenDescMessage<ComplexOptionType2_ComplexOptionType4, ComplexOptionType2_ComplexOptionType4Json>;
 
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 complex_opt4 = 7633546;
@@ -515,9 +515,9 @@ export declare type ComplexOptionType3Json = {
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType3.
- * Use `create(ComplexOptionType3Desc)` to create a new message.
+ * Use `create(ComplexOptionType3Schema)` to create a new message.
  */
-export declare const ComplexOptionType3Desc: GenDescMessage<ComplexOptionType3, ComplexOptionType3Json>;
+export declare const ComplexOptionType3Schema: GenDescMessage<ComplexOptionType3, ComplexOptionType3Json>;
 
 /**
  * @generated from message protobuf_unittest.ComplexOptionType3.ComplexOptionType5
@@ -541,9 +541,9 @@ export declare type ComplexOptionType3_ComplexOptionType5Json = {
 
 /**
  * Describes the message protobuf_unittest.ComplexOptionType3.ComplexOptionType5.
- * Use `create(ComplexOptionType3_ComplexOptionType5Desc)` to create a new message.
+ * Use `create(ComplexOptionType3_ComplexOptionType5Schema)` to create a new message.
  */
-export declare const ComplexOptionType3_ComplexOptionType5Desc: GenDescMessage<ComplexOptionType3_ComplexOptionType5, ComplexOptionType3_ComplexOptionType5Json>;
+export declare const ComplexOptionType3_ComplexOptionType5Schema: GenDescMessage<ComplexOptionType3_ComplexOptionType5, ComplexOptionType3_ComplexOptionType5Json>;
 
 /**
  * @generated from message protobuf_unittest.ComplexOpt6
@@ -567,9 +567,9 @@ export declare type ComplexOpt6Json = {
 
 /**
  * Describes the message protobuf_unittest.ComplexOpt6.
- * Use `create(ComplexOpt6Desc)` to create a new message.
+ * Use `create(ComplexOpt6Schema)` to create a new message.
  */
-export declare const ComplexOpt6Desc: GenDescMessage<ComplexOpt6, ComplexOpt6Json>;
+export declare const ComplexOpt6Schema: GenDescMessage<ComplexOpt6, ComplexOpt6Json>;
 
 /**
  * Note that we try various different ways of naming the same extension.
@@ -587,9 +587,9 @@ export declare type VariousComplexOptionsJson = {
 
 /**
  * Describes the message protobuf_unittest.VariousComplexOptions.
- * Use `create(VariousComplexOptionsDesc)` to create a new message.
+ * Use `create(VariousComplexOptionsSchema)` to create a new message.
  */
-export declare const VariousComplexOptionsDesc: GenDescMessage<VariousComplexOptions, VariousComplexOptionsJson>;
+export declare const VariousComplexOptionsSchema: GenDescMessage<VariousComplexOptions, VariousComplexOptionsJson>;
 
 /**
  * @generated from message protobuf_unittest.AggregateMessageSet
@@ -605,9 +605,9 @@ export declare type AggregateMessageSetJson = {
 
 /**
  * Describes the message protobuf_unittest.AggregateMessageSet.
- * Use `create(AggregateMessageSetDesc)` to create a new message.
+ * Use `create(AggregateMessageSetSchema)` to create a new message.
  */
-export declare const AggregateMessageSetDesc: GenDescMessage<AggregateMessageSet, AggregateMessageSetJson>;
+export declare const AggregateMessageSetSchema: GenDescMessage<AggregateMessageSet, AggregateMessageSetJson>;
 
 /**
  * @generated from message protobuf_unittest.AggregateMessageSetElement
@@ -631,9 +631,9 @@ export declare type AggregateMessageSetElementJson = {
 
 /**
  * Describes the message protobuf_unittest.AggregateMessageSetElement.
- * Use `create(AggregateMessageSetElementDesc)` to create a new message.
+ * Use `create(AggregateMessageSetElementSchema)` to create a new message.
  */
-export declare const AggregateMessageSetElementDesc: GenDescMessage<AggregateMessageSetElement, AggregateMessageSetElementJson>;
+export declare const AggregateMessageSetElementSchema: GenDescMessage<AggregateMessageSetElement, AggregateMessageSetElementJson>;
 
 /**
  * @generated from extension: optional protobuf_unittest.AggregateMessageSetElement message_set_extension = 15447542;
@@ -722,9 +722,9 @@ export declare type AggregateJson = {
 
 /**
  * Describes the message protobuf_unittest.Aggregate.
- * Use `create(AggregateDesc)` to create a new message.
+ * Use `create(AggregateSchema)` to create a new message.
  */
-export declare const AggregateDesc: GenDescMessage<Aggregate, AggregateJson>;
+export declare const AggregateSchema: GenDescMessage<Aggregate, AggregateJson>;
 
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate nested = 15476903;
@@ -753,9 +753,9 @@ export declare type AggregateMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.AggregateMessage.
- * Use `create(AggregateMessageDesc)` to create a new message.
+ * Use `create(AggregateMessageSchema)` to create a new message.
  */
-export declare const AggregateMessageDesc: GenDescMessage<AggregateMessage, AggregateMessageJson>;
+export declare const AggregateMessageSchema: GenDescMessage<AggregateMessage, AggregateMessageJson>;
 
 /**
  * Test custom options for nested type.
@@ -773,9 +773,9 @@ export declare type NestedOptionTypeJson = {
 
 /**
  * Describes the message protobuf_unittest.NestedOptionType.
- * Use `create(NestedOptionTypeDesc)` to create a new message.
+ * Use `create(NestedOptionTypeSchema)` to create a new message.
  */
-export declare const NestedOptionTypeDesc: GenDescMessage<NestedOptionType, NestedOptionTypeJson>;
+export declare const NestedOptionTypeSchema: GenDescMessage<NestedOptionType, NestedOptionTypeJson>;
 
 /**
  * @generated from message protobuf_unittest.NestedOptionType.NestedMessage
@@ -799,9 +799,9 @@ export declare type NestedOptionType_NestedMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.NestedOptionType.NestedMessage.
- * Use `create(NestedOptionType_NestedMessageDesc)` to create a new message.
+ * Use `create(NestedOptionType_NestedMessageSchema)` to create a new message.
  */
-export declare const NestedOptionType_NestedMessageDesc: GenDescMessage<NestedOptionType_NestedMessage, NestedOptionType_NestedMessageJson>;
+export declare const NestedOptionType_NestedMessageSchema: GenDescMessage<NestedOptionType_NestedMessage, NestedOptionType_NestedMessageJson>;
 
 /**
  * @generated from enum protobuf_unittest.NestedOptionType.NestedEnum
@@ -821,7 +821,7 @@ export declare type NestedOptionType_NestedEnumJson = "NESTED_ENUM_VALUE";
 /**
  * Describes the enum protobuf_unittest.NestedOptionType.NestedEnum.
  */
-export declare const NestedOptionType_NestedEnumDesc: GenDescEnum<NestedOptionType_NestedEnum, NestedOptionType_NestedEnumJson>;
+export declare const NestedOptionType_NestedEnumSchema: GenDescEnum<NestedOptionType_NestedEnum, NestedOptionType_NestedEnumJson>;
 
 /**
  * @generated from extension: optional int32 nested_extension = 7912573;
@@ -853,9 +853,9 @@ export declare type OldOptionTypeJson = {
 
 /**
  * Describes the message protobuf_unittest.OldOptionType.
- * Use `create(OldOptionTypeDesc)` to create a new message.
+ * Use `create(OldOptionTypeSchema)` to create a new message.
  */
-export declare const OldOptionTypeDesc: GenDescMessage<OldOptionType, OldOptionTypeJson>;
+export declare const OldOptionTypeSchema: GenDescMessage<OldOptionType, OldOptionTypeJson>;
 
 /**
  * @generated from enum protobuf_unittest.OldOptionType.TestEnum
@@ -875,7 +875,7 @@ export declare type OldOptionType_TestEnumJson = "OLD_VALUE";
 /**
  * Describes the enum protobuf_unittest.OldOptionType.TestEnum.
  */
-export declare const OldOptionType_TestEnumDesc: GenDescEnum<OldOptionType_TestEnum, OldOptionType_TestEnumJson>;
+export declare const OldOptionType_TestEnumSchema: GenDescEnum<OldOptionType_TestEnum, OldOptionType_TestEnumJson>;
 
 /**
  * Updated version of the custom option above.
@@ -901,9 +901,9 @@ export declare type NewOptionTypeJson = {
 
 /**
  * Describes the message protobuf_unittest.NewOptionType.
- * Use `create(NewOptionTypeDesc)` to create a new message.
+ * Use `create(NewOptionTypeSchema)` to create a new message.
  */
-export declare const NewOptionTypeDesc: GenDescMessage<NewOptionType, NewOptionTypeJson>;
+export declare const NewOptionTypeSchema: GenDescMessage<NewOptionType, NewOptionTypeJson>;
 
 /**
  * @generated from enum protobuf_unittest.NewOptionType.TestEnum
@@ -928,7 +928,7 @@ export declare type NewOptionType_TestEnumJson = "OLD_VALUE" | "NEW_VALUE";
 /**
  * Describes the enum protobuf_unittest.NewOptionType.TestEnum.
  */
-export declare const NewOptionType_TestEnumDesc: GenDescEnum<NewOptionType_TestEnum, NewOptionType_TestEnumJson>;
+export declare const NewOptionType_TestEnumSchema: GenDescEnum<NewOptionType_TestEnum, NewOptionType_TestEnumJson>;
 
 /**
  * Test message using the "required_enum_opt" option defined above.
@@ -946,9 +946,9 @@ export declare type TestMessageWithRequiredEnumOptionJson = {
 
 /**
  * Describes the message protobuf_unittest.TestMessageWithRequiredEnumOption.
- * Use `create(TestMessageWithRequiredEnumOptionDesc)` to create a new message.
+ * Use `create(TestMessageWithRequiredEnumOptionSchema)` to create a new message.
  */
-export declare const TestMessageWithRequiredEnumOptionDesc: GenDescMessage<TestMessageWithRequiredEnumOption, TestMessageWithRequiredEnumOptionJson>;
+export declare const TestMessageWithRequiredEnumOptionSchema: GenDescMessage<TestMessageWithRequiredEnumOption, TestMessageWithRequiredEnumOptionJson>;
 
 /**
  * @generated from enum protobuf_unittest.MethodOpt1
@@ -973,7 +973,7 @@ export declare type MethodOpt1Json = "METHODOPT1_VAL1" | "METHODOPT1_VAL2";
 /**
  * Describes the enum protobuf_unittest.MethodOpt1.
  */
-export declare const MethodOpt1Desc: GenDescEnum<MethodOpt1, MethodOpt1Json>;
+export declare const MethodOpt1Schema: GenDescEnum<MethodOpt1, MethodOpt1Json>;
 
 /**
  * @generated from enum protobuf_unittest.AggregateEnum
@@ -993,7 +993,7 @@ export declare type AggregateEnumJson = "VALUE";
 /**
  * Describes the enum protobuf_unittest.AggregateEnum.
  */
-export declare const AggregateEnumDesc: GenDescEnum<AggregateEnum, AggregateEnumJson>;
+export declare const AggregateEnumSchema: GenDescEnum<AggregateEnum, AggregateEnumJson>;
 
 /**
  * @generated from service protobuf_unittest.TestServiceWithCustomOptions
@@ -1004,8 +1004,8 @@ export declare const TestServiceWithCustomOptions: GenDescService<{
    */
   foo: {
     methodKind: "unary";
-    input: typeof CustomOptionFooRequestDesc;
-    output: typeof CustomOptionFooResponseDesc;
+    input: typeof CustomOptionFooRequestSchema;
+    output: typeof CustomOptionFooResponseSchema;
   },
 }
 >;
@@ -1019,8 +1019,8 @@ export declare const AggregateService: GenDescService<{
    */
   method: {
     methodKind: "unary";
-    input: typeof AggregateMessageDesc;
-    output: typeof AggregateMessageDesc;
+    input: typeof AggregateMessageSchema;
+    output: typeof AggregateMessageSchema;
   },
 }
 >;

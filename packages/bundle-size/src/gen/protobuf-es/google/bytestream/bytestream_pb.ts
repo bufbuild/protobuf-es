@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/bytestream/bytestream.proto.
  */
-export const fileDesc_google_bytestream_bytestream: GenDescFile = /*@__PURE__*/
+export const file_google_bytestream_bytestream: GenDescFile = /*@__PURE__*/
   fileDesc("CiJnb29nbGUvYnl0ZXN0cmVhbS9ieXRlc3RyZWFtLnByb3RvEhFnb29nbGUuYnl0ZXN0cmVhbSJNCgtSZWFkUmVxdWVzdBIVCg1yZXNvdXJjZV9uYW1lGAEgASgJEhMKC3JlYWRfb2Zmc2V0GAIgASgDEhIKCnJlYWRfbGltaXQYAyABKAMiHAoMUmVhZFJlc3BvbnNlEgwKBGRhdGEYCiABKAwiXwoMV3JpdGVSZXF1ZXN0EhUKDXJlc291cmNlX25hbWUYASABKAkSFAoMd3JpdGVfb2Zmc2V0GAIgASgDEhQKDGZpbmlzaF93cml0ZRgDIAEoCBIMCgRkYXRhGAogASgMIicKDVdyaXRlUmVzcG9uc2USFgoOY29tbWl0dGVkX3NpemUYASABKAMiMAoXUXVlcnlXcml0ZVN0YXR1c1JlcXVlc3QSFQoNcmVzb3VyY2VfbmFtZRgBIAEoCSJEChhRdWVyeVdyaXRlU3RhdHVzUmVzcG9uc2USFgoOY29tbWl0dGVkX3NpemUYASABKAMSEAoIY29tcGxldGUYAiABKAgykgIKCkJ5dGVTdHJlYW0SSQoEUmVhZBIeLmdvb2dsZS5ieXRlc3RyZWFtLlJlYWRSZXF1ZXN0Gh8uZ29vZ2xlLmJ5dGVzdHJlYW0uUmVhZFJlc3BvbnNlMAESTAoFV3JpdGUSHy5nb29nbGUuYnl0ZXN0cmVhbS5Xcml0ZVJlcXVlc3QaIC5nb29nbGUuYnl0ZXN0cmVhbS5Xcml0ZVJlc3BvbnNlKAESawoQUXVlcnlXcml0ZVN0YXR1cxIqLmdvb2dsZS5ieXRlc3RyZWFtLlF1ZXJ5V3JpdGVTdGF0dXNSZXF1ZXN0GisuZ29vZ2xlLmJ5dGVzdHJlYW0uUXVlcnlXcml0ZVN0YXR1c1Jlc3BvbnNlQmUKFWNvbS5nb29nbGUuYnl0ZXN0cmVhbUIPQnl0ZVN0cmVhbVByb3RvWjtnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL2J5dGVzdHJlYW07Ynl0ZXN0cmVhbWIGcHJvdG8z");
 
 /**
@@ -86,10 +86,10 @@ export type ReadRequestJson = {
 
 /**
  * Describes the message google.bytestream.ReadRequest.
- * Use `create(ReadRequestDesc)` to create a new message.
+ * Use `create(ReadRequestSchema)` to create a new message.
  */
-export const ReadRequestDesc: GenDescMessage<ReadRequest, ReadRequestJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_bytestream_bytestream, 0);
+export const ReadRequestSchema: GenDescMessage<ReadRequest, ReadRequestJson> = /*@__PURE__*/
+  messageDesc(file_google_bytestream_bytestream, 0);
 
 /**
  * Response object for ByteStream.Read.
@@ -120,10 +120,10 @@ export type ReadResponseJson = {
 
 /**
  * Describes the message google.bytestream.ReadResponse.
- * Use `create(ReadResponseDesc)` to create a new message.
+ * Use `create(ReadResponseSchema)` to create a new message.
  */
-export const ReadResponseDesc: GenDescMessage<ReadResponse, ReadResponseJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_bytestream_bytestream, 1);
+export const ReadResponseSchema: GenDescMessage<ReadResponse, ReadResponseJson> = /*@__PURE__*/
+  messageDesc(file_google_bytestream_bytestream, 1);
 
 /**
  * Request object for ByteStream.Write.
@@ -205,10 +205,10 @@ export type WriteRequestJson = {
 
 /**
  * Describes the message google.bytestream.WriteRequest.
- * Use `create(WriteRequestDesc)` to create a new message.
+ * Use `create(WriteRequestSchema)` to create a new message.
  */
-export const WriteRequestDesc: GenDescMessage<WriteRequest, WriteRequestJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_bytestream_bytestream, 2);
+export const WriteRequestSchema: GenDescMessage<WriteRequest, WriteRequestJson> = /*@__PURE__*/
+  messageDesc(file_google_bytestream_bytestream, 2);
 
 /**
  * Response object for ByteStream.Write.
@@ -236,10 +236,10 @@ export type WriteResponseJson = {
 
 /**
  * Describes the message google.bytestream.WriteResponse.
- * Use `create(WriteResponseDesc)` to create a new message.
+ * Use `create(WriteResponseSchema)` to create a new message.
  */
-export const WriteResponseDesc: GenDescMessage<WriteResponse, WriteResponseJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_bytestream_bytestream, 3);
+export const WriteResponseSchema: GenDescMessage<WriteResponse, WriteResponseJson> = /*@__PURE__*/
+  messageDesc(file_google_bytestream_bytestream, 3);
 
 /**
  * Request object for ByteStream.QueryWriteStatus.
@@ -267,10 +267,10 @@ export type QueryWriteStatusRequestJson = {
 
 /**
  * Describes the message google.bytestream.QueryWriteStatusRequest.
- * Use `create(QueryWriteStatusRequestDesc)` to create a new message.
+ * Use `create(QueryWriteStatusRequestSchema)` to create a new message.
  */
-export const QueryWriteStatusRequestDesc: GenDescMessage<QueryWriteStatusRequest, QueryWriteStatusRequestJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_bytestream_bytestream, 4);
+export const QueryWriteStatusRequestSchema: GenDescMessage<QueryWriteStatusRequest, QueryWriteStatusRequestJson> = /*@__PURE__*/
+  messageDesc(file_google_bytestream_bytestream, 4);
 
 /**
  * Response object for ByteStream.QueryWriteStatus.
@@ -311,10 +311,10 @@ export type QueryWriteStatusResponseJson = {
 
 /**
  * Describes the message google.bytestream.QueryWriteStatusResponse.
- * Use `create(QueryWriteStatusResponseDesc)` to create a new message.
+ * Use `create(QueryWriteStatusResponseSchema)` to create a new message.
  */
-export const QueryWriteStatusResponseDesc: GenDescMessage<QueryWriteStatusResponse, QueryWriteStatusResponseJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_bytestream_bytestream, 5);
+export const QueryWriteStatusResponseSchema: GenDescMessage<QueryWriteStatusResponse, QueryWriteStatusResponseJson> = /*@__PURE__*/
+  messageDesc(file_google_bytestream_bytestream, 5);
 
 /**
  * #### Introduction
@@ -353,8 +353,8 @@ export const ByteStream: GenDescService<{
    */
   read: {
     methodKind: "server_streaming";
-    input: typeof ReadRequestDesc;
-    output: typeof ReadResponseDesc;
+    input: typeof ReadRequestSchema;
+    output: typeof ReadResponseSchema;
   },
   /**
    * `Write()` is used to send the contents of a resource as a sequence of
@@ -384,8 +384,8 @@ export const ByteStream: GenDescService<{
    */
   write: {
     methodKind: "client_streaming";
-    input: typeof WriteRequestDesc;
-    output: typeof WriteResponseDesc;
+    input: typeof WriteRequestSchema;
+    output: typeof WriteResponseSchema;
   },
   /**
    * `QueryWriteStatus()` is used to find the `committed_size` for a resource
@@ -407,10 +407,10 @@ export const ByteStream: GenDescService<{
    */
   queryWriteStatus: {
     methodKind: "unary";
-    input: typeof QueryWriteStatusRequestDesc;
-    output: typeof QueryWriteStatusResponseDesc;
+    input: typeof QueryWriteStatusRequestSchema;
+    output: typeof QueryWriteStatusResponseSchema;
   },
 }
 > = /*@__PURE__*/
-  serviceDesc(fileDesc_google_bytestream_bytestream, 0);
+  serviceDesc(file_google_bytestream_bytestream, 0);
 

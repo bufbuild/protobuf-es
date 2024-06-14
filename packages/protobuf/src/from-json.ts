@@ -49,10 +49,10 @@ import type {
 import {
   isWrapperDesc,
   anyPack,
-  ListValueDesc,
+  ListValueSchema,
   NullValue,
-  StructDesc,
-  ValueDesc,
+  StructSchema,
+  ValueSchema,
 } from "./wkt/index.js";
 import { createExtensionContainer, setExtension } from "./extensions.js";
 
@@ -89,15 +89,11 @@ function makeReadOptions(
  * Parse a message from a JSON string.
  */
 export function fromJsonString<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   json: string,
   options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
-  return fromJson(
-    messageDesc,
-    parseJsonString(json, messageDesc.typeName),
-    options,
-  );
+  return fromJson(schema, parseJsonString(json, schema.typeName), options);
 }
 
 /**
@@ -110,15 +106,15 @@ export function fromJsonString<Desc extends DescMessage>(
  * new data.
  */
 export function mergeFromJsonString<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   target: MessageShape<Desc>,
   json: string,
   options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
   return mergeFromJson(
-    messageDesc,
+    schema,
     target,
-    parseJsonString(json, messageDesc.typeName),
+    parseJsonString(json, schema.typeName),
     options,
   );
 }
@@ -127,11 +123,11 @@ export function mergeFromJsonString<Desc extends DescMessage>(
  * Parse a message from a JSON value.
  */
 export function fromJson<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   json: JsonValue,
   options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
-  const msg = reflect(messageDesc);
+  const msg = reflect(schema);
   try {
     readMessage(msg, json, makeReadOptions(options));
   } catch (e) {
@@ -156,13 +152,13 @@ export function fromJson<Desc extends DescMessage>(
  * new data.
  */
 export function mergeFromJson<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   target: MessageShape<Desc>,
   json: JsonValue,
   options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
   try {
-    readMessage(reflect(messageDesc, target), json, makeReadOptions(options));
+    readMessage(reflect(schema, target), json, makeReadOptions(options));
   } catch (e) {
     if (isFieldError(e)) {
       // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
@@ -812,7 +808,7 @@ function structFromJson(struct: Struct, json: JsonValue) {
     );
   }
   for (const [k, v] of Object.entries(json)) {
-    const parsedV = create(ValueDesc);
+    const parsedV = create(ValueSchema);
     valueFromJson(parsedV, v);
     struct.fields[k] = parsedV;
   }
@@ -833,11 +829,11 @@ function valueFromJson(value: Value, json: JsonValue) {
       if (json === null) {
         value.kind = { case: "nullValue", value: NullValue.NULL_VALUE };
       } else if (Array.isArray(json)) {
-        const listValue = create(ListValueDesc);
+        const listValue = create(ListValueSchema);
         listValueFromJson(listValue, json);
         value.kind = { case: "listValue", value: listValue };
       } else {
-        const struct = create(StructDesc);
+        const struct = create(StructSchema);
         structFromJson(struct, json);
         value.kind = { case: "structValue", value: struct };
       }
@@ -857,7 +853,7 @@ function listValueFromJson(listValue: ListValue, json: JsonValue) {
     );
   }
   for (const e of json) {
-    const value = create(ValueDesc);
+    const value = create(ValueSchema);
     valueFromJson(value, e);
     listValue.values.push(value);
   }

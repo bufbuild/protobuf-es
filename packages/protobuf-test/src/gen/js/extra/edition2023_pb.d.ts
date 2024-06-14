@@ -23,7 +23,7 @@ import type { UInt32Value, UInt32ValueJson } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file extra/edition2023.proto.
  */
-export declare const fileDesc_extra_edition2023: GenDescFile;
+export declare const file_extra_edition2023: GenDescFile;
 
 /**
  * Note: We do not exhaust all field types
@@ -897,9 +897,9 @@ export declare type Edition2023MessageJson = {
 
 /**
  * Describes the message spec.Edition2023Message.
- * Use `create(Edition2023MessageDesc)` to create a new message.
+ * Use `create(Edition2023MessageSchema)` to create a new message.
  */
-export declare const Edition2023MessageDesc: GenDescMessage<Edition2023Message, Edition2023MessageJson>;
+export declare const Edition2023MessageSchema: GenDescMessage<Edition2023Message, Edition2023MessageJson>;
 
 /**
  * message for use in required fields above to avoid circular reference
@@ -925,9 +925,9 @@ export declare type Edition2023Message_ChildJson = {
 
 /**
  * Describes the message spec.Edition2023Message.Child.
- * Use `create(Edition2023Message_ChildDesc)` to create a new message.
+ * Use `create(Edition2023Message_ChildSchema)` to create a new message.
  */
-export declare const Edition2023Message_ChildDesc: GenDescMessage<Edition2023Message_Child, Edition2023Message_ChildJson>;
+export declare const Edition2023Message_ChildSchema: GenDescMessage<Edition2023Message_Child, Edition2023Message_ChildJson>;
 
 /**
  * this is an exact replication of spec.Proto3MessageForEdition2023 in editions
@@ -1044,9 +1044,9 @@ export declare type Edition2023FromProto2MessageJson = {
 
 /**
  * Describes the message spec.Edition2023FromProto2Message.
- * Use `create(Edition2023FromProto2MessageDesc)` to create a new message.
+ * Use `create(Edition2023FromProto2MessageSchema)` to create a new message.
  */
-export declare const Edition2023FromProto2MessageDesc: GenDescMessage<Edition2023FromProto2Message, Edition2023FromProto2MessageJson>;
+export declare const Edition2023FromProto2MessageSchema: GenDescMessage<Edition2023FromProto2Message, Edition2023FromProto2MessageJson>;
 
 /**
  * @generated from message spec.Edition2023FromProto2Message.OptionalGroup
@@ -1070,9 +1070,9 @@ export declare type Edition2023FromProto2Message_OptionalGroupJson = {
 
 /**
  * Describes the message spec.Edition2023FromProto2Message.OptionalGroup.
- * Use `create(Edition2023FromProto2Message_OptionalGroupDesc)` to create a new message.
+ * Use `create(Edition2023FromProto2Message_OptionalGroupSchema)` to create a new message.
  */
-export declare const Edition2023FromProto2Message_OptionalGroupDesc: GenDescMessage<Edition2023FromProto2Message_OptionalGroup, Edition2023FromProto2Message_OptionalGroupJson>;
+export declare const Edition2023FromProto2Message_OptionalGroupSchema: GenDescMessage<Edition2023FromProto2Message_OptionalGroup, Edition2023FromProto2Message_OptionalGroupJson>;
 
 /**
  * @generated from message spec.Edition2023FromProto2Message.RequiredGroup
@@ -1096,9 +1096,9 @@ export declare type Edition2023FromProto2Message_RequiredGroupJson = {
 
 /**
  * Describes the message spec.Edition2023FromProto2Message.RequiredGroup.
- * Use `create(Edition2023FromProto2Message_RequiredGroupDesc)` to create a new message.
+ * Use `create(Edition2023FromProto2Message_RequiredGroupSchema)` to create a new message.
  */
-export declare const Edition2023FromProto2Message_RequiredGroupDesc: GenDescMessage<Edition2023FromProto2Message_RequiredGroup, Edition2023FromProto2Message_RequiredGroupJson>;
+export declare const Edition2023FromProto2Message_RequiredGroupSchema: GenDescMessage<Edition2023FromProto2Message_RequiredGroup, Edition2023FromProto2Message_RequiredGroupJson>;
 
 /**
  * this is an exact replication of spec.Proto2MessageForEdition2023 in editions
@@ -1175,9 +1175,9 @@ export declare type Edition2023FromProto3MessageJson = {
 
 /**
  * Describes the message spec.Edition2023FromProto3Message.
- * Use `create(Edition2023FromProto3MessageDesc)` to create a new message.
+ * Use `create(Edition2023FromProto3MessageSchema)` to create a new message.
  */
-export declare const Edition2023FromProto3MessageDesc: GenDescMessage<Edition2023FromProto3Message, Edition2023FromProto3MessageJson>;
+export declare const Edition2023FromProto3MessageSchema: GenDescMessage<Edition2023FromProto3Message, Edition2023FromProto3MessageJson>;
 
 /**
  * @generated from enum spec.Edition2023EnumOpen
@@ -1202,7 +1202,7 @@ export declare type Edition2023EnumOpenJson = "EDITION2023_ENUM_OPEN_UNSPECIFIED
 /**
  * Describes the enum spec.Edition2023EnumOpen.
  */
-export declare const Edition2023EnumOpenDesc: GenDescEnum<Edition2023EnumOpen, Edition2023EnumOpenJson>;
+export declare const Edition2023EnumOpenSchema: GenDescEnum<Edition2023EnumOpen, Edition2023EnumOpenJson>;
 
 /**
  * @generated from enum spec.Edition2023EnumClosed
@@ -1223,5 +1223,5 @@ export declare type Edition2023EnumClosedJson = "EDITION2023_ENUM_CLOSED_A";
 /**
  * Describes the enum spec.Edition2023EnumClosed.
  */
-export declare const Edition2023EnumClosedDesc: GenDescEnum<Edition2023EnumClosed, Edition2023EnumClosedJson>;
+export declare const Edition2023EnumClosedSchema: GenDescEnum<Edition2023EnumClosed, Edition2023EnumClosedJson>;
 

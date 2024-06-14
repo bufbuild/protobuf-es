@@ -19,17 +19,17 @@
 import type { GenDescFile, GenDescMessage } from "../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { SourceContext, SourceContextJson } from "./source_context_pb.js";
-import { fileDesc_google_protobuf_source_context } from "./source_context_pb.js";
+import { file_google_protobuf_source_context } from "./source_context_pb.js";
 import type { Option, OptionJson, Syntax, SyntaxJson } from "./type_pb.js";
-import { fileDesc_google_protobuf_type } from "./type_pb.js";
+import { file_google_protobuf_type } from "./type_pb.js";
 import type { Message } from "../../../../types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
 
 /**
  * Describes the file google/protobuf/api.proto.
  */
-export const fileDesc_google_protobuf_api: GenDescFile = /*@__PURE__*/
-  fileDesc("Chlnb29nbGUvcHJvdG9idWYvYXBpLnByb3RvEg9nb29nbGUucHJvdG9idWYigQIKA0FwaRIMCgRuYW1lGAEgASgJEigKB21ldGhvZHMYAiADKAsyFy5nb29nbGUucHJvdG9idWYuTWV0aG9kEigKB29wdGlvbnMYAyADKAsyFy5nb29nbGUucHJvdG9idWYuT3B0aW9uEg8KB3ZlcnNpb24YBCABKAkSNgoOc291cmNlX2NvbnRleHQYBSABKAsyHi5nb29nbGUucHJvdG9idWYuU291cmNlQ29udGV4dBImCgZtaXhpbnMYBiADKAsyFi5nb29nbGUucHJvdG9idWYuTWl4aW4SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCLVAQoGTWV0aG9kEgwKBG5hbWUYASABKAkSGAoQcmVxdWVzdF90eXBlX3VybBgCIAEoCRIZChFyZXF1ZXN0X3N0cmVhbWluZxgDIAEoCBIZChFyZXNwb25zZV90eXBlX3VybBgEIAEoCRIaChJyZXNwb25zZV9zdHJlYW1pbmcYBSABKAgSKAoHb3B0aW9ucxgGIAMoCzIXLmdvb2dsZS5wcm90b2J1Zi5PcHRpb24SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCIjCgVNaXhpbhIMCgRuYW1lGAEgASgJEgwKBHJvb3QYAiABKAlCdgoTY29tLmdvb2dsZS5wcm90b2J1ZkIIQXBpUHJvdG9QAVosZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vYXBpcGKiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw", [fileDesc_google_protobuf_source_context, fileDesc_google_protobuf_type]);
+export const file_google_protobuf_api: GenDescFile = /*@__PURE__*/
+  fileDesc("Chlnb29nbGUvcHJvdG9idWYvYXBpLnByb3RvEg9nb29nbGUucHJvdG9idWYigQIKA0FwaRIMCgRuYW1lGAEgASgJEigKB21ldGhvZHMYAiADKAsyFy5nb29nbGUucHJvdG9idWYuTWV0aG9kEigKB29wdGlvbnMYAyADKAsyFy5nb29nbGUucHJvdG9idWYuT3B0aW9uEg8KB3ZlcnNpb24YBCABKAkSNgoOc291cmNlX2NvbnRleHQYBSABKAsyHi5nb29nbGUucHJvdG9idWYuU291cmNlQ29udGV4dBImCgZtaXhpbnMYBiADKAsyFi5nb29nbGUucHJvdG9idWYuTWl4aW4SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCLVAQoGTWV0aG9kEgwKBG5hbWUYASABKAkSGAoQcmVxdWVzdF90eXBlX3VybBgCIAEoCRIZChFyZXF1ZXN0X3N0cmVhbWluZxgDIAEoCBIZChFyZXNwb25zZV90eXBlX3VybBgEIAEoCRIaChJyZXNwb25zZV9zdHJlYW1pbmcYBSABKAgSKAoHb3B0aW9ucxgGIAMoCzIXLmdvb2dsZS5wcm90b2J1Zi5PcHRpb24SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCIjCgVNaXhpbhIMCgRuYW1lGAEgASgJEgwKBHJvb3QYAiABKAlCdgoTY29tLmdvb2dsZS5wcm90b2J1ZkIIQXBpUHJvdG9QAVosZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vYXBpcGKiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw", [file_google_protobuf_source_context, file_google_protobuf_type]);
 
 /**
  * Api is a light-weight descriptor for an API Interface.
@@ -158,10 +158,10 @@ export type ApiJson = {
 
 /**
  * Describes the message google.protobuf.Api.
- * Use `create(ApiDesc)` to create a new message.
+ * Use `create(ApiSchema)` to create a new message.
  */
-export const ApiDesc: GenDescMessage<Api, ApiJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_api, 0);
+export const ApiSchema: GenDescMessage<Api, ApiJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_api, 0);
 
 /**
  * Method represents a method of an API interface.
@@ -261,10 +261,10 @@ export type MethodJson = {
 
 /**
  * Describes the message google.protobuf.Method.
- * Use `create(MethodDesc)` to create a new message.
+ * Use `create(MethodSchema)` to create a new message.
  */
-export const MethodDesc: GenDescMessage<Method, MethodJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_api, 1);
+export const MethodSchema: GenDescMessage<Method, MethodJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_api, 1);
 
 /**
  * Declares an API Interface to be included in this interface. The including
@@ -382,8 +382,8 @@ export type MixinJson = {
 
 /**
  * Describes the message google.protobuf.Mixin.
- * Use `create(MixinDesc)` to create a new message.
+ * Use `create(MixinSchema)` to create a new message.
  */
-export const MixinDesc: GenDescMessage<Mixin, MixinJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_api, 2);
+export const MixinSchema: GenDescMessage<Mixin, MixinJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_api, 2);
 

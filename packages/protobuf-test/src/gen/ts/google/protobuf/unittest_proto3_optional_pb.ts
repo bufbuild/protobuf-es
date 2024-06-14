@@ -19,14 +19,14 @@
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { MessageOptions } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_proto3_optional.proto.
  */
-export const fileDesc_google_protobuf_unittest_proto3_optional: GenDescFile = /*@__PURE__*/
-  fileDesc("Ci5nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfcHJvdG8zX29wdGlvbmFsLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCKxCgoSVGVzdFByb3RvM09wdGlvbmFsEhsKDm9wdGlvbmFsX2ludDMyGAEgASgFSACIAQESGwoOb3B0aW9uYWxfaW50NjQYAiABKANIAYgBARIcCg9vcHRpb25hbF91aW50MzIYAyABKA1IAogBARIcCg9vcHRpb25hbF91aW50NjQYBCABKARIA4gBARIcCg9vcHRpb25hbF9zaW50MzIYBSABKBFIBIgBARIcCg9vcHRpb25hbF9zaW50NjQYBiABKBJIBYgBARIdChBvcHRpb25hbF9maXhlZDMyGAcgASgHSAaIAQESHQoQb3B0aW9uYWxfZml4ZWQ2NBgIIAEoBkgHiAEBEh4KEW9wdGlvbmFsX3NmaXhlZDMyGAkgASgPSAiIAQESHgoRb3B0aW9uYWxfc2ZpeGVkNjQYCiABKBBICYgBARIbCg5vcHRpb25hbF9mbG9hdBgLIAEoAkgKiAEBEhwKD29wdGlvbmFsX2RvdWJsZRgMIAEoAUgLiAEBEhoKDW9wdGlvbmFsX2Jvb2wYDSABKAhIDIgBARIcCg9vcHRpb25hbF9zdHJpbmcYDiABKAlIDYgBARIbCg5vcHRpb25hbF9ieXRlcxgPIAEoDEgOiAEBEh4KDW9wdGlvbmFsX2NvcmQYECABKAlCAggBSA+IAQESWQoXb3B0aW9uYWxfbmVzdGVkX21lc3NhZ2UYEiABKAsyMy5wcm90b2J1Zl91bml0dGVzdC5UZXN0UHJvdG8zT3B0aW9uYWwuTmVzdGVkTWVzc2FnZUgQiAEBElkKE2xhenlfbmVzdGVkX21lc3NhZ2UYEyABKAsyMy5wcm90b2J1Zl91bml0dGVzdC5UZXN0UHJvdG8zT3B0aW9uYWwuTmVzdGVkTWVzc2FnZUICKAFIEYgBARJTChRvcHRpb25hbF9uZXN0ZWRfZW51bRgVIAEoDjIwLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RQcm90bzNPcHRpb25hbC5OZXN0ZWRFbnVtSBKIAQESFgoOc2luZ3VsYXJfaW50MzIYFiABKAUSFgoOc2luZ3VsYXJfaW50NjQYFyABKAMaJwoNTmVzdGVkTWVzc2FnZRIPCgJiYhgBIAEoBUgAiAEBQgUKA19iYiJKCgpOZXN0ZWRFbnVtEg8KC1VOU1BFQ0lGSUVEEAASBwoDRk9PEAESBwoDQkFSEAISBwoDQkFaEAMSEAoDTkVHEP///////////wFCEQoPX29wdGlvbmFsX2ludDMyQhEKD19vcHRpb25hbF9pbnQ2NEISChBfb3B0aW9uYWxfdWludDMyQhIKEF9vcHRpb25hbF91aW50NjRCEgoQX29wdGlvbmFsX3NpbnQzMkISChBfb3B0aW9uYWxfc2ludDY0QhMKEV9vcHRpb25hbF9maXhlZDMyQhMKEV9vcHRpb25hbF9maXhlZDY0QhQKEl9vcHRpb25hbF9zZml4ZWQzMkIUChJfb3B0aW9uYWxfc2ZpeGVkNjRCEQoPX29wdGlvbmFsX2Zsb2F0QhIKEF9vcHRpb25hbF9kb3VibGVCEAoOX29wdGlvbmFsX2Jvb2xCEgoQX29wdGlvbmFsX3N0cmluZ0IRCg9fb3B0aW9uYWxfYnl0ZXNCEAoOX29wdGlvbmFsX2NvcmRCGgoYX29wdGlvbmFsX25lc3RlZF9tZXNzYWdlQhYKFF9sYXp5X25lc3RlZF9tZXNzYWdlQhcKFV9vcHRpb25hbF9uZXN0ZWRfZW51bSKJAgoZVGVzdFByb3RvM09wdGlvbmFsTWVzc2FnZRJSCg5uZXN0ZWRfbWVzc2FnZRgBIAEoCzI6LnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RQcm90bzNPcHRpb25hbE1lc3NhZ2UuTmVzdGVkTWVzc2FnZRJgChdvcHRpb25hbF9uZXN0ZWRfbWVzc2FnZRgCIAEoCzI6LnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RQcm90bzNPcHRpb25hbE1lc3NhZ2UuTmVzdGVkTWVzc2FnZUgAiAEBGhoKDU5lc3RlZE1lc3NhZ2USCQoBcxgBIAEoCUIaChhfb3B0aW9uYWxfbmVzdGVkX21lc3NhZ2UiyQEKGFByb3RvM09wdGlvbmFsRXh0ZW5zaW9uczJLCg9leHRfbm9fb3B0aW9uYWwSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYiM3ZqQEgASgFUg1leHROb09wdGlvbmFsMlIKEWV4dF93aXRoX29wdGlvbmFsEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGInN2akBIAEoBVIPZXh0V2l0aE9wdGlvbmFsiAEBOgzA6MzNCgjI6MzNChBCOAohY29tLmdvb2dsZS5wcm90b2J1Zi50ZXN0aW5nLnByb3RvUAGqAhBQcm90b2J1ZlVuaXR0ZXN0YgZwcm90bzM", [fileDesc_google_protobuf_descriptor]);
+export const file_google_protobuf_unittest_proto3_optional: GenDescFile = /*@__PURE__*/
+  fileDesc("Ci5nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfcHJvdG8zX29wdGlvbmFsLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCKxCgoSVGVzdFByb3RvM09wdGlvbmFsEhsKDm9wdGlvbmFsX2ludDMyGAEgASgFSACIAQESGwoOb3B0aW9uYWxfaW50NjQYAiABKANIAYgBARIcCg9vcHRpb25hbF91aW50MzIYAyABKA1IAogBARIcCg9vcHRpb25hbF91aW50NjQYBCABKARIA4gBARIcCg9vcHRpb25hbF9zaW50MzIYBSABKBFIBIgBARIcCg9vcHRpb25hbF9zaW50NjQYBiABKBJIBYgBARIdChBvcHRpb25hbF9maXhlZDMyGAcgASgHSAaIAQESHQoQb3B0aW9uYWxfZml4ZWQ2NBgIIAEoBkgHiAEBEh4KEW9wdGlvbmFsX3NmaXhlZDMyGAkgASgPSAiIAQESHgoRb3B0aW9uYWxfc2ZpeGVkNjQYCiABKBBICYgBARIbCg5vcHRpb25hbF9mbG9hdBgLIAEoAkgKiAEBEhwKD29wdGlvbmFsX2RvdWJsZRgMIAEoAUgLiAEBEhoKDW9wdGlvbmFsX2Jvb2wYDSABKAhIDIgBARIcCg9vcHRpb25hbF9zdHJpbmcYDiABKAlIDYgBARIbCg5vcHRpb25hbF9ieXRlcxgPIAEoDEgOiAEBEh4KDW9wdGlvbmFsX2NvcmQYECABKAlCAggBSA+IAQESWQoXb3B0aW9uYWxfbmVzdGVkX21lc3NhZ2UYEiABKAsyMy5wcm90b2J1Zl91bml0dGVzdC5UZXN0UHJvdG8zT3B0aW9uYWwuTmVzdGVkTWVzc2FnZUgQiAEBElkKE2xhenlfbmVzdGVkX21lc3NhZ2UYEyABKAsyMy5wcm90b2J1Zl91bml0dGVzdC5UZXN0UHJvdG8zT3B0aW9uYWwuTmVzdGVkTWVzc2FnZUICKAFIEYgBARJTChRvcHRpb25hbF9uZXN0ZWRfZW51bRgVIAEoDjIwLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RQcm90bzNPcHRpb25hbC5OZXN0ZWRFbnVtSBKIAQESFgoOc2luZ3VsYXJfaW50MzIYFiABKAUSFgoOc2luZ3VsYXJfaW50NjQYFyABKAMaJwoNTmVzdGVkTWVzc2FnZRIPCgJiYhgBIAEoBUgAiAEBQgUKA19iYiJKCgpOZXN0ZWRFbnVtEg8KC1VOU1BFQ0lGSUVEEAASBwoDRk9PEAESBwoDQkFSEAISBwoDQkFaEAMSEAoDTkVHEP///////////wFCEQoPX29wdGlvbmFsX2ludDMyQhEKD19vcHRpb25hbF9pbnQ2NEISChBfb3B0aW9uYWxfdWludDMyQhIKEF9vcHRpb25hbF91aW50NjRCEgoQX29wdGlvbmFsX3NpbnQzMkISChBfb3B0aW9uYWxfc2ludDY0QhMKEV9vcHRpb25hbF9maXhlZDMyQhMKEV9vcHRpb25hbF9maXhlZDY0QhQKEl9vcHRpb25hbF9zZml4ZWQzMkIUChJfb3B0aW9uYWxfc2ZpeGVkNjRCEQoPX29wdGlvbmFsX2Zsb2F0QhIKEF9vcHRpb25hbF9kb3VibGVCEAoOX29wdGlvbmFsX2Jvb2xCEgoQX29wdGlvbmFsX3N0cmluZ0IRCg9fb3B0aW9uYWxfYnl0ZXNCEAoOX29wdGlvbmFsX2NvcmRCGgoYX29wdGlvbmFsX25lc3RlZF9tZXNzYWdlQhYKFF9sYXp5X25lc3RlZF9tZXNzYWdlQhcKFV9vcHRpb25hbF9uZXN0ZWRfZW51bSKJAgoZVGVzdFByb3RvM09wdGlvbmFsTWVzc2FnZRJSCg5uZXN0ZWRfbWVzc2FnZRgBIAEoCzI6LnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RQcm90bzNPcHRpb25hbE1lc3NhZ2UuTmVzdGVkTWVzc2FnZRJgChdvcHRpb25hbF9uZXN0ZWRfbWVzc2FnZRgCIAEoCzI6LnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RQcm90bzNPcHRpb25hbE1lc3NhZ2UuTmVzdGVkTWVzc2FnZUgAiAEBGhoKDU5lc3RlZE1lc3NhZ2USCQoBcxgBIAEoCUIaChhfb3B0aW9uYWxfbmVzdGVkX21lc3NhZ2UiyQEKGFByb3RvM09wdGlvbmFsRXh0ZW5zaW9uczJLCg9leHRfbm9fb3B0aW9uYWwSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYiM3ZqQEgASgFUg1leHROb09wdGlvbmFsMlIKEWV4dF93aXRoX29wdGlvbmFsEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGInN2akBIAEoBVIPZXh0V2l0aE9wdGlvbmFsiAEBOgzA6MzNCgjI6MzNChBCOAohY29tLmdvb2dsZS5wcm90b2J1Zi50ZXN0aW5nLnByb3RvUAGqAhBQcm90b2J1ZlVuaXR0ZXN0YgZwcm90bzM", [file_google_protobuf_descriptor]);
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional
@@ -254,10 +254,10 @@ export type TestProto3OptionalJson = {
 
 /**
  * Describes the message protobuf_unittest.TestProto3Optional.
- * Use `create(TestProto3OptionalDesc)` to create a new message.
+ * Use `create(TestProto3OptionalSchema)` to create a new message.
  */
-export const TestProto3OptionalDesc: GenDescMessage<TestProto3Optional, TestProto3OptionalJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0);
+export const TestProto3OptionalSchema: GenDescMessage<TestProto3Optional, TestProto3OptionalJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3_optional, 0);
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional.NestedMessage
@@ -285,10 +285,10 @@ export type TestProto3Optional_NestedMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.TestProto3Optional.NestedMessage.
- * Use `create(TestProto3Optional_NestedMessageDesc)` to create a new message.
+ * Use `create(TestProto3Optional_NestedMessageSchema)` to create a new message.
  */
-export const TestProto3Optional_NestedMessageDesc: GenDescMessage<TestProto3Optional_NestedMessage, TestProto3Optional_NestedMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0, 0);
+export const TestProto3Optional_NestedMessageSchema: GenDescMessage<TestProto3Optional_NestedMessage, TestProto3Optional_NestedMessageJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3_optional, 0, 0);
 
 /**
  * @generated from enum protobuf_unittest.TestProto3Optional.NestedEnum
@@ -330,8 +330,8 @@ export type TestProto3Optional_NestedEnumJson = "UNSPECIFIED" | "FOO" | "BAR" | 
 /**
  * Describes the enum protobuf_unittest.TestProto3Optional.NestedEnum.
  */
-export const TestProto3Optional_NestedEnumDesc: GenDescEnum<TestProto3Optional_NestedEnum, TestProto3Optional_NestedEnumJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_unittest_proto3_optional, 0, 0);
+export const TestProto3Optional_NestedEnumSchema: GenDescEnum<TestProto3Optional_NestedEnum, TestProto3Optional_NestedEnumJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_proto3_optional, 0, 0);
 
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage
@@ -365,10 +365,10 @@ export type TestProto3OptionalMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.TestProto3OptionalMessage.
- * Use `create(TestProto3OptionalMessageDesc)` to create a new message.
+ * Use `create(TestProto3OptionalMessageSchema)` to create a new message.
  */
-export const TestProto3OptionalMessageDesc: GenDescMessage<TestProto3OptionalMessage, TestProto3OptionalMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 1);
+export const TestProto3OptionalMessageSchema: GenDescMessage<TestProto3OptionalMessage, TestProto3OptionalMessageJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3_optional, 1);
 
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage.NestedMessage
@@ -392,10 +392,10 @@ export type TestProto3OptionalMessage_NestedMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.TestProto3OptionalMessage.NestedMessage.
- * Use `create(TestProto3OptionalMessage_NestedMessageDesc)` to create a new message.
+ * Use `create(TestProto3OptionalMessage_NestedMessageSchema)` to create a new message.
  */
-export const TestProto3OptionalMessage_NestedMessageDesc: GenDescMessage<TestProto3OptionalMessage_NestedMessage, TestProto3OptionalMessage_NestedMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 1, 0);
+export const TestProto3OptionalMessage_NestedMessageSchema: GenDescMessage<TestProto3OptionalMessage_NestedMessage, TestProto3OptionalMessage_NestedMessageJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3_optional, 1, 0);
 
 /**
  * @generated from message protobuf_unittest.Proto3OptionalExtensions
@@ -411,20 +411,20 @@ export type Proto3OptionalExtensionsJson = {
 
 /**
  * Describes the message protobuf_unittest.Proto3OptionalExtensions.
- * Use `create(Proto3OptionalExtensionsDesc)` to create a new message.
+ * Use `create(Proto3OptionalExtensionsSchema)` to create a new message.
  */
-export const Proto3OptionalExtensionsDesc: GenDescMessage<Proto3OptionalExtensions, Proto3OptionalExtensionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3_optional, 2);
+export const Proto3OptionalExtensionsSchema: GenDescMessage<Proto3OptionalExtensions, Proto3OptionalExtensionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3_optional, 2);
 
 /**
  * @generated from extension: int32 ext_no_optional = 355886728;
  */
 export const Proto3OptionalExtensions_ext_no_optional: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
-  extDesc(fileDesc_google_protobuf_unittest_proto3_optional, 2, 0);
+  extDesc(file_google_protobuf_unittest_proto3_optional, 2, 0);
 
 /**
  * @generated from extension: optional int32 ext_with_optional = 355886729;
  */
 export const Proto3OptionalExtensions_ext_with_optional: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
-  extDesc(fileDesc_google_protobuf_unittest_proto3_optional, 2, 1);
+  extDesc(file_google_protobuf_unittest_proto3_optional, 2, 1);
 

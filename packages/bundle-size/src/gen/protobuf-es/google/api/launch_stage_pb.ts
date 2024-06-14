@@ -22,7 +22,7 @@ import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 /**
  * Describes the file google/api/launch_stage.proto.
  */
-export const fileDesc_google_api_launch_stage: GenDescFile = /*@__PURE__*/
+export const file_google_api_launch_stage: GenDescFile = /*@__PURE__*/
   fileDesc("Ch1nb29nbGUvYXBpL2xhdW5jaF9zdGFnZS5wcm90bxIKZ29vZ2xlLmFwaSqMAQoLTGF1bmNoU3RhZ2USHAoYTEFVTkNIX1NUQUdFX1VOU1BFQ0lGSUVEEAASEQoNVU5JTVBMRU1FTlRFRBAGEg0KCVBSRUxBVU5DSBAHEhAKDEVBUkxZX0FDQ0VTUxABEgkKBUFMUEhBEAISCAoEQkVUQRADEgYKAkdBEAQSDgoKREVQUkVDQVRFRBAFQloKDmNvbS5nb29nbGUuYXBpQhBMYXVuY2hTdGFnZVByb3RvUAFaLWdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvYXBpO2FwaaICBEdBUEliBnByb3RvMw");
 
 /**
@@ -118,6 +118,6 @@ export type LaunchStageJson = "LAUNCH_STAGE_UNSPECIFIED" | "UNIMPLEMENTED" | "PR
 /**
  * Describes the enum google.api.LaunchStage.
  */
-export const LaunchStageDesc: GenDescEnum<LaunchStage, LaunchStageJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_api_launch_stage, 0);
+export const LaunchStageSchema: GenDescEnum<LaunchStage, LaunchStageJson> = /*@__PURE__*/
+  enumDesc(file_google_api_launch_stage, 0);
 

@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/msg-maps.proto.
  */
-export declare const fileDesc_extra_msg_maps: GenDescFile;
+export declare const file_extra_msg_maps: GenDescFile;
 
 /**
  * @generated from message spec.MapsMessage
@@ -176,9 +176,9 @@ export declare type MapsMessageJson = {
 
 /**
  * Describes the message spec.MapsMessage.
- * Use `create(MapsMessageDesc)` to create a new message.
+ * Use `create(MapsMessageSchema)` to create a new message.
  */
-export declare const MapsMessageDesc: GenDescMessage<MapsMessage, MapsMessageJson>;
+export declare const MapsMessageSchema: GenDescMessage<MapsMessage, MapsMessageJson>;
 
 /**
  * @generated from enum spec.MapsEnum
@@ -208,5 +208,5 @@ export declare type MapsEnumJson = "MAPS_ENUM_ANY" | "MAPS_ENUM_YES" | "MAPS_ENU
 /**
  * Describes the enum spec.MapsEnum.
  */
-export declare const MapsEnumDesc: GenDescEnum<MapsEnum, MapsEnumJson>;
+export declare const MapsEnumSchema: GenDescEnum<MapsEnum, MapsEnumJson>;
 

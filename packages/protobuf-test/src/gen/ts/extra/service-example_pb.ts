@@ -24,7 +24,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/service-example.proto.
  * @deprecated
  */
-export const fileDesc_extra_service_example: GenDescFile = /*@__PURE__*/
+export const file_extra_service_example: GenDescFile = /*@__PURE__*/
   fileDesc("ChtleHRyYS9zZXJ2aWNlLWV4YW1wbGUucHJvdG8SBHNwZWMingEKDkV4YW1wbGVSZXF1ZXN0EhAKCHF1ZXN0aW9uGAEgASgJEiYKC3BsZWFzZV9mYWlsGAIgASgOMhEuc3BlYy5GYWlsUmVxdWVzdBIgChhwbGVhc2VfZGVsYXlfcmVzcG9uc2VfbXMYAyABKAUSMAooZGlzYWJsZV9zZW5kaW5nX2V4YW1wbGVfcmVzcG9uc2VfaGVhZGVycxgEIAEoCCLuAQoPRXhhbXBsZVJlc3BvbnNlEg4KBmFuc3dlchgBIAEoCRJLChR5b3VyX3JlcXVlc3RfaGVhZGVycxgCIAMoCzItLnNwZWMuRXhhbXBsZVJlc3BvbnNlLllvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EhUKDXlvdXJfZGVhZGxpbmUYAyABKAkSLAoReW91cl9mYWlsX3JlcXVlc3QYBCABKA4yES5zcGVjLkZhaWxSZXF1ZXN0GjkKF1lvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEqWgoLRmFpbFJlcXVlc3QSFQoRRkFJTF9SRVFVRVNUX05PTkUQABIdChlNRVNTQUdFX1RIRU5fRVJST1JfU1RBVFVTEAESFQoRRVJST1JfU1RBVFVTX09OTFkQAjL9AQoORXhhbXBsZVNlcnZpY2USNAoFVW5hcnkSFC5zcGVjLkV4YW1wbGVSZXF1ZXN0GhUuc3BlYy5FeGFtcGxlUmVzcG9uc2USPQoMU2VydmVyU3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlMAESPQoMQ2xpZW50U3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlKAESNwoEQmlkaRIULnNwZWMuRXhhbXBsZVJlcXVlc3QaFS5zcGVjLkV4YW1wbGVSZXNwb25zZSgBMAFCA7gBAWIGcHJvdG8z");
 
 /**
@@ -88,11 +88,11 @@ export type ExampleRequestJson = {
 
 /**
  * Describes the message spec.ExampleRequest.
- * Use `create(ExampleRequestDesc)` to create a new message.
+ * Use `create(ExampleRequestSchema)` to create a new message.
  * @deprecated
  */
-export const ExampleRequestDesc: GenDescMessage<ExampleRequest, ExampleRequestJson> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_service_example, 0);
+export const ExampleRequestSchema: GenDescMessage<ExampleRequest, ExampleRequestJson> = /*@__PURE__*/
+  messageDesc(file_extra_service_example, 0);
 
 /**
  * @generated from message spec.ExampleResponse
@@ -155,11 +155,11 @@ export type ExampleResponseJson = {
 
 /**
  * Describes the message spec.ExampleResponse.
- * Use `create(ExampleResponseDesc)` to create a new message.
+ * Use `create(ExampleResponseSchema)` to create a new message.
  * @deprecated
  */
-export const ExampleResponseDesc: GenDescMessage<ExampleResponse, ExampleResponseJson> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_service_example, 1);
+export const ExampleResponseSchema: GenDescMessage<ExampleResponse, ExampleResponseJson> = /*@__PURE__*/
+  messageDesc(file_extra_service_example, 1);
 
 /**
  * @generated from enum spec.FailRequest
@@ -197,8 +197,8 @@ export type FailRequestJson = "FAIL_REQUEST_NONE" | "MESSAGE_THEN_ERROR_STATUS" 
  * Describes the enum spec.FailRequest.
  * @deprecated
  */
-export const FailRequestDesc: GenDescEnum<FailRequest, FailRequestJson> = /*@__PURE__*/
-  enumDesc(fileDesc_extra_service_example, 0);
+export const FailRequestSchema: GenDescEnum<FailRequest, FailRequestJson> = /*@__PURE__*/
+  enumDesc(file_extra_service_example, 0);
 
 /**
  * @generated from service spec.ExampleService
@@ -210,34 +210,34 @@ export const ExampleService: GenDescService<{
    */
   unary: {
     methodKind: "unary";
-    input: typeof ExampleRequestDesc;
-    output: typeof ExampleResponseDesc;
+    input: typeof ExampleRequestSchema;
+    output: typeof ExampleResponseSchema;
   },
   /**
    * @generated from rpc spec.ExampleService.ServerStream
    */
   serverStream: {
     methodKind: "server_streaming";
-    input: typeof ExampleRequestDesc;
-    output: typeof ExampleResponseDesc;
+    input: typeof ExampleRequestSchema;
+    output: typeof ExampleResponseSchema;
   },
   /**
    * @generated from rpc spec.ExampleService.ClientStream
    */
   clientStream: {
     methodKind: "client_streaming";
-    input: typeof ExampleRequestDesc;
-    output: typeof ExampleResponseDesc;
+    input: typeof ExampleRequestSchema;
+    output: typeof ExampleResponseSchema;
   },
   /**
    * @generated from rpc spec.ExampleService.Bidi
    */
   bidi: {
     methodKind: "bidi_streaming";
-    input: typeof ExampleRequestDesc;
-    output: typeof ExampleResponseDesc;
+    input: typeof ExampleRequestSchema;
+    output: typeof ExampleResponseSchema;
   },
 }
 > = /*@__PURE__*/
-  serviceDesc(fileDesc_extra_service_example, 0);
+  serviceDesc(file_extra_service_example, 0);
 

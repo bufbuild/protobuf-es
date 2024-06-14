@@ -23,7 +23,7 @@ import type { User as User$1, UserJson as UserJson$1 } from "./example_pb.js";
 /**
  * Describes the file extra/name-clash.proto.
  */
-export declare const fileDesc_extra_name_clash: GenDescFile;
+export declare const file_extra_name_clash: GenDescFile;
 
 /**
  * This message class will clash with the imported message class
@@ -51,9 +51,9 @@ export declare type UserJson = {
 
 /**
  * Describes the message spec.User.
- * Use `create(UserDesc)` to create a new message.
+ * Use `create(UserSchema)` to create a new message.
  */
-export declare const UserDesc: GenDescMessage<User, UserJson>;
+export declare const UserSchema: GenDescMessage<User, UserJson>;
 
 /**
  * @generated from message spec.ReservedPropertyNames
@@ -69,9 +69,9 @@ export declare type ReservedPropertyNamesJson = {
 
 /**
  * Describes the message spec.ReservedPropertyNames.
- * Use `create(ReservedPropertyNamesDesc)` to create a new message.
+ * Use `create(ReservedPropertyNamesSchema)` to create a new message.
  */
-export declare const ReservedPropertyNamesDesc: GenDescMessage<ReservedPropertyNames, ReservedPropertyNamesJson>;
+export declare const ReservedPropertyNamesSchema: GenDescMessage<ReservedPropertyNames, ReservedPropertyNamesJson>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.BuiltIn
@@ -133,9 +133,9 @@ export declare type ReservedPropertyNames_BuiltInJson = {
 
 /**
  * Describes the message spec.ReservedPropertyNames.BuiltIn.
- * Use `create(ReservedPropertyNames_BuiltInDesc)` to create a new message.
+ * Use `create(ReservedPropertyNames_BuiltInSchema)` to create a new message.
  */
-export declare const ReservedPropertyNames_BuiltInDesc: GenDescMessage<ReservedPropertyNames_BuiltIn, ReservedPropertyNames_BuiltInJson>;
+export declare const ReservedPropertyNames_BuiltInSchema: GenDescMessage<ReservedPropertyNames_BuiltIn, ReservedPropertyNames_BuiltInJson>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.Runtime
@@ -257,9 +257,9 @@ export declare type ReservedPropertyNames_RuntimeJson = {
 
 /**
  * Describes the message spec.ReservedPropertyNames.Runtime.
- * Use `create(ReservedPropertyNames_RuntimeDesc)` to create a new message.
+ * Use `create(ReservedPropertyNames_RuntimeSchema)` to create a new message.
  */
-export declare const ReservedPropertyNames_RuntimeDesc: GenDescMessage<ReservedPropertyNames_Runtime, ReservedPropertyNames_RuntimeJson>;
+export declare const ReservedPropertyNames_RuntimeSchema: GenDescMessage<ReservedPropertyNames_Runtime, ReservedPropertyNames_RuntimeJson>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofBultIn
@@ -322,9 +322,9 @@ export declare type ReservedPropertyNames_OneofBultInJson = {
 
 /**
  * Describes the message spec.ReservedPropertyNames.OneofBultIn.
- * Use `create(ReservedPropertyNames_OneofBultInDesc)` to create a new message.
+ * Use `create(ReservedPropertyNames_OneofBultInSchema)` to create a new message.
  */
-export declare const ReservedPropertyNames_OneofBultInDesc: GenDescMessage<ReservedPropertyNames_OneofBultIn, ReservedPropertyNames_OneofBultInJson>;
+export declare const ReservedPropertyNames_OneofBultInSchema: GenDescMessage<ReservedPropertyNames_OneofBultIn, ReservedPropertyNames_OneofBultInJson>;
 
 /**
  * @generated from message spec.ReservedPropertyNames.OneofRuntime
@@ -442,9 +442,9 @@ export declare type ReservedPropertyNames_OneofRuntimeJson = {
 
 /**
  * Describes the message spec.ReservedPropertyNames.OneofRuntime.
- * Use `create(ReservedPropertyNames_OneofRuntimeDesc)` to create a new message.
+ * Use `create(ReservedPropertyNames_OneofRuntimeSchema)` to create a new message.
  */
-export declare const ReservedPropertyNames_OneofRuntimeDesc: GenDescMessage<ReservedPropertyNames_OneofRuntime, ReservedPropertyNames_OneofRuntimeJson>;
+export declare const ReservedPropertyNames_OneofRuntimeSchema: GenDescMessage<ReservedPropertyNames_OneofRuntime, ReservedPropertyNames_OneofRuntimeJson>;
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumBuiltIn
@@ -479,7 +479,7 @@ export declare type ReservedPropertyNames_EnumBuiltInJson = "constructor" | "toS
 /**
  * Describes the enum spec.ReservedPropertyNames.EnumBuiltIn.
  */
-export declare const ReservedPropertyNames_EnumBuiltInDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltIn, ReservedPropertyNames_EnumBuiltInJson>;
+export declare const ReservedPropertyNames_EnumBuiltInSchema: GenDescEnum<ReservedPropertyNames_EnumBuiltIn, ReservedPropertyNames_EnumBuiltInJson>;
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumBuiltInPrefixed
@@ -514,7 +514,7 @@ export declare type ReservedPropertyNames_EnumBuiltInPrefixedJson = "ENUM_BUILT_
 /**
  * Describes the enum spec.ReservedPropertyNames.EnumBuiltInPrefixed.
  */
-export declare const ReservedPropertyNames_EnumBuiltInPrefixedDesc: GenDescEnum<ReservedPropertyNames_EnumBuiltInPrefixed, ReservedPropertyNames_EnumBuiltInPrefixedJson>;
+export declare const ReservedPropertyNames_EnumBuiltInPrefixedSchema: GenDescEnum<ReservedPropertyNames_EnumBuiltInPrefixed, ReservedPropertyNames_EnumBuiltInPrefixedJson>;
 
 /**
  * @generated from enum spec.ReservedPropertyNames.EnumRuntime
@@ -574,7 +574,7 @@ export declare type ReservedPropertyNames_EnumRuntimeJson = "toJson" | "type" | 
 /**
  * Describes the enum spec.ReservedPropertyNames.EnumRuntime.
  */
-export declare const ReservedPropertyNames_EnumRuntimeDesc: GenDescEnum<ReservedPropertyNames_EnumRuntime, ReservedPropertyNames_EnumRuntimeJson>;
+export declare const ReservedPropertyNames_EnumRuntimeSchema: GenDescEnum<ReservedPropertyNames_EnumRuntime, ReservedPropertyNames_EnumRuntimeJson>;
 
 /**
  * reserved identifier
@@ -592,9 +592,9 @@ export declare type interfaceJson = {
 
 /**
  * Describes the message spec.interface.
- * Use `create(interfaceDesc)` to create a new message.
+ * Use `create(interfaceSchema)` to create a new message.
  */
-export declare const interfaceDesc: GenDescMessage<interface$, interfaceJson>;
+export declare const interfaceSchema: GenDescMessage<interface$, interfaceJson>;
 
 /**
  * reserved identifier
@@ -612,9 +612,9 @@ export declare type functionJson = {
 
 /**
  * Describes the message spec.function.
- * Use `create(functionDesc)` to create a new message.
+ * Use `create(functionSchema)` to create a new message.
  */
-export declare const functionDesc: GenDescMessage<function$, functionJson>;
+export declare const functionSchema: GenDescMessage<function$, functionJson>;
 
 /**
  * reserved identifier
@@ -632,9 +632,9 @@ export declare type instanceofJson = {
 
 /**
  * Describes the message spec.instanceof.
- * Use `create(instanceofDesc)` to create a new message.
+ * Use `create(instanceofSchema)` to create a new message.
  */
-export declare const instanceofDesc: GenDescMessage<instanceof$, instanceofJson>;
+export declare const instanceofSchema: GenDescMessage<instanceof$, instanceofJson>;
 
 /**
  * reserved identifier
@@ -652,9 +652,9 @@ export declare type switchJson = {
 
 /**
  * Describes the message spec.switch.
- * Use `create(switchDesc)` to create a new message.
+ * Use `create(switchSchema)` to create a new message.
  */
-export declare const switchDesc: GenDescMessage<switch$, switchJson>;
+export declare const switchSchema: GenDescMessage<switch$, switchJson>;
 
 /**
  * reserved identifier
@@ -672,9 +672,9 @@ export declare type caseJson = {
 
 /**
  * Describes the message spec.case.
- * Use `create(caseDesc)` to create a new message.
+ * Use `create(caseSchema)` to create a new message.
  */
-export declare const caseDesc: GenDescMessage<case$, caseJson>;
+export declare const caseSchema: GenDescMessage<case$, caseJson>;
 
 /**
  * reserved identifier
@@ -692,9 +692,9 @@ export declare type returnJson = {
 
 /**
  * Describes the message spec.return.
- * Use `create(returnDesc)` to create a new message.
+ * Use `create(returnSchema)` to create a new message.
  */
-export declare const returnDesc: GenDescMessage<return$, returnJson>;
+export declare const returnSchema: GenDescMessage<return$, returnJson>;
 
 /**
  * used by runtime
@@ -712,9 +712,9 @@ export declare type MessageJson = {
 
 /**
  * Describes the message spec.Message.
- * Use `create(MessageDesc)` to create a new message.
+ * Use `create(MessageSchema)` to create a new message.
  */
-export declare const MessageDesc: GenDescMessage<Message, MessageJson>;
+export declare const MessageSchema: GenDescMessage<Message, MessageJson>;
 
 /**
  * used by runtime
@@ -732,9 +732,9 @@ export declare type PartialMessageJson = {
 
 /**
  * Describes the message spec.PartialMessage.
- * Use `create(PartialMessageDesc)` to create a new message.
+ * Use `create(PartialMessageSchema)` to create a new message.
  */
-export declare const PartialMessageDesc: GenDescMessage<PartialMessage, PartialMessageJson>;
+export declare const PartialMessageSchema: GenDescMessage<PartialMessage, PartialMessageJson>;
 
 /**
  * used by runtime
@@ -752,9 +752,9 @@ export declare type PlainMessageJson = {
 
 /**
  * Describes the message spec.PlainMessage.
- * Use `create(PlainMessageDesc)` to create a new message.
+ * Use `create(PlainMessageSchema)` to create a new message.
  */
-export declare const PlainMessageDesc: GenDescMessage<PlainMessage, PlainMessageJson>;
+export declare const PlainMessageSchema: GenDescMessage<PlainMessage, PlainMessageJson>;
 
 /**
  * clash with global type "Error"
@@ -792,9 +792,9 @@ export declare type ErrorJson = {
 
 /**
  * Describes the message spec.Error.
- * Use `create(ErrorDesc)` to create a new message.
+ * Use `create(ErrorSchema)` to create a new message.
  */
-export declare const ErrorDesc: GenDescMessage<Error, ErrorJson>;
+export declare const ErrorSchema: GenDescMessage<Error, ErrorJson>;
 
 /**
  * clash with global type
@@ -812,9 +812,9 @@ export declare type ObjectJson = {
 
 /**
  * Describes the message spec.Object.
- * Use `create(ObjectDesc)` to create a new message.
+ * Use `create(ObjectSchema)` to create a new message.
  */
-export declare const ObjectDesc: GenDescMessage<Object$, ObjectJson>;
+export declare const ObjectSchema: GenDescMessage<Object$, ObjectJson>;
 
 /**
  * @generated from message spec.object
@@ -830,9 +830,9 @@ export declare type objectJson = {
 
 /**
  * Describes the message spec.object.
- * Use `create(objectDesc)` to create a new message.
+ * Use `create(objectSchema)` to create a new message.
  */
-export declare const objectDesc: GenDescMessage<object$, objectJson>;
+export declare const objectSchema: GenDescMessage<object$, objectJson>;
 
 /**
  * clash with global type
@@ -850,9 +850,9 @@ export declare type arrayJson = {
 
 /**
  * Describes the message spec.array.
- * Use `create(arrayDesc)` to create a new message.
+ * Use `create(arraySchema)` to create a new message.
  */
-export declare const arrayDesc: GenDescMessage<array, arrayJson>;
+export declare const arraySchema: GenDescMessage<array, arrayJson>;
 
 /**
  * clash with global type
@@ -870,9 +870,9 @@ export declare type stringJson = {
 
 /**
  * Describes the message spec.string.
- * Use `create(stringDesc)` to create a new message.
+ * Use `create(stringSchema)` to create a new message.
  */
-export declare const stringDesc: GenDescMessage<string$, stringJson>;
+export declare const stringSchema: GenDescMessage<string$, stringJson>;
 
 /**
  * clash with global type
@@ -890,9 +890,9 @@ export declare type numberJson = {
 
 /**
  * Describes the message spec.number.
- * Use `create(numberDesc)` to create a new message.
+ * Use `create(numberSchema)` to create a new message.
  */
-export declare const numberDesc: GenDescMessage<number$, numberJson>;
+export declare const numberSchema: GenDescMessage<number$, numberJson>;
 
 /**
  * clash with global type
@@ -910,9 +910,9 @@ export declare type booleanJson = {
 
 /**
  * Describes the message spec.boolean.
- * Use `create(booleanDesc)` to create a new message.
+ * Use `create(booleanSchema)` to create a new message.
  */
-export declare const booleanDesc: GenDescMessage<boolean$, booleanJson>;
+export declare const booleanSchema: GenDescMessage<boolean$, booleanJson>;
 
 /**
  * clash with global type
@@ -930,9 +930,9 @@ export declare type bigintJson = {
 
 /**
  * Describes the message spec.bigint.
- * Use `create(bigintDesc)` to create a new message.
+ * Use `create(bigintSchema)` to create a new message.
  */
-export declare const bigintDesc: GenDescMessage<bigint$, bigintJson>;
+export declare const bigintSchema: GenDescMessage<bigint$, bigintJson>;
 
 /**
  * clash with global type
@@ -950,9 +950,9 @@ export declare type Uint8ArrayJson = {
 
 /**
  * Describes the message spec.Uint8Array.
- * Use `create(Uint8ArrayDesc)` to create a new message.
+ * Use `create(Uint8ArraySchema)` to create a new message.
  */
-export declare const Uint8ArrayDesc: GenDescMessage<Uint8Array$, Uint8ArrayJson>;
+export declare const Uint8ArraySchema: GenDescMessage<Uint8Array$, Uint8ArrayJson>;
 
 /**
  * clash with global type
@@ -970,9 +970,9 @@ export declare type ArrayJson = {
 
 /**
  * Describes the message spec.Array.
- * Use `create(ArrayDesc)` to create a new message.
+ * Use `create(ArraySchema)` to create a new message.
  */
-export declare const ArrayDesc: GenDescMessage<Array, ArrayJson>;
+export declare const ArraySchema: GenDescMessage<Array, ArrayJson>;
 
 /**
  * clash with global type
@@ -990,9 +990,9 @@ export declare type StringJson = {
 
 /**
  * Describes the message spec.String.
- * Use `create(StringDesc)` to create a new message.
+ * Use `create(StringSchema)` to create a new message.
  */
-export declare const StringDesc: GenDescMessage<String, StringJson>;
+export declare const StringSchema: GenDescMessage<String, StringJson>;
 
 /**
  * clash with global type
@@ -1010,9 +1010,9 @@ export declare type NumberJson = {
 
 /**
  * Describes the message spec.Number.
- * Use `create(NumberDesc)` to create a new message.
+ * Use `create(NumberSchema)` to create a new message.
  */
-export declare const NumberDesc: GenDescMessage<Number, NumberJson>;
+export declare const NumberSchema: GenDescMessage<Number, NumberJson>;
 
 /**
  * clash with global type
@@ -1030,9 +1030,9 @@ export declare type BooleanJson = {
 
 /**
  * Describes the message spec.Boolean.
- * Use `create(BooleanDesc)` to create a new message.
+ * Use `create(BooleanSchema)` to create a new message.
  */
-export declare const BooleanDesc: GenDescMessage<Boolean, BooleanJson>;
+export declare const BooleanSchema: GenDescMessage<Boolean, BooleanJson>;
 
 /**
  * clash with global type
@@ -1050,9 +1050,9 @@ export declare type BigIntJson = {
 
 /**
  * Describes the message spec.BigInt.
- * Use `create(BigIntDesc)` to create a new message.
+ * Use `create(BigIntSchema)` to create a new message.
  */
-export declare const BigIntDesc: GenDescMessage<BigInt, BigIntJson>;
+export declare const BigIntSchema: GenDescMessage<BigInt, BigIntJson>;
 
 /**
  * @generated from message spec.ClashParent
@@ -1068,9 +1068,9 @@ export declare type ClashParentJson = {
 
 /**
  * Describes the message spec.ClashParent.
- * Use `create(ClashParentDesc)` to create a new message.
+ * Use `create(ClashParentSchema)` to create a new message.
  */
-export declare const ClashParentDesc: GenDescMessage<ClashParent, ClashParentJson>;
+export declare const ClashParentSchema: GenDescMessage<ClashParent, ClashParentJson>;
 
 /**
  * should clash with message ClashParent_ClashChild
@@ -1088,9 +1088,9 @@ export declare type ClashParent_ClashChildJson = {
 
 /**
  * Describes the message spec.ClashParent.ClashChild.
- * Use `create(ClashParent_ClashChildDesc)` to create a new message.
+ * Use `create(ClashParent_ClashChildSchema)` to create a new message.
  */
-export declare const ClashParent_ClashChildDesc: GenDescMessage<ClashParent_ClashChild, ClashParent_ClashChildJson>;
+export declare const ClashParent_ClashChildSchema: GenDescMessage<ClashParent_ClashChild, ClashParent_ClashChildJson>;
 
 /**
  * should clash with name of ClashParent.ClashChild
@@ -1108,9 +1108,9 @@ export declare type ClashParent_ClashChildJson$ = {
 
 /**
  * Describes the message spec.ClashParent_ClashChild.
- * Use `create(ClashParent_ClashChildDesc$)` to create a new message.
+ * Use `create(ClashParent_ClashChildSchema$)` to create a new message.
  */
-export declare const ClashParent_ClashChildDesc$: GenDescMessage<ClashParent_ClashChild$, ClashParent_ClashChildJson$>;
+export declare const ClashParent_ClashChildSchema$: GenDescMessage<ClashParent_ClashChild$, ClashParent_ClashChildJson$>;
 
 /**
  * message shape should clash with enum descriptor
@@ -1128,9 +1128,9 @@ export declare type EnumDescClashWithMessageShapeDescJson = {
 
 /**
  * Describes the message spec.EnumDescClashWithMessageShapeDesc.
- * Use `create(EnumDescClashWithMessageShapeDescDesc)` to create a new message.
+ * Use `create(EnumDescClashWithMessageShapeDescSchema)` to create a new message.
  */
-export declare const EnumDescClashWithMessageShapeDescDesc: GenDescMessage<EnumDescClashWithMessageShapeDesc, EnumDescClashWithMessageShapeDescJson>;
+export declare const EnumDescClashWithMessageShapeDescSchema: GenDescMessage<EnumDescClashWithMessageShapeDesc, EnumDescClashWithMessageShapeDescJson>;
 
 /**
  * @generated from message spec.EnumShapeClashWithMessageDesc
@@ -1146,9 +1146,9 @@ export declare type EnumShapeClashWithMessageDescJson = {
 
 /**
  * Describes the message spec.EnumShapeClashWithMessageDesc.
- * Use `create(EnumShapeClashWithMessageDescDesc$)` to create a new message.
+ * Use `create(EnumShapeClashWithMessageDescSchema)` to create a new message.
  */
-export declare const EnumShapeClashWithMessageDescDesc$: GenDescMessage<EnumShapeClashWithMessageDesc, EnumShapeClashWithMessageDescJson>;
+export declare const EnumShapeClashWithMessageDescSchema: GenDescMessage<EnumShapeClashWithMessageDesc, EnumShapeClashWithMessageDescJson>;
 
 /**
  * @generated from message spec.NoClashFields
@@ -1234,9 +1234,9 @@ export declare type NoClashFieldsJson = {
 
 /**
  * Describes the message spec.NoClashFields.
- * Use `create(NoClashFieldsDesc)` to create a new message.
+ * Use `create(NoClashFieldsSchema)` to create a new message.
  */
-export declare const NoClashFieldsDesc: GenDescMessage<NoClashFields, NoClashFieldsJson>;
+export declare const NoClashFieldsSchema: GenDescMessage<NoClashFields, NoClashFieldsJson>;
 
 /**
  * @generated from message spec.NoClashOneof
@@ -1333,9 +1333,9 @@ export declare type NoClashOneofJson = {
 
 /**
  * Describes the message spec.NoClashOneof.
- * Use `create(NoClashOneofDesc)` to create a new message.
+ * Use `create(NoClashOneofSchema)` to create a new message.
  */
-export declare const NoClashOneofDesc: GenDescMessage<NoClashOneof, NoClashOneofJson>;
+export declare const NoClashOneofSchema: GenDescMessage<NoClashOneof, NoClashOneofJson>;
 
 /**
  * @generated from message spec.NoClashOneofADT
@@ -1359,9 +1359,9 @@ export declare type NoClashOneofADTJson = {
 
 /**
  * Describes the message spec.NoClashOneofADT.
- * Use `create(NoClashOneofADTDesc)` to create a new message.
+ * Use `create(NoClashOneofADTSchema)` to create a new message.
  */
-export declare const NoClashOneofADTDesc: GenDescMessage<NoClashOneofADT, NoClashOneofADTJson>;
+export declare const NoClashOneofADTSchema: GenDescMessage<NoClashOneofADT, NoClashOneofADTJson>;
 
 /**
  * @generated from message spec.NoClashOneofADT.M
@@ -1395,9 +1395,9 @@ export declare type NoClashOneofADT_MJson = {
 
 /**
  * Describes the message spec.NoClashOneofADT.M.
- * Use `create(NoClashOneofADT_MDesc)` to create a new message.
+ * Use `create(NoClashOneofADT_MSchema)` to create a new message.
  */
-export declare const NoClashOneofADT_MDesc: GenDescMessage<NoClashOneofADT_M, NoClashOneofADT_MJson>;
+export declare const NoClashOneofADT_MSchema: GenDescMessage<NoClashOneofADT_M, NoClashOneofADT_MJson>;
 
 /**
  * just here as a "namespace" for the enum
@@ -1415,9 +1415,9 @@ export declare type NoClashEnumWrapJson = {
 
 /**
  * Describes the message spec.NoClashEnumWrap.
- * Use `create(NoClashEnumWrapDesc)` to create a new message.
+ * Use `create(NoClashEnumWrapSchema)` to create a new message.
  */
-export declare const NoClashEnumWrapDesc: GenDescMessage<NoClashEnumWrap, NoClashEnumWrapJson>;
+export declare const NoClashEnumWrapSchema: GenDescMessage<NoClashEnumWrap, NoClashEnumWrapJson>;
 
 /**
  * @generated from enum spec.NoClashEnumWrap.X
@@ -1474,7 +1474,7 @@ export declare type NoClashEnumWrap_XJson = "instanceof" | "switch" | "case" | "
 /**
  * Describes the enum spec.NoClashEnumWrap.X.
  */
-export declare const NoClashEnumWrap_XDesc: GenDescEnum<NoClashEnumWrap_X, NoClashEnumWrap_XJson>;
+export declare const NoClashEnumWrap_XSchema: GenDescEnum<NoClashEnumWrap_X, NoClashEnumWrap_XJson>;
 
 /**
  * @generated from enum spec.EnumDescClashWithMessageShape
@@ -1494,7 +1494,7 @@ export declare type EnumDescClashWithMessageShapeJson = "MessageDescClashWithEnu
 /**
  * Describes the enum spec.EnumDescClashWithMessageShape.
  */
-export declare const EnumDescClashWithMessageShapeDesc$: GenDescEnum<EnumDescClashWithMessageShape, EnumDescClashWithMessageShapeJson>;
+export declare const EnumDescClashWithMessageShapeSchema: GenDescEnum<EnumDescClashWithMessageShape, EnumDescClashWithMessageShapeJson>;
 
 /**
  * enum shape should clash with message descriptor
@@ -1516,7 +1516,7 @@ export declare type EnumShapeClashWithMessageDescDescJson = "EnumShapeClashWithM
 /**
  * Describes the enum spec.EnumShapeClashWithMessageDescDesc.
  */
-export declare const EnumShapeClashWithMessageDescDescDesc: GenDescEnum<EnumShapeClashWithMessageDescDesc, EnumShapeClashWithMessageDescDescJson>;
+export declare const EnumShapeClashWithMessageDescDescSchema: GenDescEnum<EnumShapeClashWithMessageDescDesc, EnumShapeClashWithMessageDescDescJson>;
 
 /**
  * @generated from service spec.ReservedPropertyNamesService
@@ -1527,32 +1527,32 @@ export declare const ReservedPropertyNamesService: GenDescService<{
    */
   constructor$: {
     methodKind: "unary";
-    input: typeof ErrorDesc;
-    output: typeof ErrorDesc;
+    input: typeof ErrorSchema;
+    output: typeof ErrorSchema;
   },
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.toString
    */
   toString$: {
     methodKind: "unary";
-    input: typeof ErrorDesc;
-    output: typeof ErrorDesc;
+    input: typeof ErrorSchema;
+    output: typeof ErrorSchema;
   },
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.to_JSON
    */
   to_JSON: {
     methodKind: "unary";
-    input: typeof ErrorDesc;
-    output: typeof ErrorDesc;
+    input: typeof ErrorSchema;
+    output: typeof ErrorSchema;
   },
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.value_of
    */
   value_of: {
     methodKind: "unary";
-    input: typeof ErrorDesc;
-    output: typeof ErrorDesc;
+    input: typeof ErrorSchema;
+    output: typeof ErrorSchema;
   },
 }
 >;

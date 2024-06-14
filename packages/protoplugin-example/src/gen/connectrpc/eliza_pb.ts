@@ -18,14 +18,14 @@
 
 import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc_customoptions_default_host } from "../customoptions/default_host_pb";
+import { file_customoptions_default_host } from "../customoptions/default_host_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file connectrpc/eliza.proto.
  */
-export const fileDesc_connectrpc_eliza: GenDescFile = /*@__PURE__*/
-  fileDesc("ChZjb25uZWN0cnBjL2VsaXphLnByb3RvEhNjb25uZWN0cnBjLmVsaXphLnYxIh4KClNheVJlcXVlc3QSEAoIc2VudGVuY2UYASABKAkiHwoLU2F5UmVzcG9uc2USEAoIc2VudGVuY2UYASABKAkyfgoMRWxpemFTZXJ2aWNlEk0KA1NheRIfLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVxdWVzdBogLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVzcG9uc2UiA5ACARofyj4caHR0cHM6Ly9kZW1vLmNvbm5lY3RycGMuY29tL2IGcHJvdG8z", [fileDesc_customoptions_default_host]);
+export const file_connectrpc_eliza: GenDescFile = /*@__PURE__*/
+  fileDesc("ChZjb25uZWN0cnBjL2VsaXphLnByb3RvEhNjb25uZWN0cnBjLmVsaXphLnYxIh4KClNheVJlcXVlc3QSEAoIc2VudGVuY2UYASABKAkiHwoLU2F5UmVzcG9uc2USEAoIc2VudGVuY2UYASABKAkyfgoMRWxpemFTZXJ2aWNlEk0KA1NheRIfLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVxdWVzdBogLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVzcG9uc2UiA5ACARofyj4caHR0cHM6Ly9kZW1vLmNvbm5lY3RycGMuY29tL2IGcHJvdG8z", [file_customoptions_default_host]);
 
 /**
  * SayRequest is a single-sentence request.
@@ -51,10 +51,10 @@ export type SayRequestJson = {
 
 /**
  * Describes the message connectrpc.eliza.v1.SayRequest.
- * Use `create(SayRequestDesc)` to create a new message.
+ * Use `create(SayRequestSchema)` to create a new message.
  */
-export const SayRequestDesc: GenDescMessage<SayRequest, SayRequestJson> = /*@__PURE__*/
-  messageDesc(fileDesc_connectrpc_eliza, 0);
+export const SayRequestSchema: GenDescMessage<SayRequest, SayRequestJson> = /*@__PURE__*/
+  messageDesc(file_connectrpc_eliza, 0);
 
 /**
  * SayResponse is a single-sentence response.
@@ -80,10 +80,10 @@ export type SayResponseJson = {
 
 /**
  * Describes the message connectrpc.eliza.v1.SayResponse.
- * Use `create(SayResponseDesc)` to create a new message.
+ * Use `create(SayResponseSchema)` to create a new message.
  */
-export const SayResponseDesc: GenDescMessage<SayResponse, SayResponseJson> = /*@__PURE__*/
-  messageDesc(fileDesc_connectrpc_eliza, 1);
+export const SayResponseSchema: GenDescMessage<SayResponse, SayResponseJson> = /*@__PURE__*/
+  messageDesc(file_connectrpc_eliza, 1);
 
 /**
  * This is a modified copy of ElizaService from https://buf.build/connectrpc/eliza
@@ -98,10 +98,10 @@ export const ElizaService: GenDescService<{
    */
   say: {
     methodKind: "unary";
-    input: typeof SayRequestDesc;
-    output: typeof SayResponseDesc;
+    input: typeof SayRequestSchema;
+    output: typeof SayResponseSchema;
   },
 }
 > = /*@__PURE__*/
-  serviceDesc(fileDesc_connectrpc_eliza, 0);
+  serviceDesc(file_connectrpc_eliza, 0);
 

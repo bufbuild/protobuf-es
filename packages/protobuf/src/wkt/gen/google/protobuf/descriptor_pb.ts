@@ -33,7 +33,7 @@ import { enumDesc } from "../../../../codegenv1/enum.js";
 /**
  * Describes the file google/protobuf/descriptor.proto.
  */
-export const fileDesc_google_protobuf_descriptor: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_descriptor: GenDescFile = /*@__PURE__*/
   boot({"name":"google/protobuf/descriptor.proto","package":"google.protobuf","messageType":[{"name":"FileDescriptorSet","field":[{"name":"file","number":1,"type":11,"label":3,"typeName":".google.protobuf.FileDescriptorProto"}]},{"name":"FileDescriptorProto","field":[{"name":"name","number":1,"type":9,"label":1},{"name":"package","number":2,"type":9,"label":1},{"name":"dependency","number":3,"type":9,"label":3},{"name":"public_dependency","number":10,"type":5,"label":3},{"name":"weak_dependency","number":11,"type":5,"label":3},{"name":"message_type","number":4,"type":11,"label":3,"typeName":".google.protobuf.DescriptorProto"},{"name":"enum_type","number":5,"type":11,"label":3,"typeName":".google.protobuf.EnumDescriptorProto"},{"name":"service","number":6,"type":11,"label":3,"typeName":".google.protobuf.ServiceDescriptorProto"},{"name":"extension","number":7,"type":11,"label":3,"typeName":".google.protobuf.FieldDescriptorProto"},{"name":"options","number":8,"type":11,"label":1,"typeName":".google.protobuf.FileOptions"},{"name":"source_code_info","number":9,"type":11,"label":1,"typeName":".google.protobuf.SourceCodeInfo"},{"name":"syntax","number":12,"type":9,"label":1},{"name":"edition","number":14,"type":14,"label":1,"typeName":".google.protobuf.Edition"}]},{"name":"DescriptorProto","field":[{"name":"name","number":1,"type":9,"label":1},{"name":"field","number":2,"type":11,"label":3,"typeName":".google.protobuf.FieldDescriptorProto"},{"name":"extension","number":6,"type":11,"label":3,"typeName":".google.protobuf.FieldDescriptorProto"},{"name":"nested_type","number":3,"type":11,"label":3,"typeName":".google.protobuf.DescriptorProto"},{"name":"enum_type","number":4,"type":11,"label":3,"typeName":".google.protobuf.EnumDescriptorProto"},{"name":"extension_range","number":5,"type":11,"label":3,"typeName":".google.protobuf.DescriptorProto.ExtensionRange"},{"name":"oneof_decl","number":8,"type":11,"label":3,"typeName":".google.protobuf.OneofDescriptorProto"},{"name":"options","number":7,"type":11,"label":1,"typeName":".google.protobuf.MessageOptions"},{"name":"reserved_range","number":9,"type":11,"label":3,"typeName":".google.protobuf.DescriptorProto.ReservedRange"},{"name":"reserved_name","number":10,"type":9,"label":3}],"nestedType":[{"name":"ExtensionRange","field":[{"name":"start","number":1,"type":5,"label":1},{"name":"end","number":2,"type":5,"label":1},{"name":"options","number":3,"type":11,"label":1,"typeName":".google.protobuf.ExtensionRangeOptions"}]},{"name":"ReservedRange","field":[{"name":"start","number":1,"type":5,"label":1},{"name":"end","number":2,"type":5,"label":1}]}]},{"name":"ExtensionRangeOptions","field":[{"name":"uninterpreted_option","number":999,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption"},{"name":"declaration","number":2,"type":11,"label":3,"typeName":".google.protobuf.ExtensionRangeOptions.Declaration","options":{"retention":2}},{"name":"features","number":50,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"verification","number":3,"type":14,"label":1,"typeName":".google.protobuf.ExtensionRangeOptions.VerificationState","defaultValue":"UNVERIFIED","options":{"retention":2}}],"nestedType":[{"name":"Declaration","field":[{"name":"number","number":1,"type":5,"label":1},{"name":"full_name","number":2,"type":9,"label":1},{"name":"type","number":3,"type":9,"label":1},{"name":"reserved","number":5,"type":8,"label":1},{"name":"repeated","number":6,"type":8,"label":1}]}],"enumType":[{"name":"VerificationState","value":[{"name":"DECLARATION","number":0},{"name":"UNVERIFIED","number":1}]}],"extensionRange":[{"start":1000,"end":536870912}]},{"name":"FieldDescriptorProto","field":[{"name":"name","number":1,"type":9,"label":1},{"name":"number","number":3,"type":5,"label":1},{"name":"label","number":4,"type":14,"label":1,"typeName":".google.protobuf.FieldDescriptorProto.Label"},{"name":"type","number":5,"type":14,"label":1,"typeName":".google.protobuf.FieldDescriptorProto.Type"},{"name":"type_name","number":6,"type":9,"label":1},{"name":"extendee","number":2,"type":9,"label":1},{"name":"default_value","number":7,"type":9,"label":1},{"name":"oneof_index","number":9,"type":5,"label":1},{"name":"json_name","number":10,"type":9,"label":1},{"name":"options","number":8,"type":11,"label":1,"typeName":".google.protobuf.FieldOptions"},{"name":"proto3_optional","number":17,"type":8,"label":1}],"enumType":[{"name":"Type","value":[{"name":"TYPE_DOUBLE","number":1},{"name":"TYPE_FLOAT","number":2},{"name":"TYPE_INT64","number":3},{"name":"TYPE_UINT64","number":4},{"name":"TYPE_INT32","number":5},{"name":"TYPE_FIXED64","number":6},{"name":"TYPE_FIXED32","number":7},{"name":"TYPE_BOOL","number":8},{"name":"TYPE_STRING","number":9},{"name":"TYPE_GROUP","number":10},{"name":"TYPE_MESSAGE","number":11},{"name":"TYPE_BYTES","number":12},{"name":"TYPE_UINT32","number":13},{"name":"TYPE_ENUM","number":14},{"name":"TYPE_SFIXED32","number":15},{"name":"TYPE_SFIXED64","number":16},{"name":"TYPE_SINT32","number":17},{"name":"TYPE_SINT64","number":18}]},{"name":"Label","value":[{"name":"LABEL_OPTIONAL","number":1},{"name":"LABEL_REPEATED","number":3},{"name":"LABEL_REQUIRED","number":2}]}]},{"name":"OneofDescriptorProto","field":[{"name":"name","number":1,"type":9,"label":1},{"name":"options","number":2,"type":11,"label":1,"typeName":".google.protobuf.OneofOptions"}]},{"name":"EnumDescriptorProto","field":[{"name":"name","number":1,"type":9,"label":1},{"name":"value","number":2,"type":11,"label":3,"typeName":".google.protobuf.EnumValueDescriptorProto"},{"name":"options","number":3,"type":11,"label":1,"typeName":".google.protobuf.EnumOptions"},{"name":"reserved_range","number":4,"type":11,"label":3,"typeName":".google.protobuf.EnumDescriptorProto.EnumReservedRange"},{"name":"reserved_name","number":5,"type":9,"label":3}],"nestedType":[{"name":"EnumReservedRange","field":[{"name":"start","number":1,"type":5,"label":1},{"name":"end","number":2,"type":5,"label":1}]}]},{"name":"EnumValueDescriptorProto","field":[{"name":"name","number":1,"type":9,"label":1},{"name":"number","number":2,"type":5,"label":1},{"name":"options","number":3,"type":11,"label":1,"typeName":".google.protobuf.EnumValueOptions"}]},{"name":"ServiceDescriptorProto","field":[{"name":"name","number":1,"type":9,"label":1},{"name":"method","number":2,"type":11,"label":3,"typeName":".google.protobuf.MethodDescriptorProto"},{"name":"options","number":3,"type":11,"label":1,"typeName":".google.protobuf.ServiceOptions"}]},{"name":"MethodDescriptorProto","field":[{"name":"name","number":1,"type":9,"label":1},{"name":"input_type","number":2,"type":9,"label":1},{"name":"output_type","number":3,"type":9,"label":1},{"name":"options","number":4,"type":11,"label":1,"typeName":".google.protobuf.MethodOptions"},{"name":"client_streaming","number":5,"type":8,"label":1,"defaultValue":"false"},{"name":"server_streaming","number":6,"type":8,"label":1,"defaultValue":"false"}]},{"name":"FileOptions","field":[{"name":"java_package","number":1,"type":9,"label":1},{"name":"java_outer_classname","number":8,"type":9,"label":1},{"name":"java_multiple_files","number":10,"type":8,"label":1,"defaultValue":"false"},{"name":"java_generate_equals_and_hash","number":20,"type":8,"label":1,"options":{"deprecated":true}},{"name":"java_string_check_utf8","number":27,"type":8,"label":1,"defaultValue":"false"},{"name":"optimize_for","number":9,"type":14,"label":1,"typeName":".google.protobuf.FileOptions.OptimizeMode","defaultValue":"SPEED"},{"name":"go_package","number":11,"type":9,"label":1},{"name":"cc_generic_services","number":16,"type":8,"label":1,"defaultValue":"false"},{"name":"java_generic_services","number":17,"type":8,"label":1,"defaultValue":"false"},{"name":"py_generic_services","number":18,"type":8,"label":1,"defaultValue":"false"},{"name":"deprecated","number":23,"type":8,"label":1,"defaultValue":"false"},{"name":"cc_enable_arenas","number":31,"type":8,"label":1,"defaultValue":"true"},{"name":"objc_class_prefix","number":36,"type":9,"label":1},{"name":"csharp_namespace","number":37,"type":9,"label":1},{"name":"swift_prefix","number":39,"type":9,"label":1},{"name":"php_class_prefix","number":40,"type":9,"label":1},{"name":"php_namespace","number":41,"type":9,"label":1},{"name":"php_metadata_namespace","number":44,"type":9,"label":1},{"name":"ruby_package","number":45,"type":9,"label":1},{"name":"features","number":50,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"uninterpreted_option","number":999,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption"}],"enumType":[{"name":"OptimizeMode","value":[{"name":"SPEED","number":1},{"name":"CODE_SIZE","number":2},{"name":"LITE_RUNTIME","number":3}]}],"extensionRange":[{"start":1000,"end":536870912}]},{"name":"MessageOptions","field":[{"name":"message_set_wire_format","number":1,"type":8,"label":1,"defaultValue":"false"},{"name":"no_standard_descriptor_accessor","number":2,"type":8,"label":1,"defaultValue":"false"},{"name":"deprecated","number":3,"type":8,"label":1,"defaultValue":"false"},{"name":"map_entry","number":7,"type":8,"label":1},{"name":"deprecated_legacy_json_field_conflicts","number":11,"type":8,"label":1,"options":{"deprecated":true}},{"name":"features","number":12,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"uninterpreted_option","number":999,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption"}],"extensionRange":[{"start":1000,"end":536870912}]},{"name":"FieldOptions","field":[{"name":"ctype","number":1,"type":14,"label":1,"typeName":".google.protobuf.FieldOptions.CType","defaultValue":"STRING"},{"name":"packed","number":2,"type":8,"label":1},{"name":"jstype","number":6,"type":14,"label":1,"typeName":".google.protobuf.FieldOptions.JSType","defaultValue":"JS_NORMAL"},{"name":"lazy","number":5,"type":8,"label":1,"defaultValue":"false"},{"name":"unverified_lazy","number":15,"type":8,"label":1,"defaultValue":"false"},{"name":"deprecated","number":3,"type":8,"label":1,"defaultValue":"false"},{"name":"weak","number":10,"type":8,"label":1,"defaultValue":"false"},{"name":"debug_redact","number":16,"type":8,"label":1,"defaultValue":"false"},{"name":"retention","number":17,"type":14,"label":1,"typeName":".google.protobuf.FieldOptions.OptionRetention"},{"name":"targets","number":19,"type":14,"label":3,"typeName":".google.protobuf.FieldOptions.OptionTargetType"},{"name":"edition_defaults","number":20,"type":11,"label":3,"typeName":".google.protobuf.FieldOptions.EditionDefault"},{"name":"features","number":21,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"feature_support","number":22,"type":11,"label":1,"typeName":".google.protobuf.FieldOptions.FeatureSupport"},{"name":"uninterpreted_option","number":999,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption"}],"nestedType":[{"name":"EditionDefault","field":[{"name":"edition","number":3,"type":14,"label":1,"typeName":".google.protobuf.Edition"},{"name":"value","number":2,"type":9,"label":1}]},{"name":"FeatureSupport","field":[{"name":"edition_introduced","number":1,"type":14,"label":1,"typeName":".google.protobuf.Edition"},{"name":"edition_deprecated","number":2,"type":14,"label":1,"typeName":".google.protobuf.Edition"},{"name":"deprecation_warning","number":3,"type":9,"label":1},{"name":"edition_removed","number":4,"type":14,"label":1,"typeName":".google.protobuf.Edition"}]}],"enumType":[{"name":"CType","value":[{"name":"STRING","number":0},{"name":"CORD","number":1},{"name":"STRING_PIECE","number":2}]},{"name":"JSType","value":[{"name":"JS_NORMAL","number":0},{"name":"JS_STRING","number":1},{"name":"JS_NUMBER","number":2}]},{"name":"OptionRetention","value":[{"name":"RETENTION_UNKNOWN","number":0},{"name":"RETENTION_RUNTIME","number":1},{"name":"RETENTION_SOURCE","number":2}]},{"name":"OptionTargetType","value":[{"name":"TARGET_TYPE_UNKNOWN","number":0},{"name":"TARGET_TYPE_FILE","number":1},{"name":"TARGET_TYPE_EXTENSION_RANGE","number":2},{"name":"TARGET_TYPE_MESSAGE","number":3},{"name":"TARGET_TYPE_FIELD","number":4},{"name":"TARGET_TYPE_ONEOF","number":5},{"name":"TARGET_TYPE_ENUM","number":6},{"name":"TARGET_TYPE_ENUM_ENTRY","number":7},{"name":"TARGET_TYPE_SERVICE","number":8},{"name":"TARGET_TYPE_METHOD","number":9}]}],"extensionRange":[{"start":1000,"end":536870912}]},{"name":"OneofOptions","field":[{"name":"features","number":1,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"uninterpreted_option","number":999,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption"}],"extensionRange":[{"start":1000,"end":536870912}]},{"name":"EnumOptions","field":[{"name":"allow_alias","number":2,"type":8,"label":1},{"name":"deprecated","number":3,"type":8,"label":1,"defaultValue":"false"},{"name":"deprecated_legacy_json_field_conflicts","number":6,"type":8,"label":1,"options":{"deprecated":true}},{"name":"features","number":7,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"uninterpreted_option","number":999,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption"}],"extensionRange":[{"start":1000,"end":536870912}]},{"name":"EnumValueOptions","field":[{"name":"deprecated","number":1,"type":8,"label":1,"defaultValue":"false"},{"name":"features","number":2,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"debug_redact","number":3,"type":8,"label":1,"defaultValue":"false"},{"name":"feature_support","number":4,"type":11,"label":1,"typeName":".google.protobuf.FieldOptions.FeatureSupport"},{"name":"uninterpreted_option","number":999,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption"}],"extensionRange":[{"start":1000,"end":536870912}]},{"name":"ServiceOptions","field":[{"name":"features","number":34,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"deprecated","number":33,"type":8,"label":1,"defaultValue":"false"},{"name":"uninterpreted_option","number":999,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption"}],"extensionRange":[{"start":1000,"end":536870912}]},{"name":"MethodOptions","field":[{"name":"deprecated","number":33,"type":8,"label":1,"defaultValue":"false"},{"name":"idempotency_level","number":34,"type":14,"label":1,"typeName":".google.protobuf.MethodOptions.IdempotencyLevel","defaultValue":"IDEMPOTENCY_UNKNOWN"},{"name":"features","number":35,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"uninterpreted_option","number":999,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption"}],"enumType":[{"name":"IdempotencyLevel","value":[{"name":"IDEMPOTENCY_UNKNOWN","number":0},{"name":"NO_SIDE_EFFECTS","number":1},{"name":"IDEMPOTENT","number":2}]}],"extensionRange":[{"start":1000,"end":536870912}]},{"name":"UninterpretedOption","field":[{"name":"name","number":2,"type":11,"label":3,"typeName":".google.protobuf.UninterpretedOption.NamePart"},{"name":"identifier_value","number":3,"type":9,"label":1},{"name":"positive_int_value","number":4,"type":4,"label":1},{"name":"negative_int_value","number":5,"type":3,"label":1},{"name":"double_value","number":6,"type":1,"label":1},{"name":"string_value","number":7,"type":12,"label":1},{"name":"aggregate_value","number":8,"type":9,"label":1}],"nestedType":[{"name":"NamePart","field":[{"name":"name_part","number":1,"type":9,"label":2},{"name":"is_extension","number":2,"type":8,"label":2}]}]},{"name":"FeatureSet","field":[{"name":"field_presence","number":1,"type":14,"label":1,"typeName":".google.protobuf.FeatureSet.FieldPresence","options":{"retention":1,"targets":[4,1],"editionDefaults":[{"value":"EXPLICIT","edition":998},{"value":"IMPLICIT","edition":999},{"value":"EXPLICIT","edition":1000}]}},{"name":"enum_type","number":2,"type":14,"label":1,"typeName":".google.protobuf.FeatureSet.EnumType","options":{"retention":1,"targets":[6,1],"editionDefaults":[{"value":"CLOSED","edition":998},{"value":"OPEN","edition":999}]}},{"name":"repeated_field_encoding","number":3,"type":14,"label":1,"typeName":".google.protobuf.FeatureSet.RepeatedFieldEncoding","options":{"retention":1,"targets":[4,1],"editionDefaults":[{"value":"EXPANDED","edition":998},{"value":"PACKED","edition":999}]}},{"name":"utf8_validation","number":4,"type":14,"label":1,"typeName":".google.protobuf.FeatureSet.Utf8Validation","options":{"retention":1,"targets":[4,1],"editionDefaults":[{"value":"NONE","edition":998},{"value":"VERIFY","edition":999}]}},{"name":"message_encoding","number":5,"type":14,"label":1,"typeName":".google.protobuf.FeatureSet.MessageEncoding","options":{"retention":1,"targets":[4,1],"editionDefaults":[{"value":"LENGTH_PREFIXED","edition":998}]}},{"name":"json_format","number":6,"type":14,"label":1,"typeName":".google.protobuf.FeatureSet.JsonFormat","options":{"retention":1,"targets":[3,6,1],"editionDefaults":[{"value":"LEGACY_BEST_EFFORT","edition":998},{"value":"ALLOW","edition":999}]}}],"enumType":[{"name":"FieldPresence","value":[{"name":"FIELD_PRESENCE_UNKNOWN","number":0},{"name":"EXPLICIT","number":1},{"name":"IMPLICIT","number":2},{"name":"LEGACY_REQUIRED","number":3}]},{"name":"EnumType","value":[{"name":"ENUM_TYPE_UNKNOWN","number":0},{"name":"OPEN","number":1},{"name":"CLOSED","number":2}]},{"name":"RepeatedFieldEncoding","value":[{"name":"REPEATED_FIELD_ENCODING_UNKNOWN","number":0},{"name":"PACKED","number":1},{"name":"EXPANDED","number":2}]},{"name":"Utf8Validation","value":[{"name":"UTF8_VALIDATION_UNKNOWN","number":0},{"name":"VERIFY","number":2},{"name":"NONE","number":3}]},{"name":"MessageEncoding","value":[{"name":"MESSAGE_ENCODING_UNKNOWN","number":0},{"name":"LENGTH_PREFIXED","number":1},{"name":"DELIMITED","number":2}]},{"name":"JsonFormat","value":[{"name":"JSON_FORMAT_UNKNOWN","number":0},{"name":"ALLOW","number":1},{"name":"LEGACY_BEST_EFFORT","number":2}]}],"extensionRange":[{"start":1000,"end":9995},{"start":9995,"end":10000},{"start":10000,"end":10001}]},{"name":"FeatureSetDefaults","field":[{"name":"defaults","number":1,"type":11,"label":3,"typeName":".google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault"},{"name":"minimum_edition","number":4,"type":14,"label":1,"typeName":".google.protobuf.Edition"},{"name":"maximum_edition","number":5,"type":14,"label":1,"typeName":".google.protobuf.Edition"}],"nestedType":[{"name":"FeatureSetEditionDefault","field":[{"name":"edition","number":3,"type":14,"label":1,"typeName":".google.protobuf.Edition"},{"name":"overridable_features","number":4,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"},{"name":"fixed_features","number":5,"type":11,"label":1,"typeName":".google.protobuf.FeatureSet"}]}]},{"name":"SourceCodeInfo","field":[{"name":"location","number":1,"type":11,"label":3,"typeName":".google.protobuf.SourceCodeInfo.Location"}],"nestedType":[{"name":"Location","field":[{"name":"path","number":1,"type":5,"label":3,"options":{"packed":true}},{"name":"span","number":2,"type":5,"label":3,"options":{"packed":true}},{"name":"leading_comments","number":3,"type":9,"label":1},{"name":"trailing_comments","number":4,"type":9,"label":1},{"name":"leading_detached_comments","number":6,"type":9,"label":3}]}]},{"name":"GeneratedCodeInfo","field":[{"name":"annotation","number":1,"type":11,"label":3,"typeName":".google.protobuf.GeneratedCodeInfo.Annotation"}],"nestedType":[{"name":"Annotation","field":[{"name":"path","number":1,"type":5,"label":3,"options":{"packed":true}},{"name":"source_file","number":2,"type":9,"label":1},{"name":"begin","number":3,"type":5,"label":1},{"name":"end","number":4,"type":5,"label":1},{"name":"semantic","number":5,"type":14,"label":1,"typeName":".google.protobuf.GeneratedCodeInfo.Annotation.Semantic"}],"enumType":[{"name":"Semantic","value":[{"name":"NONE","number":0},{"name":"SET","number":1},{"name":"ALIAS","number":2}]}]}]}],"enumType":[{"name":"Edition","value":[{"name":"EDITION_UNKNOWN","number":0},{"name":"EDITION_LEGACY","number":900},{"name":"EDITION_PROTO2","number":998},{"name":"EDITION_PROTO3","number":999},{"name":"EDITION_2023","number":1000},{"name":"EDITION_2024","number":1001},{"name":"EDITION_1_TEST_ONLY","number":1},{"name":"EDITION_2_TEST_ONLY","number":2},{"name":"EDITION_99997_TEST_ONLY","number":99997},{"name":"EDITION_99998_TEST_ONLY","number":99998},{"name":"EDITION_99999_TEST_ONLY","number":99999},{"name":"EDITION_MAX","number":2147483647}]}]});
 
 /**
@@ -61,10 +61,10 @@ export type FileDescriptorSetJson = {
 
 /**
  * Describes the message google.protobuf.FileDescriptorSet.
- * Use `create(FileDescriptorSetDesc)` to create a new message.
+ * Use `create(FileDescriptorSetSchema)` to create a new message.
  */
-export const FileDescriptorSetDesc: GenDescMessage<FileDescriptorSet, FileDescriptorSetJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 0);
+export const FileDescriptorSetSchema: GenDescMessage<FileDescriptorSet, FileDescriptorSetJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 0);
 
 /**
  * Describes a complete .proto file.
@@ -235,10 +235,10 @@ export type FileDescriptorProtoJson = {
 
 /**
  * Describes the message google.protobuf.FileDescriptorProto.
- * Use `create(FileDescriptorProtoDesc)` to create a new message.
+ * Use `create(FileDescriptorProtoSchema)` to create a new message.
  */
-export const FileDescriptorProtoDesc: GenDescMessage<FileDescriptorProto, FileDescriptorProtoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 1);
+export const FileDescriptorProtoSchema: GenDescMessage<FileDescriptorProto, FileDescriptorProtoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 1);
 
 /**
  * Describes a message type.
@@ -357,10 +357,10 @@ export type DescriptorProtoJson = {
 
 /**
  * Describes the message google.protobuf.DescriptorProto.
- * Use `create(DescriptorProtoDesc)` to create a new message.
+ * Use `create(DescriptorProtoSchema)` to create a new message.
  */
-export const DescriptorProtoDesc: GenDescMessage<DescriptorProto, DescriptorProtoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 2);
+export const DescriptorProtoSchema: GenDescMessage<DescriptorProto, DescriptorProtoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 2);
 
 /**
  * @generated from message google.protobuf.DescriptorProto.ExtensionRange
@@ -408,10 +408,10 @@ export type DescriptorProto_ExtensionRangeJson = {
 
 /**
  * Describes the message google.protobuf.DescriptorProto.ExtensionRange.
- * Use `create(DescriptorProto_ExtensionRangeDesc)` to create a new message.
+ * Use `create(DescriptorProto_ExtensionRangeSchema)` to create a new message.
  */
-export const DescriptorProto_ExtensionRangeDesc: GenDescMessage<DescriptorProto_ExtensionRange, DescriptorProto_ExtensionRangeJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 2, 0);
+export const DescriptorProto_ExtensionRangeSchema: GenDescMessage<DescriptorProto_ExtensionRange, DescriptorProto_ExtensionRangeJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 2, 0);
 
 /**
  * Range of reserved tag numbers. Reserved tag numbers may not be used by
@@ -453,10 +453,10 @@ export type DescriptorProto_ReservedRangeJson = {
 
 /**
  * Describes the message google.protobuf.DescriptorProto.ReservedRange.
- * Use `create(DescriptorProto_ReservedRangeDesc)` to create a new message.
+ * Use `create(DescriptorProto_ReservedRangeSchema)` to create a new message.
  */
-export const DescriptorProto_ReservedRangeDesc: GenDescMessage<DescriptorProto_ReservedRange, DescriptorProto_ReservedRangeJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 2, 1);
+export const DescriptorProto_ReservedRangeSchema: GenDescMessage<DescriptorProto_ReservedRange, DescriptorProto_ReservedRangeJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 2, 1);
 
 /**
  * @generated from message google.protobuf.ExtensionRangeOptions
@@ -522,10 +522,10 @@ export type ExtensionRangeOptionsJson = {
 
 /**
  * Describes the message google.protobuf.ExtensionRangeOptions.
- * Use `create(ExtensionRangeOptionsDesc)` to create a new message.
+ * Use `create(ExtensionRangeOptionsSchema)` to create a new message.
  */
-export const ExtensionRangeOptionsDesc: GenDescMessage<ExtensionRangeOptions, ExtensionRangeOptionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 3);
+export const ExtensionRangeOptionsSchema: GenDescMessage<ExtensionRangeOptions, ExtensionRangeOptionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 3);
 
 /**
  * @generated from message google.protobuf.ExtensionRangeOptions.Declaration
@@ -605,10 +605,10 @@ export type ExtensionRangeOptions_DeclarationJson = {
 
 /**
  * Describes the message google.protobuf.ExtensionRangeOptions.Declaration.
- * Use `create(ExtensionRangeOptions_DeclarationDesc)` to create a new message.
+ * Use `create(ExtensionRangeOptions_DeclarationSchema)` to create a new message.
  */
-export const ExtensionRangeOptions_DeclarationDesc: GenDescMessage<ExtensionRangeOptions_Declaration, ExtensionRangeOptions_DeclarationJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 3, 0);
+export const ExtensionRangeOptions_DeclarationSchema: GenDescMessage<ExtensionRangeOptions_Declaration, ExtensionRangeOptions_DeclarationJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 3, 0);
 
 /**
  * The verification state of the extension range.
@@ -637,8 +637,8 @@ export type ExtensionRangeOptions_VerificationStateJson = "DECLARATION" | "UNVER
 /**
  * Describes the enum google.protobuf.ExtensionRangeOptions.VerificationState.
  */
-export const ExtensionRangeOptions_VerificationStateDesc: GenDescEnum<ExtensionRangeOptions_VerificationState, ExtensionRangeOptions_VerificationStateJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 3, 0);
+export const ExtensionRangeOptions_VerificationStateSchema: GenDescEnum<ExtensionRangeOptions_VerificationState, ExtensionRangeOptions_VerificationStateJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 3, 0);
 
 /**
  * Describes a field within a message.
@@ -811,10 +811,10 @@ export type FieldDescriptorProtoJson = {
 
 /**
  * Describes the message google.protobuf.FieldDescriptorProto.
- * Use `create(FieldDescriptorProtoDesc)` to create a new message.
+ * Use `create(FieldDescriptorProtoSchema)` to create a new message.
  */
-export const FieldDescriptorProtoDesc: GenDescMessage<FieldDescriptorProto, FieldDescriptorProtoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 4);
+export const FieldDescriptorProtoSchema: GenDescMessage<FieldDescriptorProto, FieldDescriptorProtoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 4);
 
 /**
  * @generated from enum google.protobuf.FieldDescriptorProto.Type
@@ -942,8 +942,8 @@ export type FieldDescriptorProto_TypeJson = "TYPE_DOUBLE" | "TYPE_FLOAT" | "TYPE
 /**
  * Describes the enum google.protobuf.FieldDescriptorProto.Type.
  */
-export const FieldDescriptorProto_TypeDesc: GenDescEnum<FieldDescriptorProto_Type, FieldDescriptorProto_TypeJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 4, 0);
+export const FieldDescriptorProto_TypeSchema: GenDescEnum<FieldDescriptorProto_Type, FieldDescriptorProto_TypeJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 4, 0);
 
 /**
  * @generated from enum google.protobuf.FieldDescriptorProto.Label
@@ -979,8 +979,8 @@ export type FieldDescriptorProto_LabelJson = "LABEL_OPTIONAL" | "LABEL_REPEATED"
 /**
  * Describes the enum google.protobuf.FieldDescriptorProto.Label.
  */
-export const FieldDescriptorProto_LabelDesc: GenDescEnum<FieldDescriptorProto_Label, FieldDescriptorProto_LabelJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 4, 1);
+export const FieldDescriptorProto_LabelSchema: GenDescEnum<FieldDescriptorProto_Label, FieldDescriptorProto_LabelJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 4, 1);
 
 /**
  * Describes a oneof.
@@ -1016,10 +1016,10 @@ export type OneofDescriptorProtoJson = {
 
 /**
  * Describes the message google.protobuf.OneofDescriptorProto.
- * Use `create(OneofDescriptorProtoDesc)` to create a new message.
+ * Use `create(OneofDescriptorProtoSchema)` to create a new message.
  */
-export const OneofDescriptorProtoDesc: GenDescMessage<OneofDescriptorProto, OneofDescriptorProtoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 5);
+export const OneofDescriptorProtoSchema: GenDescMessage<OneofDescriptorProto, OneofDescriptorProtoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 5);
 
 /**
  * Describes an enum type.
@@ -1092,10 +1092,10 @@ export type EnumDescriptorProtoJson = {
 
 /**
  * Describes the message google.protobuf.EnumDescriptorProto.
- * Use `create(EnumDescriptorProtoDesc)` to create a new message.
+ * Use `create(EnumDescriptorProtoSchema)` to create a new message.
  */
-export const EnumDescriptorProtoDesc: GenDescMessage<EnumDescriptorProto, EnumDescriptorProtoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 6);
+export const EnumDescriptorProtoSchema: GenDescMessage<EnumDescriptorProto, EnumDescriptorProtoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 6);
 
 /**
  * Range of reserved numeric values. Reserved values may not be used by
@@ -1140,10 +1140,10 @@ export type EnumDescriptorProto_EnumReservedRangeJson = {
 
 /**
  * Describes the message google.protobuf.EnumDescriptorProto.EnumReservedRange.
- * Use `create(EnumDescriptorProto_EnumReservedRangeDesc)` to create a new message.
+ * Use `create(EnumDescriptorProto_EnumReservedRangeSchema)` to create a new message.
  */
-export const EnumDescriptorProto_EnumReservedRangeDesc: GenDescMessage<EnumDescriptorProto_EnumReservedRange, EnumDescriptorProto_EnumReservedRangeJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 6, 0);
+export const EnumDescriptorProto_EnumReservedRangeSchema: GenDescMessage<EnumDescriptorProto_EnumReservedRange, EnumDescriptorProto_EnumReservedRangeJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 6, 0);
 
 /**
  * Describes a value within an enum.
@@ -1189,10 +1189,10 @@ export type EnumValueDescriptorProtoJson = {
 
 /**
  * Describes the message google.protobuf.EnumValueDescriptorProto.
- * Use `create(EnumValueDescriptorProtoDesc)` to create a new message.
+ * Use `create(EnumValueDescriptorProtoSchema)` to create a new message.
  */
-export const EnumValueDescriptorProtoDesc: GenDescMessage<EnumValueDescriptorProto, EnumValueDescriptorProtoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 7);
+export const EnumValueDescriptorProtoSchema: GenDescMessage<EnumValueDescriptorProto, EnumValueDescriptorProtoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 7);
 
 /**
  * Describes a service.
@@ -1238,10 +1238,10 @@ export type ServiceDescriptorProtoJson = {
 
 /**
  * Describes the message google.protobuf.ServiceDescriptorProto.
- * Use `create(ServiceDescriptorProtoDesc)` to create a new message.
+ * Use `create(ServiceDescriptorProtoSchema)` to create a new message.
  */
-export const ServiceDescriptorProtoDesc: GenDescMessage<ServiceDescriptorProto, ServiceDescriptorProtoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 8);
+export const ServiceDescriptorProtoSchema: GenDescMessage<ServiceDescriptorProto, ServiceDescriptorProtoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 8);
 
 /**
  * Describes a method of a service.
@@ -1324,10 +1324,10 @@ export type MethodDescriptorProtoJson = {
 
 /**
  * Describes the message google.protobuf.MethodDescriptorProto.
- * Use `create(MethodDescriptorProtoDesc)` to create a new message.
+ * Use `create(MethodDescriptorProtoSchema)` to create a new message.
  */
-export const MethodDescriptorProtoDesc: GenDescMessage<MethodDescriptorProto, MethodDescriptorProtoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 9);
+export const MethodDescriptorProtoSchema: GenDescMessage<MethodDescriptorProto, MethodDescriptorProtoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 9);
 
 /**
  * @generated from message google.protobuf.FileOptions
@@ -1638,10 +1638,10 @@ export type FileOptionsJson = {
 
 /**
  * Describes the message google.protobuf.FileOptions.
- * Use `create(FileOptionsDesc)` to create a new message.
+ * Use `create(FileOptionsSchema)` to create a new message.
  */
-export const FileOptionsDesc: GenDescMessage<FileOptions, FileOptionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 10);
+export const FileOptionsSchema: GenDescMessage<FileOptions, FileOptionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 10);
 
 /**
  * Generated classes can be optimized for speed or code size.
@@ -1681,8 +1681,8 @@ export type FileOptions_OptimizeModeJson = "SPEED" | "CODE_SIZE" | "LITE_RUNTIME
 /**
  * Describes the enum google.protobuf.FileOptions.OptimizeMode.
  */
-export const FileOptions_OptimizeModeDesc: GenDescEnum<FileOptions_OptimizeMode, FileOptions_OptimizeModeJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 10, 0);
+export const FileOptions_OptimizeModeSchema: GenDescEnum<FileOptions_OptimizeMode, FileOptions_OptimizeModeJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 10, 0);
 
 /**
  * @generated from message google.protobuf.MessageOptions
@@ -1832,10 +1832,10 @@ export type MessageOptionsJson = {
 
 /**
  * Describes the message google.protobuf.MessageOptions.
- * Use `create(MessageOptionsDesc)` to create a new message.
+ * Use `create(MessageOptionsSchema)` to create a new message.
  */
-export const MessageOptionsDesc: GenDescMessage<MessageOptions, MessageOptionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 11);
+export const MessageOptionsSchema: GenDescMessage<MessageOptions, MessageOptionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 11);
 
 /**
  * @generated from message google.protobuf.FieldOptions
@@ -2057,10 +2057,10 @@ export type FieldOptionsJson = {
 
 /**
  * Describes the message google.protobuf.FieldOptions.
- * Use `create(FieldOptionsDesc)` to create a new message.
+ * Use `create(FieldOptionsSchema)` to create a new message.
  */
-export const FieldOptionsDesc: GenDescMessage<FieldOptions, FieldOptionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 12);
+export const FieldOptionsSchema: GenDescMessage<FieldOptions, FieldOptionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 12);
 
 /**
  * @generated from message google.protobuf.FieldOptions.EditionDefault
@@ -2096,10 +2096,10 @@ export type FieldOptions_EditionDefaultJson = {
 
 /**
  * Describes the message google.protobuf.FieldOptions.EditionDefault.
- * Use `create(FieldOptions_EditionDefaultDesc)` to create a new message.
+ * Use `create(FieldOptions_EditionDefaultSchema)` to create a new message.
  */
-export const FieldOptions_EditionDefaultDesc: GenDescMessage<FieldOptions_EditionDefault, FieldOptions_EditionDefaultJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 12, 0);
+export const FieldOptions_EditionDefaultSchema: GenDescMessage<FieldOptions_EditionDefault, FieldOptions_EditionDefaultJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 12, 0);
 
 /**
  * Information about the support window of a feature.
@@ -2169,10 +2169,10 @@ export type FieldOptions_FeatureSupportJson = {
 
 /**
  * Describes the message google.protobuf.FieldOptions.FeatureSupport.
- * Use `create(FieldOptions_FeatureSupportDesc)` to create a new message.
+ * Use `create(FieldOptions_FeatureSupportSchema)` to create a new message.
  */
-export const FieldOptions_FeatureSupportDesc: GenDescMessage<FieldOptions_FeatureSupport, FieldOptions_FeatureSupportJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 12, 1);
+export const FieldOptions_FeatureSupportSchema: GenDescMessage<FieldOptions_FeatureSupport, FieldOptions_FeatureSupportJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 12, 1);
 
 /**
  * @generated from enum google.protobuf.FieldOptions.CType
@@ -2211,8 +2211,8 @@ export type FieldOptions_CTypeJson = "STRING" | "CORD" | "STRING_PIECE";
 /**
  * Describes the enum google.protobuf.FieldOptions.CType.
  */
-export const FieldOptions_CTypeDesc: GenDescEnum<FieldOptions_CType, FieldOptions_CTypeJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 12, 0);
+export const FieldOptions_CTypeSchema: GenDescEnum<FieldOptions_CType, FieldOptions_CTypeJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 12, 0);
 
 /**
  * @generated from enum google.protobuf.FieldOptions.JSType
@@ -2248,8 +2248,8 @@ export type FieldOptions_JSTypeJson = "JS_NORMAL" | "JS_STRING" | "JS_NUMBER";
 /**
  * Describes the enum google.protobuf.FieldOptions.JSType.
  */
-export const FieldOptions_JSTypeDesc: GenDescEnum<FieldOptions_JSType, FieldOptions_JSTypeJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 12, 1);
+export const FieldOptions_JSTypeSchema: GenDescEnum<FieldOptions_JSType, FieldOptions_JSTypeJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 12, 1);
 
 /**
  * If set to RETENTION_SOURCE, the option will be omitted from the binary.
@@ -2283,8 +2283,8 @@ export type FieldOptions_OptionRetentionJson = "RETENTION_UNKNOWN" | "RETENTION_
 /**
  * Describes the enum google.protobuf.FieldOptions.OptionRetention.
  */
-export const FieldOptions_OptionRetentionDesc: GenDescEnum<FieldOptions_OptionRetention, FieldOptions_OptionRetentionJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 12, 2);
+export const FieldOptions_OptionRetentionSchema: GenDescEnum<FieldOptions_OptionRetention, FieldOptions_OptionRetentionJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 12, 2);
 
 /**
  * This indicates the types of entities that the field may apply to when used
@@ -2354,8 +2354,8 @@ export type FieldOptions_OptionTargetTypeJson = "TARGET_TYPE_UNKNOWN" | "TARGET_
 /**
  * Describes the enum google.protobuf.FieldOptions.OptionTargetType.
  */
-export const FieldOptions_OptionTargetTypeDesc: GenDescEnum<FieldOptions_OptionTargetType, FieldOptions_OptionTargetTypeJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 12, 3);
+export const FieldOptions_OptionTargetTypeSchema: GenDescEnum<FieldOptions_OptionTargetType, FieldOptions_OptionTargetTypeJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 12, 3);
 
 /**
  * @generated from message google.protobuf.OneofOptions
@@ -2393,10 +2393,10 @@ export type OneofOptionsJson = {
 
 /**
  * Describes the message google.protobuf.OneofOptions.
- * Use `create(OneofOptionsDesc)` to create a new message.
+ * Use `create(OneofOptionsSchema)` to create a new message.
  */
-export const OneofOptionsDesc: GenDescMessage<OneofOptions, OneofOptionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 13);
+export const OneofOptionsSchema: GenDescMessage<OneofOptions, OneofOptionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 13);
 
 /**
  * @generated from message google.protobuf.EnumOptions
@@ -2480,10 +2480,10 @@ export type EnumOptionsJson = {
 
 /**
  * Describes the message google.protobuf.EnumOptions.
- * Use `create(EnumOptionsDesc)` to create a new message.
+ * Use `create(EnumOptionsSchema)` to create a new message.
  */
-export const EnumOptionsDesc: GenDescMessage<EnumOptions, EnumOptionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 14);
+export const EnumOptionsSchema: GenDescMessage<EnumOptions, EnumOptionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 14);
 
 /**
  * @generated from message google.protobuf.EnumValueOptions
@@ -2562,10 +2562,10 @@ export type EnumValueOptionsJson = {
 
 /**
  * Describes the message google.protobuf.EnumValueOptions.
- * Use `create(EnumValueOptionsDesc)` to create a new message.
+ * Use `create(EnumValueOptionsSchema)` to create a new message.
  */
-export const EnumValueOptionsDesc: GenDescMessage<EnumValueOptions, EnumValueOptionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 15);
+export const EnumValueOptionsSchema: GenDescMessage<EnumValueOptions, EnumValueOptionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 15);
 
 /**
  * @generated from message google.protobuf.ServiceOptions
@@ -2618,10 +2618,10 @@ export type ServiceOptionsJson = {
 
 /**
  * Describes the message google.protobuf.ServiceOptions.
- * Use `create(ServiceOptionsDesc)` to create a new message.
+ * Use `create(ServiceOptionsSchema)` to create a new message.
  */
-export const ServiceOptionsDesc: GenDescMessage<ServiceOptions, ServiceOptionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 16);
+export const ServiceOptionsSchema: GenDescMessage<ServiceOptions, ServiceOptionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 16);
 
 /**
  * @generated from message google.protobuf.MethodOptions
@@ -2684,10 +2684,10 @@ export type MethodOptionsJson = {
 
 /**
  * Describes the message google.protobuf.MethodOptions.
- * Use `create(MethodOptionsDesc)` to create a new message.
+ * Use `create(MethodOptionsSchema)` to create a new message.
  */
-export const MethodOptionsDesc: GenDescMessage<MethodOptions, MethodOptionsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 17);
+export const MethodOptionsSchema: GenDescMessage<MethodOptions, MethodOptionsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 17);
 
 /**
  * Is this method side-effect-free (or safe in HTTP parlance), or idempotent,
@@ -2725,8 +2725,8 @@ export type MethodOptions_IdempotencyLevelJson = "IDEMPOTENCY_UNKNOWN" | "NO_SID
 /**
  * Describes the enum google.protobuf.MethodOptions.IdempotencyLevel.
  */
-export const MethodOptions_IdempotencyLevelDesc: GenDescEnum<MethodOptions_IdempotencyLevel, MethodOptions_IdempotencyLevelJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 17, 0);
+export const MethodOptions_IdempotencyLevelSchema: GenDescEnum<MethodOptions_IdempotencyLevel, MethodOptions_IdempotencyLevelJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 17, 0);
 
 /**
  * A message representing a option the parser does not recognize. This only
@@ -2820,10 +2820,10 @@ export type UninterpretedOptionJson = {
 
 /**
  * Describes the message google.protobuf.UninterpretedOption.
- * Use `create(UninterpretedOptionDesc)` to create a new message.
+ * Use `create(UninterpretedOptionSchema)` to create a new message.
  */
-export const UninterpretedOptionDesc: GenDescMessage<UninterpretedOption, UninterpretedOptionJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 18);
+export const UninterpretedOptionSchema: GenDescMessage<UninterpretedOption, UninterpretedOptionJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 18);
 
 /**
  * The name of the uninterpreted option.  Each string represents a segment in
@@ -2863,10 +2863,10 @@ export type UninterpretedOption_NamePartJson = {
 
 /**
  * Describes the message google.protobuf.UninterpretedOption.NamePart.
- * Use `create(UninterpretedOption_NamePartDesc)` to create a new message.
+ * Use `create(UninterpretedOption_NamePartSchema)` to create a new message.
  */
-export const UninterpretedOption_NamePartDesc: GenDescMessage<UninterpretedOption_NamePart, UninterpretedOption_NamePartJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 18, 0);
+export const UninterpretedOption_NamePartSchema: GenDescMessage<UninterpretedOption_NamePart, UninterpretedOption_NamePartJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 18, 0);
 
 /**
  * TODO Enums in C++ gencode (and potentially other languages) are
@@ -2947,10 +2947,10 @@ export type FeatureSetJson = {
 
 /**
  * Describes the message google.protobuf.FeatureSet.
- * Use `create(FeatureSetDesc)` to create a new message.
+ * Use `create(FeatureSetSchema)` to create a new message.
  */
-export const FeatureSetDesc: GenDescMessage<FeatureSet, FeatureSetJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 19);
+export const FeatureSetSchema: GenDescMessage<FeatureSet, FeatureSetJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 19);
 
 /**
  * @generated from enum google.protobuf.FeatureSet.FieldPresence
@@ -2985,8 +2985,8 @@ export type FeatureSet_FieldPresenceJson = "FIELD_PRESENCE_UNKNOWN" | "EXPLICIT"
 /**
  * Describes the enum google.protobuf.FeatureSet.FieldPresence.
  */
-export const FeatureSet_FieldPresenceDesc: GenDescEnum<FeatureSet_FieldPresence, FeatureSet_FieldPresenceJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 19, 0);
+export const FeatureSet_FieldPresenceSchema: GenDescEnum<FeatureSet_FieldPresence, FeatureSet_FieldPresenceJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 19, 0);
 
 /**
  * @generated from enum google.protobuf.FeatureSet.EnumType
@@ -3016,8 +3016,8 @@ export type FeatureSet_EnumTypeJson = "ENUM_TYPE_UNKNOWN" | "OPEN" | "CLOSED";
 /**
  * Describes the enum google.protobuf.FeatureSet.EnumType.
  */
-export const FeatureSet_EnumTypeDesc: GenDescEnum<FeatureSet_EnumType, FeatureSet_EnumTypeJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 19, 1);
+export const FeatureSet_EnumTypeSchema: GenDescEnum<FeatureSet_EnumType, FeatureSet_EnumTypeJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 19, 1);
 
 /**
  * @generated from enum google.protobuf.FeatureSet.RepeatedFieldEncoding
@@ -3047,8 +3047,8 @@ export type FeatureSet_RepeatedFieldEncodingJson = "REPEATED_FIELD_ENCODING_UNKN
 /**
  * Describes the enum google.protobuf.FeatureSet.RepeatedFieldEncoding.
  */
-export const FeatureSet_RepeatedFieldEncodingDesc: GenDescEnum<FeatureSet_RepeatedFieldEncoding, FeatureSet_RepeatedFieldEncodingJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 19, 2);
+export const FeatureSet_RepeatedFieldEncodingSchema: GenDescEnum<FeatureSet_RepeatedFieldEncoding, FeatureSet_RepeatedFieldEncodingJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 19, 2);
 
 /**
  * @generated from enum google.protobuf.FeatureSet.Utf8Validation
@@ -3078,8 +3078,8 @@ export type FeatureSet_Utf8ValidationJson = "UTF8_VALIDATION_UNKNOWN" | "VERIFY"
 /**
  * Describes the enum google.protobuf.FeatureSet.Utf8Validation.
  */
-export const FeatureSet_Utf8ValidationDesc: GenDescEnum<FeatureSet_Utf8Validation, FeatureSet_Utf8ValidationJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 19, 3);
+export const FeatureSet_Utf8ValidationSchema: GenDescEnum<FeatureSet_Utf8Validation, FeatureSet_Utf8ValidationJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 19, 3);
 
 /**
  * @generated from enum google.protobuf.FeatureSet.MessageEncoding
@@ -3109,8 +3109,8 @@ export type FeatureSet_MessageEncodingJson = "MESSAGE_ENCODING_UNKNOWN" | "LENGT
 /**
  * Describes the enum google.protobuf.FeatureSet.MessageEncoding.
  */
-export const FeatureSet_MessageEncodingDesc: GenDescEnum<FeatureSet_MessageEncoding, FeatureSet_MessageEncodingJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 19, 4);
+export const FeatureSet_MessageEncodingSchema: GenDescEnum<FeatureSet_MessageEncoding, FeatureSet_MessageEncodingJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 19, 4);
 
 /**
  * @generated from enum google.protobuf.FeatureSet.JsonFormat
@@ -3140,8 +3140,8 @@ export type FeatureSet_JsonFormatJson = "JSON_FORMAT_UNKNOWN" | "ALLOW" | "LEGAC
 /**
  * Describes the enum google.protobuf.FeatureSet.JsonFormat.
  */
-export const FeatureSet_JsonFormatDesc: GenDescEnum<FeatureSet_JsonFormat, FeatureSet_JsonFormatJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 19, 5);
+export const FeatureSet_JsonFormatSchema: GenDescEnum<FeatureSet_JsonFormat, FeatureSet_JsonFormatJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 19, 5);
 
 /**
  * A compiled specification for the defaults of a set of features.  These
@@ -3196,10 +3196,10 @@ export type FeatureSetDefaultsJson = {
 
 /**
  * Describes the message google.protobuf.FeatureSetDefaults.
- * Use `create(FeatureSetDefaultsDesc)` to create a new message.
+ * Use `create(FeatureSetDefaultsSchema)` to create a new message.
  */
-export const FeatureSetDefaultsDesc: GenDescMessage<FeatureSetDefaults, FeatureSetDefaultsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 20);
+export const FeatureSetDefaultsSchema: GenDescMessage<FeatureSetDefaults, FeatureSetDefaultsJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 20);
 
 /**
  * A map from every known edition with a unique set of defaults to its
@@ -3252,10 +3252,10 @@ export type FeatureSetDefaults_FeatureSetEditionDefaultJson = {
 
 /**
  * Describes the message google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.
- * Use `create(FeatureSetDefaults_FeatureSetEditionDefaultDesc)` to create a new message.
+ * Use `create(FeatureSetDefaults_FeatureSetEditionDefaultSchema)` to create a new message.
  */
-export const FeatureSetDefaults_FeatureSetEditionDefaultDesc: GenDescMessage<FeatureSetDefaults_FeatureSetEditionDefault, FeatureSetDefaults_FeatureSetEditionDefaultJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 20, 0);
+export const FeatureSetDefaults_FeatureSetEditionDefaultSchema: GenDescMessage<FeatureSetDefaults_FeatureSetEditionDefault, FeatureSetDefaults_FeatureSetEditionDefaultJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 20, 0);
 
 /**
  * Encapsulates information about the original source file from which a
@@ -3326,10 +3326,10 @@ export type SourceCodeInfoJson = {
 
 /**
  * Describes the message google.protobuf.SourceCodeInfo.
- * Use `create(SourceCodeInfoDesc)` to create a new message.
+ * Use `create(SourceCodeInfoSchema)` to create a new message.
  */
-export const SourceCodeInfoDesc: GenDescMessage<SourceCodeInfo, SourceCodeInfoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 21);
+export const SourceCodeInfoSchema: GenDescMessage<SourceCodeInfo, SourceCodeInfoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 21);
 
 /**
  * @generated from message google.protobuf.SourceCodeInfo.Location
@@ -3471,10 +3471,10 @@ export type SourceCodeInfo_LocationJson = {
 
 /**
  * Describes the message google.protobuf.SourceCodeInfo.Location.
- * Use `create(SourceCodeInfo_LocationDesc)` to create a new message.
+ * Use `create(SourceCodeInfo_LocationSchema)` to create a new message.
  */
-export const SourceCodeInfo_LocationDesc: GenDescMessage<SourceCodeInfo_Location, SourceCodeInfo_LocationJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 21, 0);
+export const SourceCodeInfo_LocationSchema: GenDescMessage<SourceCodeInfo_Location, SourceCodeInfo_LocationJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 21, 0);
 
 /**
  * Describes the relationship between generated code and its original source
@@ -3505,10 +3505,10 @@ export type GeneratedCodeInfoJson = {
 
 /**
  * Describes the message google.protobuf.GeneratedCodeInfo.
- * Use `create(GeneratedCodeInfoDesc)` to create a new message.
+ * Use `create(GeneratedCodeInfoSchema)` to create a new message.
  */
-export const GeneratedCodeInfoDesc: GenDescMessage<GeneratedCodeInfo, GeneratedCodeInfoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 22);
+export const GeneratedCodeInfoSchema: GenDescMessage<GeneratedCodeInfo, GeneratedCodeInfoJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 22);
 
 /**
  * @generated from message google.protobuf.GeneratedCodeInfo.Annotation
@@ -3584,10 +3584,10 @@ export type GeneratedCodeInfo_AnnotationJson = {
 
 /**
  * Describes the message google.protobuf.GeneratedCodeInfo.Annotation.
- * Use `create(GeneratedCodeInfo_AnnotationDesc)` to create a new message.
+ * Use `create(GeneratedCodeInfo_AnnotationSchema)` to create a new message.
  */
-export const GeneratedCodeInfo_AnnotationDesc: GenDescMessage<GeneratedCodeInfo_Annotation, GeneratedCodeInfo_AnnotationJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_descriptor, 22, 0);
+export const GeneratedCodeInfo_AnnotationSchema: GenDescMessage<GeneratedCodeInfo_Annotation, GeneratedCodeInfo_AnnotationJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_descriptor, 22, 0);
 
 /**
  * Represents the identified object's effect on the element in the original
@@ -3626,8 +3626,8 @@ export type GeneratedCodeInfo_Annotation_SemanticJson = "NONE" | "SET" | "ALIAS"
 /**
  * Describes the enum google.protobuf.GeneratedCodeInfo.Annotation.Semantic.
  */
-export const GeneratedCodeInfo_Annotation_SemanticDesc: GenDescEnum<GeneratedCodeInfo_Annotation_Semantic, GeneratedCodeInfo_Annotation_SemanticJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 22, 0, 0);
+export const GeneratedCodeInfo_Annotation_SemanticSchema: GenDescEnum<GeneratedCodeInfo_Annotation_Semantic, GeneratedCodeInfo_Annotation_SemanticJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 22, 0, 0);
 
 /**
  * The full set of known editions.
@@ -3725,6 +3725,6 @@ export type EditionJson = "EDITION_UNKNOWN" | "EDITION_LEGACY" | "EDITION_PROTO2
 /**
  * Describes the enum google.protobuf.Edition.
  */
-export const EditionDesc: GenDescEnum<Edition, EditionJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_descriptor, 0);
+export const EditionSchema: GenDescEnum<Edition, EditionJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_descriptor, 0);
 

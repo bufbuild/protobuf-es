@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/edition2023-proto2.proto.
  */
-export declare const fileDesc_extra_edition2023_proto2: GenDescFile;
+export declare const file_extra_edition2023_proto2: GenDescFile;
 
 /**
  * see edition2023.proto
@@ -138,9 +138,9 @@ export declare type Proto2MessageForEdition2023Json = {
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.
- * Use `create(Proto2MessageForEdition2023Desc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023Schema)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023Desc: GenDescMessage<Proto2MessageForEdition2023, Proto2MessageForEdition2023Json>;
+export declare const Proto2MessageForEdition2023Schema: GenDescMessage<Proto2MessageForEdition2023, Proto2MessageForEdition2023Json>;
 
 /**
  * @generated from message spec.Proto2MessageForEdition2023.OptionalGroup
@@ -164,9 +164,9 @@ export declare type Proto2MessageForEdition2023_OptionalGroupJson = {
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.OptionalGroup.
- * Use `create(Proto2MessageForEdition2023_OptionalGroupDesc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_OptionalGroupSchema)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023_OptionalGroupDesc: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup, Proto2MessageForEdition2023_OptionalGroupJson>;
+export declare const Proto2MessageForEdition2023_OptionalGroupSchema: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup, Proto2MessageForEdition2023_OptionalGroupJson>;
 
 /**
  * @generated from message spec.Proto2MessageForEdition2023.RequiredGroup
@@ -190,9 +190,9 @@ export declare type Proto2MessageForEdition2023_RequiredGroupJson = {
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.RequiredGroup.
- * Use `create(Proto2MessageForEdition2023_RequiredGroupDesc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_RequiredGroupSchema)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023_RequiredGroupDesc: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup, Proto2MessageForEdition2023_RequiredGroupJson>;
+export declare const Proto2MessageForEdition2023_RequiredGroupSchema: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup, Proto2MessageForEdition2023_RequiredGroupJson>;
 
 /**
  * @generated from enum spec.Proto2EnumForEdition2023
@@ -212,5 +212,5 @@ export declare type Proto2EnumForEdition2023Json = "PROTO2_ENUM_FOR_EDITION2023_
 /**
  * Describes the enum spec.Proto2EnumForEdition2023.
  */
-export declare const Proto2EnumForEdition2023Desc: GenDescEnum<Proto2EnumForEdition2023, Proto2EnumForEdition2023Json>;
+export declare const Proto2EnumForEdition2023Schema: GenDescEnum<Proto2EnumForEdition2023, Proto2EnumForEdition2023Json>;
 

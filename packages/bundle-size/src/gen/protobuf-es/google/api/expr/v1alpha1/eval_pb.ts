@@ -19,16 +19,16 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Value, ValueJson } from "./value_pb";
-import { fileDesc_google_api_expr_v1alpha1_value } from "./value_pb";
+import { file_google_api_expr_v1alpha1_value } from "./value_pb";
 import type { Status, StatusJson } from "../../../rpc/status_pb";
-import { fileDesc_google_rpc_status } from "../../../rpc/status_pb";
+import { file_google_rpc_status } from "../../../rpc/status_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/api/expr/v1alpha1/eval.proto.
  */
-export const fileDesc_google_api_expr_v1alpha1_eval: GenDescFile = /*@__PURE__*/
-  fileDesc("CiNnb29nbGUvYXBpL2V4cHIvdjFhbHBoYTEvZXZhbC5wcm90bxIYZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExIqQBCglFdmFsU3RhdGUSMwoGdmFsdWVzGAEgAygLMiMuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHJWYWx1ZRI7CgdyZXN1bHRzGAMgAygLMiouZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV2YWxTdGF0ZS5SZXN1bHQaJQoGUmVzdWx0EgwKBGV4cHIYASABKAMSDQoFdmFsdWUYAiABKAMiswEKCUV4cHJWYWx1ZRIwCgV2YWx1ZRgBIAEoCzIfLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5WYWx1ZUgAEjMKBWVycm9yGAIgASgLMiIuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkVycm9yU2V0SAASNwoHdW5rbm93bhgDIAEoCzIkLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5Vbmtub3duU2V0SABCBgoEa2luZCIuCghFcnJvclNldBIiCgZlcnJvcnMYASADKAsyEi5nb29nbGUucnBjLlN0YXR1cyIbCgpVbmtub3duU2V0Eg0KBWV4cHJzGAEgAygDQmwKHGNvbS5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTFCCUV2YWxQcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL2FwaS9leHByL3YxYWxwaGExO2V4cHL4AQFiBnByb3RvMw", [fileDesc_google_api_expr_v1alpha1_value, fileDesc_google_rpc_status]);
+export const file_google_api_expr_v1alpha1_eval: GenDescFile = /*@__PURE__*/
+  fileDesc("CiNnb29nbGUvYXBpL2V4cHIvdjFhbHBoYTEvZXZhbC5wcm90bxIYZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExIqQBCglFdmFsU3RhdGUSMwoGdmFsdWVzGAEgAygLMiMuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHJWYWx1ZRI7CgdyZXN1bHRzGAMgAygLMiouZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV2YWxTdGF0ZS5SZXN1bHQaJQoGUmVzdWx0EgwKBGV4cHIYASABKAMSDQoFdmFsdWUYAiABKAMiswEKCUV4cHJWYWx1ZRIwCgV2YWx1ZRgBIAEoCzIfLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5WYWx1ZUgAEjMKBWVycm9yGAIgASgLMiIuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkVycm9yU2V0SAASNwoHdW5rbm93bhgDIAEoCzIkLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5Vbmtub3duU2V0SABCBgoEa2luZCIuCghFcnJvclNldBIiCgZlcnJvcnMYASADKAsyEi5nb29nbGUucnBjLlN0YXR1cyIbCgpVbmtub3duU2V0Eg0KBWV4cHJzGAEgAygDQmwKHGNvbS5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTFCCUV2YWxQcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL2FwaS9leHByL3YxYWxwaGExO2V4cHL4AQFiBnByb3RvMw", [file_google_api_expr_v1alpha1_value, file_google_rpc_status]);
 
 /**
  * The state of an evaluation.
@@ -73,10 +73,10 @@ export type EvalStateJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.EvalState.
- * Use `create(EvalStateDesc)` to create a new message.
+ * Use `create(EvalStateSchema)` to create a new message.
  */
-export const EvalStateDesc: GenDescMessage<EvalState, EvalStateJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 0);
+export const EvalStateSchema: GenDescMessage<EvalState, EvalStateJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_eval, 0);
 
 /**
  * A single evalution result.
@@ -116,10 +116,10 @@ export type EvalState_ResultJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.EvalState.Result.
- * Use `create(EvalState_ResultDesc)` to create a new message.
+ * Use `create(EvalState_ResultSchema)` to create a new message.
  */
-export const EvalState_ResultDesc: GenDescMessage<EvalState_Result, EvalState_ResultJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 0, 0);
+export const EvalState_ResultSchema: GenDescMessage<EvalState_Result, EvalState_ResultJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_eval, 0, 0);
 
 /**
  * The value of an evaluated expression.
@@ -219,10 +219,10 @@ export type ExprValueJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.ExprValue.
- * Use `create(ExprValueDesc)` to create a new message.
+ * Use `create(ExprValueSchema)` to create a new message.
  */
-export const ExprValueDesc: GenDescMessage<ExprValue, ExprValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 1);
+export const ExprValueSchema: GenDescMessage<ExprValue, ExprValueJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_eval, 1);
 
 /**
  * A set of errors.
@@ -252,10 +252,10 @@ export type ErrorSetJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.ErrorSet.
- * Use `create(ErrorSetDesc)` to create a new message.
+ * Use `create(ErrorSetSchema)` to create a new message.
  */
-export const ErrorSetDesc: GenDescMessage<ErrorSet, ErrorSetJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 2);
+export const ErrorSetSchema: GenDescMessage<ErrorSet, ErrorSetJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_eval, 2);
 
 /**
  * A set of expressions for which the value is unknown.
@@ -285,8 +285,8 @@ export type UnknownSetJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.UnknownSet.
- * Use `create(UnknownSetDesc)` to create a new message.
+ * Use `create(UnknownSetSchema)` to create a new message.
  */
-export const UnknownSetDesc: GenDescMessage<UnknownSet, UnknownSetJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_eval, 3);
+export const UnknownSetSchema: GenDescMessage<UnknownSet, UnknownSetJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_eval, 3);
 

@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/phone_number.proto.
  */
-export const fileDesc_google_type_phone_number: GenDescFile = /*@__PURE__*/
+export const file_google_type_phone_number: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5nb29nbGUvdHlwZS9waG9uZV9udW1iZXIucHJvdG8SC2dvb2dsZS50eXBlIqsBCgtQaG9uZU51bWJlchIVCgtlMTY0X251bWJlchgBIAEoCUgAEjgKCnNob3J0X2NvZGUYAiABKAsyIi5nb29nbGUudHlwZS5QaG9uZU51bWJlci5TaG9ydENvZGVIABIRCglleHRlbnNpb24YAyABKAkaMAoJU2hvcnRDb2RlEhMKC3JlZ2lvbl9jb2RlGAEgASgJEg4KBm51bWJlchgCIAEoCUIGCgRraW5kQnQKD2NvbS5nb29nbGUudHlwZUIQUGhvbmVOdW1iZXJQcm90b1ABWkRnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvcGhvbmVfbnVtYmVyO3Bob25lX251bWJlcvgBAaICA0dUUGIGcHJvdG8z");
 
 /**
@@ -137,10 +137,10 @@ export type PhoneNumberJson = {
 
 /**
  * Describes the message google.type.PhoneNumber.
- * Use `create(PhoneNumberDesc)` to create a new message.
+ * Use `create(PhoneNumberSchema)` to create a new message.
  */
-export const PhoneNumberDesc: GenDescMessage<PhoneNumber, PhoneNumberJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_phone_number, 0);
+export const PhoneNumberSchema: GenDescMessage<PhoneNumber, PhoneNumberJson> = /*@__PURE__*/
+  messageDesc(file_google_type_phone_number, 0);
 
 /**
  * An object representing a short code, which is a phone number that is
@@ -193,8 +193,8 @@ export type PhoneNumber_ShortCodeJson = {
 
 /**
  * Describes the message google.type.PhoneNumber.ShortCode.
- * Use `create(PhoneNumber_ShortCodeDesc)` to create a new message.
+ * Use `create(PhoneNumber_ShortCodeSchema)` to create a new message.
  */
-export const PhoneNumber_ShortCodeDesc: GenDescMessage<PhoneNumber_ShortCode, PhoneNumber_ShortCodeJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_phone_number, 0, 0);
+export const PhoneNumber_ShortCodeSchema: GenDescMessage<PhoneNumber_ShortCode, PhoneNumber_ShortCodeJson> = /*@__PURE__*/
+  messageDesc(file_google_type_phone_number, 0, 0);
 

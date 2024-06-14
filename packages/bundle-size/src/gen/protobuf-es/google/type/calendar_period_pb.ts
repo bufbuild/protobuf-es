@@ -22,7 +22,7 @@ import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 /**
  * Describes the file google/type/calendar_period.proto.
  */
-export const fileDesc_google_type_calendar_period: GenDescFile = /*@__PURE__*/
+export const file_google_type_calendar_period: GenDescFile = /*@__PURE__*/
   fileDesc("CiFnb29nbGUvdHlwZS9jYWxlbmRhcl9wZXJpb2QucHJvdG8SC2dvb2dsZS50eXBlKn8KDkNhbGVuZGFyUGVyaW9kEh8KG0NBTEVOREFSX1BFUklPRF9VTlNQRUNJRklFRBAAEgcKA0RBWRABEggKBFdFRUsQAhINCglGT1JUTklHSFQQAxIJCgVNT05USBAEEgsKB1FVQVJURVIQBRIICgRIQUxGEAYSCAoEWUVBUhAHQngKD2NvbS5nb29nbGUudHlwZUITQ2FsZW5kYXJQZXJpb2RQcm90b1ABWkhnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvY2FsZW5kYXJwZXJpb2Q7Y2FsZW5kYXJwZXJpb2SiAgNHVFBiBnByb3RvMw");
 
 /**
@@ -102,6 +102,6 @@ export type CalendarPeriodJson = "CALENDAR_PERIOD_UNSPECIFIED" | "DAY" | "WEEK" 
 /**
  * Describes the enum google.type.CalendarPeriod.
  */
-export const CalendarPeriodDesc: GenDescEnum<CalendarPeriod, CalendarPeriodJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_type_calendar_period, 0);
+export const CalendarPeriodSchema: GenDescEnum<CalendarPeriod, CalendarPeriodJson> = /*@__PURE__*/
+  enumDesc(file_google_type_calendar_period, 0);
 

@@ -19,14 +19,14 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Duration, DurationJson } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/rpc/error_details.proto.
  */
-export const fileDesc_google_rpc_error_details: GenDescFile = /*@__PURE__*/
-  fileDesc("Ch5nb29nbGUvcnBjL2Vycm9yX2RldGFpbHMucHJvdG8SCmdvb2dsZS5ycGMikwEKCUVycm9ySW5mbxIOCgZyZWFzb24YASABKAkSDgoGZG9tYWluGAIgASgJEjUKCG1ldGFkYXRhGAMgAygLMiMuZ29vZ2xlLnJwYy5FcnJvckluZm8uTWV0YWRhdGFFbnRyeRovCg1NZXRhZGF0YUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiOwoJUmV0cnlJbmZvEi4KC3JldHJ5X2RlbGF5GAEgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uIjIKCURlYnVnSW5mbxIVCg1zdGFja19lbnRyaWVzGAEgAygJEg4KBmRldGFpbBgCIAEoCSJ5CgxRdW90YUZhaWx1cmUSNgoKdmlvbGF0aW9ucxgBIAMoCzIiLmdvb2dsZS5ycGMuUXVvdGFGYWlsdXJlLlZpb2xhdGlvbhoxCglWaW9sYXRpb24SDwoHc3ViamVjdBgBIAEoCRITCgtkZXNjcmlwdGlvbhgCIAEoCSKVAQoTUHJlY29uZGl0aW9uRmFpbHVyZRI9Cgp2aW9sYXRpb25zGAEgAygLMikuZ29vZ2xlLnJwYy5QcmVjb25kaXRpb25GYWlsdXJlLlZpb2xhdGlvbho/CglWaW9sYXRpb24SDAoEdHlwZRgBIAEoCRIPCgdzdWJqZWN0GAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJIoMBCgpCYWRSZXF1ZXN0Ej8KEGZpZWxkX3Zpb2xhdGlvbnMYASADKAsyJS5nb29nbGUucnBjLkJhZFJlcXVlc3QuRmllbGRWaW9sYXRpb24aNAoORmllbGRWaW9sYXRpb24SDQoFZmllbGQYASABKAkSEwoLZGVzY3JpcHRpb24YAiABKAkiNwoLUmVxdWVzdEluZm8SEgoKcmVxdWVzdF9pZBgBIAEoCRIUCgxzZXJ2aW5nX2RhdGEYAiABKAkiYAoMUmVzb3VyY2VJbmZvEhUKDXJlc291cmNlX3R5cGUYASABKAkSFQoNcmVzb3VyY2VfbmFtZRgCIAEoCRINCgVvd25lchgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCSJWCgRIZWxwEiQKBWxpbmtzGAEgAygLMhUuZ29vZ2xlLnJwYy5IZWxwLkxpbmsaKAoETGluaxITCgtkZXNjcmlwdGlvbhgBIAEoCRILCgN1cmwYAiABKAkiMwoQTG9jYWxpemVkTWVzc2FnZRIOCgZsb2NhbGUYASABKAkSDwoHbWVzc2FnZRgCIAEoCUJsCg5jb20uZ29vZ2xlLnJwY0IRRXJyb3JEZXRhaWxzUHJvdG9QAVo/Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9ycGMvZXJyZGV0YWlscztlcnJkZXRhaWxzogIDUlBDYgZwcm90bzM", [fileDesc_google_protobuf_duration]);
+export const file_google_rpc_error_details: GenDescFile = /*@__PURE__*/
+  fileDesc("Ch5nb29nbGUvcnBjL2Vycm9yX2RldGFpbHMucHJvdG8SCmdvb2dsZS5ycGMikwEKCUVycm9ySW5mbxIOCgZyZWFzb24YASABKAkSDgoGZG9tYWluGAIgASgJEjUKCG1ldGFkYXRhGAMgAygLMiMuZ29vZ2xlLnJwYy5FcnJvckluZm8uTWV0YWRhdGFFbnRyeRovCg1NZXRhZGF0YUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiOwoJUmV0cnlJbmZvEi4KC3JldHJ5X2RlbGF5GAEgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uIjIKCURlYnVnSW5mbxIVCg1zdGFja19lbnRyaWVzGAEgAygJEg4KBmRldGFpbBgCIAEoCSJ5CgxRdW90YUZhaWx1cmUSNgoKdmlvbGF0aW9ucxgBIAMoCzIiLmdvb2dsZS5ycGMuUXVvdGFGYWlsdXJlLlZpb2xhdGlvbhoxCglWaW9sYXRpb24SDwoHc3ViamVjdBgBIAEoCRITCgtkZXNjcmlwdGlvbhgCIAEoCSKVAQoTUHJlY29uZGl0aW9uRmFpbHVyZRI9Cgp2aW9sYXRpb25zGAEgAygLMikuZ29vZ2xlLnJwYy5QcmVjb25kaXRpb25GYWlsdXJlLlZpb2xhdGlvbho/CglWaW9sYXRpb24SDAoEdHlwZRgBIAEoCRIPCgdzdWJqZWN0GAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJIoMBCgpCYWRSZXF1ZXN0Ej8KEGZpZWxkX3Zpb2xhdGlvbnMYASADKAsyJS5nb29nbGUucnBjLkJhZFJlcXVlc3QuRmllbGRWaW9sYXRpb24aNAoORmllbGRWaW9sYXRpb24SDQoFZmllbGQYASABKAkSEwoLZGVzY3JpcHRpb24YAiABKAkiNwoLUmVxdWVzdEluZm8SEgoKcmVxdWVzdF9pZBgBIAEoCRIUCgxzZXJ2aW5nX2RhdGEYAiABKAkiYAoMUmVzb3VyY2VJbmZvEhUKDXJlc291cmNlX3R5cGUYASABKAkSFQoNcmVzb3VyY2VfbmFtZRgCIAEoCRINCgVvd25lchgDIAEoCRITCgtkZXNjcmlwdGlvbhgEIAEoCSJWCgRIZWxwEiQKBWxpbmtzGAEgAygLMhUuZ29vZ2xlLnJwYy5IZWxwLkxpbmsaKAoETGluaxITCgtkZXNjcmlwdGlvbhgBIAEoCRILCgN1cmwYAiABKAkiMwoQTG9jYWxpemVkTWVzc2FnZRIOCgZsb2NhbGUYASABKAkSDwoHbWVzc2FnZRgCIAEoCUJsCg5jb20uZ29vZ2xlLnJwY0IRRXJyb3JEZXRhaWxzUHJvdG9QAVo/Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9ycGMvZXJyZGV0YWlscztlcnJkZXRhaWxzogIDUlBDYgZwcm90bzM", [file_google_protobuf_duration]);
 
 /**
  * Describes the cause of the error with structured details.
@@ -117,10 +117,10 @@ export type ErrorInfoJson = {
 
 /**
  * Describes the message google.rpc.ErrorInfo.
- * Use `create(ErrorInfoDesc)` to create a new message.
+ * Use `create(ErrorInfoSchema)` to create a new message.
  */
-export const ErrorInfoDesc: GenDescMessage<ErrorInfo, ErrorInfoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 0);
+export const ErrorInfoSchema: GenDescMessage<ErrorInfo, ErrorInfoJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 0);
 
 /**
  * Describes when the clients can retry a failed request. Clients could ignore
@@ -160,10 +160,10 @@ export type RetryInfoJson = {
 
 /**
  * Describes the message google.rpc.RetryInfo.
- * Use `create(RetryInfoDesc)` to create a new message.
+ * Use `create(RetryInfoSchema)` to create a new message.
  */
-export const RetryInfoDesc: GenDescMessage<RetryInfo, RetryInfoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 1);
+export const RetryInfoSchema: GenDescMessage<RetryInfo, RetryInfoJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 1);
 
 /**
  * Describes additional debugging info.
@@ -203,10 +203,10 @@ export type DebugInfoJson = {
 
 /**
  * Describes the message google.rpc.DebugInfo.
- * Use `create(DebugInfoDesc)` to create a new message.
+ * Use `create(DebugInfoSchema)` to create a new message.
  */
-export const DebugInfoDesc: GenDescMessage<DebugInfo, DebugInfoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 2);
+export const DebugInfoSchema: GenDescMessage<DebugInfo, DebugInfoJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 2);
 
 /**
  * Describes how a quota check failed.
@@ -244,10 +244,10 @@ export type QuotaFailureJson = {
 
 /**
  * Describes the message google.rpc.QuotaFailure.
- * Use `create(QuotaFailureDesc)` to create a new message.
+ * Use `create(QuotaFailureSchema)` to create a new message.
  */
-export const QuotaFailureDesc: GenDescMessage<QuotaFailure, QuotaFailureJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 3);
+export const QuotaFailureSchema: GenDescMessage<QuotaFailure, QuotaFailureJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 3);
 
 /**
  * A message type used to describe a single quota violation.  For example, a
@@ -296,10 +296,10 @@ export type QuotaFailure_ViolationJson = {
 
 /**
  * Describes the message google.rpc.QuotaFailure.Violation.
- * Use `create(QuotaFailure_ViolationDesc)` to create a new message.
+ * Use `create(QuotaFailure_ViolationSchema)` to create a new message.
  */
-export const QuotaFailure_ViolationDesc: GenDescMessage<QuotaFailure_Violation, QuotaFailure_ViolationJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 3, 0);
+export const QuotaFailure_ViolationSchema: GenDescMessage<QuotaFailure_Violation, QuotaFailure_ViolationJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 3, 0);
 
 /**
  * Describes what preconditions have failed.
@@ -331,10 +331,10 @@ export type PreconditionFailureJson = {
 
 /**
  * Describes the message google.rpc.PreconditionFailure.
- * Use `create(PreconditionFailureDesc)` to create a new message.
+ * Use `create(PreconditionFailureSchema)` to create a new message.
  */
-export const PreconditionFailureDesc: GenDescMessage<PreconditionFailure, PreconditionFailureJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 4);
+export const PreconditionFailureSchema: GenDescMessage<PreconditionFailure, PreconditionFailureJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 4);
 
 /**
  * A message type used to describe a single precondition failure.
@@ -393,10 +393,10 @@ export type PreconditionFailure_ViolationJson = {
 
 /**
  * Describes the message google.rpc.PreconditionFailure.Violation.
- * Use `create(PreconditionFailure_ViolationDesc)` to create a new message.
+ * Use `create(PreconditionFailure_ViolationSchema)` to create a new message.
  */
-export const PreconditionFailure_ViolationDesc: GenDescMessage<PreconditionFailure_Violation, PreconditionFailure_ViolationJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 4, 0);
+export const PreconditionFailure_ViolationSchema: GenDescMessage<PreconditionFailure_Violation, PreconditionFailure_ViolationJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 4, 0);
 
 /**
  * Describes violations in a client request. This error type focuses on the
@@ -425,10 +425,10 @@ export type BadRequestJson = {
 
 /**
  * Describes the message google.rpc.BadRequest.
- * Use `create(BadRequestDesc)` to create a new message.
+ * Use `create(BadRequestSchema)` to create a new message.
  */
-export const BadRequestDesc: GenDescMessage<BadRequest, BadRequestJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 5);
+export const BadRequestSchema: GenDescMessage<BadRequest, BadRequestJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 5);
 
 /**
  * A message type used to describe a single bad request field.
@@ -504,10 +504,10 @@ export type BadRequest_FieldViolationJson = {
 
 /**
  * Describes the message google.rpc.BadRequest.FieldViolation.
- * Use `create(BadRequest_FieldViolationDesc)` to create a new message.
+ * Use `create(BadRequest_FieldViolationSchema)` to create a new message.
  */
-export const BadRequest_FieldViolationDesc: GenDescMessage<BadRequest_FieldViolation, BadRequest_FieldViolationJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 5, 0);
+export const BadRequest_FieldViolationSchema: GenDescMessage<BadRequest_FieldViolation, BadRequest_FieldViolationJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 5, 0);
 
 /**
  * Contains metadata about the request that clients can attach when filing a bug
@@ -550,10 +550,10 @@ export type RequestInfoJson = {
 
 /**
  * Describes the message google.rpc.RequestInfo.
- * Use `create(RequestInfoDesc)` to create a new message.
+ * Use `create(RequestInfoSchema)` to create a new message.
  */
-export const RequestInfoDesc: GenDescMessage<RequestInfo, RequestInfoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 6);
+export const RequestInfoSchema: GenDescMessage<RequestInfo, RequestInfoJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 6);
 
 /**
  * Describes the resource that is being accessed.
@@ -626,10 +626,10 @@ export type ResourceInfoJson = {
 
 /**
  * Describes the message google.rpc.ResourceInfo.
- * Use `create(ResourceInfoDesc)` to create a new message.
+ * Use `create(ResourceInfoSchema)` to create a new message.
  */
-export const ResourceInfoDesc: GenDescMessage<ResourceInfo, ResourceInfoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 7);
+export const ResourceInfoSchema: GenDescMessage<ResourceInfo, ResourceInfoJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 7);
 
 /**
  * Provides links to documentation or for performing an out of band action.
@@ -661,10 +661,10 @@ export type HelpJson = {
 
 /**
  * Describes the message google.rpc.Help.
- * Use `create(HelpDesc)` to create a new message.
+ * Use `create(HelpSchema)` to create a new message.
  */
-export const HelpDesc: GenDescMessage<Help, HelpJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 8);
+export const HelpSchema: GenDescMessage<Help, HelpJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 8);
 
 /**
  * Describes a URL link.
@@ -704,10 +704,10 @@ export type Help_LinkJson = {
 
 /**
  * Describes the message google.rpc.Help.Link.
- * Use `create(Help_LinkDesc)` to create a new message.
+ * Use `create(Help_LinkSchema)` to create a new message.
  */
-export const Help_LinkDesc: GenDescMessage<Help_Link, Help_LinkJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 8, 0);
+export const Help_LinkSchema: GenDescMessage<Help_Link, Help_LinkJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 8, 0);
 
 /**
  * Provides a localized error message that is safe to return to the user
@@ -750,8 +750,8 @@ export type LocalizedMessageJson = {
 
 /**
  * Describes the message google.rpc.LocalizedMessage.
- * Use `create(LocalizedMessageDesc)` to create a new message.
+ * Use `create(LocalizedMessageSchema)` to create a new message.
  */
-export const LocalizedMessageDesc: GenDescMessage<LocalizedMessage, LocalizedMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_error_details, 9);
+export const LocalizedMessageSchema: GenDescMessage<LocalizedMessage, LocalizedMessageJson> = /*@__PURE__*/
+  messageDesc(file_google_rpc_error_details, 9);
 

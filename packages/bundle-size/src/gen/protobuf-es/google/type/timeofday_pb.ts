@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/timeofday.proto.
  */
-export const fileDesc_google_type_timeofday: GenDescFile = /*@__PURE__*/
+export const file_google_type_timeofday: GenDescFile = /*@__PURE__*/
   fileDesc("Chtnb29nbGUvdHlwZS90aW1lb2ZkYXkucHJvdG8SC2dvb2dsZS50eXBlIksKCVRpbWVPZkRheRINCgVob3VycxgBIAEoBRIPCgdtaW51dGVzGAIgASgFEg8KB3NlY29uZHMYAyABKAUSDQoFbmFub3MYBCABKAVCbAoPY29tLmdvb2dsZS50eXBlQg5UaW1lT2ZEYXlQcm90b1ABWj5nb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvdGltZW9mZGF5O3RpbWVvZmRhefgBAaICA0dUUGIGcHJvdG8z");
 
 /**
@@ -93,8 +93,8 @@ export type TimeOfDayJson = {
 
 /**
  * Describes the message google.type.TimeOfDay.
- * Use `create(TimeOfDayDesc)` to create a new message.
+ * Use `create(TimeOfDaySchema)` to create a new message.
  */
-export const TimeOfDayDesc: GenDescMessage<TimeOfDay, TimeOfDayJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_timeofday, 0);
+export const TimeOfDaySchema: GenDescMessage<TimeOfDay, TimeOfDayJson> = /*@__PURE__*/
+  messageDesc(file_google_type_timeofday, 0);
 

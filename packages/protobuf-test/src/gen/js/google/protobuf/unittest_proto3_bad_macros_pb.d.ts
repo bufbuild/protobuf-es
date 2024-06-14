@@ -21,7 +21,7 @@ import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/codegenv1";
 /**
  * Describes the file google/protobuf/unittest_proto3_bad_macros.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_proto3_bad_macros: GenDescFile;
+export declare const file_google_protobuf_unittest_proto3_bad_macros: GenDescFile;
 
 /**
  * This generates `GID_MAX`, which is a macro in some circumstances.
@@ -43,7 +43,7 @@ export declare type GIDJson = "GID_UNUSED";
 /**
  * Describes the enum protobuf_unittest.GID.
  */
-export declare const GIDDesc: GenDescEnum<GID, GIDJson>;
+export declare const GIDSchema: GenDescEnum<GID, GIDJson>;
 
 /**
  * This generates `UID_MAX`, which is a mcro in some circumstances.
@@ -65,7 +65,7 @@ export declare type UIDJson = "UID_UNUSED";
 /**
  * Describes the enum protobuf_unittest.UID.
  */
-export declare const UIDDesc: GenDescEnum<UID, UIDJson>;
+export declare const UIDSchema: GenDescEnum<UID, UIDJson>;
 
 /**
  * Just a container for bad macro names. Some of these do not follow the normal
@@ -260,5 +260,5 @@ export declare type BadNamesJson = "PACKAGE" | "PACKED" | "linux" | "DOMAIN" | "
 /**
  * Describes the enum protobuf_unittest.BadNames.
  */
-export declare const BadNamesDesc: GenDescEnum<BadNames, BadNamesJson>;
+export declare const BadNamesSchema: GenDescEnum<BadNames, BadNamesJson>;
 

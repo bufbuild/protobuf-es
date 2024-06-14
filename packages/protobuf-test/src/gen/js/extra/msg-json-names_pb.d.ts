@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/msg-json-names.proto.
  */
-export declare const fileDesc_extra_msg_json_names: GenDescFile;
+export declare const file_extra_msg_json_names: GenDescFile;
 
 /**
  * @generated from message spec.JsonNamesMessage
@@ -96,7 +96,7 @@ export declare type JsonNamesMessageJson = {
 
 /**
  * Describes the message spec.JsonNamesMessage.
- * Use `create(JsonNamesMessageDesc)` to create a new message.
+ * Use `create(JsonNamesMessageSchema)` to create a new message.
  */
-export declare const JsonNamesMessageDesc: GenDescMessage<JsonNamesMessage, JsonNamesMessageJson>;
+export declare const JsonNamesMessageSchema: GenDescMessage<JsonNamesMessage, JsonNamesMessageJson>;
 

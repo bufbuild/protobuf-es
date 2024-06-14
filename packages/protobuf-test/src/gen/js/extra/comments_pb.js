@@ -29,35 +29,35 @@ import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/code
 /**
  * Describes the file extra/comments.proto.
  */
-export const fileDesc_extra_comments = /*@__PURE__*/
+export const file_extra_comments = /*@__PURE__*/
   fileDesc("ChRleHRyYS9jb21tZW50cy5wcm90bxIEc3BlYyKiAQoTTWVzc2FnZVdpdGhDb21tZW50cxILCgNmb28YASABKAkSDwoFdmFsdWUYAiABKAVIABIPCgVlcnJvchgDIAEoCUgAEicKH3RoaXNfZmllbGRfaGFzX2FuX2VtcHR5X2NvbW1lbnQYBCABKAkSKQoYdGhpc19maWVsZF9pc19kZXByZWNhdGVkGAUgASgJQgIYAVIDc2RmQggKBnJlc3VsdCIZChdFbXB0eU1lc3NhZ2VXaXRoQ29tbWVudCJpChRHb29nbGVDb21tZW50RXhhbXBsZRILCgNmb28YASABKAUSCwoDYmFyGAIgASgFEgsKA2JhehgDIAEoCRILCgNxdXgYBCABKAESDQoFY29yZ2UYBSABKAkSDgoGZ3JhdWx0GAYgASgFKh0KEEVudW1XaXRoQ29tbWVudHMSCQoFVkFMVUUQACpnChlEZXByZWNhdGVkRW51bVdpdGhDb21tZW50EiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQRAAEiIKHkRFUFJFQ0FURURfRU5VTV9XSVRIX0NPTU1FTlRfQhABGgIYASphChdEZXByZWNhdGVkRW51bU5vQ29tbWVudBIgChxERVBSRUNBVEVEX0VOVU1fTk9fQ09NTUVOVF9BEAASIAocREVQUkVDQVRFRF9FTlVNX05PX0NPTU1FTlRfQhABGgIYAWIGcHJvdG8z");
 
 /**
  * Describes the message spec.MessageWithComments.
- * Use `create(MessageWithCommentsDesc)` to create a new message.
+ * Use `create(MessageWithCommentsSchema)` to create a new message.
  */
-export const MessageWithCommentsDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_comments, 0);
+export const MessageWithCommentsSchema = /*@__PURE__*/
+  messageDesc(file_extra_comments, 0);
 
 /**
  * Describes the message spec.EmptyMessageWithComment.
- * Use `create(EmptyMessageWithCommentDesc)` to create a new message.
+ * Use `create(EmptyMessageWithCommentSchema)` to create a new message.
  */
-export const EmptyMessageWithCommentDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_comments, 1);
+export const EmptyMessageWithCommentSchema = /*@__PURE__*/
+  messageDesc(file_extra_comments, 1);
 
 /**
  * Describes the message spec.GoogleCommentExample.
- * Use `create(GoogleCommentExampleDesc)` to create a new message.
+ * Use `create(GoogleCommentExampleSchema)` to create a new message.
  */
-export const GoogleCommentExampleDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_comments, 2);
+export const GoogleCommentExampleSchema = /*@__PURE__*/
+  messageDesc(file_extra_comments, 2);
 
 /**
  * Describes the enum spec.EnumWithComments.
  */
-export const EnumWithCommentsDesc = /*@__PURE__*/
-  enumDesc(fileDesc_extra_comments, 0);
+export const EnumWithCommentsSchema = /*@__PURE__*/
+  enumDesc(file_extra_comments, 0);
 
 /**
  * Leading comment for enum.
@@ -67,14 +67,14 @@ export const EnumWithCommentsDesc = /*@__PURE__*/
  * @generated from enum spec.EnumWithComments
  */
 export const EnumWithComments = /*@__PURE__*/
-  tsEnum(EnumWithCommentsDesc);
+  tsEnum(EnumWithCommentsSchema);
 
 /**
  * Describes the enum spec.DeprecatedEnumWithComment.
  * @deprecated
  */
-export const DeprecatedEnumWithCommentDesc = /*@__PURE__*/
-  enumDesc(fileDesc_extra_comments, 1);
+export const DeprecatedEnumWithCommentSchema = /*@__PURE__*/
+  enumDesc(file_extra_comments, 1);
 
 /**
  * Leading comment for deprecated enum
@@ -83,19 +83,19 @@ export const DeprecatedEnumWithCommentDesc = /*@__PURE__*/
  * @deprecated
  */
 export const DeprecatedEnumWithComment = /*@__PURE__*/
-  tsEnum(DeprecatedEnumWithCommentDesc);
+  tsEnum(DeprecatedEnumWithCommentSchema);
 
 /**
  * Describes the enum spec.DeprecatedEnumNoComment.
  * @deprecated
  */
-export const DeprecatedEnumNoCommentDesc = /*@__PURE__*/
-  enumDesc(fileDesc_extra_comments, 2);
+export const DeprecatedEnumNoCommentSchema = /*@__PURE__*/
+  enumDesc(file_extra_comments, 2);
 
 /**
  * @generated from enum spec.DeprecatedEnumNoComment
  * @deprecated
  */
 export const DeprecatedEnumNoComment = /*@__PURE__*/
-  tsEnum(DeprecatedEnumNoCommentDesc);
+  tsEnum(DeprecatedEnumNoCommentSchema);
 

@@ -19,14 +19,14 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Duration, DurationJson } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/type/datetime.proto.
  */
-export const fileDesc_google_type_datetime: GenDescFile = /*@__PURE__*/
-  fileDesc("Chpnb29nbGUvdHlwZS9kYXRldGltZS5wcm90bxILZ29vZ2xlLnR5cGUi4AEKCERhdGVUaW1lEgwKBHllYXIYASABKAUSDQoFbW9udGgYAiABKAUSCwoDZGF5GAMgASgFEg0KBWhvdXJzGAQgASgFEg8KB21pbnV0ZXMYBSABKAUSDwoHc2Vjb25kcxgGIAEoBRINCgVuYW5vcxgHIAEoBRIvCgp1dGNfb2Zmc2V0GAggASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uSAASKgoJdGltZV96b25lGAkgASgLMhUuZ29vZ2xlLnR5cGUuVGltZVpvbmVIAEINCgt0aW1lX29mZnNldCInCghUaW1lWm9uZRIKCgJpZBgBIAEoCRIPCgd2ZXJzaW9uGAIgASgJQmkKD2NvbS5nb29nbGUudHlwZUINRGF0ZVRpbWVQcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvZGF0ZXRpbWU7ZGF0ZXRpbWX4AQGiAgNHVFBiBnByb3RvMw", [fileDesc_google_protobuf_duration]);
+export const file_google_type_datetime: GenDescFile = /*@__PURE__*/
+  fileDesc("Chpnb29nbGUvdHlwZS9kYXRldGltZS5wcm90bxILZ29vZ2xlLnR5cGUi4AEKCERhdGVUaW1lEgwKBHllYXIYASABKAUSDQoFbW9udGgYAiABKAUSCwoDZGF5GAMgASgFEg0KBWhvdXJzGAQgASgFEg8KB21pbnV0ZXMYBSABKAUSDwoHc2Vjb25kcxgGIAEoBRINCgVuYW5vcxgHIAEoBRIvCgp1dGNfb2Zmc2V0GAggASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uSAASKgoJdGltZV96b25lGAkgASgLMhUuZ29vZ2xlLnR5cGUuVGltZVpvbmVIAEINCgt0aW1lX29mZnNldCInCghUaW1lWm9uZRIKCgJpZBgBIAEoCRIPCgd2ZXJzaW9uGAIgASgJQmkKD2NvbS5nb29nbGUudHlwZUINRGF0ZVRpbWVQcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvZGF0ZXRpbWU7ZGF0ZXRpbWX4AQGiAgNHVFBiBnByb3RvMw", [file_google_protobuf_duration]);
 
 /**
  * Represents civil time (or occasionally physical time).
@@ -194,10 +194,10 @@ export type DateTimeJson = {
 
 /**
  * Describes the message google.type.DateTime.
- * Use `create(DateTimeDesc)` to create a new message.
+ * Use `create(DateTimeSchema)` to create a new message.
  */
-export const DateTimeDesc: GenDescMessage<DateTime, DateTimeJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_datetime, 0);
+export const DateTimeSchema: GenDescMessage<DateTime, DateTimeJson> = /*@__PURE__*/
+  messageDesc(file_google_type_datetime, 0);
 
 /**
  * Represents a time zone from the
@@ -238,8 +238,8 @@ export type TimeZoneJson = {
 
 /**
  * Describes the message google.type.TimeZone.
- * Use `create(TimeZoneDesc)` to create a new message.
+ * Use `create(TimeZoneSchema)` to create a new message.
  */
-export const TimeZoneDesc: GenDescMessage<TimeZone, TimeZoneJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_datetime, 1);
+export const TimeZoneSchema: GenDescMessage<TimeZone, TimeZoneJson> = /*@__PURE__*/
+  messageDesc(file_google_type_datetime, 1);
 

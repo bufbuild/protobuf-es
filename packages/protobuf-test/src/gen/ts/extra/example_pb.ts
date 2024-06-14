@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/example.proto.
  */
-export const fileDesc_extra_example: GenDescFile = /*@__PURE__*/
+export const file_extra_example: GenDescFile = /*@__PURE__*/
   fileDesc("ChNleHRyYS9leGFtcGxlLnByb3RvEgRkb2NzIsoBCgRVc2VyEhIKCmZpcnN0X25hbWUYASABKAkSEQoJbGFzdF9uYW1lGAIgASgJEg4KBmFjdGl2ZRgDIAEoCBIbCgdtYW5hZ2VyGAQgASgLMgouZG9jcy5Vc2VyEhEKCWxvY2F0aW9ucxgFIAMoCRIqCghwcm9qZWN0cxgGIAMoCzIYLmRvY3MuVXNlci5Qcm9qZWN0c0VudHJ5Gi8KDVByb2plY3RzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4AWIGcHJvdG8z");
 
 /**
@@ -98,8 +98,8 @@ export type UserJson = {
 
 /**
  * Describes the message docs.User.
- * Use `create(UserDesc)` to create a new message.
+ * Use `create(UserSchema)` to create a new message.
  */
-export const UserDesc: GenDescMessage<User, UserJson> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_example, 0);
+export const UserSchema: GenDescMessage<User, UserJson> = /*@__PURE__*/
+  messageDesc(file_extra_example, 0);
 

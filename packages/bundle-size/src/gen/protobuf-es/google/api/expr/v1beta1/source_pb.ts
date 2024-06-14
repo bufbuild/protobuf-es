@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/api/expr/v1beta1/source.proto.
  */
-export const fileDesc_google_api_expr_v1beta1_source: GenDescFile = /*@__PURE__*/
+export const file_google_api_expr_v1beta1_source: GenDescFile = /*@__PURE__*/
   fileDesc("CiRnb29nbGUvYXBpL2V4cHIvdjFiZXRhMS9zb3VyY2UucHJvdG8SF2dvb2dsZS5hcGkuZXhwci52MWJldGExIq0BCgpTb3VyY2VJbmZvEhAKCGxvY2F0aW9uGAIgASgJEhQKDGxpbmVfb2Zmc2V0cxgDIAMoBRJFCglwb3NpdGlvbnMYBCADKAsyMi5nb29nbGUuYXBpLmV4cHIudjFiZXRhMS5Tb3VyY2VJbmZvLlBvc2l0aW9uc0VudHJ5GjAKDlBvc2l0aW9uc0VudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoBToCOAEiUAoOU291cmNlUG9zaXRpb24SEAoIbG9jYXRpb24YASABKAkSDgoGb2Zmc2V0GAIgASgFEgwKBGxpbmUYAyABKAUSDgoGY29sdW1uGAQgASgFQmwKG2NvbS5nb29nbGUuYXBpLmV4cHIudjFiZXRhMUILU291cmNlUHJvdG9QAVo7Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvZXhwci92MWJldGExO2V4cHL4AQFiBnByb3RvMw");
 
 /**
@@ -85,10 +85,10 @@ export type SourceInfoJson = {
 
 /**
  * Describes the message google.api.expr.v1beta1.SourceInfo.
- * Use `create(SourceInfoDesc)` to create a new message.
+ * Use `create(SourceInfoSchema)` to create a new message.
  */
-export const SourceInfoDesc: GenDescMessage<SourceInfo, SourceInfoJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1beta1_source, 0);
+export const SourceInfoSchema: GenDescMessage<SourceInfo, SourceInfoJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1beta1_source, 0);
 
 /**
  * A specific position in source.
@@ -154,8 +154,8 @@ export type SourcePositionJson = {
 
 /**
  * Describes the message google.api.expr.v1beta1.SourcePosition.
- * Use `create(SourcePositionDesc)` to create a new message.
+ * Use `create(SourcePositionSchema)` to create a new message.
  */
-export const SourcePositionDesc: GenDescMessage<SourcePosition, SourcePositionJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1beta1_source, 1);
+export const SourcePositionSchema: GenDescMessage<SourcePosition, SourcePositionJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1beta1_source, 1);
 

@@ -19,16 +19,16 @@
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { LaunchStage, LaunchStageJson } from "./launch_stage_pb";
-import { fileDesc_google_api_launch_stage } from "./launch_stage_pb";
+import { file_google_api_launch_stage } from "./launch_stage_pb";
 import type { Duration, DurationJson, MethodOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_descriptor, fileDesc_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_descriptor, file_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/api/client.proto.
  */
-export const fileDesc_google_api_client: GenDescFile = /*@__PURE__*/
-  fileDesc("Chdnb29nbGUvYXBpL2NsaWVudC5wcm90bxIKZ29vZ2xlLmFwaSJ0ChZDb21tb25MYW5ndWFnZVNldHRpbmdzEh4KEnJlZmVyZW5jZV9kb2NzX3VyaRgBIAEoCUICGAESOgoMZGVzdGluYXRpb25zGAIgAygOMiQuZ29vZ2xlLmFwaS5DbGllbnRMaWJyYXJ5RGVzdGluYXRpb24i+wMKFUNsaWVudExpYnJhcnlTZXR0aW5ncxIPCgd2ZXJzaW9uGAEgASgJEi0KDGxhdW5jaF9zdGFnZRgCIAEoDjIXLmdvb2dsZS5hcGkuTGF1bmNoU3RhZ2USGgoScmVzdF9udW1lcmljX2VudW1zGAMgASgIEi8KDWphdmFfc2V0dGluZ3MYFSABKAsyGC5nb29nbGUuYXBpLkphdmFTZXR0aW5ncxItCgxjcHBfc2V0dGluZ3MYFiABKAsyFy5nb29nbGUuYXBpLkNwcFNldHRpbmdzEi0KDHBocF9zZXR0aW5ncxgXIAEoCzIXLmdvb2dsZS5hcGkuUGhwU2V0dGluZ3MSMwoPcHl0aG9uX3NldHRpbmdzGBggASgLMhouZ29vZ2xlLmFwaS5QeXRob25TZXR0aW5ncxIvCg1ub2RlX3NldHRpbmdzGBkgASgLMhguZ29vZ2xlLmFwaS5Ob2RlU2V0dGluZ3MSMwoPZG90bmV0X3NldHRpbmdzGBogASgLMhouZ29vZ2xlLmFwaS5Eb3RuZXRTZXR0aW5ncxIvCg1ydWJ5X3NldHRpbmdzGBsgASgLMhguZ29vZ2xlLmFwaS5SdWJ5U2V0dGluZ3MSKwoLZ29fc2V0dGluZ3MYHCABKAsyFi5nb29nbGUuYXBpLkdvU2V0dGluZ3MiqAMKClB1Ymxpc2hpbmcSMwoPbWV0aG9kX3NldHRpbmdzGAIgAygLMhouZ29vZ2xlLmFwaS5NZXRob2RTZXR0aW5ncxIVCg1uZXdfaXNzdWVfdXJpGGUgASgJEhkKEWRvY3VtZW50YXRpb25fdXJpGGYgASgJEhYKDmFwaV9zaG9ydF9uYW1lGGcgASgJEhQKDGdpdGh1Yl9sYWJlbBhoIAEoCRIeChZjb2Rlb3duZXJfZ2l0aHViX3RlYW1zGGkgAygJEhYKDmRvY190YWdfcHJlZml4GGogASgJEjsKDG9yZ2FuaXphdGlvbhhrIAEoDjIlLmdvb2dsZS5hcGkuQ2xpZW50TGlicmFyeU9yZ2FuaXphdGlvbhI7ChBsaWJyYXJ5X3NldHRpbmdzGG0gAygLMiEuZ29vZ2xlLmFwaS5DbGllbnRMaWJyYXJ5U2V0dGluZ3MSKQohcHJvdG9fcmVmZXJlbmNlX2RvY3VtZW50YXRpb25fdXJpGG4gASgJEigKIHJlc3RfcmVmZXJlbmNlX2RvY3VtZW50YXRpb25fdXJpGG8gASgJIuMBCgxKYXZhU2V0dGluZ3MSFwoPbGlicmFyeV9wYWNrYWdlGAEgASgJEkwKE3NlcnZpY2VfY2xhc3NfbmFtZXMYAiADKAsyLy5nb29nbGUuYXBpLkphdmFTZXR0aW5ncy5TZXJ2aWNlQ2xhc3NOYW1lc0VudHJ5EjIKBmNvbW1vbhgDIAEoCzIiLmdvb2dsZS5hcGkuQ29tbW9uTGFuZ3VhZ2VTZXR0aW5ncxo4ChZTZXJ2aWNlQ2xhc3NOYW1lc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiQQoLQ3BwU2V0dGluZ3MSMgoGY29tbW9uGAEgASgLMiIuZ29vZ2xlLmFwaS5Db21tb25MYW5ndWFnZVNldHRpbmdzIkEKC1BocFNldHRpbmdzEjIKBmNvbW1vbhgBIAEoCzIiLmdvb2dsZS5hcGkuQ29tbW9uTGFuZ3VhZ2VTZXR0aW5ncyJECg5QeXRob25TZXR0aW5ncxIyCgZjb21tb24YASABKAsyIi5nb29nbGUuYXBpLkNvbW1vbkxhbmd1YWdlU2V0dGluZ3MiQgoMTm9kZVNldHRpbmdzEjIKBmNvbW1vbhgBIAEoCzIiLmdvb2dsZS5hcGkuQ29tbW9uTGFuZ3VhZ2VTZXR0aW5ncyKqAwoORG90bmV0U2V0dGluZ3MSMgoGY29tbW9uGAEgASgLMiIuZ29vZ2xlLmFwaS5Db21tb25MYW5ndWFnZVNldHRpbmdzEkkKEHJlbmFtZWRfc2VydmljZXMYAiADKAsyLy5nb29nbGUuYXBpLkRvdG5ldFNldHRpbmdzLlJlbmFtZWRTZXJ2aWNlc0VudHJ5EksKEXJlbmFtZWRfcmVzb3VyY2VzGAMgAygLMjAuZ29vZ2xlLmFwaS5Eb3RuZXRTZXR0aW5ncy5SZW5hbWVkUmVzb3VyY2VzRW50cnkSGQoRaWdub3JlZF9yZXNvdXJjZXMYBCADKAkSIAoYZm9yY2VkX25hbWVzcGFjZV9hbGlhc2VzGAUgAygJEh4KFmhhbmR3cml0dGVuX3NpZ25hdHVyZXMYBiADKAkaNgoUUmVuYW1lZFNlcnZpY2VzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ARo3ChVSZW5hbWVkUmVzb3VyY2VzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASJCCgxSdWJ5U2V0dGluZ3MSMgoGY29tbW9uGAEgASgLMiIuZ29vZ2xlLmFwaS5Db21tb25MYW5ndWFnZVNldHRpbmdzIkAKCkdvU2V0dGluZ3MSMgoGY29tbW9uGAEgASgLMiIuZ29vZ2xlLmFwaS5Db21tb25MYW5ndWFnZVNldHRpbmdzIs8CCg5NZXRob2RTZXR0aW5ncxIQCghzZWxlY3RvchgBIAEoCRI8Cgxsb25nX3J1bm5pbmcYAiABKAsyJi5nb29nbGUuYXBpLk1ldGhvZFNldHRpbmdzLkxvbmdSdW5uaW5nEh0KFWF1dG9fcG9wdWxhdGVkX2ZpZWxkcxgDIAMoCRrNAQoLTG9uZ1J1bm5pbmcSNQoSaW5pdGlhbF9wb2xsX2RlbGF5GAEgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEh0KFXBvbGxfZGVsYXlfbXVsdGlwbGllchgCIAEoAhIxCg5tYXhfcG9sbF9kZWxheRgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhI1ChJ0b3RhbF9wb2xsX3RpbWVvdXQYBCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24qowEKGUNsaWVudExpYnJhcnlPcmdhbml6YXRpb24SKwonQ0xJRU5UX0xJQlJBUllfT1JHQU5JWkFUSU9OX1VOU1BFQ0lGSUVEEAASCQoFQ0xPVUQQARIHCgNBRFMQAhIKCgZQSE9UT1MQAxIPCgtTVFJFRVRfVklFVxAEEgwKCFNIT1BQSU5HEAUSBwoDR0VPEAYSEQoNR0VORVJBVElWRV9BSRAHKmcKGENsaWVudExpYnJhcnlEZXN0aW5hdGlvbhIqCiZDTElFTlRfTElCUkFSWV9ERVNUSU5BVElPTl9VTlNQRUNJRklFRBAAEgoKBkdJVEhVQhAKEhMKD1BBQ0tBR0VfTUFOQUdFUhAUOkoKEG1ldGhvZF9zaWduYXR1cmUSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxibCCADKAlSD21ldGhvZFNpZ25hdHVyZTpDCgxkZWZhdWx0X2hvc3QSHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMYmQggASgJUgtkZWZhdWx0SG9zdDpDCgxvYXV0aF9zY29wZXMSHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMYmgggASgJUgtvYXV0aFNjb3BlczpECgthcGlfdmVyc2lvbhIfLmdvb2dsZS5wcm90b2J1Zi5TZXJ2aWNlT3B0aW9ucxjBuqv6ASABKAlSCmFwaVZlcnNpb25CaQoOY29tLmdvb2dsZS5hcGlCC0NsaWVudFByb3RvUAFaQWdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvYXBpL2Fubm90YXRpb25zO2Fubm90YXRpb25zogIER0FQSWIGcHJvdG8z", [fileDesc_google_api_launch_stage, fileDesc_google_protobuf_descriptor, fileDesc_google_protobuf_duration]);
+export const file_google_api_client: GenDescFile = /*@__PURE__*/
+  fileDesc("Chdnb29nbGUvYXBpL2NsaWVudC5wcm90bxIKZ29vZ2xlLmFwaSJ0ChZDb21tb25MYW5ndWFnZVNldHRpbmdzEh4KEnJlZmVyZW5jZV9kb2NzX3VyaRgBIAEoCUICGAESOgoMZGVzdGluYXRpb25zGAIgAygOMiQuZ29vZ2xlLmFwaS5DbGllbnRMaWJyYXJ5RGVzdGluYXRpb24i+wMKFUNsaWVudExpYnJhcnlTZXR0aW5ncxIPCgd2ZXJzaW9uGAEgASgJEi0KDGxhdW5jaF9zdGFnZRgCIAEoDjIXLmdvb2dsZS5hcGkuTGF1bmNoU3RhZ2USGgoScmVzdF9udW1lcmljX2VudW1zGAMgASgIEi8KDWphdmFfc2V0dGluZ3MYFSABKAsyGC5nb29nbGUuYXBpLkphdmFTZXR0aW5ncxItCgxjcHBfc2V0dGluZ3MYFiABKAsyFy5nb29nbGUuYXBpLkNwcFNldHRpbmdzEi0KDHBocF9zZXR0aW5ncxgXIAEoCzIXLmdvb2dsZS5hcGkuUGhwU2V0dGluZ3MSMwoPcHl0aG9uX3NldHRpbmdzGBggASgLMhouZ29vZ2xlLmFwaS5QeXRob25TZXR0aW5ncxIvCg1ub2RlX3NldHRpbmdzGBkgASgLMhguZ29vZ2xlLmFwaS5Ob2RlU2V0dGluZ3MSMwoPZG90bmV0X3NldHRpbmdzGBogASgLMhouZ29vZ2xlLmFwaS5Eb3RuZXRTZXR0aW5ncxIvCg1ydWJ5X3NldHRpbmdzGBsgASgLMhguZ29vZ2xlLmFwaS5SdWJ5U2V0dGluZ3MSKwoLZ29fc2V0dGluZ3MYHCABKAsyFi5nb29nbGUuYXBpLkdvU2V0dGluZ3MiqAMKClB1Ymxpc2hpbmcSMwoPbWV0aG9kX3NldHRpbmdzGAIgAygLMhouZ29vZ2xlLmFwaS5NZXRob2RTZXR0aW5ncxIVCg1uZXdfaXNzdWVfdXJpGGUgASgJEhkKEWRvY3VtZW50YXRpb25fdXJpGGYgASgJEhYKDmFwaV9zaG9ydF9uYW1lGGcgASgJEhQKDGdpdGh1Yl9sYWJlbBhoIAEoCRIeChZjb2Rlb3duZXJfZ2l0aHViX3RlYW1zGGkgAygJEhYKDmRvY190YWdfcHJlZml4GGogASgJEjsKDG9yZ2FuaXphdGlvbhhrIAEoDjIlLmdvb2dsZS5hcGkuQ2xpZW50TGlicmFyeU9yZ2FuaXphdGlvbhI7ChBsaWJyYXJ5X3NldHRpbmdzGG0gAygLMiEuZ29vZ2xlLmFwaS5DbGllbnRMaWJyYXJ5U2V0dGluZ3MSKQohcHJvdG9fcmVmZXJlbmNlX2RvY3VtZW50YXRpb25fdXJpGG4gASgJEigKIHJlc3RfcmVmZXJlbmNlX2RvY3VtZW50YXRpb25fdXJpGG8gASgJIuMBCgxKYXZhU2V0dGluZ3MSFwoPbGlicmFyeV9wYWNrYWdlGAEgASgJEkwKE3NlcnZpY2VfY2xhc3NfbmFtZXMYAiADKAsyLy5nb29nbGUuYXBpLkphdmFTZXR0aW5ncy5TZXJ2aWNlQ2xhc3NOYW1lc0VudHJ5EjIKBmNvbW1vbhgDIAEoCzIiLmdvb2dsZS5hcGkuQ29tbW9uTGFuZ3VhZ2VTZXR0aW5ncxo4ChZTZXJ2aWNlQ2xhc3NOYW1lc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiQQoLQ3BwU2V0dGluZ3MSMgoGY29tbW9uGAEgASgLMiIuZ29vZ2xlLmFwaS5Db21tb25MYW5ndWFnZVNldHRpbmdzIkEKC1BocFNldHRpbmdzEjIKBmNvbW1vbhgBIAEoCzIiLmdvb2dsZS5hcGkuQ29tbW9uTGFuZ3VhZ2VTZXR0aW5ncyJECg5QeXRob25TZXR0aW5ncxIyCgZjb21tb24YASABKAsyIi5nb29nbGUuYXBpLkNvbW1vbkxhbmd1YWdlU2V0dGluZ3MiQgoMTm9kZVNldHRpbmdzEjIKBmNvbW1vbhgBIAEoCzIiLmdvb2dsZS5hcGkuQ29tbW9uTGFuZ3VhZ2VTZXR0aW5ncyKqAwoORG90bmV0U2V0dGluZ3MSMgoGY29tbW9uGAEgASgLMiIuZ29vZ2xlLmFwaS5Db21tb25MYW5ndWFnZVNldHRpbmdzEkkKEHJlbmFtZWRfc2VydmljZXMYAiADKAsyLy5nb29nbGUuYXBpLkRvdG5ldFNldHRpbmdzLlJlbmFtZWRTZXJ2aWNlc0VudHJ5EksKEXJlbmFtZWRfcmVzb3VyY2VzGAMgAygLMjAuZ29vZ2xlLmFwaS5Eb3RuZXRTZXR0aW5ncy5SZW5hbWVkUmVzb3VyY2VzRW50cnkSGQoRaWdub3JlZF9yZXNvdXJjZXMYBCADKAkSIAoYZm9yY2VkX25hbWVzcGFjZV9hbGlhc2VzGAUgAygJEh4KFmhhbmR3cml0dGVuX3NpZ25hdHVyZXMYBiADKAkaNgoUUmVuYW1lZFNlcnZpY2VzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ARo3ChVSZW5hbWVkUmVzb3VyY2VzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASJCCgxSdWJ5U2V0dGluZ3MSMgoGY29tbW9uGAEgASgLMiIuZ29vZ2xlLmFwaS5Db21tb25MYW5ndWFnZVNldHRpbmdzIkAKCkdvU2V0dGluZ3MSMgoGY29tbW9uGAEgASgLMiIuZ29vZ2xlLmFwaS5Db21tb25MYW5ndWFnZVNldHRpbmdzIs8CCg5NZXRob2RTZXR0aW5ncxIQCghzZWxlY3RvchgBIAEoCRI8Cgxsb25nX3J1bm5pbmcYAiABKAsyJi5nb29nbGUuYXBpLk1ldGhvZFNldHRpbmdzLkxvbmdSdW5uaW5nEh0KFWF1dG9fcG9wdWxhdGVkX2ZpZWxkcxgDIAMoCRrNAQoLTG9uZ1J1bm5pbmcSNQoSaW5pdGlhbF9wb2xsX2RlbGF5GAEgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEh0KFXBvbGxfZGVsYXlfbXVsdGlwbGllchgCIAEoAhIxCg5tYXhfcG9sbF9kZWxheRgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhI1ChJ0b3RhbF9wb2xsX3RpbWVvdXQYBCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24qowEKGUNsaWVudExpYnJhcnlPcmdhbml6YXRpb24SKwonQ0xJRU5UX0xJQlJBUllfT1JHQU5JWkFUSU9OX1VOU1BFQ0lGSUVEEAASCQoFQ0xPVUQQARIHCgNBRFMQAhIKCgZQSE9UT1MQAxIPCgtTVFJFRVRfVklFVxAEEgwKCFNIT1BQSU5HEAUSBwoDR0VPEAYSEQoNR0VORVJBVElWRV9BSRAHKmcKGENsaWVudExpYnJhcnlEZXN0aW5hdGlvbhIqCiZDTElFTlRfTElCUkFSWV9ERVNUSU5BVElPTl9VTlNQRUNJRklFRBAAEgoKBkdJVEhVQhAKEhMKD1BBQ0tBR0VfTUFOQUdFUhAUOkoKEG1ldGhvZF9zaWduYXR1cmUSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxibCCADKAlSD21ldGhvZFNpZ25hdHVyZTpDCgxkZWZhdWx0X2hvc3QSHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMYmQggASgJUgtkZWZhdWx0SG9zdDpDCgxvYXV0aF9zY29wZXMSHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMYmgggASgJUgtvYXV0aFNjb3BlczpECgthcGlfdmVyc2lvbhIfLmdvb2dsZS5wcm90b2J1Zi5TZXJ2aWNlT3B0aW9ucxjBuqv6ASABKAlSCmFwaVZlcnNpb25CaQoOY29tLmdvb2dsZS5hcGlCC0NsaWVudFByb3RvUAFaQWdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvYXBpL2Fubm90YXRpb25zO2Fubm90YXRpb25zogIER0FQSWIGcHJvdG8z", [file_google_api_launch_stage, file_google_protobuf_descriptor, file_google_protobuf_duration]);
 
 /**
  * Required information for every language.
@@ -70,10 +70,10 @@ export type CommonLanguageSettingsJson = {
 
 /**
  * Describes the message google.api.CommonLanguageSettings.
- * Use `create(CommonLanguageSettingsDesc)` to create a new message.
+ * Use `create(CommonLanguageSettingsSchema)` to create a new message.
  */
-export const CommonLanguageSettingsDesc: GenDescMessage<CommonLanguageSettings, CommonLanguageSettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 0);
+export const CommonLanguageSettingsSchema: GenDescMessage<CommonLanguageSettings, CommonLanguageSettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 0);
 
 /**
  * Details about how and where to publish client libraries.
@@ -224,10 +224,10 @@ export type ClientLibrarySettingsJson = {
 
 /**
  * Describes the message google.api.ClientLibrarySettings.
- * Use `create(ClientLibrarySettingsDesc)` to create a new message.
+ * Use `create(ClientLibrarySettingsSchema)` to create a new message.
  */
-export const ClientLibrarySettingsDesc: GenDescMessage<ClientLibrarySettings, ClientLibrarySettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 1);
+export const ClientLibrarySettingsSchema: GenDescMessage<ClientLibrarySettings, ClientLibrarySettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 1);
 
 /**
  * This message configures the settings for publishing [Google Cloud Client
@@ -388,10 +388,10 @@ export type PublishingJson = {
 
 /**
  * Describes the message google.api.Publishing.
- * Use `create(PublishingDesc)` to create a new message.
+ * Use `create(PublishingSchema)` to create a new message.
  */
-export const PublishingDesc: GenDescMessage<Publishing, PublishingJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 2);
+export const PublishingSchema: GenDescMessage<Publishing, PublishingJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 2);
 
 /**
  * Settings for Java client libraries.
@@ -466,10 +466,10 @@ export type JavaSettingsJson = {
 
 /**
  * Describes the message google.api.JavaSettings.
- * Use `create(JavaSettingsDesc)` to create a new message.
+ * Use `create(JavaSettingsSchema)` to create a new message.
  */
-export const JavaSettingsDesc: GenDescMessage<JavaSettings, JavaSettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 3);
+export const JavaSettingsSchema: GenDescMessage<JavaSettings, JavaSettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 3);
 
 /**
  * Settings for C++ client libraries.
@@ -497,10 +497,10 @@ export type CppSettingsJson = {
 
 /**
  * Describes the message google.api.CppSettings.
- * Use `create(CppSettingsDesc)` to create a new message.
+ * Use `create(CppSettingsSchema)` to create a new message.
  */
-export const CppSettingsDesc: GenDescMessage<CppSettings, CppSettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 4);
+export const CppSettingsSchema: GenDescMessage<CppSettings, CppSettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 4);
 
 /**
  * Settings for Php client libraries.
@@ -528,10 +528,10 @@ export type PhpSettingsJson = {
 
 /**
  * Describes the message google.api.PhpSettings.
- * Use `create(PhpSettingsDesc)` to create a new message.
+ * Use `create(PhpSettingsSchema)` to create a new message.
  */
-export const PhpSettingsDesc: GenDescMessage<PhpSettings, PhpSettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 5);
+export const PhpSettingsSchema: GenDescMessage<PhpSettings, PhpSettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 5);
 
 /**
  * Settings for Python client libraries.
@@ -559,10 +559,10 @@ export type PythonSettingsJson = {
 
 /**
  * Describes the message google.api.PythonSettings.
- * Use `create(PythonSettingsDesc)` to create a new message.
+ * Use `create(PythonSettingsSchema)` to create a new message.
  */
-export const PythonSettingsDesc: GenDescMessage<PythonSettings, PythonSettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 6);
+export const PythonSettingsSchema: GenDescMessage<PythonSettings, PythonSettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 6);
 
 /**
  * Settings for Node client libraries.
@@ -590,10 +590,10 @@ export type NodeSettingsJson = {
 
 /**
  * Describes the message google.api.NodeSettings.
- * Use `create(NodeSettingsDesc)` to create a new message.
+ * Use `create(NodeSettingsSchema)` to create a new message.
  */
-export const NodeSettingsDesc: GenDescMessage<NodeSettings, NodeSettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 7);
+export const NodeSettingsSchema: GenDescMessage<NodeSettings, NodeSettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 7);
 
 /**
  * Settings for Dotnet client libraries.
@@ -696,10 +696,10 @@ export type DotnetSettingsJson = {
 
 /**
  * Describes the message google.api.DotnetSettings.
- * Use `create(DotnetSettingsDesc)` to create a new message.
+ * Use `create(DotnetSettingsSchema)` to create a new message.
  */
-export const DotnetSettingsDesc: GenDescMessage<DotnetSettings, DotnetSettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 8);
+export const DotnetSettingsSchema: GenDescMessage<DotnetSettings, DotnetSettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 8);
 
 /**
  * Settings for Ruby client libraries.
@@ -727,10 +727,10 @@ export type RubySettingsJson = {
 
 /**
  * Describes the message google.api.RubySettings.
- * Use `create(RubySettingsDesc)` to create a new message.
+ * Use `create(RubySettingsSchema)` to create a new message.
  */
-export const RubySettingsDesc: GenDescMessage<RubySettings, RubySettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 9);
+export const RubySettingsSchema: GenDescMessage<RubySettings, RubySettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 9);
 
 /**
  * Settings for Go client libraries.
@@ -758,10 +758,10 @@ export type GoSettingsJson = {
 
 /**
  * Describes the message google.api.GoSettings.
- * Use `create(GoSettingsDesc)` to create a new message.
+ * Use `create(GoSettingsSchema)` to create a new message.
  */
-export const GoSettingsDesc: GenDescMessage<GoSettings, GoSettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 10);
+export const GoSettingsSchema: GenDescMessage<GoSettings, GoSettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 10);
 
 /**
  * Describes the generator configuration for a method.
@@ -840,10 +840,10 @@ export type MethodSettingsJson = {
 
 /**
  * Describes the message google.api.MethodSettings.
- * Use `create(MethodSettingsDesc)` to create a new message.
+ * Use `create(MethodSettingsSchema)` to create a new message.
  */
-export const MethodSettingsDesc: GenDescMessage<MethodSettings, MethodSettingsJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 11);
+export const MethodSettingsSchema: GenDescMessage<MethodSettings, MethodSettingsJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 11);
 
 /**
  * Describes settings to use when generating API methods that use the
@@ -916,10 +916,10 @@ export type MethodSettings_LongRunningJson = {
 
 /**
  * Describes the message google.api.MethodSettings.LongRunning.
- * Use `create(MethodSettings_LongRunningDesc)` to create a new message.
+ * Use `create(MethodSettings_LongRunningSchema)` to create a new message.
  */
-export const MethodSettings_LongRunningDesc: GenDescMessage<MethodSettings_LongRunning, MethodSettings_LongRunningJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_client, 11, 0);
+export const MethodSettings_LongRunningSchema: GenDescMessage<MethodSettings_LongRunning, MethodSettings_LongRunningJson> = /*@__PURE__*/
+  messageDesc(file_google_api_client, 11, 0);
 
 /**
  * The organization for which the client libraries are being published.
@@ -993,8 +993,8 @@ export type ClientLibraryOrganizationJson = "CLIENT_LIBRARY_ORGANIZATION_UNSPECI
 /**
  * Describes the enum google.api.ClientLibraryOrganization.
  */
-export const ClientLibraryOrganizationDesc: GenDescEnum<ClientLibraryOrganization, ClientLibraryOrganizationJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_api_client, 0);
+export const ClientLibraryOrganizationSchema: GenDescEnum<ClientLibraryOrganization, ClientLibraryOrganizationJson> = /*@__PURE__*/
+  enumDesc(file_google_api_client, 0);
 
 /**
  * To where should client libraries be published?
@@ -1034,8 +1034,8 @@ export type ClientLibraryDestinationJson = "CLIENT_LIBRARY_DESTINATION_UNSPECIFI
 /**
  * Describes the enum google.api.ClientLibraryDestination.
  */
-export const ClientLibraryDestinationDesc: GenDescEnum<ClientLibraryDestination, ClientLibraryDestinationJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_api_client, 1);
+export const ClientLibraryDestinationSchema: GenDescEnum<ClientLibraryDestination, ClientLibraryDestinationJson> = /*@__PURE__*/
+  enumDesc(file_google_api_client, 1);
 
 /**
  * A definition of a client library method signature.
@@ -1077,7 +1077,7 @@ export const ClientLibraryDestinationDesc: GenDescEnum<ClientLibraryDestination,
  * @generated from extension: repeated string method_signature = 1051;
  */
 export const method_signature: GenDescExtension<MethodOptions, string[]> = /*@__PURE__*/
-  extDesc(fileDesc_google_api_client, 0);
+  extDesc(file_google_api_client, 0);
 
 /**
  * The hostname for this service.
@@ -1093,7 +1093,7 @@ export const method_signature: GenDescExtension<MethodOptions, string[]> = /*@__
  * @generated from extension: string default_host = 1049;
  */
 export const default_host: GenDescExtension<ServiceOptions, string> = /*@__PURE__*/
-  extDesc(fileDesc_google_api_client, 1);
+  extDesc(file_google_api_client, 1);
 
 /**
  * OAuth scopes needed for the client.
@@ -1120,7 +1120,7 @@ export const default_host: GenDescExtension<ServiceOptions, string> = /*@__PURE_
  * @generated from extension: string oauth_scopes = 1050;
  */
 export const oauth_scopes: GenDescExtension<ServiceOptions, string> = /*@__PURE__*/
-  extDesc(fileDesc_google_api_client, 2);
+  extDesc(file_google_api_client, 2);
 
 /**
  * The API version of this service, which should be sent by version-aware
@@ -1141,5 +1141,5 @@ export const oauth_scopes: GenDescExtension<ServiceOptions, string> = /*@__PURE_
  * @generated from extension: string api_version = 525000001;
  */
 export const api_version: GenDescExtension<ServiceOptions, string> = /*@__PURE__*/
-  extDesc(fileDesc_google_api_client, 3);
+  extDesc(file_google_api_client, 3);
 

@@ -21,21 +21,21 @@ import {
   isReflectMessage,
 } from "@bufbuild/protobuf/reflect";
 import { protoInt64 } from "@bufbuild/protobuf";
-import { UserDesc } from "../gen/ts/extra/example_pb.js";
+import { UserSchema } from "../gen/ts/extra/example_pb.js";
 import { create } from "@bufbuild/protobuf";
 import assert from "node:assert";
 import { catchFieldError } from "../helpers.js";
 
 describe("reflectMap()", () => {
   test("creates ReflectMap", () => {
-    const f = proto3_ts.Proto3MessageDesc.field.mapStringStringField;
+    const f = proto3_ts.Proto3MessageSchema.field.mapStringStringField;
     assert(f.fieldKind == "map");
     const map = reflectMap(f);
     expect(typeof map.field).toBe("function");
     expect(isReflectMap(map)).toBe(true);
   });
   test("creates ReflectMap with unsafe input", () => {
-    const f = proto3_ts.Proto3MessageDesc.field.mapStringStringField;
+    const f = proto3_ts.Proto3MessageSchema.field.mapStringStringField;
     assert(f.fieldKind == "map");
     const map = reflectMap(f, { x: 123 });
     expect(typeof map.field).toBe("function");
@@ -49,7 +49,7 @@ describe("ReflectMap", () => {
     mapInt64Int64Field,
     mapInt32Int32Field,
     mapInt32MessageField,
-  } = proto3_ts.Proto3MessageDesc.field;
+  } = proto3_ts.Proto3MessageSchema.field;
   assert(mapStringStringField.fieldKind == "map");
   assert(mapInt64Int64Field.fieldKind == "map");
   assert(mapInt32Int32Field.fieldKind == "map");
@@ -98,7 +98,7 @@ describe("ReflectMap", () => {
     });
     test("returns ReflectMessage for message map", () => {
       const map = reflectMap(mapInt32MessageField, {
-        a: create(proto3_ts.Proto3MessageDesc),
+        a: create(proto3_ts.Proto3MessageSchema),
       });
       const val = map.get("a");
       expect(isReflectMessage(val)).toBe(true);
@@ -210,7 +210,7 @@ describe("ReflectMap", () => {
     });
     test("throws error for wrong message type", () => {
       const map = reflectMap(mapInt32MessageField, {});
-      const err = catchFieldError(() => map.set(1, reflect(UserDesc)));
+      const err = catchFieldError(() => map.set(1, reflect(UserSchema)));
       expect(err?.message).toMatch(
         /^map entry 1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );

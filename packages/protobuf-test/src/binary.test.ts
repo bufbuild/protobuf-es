@@ -25,24 +25,24 @@ import {
   type DescMessage,
   protoInt64,
 } from "@bufbuild/protobuf";
-import { StructDesc, ValueDesc } from "@bufbuild/protobuf/wkt";
+import { StructSchema, ValueSchema } from "@bufbuild/protobuf/wkt";
 import {
-  RepeatedScalarValuesMessageDesc,
-  ScalarValuesMessageDesc,
+  RepeatedScalarValuesMessageSchema,
+  ScalarValuesMessageSchema,
 } from "./gen/ts/extra/msg-scalar_pb.js";
-import { MapsMessageDesc } from "./gen/ts/extra/msg-maps_pb.js";
-import { MessageFieldMessageDesc } from "./gen/ts/extra/msg-message_pb.js";
+import { MapsMessageSchema } from "./gen/ts/extra/msg-maps_pb.js";
+import { MessageFieldMessageSchema } from "./gen/ts/extra/msg-message_pb.js";
 
 import {
-  Proto2ExtendeeDesc,
+  Proto2ExtendeeSchema,
   string_ext,
 } from "./gen/ts/extra/extensions-proto2_pb.js";
-import { OneofMessageDesc } from "./gen/ts/extra/msg-oneof_pb.js";
-import { JsonNamesMessageDesc } from "./gen/ts/extra/msg-json-names_pb.js";
-import { JSTypeProto2NormalMessageDesc } from "./gen/ts/extra/jstype-proto2_pb.js";
+import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
+import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
+import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
 
 describe(`binary serialization`, () => {
-  testBinary(ScalarValuesMessageDesc, {
+  testBinary(ScalarValuesMessageSchema, {
     doubleField: 0.75,
     floatField: -0.75,
     int64Field: protoInt64.parse(-1),
@@ -61,7 +61,7 @@ describe(`binary serialization`, () => {
     sint32Field: -1,
     sint64Field: protoInt64.parse(-1),
   });
-  testBinary(RepeatedScalarValuesMessageDesc, {
+  testBinary(RepeatedScalarValuesMessageSchema, {
     doubleField: [0.75, 0, 1],
     floatField: [0.75, -0.75],
     int64Field: [protoInt64.parse(-1), protoInt64.parse(-2)],
@@ -88,11 +88,11 @@ describe(`binary serialization`, () => {
       protoInt64.parse(99),
     ],
   });
-  testBinary(MessageFieldMessageDesc, {
+  testBinary(MessageFieldMessageSchema, {
     messageField: { name: "test" },
     repeatedMessageField: [{ name: "a" }, { name: "b" }],
   });
-  testBinary(MapsMessageDesc, {
+  testBinary(MapsMessageSchema, {
     strStrField: { a: "str", b: "xx" },
     strInt32Field: { a: 123, b: 455 },
     strInt64Field: { a: protoInt64.parse(123) },
@@ -116,7 +116,7 @@ describe(`binary serialization`, () => {
     int32EnuField: { 1: 0, 2: 1, 0: 2 },
     int64EnuField: { "-1": 0, "2": 1, "0": 2 },
   });
-  testBinary(OneofMessageDesc, {
+  testBinary(OneofMessageSchema, {
     message: {
       case: "foo",
       value: {
@@ -127,12 +127,12 @@ describe(`binary serialization`, () => {
     scalar: { case: undefined },
     enum: { case: undefined },
   });
-  testBinary(JsonNamesMessageDesc, {
+  testBinary(JsonNamesMessageSchema, {
     a: "a",
     b: "b",
     c: "c",
   });
-  testBinary(JSTypeProto2NormalMessageDesc, {
+  testBinary(JSTypeProto2NormalMessageSchema, {
     fixed64Field: protoInt64.uParse(123),
     int64Field: protoInt64.parse(123),
     sfixed64Field: protoInt64.parse(123),
@@ -144,18 +144,18 @@ describe(`binary serialization`, () => {
     repeatedSint64Field: [protoInt64.parse(123)],
     repeatedUint64Field: [protoInt64.uParse(123)],
   });
-  testBinary(StructDesc, {
+  testBinary(StructSchema, {
     fields: {
       a: { kind: { case: "numberValue", value: 123 } },
       b: { kind: { case: "stringValue", value: "abc" } },
     },
   });
   describe("Value", () => {
-    testBinary(ValueDesc, {
+    testBinary(ValueSchema, {
       kind: { case: "boolValue", value: true },
     });
     describe("Value with Struct field", () => {
-      testBinary(ValueDesc, {
+      testBinary(ValueSchema, {
         kind: {
           case: "structValue",
           value: {
@@ -169,13 +169,13 @@ describe(`binary serialization`, () => {
   });
   describe("extensions", () => {
     test("encode and decode an extension", () => {
-      const extendee = create(Proto2ExtendeeDesc);
+      const extendee = create(Proto2ExtendeeSchema);
       setExtension(extendee, string_ext, "foo");
       expect(
         getExtension(
           fromBinary(
-            Proto2ExtendeeDesc,
-            toBinary(Proto2ExtendeeDesc, extendee),
+            Proto2ExtendeeSchema,
+            toBinary(Proto2ExtendeeSchema, extendee),
           ),
           string_ext,
         ),

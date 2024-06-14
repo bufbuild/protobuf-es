@@ -23,7 +23,7 @@ import type { MessageOptions } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file google/protobuf/unittest_proto3_optional.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_proto3_optional: GenDescFile;
+export declare const file_google_protobuf_unittest_proto3_optional: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional
@@ -251,9 +251,9 @@ export declare type TestProto3OptionalJson = {
 
 /**
  * Describes the message protobuf_unittest.TestProto3Optional.
- * Use `create(TestProto3OptionalDesc)` to create a new message.
+ * Use `create(TestProto3OptionalSchema)` to create a new message.
  */
-export declare const TestProto3OptionalDesc: GenDescMessage<TestProto3Optional, TestProto3OptionalJson>;
+export declare const TestProto3OptionalSchema: GenDescMessage<TestProto3Optional, TestProto3OptionalJson>;
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional.NestedMessage
@@ -281,9 +281,9 @@ export declare type TestProto3Optional_NestedMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.TestProto3Optional.NestedMessage.
- * Use `create(TestProto3Optional_NestedMessageDesc)` to create a new message.
+ * Use `create(TestProto3Optional_NestedMessageSchema)` to create a new message.
  */
-export declare const TestProto3Optional_NestedMessageDesc: GenDescMessage<TestProto3Optional_NestedMessage, TestProto3Optional_NestedMessageJson>;
+export declare const TestProto3Optional_NestedMessageSchema: GenDescMessage<TestProto3Optional_NestedMessage, TestProto3Optional_NestedMessageJson>;
 
 /**
  * @generated from enum protobuf_unittest.TestProto3Optional.NestedEnum
@@ -325,7 +325,7 @@ export declare type TestProto3Optional_NestedEnumJson = "UNSPECIFIED" | "FOO" | 
 /**
  * Describes the enum protobuf_unittest.TestProto3Optional.NestedEnum.
  */
-export declare const TestProto3Optional_NestedEnumDesc: GenDescEnum<TestProto3Optional_NestedEnum, TestProto3Optional_NestedEnumJson>;
+export declare const TestProto3Optional_NestedEnumSchema: GenDescEnum<TestProto3Optional_NestedEnum, TestProto3Optional_NestedEnumJson>;
 
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage
@@ -359,9 +359,9 @@ export declare type TestProto3OptionalMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.TestProto3OptionalMessage.
- * Use `create(TestProto3OptionalMessageDesc)` to create a new message.
+ * Use `create(TestProto3OptionalMessageSchema)` to create a new message.
  */
-export declare const TestProto3OptionalMessageDesc: GenDescMessage<TestProto3OptionalMessage, TestProto3OptionalMessageJson>;
+export declare const TestProto3OptionalMessageSchema: GenDescMessage<TestProto3OptionalMessage, TestProto3OptionalMessageJson>;
 
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage.NestedMessage
@@ -385,9 +385,9 @@ export declare type TestProto3OptionalMessage_NestedMessageJson = {
 
 /**
  * Describes the message protobuf_unittest.TestProto3OptionalMessage.NestedMessage.
- * Use `create(TestProto3OptionalMessage_NestedMessageDesc)` to create a new message.
+ * Use `create(TestProto3OptionalMessage_NestedMessageSchema)` to create a new message.
  */
-export declare const TestProto3OptionalMessage_NestedMessageDesc: GenDescMessage<TestProto3OptionalMessage_NestedMessage, TestProto3OptionalMessage_NestedMessageJson>;
+export declare const TestProto3OptionalMessage_NestedMessageSchema: GenDescMessage<TestProto3OptionalMessage_NestedMessage, TestProto3OptionalMessage_NestedMessageJson>;
 
 /**
  * @generated from message protobuf_unittest.Proto3OptionalExtensions
@@ -403,9 +403,9 @@ export declare type Proto3OptionalExtensionsJson = {
 
 /**
  * Describes the message protobuf_unittest.Proto3OptionalExtensions.
- * Use `create(Proto3OptionalExtensionsDesc)` to create a new message.
+ * Use `create(Proto3OptionalExtensionsSchema)` to create a new message.
  */
-export declare const Proto3OptionalExtensionsDesc: GenDescMessage<Proto3OptionalExtensions, Proto3OptionalExtensionsJson>;
+export declare const Proto3OptionalExtensionsSchema: GenDescMessage<Proto3OptionalExtensions, Proto3OptionalExtensionsJson>;
 
 /**
  * @generated from extension: int32 ext_no_optional = 355886728;

@@ -24,7 +24,7 @@ import { messageDesc } from "../../../../codegenv1/message.js";
 /**
  * Describes the file google/protobuf/wrappers.proto.
  */
-export const fileDesc_google_protobuf_wrappers: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_wrappers: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5nb29nbGUvcHJvdG9idWYvd3JhcHBlcnMucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIcCgtEb3VibGVWYWx1ZRINCgV2YWx1ZRgBIAEoASIbCgpGbG9hdFZhbHVlEg0KBXZhbHVlGAEgASgCIhsKCkludDY0VmFsdWUSDQoFdmFsdWUYASABKAMiHAoLVUludDY0VmFsdWUSDQoFdmFsdWUYASABKAQiGwoKSW50MzJWYWx1ZRINCgV2YWx1ZRgBIAEoBSIcCgtVSW50MzJWYWx1ZRINCgV2YWx1ZRgBIAEoDSIaCglCb29sVmFsdWUSDQoFdmFsdWUYASABKAgiHAoLU3RyaW5nVmFsdWUSDQoFdmFsdWUYASABKAkiGwoKQnl0ZXNWYWx1ZRINCgV2YWx1ZRgBIAEoDEKDAQoTY29tLmdvb2dsZS5wcm90b2J1ZkINV3JhcHBlcnNQcm90b1ABWjFnb29nbGUuZ29sYW5nLm9yZy9wcm90b2J1Zi90eXBlcy9rbm93bi93cmFwcGVyc3Bi+AEBogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
 /**
@@ -50,10 +50,10 @@ export type DoubleValueJson = number | "NaN" | "Infinity" | "-Infinity";
 
 /**
  * Describes the message google.protobuf.DoubleValue.
- * Use `create(DoubleValueDesc)` to create a new message.
+ * Use `create(DoubleValueSchema)` to create a new message.
  */
-export const DoubleValueDesc: GenDescMessage<DoubleValue, DoubleValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_wrappers, 0);
+export const DoubleValueSchema: GenDescMessage<DoubleValue, DoubleValueJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_wrappers, 0);
 
 /**
  * Wrapper message for `float`.
@@ -78,10 +78,10 @@ export type FloatValueJson = number | "NaN" | "Infinity" | "-Infinity";
 
 /**
  * Describes the message google.protobuf.FloatValue.
- * Use `create(FloatValueDesc)` to create a new message.
+ * Use `create(FloatValueSchema)` to create a new message.
  */
-export const FloatValueDesc: GenDescMessage<FloatValue, FloatValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_wrappers, 1);
+export const FloatValueSchema: GenDescMessage<FloatValue, FloatValueJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_wrappers, 1);
 
 /**
  * Wrapper message for `int64`.
@@ -106,10 +106,10 @@ export type Int64ValueJson = string;
 
 /**
  * Describes the message google.protobuf.Int64Value.
- * Use `create(Int64ValueDesc)` to create a new message.
+ * Use `create(Int64ValueSchema)` to create a new message.
  */
-export const Int64ValueDesc: GenDescMessage<Int64Value, Int64ValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_wrappers, 2);
+export const Int64ValueSchema: GenDescMessage<Int64Value, Int64ValueJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_wrappers, 2);
 
 /**
  * Wrapper message for `uint64`.
@@ -134,10 +134,10 @@ export type UInt64ValueJson = string;
 
 /**
  * Describes the message google.protobuf.UInt64Value.
- * Use `create(UInt64ValueDesc)` to create a new message.
+ * Use `create(UInt64ValueSchema)` to create a new message.
  */
-export const UInt64ValueDesc: GenDescMessage<UInt64Value, UInt64ValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_wrappers, 3);
+export const UInt64ValueSchema: GenDescMessage<UInt64Value, UInt64ValueJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_wrappers, 3);
 
 /**
  * Wrapper message for `int32`.
@@ -162,10 +162,10 @@ export type Int32ValueJson = number;
 
 /**
  * Describes the message google.protobuf.Int32Value.
- * Use `create(Int32ValueDesc)` to create a new message.
+ * Use `create(Int32ValueSchema)` to create a new message.
  */
-export const Int32ValueDesc: GenDescMessage<Int32Value, Int32ValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_wrappers, 4);
+export const Int32ValueSchema: GenDescMessage<Int32Value, Int32ValueJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_wrappers, 4);
 
 /**
  * Wrapper message for `uint32`.
@@ -190,10 +190,10 @@ export type UInt32ValueJson = number;
 
 /**
  * Describes the message google.protobuf.UInt32Value.
- * Use `create(UInt32ValueDesc)` to create a new message.
+ * Use `create(UInt32ValueSchema)` to create a new message.
  */
-export const UInt32ValueDesc: GenDescMessage<UInt32Value, UInt32ValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_wrappers, 5);
+export const UInt32ValueSchema: GenDescMessage<UInt32Value, UInt32ValueJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_wrappers, 5);
 
 /**
  * Wrapper message for `bool`.
@@ -218,10 +218,10 @@ export type BoolValueJson = boolean;
 
 /**
  * Describes the message google.protobuf.BoolValue.
- * Use `create(BoolValueDesc)` to create a new message.
+ * Use `create(BoolValueSchema)` to create a new message.
  */
-export const BoolValueDesc: GenDescMessage<BoolValue, BoolValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_wrappers, 6);
+export const BoolValueSchema: GenDescMessage<BoolValue, BoolValueJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_wrappers, 6);
 
 /**
  * Wrapper message for `string`.
@@ -246,10 +246,10 @@ export type StringValueJson = string;
 
 /**
  * Describes the message google.protobuf.StringValue.
- * Use `create(StringValueDesc)` to create a new message.
+ * Use `create(StringValueSchema)` to create a new message.
  */
-export const StringValueDesc: GenDescMessage<StringValue, StringValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_wrappers, 7);
+export const StringValueSchema: GenDescMessage<StringValue, StringValueJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_wrappers, 7);
 
 /**
  * Wrapper message for `bytes`.
@@ -274,8 +274,8 @@ export type BytesValueJson = string;
 
 /**
  * Describes the message google.protobuf.BytesValue.
- * Use `create(BytesValueDesc)` to create a new message.
+ * Use `create(BytesValueSchema)` to create a new message.
  */
-export const BytesValueDesc: GenDescMessage<BytesValue, BytesValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_wrappers, 8);
+export const BytesValueSchema: GenDescMessage<BytesValue, BytesValueJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_wrappers, 8);
 

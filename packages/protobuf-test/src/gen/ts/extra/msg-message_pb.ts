@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/msg-message.proto.
  */
-export const fileDesc_extra_msg_message: GenDescFile = /*@__PURE__*/
+export const file_extra_msg_message: GenDescFile = /*@__PURE__*/
   fileDesc("ChdleHRyYS9tc2ctbWVzc2FnZS5wcm90bxIEc3BlYyK3AQoTTWVzc2FnZUZpZWxkTWVzc2FnZRI8Cg1tZXNzYWdlX2ZpZWxkGAEgASgLMiUuc3BlYy5NZXNzYWdlRmllbGRNZXNzYWdlLlRlc3RNZXNzYWdlEkUKFnJlcGVhdGVkX21lc3NhZ2VfZmllbGQYAiADKAsyJS5zcGVjLk1lc3NhZ2VGaWVsZE1lc3NhZ2UuVGVzdE1lc3NhZ2UaGwoLVGVzdE1lc3NhZ2USDAoEbmFtZRgBIAEoCWIGcHJvdG8z");
 
 /**
@@ -58,10 +58,10 @@ export type MessageFieldMessageJson = {
 
 /**
  * Describes the message spec.MessageFieldMessage.
- * Use `create(MessageFieldMessageDesc)` to create a new message.
+ * Use `create(MessageFieldMessageSchema)` to create a new message.
  */
-export const MessageFieldMessageDesc: GenDescMessage<MessageFieldMessage, MessageFieldMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_msg_message, 0);
+export const MessageFieldMessageSchema: GenDescMessage<MessageFieldMessage, MessageFieldMessageJson> = /*@__PURE__*/
+  messageDesc(file_extra_msg_message, 0);
 
 /**
  * @generated from message spec.MessageFieldMessage.TestMessage
@@ -85,8 +85,8 @@ export type MessageFieldMessage_TestMessageJson = {
 
 /**
  * Describes the message spec.MessageFieldMessage.TestMessage.
- * Use `create(MessageFieldMessage_TestMessageDesc)` to create a new message.
+ * Use `create(MessageFieldMessage_TestMessageSchema)` to create a new message.
  */
-export const MessageFieldMessage_TestMessageDesc: GenDescMessage<MessageFieldMessage_TestMessage, MessageFieldMessage_TestMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_msg_message, 0, 0);
+export const MessageFieldMessage_TestMessageSchema: GenDescMessage<MessageFieldMessage_TestMessage, MessageFieldMessage_TestMessageJson> = /*@__PURE__*/
+  messageDesc(file_extra_msg_message, 0, 0);
 

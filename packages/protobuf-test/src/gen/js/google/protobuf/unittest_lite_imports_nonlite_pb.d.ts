@@ -27,7 +27,7 @@ import type { TestAllTypes, TestAllTypesJson, TestRequired, TestRequiredJson } f
 /**
  * Describes the file google/protobuf/unittest_lite_imports_nonlite.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_lite_imports_nonlite: GenDescFile;
+export declare const file_google_protobuf_unittest_lite_imports_nonlite: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestLiteImportsNonlite
@@ -63,7 +63,7 @@ export declare type TestLiteImportsNonliteJson = {
 
 /**
  * Describes the message protobuf_unittest.TestLiteImportsNonlite.
- * Use `create(TestLiteImportsNonliteDesc)` to create a new message.
+ * Use `create(TestLiteImportsNonliteSchema)` to create a new message.
  */
-export declare const TestLiteImportsNonliteDesc: GenDescMessage<TestLiteImportsNonlite, TestLiteImportsNonliteJson>;
+export declare const TestLiteImportsNonliteSchema: GenDescMessage<TestLiteImportsNonlite, TestLiteImportsNonliteJson>;
 

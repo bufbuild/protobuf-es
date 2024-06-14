@@ -30,7 +30,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/comments.proto.
  */
-export declare const fileDesc_extra_comments: GenDescFile;
+export declare const file_extra_comments: GenDescFile;
 
 /**
  * Comment before message.
@@ -120,9 +120,9 @@ export declare type MessageWithCommentsJson = {
 
 /**
  * Describes the message spec.MessageWithComments.
- * Use `create(MessageWithCommentsDesc)` to create a new message.
+ * Use `create(MessageWithCommentsSchema)` to create a new message.
  */
-export declare const MessageWithCommentsDesc: GenDescMessage<MessageWithComments, MessageWithCommentsJson>;
+export declare const MessageWithCommentsSchema: GenDescMessage<MessageWithComments, MessageWithCommentsJson>;
 
 /**
  * Comment within empty message.
@@ -140,9 +140,9 @@ export declare type EmptyMessageWithCommentJson = {
 
 /**
  * Describes the message spec.EmptyMessageWithComment.
- * Use `create(EmptyMessageWithCommentDesc)` to create a new message.
+ * Use `create(EmptyMessageWithCommentSchema)` to create a new message.
  */
-export declare const EmptyMessageWithCommentDesc: GenDescMessage<EmptyMessageWithComment, EmptyMessageWithCommentJson>;
+export declare const EmptyMessageWithCommentSchema: GenDescMessage<EmptyMessageWithComment, EmptyMessageWithCommentJson>;
 
 /**
  * see https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
@@ -236,9 +236,9 @@ export declare type GoogleCommentExampleJson = {
 
 /**
  * Describes the message spec.GoogleCommentExample.
- * Use `create(GoogleCommentExampleDesc)` to create a new message.
+ * Use `create(GoogleCommentExampleSchema)` to create a new message.
  */
-export declare const GoogleCommentExampleDesc: GenDescMessage<GoogleCommentExample, GoogleCommentExampleJson>;
+export declare const GoogleCommentExampleSchema: GenDescMessage<GoogleCommentExample, GoogleCommentExampleJson>;
 
 /**
  * Leading comment for enum.
@@ -266,7 +266,7 @@ export declare type EnumWithCommentsJson = "VALUE";
 /**
  * Describes the enum spec.EnumWithComments.
  */
-export declare const EnumWithCommentsDesc: GenDescEnum<EnumWithComments, EnumWithCommentsJson>;
+export declare const EnumWithCommentsSchema: GenDescEnum<EnumWithComments, EnumWithCommentsJson>;
 
 /**
  * Leading comment for deprecated enum
@@ -295,7 +295,7 @@ export declare type DeprecatedEnumWithCommentJson = "DEPRECATED_ENUM_WITH_COMMEN
  * Describes the enum spec.DeprecatedEnumWithComment.
  * @deprecated
  */
-export declare const DeprecatedEnumWithCommentDesc: GenDescEnum<DeprecatedEnumWithComment, DeprecatedEnumWithCommentJson>;
+export declare const DeprecatedEnumWithCommentSchema: GenDescEnum<DeprecatedEnumWithComment, DeprecatedEnumWithCommentJson>;
 
 /**
  * @generated from enum spec.DeprecatedEnumNoComment
@@ -322,5 +322,5 @@ export declare type DeprecatedEnumNoCommentJson = "DEPRECATED_ENUM_NO_COMMENT_A"
  * Describes the enum spec.DeprecatedEnumNoComment.
  * @deprecated
  */
-export declare const DeprecatedEnumNoCommentDesc: GenDescEnum<DeprecatedEnumNoComment, DeprecatedEnumNoCommentJson>;
+export declare const DeprecatedEnumNoCommentSchema: GenDescEnum<DeprecatedEnumNoComment, DeprecatedEnumNoCommentJson>;
 

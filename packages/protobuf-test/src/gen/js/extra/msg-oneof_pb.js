@@ -21,39 +21,39 @@ import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/code
 /**
  * Describes the file extra/msg-oneof.proto.
  */
-export const fileDesc_extra_msg_oneof = /*@__PURE__*/
+export const file_extra_msg_oneof = /*@__PURE__*/
   fileDesc("ChVleHRyYS9tc2ctb25lb2YucHJvdG8SBHNwZWMi7gEKDE9uZW9mTWVzc2FnZRIPCgV2YWx1ZRgBIAEoBUgAEg8KBWVycm9yGAIgASgJSAASDwoFYnl0ZXMYAyABKAxIABIkCgNmb28YCyABKAsyFS5zcGVjLk9uZW9mTWVzc2FnZUZvb0gBEiQKA2JhchgMIAEoCzIVLnNwZWMuT25lb2ZNZXNzYWdlQmFySAESJAoDYmF6GA0gASgLMhUuc3BlYy5PbmVvZk1lc3NhZ2VCYXJIARIcCgFlGBUgASgOMg8uc3BlYy5PbmVvZkVudW1IAkIICgZzY2FsYXJCCQoHbWVzc2FnZUIGCgRlbnVtIi8KD09uZW9mTWVzc2FnZUZvbxIMCgRuYW1lGAEgASgJEg4KBnRvZ2dsZRgCIAEoCCInCg9PbmVvZk1lc3NhZ2VCYXISCQoBYRgBIAEoBRIJCgFiGAIgASgFKksKCU9uZW9mRW51bRIaChZPTkVPRl9FTlVNX1VOU1BFQ0lGSUVEEAASEAoMT05FT0ZfRU5VTV9BEAESEAoMT05FT0ZfRU5VTV9CEAJiBnByb3RvMw");
 
 /**
  * Describes the message spec.OneofMessage.
- * Use `create(OneofMessageDesc)` to create a new message.
+ * Use `create(OneofMessageSchema)` to create a new message.
  */
-export const OneofMessageDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_msg_oneof, 0);
+export const OneofMessageSchema = /*@__PURE__*/
+  messageDesc(file_extra_msg_oneof, 0);
 
 /**
  * Describes the message spec.OneofMessageFoo.
- * Use `create(OneofMessageFooDesc)` to create a new message.
+ * Use `create(OneofMessageFooSchema)` to create a new message.
  */
-export const OneofMessageFooDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_msg_oneof, 1);
+export const OneofMessageFooSchema = /*@__PURE__*/
+  messageDesc(file_extra_msg_oneof, 1);
 
 /**
  * Describes the message spec.OneofMessageBar.
- * Use `create(OneofMessageBarDesc)` to create a new message.
+ * Use `create(OneofMessageBarSchema)` to create a new message.
  */
-export const OneofMessageBarDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_msg_oneof, 2);
+export const OneofMessageBarSchema = /*@__PURE__*/
+  messageDesc(file_extra_msg_oneof, 2);
 
 /**
  * Describes the enum spec.OneofEnum.
  */
-export const OneofEnumDesc = /*@__PURE__*/
-  enumDesc(fileDesc_extra_msg_oneof, 0);
+export const OneofEnumSchema = /*@__PURE__*/
+  enumDesc(file_extra_msg_oneof, 0);
 
 /**
  * @generated from enum spec.OneofEnum
  */
 export const OneofEnum = /*@__PURE__*/
-  tsEnum(OneofEnumDesc);
+  tsEnum(OneofEnumSchema);
 

@@ -26,33 +26,33 @@ import {
 
 describe("isFieldSet()", () => {
   test("returns true for set field", () => {
-    const msg = create(proto3_ts.Proto3MessageDesc);
+    const msg = create(proto3_ts.Proto3MessageSchema);
     msg.optionalStringField = "abc";
     const set = isFieldSet(
       msg,
-      proto3_ts.Proto3MessageDesc.field.optionalStringField,
+      proto3_ts.Proto3MessageSchema.field.optionalStringField,
     );
     expect(set).toBe(true);
   });
   test("returns true for unset field", () => {
-    const msg = create(proto3_ts.Proto3MessageDesc);
+    const msg = create(proto3_ts.Proto3MessageSchema);
     const set = isFieldSet(
       msg,
-      proto3_ts.Proto3MessageDesc.field.optionalStringField,
+      proto3_ts.Proto3MessageSchema.field.optionalStringField,
     );
     expect(set).toBe(false);
   });
   test("returns false for foreign field", () => {
-    const msg = create(proto3_ts.Proto3MessageDesc);
+    const msg = create(proto3_ts.Proto3MessageSchema);
     msg.optionalStringField = "abc";
     const set = isFieldSet(
       msg,
-      proto2_ts.Proto2MessageDesc.field.optionalStringField,
+      proto2_ts.Proto2MessageSchema.field.optionalStringField,
     );
     expect(set).toBe(false);
   });
   describe("with proto3", () => {
-    const desc = proto3_ts.Proto3MessageDesc;
+    const desc = proto3_ts.Proto3MessageSchema;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
       const set = isFieldSet(msg, field);
@@ -66,7 +66,7 @@ describe("isFieldSet()", () => {
     });
   });
   describe("with proto2", () => {
-    const desc = proto2_ts.Proto2MessageDesc;
+    const desc = proto2_ts.Proto2MessageSchema;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
       const set = isFieldSet(msg, field);
@@ -80,7 +80,7 @@ describe("isFieldSet()", () => {
     });
   });
   describe("with edition2023", () => {
-    const desc = edition2023_ts.Edition2023MessageDesc;
+    const desc = edition2023_ts.Edition2023MessageSchema;
     test.each(desc.fields)("%s is initially unset", (field) => {
       const msg = create(desc);
       const set = isFieldSet(msg, field);
@@ -97,7 +97,7 @@ describe("isFieldSet()", () => {
 
 describe("clearField()", () => {
   describe("with proto3", () => {
-    const desc = proto3_ts.Proto3MessageDesc;
+    const desc = proto3_ts.Proto3MessageSchema;
     let msg: proto3_ts.Proto3Message;
     let zero: proto3_ts.Proto3Message;
     beforeEach(() => {
@@ -127,7 +127,7 @@ describe("clearField()", () => {
     });
   });
   describe("with proto2", () => {
-    const desc = proto2_ts.Proto2MessageDesc;
+    const desc = proto2_ts.Proto2MessageSchema;
     let msg: proto2_ts.Proto2Message;
     let zero: proto2_ts.Proto2Message;
     beforeEach(() => {
@@ -154,7 +154,7 @@ describe("clearField()", () => {
     });
   });
   describe("with edition2023", () => {
-    const desc = edition2023_ts.Edition2023MessageDesc;
+    const desc = edition2023_ts.Edition2023MessageSchema;
     let msg: edition2023_ts.Edition2023Message;
     let zero: edition2023_ts.Edition2023Message;
     beforeEach(() => {

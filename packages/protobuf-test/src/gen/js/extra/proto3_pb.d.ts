@@ -23,7 +23,7 @@ import type { UInt32Value, UInt32ValueJson } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file extra/proto3.proto.
  */
-export declare const fileDesc_extra_proto3: GenDescFile;
+export declare const file_extra_proto3: GenDescFile;
 
 /**
  * Note: We do not exhaust all field types
@@ -625,9 +625,9 @@ export declare type Proto3MessageJson = {
 
 /**
  * Describes the message spec.Proto3Message.
- * Use `create(Proto3MessageDesc)` to create a new message.
+ * Use `create(Proto3MessageSchema)` to create a new message.
  */
-export declare const Proto3MessageDesc: GenDescMessage<Proto3Message, Proto3MessageJson>;
+export declare const Proto3MessageSchema: GenDescMessage<Proto3Message, Proto3MessageJson>;
 
 /**
  * @generated from enum spec.Proto3Enum
@@ -657,5 +657,5 @@ export declare type Proto3EnumJson = "PROTO3_ENUM_UNSPECIFIED" | "PROTO3_ENUM_YE
 /**
  * Describes the enum spec.Proto3Enum.
  */
-export declare const Proto3EnumDesc: GenDescEnum<Proto3Enum, Proto3EnumJson>;
+export declare const Proto3EnumSchema: GenDescEnum<Proto3Enum, Proto3EnumJson>;
 

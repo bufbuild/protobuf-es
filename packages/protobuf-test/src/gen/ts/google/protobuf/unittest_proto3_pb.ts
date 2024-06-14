@@ -19,15 +19,15 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { ImportMessage, ImportMessageJson } from "./unittest_import_pb.js";
-import { fileDesc_google_protobuf_unittest_import } from "./unittest_import_pb.js";
+import { file_google_protobuf_unittest_import } from "./unittest_import_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 import type { PublicImportMessage, PublicImportMessageJson } from "./unittest_import_public_pb.js";
 
 /**
  * Describes the file google/protobuf/unittest_proto3.proto.
  */
-export const fileDesc_google_protobuf_unittest_proto3: GenDescFile = /*@__PURE__*/
-  fileDesc("CiVnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfcHJvdG8zLnByb3RvEg9wcm90bzNfdW5pdHRlc3Qi/xEKDFRlc3RBbGxUeXBlcxIWCg5vcHRpb25hbF9pbnQzMhgBIAEoBRIWCg5vcHRpb25hbF9pbnQ2NBgCIAEoAxIXCg9vcHRpb25hbF91aW50MzIYAyABKA0SFwoPb3B0aW9uYWxfdWludDY0GAQgASgEEhcKD29wdGlvbmFsX3NpbnQzMhgFIAEoERIXCg9vcHRpb25hbF9zaW50NjQYBiABKBISGAoQb3B0aW9uYWxfZml4ZWQzMhgHIAEoBxIYChBvcHRpb25hbF9maXhlZDY0GAggASgGEhkKEW9wdGlvbmFsX3NmaXhlZDMyGAkgASgPEhkKEW9wdGlvbmFsX3NmaXhlZDY0GAogASgQEhYKDm9wdGlvbmFsX2Zsb2F0GAsgASgCEhcKD29wdGlvbmFsX2RvdWJsZRgMIAEoARIVCg1vcHRpb25hbF9ib29sGA0gASgIEhcKD29wdGlvbmFsX3N0cmluZxgOIAEoCRIWCg5vcHRpb25hbF9ieXRlcxgPIAEoDBJRChdvcHRpb25hbF9uZXN0ZWRfbWVzc2FnZRgSIAEoCzIrLnByb3RvM191bml0dGVzdC5UZXN0QWxsVHlwZXMuTmVzdGVkTWVzc2FnZUgBiAEBEkEKGG9wdGlvbmFsX2ZvcmVpZ25fbWVzc2FnZRgTIAEoCzIfLnByb3RvM191bml0dGVzdC5Gb3JlaWduTWVzc2FnZRJIChdvcHRpb25hbF9pbXBvcnRfbWVzc2FnZRgUIAEoCzInLnByb3RvYnVmX3VuaXR0ZXN0X2ltcG9ydC5JbXBvcnRNZXNzYWdlEkYKFG9wdGlvbmFsX25lc3RlZF9lbnVtGBUgASgOMigucHJvdG8zX3VuaXR0ZXN0LlRlc3RBbGxUeXBlcy5OZXN0ZWRFbnVtEjsKFW9wdGlvbmFsX2ZvcmVpZ25fZW51bRgWIAEoDjIcLnByb3RvM191bml0dGVzdC5Gb3JlaWduRW51bRIhChVvcHRpb25hbF9zdHJpbmdfcGllY2UYGCABKAlCAggCEhkKDW9wdGlvbmFsX2NvcmQYGSABKAlCAggBElUKHm9wdGlvbmFsX3B1YmxpY19pbXBvcnRfbWVzc2FnZRgaIAEoCzItLnByb3RvYnVmX3VuaXR0ZXN0X2ltcG9ydC5QdWJsaWNJbXBvcnRNZXNzYWdlEk4KFW9wdGlvbmFsX2xhenlfbWVzc2FnZRgbIAEoCzIrLnByb3RvM191bml0dGVzdC5UZXN0QWxsVHlwZXMuTmVzdGVkTWVzc2FnZUICKAESWQogb3B0aW9uYWxfdW52ZXJpZmllZF9sYXp5X21lc3NhZ2UYHCABKAsyKy5wcm90bzNfdW5pdHRlc3QuVGVzdEFsbFR5cGVzLk5lc3RlZE1lc3NhZ2VCAngBElEKHG9wdGlvbmFsX2xhenlfaW1wb3J0X21lc3NhZ2UYcyABKAsyJy5wcm90b2J1Zl91bml0dGVzdF9pbXBvcnQuSW1wb3J0TWVzc2FnZUICKAESFgoOcmVwZWF0ZWRfaW50MzIYHyADKAUSFgoOcmVwZWF0ZWRfaW50NjQYICADKAMSFwoPcmVwZWF0ZWRfdWludDMyGCEgAygNEhcKD3JlcGVhdGVkX3VpbnQ2NBgiIAMoBBIXCg9yZXBlYXRlZF9zaW50MzIYIyADKBESFwoPcmVwZWF0ZWRfc2ludDY0GCQgAygSEhgKEHJlcGVhdGVkX2ZpeGVkMzIYJSADKAcSGAoQcmVwZWF0ZWRfZml4ZWQ2NBgmIAMoBhIZChFyZXBlYXRlZF9zZml4ZWQzMhgnIAMoDxIZChFyZXBlYXRlZF9zZml4ZWQ2NBgoIAMoEBIWCg5yZXBlYXRlZF9mbG9hdBgpIAMoAhIXCg9yZXBlYXRlZF9kb3VibGUYKiADKAESFQoNcmVwZWF0ZWRfYm9vbBgrIAMoCBIXCg9yZXBlYXRlZF9zdHJpbmcYLCADKAkSFgoOcmVwZWF0ZWRfYnl0ZXMYLSADKAwSTAoXcmVwZWF0ZWRfbmVzdGVkX21lc3NhZ2UYMCADKAsyKy5wcm90bzNfdW5pdHRlc3QuVGVzdEFsbFR5cGVzLk5lc3RlZE1lc3NhZ2USQQoYcmVwZWF0ZWRfZm9yZWlnbl9tZXNzYWdlGDEgAygLMh8ucHJvdG8zX3VuaXR0ZXN0LkZvcmVpZ25NZXNzYWdlEkgKF3JlcGVhdGVkX2ltcG9ydF9tZXNzYWdlGDIgAygLMicucHJvdG9idWZfdW5pdHRlc3RfaW1wb3J0LkltcG9ydE1lc3NhZ2USRgoUcmVwZWF0ZWRfbmVzdGVkX2VudW0YMyADKA4yKC5wcm90bzNfdW5pdHRlc3QuVGVzdEFsbFR5cGVzLk5lc3RlZEVudW0SOwoVcmVwZWF0ZWRfZm9yZWlnbl9lbnVtGDQgAygOMhwucHJvdG8zX3VuaXR0ZXN0LkZvcmVpZ25FbnVtEiEKFXJlcGVhdGVkX3N0cmluZ19waWVjZRg2IAMoCUICCAISGQoNcmVwZWF0ZWRfY29yZBg3IAMoCUICCAESSgoVcmVwZWF0ZWRfbGF6eV9tZXNzYWdlGDkgAygLMisucHJvdG8zX3VuaXR0ZXN0LlRlc3RBbGxUeXBlcy5OZXN0ZWRNZXNzYWdlEhYKDG9uZW9mX3VpbnQzMhhvIAEoDUgAEksKFG9uZW9mX25lc3RlZF9tZXNzYWdlGHAgASgLMisucHJvdG8zX3VuaXR0ZXN0LlRlc3RBbGxUeXBlcy5OZXN0ZWRNZXNzYWdlSAASFgoMb25lb2Zfc3RyaW5nGHEgASgJSAASFQoLb25lb2ZfYnl0ZXMYciABKAxIABobCg1OZXN0ZWRNZXNzYWdlEgoKAmJiGAEgASgFIkMKCk5lc3RlZEVudW0SCAoEWkVSTxAAEgcKA0ZPTxABEgcKA0JBUhACEgcKA0JBWhADEhAKA05FRxD///////////8BQg0KC29uZW9mX2ZpZWxkQhoKGF9vcHRpb25hbF9uZXN0ZWRfbWVzc2FnZSKoAwoPVGVzdFBhY2tlZFR5cGVzEhgKDHBhY2tlZF9pbnQzMhhaIAMoBUICEAESGAoMcGFja2VkX2ludDY0GFsgAygDQgIQARIZCg1wYWNrZWRfdWludDMyGFwgAygNQgIQARIZCg1wYWNrZWRfdWludDY0GF0gAygEQgIQARIZCg1wYWNrZWRfc2ludDMyGF4gAygRQgIQARIZCg1wYWNrZWRfc2ludDY0GF8gAygSQgIQARIaCg5wYWNrZWRfZml4ZWQzMhhgIAMoB0ICEAESGgoOcGFja2VkX2ZpeGVkNjQYYSADKAZCAhABEhsKD3BhY2tlZF9zZml4ZWQzMhhiIAMoD0ICEAESGwoPcGFja2VkX3NmaXhlZDY0GGMgAygQQgIQARIYCgxwYWNrZWRfZmxvYXQYZCADKAJCAhABEhkKDXBhY2tlZF9kb3VibGUYZSADKAFCAhABEhcKC3BhY2tlZF9ib29sGGYgAygIQgIQARI1CgtwYWNrZWRfZW51bRhnIAMoDjIcLnByb3RvM191bml0dGVzdC5Gb3JlaWduRW51bUICEAEi2QMKEVRlc3RVbnBhY2tlZFR5cGVzEhoKDnJlcGVhdGVkX2ludDMyGAEgAygFQgIQABIaCg5yZXBlYXRlZF9pbnQ2NBgCIAMoA0ICEAASGwoPcmVwZWF0ZWRfdWludDMyGAMgAygNQgIQABIbCg9yZXBlYXRlZF91aW50NjQYBCADKARCAhAAEhsKD3JlcGVhdGVkX3NpbnQzMhgFIAMoEUICEAASGwoPcmVwZWF0ZWRfc2ludDY0GAYgAygSQgIQABIcChByZXBlYXRlZF9maXhlZDMyGAcgAygHQgIQABIcChByZXBlYXRlZF9maXhlZDY0GAggAygGQgIQABIdChFyZXBlYXRlZF9zZml4ZWQzMhgJIAMoD0ICEAASHQoRcmVwZWF0ZWRfc2ZpeGVkNjQYCiADKBBCAhAAEhoKDnJlcGVhdGVkX2Zsb2F0GAsgAygCQgIQABIbCg9yZXBlYXRlZF9kb3VibGUYDCADKAFCAhAAEhkKDXJlcGVhdGVkX2Jvb2wYDSADKAhCAhAAEkoKFHJlcGVhdGVkX25lc3RlZF9lbnVtGA4gAygOMigucHJvdG8zX3VuaXR0ZXN0LlRlc3RBbGxUeXBlcy5OZXN0ZWRFbnVtQgIQACJ4ChJOZXN0ZWRUZXN0QWxsVHlwZXMSMgoFY2hpbGQYASABKAsyIy5wcm90bzNfdW5pdHRlc3QuTmVzdGVkVGVzdEFsbFR5cGVzEi4KB3BheWxvYWQYAiABKAsyHS5wcm90bzNfdW5pdHRlc3QuVGVzdEFsbFR5cGVzIhsKDkZvcmVpZ25NZXNzYWdlEgkKAWMYASABKAUiEgoQVGVzdEVtcHR5TWVzc2FnZSIpChRUZXN0TWVzc2FnZVdpdGhEdW1teRIRCgVkdW1teRj/////ASABKAgihQEKClRlc3RPbmVvZjISOgoIZm9vX2VudW0YBiABKA4yJi5wcm90bzNfdW5pdHRlc3QuVGVzdE9uZW9mMi5OZXN0ZWRFbnVtSAAiNAoKTmVzdGVkRW51bRILCgdVTktOT1dOEAASBwoDRk9PEAESBwoDQkFSEAISBwoDQkFaEANCBQoDZm9vKlIKC0ZvcmVpZ25FbnVtEhAKDEZPUkVJR05fWkVSTxAAEg8KC0ZPUkVJR05fRk9PEAQSDwoLRk9SRUlHTl9CQVIQBRIPCgtGT1JFSUdOX0JBWhAGQgJIAWIGcHJvdG8z", [fileDesc_google_protobuf_unittest_import]);
+export const file_google_protobuf_unittest_proto3: GenDescFile = /*@__PURE__*/
+  fileDesc("CiVnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfcHJvdG8zLnByb3RvEg9wcm90bzNfdW5pdHRlc3Qi/xEKDFRlc3RBbGxUeXBlcxIWCg5vcHRpb25hbF9pbnQzMhgBIAEoBRIWCg5vcHRpb25hbF9pbnQ2NBgCIAEoAxIXCg9vcHRpb25hbF91aW50MzIYAyABKA0SFwoPb3B0aW9uYWxfdWludDY0GAQgASgEEhcKD29wdGlvbmFsX3NpbnQzMhgFIAEoERIXCg9vcHRpb25hbF9zaW50NjQYBiABKBISGAoQb3B0aW9uYWxfZml4ZWQzMhgHIAEoBxIYChBvcHRpb25hbF9maXhlZDY0GAggASgGEhkKEW9wdGlvbmFsX3NmaXhlZDMyGAkgASgPEhkKEW9wdGlvbmFsX3NmaXhlZDY0GAogASgQEhYKDm9wdGlvbmFsX2Zsb2F0GAsgASgCEhcKD29wdGlvbmFsX2RvdWJsZRgMIAEoARIVCg1vcHRpb25hbF9ib29sGA0gASgIEhcKD29wdGlvbmFsX3N0cmluZxgOIAEoCRIWCg5vcHRpb25hbF9ieXRlcxgPIAEoDBJRChdvcHRpb25hbF9uZXN0ZWRfbWVzc2FnZRgSIAEoCzIrLnByb3RvM191bml0dGVzdC5UZXN0QWxsVHlwZXMuTmVzdGVkTWVzc2FnZUgBiAEBEkEKGG9wdGlvbmFsX2ZvcmVpZ25fbWVzc2FnZRgTIAEoCzIfLnByb3RvM191bml0dGVzdC5Gb3JlaWduTWVzc2FnZRJIChdvcHRpb25hbF9pbXBvcnRfbWVzc2FnZRgUIAEoCzInLnByb3RvYnVmX3VuaXR0ZXN0X2ltcG9ydC5JbXBvcnRNZXNzYWdlEkYKFG9wdGlvbmFsX25lc3RlZF9lbnVtGBUgASgOMigucHJvdG8zX3VuaXR0ZXN0LlRlc3RBbGxUeXBlcy5OZXN0ZWRFbnVtEjsKFW9wdGlvbmFsX2ZvcmVpZ25fZW51bRgWIAEoDjIcLnByb3RvM191bml0dGVzdC5Gb3JlaWduRW51bRIhChVvcHRpb25hbF9zdHJpbmdfcGllY2UYGCABKAlCAggCEhkKDW9wdGlvbmFsX2NvcmQYGSABKAlCAggBElUKHm9wdGlvbmFsX3B1YmxpY19pbXBvcnRfbWVzc2FnZRgaIAEoCzItLnByb3RvYnVmX3VuaXR0ZXN0X2ltcG9ydC5QdWJsaWNJbXBvcnRNZXNzYWdlEk4KFW9wdGlvbmFsX2xhenlfbWVzc2FnZRgbIAEoCzIrLnByb3RvM191bml0dGVzdC5UZXN0QWxsVHlwZXMuTmVzdGVkTWVzc2FnZUICKAESWQogb3B0aW9uYWxfdW52ZXJpZmllZF9sYXp5X21lc3NhZ2UYHCABKAsyKy5wcm90bzNfdW5pdHRlc3QuVGVzdEFsbFR5cGVzLk5lc3RlZE1lc3NhZ2VCAngBElEKHG9wdGlvbmFsX2xhenlfaW1wb3J0X21lc3NhZ2UYcyABKAsyJy5wcm90b2J1Zl91bml0dGVzdF9pbXBvcnQuSW1wb3J0TWVzc2FnZUICKAESFgoOcmVwZWF0ZWRfaW50MzIYHyADKAUSFgoOcmVwZWF0ZWRfaW50NjQYICADKAMSFwoPcmVwZWF0ZWRfdWludDMyGCEgAygNEhcKD3JlcGVhdGVkX3VpbnQ2NBgiIAMoBBIXCg9yZXBlYXRlZF9zaW50MzIYIyADKBESFwoPcmVwZWF0ZWRfc2ludDY0GCQgAygSEhgKEHJlcGVhdGVkX2ZpeGVkMzIYJSADKAcSGAoQcmVwZWF0ZWRfZml4ZWQ2NBgmIAMoBhIZChFyZXBlYXRlZF9zZml4ZWQzMhgnIAMoDxIZChFyZXBlYXRlZF9zZml4ZWQ2NBgoIAMoEBIWCg5yZXBlYXRlZF9mbG9hdBgpIAMoAhIXCg9yZXBlYXRlZF9kb3VibGUYKiADKAESFQoNcmVwZWF0ZWRfYm9vbBgrIAMoCBIXCg9yZXBlYXRlZF9zdHJpbmcYLCADKAkSFgoOcmVwZWF0ZWRfYnl0ZXMYLSADKAwSTAoXcmVwZWF0ZWRfbmVzdGVkX21lc3NhZ2UYMCADKAsyKy5wcm90bzNfdW5pdHRlc3QuVGVzdEFsbFR5cGVzLk5lc3RlZE1lc3NhZ2USQQoYcmVwZWF0ZWRfZm9yZWlnbl9tZXNzYWdlGDEgAygLMh8ucHJvdG8zX3VuaXR0ZXN0LkZvcmVpZ25NZXNzYWdlEkgKF3JlcGVhdGVkX2ltcG9ydF9tZXNzYWdlGDIgAygLMicucHJvdG9idWZfdW5pdHRlc3RfaW1wb3J0LkltcG9ydE1lc3NhZ2USRgoUcmVwZWF0ZWRfbmVzdGVkX2VudW0YMyADKA4yKC5wcm90bzNfdW5pdHRlc3QuVGVzdEFsbFR5cGVzLk5lc3RlZEVudW0SOwoVcmVwZWF0ZWRfZm9yZWlnbl9lbnVtGDQgAygOMhwucHJvdG8zX3VuaXR0ZXN0LkZvcmVpZ25FbnVtEiEKFXJlcGVhdGVkX3N0cmluZ19waWVjZRg2IAMoCUICCAISGQoNcmVwZWF0ZWRfY29yZBg3IAMoCUICCAESSgoVcmVwZWF0ZWRfbGF6eV9tZXNzYWdlGDkgAygLMisucHJvdG8zX3VuaXR0ZXN0LlRlc3RBbGxUeXBlcy5OZXN0ZWRNZXNzYWdlEhYKDG9uZW9mX3VpbnQzMhhvIAEoDUgAEksKFG9uZW9mX25lc3RlZF9tZXNzYWdlGHAgASgLMisucHJvdG8zX3VuaXR0ZXN0LlRlc3RBbGxUeXBlcy5OZXN0ZWRNZXNzYWdlSAASFgoMb25lb2Zfc3RyaW5nGHEgASgJSAASFQoLb25lb2ZfYnl0ZXMYciABKAxIABobCg1OZXN0ZWRNZXNzYWdlEgoKAmJiGAEgASgFIkMKCk5lc3RlZEVudW0SCAoEWkVSTxAAEgcKA0ZPTxABEgcKA0JBUhACEgcKA0JBWhADEhAKA05FRxD///////////8BQg0KC29uZW9mX2ZpZWxkQhoKGF9vcHRpb25hbF9uZXN0ZWRfbWVzc2FnZSKoAwoPVGVzdFBhY2tlZFR5cGVzEhgKDHBhY2tlZF9pbnQzMhhaIAMoBUICEAESGAoMcGFja2VkX2ludDY0GFsgAygDQgIQARIZCg1wYWNrZWRfdWludDMyGFwgAygNQgIQARIZCg1wYWNrZWRfdWludDY0GF0gAygEQgIQARIZCg1wYWNrZWRfc2ludDMyGF4gAygRQgIQARIZCg1wYWNrZWRfc2ludDY0GF8gAygSQgIQARIaCg5wYWNrZWRfZml4ZWQzMhhgIAMoB0ICEAESGgoOcGFja2VkX2ZpeGVkNjQYYSADKAZCAhABEhsKD3BhY2tlZF9zZml4ZWQzMhhiIAMoD0ICEAESGwoPcGFja2VkX3NmaXhlZDY0GGMgAygQQgIQARIYCgxwYWNrZWRfZmxvYXQYZCADKAJCAhABEhkKDXBhY2tlZF9kb3VibGUYZSADKAFCAhABEhcKC3BhY2tlZF9ib29sGGYgAygIQgIQARI1CgtwYWNrZWRfZW51bRhnIAMoDjIcLnByb3RvM191bml0dGVzdC5Gb3JlaWduRW51bUICEAEi2QMKEVRlc3RVbnBhY2tlZFR5cGVzEhoKDnJlcGVhdGVkX2ludDMyGAEgAygFQgIQABIaCg5yZXBlYXRlZF9pbnQ2NBgCIAMoA0ICEAASGwoPcmVwZWF0ZWRfdWludDMyGAMgAygNQgIQABIbCg9yZXBlYXRlZF91aW50NjQYBCADKARCAhAAEhsKD3JlcGVhdGVkX3NpbnQzMhgFIAMoEUICEAASGwoPcmVwZWF0ZWRfc2ludDY0GAYgAygSQgIQABIcChByZXBlYXRlZF9maXhlZDMyGAcgAygHQgIQABIcChByZXBlYXRlZF9maXhlZDY0GAggAygGQgIQABIdChFyZXBlYXRlZF9zZml4ZWQzMhgJIAMoD0ICEAASHQoRcmVwZWF0ZWRfc2ZpeGVkNjQYCiADKBBCAhAAEhoKDnJlcGVhdGVkX2Zsb2F0GAsgAygCQgIQABIbCg9yZXBlYXRlZF9kb3VibGUYDCADKAFCAhAAEhkKDXJlcGVhdGVkX2Jvb2wYDSADKAhCAhAAEkoKFHJlcGVhdGVkX25lc3RlZF9lbnVtGA4gAygOMigucHJvdG8zX3VuaXR0ZXN0LlRlc3RBbGxUeXBlcy5OZXN0ZWRFbnVtQgIQACJ4ChJOZXN0ZWRUZXN0QWxsVHlwZXMSMgoFY2hpbGQYASABKAsyIy5wcm90bzNfdW5pdHRlc3QuTmVzdGVkVGVzdEFsbFR5cGVzEi4KB3BheWxvYWQYAiABKAsyHS5wcm90bzNfdW5pdHRlc3QuVGVzdEFsbFR5cGVzIhsKDkZvcmVpZ25NZXNzYWdlEgkKAWMYASABKAUiEgoQVGVzdEVtcHR5TWVzc2FnZSIpChRUZXN0TWVzc2FnZVdpdGhEdW1teRIRCgVkdW1teRj/////ASABKAgihQEKClRlc3RPbmVvZjISOgoIZm9vX2VudW0YBiABKA4yJi5wcm90bzNfdW5pdHRlc3QuVGVzdE9uZW9mMi5OZXN0ZWRFbnVtSAAiNAoKTmVzdGVkRW51bRILCgdVTktOT1dOEAASBwoDRk9PEAESBwoDQkFSEAISBwoDQkFaEANCBQoDZm9vKlIKC0ZvcmVpZ25FbnVtEhAKDEZPUkVJR05fWkVSTxAAEg8KC0ZPUkVJR05fRk9PEAQSDwoLRk9SRUlHTl9CQVIQBRIPCgtGT1JFSUdOX0JBWhAGQgJIAWIGcHJvdG8z", [file_google_protobuf_unittest_import]);
 
 /**
  * This proto includes every type of field in both singular and repeated
@@ -589,10 +589,10 @@ export type TestAllTypesJson = {
 
 /**
  * Describes the message proto3_unittest.TestAllTypes.
- * Use `create(TestAllTypesDesc)` to create a new message.
+ * Use `create(TestAllTypesSchema)` to create a new message.
  */
-export const TestAllTypesDesc: GenDescMessage<TestAllTypes, TestAllTypesJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3, 0);
+export const TestAllTypesSchema: GenDescMessage<TestAllTypes, TestAllTypesJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3, 0);
 
 /**
  * @generated from message proto3_unittest.TestAllTypes.NestedMessage
@@ -620,10 +620,10 @@ export type TestAllTypes_NestedMessageJson = {
 
 /**
  * Describes the message proto3_unittest.TestAllTypes.NestedMessage.
- * Use `create(TestAllTypes_NestedMessageDesc)` to create a new message.
+ * Use `create(TestAllTypes_NestedMessageSchema)` to create a new message.
  */
-export const TestAllTypes_NestedMessageDesc: GenDescMessage<TestAllTypes_NestedMessage, TestAllTypes_NestedMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3, 0, 0);
+export const TestAllTypes_NestedMessageSchema: GenDescMessage<TestAllTypes_NestedMessage, TestAllTypes_NestedMessageJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3, 0, 0);
 
 /**
  * @generated from enum proto3_unittest.TestAllTypes.NestedEnum
@@ -665,8 +665,8 @@ export type TestAllTypes_NestedEnumJson = "ZERO" | "FOO" | "BAR" | "BAZ" | "NEG"
 /**
  * Describes the enum proto3_unittest.TestAllTypes.NestedEnum.
  */
-export const TestAllTypes_NestedEnumDesc: GenDescEnum<TestAllTypes_NestedEnum, TestAllTypes_NestedEnumJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_unittest_proto3, 0, 0);
+export const TestAllTypes_NestedEnumSchema: GenDescEnum<TestAllTypes_NestedEnum, TestAllTypes_NestedEnumJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_proto3, 0, 0);
 
 /**
  * @generated from message proto3_unittest.TestPackedTypes
@@ -820,10 +820,10 @@ export type TestPackedTypesJson = {
 
 /**
  * Describes the message proto3_unittest.TestPackedTypes.
- * Use `create(TestPackedTypesDesc)` to create a new message.
+ * Use `create(TestPackedTypesSchema)` to create a new message.
  */
-export const TestPackedTypesDesc: GenDescMessage<TestPackedTypes, TestPackedTypesJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3, 1);
+export const TestPackedTypesSchema: GenDescMessage<TestPackedTypes, TestPackedTypesJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3, 1);
 
 /**
  * Explicitly set packed to false
@@ -979,10 +979,10 @@ export type TestUnpackedTypesJson = {
 
 /**
  * Describes the message proto3_unittest.TestUnpackedTypes.
- * Use `create(TestUnpackedTypesDesc)` to create a new message.
+ * Use `create(TestUnpackedTypesSchema)` to create a new message.
  */
-export const TestUnpackedTypesDesc: GenDescMessage<TestUnpackedTypes, TestUnpackedTypesJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3, 2);
+export const TestUnpackedTypesSchema: GenDescMessage<TestUnpackedTypes, TestUnpackedTypesJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3, 2);
 
 /**
  * This proto includes a recursively nested message.
@@ -1018,10 +1018,10 @@ export type NestedTestAllTypesJson = {
 
 /**
  * Describes the message proto3_unittest.NestedTestAllTypes.
- * Use `create(NestedTestAllTypesDesc)` to create a new message.
+ * Use `create(NestedTestAllTypesSchema)` to create a new message.
  */
-export const NestedTestAllTypesDesc: GenDescMessage<NestedTestAllTypes, NestedTestAllTypesJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3, 3);
+export const NestedTestAllTypesSchema: GenDescMessage<NestedTestAllTypes, NestedTestAllTypesJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3, 3);
 
 /**
  * Define these after TestAllTypes to make sure the compiler can handle
@@ -1048,10 +1048,10 @@ export type ForeignMessageJson = {
 
 /**
  * Describes the message proto3_unittest.ForeignMessage.
- * Use `create(ForeignMessageDesc)` to create a new message.
+ * Use `create(ForeignMessageSchema)` to create a new message.
  */
-export const ForeignMessageDesc: GenDescMessage<ForeignMessage, ForeignMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3, 4);
+export const ForeignMessageSchema: GenDescMessage<ForeignMessage, ForeignMessageJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3, 4);
 
 /**
  * TestEmptyMessage is used to test behavior of unknown fields.
@@ -1069,10 +1069,10 @@ export type TestEmptyMessageJson = {
 
 /**
  * Describes the message proto3_unittest.TestEmptyMessage.
- * Use `create(TestEmptyMessageDesc)` to create a new message.
+ * Use `create(TestEmptyMessageSchema)` to create a new message.
  */
-export const TestEmptyMessageDesc: GenDescMessage<TestEmptyMessage, TestEmptyMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3, 5);
+export const TestEmptyMessageSchema: GenDescMessage<TestEmptyMessage, TestEmptyMessageJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3, 5);
 
 /**
  * TestMessageWithDummy is also used to test behavior of unknown fields.
@@ -1101,10 +1101,10 @@ export type TestMessageWithDummyJson = {
 
 /**
  * Describes the message proto3_unittest.TestMessageWithDummy.
- * Use `create(TestMessageWithDummyDesc)` to create a new message.
+ * Use `create(TestMessageWithDummySchema)` to create a new message.
  */
-export const TestMessageWithDummyDesc: GenDescMessage<TestMessageWithDummy, TestMessageWithDummyJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3, 6);
+export const TestMessageWithDummySchema: GenDescMessage<TestMessageWithDummy, TestMessageWithDummyJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3, 6);
 
 /**
  * Same layout as TestOneof2 in unittest.proto to test unknown enum value
@@ -1137,10 +1137,10 @@ export type TestOneof2Json = {
 
 /**
  * Describes the message proto3_unittest.TestOneof2.
- * Use `create(TestOneof2Desc)` to create a new message.
+ * Use `create(TestOneof2Schema)` to create a new message.
  */
-export const TestOneof2Desc: GenDescMessage<TestOneof2, TestOneof2Json> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_proto3, 7);
+export const TestOneof2Schema: GenDescMessage<TestOneof2, TestOneof2Json> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_proto3, 7);
 
 /**
  * @generated from enum proto3_unittest.TestOneof2.NestedEnum
@@ -1175,8 +1175,8 @@ export type TestOneof2_NestedEnumJson = "UNKNOWN" | "FOO" | "BAR" | "BAZ";
 /**
  * Describes the enum proto3_unittest.TestOneof2.NestedEnum.
  */
-export const TestOneof2_NestedEnumDesc: GenDescEnum<TestOneof2_NestedEnum, TestOneof2_NestedEnumJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_unittest_proto3, 7, 0);
+export const TestOneof2_NestedEnumSchema: GenDescEnum<TestOneof2_NestedEnum, TestOneof2_NestedEnumJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_proto3, 7, 0);
 
 /**
  * @generated from enum proto3_unittest.ForeignEnum
@@ -1211,6 +1211,6 @@ export type ForeignEnumJson = "FOREIGN_ZERO" | "FOREIGN_FOO" | "FOREIGN_BAR" | "
 /**
  * Describes the enum proto3_unittest.ForeignEnum.
  */
-export const ForeignEnumDesc: GenDescEnum<ForeignEnum, ForeignEnumJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_unittest_proto3, 0);
+export const ForeignEnumSchema: GenDescEnum<ForeignEnum, ForeignEnumJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_proto3, 0);
 

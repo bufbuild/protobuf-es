@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/msg-message.proto.
  */
-export declare const fileDesc_extra_msg_message: GenDescFile;
+export declare const file_extra_msg_message: GenDescFile;
 
 /**
  * @generated from message spec.MessageFieldMessage
@@ -56,9 +56,9 @@ export declare type MessageFieldMessageJson = {
 
 /**
  * Describes the message spec.MessageFieldMessage.
- * Use `create(MessageFieldMessageDesc)` to create a new message.
+ * Use `create(MessageFieldMessageSchema)` to create a new message.
  */
-export declare const MessageFieldMessageDesc: GenDescMessage<MessageFieldMessage, MessageFieldMessageJson>;
+export declare const MessageFieldMessageSchema: GenDescMessage<MessageFieldMessage, MessageFieldMessageJson>;
 
 /**
  * @generated from message spec.MessageFieldMessage.TestMessage
@@ -82,7 +82,7 @@ export declare type MessageFieldMessage_TestMessageJson = {
 
 /**
  * Describes the message spec.MessageFieldMessage.TestMessage.
- * Use `create(MessageFieldMessage_TestMessageDesc)` to create a new message.
+ * Use `create(MessageFieldMessage_TestMessageSchema)` to create a new message.
  */
-export declare const MessageFieldMessage_TestMessageDesc: GenDescMessage<MessageFieldMessage_TestMessage, MessageFieldMessage_TestMessageJson>;
+export declare const MessageFieldMessage_TestMessageSchema: GenDescMessage<MessageFieldMessage_TestMessage, MessageFieldMessage_TestMessageJson>;
 

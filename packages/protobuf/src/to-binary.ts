@@ -51,14 +51,14 @@ function makeWriteOptions(
 }
 
 export function toBinary<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
   options?: Partial<BinaryWriteOptions>,
 ): Uint8Array {
   return writeFields(
     new BinaryWriter(),
     makeWriteOptions(options),
-    reflect(messageDesc, message),
+    reflect(schema, message),
   ).finish();
 }
 

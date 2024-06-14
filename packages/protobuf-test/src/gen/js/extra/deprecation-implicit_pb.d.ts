@@ -18,13 +18,13 @@
 
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { EmptyDesc, FieldOptions } from "@bufbuild/protobuf/wkt";
+import type { EmptySchema, FieldOptions } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/deprecation-implicit.proto.
  * @deprecated
  */
-export declare const fileDesc_extra_deprecation_implicit: GenDescFile;
+export declare const file_extra_deprecation_implicit: GenDescFile;
 
 /**
  * @generated from message spec.ImplicitlyDeprecatedMessage
@@ -49,10 +49,10 @@ export declare type ImplicitlyDeprecatedMessageJson = {
 
 /**
  * Describes the message spec.ImplicitlyDeprecatedMessage.
- * Use `create(ImplicitlyDeprecatedMessageDesc)` to create a new message.
+ * Use `create(ImplicitlyDeprecatedMessageSchema)` to create a new message.
  * @deprecated
  */
-export declare const ImplicitlyDeprecatedMessageDesc: GenDescMessage<ImplicitlyDeprecatedMessage, ImplicitlyDeprecatedMessageJson>;
+export declare const ImplicitlyDeprecatedMessageSchema: GenDescMessage<ImplicitlyDeprecatedMessage, ImplicitlyDeprecatedMessageJson>;
 
 /**
  * @generated from enum spec.ImplicitlyDeprecatedEnum
@@ -74,7 +74,7 @@ export declare type ImplicitlyDeprecatedEnumJson = "IMPLICITLY_DEPRECATED_ENUM_U
  * Describes the enum spec.ImplicitlyDeprecatedEnum.
  * @deprecated
  */
-export declare const ImplicitlyDeprecatedEnumDesc: GenDescEnum<ImplicitlyDeprecatedEnum, ImplicitlyDeprecatedEnumJson>;
+export declare const ImplicitlyDeprecatedEnumSchema: GenDescEnum<ImplicitlyDeprecatedEnum, ImplicitlyDeprecatedEnumJson>;
 
 /**
  * @generated from service spec.ImplicitlyDeprecatedService
@@ -86,8 +86,8 @@ export declare const ImplicitlyDeprecatedService: GenDescService<{
    */
   implicitlyDeprecatedRpc: {
     methodKind: "unary";
-    input: typeof EmptyDesc;
-    output: typeof EmptyDesc;
+    input: typeof EmptySchema;
+    output: typeof EmptySchema;
   },
 }
 >;

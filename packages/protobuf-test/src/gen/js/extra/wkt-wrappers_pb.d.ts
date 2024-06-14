@@ -24,7 +24,7 @@ import type { BoolValue, BoolValueJson, BytesValue, BytesValueJson, DoubleValue,
  * Describes the file extra/wkt-wrappers.proto.
  * @deprecated
  */
-export declare const fileDesc_extra_wkt_wrappers: GenDescFile;
+export declare const file_extra_wkt_wrappers: GenDescFile;
 
 /**
  * @generated from message spec.WrappersMessage
@@ -414,8 +414,8 @@ export declare type WrappersMessageJson = {
 
 /**
  * Describes the message spec.WrappersMessage.
- * Use `create(WrappersMessageDesc)` to create a new message.
+ * Use `create(WrappersMessageSchema)` to create a new message.
  * @deprecated
  */
-export declare const WrappersMessageDesc: GenDescMessage<WrappersMessage, WrappersMessageJson>;
+export declare const WrappersMessageSchema: GenDescMessage<WrappersMessage, WrappersMessageJson>;
 

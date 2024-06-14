@@ -25,21 +25,21 @@ import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
 import * as edition2023_proto2_ts from "./gen/ts/extra/edition2023-proto2_pb.js";
 import * as edition2023_proto3_ts from "./gen/ts/extra/edition2023-proto3_pb.js";
 import {
-  Edition2023MapEncodingMessage_ChildDesc,
-  Edition2023MapEncodingMessageDesc,
+  Edition2023MapEncodingMessage_ChildSchema,
+  Edition2023MapEncodingMessageSchema,
 } from "./gen/ts/extra/edition2023-map-encoding_pb.js";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 
 describe("edition2023 serialization", () => {
   test("should round-trip for binary", () => {
-    const desc = edition2023_ts.Edition2023MessageDesc;
+    const desc = edition2023_ts.Edition2023MessageSchema;
     const a = fillEdition2023Message(create(desc));
     const bytes = toBinary(desc, a);
     const b = fromBinary(desc, bytes);
     expect(a).toStrictEqual(b);
   });
   test("should round-trip for json", () => {
-    const desc = edition2023_ts.Edition2023MessageDesc;
+    const desc = edition2023_ts.Edition2023MessageSchema;
     const a = fillEdition2023Message(create(desc));
     const json = toJson(desc, a);
     const b = fromJson(desc, json);
@@ -47,18 +47,20 @@ describe("edition2023 serialization", () => {
   });
   describe("proto2 / edition2023 interop", () => {
     test("to binary", () => {
-      const descProto2 = edition2023_proto2_ts.Proto2MessageForEdition2023Desc;
+      const descProto2 =
+        edition2023_proto2_ts.Proto2MessageForEdition2023Schema;
       const msgProto2 = fillProto2Message(create(descProto2));
-      const descEdition = edition2023_ts.Edition2023FromProto2MessageDesc;
+      const descEdition = edition2023_ts.Edition2023FromProto2MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
       expect(toBinary(descEdition, msgEdition)).toStrictEqual(
         toBinary(descProto2, msgProto2),
       );
     });
     test("to json", () => {
-      const descProto2 = edition2023_proto2_ts.Proto2MessageForEdition2023Desc;
+      const descProto2 =
+        edition2023_proto2_ts.Proto2MessageForEdition2023Schema;
       const msgProto2 = fillProto2Message(create(descProto2));
-      const descEdition = edition2023_ts.Edition2023FromProto2MessageDesc;
+      const descEdition = edition2023_ts.Edition2023FromProto2MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
       expect(
         toJson(descEdition, msgEdition, {
@@ -71,20 +73,22 @@ describe("edition2023 serialization", () => {
       );
     });
     test("from binary", () => {
-      const descProto2 = edition2023_proto2_ts.Proto2MessageForEdition2023Desc;
+      const descProto2 =
+        edition2023_proto2_ts.Proto2MessageForEdition2023Schema;
       const msgProto2 = fillProto2Message(create(descProto2));
       const bytesProto2 = toBinary(descProto2, msgProto2);
-      const descEdition = edition2023_ts.Edition2023FromProto2MessageDesc;
+      const descEdition = edition2023_ts.Edition2023FromProto2MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
       expect(fromBinary(descEdition, bytesProto2)).toStrictEqual(msgEdition);
     });
     test("from json", () => {
-      const descProto2 = edition2023_proto2_ts.Proto2MessageForEdition2023Desc;
+      const descProto2 =
+        edition2023_proto2_ts.Proto2MessageForEdition2023Schema;
       const msgProto2 = fillProto2Message(create(descProto2));
       const jsonProto2 = toJson(descProto2, msgProto2, {
         enumAsInteger: true,
       });
-      const descEdition = edition2023_ts.Edition2023FromProto2MessageDesc;
+      const descEdition = edition2023_ts.Edition2023FromProto2MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
       expect(fromJson(descEdition, jsonProto2)).toStrictEqual(msgEdition);
     });
@@ -96,7 +100,7 @@ describe("edition2023 serialization", () => {
       msg.optionalClosedEnumField = edition2023_ts.Edition2023EnumClosed.A;
       msg.optionalStringFieldWithDefault = "";
       msg.optionalgroup = create(
-        edition2023_ts.Edition2023FromProto2Message_OptionalGroupDesc,
+        edition2023_ts.Edition2023FromProto2Message_OptionalGroupSchema,
         {
           int32Field: 123,
         },
@@ -105,7 +109,7 @@ describe("edition2023 serialization", () => {
       msg.requiredClosedEnumField = edition2023_ts.Edition2023EnumClosed.A;
       msg.requiredStringFieldWithDefault = "";
       msg.requiredgroup = create(
-        edition2023_ts.Edition2023FromProto2Message_RequiredGroupDesc,
+        edition2023_ts.Edition2023FromProto2Message_RequiredGroupSchema,
         {
           int32Field: 123,
         },
@@ -123,7 +127,7 @@ describe("edition2023 serialization", () => {
         edition2023_proto2_ts.Proto2EnumForEdition2023.A;
       msg.optionalStringFieldWithDefault = "";
       msg.optionalgroup = create(
-        edition2023_proto2_ts.Proto2MessageForEdition2023_OptionalGroupDesc,
+        edition2023_proto2_ts.Proto2MessageForEdition2023_OptionalGroupSchema,
         {
           int32Field: 123,
         },
@@ -133,7 +137,7 @@ describe("edition2023 serialization", () => {
         edition2023_proto2_ts.Proto2EnumForEdition2023.A;
       msg.requiredStringFieldWithDefault = "";
       msg.requiredgroup = create(
-        edition2023_proto2_ts.Proto2MessageForEdition2023_RequiredGroupDesc,
+        edition2023_proto2_ts.Proto2MessageForEdition2023_RequiredGroupSchema,
         {
           int32Field: 123,
         },
@@ -145,18 +149,20 @@ describe("edition2023 serialization", () => {
   });
   describe("proto3 / edition2023 interop", () => {
     test("to binary", () => {
-      const descProto3 = edition2023_proto3_ts.Proto3MessageForEdition2023Desc;
+      const descProto3 =
+        edition2023_proto3_ts.Proto3MessageForEdition2023Schema;
       const msgProto3 = fillProto3Message(create(descProto3));
-      const descEdition = edition2023_ts.Edition2023FromProto3MessageDesc;
+      const descEdition = edition2023_ts.Edition2023FromProto3MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
       expect(toBinary(descEdition, msgEdition)).toStrictEqual(
         toBinary(descProto3, msgProto3),
       );
     });
     test("to json", () => {
-      const descProto3 = edition2023_proto3_ts.Proto3MessageForEdition2023Desc;
+      const descProto3 =
+        edition2023_proto3_ts.Proto3MessageForEdition2023Schema;
       const msgProto3 = fillProto3Message(create(descProto3));
-      const descEdition = edition2023_ts.Edition2023FromProto3MessageDesc;
+      const descEdition = edition2023_ts.Edition2023FromProto3MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
       expect(
         toJson(descEdition, msgEdition, {
@@ -169,20 +175,22 @@ describe("edition2023 serialization", () => {
       );
     });
     test("from binary", () => {
-      const descProto3 = edition2023_proto3_ts.Proto3MessageForEdition2023Desc;
+      const descProto3 =
+        edition2023_proto3_ts.Proto3MessageForEdition2023Schema;
       const msgProto3 = fillProto3Message(create(descProto3));
       const bytesProto3 = toBinary(descProto3, msgProto3);
-      const descEdition = edition2023_ts.Edition2023FromProto3MessageDesc;
+      const descEdition = edition2023_ts.Edition2023FromProto3MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
       expect(fromBinary(descEdition, bytesProto3)).toStrictEqual(msgEdition);
     });
     test("from json", () => {
-      const descProto3 = edition2023_proto3_ts.Proto3MessageForEdition2023Desc;
+      const descProto3 =
+        edition2023_proto3_ts.Proto3MessageForEdition2023Schema;
       const msgProto3 = fillProto3Message(create(descProto3));
       const jsonProto3 = toJson(descProto3, msgProto3, {
         enumAsInteger: true,
       });
-      const descEdition = edition2023_ts.Edition2023FromProto3MessageDesc;
+      const descEdition = edition2023_ts.Edition2023FromProto3MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
       expect(fromJson(descEdition, jsonProto3)).toStrictEqual(msgEdition);
     });
@@ -215,10 +223,10 @@ describe("edition2023 serialization", () => {
   });
   describe("message_encoding DELIMITED with maps", () => {
     test("should round-trip", () => {
-      const a = create(Edition2023MapEncodingMessageDesc);
+      const a = create(Edition2023MapEncodingMessageSchema);
       a.stringMap[123] = "abc";
-      const bytes = toBinary(Edition2023MapEncodingMessageDesc, a);
-      const b = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
+      const bytes = toBinary(Edition2023MapEncodingMessageSchema, a);
+      const b = fromBinary(Edition2023MapEncodingMessageSchema, bytes);
       expect(b).toStrictEqual(a);
     });
     test("should expect LENGTH_PREFIXED map entry", () => {
@@ -229,7 +237,7 @@ describe("edition2023 serialization", () => {
       w.tag(2, WireType.Varint).string("abc");
       w.join();
       const bytes = w.finish();
-      const msg = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
+      const msg = fromBinary(Edition2023MapEncodingMessageSchema, bytes);
       expect(msg.stringMap).toStrictEqual({
         123: "abc",
       });
@@ -242,15 +250,15 @@ describe("edition2023 serialization", () => {
       w.tag(2, WireType.LengthDelimited).fork().join();
       w.join();
       const bytes = w.finish();
-      const msg = fromBinary(Edition2023MapEncodingMessageDesc, bytes);
+      const msg = fromBinary(Edition2023MapEncodingMessageSchema, bytes);
       expect(msg.messageMap).toStrictEqual({
-        123: create(Edition2023MapEncodingMessage_ChildDesc),
+        123: create(Edition2023MapEncodingMessage_ChildSchema),
       });
     });
     test("should serialize map entry LENGTH_PREFIXED", () => {
-      const msg = create(Edition2023MapEncodingMessageDesc);
+      const msg = create(Edition2023MapEncodingMessageSchema);
       msg.stringMap[123] = "abc";
-      const bytes = toBinary(Edition2023MapEncodingMessageDesc, msg);
+      const bytes = toBinary(Edition2023MapEncodingMessageSchema, msg);
       const r = new BinaryReader(bytes);
       {
         const [number, wireType] = r.tag();
@@ -274,9 +282,9 @@ describe("edition2023 serialization", () => {
       }
     });
     test("should serialize map value message LENGTH_PREFIXED", () => {
-      const msg = create(Edition2023MapEncodingMessageDesc);
-      msg.messageMap[123] = create(Edition2023MapEncodingMessage_ChildDesc);
-      const bytes = toBinary(Edition2023MapEncodingMessageDesc, msg);
+      const msg = create(Edition2023MapEncodingMessageSchema);
+      msg.messageMap[123] = create(Edition2023MapEncodingMessage_ChildSchema);
+      const bytes = toBinary(Edition2023MapEncodingMessageSchema, msg);
       const r = new BinaryReader(bytes);
       {
         const [number, wireType] = r.tag();

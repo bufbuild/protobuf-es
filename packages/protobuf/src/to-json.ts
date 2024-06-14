@@ -120,12 +120,12 @@ function makeWriteOptions(
  * passed to JSON.stringify().
  */
 export function toJson<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
   options?: Partial<JsonWriteOptions>,
 ): MessageJsonType<Desc> {
   return reflectToJson(
-    reflect(messageDesc, message),
+    reflect(schema, message),
     makeWriteOptions(options),
   ) as MessageJsonType<Desc>;
 }
@@ -134,11 +134,11 @@ export function toJson<Desc extends DescMessage>(
  * Serialize the message to a JSON string.
  */
 export function toJsonString<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
   options?: Partial<JsonWriteStringOptions>,
 ): string {
-  const jsonValue = toJson(messageDesc, message, options);
+  const jsonValue = toJson(schema, message, options);
   return JSON.stringify(jsonValue, null, options?.prettySpaces ?? 0);
 }
 

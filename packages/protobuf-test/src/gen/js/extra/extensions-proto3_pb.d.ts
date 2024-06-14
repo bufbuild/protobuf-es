@@ -23,7 +23,7 @@ import type { FileOptions } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file extra/extensions-proto3.proto.
  */
-export declare const fileDesc_extra_extensions_proto3: GenDescFile;
+export declare const file_extra_extensions_proto3: GenDescFile;
 
 /**
  * A message used in extensions
@@ -49,9 +49,9 @@ export declare type Proto3ExtMessageJson = {
 
 /**
  * Describes the message proto3ext.Proto3ExtMessage.
- * Use `create(Proto3ExtMessageDesc)` to create a new message.
+ * Use `create(Proto3ExtMessageSchema)` to create a new message.
  */
-export declare const Proto3ExtMessageDesc: GenDescMessage<Proto3ExtMessage, Proto3ExtMessageJson>;
+export declare const Proto3ExtMessageSchema: GenDescMessage<Proto3ExtMessage, Proto3ExtMessageJson>;
 
 /**
  * @generated from extension: uint32 uint32_ext = 1001;

@@ -25,14 +25,14 @@
 import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { ForeignMessage, ForeignMessageJson } from "./unittest_pb.js";
-import { fileDesc_google_protobuf_unittest } from "./unittest_pb.js";
+import { file_google_protobuf_unittest } from "./unittest_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_optimize_for.proto.
  */
-export const fileDesc_google_protobuf_unittest_optimize_for: GenDescFile = /*@__PURE__*/
-  fileDesc("Citnb29nbGUvcHJvdG9idWYvdW5pdHRlc3Rfb3B0aW1pemVfZm9yLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCLqAgoUVGVzdE9wdGltaXplZEZvclNpemUSCQoBaRgBIAEoBRIuCgNtc2cYEyABKAsyIS5wcm90b2J1Zl91bml0dGVzdC5Gb3JlaWduTWVzc2FnZRIXCg1pbnRlZ2VyX2ZpZWxkGAIgASgFSAASFgoMc3RyaW5nX2ZpZWxkGAMgASgJSAAqCQjoBxCAgICAAjJPCg50ZXN0X2V4dGVuc2lvbhInLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RPcHRpbWl6ZWRGb3JTaXplGNIJIAEoBVINdGVzdEV4dGVuc2lvbjKCAQoPdGVzdF9leHRlbnNpb24yEicucHJvdG9idWZfdW5pdHRlc3QuVGVzdE9wdGltaXplZEZvclNpemUY0wkgASgLMi8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkT3B0aW1pemVkRm9yU2l6ZVIOdGVzdEV4dGVuc2lvbjJCBQoDZm9vIikKHFRlc3RSZXF1aXJlZE9wdGltaXplZEZvclNpemUSCQoBeBgBIAIoBSJaChxUZXN0T3B0aW9uYWxPcHRpbWl6ZWRGb3JTaXplEjoKAW8YASABKAsyLy5wcm90b2J1Zl91bml0dGVzdC5UZXN0UmVxdWlyZWRPcHRpbWl6ZWRGb3JTaXplQgJIAg", [fileDesc_google_protobuf_unittest]);
+export const file_google_protobuf_unittest_optimize_for: GenDescFile = /*@__PURE__*/
+  fileDesc("Citnb29nbGUvcHJvdG9idWYvdW5pdHRlc3Rfb3B0aW1pemVfZm9yLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCLqAgoUVGVzdE9wdGltaXplZEZvclNpemUSCQoBaRgBIAEoBRIuCgNtc2cYEyABKAsyIS5wcm90b2J1Zl91bml0dGVzdC5Gb3JlaWduTWVzc2FnZRIXCg1pbnRlZ2VyX2ZpZWxkGAIgASgFSAASFgoMc3RyaW5nX2ZpZWxkGAMgASgJSAAqCQjoBxCAgICAAjJPCg50ZXN0X2V4dGVuc2lvbhInLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RPcHRpbWl6ZWRGb3JTaXplGNIJIAEoBVINdGVzdEV4dGVuc2lvbjKCAQoPdGVzdF9leHRlbnNpb24yEicucHJvdG9idWZfdW5pdHRlc3QuVGVzdE9wdGltaXplZEZvclNpemUY0wkgASgLMi8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkT3B0aW1pemVkRm9yU2l6ZVIOdGVzdEV4dGVuc2lvbjJCBQoDZm9vIikKHFRlc3RSZXF1aXJlZE9wdGltaXplZEZvclNpemUSCQoBeBgBIAIoBSJaChxUZXN0T3B0aW9uYWxPcHRpbWl6ZWRGb3JTaXplEjoKAW8YASABKAsyLy5wcm90b2J1Zl91bml0dGVzdC5UZXN0UmVxdWlyZWRPcHRpbWl6ZWRGb3JTaXplQgJIAg", [file_google_protobuf_unittest]);
 
 /**
  * @generated from message protobuf_unittest.TestOptimizedForSize
@@ -93,22 +93,22 @@ export type TestOptimizedForSizeJson = {
 
 /**
  * Describes the message protobuf_unittest.TestOptimizedForSize.
- * Use `create(TestOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestOptimizedForSizeSchema)` to create a new message.
  */
-export const TestOptimizedForSizeDesc: GenDescMessage<TestOptimizedForSize, TestOptimizedForSizeJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_optimize_for, 0);
+export const TestOptimizedForSizeSchema: GenDescMessage<TestOptimizedForSize, TestOptimizedForSizeJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_optimize_for, 0);
 
 /**
  * @generated from extension: optional int32 test_extension = 1234;
  */
 export const TestOptimizedForSize_test_extension: GenDescExtension<TestOptimizedForSize, number> = /*@__PURE__*/
-  extDesc(fileDesc_google_protobuf_unittest_optimize_for, 0, 0);
+  extDesc(file_google_protobuf_unittest_optimize_for, 0, 0);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestRequiredOptimizedForSize test_extension2 = 1235;
  */
 export const TestOptimizedForSize_test_extension2: GenDescExtension<TestOptimizedForSize, TestRequiredOptimizedForSize> = /*@__PURE__*/
-  extDesc(fileDesc_google_protobuf_unittest_optimize_for, 0, 1);
+  extDesc(file_google_protobuf_unittest_optimize_for, 0, 1);
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
@@ -132,10 +132,10 @@ export type TestRequiredOptimizedForSizeJson = {
 
 /**
  * Describes the message protobuf_unittest.TestRequiredOptimizedForSize.
- * Use `create(TestRequiredOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestRequiredOptimizedForSizeSchema)` to create a new message.
  */
-export const TestRequiredOptimizedForSizeDesc: GenDescMessage<TestRequiredOptimizedForSize, TestRequiredOptimizedForSizeJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_optimize_for, 1);
+export const TestRequiredOptimizedForSizeSchema: GenDescMessage<TestRequiredOptimizedForSize, TestRequiredOptimizedForSizeJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_optimize_for, 1);
 
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
@@ -159,8 +159,8 @@ export type TestOptionalOptimizedForSizeJson = {
 
 /**
  * Describes the message protobuf_unittest.TestOptionalOptimizedForSize.
- * Use `create(TestOptionalOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestOptionalOptimizedForSizeSchema)` to create a new message.
  */
-export const TestOptionalOptimizedForSizeDesc: GenDescMessage<TestOptionalOptimizedForSize, TestOptionalOptimizedForSizeJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_optimize_for, 2);
+export const TestOptionalOptimizedForSizeSchema: GenDescMessage<TestOptionalOptimizedForSize, TestOptionalOptimizedForSizeJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_optimize_for, 2);
 

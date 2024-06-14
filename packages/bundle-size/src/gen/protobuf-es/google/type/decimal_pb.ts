@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/decimal.proto.
  */
-export const fileDesc_google_type_decimal: GenDescFile = /*@__PURE__*/
+export const file_google_type_decimal: GenDescFile = /*@__PURE__*/
   fileDesc("Chlnb29nbGUvdHlwZS9kZWNpbWFsLnByb3RvEgtnb29nbGUudHlwZSIYCgdEZWNpbWFsEg0KBXZhbHVlGAEgASgJQmYKD2NvbS5nb29nbGUudHlwZUIMRGVjaW1hbFByb3RvUAFaOmdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvdHlwZS9kZWNpbWFsO2RlY2ltYWz4AQGiAgNHVFBiBnByb3RvMw");
 
 /**
@@ -117,8 +117,8 @@ export type DecimalJson = {
 
 /**
  * Describes the message google.type.Decimal.
- * Use `create(DecimalDesc)` to create a new message.
+ * Use `create(DecimalSchema)` to create a new message.
  */
-export const DecimalDesc: GenDescMessage<Decimal, DecimalJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_decimal, 0);
+export const DecimalSchema: GenDescMessage<Decimal, DecimalJson> = /*@__PURE__*/
+  messageDesc(file_google_type_decimal, 0);
 

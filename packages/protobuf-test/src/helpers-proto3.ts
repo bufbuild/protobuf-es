@@ -47,7 +47,7 @@ export function fillProto3MessageNames() {
 }
 
 export function fillProto3Message(msg: proto3_ts.Proto3Message) {
-  const desc = proto3_ts.Proto3MessageDesc;
+  const desc = proto3_ts.Proto3MessageSchema;
   // singular
   msg.singularStringField = "non-zero";
   msg.singularBytesField = new Uint8Array([0xde, 0xad, 0xbe, 0xef]);
@@ -72,12 +72,12 @@ export function fillProto3Message(msg: proto3_ts.Proto3Message) {
   // repeated
   msg.repeatedStringField = ["abc"];
   msg.repeatedMessageField = [
-    create(proto3_ts.Proto3MessageDesc),
-    create(proto3_ts.Proto3MessageDesc),
+    create(proto3_ts.Proto3MessageSchema),
+    create(proto3_ts.Proto3MessageSchema),
   ];
   // map
   msg.mapStringStringField = { foo: "bar" };
-  msg.mapInt32MessageField = { 123: create(proto3_ts.Proto3MessageDesc) };
+  msg.mapInt32MessageField = { 123: create(proto3_ts.Proto3MessageSchema) };
   // oneof
   msg.either = { case: "oneofBoolField", value: false };
   return msg;

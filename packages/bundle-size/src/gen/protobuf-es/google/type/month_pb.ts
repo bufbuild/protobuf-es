@@ -22,7 +22,7 @@ import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 /**
  * Describes the file google/type/month.proto.
  */
-export const fileDesc_google_type_month: GenDescFile = /*@__PURE__*/
+export const file_google_type_month: GenDescFile = /*@__PURE__*/
   fileDesc("Chdnb29nbGUvdHlwZS9tb250aC5wcm90bxILZ29vZ2xlLnR5cGUqsAEKBU1vbnRoEhUKEU1PTlRIX1VOU1BFQ0lGSUVEEAASCwoHSkFOVUFSWRABEgwKCEZFQlJVQVJZEAISCQoFTUFSQ0gQAxIJCgVBUFJJTBAEEgcKA01BWRAFEggKBEpVTkUQBhIICgRKVUxZEAcSCgoGQVVHVVNUEAgSDQoJU0VQVEVNQkVSEAkSCwoHT0NUT0JFUhAKEgwKCE5PVkVNQkVSEAsSDAoIREVDRU1CRVIQDEJdCg9jb20uZ29vZ2xlLnR5cGVCCk1vbnRoUHJvdG9QAVo2Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy90eXBlL21vbnRoO21vbnRoogIDR1RQYgZwcm90bzM");
 
 /**
@@ -131,6 +131,6 @@ export type MonthJson = "MONTH_UNSPECIFIED" | "JANUARY" | "FEBRUARY" | "MARCH" |
 /**
  * Describes the enum google.type.Month.
  */
-export const MonthDesc: GenDescEnum<Month, MonthJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_type_month, 0);
+export const MonthSchema: GenDescEnum<Month, MonthJson> = /*@__PURE__*/
+  enumDesc(file_google_type_month, 0);
 

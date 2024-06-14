@@ -24,7 +24,7 @@ import { messageDesc } from "../../../../codegenv1/message.js";
 /**
  * Describes the file google/protobuf/any.proto.
  */
-export const fileDesc_google_protobuf_any: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_any: GenDescFile = /*@__PURE__*/
   fileDesc("Chlnb29nbGUvcHJvdG9idWYvYW55LnByb3RvEg9nb29nbGUucHJvdG9idWYiJgoDQW55EhAKCHR5cGVfdXJsGAEgASgJEg0KBXZhbHVlGAIgASgMQnYKE2NvbS5nb29nbGUucHJvdG9idWZCCEFueVByb3RvUAFaLGdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2FueXBiogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
 /**
@@ -170,8 +170,8 @@ export type AnyJson = {
 
 /**
  * Describes the message google.protobuf.Any.
- * Use `create(AnyDesc)` to create a new message.
+ * Use `create(AnySchema)` to create a new message.
  */
-export const AnyDesc: GenDescMessage<Any, AnyJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_any, 0);
+export const AnySchema: GenDescMessage<Any, AnyJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_any, 0);
 

@@ -29,7 +29,7 @@ import type { ForeignMessage, ForeignMessageJson } from "./unittest_pb.js";
 /**
  * Describes the file google/protobuf/unittest_optimize_for.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_optimize_for: GenDescFile;
+export declare const file_google_protobuf_unittest_optimize_for: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestOptimizedForSize
@@ -90,9 +90,9 @@ export declare type TestOptimizedForSizeJson = {
 
 /**
  * Describes the message protobuf_unittest.TestOptimizedForSize.
- * Use `create(TestOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestOptimizedForSizeDesc: GenDescMessage<TestOptimizedForSize, TestOptimizedForSizeJson>;
+export declare const TestOptimizedForSizeSchema: GenDescMessage<TestOptimizedForSize, TestOptimizedForSizeJson>;
 
 /**
  * @generated from extension: optional int32 test_extension = 1234;
@@ -126,9 +126,9 @@ export declare type TestRequiredOptimizedForSizeJson = {
 
 /**
  * Describes the message protobuf_unittest.TestRequiredOptimizedForSize.
- * Use `create(TestRequiredOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestRequiredOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestRequiredOptimizedForSizeDesc: GenDescMessage<TestRequiredOptimizedForSize, TestRequiredOptimizedForSizeJson>;
+export declare const TestRequiredOptimizedForSizeSchema: GenDescMessage<TestRequiredOptimizedForSize, TestRequiredOptimizedForSizeJson>;
 
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
@@ -152,7 +152,7 @@ export declare type TestOptionalOptimizedForSizeJson = {
 
 /**
  * Describes the message protobuf_unittest.TestOptionalOptimizedForSize.
- * Use `create(TestOptionalOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestOptionalOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestOptionalOptimizedForSizeDesc: GenDescMessage<TestOptionalOptimizedForSize, TestOptionalOptimizedForSizeJson>;
+export declare const TestOptionalOptimizedForSizeSchema: GenDescMessage<TestOptionalOptimizedForSize, TestOptionalOptimizedForSizeJson>;
 

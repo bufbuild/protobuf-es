@@ -24,7 +24,7 @@ import type { Type, TypeJson } from "./type_pb.js";
 /**
  * Describes the file google/protobuf/unittest_well_known_types.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_well_known_types: GenDescFile;
+export declare const file_google_protobuf_unittest_well_known_types: GenDescFile;
 
 /**
  * Test that we can include all well-known types.
@@ -234,9 +234,9 @@ export declare type TestWellKnownTypesJson = {
 
 /**
  * Describes the message protobuf_unittest.TestWellKnownTypes.
- * Use `create(TestWellKnownTypesDesc)` to create a new message.
+ * Use `create(TestWellKnownTypesSchema)` to create a new message.
  */
-export declare const TestWellKnownTypesDesc: GenDescMessage<TestWellKnownTypes, TestWellKnownTypesJson>;
+export declare const TestWellKnownTypesSchema: GenDescMessage<TestWellKnownTypes, TestWellKnownTypesJson>;
 
 /**
  * A repeated field for each well-known type.
@@ -434,9 +434,9 @@ export declare type RepeatedWellKnownTypesJson = {
 
 /**
  * Describes the message protobuf_unittest.RepeatedWellKnownTypes.
- * Use `create(RepeatedWellKnownTypesDesc)` to create a new message.
+ * Use `create(RepeatedWellKnownTypesSchema)` to create a new message.
  */
-export declare const RepeatedWellKnownTypesDesc: GenDescMessage<RepeatedWellKnownTypes, RepeatedWellKnownTypesJson>;
+export declare const RepeatedWellKnownTypesSchema: GenDescMessage<RepeatedWellKnownTypes, RepeatedWellKnownTypesJson>;
 
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
@@ -653,9 +653,9 @@ export declare type OneofWellKnownTypesJson = {
 
 /**
  * Describes the message protobuf_unittest.OneofWellKnownTypes.
- * Use `create(OneofWellKnownTypesDesc)` to create a new message.
+ * Use `create(OneofWellKnownTypesSchema)` to create a new message.
  */
-export declare const OneofWellKnownTypesDesc: GenDescMessage<OneofWellKnownTypes, OneofWellKnownTypesJson>;
+export declare const OneofWellKnownTypesSchema: GenDescMessage<OneofWellKnownTypes, OneofWellKnownTypesJson>;
 
 /**
  * A map field for each well-known type. We only
@@ -853,7 +853,7 @@ export declare type MapWellKnownTypesJson = {
 
 /**
  * Describes the message protobuf_unittest.MapWellKnownTypes.
- * Use `create(MapWellKnownTypesDesc)` to create a new message.
+ * Use `create(MapWellKnownTypesSchema)` to create a new message.
  */
-export declare const MapWellKnownTypesDesc: GenDescMessage<MapWellKnownTypes, MapWellKnownTypesJson>;
+export declare const MapWellKnownTypesSchema: GenDescMessage<MapWellKnownTypes, MapWellKnownTypesJson>;
 

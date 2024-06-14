@@ -22,7 +22,7 @@ import type { EnumOptions, EnumValueOptions, FieldOptions, FileOptions, MessageO
 /**
  * Describes the file extra/options.proto.
  */
-export declare const fileDesc_extra_options: GenDescFile;
+export declare const file_extra_options: GenDescFile;
 
 /**
  * @generated from extension: optional string file_option_retention_unknown = 70101;

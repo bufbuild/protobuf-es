@@ -42,15 +42,15 @@ const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
  * optional.
  */
 export function create<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   init?: MessageInitShape<Desc>,
 ): MessageShape<Desc> {
-  if (isMessage(init, messageDesc)) {
+  if (isMessage(init, schema)) {
     return init;
   }
-  const message = createZeroMessage(messageDesc) as MessageShape<Desc>;
+  const message = createZeroMessage(schema) as MessageShape<Desc>;
   if (init !== undefined) {
-    initMessage(messageDesc, message, init);
+    initMessage(schema, message, init);
   }
   return message;
 }

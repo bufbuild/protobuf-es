@@ -31,7 +31,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_enormous_descriptor.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_enormous_descriptor: GenDescFile;
+export declare const file_google_protobuf_unittest_enormous_descriptor: GenDescFile;
 
 /**
  * clang-format off
@@ -10047,7 +10047,7 @@ export declare type TestEnormousDescriptorJson = {
 
 /**
  * Describes the message protobuf_unittest.TestEnormousDescriptor.
- * Use `create(TestEnormousDescriptorDesc)` to create a new message.
+ * Use `create(TestEnormousDescriptorSchema)` to create a new message.
  */
-export declare const TestEnormousDescriptorDesc: GenDescMessage<TestEnormousDescriptor, TestEnormousDescriptorJson>;
+export declare const TestEnormousDescriptorSchema: GenDescMessage<TestEnormousDescriptor, TestEnormousDescriptorJson>;
 

@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/date.proto.
  */
-export const fileDesc_google_type_date: GenDescFile = /*@__PURE__*/
+export const file_google_type_date: GenDescFile = /*@__PURE__*/
   fileDesc("ChZnb29nbGUvdHlwZS9kYXRlLnByb3RvEgtnb29nbGUudHlwZSIwCgREYXRlEgwKBHllYXIYASABKAUSDQoFbW9udGgYAiABKAUSCwoDZGF5GAMgASgFQl0KD2NvbS5nb29nbGUudHlwZUIJRGF0ZVByb3RvUAFaNGdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvdHlwZS9kYXRlO2RhdGX4AQGiAgNHVFBiBnByb3RvMw");
 
 /**
@@ -92,8 +92,8 @@ export type DateJson = {
 
 /**
  * Describes the message google.type.Date.
- * Use `create(DateDesc)` to create a new message.
+ * Use `create(DateSchema)` to create a new message.
  */
-export const DateDesc: GenDescMessage<Date, DateJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_date, 0);
+export const DateSchema: GenDescMessage<Date, DateJson> = /*@__PURE__*/
+  messageDesc(file_google_type_date, 0);
 

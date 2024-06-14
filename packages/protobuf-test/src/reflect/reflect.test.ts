@@ -16,7 +16,7 @@ import { beforeEach, describe, expect, test } from "@jest/globals";
 import type { DescMessage } from "@bufbuild/protobuf";
 import { protoInt64 } from "@bufbuild/protobuf";
 import type { Message } from "@bufbuild/protobuf";
-import { UInt32ValueDesc } from "@bufbuild/protobuf/wkt";
+import { UInt32ValueSchema } from "@bufbuild/protobuf/wkt";
 import { create } from "@bufbuild/protobuf";
 import type { ReflectMessage } from "@bufbuild/protobuf/reflect";
 import {
@@ -34,19 +34,19 @@ import assert from "node:assert";
 
 describe("reflect()", () => {
   test("accepts generated message shape", () => {
-    const msg = create(proto3_ts.Proto3MessageDesc);
-    const r = reflect(proto3_ts.Proto3MessageDesc, msg);
+    const msg = create(proto3_ts.Proto3MessageSchema);
+    const r = reflect(proto3_ts.Proto3MessageSchema, msg);
     expect(r).toBeDefined();
   });
   test("accepts anonymous message", () => {
-    const desc: DescMessage = proto3_ts.Proto3MessageDesc;
+    const desc: DescMessage = proto3_ts.Proto3MessageSchema;
     const msg: Message = create(desc);
     const r = reflect(desc, msg);
     expect(r).toBeDefined();
   });
   test("accepts option to disable field check", () => {
-    const msg = create(proto3_ts.Proto3MessageDesc);
-    const r = reflect(proto3_ts.Proto3MessageDesc, msg, false);
+    const msg = create(proto3_ts.Proto3MessageSchema);
+    const r = reflect(proto3_ts.Proto3MessageSchema, msg, false);
     const field = r.findNumber(3);
     expect(field?.name).toBe("singular_int32_field");
     if (field) {
@@ -90,23 +90,23 @@ describe("ReflectMessage", () => {
   });
   describe("oneofCase()", () => {
     test("returns selected field", () => {
-      const msg = create(proto3_ts.Proto3MessageDesc);
+      const msg = create(proto3_ts.Proto3MessageSchema);
       msg.either = {
         case: "oneofInt32Field",
         value: 123,
       };
-      const r = reflect(proto3_ts.Proto3MessageDesc, msg);
+      const r = reflect(proto3_ts.Proto3MessageSchema, msg);
       expect(r.oneofs[0]).toBeDefined();
       const selectedField = r.oneofCase(r.oneofs[0]);
       expect(selectedField).toBeDefined();
       expect(selectedField?.name).toBe("oneof_int32_field");
     });
     test("returns undefined for oneof w/o selected field", () => {
-      const msg = create(proto3_ts.Proto3MessageDesc);
+      const msg = create(proto3_ts.Proto3MessageSchema);
       msg.either = {
         case: undefined,
       };
-      const r = reflect(proto3_ts.Proto3MessageDesc, msg);
+      const r = reflect(proto3_ts.Proto3MessageSchema, msg);
       expect(r.oneofs[0]).toBeDefined();
       const selectedField = r.oneofCase(r.oneofs[0]);
       expect(selectedField).toBeUndefined();
@@ -117,14 +117,14 @@ describe("ReflectMessage", () => {
         message Foreign { oneof foo { string str = 1; }}
       `);
       const foreignOneof = foreignMessage.oneofs[0];
-      const r = reflect(proto3_ts.Proto3MessageDesc);
+      const r = reflect(proto3_ts.Proto3MessageSchema);
       expect(() => r.oneofCase(foreignOneof)).toThrow(
         /^cannot use oneof Foreign.foo with message spec.Proto3Message$/,
       );
     });
   });
   describe("get()", () => {
-    const desc = proto3_ts.Proto3MessageDesc;
+    const desc = proto3_ts.Proto3MessageSchema;
     let msg: proto3_ts.Proto3Message;
     let r: ReflectMessage;
     beforeEach(() => {
@@ -134,7 +134,7 @@ describe("ReflectMessage", () => {
     test("gets message", () => {
       const f = desc.field.singularMessageField;
       assert(f.fieldKind == "message");
-      msg.singularMessageField = create(proto3_ts.Proto3MessageDesc);
+      msg.singularMessageField = create(proto3_ts.Proto3MessageSchema);
       const v = r.get(f);
       expect(isReflectMessage(v)).toBe(true);
       if (isReflectMessage(v)) {
@@ -167,8 +167,8 @@ describe("ReflectMessage", () => {
       const f = desc.field.singularWrappedUint32Field;
       msg.singularWrappedUint32Field = 123;
       const wrapper = r.get(f);
-      expect(isReflectMessage(wrapper, UInt32ValueDesc)).toBe(true);
-      if (isReflectMessage(wrapper, UInt32ValueDesc)) {
+      expect(isReflectMessage(wrapper, UInt32ValueSchema)).toBe(true);
+      if (isReflectMessage(wrapper, UInt32ValueSchema)) {
         const value = wrapper.get(wrapper.fields[0]);
         expect(value).toBe(123);
       }
@@ -236,7 +236,7 @@ describe("ReflectMessage", () => {
     });
   });
   describe("set()", () => {
-    const desc = proto3_ts.Proto3MessageDesc;
+    const desc = proto3_ts.Proto3MessageSchema;
     let msg: proto3_ts.Proto3Message;
     let r: ReflectMessage;
     beforeEach(() => {
@@ -271,8 +271,8 @@ describe("ReflectMessage", () => {
     });
     test("sets ReflectMessage", () => {
       const f = desc.field.singularMessageField;
-      const testMessage = create(proto3_ts.Proto3MessageDesc);
-      r.set(f, reflect(proto3_ts.Proto3MessageDesc, testMessage));
+      const testMessage = create(proto3_ts.Proto3MessageSchema);
+      r.set(f, reflect(proto3_ts.Proto3MessageSchema, testMessage));
       expect(msg.singularMessageField).toBe(testMessage);
     });
     test("sets number, string, bigint as bigint for 64-bit integer field", () => {
@@ -295,8 +295,8 @@ describe("ReflectMessage", () => {
     });
     test("sets unwrapped value for wrapper field", () => {
       const f = desc.field.singularWrappedUint32Field;
-      const wrapper = create(UInt32ValueDesc, { value: 123 });
-      r.set(f, reflect(UInt32ValueDesc, wrapper));
+      const wrapper = create(UInt32ValueSchema, { value: 123 });
+      r.set(f, reflect(UInt32ValueSchema, wrapper));
       expect(msg.singularWrappedUint32Field).toBe(123);
     });
     test("sets unknown value for open enum", () => {
@@ -386,7 +386,7 @@ describe("ReflectMessage", () => {
     describe("throws error setting message", () => {
       test.each(desc.fields)("$name", (f) => {
         const err = catchFieldError(() =>
-          r.set(f, create(proto3_ts.Proto3MessageDesc)),
+          r.set(f, create(proto3_ts.Proto3MessageSchema)),
         );
         expect(err?.message).toMatch(
           /^expected .*, got message spec.Proto3Message$/,
@@ -432,7 +432,9 @@ describe("ReflectMessage", () => {
     });
     test("throws error setting incompatible ReflectMessage", () => {
       const f = desc.field.singularMessageField;
-      const err = catchFieldError(() => r.set(f, reflect(example_ts.UserDesc)));
+      const err = catchFieldError(() =>
+        r.set(f, reflect(example_ts.UserSchema)),
+      );
       expect(err?.message).toMatch(
         /^expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );
@@ -463,7 +465,7 @@ describe("ReflectMessage", () => {
   });
   describe("isSet()", () => {
     test("returns true for set fields", () => {
-      const desc = proto3_ts.Proto3MessageDesc;
+      const desc = proto3_ts.Proto3MessageSchema;
       const msg = create(desc);
       msg.singularStringField = "non-zero";
       msg.singularBytesField = new Uint8Array([0xde, 0xad, 0xbe, 0xef]);
@@ -480,8 +482,8 @@ describe("ReflectMessage", () => {
       msg.optionalWrappedUint32Field = 0;
       msg.repeatedStringField = ["a", "b", "c"];
       msg.repeatedWrappedUint32Field = [
-        create(UInt32ValueDesc),
-        create(UInt32ValueDesc),
+        create(UInt32ValueSchema),
+        create(UInt32ValueSchema),
       ];
       msg.repeatedInt64Field = [
         protoInt64.parse(1),
@@ -527,7 +529,7 @@ describe("ReflectMessage", () => {
         message Foreign { string foreign = 1;}
       `);
       const foreignField = foreignMessage.fields[0];
-      const r = reflect(proto3_ts.Proto3MessageDesc);
+      const r = reflect(proto3_ts.Proto3MessageSchema);
       expect(() => r.isSet(foreignField)).toThrow(
         /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
       );
@@ -537,24 +539,24 @@ describe("ReflectMessage", () => {
     let msg: proto3_ts.Proto3Message;
     let r: ReflectMessage;
     beforeEach(() => {
-      msg = create(proto3_ts.Proto3MessageDesc);
+      msg = create(proto3_ts.Proto3MessageSchema);
       msg.singularStringField = "non-zero";
       msg.singularBytesField = new Uint8Array([0xde, 0xad, 0xbe, 0xef]);
       msg.singularInt32Field = 123;
       msg.singularInt64Field = protoInt64.parse(123);
       msg.singularInt64JsStringField = "789";
       msg.singularEnumField = proto3_ts.Proto3Enum.YES;
-      msg.singularMessageField = create(proto3_ts.Proto3MessageDesc);
+      msg.singularMessageField = create(proto3_ts.Proto3MessageSchema);
       msg.singularWrappedUint32Field = 123;
       msg.optionalStringField = "non-zero";
       msg.optionalInt64Field = protoInt64.zero;
       msg.optionalInt64JsStringField = "0";
-      msg.optionalMessageField = create(proto3_ts.Proto3MessageDesc);
+      msg.optionalMessageField = create(proto3_ts.Proto3MessageSchema);
       msg.optionalWrappedUint32Field = 0;
       msg.repeatedStringField = ["a", "b", "c"];
       msg.repeatedWrappedUint32Field = [
-        create(UInt32ValueDesc),
-        create(UInt32ValueDesc),
+        create(UInt32ValueSchema),
+        create(UInt32ValueSchema),
       ];
       msg.repeatedInt64Field = [
         protoInt64.parse(1),
@@ -563,8 +565,8 @@ describe("ReflectMessage", () => {
       ];
       msg.repeatedInt64JsStringField = ["1", "2", "3"];
       msg.repeatedMessageField = [
-        create(proto3_ts.Proto3MessageDesc),
-        create(proto3_ts.Proto3MessageDesc),
+        create(proto3_ts.Proto3MessageSchema),
+        create(proto3_ts.Proto3MessageSchema),
       ];
       msg.repeatedEnumField = [proto3_ts.Proto3Enum.UNSPECIFIED];
       msg.either = {
@@ -574,9 +576,9 @@ describe("ReflectMessage", () => {
       msg.mapStringStringField = {
         a: "A",
       };
-      r = reflect(proto3_ts.Proto3MessageDesc, msg);
+      r = reflect(proto3_ts.Proto3MessageSchema, msg);
     });
-    test.each(proto3_ts.Proto3MessageDesc.fields)(
+    test.each(proto3_ts.Proto3MessageSchema.fields)(
       "clears proto3 field $name",
       (f) => {
         r.clear(f);

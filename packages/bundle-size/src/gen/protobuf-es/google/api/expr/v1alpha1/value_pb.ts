@@ -19,14 +19,14 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Any, AnyJson, NullValue, NullValueJson } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_any, file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/api/expr/v1alpha1/value.proto.
  */
-export const fileDesc_google_api_expr_v1alpha1_value: GenDescFile = /*@__PURE__*/
-  fileDesc("CiRnb29nbGUvYXBpL2V4cHIvdjFhbHBoYTEvdmFsdWUucHJvdG8SGGdvb2dsZS5hcGkuZXhwci52MWFscGhhMSLAAwoFVmFsdWUSMAoKbnVsbF92YWx1ZRgBIAEoDjIaLmdvb2dsZS5wcm90b2J1Zi5OdWxsVmFsdWVIABIUCgpib29sX3ZhbHVlGAIgASgISAASFQoLaW50NjRfdmFsdWUYAyABKANIABIWCgx1aW50NjRfdmFsdWUYBCABKARIABIWCgxkb3VibGVfdmFsdWUYBSABKAFIABIWCgxzdHJpbmdfdmFsdWUYBiABKAlIABIVCgtieXRlc192YWx1ZRgHIAEoDEgAEjkKCmVudW1fdmFsdWUYCSABKAsyIy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRW51bVZhbHVlSAASLAoMb2JqZWN0X3ZhbHVlGAogASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueUgAEjcKCW1hcF92YWx1ZRgLIAEoCzIiLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5NYXBWYWx1ZUgAEjkKCmxpc3RfdmFsdWUYDCABKAsyIy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuTGlzdFZhbHVlSAASFAoKdHlwZV92YWx1ZRgPIAEoCUgAQgYKBGtpbmQiKAoJRW51bVZhbHVlEgwKBHR5cGUYASABKAkSDQoFdmFsdWUYAiABKAUiPAoJTGlzdFZhbHVlEi8KBnZhbHVlcxgBIAMoCzIfLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5WYWx1ZSKsAQoITWFwVmFsdWUSOQoHZW50cmllcxgBIAMoCzIoLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5NYXBWYWx1ZS5FbnRyeRplCgVFbnRyeRIsCgNrZXkYASABKAsyHy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuVmFsdWUSLgoFdmFsdWUYAiABKAsyHy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuVmFsdWVCbQocY29tLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMUIKVmFsdWVQcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL2FwaS9leHByL3YxYWxwaGExO2V4cHL4AQFiBnByb3RvMw", [fileDesc_google_protobuf_any, fileDesc_google_protobuf_struct]);
+export const file_google_api_expr_v1alpha1_value: GenDescFile = /*@__PURE__*/
+  fileDesc("CiRnb29nbGUvYXBpL2V4cHIvdjFhbHBoYTEvdmFsdWUucHJvdG8SGGdvb2dsZS5hcGkuZXhwci52MWFscGhhMSLAAwoFVmFsdWUSMAoKbnVsbF92YWx1ZRgBIAEoDjIaLmdvb2dsZS5wcm90b2J1Zi5OdWxsVmFsdWVIABIUCgpib29sX3ZhbHVlGAIgASgISAASFQoLaW50NjRfdmFsdWUYAyABKANIABIWCgx1aW50NjRfdmFsdWUYBCABKARIABIWCgxkb3VibGVfdmFsdWUYBSABKAFIABIWCgxzdHJpbmdfdmFsdWUYBiABKAlIABIVCgtieXRlc192YWx1ZRgHIAEoDEgAEjkKCmVudW1fdmFsdWUYCSABKAsyIy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRW51bVZhbHVlSAASLAoMb2JqZWN0X3ZhbHVlGAogASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueUgAEjcKCW1hcF92YWx1ZRgLIAEoCzIiLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5NYXBWYWx1ZUgAEjkKCmxpc3RfdmFsdWUYDCABKAsyIy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuTGlzdFZhbHVlSAASFAoKdHlwZV92YWx1ZRgPIAEoCUgAQgYKBGtpbmQiKAoJRW51bVZhbHVlEgwKBHR5cGUYASABKAkSDQoFdmFsdWUYAiABKAUiPAoJTGlzdFZhbHVlEi8KBnZhbHVlcxgBIAMoCzIfLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5WYWx1ZSKsAQoITWFwVmFsdWUSOQoHZW50cmllcxgBIAMoCzIoLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5NYXBWYWx1ZS5FbnRyeRplCgVFbnRyeRIsCgNrZXkYASABKAsyHy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuVmFsdWUSLgoFdmFsdWUYAiABKAsyHy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuVmFsdWVCbQocY29tLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMUIKVmFsdWVQcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL2FwaS9leHByL3YxYWxwaGExO2V4cHL4AQFiBnByb3RvMw", [file_google_protobuf_any, file_google_protobuf_struct]);
 
 /**
  * Represents a CEL value.
@@ -208,10 +208,10 @@ export type ValueJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.Value.
- * Use `create(ValueDesc)` to create a new message.
+ * Use `create(ValueSchema)` to create a new message.
  */
-export const ValueDesc: GenDescMessage<Value, ValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_value, 0);
+export const ValueSchema: GenDescMessage<Value, ValueJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_value, 0);
 
 /**
  * An enum value.
@@ -251,10 +251,10 @@ export type EnumValueJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.EnumValue.
- * Use `create(EnumValueDesc)` to create a new message.
+ * Use `create(EnumValueSchema)` to create a new message.
  */
-export const EnumValueDesc: GenDescMessage<EnumValue, EnumValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_value, 1);
+export const EnumValueSchema: GenDescMessage<EnumValue, EnumValueJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_value, 1);
 
 /**
  * A list.
@@ -285,10 +285,10 @@ export type ListValueJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.ListValue.
- * Use `create(ListValueDesc)` to create a new message.
+ * Use `create(ListValueSchema)` to create a new message.
  */
-export const ListValueDesc: GenDescMessage<ListValue, ListValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_value, 2);
+export const ListValueSchema: GenDescMessage<ListValue, ListValueJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_value, 2);
 
 /**
  * A map.
@@ -322,10 +322,10 @@ export type MapValueJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.MapValue.
- * Use `create(MapValueDesc)` to create a new message.
+ * Use `create(MapValueSchema)` to create a new message.
  */
-export const MapValueDesc: GenDescMessage<MapValue, MapValueJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_value, 3);
+export const MapValueSchema: GenDescMessage<MapValue, MapValueJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_value, 3);
 
 /**
  * An entry in the map.
@@ -368,8 +368,8 @@ export type MapValue_EntryJson = {
 
 /**
  * Describes the message google.api.expr.v1alpha1.MapValue.Entry.
- * Use `create(MapValue_EntryDesc)` to create a new message.
+ * Use `create(MapValue_EntrySchema)` to create a new message.
  */
-export const MapValue_EntryDesc: GenDescMessage<MapValue_Entry, MapValue_EntryJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_value, 3, 0);
+export const MapValue_EntrySchema: GenDescMessage<MapValue_Entry, MapValue_EntryJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_value, 3, 0);
 

@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { SayRequest, SayResponse } from "./eliza_pb";
-import { SayRequestDesc, SayResponseDesc } from "./eliza_pb";
+import { SayRequestSchema, SayResponseSchema } from "./eliza_pb";
 import type { JsonValue } from "@bufbuild/protobuf";
 import { fromJson, toJsonString } from "@bufbuild/protobuf";
 
@@ -45,13 +45,13 @@ export class ElizaServiceClient {
             {
                 method: 'POST',
                 headers,
-                body: toJsonString(SayRequestDesc, request),
+                body: toJsonString(SayRequestSchema, request),
             }
         );
         if (fetchResponse.status !== 200) {
           throw Error(`HTTP ${fetchResponse.status} ${fetchResponse.statusText}`)
         }
         const json = await fetchResponse.json() as JsonValue;
-        return fromJson(SayResponseDesc, json);
+        return fromJson(SayResponseSchema, json);
     }
 }

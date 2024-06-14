@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/jstype-proto2.proto.
  */
-export const fileDesc_extra_jstype_proto2: GenDescFile = /*@__PURE__*/
+export const file_extra_jstype_proto2: GenDescFile = /*@__PURE__*/
   fileDesc("ChlleHRyYS9qc3R5cGUtcHJvdG8yLnByb3RvEgRzcGVjIqkCChpKU1R5cGVQcm90bzJPbWl0dGVkTWVzc2FnZRIVCg1maXhlZDY0X2ZpZWxkGAEgASgGEhMKC2ludDY0X2ZpZWxkGAMgASgDEhYKDnNmaXhlZDY0X2ZpZWxkGAQgASgQEhQKDHNpbnQ2NF9maWVsZBgFIAEoEhIUCgx1aW50NjRfZmllbGQYBiABKAQSHgoWcmVwZWF0ZWRfZml4ZWQ2NF9maWVsZBgLIAMoBhIcChRyZXBlYXRlZF9pbnQ2NF9maWVsZBgMIAMoAxIfChdyZXBlYXRlZF9zZml4ZWQ2NF9maWVsZBgNIAMoEBIdChVyZXBlYXRlZF9zaW50NjRfZmllbGQYDiADKBISHQoVcmVwZWF0ZWRfdWludDY0X2ZpZWxkGA8gAygEItACChlKU1R5cGVQcm90bzJOb3JtYWxNZXNzYWdlEhkKDWZpeGVkNjRfZmllbGQYASABKAZCAjAAEhcKC2ludDY0X2ZpZWxkGAMgASgDQgIwABIaCg5zZml4ZWQ2NF9maWVsZBgEIAEoEEICMAASGAoMc2ludDY0X2ZpZWxkGAUgASgSQgIwABIYCgx1aW50NjRfZmllbGQYBiABKARCAjAAEiIKFnJlcGVhdGVkX2ZpeGVkNjRfZmllbGQYCyADKAZCAjAAEiAKFHJlcGVhdGVkX2ludDY0X2ZpZWxkGAwgAygDQgIwABIjChdyZXBlYXRlZF9zZml4ZWQ2NF9maWVsZBgNIAMoEEICMAASIQoVcmVwZWF0ZWRfc2ludDY0X2ZpZWxkGA4gAygSQgIwABIhChVyZXBlYXRlZF91aW50NjRfZmllbGQYDyADKARCAjAAItACChlKU1R5cGVQcm90bzJTdHJpbmdNZXNzYWdlEhkKDWZpeGVkNjRfZmllbGQYASABKAZCAjABEhcKC2ludDY0X2ZpZWxkGAMgASgDQgIwARIaCg5zZml4ZWQ2NF9maWVsZBgEIAEoEEICMAESGAoMc2ludDY0X2ZpZWxkGAUgASgSQgIwARIYCgx1aW50NjRfZmllbGQYBiABKARCAjABEiIKFnJlcGVhdGVkX2ZpeGVkNjRfZmllbGQYCyADKAZCAjABEiAKFHJlcGVhdGVkX2ludDY0X2ZpZWxkGAwgAygDQgIwARIjChdyZXBlYXRlZF9zZml4ZWQ2NF9maWVsZBgNIAMoEEICMAESIQoVcmVwZWF0ZWRfc2ludDY0X2ZpZWxkGA4gAygSQgIwARIhChVyZXBlYXRlZF91aW50NjRfZmllbGQYDyADKARCAjABItACChlKU1R5cGVQcm90bzJOdW1iZXJNZXNzYWdlEhkKDWZpeGVkNjRfZmllbGQYASABKAZCAjACEhcKC2ludDY0X2ZpZWxkGAMgASgDQgIwAhIaCg5zZml4ZWQ2NF9maWVsZBgEIAEoEEICMAISGAoMc2ludDY0X2ZpZWxkGAUgASgSQgIwAhIYCgx1aW50NjRfZmllbGQYBiABKARCAjACEiIKFnJlcGVhdGVkX2ZpeGVkNjRfZmllbGQYCyADKAZCAjACEiAKFHJlcGVhdGVkX2ludDY0X2ZpZWxkGAwgAygDQgIwAhIjChdyZXBlYXRlZF9zZml4ZWQ2NF9maWVsZBgNIAMoEEICMAISIQoVcmVwZWF0ZWRfc2ludDY0X2ZpZWxkGA4gAygSQgIwAhIhChVyZXBlYXRlZF91aW50NjRfZmllbGQYDyADKARCAjAC");
 
 /**
@@ -138,10 +138,10 @@ export type JSTypeProto2OmittedMessageJson = {
 
 /**
  * Describes the message spec.JSTypeProto2OmittedMessage.
- * Use `create(JSTypeProto2OmittedMessageDesc)` to create a new message.
+ * Use `create(JSTypeProto2OmittedMessageSchema)` to create a new message.
  */
-export const JSTypeProto2OmittedMessageDesc: GenDescMessage<JSTypeProto2OmittedMessage, JSTypeProto2OmittedMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_jstype_proto2, 0);
+export const JSTypeProto2OmittedMessageSchema: GenDescMessage<JSTypeProto2OmittedMessage, JSTypeProto2OmittedMessageJson> = /*@__PURE__*/
+  messageDesc(file_extra_jstype_proto2, 0);
 
 /**
  * @generated from message spec.JSTypeProto2NormalMessage
@@ -255,10 +255,10 @@ export type JSTypeProto2NormalMessageJson = {
 
 /**
  * Describes the message spec.JSTypeProto2NormalMessage.
- * Use `create(JSTypeProto2NormalMessageDesc)` to create a new message.
+ * Use `create(JSTypeProto2NormalMessageSchema)` to create a new message.
  */
-export const JSTypeProto2NormalMessageDesc: GenDescMessage<JSTypeProto2NormalMessage, JSTypeProto2NormalMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_jstype_proto2, 1);
+export const JSTypeProto2NormalMessageSchema: GenDescMessage<JSTypeProto2NormalMessage, JSTypeProto2NormalMessageJson> = /*@__PURE__*/
+  messageDesc(file_extra_jstype_proto2, 1);
 
 /**
  * @generated from message spec.JSTypeProto2StringMessage
@@ -372,10 +372,10 @@ export type JSTypeProto2StringMessageJson = {
 
 /**
  * Describes the message spec.JSTypeProto2StringMessage.
- * Use `create(JSTypeProto2StringMessageDesc)` to create a new message.
+ * Use `create(JSTypeProto2StringMessageSchema)` to create a new message.
  */
-export const JSTypeProto2StringMessageDesc: GenDescMessage<JSTypeProto2StringMessage, JSTypeProto2StringMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_jstype_proto2, 2);
+export const JSTypeProto2StringMessageSchema: GenDescMessage<JSTypeProto2StringMessage, JSTypeProto2StringMessageJson> = /*@__PURE__*/
+  messageDesc(file_extra_jstype_proto2, 2);
 
 /**
  * @generated from message spec.JSTypeProto2NumberMessage
@@ -489,8 +489,8 @@ export type JSTypeProto2NumberMessageJson = {
 
 /**
  * Describes the message spec.JSTypeProto2NumberMessage.
- * Use `create(JSTypeProto2NumberMessageDesc)` to create a new message.
+ * Use `create(JSTypeProto2NumberMessageSchema)` to create a new message.
  */
-export const JSTypeProto2NumberMessageDesc: GenDescMessage<JSTypeProto2NumberMessage, JSTypeProto2NumberMessageJson> = /*@__PURE__*/
-  messageDesc(fileDesc_extra_jstype_proto2, 3);
+export const JSTypeProto2NumberMessageSchema: GenDescMessage<JSTypeProto2NumberMessage, JSTypeProto2NumberMessageJson> = /*@__PURE__*/
+  messageDesc(file_extra_jstype_proto2, 3);
 

@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/fraction.proto.
  */
-export const fileDesc_google_type_fraction: GenDescFile = /*@__PURE__*/
+export const file_google_type_fraction: GenDescFile = /*@__PURE__*/
   fileDesc("Chpnb29nbGUvdHlwZS9mcmFjdGlvbi5wcm90bxILZ29vZ2xlLnR5cGUiMgoIRnJhY3Rpb24SEQoJbnVtZXJhdG9yGAEgASgDEhMKC2Rlbm9taW5hdG9yGAIgASgDQmYKD2NvbS5nb29nbGUudHlwZUINRnJhY3Rpb25Qcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvZnJhY3Rpb247ZnJhY3Rpb26iAgNHVFBiBnByb3RvMw");
 
 /**
@@ -65,8 +65,8 @@ export type FractionJson = {
 
 /**
  * Describes the message google.type.Fraction.
- * Use `create(FractionDesc)` to create a new message.
+ * Use `create(FractionSchema)` to create a new message.
  */
-export const FractionDesc: GenDescMessage<Fraction, FractionJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_fraction, 0);
+export const FractionSchema: GenDescMessage<Fraction, FractionJson> = /*@__PURE__*/
+  messageDesc(file_google_type_fraction, 0);
 

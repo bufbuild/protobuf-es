@@ -60,9 +60,9 @@ function generateTs(schema: Schema<PluginOptions>) {
         if (method.methodKind === "unary") {
           f.print(f.jsDoc(method, "    "));
           const inputType = f.importShape(method.input);
-          const inputDesc = f.importDesc(method.input);
+          const inputDesc = f.importSchema(method.input);
           const outputType = f.importShape(method.output);
-          const outputDesc = f.importDesc(method.output);
+          const outputDesc = f.importSchema(method.output);
           const jsonValue = f.import("JsonValue", "@bufbuild/protobuf").toTypeOnly();
           f.print("    async ", method.localName, "(request: ", inputType, "): Promise<", outputType, "> {");
           f.print("        const headers = new Headers([]);");

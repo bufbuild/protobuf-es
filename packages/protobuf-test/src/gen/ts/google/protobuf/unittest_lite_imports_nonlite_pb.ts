@@ -23,14 +23,14 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { TestAllTypes, TestAllTypesJson, TestRequired, TestRequiredJson } from "./unittest_pb.js";
-import { fileDesc_google_protobuf_unittest } from "./unittest_pb.js";
+import { file_google_protobuf_unittest } from "./unittest_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_lite_imports_nonlite.proto.
  */
-export const fileDesc_google_protobuf_unittest_lite_imports_nonlite: GenDescFile = /*@__PURE__*/
-  fileDesc("CjNnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbGl0ZV9pbXBvcnRzX25vbmxpdGUucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0IooBChZUZXN0TGl0ZUltcG9ydHNOb25saXRlEjAKB21lc3NhZ2UYASABKAsyHy5wcm90b2J1Zl91bml0dGVzdC5UZXN0QWxsVHlwZXMSPgoVbWVzc2FnZV93aXRoX3JlcXVpcmVkGAIgASgLMh8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkQgJIAw", [fileDesc_google_protobuf_unittest]);
+export const file_google_protobuf_unittest_lite_imports_nonlite: GenDescFile = /*@__PURE__*/
+  fileDesc("CjNnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbGl0ZV9pbXBvcnRzX25vbmxpdGUucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0IooBChZUZXN0TGl0ZUltcG9ydHNOb25saXRlEjAKB21lc3NhZ2UYASABKAsyHy5wcm90b2J1Zl91bml0dGVzdC5UZXN0QWxsVHlwZXMSPgoVbWVzc2FnZV93aXRoX3JlcXVpcmVkGAIgASgLMh8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkQgJIAw", [file_google_protobuf_unittest]);
 
 /**
  * @generated from message protobuf_unittest.TestLiteImportsNonlite
@@ -66,8 +66,8 @@ export type TestLiteImportsNonliteJson = {
 
 /**
  * Describes the message protobuf_unittest.TestLiteImportsNonlite.
- * Use `create(TestLiteImportsNonliteDesc)` to create a new message.
+ * Use `create(TestLiteImportsNonliteSchema)` to create a new message.
  */
-export const TestLiteImportsNonliteDesc: GenDescMessage<TestLiteImportsNonlite, TestLiteImportsNonliteJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_lite_imports_nonlite, 0);
+export const TestLiteImportsNonliteSchema: GenDescMessage<TestLiteImportsNonlite, TestLiteImportsNonliteJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_lite_imports_nonlite, 0);
 

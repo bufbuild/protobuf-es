@@ -27,7 +27,7 @@ import type { ImportEnumForMap, ImportEnumForMapJson } from "./unittest_import_p
 /**
  * Describes the file google/protobuf/map_proto2_unittest.proto.
  */
-export declare const fileDesc_google_protobuf_map_proto2_unittest: GenDescFile;
+export declare const file_google_protobuf_map_proto2_unittest: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestEnumMap
@@ -183,9 +183,9 @@ export declare type TestEnumMapJson = {
 
 /**
  * Describes the message protobuf_unittest.TestEnumMap.
- * Use `create(TestEnumMapDesc)` to create a new message.
+ * Use `create(TestEnumMapSchema)` to create a new message.
  */
-export declare const TestEnumMapDesc: GenDescMessage<TestEnumMap, TestEnumMapJson>;
+export declare const TestEnumMapSchema: GenDescMessage<TestEnumMap, TestEnumMapJson>;
 
 /**
  * @generated from message protobuf_unittest.TestEnumMapPlusExtra
@@ -341,9 +341,9 @@ export declare type TestEnumMapPlusExtraJson = {
 
 /**
  * Describes the message protobuf_unittest.TestEnumMapPlusExtra.
- * Use `create(TestEnumMapPlusExtraDesc)` to create a new message.
+ * Use `create(TestEnumMapPlusExtraSchema)` to create a new message.
  */
-export declare const TestEnumMapPlusExtraDesc: GenDescMessage<TestEnumMapPlusExtra, TestEnumMapPlusExtraJson>;
+export declare const TestEnumMapPlusExtraSchema: GenDescMessage<TestEnumMapPlusExtra, TestEnumMapPlusExtraJson>;
 
 /**
  * @generated from message protobuf_unittest.TestImportEnumMap
@@ -367,9 +367,9 @@ export declare type TestImportEnumMapJson = {
 
 /**
  * Describes the message protobuf_unittest.TestImportEnumMap.
- * Use `create(TestImportEnumMapDesc)` to create a new message.
+ * Use `create(TestImportEnumMapSchema)` to create a new message.
  */
-export declare const TestImportEnumMapDesc: GenDescMessage<TestImportEnumMap, TestImportEnumMapJson>;
+export declare const TestImportEnumMapSchema: GenDescMessage<TestImportEnumMap, TestImportEnumMapJson>;
 
 /**
  * @generated from message protobuf_unittest.TestIntIntMap
@@ -393,9 +393,9 @@ export declare type TestIntIntMapJson = {
 
 /**
  * Describes the message protobuf_unittest.TestIntIntMap.
- * Use `create(TestIntIntMapDesc)` to create a new message.
+ * Use `create(TestIntIntMapSchema)` to create a new message.
  */
-export declare const TestIntIntMapDesc: GenDescMessage<TestIntIntMap, TestIntIntMapJson>;
+export declare const TestIntIntMapSchema: GenDescMessage<TestIntIntMap, TestIntIntMapJson>;
 
 /**
  * Test all key types: string, plus the non-floating-point scalars.
@@ -531,9 +531,9 @@ export declare type TestMapsJson = {
 
 /**
  * Describes the message protobuf_unittest.TestMaps.
- * Use `create(TestMapsDesc)` to create a new message.
+ * Use `create(TestMapsSchema)` to create a new message.
  */
-export declare const TestMapsDesc: GenDescMessage<TestMaps, TestMapsJson>;
+export declare const TestMapsSchema: GenDescMessage<TestMaps, TestMapsJson>;
 
 /**
  * Test maps in submessages.
@@ -559,9 +559,9 @@ export declare type TestSubmessageMapsJson = {
 
 /**
  * Describes the message protobuf_unittest.TestSubmessageMaps.
- * Use `create(TestSubmessageMapsDesc)` to create a new message.
+ * Use `create(TestSubmessageMapsSchema)` to create a new message.
  */
-export declare const TestSubmessageMapsDesc: GenDescMessage<TestSubmessageMaps, TestSubmessageMapsJson>;
+export declare const TestSubmessageMapsSchema: GenDescMessage<TestSubmessageMaps, TestSubmessageMapsJson>;
 
 /**
  * @generated from message protobuf_unittest.TestProto2BytesMap
@@ -595,9 +595,9 @@ export declare type TestProto2BytesMapJson = {
 
 /**
  * Describes the message protobuf_unittest.TestProto2BytesMap.
- * Use `create(TestProto2BytesMapDesc)` to create a new message.
+ * Use `create(TestProto2BytesMapSchema)` to create a new message.
  */
-export declare const TestProto2BytesMapDesc: GenDescMessage<TestProto2BytesMap, TestProto2BytesMapJson>;
+export declare const TestProto2BytesMapSchema: GenDescMessage<TestProto2BytesMap, TestProto2BytesMapJson>;
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnum
@@ -627,7 +627,7 @@ export declare type Proto2MapEnumJson = "PROTO2_MAP_ENUM_FOO" | "PROTO2_MAP_ENUM
 /**
  * Describes the enum protobuf_unittest.Proto2MapEnum.
  */
-export declare const Proto2MapEnumDesc: GenDescEnum<Proto2MapEnum, Proto2MapEnumJson>;
+export declare const Proto2MapEnumSchema: GenDescEnum<Proto2MapEnum, Proto2MapEnumJson>;
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumPlusExtra
@@ -662,5 +662,5 @@ export declare type Proto2MapEnumPlusExtraJson = "E_PROTO2_MAP_ENUM_FOO" | "E_PR
 /**
  * Describes the enum protobuf_unittest.Proto2MapEnumPlusExtra.
  */
-export declare const Proto2MapEnumPlusExtraDesc: GenDescEnum<Proto2MapEnumPlusExtra, Proto2MapEnumPlusExtraJson>;
+export declare const Proto2MapEnumPlusExtraSchema: GenDescEnum<Proto2MapEnumPlusExtra, Proto2MapEnumPlusExtraJson>;
 

@@ -13,18 +13,18 @@
 // limitations under the License.
 
 import { create, toBinary } from "@bufbuild/protobuf";
-import { TimeOfDayDesc } from "./google/type/timeofday_pb";
-import { QuaternionDesc } from "./google/type/quaternion_pb";
-import { PostalAddressDesc } from "./google/type/postal_address_pb";
-import { PhoneNumberDesc } from "./google/type/phone_number_pb";
+import { TimeOfDaySchema } from "./google/type/timeofday_pb";
+import { QuaternionSchema } from "./google/type/quaternion_pb";
+import { PostalAddressSchema } from "./google/type/postal_address_pb";
+import { PhoneNumberSchema } from "./google/type/phone_number_pb";
 
 /* eslint-disable no-console */
 
 // google/type/timeofday.proto
-console.log(toBinary(TimeOfDayDesc, create(TimeOfDayDesc)).length);
+console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);
 // google/type/quaternion.proto
-console.log(toBinary(QuaternionDesc, create(QuaternionDesc)).length);
+console.log(toBinary(QuaternionSchema, create(QuaternionSchema)).length);
 // google/type/postal_address.proto
-console.log(toBinary(PostalAddressDesc, create(PostalAddressDesc)).length);
+console.log(toBinary(PostalAddressSchema, create(PostalAddressSchema)).length);
 // google/type/phone_number.proto
-console.log(toBinary(PhoneNumberDesc, create(PhoneNumberDesc)).length);
+console.log(toBinary(PhoneNumberSchema, create(PhoneNumberSchema)).length);

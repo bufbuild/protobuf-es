@@ -28,7 +28,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_mset_wire_format.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_mset_wire_format: GenDescFile;
+export declare const file_google_protobuf_unittest_mset_wire_format: GenDescFile;
 
 /**
  * A message with message_set_wire_format.
@@ -46,9 +46,9 @@ export declare type TestMessageSetJson = {
 
 /**
  * Describes the message proto2_wireformat_unittest.TestMessageSet.
- * Use `create(TestMessageSetDesc)` to create a new message.
+ * Use `create(TestMessageSetSchema)` to create a new message.
  */
-export declare const TestMessageSetDesc: GenDescMessage<TestMessageSet, TestMessageSetJson>;
+export declare const TestMessageSetSchema: GenDescMessage<TestMessageSet, TestMessageSetJson>;
 
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
@@ -72,7 +72,7 @@ export declare type TestMessageSetWireFormatContainerJson = {
 
 /**
  * Describes the message proto2_wireformat_unittest.TestMessageSetWireFormatContainer.
- * Use `create(TestMessageSetWireFormatContainerDesc)` to create a new message.
+ * Use `create(TestMessageSetWireFormatContainerSchema)` to create a new message.
  */
-export declare const TestMessageSetWireFormatContainerDesc: GenDescMessage<TestMessageSetWireFormatContainer, TestMessageSetWireFormatContainerJson>;
+export declare const TestMessageSetWireFormatContainerSchema: GenDescMessage<TestMessageSetWireFormatContainer, TestMessageSetWireFormatContainerJson>;
 

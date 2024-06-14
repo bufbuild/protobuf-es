@@ -29,7 +29,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_extension_set.proto.
  */
-export const fileDesc_google_protobuf_unittest_extension_set: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_unittest_extension_set: GenDescFile = /*@__PURE__*/
   fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZXh0ZW5zaW9uX3NldC5wcm90bxIRcHJvdG9idWZfdW5pdHRlc3QiHAoQVGVzdEV4dGVuc2lvblNldCoICAQQgICAgAIiUwoZVGVzdEV4dGVuc2lvblNldENvbnRhaW5lchI2CglleHRlbnNpb24YASABKAsyIy5wcm90b2J1Zl91bml0dGVzdC5UZXN0RXh0ZW5zaW9uU2V0QiZIAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
 
 /**
@@ -48,10 +48,10 @@ export type TestExtensionSetJson = {
 
 /**
  * Describes the message protobuf_unittest.TestExtensionSet.
- * Use `create(TestExtensionSetDesc)` to create a new message.
+ * Use `create(TestExtensionSetSchema)` to create a new message.
  */
-export const TestExtensionSetDesc: GenDescMessage<TestExtensionSet, TestExtensionSetJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_extension_set, 0);
+export const TestExtensionSetSchema: GenDescMessage<TestExtensionSet, TestExtensionSetJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_extension_set, 0);
 
 /**
  * @generated from message protobuf_unittest.TestExtensionSetContainer
@@ -75,8 +75,8 @@ export type TestExtensionSetContainerJson = {
 
 /**
  * Describes the message protobuf_unittest.TestExtensionSetContainer.
- * Use `create(TestExtensionSetContainerDesc)` to create a new message.
+ * Use `create(TestExtensionSetContainerSchema)` to create a new message.
  */
-export const TestExtensionSetContainerDesc: GenDescMessage<TestExtensionSetContainer, TestExtensionSetContainerJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_extension_set, 1);
+export const TestExtensionSetContainerSchema: GenDescMessage<TestExtensionSetContainer, TestExtensionSetContainerJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_extension_set, 1);
 

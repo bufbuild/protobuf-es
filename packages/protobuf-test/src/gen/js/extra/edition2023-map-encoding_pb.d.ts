@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/edition2023-map-encoding.proto.
  */
-export declare const fileDesc_extra_edition2023_map_encoding: GenDescFile;
+export declare const file_extra_edition2023_map_encoding: GenDescFile;
 
 /**
  * Map fields are syntactic sugar for a repeated message field with field 1 for
@@ -62,9 +62,9 @@ export declare type Edition2023MapEncodingMessageJson = {
 
 /**
  * Describes the message spec.Edition2023MapEncodingMessage.
- * Use `create(Edition2023MapEncodingMessageDesc)` to create a new message.
+ * Use `create(Edition2023MapEncodingMessageSchema)` to create a new message.
  */
-export declare const Edition2023MapEncodingMessageDesc: GenDescMessage<Edition2023MapEncodingMessage, Edition2023MapEncodingMessageJson>;
+export declare const Edition2023MapEncodingMessageSchema: GenDescMessage<Edition2023MapEncodingMessage, Edition2023MapEncodingMessageJson>;
 
 /**
  * @generated from message spec.Edition2023MapEncodingMessage.Child
@@ -80,7 +80,7 @@ export declare type Edition2023MapEncodingMessage_ChildJson = {
 
 /**
  * Describes the message spec.Edition2023MapEncodingMessage.Child.
- * Use `create(Edition2023MapEncodingMessage_ChildDesc)` to create a new message.
+ * Use `create(Edition2023MapEncodingMessage_ChildSchema)` to create a new message.
  */
-export declare const Edition2023MapEncodingMessage_ChildDesc: GenDescMessage<Edition2023MapEncodingMessage_Child, Edition2023MapEncodingMessage_ChildJson>;
+export declare const Edition2023MapEncodingMessage_ChildSchema: GenDescMessage<Edition2023MapEncodingMessage_Child, Edition2023MapEncodingMessage_ChildJson>;
 

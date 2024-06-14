@@ -69,7 +69,7 @@ export function fillEdition2023MessageNames() {
 }
 
 export function fillEdition2023Message(msg: edition2023_ts.Edition2023Message) {
-  const desc = edition2023_ts.Edition2023MessageDesc;
+  const desc = edition2023_ts.Edition2023MessageSchema;
 
   // explicit
   msg.explicitStringField = "";
@@ -101,10 +101,10 @@ export function fillEdition2023Message(msg: edition2023_ts.Edition2023Message) {
   msg.requiredEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
   msg.requiredEnumClosedField = edition2023_ts.Edition2023EnumClosed.A;
   msg.requiredMessageField = create(
-    edition2023_ts.Edition2023Message_ChildDesc,
+    edition2023_ts.Edition2023Message_ChildSchema,
   );
   msg.requiredMessageDelimitedField = create(
-    edition2023_ts.Edition2023Message_ChildDesc,
+    edition2023_ts.Edition2023Message_ChildSchema,
   );
   msg.requiredWrappedUint32Field = 66;
 
@@ -143,10 +143,10 @@ function fillEdition2023Required(msg: edition2023_ts.Edition2023Message) {
   msg.requiredEnumOpenField = edition2023_ts.Edition2023EnumOpen.A;
   msg.requiredEnumClosedField = edition2023_ts.Edition2023EnumClosed.A;
   msg.requiredMessageField = create(
-    edition2023_ts.Edition2023Message_ChildDesc,
+    edition2023_ts.Edition2023Message_ChildSchema,
   );
   msg.requiredMessageDelimitedField = create(
-    edition2023_ts.Edition2023Message_ChildDesc,
+    edition2023_ts.Edition2023Message_ChildSchema,
   );
   msg.requiredWrappedUint32Field = 66;
 

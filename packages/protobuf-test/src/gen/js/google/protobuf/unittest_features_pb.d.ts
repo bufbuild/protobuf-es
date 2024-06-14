@@ -23,7 +23,7 @@ import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file google/protobuf/unittest_features.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_features: GenDescFile;
+export declare const file_google_protobuf_unittest_features: GenDescFile;
 
 /**
  * @generated from message pb.TestMessage
@@ -39,9 +39,9 @@ export declare type TestMessageJson = {
 
 /**
  * Describes the message pb.TestMessage.
- * Use `create(TestMessageDesc)` to create a new message.
+ * Use `create(TestMessageSchema)` to create a new message.
  */
-export declare const TestMessageDesc: GenDescMessage<TestMessage, TestMessageJson>;
+export declare const TestMessageSchema: GenDescMessage<TestMessage, TestMessageJson>;
 
 /**
  * @generated from message pb.TestMessage.Nested
@@ -57,9 +57,9 @@ export declare type TestMessage_NestedJson = {
 
 /**
  * Describes the message pb.TestMessage.Nested.
- * Use `create(TestMessage_NestedDesc)` to create a new message.
+ * Use `create(TestMessage_NestedSchema)` to create a new message.
  */
-export declare const TestMessage_NestedDesc: GenDescMessage<TestMessage_Nested, TestMessage_NestedJson>;
+export declare const TestMessage_NestedSchema: GenDescMessage<TestMessage_Nested, TestMessage_NestedJson>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test_nested = 9997;
@@ -243,9 +243,9 @@ export declare type TestFeaturesJson = {
 
 /**
  * Describes the message pb.TestFeatures.
- * Use `create(TestFeaturesDesc)` to create a new message.
+ * Use `create(TestFeaturesSchema)` to create a new message.
  */
-export declare const TestFeaturesDesc: GenDescMessage<TestFeatures, TestFeaturesJson>;
+export declare const TestFeaturesSchema: GenDescMessage<TestFeatures, TestFeaturesJson>;
 
 /**
  * @generated from enum pb.EnumFeature
@@ -350,7 +350,7 @@ export declare type EnumFeatureJson = "TEST_ENUM_FEATURE_UNKNOWN" | "VALUE1" | "
 /**
  * Describes the enum pb.EnumFeature.
  */
-export declare const EnumFeatureDesc: GenDescEnum<EnumFeature, EnumFeatureJson>;
+export declare const EnumFeatureSchema: GenDescEnum<EnumFeature, EnumFeatureJson>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test = 9999;

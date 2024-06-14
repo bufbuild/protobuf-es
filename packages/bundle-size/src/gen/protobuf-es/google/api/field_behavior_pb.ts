@@ -19,13 +19,13 @@
 import type { GenDescEnum, GenDescExtension, GenDescFile } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 import type { FieldOptions } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/api/field_behavior.proto.
  */
-export const fileDesc_google_api_field_behavior: GenDescFile = /*@__PURE__*/
-  fileDesc("Ch9nb29nbGUvYXBpL2ZpZWxkX2JlaGF2aW9yLnByb3RvEgpnb29nbGUuYXBpKrYBCg1GaWVsZEJlaGF2aW9yEh4KGkZJRUxEX0JFSEFWSU9SX1VOU1BFQ0lGSUVEEAASDAoIT1BUSU9OQUwQARIMCghSRVFVSVJFRBACEg8KC09VVFBVVF9PTkxZEAMSDgoKSU5QVVRfT05MWRAEEg0KCUlNTVVUQUJMRRAFEhIKDlVOT1JERVJFRF9MSVNUEAYSFQoRTk9OX0VNUFRZX0RFRkFVTFQQBxIOCgpJREVOVElGSUVSEAg6ZAoOZmllbGRfYmVoYXZpb3ISHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGJwIIAMoDjIZLmdvb2dsZS5hcGkuRmllbGRCZWhhdmlvckICEABSDWZpZWxkQmVoYXZpb3JCcAoOY29tLmdvb2dsZS5hcGlCEkZpZWxkQmVoYXZpb3JQcm90b1ABWkFnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL2FwaS9hbm5vdGF0aW9uczthbm5vdGF0aW9uc6ICBEdBUEliBnByb3RvMw", [fileDesc_google_protobuf_descriptor]);
+export const file_google_api_field_behavior: GenDescFile = /*@__PURE__*/
+  fileDesc("Ch9nb29nbGUvYXBpL2ZpZWxkX2JlaGF2aW9yLnByb3RvEgpnb29nbGUuYXBpKrYBCg1GaWVsZEJlaGF2aW9yEh4KGkZJRUxEX0JFSEFWSU9SX1VOU1BFQ0lGSUVEEAASDAoIT1BUSU9OQUwQARIMCghSRVFVSVJFRBACEg8KC09VVFBVVF9PTkxZEAMSDgoKSU5QVVRfT05MWRAEEg0KCUlNTVVUQUJMRRAFEhIKDlVOT1JERVJFRF9MSVNUEAYSFQoRTk9OX0VNUFRZX0RFRkFVTFQQBxIOCgpJREVOVElGSUVSEAg6ZAoOZmllbGRfYmVoYXZpb3ISHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGJwIIAMoDjIZLmdvb2dsZS5hcGkuRmllbGRCZWhhdmlvckICEABSDWZpZWxkQmVoYXZpb3JCcAoOY29tLmdvb2dsZS5hcGlCEkZpZWxkQmVoYXZpb3JQcm90b1ABWkFnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL2FwaS9hbm5vdGF0aW9uczthbm5vdGF0aW9uc6ICBEdBUEliBnByb3RvMw", [file_google_protobuf_descriptor]);
 
 /**
  * An indicator of the behavior of a given field (for example, that a field
@@ -138,8 +138,8 @@ export type FieldBehaviorJson = "FIELD_BEHAVIOR_UNSPECIFIED" | "OPTIONAL" | "REQ
 /**
  * Describes the enum google.api.FieldBehavior.
  */
-export const FieldBehaviorDesc: GenDescEnum<FieldBehavior, FieldBehaviorJson> = /*@__PURE__*/
-  enumDesc(fileDesc_google_api_field_behavior, 0);
+export const FieldBehaviorSchema: GenDescEnum<FieldBehavior, FieldBehaviorJson> = /*@__PURE__*/
+  enumDesc(file_google_api_field_behavior, 0);
 
 /**
  * A designation of a specific field behavior (required, output only, etc.)
@@ -158,5 +158,5 @@ export const FieldBehaviorDesc: GenDescEnum<FieldBehavior, FieldBehaviorJson> = 
  * @generated from extension: repeated google.api.FieldBehavior field_behavior = 1052 [packed = false];
  */
 export const field_behavior: GenDescExtension<FieldOptions, FieldBehavior[]> = /*@__PURE__*/
-  extDesc(fileDesc_google_api_field_behavior, 0);
+  extDesc(file_google_api_field_behavior, 0);
 

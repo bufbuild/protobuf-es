@@ -19,14 +19,14 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Expr, ExprJson } from "./expr_pb";
-import { fileDesc_google_api_expr_v1beta1_expr } from "./expr_pb";
+import { file_google_api_expr_v1beta1_expr } from "./expr_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/api/expr/v1beta1/decl.proto.
  */
-export const fileDesc_google_api_expr_v1beta1_decl: GenDescFile = /*@__PURE__*/
-  fileDesc("CiJnb29nbGUvYXBpL2V4cHIvdjFiZXRhMS9kZWNsLnByb3RvEhdnb29nbGUuYXBpLmV4cHIudjFiZXRhMSKlAQoERGVjbBIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJEgsKA2RvYxgDIAEoCRIzCgVpZGVudBgEIAEoCzIiLmdvb2dsZS5hcGkuZXhwci52MWJldGExLklkZW50RGVjbEgAEjkKCGZ1bmN0aW9uGAUgASgLMiUuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuRnVuY3Rpb25EZWNsSABCBgoEa2luZCJcCghEZWNsVHlwZRIKCgJpZBgBIAEoBRIMCgR0eXBlGAIgASgJEjYKC3R5cGVfcGFyYW1zGAQgAygLMiEuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuRGVjbFR5cGUiagoJSWRlbnREZWNsEi8KBHR5cGUYAyABKAsyIS5nb29nbGUuYXBpLmV4cHIudjFiZXRhMS5EZWNsVHlwZRIsCgV2YWx1ZRgEIAEoCzIdLmdvb2dsZS5hcGkuZXhwci52MWJldGExLkV4cHIikwEKDEZ1bmN0aW9uRGVjbBIwCgRhcmdzGAEgAygLMiIuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuSWRlbnREZWNsEjYKC3JldHVybl90eXBlGAIgASgLMiEuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuRGVjbFR5cGUSGQoRcmVjZWl2ZXJfZnVuY3Rpb24YAyABKAhCagobY29tLmdvb2dsZS5hcGkuZXhwci52MWJldGExQglEZWNsUHJvdG9QAVo7Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvZXhwci92MWJldGExO2V4cHL4AQFiBnByb3RvMw", [fileDesc_google_api_expr_v1beta1_expr]);
+export const file_google_api_expr_v1beta1_decl: GenDescFile = /*@__PURE__*/
+  fileDesc("CiJnb29nbGUvYXBpL2V4cHIvdjFiZXRhMS9kZWNsLnByb3RvEhdnb29nbGUuYXBpLmV4cHIudjFiZXRhMSKlAQoERGVjbBIKCgJpZBgBIAEoBRIMCgRuYW1lGAIgASgJEgsKA2RvYxgDIAEoCRIzCgVpZGVudBgEIAEoCzIiLmdvb2dsZS5hcGkuZXhwci52MWJldGExLklkZW50RGVjbEgAEjkKCGZ1bmN0aW9uGAUgASgLMiUuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuRnVuY3Rpb25EZWNsSABCBgoEa2luZCJcCghEZWNsVHlwZRIKCgJpZBgBIAEoBRIMCgR0eXBlGAIgASgJEjYKC3R5cGVfcGFyYW1zGAQgAygLMiEuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuRGVjbFR5cGUiagoJSWRlbnREZWNsEi8KBHR5cGUYAyABKAsyIS5nb29nbGUuYXBpLmV4cHIudjFiZXRhMS5EZWNsVHlwZRIsCgV2YWx1ZRgEIAEoCzIdLmdvb2dsZS5hcGkuZXhwci52MWJldGExLkV4cHIikwEKDEZ1bmN0aW9uRGVjbBIwCgRhcmdzGAEgAygLMiIuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuSWRlbnREZWNsEjYKC3JldHVybl90eXBlGAIgASgLMiEuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuRGVjbFR5cGUSGQoRcmVjZWl2ZXJfZnVuY3Rpb24YAyABKAhCagobY29tLmdvb2dsZS5hcGkuZXhwci52MWJldGExQglEZWNsUHJvdG9QAVo7Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvZXhwci92MWJldGExO2V4cHL4AQFiBnByb3RvMw", [file_google_api_expr_v1beta1_expr]);
 
 /**
  * A declaration.
@@ -111,10 +111,10 @@ export type DeclJson = {
 
 /**
  * Describes the message google.api.expr.v1beta1.Decl.
- * Use `create(DeclDesc)` to create a new message.
+ * Use `create(DeclSchema)` to create a new message.
  */
-export const DeclDesc: GenDescMessage<Decl, DeclJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1beta1_decl, 0);
+export const DeclSchema: GenDescMessage<Decl, DeclJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1beta1_decl, 0);
 
 /**
  * The declared type of a variable.
@@ -170,10 +170,10 @@ export type DeclTypeJson = {
 
 /**
  * Describes the message google.api.expr.v1beta1.DeclType.
- * Use `create(DeclTypeDesc)` to create a new message.
+ * Use `create(DeclTypeSchema)` to create a new message.
  */
-export const DeclTypeDesc: GenDescMessage<DeclType, DeclTypeJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1beta1_decl, 1);
+export const DeclTypeSchema: GenDescMessage<DeclType, DeclTypeJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1beta1_decl, 1);
 
 /**
  * An identifier declaration.
@@ -213,10 +213,10 @@ export type IdentDeclJson = {
 
 /**
  * Describes the message google.api.expr.v1beta1.IdentDecl.
- * Use `create(IdentDeclDesc)` to create a new message.
+ * Use `create(IdentDeclSchema)` to create a new message.
  */
-export const IdentDeclDesc: GenDescMessage<IdentDecl, IdentDeclJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1beta1_decl, 2);
+export const IdentDeclSchema: GenDescMessage<IdentDecl, IdentDeclJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1beta1_decl, 2);
 
 /**
  * A function declaration.
@@ -268,8 +268,8 @@ export type FunctionDeclJson = {
 
 /**
  * Describes the message google.api.expr.v1beta1.FunctionDecl.
- * Use `create(FunctionDeclDesc)` to create a new message.
+ * Use `create(FunctionDeclSchema)` to create a new message.
  */
-export const FunctionDeclDesc: GenDescMessage<FunctionDecl, FunctionDeclJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1beta1_decl, 3);
+export const FunctionDeclSchema: GenDescMessage<FunctionDecl, FunctionDeclJson> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1beta1_decl, 3);
 

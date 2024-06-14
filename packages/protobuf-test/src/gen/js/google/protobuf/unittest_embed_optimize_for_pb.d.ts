@@ -29,7 +29,7 @@ import type { TestOptimizedForSize, TestOptimizedForSizeJson } from "./unittest_
 /**
  * Describes the file google/protobuf/unittest_embed_optimize_for.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_embed_optimize_for: GenDescFile;
+export declare const file_google_protobuf_unittest_embed_optimize_for: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize
@@ -66,7 +66,7 @@ export declare type TestEmbedOptimizedForSizeJson = {
 
 /**
  * Describes the message protobuf_unittest.TestEmbedOptimizedForSize.
- * Use `create(TestEmbedOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestEmbedOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestEmbedOptimizedForSizeDesc: GenDescMessage<TestEmbedOptimizedForSize, TestEmbedOptimizedForSizeJson>;
+export declare const TestEmbedOptimizedForSizeSchema: GenDescMessage<TestEmbedOptimizedForSize, TestEmbedOptimizedForSizeJson>;
 

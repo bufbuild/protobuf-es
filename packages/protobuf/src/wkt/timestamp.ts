@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { Timestamp } from "./gen/google/protobuf/timestamp_pb.js";
-import { TimestampDesc } from "./gen/google/protobuf/timestamp_pb.js";
+import { TimestampSchema } from "./gen/google/protobuf/timestamp_pb.js";
 import { create } from "../create.js";
 import { protoInt64 } from "../proto-int64.js";
 
@@ -42,7 +42,7 @@ export function timestampDate(timestamp: Timestamp): Date {
  * Create a google.protobuf.Timestamp message from a Unix timestamp in milliseconds.
  */
 export function timestampFromMs(timestampMs: number): Timestamp {
-  return create(TimestampDesc, {
+  return create(TimestampSchema, {
     seconds: protoInt64.parse(Math.floor(timestampMs / 1000)),
     nanos: (timestampMs % 1000) * 1000000,
   });

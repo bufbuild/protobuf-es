@@ -24,7 +24,7 @@ import { messageDesc } from "../../../../codegenv1/message.js";
 /**
  * Describes the file google/protobuf/duration.proto.
  */
-export const fileDesc_google_protobuf_duration: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_duration: GenDescFile = /*@__PURE__*/
   fileDesc("Ch5nb29nbGUvcHJvdG9idWYvZHVyYXRpb24ucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIqCghEdXJhdGlvbhIPCgdzZWNvbmRzGAEgASgDEg0KBW5hbm9zGAIgASgFQoMBChNjb20uZ29vZ2xlLnByb3RvYnVmQg1EdXJhdGlvblByb3RvUAFaMWdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2R1cmF0aW9ucGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
 
 /**
@@ -120,8 +120,8 @@ export type DurationJson = string;
 
 /**
  * Describes the message google.protobuf.Duration.
- * Use `create(DurationDesc)` to create a new message.
+ * Use `create(DurationSchema)` to create a new message.
  */
-export const DurationDesc: GenDescMessage<Duration, DurationJson> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_duration, 0);
+export const DurationSchema: GenDescMessage<Duration, DurationJson> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_duration, 0);
 
