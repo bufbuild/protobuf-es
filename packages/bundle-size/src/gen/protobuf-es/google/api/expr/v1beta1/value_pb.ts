@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any, AnyJson, NullValue, NullValueJson } from "@bufbuild/protobuf/wkt";
+import type { Any, NullValue } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any, file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -142,75 +142,10 @@ export type Value = Message<"google.api.expr.v1beta1.Value"> & {
 };
 
 /**
- * JSON type for the message google.api.expr.v1beta1.Value.
- */
-export type ValueJson = {
-  /**
-   * @generated from field: google.protobuf.NullValue null_value = 1;
-   */
-  nullValue?: NullValueJson;
-
-  /**
-   * @generated from field: bool bool_value = 2;
-   */
-  boolValue?: boolean;
-
-  /**
-   * @generated from field: int64 int64_value = 3;
-   */
-  int64Value?: string;
-
-  /**
-   * @generated from field: uint64 uint64_value = 4;
-   */
-  uint64Value?: string;
-
-  /**
-   * @generated from field: double double_value = 5;
-   */
-  doubleValue?: number | "NaN" | "Infinity" | "-Infinity";
-
-  /**
-   * @generated from field: string string_value = 6;
-   */
-  stringValue?: string;
-
-  /**
-   * @generated from field: bytes bytes_value = 7;
-   */
-  bytesValue?: string;
-
-  /**
-   * @generated from field: google.api.expr.v1beta1.EnumValue enum_value = 9;
-   */
-  enumValue?: EnumValueJson;
-
-  /**
-   * @generated from field: google.protobuf.Any object_value = 10;
-   */
-  objectValue?: AnyJson;
-
-  /**
-   * @generated from field: google.api.expr.v1beta1.MapValue map_value = 11;
-   */
-  mapValue?: MapValueJson;
-
-  /**
-   * @generated from field: google.api.expr.v1beta1.ListValue list_value = 12;
-   */
-  listValue?: ListValueJson;
-
-  /**
-   * @generated from field: string type_value = 15;
-   */
-  typeValue?: string;
-};
-
-/**
  * Describes the message google.api.expr.v1beta1.Value.
  * Use `create(ValueSchema)` to create a new message.
  */
-export const ValueSchema: GenDescMessage<Value, ValueJson> = /*@__PURE__*/
+export const ValueSchema: GenDescMessage<Value> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 0);
 
 /**
@@ -235,25 +170,10 @@ export type EnumValue = Message<"google.api.expr.v1beta1.EnumValue"> & {
 };
 
 /**
- * JSON type for the message google.api.expr.v1beta1.EnumValue.
- */
-export type EnumValueJson = {
-  /**
-   * @generated from field: string type = 1;
-   */
-  type?: string;
-
-  /**
-   * @generated from field: int32 value = 2;
-   */
-  value?: number;
-};
-
-/**
  * Describes the message google.api.expr.v1beta1.EnumValue.
  * Use `create(EnumValueSchema)` to create a new message.
  */
-export const EnumValueSchema: GenDescMessage<EnumValue, EnumValueJson> = /*@__PURE__*/
+export const EnumValueSchema: GenDescMessage<EnumValue> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 1);
 
 /**
@@ -274,20 +194,10 @@ export type ListValue = Message<"google.api.expr.v1beta1.ListValue"> & {
 };
 
 /**
- * JSON type for the message google.api.expr.v1beta1.ListValue.
- */
-export type ListValueJson = {
-  /**
-   * @generated from field: repeated google.api.expr.v1beta1.Value values = 1;
-   */
-  values?: ValueJson[];
-};
-
-/**
  * Describes the message google.api.expr.v1beta1.ListValue.
  * Use `create(ListValueSchema)` to create a new message.
  */
-export const ListValueSchema: GenDescMessage<ListValue, ListValueJson> = /*@__PURE__*/
+export const ListValueSchema: GenDescMessage<ListValue> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 2);
 
 /**
@@ -311,20 +221,10 @@ export type MapValue = Message<"google.api.expr.v1beta1.MapValue"> & {
 };
 
 /**
- * JSON type for the message google.api.expr.v1beta1.MapValue.
- */
-export type MapValueJson = {
-  /**
-   * @generated from field: repeated google.api.expr.v1beta1.MapValue.Entry entries = 1;
-   */
-  entries?: MapValue_EntryJson[];
-};
-
-/**
  * Describes the message google.api.expr.v1beta1.MapValue.
  * Use `create(MapValueSchema)` to create a new message.
  */
-export const MapValueSchema: GenDescMessage<MapValue, MapValueJson> = /*@__PURE__*/
+export const MapValueSchema: GenDescMessage<MapValue> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 3);
 
 /**
@@ -352,24 +252,9 @@ export type MapValue_Entry = Message<"google.api.expr.v1beta1.MapValue.Entry"> &
 };
 
 /**
- * JSON type for the message google.api.expr.v1beta1.MapValue.Entry.
- */
-export type MapValue_EntryJson = {
-  /**
-   * @generated from field: google.api.expr.v1beta1.Value key = 1;
-   */
-  key?: ValueJson;
-
-  /**
-   * @generated from field: google.api.expr.v1beta1.Value value = 2;
-   */
-  value?: ValueJson;
-};
-
-/**
  * Describes the message google.api.expr.v1beta1.MapValue.Entry.
  * Use `create(MapValue_EntrySchema)` to create a new message.
  */
-export const MapValue_EntrySchema: GenDescMessage<MapValue_Entry, MapValue_EntryJson> = /*@__PURE__*/
+export const MapValue_EntrySchema: GenDescMessage<MapValue_Entry> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 3, 0);
 

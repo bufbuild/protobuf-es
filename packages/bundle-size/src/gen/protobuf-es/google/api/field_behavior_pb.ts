@@ -131,14 +131,9 @@ export enum FieldBehavior {
 }
 
 /**
- * JSON type for the enum google.api.FieldBehavior.
- */
-export type FieldBehaviorJson = "FIELD_BEHAVIOR_UNSPECIFIED" | "OPTIONAL" | "REQUIRED" | "OUTPUT_ONLY" | "INPUT_ONLY" | "IMMUTABLE" | "UNORDERED_LIST" | "NON_EMPTY_DEFAULT" | "IDENTIFIER";
-
-/**
  * Describes the enum google.api.FieldBehavior.
  */
-export const FieldBehaviorSchema: GenDescEnum<FieldBehavior, FieldBehaviorJson> = /*@__PURE__*/
+export const FieldBehaviorSchema: GenDescEnum<FieldBehavior> = /*@__PURE__*/
   enumDesc(file_google_api_field_behavior, 0);
 
 /**

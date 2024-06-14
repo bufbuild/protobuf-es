@@ -67,34 +67,9 @@ export type TimeOfDay = Message<"google.type.TimeOfDay"> & {
 };
 
 /**
- * JSON type for the message google.type.TimeOfDay.
- */
-export type TimeOfDayJson = {
-  /**
-   * @generated from field: int32 hours = 1;
-   */
-  hours?: number;
-
-  /**
-   * @generated from field: int32 minutes = 2;
-   */
-  minutes?: number;
-
-  /**
-   * @generated from field: int32 seconds = 3;
-   */
-  seconds?: number;
-
-  /**
-   * @generated from field: int32 nanos = 4;
-   */
-  nanos?: number;
-};
-
-/**
  * Describes the message google.type.TimeOfDay.
  * Use `create(TimeOfDaySchema)` to create a new message.
  */
-export const TimeOfDaySchema: GenDescMessage<TimeOfDay, TimeOfDayJson> = /*@__PURE__*/
+export const TimeOfDaySchema: GenDescMessage<TimeOfDay> = /*@__PURE__*/
   messageDesc(file_google_type_timeofday, 0);
 

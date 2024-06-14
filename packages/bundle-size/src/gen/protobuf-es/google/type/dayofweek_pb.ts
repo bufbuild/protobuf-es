@@ -89,13 +89,8 @@ export enum DayOfWeek {
 }
 
 /**
- * JSON type for the enum google.type.DayOfWeek.
- */
-export type DayOfWeekJson = "DAY_OF_WEEK_UNSPECIFIED" | "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" | "FRIDAY" | "SATURDAY" | "SUNDAY";
-
-/**
  * Describes the enum google.type.DayOfWeek.
  */
-export const DayOfWeekSchema: GenDescEnum<DayOfWeek, DayOfWeekJson> = /*@__PURE__*/
+export const DayOfWeekSchema: GenDescEnum<DayOfWeek> = /*@__PURE__*/
   enumDesc(file_google_type_dayofweek, 0);
 

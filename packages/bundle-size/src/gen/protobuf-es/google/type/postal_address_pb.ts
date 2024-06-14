@@ -185,69 +185,9 @@ export type PostalAddress = Message<"google.type.PostalAddress"> & {
 };
 
 /**
- * JSON type for the message google.type.PostalAddress.
- */
-export type PostalAddressJson = {
-  /**
-   * @generated from field: int32 revision = 1;
-   */
-  revision?: number;
-
-  /**
-   * @generated from field: string region_code = 2;
-   */
-  regionCode?: string;
-
-  /**
-   * @generated from field: string language_code = 3;
-   */
-  languageCode?: string;
-
-  /**
-   * @generated from field: string postal_code = 4;
-   */
-  postalCode?: string;
-
-  /**
-   * @generated from field: string sorting_code = 5;
-   */
-  sortingCode?: string;
-
-  /**
-   * @generated from field: string administrative_area = 6;
-   */
-  administrativeArea?: string;
-
-  /**
-   * @generated from field: string locality = 7;
-   */
-  locality?: string;
-
-  /**
-   * @generated from field: string sublocality = 8;
-   */
-  sublocality?: string;
-
-  /**
-   * @generated from field: repeated string address_lines = 9;
-   */
-  addressLines?: string[];
-
-  /**
-   * @generated from field: repeated string recipients = 10;
-   */
-  recipients?: string[];
-
-  /**
-   * @generated from field: string organization = 11;
-   */
-  organization?: string;
-};
-
-/**
  * Describes the message google.type.PostalAddress.
  * Use `create(PostalAddressSchema)` to create a new message.
  */
-export const PostalAddressSchema: GenDescMessage<PostalAddress, PostalAddressJson> = /*@__PURE__*/
+export const PostalAddressSchema: GenDescMessage<PostalAddress> = /*@__PURE__*/
   messageDesc(file_google_type_postal_address, 0);
 

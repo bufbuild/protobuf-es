@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Duration, DurationJson } from "@bufbuild/protobuf/wkt";
+import type { Duration } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -143,60 +143,10 @@ export type DateTime = Message<"google.type.DateTime"> & {
 };
 
 /**
- * JSON type for the message google.type.DateTime.
- */
-export type DateTimeJson = {
-  /**
-   * @generated from field: int32 year = 1;
-   */
-  year?: number;
-
-  /**
-   * @generated from field: int32 month = 2;
-   */
-  month?: number;
-
-  /**
-   * @generated from field: int32 day = 3;
-   */
-  day?: number;
-
-  /**
-   * @generated from field: int32 hours = 4;
-   */
-  hours?: number;
-
-  /**
-   * @generated from field: int32 minutes = 5;
-   */
-  minutes?: number;
-
-  /**
-   * @generated from field: int32 seconds = 6;
-   */
-  seconds?: number;
-
-  /**
-   * @generated from field: int32 nanos = 7;
-   */
-  nanos?: number;
-
-  /**
-   * @generated from field: google.protobuf.Duration utc_offset = 8;
-   */
-  utcOffset?: DurationJson;
-
-  /**
-   * @generated from field: google.type.TimeZone time_zone = 9;
-   */
-  timeZone?: TimeZoneJson;
-};
-
-/**
  * Describes the message google.type.DateTime.
  * Use `create(DateTimeSchema)` to create a new message.
  */
-export const DateTimeSchema: GenDescMessage<DateTime, DateTimeJson> = /*@__PURE__*/
+export const DateTimeSchema: GenDescMessage<DateTime> = /*@__PURE__*/
   messageDesc(file_google_type_datetime, 0);
 
 /**
@@ -222,24 +172,9 @@ export type TimeZone = Message<"google.type.TimeZone"> & {
 };
 
 /**
- * JSON type for the message google.type.TimeZone.
- */
-export type TimeZoneJson = {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id?: string;
-
-  /**
-   * @generated from field: string version = 2;
-   */
-  version?: string;
-};
-
-/**
  * Describes the message google.type.TimeZone.
  * Use `create(TimeZoneSchema)` to create a new message.
  */
-export const TimeZoneSchema: GenDescMessage<TimeZone, TimeZoneJson> = /*@__PURE__*/
+export const TimeZoneSchema: GenDescMessage<TimeZone> = /*@__PURE__*/
   messageDesc(file_google_type_datetime, 1);
 

@@ -561,520 +561,10 @@ export type TestAllTypesEdition2023 = Message<"protobuf_test_messages.editions.T
 };
 
 /**
- * JSON type for the message protobuf_test_messages.editions.TestAllTypesEdition2023.
- */
-export type TestAllTypesEdition2023Json = {
-  /**
-   * @generated from field: int32 optional_int32 = 1;
-   */
-  optionalInt32?: number;
-
-  /**
-   * @generated from field: int64 optional_int64 = 2;
-   */
-  optionalInt64?: string;
-
-  /**
-   * @generated from field: uint32 optional_uint32 = 3;
-   */
-  optionalUint32?: number;
-
-  /**
-   * @generated from field: uint64 optional_uint64 = 4;
-   */
-  optionalUint64?: string;
-
-  /**
-   * @generated from field: sint32 optional_sint32 = 5;
-   */
-  optionalSint32?: number;
-
-  /**
-   * @generated from field: sint64 optional_sint64 = 6;
-   */
-  optionalSint64?: string;
-
-  /**
-   * @generated from field: fixed32 optional_fixed32 = 7;
-   */
-  optionalFixed32?: number;
-
-  /**
-   * @generated from field: fixed64 optional_fixed64 = 8;
-   */
-  optionalFixed64?: string;
-
-  /**
-   * @generated from field: sfixed32 optional_sfixed32 = 9;
-   */
-  optionalSfixed32?: number;
-
-  /**
-   * @generated from field: sfixed64 optional_sfixed64 = 10;
-   */
-  optionalSfixed64?: string;
-
-  /**
-   * @generated from field: float optional_float = 11;
-   */
-  optionalFloat?: number | "NaN" | "Infinity" | "-Infinity";
-
-  /**
-   * @generated from field: double optional_double = 12;
-   */
-  optionalDouble?: number | "NaN" | "Infinity" | "-Infinity";
-
-  /**
-   * @generated from field: bool optional_bool = 13;
-   */
-  optionalBool?: boolean;
-
-  /**
-   * @generated from field: string optional_string = 14;
-   */
-  optionalString?: string;
-
-  /**
-   * @generated from field: bytes optional_bytes = 15;
-   */
-  optionalBytes?: string;
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage optional_nested_message = 18;
-   */
-  optionalNestedMessage?: TestAllTypesEdition2023_NestedMessageJson;
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.ForeignMessageEdition2023 optional_foreign_message = 19;
-   */
-  optionalForeignMessage?: ForeignMessageEdition2023Json;
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum optional_nested_enum = 21;
-   */
-  optionalNestedEnum?: TestAllTypesEdition2023_NestedEnumJson;
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.ForeignEnumEdition2023 optional_foreign_enum = 22;
-   */
-  optionalForeignEnum?: ForeignEnumEdition2023Json;
-
-  /**
-   * @generated from field: string optional_string_piece = 24;
-   */
-  optionalStringPiece?: string;
-
-  /**
-   * @generated from field: string optional_cord = 25;
-   */
-  optionalCord?: string;
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023 recursive_message = 27;
-   */
-  recursiveMessage?: TestAllTypesEdition2023Json;
-
-  /**
-   * @generated from field: repeated int32 repeated_int32 = 31;
-   */
-  repeatedInt32?: number[];
-
-  /**
-   * @generated from field: repeated int64 repeated_int64 = 32;
-   */
-  repeatedInt64?: string[];
-
-  /**
-   * @generated from field: repeated uint32 repeated_uint32 = 33;
-   */
-  repeatedUint32?: number[];
-
-  /**
-   * @generated from field: repeated uint64 repeated_uint64 = 34;
-   */
-  repeatedUint64?: string[];
-
-  /**
-   * @generated from field: repeated sint32 repeated_sint32 = 35;
-   */
-  repeatedSint32?: number[];
-
-  /**
-   * @generated from field: repeated sint64 repeated_sint64 = 36;
-   */
-  repeatedSint64?: string[];
-
-  /**
-   * @generated from field: repeated fixed32 repeated_fixed32 = 37;
-   */
-  repeatedFixed32?: number[];
-
-  /**
-   * @generated from field: repeated fixed64 repeated_fixed64 = 38;
-   */
-  repeatedFixed64?: string[];
-
-  /**
-   * @generated from field: repeated sfixed32 repeated_sfixed32 = 39;
-   */
-  repeatedSfixed32?: number[];
-
-  /**
-   * @generated from field: repeated sfixed64 repeated_sfixed64 = 40;
-   */
-  repeatedSfixed64?: string[];
-
-  /**
-   * @generated from field: repeated float repeated_float = 41;
-   */
-  repeatedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
-
-  /**
-   * @generated from field: repeated double repeated_double = 42;
-   */
-  repeatedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
-
-  /**
-   * @generated from field: repeated bool repeated_bool = 43;
-   */
-  repeatedBool?: boolean[];
-
-  /**
-   * @generated from field: repeated string repeated_string = 44;
-   */
-  repeatedString?: string[];
-
-  /**
-   * @generated from field: repeated bytes repeated_bytes = 45;
-   */
-  repeatedBytes?: string[];
-
-  /**
-   * @generated from field: repeated protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage repeated_nested_message = 48;
-   */
-  repeatedNestedMessage?: TestAllTypesEdition2023_NestedMessageJson[];
-
-  /**
-   * @generated from field: repeated protobuf_test_messages.editions.ForeignMessageEdition2023 repeated_foreign_message = 49;
-   */
-  repeatedForeignMessage?: ForeignMessageEdition2023Json[];
-
-  /**
-   * @generated from field: repeated protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum repeated_nested_enum = 51;
-   */
-  repeatedNestedEnum?: TestAllTypesEdition2023_NestedEnumJson[];
-
-  /**
-   * @generated from field: repeated protobuf_test_messages.editions.ForeignEnumEdition2023 repeated_foreign_enum = 52;
-   */
-  repeatedForeignEnum?: ForeignEnumEdition2023Json[];
-
-  /**
-   * @generated from field: repeated string repeated_string_piece = 54;
-   */
-  repeatedStringPiece?: string[];
-
-  /**
-   * @generated from field: repeated string repeated_cord = 55;
-   */
-  repeatedCord?: string[];
-
-  /**
-   * @generated from field: repeated int32 packed_int32 = 75 [features.repeated_field_encoding = PACKED];
-   */
-  packedInt32?: number[];
-
-  /**
-   * @generated from field: repeated int64 packed_int64 = 76 [features.repeated_field_encoding = PACKED];
-   */
-  packedInt64?: string[];
-
-  /**
-   * @generated from field: repeated uint32 packed_uint32 = 77 [features.repeated_field_encoding = PACKED];
-   */
-  packedUint32?: number[];
-
-  /**
-   * @generated from field: repeated uint64 packed_uint64 = 78 [features.repeated_field_encoding = PACKED];
-   */
-  packedUint64?: string[];
-
-  /**
-   * @generated from field: repeated sint32 packed_sint32 = 79 [features.repeated_field_encoding = PACKED];
-   */
-  packedSint32?: number[];
-
-  /**
-   * @generated from field: repeated sint64 packed_sint64 = 80 [features.repeated_field_encoding = PACKED];
-   */
-  packedSint64?: string[];
-
-  /**
-   * @generated from field: repeated fixed32 packed_fixed32 = 81 [features.repeated_field_encoding = PACKED];
-   */
-  packedFixed32?: number[];
-
-  /**
-   * @generated from field: repeated fixed64 packed_fixed64 = 82 [features.repeated_field_encoding = PACKED];
-   */
-  packedFixed64?: string[];
-
-  /**
-   * @generated from field: repeated sfixed32 packed_sfixed32 = 83 [features.repeated_field_encoding = PACKED];
-   */
-  packedSfixed32?: number[];
-
-  /**
-   * @generated from field: repeated sfixed64 packed_sfixed64 = 84 [features.repeated_field_encoding = PACKED];
-   */
-  packedSfixed64?: string[];
-
-  /**
-   * @generated from field: repeated float packed_float = 85 [features.repeated_field_encoding = PACKED];
-   */
-  packedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
-
-  /**
-   * @generated from field: repeated double packed_double = 86 [features.repeated_field_encoding = PACKED];
-   */
-  packedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
-
-  /**
-   * @generated from field: repeated bool packed_bool = 87 [features.repeated_field_encoding = PACKED];
-   */
-  packedBool?: boolean[];
-
-  /**
-   * @generated from field: repeated protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum packed_nested_enum = 88 [features.repeated_field_encoding = PACKED];
-   */
-  packedNestedEnum?: TestAllTypesEdition2023_NestedEnumJson[];
-
-  /**
-   * @generated from field: repeated int32 unpacked_int32 = 89 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedInt32?: number[];
-
-  /**
-   * @generated from field: repeated int64 unpacked_int64 = 90 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedInt64?: string[];
-
-  /**
-   * @generated from field: repeated uint32 unpacked_uint32 = 91 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedUint32?: number[];
-
-  /**
-   * @generated from field: repeated uint64 unpacked_uint64 = 92 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedUint64?: string[];
-
-  /**
-   * @generated from field: repeated sint32 unpacked_sint32 = 93 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedSint32?: number[];
-
-  /**
-   * @generated from field: repeated sint64 unpacked_sint64 = 94 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedSint64?: string[];
-
-  /**
-   * @generated from field: repeated fixed32 unpacked_fixed32 = 95 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedFixed32?: number[];
-
-  /**
-   * @generated from field: repeated fixed64 unpacked_fixed64 = 96 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedFixed64?: string[];
-
-  /**
-   * @generated from field: repeated sfixed32 unpacked_sfixed32 = 97 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedSfixed32?: number[];
-
-  /**
-   * @generated from field: repeated sfixed64 unpacked_sfixed64 = 98 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedSfixed64?: string[];
-
-  /**
-   * @generated from field: repeated float unpacked_float = 99 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedFloat?: (number | "NaN" | "Infinity" | "-Infinity")[];
-
-  /**
-   * @generated from field: repeated double unpacked_double = 100 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedDouble?: (number | "NaN" | "Infinity" | "-Infinity")[];
-
-  /**
-   * @generated from field: repeated bool unpacked_bool = 101 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedBool?: boolean[];
-
-  /**
-   * @generated from field: repeated protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum unpacked_nested_enum = 102 [features.repeated_field_encoding = EXPANDED];
-   */
-  unpackedNestedEnum?: TestAllTypesEdition2023_NestedEnumJson[];
-
-  /**
-   * @generated from field: map<int32, int32> map_int32_int32 = 56;
-   */
-  mapInt32Int32?: { [key: number]: number };
-
-  /**
-   * @generated from field: map<int64, int64> map_int64_int64 = 57;
-   */
-  mapInt64Int64?: { [key: string]: string };
-
-  /**
-   * @generated from field: map<uint32, uint32> map_uint32_uint32 = 58;
-   */
-  mapUint32Uint32?: { [key: number]: number };
-
-  /**
-   * @generated from field: map<uint64, uint64> map_uint64_uint64 = 59;
-   */
-  mapUint64Uint64?: { [key: string]: string };
-
-  /**
-   * @generated from field: map<sint32, sint32> map_sint32_sint32 = 60;
-   */
-  mapSint32Sint32?: { [key: number]: number };
-
-  /**
-   * @generated from field: map<sint64, sint64> map_sint64_sint64 = 61;
-   */
-  mapSint64Sint64?: { [key: string]: string };
-
-  /**
-   * @generated from field: map<fixed32, fixed32> map_fixed32_fixed32 = 62;
-   */
-  mapFixed32Fixed32?: { [key: number]: number };
-
-  /**
-   * @generated from field: map<fixed64, fixed64> map_fixed64_fixed64 = 63;
-   */
-  mapFixed64Fixed64?: { [key: string]: string };
-
-  /**
-   * @generated from field: map<sfixed32, sfixed32> map_sfixed32_sfixed32 = 64;
-   */
-  mapSfixed32Sfixed32?: { [key: number]: number };
-
-  /**
-   * @generated from field: map<sfixed64, sfixed64> map_sfixed64_sfixed64 = 65;
-   */
-  mapSfixed64Sfixed64?: { [key: string]: string };
-
-  /**
-   * @generated from field: map<int32, float> map_int32_float = 66;
-   */
-  mapInt32Float?: { [key: number]: number | "NaN" | "Infinity" | "-Infinity" };
-
-  /**
-   * @generated from field: map<int32, double> map_int32_double = 67;
-   */
-  mapInt32Double?: { [key: number]: number | "NaN" | "Infinity" | "-Infinity" };
-
-  /**
-   * @generated from field: map<bool, bool> map_bool_bool = 68;
-   */
-  mapBoolBool?: { [key: string]: boolean };
-
-  /**
-   * @generated from field: map<string, string> map_string_string = 69;
-   */
-  mapStringString?: { [key: string]: string };
-
-  /**
-   * @generated from field: map<string, bytes> map_string_bytes = 70;
-   */
-  mapStringBytes?: { [key: string]: string };
-
-  /**
-   * @generated from field: map<string, protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage> map_string_nested_message = 71;
-   */
-  mapStringNestedMessage?: { [key: string]: TestAllTypesEdition2023_NestedMessageJson };
-
-  /**
-   * @generated from field: map<string, protobuf_test_messages.editions.ForeignMessageEdition2023> map_string_foreign_message = 72;
-   */
-  mapStringForeignMessage?: { [key: string]: ForeignMessageEdition2023Json };
-
-  /**
-   * @generated from field: map<string, protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum> map_string_nested_enum = 73;
-   */
-  mapStringNestedEnum?: { [key: string]: TestAllTypesEdition2023_NestedEnumJson };
-
-  /**
-   * @generated from field: map<string, protobuf_test_messages.editions.ForeignEnumEdition2023> map_string_foreign_enum = 74;
-   */
-  mapStringForeignEnum?: { [key: string]: ForeignEnumEdition2023Json };
-
-  /**
-   * @generated from field: uint32 oneof_uint32 = 111;
-   */
-  oneofUint32?: number;
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage oneof_nested_message = 112;
-   */
-  oneofNestedMessage?: TestAllTypesEdition2023_NestedMessageJson;
-
-  /**
-   * @generated from field: string oneof_string = 113;
-   */
-  oneofString?: string;
-
-  /**
-   * @generated from field: bytes oneof_bytes = 114;
-   */
-  oneofBytes?: string;
-
-  /**
-   * @generated from field: bool oneof_bool = 115;
-   */
-  oneofBool?: boolean;
-
-  /**
-   * @generated from field: uint64 oneof_uint64 = 116;
-   */
-  oneofUint64?: string;
-
-  /**
-   * @generated from field: float oneof_float = 117;
-   */
-  oneofFloat?: number | "NaN" | "Infinity" | "-Infinity";
-
-  /**
-   * @generated from field: double oneof_double = 118;
-   */
-  oneofDouble?: number | "NaN" | "Infinity" | "-Infinity";
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum oneof_enum = 119;
-   */
-  oneofEnum?: TestAllTypesEdition2023_NestedEnumJson;
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType groupliketype = 201 [features.message_encoding = DELIMITED];
-   */
-  groupliketype?: TestAllTypesEdition2023_GroupLikeTypeJson;
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType delimited_field = 202 [features.message_encoding = DELIMITED];
-   */
-  delimitedField?: TestAllTypesEdition2023_GroupLikeTypeJson;
-};
-
-/**
  * Describes the message protobuf_test_messages.editions.TestAllTypesEdition2023.
  * Use `create(TestAllTypesEdition2023Schema)` to create a new message.
  */
-export const TestAllTypesEdition2023Schema: GenDescMessage<TestAllTypesEdition2023, TestAllTypesEdition2023Json> = /*@__PURE__*/
+export const TestAllTypesEdition2023Schema: GenDescMessage<TestAllTypesEdition2023> = /*@__PURE__*/
   messageDesc(file_google_protobuf_test_messages_edition2023, 0);
 
 /**
@@ -1093,25 +583,10 @@ export type TestAllTypesEdition2023_NestedMessage = Message<"protobuf_test_messa
 };
 
 /**
- * JSON type for the message protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage.
- */
-export type TestAllTypesEdition2023_NestedMessageJson = {
-  /**
-   * @generated from field: int32 a = 1;
-   */
-  a?: number;
-
-  /**
-   * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023 corecursive = 2;
-   */
-  corecursive?: TestAllTypesEdition2023Json;
-};
-
-/**
  * Describes the message protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage.
  * Use `create(TestAllTypesEdition2023_NestedMessageSchema)` to create a new message.
  */
-export const TestAllTypesEdition2023_NestedMessageSchema: GenDescMessage<TestAllTypesEdition2023_NestedMessage, TestAllTypesEdition2023_NestedMessageJson> = /*@__PURE__*/
+export const TestAllTypesEdition2023_NestedMessageSchema: GenDescMessage<TestAllTypesEdition2023_NestedMessage> = /*@__PURE__*/
   messageDesc(file_google_protobuf_test_messages_edition2023, 0, 0);
 
 /**
@@ -1132,25 +607,10 @@ export type TestAllTypesEdition2023_GroupLikeType = Message<"protobuf_test_messa
 };
 
 /**
- * JSON type for the message protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType.
- */
-export type TestAllTypesEdition2023_GroupLikeTypeJson = {
-  /**
-   * @generated from field: int32 group_int32 = 202;
-   */
-  groupInt32?: number;
-
-  /**
-   * @generated from field: uint32 group_uint32 = 203;
-   */
-  groupUint32?: number;
-};
-
-/**
  * Describes the message protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType.
  * Use `create(TestAllTypesEdition2023_GroupLikeTypeSchema)` to create a new message.
  */
-export const TestAllTypesEdition2023_GroupLikeTypeSchema: GenDescMessage<TestAllTypesEdition2023_GroupLikeType, TestAllTypesEdition2023_GroupLikeTypeJson> = /*@__PURE__*/
+export const TestAllTypesEdition2023_GroupLikeTypeSchema: GenDescMessage<TestAllTypesEdition2023_GroupLikeType> = /*@__PURE__*/
   messageDesc(file_google_protobuf_test_messages_edition2023, 0, 1);
 
 /**
@@ -1181,14 +641,9 @@ export enum TestAllTypesEdition2023_NestedEnum {
 }
 
 /**
- * JSON type for the enum protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum.
- */
-export type TestAllTypesEdition2023_NestedEnumJson = "FOO" | "BAR" | "BAZ" | "NEG";
-
-/**
  * Describes the enum protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum.
  */
-export const TestAllTypesEdition2023_NestedEnumSchema: GenDescEnum<TestAllTypesEdition2023_NestedEnum, TestAllTypesEdition2023_NestedEnumJson> = /*@__PURE__*/
+export const TestAllTypesEdition2023_NestedEnumSchema: GenDescEnum<TestAllTypesEdition2023_NestedEnum> = /*@__PURE__*/
   enumDesc(file_google_protobuf_test_messages_edition2023, 0, 0);
 
 /**
@@ -1202,20 +657,10 @@ export type ForeignMessageEdition2023 = Message<"protobuf_test_messages.editions
 };
 
 /**
- * JSON type for the message protobuf_test_messages.editions.ForeignMessageEdition2023.
- */
-export type ForeignMessageEdition2023Json = {
-  /**
-   * @generated from field: int32 c = 1;
-   */
-  c?: number;
-};
-
-/**
  * Describes the message protobuf_test_messages.editions.ForeignMessageEdition2023.
  * Use `create(ForeignMessageEdition2023Schema)` to create a new message.
  */
-export const ForeignMessageEdition2023Schema: GenDescMessage<ForeignMessageEdition2023, ForeignMessageEdition2023Json> = /*@__PURE__*/
+export const ForeignMessageEdition2023Schema: GenDescMessage<ForeignMessageEdition2023> = /*@__PURE__*/
   messageDesc(file_google_protobuf_test_messages_edition2023, 1);
 
 /**
@@ -1229,20 +674,10 @@ export type GroupLikeType = Message<"protobuf_test_messages.editions.GroupLikeTy
 };
 
 /**
- * JSON type for the message protobuf_test_messages.editions.GroupLikeType.
- */
-export type GroupLikeTypeJson = {
-  /**
-   * @generated from field: int32 c = 1;
-   */
-  c?: number;
-};
-
-/**
  * Describes the message protobuf_test_messages.editions.GroupLikeType.
  * Use `create(GroupLikeTypeSchema)` to create a new message.
  */
-export const GroupLikeTypeSchema: GenDescMessage<GroupLikeType, GroupLikeTypeJson> = /*@__PURE__*/
+export const GroupLikeTypeSchema: GenDescMessage<GroupLikeType> = /*@__PURE__*/
   messageDesc(file_google_protobuf_test_messages_edition2023, 2);
 
 /**
@@ -1266,14 +701,9 @@ export enum ForeignEnumEdition2023 {
 }
 
 /**
- * JSON type for the enum protobuf_test_messages.editions.ForeignEnumEdition2023.
- */
-export type ForeignEnumEdition2023Json = "FOREIGN_FOO" | "FOREIGN_BAR" | "FOREIGN_BAZ";
-
-/**
  * Describes the enum protobuf_test_messages.editions.ForeignEnumEdition2023.
  */
-export const ForeignEnumEdition2023Schema: GenDescEnum<ForeignEnumEdition2023, ForeignEnumEdition2023Json> = /*@__PURE__*/
+export const ForeignEnumEdition2023Schema: GenDescEnum<ForeignEnumEdition2023> = /*@__PURE__*/
   enumDesc(file_google_protobuf_test_messages_edition2023, 0);
 
 /**

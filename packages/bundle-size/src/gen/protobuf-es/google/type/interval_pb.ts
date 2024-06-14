@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Timestamp, TimestampJson } from "@bufbuild/protobuf/wkt";
+import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -61,24 +61,9 @@ export type Interval = Message<"google.type.Interval"> & {
 };
 
 /**
- * JSON type for the message google.type.Interval.
- */
-export type IntervalJson = {
-  /**
-   * @generated from field: google.protobuf.Timestamp start_time = 1;
-   */
-  startTime?: TimestampJson;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp end_time = 2;
-   */
-  endTime?: TimestampJson;
-};
-
-/**
  * Describes the message google.type.Interval.
  * Use `create(IntervalSchema)` to create a new message.
  */
-export const IntervalSchema: GenDescMessage<Interval, IntervalJson> = /*@__PURE__*/
+export const IntervalSchema: GenDescMessage<Interval> = /*@__PURE__*/
   messageDesc(file_google_type_interval, 0);
 

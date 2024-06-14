@@ -45,20 +45,10 @@ export type FieldInfo = Message<"google.api.FieldInfo"> & {
 };
 
 /**
- * JSON type for the message google.api.FieldInfo.
- */
-export type FieldInfoJson = {
-  /**
-   * @generated from field: google.api.FieldInfo.Format format = 1;
-   */
-  format?: FieldInfo_FormatJson;
-};
-
-/**
  * Describes the message google.api.FieldInfo.
  * Use `create(FieldInfoSchema)` to create a new message.
  */
-export const FieldInfoSchema: GenDescMessage<FieldInfo, FieldInfoJson> = /*@__PURE__*/
+export const FieldInfoSchema: GenDescMessage<FieldInfo> = /*@__PURE__*/
   messageDesc(file_google_api_field_info, 0);
 
 /**
@@ -118,14 +108,9 @@ export enum FieldInfo_Format {
 }
 
 /**
- * JSON type for the enum google.api.FieldInfo.Format.
- */
-export type FieldInfo_FormatJson = "FORMAT_UNSPECIFIED" | "UUID4" | "IPV4" | "IPV6" | "IPV4_OR_IPV6";
-
-/**
  * Describes the enum google.api.FieldInfo.Format.
  */
-export const FieldInfo_FormatSchema: GenDescEnum<FieldInfo_Format, FieldInfo_FormatJson> = /*@__PURE__*/
+export const FieldInfo_FormatSchema: GenDescEnum<FieldInfo_Format> = /*@__PURE__*/
   enumDesc(file_google_api_field_info, 0, 0);
 
 /**

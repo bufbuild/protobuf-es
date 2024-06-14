@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any, AnyJson } from "@bufbuild/protobuf/wkt";
+import type { Any } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -68,29 +68,9 @@ export type Status = Message<"google.rpc.Status"> & {
 };
 
 /**
- * JSON type for the message google.rpc.Status.
- */
-export type StatusJson = {
-  /**
-   * @generated from field: int32 code = 1;
-   */
-  code?: number;
-
-  /**
-   * @generated from field: string message = 2;
-   */
-  message?: string;
-
-  /**
-   * @generated from field: repeated google.protobuf.Any details = 3;
-   */
-  details?: AnyJson[];
-};
-
-/**
  * Describes the message google.rpc.Status.
  * Use `create(StatusSchema)` to create a new message.
  */
-export const StatusSchema: GenDescMessage<Status, StatusJson> = /*@__PURE__*/
+export const StatusSchema: GenDescMessage<Status> = /*@__PURE__*/
   messageDesc(file_google_rpc_status, 0);
 

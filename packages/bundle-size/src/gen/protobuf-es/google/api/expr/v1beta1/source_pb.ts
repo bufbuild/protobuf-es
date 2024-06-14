@@ -64,30 +64,10 @@ export type SourceInfo = Message<"google.api.expr.v1beta1.SourceInfo"> & {
 };
 
 /**
- * JSON type for the message google.api.expr.v1beta1.SourceInfo.
- */
-export type SourceInfoJson = {
-  /**
-   * @generated from field: string location = 2;
-   */
-  location?: string;
-
-  /**
-   * @generated from field: repeated int32 line_offsets = 3;
-   */
-  lineOffsets?: number[];
-
-  /**
-   * @generated from field: map<int32, int32> positions = 4;
-   */
-  positions?: { [key: number]: number };
-};
-
-/**
  * Describes the message google.api.expr.v1beta1.SourceInfo.
  * Use `create(SourceInfoSchema)` to create a new message.
  */
-export const SourceInfoSchema: GenDescMessage<SourceInfo, SourceInfoJson> = /*@__PURE__*/
+export const SourceInfoSchema: GenDescMessage<SourceInfo> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_source, 0);
 
 /**
@@ -128,34 +108,9 @@ export type SourcePosition = Message<"google.api.expr.v1beta1.SourcePosition"> &
 };
 
 /**
- * JSON type for the message google.api.expr.v1beta1.SourcePosition.
- */
-export type SourcePositionJson = {
-  /**
-   * @generated from field: string location = 1;
-   */
-  location?: string;
-
-  /**
-   * @generated from field: int32 offset = 2;
-   */
-  offset?: number;
-
-  /**
-   * @generated from field: int32 line = 3;
-   */
-  line?: number;
-
-  /**
-   * @generated from field: int32 column = 4;
-   */
-  column?: number;
-};
-
-/**
  * Describes the message google.api.expr.v1beta1.SourcePosition.
  * Use `create(SourcePositionSchema)` to create a new message.
  */
-export const SourcePositionSchema: GenDescMessage<SourcePosition, SourcePositionJson> = /*@__PURE__*/
+export const SourcePositionSchema: GenDescMessage<SourcePosition> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_source, 1);
 

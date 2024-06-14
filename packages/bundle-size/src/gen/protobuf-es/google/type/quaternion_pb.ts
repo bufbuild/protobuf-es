@@ -117,34 +117,9 @@ export type Quaternion = Message<"google.type.Quaternion"> & {
 };
 
 /**
- * JSON type for the message google.type.Quaternion.
- */
-export type QuaternionJson = {
-  /**
-   * @generated from field: double x = 1;
-   */
-  x?: number | "NaN" | "Infinity" | "-Infinity";
-
-  /**
-   * @generated from field: double y = 2;
-   */
-  y?: number | "NaN" | "Infinity" | "-Infinity";
-
-  /**
-   * @generated from field: double z = 3;
-   */
-  z?: number | "NaN" | "Infinity" | "-Infinity";
-
-  /**
-   * @generated from field: double w = 4;
-   */
-  w?: number | "NaN" | "Infinity" | "-Infinity";
-};
-
-/**
  * Describes the message google.type.Quaternion.
  * Use `create(QuaternionSchema)` to create a new message.
  */
-export const QuaternionSchema: GenDescMessage<Quaternion, QuaternionJson> = /*@__PURE__*/
+export const QuaternionSchema: GenDescMessage<Quaternion> = /*@__PURE__*/
   messageDesc(file_google_type_quaternion, 0);
 

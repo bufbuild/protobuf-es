@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { LatLng, LatLngJson } from "../../type/latlng_pb";
+import type { LatLng } from "../../type/latlng_pb";
 import { file_google_type_latlng } from "../../type/latlng_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -84,24 +84,9 @@ export type Viewport = Message<"google.geo.type.Viewport"> & {
 };
 
 /**
- * JSON type for the message google.geo.type.Viewport.
- */
-export type ViewportJson = {
-  /**
-   * @generated from field: google.type.LatLng low = 1;
-   */
-  low?: LatLngJson;
-
-  /**
-   * @generated from field: google.type.LatLng high = 2;
-   */
-  high?: LatLngJson;
-};
-
-/**
  * Describes the message google.geo.type.Viewport.
  * Use `create(ViewportSchema)` to create a new message.
  */
-export const ViewportSchema: GenDescMessage<Viewport, ViewportJson> = /*@__PURE__*/
+export const ViewportSchema: GenDescMessage<Viewport> = /*@__PURE__*/
   messageDesc(file_google_geo_type_viewport, 0);
 

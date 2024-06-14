@@ -261,13 +261,8 @@ export enum Code {
 }
 
 /**
- * JSON type for the enum google.rpc.Code.
- */
-export type CodeJson = "OK" | "CANCELLED" | "UNKNOWN" | "INVALID_ARGUMENT" | "DEADLINE_EXCEEDED" | "NOT_FOUND" | "ALREADY_EXISTS" | "PERMISSION_DENIED" | "UNAUTHENTICATED" | "RESOURCE_EXHAUSTED" | "FAILED_PRECONDITION" | "ABORTED" | "OUT_OF_RANGE" | "UNIMPLEMENTED" | "INTERNAL" | "UNAVAILABLE" | "DATA_LOSS";
-
-/**
  * Describes the enum google.rpc.Code.
  */
-export const CodeSchema: GenDescEnum<Code, CodeJson> = /*@__PURE__*/
+export const CodeSchema: GenDescEnum<Code> = /*@__PURE__*/
   enumDesc(file_google_rpc_code, 0);
 

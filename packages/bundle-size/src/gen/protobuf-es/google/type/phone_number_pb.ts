@@ -116,30 +116,10 @@ export type PhoneNumber = Message<"google.type.PhoneNumber"> & {
 };
 
 /**
- * JSON type for the message google.type.PhoneNumber.
- */
-export type PhoneNumberJson = {
-  /**
-   * @generated from field: string e164_number = 1;
-   */
-  e164Number?: string;
-
-  /**
-   * @generated from field: google.type.PhoneNumber.ShortCode short_code = 2;
-   */
-  shortCode?: PhoneNumber_ShortCodeJson;
-
-  /**
-   * @generated from field: string extension = 3;
-   */
-  extension?: string;
-};
-
-/**
  * Describes the message google.type.PhoneNumber.
  * Use `create(PhoneNumberSchema)` to create a new message.
  */
-export const PhoneNumberSchema: GenDescMessage<PhoneNumber, PhoneNumberJson> = /*@__PURE__*/
+export const PhoneNumberSchema: GenDescMessage<PhoneNumber> = /*@__PURE__*/
   messageDesc(file_google_type_phone_number, 0);
 
 /**
@@ -177,24 +157,9 @@ export type PhoneNumber_ShortCode = Message<"google.type.PhoneNumber.ShortCode">
 };
 
 /**
- * JSON type for the message google.type.PhoneNumber.ShortCode.
- */
-export type PhoneNumber_ShortCodeJson = {
-  /**
-   * @generated from field: string region_code = 1;
-   */
-  regionCode?: string;
-
-  /**
-   * @generated from field: string number = 2;
-   */
-  number?: string;
-};
-
-/**
  * Describes the message google.type.PhoneNumber.ShortCode.
  * Use `create(PhoneNumber_ShortCodeSchema)` to create a new message.
  */
-export const PhoneNumber_ShortCodeSchema: GenDescMessage<PhoneNumber_ShortCode, PhoneNumber_ShortCodeJson> = /*@__PURE__*/
+export const PhoneNumber_ShortCodeSchema: GenDescMessage<PhoneNumber_ShortCode> = /*@__PURE__*/
   messageDesc(file_google_type_phone_number, 0, 0);
 

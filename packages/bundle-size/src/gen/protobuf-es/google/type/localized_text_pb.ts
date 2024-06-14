@@ -51,24 +51,9 @@ export type LocalizedText = Message<"google.type.LocalizedText"> & {
 };
 
 /**
- * JSON type for the message google.type.LocalizedText.
- */
-export type LocalizedTextJson = {
-  /**
-   * @generated from field: string text = 1;
-   */
-  text?: string;
-
-  /**
-   * @generated from field: string language_code = 2;
-   */
-  languageCode?: string;
-};
-
-/**
  * Describes the message google.type.LocalizedText.
  * Use `create(LocalizedTextSchema)` to create a new message.
  */
-export const LocalizedTextSchema: GenDescMessage<LocalizedText, LocalizedTextJson> = /*@__PURE__*/
+export const LocalizedTextSchema: GenDescMessage<LocalizedText> = /*@__PURE__*/
   messageDesc(file_google_type_localized_text, 0);
 

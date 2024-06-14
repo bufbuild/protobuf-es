@@ -36,14 +36,37 @@ import {
   functionCall,
 } from "./util";
 import { version } from "../package.json";
+import { RawPluginOptions } from "@bufbuild/protoplugin/dist/cjs/parameter";
 
 export const protocGenEs = createEcmaScriptPlugin({
   name: "protoc-gen-es",
   version: `v${String(version)}`,
+  parseOptions,
   generateTs,
   generateJs,
   generateDts,
 });
+
+type Options = {
+  jsonTypes: boolean;
+};
+
+function parseOptions(options: RawPluginOptions): Options {
+  let jsonTypes = false;
+  for (const { key, value } of options) {
+    switch (key) {
+      case "json_types":
+        if (!["true", "1", "false", "0"].includes(value)) {
+          throw "please provide true or false";
+        }
+        jsonTypes = ["true", "1"].includes(value);
+        break;
+      default:
+        throw new Error();
+    }
+  }
+  return { jsonTypes };
+}
 
 // This annotation informs bundlers that the succeeding function call is free of
 // side effects. This means the symbol can be removed from the module during
@@ -52,7 +75,7 @@ export const protocGenEs = createEcmaScriptPlugin({
 const pure = "/*@__PURE__*/";
 
 // prettier-ignore
-function generateTs(schema: Schema) {
+function generateTs(schema: Schema<Options>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.ts");
     f.preamble(file);
@@ -66,28 +89,40 @@ function generateTs(schema: Schema) {
       switch (desc.kind) {
         case "message": {
           generateMessageShape(f, desc, "ts");
-          generateMessageJsonShape(f, desc, "ts");
-          const { GenDescMessage, messageDesc } = f.runtime.codegen;
-          const Shape = f.importShape(desc);
-          const JsonType = f.importJson(desc);
-          const name = f.importSchema(desc).name;
+          if (schema.options.jsonTypes) {
+            generateMessageJsonShape(f, desc, "ts");
+          }
           generateDescDoc(f, desc);
+          const name = f.importSchema(desc).name;
+          const Shape = f.importShape(desc);
+          const { GenDescMessage, messageDesc } = f.runtime.codegen;
+          if (schema.options.jsonTypes) {
+            const JsonType = f.importJson(desc);
+            f.print(f.export("const", name), ": ", GenDescMessage, "<", Shape, ", ", JsonType, ">", " = ", pure);
+          } else {
+            f.print(f.export("const", name), ": ", GenDescMessage, "<", Shape, ">", " = ", pure);
+          }
           const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
-          f.print(f.export("const", name), ": ", GenDescMessage, "<", Shape, ", ", JsonType, ">", " = ", pure);
           f.print("  ", call, ";");
           f.print();
           break;
         }
         case "enum": {
           generateEnumShape(f, desc);
-          generateEnumJsonShape(f, desc, "ts");
-          const { GenDescEnum, enumDesc } = f.runtime.codegen;
-          const Shape = f.importShape(desc);
-          const JsonType = f.importJson(desc);
+          if (schema.options.jsonTypes) {
+            generateEnumJsonShape(f, desc, "ts");
+          }
           generateDescDoc(f, desc);
           const name = f.importSchema(desc).name;
+          const Shape = f.importShape(desc);
+          const { GenDescEnum, enumDesc } = f.runtime.codegen;
+          if (schema.options.jsonTypes) {
+            const JsonType = f.importJson(desc);
+            f.print(f.export("const", name), ": ", GenDescEnum, "<", Shape, ", ", JsonType, ">", " = ", pure);
+          } else {
+            f.print(f.export("const", name), ": ", GenDescEnum, "<", Shape, ">", " = ", pure);
+          }
           const call = functionCall(enumDesc, [fileDesc, ...pathInFileDesc(desc)]);
-          f.print(f.export("const", name), ": ", GenDescEnum, "<", Shape, ", ", JsonType, ">", " = ", pure);
           f.print("  ", call, ";");
           f.print();
           break;
@@ -120,7 +155,7 @@ function generateTs(schema: Schema) {
 }
 
 // prettier-ignore
-function generateJs(schema: Schema) {
+function generateJs(schema: Schema<Options>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.js");
     f.preamble(file);
@@ -132,9 +167,9 @@ function generateJs(schema: Schema) {
     for (const desc of schema.typesInFile(file)) {
       switch (desc.kind) {
         case "message": {
-          const { messageDesc } = f.runtime.codegen;
           const name = f.importSchema(desc).name;
           generateDescDoc(f, desc);
+          const { messageDesc } = f.runtime.codegen;
           const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.export("const", name), " = ", pure);
           f.print("  ", call, ";");
@@ -144,41 +179,41 @@ function generateJs(schema: Schema) {
         case "enum": {
           // generate descriptor
           {
-            const { enumDesc } = f.runtime.codegen;
             generateDescDoc(f, desc);
             const name = f.importSchema(desc).name;
-            const call = functionCall(enumDesc, [fileDesc, ...pathInFileDesc(desc)]);
             f.print(f.export("const", name), " = ", pure);
+            const { enumDesc } = f.runtime.codegen;
+            const call = functionCall(enumDesc, [fileDesc, ...pathInFileDesc(desc)]);
             f.print("  ", call, ";");
             f.print();
           }
           // declare TypeScript enum
           {
             f.print(f.jsDoc(desc));
+            f.print(f.export("const", f.importShape(desc).name), " = ", pure);
             const { tsEnum } = f.runtime.codegen;
             const call = functionCall(tsEnum, [f.importSchema(desc)]);
-            f.print(f.export("const", f.importShape(desc).name), " = ", pure);
             f.print("  ", call, ";");
             f.print();
           }
           break;
         }
         case "extension": {
-          const { extDesc } = f.runtime.codegen;
-          const name = f.importSchema(desc).name;
-          const call = functionCall(extDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
+          const name = f.importSchema(desc).name;
           f.print(f.export("const", name), " = ", pure);
+          const { extDesc } = f.runtime.codegen;
+          const call = functionCall(extDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print("  ", call, ";");
           f.print();
           break;
         }
         case "service": {
-          const { serviceDesc } = f.runtime.codegen;
-          const name = f.importSchema(desc).name;
           f.print(f.jsDoc(desc));
-          const call = functionCall(serviceDesc, [fileDesc, ...pathInFileDesc(desc)]);
+          const name = f.importSchema(desc).name;
           f.print(f.export("const", name), " = ", pure);
+          const { serviceDesc } = f.runtime.codegen;
+          const call = functionCall(serviceDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print("  ", call, ";");
           f.print();
           break;
@@ -189,7 +224,7 @@ function generateJs(schema: Schema) {
 }
 
 // prettier-ignore
-function generateDts(schema: Schema) {
+function generateDts(schema: Schema<Options>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.d.ts");
     f.preamble(file);
@@ -202,25 +237,37 @@ function generateDts(schema: Schema) {
       switch (desc.kind) {
         case "message": {
           generateMessageShape(f, desc, "dts");
-          generateMessageJsonShape(f, desc, "dts");
-          const { GenDescMessage } = f.runtime.codegen;
-          const Shape = f.importShape(desc);
-          const JsonType = f.importJson(desc);
+          if (schema.options.jsonTypes) {
+            generateMessageJsonShape(f, desc, "dts");
+          }
           const name = f.importSchema(desc).name;
+          const Shape = f.importShape(desc);
+          const { GenDescMessage } = f.runtime.codegen;
           generateDescDoc(f, desc);
-          f.print(f.export("declare const", name), ": ", GenDescMessage, "<", Shape, ", ", JsonType, ">", ";");
+          if (schema.options.jsonTypes) {
+            const JsonType = f.importJson(desc);
+            f.print(f.export("declare const", name), ": ", GenDescMessage, "<", Shape, ", ", JsonType, ">", ";");
+          } else {
+            f.print(f.export("declare const", name), ": ", GenDescMessage, "<", Shape, ">", ";");
+          }
           f.print();
           break;
         }
         case "enum": {
           generateEnumShape(f, desc);
-          generateEnumJsonShape(f, desc, "dts");
-          const { GenDescEnum } = f.runtime.codegen;
-          const Shape = f.importShape(desc);
-          const JsonType = f.importJson(desc);
+          if (schema.options.jsonTypes) {
+            generateEnumJsonShape(f, desc, "dts");
+          }
           generateDescDoc(f, desc);
           const name = f.importSchema(desc).name;
-          f.print(f.export("declare const", name), ": ", GenDescEnum, "<", Shape, ", ", JsonType, ">;");
+          const Shape = f.importShape(desc);
+          const { GenDescEnum } = f.runtime.codegen;
+          if (schema.options.jsonTypes) {
+            const JsonType = f.importJson(desc);
+            f.print(f.export("declare const", name), ": ", GenDescEnum, "<", Shape, ", ", JsonType, ">;");
+          } else {
+            f.print(f.export("declare const", name), ": ", GenDescEnum, "<", Shape, ">;");
+          }
           f.print();
           break;
         }

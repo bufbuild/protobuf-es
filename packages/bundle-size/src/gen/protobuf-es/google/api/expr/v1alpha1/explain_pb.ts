@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Value, ValueJson } from "./value_pb";
+import type { Value } from "./value_pb";
 import { file_google_api_expr_v1alpha1_value } from "./value_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -59,26 +59,11 @@ export type Explain = Message<"google.api.expr.v1alpha1.Explain"> & {
 };
 
 /**
- * JSON type for the message google.api.expr.v1alpha1.Explain.
- */
-export type ExplainJson = {
-  /**
-   * @generated from field: repeated google.api.expr.v1alpha1.Value values = 1;
-   */
-  values?: ValueJson[];
-
-  /**
-   * @generated from field: repeated google.api.expr.v1alpha1.Explain.ExprStep expr_steps = 2;
-   */
-  exprSteps?: Explain_ExprStepJson[];
-};
-
-/**
  * Describes the message google.api.expr.v1alpha1.Explain.
  * Use `create(ExplainSchema)` to create a new message.
  * @deprecated
  */
-export const ExplainSchema: GenDescMessage<Explain, ExplainJson> = /*@__PURE__*/
+export const ExplainSchema: GenDescMessage<Explain> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_explain, 0);
 
 /**
@@ -104,25 +89,10 @@ export type Explain_ExprStep = Message<"google.api.expr.v1alpha1.Explain.ExprSte
 };
 
 /**
- * JSON type for the message google.api.expr.v1alpha1.Explain.ExprStep.
- */
-export type Explain_ExprStepJson = {
-  /**
-   * @generated from field: int64 id = 1;
-   */
-  id?: string;
-
-  /**
-   * @generated from field: int32 value_index = 2;
-   */
-  valueIndex?: number;
-};
-
-/**
  * Describes the message google.api.expr.v1alpha1.Explain.ExprStep.
  * Use `create(Explain_ExprStepSchema)` to create a new message.
  * @deprecated
  */
-export const Explain_ExprStepSchema: GenDescMessage<Explain_ExprStep, Explain_ExprStepJson> = /*@__PURE__*/
+export const Explain_ExprStepSchema: GenDescMessage<Explain_ExprStep> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_explain, 0, 0);
 

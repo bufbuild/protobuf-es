@@ -18,7 +18,7 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Duration, DurationJson } from "@bufbuild/protobuf/wkt";
+import type { Duration } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -96,30 +96,10 @@ export type ErrorInfo = Message<"google.rpc.ErrorInfo"> & {
 };
 
 /**
- * JSON type for the message google.rpc.ErrorInfo.
- */
-export type ErrorInfoJson = {
-  /**
-   * @generated from field: string reason = 1;
-   */
-  reason?: string;
-
-  /**
-   * @generated from field: string domain = 2;
-   */
-  domain?: string;
-
-  /**
-   * @generated from field: map<string, string> metadata = 3;
-   */
-  metadata?: { [key: string]: string };
-};
-
-/**
  * Describes the message google.rpc.ErrorInfo.
  * Use `create(ErrorInfoSchema)` to create a new message.
  */
-export const ErrorInfoSchema: GenDescMessage<ErrorInfo, ErrorInfoJson> = /*@__PURE__*/
+export const ErrorInfoSchema: GenDescMessage<ErrorInfo> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 0);
 
 /**
@@ -149,20 +129,10 @@ export type RetryInfo = Message<"google.rpc.RetryInfo"> & {
 };
 
 /**
- * JSON type for the message google.rpc.RetryInfo.
- */
-export type RetryInfoJson = {
-  /**
-   * @generated from field: google.protobuf.Duration retry_delay = 1;
-   */
-  retryDelay?: DurationJson;
-};
-
-/**
  * Describes the message google.rpc.RetryInfo.
  * Use `create(RetryInfoSchema)` to create a new message.
  */
-export const RetryInfoSchema: GenDescMessage<RetryInfo, RetryInfoJson> = /*@__PURE__*/
+export const RetryInfoSchema: GenDescMessage<RetryInfo> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 1);
 
 /**
@@ -187,25 +157,10 @@ export type DebugInfo = Message<"google.rpc.DebugInfo"> & {
 };
 
 /**
- * JSON type for the message google.rpc.DebugInfo.
- */
-export type DebugInfoJson = {
-  /**
-   * @generated from field: repeated string stack_entries = 1;
-   */
-  stackEntries?: string[];
-
-  /**
-   * @generated from field: string detail = 2;
-   */
-  detail?: string;
-};
-
-/**
  * Describes the message google.rpc.DebugInfo.
  * Use `create(DebugInfoSchema)` to create a new message.
  */
-export const DebugInfoSchema: GenDescMessage<DebugInfo, DebugInfoJson> = /*@__PURE__*/
+export const DebugInfoSchema: GenDescMessage<DebugInfo> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 2);
 
 /**
@@ -233,20 +188,10 @@ export type QuotaFailure = Message<"google.rpc.QuotaFailure"> & {
 };
 
 /**
- * JSON type for the message google.rpc.QuotaFailure.
- */
-export type QuotaFailureJson = {
-  /**
-   * @generated from field: repeated google.rpc.QuotaFailure.Violation violations = 1;
-   */
-  violations?: QuotaFailure_ViolationJson[];
-};
-
-/**
  * Describes the message google.rpc.QuotaFailure.
  * Use `create(QuotaFailureSchema)` to create a new message.
  */
-export const QuotaFailureSchema: GenDescMessage<QuotaFailure, QuotaFailureJson> = /*@__PURE__*/
+export const QuotaFailureSchema: GenDescMessage<QuotaFailure> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 3);
 
 /**
@@ -280,25 +225,10 @@ export type QuotaFailure_Violation = Message<"google.rpc.QuotaFailure.Violation"
 };
 
 /**
- * JSON type for the message google.rpc.QuotaFailure.Violation.
- */
-export type QuotaFailure_ViolationJson = {
-  /**
-   * @generated from field: string subject = 1;
-   */
-  subject?: string;
-
-  /**
-   * @generated from field: string description = 2;
-   */
-  description?: string;
-};
-
-/**
  * Describes the message google.rpc.QuotaFailure.Violation.
  * Use `create(QuotaFailure_ViolationSchema)` to create a new message.
  */
-export const QuotaFailure_ViolationSchema: GenDescMessage<QuotaFailure_Violation, QuotaFailure_ViolationJson> = /*@__PURE__*/
+export const QuotaFailure_ViolationSchema: GenDescMessage<QuotaFailure_Violation> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 3, 0);
 
 /**
@@ -320,20 +250,10 @@ export type PreconditionFailure = Message<"google.rpc.PreconditionFailure"> & {
 };
 
 /**
- * JSON type for the message google.rpc.PreconditionFailure.
- */
-export type PreconditionFailureJson = {
-  /**
-   * @generated from field: repeated google.rpc.PreconditionFailure.Violation violations = 1;
-   */
-  violations?: PreconditionFailure_ViolationJson[];
-};
-
-/**
  * Describes the message google.rpc.PreconditionFailure.
  * Use `create(PreconditionFailureSchema)` to create a new message.
  */
-export const PreconditionFailureSchema: GenDescMessage<PreconditionFailure, PreconditionFailureJson> = /*@__PURE__*/
+export const PreconditionFailureSchema: GenDescMessage<PreconditionFailure> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 4);
 
 /**
@@ -372,30 +292,10 @@ export type PreconditionFailure_Violation = Message<"google.rpc.PreconditionFail
 };
 
 /**
- * JSON type for the message google.rpc.PreconditionFailure.Violation.
- */
-export type PreconditionFailure_ViolationJson = {
-  /**
-   * @generated from field: string type = 1;
-   */
-  type?: string;
-
-  /**
-   * @generated from field: string subject = 2;
-   */
-  subject?: string;
-
-  /**
-   * @generated from field: string description = 3;
-   */
-  description?: string;
-};
-
-/**
  * Describes the message google.rpc.PreconditionFailure.Violation.
  * Use `create(PreconditionFailure_ViolationSchema)` to create a new message.
  */
-export const PreconditionFailure_ViolationSchema: GenDescMessage<PreconditionFailure_Violation, PreconditionFailure_ViolationJson> = /*@__PURE__*/
+export const PreconditionFailure_ViolationSchema: GenDescMessage<PreconditionFailure_Violation> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 4, 0);
 
 /**
@@ -414,20 +314,10 @@ export type BadRequest = Message<"google.rpc.BadRequest"> & {
 };
 
 /**
- * JSON type for the message google.rpc.BadRequest.
- */
-export type BadRequestJson = {
-  /**
-   * @generated from field: repeated google.rpc.BadRequest.FieldViolation field_violations = 1;
-   */
-  fieldViolations?: BadRequest_FieldViolationJson[];
-};
-
-/**
  * Describes the message google.rpc.BadRequest.
  * Use `create(BadRequestSchema)` to create a new message.
  */
-export const BadRequestSchema: GenDescMessage<BadRequest, BadRequestJson> = /*@__PURE__*/
+export const BadRequestSchema: GenDescMessage<BadRequest> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 5);
 
 /**
@@ -488,25 +378,10 @@ export type BadRequest_FieldViolation = Message<"google.rpc.BadRequest.FieldViol
 };
 
 /**
- * JSON type for the message google.rpc.BadRequest.FieldViolation.
- */
-export type BadRequest_FieldViolationJson = {
-  /**
-   * @generated from field: string field = 1;
-   */
-  field?: string;
-
-  /**
-   * @generated from field: string description = 2;
-   */
-  description?: string;
-};
-
-/**
  * Describes the message google.rpc.BadRequest.FieldViolation.
  * Use `create(BadRequest_FieldViolationSchema)` to create a new message.
  */
-export const BadRequest_FieldViolationSchema: GenDescMessage<BadRequest_FieldViolation, BadRequest_FieldViolationJson> = /*@__PURE__*/
+export const BadRequest_FieldViolationSchema: GenDescMessage<BadRequest_FieldViolation> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 5, 0);
 
 /**
@@ -534,25 +409,10 @@ export type RequestInfo = Message<"google.rpc.RequestInfo"> & {
 };
 
 /**
- * JSON type for the message google.rpc.RequestInfo.
- */
-export type RequestInfoJson = {
-  /**
-   * @generated from field: string request_id = 1;
-   */
-  requestId?: string;
-
-  /**
-   * @generated from field: string serving_data = 2;
-   */
-  servingData?: string;
-};
-
-/**
  * Describes the message google.rpc.RequestInfo.
  * Use `create(RequestInfoSchema)` to create a new message.
  */
-export const RequestInfoSchema: GenDescMessage<RequestInfo, RequestInfoJson> = /*@__PURE__*/
+export const RequestInfoSchema: GenDescMessage<RequestInfo> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 6);
 
 /**
@@ -600,35 +460,10 @@ export type ResourceInfo = Message<"google.rpc.ResourceInfo"> & {
 };
 
 /**
- * JSON type for the message google.rpc.ResourceInfo.
- */
-export type ResourceInfoJson = {
-  /**
-   * @generated from field: string resource_type = 1;
-   */
-  resourceType?: string;
-
-  /**
-   * @generated from field: string resource_name = 2;
-   */
-  resourceName?: string;
-
-  /**
-   * @generated from field: string owner = 3;
-   */
-  owner?: string;
-
-  /**
-   * @generated from field: string description = 4;
-   */
-  description?: string;
-};
-
-/**
  * Describes the message google.rpc.ResourceInfo.
  * Use `create(ResourceInfoSchema)` to create a new message.
  */
-export const ResourceInfoSchema: GenDescMessage<ResourceInfo, ResourceInfoJson> = /*@__PURE__*/
+export const ResourceInfoSchema: GenDescMessage<ResourceInfo> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 7);
 
 /**
@@ -650,20 +485,10 @@ export type Help = Message<"google.rpc.Help"> & {
 };
 
 /**
- * JSON type for the message google.rpc.Help.
- */
-export type HelpJson = {
-  /**
-   * @generated from field: repeated google.rpc.Help.Link links = 1;
-   */
-  links?: Help_LinkJson[];
-};
-
-/**
  * Describes the message google.rpc.Help.
  * Use `create(HelpSchema)` to create a new message.
  */
-export const HelpSchema: GenDescMessage<Help, HelpJson> = /*@__PURE__*/
+export const HelpSchema: GenDescMessage<Help> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 8);
 
 /**
@@ -688,25 +513,10 @@ export type Help_Link = Message<"google.rpc.Help.Link"> & {
 };
 
 /**
- * JSON type for the message google.rpc.Help.Link.
- */
-export type Help_LinkJson = {
-  /**
-   * @generated from field: string description = 1;
-   */
-  description?: string;
-
-  /**
-   * @generated from field: string url = 2;
-   */
-  url?: string;
-};
-
-/**
  * Describes the message google.rpc.Help.Link.
  * Use `create(Help_LinkSchema)` to create a new message.
  */
-export const Help_LinkSchema: GenDescMessage<Help_Link, Help_LinkJson> = /*@__PURE__*/
+export const Help_LinkSchema: GenDescMessage<Help_Link> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 8, 0);
 
 /**
@@ -734,24 +544,9 @@ export type LocalizedMessage = Message<"google.rpc.LocalizedMessage"> & {
 };
 
 /**
- * JSON type for the message google.rpc.LocalizedMessage.
- */
-export type LocalizedMessageJson = {
-  /**
-   * @generated from field: string locale = 1;
-   */
-  locale?: string;
-
-  /**
-   * @generated from field: string message = 2;
-   */
-  message?: string;
-};
-
-/**
  * Describes the message google.rpc.LocalizedMessage.
  * Use `create(LocalizedMessageSchema)` to create a new message.
  */
-export const LocalizedMessageSchema: GenDescMessage<LocalizedMessage, LocalizedMessageJson> = /*@__PURE__*/
+export const LocalizedMessageSchema: GenDescMessage<LocalizedMessage> = /*@__PURE__*/
   messageDesc(file_google_rpc_error_details, 9);
 

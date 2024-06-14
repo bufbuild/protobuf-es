@@ -184,50 +184,10 @@ export type ResourceDescriptor = Message<"google.api.ResourceDescriptor"> & {
 };
 
 /**
- * JSON type for the message google.api.ResourceDescriptor.
- */
-export type ResourceDescriptorJson = {
-  /**
-   * @generated from field: string type = 1;
-   */
-  type?: string;
-
-  /**
-   * @generated from field: repeated string pattern = 2;
-   */
-  pattern?: string[];
-
-  /**
-   * @generated from field: string name_field = 3;
-   */
-  nameField?: string;
-
-  /**
-   * @generated from field: google.api.ResourceDescriptor.History history = 4;
-   */
-  history?: ResourceDescriptor_HistoryJson;
-
-  /**
-   * @generated from field: string plural = 5;
-   */
-  plural?: string;
-
-  /**
-   * @generated from field: string singular = 6;
-   */
-  singular?: string;
-
-  /**
-   * @generated from field: repeated google.api.ResourceDescriptor.Style style = 10;
-   */
-  style?: ResourceDescriptor_StyleJson[];
-};
-
-/**
  * Describes the message google.api.ResourceDescriptor.
  * Use `create(ResourceDescriptorSchema)` to create a new message.
  */
-export const ResourceDescriptorSchema: GenDescMessage<ResourceDescriptor, ResourceDescriptorJson> = /*@__PURE__*/
+export const ResourceDescriptorSchema: GenDescMessage<ResourceDescriptor> = /*@__PURE__*/
   messageDesc(file_google_api_resource, 0);
 
 /**
@@ -263,14 +223,9 @@ export enum ResourceDescriptor_History {
 }
 
 /**
- * JSON type for the enum google.api.ResourceDescriptor.History.
- */
-export type ResourceDescriptor_HistoryJson = "HISTORY_UNSPECIFIED" | "ORIGINALLY_SINGLE_PATTERN" | "FUTURE_MULTI_PATTERN";
-
-/**
  * Describes the enum google.api.ResourceDescriptor.History.
  */
-export const ResourceDescriptor_HistorySchema: GenDescEnum<ResourceDescriptor_History, ResourceDescriptor_HistoryJson> = /*@__PURE__*/
+export const ResourceDescriptor_HistorySchema: GenDescEnum<ResourceDescriptor_History> = /*@__PURE__*/
   enumDesc(file_google_api_resource, 0, 0);
 
 /**
@@ -302,14 +257,9 @@ export enum ResourceDescriptor_Style {
 }
 
 /**
- * JSON type for the enum google.api.ResourceDescriptor.Style.
- */
-export type ResourceDescriptor_StyleJson = "STYLE_UNSPECIFIED" | "DECLARATIVE_FRIENDLY";
-
-/**
  * Describes the enum google.api.ResourceDescriptor.Style.
  */
-export const ResourceDescriptor_StyleSchema: GenDescEnum<ResourceDescriptor_Style, ResourceDescriptor_StyleJson> = /*@__PURE__*/
+export const ResourceDescriptor_StyleSchema: GenDescEnum<ResourceDescriptor_Style> = /*@__PURE__*/
   enumDesc(file_google_api_resource, 0, 1);
 
 /**
@@ -364,25 +314,10 @@ export type ResourceReference = Message<"google.api.ResourceReference"> & {
 };
 
 /**
- * JSON type for the message google.api.ResourceReference.
- */
-export type ResourceReferenceJson = {
-  /**
-   * @generated from field: string type = 1;
-   */
-  type?: string;
-
-  /**
-   * @generated from field: string child_type = 2;
-   */
-  childType?: string;
-};
-
-/**
  * Describes the message google.api.ResourceReference.
  * Use `create(ResourceReferenceSchema)` to create a new message.
  */
-export const ResourceReferenceSchema: GenDescMessage<ResourceReference, ResourceReferenceJson> = /*@__PURE__*/
+export const ResourceReferenceSchema: GenDescMessage<ResourceReference> = /*@__PURE__*/
   messageDesc(file_google_api_resource, 1);
 
 /**

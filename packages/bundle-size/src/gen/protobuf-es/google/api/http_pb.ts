@@ -57,25 +57,10 @@ export type Http = Message<"google.api.Http"> & {
 };
 
 /**
- * JSON type for the message google.api.Http.
- */
-export type HttpJson = {
-  /**
-   * @generated from field: repeated google.api.HttpRule rules = 1;
-   */
-  rules?: HttpRuleJson[];
-
-  /**
-   * @generated from field: bool fully_decode_reserved_expansion = 2;
-   */
-  fullyDecodeReservedExpansion?: boolean;
-};
-
-/**
  * Describes the message google.api.Http.
  * Use `create(HttpSchema)` to create a new message.
  */
-export const HttpSchema: GenDescMessage<Http, HttpJson> = /*@__PURE__*/
+export const HttpSchema: GenDescMessage<Http> = /*@__PURE__*/
   messageDesc(file_google_api_http, 0);
 
 /**
@@ -461,65 +446,10 @@ export type HttpRule = Message<"google.api.HttpRule"> & {
 };
 
 /**
- * JSON type for the message google.api.HttpRule.
- */
-export type HttpRuleJson = {
-  /**
-   * @generated from field: string selector = 1;
-   */
-  selector?: string;
-
-  /**
-   * @generated from field: string get = 2;
-   */
-  get?: string;
-
-  /**
-   * @generated from field: string put = 3;
-   */
-  put?: string;
-
-  /**
-   * @generated from field: string post = 4;
-   */
-  post?: string;
-
-  /**
-   * @generated from field: string delete = 5;
-   */
-  delete?: string;
-
-  /**
-   * @generated from field: string patch = 6;
-   */
-  patch?: string;
-
-  /**
-   * @generated from field: google.api.CustomHttpPattern custom = 8;
-   */
-  custom?: CustomHttpPatternJson;
-
-  /**
-   * @generated from field: string body = 7;
-   */
-  body?: string;
-
-  /**
-   * @generated from field: string response_body = 12;
-   */
-  responseBody?: string;
-
-  /**
-   * @generated from field: repeated google.api.HttpRule additional_bindings = 11;
-   */
-  additionalBindings?: HttpRuleJson[];
-};
-
-/**
  * Describes the message google.api.HttpRule.
  * Use `create(HttpRuleSchema)` to create a new message.
  */
-export const HttpRuleSchema: GenDescMessage<HttpRule, HttpRuleJson> = /*@__PURE__*/
+export const HttpRuleSchema: GenDescMessage<HttpRule> = /*@__PURE__*/
   messageDesc(file_google_api_http, 1);
 
 /**
@@ -544,24 +474,9 @@ export type CustomHttpPattern = Message<"google.api.CustomHttpPattern"> & {
 };
 
 /**
- * JSON type for the message google.api.CustomHttpPattern.
- */
-export type CustomHttpPatternJson = {
-  /**
-   * @generated from field: string kind = 1;
-   */
-  kind?: string;
-
-  /**
-   * @generated from field: string path = 2;
-   */
-  path?: string;
-};
-
-/**
  * Describes the message google.api.CustomHttpPattern.
  * Use `create(CustomHttpPatternSchema)` to create a new message.
  */
-export const CustomHttpPatternSchema: GenDescMessage<CustomHttpPattern, CustomHttpPatternJson> = /*@__PURE__*/
+export const CustomHttpPatternSchema: GenDescMessage<CustomHttpPattern> = /*@__PURE__*/
   messageDesc(file_google_api_http, 2);
 

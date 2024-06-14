@@ -41,20 +41,10 @@ export type FailureSet = Message<"conformance.FailureSet"> & {
 };
 
 /**
- * JSON type for the message conformance.FailureSet.
- */
-export type FailureSetJson = {
-  /**
-   * @generated from field: repeated string failure = 1;
-   */
-  failure?: string[];
-};
-
-/**
  * Describes the message conformance.FailureSet.
  * Use `create(FailureSetSchema)` to create a new message.
  */
-export const FailureSetSchema: GenDescMessage<FailureSet, FailureSetJson> = /*@__PURE__*/
+export const FailureSetSchema: GenDescMessage<FailureSet> = /*@__PURE__*/
   messageDesc(file_conformance_conformance, 0);
 
 /**
@@ -144,60 +134,10 @@ export type ConformanceRequest = Message<"conformance.ConformanceRequest"> & {
 };
 
 /**
- * JSON type for the message conformance.ConformanceRequest.
- */
-export type ConformanceRequestJson = {
-  /**
-   * @generated from field: bytes protobuf_payload = 1;
-   */
-  protobufPayload?: string;
-
-  /**
-   * @generated from field: string json_payload = 2;
-   */
-  jsonPayload?: string;
-
-  /**
-   * @generated from field: string jspb_payload = 7;
-   */
-  jspbPayload?: string;
-
-  /**
-   * @generated from field: string text_payload = 8;
-   */
-  textPayload?: string;
-
-  /**
-   * @generated from field: conformance.WireFormat requested_output_format = 3;
-   */
-  requestedOutputFormat?: WireFormatJson;
-
-  /**
-   * @generated from field: string message_type = 4;
-   */
-  messageType?: string;
-
-  /**
-   * @generated from field: conformance.TestCategory test_category = 5;
-   */
-  testCategory?: TestCategoryJson;
-
-  /**
-   * @generated from field: conformance.JspbEncodingConfig jspb_encoding_options = 6;
-   */
-  jspbEncodingOptions?: JspbEncodingConfigJson;
-
-  /**
-   * @generated from field: bool print_unknown_fields = 9;
-   */
-  printUnknownFields?: boolean;
-};
-
-/**
  * Describes the message conformance.ConformanceRequest.
  * Use `create(ConformanceRequestSchema)` to create a new message.
  */
-export const ConformanceRequestSchema: GenDescMessage<ConformanceRequest, ConformanceRequestJson> = /*@__PURE__*/
+export const ConformanceRequestSchema: GenDescMessage<ConformanceRequest> = /*@__PURE__*/
   messageDesc(file_conformance_conformance, 1);
 
 /**
@@ -301,60 +241,10 @@ export type ConformanceResponse = Message<"conformance.ConformanceResponse"> & {
 };
 
 /**
- * JSON type for the message conformance.ConformanceResponse.
- */
-export type ConformanceResponseJson = {
-  /**
-   * @generated from field: string parse_error = 1;
-   */
-  parseError?: string;
-
-  /**
-   * @generated from field: string serialize_error = 6;
-   */
-  serializeError?: string;
-
-  /**
-   * @generated from field: string timeout_error = 9;
-   */
-  timeoutError?: string;
-
-  /**
-   * @generated from field: string runtime_error = 2;
-   */
-  runtimeError?: string;
-
-  /**
-   * @generated from field: bytes protobuf_payload = 3;
-   */
-  protobufPayload?: string;
-
-  /**
-   * @generated from field: string json_payload = 4;
-   */
-  jsonPayload?: string;
-
-  /**
-   * @generated from field: string skipped = 5;
-   */
-  skipped?: string;
-
-  /**
-   * @generated from field: string jspb_payload = 7;
-   */
-  jspbPayload?: string;
-
-  /**
-   * @generated from field: string text_payload = 8;
-   */
-  textPayload?: string;
-};
-
-/**
  * Describes the message conformance.ConformanceResponse.
  * Use `create(ConformanceResponseSchema)` to create a new message.
  */
-export const ConformanceResponseSchema: GenDescMessage<ConformanceResponse, ConformanceResponseJson> = /*@__PURE__*/
+export const ConformanceResponseSchema: GenDescMessage<ConformanceResponse> = /*@__PURE__*/
   messageDesc(file_conformance_conformance, 2);
 
 /**
@@ -372,20 +262,10 @@ export type JspbEncodingConfig = Message<"conformance.JspbEncodingConfig"> & {
 };
 
 /**
- * JSON type for the message conformance.JspbEncodingConfig.
- */
-export type JspbEncodingConfigJson = {
-  /**
-   * @generated from field: bool use_jspb_array_any_format = 1;
-   */
-  useJspbArrayAnyFormat?: boolean;
-};
-
-/**
  * Describes the message conformance.JspbEncodingConfig.
  * Use `create(JspbEncodingConfigSchema)` to create a new message.
  */
-export const JspbEncodingConfigSchema: GenDescMessage<JspbEncodingConfig, JspbEncodingConfigJson> = /*@__PURE__*/
+export const JspbEncodingConfigSchema: GenDescMessage<JspbEncodingConfig> = /*@__PURE__*/
   messageDesc(file_conformance_conformance, 3);
 
 /**
@@ -421,14 +301,9 @@ export enum WireFormat {
 }
 
 /**
- * JSON type for the enum conformance.WireFormat.
- */
-export type WireFormatJson = "UNSPECIFIED" | "PROTOBUF" | "JSON" | "JSPB" | "TEXT_FORMAT";
-
-/**
  * Describes the enum conformance.WireFormat.
  */
-export const WireFormatSchema: GenDescEnum<WireFormat, WireFormatJson> = /*@__PURE__*/
+export const WireFormatSchema: GenDescEnum<WireFormat> = /*@__PURE__*/
   enumDesc(file_conformance_conformance, 0);
 
 /**
@@ -483,13 +358,8 @@ export enum TestCategory {
 }
 
 /**
- * JSON type for the enum conformance.TestCategory.
- */
-export type TestCategoryJson = "UNSPECIFIED_TEST" | "BINARY_TEST" | "JSON_TEST" | "JSON_IGNORE_UNKNOWN_PARSING_TEST" | "JSPB_TEST" | "TEXT_FORMAT_TEST";
-
-/**
  * Describes the enum conformance.TestCategory.
  */
-export const TestCategorySchema: GenDescEnum<TestCategory, TestCategoryJson> = /*@__PURE__*/
+export const TestCategorySchema: GenDescEnum<TestCategory> = /*@__PURE__*/
   enumDesc(file_conformance_conformance, 1);
 
