@@ -52,7 +52,7 @@ runNodeJs(
             f.print("// ", file.file.proto.name);
             for (const message of file.messages) {
               const desc = f.import(
-                f.importDesc(message).name,
+                f.importSchema(message).name,
                 `./protobuf-es/${message.file.name}_pb.js`,
               );
               const createCall = [f.runtime.create, "(", desc, ")"];

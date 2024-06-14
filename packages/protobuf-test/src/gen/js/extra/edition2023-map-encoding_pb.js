@@ -22,20 +22,20 @@ import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 /**
  * Describes the file extra/edition2023-map-encoding.proto.
  */
-export const fileDesc_extra_edition2023_map_encoding = /*@__PURE__*/
+export const file_extra_edition2023_map_encoding = /*@__PURE__*/
   fileDesc("CiRleHRyYS9lZGl0aW9uMjAyMy1tYXAtZW5jb2RpbmcucHJvdG8SBHNwZWMiygIKHUVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlEkYKCnN0cmluZ19tYXAYTSADKAsyMi5zcGVjLkVkaXRpb24yMDIzTWFwRW5jb2RpbmdNZXNzYWdlLlN0cmluZ01hcEVudHJ5EkgKC21lc3NhZ2VfbWFwGFggAygLMjMuc3BlYy5FZGl0aW9uMjAyM01hcEVuY29kaW5nTWVzc2FnZS5NZXNzYWdlTWFwRW50cnkaMAoOU3RyaW5nTWFwRW50cnkSCwoDa2V5GAEgASgFEg0KBXZhbHVlGAIgASgJOgI4ARpcCg9NZXNzYWdlTWFwRW50cnkSCwoDa2V5GAEgASgFEjgKBXZhbHVlGAIgASgLMikuc3BlYy5FZGl0aW9uMjAyM01hcEVuY29kaW5nTWVzc2FnZS5DaGlsZDoCOAEaBwoFQ2hpbGRCBZIDAigCYghlZGl0aW9uc3DoBw");
 
 /**
  * Describes the message spec.Edition2023MapEncodingMessage.
- * Use `create(Edition2023MapEncodingMessageDesc)` to create a new message.
+ * Use `create(Edition2023MapEncodingMessageSchema)` to create a new message.
  */
-export const Edition2023MapEncodingMessageDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_edition2023_map_encoding, 0);
+export const Edition2023MapEncodingMessageSchema = /*@__PURE__*/
+  messageDesc(file_extra_edition2023_map_encoding, 0);
 
 /**
  * Describes the message spec.Edition2023MapEncodingMessage.Child.
- * Use `create(Edition2023MapEncodingMessage_ChildDesc)` to create a new message.
+ * Use `create(Edition2023MapEncodingMessage_ChildSchema)` to create a new message.
  */
-export const Edition2023MapEncodingMessage_ChildDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_edition2023_map_encoding, 0, 0);
+export const Edition2023MapEncodingMessage_ChildSchema = /*@__PURE__*/
+  messageDesc(file_extra_edition2023_map_encoding, 0, 0);
 

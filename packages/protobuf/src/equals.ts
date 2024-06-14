@@ -25,20 +25,17 @@ import type { ReflectMessage } from "./reflect/index.js";
  * NaN is not equal NaN, following the IEEE standard.
  */
 export function equals<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   a: MessageShape<Desc>,
   b: MessageShape<Desc>,
 ): boolean {
-  if (
-    a.$typeName != messageDesc.typeName ||
-    b.$typeName != messageDesc.typeName
-  ) {
+  if (a.$typeName != schema.typeName || b.$typeName != schema.typeName) {
     return false;
   }
   if (a === b) {
     return true;
   }
-  return reflectEquals(reflect(messageDesc, a), reflect(messageDesc, b));
+  return reflectEquals(reflect(schema, a), reflect(schema, b));
 }
 
 function reflectEquals(a: ReflectMessage, b: ReflectMessage): boolean {

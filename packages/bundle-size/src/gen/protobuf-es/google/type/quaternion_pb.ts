@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/quaternion.proto.
  */
-export const fileDesc_google_type_quaternion: GenDescFile = /*@__PURE__*/
+export const file_google_type_quaternion: GenDescFile = /*@__PURE__*/
   fileDesc("Chxnb29nbGUvdHlwZS9xdWF0ZXJuaW9uLnByb3RvEgtnb29nbGUudHlwZSI4CgpRdWF0ZXJuaW9uEgkKAXgYASABKAESCQoBeRgCIAEoARIJCgF6GAMgASgBEgkKAXcYBCABKAFCbwoPY29tLmdvb2dsZS50eXBlQg9RdWF0ZXJuaW9uUHJvdG9QAVpAZ29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy90eXBlL3F1YXRlcm5pb247cXVhdGVybmlvbvgBAaICA0dUUGIGcHJvdG8z");
 
 /**
@@ -118,8 +118,8 @@ export type Quaternion = Message<"google.type.Quaternion"> & {
 
 /**
  * Describes the message google.type.Quaternion.
- * Use `create(QuaternionDesc)` to create a new message.
+ * Use `create(QuaternionSchema)` to create a new message.
  */
-export const QuaternionDesc: GenDescMessage<Quaternion> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_quaternion, 0);
+export const QuaternionSchema: GenDescMessage<Quaternion> = /*@__PURE__*/
+  messageDesc(file_google_type_quaternion, 0);
 

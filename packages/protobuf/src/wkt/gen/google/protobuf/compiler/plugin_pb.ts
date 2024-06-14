@@ -32,7 +32,7 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "../../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../../codegenv1/file.js";
 import type { FileDescriptorProto, GeneratedCodeInfo } from "../descriptor_pb.js";
-import { fileDesc_google_protobuf_descriptor } from "../descriptor_pb.js";
+import { file_google_protobuf_descriptor } from "../descriptor_pb.js";
 import type { Message } from "../../../../../types.js";
 import { messageDesc } from "../../../../../codegenv1/message.js";
 import { enumDesc } from "../../../../../codegenv1/enum.js";
@@ -40,8 +40,8 @@ import { enumDesc } from "../../../../../codegenv1/enum.js";
 /**
  * Describes the file google/protobuf/compiler/plugin.proto.
  */
-export const fileDesc_google_protobuf_compiler_plugin: GenDescFile = /*@__PURE__*/
-  fileDesc("CiVnb29nbGUvcHJvdG9idWYvY29tcGlsZXIvcGx1Z2luLnByb3RvEhhnb29nbGUucHJvdG9idWYuY29tcGlsZXIiRgoHVmVyc2lvbhINCgVtYWpvchgBIAEoBRINCgVtaW5vchgCIAEoBRINCgVwYXRjaBgDIAEoBRIOCgZzdWZmaXgYBCABKAkigQIKFENvZGVHZW5lcmF0b3JSZXF1ZXN0EhgKEGZpbGVfdG9fZ2VuZXJhdGUYASADKAkSEQoJcGFyYW1ldGVyGAIgASgJEjgKCnByb3RvX2ZpbGUYDyADKAsyJC5nb29nbGUucHJvdG9idWYuRmlsZURlc2NyaXB0b3JQcm90bxJFChdzb3VyY2VfZmlsZV9kZXNjcmlwdG9ycxgRIAMoCzIkLmdvb2dsZS5wcm90b2J1Zi5GaWxlRGVzY3JpcHRvclByb3RvEjsKEGNvbXBpbGVyX3ZlcnNpb24YAyABKAsyIS5nb29nbGUucHJvdG9idWYuY29tcGlsZXIuVmVyc2lvbiKSAwoVQ29kZUdlbmVyYXRvclJlc3BvbnNlEg0KBWVycm9yGAEgASgJEhoKEnN1cHBvcnRlZF9mZWF0dXJlcxgCIAEoBBIXCg9taW5pbXVtX2VkaXRpb24YAyABKAUSFwoPbWF4aW11bV9lZGl0aW9uGAQgASgFEkIKBGZpbGUYDyADKAsyNC5nb29nbGUucHJvdG9idWYuY29tcGlsZXIuQ29kZUdlbmVyYXRvclJlc3BvbnNlLkZpbGUafwoERmlsZRIMCgRuYW1lGAEgASgJEhcKD2luc2VydGlvbl9wb2ludBgCIAEoCRIPCgdjb250ZW50GA8gASgJEj8KE2dlbmVyYXRlZF9jb2RlX2luZm8YECABKAsyIi5nb29nbGUucHJvdG9idWYuR2VuZXJhdGVkQ29kZUluZm8iVwoHRmVhdHVyZRIQCgxGRUFUVVJFX05PTkUQABIbChdGRUFUVVJFX1BST1RPM19PUFRJT05BTBABEh0KGUZFQVRVUkVfU1VQUE9SVFNfRURJVElPTlMQAkJyChxjb20uZ29vZ2xlLnByb3RvYnVmLmNvbXBpbGVyQgxQbHVnaW5Qcm90b3NaKWdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL3BsdWdpbnBiqgIYR29vZ2xlLlByb3RvYnVmLkNvbXBpbGVy", [fileDesc_google_protobuf_descriptor]);
+export const file_google_protobuf_compiler_plugin: GenDescFile = /*@__PURE__*/
+  fileDesc("CiVnb29nbGUvcHJvdG9idWYvY29tcGlsZXIvcGx1Z2luLnByb3RvEhhnb29nbGUucHJvdG9idWYuY29tcGlsZXIiRgoHVmVyc2lvbhINCgVtYWpvchgBIAEoBRINCgVtaW5vchgCIAEoBRINCgVwYXRjaBgDIAEoBRIOCgZzdWZmaXgYBCABKAkigQIKFENvZGVHZW5lcmF0b3JSZXF1ZXN0EhgKEGZpbGVfdG9fZ2VuZXJhdGUYASADKAkSEQoJcGFyYW1ldGVyGAIgASgJEjgKCnByb3RvX2ZpbGUYDyADKAsyJC5nb29nbGUucHJvdG9idWYuRmlsZURlc2NyaXB0b3JQcm90bxJFChdzb3VyY2VfZmlsZV9kZXNjcmlwdG9ycxgRIAMoCzIkLmdvb2dsZS5wcm90b2J1Zi5GaWxlRGVzY3JpcHRvclByb3RvEjsKEGNvbXBpbGVyX3ZlcnNpb24YAyABKAsyIS5nb29nbGUucHJvdG9idWYuY29tcGlsZXIuVmVyc2lvbiKSAwoVQ29kZUdlbmVyYXRvclJlc3BvbnNlEg0KBWVycm9yGAEgASgJEhoKEnN1cHBvcnRlZF9mZWF0dXJlcxgCIAEoBBIXCg9taW5pbXVtX2VkaXRpb24YAyABKAUSFwoPbWF4aW11bV9lZGl0aW9uGAQgASgFEkIKBGZpbGUYDyADKAsyNC5nb29nbGUucHJvdG9idWYuY29tcGlsZXIuQ29kZUdlbmVyYXRvclJlc3BvbnNlLkZpbGUafwoERmlsZRIMCgRuYW1lGAEgASgJEhcKD2luc2VydGlvbl9wb2ludBgCIAEoCRIPCgdjb250ZW50GA8gASgJEj8KE2dlbmVyYXRlZF9jb2RlX2luZm8YECABKAsyIi5nb29nbGUucHJvdG9idWYuR2VuZXJhdGVkQ29kZUluZm8iVwoHRmVhdHVyZRIQCgxGRUFUVVJFX05PTkUQABIbChdGRUFUVVJFX1BST1RPM19PUFRJT05BTBABEh0KGUZFQVRVUkVfU1VQUE9SVFNfRURJVElPTlMQAkJyChxjb20uZ29vZ2xlLnByb3RvYnVmLmNvbXBpbGVyQgxQbHVnaW5Qcm90b3NaKWdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL3BsdWdpbnBiqgIYR29vZ2xlLlByb3RvYnVmLkNvbXBpbGVy", [file_google_protobuf_descriptor]);
 
 /**
  * The version number of protocol compiler.
@@ -75,10 +75,10 @@ export type Version = Message<"google.protobuf.compiler.Version"> & {
 
 /**
  * Describes the message google.protobuf.compiler.Version.
- * Use `create(VersionDesc)` to create a new message.
+ * Use `create(VersionSchema)` to create a new message.
  */
-export const VersionDesc: GenDescMessage<Version> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_compiler_plugin, 0);
+export const VersionSchema: GenDescMessage<Version> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_compiler_plugin, 0);
 
 /**
  * An encoded CodeGeneratorRequest is written to the plugin's stdin.
@@ -146,10 +146,10 @@ export type CodeGeneratorRequest = Message<"google.protobuf.compiler.CodeGenerat
 
 /**
  * Describes the message google.protobuf.compiler.CodeGeneratorRequest.
- * Use `create(CodeGeneratorRequestDesc)` to create a new message.
+ * Use `create(CodeGeneratorRequestSchema)` to create a new message.
  */
-export const CodeGeneratorRequestDesc: GenDescMessage<CodeGeneratorRequest> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_compiler_plugin, 1);
+export const CodeGeneratorRequestSchema: GenDescMessage<CodeGeneratorRequest> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_compiler_plugin, 1);
 
 /**
  * The plugin writes an encoded CodeGeneratorResponse to stdout.
@@ -207,10 +207,10 @@ export type CodeGeneratorResponse = Message<"google.protobuf.compiler.CodeGenera
 
 /**
  * Describes the message google.protobuf.compiler.CodeGeneratorResponse.
- * Use `create(CodeGeneratorResponseDesc)` to create a new message.
+ * Use `create(CodeGeneratorResponseSchema)` to create a new message.
  */
-export const CodeGeneratorResponseDesc: GenDescMessage<CodeGeneratorResponse> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_compiler_plugin, 2);
+export const CodeGeneratorResponseSchema: GenDescMessage<CodeGeneratorResponse> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_compiler_plugin, 2);
 
 /**
  * Represents a single generated file.
@@ -297,10 +297,10 @@ export type CodeGeneratorResponse_File = Message<"google.protobuf.compiler.CodeG
 
 /**
  * Describes the message google.protobuf.compiler.CodeGeneratorResponse.File.
- * Use `create(CodeGeneratorResponse_FileDesc)` to create a new message.
+ * Use `create(CodeGeneratorResponse_FileSchema)` to create a new message.
  */
-export const CodeGeneratorResponse_FileDesc: GenDescMessage<CodeGeneratorResponse_File> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_compiler_plugin, 2, 0);
+export const CodeGeneratorResponse_FileSchema: GenDescMessage<CodeGeneratorResponse_File> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_compiler_plugin, 2, 0);
 
 /**
  * Sync with code_generator.h.
@@ -327,6 +327,6 @@ export enum CodeGeneratorResponse_Feature {
 /**
  * Describes the enum google.protobuf.compiler.CodeGeneratorResponse.Feature.
  */
-export const CodeGeneratorResponse_FeatureDesc: GenDescEnum<CodeGeneratorResponse_Feature> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_compiler_plugin, 2, 0);
+export const CodeGeneratorResponse_FeatureSchema: GenDescEnum<CodeGeneratorResponse_Feature> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_compiler_plugin, 2, 0);
 

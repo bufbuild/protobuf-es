@@ -19,14 +19,14 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/type/interval.proto.
  */
-export const fileDesc_google_type_interval: GenDescFile = /*@__PURE__*/
-  fileDesc("Chpnb29nbGUvdHlwZS9pbnRlcnZhbC5wcm90bxILZ29vZ2xlLnR5cGUiaAoISW50ZXJ2YWwSLgoKc3RhcnRfdGltZRgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoIZW5kX3RpbWUYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQmkKD2NvbS5nb29nbGUudHlwZUINSW50ZXJ2YWxQcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvaW50ZXJ2YWw7aW50ZXJ2YWz4AQGiAgNHVFBiBnByb3RvMw", [fileDesc_google_protobuf_timestamp]);
+export const file_google_type_interval: GenDescFile = /*@__PURE__*/
+  fileDesc("Chpnb29nbGUvdHlwZS9pbnRlcnZhbC5wcm90bxILZ29vZ2xlLnR5cGUiaAoISW50ZXJ2YWwSLgoKc3RhcnRfdGltZRgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoIZW5kX3RpbWUYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQmkKD2NvbS5nb29nbGUudHlwZUINSW50ZXJ2YWxQcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvaW50ZXJ2YWw7aW50ZXJ2YWz4AQGiAgNHVFBiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * Represents a time interval, encoded as a Timestamp start (inclusive) and a
@@ -62,8 +62,8 @@ export type Interval = Message<"google.type.Interval"> & {
 
 /**
  * Describes the message google.type.Interval.
- * Use `create(IntervalDesc)` to create a new message.
+ * Use `create(IntervalSchema)` to create a new message.
  */
-export const IntervalDesc: GenDescMessage<Interval> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_interval, 0);
+export const IntervalSchema: GenDescMessage<Interval> = /*@__PURE__*/
+  messageDesc(file_google_type_interval, 0);
 

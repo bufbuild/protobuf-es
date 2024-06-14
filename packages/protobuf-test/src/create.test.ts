@@ -34,7 +34,7 @@ import { fillProto2Message, fillProto2MessageNames } from "./helpers-proto2.js";
 describe("create()", () => {
   describe("with a generated descriptor", () => {
     test("creates a typed message", () => {
-      const user: example_ts.User = create(example_ts.UserDesc);
+      const user: example_ts.User = create(example_ts.UserSchema);
       expect(user).toBeDefined();
       expect(user.$typeName).toBe("docs.User");
       expect(user.firstName).toBeDefined();
@@ -43,7 +43,7 @@ describe("create()", () => {
 
   describe("with an anonymous descriptor", () => {
     test("creates an anonymous message", () => {
-      const user = create(example_ts.UserDesc as DescMessage);
+      const user = create(example_ts.UserSchema as DescMessage);
       expect(user).toBeDefined();
       expect(user.$typeName).toBe("docs.User");
       // @ts-expect-error property is unknown to the type system, but still there
@@ -53,7 +53,7 @@ describe("create()", () => {
 
   describe("creates a zero message", () => {
     describe("from proto3", () => {
-      const desc = proto3_ts.Proto3MessageDesc;
+      const desc = proto3_ts.Proto3MessageSchema;
       test("with expected properties", () => {
         const msg = create(desc);
         function hasOwn(prop: keyof typeof msg) {
@@ -155,7 +155,7 @@ describe("create()", () => {
       });
     });
     describe("from proto2", () => {
-      const desc = proto2_ts.Proto2MessageDesc;
+      const desc = proto2_ts.Proto2MessageSchema;
       test("with expected properties", () => {
         const msg = create(desc);
         function hasOwn(prop: keyof typeof msg) {
@@ -325,7 +325,7 @@ describe("create()", () => {
       });
     });
     describe("from edition2023", () => {
-      const desc = edition2023_ts.Edition2023MessageDesc;
+      const desc = edition2023_ts.Edition2023MessageSchema;
       test("with expected properties", () => {
         const msg = create(desc);
         function hasOwn(prop: keyof typeof msg) {
@@ -507,18 +507,18 @@ describe("create()", () => {
 
   describe("with init argument", () => {
     test("typed message returns same instance of typed message", () => {
-      const user1 = create(example_ts.UserDesc);
-      const user2 = create(example_ts.UserDesc, user1);
+      const user1 = create(example_ts.UserSchema);
+      const user2 = create(example_ts.UserSchema, user1);
       expect(user2).toBe(user1);
     });
     test("rejects foreign typed message as a type error", () => {
-      const user = create(example_ts.UserDesc);
+      const user = create(example_ts.UserSchema);
       // @ts-expect-error TS2345
-      const notAUser = create(proto3_ts.Proto3MessageDesc, user);
+      const notAUser = create(proto3_ts.Proto3MessageSchema, user);
       expect(notAUser).toBeDefined();
     });
     test("rejects extra properties in the object literal as a type error", () => {
-      const msg = create(proto3_ts.Proto3MessageDesc, {
+      const msg = create(proto3_ts.Proto3MessageSchema, {
         // @ts-expect-error TS2353
         extraProperty: true,
       });
@@ -526,7 +526,7 @@ describe("create()", () => {
     });
     describe("inits proto2", () => {
       test.each(fillProto2MessageNames())("field %s", (name) => {
-        const desc = proto2_ts.Proto2MessageDesc;
+        const desc = proto2_ts.Proto2MessageSchema;
         const filled = fillProto2Message(create(desc));
         const init: MessageInitShape<typeof desc> = {};
         for (const k in filled) {
@@ -547,7 +547,7 @@ describe("create()", () => {
     });
     describe("inits proto3", () => {
       test.each(fillProto3MessageNames())("field %s", (name) => {
-        const desc = proto3_ts.Proto3MessageDesc;
+        const desc = proto3_ts.Proto3MessageSchema;
         const filled = fillProto3Message(create(desc));
         const init: MessageInitShape<typeof desc> = {};
         for (const k in filled) {
@@ -568,7 +568,7 @@ describe("create()", () => {
     });
     describe("inits edition2023", () => {
       test.each(fillEdition2023MessageNames())("field %s", (name) => {
-        const desc = edition2023_ts.Edition2023MessageDesc;
+        const desc = edition2023_ts.Edition2023MessageSchema;
         const filled = fillEdition2023Message(create(desc));
         const init: MessageInitShape<typeof desc> = {};
         for (const k in filled) {
@@ -589,9 +589,9 @@ describe("create()", () => {
     });
     describe("skips null values", () => {
       describe.each([
-        proto2_ts.Proto2MessageDesc,
-        proto3_ts.Proto3MessageDesc,
-        edition2023_ts.Edition2023MessageDesc,
+        proto2_ts.Proto2MessageSchema,
+        proto3_ts.Proto3MessageSchema,
+        edition2023_ts.Edition2023MessageSchema,
       ])("$typeName", (desc) => {
         test.each(desc.fields)("$name", (f) => {
           const init: Record<string, unknown> = {};
@@ -606,9 +606,9 @@ describe("create()", () => {
     });
     describe("skips undefined values", () => {
       describe.each([
-        proto2_ts.Proto2MessageDesc,
-        proto3_ts.Proto3MessageDesc,
-        edition2023_ts.Edition2023MessageDesc,
+        proto2_ts.Proto2MessageSchema,
+        proto3_ts.Proto3MessageSchema,
+        edition2023_ts.Edition2023MessageSchema,
       ])("$typeName", (desc) => {
         test.each(desc.fields)("$name", (f) => {
           const init: Record<string, unknown> = {};
@@ -623,7 +623,7 @@ describe("create()", () => {
     });
     describe("64-bit integer field", () => {
       test("accepts generated types", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           singularInt64Field: protoInt64.parse(1),
           singularInt64JsNumberField: protoInt64.parse(2),
           singularInt64JsStringField: "3",
@@ -657,7 +657,7 @@ describe("create()", () => {
         });
       });
       test("rejects other forms as type error but does not raise runtime error", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           // @ts-expect-error expected type error
           singularInt64Field: "1",
           // @ts-expect-error expected type error
@@ -703,7 +703,7 @@ describe("create()", () => {
     });
     describe("bytes", () => {
       test("converts number array to Uint8Array", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           // @ts-expect-error number array is still a type error
           singularBytesField: [0xde, 0xad, 0xbe, 0xef],
           repeatedBytesField: [
@@ -728,7 +728,7 @@ describe("create()", () => {
     });
     describe("message field", () => {
       test("accepts partial message", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           singularMessageField: {
             singularStringField: "str",
           },
@@ -750,33 +750,36 @@ describe("create()", () => {
         expect(msg.singularMessageField).toBeDefined();
         expect(msg.singularMessageField?.singularStringField).toBe("str");
         expect(
-          isMessage(msg.singularMessageField, proto3_ts.Proto3MessageDesc),
+          isMessage(msg.singularMessageField, proto3_ts.Proto3MessageSchema),
         ).toBe(true);
 
         expect(msg.repeatedMessageField.length).toBe(1);
         expect(msg.repeatedMessageField[0].singularStringField).toBe("str");
         expect(
-          isMessage(msg.repeatedMessageField[0], proto3_ts.Proto3MessageDesc),
+          isMessage(msg.repeatedMessageField[0], proto3_ts.Proto3MessageSchema),
         ).toBe(true);
 
         expect(msg.either.case).toBe("oneofMessageField");
         expect(msg.either.value).toBeDefined();
-        expect(isMessage(msg.either.value, proto3_ts.Proto3MessageDesc)).toBe(
+        expect(isMessage(msg.either.value, proto3_ts.Proto3MessageSchema)).toBe(
           true,
         );
 
         expect(Object.keys(msg.mapInt32MessageField)).toStrictEqual(["123"]);
         expect(msg.mapInt32MessageField[123]).toBeDefined();
         expect(
-          isMessage(msg.mapInt32MessageField[123], proto3_ts.Proto3MessageDesc),
+          isMessage(
+            msg.mapInt32MessageField[123],
+            proto3_ts.Proto3MessageSchema,
+          ),
         ).toBe(true);
       });
       test("accepts full message", () => {
-        const testMessageSingular = create(proto3_ts.Proto3MessageDesc);
-        const testMessageList = create(proto3_ts.Proto3MessageDesc);
-        const testMessageOneof = create(proto3_ts.Proto3MessageDesc);
-        const testMessageMap = create(proto3_ts.Proto3MessageDesc);
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const testMessageSingular = create(proto3_ts.Proto3MessageSchema);
+        const testMessageList = create(proto3_ts.Proto3MessageSchema);
+        const testMessageOneof = create(proto3_ts.Proto3MessageSchema);
+        const testMessageMap = create(proto3_ts.Proto3MessageSchema);
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           singularMessageField: testMessageSingular,
           repeatedMessageField: [testMessageList],
           either: {
@@ -795,7 +798,7 @@ describe("create()", () => {
     });
     describe("enum field", () => {
       test("accepts proto3 enum value out of range", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           // @ts-ignore -- required for older TS
           singularEnumField: 99,
         });
@@ -805,7 +808,7 @@ describe("create()", () => {
     describe("list field", () => {
       test("accepts array", () => {
         const arr = ["a", "b", "c"];
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           repeatedStringField: arr,
         });
         expect(msg.repeatedStringField).toBe(arr);
@@ -818,7 +821,7 @@ describe("create()", () => {
           b: "B",
           c: "C",
         };
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           mapStringStringField: recordObj,
         });
         expect(msg.mapStringStringField).toBe(recordObj);
@@ -826,7 +829,7 @@ describe("create()", () => {
     });
     describe("oneof field", () => {
       test("accepts selected field", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           either: {
             case: "oneofBoolField",
             value: false,
@@ -838,7 +841,7 @@ describe("create()", () => {
     });
     describe("wkt wrapper field", () => {
       test("accepts unwrapped value only for singular field", () => {
-        const msg = create(proto3_ts.Proto3MessageDesc, {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
           singularWrappedUint32Field: 123,
           either: {
             case: "oneofWrappedUint32Field",

@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/example.proto.
  */
-export declare const fileDesc_extra_example: GenDescFile;
+export declare const file_extra_example: GenDescFile;
 
 /**
  * @generated from message docs.User
@@ -61,7 +61,7 @@ export declare type User = Message<"docs.User"> & {
 
 /**
  * Describes the message docs.User.
- * Use `create(UserDesc)` to create a new message.
+ * Use `create(UserSchema)` to create a new message.
  */
-export declare const UserDesc: GenDescMessage<User>;
+export declare const UserSchema: GenDescMessage<User>;
 

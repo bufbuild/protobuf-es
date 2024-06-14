@@ -32,9 +32,9 @@ import type {
 } from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import {
   Edition,
-  FieldDescriptorProtoDesc,
-  FieldOptionsDesc,
-  FileDescriptorProtoDesc,
+  FieldDescriptorProtoSchema,
+  FieldOptionsSchema,
+  FileDescriptorProtoSchema,
 } from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import type {
   DescriptorProtoBoot,
@@ -69,14 +69,14 @@ export function embedFileDesc(
   const embed: EmbedUnknown = {
     bootable: false,
     proto() {
-      const stripped = clone(FileDescriptorProtoDesc, file);
-      clearField(stripped, FileDescriptorProtoDesc.field.dependency);
-      clearField(stripped, FileDescriptorProtoDesc.field.sourceCodeInfo);
+      const stripped = clone(FileDescriptorProtoSchema, file);
+      clearField(stripped, FileDescriptorProtoSchema.field.dependency);
+      clearField(stripped, FileDescriptorProtoSchema.field.sourceCodeInfo);
       stripped.messageType.map(stripJsonNames);
       return stripped;
     },
     base64() {
-      const bytes = toBinary(FileDescriptorProtoDesc, this.proto());
+      const bytes = toBinary(FileDescriptorProtoSchema, this.proto());
       return base64Encode(bytes, "std_raw");
     },
   };
@@ -94,7 +94,7 @@ export function embedFileDesc(
 function stripJsonNames(d: DescriptorProto): void {
   for (const f of d.field) {
     if (f.jsonName === protoCamelCase(f.name)) {
-      clearField(f, FieldDescriptorProtoDesc.field.jsonName);
+      clearField(f, FieldDescriptorProtoSchema.field.jsonName);
     }
   }
   for (const n of d.nestedType) {
@@ -212,12 +212,12 @@ function createDescriptorBoot(proto: DescriptorProto) {
 function createFieldDescriptorBoot(
   proto: FieldDescriptorProto,
 ): FieldDescriptorProtoBoot {
-  assert(isFieldSet(proto, FieldDescriptorProtoDesc.field.name));
-  assert(isFieldSet(proto, FieldDescriptorProtoDesc.field.number));
-  assert(isFieldSet(proto, FieldDescriptorProtoDesc.field.type));
-  assert(!isFieldSet(proto, FieldDescriptorProtoDesc.field.oneofIndex));
+  assert(isFieldSet(proto, FieldDescriptorProtoSchema.field.name));
+  assert(isFieldSet(proto, FieldDescriptorProtoSchema.field.number));
+  assert(isFieldSet(proto, FieldDescriptorProtoSchema.field.type));
+  assert(!isFieldSet(proto, FieldDescriptorProtoSchema.field.oneofIndex));
   assert(
-    !isFieldSet(proto, FieldDescriptorProtoDesc.field.jsonName) ||
+    !isFieldSet(proto, FieldDescriptorProtoSchema.field.jsonName) ||
       proto.jsonName === protoCamelCase(proto.name),
   );
   const b: FieldDescriptorProtoBoot = {
@@ -225,16 +225,16 @@ function createFieldDescriptorBoot(
     number: proto.number,
     type: proto.type,
   };
-  if (isFieldSet(proto, FieldDescriptorProtoDesc.field.label)) {
+  if (isFieldSet(proto, FieldDescriptorProtoSchema.field.label)) {
     b.label = proto.label;
   }
-  if (isFieldSet(proto, FieldDescriptorProtoDesc.field.typeName)) {
+  if (isFieldSet(proto, FieldDescriptorProtoSchema.field.typeName)) {
     b.typeName = proto.typeName;
   }
-  if (isFieldSet(proto, FieldDescriptorProtoDesc.field.extendee)) {
+  if (isFieldSet(proto, FieldDescriptorProtoSchema.field.extendee)) {
     b.extendee = proto.extendee;
   }
-  if (isFieldSet(proto, FieldDescriptorProtoDesc.field.defaultValue)) {
+  if (isFieldSet(proto, FieldDescriptorProtoSchema.field.defaultValue)) {
     b.defaultValue = proto.defaultValue;
   }
   if (proto.options) {
@@ -245,19 +245,19 @@ function createFieldDescriptorBoot(
 
 function createFieldOptionsBoot(proto: FieldOptions): FieldOptionsBoot {
   const b: FieldOptionsBoot = {};
-  assert(!isFieldSet(proto, FieldOptionsDesc.field.ctype));
-  if (isFieldSet(proto, FieldOptionsDesc.field.packed)) {
+  assert(!isFieldSet(proto, FieldOptionsSchema.field.ctype));
+  if (isFieldSet(proto, FieldOptionsSchema.field.packed)) {
     b.packed = proto.packed;
   }
-  assert(!isFieldSet(proto, FieldOptionsDesc.field.jstype));
-  assert(!isFieldSet(proto, FieldOptionsDesc.field.lazy));
-  assert(!isFieldSet(proto, FieldOptionsDesc.field.unverifiedLazy));
-  if (isFieldSet(proto, FieldOptionsDesc.field.deprecated)) {
+  assert(!isFieldSet(proto, FieldOptionsSchema.field.jstype));
+  assert(!isFieldSet(proto, FieldOptionsSchema.field.lazy));
+  assert(!isFieldSet(proto, FieldOptionsSchema.field.unverifiedLazy));
+  if (isFieldSet(proto, FieldOptionsSchema.field.deprecated)) {
     b.deprecated = proto.deprecated;
   }
-  assert(!isFieldSet(proto, FieldOptionsDesc.field.weak));
-  assert(!isFieldSet(proto, FieldOptionsDesc.field.debugRedact));
-  if (isFieldSet(proto, FieldOptionsDesc.field.retention)) {
+  assert(!isFieldSet(proto, FieldOptionsSchema.field.weak));
+  assert(!isFieldSet(proto, FieldOptionsSchema.field.debugRedact));
+  if (isFieldSet(proto, FieldOptionsSchema.field.retention)) {
     b.retention = proto.retention;
   }
   if (proto.targets.length) {
@@ -271,8 +271,8 @@ function createFieldOptionsBoot(proto: FieldOptions): FieldOptionsBoot {
       }),
     );
   }
-  assert(!isFieldSet(proto, FieldOptionsDesc.field.features));
-  assert(!isFieldSet(proto, FieldOptionsDesc.field.uninterpretedOption));
+  assert(!isFieldSet(proto, FieldOptionsSchema.field.features));
+  assert(!isFieldSet(proto, FieldOptionsSchema.field.uninterpretedOption));
   return b;
 }
 

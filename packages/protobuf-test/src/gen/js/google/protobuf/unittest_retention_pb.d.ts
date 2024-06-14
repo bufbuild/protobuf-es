@@ -23,7 +23,7 @@ import type { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions
 /**
  * Describes the file google/protobuf/unittest_retention.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_retention: GenDescFile;
+export declare const file_google_protobuf_unittest_retention: GenDescFile;
 
 /**
  * Retention attributes set on fields nested within a message
@@ -49,9 +49,9 @@ export declare type OptionsMessage = Message<"protobuf_unittest.OptionsMessage">
 
 /**
  * Describes the message protobuf_unittest.OptionsMessage.
- * Use `create(OptionsMessageDesc)` to create a new message.
+ * Use `create(OptionsMessageSchema)` to create a new message.
  */
-export declare const OptionsMessageDesc: GenDescMessage<OptionsMessage>;
+export declare const OptionsMessageSchema: GenDescMessage<OptionsMessage>;
 
 /**
  * @generated from message protobuf_unittest.Extendee
@@ -61,9 +61,9 @@ export declare type Extendee = Message<"protobuf_unittest.Extendee"> & {
 
 /**
  * Describes the message protobuf_unittest.Extendee.
- * Use `create(ExtendeeDesc)` to create a new message.
+ * Use `create(ExtendeeSchema)` to create a new message.
  */
-export declare const ExtendeeDesc: GenDescMessage<Extendee>;
+export declare const ExtendeeSchema: GenDescMessage<Extendee>;
 
 /**
  * @generated from message protobuf_unittest.TopLevelMessage
@@ -88,9 +88,9 @@ export declare type TopLevelMessage = Message<"protobuf_unittest.TopLevelMessage
 
 /**
  * Describes the message protobuf_unittest.TopLevelMessage.
- * Use `create(TopLevelMessageDesc)` to create a new message.
+ * Use `create(TopLevelMessageSchema)` to create a new message.
  */
-export declare const TopLevelMessageDesc: GenDescMessage<TopLevelMessage>;
+export declare const TopLevelMessageSchema: GenDescMessage<TopLevelMessage>;
 
 /**
  * @generated from message protobuf_unittest.TopLevelMessage.NestedMessage
@@ -100,9 +100,9 @@ export declare type TopLevelMessage_NestedMessage = Message<"protobuf_unittest.T
 
 /**
  * Describes the message protobuf_unittest.TopLevelMessage.NestedMessage.
- * Use `create(TopLevelMessage_NestedMessageDesc)` to create a new message.
+ * Use `create(TopLevelMessage_NestedMessageSchema)` to create a new message.
  */
-export declare const TopLevelMessage_NestedMessageDesc: GenDescMessage<TopLevelMessage_NestedMessage>;
+export declare const TopLevelMessage_NestedMessageSchema: GenDescMessage<TopLevelMessage_NestedMessage>;
 
 /**
  * @generated from enum protobuf_unittest.TopLevelMessage.NestedEnum
@@ -117,7 +117,7 @@ export enum TopLevelMessage_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
  */
-export declare const TopLevelMessage_NestedEnumDesc: GenDescEnum<TopLevelMessage_NestedEnum>;
+export declare const TopLevelMessage_NestedEnumSchema: GenDescEnum<TopLevelMessage_NestedEnum>;
 
 /**
  * @generated from extension: optional string s = 2;
@@ -137,7 +137,7 @@ export enum TopLevelEnum {
 /**
  * Describes the enum protobuf_unittest.TopLevelEnum.
  */
-export declare const TopLevelEnumDesc: GenDescEnum<TopLevelEnum>;
+export declare const TopLevelEnumSchema: GenDescEnum<TopLevelEnum>;
 
 /**
  * @generated from service protobuf_unittest.Service
@@ -148,8 +148,8 @@ export declare const Service: GenDescService<{
    */
   doStuff: {
     methodKind: "unary";
-    input: typeof TopLevelMessageDesc;
-    output: typeof TopLevelMessageDesc;
+    input: typeof TopLevelMessageSchema;
+    output: typeof TopLevelMessageSchema;
   },
 }
 >;

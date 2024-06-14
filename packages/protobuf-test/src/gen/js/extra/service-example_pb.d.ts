@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/service-example.proto.
  * @deprecated
  */
-export declare const fileDesc_extra_service_example: GenDescFile;
+export declare const file_extra_service_example: GenDescFile;
 
 /**
  * @generated from message spec.ExampleRequest
@@ -61,10 +61,10 @@ export declare type ExampleRequest = Message<"spec.ExampleRequest"> & {
 
 /**
  * Describes the message spec.ExampleRequest.
- * Use `create(ExampleRequestDesc)` to create a new message.
+ * Use `create(ExampleRequestSchema)` to create a new message.
  * @deprecated
  */
-export declare const ExampleRequestDesc: GenDescMessage<ExampleRequest>;
+export declare const ExampleRequestSchema: GenDescMessage<ExampleRequest>;
 
 /**
  * @generated from message spec.ExampleResponse
@@ -102,10 +102,10 @@ export declare type ExampleResponse = Message<"spec.ExampleResponse"> & {
 
 /**
  * Describes the message spec.ExampleResponse.
- * Use `create(ExampleResponseDesc)` to create a new message.
+ * Use `create(ExampleResponseSchema)` to create a new message.
  * @deprecated
  */
-export declare const ExampleResponseDesc: GenDescMessage<ExampleResponse>;
+export declare const ExampleResponseSchema: GenDescMessage<ExampleResponse>;
 
 /**
  * @generated from enum spec.FailRequest
@@ -138,7 +138,7 @@ export enum FailRequest {
  * Describes the enum spec.FailRequest.
  * @deprecated
  */
-export declare const FailRequestDesc: GenDescEnum<FailRequest>;
+export declare const FailRequestSchema: GenDescEnum<FailRequest>;
 
 /**
  * @generated from service spec.ExampleService
@@ -150,32 +150,32 @@ export declare const ExampleService: GenDescService<{
    */
   unary: {
     methodKind: "unary";
-    input: typeof ExampleRequestDesc;
-    output: typeof ExampleResponseDesc;
+    input: typeof ExampleRequestSchema;
+    output: typeof ExampleResponseSchema;
   },
   /**
    * @generated from rpc spec.ExampleService.ServerStream
    */
   serverStream: {
     methodKind: "server_streaming";
-    input: typeof ExampleRequestDesc;
-    output: typeof ExampleResponseDesc;
+    input: typeof ExampleRequestSchema;
+    output: typeof ExampleResponseSchema;
   },
   /**
    * @generated from rpc spec.ExampleService.ClientStream
    */
   clientStream: {
     methodKind: "client_streaming";
-    input: typeof ExampleRequestDesc;
-    output: typeof ExampleResponseDesc;
+    input: typeof ExampleRequestSchema;
+    output: typeof ExampleResponseSchema;
   },
   /**
    * @generated from rpc spec.ExampleService.Bidi
    */
   bidi: {
     methodKind: "bidi_streaming";
-    input: typeof ExampleRequestDesc;
-    output: typeof ExampleResponseDesc;
+    input: typeof ExampleRequestSchema;
+    output: typeof ExampleResponseSchema;
   },
 }
 >;

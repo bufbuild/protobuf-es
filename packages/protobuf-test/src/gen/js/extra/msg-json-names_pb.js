@@ -21,13 +21,13 @@ import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 /**
  * Describes the file extra/msg-json-names.proto.
  */
-export const fileDesc_extra_msg_json_names = /*@__PURE__*/
+export const file_extra_msg_json_names = /*@__PURE__*/
   fileDesc("ChpleHRyYS9tc2ctanNvbi1uYW1lcy5wcm90bxIEc3BlYyKyAQoQSnNvbk5hbWVzTWVzc2FnZRIpCgxzY2FsYXJfZmllbGQYASABKAlSE3NjYWxhckZpZWxkSnNvbk5hbWUSOgoVcmVwZWF0ZWRfc2NhbGFyX2ZpZWxkGAIgAygJUhtyZXBlYXRlZFNjYWxhckZpZWxkSnNvbk5hbWUSCQoBYRgDIAEoCRILCgFiGAQgASgJUgASEAoBYxgFIAEoCVIFQHR5cGUSDQoBZBgGIAEoCVICMWRiBnByb3RvMw");
 
 /**
  * Describes the message spec.JsonNamesMessage.
- * Use `create(JsonNamesMessageDesc)` to create a new message.
+ * Use `create(JsonNamesMessageSchema)` to create a new message.
  */
-export const JsonNamesMessageDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_msg_json_names, 0);
+export const JsonNamesMessageSchema = /*@__PURE__*/
+  messageDesc(file_extra_msg_json_names, 0);
 

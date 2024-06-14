@@ -29,7 +29,7 @@ import type { TestOptimizedForSize } from "./unittest_optimize_for_pb.js";
 /**
  * Describes the file google/protobuf/unittest_embed_optimize_for.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_embed_optimize_for: GenDescFile;
+export declare const file_google_protobuf_unittest_embed_optimize_for: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize
@@ -51,7 +51,7 @@ export declare type TestEmbedOptimizedForSize = Message<"protobuf_unittest.TestE
 
 /**
  * Describes the message protobuf_unittest.TestEmbedOptimizedForSize.
- * Use `create(TestEmbedOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestEmbedOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestEmbedOptimizedForSizeDesc: GenDescMessage<TestEmbedOptimizedForSize>;
+export declare const TestEmbedOptimizedForSizeSchema: GenDescMessage<TestEmbedOptimizedForSize>;
 

@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/expr.proto.
  */
-export const fileDesc_google_type_expr: GenDescFile = /*@__PURE__*/
+export const file_google_type_expr: GenDescFile = /*@__PURE__*/
   fileDesc("ChZnb29nbGUvdHlwZS9leHByLnByb3RvEgtnb29nbGUudHlwZSJQCgRFeHByEhIKCmV4cHJlc3Npb24YASABKAkSDQoFdGl0bGUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSEAoIbG9jYXRpb24YBCABKAlCWgoPY29tLmdvb2dsZS50eXBlQglFeHByUHJvdG9QAVo0Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy90eXBlL2V4cHI7ZXhwcqICA0dUUGIGcHJvdG8z");
 
 /**
@@ -98,8 +98,8 @@ export type Expr = Message<"google.type.Expr"> & {
 
 /**
  * Describes the message google.type.Expr.
- * Use `create(ExprDesc)` to create a new message.
+ * Use `create(ExprSchema)` to create a new message.
  */
-export const ExprDesc: GenDescMessage<Expr> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_expr, 0);
+export const ExprSchema: GenDescMessage<Expr> = /*@__PURE__*/
+  messageDesc(file_google_type_expr, 0);
 

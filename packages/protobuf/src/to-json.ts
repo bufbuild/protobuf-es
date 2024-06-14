@@ -113,25 +113,22 @@ function makeWriteOptions(
  * passed to JSON.stringify().
  */
 export function toJson<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
   options?: Partial<JsonWriteOptions>,
 ): JsonValue {
-  return reflectToJson(
-    reflect(messageDesc, message),
-    makeWriteOptions(options),
-  );
+  return reflectToJson(reflect(schema, message), makeWriteOptions(options));
 }
 
 /**
  * Serialize the message to a JSON string.
  */
 export function toJsonString<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
   options?: Partial<JsonWriteStringOptions>,
 ): string {
-  const jsonValue = toJson(messageDesc, message, options);
+  const jsonValue = toJson(schema, message, options);
   return JSON.stringify(jsonValue, null, options?.prettySpaces ?? 0);
 }
 

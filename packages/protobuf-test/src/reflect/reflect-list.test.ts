@@ -21,20 +21,20 @@ import {
 } from "@bufbuild/protobuf/reflect";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import { create, protoInt64 } from "@bufbuild/protobuf";
-import { UserDesc } from "../gen/ts/extra/example_pb.js";
+import { UserSchema } from "../gen/ts/extra/example_pb.js";
 import assert from "node:assert";
 import { catchFieldError } from "../helpers.js";
 
 describe("reflectList()", () => {
   test("creates ReflectList", () => {
-    const f = proto3_ts.Proto3MessageDesc.field.repeatedStringField;
+    const f = proto3_ts.Proto3MessageSchema.field.repeatedStringField;
     assert(f.fieldKind == "list");
     const list = reflectList(f);
     expect(typeof list.field).toBe("function");
     expect(isReflectList(list)).toBe(true);
   });
   test("creates ReflectList with unsafe input", () => {
-    const f = proto3_ts.Proto3MessageDesc.field.repeatedStringField;
+    const f = proto3_ts.Proto3MessageSchema.field.repeatedStringField;
     assert(f.fieldKind == "list");
     const list = reflectList(f, [1, 2, 3]);
     expect(isReflectList(list)).toBe(true);
@@ -47,7 +47,7 @@ describe("ReflectList", () => {
     repeatedInt64Field,
     repeatedInt64JsStringField,
     repeatedMessageField,
-  } = proto3_ts.Proto3MessageDesc.field;
+  } = proto3_ts.Proto3MessageSchema.field;
   assert(repeatedStringField.fieldKind == "list");
   assert(repeatedInt64Field.fieldKind == "list");
   assert(repeatedInt64JsStringField.fieldKind == "list");
@@ -86,7 +86,7 @@ describe("ReflectList", () => {
     });
     test("returns ReflectMessage for message list", () => {
       const list = reflectList(repeatedMessageField, [
-        create(proto3_ts.Proto3MessageDesc),
+        create(proto3_ts.Proto3MessageSchema),
       ]);
       const val = list.get(0);
       expect(isReflectMessage(val)).toBe(true);
@@ -118,7 +118,7 @@ describe("ReflectList", () => {
     });
     test("throws error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, []);
-      const err = catchFieldError(() => list.add(reflect(UserDesc)));
+      const err = catchFieldError(() => list.add(reflect(UserSchema)));
       expect(err?.message).toMatch(
         /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );
@@ -164,7 +164,7 @@ describe("ReflectList", () => {
     });
     test("throws error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, [null]);
-      const err = catchFieldError(() => list.set(0, reflect(UserDesc)));
+      const err = catchFieldError(() => list.set(0, reflect(UserSchema)));
       expect(err?.message).toMatch(
         /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
       );

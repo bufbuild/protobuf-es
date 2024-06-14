@@ -15,7 +15,7 @@
 import { describe, expect, it } from "@jest/globals";
 import { fromBinary } from "@bufbuild/protobuf";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
-import { UserDesc } from "../gen/ts/extra/example_pb.js";
+import { UserSchema } from "../gen/ts/extra/example_pb.js";
 
 describe("BinaryWriter", () => {
   it("example should work as expected", () => {
@@ -27,7 +27,7 @@ describe("BinaryWriter", () => {
       .tag(3, WireType.Varint)
       .bool(true)
       .finish();
-    const user = fromBinary(UserDesc, bytes);
+    const user = fromBinary(UserSchema, bytes);
     expect(user.firstName).toBe("Homer");
     expect(user.active).toBe(true);
   });

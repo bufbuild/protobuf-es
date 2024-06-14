@@ -15,7 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { fromBinary, minimumEdition } from "@bufbuild/protobuf";
 import {
-  CodeGeneratorRequestDesc,
+  CodeGeneratorRequestSchema,
   CodeGeneratorResponse_Feature,
   Edition,
 } from "@bufbuild/protobuf/wkt";
@@ -38,7 +38,7 @@ async function runPlugin(
       filesToGenerate: ["test.proto"],
     },
   );
-  const req = fromBinary(CodeGeneratorRequestDesc, reqBytes);
+  const req = fromBinary(CodeGeneratorRequestSchema, reqBytes);
   req.protoFile[0].edition = actualEdition;
   const plugin = createEcmaScriptPlugin({
     name: "test",

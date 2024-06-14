@@ -22,7 +22,7 @@ import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 /**
  * Describes the file google/type/dayofweek.proto.
  */
-export const fileDesc_google_type_dayofweek: GenDescFile = /*@__PURE__*/
+export const file_google_type_dayofweek: GenDescFile = /*@__PURE__*/
   fileDesc("Chtnb29nbGUvdHlwZS9kYXlvZndlZWsucHJvdG8SC2dvb2dsZS50eXBlKoQBCglEYXlPZldlZWsSGwoXREFZX09GX1dFRUtfVU5TUEVDSUZJRUQQABIKCgZNT05EQVkQARILCgdUVUVTREFZEAISDQoJV0VETkVTREFZEAMSDAoIVEhVUlNEQVkQBBIKCgZGUklEQVkQBRIMCghTQVRVUkRBWRAGEgoKBlNVTkRBWRAHQmkKD2NvbS5nb29nbGUudHlwZUIORGF5T2ZXZWVrUHJvdG9QAVo+Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy90eXBlL2RheW9md2VlaztkYXlvZndlZWuiAgNHVFBiBnByb3RvMw");
 
 /**
@@ -91,6 +91,6 @@ export enum DayOfWeek {
 /**
  * Describes the enum google.type.DayOfWeek.
  */
-export const DayOfWeekDesc: GenDescEnum<DayOfWeek> = /*@__PURE__*/
-  enumDesc(fileDesc_google_type_dayofweek, 0);
+export const DayOfWeekSchema: GenDescEnum<DayOfWeek> = /*@__PURE__*/
+  enumDesc(file_google_type_dayofweek, 0);
 

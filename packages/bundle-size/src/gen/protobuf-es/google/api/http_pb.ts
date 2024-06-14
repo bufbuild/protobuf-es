@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/api/http.proto.
  */
-export const fileDesc_google_api_http: GenDescFile = /*@__PURE__*/
+export const file_google_api_http: GenDescFile = /*@__PURE__*/
   fileDesc("ChVnb29nbGUvYXBpL2h0dHAucHJvdG8SCmdvb2dsZS5hcGkiVAoESHR0cBIjCgVydWxlcxgBIAMoCzIULmdvb2dsZS5hcGkuSHR0cFJ1bGUSJwofZnVsbHlfZGVjb2RlX3Jlc2VydmVkX2V4cGFuc2lvbhgCIAEoCCKBAgoISHR0cFJ1bGUSEAoIc2VsZWN0b3IYASABKAkSDQoDZ2V0GAIgASgJSAASDQoDcHV0GAMgASgJSAASDgoEcG9zdBgEIAEoCUgAEhAKBmRlbGV0ZRgFIAEoCUgAEg8KBXBhdGNoGAYgASgJSAASLwoGY3VzdG9tGAggASgLMh0uZ29vZ2xlLmFwaS5DdXN0b21IdHRwUGF0dGVybkgAEgwKBGJvZHkYByABKAkSFQoNcmVzcG9uc2VfYm9keRgMIAEoCRIxChNhZGRpdGlvbmFsX2JpbmRpbmdzGAsgAygLMhQuZ29vZ2xlLmFwaS5IdHRwUnVsZUIJCgdwYXR0ZXJuIi8KEUN1c3RvbUh0dHBQYXR0ZXJuEgwKBGtpbmQYASABKAkSDAoEcGF0aBgCIAEoCUJqCg5jb20uZ29vZ2xlLmFwaUIJSHR0cFByb3RvUAFaQWdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvYXBpL2Fubm90YXRpb25zO2Fubm90YXRpb25z+AEBogIER0FQSWIGcHJvdG8z");
 
 /**
@@ -58,10 +58,10 @@ export type Http = Message<"google.api.Http"> & {
 
 /**
  * Describes the message google.api.Http.
- * Use `create(HttpDesc)` to create a new message.
+ * Use `create(HttpSchema)` to create a new message.
  */
-export const HttpDesc: GenDescMessage<Http> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_http, 0);
+export const HttpSchema: GenDescMessage<Http> = /*@__PURE__*/
+  messageDesc(file_google_api_http, 0);
 
 /**
  * # gRPC Transcoding
@@ -447,10 +447,10 @@ export type HttpRule = Message<"google.api.HttpRule"> & {
 
 /**
  * Describes the message google.api.HttpRule.
- * Use `create(HttpRuleDesc)` to create a new message.
+ * Use `create(HttpRuleSchema)` to create a new message.
  */
-export const HttpRuleDesc: GenDescMessage<HttpRule> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_http, 1);
+export const HttpRuleSchema: GenDescMessage<HttpRule> = /*@__PURE__*/
+  messageDesc(file_google_api_http, 1);
 
 /**
  * A custom pattern is used for defining custom HTTP verb.
@@ -475,8 +475,8 @@ export type CustomHttpPattern = Message<"google.api.CustomHttpPattern"> & {
 
 /**
  * Describes the message google.api.CustomHttpPattern.
- * Use `create(CustomHttpPatternDesc)` to create a new message.
+ * Use `create(CustomHttpPatternSchema)` to create a new message.
  */
-export const CustomHttpPatternDesc: GenDescMessage<CustomHttpPattern> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_http, 2);
+export const CustomHttpPatternSchema: GenDescMessage<CustomHttpPattern> = /*@__PURE__*/
+  messageDesc(file_google_api_http, 2);
 

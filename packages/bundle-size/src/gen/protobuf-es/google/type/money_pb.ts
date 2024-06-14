@@ -23,7 +23,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/money.proto.
  */
-export const fileDesc_google_type_money: GenDescFile = /*@__PURE__*/
+export const file_google_type_money: GenDescFile = /*@__PURE__*/
   fileDesc("Chdnb29nbGUvdHlwZS9tb25leS5wcm90bxILZ29vZ2xlLnR5cGUiPAoFTW9uZXkSFQoNY3VycmVuY3lfY29kZRgBIAEoCRINCgV1bml0cxgCIAEoAxINCgVuYW5vcxgDIAEoBUJgCg9jb20uZ29vZ2xlLnR5cGVCCk1vbmV5UHJvdG9QAVo2Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy90eXBlL21vbmV5O21vbmV5+AEBogIDR1RQYgZwcm90bzM");
 
 /**
@@ -62,8 +62,8 @@ export type Money = Message<"google.type.Money"> & {
 
 /**
  * Describes the message google.type.Money.
- * Use `create(MoneyDesc)` to create a new message.
+ * Use `create(MoneySchema)` to create a new message.
  */
-export const MoneyDesc: GenDescMessage<Money> = /*@__PURE__*/
-  messageDesc(fileDesc_google_type_money, 0);
+export const MoneySchema: GenDescMessage<Money> = /*@__PURE__*/
+  messageDesc(file_google_type_money, 0);
 

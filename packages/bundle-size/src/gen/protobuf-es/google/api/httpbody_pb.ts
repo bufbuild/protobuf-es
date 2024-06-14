@@ -19,14 +19,14 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Any } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_any } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_any } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/api/httpbody.proto.
  */
-export const fileDesc_google_api_httpbody: GenDescFile = /*@__PURE__*/
-  fileDesc("Chlnb29nbGUvYXBpL2h0dHBib2R5LnByb3RvEgpnb29nbGUuYXBpIlgKCEh0dHBCb2R5EhQKDGNvbnRlbnRfdHlwZRgBIAEoCRIMCgRkYXRhGAIgASgMEigKCmV4dGVuc2lvbnMYAyADKAsyFC5nb29nbGUucHJvdG9idWYuQW55QmgKDmNvbS5nb29nbGUuYXBpQg1IdHRwQm9keVByb3RvUAFaO2dvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvYXBpL2h0dHBib2R5O2h0dHBib2R5+AEBogIER0FQSWIGcHJvdG8z", [fileDesc_google_protobuf_any]);
+export const file_google_api_httpbody: GenDescFile = /*@__PURE__*/
+  fileDesc("Chlnb29nbGUvYXBpL2h0dHBib2R5LnByb3RvEgpnb29nbGUuYXBpIlgKCEh0dHBCb2R5EhQKDGNvbnRlbnRfdHlwZRgBIAEoCRIMCgRkYXRhGAIgASgMEigKCmV4dGVuc2lvbnMYAyADKAsyFC5nb29nbGUucHJvdG9idWYuQW55QmgKDmNvbS5nb29nbGUuYXBpQg1IdHRwQm9keVByb3RvUAFaO2dvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvYXBpL2h0dHBib2R5O2h0dHBib2R5+AEBogIER0FQSWIGcHJvdG8z", [file_google_protobuf_any]);
 
 /**
  * Message that represents an arbitrary HTTP body. It should only be used for
@@ -101,8 +101,8 @@ export type HttpBody = Message<"google.api.HttpBody"> & {
 
 /**
  * Describes the message google.api.HttpBody.
- * Use `create(HttpBodyDesc)` to create a new message.
+ * Use `create(HttpBodySchema)` to create a new message.
  */
-export const HttpBodyDesc: GenDescMessage<HttpBody> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_httpbody, 0);
+export const HttpBodySchema: GenDescMessage<HttpBody> = /*@__PURE__*/
+  messageDesc(file_google_api_httpbody, 0);
 

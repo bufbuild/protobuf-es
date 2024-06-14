@@ -38,49 +38,52 @@ import {
   service_option_retention_unknown,
 } from "./gen/ts/extra/options_pb.js";
 import {
-  EnumWithOptionsDesc,
-  fileDesc_extra_option_usage,
-  MessageWithOptionsDesc,
+  EnumWithOptionsSchema,
+  file_extra_option_usage,
+  MessageWithOptionsSchema,
   ServiceWithOptions,
 } from "./gen/ts/extra/option-usage_pb.js";
-import { Proto3MessageDesc } from "./gen/ts/extra/proto3_pb.js";
+import { Proto3MessageSchema } from "./gen/ts/extra/proto3_pb.js";
 
 describe("hasOption()", () => {
   test("supports anonymous descriptor and extension", () => {
-    const file: AnyDesc = fileDesc_extra_option_usage;
+    const file: AnyDesc = file_extra_option_usage;
     const ext: DescExtension = file_option_retention_runtime;
     const has = hasOption(file, ext);
     expect(has).toBe(true);
   });
   test("returns false if extendee does not match", () => {
-    const file = fileDesc_extra_option_usage;
+    const file = file_extra_option_usage;
     const ext = oneof_option_retention_runtime;
     // @ts-expect-error TS2345
     const has = hasOption(file, ext);
     expect(has).toBe(false);
   });
   test("returns false if descriptor has no options", () => {
-    expect(Proto3MessageDesc.proto.options).toBeUndefined();
-    const has = hasOption(Proto3MessageDesc, message_option_retention_runtime);
+    expect(Proto3MessageSchema.proto.options).toBeUndefined();
+    const has = hasOption(
+      Proto3MessageSchema,
+      message_option_retention_runtime,
+    );
     expect(has).toBe(false);
   });
 });
 
 describe("getOption()", () => {
   test("supports anonymous descriptor and extension", () => {
-    const file: AnyDesc = fileDesc_extra_option_usage;
+    const file: AnyDesc = file_extra_option_usage;
     const ext: DescExtension = file_option_retention_runtime;
     const val = getOption(file, ext);
     expect(val).toBe("file option retention runtime");
   });
   test("returns zero value if descriptor has no options", () => {
-    const field = Proto3MessageDesc.fields[0];
+    const field = Proto3MessageSchema.fields[0];
     expect(field.proto.options).toBeUndefined();
     const val = getOption(field, field_option_retention_runtime);
     expect(val).toBe("");
   });
   test("returns option", () => {
-    const file = fileDesc_extra_option_usage;
+    const file = file_extra_option_usage;
     expect(getOption(file, file_option_retention_unknown)).toBe(
       "file option retention unknown",
     );
@@ -88,7 +91,7 @@ describe("getOption()", () => {
       "file option retention runtime",
     );
 
-    const message = MessageWithOptionsDesc;
+    const message = MessageWithOptionsSchema;
     expect(getOption(message, message_option_retention_unknown)).toBe(
       "message option retention unknown",
     );
@@ -96,7 +99,7 @@ describe("getOption()", () => {
       "message option retention runtime",
     );
 
-    const field = MessageWithOptionsDesc.fields[0];
+    const field = MessageWithOptionsSchema.fields[0];
     expect(getOption(field, field_option_retention_unknown)).toBe(
       "field option retention unknown",
     );
@@ -104,7 +107,7 @@ describe("getOption()", () => {
       "field option retention runtime",
     );
 
-    const oneof = MessageWithOptionsDesc.oneofs[0];
+    const oneof = MessageWithOptionsSchema.oneofs[0];
     expect(getOption(oneof, oneof_option_retention_unknown)).toBe(
       "oneof option retention unknown",
     );
@@ -112,7 +115,7 @@ describe("getOption()", () => {
       "oneof option retention runtime",
     );
 
-    const enumeration = EnumWithOptionsDesc;
+    const enumeration = EnumWithOptionsSchema;
     expect(getOption(enumeration, enum_option_retention_unknown)).toBe(
       "enum option retention unknown",
     );
@@ -120,7 +123,7 @@ describe("getOption()", () => {
       "enum option retention runtime",
     );
 
-    const enumValue = EnumWithOptionsDesc.values[0];
+    const enumValue = EnumWithOptionsSchema.values[0];
     expect(getOption(enumValue, enum_value_option_retention_unknown)).toBe(
       "enum value option retention unknown",
     );

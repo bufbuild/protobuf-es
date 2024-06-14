@@ -14,7 +14,7 @@
 
 import type { Message, MessageShape } from "../types.js";
 import type { Any } from "./gen/google/protobuf/any_pb.js";
-import { AnyDesc } from "./gen/google/protobuf/any_pb.js";
+import { AnySchema } from "./gen/google/protobuf/any_pb.js";
 import type { DescMessage } from "../descriptors.js";
 import type { Registry } from "../registry.js";
 import { create } from "../create.js";
@@ -25,7 +25,7 @@ import { fromBinary, mergeFromBinary } from "../from-binary.js";
  * Creates a `google.protobuf.Any` from a message.
  */
 export function anyPack<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
 ): Any;
 
@@ -33,30 +33,30 @@ export function anyPack<Desc extends DescMessage>(
  * Packs the message into the given any.
  */
 export function anyPack<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
   into: Any,
 ): void;
 
 export function anyPack<Desc extends DescMessage>(
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
   into?: Any,
 ) {
   let ret = false;
   if (!into) {
-    into = create(AnyDesc);
+    into = create(AnySchema);
     ret = true;
   }
-  into.value = toBinary(messageDesc, message);
+  into.value = toBinary(schema, message);
   into.typeUrl = typeNameToUrl(message.$typeName);
   return ret ? into : undefined;
 }
 
 /**
- * Returns true if the Any contains the type given by messageDesc.
+ * Returns true if the Any contains the type given by schema.
  */
-export function anyIs(any: Any, messageDesc: DescMessage): boolean;
+export function anyIs(any: Any, schema: DescMessage): boolean;
 
 /**
  * Returns true if the Any contains a message with the given typeName.
@@ -87,11 +87,11 @@ export function anyUnpack(any: Any, registry: Registry): Message | undefined;
  * Unpacks the message the Any represents.
  *
  * Returns undefined if the Any is empty, or if it does not contain the type
- * given by messageDesc.
+ * given by schema.
  */
 export function anyUnpack<Desc extends DescMessage>(
   any: Any,
-  messageDesc: Desc,
+  schema: Desc,
 ): MessageShape<Desc> | undefined;
 
 export function anyUnpack(
@@ -116,13 +116,13 @@ export function anyUnpack(
  */
 export function anyUnpackTo<Desc extends DescMessage>(
   any: Any,
-  messageDesc: Desc,
+  schema: Desc,
   message: MessageShape<Desc>,
 ) {
   if (any.typeUrl === "") {
     return undefined;
   }
-  return mergeFromBinary(messageDesc, message, any.value);
+  return mergeFromBinary(schema, message, any.value);
 }
 
 function typeNameToUrl(name: string): string {

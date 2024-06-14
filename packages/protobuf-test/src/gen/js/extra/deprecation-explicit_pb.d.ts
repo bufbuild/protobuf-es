@@ -18,12 +18,12 @@
 
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
-import type { EmptyDesc, FieldOptions } from "@bufbuild/protobuf/wkt";
+import type { EmptySchema, FieldOptions } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/deprecation-explicit.proto.
  */
-export declare const fileDesc_extra_deprecation_explicit: GenDescFile;
+export declare const file_extra_deprecation_explicit: GenDescFile;
 
 /**
  * The entire message is deprecated
@@ -40,10 +40,10 @@ export declare type DeprecatedMessage = Message<"spec.DeprecatedMessage"> & {
 
 /**
  * Describes the message spec.DeprecatedMessage.
- * Use `create(DeprecatedMessageDesc)` to create a new message.
+ * Use `create(DeprecatedMessageSchema)` to create a new message.
  * @deprecated
  */
-export declare const DeprecatedMessageDesc: GenDescMessage<DeprecatedMessage>;
+export declare const DeprecatedMessageSchema: GenDescMessage<DeprecatedMessage>;
 
 /**
  * A single field of this message is deprecated
@@ -69,9 +69,9 @@ export declare type DeprecatedFieldMessage = Message<"spec.DeprecatedFieldMessag
 
 /**
  * Describes the message spec.DeprecatedFieldMessage.
- * Use `create(DeprecatedFieldMessageDesc)` to create a new message.
+ * Use `create(DeprecatedFieldMessageSchema)` to create a new message.
  */
-export declare const DeprecatedFieldMessageDesc: GenDescMessage<DeprecatedFieldMessage>;
+export declare const DeprecatedFieldMessageSchema: GenDescMessage<DeprecatedFieldMessage>;
 
 /**
  * The entire enum is deprecated
@@ -95,7 +95,7 @@ export enum DeprecatedEnum {
  * Describes the enum spec.DeprecatedEnum.
  * @deprecated
  */
-export declare const DeprecatedEnumDesc: GenDescEnum<DeprecatedEnum>;
+export declare const DeprecatedEnumSchema: GenDescEnum<DeprecatedEnum>;
 
 /**
  * Only a single enum value is deprecated
@@ -118,7 +118,7 @@ export enum DeprecatedValueEnum {
 /**
  * Describes the enum spec.DeprecatedValueEnum.
  */
-export declare const DeprecatedValueEnumDesc: GenDescEnum<DeprecatedValueEnum>;
+export declare const DeprecatedValueEnumSchema: GenDescEnum<DeprecatedValueEnum>;
 
 /**
  * The entire service is deprecated
@@ -132,8 +132,8 @@ export declare const DeprecatedService: GenDescService<{
    */
   deprecated: {
     methodKind: "unary";
-    input: typeof EmptyDesc;
-    output: typeof EmptyDesc;
+    input: typeof EmptySchema;
+    output: typeof EmptySchema;
   },
 }
 >;
@@ -150,16 +150,16 @@ export declare const DeprecatedRpcService: GenDescService<{
    */
   deprecated: {
     methodKind: "unary";
-    input: typeof EmptyDesc;
-    output: typeof EmptyDesc;
+    input: typeof EmptySchema;
+    output: typeof EmptySchema;
   },
   /**
    * @generated from rpc spec.DeprecatedRpcService.NotDeprecated
    */
   notDeprecated: {
     methodKind: "unary";
-    input: typeof EmptyDesc;
-    output: typeof EmptyDesc;
+    input: typeof EmptySchema;
+    output: typeof EmptySchema;
   },
 }
 >;

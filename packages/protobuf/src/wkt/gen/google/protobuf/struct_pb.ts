@@ -25,7 +25,7 @@ import { enumDesc } from "../../../../codegenv1/enum.js";
 /**
  * Describes the file google/protobuf/struct.proto.
  */
-export const fileDesc_google_protobuf_struct: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_struct: GenDescFile = /*@__PURE__*/
   fileDesc("Chxnb29nbGUvcHJvdG9idWYvc3RydWN0LnByb3RvEg9nb29nbGUucHJvdG9idWYihAEKBlN0cnVjdBIzCgZmaWVsZHMYASADKAsyIy5nb29nbGUucHJvdG9idWYuU3RydWN0LkZpZWxkc0VudHJ5GkUKC0ZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRIlCgV2YWx1ZRgCIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5WYWx1ZToCOAEi6gEKBVZhbHVlEjAKCm51bGxfdmFsdWUYASABKA4yGi5nb29nbGUucHJvdG9idWYuTnVsbFZhbHVlSAASFgoMbnVtYmVyX3ZhbHVlGAIgASgBSAASFgoMc3RyaW5nX3ZhbHVlGAMgASgJSAASFAoKYm9vbF92YWx1ZRgEIAEoCEgAEi8KDHN0cnVjdF92YWx1ZRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RIABIwCgpsaXN0X3ZhbHVlGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLkxpc3RWYWx1ZUgAQgYKBGtpbmQiMwoJTGlzdFZhbHVlEiYKBnZhbHVlcxgBIAMoCzIWLmdvb2dsZS5wcm90b2J1Zi5WYWx1ZSobCglOdWxsVmFsdWUSDgoKTlVMTF9WQUxVRRAAQn8KE2NvbS5nb29nbGUucHJvdG9idWZCC1N0cnVjdFByb3RvUAFaL2dvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL3N0cnVjdHBi+AEBogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
 /**
@@ -51,10 +51,10 @@ export type Struct = Message<"google.protobuf.Struct"> & {
 
 /**
  * Describes the message google.protobuf.Struct.
- * Use `create(StructDesc)` to create a new message.
+ * Use `create(StructSchema)` to create a new message.
  */
-export const StructDesc: GenDescMessage<Struct> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_struct, 0);
+export const StructSchema: GenDescMessage<Struct> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_struct, 0);
 
 /**
  * `Value` represents a dynamically typed value which can be either
@@ -125,10 +125,10 @@ export type Value = Message<"google.protobuf.Value"> & {
 
 /**
  * Describes the message google.protobuf.Value.
- * Use `create(ValueDesc)` to create a new message.
+ * Use `create(ValueSchema)` to create a new message.
  */
-export const ValueDesc: GenDescMessage<Value> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_struct, 1);
+export const ValueSchema: GenDescMessage<Value> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_struct, 1);
 
 /**
  * `ListValue` is a wrapper around a repeated field of values.
@@ -148,10 +148,10 @@ export type ListValue = Message<"google.protobuf.ListValue"> & {
 
 /**
  * Describes the message google.protobuf.ListValue.
- * Use `create(ListValueDesc)` to create a new message.
+ * Use `create(ListValueSchema)` to create a new message.
  */
-export const ListValueDesc: GenDescMessage<ListValue> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_struct, 2);
+export const ListValueSchema: GenDescMessage<ListValue> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_struct, 2);
 
 /**
  * `NullValue` is a singleton enumeration to represent the null value for the
@@ -173,6 +173,6 @@ export enum NullValue {
 /**
  * Describes the enum google.protobuf.NullValue.
  */
-export const NullValueDesc: GenDescEnum<NullValue> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_struct, 0);
+export const NullValueSchema: GenDescEnum<NullValue> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_struct, 0);
 

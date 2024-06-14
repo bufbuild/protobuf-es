@@ -18,14 +18,14 @@
 
 import type { GenDescFile, GenDescService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Int32ValueDesc, StringValueDesc } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
+import type { Int32ValueSchema, StringValueSchema } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/service-all.proto.
  */
-export const fileDesc_extra_service_all: GenDescFile = /*@__PURE__*/
-  fileDesc("ChdleHRyYS9zZXJ2aWNlLWFsbC5wcm90bxIEc3BlYzLAAgoKU2VydmljZUFsbBJHCgVVbmFyeRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOQAgISUAoMU2VydmVyU3RyZWFtEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUiA5ACATABEksKDENsaWVudFN0cmVhbRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlKAESSgoEQmlkaRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOIAgEoATABYgZwcm90bzM", [fileDesc_google_protobuf_wrappers]);
+export const file_extra_service_all: GenDescFile = /*@__PURE__*/
+  fileDesc("ChdleHRyYS9zZXJ2aWNlLWFsbC5wcm90bxIEc3BlYzLAAgoKU2VydmljZUFsbBJHCgVVbmFyeRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOQAgISUAoMU2VydmVyU3RyZWFtEhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlGhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWUiA5ACATABEksKDENsaWVudFN0cmVhbRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlKAESSgoEQmlkaRIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRobLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlIgOIAgEoATABYgZwcm90bzM", [file_google_protobuf_wrappers]);
 
 /**
  * @generated from service spec.ServiceAll
@@ -36,24 +36,24 @@ export const ServiceAll: GenDescService<{
    */
   unary: {
     methodKind: "unary";
-    input: typeof StringValueDesc;
-    output: typeof Int32ValueDesc;
+    input: typeof StringValueSchema;
+    output: typeof Int32ValueSchema;
   },
   /**
    * @generated from rpc spec.ServiceAll.ServerStream
    */
   serverStream: {
     methodKind: "server_streaming";
-    input: typeof StringValueDesc;
-    output: typeof Int32ValueDesc;
+    input: typeof StringValueSchema;
+    output: typeof Int32ValueSchema;
   },
   /**
    * @generated from rpc spec.ServiceAll.ClientStream
    */
   clientStream: {
     methodKind: "client_streaming";
-    input: typeof StringValueDesc;
-    output: typeof Int32ValueDesc;
+    input: typeof StringValueSchema;
+    output: typeof Int32ValueSchema;
   },
   /**
    * @generated from rpc spec.ServiceAll.Bidi
@@ -61,10 +61,10 @@ export const ServiceAll: GenDescService<{
    */
   bidi: {
     methodKind: "bidi_streaming";
-    input: typeof StringValueDesc;
-    output: typeof Int32ValueDesc;
+    input: typeof StringValueSchema;
+    output: typeof Int32ValueSchema;
   },
 }
 > = /*@__PURE__*/
-  serviceDesc(fileDesc_extra_service_all, 0);
+  serviceDesc(file_extra_service_all, 0);
 

@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import { create, toBinary } from "@bufbuild/protobuf";
-import { TimeOfDayDesc } from "./google/type/timeofday_pb";
+import { TimeOfDaySchema } from "./google/type/timeofday_pb";
 
 /* eslint-disable no-console */
 
 // google/type/timeofday.proto
-console.log(toBinary(TimeOfDayDesc, create(TimeOfDayDesc)).length);
+console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);

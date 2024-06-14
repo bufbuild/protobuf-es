@@ -13,32 +13,32 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { UserDesc } from "./gen/ts/extra/example_pb.js";
+import { UserSchema } from "./gen/ts/extra/example_pb.js";
 import { create, isMessage } from "@bufbuild/protobuf";
-import { MessageFieldMessageDesc } from "./gen/ts/extra/msg-message_pb.js";
+import { MessageFieldMessageSchema } from "./gen/ts/extra/msg-message_pb.js";
 
 describe("isMessage", () => {
   test("narrows down to anonymous message", () => {
-    const unknown = create(UserDesc) as unknown;
+    const unknown = create(UserSchema) as unknown;
     expect(isMessage(unknown)).toBe(true);
     if (isMessage(unknown)) {
       expect(unknown.$typeName).toBe("docs.User");
     }
   });
   test("narrows down to specific message", () => {
-    const unknown = create(UserDesc) as unknown;
-    expect(isMessage(unknown, UserDesc)).toBe(true);
-    if (isMessage(unknown, UserDesc)) {
+    const unknown = create(UserSchema) as unknown;
+    expect(isMessage(unknown, UserSchema)).toBe(true);
+    if (isMessage(unknown, UserSchema)) {
       expect(unknown.$typeName).toBe("docs.User");
       unknown.firstName = "Homer"; // proves that the type is known
     }
-    expect(isMessage(unknown, UserDesc)).toBe(true);
-    expect(isMessage(unknown, UserDesc)).toBe(true);
+    expect(isMessage(unknown, UserSchema)).toBe(true);
+    expect(isMessage(unknown, UserSchema)).toBe(true);
   });
 });
 test("rejects foreign message", () => {
-  const user = create(UserDesc);
-  expect(isMessage(user, MessageFieldMessageDesc)).toBe(false);
+  const user = create(UserSchema);
+  expect(isMessage(user, MessageFieldMessageSchema)).toBe(false);
 });
 test("rejects non-message values", () => {
   expect(isMessage(null)).toBe(false);
@@ -58,7 +58,7 @@ test("falsely returns true if the argument is close enough to a Message", () => 
       {
         $typeName: "docs.User",
       },
-      UserDesc,
+      UserSchema,
     ),
   ).toBe(true);
 });

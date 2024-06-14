@@ -19,7 +19,7 @@ import { create } from "@bufbuild/protobuf";
 
 describe("message looking like a oneof ADT", () => {
   test("takes all fields in constructor", () => {
-    const m = create(ts_name_clash.NoClashOneofADTDesc, {
+    const m = create(ts_name_clash.NoClashOneofADTSchema, {
       m: {
         case: "value",
         value: "xxx",
@@ -29,7 +29,7 @@ describe("message looking like a oneof ADT", () => {
     expect(m.m?.value).toBe("xxx");
   });
   test("takes partial input in constructor", () => {
-    const m = create(ts_name_clash.NoClashOneofADTDesc, {
+    const m = create(ts_name_clash.NoClashOneofADTSchema, {
       m: {
         case: "value",
       },

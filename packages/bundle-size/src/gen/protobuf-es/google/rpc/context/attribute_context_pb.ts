@@ -19,14 +19,14 @@
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Any, Duration, Struct, Timestamp } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_any, fileDesc_google_protobuf_duration, fileDesc_google_protobuf_struct, fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/rpc/context/attribute_context.proto.
  */
-export const fileDesc_google_rpc_context_attribute_context: GenDescFile = /*@__PURE__*/
-  fileDesc("Cipnb29nbGUvcnBjL2NvbnRleHQvYXR0cmlidXRlX2NvbnRleHQucHJvdG8SEmdvb2dsZS5ycGMuY29udGV4dCKDEAoQQXR0cmlidXRlQ29udGV4dBI5CgZvcmlnaW4YByABKAsyKS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5QZWVyEjkKBnNvdXJjZRgBIAEoCzIpLmdvb2dsZS5ycGMuY29udGV4dC5BdHRyaWJ1dGVDb250ZXh0LlBlZXISPgoLZGVzdGluYXRpb24YAiABKAsyKS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5QZWVyEj0KB3JlcXVlc3QYAyABKAsyLC5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXF1ZXN0Ej8KCHJlc3BvbnNlGAQgASgLMi0uZ29vZ2xlLnJwYy5jb250ZXh0LkF0dHJpYnV0ZUNvbnRleHQuUmVzcG9uc2USPwoIcmVzb3VyY2UYBSABKAsyLS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXNvdXJjZRI1CgNhcGkYBiABKAsyKC5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5BcGkSKAoKZXh0ZW5zaW9ucxgIIAMoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnkavgEKBFBlZXISCgoCaXAYASABKAkSDAoEcG9ydBgCIAEoAxJFCgZsYWJlbHMYBiADKAsyNS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5QZWVyLkxhYmVsc0VudHJ5EhEKCXByaW5jaXBhbBgHIAEoCRITCgtyZWdpb25fY29kZRgIIAEoCRotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBGkwKA0FwaRIPCgdzZXJ2aWNlGAEgASgJEhEKCW9wZXJhdGlvbhgCIAEoCRIQCghwcm90b2NvbBgDIAEoCRIPCgd2ZXJzaW9uGAQgASgJGn8KBEF1dGgSEQoJcHJpbmNpcGFsGAEgASgJEhEKCWF1ZGllbmNlcxgCIAMoCRIRCglwcmVzZW50ZXIYAyABKAkSJwoGY2xhaW1zGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBIVCg1hY2Nlc3NfbGV2ZWxzGAUgAygJGu8CCgdSZXF1ZXN0EgoKAmlkGAEgASgJEg4KBm1ldGhvZBgCIAEoCRJKCgdoZWFkZXJzGAMgAygLMjkuZ29vZ2xlLnJwYy5jb250ZXh0LkF0dHJpYnV0ZUNvbnRleHQuUmVxdWVzdC5IZWFkZXJzRW50cnkSDAoEcGF0aBgEIAEoCRIMCgRob3N0GAUgASgJEg4KBnNjaGVtZRgGIAEoCRINCgVxdWVyeRgHIAEoCRIoCgR0aW1lGAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRzaXplGAogASgDEhAKCHByb3RvY29sGAsgASgJEg4KBnJlYXNvbhgMIAEoCRI3CgRhdXRoGA0gASgLMikuZ29vZ2xlLnJwYy5jb250ZXh0LkF0dHJpYnV0ZUNvbnRleHQuQXV0aBouCgxIZWFkZXJzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ARqBAgoIUmVzcG9uc2USDAoEY29kZRgBIAEoAxIMCgRzaXplGAIgASgDEksKB2hlYWRlcnMYAyADKAsyOi5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXNwb25zZS5IZWFkZXJzRW50cnkSKAoEdGltZRgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMgoPYmFja2VuZF9sYXRlbmN5GAUgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uGi4KDEhlYWRlcnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBGpAECghSZXNvdXJjZRIPCgdzZXJ2aWNlGAEgASgJEgwKBG5hbWUYAiABKAkSDAoEdHlwZRgDIAEoCRJJCgZsYWJlbHMYBCADKAsyOS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXNvdXJjZS5MYWJlbHNFbnRyeRILCgN1aWQYBSABKAkSUwoLYW5ub3RhdGlvbnMYBiADKAsyPi5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXNvdXJjZS5Bbm5vdGF0aW9uc0VudHJ5EhQKDGRpc3BsYXlfbmFtZRgHIAEoCRIvCgtjcmVhdGVfdGltZRgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLwoLdXBkYXRlX3RpbWUYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC2RlbGV0ZV90aW1lGAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRldGFnGAsgASgJEhAKCGxvY2F0aW9uGAwgASgJGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBQosBChZjb20uZ29vZ2xlLnJwYy5jb250ZXh0QhVBdHRyaWJ1dGVDb250ZXh0UHJvdG9QAVpVZ29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9ycGMvY29udGV4dC9hdHRyaWJ1dGVfY29udGV4dDthdHRyaWJ1dGVfY29udGV4dPgBAWIGcHJvdG8z", [fileDesc_google_protobuf_any, fileDesc_google_protobuf_duration, fileDesc_google_protobuf_struct, fileDesc_google_protobuf_timestamp]);
+export const file_google_rpc_context_attribute_context: GenDescFile = /*@__PURE__*/
+  fileDesc("Cipnb29nbGUvcnBjL2NvbnRleHQvYXR0cmlidXRlX2NvbnRleHQucHJvdG8SEmdvb2dsZS5ycGMuY29udGV4dCKDEAoQQXR0cmlidXRlQ29udGV4dBI5CgZvcmlnaW4YByABKAsyKS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5QZWVyEjkKBnNvdXJjZRgBIAEoCzIpLmdvb2dsZS5ycGMuY29udGV4dC5BdHRyaWJ1dGVDb250ZXh0LlBlZXISPgoLZGVzdGluYXRpb24YAiABKAsyKS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5QZWVyEj0KB3JlcXVlc3QYAyABKAsyLC5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXF1ZXN0Ej8KCHJlc3BvbnNlGAQgASgLMi0uZ29vZ2xlLnJwYy5jb250ZXh0LkF0dHJpYnV0ZUNvbnRleHQuUmVzcG9uc2USPwoIcmVzb3VyY2UYBSABKAsyLS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXNvdXJjZRI1CgNhcGkYBiABKAsyKC5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5BcGkSKAoKZXh0ZW5zaW9ucxgIIAMoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnkavgEKBFBlZXISCgoCaXAYASABKAkSDAoEcG9ydBgCIAEoAxJFCgZsYWJlbHMYBiADKAsyNS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5QZWVyLkxhYmVsc0VudHJ5EhEKCXByaW5jaXBhbBgHIAEoCRITCgtyZWdpb25fY29kZRgIIAEoCRotCgtMYWJlbHNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBGkwKA0FwaRIPCgdzZXJ2aWNlGAEgASgJEhEKCW9wZXJhdGlvbhgCIAEoCRIQCghwcm90b2NvbBgDIAEoCRIPCgd2ZXJzaW9uGAQgASgJGn8KBEF1dGgSEQoJcHJpbmNpcGFsGAEgASgJEhEKCWF1ZGllbmNlcxgCIAMoCRIRCglwcmVzZW50ZXIYAyABKAkSJwoGY2xhaW1zGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBIVCg1hY2Nlc3NfbGV2ZWxzGAUgAygJGu8CCgdSZXF1ZXN0EgoKAmlkGAEgASgJEg4KBm1ldGhvZBgCIAEoCRJKCgdoZWFkZXJzGAMgAygLMjkuZ29vZ2xlLnJwYy5jb250ZXh0LkF0dHJpYnV0ZUNvbnRleHQuUmVxdWVzdC5IZWFkZXJzRW50cnkSDAoEcGF0aBgEIAEoCRIMCgRob3N0GAUgASgJEg4KBnNjaGVtZRgGIAEoCRINCgVxdWVyeRgHIAEoCRIoCgR0aW1lGAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRzaXplGAogASgDEhAKCHByb3RvY29sGAsgASgJEg4KBnJlYXNvbhgMIAEoCRI3CgRhdXRoGA0gASgLMikuZ29vZ2xlLnJwYy5jb250ZXh0LkF0dHJpYnV0ZUNvbnRleHQuQXV0aBouCgxIZWFkZXJzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ARqBAgoIUmVzcG9uc2USDAoEY29kZRgBIAEoAxIMCgRzaXplGAIgASgDEksKB2hlYWRlcnMYAyADKAsyOi5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXNwb25zZS5IZWFkZXJzRW50cnkSKAoEdGltZRgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMgoPYmFja2VuZF9sYXRlbmN5GAUgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uGi4KDEhlYWRlcnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBGpAECghSZXNvdXJjZRIPCgdzZXJ2aWNlGAEgASgJEgwKBG5hbWUYAiABKAkSDAoEdHlwZRgDIAEoCRJJCgZsYWJlbHMYBCADKAsyOS5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXNvdXJjZS5MYWJlbHNFbnRyeRILCgN1aWQYBSABKAkSUwoLYW5ub3RhdGlvbnMYBiADKAsyPi5nb29nbGUucnBjLmNvbnRleHQuQXR0cmlidXRlQ29udGV4dC5SZXNvdXJjZS5Bbm5vdGF0aW9uc0VudHJ5EhQKDGRpc3BsYXlfbmFtZRgHIAEoCRIvCgtjcmVhdGVfdGltZRgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLwoLdXBkYXRlX3RpbWUYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC2RlbGV0ZV90aW1lGAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIMCgRldGFnGAsgASgJEhAKCGxvY2F0aW9uGAwgASgJGi0KC0xhYmVsc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEaMgoQQW5ub3RhdGlvbnNFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBQosBChZjb20uZ29vZ2xlLnJwYy5jb250ZXh0QhVBdHRyaWJ1dGVDb250ZXh0UHJvdG9QAVpVZ29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9ycGMvY29udGV4dC9hdHRyaWJ1dGVfY29udGV4dDthdHRyaWJ1dGVfY29udGV4dPgBAWIGcHJvdG8z", [file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * This message defines the standard attribute vocabulary for Google APIs.
@@ -117,10 +117,10 @@ export type AttributeContext = Message<"google.rpc.context.AttributeContext"> & 
 
 /**
  * Describes the message google.rpc.context.AttributeContext.
- * Use `create(AttributeContextDesc)` to create a new message.
+ * Use `create(AttributeContextSchema)` to create a new message.
  */
-export const AttributeContextDesc: GenDescMessage<AttributeContext> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_context_attribute_context, 0);
+export const AttributeContextSchema: GenDescMessage<AttributeContext> = /*@__PURE__*/
+  messageDesc(file_google_rpc_context_attribute_context, 0);
 
 /**
  * This message defines attributes for a node that handles a network request.
@@ -173,10 +173,10 @@ export type AttributeContext_Peer = Message<"google.rpc.context.AttributeContext
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Peer.
- * Use `create(AttributeContext_PeerDesc)` to create a new message.
+ * Use `create(AttributeContext_PeerSchema)` to create a new message.
  */
-export const AttributeContext_PeerDesc: GenDescMessage<AttributeContext_Peer> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 0);
+export const AttributeContext_PeerSchema: GenDescMessage<AttributeContext_Peer> = /*@__PURE__*/
+  messageDesc(file_google_rpc_context_attribute_context, 0, 0);
 
 /**
  * This message defines attributes associated with API operations, such as
@@ -223,10 +223,10 @@ export type AttributeContext_Api = Message<"google.rpc.context.AttributeContext.
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Api.
- * Use `create(AttributeContext_ApiDesc)` to create a new message.
+ * Use `create(AttributeContext_ApiSchema)` to create a new message.
  */
-export const AttributeContext_ApiDesc: GenDescMessage<AttributeContext_Api> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 1);
+export const AttributeContext_ApiSchema: GenDescMessage<AttributeContext_Api> = /*@__PURE__*/
+  messageDesc(file_google_rpc_context_attribute_context, 0, 1);
 
 /**
  * This message defines request authentication attributes. Terminology is
@@ -314,10 +314,10 @@ export type AttributeContext_Auth = Message<"google.rpc.context.AttributeContext
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Auth.
- * Use `create(AttributeContext_AuthDesc)` to create a new message.
+ * Use `create(AttributeContext_AuthSchema)` to create a new message.
  */
-export const AttributeContext_AuthDesc: GenDescMessage<AttributeContext_Auth> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 2);
+export const AttributeContext_AuthSchema: GenDescMessage<AttributeContext_Auth> = /*@__PURE__*/
+  messageDesc(file_google_rpc_context_attribute_context, 0, 2);
 
 /**
  * This message defines attributes for an HTTP request. If the actual
@@ -425,10 +425,10 @@ export type AttributeContext_Request = Message<"google.rpc.context.AttributeCont
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Request.
- * Use `create(AttributeContext_RequestDesc)` to create a new message.
+ * Use `create(AttributeContext_RequestSchema)` to create a new message.
  */
-export const AttributeContext_RequestDesc: GenDescMessage<AttributeContext_Request> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 3);
+export const AttributeContext_RequestSchema: GenDescMessage<AttributeContext_Request> = /*@__PURE__*/
+  messageDesc(file_google_rpc_context_attribute_context, 0, 3);
 
 /**
  * This message defines attributes for a typical network response. It
@@ -481,10 +481,10 @@ export type AttributeContext_Response = Message<"google.rpc.context.AttributeCon
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Response.
- * Use `create(AttributeContext_ResponseDesc)` to create a new message.
+ * Use `create(AttributeContext_ResponseSchema)` to create a new message.
  */
-export const AttributeContext_ResponseDesc: GenDescMessage<AttributeContext_Response> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 4);
+export const AttributeContext_ResponseSchema: GenDescMessage<AttributeContext_Response> = /*@__PURE__*/
+  messageDesc(file_google_rpc_context_attribute_context, 0, 4);
 
 /**
  * This message defines core attributes for a resource. A resource is an
@@ -620,8 +620,8 @@ export type AttributeContext_Resource = Message<"google.rpc.context.AttributeCon
 
 /**
  * Describes the message google.rpc.context.AttributeContext.Resource.
- * Use `create(AttributeContext_ResourceDesc)` to create a new message.
+ * Use `create(AttributeContext_ResourceSchema)` to create a new message.
  */
-export const AttributeContext_ResourceDesc: GenDescMessage<AttributeContext_Resource> = /*@__PURE__*/
-  messageDesc(fileDesc_google_rpc_context_attribute_context, 0, 5);
+export const AttributeContext_ResourceSchema: GenDescMessage<AttributeContext_Resource> = /*@__PURE__*/
+  messageDesc(file_google_rpc_context_attribute_context, 0, 5);
 

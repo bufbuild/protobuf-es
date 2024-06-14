@@ -19,14 +19,14 @@
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Duration, NullValue, Timestamp } from "@bufbuild/protobuf/wkt";
-import { fileDesc_google_protobuf_duration, fileDesc_google_protobuf_struct, fileDesc_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_duration, file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/api/expr/v1alpha1/syntax.proto.
  */
-export const fileDesc_google_api_expr_v1alpha1_syntax: GenDescFile = /*@__PURE__*/
-  fileDesc("CiVnb29nbGUvYXBpL2V4cHIvdjFhbHBoYTEvc3ludGF4LnByb3RvEhhnb29nbGUuYXBpLmV4cHIudjFhbHBoYTEidQoKUGFyc2VkRXhwchIsCgRleHByGAIgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHISOQoLc291cmNlX2luZm8YAyABKAsyJC5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuU291cmNlSW5mbyL3CgoERXhwchIKCgJpZBgCIAEoAxI4Cgpjb25zdF9leHByGAMgASgLMiIuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkNvbnN0YW50SAASOgoKaWRlbnRfZXhwchgEIAEoCzIkLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHByLklkZW50SAASPAoLc2VsZWN0X2V4cHIYBSABKAsyJS5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwci5TZWxlY3RIABI4CgljYWxsX2V4cHIYBiABKAsyIy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwci5DYWxsSAASPgoJbGlzdF9leHByGAcgASgLMikuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHIuQ3JlYXRlTGlzdEgAEkIKC3N0cnVjdF9leHByGAggASgLMisuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHIuQ3JlYXRlU3RydWN0SAASSgoSY29tcHJlaGVuc2lvbl9leHByGAkgASgLMiwuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHIuQ29tcHJlaGVuc2lvbkgAGhUKBUlkZW50EgwKBG5hbWUYASABKAkaWwoGU2VsZWN0Ei8KB29wZXJhbmQYASABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchINCgVmaWVsZBgCIAEoCRIRCgl0ZXN0X29ubHkYAyABKAgadgoEQ2FsbBIuCgZ0YXJnZXQYASABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchIQCghmdW5jdGlvbhgCIAEoCRIsCgRhcmdzGAMgAygLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHIaWAoKQ3JlYXRlTGlzdBIwCghlbGVtZW50cxgBIAMoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHByEhgKEG9wdGlvbmFsX2luZGljZXMYAiADKAUamQIKDENyZWF0ZVN0cnVjdBIUCgxtZXNzYWdlX25hbWUYASABKAkSQgoHZW50cmllcxgCIAMoCzIxLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHByLkNyZWF0ZVN0cnVjdC5FbnRyeRquAQoFRW50cnkSCgoCaWQYASABKAMSEwoJZmllbGRfa2V5GAIgASgJSAASMQoHbWFwX2tleRgDIAEoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHBySAASLQoFdmFsdWUYBCABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchIWCg5vcHRpb25hbF9lbnRyeRgFIAEoCEIKCghrZXlfa2luZBq1AgoNQ29tcHJlaGVuc2lvbhIQCghpdGVyX3ZhchgBIAEoCRIyCgppdGVyX3JhbmdlGAIgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHISEAoIYWNjdV92YXIYAyABKAkSMQoJYWNjdV9pbml0GAQgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHISNgoObG9vcF9jb25kaXRpb24YBSABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchIxCglsb29wX3N0ZXAYBiABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchIuCgZyZXN1bHQYByABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwckILCglleHByX2tpbmQizQIKCENvbnN0YW50EjAKCm51bGxfdmFsdWUYASABKA4yGi5nb29nbGUucHJvdG9idWYuTnVsbFZhbHVlSAASFAoKYm9vbF92YWx1ZRgCIAEoCEgAEhUKC2ludDY0X3ZhbHVlGAMgASgDSAASFgoMdWludDY0X3ZhbHVlGAQgASgESAASFgoMZG91YmxlX3ZhbHVlGAUgASgBSAASFgoMc3RyaW5nX3ZhbHVlGAYgASgJSAASFQoLYnl0ZXNfdmFsdWUYByABKAxIABI3Cg5kdXJhdGlvbl92YWx1ZRgIIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkICGAFIABI5Cg90aW1lc3RhbXBfdmFsdWUYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgIYAUgAQg8KDWNvbnN0YW50X2tpbmQi/AUKClNvdXJjZUluZm8SFgoOc3ludGF4X3ZlcnNpb24YASABKAkSEAoIbG9jYXRpb24YAiABKAkSFAoMbGluZV9vZmZzZXRzGAMgAygFEkYKCXBvc2l0aW9ucxgEIAMoCzIzLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5Tb3VyY2VJbmZvLlBvc2l0aW9uc0VudHJ5EkkKC21hY3JvX2NhbGxzGAUgAygLMjQuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlNvdXJjZUluZm8uTWFjcm9DYWxsc0VudHJ5EkIKCmV4dGVuc2lvbnMYBiADKAsyLi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuU291cmNlSW5mby5FeHRlbnNpb24a0QIKCUV4dGVuc2lvbhIKCgJpZBgBIAEoCRJVChNhZmZlY3RlZF9jb21wb25lbnRzGAIgAygOMjguZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlNvdXJjZUluZm8uRXh0ZW5zaW9uLkNvbXBvbmVudBJHCgd2ZXJzaW9uGAMgASgLMjYuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlNvdXJjZUluZm8uRXh0ZW5zaW9uLlZlcnNpb24aJwoHVmVyc2lvbhINCgVtYWpvchgBIAEoAxINCgVtaW5vchgCIAEoAyJvCglDb21wb25lbnQSGQoVQ09NUE9ORU5UX1VOU1BFQ0lGSUVEEAASFAoQQ09NUE9ORU5UX1BBUlNFUhABEhoKFkNPTVBPTkVOVF9UWVBFX0NIRUNLRVIQAhIVChFDT01QT05FTlRfUlVOVElNRRADGjAKDlBvc2l0aW9uc0VudHJ5EgsKA2tleRgBIAEoAxINCgV2YWx1ZRgCIAEoBToCOAEaUQoPTWFjcm9DYWxsc0VudHJ5EgsKA2tleRgBIAEoAxItCgV2YWx1ZRgCIAEoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHByOgI4ASJQCg5Tb3VyY2VQb3NpdGlvbhIQCghsb2NhdGlvbhgBIAEoCRIOCgZvZmZzZXQYAiABKAUSDAoEbGluZRgDIAEoBRIOCgZjb2x1bW4YBCABKAVCbgocY29tLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMUILU3ludGF4UHJvdG9QAVo8Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvZXhwci92MWFscGhhMTtleHBy+AEBYgZwcm90bzM", [fileDesc_google_protobuf_duration, fileDesc_google_protobuf_struct, fileDesc_google_protobuf_timestamp]);
+export const file_google_api_expr_v1alpha1_syntax: GenDescFile = /*@__PURE__*/
+  fileDesc("CiVnb29nbGUvYXBpL2V4cHIvdjFhbHBoYTEvc3ludGF4LnByb3RvEhhnb29nbGUuYXBpLmV4cHIudjFhbHBoYTEidQoKUGFyc2VkRXhwchIsCgRleHByGAIgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHISOQoLc291cmNlX2luZm8YAyABKAsyJC5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuU291cmNlSW5mbyL3CgoERXhwchIKCgJpZBgCIAEoAxI4Cgpjb25zdF9leHByGAMgASgLMiIuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkNvbnN0YW50SAASOgoKaWRlbnRfZXhwchgEIAEoCzIkLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHByLklkZW50SAASPAoLc2VsZWN0X2V4cHIYBSABKAsyJS5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwci5TZWxlY3RIABI4CgljYWxsX2V4cHIYBiABKAsyIy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwci5DYWxsSAASPgoJbGlzdF9leHByGAcgASgLMikuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHIuQ3JlYXRlTGlzdEgAEkIKC3N0cnVjdF9leHByGAggASgLMisuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHIuQ3JlYXRlU3RydWN0SAASSgoSY29tcHJlaGVuc2lvbl9leHByGAkgASgLMiwuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHIuQ29tcHJlaGVuc2lvbkgAGhUKBUlkZW50EgwKBG5hbWUYASABKAkaWwoGU2VsZWN0Ei8KB29wZXJhbmQYASABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchINCgVmaWVsZBgCIAEoCRIRCgl0ZXN0X29ubHkYAyABKAgadgoEQ2FsbBIuCgZ0YXJnZXQYASABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchIQCghmdW5jdGlvbhgCIAEoCRIsCgRhcmdzGAMgAygLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHIaWAoKQ3JlYXRlTGlzdBIwCghlbGVtZW50cxgBIAMoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHByEhgKEG9wdGlvbmFsX2luZGljZXMYAiADKAUamQIKDENyZWF0ZVN0cnVjdBIUCgxtZXNzYWdlX25hbWUYASABKAkSQgoHZW50cmllcxgCIAMoCzIxLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHByLkNyZWF0ZVN0cnVjdC5FbnRyeRquAQoFRW50cnkSCgoCaWQYASABKAMSEwoJZmllbGRfa2V5GAIgASgJSAASMQoHbWFwX2tleRgDIAEoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHBySAASLQoFdmFsdWUYBCABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchIWCg5vcHRpb25hbF9lbnRyeRgFIAEoCEIKCghrZXlfa2luZBq1AgoNQ29tcHJlaGVuc2lvbhIQCghpdGVyX3ZhchgBIAEoCRIyCgppdGVyX3JhbmdlGAIgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHISEAoIYWNjdV92YXIYAyABKAkSMQoJYWNjdV9pbml0GAQgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHISNgoObG9vcF9jb25kaXRpb24YBSABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchIxCglsb29wX3N0ZXAYBiABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwchIuCgZyZXN1bHQYByABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRXhwckILCglleHByX2tpbmQizQIKCENvbnN0YW50EjAKCm51bGxfdmFsdWUYASABKA4yGi5nb29nbGUucHJvdG9idWYuTnVsbFZhbHVlSAASFAoKYm9vbF92YWx1ZRgCIAEoCEgAEhUKC2ludDY0X3ZhbHVlGAMgASgDSAASFgoMdWludDY0X3ZhbHVlGAQgASgESAASFgoMZG91YmxlX3ZhbHVlGAUgASgBSAASFgoMc3RyaW5nX3ZhbHVlGAYgASgJSAASFQoLYnl0ZXNfdmFsdWUYByABKAxIABI3Cg5kdXJhdGlvbl92YWx1ZRgIIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbkICGAFIABI5Cg90aW1lc3RhbXBfdmFsdWUYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgIYAUgAQg8KDWNvbnN0YW50X2tpbmQi/AUKClNvdXJjZUluZm8SFgoOc3ludGF4X3ZlcnNpb24YASABKAkSEAoIbG9jYXRpb24YAiABKAkSFAoMbGluZV9vZmZzZXRzGAMgAygFEkYKCXBvc2l0aW9ucxgEIAMoCzIzLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5Tb3VyY2VJbmZvLlBvc2l0aW9uc0VudHJ5EkkKC21hY3JvX2NhbGxzGAUgAygLMjQuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlNvdXJjZUluZm8uTWFjcm9DYWxsc0VudHJ5EkIKCmV4dGVuc2lvbnMYBiADKAsyLi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuU291cmNlSW5mby5FeHRlbnNpb24a0QIKCUV4dGVuc2lvbhIKCgJpZBgBIAEoCRJVChNhZmZlY3RlZF9jb21wb25lbnRzGAIgAygOMjguZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlNvdXJjZUluZm8uRXh0ZW5zaW9uLkNvbXBvbmVudBJHCgd2ZXJzaW9uGAMgASgLMjYuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlNvdXJjZUluZm8uRXh0ZW5zaW9uLlZlcnNpb24aJwoHVmVyc2lvbhINCgVtYWpvchgBIAEoAxINCgVtaW5vchgCIAEoAyJvCglDb21wb25lbnQSGQoVQ09NUE9ORU5UX1VOU1BFQ0lGSUVEEAASFAoQQ09NUE9ORU5UX1BBUlNFUhABEhoKFkNPTVBPTkVOVF9UWVBFX0NIRUNLRVIQAhIVChFDT01QT05FTlRfUlVOVElNRRADGjAKDlBvc2l0aW9uc0VudHJ5EgsKA2tleRgBIAEoAxINCgV2YWx1ZRgCIAEoBToCOAEaUQoPTWFjcm9DYWxsc0VudHJ5EgsKA2tleRgBIAEoAxItCgV2YWx1ZRgCIAEoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5FeHByOgI4ASJQCg5Tb3VyY2VQb3NpdGlvbhIQCghsb2NhdGlvbhgBIAEoCRIOCgZvZmZzZXQYAiABKAUSDAoEbGluZRgDIAEoBRIOCgZjb2x1bW4YBCABKAVCbgocY29tLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMUILU3ludGF4UHJvdG9QAVo8Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvZXhwci92MWFscGhhMTtleHBy+AEBYgZwcm90bzM", [file_google_protobuf_duration, file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * An expression together with source information as returned by the parser.
@@ -51,10 +51,10 @@ export type ParsedExpr = Message<"google.api.expr.v1alpha1.ParsedExpr"> & {
 
 /**
  * Describes the message google.api.expr.v1alpha1.ParsedExpr.
- * Use `create(ParsedExprDesc)` to create a new message.
+ * Use `create(ParsedExprSchema)` to create a new message.
  */
-export const ParsedExprDesc: GenDescMessage<ParsedExpr> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 0);
+export const ParsedExprSchema: GenDescMessage<ParsedExpr> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 0);
 
 /**
  * An abstract representation of a common expression.
@@ -153,10 +153,10 @@ export type Expr = Message<"google.api.expr.v1alpha1.Expr"> & {
 
 /**
  * Describes the message google.api.expr.v1alpha1.Expr.
- * Use `create(ExprDesc)` to create a new message.
+ * Use `create(ExprSchema)` to create a new message.
  */
-export const ExprDesc: GenDescMessage<Expr> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 1);
+export const ExprSchema: GenDescMessage<Expr> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 1);
 
 /**
  * An identifier expression. e.g. `request`.
@@ -178,10 +178,10 @@ export type Expr_Ident = Message<"google.api.expr.v1alpha1.Expr.Ident"> & {
 
 /**
  * Describes the message google.api.expr.v1alpha1.Expr.Ident.
- * Use `create(Expr_IdentDesc)` to create a new message.
+ * Use `create(Expr_IdentSchema)` to create a new message.
  */
-export const Expr_IdentDesc: GenDescMessage<Expr_Ident> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 1, 0);
+export const Expr_IdentSchema: GenDescMessage<Expr_Ident> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 1, 0);
 
 /**
  * A field selection expression. e.g. `request.auth`.
@@ -221,10 +221,10 @@ export type Expr_Select = Message<"google.api.expr.v1alpha1.Expr.Select"> & {
 
 /**
  * Describes the message google.api.expr.v1alpha1.Expr.Select.
- * Use `create(Expr_SelectDesc)` to create a new message.
+ * Use `create(Expr_SelectSchema)` to create a new message.
  */
-export const Expr_SelectDesc: GenDescMessage<Expr_Select> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 1, 1);
+export const Expr_SelectSchema: GenDescMessage<Expr_Select> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 1, 1);
 
 /**
  * A call expression, including calls to predefined functions and operators.
@@ -259,10 +259,10 @@ export type Expr_Call = Message<"google.api.expr.v1alpha1.Expr.Call"> & {
 
 /**
  * Describes the message google.api.expr.v1alpha1.Expr.Call.
- * Use `create(Expr_CallDesc)` to create a new message.
+ * Use `create(Expr_CallSchema)` to create a new message.
  */
-export const Expr_CallDesc: GenDescMessage<Expr_Call> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 1, 2);
+export const Expr_CallSchema: GenDescMessage<Expr_Call> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 1, 2);
 
 /**
  * A list creation expression.
@@ -295,10 +295,10 @@ export type Expr_CreateList = Message<"google.api.expr.v1alpha1.Expr.CreateList"
 
 /**
  * Describes the message google.api.expr.v1alpha1.Expr.CreateList.
- * Use `create(Expr_CreateListDesc)` to create a new message.
+ * Use `create(Expr_CreateListSchema)` to create a new message.
  */
-export const Expr_CreateListDesc: GenDescMessage<Expr_CreateList> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 1, 3);
+export const Expr_CreateListSchema: GenDescMessage<Expr_CreateList> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 1, 3);
 
 /**
  * A map or message creation expression.
@@ -328,10 +328,10 @@ export type Expr_CreateStruct = Message<"google.api.expr.v1alpha1.Expr.CreateStr
 
 /**
  * Describes the message google.api.expr.v1alpha1.Expr.CreateStruct.
- * Use `create(Expr_CreateStructDesc)` to create a new message.
+ * Use `create(Expr_CreateStructSchema)` to create a new message.
  */
-export const Expr_CreateStructDesc: GenDescMessage<Expr_CreateStruct> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 1, 4);
+export const Expr_CreateStructSchema: GenDescMessage<Expr_CreateStruct> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 1, 4);
 
 /**
  * Represents an entry.
@@ -392,10 +392,10 @@ export type Expr_CreateStruct_Entry = Message<"google.api.expr.v1alpha1.Expr.Cre
 
 /**
  * Describes the message google.api.expr.v1alpha1.Expr.CreateStruct.Entry.
- * Use `create(Expr_CreateStruct_EntryDesc)` to create a new message.
+ * Use `create(Expr_CreateStruct_EntrySchema)` to create a new message.
  */
-export const Expr_CreateStruct_EntryDesc: GenDescMessage<Expr_CreateStruct_Entry> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 1, 4, 0);
+export const Expr_CreateStruct_EntrySchema: GenDescMessage<Expr_CreateStruct_Entry> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 1, 4, 0);
 
 /**
  * A comprehension expression applied to a list or map.
@@ -487,10 +487,10 @@ export type Expr_Comprehension = Message<"google.api.expr.v1alpha1.Expr.Comprehe
 
 /**
  * Describes the message google.api.expr.v1alpha1.Expr.Comprehension.
- * Use `create(Expr_ComprehensionDesc)` to create a new message.
+ * Use `create(Expr_ComprehensionSchema)` to create a new message.
  */
-export const Expr_ComprehensionDesc: GenDescMessage<Expr_Comprehension> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 1, 5);
+export const Expr_ComprehensionSchema: GenDescMessage<Expr_Comprehension> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 1, 5);
 
 /**
  * Represents a primitive literal.
@@ -599,10 +599,10 @@ export type Constant = Message<"google.api.expr.v1alpha1.Constant"> & {
 
 /**
  * Describes the message google.api.expr.v1alpha1.Constant.
- * Use `create(ConstantDesc)` to create a new message.
+ * Use `create(ConstantSchema)` to create a new message.
  */
-export const ConstantDesc: GenDescMessage<Constant> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 2);
+export const ConstantSchema: GenDescMessage<Constant> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 2);
 
 /**
  * Source information collected at parse time.
@@ -678,10 +678,10 @@ export type SourceInfo = Message<"google.api.expr.v1alpha1.SourceInfo"> & {
 
 /**
  * Describes the message google.api.expr.v1alpha1.SourceInfo.
- * Use `create(SourceInfoDesc)` to create a new message.
+ * Use `create(SourceInfoSchema)` to create a new message.
  */
-export const SourceInfoDesc: GenDescMessage<SourceInfo> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 3);
+export const SourceInfoSchema: GenDescMessage<SourceInfo> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 3);
 
 /**
  * An extension that was requested for the source expression.
@@ -717,10 +717,10 @@ export type SourceInfo_Extension = Message<"google.api.expr.v1alpha1.SourceInfo.
 
 /**
  * Describes the message google.api.expr.v1alpha1.SourceInfo.Extension.
- * Use `create(SourceInfo_ExtensionDesc)` to create a new message.
+ * Use `create(SourceInfo_ExtensionSchema)` to create a new message.
  */
-export const SourceInfo_ExtensionDesc: GenDescMessage<SourceInfo_Extension> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 3, 0);
+export const SourceInfo_ExtensionSchema: GenDescMessage<SourceInfo_Extension> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 3, 0);
 
 /**
  * Version
@@ -747,10 +747,10 @@ export type SourceInfo_Extension_Version = Message<"google.api.expr.v1alpha1.Sou
 
 /**
  * Describes the message google.api.expr.v1alpha1.SourceInfo.Extension.Version.
- * Use `create(SourceInfo_Extension_VersionDesc)` to create a new message.
+ * Use `create(SourceInfo_Extension_VersionSchema)` to create a new message.
  */
-export const SourceInfo_Extension_VersionDesc: GenDescMessage<SourceInfo_Extension_Version> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 3, 0, 0);
+export const SourceInfo_Extension_VersionSchema: GenDescMessage<SourceInfo_Extension_Version> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 3, 0, 0);
 
 /**
  * CEL component specifier.
@@ -792,8 +792,8 @@ export enum SourceInfo_Extension_Component {
 /**
  * Describes the enum google.api.expr.v1alpha1.SourceInfo.Extension.Component.
  */
-export const SourceInfo_Extension_ComponentDesc: GenDescEnum<SourceInfo_Extension_Component> = /*@__PURE__*/
-  enumDesc(fileDesc_google_api_expr_v1alpha1_syntax, 3, 0, 0);
+export const SourceInfo_Extension_ComponentSchema: GenDescEnum<SourceInfo_Extension_Component> = /*@__PURE__*/
+  enumDesc(file_google_api_expr_v1alpha1_syntax, 3, 0, 0);
 
 /**
  * A specific position in source.
@@ -834,8 +834,8 @@ export type SourcePosition = Message<"google.api.expr.v1alpha1.SourcePosition"> 
 
 /**
  * Describes the message google.api.expr.v1alpha1.SourcePosition.
- * Use `create(SourcePositionDesc)` to create a new message.
+ * Use `create(SourcePositionSchema)` to create a new message.
  */
-export const SourcePositionDesc: GenDescMessage<SourcePosition> = /*@__PURE__*/
-  messageDesc(fileDesc_google_api_expr_v1alpha1_syntax, 4);
+export const SourcePositionSchema: GenDescMessage<SourcePosition> = /*@__PURE__*/
+  messageDesc(file_google_api_expr_v1alpha1_syntax, 4);
 

@@ -22,84 +22,84 @@ import { WireType } from "@bufbuild/protobuf/wire";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
-import { UserDesc } from "./gen/ts/extra/example_pb.js";
+import { UserSchema } from "./gen/ts/extra/example_pb.js";
 import { fillProto3Message } from "./helpers-proto3.js";
 import { fillProto2Message } from "./helpers-proto2.js";
 import { fillEdition2023Message } from "./helpers-edition2023.js";
 
 describe("equals()", () => {
   test("same messages are equal", () => {
-    const a = create(proto3_ts.Proto3MessageDesc);
+    const a = create(proto3_ts.Proto3MessageSchema);
     const b = a;
-    expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(true);
+    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(true);
   });
   test.each([
-    proto3_ts.Proto3MessageDesc,
-    proto2_ts.Proto2MessageDesc,
-    edition2023_ts.Edition2023MessageDesc,
+    proto3_ts.Proto3MessageSchema,
+    proto2_ts.Proto2MessageSchema,
+    edition2023_ts.Edition2023MessageSchema,
   ])("equal zero messages are equal $typeName", (desc) => {
     const a = create(desc);
     const b = create(desc);
     expect(equals(desc, a, b)).toBe(true);
   });
   test("equal proto3 messages are equal", () => {
-    const a = fillProto3Message(create(proto3_ts.Proto3MessageDesc));
-    const b = fillProto3Message(create(proto3_ts.Proto3MessageDesc));
-    expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(true);
+    const a = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
+    const b = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
+    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(true);
   });
   test("equal proto2 messages are equal", () => {
-    const a = fillProto2Message(create(proto2_ts.Proto2MessageDesc));
-    const b = fillProto2Message(create(proto2_ts.Proto2MessageDesc));
-    expect(equals(proto2_ts.Proto2MessageDesc, a, b)).toBe(true);
+    const a = fillProto2Message(create(proto2_ts.Proto2MessageSchema));
+    const b = fillProto2Message(create(proto2_ts.Proto2MessageSchema));
+    expect(equals(proto2_ts.Proto2MessageSchema, a, b)).toBe(true);
   });
   test("equal edition2023 messages are equal", () => {
     const a = fillEdition2023Message(
-      create(edition2023_ts.Edition2023MessageDesc),
+      create(edition2023_ts.Edition2023MessageSchema),
     );
     const b = fillEdition2023Message(
-      create(edition2023_ts.Edition2023MessageDesc),
+      create(edition2023_ts.Edition2023MessageSchema),
     );
-    expect(equals(edition2023_ts.Edition2023MessageDesc, a, b)).toBe(true);
+    expect(equals(edition2023_ts.Edition2023MessageSchema, a, b)).toBe(true);
   });
   test("different message types are not equal", () => {
-    const a = create(proto3_ts.Proto3MessageDesc);
-    const b = create(UserDesc);
-    expect(equals(proto3_ts.Proto3MessageDesc as DescMessage, a, b)).toBe(
+    const a = create(proto3_ts.Proto3MessageSchema);
+    const b = create(UserSchema);
+    expect(equals(proto3_ts.Proto3MessageSchema as DescMessage, a, b)).toBe(
       false,
     );
-    expect(equals(proto3_ts.Proto3MessageDesc as DescMessage, b, b)).toBe(
+    expect(equals(proto3_ts.Proto3MessageSchema as DescMessage, b, b)).toBe(
       false,
     );
   });
   test("accepts anonymous messages", () => {
-    const desc: DescMessage = proto3_ts.Proto3MessageDesc;
-    const a: Message = create(proto3_ts.Proto3MessageDesc);
-    const b: Message = create(proto3_ts.Proto3MessageDesc);
+    const desc: DescMessage = proto3_ts.Proto3MessageSchema;
+    const a: Message = create(proto3_ts.Proto3MessageSchema);
+    const b: Message = create(proto3_ts.Proto3MessageSchema);
     expect(equals(desc, a, b)).toBe(true);
   });
   test("NaN does not equal NaN", () => {
-    const a = create(proto3_ts.Proto3MessageDesc);
+    const a = create(proto3_ts.Proto3MessageSchema);
     a.singularFloatField = Number.NaN;
-    const b = create(proto3_ts.Proto3MessageDesc);
+    const b = create(proto3_ts.Proto3MessageSchema);
     b.singularFloatField = Number.NaN;
-    expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
   });
   test("extensions and unknown fields are disregarded", () => {
-    const a = create(proto3_ts.Proto3MessageDesc);
+    const a = create(proto3_ts.Proto3MessageSchema);
     a.$unknown = [
       { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
     ];
-    const b = create(proto3_ts.Proto3MessageDesc);
-    expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(true);
+    const b = create(proto3_ts.Proto3MessageSchema);
+    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(true);
   });
   test("set proto2 field is not equal unset field", () => {
-    const a = create(proto2_ts.Proto2MessageDesc);
-    const b = create(proto2_ts.Proto2MessageDesc);
+    const a = create(proto2_ts.Proto2MessageSchema);
+    const b = create(proto2_ts.Proto2MessageSchema);
     b.optionalStringField = "";
-    expect(equals(proto2_ts.Proto2MessageDesc, a, b)).toBe(false);
+    expect(equals(proto2_ts.Proto2MessageSchema, a, b)).toBe(false);
   });
   describe("set proto3 field is not equal unset field", () => {
-    const desc = proto3_ts.Proto3MessageDesc;
+    const desc = proto3_ts.Proto3MessageSchema;
     const a = fillProto3Message(create(desc));
     let b: proto3_ts.Proto3Message;
     beforeEach(() => {
@@ -116,7 +116,7 @@ describe("equals()", () => {
     );
   });
   describe("set edition2023 field is not equal unset field", () => {
-    const desc = edition2023_ts.Edition2023MessageDesc;
+    const desc = edition2023_ts.Edition2023MessageSchema;
     const a = fillEdition2023Message(create(desc));
     let b: edition2023_ts.Edition2023Message;
     beforeEach(() => {
@@ -136,41 +136,41 @@ describe("equals()", () => {
     let a: proto3_ts.Proto3Message;
     let b: proto3_ts.Proto3Message;
     beforeEach(() => {
-      a = fillProto3Message(create(proto3_ts.Proto3MessageDesc));
-      b = fillProto3Message(create(proto3_ts.Proto3MessageDesc));
+      a = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
+      b = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
     });
     test("singularStringField is not equal", () => {
       b.singularStringField = "modified";
-      expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
     test("singularBytesField is not equal", () => {
       b.singularBytesField[0] = 0x01;
-      expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
     test("optionalStringField is not equal", () => {
       b.optionalStringField = "modified";
-      expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
     test("repeatedStringField is not equal", () => {
       b.repeatedStringField.push("modified");
-      expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
     test("oneof is not equal", () => {
       b.either = { case: "oneofInt32Field", value: 123 };
-      expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
     test("singularMessageField is not equal", () => {
       assert(b.singularMessageField);
       b.singularMessageField.singularStringField = "modified";
-      expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
     test("mapStringStringField is not equal", () => {
       b.mapStringStringField["modified"] = "modified";
-      expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
     test("mapInt32MessageField is not equal", () => {
       b.mapInt32MessageField[123].singularStringField = "modified";
-      expect(equals(proto3_ts.Proto3MessageDesc, a, b)).toBe(false);
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
   });
 });

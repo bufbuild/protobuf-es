@@ -29,7 +29,7 @@ import type { ForeignMessage } from "./unittest_pb.js";
 /**
  * Describes the file google/protobuf/unittest_optimize_for.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_optimize_for: GenDescFile;
+export declare const file_google_protobuf_unittest_optimize_for: GenDescFile;
 
 /**
  * @generated from message protobuf_unittest.TestOptimizedForSize
@@ -65,9 +65,9 @@ export declare type TestOptimizedForSize = Message<"protobuf_unittest.TestOptimi
 
 /**
  * Describes the message protobuf_unittest.TestOptimizedForSize.
- * Use `create(TestOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestOptimizedForSizeDesc: GenDescMessage<TestOptimizedForSize>;
+export declare const TestOptimizedForSizeSchema: GenDescMessage<TestOptimizedForSize>;
 
 /**
  * @generated from extension: optional int32 test_extension = 1234;
@@ -91,9 +91,9 @@ export declare type TestRequiredOptimizedForSize = Message<"protobuf_unittest.Te
 
 /**
  * Describes the message protobuf_unittest.TestRequiredOptimizedForSize.
- * Use `create(TestRequiredOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestRequiredOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestRequiredOptimizedForSizeDesc: GenDescMessage<TestRequiredOptimizedForSize>;
+export declare const TestRequiredOptimizedForSizeSchema: GenDescMessage<TestRequiredOptimizedForSize>;
 
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
@@ -107,7 +107,7 @@ export declare type TestOptionalOptimizedForSize = Message<"protobuf_unittest.Te
 
 /**
  * Describes the message protobuf_unittest.TestOptionalOptimizedForSize.
- * Use `create(TestOptionalOptimizedForSizeDesc)` to create a new message.
+ * Use `create(TestOptionalOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestOptionalOptimizedForSizeDesc: GenDescMessage<TestOptionalOptimizedForSize>;
+export declare const TestOptionalOptimizedForSizeSchema: GenDescMessage<TestOptionalOptimizedForSize>;
 

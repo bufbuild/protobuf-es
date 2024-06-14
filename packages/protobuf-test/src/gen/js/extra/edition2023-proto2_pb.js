@@ -21,39 +21,39 @@ import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/code
 /**
  * Describes the file extra/edition2023-proto2.proto.
  */
-export const fileDesc_extra_edition2023_proto2 = /*@__PURE__*/
+export const file_extra_edition2023_proto2 = /*@__PURE__*/
   fileDesc("Ch5leHRyYS9lZGl0aW9uMjAyMy1wcm90bzIucHJvdG8SBHNwZWMi5gQKG1Byb3RvMk1lc3NhZ2VGb3JFZGl0aW9uMjAyMxIbChNvcHRpb25hbF9ib29sX2ZpZWxkGAEgASgIEkIKGm9wdGlvbmFsX2Nsb3NlZF9lbnVtX2ZpZWxkGAIgASgOMh4uc3BlYy5Qcm90bzJFbnVtRm9yRWRpdGlvbjIwMjMSLAoib3B0aW9uYWxfc3RyaW5nX2ZpZWxkX3dpdGhfZGVmYXVsdBgDIAEoCToAEkYKDW9wdGlvbmFsZ3JvdXAYBCABKAoyLy5zcGVjLlByb3RvMk1lc3NhZ2VGb3JFZGl0aW9uMjAyMy5PcHRpb25hbEdyb3VwEhsKE3JlcXVpcmVkX2Jvb2xfZmllbGQYBSACKAgSQgoacmVxdWlyZWRfY2xvc2VkX2VudW1fZmllbGQYBiACKA4yHi5zcGVjLlByb3RvMkVudW1Gb3JFZGl0aW9uMjAyMxI3CiJyZXF1aXJlZF9zdHJpbmdfZmllbGRfd2l0aF9kZWZhdWx0GAcgAigJOgtoZWxsbyAiICovIBJGCg1yZXF1aXJlZGdyb3VwGAggAigKMi8uc3BlYy5Qcm90bzJNZXNzYWdlRm9yRWRpdGlvbjIwMjMuUmVxdWlyZWRHcm91cBIfChNwYWNrZWRfZG91YmxlX2ZpZWxkGAkgAygBQgIQARIhChV1bnBhY2tlZF9kb3VibGVfZmllbGQYCiADKAFCAhAAGiQKDU9wdGlvbmFsR3JvdXASEwoLaW50MzJfZmllbGQYASABKAUaJAoNUmVxdWlyZWRHcm91cBITCgtpbnQzMl9maWVsZBgBIAEoBSo9ChhQcm90bzJFbnVtRm9yRWRpdGlvbjIwMjMSIQodUFJPVE8yX0VOVU1fRk9SX0VESVRJT04yMDIzX0EQAQ");
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.
- * Use `create(Proto2MessageForEdition2023Desc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023Schema)` to create a new message.
  */
-export const Proto2MessageForEdition2023Desc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_edition2023_proto2, 0);
+export const Proto2MessageForEdition2023Schema = /*@__PURE__*/
+  messageDesc(file_extra_edition2023_proto2, 0);
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.OptionalGroup.
- * Use `create(Proto2MessageForEdition2023_OptionalGroupDesc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_OptionalGroupSchema)` to create a new message.
  */
-export const Proto2MessageForEdition2023_OptionalGroupDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_edition2023_proto2, 0, 0);
+export const Proto2MessageForEdition2023_OptionalGroupSchema = /*@__PURE__*/
+  messageDesc(file_extra_edition2023_proto2, 0, 0);
 
 /**
  * Describes the message spec.Proto2MessageForEdition2023.RequiredGroup.
- * Use `create(Proto2MessageForEdition2023_RequiredGroupDesc)` to create a new message.
+ * Use `create(Proto2MessageForEdition2023_RequiredGroupSchema)` to create a new message.
  */
-export const Proto2MessageForEdition2023_RequiredGroupDesc = /*@__PURE__*/
-  messageDesc(fileDesc_extra_edition2023_proto2, 0, 1);
+export const Proto2MessageForEdition2023_RequiredGroupSchema = /*@__PURE__*/
+  messageDesc(file_extra_edition2023_proto2, 0, 1);
 
 /**
  * Describes the enum spec.Proto2EnumForEdition2023.
  */
-export const Proto2EnumForEdition2023Desc = /*@__PURE__*/
-  enumDesc(fileDesc_extra_edition2023_proto2, 0);
+export const Proto2EnumForEdition2023Schema = /*@__PURE__*/
+  enumDesc(file_extra_edition2023_proto2, 0);
 
 /**
  * @generated from enum spec.Proto2EnumForEdition2023
  */
 export const Proto2EnumForEdition2023 = /*@__PURE__*/
-  tsEnum(Proto2EnumForEdition2023Desc);
+  tsEnum(Proto2EnumForEdition2023Schema);
 

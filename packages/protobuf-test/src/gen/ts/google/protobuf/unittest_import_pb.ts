@@ -29,14 +29,14 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc_google_protobuf_unittest_import_public } from "./unittest_import_public_pb.js";
+import { file_google_protobuf_unittest_import_public } from "./unittest_import_public_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_import.proto.
  */
-export const fileDesc_google_protobuf_unittest_import: GenDescFile = /*@__PURE__*/
-  fileDesc("CiVnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0LnByb3RvEhhwcm90b2J1Zl91bml0dGVzdF9pbXBvcnQiGgoNSW1wb3J0TWVzc2FnZRIJCgFkGAEgASgFKjwKCkltcG9ydEVudW0SDgoKSU1QT1JUX0ZPTxAHEg4KCklNUE9SVF9CQVIQCBIOCgpJTVBPUlRfQkFaEAkqMQoQSW1wb3J0RW51bUZvck1hcBILCgdVTktOT1dOEAASBwoDRk9PEAESBwoDQkFSEAJCHwoYY29tLmdvb2dsZS5wcm90b2J1Zi50ZXN0SAH4AQFQAA", [fileDesc_google_protobuf_unittest_import_public]);
+export const file_google_protobuf_unittest_import: GenDescFile = /*@__PURE__*/
+  fileDesc("CiVnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfaW1wb3J0LnByb3RvEhhwcm90b2J1Zl91bml0dGVzdF9pbXBvcnQiGgoNSW1wb3J0TWVzc2FnZRIJCgFkGAEgASgFKjwKCkltcG9ydEVudW0SDgoKSU1QT1JUX0ZPTxAHEg4KCklNUE9SVF9CQVIQCBIOCgpJTVBPUlRfQkFaEAkqMQoQSW1wb3J0RW51bUZvck1hcBILCgdVTktOT1dOEAASBwoDRk9PEAESBwoDQkFSEAJCHwoYY29tLmdvb2dsZS5wcm90b2J1Zi50ZXN0SAH4AQFQAA", [file_google_protobuf_unittest_import_public]);
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessage
@@ -50,10 +50,10 @@ export type ImportMessage = Message<"protobuf_unittest_import.ImportMessage"> & 
 
 /**
  * Describes the message protobuf_unittest_import.ImportMessage.
- * Use `create(ImportMessageDesc)` to create a new message.
+ * Use `create(ImportMessageSchema)` to create a new message.
  */
-export const ImportMessageDesc: GenDescMessage<ImportMessage> = /*@__PURE__*/
-  messageDesc(fileDesc_google_protobuf_unittest_import, 0);
+export const ImportMessageSchema: GenDescMessage<ImportMessage> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_import, 0);
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnum
@@ -78,8 +78,8 @@ export enum ImportEnum {
 /**
  * Describes the enum protobuf_unittest_import.ImportEnum.
  */
-export const ImportEnumDesc: GenDescEnum<ImportEnum> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_unittest_import, 0);
+export const ImportEnumSchema: GenDescEnum<ImportEnum> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_import, 0);
 
 /**
  * To use an enum in a map, it must has the first value as 0.
@@ -106,6 +106,6 @@ export enum ImportEnumForMap {
 /**
  * Describes the enum protobuf_unittest_import.ImportEnumForMap.
  */
-export const ImportEnumForMapDesc: GenDescEnum<ImportEnumForMap> = /*@__PURE__*/
-  enumDesc(fileDesc_google_protobuf_unittest_import, 1);
+export const ImportEnumForMapSchema: GenDescEnum<ImportEnumForMap> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_import, 1);
 

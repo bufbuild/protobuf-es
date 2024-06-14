@@ -23,7 +23,7 @@ import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 /**
  * Describes the file google/protobuf/unittest_invalid_features.proto.
  */
-export declare const fileDesc_google_protobuf_unittest_invalid_features: GenDescFile;
+export declare const file_google_protobuf_unittest_invalid_features: GenDescFile;
 
 /**
  * @generated from message pb.TestInvalidFeatures
@@ -37,9 +37,9 @@ export declare type TestInvalidFeatures = Message<"pb.TestInvalidFeatures"> & {
 
 /**
  * Describes the message pb.TestInvalidFeatures.
- * Use `create(TestInvalidFeaturesDesc)` to create a new message.
+ * Use `create(TestInvalidFeaturesSchema)` to create a new message.
  */
-export declare const TestInvalidFeaturesDesc: GenDescMessage<TestInvalidFeatures>;
+export declare const TestInvalidFeaturesSchema: GenDescMessage<TestInvalidFeatures>;
 
 /**
  * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;

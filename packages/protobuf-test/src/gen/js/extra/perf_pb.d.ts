@@ -22,7 +22,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/perf.proto.
  */
-export declare const fileDesc_extra_perf: GenDescFile;
+export declare const file_extra_perf: GenDescFile;
 
 /**
  * @generated from message perf.v1.PerfMessage
@@ -252,9 +252,9 @@ export declare type PerfMessage = Message<"perf.v1.PerfMessage"> & {
 
 /**
  * Describes the message perf.v1.PerfMessage.
- * Use `create(PerfMessageDesc)` to create a new message.
+ * Use `create(PerfMessageSchema)` to create a new message.
  */
-export declare const PerfMessageDesc: GenDescMessage<PerfMessage>;
+export declare const PerfMessageSchema: GenDescMessage<PerfMessage>;
 
 /**
  * @generated from enum perf.v1.PerfEnum
@@ -279,5 +279,5 @@ export enum PerfEnum {
 /**
  * Describes the enum perf.v1.PerfEnum.
  */
-export declare const PerfEnumDesc: GenDescEnum<PerfEnum>;
+export declare const PerfEnumSchema: GenDescEnum<PerfEnum>;
 

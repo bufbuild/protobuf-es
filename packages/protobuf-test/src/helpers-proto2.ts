@@ -64,7 +64,7 @@ export function fillProto2MessageNames() {
 }
 
 export function fillProto2Message(msg: proto2_ts.Proto2Message) {
-  const desc = proto2_ts.Proto2MessageDesc;
+  const desc = proto2_ts.Proto2MessageSchema;
   // required
   msg.requiredStringField = "non-zero";
   msg.requiredInt64Field = protoInt64.parse(123);
@@ -72,7 +72,7 @@ export function fillProto2Message(msg: proto2_ts.Proto2Message) {
   msg.requiredInt64JsStringField = "456";
   msg.requiredEnumField = proto2_ts.Proto2Enum.YES;
   msg.requiredMessageField = create(desc);
-  msg.requiredgroup = create(proto2_ts.Proto2Message_RequiredGroupDesc);
+  msg.requiredgroup = create(proto2_ts.Proto2Message_RequiredGroupSchema);
   msg.requiredWrappedUint32Field = 66;
   // required with default
   msg.requiredDefaultStringField = "non-zero";
@@ -82,7 +82,7 @@ export function fillProto2Message(msg: proto2_ts.Proto2Message) {
   msg.requiredDefaultEnumField = proto2_ts.Proto2Enum.YES;
   msg.requiredDefaultMessageField = create(desc);
   msg.requireddefaultgroup = create(
-    proto2_ts.Proto2Message_RequiredDefaultGroupDesc,
+    proto2_ts.Proto2Message_RequiredDefaultGroupSchema,
   );
   msg.requiredDefaultWrappedUint32Field = 66;
   // optional
@@ -92,7 +92,7 @@ export function fillProto2Message(msg: proto2_ts.Proto2Message) {
   msg.optionalInt64JsStringField = "0";
   msg.optionalEnumField = proto2_ts.Proto2Enum.YES;
   msg.optionalMessageField = create(desc);
-  msg.optionalgroup = create(proto2_ts.Proto2Message_OptionalGroupDesc);
+  msg.optionalgroup = create(proto2_ts.Proto2Message_OptionalGroupSchema);
   msg.optionalWrappedUint32Field = 66;
   // optional with default
   msg.optionalDefaultStringField = "";
@@ -102,7 +102,7 @@ export function fillProto2Message(msg: proto2_ts.Proto2Message) {
   msg.optionalDefaultEnumField = proto2_ts.Proto2Enum.YES;
   msg.optionalDefaultMessageField = create(desc);
   msg.optionaldefaultgroup = create(
-    proto2_ts.Proto2Message_OptionalDefaultGroupDesc,
+    proto2_ts.Proto2Message_OptionalDefaultGroupSchema,
   );
   msg.optionalDefaultWrappedUint32Field = 66;
   // repeated
