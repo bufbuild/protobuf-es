@@ -54,6 +54,7 @@ import {
 import * as ext_proto2 from "./gen/ts/extra/extensions-proto2_pb.js";
 import * as ext_proto3 from "./gen/ts/extra/extensions-proto3_pb.js";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
+import * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
 import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
@@ -63,13 +64,13 @@ import { compileMessage } from "./helpers.js";
 describe("enumToJson()", () => {
   test("returns proto name", () => {
     const json:
-      | "PROTO3_ENUM_YES"
-      | "PROTO3_ENUM_NO"
-      | "PROTO3_ENUM_UNSPECIFIED" = enumToJson(
-      proto3_ts.Proto3EnumSchema,
-      proto3_ts.Proto3Enum.YES,
+      | "JSON_TYPE_ENUM_YES"
+      | "JSON_TYPE_ENUM_NO"
+      | "JSON_TYPE_ENUM_UNSPECIFIED" = enumToJson(
+      json_types_ts_json.JsonTypeEnumSchema,
+      json_types_ts_json.JsonTypeEnum.YES,
     );
-    expect(json).toBe("PROTO3_ENUM_YES");
+    expect(json).toBe("JSON_TYPE_ENUM_YES");
   });
   test("returns null for google.protobuf.NullValue", () => {
     const json: null = enumToJson(NullValueSchema, NullValue.NULL_VALUE);
@@ -77,27 +78,27 @@ describe("enumToJson()", () => {
   });
   test("returns string|null for anonymous descriptor", () => {
     const json: string | null = enumToJson(
-      proto3_ts.Proto3EnumSchema as DescEnum,
-      proto3_ts.Proto3Enum.YES,
+      json_types_ts_json.JsonTypeEnumSchema as DescEnum,
+      json_types_ts_json.JsonTypeEnum.YES,
     );
-    expect(json).toBe("PROTO3_ENUM_YES");
+    expect(json).toBe("JSON_TYPE_ENUM_YES");
   });
 });
 
 describe("enumFromJson()", () => {
   test("parses string", () => {
-    const e: proto3_ts.Proto3Enum = enumFromJson(
-      proto3_ts.Proto3EnumSchema,
-      "PROTO3_ENUM_YES",
+    const e: json_types_ts_json.JsonTypeEnum = enumFromJson(
+      json_types_ts_json.JsonTypeEnumSchema,
+      "JSON_TYPE_ENUM_YES",
     );
-    expect(e).toBe(proto3_ts.Proto3Enum.YES);
+    expect(e).toBe(json_types_ts_json.JsonTypeEnum.YES);
   });
   test("parses number for anonymous descriptor", () => {
     const e: number = enumFromJson(
-      proto3_ts.Proto3EnumSchema as DescEnum,
-      "PROTO3_ENUM_YES",
+      json_types_ts_json.JsonTypeEnumSchema as DescEnum,
+      "JSON_TYPE_ENUM_YES",
     );
-    expect(e).toBe(proto3_ts.Proto3Enum.YES);
+    expect(e).toBe(json_types_ts_json.JsonTypeEnum.YES);
   });
   test("parses null for google.protobuf.NullValue", () => {
     const e: NullValue = enumFromJson(NullValueSchema, null);
@@ -106,28 +107,31 @@ describe("enumFromJson()", () => {
   test("raises error on unknown string", () => {
     expect(() => {
       // @ts-expect-error TS2345
-      enumFromJson(proto3_ts.Proto3EnumSchema, "FOO");
-    }).toThrow(/cannot decode enum spec.Proto3Enum from JSON: "FOO"/);
+      enumFromJson(json_types_ts_json.JsonTypeEnumSchema, "FOO");
+    }).toThrow(/cannot decode enum spec.JsonTypeEnum from JSON: "FOO"/);
   });
 });
 
 describe("isEnumJson()", () => {
   test("narrows type", () => {
     const str: string = "FOO";
-    if (isEnumJson(proto3_ts.Proto3EnumSchema, str)) {
+    if (isEnumJson(json_types_ts_json.JsonTypeEnumSchema, str)) {
       const yes:
-        | "PROTO3_ENUM_YES"
-        | "PROTO3_ENUM_NO"
-        | "PROTO3_ENUM_UNSPECIFIED" = str;
+        | "JSON_TYPE_ENUM_YES"
+        | "JSON_TYPE_ENUM_NO"
+        | "JSON_TYPE_ENUM_UNSPECIFIED" = str;
       expect(yes).toBeDefined();
     }
   });
   test("returns true for known value", () => {
-    const ok = isEnumJson(proto3_ts.Proto3EnumSchema, "PROTO3_ENUM_YES");
+    const ok = isEnumJson(
+      json_types_ts_json.JsonTypeEnumSchema,
+      "JSON_TYPE_ENUM_YES",
+    );
     expect(ok).toBe(true);
   });
   test("returns false for unknown value", () => {
-    const ok = isEnumJson(proto3_ts.Proto3EnumSchema, "FOO");
+    const ok = isEnumJson(json_types_ts_json.JsonTypeEnumSchema, "FOO");
     expect(ok).toBe(false);
   });
 });

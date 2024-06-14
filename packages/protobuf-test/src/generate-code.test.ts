@@ -35,6 +35,8 @@ import * as test_messages_proto3_ts from "./gen/ts/google/protobuf/test_messages
 import * as test_messages_proto3_js from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
 import * as options_ts from "./gen/ts/extra/options_pb.js";
 import * as option_usage_ts from "./gen/ts/extra/option-usage_pb.js";
+import * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
+import * as json_types_js_json from "./gen/js,json_types/extra/json_types_pb.js";
 
 test("source retention options are unavailable in generated code", () => {
   const fileOptions = option_usage_ts.file_extra_option_usage.proto.options;
@@ -94,21 +96,42 @@ test("source retention options are unavailable in generated code", () => {
 });
 
 describe("JSON types", () => {
-  const ok: proto3_ts.Proto3MessageJson = {
-    singularBoolField: true,
-    singularInt32Field: 123,
-    singularInt64Field: "456",
-    singularEnumField: "PROTO3_ENUM_YES",
-    singularBytesField: "",
-    singularFloatField: "Infinity",
-    repeatedEnumField: ["PROTO3_ENUM_YES", "PROTO3_ENUM_NO"],
-    singularWrappedUint32Field: 123,
+  const ok_ts: json_types_ts_json.JsonTypesMessageJson = {
+    boolField: true,
+    doubleField: "Infinity",
+    bytesField: "aGVsbG8gd29ybGQ=",
+    int64Field: "123",
+    enumField: "JSON_TYPE_ENUM_YES",
+    repeatedEnumField: ["JSON_TYPE_ENUM_YES", "JSON_TYPE_ENUM_NO"],
+    mapBoolEnumField: {
+      true: "JSON_TYPE_ENUM_YES",
+    },
   };
-  expect(ok).toBeDefined();
+  expect(ok_ts).toBeDefined();
+  const ok_js: json_types_js_json.JsonTypesMessageJson = {
+    boolField: true,
+    doubleField: "Infinity",
+    bytesField: "aGVsbG8gd29ybGQ=",
+    int64Field: "123",
+    enumField: "JSON_TYPE_ENUM_YES",
+    repeatedEnumField: ["JSON_TYPE_ENUM_YES", "JSON_TYPE_ENUM_NO"],
+    mapBoolEnumField: {
+      true: "JSON_TYPE_ENUM_YES",
+    },
+  };
+  expect(ok_js).toBeDefined();
 });
 
 test("ts generated code is assignable to js", () => {
   expect([
+    function f(
+      ts: json_types_ts_json.JsonTypesMessageJson,
+      js: json_types_js_json.JsonTypesMessageJson,
+    ) {
+      ts = js;
+      js = ts;
+      return [ts, js];
+    },
     function f(ts: proto2_ts.Proto2Enum, js: proto2_js.Proto2Enum) {
       ts = js;
       js = ts;
