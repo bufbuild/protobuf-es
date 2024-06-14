@@ -85,7 +85,7 @@ function generateTs(schema: Schema) {
           const { GenDescExtension, extDesc } = f.runtime.codegen;
           const name = f.importSchema(desc).name;
           const E = f.importShape(desc.extendee);
-          const V = fieldTypeScriptType(desc).typing;
+          const V = fieldTypeScriptType(desc, f.runtime).typing;
           const call = functionCall(extDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print(f.jsDoc(desc));
           f.print(f.export("const", name), ": ", GenDescExtension, "<", E, ", ", V, ">", " = ", pure);
@@ -213,7 +213,7 @@ function generateDts(schema: Schema) {
           const { GenDescExtension } = f.runtime.codegen;
           const name = f.importSchema(desc).name;
           const E = f.importShape(desc.extendee);
-          const V = fieldTypeScriptType(desc).typing;
+          const V = fieldTypeScriptType(desc, f.runtime).typing;
           f.print(f.jsDoc(desc));
           f.print(f.export("declare const", name), ": ", GenDescExtension, "<", E, ", ", V, ">;");
           f.print();
@@ -339,7 +339,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
             f.print(`  } | {`);
           }
           f.print(f.jsDoc(field, "    "));
-          const { typing } = fieldTypeScriptType(field);
+          const { typing } = fieldTypeScriptType(field, f.runtime);
           f.print(`    value: `, typing, `;`);
           f.print(`    case: "`, field.localName, `";`);
         }
@@ -347,7 +347,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
         break;
       default: {
         f.print(f.jsDoc(member, "  "));
-        const { typing, optional } = fieldTypeScriptType(member);
+        const { typing, optional } = fieldTypeScriptType(member, f.runtime);
         if (optional) {
           f.print("  ", member.localName, "?: ", typing, ";");
         } else {

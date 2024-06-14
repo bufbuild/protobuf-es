@@ -17,8 +17,8 @@
 /* eslint-disable */
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
-import type { Message } from "@bufbuild/protobuf";
-import type { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
+import type { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, StringValue, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/protobuf/test_messages_proto3.proto.
@@ -677,7 +677,7 @@ export declare type TestAllTypesProto3 = Message<"protobuf_test_messages.proto3.
   /**
    * @generated from field: google.protobuf.Struct optional_struct = 304;
    */
-  optionalStruct?: Struct;
+  optionalStruct?: JsonObject;
 
   /**
    * @generated from field: google.protobuf.Any optional_any = 305;
@@ -712,7 +712,7 @@ export declare type TestAllTypesProto3 = Message<"protobuf_test_messages.proto3.
   /**
    * @generated from field: repeated google.protobuf.Struct repeated_struct = 324;
    */
-  repeatedStruct: Struct[];
+  repeatedStruct: JsonObject[];
 
   /**
    * @generated from field: repeated google.protobuf.Any repeated_any = 315;

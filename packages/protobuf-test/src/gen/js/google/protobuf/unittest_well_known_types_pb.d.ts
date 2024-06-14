@@ -17,8 +17,8 @@
 /* eslint-disable */
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
-import type { Message } from "@bufbuild/protobuf";
-import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
+import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
 import type { Type } from "./type_pb.js";
 
 /**
@@ -67,7 +67,7 @@ export declare type TestWellKnownTypes = Message<"protobuf_unittest.TestWellKnow
   /**
    * @generated from field: google.protobuf.Struct struct_field = 7;
    */
-  structField?: Struct;
+  structField?: JsonObject;
 
   /**
    * @generated from field: google.protobuf.Timestamp timestamp_field = 8;
@@ -177,7 +177,7 @@ export declare type RepeatedWellKnownTypes = Message<"protobuf_unittest.Repeated
   /**
    * @generated from field: repeated google.protobuf.Struct struct_field = 7;
    */
-  structField: Struct[];
+  structField: JsonObject[];
 
   /**
    * @generated from field: repeated google.protobuf.Timestamp timestamp_field = 8;
@@ -290,7 +290,7 @@ export declare type OneofWellKnownTypes = Message<"protobuf_unittest.OneofWellKn
     /**
      * @generated from field: google.protobuf.Struct struct_field = 7;
      */
-    value: Struct;
+    value: JsonObject;
     case: "structField";
   } | {
     /**
@@ -408,7 +408,7 @@ export declare type MapWellKnownTypes = Message<"protobuf_unittest.MapWellKnownT
   /**
    * @generated from field: map<int32, google.protobuf.Struct> struct_field = 7;
    */
-  structField: { [key: number]: Struct };
+  structField: { [key: number]: JsonObject };
 
   /**
    * @generated from field: map<int32, google.protobuf.Timestamp> timestamp_field = 8;

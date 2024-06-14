@@ -54,6 +54,8 @@ import {
   uint64_ext_js_string,
   unpacked_uint32_ext,
   wrapper_ext,
+  struct_ext,
+  repeated_struct_ext,
 } from "./gen/ts/extra/extensions-proto2_pb.js";
 import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import type { DescExtension, DescMessage } from "@bufbuild/protobuf";
@@ -101,7 +103,9 @@ const goldenValues: extensionWithValueCollection = [
   { ext: packed_uint32_ext, val: [1, 2, 3] },
   { ext: unpacked_uint32_ext, val: [4, 5, 6] },
   { ext: repeated_uint64_ext_js_string, val: ["1", "2", "3"] },
+  { ext: repeated_struct_ext, val: [{ shouldBeJson: 1 }, { shouldBeJson: 2 }] },
   { ext: wrapper_ext, val: 123 },
+  { ext: struct_ext, val: { shouldBeJson: true } },
   { ext: groupext, val: create(GroupExtSchema, { a: 123 }) },
   {
     ext: repeatedgroupext,
@@ -133,7 +137,9 @@ const goldenValuesZero: extensionWithValueCollection = [
   { ext: packed_uint32_ext, val: [] },
   { ext: unpacked_uint32_ext, val: [] },
   { ext: repeated_uint64_ext_js_string, val: [] },
+  { ext: repeated_struct_ext, val: [] },
   { ext: wrapper_ext, val: 0 },
+  { ext: struct_ext, val: {} },
   { ext: groupext, val: create(GroupExtSchema) },
   { ext: repeatedgroupext, val: [] },
   { ext: Proto2ExtContainer_uint32_ext, val: 0 },

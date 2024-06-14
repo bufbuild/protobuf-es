@@ -18,11 +18,11 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
+import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any, file_google_protobuf_api, file_google_protobuf_duration, file_google_protobuf_empty, file_google_protobuf_field_mask, file_google_protobuf_source_context, file_google_protobuf_struct, file_google_protobuf_timestamp, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 import type { Type } from "./type_pb.js";
 import { file_google_protobuf_type } from "./type_pb.js";
-import type { Message } from "@bufbuild/protobuf";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_well_known_types.proto.
@@ -71,7 +71,7 @@ export type TestWellKnownTypes = Message<"protobuf_unittest.TestWellKnownTypes">
   /**
    * @generated from field: google.protobuf.Struct struct_field = 7;
    */
-  structField?: Struct;
+  structField?: JsonObject;
 
   /**
    * @generated from field: google.protobuf.Timestamp timestamp_field = 8;
@@ -182,7 +182,7 @@ export type RepeatedWellKnownTypes = Message<"protobuf_unittest.RepeatedWellKnow
   /**
    * @generated from field: repeated google.protobuf.Struct struct_field = 7;
    */
-  structField: Struct[];
+  structField: JsonObject[];
 
   /**
    * @generated from field: repeated google.protobuf.Timestamp timestamp_field = 8;
@@ -296,7 +296,7 @@ export type OneofWellKnownTypes = Message<"protobuf_unittest.OneofWellKnownTypes
     /**
      * @generated from field: google.protobuf.Struct struct_field = 7;
      */
-    value: Struct;
+    value: JsonObject;
     case: "structField";
   } | {
     /**
@@ -415,7 +415,7 @@ export type MapWellKnownTypes = Message<"protobuf_unittest.MapWellKnownTypes"> &
   /**
    * @generated from field: map<int32, google.protobuf.Struct> struct_field = 7;
    */
-  structField: { [key: number]: Struct };
+  structField: { [key: number]: JsonObject };
 
   /**
    * @generated from field: map<int32, google.protobuf.Timestamp> timestamp_field = 8;

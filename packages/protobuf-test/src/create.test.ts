@@ -875,5 +875,52 @@ describe("create()", () => {
         expect(msg.mapInt32WrappedUint32Field[123].value).toBe(123);
       });
     });
+    describe("wkt struct field", () => {
+      test("accepts JsonObject", () => {
+        const msg = create(proto3_ts.Proto3MessageSchema, {
+          singularStructField: {
+            shouldBeJson: true,
+          },
+          repeatedStructField: [
+            {
+              shouldBeJson: 1,
+            },
+            {
+              shouldBeJson: 2,
+            },
+          ],
+          either: {
+            case: "oneofStructField",
+            value: {
+              shouldBeJson: true,
+            },
+          },
+          mapInt32StructField: {
+            123: {
+              shouldBeJson: true,
+            },
+          },
+        });
+
+        expect(msg.singularStructField).toStrictEqual({ shouldBeJson: true });
+        expect(msg.repeatedStructField).toStrictEqual([
+          {
+            shouldBeJson: 1,
+          },
+          {
+            shouldBeJson: 2,
+          },
+        ]);
+        expect(msg.either.case).toBe("oneofStructField");
+        if (msg.either.case == "oneofStructField") {
+          expect(msg.either.value).toStrictEqual({
+            shouldBeJson: true,
+          });
+        }
+        expect(msg.mapInt32StructField[123]).toStrictEqual({
+          shouldBeJson: true,
+        });
+      });
+    });
   });
 });
