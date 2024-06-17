@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
-import type { Message } from "@bufbuild/protobuf";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 import type { User } from "./example_pb.js";
 
 /**
@@ -254,9 +254,19 @@ export declare const unpacked_uint32_ext: GenDescExtension<Proto2Extendee, numbe
 export declare const repeated_uint64_ext_js_string: GenDescExtension<Proto2Extendee, string[]>;
 
 /**
+ * @generated from extension: repeated google.protobuf.Struct repeated_struct_ext = 7007;
+ */
+export declare const repeated_struct_ext: GenDescExtension<Proto2Extendee, JsonObject[]>;
+
+/**
  * @generated from extension: optional google.protobuf.UInt32Value wrapper_ext = 8001;
  */
 export declare const wrapper_ext: GenDescExtension<Proto2Extendee, number>;
+
+/**
+ * @generated from extension: optional google.protobuf.Struct struct_ext = 8002;
+ */
+export declare const struct_ext: GenDescExtension<Proto2Extendee, JsonObject>;
 
 /**
  * @generated from extension: optional proto2ext.GroupExt groupext = 8100;

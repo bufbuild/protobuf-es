@@ -13,24 +13,22 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
-import type { DescMessage } from "@bufbuild/protobuf";
-import { protoInt64 } from "@bufbuild/protobuf";
-import type { Message } from "@bufbuild/protobuf";
-import { UInt32ValueSchema } from "@bufbuild/protobuf/wkt";
-import { create } from "@bufbuild/protobuf";
+import type { DescMessage, Message } from "@bufbuild/protobuf";
+import { create, protoInt64 } from "@bufbuild/protobuf";
 import type { ReflectMessage } from "@bufbuild/protobuf/reflect";
 import {
+  isReflectList,
+  isReflectMap,
+  isReflectMessage,
   reflect,
   reflectList,
   reflectMap,
-  isReflectMessage,
-  isReflectList,
-  isReflectMap,
 } from "@bufbuild/protobuf/reflect";
 import { catchFieldError, compileMessage } from "../helpers.js";
+import assert from "node:assert";
+import { StructSchema, UInt32ValueSchema } from "@bufbuild/protobuf/wkt";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import * as example_ts from "../gen/ts/extra/example_pb.js";
-import assert from "node:assert";
 
 describe("reflect()", () => {
   test("accepts generated message shape", () => {
@@ -173,6 +171,40 @@ describe("ReflectMessage", () => {
         expect(value).toBe(123);
       }
     });
+    test("gets google.protobuf.Struct field", () => {
+      msg.singularStructField = {
+        shouldBeJson: true,
+      };
+      msg.repeatedStructField = [{ shouldBeJson: 1 }, { shouldBeJson: 2 }];
+      msg.either = {
+        case: "oneofStructField",
+        value: {
+          shouldBeJson: true,
+        },
+      };
+      msg.mapInt32StructField = {
+        123: { shouldBeJson: true },
+      };
+      for (const f of desc.fields) {
+        if (f.message?.typeName != StructSchema.typeName) {
+          continue;
+        }
+        // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
+        switch (f.fieldKind) {
+          case "message":
+            expect(isReflectMessage(r.get(f), StructSchema)).toBe(true);
+            break;
+          case "list":
+            expect(isReflectMessage(r.get(f).get(0), StructSchema)).toBe(true);
+            break;
+          case "map":
+            expect(isReflectMessage(r.get(f).get(123), StructSchema)).toBe(
+              true,
+            );
+            break;
+        }
+      }
+    });
     test("gets selected oneof field", () => {
       const f = desc.field.oneofBoolField;
       msg.either = {
@@ -298,6 +330,28 @@ describe("ReflectMessage", () => {
       const wrapper = create(UInt32ValueSchema, { value: 123 });
       r.set(f, reflect(UInt32ValueSchema, wrapper));
       expect(msg.singularWrappedUint32Field).toBe(123);
+    });
+    test("sets google.protobuf.Struct field as JsonObject", () => {
+      const structMessage = create(StructSchema, {
+        fields: {
+          shouldBeJson: {
+            kind: {
+              case: "boolValue",
+              value: true,
+            },
+          },
+        },
+      });
+      const structReflect = reflect(StructSchema, structMessage);
+      r.set(desc.field.singularStructField, structReflect);
+      expect(msg.singularStructField).toStrictEqual({
+        shouldBeJson: true,
+      });
+      r.set(desc.field.oneofStructField, structReflect);
+      expect(msg.either).toStrictEqual({
+        case: "oneofStructField",
+        value: { shouldBeJson: true },
+      });
     });
     test("sets unknown value for open enum", () => {
       const f = desc.field.singularEnumField;

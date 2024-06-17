@@ -19,9 +19,9 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, StringValue, Struct, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
+import type { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, StringValue, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_field_mask, file_google_protobuf_struct, file_google_protobuf_timestamp, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
-import type { Message } from "@bufbuild/protobuf";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/test_messages_proto3_editions.proto.
@@ -681,7 +681,7 @@ export type TestAllTypesProto3 = Message<"protobuf_test_messages.editions.proto3
   /**
    * @generated from field: google.protobuf.Struct optional_struct = 304;
    */
-  optionalStruct?: Struct;
+  optionalStruct?: JsonObject;
 
   /**
    * @generated from field: google.protobuf.Any optional_any = 305;
@@ -716,7 +716,7 @@ export type TestAllTypesProto3 = Message<"protobuf_test_messages.editions.proto3
   /**
    * @generated from field: repeated google.protobuf.Struct repeated_struct = 324;
    */
-  repeatedStruct: Struct[];
+  repeatedStruct: JsonObject[];
 
   /**
    * @generated from field: repeated google.protobuf.Any repeated_any = 315;

@@ -15,13 +15,21 @@
 import {
   type DescExtension,
   type DescField,
+  DescMessage,
   ScalarType,
 } from "@bufbuild/protobuf";
 import { scalarTypeScriptType } from "@bufbuild/protobuf/codegenv1";
-import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
-import type { Printable } from "@bufbuild/protoplugin";
+import {
+  isWrapperDesc,
+  StructSchema,
+  ValueSchema,
+} from "@bufbuild/protobuf/wkt";
+import type { GeneratedFile, Printable } from "@bufbuild/protoplugin";
 
-export function fieldTypeScriptType(field: DescField | DescExtension): {
+export function fieldTypeScriptType(
+  field: DescField | DescExtension,
+  imports: GeneratedFile["runtime"],
+): {
   typing: Printable;
   optional: boolean;
 } {
@@ -33,15 +41,7 @@ export function fieldTypeScriptType(field: DescField | DescExtension): {
       optional = field.proto.proto3Optional;
       break;
     case "message": {
-      if (!field.oneof && isWrapperDesc(field.message)) {
-        const baseType = field.message.fields[0].scalar;
-        typing.push(scalarTypeScriptType(baseType, false));
-      } else {
-        typing.push({
-          kind: "es_shape_ref",
-          desc: field.message,
-        });
-      }
+      typing.push(messageFieldTypeScriptType(field, imports));
       optional = true;
       break;
     }
@@ -71,13 +71,7 @@ export function fieldTypeScriptType(field: DescField | DescExtension): {
           );
           break;
         case "message": {
-          typing.push(
-            {
-              kind: "es_shape_ref",
-              desc: field.message,
-            },
-            "[]",
-          );
+          typing.push(messageFieldTypeScriptType(field, imports), "[]");
           break;
         }
       }
@@ -102,10 +96,7 @@ export function fieldTypeScriptType(field: DescField | DescExtension): {
           valueType = scalarTypeScriptType(field.scalar, false);
           break;
         case "message":
-          valueType = {
-            kind: "es_shape_ref",
-            desc: field.message,
-          };
+          valueType = messageFieldTypeScriptType(field, imports);
           break;
         case "enum":
           valueType = {
@@ -120,6 +111,30 @@ export function fieldTypeScriptType(field: DescField | DescExtension): {
     }
   }
   return { typing, optional };
+}
+
+function messageFieldTypeScriptType(
+  field: (DescField | DescExtension) & { message: DescMessage },
+  imports: GeneratedFile["runtime"],
+): Printable {
+  if (
+    isWrapperDesc(field.message) &&
+    !field.oneof &&
+    field.fieldKind == "message"
+  ) {
+    const baseType = field.message.fields[0].scalar;
+    return scalarTypeScriptType(baseType, false);
+  }
+  if (
+    field.message.typeName == StructSchema.typeName &&
+    field.parent?.typeName != ValueSchema.typeName
+  ) {
+    return imports.JsonObject;
+  }
+  return {
+    kind: "es_shape_ref",
+    desc: field.message,
+  };
 }
 
 export function functionCall(

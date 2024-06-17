@@ -39,7 +39,19 @@ import { create } from "../create.js";
 import { isWrapper, isWrapperDesc } from "../wkt/wrappers.js";
 import { scalarZeroValue } from "./scalar.js";
 import { protoInt64 } from "../proto-int64.js";
-import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
+import {
+  isObject,
+  isReflectList,
+  isReflectMap,
+  isReflectMessage,
+} from "./guard.js";
+import type {
+  ListValue,
+  NullValue,
+  Struct,
+  Value,
+} from "../wkt/gen/google/protobuf/struct_pb.js";
+import type { JsonObject, JsonValue } from "../json-value.js";
 
 /**
  * Create a ReflectMessage.
@@ -115,7 +127,7 @@ class ReflectMessageImpl implements ReflectMessage {
 
   get<Field extends DescField>(field: Field): ReflectMessageGet<Field> {
     assertOwn(this.message, field);
-    let value = unsafeGet(this.message, field);
+    const value = unsafeGet(this.message, field);
     switch (field.fieldKind) {
       case "list":
         // eslint-disable-next-line no-case-declarations
@@ -142,19 +154,9 @@ class ReflectMessageImpl implements ReflectMessage {
         }
         return map as ReflectMessageGet<Field>;
       case "message":
-        if (
-          value !== undefined &&
-          !field.oneof &&
-          isWrapperDesc(field.message)
-        ) {
-          value = {
-            $typeName: field.message.typeName,
-            value: longToReflect(field.message.fields[0], value),
-          } satisfies Message & { value: unknown };
-        }
-        return new ReflectMessageImpl(
-          field.message,
-          value as Message | undefined,
+        return messageToReflect(
+          field,
+          value,
           this.check,
         ) as ReflectMessageGet<Field>;
       case "scalar":
@@ -178,11 +180,10 @@ class ReflectMessageImpl implements ReflectMessage {
       }
     }
     let local: unknown;
-    if (isReflectMap(value) || isReflectList(value)) {
+    if (field.fieldKind == "message") {
+      local = messageToLocal(field, value);
+    } else if (isReflectMap(value) || isReflectList(value)) {
       local = value[unsafeLocal];
-    } else if (isReflectMessage(value)) {
-      const msg = value.message;
-      local = !field.oneof && isWrapper(msg) ? msg.value : msg;
     } else {
       local = longToLocal(field, value);
     }
@@ -403,12 +404,73 @@ class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
   }
 }
 
+function messageToLocal(
+  field: DescField & { message: DescMessage },
+  value: unknown,
+) {
+  if (!isReflectMessage(value)) {
+    return value;
+  }
+  if (
+    isWrapper(value.message) &&
+    !field.oneof &&
+    field.fieldKind == "message"
+  ) {
+    // Types from google/protobuf/wrappers.proto are unwrapped when used in
+    // a singular field that is not part of a oneof group.
+    return value.message.value;
+  }
+  if (
+    value.desc.typeName == "google.protobuf.Struct" &&
+    field.parent.typeName != "google.protobuf.Value"
+  ) {
+    // google.protobuf.Struct is represented with JsonObject when used in a
+    // field, except when used in google.protobuf.Value.
+    return wktStructToLocal(value.message as Struct);
+  }
+  return value.message;
+}
+
+function messageToReflect(
+  field: DescField & { message: DescMessage },
+  value: unknown,
+  check: boolean,
+) {
+  if (value !== undefined) {
+    if (
+      isWrapperDesc(field.message) &&
+      !field.oneof &&
+      field.fieldKind == "message"
+    ) {
+      // Types from google/protobuf/wrappers.proto are unwrapped when used in
+      // a singular field that is not part of a oneof group.
+      value = {
+        $typeName: field.message.typeName,
+        value: longToReflect(field.message.fields[0], value),
+      } satisfies Message & { value: unknown };
+    } else if (
+      field.message.typeName == "google.protobuf.Struct" &&
+      field.parent.typeName != "google.protobuf.Value" &&
+      isObject(value)
+    ) {
+      // google.protobuf.Struct is represented with JsonObject when used in a
+      // field, except when used in google.protobuf.Value.
+      value = wktStructToReflect(value as JsonObject);
+    }
+  }
+  return new ReflectMessageImpl(
+    field.message,
+    value as Message | undefined,
+    check,
+  );
+}
+
 function listItemToLocal(
   field: DescField & { fieldKind: "list" },
   value: unknown,
 ): unknown {
-  if (isReflectMessage(value)) {
-    return value.message;
+  if (field.listKind == "message") {
+    return messageToLocal(field, value);
   }
   return longToLocal(field, value);
 }
@@ -419,7 +481,7 @@ function listItemToReflect(
   check: boolean,
 ): unknown {
   if (field.listKind == "message") {
-    return new ReflectMessageImpl(field.message, value as Message, check);
+    return messageToReflect(field, value, check);
   }
   return longToReflect(field, value);
 }
@@ -428,8 +490,8 @@ function mapValueToLocal(
   field: DescField & { fieldKind: "map" },
   value: unknown,
 ) {
-  if (isReflectMessage(value)) {
-    return value.message;
+  if (field.mapKind == "message") {
+    return messageToLocal(field, value);
   }
   return longToLocal(field, value);
 }
@@ -440,7 +502,7 @@ function mapValueToReflect(
   check: boolean,
 ): unknown {
   if (field.mapKind == "message") {
-    return new ReflectMessageImpl(field.message, value as Message, check);
+    return messageToReflect(field, value, check);
   }
   return value;
 }
@@ -549,6 +611,86 @@ function longToLocal(field: DescField, value: unknown) {
         value = String(value);
       } else if (typeof value == "string" || typeof value == "number") {
         value = protoInt64.uParse(value);
+      }
+      break;
+  }
+  return value;
+}
+
+function wktStructToReflect(json: JsonValue): Struct {
+  const struct: Struct = {
+    $typeName: "google.protobuf.Struct",
+    fields: {},
+  };
+  if (isObject(json)) {
+    for (const [k, v] of Object.entries(json)) {
+      struct.fields[k] = wktValueToReflect(v);
+    }
+  }
+  return struct;
+}
+
+function wktStructToLocal(val: Struct) {
+  const json: JsonObject = {};
+  for (const [k, v] of Object.entries(val.fields)) {
+    json[k] = wktValueToLocal(v);
+  }
+  return json;
+}
+
+function wktValueToLocal(val: Value): JsonValue {
+  switch (val.kind.case) {
+    case "structValue":
+      return wktStructToLocal(val.kind.value);
+    case "listValue":
+      return val.kind.value.values.map(wktValueToLocal);
+    case "nullValue":
+    case undefined:
+      return null;
+    default:
+      return val.kind.value;
+  }
+}
+
+function wktValueToReflect(json: JsonValue): Value {
+  const value: Value = {
+    $typeName: "google.protobuf.Value",
+    kind: { case: undefined },
+  };
+  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- invalid input is unselected kind
+  switch (typeof json) {
+    case "number":
+      value.kind = { case: "numberValue", value: json };
+      break;
+    case "string":
+      value.kind = { case: "stringValue", value: json };
+      break;
+    case "boolean":
+      value.kind = { case: "boolValue", value: json };
+      break;
+    case "object":
+      if (json === null) {
+        const nullValue: NullValue.NULL_VALUE = 0;
+        value.kind = { case: "nullValue", value: nullValue };
+      } else if (Array.isArray(json)) {
+        const listValue: ListValue = {
+          $typeName: "google.protobuf.ListValue",
+          values: [],
+        };
+        if (Array.isArray(json)) {
+          for (const e of json) {
+            listValue.values.push(wktValueToReflect(e));
+          }
+        }
+        value.kind = {
+          case: "listValue",
+          value: listValue,
+        };
+      } else {
+        value.kind = {
+          case: "structValue",
+          value: wktStructToReflect(json),
+        };
       }
       break;
   }
