@@ -16,7 +16,6 @@ import { describe, expect, test } from "@jest/globals";
 import {
   type MessageInitShape,
   type DescMessage,
-  type DescEnum,
   type JsonValue,
   createRegistry,
   create,
@@ -27,9 +26,6 @@ import {
   getExtension,
   mergeFromJsonString,
   protoInt64,
-  enumFromJson,
-  enumToJson,
-  isEnumJson,
 } from "@bufbuild/protobuf";
 import {
   RepeatedScalarValuesMessageSchema,
@@ -48,93 +44,15 @@ import {
   TimestampSchema,
   ValueSchema,
   FileOptionsSchema,
-  NullValueSchema,
-  NullValue,
 } from "@bufbuild/protobuf/wkt";
 import * as ext_proto2 from "./gen/ts/extra/extensions-proto2_pb.js";
 import * as ext_proto3 from "./gen/ts/extra/extensions-proto3_pb.js";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
-import * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
 import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
 import { TestAllTypesProto3Schema } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { compileMessage } from "./helpers.js";
-
-describe("enumToJson()", () => {
-  test("returns proto name", () => {
-    const json:
-      | "JSON_TYPE_ENUM_YES"
-      | "JSON_TYPE_ENUM_NO"
-      | "JSON_TYPE_ENUM_UNSPECIFIED" = enumToJson(
-      json_types_ts_json.JsonTypeEnumSchema,
-      json_types_ts_json.JsonTypeEnum.YES,
-    );
-    expect(json).toBe("JSON_TYPE_ENUM_YES");
-  });
-  test("returns null for google.protobuf.NullValue", () => {
-    const json: null = enumToJson(NullValueSchema, NullValue.NULL_VALUE);
-    expect(json).toBe(null);
-  });
-  test("returns string|null for anonymous descriptor", () => {
-    const json: string | null = enumToJson(
-      json_types_ts_json.JsonTypeEnumSchema as DescEnum,
-      json_types_ts_json.JsonTypeEnum.YES,
-    );
-    expect(json).toBe("JSON_TYPE_ENUM_YES");
-  });
-});
-
-describe("enumFromJson()", () => {
-  test("parses string", () => {
-    const e: json_types_ts_json.JsonTypeEnum = enumFromJson(
-      json_types_ts_json.JsonTypeEnumSchema,
-      "JSON_TYPE_ENUM_YES",
-    );
-    expect(e).toBe(json_types_ts_json.JsonTypeEnum.YES);
-  });
-  test("parses number for anonymous descriptor", () => {
-    const e: number = enumFromJson(
-      json_types_ts_json.JsonTypeEnumSchema as DescEnum,
-      "JSON_TYPE_ENUM_YES",
-    );
-    expect(e).toBe(json_types_ts_json.JsonTypeEnum.YES);
-  });
-  test("parses null for google.protobuf.NullValue", () => {
-    const e: NullValue = enumFromJson(NullValueSchema, null);
-    expect(e).toBe(NullValue.NULL_VALUE);
-  });
-  test("raises error on unknown string", () => {
-    expect(() => {
-      // @ts-expect-error TS2345
-      enumFromJson(json_types_ts_json.JsonTypeEnumSchema, "FOO");
-    }).toThrow(/cannot decode enum spec.JsonTypeEnum from JSON: "FOO"/);
-  });
-});
-
-describe("isEnumJson()", () => {
-  test("narrows type", () => {
-    const str: string = "FOO";
-    if (isEnumJson(json_types_ts_json.JsonTypeEnumSchema, str)) {
-      const yes:
-        | "JSON_TYPE_ENUM_YES"
-        | "JSON_TYPE_ENUM_NO"
-        | "JSON_TYPE_ENUM_UNSPECIFIED" = str;
-      expect(yes).toBeDefined();
-    }
-  });
-  test("returns true for known value", () => {
-    const ok = isEnumJson(
-      json_types_ts_json.JsonTypeEnumSchema,
-      "JSON_TYPE_ENUM_YES",
-    );
-    expect(ok).toBe(true);
-  });
-  test("returns false for unknown value", () => {
-    const ok = isEnumJson(json_types_ts_json.JsonTypeEnumSchema, "FOO");
-    expect(ok).toBe(false);
-  });
-});
 
 describe("JSON serialization", () => {
   testJson(
