@@ -55,7 +55,7 @@ export type MessageJsonType<Desc extends DescMessage> =
 export type MessageInitShape<Desc extends DescMessage> =
   Desc extends GenDescMessage<infer RuntimeShape>
     ? RuntimeShape | MessageInit<RuntimeShape>
-    : Record<string, unknown>; // TODO better input type?
+    : Record<string, unknown>;
 
 /**
  * Extract the enum type of from an enum descriptor.

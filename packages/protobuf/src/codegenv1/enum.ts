@@ -16,7 +16,6 @@ import type { DescEnum, DescFile } from "../descriptors.js";
 import type { GenDescEnum } from "./types.js";
 import type { JsonValue } from "../json-value.js";
 
-// TODO make JsonType parameter mandatory?
 /**
  * Hydrate an enum descriptor.
  *

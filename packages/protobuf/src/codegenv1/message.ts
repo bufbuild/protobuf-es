@@ -17,7 +17,6 @@ import type { DescFile } from "../descriptors.js";
 import type { GenDescMessage } from "./types.js";
 import type { JsonValue } from "../json-value.js";
 
-// TODO make JsonType parameter mandatory?
 /**
  * Hydrate a message descriptor.
  *

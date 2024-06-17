@@ -31,7 +31,6 @@ import type { JsonValue } from "../json-value.js";
  */
 export type GenDescFile = DescFile;
 
-// TODO make JsonType parameter mandatory?
 /**
  * Describes a message declaration in a protobuf source file.
  *
@@ -46,7 +45,6 @@ export type GenDescMessage<RuntimeShape extends Message, JsonType = JsonValue> =
   & { field: Record<MessageFieldNames<RuntimeShape>, DescField> }
   & brand<RuntimeShape, JsonType>;
 
-// TODO make JsonType parameter mandatory?
 /**
  * Describes an enumeration in a protobuf source file.
  *
