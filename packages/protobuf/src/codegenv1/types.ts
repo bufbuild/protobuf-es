@@ -42,7 +42,7 @@ export type GenDescFile = DescFile;
 export type GenDescMessage<RuntimeShape extends Message> =
   & Omit<DescMessage, "field">
   & { field: Record<MessageFieldNames<RuntimeShape>, DescField> }
-  & brand<RuntimeShape>;
+  & brandv1<RuntimeShape>;
 
 /**
  * Describes an enumeration in a protobuf source file.
@@ -52,7 +52,7 @@ export type GenDescMessage<RuntimeShape extends Message> =
  *
  * @private
  */
-export type GenDescEnum<RuntimeShape> = DescEnum & brand<RuntimeShape>;
+export type GenDescEnum<RuntimeShape> = DescEnum & brandv1<RuntimeShape>;
 
 /**
  * Describes an extension in a protobuf source file.
@@ -65,7 +65,7 @@ export type GenDescEnum<RuntimeShape> = DescEnum & brand<RuntimeShape>;
 export type GenDescExtension<
   Extendee extends Message = Message,
   RuntimeShape = unknown,
-> = DescExtension & brand<Extendee, RuntimeShape>;
+> = DescExtension & brandv1<Extendee, RuntimeShape>;
 
 /**
  * Describes a service declaration in a protobuf source file.
@@ -90,7 +90,8 @@ export type GenDescServiceMethods = Record<
   Pick<DescMethod, "input" | "output" | "methodKind">
 >;
 
-class brand<A, B = unknown> {
+class brandv1<A, B = unknown> {
+  protected v = "codegenv1" as const;
   protected a: A | boolean = false;
   protected b: B | boolean = false;
 }
