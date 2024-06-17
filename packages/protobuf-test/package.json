@@ -2,12 +2,10 @@
   "name": "@bufbuild/protobuf-test",
   "private": true,
   "scripts": {
-    "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
-    "build": "npm run build:esm+types && npm run build:copy-gen-js && npm run build:copy-perf-payload",
-    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/types",
-    "build:copy-gen-js": "rsync -a --exclude '*.js' src/gen/js dist/types/gen && rsync -a --exclude '*.d.ts' src/gen/js dist/esm/gen",
-    "build:copy-perf-payload": "cp src/perf-payload.* dist/esm/",
-    "pregenerate": "rm -rf src/gen/*/* descriptorset.*",
+    "clean": "rm -rf ./dist/*",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist --declaration",
+    "postbuild": "cp src/perf-payload.* dist && cp -r src/gen/js* dist/gen",
+    "pregenerate": "rm -rf src/gen/*/*",
     "generate": "npm run generate:ts && npm run generate:js",
     "generate:ts": "protoc --es_out=src/gen/ts --es_opt=ts_nocheck=false,target=ts,import_extension=.js     --proto_path=. $(buf ls-files extra) --proto_path=$(upstream-include test) $(upstream-files test) google/protobuf/type.proto",
     "generate:js": "protoc --es_out=src/gen/js --es_opt=ts_nocheck=false,target=js+dts,import_extension=.js --proto_path=. $(buf ls-files extra) --proto_path=$(upstream-include test) $(upstream-files test) google/protobuf/type.proto",
@@ -20,11 +18,6 @@
     "test:string": "BUF_BIGINT_DISABLE=1 NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "type": "module",
-  "types": "./dist/types/index.d.ts",
-  "exports": {
-    "import": "./dist/esm/index.js",
-    "default": "./dist/esm/index.js"
-  },
   "dependencies": {
     "@bufbuild/protobuf": "2.0.0-alpha.4",
     "@types/benchmark": "^2.1.5",
