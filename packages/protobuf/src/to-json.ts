@@ -114,21 +114,38 @@ function makeWriteOptions(
   return options ? { ...jsonWriteDefaults, ...options } : jsonWriteDefaults;
 }
 
-// TODO return JsonType only if options are omitted, or if options enumAsInteger and useProtoFieldName are not true
 /**
  * Serialize the message to a JSON value, a JavaScript value that can be
  * passed to JSON.stringify().
  */
-export function toJson<Desc extends DescMessage>(
+export function toJson<
+  Desc extends DescMessage,
+  Opts extends Partial<JsonWriteOptions> | undefined = undefined,
+>(
   schema: Desc,
   message: MessageShape<Desc>,
-  options?: Partial<JsonWriteOptions>,
-): MessageJsonType<Desc> {
+  options?: Opts,
+): ToJson<Desc, Opts> {
   return reflectToJson(
     reflect(schema, message),
     makeWriteOptions(options),
-  ) as MessageJsonType<Desc>;
+  ) as ToJson<Desc, Opts>;
 }
+
+// For standard JSON write options, return the JSON type if available.
+// Otherwise, return a generic JSON value.
+type ToJson<
+  Desc extends DescMessage,
+  Opts extends undefined | Partial<JsonWriteOptions>,
+> = Opts extends
+  | undefined
+  | {
+      alwaysEmitImplicit?: false;
+      enumAsInteger?: false;
+      useProtoFieldName?: false;
+    }
+  ? MessageJsonType<Desc>
+  : JsonValue;
 
 /**
  * Serialize the message to a JSON string.
