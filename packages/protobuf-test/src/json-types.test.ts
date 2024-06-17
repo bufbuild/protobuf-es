@@ -66,8 +66,61 @@ import {
   NullValue,
 } from "@bufbuild/protobuf/wkt";
 import * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
+import * as json_types_ts_nojson from "./gen/ts/extra/json_types_pb.js";
 
 describe("JSON types", () => {
+  describe("MessageJsonType", () => {
+    test("should resolve generated type", () => {
+      function f(
+        pickedFromDesc: MessageJsonType<
+          typeof json_types_ts_json.JsonTypesMessageSchema
+        >,
+        generatedType: json_types_ts_json.JsonTypesMessageJson,
+      ) {
+        generatedType = pickedFromDesc;
+        return generatedType;
+      }
+      expect(f).toBeDefined();
+    });
+    test("should resolve JsonValue without generated type", () => {
+      function f(
+        pickedFromDesc: MessageJsonType<
+          typeof json_types_ts_nojson.JsonTypesMessageSchema
+        >,
+        genericJsonValue: JsonValue,
+      ) {
+        pickedFromDesc = genericJsonValue;
+        return pickedFromDesc;
+      }
+      expect(f).toBeDefined();
+    });
+  });
+  describe("EnumJsonType", () => {
+    test("should resolve generated type", () => {
+      function f(
+        pickedFromDesc: EnumJsonType<
+          typeof json_types_ts_json.JsonTypeEnumSchema
+        >,
+        generatedType: json_types_ts_json.JsonTypeEnumJson,
+      ) {
+        generatedType = pickedFromDesc;
+        return generatedType;
+      }
+      expect(f).toBeDefined();
+    });
+    test("should resolve string without generated type", () => {
+      function f(
+        pickedFromDesc: EnumJsonType<
+          typeof json_types_ts_nojson.JsonTypeEnumSchema
+        >,
+        stringOrNull: string | null,
+      ) {
+        pickedFromDesc = stringOrNull;
+        return pickedFromDesc;
+      }
+      expect(f).toBeDefined();
+    });
+  });
   test("toJson() returns JSON type for standard options", () => {
     const msg = create(json_types_ts_json.JsonTypesMessageSchema);
     let json: json_types_ts_json.JsonTypesMessageJson;
