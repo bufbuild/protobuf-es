@@ -83,11 +83,7 @@ function initMessage<Desc extends DescMessage>(
     // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- no need to convert enum
     switch (field.fieldKind) {
       case "message":
-        if (!field.oneof && isWrapperDesc(field.message)) {
-          value = initScalar(field.message.fields[0], value);
-        } else {
-          value = toMessage(value, field.message);
-        }
+        value = toMessage(field, value);
         break;
       case "scalar":
         value = initScalar(field, value);
@@ -123,7 +119,7 @@ function initMap(
       return convertObjectValues(value, toU8Arr);
     }
     if (field.mapKind == "message") {
-      return convertObjectValues(value, (val) => toMessage(val, field.message));
+      return convertObjectValues(value, (val) => toMessage(field, val));
     }
   }
   return value;
@@ -138,15 +134,37 @@ function initList(
       return value.map(toU8Arr);
     }
     if (field.listKind == "message") {
-      return value.map((item: unknown) => toMessage(item, field.message));
+      return value.map((item: unknown) => toMessage(field, item));
     }
   }
   return value;
 }
 
-function toMessage(value: unknown, message: DescMessage): unknown {
-  if (!isMessage(value, message) && isObject(value)) {
-    return create(message, value);
+function toMessage(
+  field: DescField & { message: DescMessage },
+  value: unknown,
+): unknown {
+  if (
+    field.fieldKind == "message" &&
+    !field.oneof &&
+    isWrapperDesc(field.message)
+  ) {
+    // Types from google/protobuf/wrappers.proto are unwrapped when used in
+    // a singular field that is not part of a oneof group.
+    return initScalar(field.message.fields[0], value);
+  }
+  if (isObject(value)) {
+    if (
+      field.message.typeName == "google.protobuf.Struct" &&
+      field.parent.typeName !== "google.protobuf.Value"
+    ) {
+      // google.protobuf.Struct is represented with JsonObject when used in a
+      // field, except when used in google.protobuf.Value.
+      return value;
+    }
+    if (!isMessage(value, field.message)) {
+      return create(field.message, value);
+    }
   }
   return value;
 }

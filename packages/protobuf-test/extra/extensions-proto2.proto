@@ -17,6 +17,7 @@ package proto2ext;
 
 import "extra/example.proto";
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/struct.proto";
 
 // The message we're going to extend
 message Proto2Extendee {
@@ -63,8 +64,10 @@ extend Proto2Extendee {
   repeated uint32 packed_uint32_ext = 7003 [packed = true];
   repeated uint32 unpacked_uint32_ext = 7004; // unpacked by default in proto2
   repeated uint64 repeated_uint64_ext_js_string = 7006 [jstype = JS_STRING];
+  repeated google.protobuf.Struct repeated_struct_ext = 7007;
 
   optional google.protobuf.UInt32Value wrapper_ext = 8001;
+  optional google.protobuf.Struct struct_ext = 8002;
 
   optional group GroupExt = 8100 {
     optional int32 a = 1;

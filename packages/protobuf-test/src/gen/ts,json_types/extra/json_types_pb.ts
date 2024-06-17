@@ -18,9 +18,9 @@
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any, AnyJson, BoolValueJson, BytesValueJson, DoubleValueJson, Duration, DurationJson, Empty, EmptyJson, FieldMask, FieldMaskJson, FloatValueJson, Int32ValueJson, Int64ValueJson, ListValue, ListValueJson, NullValue, NullValueJson, StringValueJson, Struct, StructJson, Timestamp, TimestampJson, UInt32ValueJson, UInt64ValueJson, Value, ValueJson } from "@bufbuild/protobuf/wkt";
+import type { Any, AnyJson, BoolValueJson, BytesValueJson, DoubleValueJson, Duration, DurationJson, Empty, EmptyJson, FieldMask, FieldMaskJson, FloatValueJson, Int32ValueJson, Int64ValueJson, ListValue, ListValueJson, NullValue, NullValueJson, StringValueJson, StructJson, Timestamp, TimestampJson, UInt32ValueJson, UInt64ValueJson, Value, ValueJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_empty, file_google_protobuf_field_mask, file_google_protobuf_struct, file_google_protobuf_timestamp, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
-import type { Message } from "@bufbuild/protobuf";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/json_types.proto.
@@ -85,7 +85,7 @@ export type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   /**
    * @generated from field: google.protobuf.Struct struct_field = 11;
    */
-  structField?: Struct;
+  structField?: JsonObject;
 
   /**
    * @generated from field: google.protobuf.Value value_field = 12;

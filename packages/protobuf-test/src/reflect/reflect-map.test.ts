@@ -13,18 +13,18 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import {
   isReflectMap,
   reflectMap,
   reflect,
   isReflectMessage,
 } from "@bufbuild/protobuf/reflect";
-import { protoInt64 } from "@bufbuild/protobuf";
-import { UserSchema } from "../gen/ts/extra/example_pb.js";
-import { create } from "@bufbuild/protobuf";
+import { create, protoInt64 } from "@bufbuild/protobuf";
 import assert from "node:assert";
 import { catchFieldError } from "../helpers.js";
+import { StructSchema } from "@bufbuild/protobuf/wkt";
+import { UserSchema } from "../gen/ts/extra/example_pb.js";
+import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 
 describe("reflectMap()", () => {
   test("creates ReflectMap", () => {
@@ -49,11 +49,13 @@ describe("ReflectMap", () => {
     mapInt64Int64Field,
     mapInt32Int32Field,
     mapInt32MessageField,
+    mapInt32StructField,
   } = proto3_ts.Proto3MessageSchema.field;
   assert(mapStringStringField.fieldKind == "map");
   assert(mapInt64Int64Field.fieldKind == "map");
   assert(mapInt32Int32Field.fieldKind == "map");
   assert(mapInt32MessageField.fieldKind == "map");
+  assert(mapInt32StructField.fieldKind == "map");
   const n1 = protoInt64.parse(1);
   const n2 = protoInt64.parse(2);
   const n3 = protoInt64.parse(3);
@@ -101,6 +103,13 @@ describe("ReflectMap", () => {
         a: create(proto3_ts.Proto3MessageSchema),
       });
       const val = map.get("a");
+      expect(isReflectMessage(val)).toBe(true);
+    });
+    test("returns ReflectMessage for google.protobuf.Struct map", () => {
+      const map = reflectMap(mapInt32StructField, {
+        123: { shouldBeJson: true },
+      });
+      const val = map.get(123);
       expect(isReflectMessage(val)).toBe(true);
     });
   });
@@ -192,6 +201,14 @@ describe("ReflectMap", () => {
         "1": n11,
         "2": n22,
         "3": n33,
+      });
+    });
+    test("sets google.protobuf.Struct as JsonObject", () => {
+      const local = {};
+      const map = reflectMap(mapInt32StructField, local);
+      map.set(123, reflect(StructSchema));
+      expect(local).toStrictEqual({
+        123: {},
       });
     });
     test("throws error for invalid key", () => {

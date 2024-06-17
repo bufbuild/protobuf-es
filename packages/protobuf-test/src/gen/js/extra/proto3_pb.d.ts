@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
-import type { Message } from "@bufbuild/protobuf";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 import type { UInt32Value } from "@bufbuild/protobuf/wkt";
 
 /**
@@ -87,6 +87,11 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
   singularWrappedUint32Field?: number;
 
   /**
+   * @generated from field: google.protobuf.Struct singular_struct_field = 214;
+   */
+  singularStructField?: JsonObject;
+
+  /**
    * @generated from field: optional string optional_string_field = 9;
    */
   optionalStringField?: string;
@@ -142,6 +147,11 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
   optionalWrappedUint32Field?: number;
 
   /**
+   * @generated from field: optional google.protobuf.Struct optional_struct_field = 215;
+   */
+  optionalStructField?: JsonObject;
+
+  /**
    * @generated from field: repeated string repeated_string_field = 17;
    */
   repeatedStringField: string[];
@@ -195,6 +205,11 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
    * @generated from field: repeated google.protobuf.UInt32Value repeated_wrapped_uint32_field = 213;
    */
   repeatedWrappedUint32Field: UInt32Value[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Struct repeated_struct_field = 216;
+   */
+  repeatedStructField: JsonObject[];
 
   /**
    * @generated from field: repeated double packed_double_field = 25 [packed = true];
@@ -295,6 +310,12 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
      */
     value: UInt32Value;
     case: "oneofWrappedUint32Field";
+  } | {
+    /**
+     * @generated from field: google.protobuf.Struct oneof_struct_field = 217;
+     */
+    value: JsonObject;
+    case: "oneofStructField";
   } | { case: undefined; value?: undefined };
 
   /**
@@ -331,6 +352,11 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
    * @generated from field: map<int32, google.protobuf.UInt32Value> map_int32_wrapped_uint32_field = 205;
    */
   mapInt32WrappedUint32Field: { [key: number]: UInt32Value };
+
+  /**
+   * @generated from field: map<int32, google.protobuf.Struct> map_int32_struct_field = 218;
+   */
+  mapInt32StructField: { [key: number]: JsonObject };
 };
 
 /**

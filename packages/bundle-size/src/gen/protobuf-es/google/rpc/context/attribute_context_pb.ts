@@ -18,9 +18,9 @@
 
 import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
-import type { Any, Duration, Struct, Timestamp } from "@bufbuild/protobuf/wkt";
+import type { Any, Duration, Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
-import type { Message } from "@bufbuild/protobuf";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/rpc/context/attribute_context.proto.
@@ -296,7 +296,7 @@ export type AttributeContext_Auth = Message<"google.rpc.context.AttributeContext
    *
    * @generated from field: google.protobuf.Struct claims = 4;
    */
-  claims?: Struct;
+  claims?: JsonObject;
 
   /**
    * A list of access level resource names that allow resources to be

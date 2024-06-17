@@ -19,11 +19,12 @@ import {
   reflect,
   isReflectMessage,
 } from "@bufbuild/protobuf/reflect";
-import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import { create, protoInt64 } from "@bufbuild/protobuf";
-import { UserSchema } from "../gen/ts/extra/example_pb.js";
 import assert from "node:assert";
 import { catchFieldError } from "../helpers.js";
+import { StructSchema } from "@bufbuild/protobuf/wkt";
+import { UserSchema } from "../gen/ts/extra/example_pb.js";
+import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 
 describe("reflectList()", () => {
   test("creates ReflectList", () => {
@@ -47,11 +48,13 @@ describe("ReflectList", () => {
     repeatedInt64Field,
     repeatedInt64JsStringField,
     repeatedMessageField,
+    repeatedStructField,
   } = proto3_ts.Proto3MessageSchema.field;
   assert(repeatedStringField.fieldKind == "list");
   assert(repeatedInt64Field.fieldKind == "list");
   assert(repeatedInt64JsStringField.fieldKind == "list");
   assert(repeatedMessageField.fieldKind == "list");
+  assert(repeatedStructField.fieldKind == "list");
   const n0 = protoInt64.zero;
   const n1 = protoInt64.parse(1);
   const n2 = protoInt64.parse(2);
@@ -91,6 +94,11 @@ describe("ReflectList", () => {
       const val = list.get(0);
       expect(isReflectMessage(val)).toBe(true);
     });
+    test("returns ReflectMessage for google.protobuf.Struct list", () => {
+      const list = reflectList(repeatedStructField, [{ shouldBeJson: true }]);
+      const val = list.get(0);
+      expect(isReflectMessage(val)).toBe(true);
+    });
   });
   describe("add()", () => {
     test("adds item", () => {
@@ -115,6 +123,12 @@ describe("ReflectList", () => {
       list.add("2");
       list.add(n3);
       expect(local).toStrictEqual(["1", "2", "3"]);
+    });
+    test("adds google.protobuf.Struct as JsonObject", () => {
+      const local: unknown[] = [];
+      const list = reflectList(repeatedStructField, local);
+      list.add(reflect(StructSchema));
+      expect(local).toStrictEqual([{}]);
     });
     test("throws error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, []);

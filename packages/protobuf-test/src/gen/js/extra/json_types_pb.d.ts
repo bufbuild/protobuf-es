@@ -17,8 +17,8 @@
 /* eslint-disable */
 
 import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
-import type { Message } from "@bufbuild/protobuf";
-import type { Any, Duration, Empty, FieldMask, ListValue, NullValue, Struct, Timestamp, Value } from "@bufbuild/protobuf/wkt";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
+import type { Any, Duration, Empty, FieldMask, ListValue, NullValue, Timestamp, Value } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/json_types.proto.
@@ -82,7 +82,7 @@ export declare type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   /**
    * @generated from field: google.protobuf.Struct struct_field = 11;
    */
-  structField?: Struct;
+  structField?: JsonObject;
 
   /**
    * @generated from field: google.protobuf.Value value_field = 12;
