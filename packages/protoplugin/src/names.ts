@@ -80,7 +80,10 @@ export function generatedShapeName(desc: DescEnum | DescMessage): string {
   return name;
 }
 
-export function localJsonTypeName(desc: DescEnum | DescMessage): string {
+/**
+ * Return a safe identifier for a generated JSON type.
+ */
+export function generatedJsonTypeName(desc: DescEnum | DescMessage): string {
   const { jsonTypeNames } = allNames(desc.file);
   const name = jsonTypeNames.get(desc);
   if (name === undefined) {
@@ -123,6 +126,9 @@ function idealShapeName(desc: DescEnum | DescMessage, i: number): string {
   return safeIdentifier(identifier(desc) + escape);
 }
 
+/**
+ * Compute the ideal name for a generated JSON type.
+ */
 function idealJsonTypeName(desc: DescEnum | DescMessage, i: number): string {
   const escape = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
   return safeIdentifier(identifier(desc) + "Json" + escape);

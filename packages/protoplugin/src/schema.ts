@@ -42,7 +42,7 @@ import {
   generatedDescName,
   generatedShapeName,
   generateFilePath,
-  localJsonTypeName,
+  generatedJsonTypeName,
 } from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";
 
@@ -134,7 +134,7 @@ export function createSchema<T extends object>(
     );
   const resolveJsonImport: ResolveShapeImportFn = (desc) =>
     createImportSymbol(
-      localJsonTypeName(desc),
+      generatedJsonTypeName(desc),
       generateFilePath(
         desc.file,
         parameter.parsed.bootstrapWkt,
