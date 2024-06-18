@@ -23,14 +23,14 @@ import { describe, expect, test } from "@jest/globals";
 /* eslint-disable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-explicit-any */
 
 describe("default registry with custom toJson()", () => {
-  // Define you own standard registry
+  // Define you own default registry
   const registry = createRegistry(
     // You can register as many types as you need. In this example, we only
     // register google.protobuf.Duration.
     DurationSchema,
   );
 
-  // Define your own toJson function that uses your standard registry
+  // Define your own toJson function that uses your default registry
   const toJson: typeof toJsonOriginal = (schema, message, options) => {
     return toJsonOriginal(schema, message, options ?? { registry }) as any;
   };
