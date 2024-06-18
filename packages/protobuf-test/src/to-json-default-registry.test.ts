@@ -32,11 +32,7 @@ describe("default registry with custom toJson()", () => {
 
   // Define your own toJson function that uses your standard registry
   const toJson: typeof toJsonOriginal = (schema, message, options) => {
-    return toJsonOriginal(
-      schema,
-      message,
-      options ?? { registry: registry },
-    ) as any;
+    return toJsonOriginal(schema, message, options ?? { registry }) as any;
   };
 
   test("works as expected", () => {
