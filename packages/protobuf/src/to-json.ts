@@ -27,7 +27,13 @@ import type {
   ReflectMap,
   ReflectMessage,
 } from "./reflect/reflect-types.js";
-import type { Message, MessageShape } from "./types.js";
+import type {
+  EnumJsonType,
+  EnumShape,
+  Message,
+  MessageJsonType,
+  MessageShape,
+} from "./types.js";
 import type {
   Any,
   Duration,
@@ -112,13 +118,34 @@ function makeWriteOptions(
  * Serialize the message to a JSON value, a JavaScript value that can be
  * passed to JSON.stringify().
  */
-export function toJson<Desc extends DescMessage>(
+export function toJson<
+  Desc extends DescMessage,
+  Opts extends Partial<JsonWriteOptions> | undefined = undefined,
+>(
   schema: Desc,
   message: MessageShape<Desc>,
-  options?: Partial<JsonWriteOptions>,
-): JsonValue {
-  return reflectToJson(reflect(schema, message), makeWriteOptions(options));
+  options?: Opts,
+): ToJson<Desc, Opts> {
+  return reflectToJson(
+    reflect(schema, message),
+    makeWriteOptions(options),
+  ) as ToJson<Desc, Opts>;
 }
+
+// For standard JSON write options, return the JSON type if available.
+// Otherwise, return a generic JSON value.
+type ToJson<
+  Desc extends DescMessage,
+  Opts extends undefined | Partial<JsonWriteOptions>,
+> = Opts extends
+  | undefined
+  | {
+      alwaysEmitImplicit?: false;
+      enumAsInteger?: false;
+      useProtoFieldName?: false;
+    }
+  ? MessageJsonType<Desc>
+  : JsonValue;
 
 /**
  * Serialize the message to a JSON string.
@@ -130,6 +157,25 @@ export function toJsonString<Desc extends DescMessage>(
 ): string {
   const jsonValue = toJson(schema, message, options);
   return JSON.stringify(jsonValue, null, options?.prettySpaces ?? 0);
+}
+
+/**
+ * Serialize a single enum value to JSON.
+ */
+export function enumToJson<Desc extends DescEnum>(
+  descEnum: Desc,
+  value: EnumShape<Desc>,
+): EnumJsonType<Desc> {
+  if (descEnum.typeName == "google.protobuf.NullValue") {
+    return null as EnumJsonType<Desc>;
+  }
+  const name = descEnum.values.find((v) => v.number === value)?.name;
+  if (name === undefined) {
+    throw new Error(
+      `${String(value)} is not a value in ${descEnum.toString()}`,
+    );
+  }
+  return name as EnumJsonType<Desc>;
 }
 
 function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
@@ -183,7 +229,7 @@ function fieldToJson(f: DescField, val: unknown, opts: JsonWriteOptions) {
     case "message":
       return reflectToJson(val as ReflectMessage, opts);
     case "enum":
-      return enumToJson(f.enum, val, opts.enumAsInteger);
+      return enumToJsonInternal(f.enum, val, opts.enumAsInteger);
     case "list":
       return listToJson(val as ReflectList, opts);
     case "map":
@@ -210,7 +256,7 @@ function mapToJson(map: ReflectMap, opts: JsonWriteOptions) {
       break;
     case "enum":
       for (const [entryKey, entryValue] of map) {
-        jsonObj[entryKey as keyof object] = enumToJson(
+        jsonObj[entryKey as keyof object] = enumToJsonInternal(
           f.enum,
           entryValue,
           opts.enumAsInteger,
@@ -232,7 +278,9 @@ function listToJson(list: ReflectList, opts: JsonWriteOptions) {
       break;
     case "enum":
       for (const item of list) {
-        jsonArr.push(enumToJson(f.enum, item, opts.enumAsInteger) as JsonValue);
+        jsonArr.push(
+          enumToJsonInternal(f.enum, item, opts.enumAsInteger) as JsonValue,
+        );
       }
       break;
     case "message":
@@ -244,7 +292,7 @@ function listToJson(list: ReflectList, opts: JsonWriteOptions) {
   return opts.alwaysEmitImplicit || jsonArr.length > 0 ? jsonArr : undefined;
 }
 
-function enumToJson(
+function enumToJsonInternal(
   desc: DescEnum,
   value: unknown,
   enumAsInteger: boolean,

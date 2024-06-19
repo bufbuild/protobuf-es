@@ -18,7 +18,10 @@ import {
   DescMessage,
   ScalarType,
 } from "@bufbuild/protobuf";
-import { scalarTypeScriptType } from "@bufbuild/protobuf/codegenv1";
+import {
+  scalarJsonType,
+  scalarTypeScriptType,
+} from "@bufbuild/protobuf/codegenv1";
 import {
   isWrapperDesc,
   StructSchema,
@@ -135,6 +138,84 @@ function messageFieldTypeScriptType(
     kind: "es_shape_ref",
     desc: field.message,
   };
+}
+
+export function fieldJsonType(field: DescField | DescExtension): Printable {
+  switch (field.fieldKind) {
+    case "scalar":
+      return scalarJsonType(field.scalar);
+    case "message":
+      return {
+        kind: "es_json_type_ref",
+        desc: field.message,
+      };
+    case "enum":
+      return {
+        kind: "es_json_type_ref",
+        desc: field.enum,
+      };
+    case "list":
+      switch (field.listKind) {
+        case "enum":
+          return [
+            {
+              kind: "es_json_type_ref",
+              desc: field.enum,
+            },
+            "[]",
+          ];
+        case "scalar": {
+          const t = scalarJsonType(field.scalar);
+          if (t.includes("|")) {
+            return ["(", t, ")[]"];
+          }
+          return [t, "[]"];
+        }
+        case "message":
+          return [
+            {
+              kind: "es_json_type_ref",
+              desc: field.message,
+            },
+            "[]",
+          ];
+      }
+      break;
+    case "map": {
+      let keyType: string;
+      switch (field.mapKey) {
+        case ScalarType.INT32:
+        case ScalarType.FIXED32:
+        case ScalarType.UINT32:
+        case ScalarType.SFIXED32:
+        case ScalarType.SINT32:
+          keyType = "number";
+          break;
+        default:
+          keyType = "string";
+          break;
+      }
+      let valueType: Printable;
+      switch (field.mapKind) {
+        case "scalar":
+          valueType = scalarJsonType(field.scalar);
+          break;
+        case "message":
+          valueType = {
+            kind: "es_json_type_ref",
+            desc: field.message,
+          };
+          break;
+        case "enum":
+          valueType = {
+            kind: "es_json_type_ref",
+            desc: field.enum,
+          };
+          break;
+      }
+      return ["{ [key: ", keyType, "]: ", valueType, " }"];
+    }
+  }
 }
 
 export function functionCall(

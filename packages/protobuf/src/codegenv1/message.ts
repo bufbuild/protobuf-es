@@ -15,19 +15,23 @@
 import type { Message } from "../types.js";
 import type { DescFile } from "../descriptors.js";
 import type { GenDescMessage } from "./types.js";
+import type { JsonValue } from "../json-value.js";
 
 /**
  * Hydrate a message descriptor.
  *
  * @private
  */
-export function messageDesc<Shape extends Message>(
+export function messageDesc<
+  Shape extends Message,
+  JsonType extends JsonValue = JsonValue,
+>(
   file: DescFile,
   path: number,
   ...paths: number[]
-): GenDescMessage<Shape> {
+): GenDescMessage<Shape, JsonType> {
   return paths.reduce(
     (acc, cur) => acc.nestedMessages[cur],
     file.messages[path],
-  ) as GenDescMessage<Shape>;
+  ) as GenDescMessage<Shape, JsonType>;
 }

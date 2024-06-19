@@ -44,3 +44,38 @@ export function scalarTypeScriptType(
       return "number";
   }
 }
+
+/**
+ * Return the JSON type (as a string) for the given scalar type.
+ */
+export function scalarJsonType(
+  scalar: ScalarType,
+):
+  | "string"
+  | "boolean"
+  | "number"
+  | `number | "NaN" | "Infinity" | "-Infinity"` {
+  switch (scalar) {
+    case ScalarType.DOUBLE:
+    case ScalarType.FLOAT:
+      return `number | "NaN" | "Infinity" | "-Infinity"`;
+    case ScalarType.UINT64:
+    case ScalarType.SFIXED64:
+    case ScalarType.FIXED64:
+    case ScalarType.SINT64:
+    case ScalarType.INT64:
+      return "string";
+    case ScalarType.INT32:
+    case ScalarType.FIXED32:
+    case ScalarType.UINT32:
+    case ScalarType.SFIXED32:
+    case ScalarType.SINT32:
+      return "number";
+    case ScalarType.STRING:
+      return "string";
+    case ScalarType.BOOL:
+      return "boolean";
+    case ScalarType.BYTES:
+      return "string";
+  }
+}

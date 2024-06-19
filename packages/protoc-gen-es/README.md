@@ -135,3 +135,8 @@ settings.
 In case you use compiler settings that yield an error for generated code, you
 can set the plugin option `ts_nocheck=true`. This will generate an annotation at
 the top of each file to skip type checks: `// @ts-nocheck`.
+
+### `json_types=true`
+
+Generates JSON types for every Protobuf message and enumeration. Calling `toJson()`
+will automatically return the JSON type if available.

@@ -1,0 +1,59 @@
+// Copyright 2021-2024 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+package spec;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+message JsonTypesMessage {
+  bool bool_field = 1;
+  double double_field = 2;
+  bytes bytes_field = 3;
+  int64 int64_field = 4;
+  JsonTypeEnum enum_field = 5;
+  JsonTypesMessage message_field = 6;
+  google.protobuf.Any any_field = 7;
+  google.protobuf.Duration duration_field = 8;
+  google.protobuf.Empty empty_field = 9;
+  google.protobuf.FieldMask field_mask_field = 10;
+  google.protobuf.Struct struct_field = 11;
+  google.protobuf.Value value_field = 12;
+  google.protobuf.ListValue list_value_field = 13;
+  google.protobuf.NullValue null_value_field = 14;
+  google.protobuf.Timestamp timestamp_field = 15;
+  google.protobuf.DoubleValue wrapped_double_field = 16;
+  google.protobuf.FloatValue wrapped_float_field = 17;
+  google.protobuf.Int64Value wrapped_int64_field = 18;
+  google.protobuf.UInt64Value wrapped_uint64_field = 19;
+  google.protobuf.Int32Value wrapped_int32_field = 20;
+  google.protobuf.UInt32Value wrapped_uint32_field = 21;
+  google.protobuf.BoolValue wrapped_bool_field = 22;
+  google.protobuf.StringValue wrapped_string_field = 23;
+  google.protobuf.BytesValue wrapped_bytes_field = 24;
+  repeated JsonTypeEnum repeated_enum_field = 25;
+  map<bool, JsonTypeEnum> map_bool_enum_field = 26;
+}
+
+enum JsonTypeEnum {
+  JSON_TYPE_ENUM_UNSPECIFIED = 0;
+  JSON_TYPE_ENUM_YES = 1;
+  JSON_TYPE_ENUM_NO = 2;
+}

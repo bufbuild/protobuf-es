@@ -42,6 +42,7 @@ import {
   generatedDescName,
   generatedShapeName,
   generateFilePath,
+  generatedJsonTypeName,
 } from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";
 
@@ -131,6 +132,16 @@ export function createSchema<T extends object>(
       ),
       true,
     );
+  const resolveJsonImport: ResolveShapeImportFn = (desc) =>
+    createImportSymbol(
+      generatedJsonTypeName(desc),
+      generateFilePath(
+        desc.file,
+        parameter.parsed.bootstrapWkt,
+        filesToGenerate,
+      ),
+      true,
+    );
   const createPreamble: CreatePreambleFn = (descFile) =>
     makeFilePreamble(
       descFile,
@@ -165,6 +176,7 @@ export function createSchema<T extends object>(
         rewriteImport,
         resolveDescImport,
         resolveShapeImport,
+        resolveJsonImport,
         createPreamble,
         runtime,
       );

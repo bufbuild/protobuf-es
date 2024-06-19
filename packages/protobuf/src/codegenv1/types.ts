@@ -22,6 +22,7 @@ import type {
   DescMethod,
   DescService,
 } from "../descriptors.js";
+import type { JsonValue } from "../json-value.js";
 
 /**
  * Describes a protobuf source file.
@@ -39,10 +40,10 @@ export type GenDescFile = DescFile;
  * @private
  */
 // prettier-ignore
-export type GenDescMessage<RuntimeShape extends Message> =
+export type GenDescMessage<RuntimeShape extends Message, JsonType = JsonValue> =
   & Omit<DescMessage, "field">
   & { field: Record<MessageFieldNames<RuntimeShape>, DescField> }
-  & brandv1<RuntimeShape>;
+  & brandv1<RuntimeShape, JsonType>;
 
 /**
  * Describes an enumeration in a protobuf source file.
@@ -52,7 +53,10 @@ export type GenDescMessage<RuntimeShape extends Message> =
  *
  * @private
  */
-export type GenDescEnum<RuntimeShape> = DescEnum & brandv1<RuntimeShape>;
+export type GenDescEnum<
+  RuntimeShape,
+  JsonType extends JsonValue = JsonValue,
+> = DescEnum & brandv1<RuntimeShape, JsonType>;
 
 /**
  * Describes an extension in a protobuf source file.

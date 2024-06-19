@@ -60,7 +60,7 @@ export function generatedDescName(
   const name = descNames.get(desc);
   if (name === undefined) {
     throw new Error(
-      `unable to determine unique identifier for ${desc.toString()}`,
+      `unable to determine unique descriptor name for ${desc.toString()}`,
     );
   }
   return name;
@@ -74,7 +74,21 @@ export function generatedShapeName(desc: DescEnum | DescMessage): string {
   const name = shapeNames.get(desc);
   if (name === undefined) {
     throw new Error(
-      `unable to determine unique identifier for ${desc.toString()}`,
+      `unable to determine unique shape name for ${desc.toString()}`,
+    );
+  }
+  return name;
+}
+
+/**
+ * Return a safe identifier for a generated JSON type.
+ */
+export function generatedJsonTypeName(desc: DescEnum | DescMessage): string {
+  const { jsonTypeNames } = allNames(desc.file);
+  const name = jsonTypeNames.get(desc);
+  if (name === undefined) {
+    throw new Error(
+      `unable to determine unique json type name for ${desc.toString()}`,
     );
   }
   return name;
@@ -113,6 +127,14 @@ function idealShapeName(desc: DescEnum | DescMessage, i: number): string {
 }
 
 /**
+ * Compute the ideal name for a generated JSON type.
+ */
+function idealJsonTypeName(desc: DescEnum | DescMessage, i: number): string {
+  const escape = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
+  return safeIdentifier(identifier(desc) + "Json" + escape);
+}
+
+/**
  * Return an identifier for the given descriptor based on its type name.
  *
  * The type name for a protobuf message is the package name (if any), plus
@@ -137,12 +159,8 @@ function identifier(
  */
 function allNames(file: DescFile) {
   const taken = new Set<string>();
-  const shapeNames = new Map<DescEnum | DescMessage, string>();
-  const descNames = new Map<
-    DescFile | DescEnum | DescMessage | DescExtension | DescService,
-    string
-  >();
   // In the first pass, register shape names
+  const shapeNames = new Map<DescEnum | DescMessage, string>();
   for (const desc of nestedTypes(file)) {
     if (desc.kind != "enum" && desc.kind != "message") {
       continue;
@@ -158,6 +176,10 @@ function allNames(file: DescFile) {
     shapeNames.set(desc, name);
   }
   // In the second pass, register desc names
+  const descNames = new Map<
+    DescFile | DescEnum | DescMessage | DescExtension | DescService,
+    string
+  >();
   for (const desc of [file, ...nestedTypes(file)]) {
     let name: string;
     switch (desc.kind) {
@@ -184,5 +206,21 @@ function allNames(file: DescFile) {
     taken.add(name);
     descNames.set(desc, name);
   }
-  return { shapeNames, descNames };
+  // In the third pass, register json type names
+  const jsonTypeNames = new Map<DescEnum | DescMessage, string>();
+  for (const desc of nestedTypes(file)) {
+    if (desc.kind != "enum" && desc.kind != "message") {
+      continue;
+    }
+    let name: string;
+    for (let i = 0; ; i++) {
+      name = idealJsonTypeName(desc, i);
+      if (!taken.has(name)) {
+        break;
+      }
+    }
+    taken.add(name);
+    jsonTypeNames.set(desc, name);
+  }
+  return { shapeNames, jsonTypeNames, descNames };
 }

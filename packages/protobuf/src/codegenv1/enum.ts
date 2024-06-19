@@ -14,25 +14,26 @@
 
 import type { DescEnum, DescFile } from "../descriptors.js";
 import type { GenDescEnum } from "./types.js";
+import type { JsonValue } from "../json-value.js";
 
 /**
  * Hydrate an enum descriptor.
  *
  * @private
  */
-export function enumDesc<Shape>(
+export function enumDesc<Shape, JsonType extends JsonValue = JsonValue>(
   file: DescFile,
   path: number,
   ...paths: number[]
-): GenDescEnum<Shape> {
+): GenDescEnum<Shape, JsonType> {
   if (paths.length == 0) {
-    return file.enums[path] as GenDescEnum<Shape>;
+    return file.enums[path] as GenDescEnum<Shape, JsonType>;
   }
   const e = paths.pop() as number; // we checked length above
   return paths.reduce(
     (acc, cur) => acc.nestedMessages[cur],
     file.messages[path],
-  ).nestedEnums[e] as GenDescEnum<Shape>;
+  ).nestedEnums[e] as GenDescEnum<Shape, JsonType>;
 }
 
 /**

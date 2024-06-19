@@ -25,24 +25,24 @@ import {
   setExtension,
   getExtension,
   mergeFromJsonString,
+  protoInt64,
 } from "@bufbuild/protobuf";
 import {
   RepeatedScalarValuesMessageSchema,
   ScalarValuesMessageSchema,
 } from "./gen/ts/extra/msg-scalar_pb.js";
-import { protoInt64 } from "@bufbuild/protobuf";
 import { MapsMessageSchema } from "./gen/ts/extra/msg-maps_pb.js";
 import { MessageFieldMessageSchema } from "./gen/ts/extra/msg-message_pb.js";
 import { WrappersMessageSchema } from "./gen/ts/extra/wkt-wrappers_pb.js";
 import {
   AnySchema,
+  anyPack,
+  anyUnpack,
   DurationSchema,
   FieldMaskSchema,
   StructSchema,
   TimestampSchema,
   ValueSchema,
-  anyPack,
-  anyUnpack,
   FileOptionsSchema,
 } from "@bufbuild/protobuf/wkt";
 import * as ext_proto2 from "./gen/ts/extra/extensions-proto2_pb.js";
