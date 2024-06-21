@@ -25,6 +25,7 @@ import {
   type DescOneof,
   type DescService,
   ScalarType,
+  createMutableRegistry,
 } from "@bufbuild/protobuf";
 import { protoCamelCase } from "@bufbuild/protobuf/reflect";
 import {
@@ -179,6 +180,10 @@ describe("createRegistry()", function () {
     });
   });
   describe("from DescMessage", () => {
+    test("provides message", () => {
+      const reg = createRegistry(testDescs.message);
+      expect(reg.get("Msg")).toBeDefined();
+    });
     test("does not make message fields available", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
         "b.proto": `
@@ -296,6 +301,35 @@ describe("createRegistry()", function () {
   });
 });
 
+describe("createMutableRegistry()", () => {
+  test("from DescMessage", async () => {
+    const desc = await compileMessage(`
+      syntax = "proto3";
+      message A {}
+    `);
+    const reg = createMutableRegistry(desc);
+    expect(reg.getMessage("A")).toBeDefined();
+  });
+  test("add() adds DescMessage", async () => {
+    const desc = await compileMessage(`
+      syntax = "proto3";
+      message A {}
+    `);
+    const reg = createMutableRegistry();
+    reg.add(desc);
+    expect(reg.getMessage("A")).toBeDefined();
+  });
+  test("remove() removes DescMessage", async () => {
+    const desc = await compileMessage(`
+      syntax = "proto3";
+      message A {}
+    `);
+    const reg = createMutableRegistry(desc);
+    reg.remove(desc);
+    expect(reg.getMessage("A")).toBeUndefined();
+  });
+});
+
 describe("createFileRegistry()", function () {
   let testFileDescriptorSet: FileDescriptorSet;
   beforeEach(async () => {
@@ -393,23 +427,28 @@ describe("createFileRegistry()", function () {
           return testFileReg.getFile(protoFileName);
         });
       }
+
       expect(t).toThrow(/^Unable to resolve c.proto, imported by a.proto$/);
     });
   });
   test("raises error on unsupported edition from the past", function () {
     testFileDescriptorSet.file[0].syntax = "editions";
     testFileDescriptorSet.file[0].edition = Edition.EDITION_1_TEST_ONLY;
+
     function t() {
       createFileRegistry(testFileDescriptorSet);
     }
+
     expect(t).toThrow(/^d.proto: unsupported edition$/);
   });
   test("raises error on unsupported edition from the future", function () {
     testFileDescriptorSet.file[0].syntax = "editions";
     testFileDescriptorSet.file[0].edition = Edition.EDITION_99999_TEST_ONLY;
+
     function t() {
       createFileRegistry(testFileDescriptorSet);
     }
+
     expect(t).toThrow(/^d.proto: unsupported edition$/);
   });
   describe("from FileRegistry", function () {
