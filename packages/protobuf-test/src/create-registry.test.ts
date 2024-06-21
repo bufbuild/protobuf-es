@@ -15,6 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import {
   createRegistry,
+  createMutableRegistry,
   Int32Value,
   MethodKind,
   proto3,
@@ -153,5 +154,13 @@ describe("createRegistry()", () => {
       const service = reg.findService(fakeService.typeName);
       expect(service).toBe(fakeService);
     });
+  });
+});
+
+describe("createMutableRegistry()", () => {
+  test("add() adds message", () => {
+    const reg = createMutableRegistry();
+    reg.add(MessageFieldMessage);
+    expect(reg.findMessage(MessageFieldMessage.typeName)).toBeDefined();
   });
 });

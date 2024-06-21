@@ -74,3 +74,17 @@ export interface IExtensionRegistry {
    */
   findExtension(typeName: string): Extension | undefined;
 }
+
+/**
+ * A registry that allows
+ */
+export interface IMutableRegistry
+  extends IMessageTypeRegistry,
+    IEnumTypeRegistry,
+    IServiceTypeRegistry,
+    IExtensionRegistry {
+  /**
+   * Adds the type to the registry.
+   */
+  add(type: MessageType | EnumType | ServiceType | Extension): void;
+}

@@ -15,7 +15,7 @@ usually do. We repeat this for an increasing number of files.
 <!--- TABLE-START -->
 | code generator  | files    | bundle size             | minified               | compressed         |
 |-----------------|----------|------------------------:|-----------------------:|-------------------:|
-| protobuf-es | 1 | 79,463 b | 34,300 b | 9,781 b |
+| protobuf-es | 1 | 79,463 b | 34,300 b | 9,786 b |
 | protobuf-es | 4 | 92,560 b | 37,274 b | 10,114 b |
 | protobuf-es | 8 | 101,901 b | 41,772 b | 10,808 b |
 | protobuf-es | 16 | 165,581 b | 67,017 b | 13,320 b |
