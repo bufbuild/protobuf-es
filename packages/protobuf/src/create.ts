@@ -200,8 +200,6 @@ const messagePrototypes = new WeakMap<
 function createZeroMessage(desc: DescMessage): Message {
   let msg: Record<string, unknown>;
   if (!needsPrototypeChain(desc)) {
-    // we special case proto3: since it does not have default values, we let
-    // the `optional` keyword generate an optional property.
     msg = {};
     for (const member of desc.members) {
       if (member.kind == "oneof" || member.presence == IMPLICIT) {
@@ -209,8 +207,7 @@ function createZeroMessage(desc: DescMessage): Message {
       }
     }
   } else {
-    // for everything but proto3, we support default values, and track presence
-    // via the prototype chain
+    // Support default values and track presence via the prototype chain
     const cached = messagePrototypes.get(desc);
     let prototype: Record<string, unknown>;
     let members: Set<DescField | DescOneof>;
