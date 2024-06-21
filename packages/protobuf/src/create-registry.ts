@@ -34,7 +34,9 @@ export function createRegistry(
   IEnumTypeRegistry &
   IExtensionRegistry &
   IServiceTypeRegistry {
-  return createMutableRegistry(...types);
+  const mutable = createMutableRegistry(...types);
+  delete (mutable as Partial<IMutableRegistry>).add;
+  return mutable;
 }
 
 /**
