@@ -97,8 +97,21 @@ export interface Registry {
 }
 
 /**
- * A set of descriptors for messages, enumerations, extensions,
- * and services - and files.
+ * A registry that allows adding and removing descriptors.
+ */
+export interface MutableRegistry extends Registry {
+  /**
+   * Adds the given descriptor - but not types nested within - to the registry.
+   */
+  add(desc: DescMessage | DescEnum | DescExtension | DescService): void;
+  /**
+   * Remove the given descriptor - but not types nested within - from the registry.
+   */
+  remove(desc: DescMessage | DescEnum | DescExtension | DescService): void;
+}
+
+/**
+ * A registry that includes files.
  */
 export interface FileRegistry extends Registry {
   /**
@@ -132,25 +145,32 @@ export function createRegistry(
     | DescService
   )[]
 ): Registry {
-  const reg = createMutableRegistry();
-  for (const i of input) {
-    switch (i.kind) {
-      case "registry":
-        for (const n of i) {
-          reg.add(n);
-        }
-        break;
-      case "file":
-        for (const n of nestedTypes(i)) {
-          reg.add(n);
-        }
-        break;
-      default:
-        reg.add(i);
-        break;
-    }
-  }
-  return reg;
+  return initBaseRegistry(input);
+}
+
+/**
+ * Create a registry that allows adding and removing descriptors.
+ */
+export function createMutableRegistry(
+  ...input: (
+    | Registry
+    | DescFile
+    | DescMessage
+    | DescEnum
+    | DescExtension
+    | DescService
+  )[]
+): MutableRegistry {
+  const reg = initBaseRegistry(input);
+  return {
+    ...reg,
+    remove(desc) {
+      if (desc.kind == "extension") {
+        reg.extendees.get(desc.extendee.typeName)?.delete(desc.number);
+      }
+      reg.types.delete(desc.typeName);
+    },
+  };
 }
 
 /**
@@ -189,7 +209,7 @@ export function createFileRegistry(
       ]
     | FileRegistry[]
 ): FileRegistry {
-  const registry = createMutableRegistry();
+  const registry = createBaseRegistry();
   if (
     "$typeName" in args[0] &&
     args[0].$typeName == "google.protobuf.FileDescriptorSet"
@@ -222,7 +242,7 @@ export function createFileRegistry(
           );
         }
         if ("kind" in dep) {
-          addDescFile(dep, registry);
+          registry.addFile(dep, false, true);
         } else {
           seen.add(dep.name);
           deps.push(dep);
@@ -236,10 +256,7 @@ export function createFileRegistry(
   } else {
     for (const fileReg of args as FileRegistry[]) {
       for (const file of fileReg.files) {
-        registry.add(file);
-        for (const type of nestedTypes(file)) {
-          registry.add(type);
-        }
+        registry.addFile(file);
       }
     }
   }
@@ -247,29 +264,19 @@ export function createFileRegistry(
 }
 
 /**
- * A FileRegistry that allows adding and removing descriptors.
  * @private
  */
-interface MutableRegistry extends FileRegistry {
-  /**
-   * Adds the given descriptor - but not types nested within - to the registry.
-   */
-  add(
-    desc: DescFile | DescMessage | DescEnum | DescExtension | DescService,
-  ): void;
-  /**
-   * Remove the given descriptor from the registry.
-   */
-  remove(
-    desc: DescFile | DescMessage | DescEnum | DescExtension | DescService,
-  ): void;
+interface BaseRegistry extends FileRegistry {
+  add(desc: DescMessage | DescEnum | DescExtension | DescService): void;
+  addFile(file: DescFile, skipTypes?: boolean, withDeps?: boolean): void;
+  types: Map<string, DescMessage | DescEnum | DescExtension | DescService>;
+  extendees: Map<string, Map<number, DescExtension>>;
 }
 
 /**
- * Create a mutable file registry.
  * @private
  */
-function createMutableRegistry(): MutableRegistry {
+function createBaseRegistry(): BaseRegistry {
   const types = new Map<
     string,
     DescMessage | DescEnum | DescExtension | DescService
@@ -278,41 +285,41 @@ function createMutableRegistry(): MutableRegistry {
   const files = new Map<string, DescFile>();
   return {
     kind: "registry",
+    types,
+    extendees,
     [Symbol.iterator]() {
       return types.values();
     },
     get files() {
       return files.values();
     },
-    add(desc) {
-      switch (desc.kind) {
-        case "file":
-          files.set(desc.proto.name, desc);
-          break;
-        // @ts-expect-error TS7029: Fallthrough case in switch
-        case "extension":
-          // eslint-disable-next-line no-case-declarations
-          let numberToExt = extendees.get(desc.extendee.typeName);
-          if (!numberToExt) {
-            extendees.set(
-              desc.extendee.typeName,
-              (numberToExt = new Map<number, DescExtension>()),
-            );
-          }
-          numberToExt.set(desc.number, desc);
-        // eslint-disable-next-line no-fallthrough
-        default:
-          types.set(desc.typeName, desc);
+    addFile(file, skipTypes, withDeps) {
+      files.set(file.proto.name, file);
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      if (!skipTypes) {
+        for (const type of nestedTypes(file)) {
+          this.add(type);
+        }
+      }
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      if (withDeps) {
+        for (const f of file.dependencies) {
+          this.addFile(f, skipTypes, withDeps);
+        }
       }
     },
-    remove(desc) {
-      switch (desc.kind) {
-        case "file":
-          files.delete(desc.proto.name);
-          break;
-        default:
-          types.delete(desc.typeName);
+    add(desc) {
+      if (desc.kind == "extension") {
+        let numberToExt = extendees.get(desc.extendee.typeName);
+        if (!numberToExt) {
+          extendees.set(
+            desc.extendee.typeName,
+            (numberToExt = new Map<number, DescExtension>()),
+          );
+        }
+        numberToExt.set(desc.number, desc);
       }
+      types.set(desc.typeName, desc);
     },
     get(typeName) {
       return types.get(typeName);
@@ -346,16 +353,30 @@ function createMutableRegistry(): MutableRegistry {
 }
 
 /**
- * Add the file descriptor and the types it contains to the registry.
+ * @private
  */
-function addDescFile(file: DescFile, reg: MutableRegistry) {
-  reg.add(file);
-  for (const type of nestedTypes(file)) {
-    reg.add(type);
+function initBaseRegistry(
+  inputs: Iterable<
+    Registry | DescFile | DescMessage | DescEnum | DescExtension | DescService
+  >,
+) {
+  const registry = createBaseRegistry();
+  for (const input of inputs) {
+    switch (input.kind) {
+      case "registry":
+        for (const n of input) {
+          registry.add(n);
+        }
+        break;
+      case "file":
+        registry.addFile(input);
+        break;
+      default:
+        registry.add(input);
+        break;
+    }
   }
-  for (const dep of file.dependencies) {
-    addDescFile(dep, reg);
-  }
+  return registry;
 }
 
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO2: const $name: Edition.$localName = $number;
@@ -438,7 +459,7 @@ const featureDefaults = {
 /**
  * Create a descriptor for a file, add it to the registry.
  */
-function addFile(proto: FileDescriptorProto, reg: MutableRegistry): void {
+function addFile(proto: FileDescriptorProto, reg: BaseRegistry): void {
   const file: DescFile = {
     kind: "file",
     proto,
@@ -483,7 +504,7 @@ function addFile(proto: FileDescriptorProto, reg: MutableRegistry): void {
     addFields(message, reg, mapEntries);
     addExtensions(message, reg);
   }
-  reg.add(file);
+  reg.addFile(file, true);
 }
 
 /**
@@ -500,10 +521,7 @@ interface FileMapEntries {
  * and to our cart.
  * Recurses into nested types.
  */
-function addExtensions(
-  desc: DescFile | DescMessage,
-  reg: MutableRegistry,
-): void {
+function addExtensions(desc: DescFile | DescMessage, reg: BaseRegistry): void {
   switch (desc.kind) {
     case "file":
       for (const proto of desc.proto.extension) {
@@ -569,7 +587,7 @@ function addEnum(
   proto: EnumDescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  reg: MutableRegistry,
+  reg: BaseRegistry,
 ): void {
   const sharedPrefix = findEnumSharedPrefix(proto.name, proto.value);
   const desc: { -readonly [P in keyof DescEnum]: DescEnum[P] } = {
@@ -617,7 +635,7 @@ function addMessage(
   proto: DescriptorProto,
   file: DescFile,
   parent: DescMessage | undefined,
-  reg: MutableRegistry,
+  reg: BaseRegistry,
   mapEntries: FileMapEntries,
 ): void {
   const desc: DescMessage = {
@@ -660,7 +678,7 @@ function addMessage(
 function addService(
   proto: ServiceDescriptorProto,
   file: DescFile,
-  reg: MutableRegistry,
+  reg: BaseRegistry,
 ): void {
   const desc: DescService = {
     kind: "service",

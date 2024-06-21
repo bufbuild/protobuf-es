@@ -25,6 +25,7 @@ import {
   type DescOneof,
   type DescService,
   ScalarType,
+  createMutableRegistry,
 } from "@bufbuild/protobuf";
 import { protoCamelCase } from "@bufbuild/protobuf/reflect";
 import {
@@ -179,6 +180,10 @@ describe("createRegistry()", function () {
     });
   });
   describe("from DescMessage", () => {
+    test("provides message", () => {
+      const reg = createRegistry(testDescs.message);
+      expect(reg.get("Msg")).toBeDefined();
+    });
     test("does not make message fields available", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
         "b.proto": `
@@ -293,6 +298,35 @@ describe("createRegistry()", function () {
       expect(reg.get("Msg")).toBe(secondReg.get("Msg"));
       expect(reg.get("Msg")).not.toBe(testReg.get("Msg"));
     });
+  });
+});
+
+describe("createMutableRegistry()", () => {
+  test("from DescMessage", async () => {
+    const desc = await compileMessage(`
+      syntax = "proto3";
+      message A {}
+    `);
+    const reg = createMutableRegistry(desc);
+    expect(reg.getMessage("A")).toBeDefined();
+  });
+  test("add() adds DescMessage", async () => {
+    const desc = await compileMessage(`
+      syntax = "proto3";
+      message A {}
+    `);
+    const reg = createMutableRegistry();
+    reg.add(desc);
+    expect(reg.getMessage("A")).toBeDefined();
+  });
+  test("remove() removes DescMessage", async () => {
+    const desc = await compileMessage(`
+      syntax = "proto3";
+      message A {}
+    `);
+    const reg = createMutableRegistry(desc);
+    reg.remove(desc);
+    expect(reg.getMessage("A")).toBeUndefined();
   });
 });
 
