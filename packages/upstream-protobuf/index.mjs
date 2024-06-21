@@ -69,6 +69,7 @@ export class UpstreamProtobuf {
   #testprotos = [
     "src/google/protobuf/test_messages_*.proto",
     "src/google/protobuf/*unittest*.proto",
+    "editions/golden/test_messages_proto3_editions.proto",
     "!src/google/protobuf/map_proto3_unittest.proto",
     "!src/google/protobuf/edition_unittest.proto",
     "!src/google/protobuf/unittest_arena.proto",

@@ -22,6 +22,7 @@ import * as example_ts from "./gen/ts/extra/example_pb.js";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
+import * as test_messages_proto3_editions_ts from "./gen/ts/editions/golden/test_messages_proto3_editions_pb.js";
 import { fillProto3Message, fillProto3MessageNames } from "./helpers-proto3.js";
 import {
   fillEdition2023Message,
@@ -152,6 +153,12 @@ describe("create()", () => {
         expect(hasOwn("mapInt32MessageField")).toBe(true);
         expect(msg.mapInt32WrappedUint32Field).toStrictEqual({});
         expect(hasOwn("mapInt32WrappedUint32Field")).toBe(true);
+      });
+      test("without custom prototype", () => {
+        const msg = create(desc);
+        const hasCustomPrototype =
+          Object.getPrototypeOf(msg) !== Object.prototype;
+        expect(hasCustomPrototype).toBe(false);
       });
     });
     describe("from proto2", () => {
@@ -322,6 +329,12 @@ describe("create()", () => {
         expect(hasOwn("mapInt32MessageField")).toBe(true);
         expect(msg.mapInt32WrappedUint32Field).toStrictEqual({});
         expect(hasOwn("mapInt32WrappedUint32Field")).toBe(true);
+      });
+      test("with custom prototype", () => {
+        const msg = create(desc);
+        const hasCustomPrototype =
+          Object.getPrototypeOf(msg) !== Object.prototype;
+        expect(hasCustomPrototype).toBe(true);
       });
     });
     describe("from edition2023", () => {
@@ -501,6 +514,21 @@ describe("create()", () => {
         expect(hasOwn("mapInt32MessageField")).toBe(true);
         expect(msg.mapInt32WrappedUint32Field).toStrictEqual({});
         expect(hasOwn("mapInt32WrappedUint32Field")).toBe(true);
+      });
+      test("with custom prototype", () => {
+        const msg = create(desc);
+        const hasCustomPrototype =
+          Object.getPrototypeOf(msg) !== Object.prototype;
+        expect(hasCustomPrototype).toBe(true);
+      });
+    });
+    describe("from edition2023 with proto3 features", () => {
+      const desc = test_messages_proto3_editions_ts.TestAllTypesProto3Schema;
+      test("without custom prototype", () => {
+        const msg = create(desc);
+        const hasCustomPrototype =
+          Object.getPrototypeOf(msg) !== Object.prototype;
+        expect(hasCustomPrototype).toBe(false);
       });
     });
   });

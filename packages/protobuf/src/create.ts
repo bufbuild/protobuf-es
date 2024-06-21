@@ -32,6 +32,8 @@ import type {
 
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
 const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;
+// bootstrap-inject google.protobuf.Edition.EDITION_PROTO2: const $name: Edition.$localName = $number;
+const EDITION_PROTO2: Edition.EDITION_PROTO2 = 998;
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
 const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
 
@@ -197,9 +199,7 @@ const messagePrototypes = new WeakMap<
  */
 function createZeroMessage(desc: DescMessage): Message {
   let msg: Record<string, unknown>;
-  if (desc.file.edition == EDITION_PROTO3) {
-    // we special case proto3: since it does not have default values, we let
-    // the `optional` keyword generate an optional property.
+  if (!needsPrototypeChain(desc)) {
     msg = {};
     for (const member of desc.members) {
       if (member.kind == "oneof" || member.presence == IMPLICIT) {
@@ -207,8 +207,7 @@ function createZeroMessage(desc: DescMessage): Message {
       }
     }
   } else {
-    // for everything but proto3, we support default values, and track presence
-    // via the prototype chain
+    // Support default values and track presence via the prototype chain
     const cached = messagePrototypes.get(desc);
     let prototype: Record<string, unknown>;
     let members: Set<DescField | DescOneof>;
@@ -260,6 +259,26 @@ function createZeroMessage(desc: DescMessage): Message {
   return msg as Message;
 }
 
+/**
+ * Do we need the prototype chain to track field presence?
+ */
+function needsPrototypeChain(desc: DescMessage): boolean {
+  switch (desc.file.edition) {
+    case EDITION_PROTO3:
+      // proto3 always uses implicit presence, we never need the prototype chain.
+      return false;
+    case EDITION_PROTO2:
+      // proto2 never uses implicit presence, we always need the prototype chain.
+      return true;
+    default:
+      // If a message uses scalar or enum fields with explicit presence, we need
+      // the prototype chain to track presence. This rule does not apply to fields
+      // in a oneof group - they use a different mechanism to track presence.
+      return desc.fields.some(
+        (f) => f.presence != IMPLICIT && f.fieldKind != "message" && !f.oneof,
+      );
+  }
+}
 /**
  * Returns a zero value for oneof groups, and for every field kind except
  * messages. Scalar and enum fields can have default values.

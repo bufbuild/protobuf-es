@@ -16,11 +16,11 @@ usually do. We repeat this for an increasing number of files.
 <!--- TABLE-START -->
 | code generator  | files    | bundle size             | minified               | compressed         |
 |-----------------|----------|------------------------:|-----------------------:|-------------------:|
-| protobuf-es | 1 | 125,535 b | 65,455 b | 15,230 b |
-| protobuf-es | 4 | 127,724 b | 66,962 b | 15,891 b |
-| protobuf-es | 8 | 130,486 b | 68,733 b | 16,411 b |
-| protobuf-es | 16 | 140,936 b | 76,714 b | 18,716 b |
-| protobuf-es | 32 | 168,727 b | 98,732 b | 24,208 b |
+| protobuf-es | 1 | 125,833 b | 65,603 b | 15,257 b |
+| protobuf-es | 4 | 128,022 b | 67,111 b | 15,948 b |
+| protobuf-es | 8 | 130,784 b | 68,882 b | 16,433 b |
+| protobuf-es | 16 | 141,234 b | 76,863 b | 18,756 b |
+| protobuf-es | 32 | 169,025 b | 98,881 b | 24,210 b |
 | protobuf-javascript | 1 | 339,613 b | 255,820 b | 42,481 b |
 | protobuf-javascript | 4 | 366,281 b | 271,092 b | 43,912 b |
 | protobuf-javascript | 8 | 388,324 b | 283,409 b | 45,038 b |
