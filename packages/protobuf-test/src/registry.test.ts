@@ -427,28 +427,23 @@ describe("createFileRegistry()", function () {
           return testFileReg.getFile(protoFileName);
         });
       }
-
       expect(t).toThrow(/^Unable to resolve c.proto, imported by a.proto$/);
     });
   });
   test("raises error on unsupported edition from the past", function () {
     testFileDescriptorSet.file[0].syntax = "editions";
     testFileDescriptorSet.file[0].edition = Edition.EDITION_1_TEST_ONLY;
-
     function t() {
       createFileRegistry(testFileDescriptorSet);
     }
-
     expect(t).toThrow(/^d.proto: unsupported edition$/);
   });
   test("raises error on unsupported edition from the future", function () {
     testFileDescriptorSet.file[0].syntax = "editions";
     testFileDescriptorSet.file[0].edition = Edition.EDITION_99999_TEST_ONLY;
-
     function t() {
       createFileRegistry(testFileDescriptorSet);
     }
-
     expect(t).toThrow(/^d.proto: unsupported edition$/);
   });
   describe("from FileRegistry", function () {
