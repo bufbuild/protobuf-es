@@ -84,7 +84,7 @@ export type {
   IMessageTypeRegistry,
   IExtensionRegistry,
 } from "./type-registry.js";
-export { createRegistry } from "./create-registry.js";
+export { createRegistry, createMutableRegistry } from "./create-registry.js";
 export { createRegistryFromDescriptors } from "./create-registry-from-desc.js";
 export { toPlainMessage } from "./to-plain-message.js";
 

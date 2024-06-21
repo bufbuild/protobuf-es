@@ -19,6 +19,7 @@ import type {
   IEnumTypeRegistry,
   IExtensionRegistry,
   IMessageTypeRegistry,
+  IMutableRegistry,
   IServiceTypeRegistry,
 } from "./type-registry.js";
 import type { Extension } from "./extension.js";
@@ -33,12 +34,24 @@ export function createRegistry(
   IEnumTypeRegistry &
   IExtensionRegistry &
   IServiceTypeRegistry {
+  const mutable = createMutableRegistry(...types);
+  delete (mutable as Partial<IMutableRegistry>).add;
+  return mutable;
+}
+
+/**
+ * Create a mutable registry from the given types.
+ */
+export function createMutableRegistry(
+  ...types: Array<MessageType | EnumType | ServiceType | Extension>
+): IMutableRegistry {
   const messages: Record<string, MessageType> = {};
   const enums: Record<string, EnumType> = {};
   const services: Record<string, ServiceType> = {};
   const extensionsByName = new Map<string, Extension>();
   const extensionsByExtendee = new Map<string, Map<number, Extension>>();
-  const registry = {
+
+  const registry: IMutableRegistry = {
     findMessage(typeName: string): MessageType | undefined {
       return messages[typeName];
     },
@@ -54,49 +67,51 @@ export function createRegistry(
     findExtension(typeName: string): Extension | undefined {
       return extensionsByName.get(typeName) ?? undefined;
     },
+    add(type: MessageType | EnumType | ServiceType | Extension) {
+      if ("fields" in type) {
+        if (!this.findMessage(type.typeName)) {
+          messages[type.typeName] = type;
+          type.fields.list().forEach(addField);
+        }
+      } else if ("methods" in type) {
+        if (!this.findService(type.typeName)) {
+          services[type.typeName] = type;
+          for (const method of Object.values(type.methods)) {
+            this.add(method.I);
+            this.add(method.O);
+          }
+        }
+      } else if ("extendee" in type) {
+        if (!extensionsByName.has(type.typeName)) {
+          extensionsByName.set(type.typeName, type);
+          const extendeeName = type.extendee.typeName;
+          if (!extensionsByExtendee.has(extendeeName)) {
+            extensionsByExtendee.set(
+              extendeeName,
+              new Map<number, Extension>(),
+            );
+          }
+          extensionsByExtendee.get(extendeeName)?.set(type.field.no, type);
+          this.add(type.extendee);
+          addField(type.field);
+        }
+      } else {
+        enums[type.typeName] = type;
+      }
+    },
   };
-
-  function addType(type: MessageType | EnumType | ServiceType | Extension) {
-    if ("fields" in type) {
-      if (!registry.findMessage(type.typeName)) {
-        messages[type.typeName] = type;
-        type.fields.list().forEach(addField);
-      }
-    } else if ("methods" in type) {
-      if (!registry.findService(type.typeName)) {
-        services[type.typeName] = type;
-        for (const method of Object.values(type.methods)) {
-          addType(method.I);
-          addType(method.O);
-        }
-      }
-    } else if ("extendee" in type) {
-      if (!extensionsByName.has(type.typeName)) {
-        extensionsByName.set(type.typeName, type);
-        const extendeeName = type.extendee.typeName;
-        if (!extensionsByExtendee.has(extendeeName)) {
-          extensionsByExtendee.set(extendeeName, new Map<number, Extension>());
-        }
-        extensionsByExtendee.get(extendeeName)?.set(type.field.no, type);
-        addType(type.extendee);
-        addField(type.field);
-      }
-    } else {
-      enums[type.typeName] = type;
-    }
-  }
 
   function addField(field: FieldInfo) {
     if (field.kind == "message") {
-      addType(field.T);
+      registry.add(field.T);
     } else if (field.kind == "map" && field.V.kind == "message") {
-      addType(field.V.T);
+      registry.add(field.V.T);
     } else if (field.kind == "enum") {
-      addType(field.T);
+      registry.add(field.T);
     }
   }
   for (const type of types) {
-    addType(type);
+    registry.add(type);
   }
   return registry;
 }

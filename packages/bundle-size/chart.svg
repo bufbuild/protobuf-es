@@ -43,10 +43,10 @@
 <text x="-10" y="294" text-anchor="end">0 KiB</text>
 </g>
 <g transform="translate(110, 20)">
-  <polyline fill="none" stroke="#ffa600" stroke-width="2" points="0,262.29990234375 140,261.3568359375 280,259.39140625 420,252.27734375 560,232.86376953125">
+  <polyline fill="none" stroke="#ffa600" stroke-width="2" points="0,262.2857421875 140,261.3568359375 280,259.39140625 420,252.27734375 560,232.86376953125">
     <title>protobuf-es</title>
   </polyline>
-<circle cx="0" cy="262.29990234375" r="4" fill="#ffa600"><title>protobuf-es 9.55 KiB for 1 files</title></circle>
+<circle cx="0" cy="262.2857421875" r="4" fill="#ffa600"><title>protobuf-es 9.56 KiB for 1 files</title></circle>
 <circle cx="140" cy="261.3568359375" r="4" fill="#ffa600"><title>protobuf-es 9.88 KiB for 4 files</title></circle>
 <circle cx="280" cy="259.39140625" r="4" fill="#ffa600"><title>protobuf-es 10.55 KiB for 8 files</title></circle>
 <circle cx="420" cy="252.27734375" r="4" fill="#ffa600"><title>protobuf-es 13.01 KiB for 16 files</title></circle>
