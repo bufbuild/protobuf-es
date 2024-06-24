@@ -48,12 +48,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.tmp
-            .tmp
-          key: ${{ runner.os }}-protobuf-es-test-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-test-
+          path: .turbo
+          key: ${{ runner.os }}/protobuf-es/test
       - name: NPM Install
         run: npm ci
       - name: Run all tests except conformance and TypeScript compat
@@ -66,12 +62,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.tmp
-            .tmp
-          key: ${{ runner.os }}-protobuf-es-conformance-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-conformance-
+          path: .turbo
+          key: ${{ runner.os }}/protobuf-es/conformance
       - name: NPM Install
         run: npm ci
       - name: Run conformance tests
@@ -84,12 +76,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.tmp
-            .tmp
-          key: ${{ runner.os }}-protobuf-es-lint-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-lint-
+          path: .turbo
+          key: ${{ runner.os }}/protobuf-es/lint
       - name: NPM Install
         run: npm ci
       - name: lint
@@ -102,12 +90,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.tmp
-            .tmp
-          key: ${{ runner.os }}-protobuf-es-attw-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-attw-
+          path: .turbo
+          key: ${{ runner.os }}/protobuf-es/attw
       - name: NPM Install
         run: npm ci
       - name: Are the types wrong
@@ -120,12 +104,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.tmp
-            .tmp
-          key: ${{ runner.os }}-protobuf-es-typescript-compat-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-typescript-compat-
+          path: .turbo
+          key: ${{ runner.os }}/protobuf-es/typescript-compat
       - name: NPM Install
         run: npm ci
       - name: Test typescript-compat
@@ -138,12 +118,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.tmp
-            .tmp
-          key: ${{ runner.os }}-protobuf-es-license-header-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-license-header-
+          path: .turbo
+          key: ${{ runner.os }}/protobuf-es/license-header
       - name: NPM Install
         run: npm ci
       - name: Update license headers
@@ -158,12 +134,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.tmp
-            .tmp
-          key: ${{ runner.os }}-protobuf-es-format-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-format-
+          path: .turbo
+          key: ${{ runner.os }}/protobuf-es/format
       - name: NPM Install
         run: npm ci
       - name: Format
@@ -178,12 +150,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.tmp
-            .tmp
-          key: ${{ runner.os }}-protobuf-es-bundle-size-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-bundle-size-
+          path: .turbo
+          key: ${{ runner.os }}/protobuf-es/bundle-size
       - name: NPM Install
         run: npm ci
       - name: Format
@@ -198,12 +166,8 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.tmp
-            .tmp
-          key: ${{ runner.os }}-protobuf-es-bootstrap-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-bootstrap-
+          path: .turbo
+          key: ${{ runner.os }}/protobuf-es/bootstrap
       - name: NPM Install
         run: npm ci
       - name: Bootstrap well-known types
