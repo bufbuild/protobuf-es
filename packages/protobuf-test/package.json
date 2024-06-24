@@ -15,9 +15,7 @@
     "perf": "tsx src/perf.ts benchmark '.*'",
     "profile": "dexnode dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
     "flamegraph": "npx 0x -- node dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
-    "test": "npm run test:bigint && npm run test:string",
-    "test:bigint": "BUF_BIGINT_DISABLE=0 NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "test:string": "BUF_BIGINT_DISABLE=1 NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo' '!src/gen/**'",
     "license-header": "license-header",
     "lint": "eslint --max-warnings 0 ."

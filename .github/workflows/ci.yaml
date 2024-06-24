@@ -17,6 +17,7 @@ jobs:
     strategy:
       matrix:
         node-version: [18, 20]
+        bigint-disable: [0, 1]
     steps:
       - uses: actions/setup-node@v4
         with:
@@ -34,11 +35,14 @@ jobs:
         run: npm ci
       - name: Run all tests except conformance and TypeScript compat
         run: npx turbo run test -F '!./packages/protobuf-conformance' -F '!./packages/typescript-compat/*'
+        env:
+          BUF_BIGINT_DISABLE: ${{ matrix.bigint-disable }}
   conformance:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
         node-version: [18, 20]
+        bigint-disable: [0, 1]
     steps:
       - uses: actions/setup-node@v4
         with:
@@ -56,6 +60,8 @@ jobs:
         run: npm ci
       - name: Run conformance tests
         run: npx turbo run test -F './packages/protobuf-conformance'
+        env:
+          BUF_BIGINT_DISABLE: ${{ matrix.bigint-disable }}
   lint:
     runs-on: ubuntu-20.04
     steps:
