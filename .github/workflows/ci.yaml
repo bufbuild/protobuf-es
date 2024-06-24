@@ -144,12 +144,7 @@ jobs:
       - name: Update license headers
         run: npx turbo run license-header
       - name: Check changed files
-        run: |
-          if [[ -n $(git status --porcelain | tee /dev/stderr) ]]; then
-            echo "::error::Formatting resulted in changed files. Please make sure this branch is up to date and run 'pnpm format'. Verify the changes are what you want and commit them."
-            git diff
-            exit 1
-          fi
+        run: node scripts/gh-diffcheck.js
   format:
     runs-on: ubuntu-20.04
     steps:
@@ -169,12 +164,7 @@ jobs:
       - name: Format
         run: npx turbo run format
       - name: Check changed files
-        run: |
-          if [[ -n $(git status --porcelain | tee /dev/stderr) ]]; then
-            echo "::error::Formatting resulted in changed files. Please make sure this branch is up to date and run 'pnpm format'. Verify the changes are what you want and commit them."
-            git diff
-            exit 1
-          fi
+        run: node scripts/gh-diffcheck.js
   bundle-size:
     runs-on: ubuntu-20.04
     steps:
@@ -194,12 +184,7 @@ jobs:
       - name: Format
         run: npx turbo run bundle-size
       - name: Check changed files
-        run: |
-          if [[ -n $(git status --porcelain | tee /dev/stderr) ]]; then
-            echo "::error::Formatting resulted in changed files. Please make sure this branch is up to date and run 'pnpm format'. Verify the changes are what you want and commit them."
-            git diff
-            exit 1
-          fi
+        run: node scripts/gh-diffcheck.js
   bootstrap:
     runs-on: ubuntu-20.04
     steps:
@@ -219,9 +204,4 @@ jobs:
       - name: Bootstrap well-known types
         run: npx turbo run bootstrap:inject bootstrap:wkt
       - name: Check changed files
-        run: |
-          if [[ -n $(git status --porcelain | tee /dev/stderr) ]]; then
-            echo "::error::Formatting resulted in changed files. Please make sure this branch is up to date and run 'pnpm format'. Verify the changes are what you want and commit them."
-            git diff
-            exit 1
-          fi
+        run: node scripts/gh-diffcheck.js

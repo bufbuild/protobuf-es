@@ -28,7 +28,6 @@ function npmPublish() {
  * @returns {string}
  */
 function gitUncommitted() {
-  // git status --short
   const out = execSync("git status --short", {
     encoding: "utf-8",
   });
