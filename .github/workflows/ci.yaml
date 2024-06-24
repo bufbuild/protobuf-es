@@ -48,7 +48,9 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: .turbo
+          path: | 
+            .turbo
+            packages/upstream-protobuf/.tmp
           key: ${{ runner.os }}/${{ matrix.node-version }}/protobuf-es/test
       - name: NPM Install
         run: npm ci
@@ -62,7 +64,9 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: .turbo
+          path: | 
+            .turbo
+            packages/upstream-protobuf/.tmp
           key: ${{ runner.os }}/protobuf-es/conformance
       - name: NPM Install
         run: npm ci
@@ -76,7 +80,9 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: .turbo
+          path: |
+            .turbo
+            packages/upstream-protobuf/.tmp
           key: ${{ runner.os }}/protobuf-es/lint
       - name: NPM Install
         run: npm ci
@@ -90,7 +96,9 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: .turbo
+          path: |
+            .turbo
+            packages/upstream-protobuf/.tmp
           key: ${{ runner.os }}/protobuf-es/attw
       - name: NPM Install
         run: npm ci
@@ -104,7 +112,9 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: .turbo
+          path: |
+            .turbo
+            packages/upstream-protobuf/.tmp
           key: ${{ runner.os }}/protobuf-es/typescript-compat
       - name: NPM Install
         run: npm ci
@@ -118,7 +128,9 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: .turbo
+          path: |
+            .turbo
+            packages/upstream-protobuf/.tmp
           key: ${{ runner.os }}/protobuf-es/license-header
       - name: NPM Install
         run: npm ci
@@ -134,7 +146,9 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: .turbo
+          path: |
+            .turbo
+            packages/upstream-protobuf/.tmp
           key: ${{ runner.os }}/protobuf-es/format
       - name: NPM Install
         run: npm ci
@@ -150,7 +164,9 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: .turbo
+          path: |
+            .turbo
+            packages/upstream-protobuf/.tmp
           key: ${{ runner.os }}/protobuf-es/bundle-size
       - name: NPM Install
         run: npm ci
@@ -166,7 +182,9 @@ jobs:
       - name: Cache
         uses: actions/cache@v4
         with:
-          path: .turbo
+          path: |
+            .turbo
+            packages/upstream-protobuf/.tmp
           key: ${{ runner.os }}/protobuf-es/bootstrap
       - name: NPM Install
         run: npm ci
