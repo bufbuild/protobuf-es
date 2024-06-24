@@ -11,10 +11,6 @@
       "dependsOn": ["^build", "generate"],
       "outputs": ["dist/**"]
     },
-    "@bufbuild/bundle-size#build": {
-      "dependsOn": ["^build", "generate"],
-      "outputs": ["README.md", "chart.svg"]
-    },
     "generate": {
       "dependsOn": ["^build"],
       "outputs": ["src/gen/**"]

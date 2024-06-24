@@ -18,7 +18,7 @@
     "clean": "git clean -Xdf",
     "bundle-size": "turbo run report -F ./packages/bundle-size",
     "perf": "turbo run perf -F ./packages/protobuf-test",
-    "all": "npx turbo run build generate test lint attw report format license-header bootstrap:inject bootstrap:wkt",
+    "all": "npx turbo run build generate test lint attw bundle-size format license-header bootstrap:inject bootstrap:wkt",
     "setversion": "node scripts/set-workspace-version.js",
     "release": "npm run all && node scripts/release.js"
   },
