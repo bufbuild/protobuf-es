@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main, v2]
   workflow_dispatch:
+
+env:
+  # https://consoledonottrack.com/
+  DO_NOT_TRACK: 1
+
 jobs:
 #  ci:
 #    runs-on: ubuntu-20.04
