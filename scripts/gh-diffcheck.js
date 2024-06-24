@@ -5,9 +5,10 @@ if (gitUncommitted()) {
     "::error::Uncommitted changes found. Please make sure this branch is up to date, and run the command locally (for example `npx turbo format`). " +
     "Verify the changes are what you want and commit them.\n"
   );
-  execSync("git diff", {
+  execSync("git --no-pager diff", {
     stdio: "inherit"
   });
+  process.exit(1);
 }
 
 /**
