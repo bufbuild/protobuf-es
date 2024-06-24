@@ -8,7 +8,7 @@
     "test": "tsx --test test/*.ts",
     "generate": "buf generate proto",
     "postgenerate": "license-header src/gen",
-    "format": "prettier --write --ignore-unknown '.' '!.turbo'",
+    "format": "prettier --write --ignore-unknown '.' '!.turbo' '!src/gen/**'",
     "license-header": "license-header",
     "lint": "eslint --max-warnings 0 ."
   },
