@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoplugin-example",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-beta.1",
   "private": true,
   "scripts": {
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
@@ -15,9 +15,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bufbuild/buf": "^1.29.0",
-    "@bufbuild/protobuf": "^2.0.0-alpha.4",
-    "@bufbuild/protoc-gen-es": "^2.0.0-alpha.4",
-    "@bufbuild/protoplugin": "^2.0.0-alpha.4",
+    "@bufbuild/protobuf": "^2.0.0-beta.1",
+    "@bufbuild/protoc-gen-es": "^2.0.0-beta.1",
+    "@bufbuild/protoplugin": "^2.0.0-beta.1",
     "typescript": "^5.2.2",
     "tsx": "^4.7.0",
     "@types/node": "~20.8.6"
