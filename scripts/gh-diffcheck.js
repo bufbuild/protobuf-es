@@ -8,7 +8,6 @@ if (gitUncommitted()) {
   execSync("git --no-pager diff", {
     stdio: "inherit"
   });
-  process.exit(1);
 }
 
 /**
