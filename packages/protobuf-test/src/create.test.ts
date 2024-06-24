@@ -12,10 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescMessage } from "@bufbuild/protobuf";
-import { protoInt64 } from "@bufbuild/protobuf";
-import type { MessageInitShape } from "@bufbuild/protobuf";
-import { create, isFieldSet, isMessage } from "@bufbuild/protobuf";
+import {
+  create,
+  isFieldSet,
+  isMessage,
+  protoInt64,
+  type MessageInitShape,
+  type DescMessage,
+} from "@bufbuild/protobuf";
 import { describe, expect, test } from "@jest/globals";
 import { reflect } from "@bufbuild/protobuf/reflect";
 import * as example_ts from "./gen/ts/extra/example_pb.js";

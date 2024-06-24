@@ -2,7 +2,7 @@
   "name": "@bufbuild/protobuf-conformance",
   "private": true,
   "scripts": {
-    "clean": "rm -rf ./dist/cjs/* ./dist/types/*",
+    "prebuild": "rm -rf ./dist/cjs/* ./dist/types/*",
     "build": "npm run build:esm+types",
     "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/types",
     "pregenerate": "rm -rf src/gen/*",
@@ -10,7 +10,10 @@
     "postgenerate": "license-header src/gen",
     "test": "npm run test:bigint && npm run test:string",
     "test:bigint": "BUF_BIGINT_DISABLE=0 conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_with_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
-    "test:string": "BUF_BIGINT_DISABLE=1 conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js"
+    "test:string": "BUF_BIGINT_DISABLE=1 conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
+    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 ."
   },
   "type": "module",
   "types": "./dist/types/index.d.ts",
@@ -19,9 +22,8 @@
     "default": "./dist/esm/index.js"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "2.0.0-alpha.4"
-  },
-  "devDependencies": {
+    "@bufbuild/protobuf": "2.0.0-alpha.4",
+    "@bufbuild/protoc-gen-es": "2.0.0-alpha.4",
     "upstream-protobuf": "*"
   }
 }

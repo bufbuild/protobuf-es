@@ -1,36 +1,43 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+import {readdirSync, readFileSync} from "fs";
+import {join} from "path";
+import {existsSync} from "node:fs";
+import {execSync} from "node:child_process";
 
-import { readdirSync, readFileSync } from "fs";
-import { join } from "path";
-import { existsSync } from "node:fs";
+const tag = determinePublishTag(findWorkspaceVersion("packages"));
+const uncommitted = gitUncommitted();
+if (uncommitted.length > 0) {
+  throw new Error("Uncommitted changes found: \n" + uncommitted);
+}
+npmPublish();
 
-/*
 
-USAGE: node get-workspace-publish-tag.js
+/**
+ *
+ */
+function npmPublish() {
+  const command = `npm publish --tag ${tag}`
+    + " --workspace packages/protobuf"
+    + " --workspace packages/protoplugin"
+    + " --workspace packages/protoc-gen-es";
+  execSync(command, {
+    stdio: "inherit"
+  });
+}
 
-Looks at the version used in the workspace, and returns one of:
- - latest - for versions such as 3.1.4, 2.0.0, but also 0.1.2
- - alpha - for versions such as 1.0.0-alpha.8
- - beta - for versions such as 1.0.0-beta.8
- - rc - for versions such as 1.0.0-rc.8
+/**
+ * @returns {string}
+ */
+function gitUncommitted() {
+  // git status --short
+  const out = execSync("git status --short", {
+    encoding: "utf-8",
+  });
+  if (out.trim().length === 0) {
+    return "";
+  }
+  return out;
+}
 
-*/
-
-const version = findWorkspaceVersion("packages");
-const tag = determinePublishTag(version);
-process.stdout.write(tag);
 
 /**
  * @param {string} version

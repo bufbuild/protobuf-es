@@ -13,8 +13,7 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
-import { clone, create } from "@bufbuild/protobuf";
-import { protoInt64 } from "@bufbuild/protobuf";
+import { clone, create, protoInt64 } from "@bufbuild/protobuf";
 import { WireType } from "@bufbuild/protobuf/wire";
 import { reflect } from "@bufbuild/protobuf/reflect";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";

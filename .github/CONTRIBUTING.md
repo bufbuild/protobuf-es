@@ -24,12 +24,21 @@ git remote add upstream https://github.com/bufbuild/protobuf-es.git
 git fetch upstream
 ```
 
-Make sure that the tests and the linters pass (you'll need Node.js in the
-version specified in .nvmrc, `bash`, and `make`):
+Install dependencies (you'll need Node.js in the version specified in `.nvmrc`, 
+and `npm` in the version specified in `package.json`):
 
+```bash
+npm ci
 ```
-make 
+
+Make sure that the tests and the linters pass:
+
+```bash
+npx turbo run test lint
 ```
+
+We're using `turborepo` to run tasks. If you haven't used it yet, take a look at 
+[filtering and package scoping](https://turbo.build/repo/docs/crafting-your-repository/running-tasks).
 
 
 ## Making Changes
@@ -43,7 +52,7 @@ git rebase upstream/main
 git checkout -b cool_new_feature
 ```
 
-Make your changes, then ensure that `make` still passes. 
+Make your changes, then ensure that tests and linters still pass. 
 When you're satisfied with your changes, push them to your fork.
 
 ```

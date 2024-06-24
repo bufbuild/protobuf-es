@@ -13,8 +13,7 @@
 // limitations under the License.
 
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
-import { create } from "@bufbuild/protobuf";
-import { protoInt64 } from "@bufbuild/protobuf";
+import { create, protoInt64 } from "@bufbuild/protobuf";
 
 export function fillProto3MessageNames() {
   return [

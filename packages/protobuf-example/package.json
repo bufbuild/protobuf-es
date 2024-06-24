@@ -7,7 +7,11 @@
     "add-person": "tsx src/add-person.ts addressbook.binpb",
     "list-people": "tsx src/list-people.ts addressbook.binpb",
     "pregenerate": "rm -rf src/gen",
-    "generate": "buf generate"
+    "generate": "buf generate",
+    "postgenerate": "license-header src/gen",
+    "format": "prettier --write --ignore-unknown '.' '!.turbo'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 ."
   },
   "type": "module",
   "dependencies": {

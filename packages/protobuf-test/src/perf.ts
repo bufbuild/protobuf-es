@@ -13,12 +13,13 @@
 // limitations under the License.
 
 import Benchmark from "benchmark";
-import { protoInt64 } from "@bufbuild/protobuf";
-import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
+import { create, fromBinary, toBinary, protoInt64 } from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 import { UserSchema } from "./gen/ts/extra/example_pb.js";
-import { ScalarValuesMessageSchema } from "./gen/ts/extra/msg-scalar_pb.js";
-import { RepeatedScalarValuesMessageSchema } from "./gen/ts/extra/msg-scalar_pb.js";
+import {
+  ScalarValuesMessageSchema,
+  RepeatedScalarValuesMessageSchema,
+} from "./gen/ts/extra/msg-scalar_pb.js";
 import { MapsMessageSchema } from "./gen/ts/extra/msg-maps_pb.js";
 import {
   MessageFieldMessageSchema,

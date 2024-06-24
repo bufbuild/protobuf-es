@@ -1,0 +1,13 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "bootstrap:inject": {
+      "dependsOn": ["build", "^build"]
+    },
+    "bootstrap:wkt": {
+      "dependsOn": ["@bufbuild/protoc-gen-es#build"],
+      "outputs": ["src/wkt/gen/**"]
+    }
+  }
+}

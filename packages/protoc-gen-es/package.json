@@ -15,8 +15,11 @@
     "node": ">=14"
   },
   "scripts": {
-    "clean": "rm -rf ./dist/cjs/*",
-    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/cjs"
+    "prebuild": "rm -rf ./dist/cjs/*",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/cjs",
+    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 ."
   },
   "preferUnplugged": true,
   "dependencies": {

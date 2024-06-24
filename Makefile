@@ -20,25 +20,21 @@ $(BUILD)/upstream-protobuf: node_modules packages/upstream-protobuf/version.txt 
 	@touch $(@)
 
 $(BUILD)/protobuf: node_modules tsconfig.base.json packages/protobuf/tsconfig.json $(shell find packages/protobuf/src -name '*.ts')
-	npm run -w packages/protobuf clean
 	npm run -w packages/protobuf build
 	@mkdir -p $(@D)
 	@touch $(@)
 
 $(BUILD)/protobuf-test: $(BUILD)/protobuf $(GEN)/protobuf-test node_modules tsconfig.base.json packages/protobuf-test/tsconfig.json $(shell find packages/protobuf-test/src -name '*.ts')
-	npm run -w packages/protobuf-test clean
 	npm run -w packages/protobuf-test build
 	@mkdir -p $(@D)
 	@touch $(@)
 
 $(BUILD)/protoplugin: $(BUILD)/protobuf node_modules tsconfig.base.json packages/protoplugin/tsconfig.json $(shell find packages/protoplugin/src -name '*.ts')
-	npm run -w packages/protoplugin clean
 	npm run -w packages/protoplugin build
 	@mkdir -p $(@D)
 	@touch $(@)
 
 $(BUILD)/protoplugin-test: $(BUILD)/protoplugin $(BUILD)/upstream-protobuf node_modules tsconfig.base.json packages/protoplugin-test/tsconfig.json $(shell find packages/protoplugin-test/src -name '*.ts')
-	npm run -w packages/protoplugin-test clean
 	npm run -w packages/protoplugin-test build
 	@mkdir -p $(@D)
 	@touch $(@)
@@ -50,13 +46,11 @@ $(BUILD)/protoplugin-example: $(BUILD)/protoc-gen-es packages/protoplugin-exampl
 	@touch $(@)
 
 $(BUILD)/protoc-gen-es: $(BUILD)/protoplugin node_modules tsconfig.base.json packages/protoc-gen-es/tsconfig.json $(shell find packages/protoc-gen-es/src -name '*.ts')
-	npm run -w packages/protoc-gen-es clean
 	npm run -w packages/protoc-gen-es build
 	@mkdir -p $(@D)
 	@touch $(@)
 
 $(BUILD)/protobuf-conformance: $(GEN)/protobuf-conformance node_modules tsconfig.base.json packages/protobuf-conformance $(shell find packages/protobuf-conformance/src -name '*.ts')
-	npm run -w packages/protobuf-conformance clean
 	npm run -w packages/protobuf-conformance build
 	@mkdir -p $(@D)
 	@touch $(@)
@@ -111,52 +105,47 @@ test: test-protobuf test-protoplugin test-protoplugin-example test-conformance t
 
 .PHONY: test-protobuf
 test-protobuf: $(BUILD)/protobuf-test packages/protobuf-test/jest.config.js
-	npm run -w packages/protobuf-test test
+	npx turbo run test -F ./packages/protobuf-test
 
 .PHONY: test-protoplugin
 test-protoplugin: $(BUILD)/protoplugin-test packages/protoplugin-test/jest.config.js
-	npm run -w packages/protoplugin-test test
+	npx turbo run test -F ./packages/protoplugin-test
 
 .PHONY: test-protoplugin-example
 test-protoplugin-example: $(BUILD)/protoplugin-example
-	npm run -w packages/protoplugin-example test
+	npx turbo run test -F ./packages/protoplugin-example
 
 .PHONY: test-conformance
 test-conformance: $(BUILD)/upstream-protobuf $(BUILD)/protobuf-conformance
-	npm run -w packages/protobuf-conformance test
+	npx turbo run test -F ./packages/protobuf-conformance
 
 .PHONY: test-ts-compat
 test-ts-compat: $(GEN)/protobuf-test $(BUILD)/protobuf node_modules
-	node packages/typescript-compat/typescript-compat.mjs
+	npx turbo run test -F './packages/typescript-compat/*'
 
 .PHONY: lint
 lint: node_modules $(BUILD)/protobuf $(BUILD)/protobuf-test $(BUILD)/protobuf-conformance $(BUILD)/protoplugin $(GEN)/bundle-size $(GEN)/protobuf-example ## Lint all files
-	npx eslint --max-warnings 0 .
-	@# Check type exports on npm packages to verify they're correct
-	npm run -w packages/protobuf attw
-	npm run -w packages/protoplugin attw
+	npx turbo run lint attw
 
 .PHONY: format
 format: node_modules ## Format all files, adding license headers
-	npx prettier --write '**/*.{json,js,jsx,ts,tsx,css,mjs,cjs}' --log-level error
-	npx license-header --ignore 'packages/protobuf/src/**/varint.ts'
+	npx turbo run format license-header
 
 .PHONY: bundle-size
 bundle-size: node_modules $(GEN)/bundle-size $(BUILD)/protobuf ## Benchmark bundle-size
-	npm run -w packages/bundle-size report
+	npx turbo run build -F ./packages/bundle-size
 
 .PHONY: perf
 perf: $(BUILD)/protobuf-test
-	npm run -w packages/protobuf-test perf
+	npx turbo run perf -F ./packages/protobuf-test
 
 .PHONY: flamegraph
 flamegraph: $(BUILD)/protobuf-test
-	npm run -w packages/protobuf-test flamegraph
+	npx turbo run flamegraph -F ./packages/protobuf-test
 
 .PHONY: bootstrap
 bootstrap: $(BUILD)/upstream-protobuf $(BUILD)/protoc-gen-es node_modules ## Bootstrap well-known types and edition features-set defaults in @bufbuild/protobuf from upstream protobuf
-	npm run -w packages/protobuf bootstrap:wkt
-	npm run -w packages/protobuf bootstrap:inject
+	npx turbo run bootstrap:inject bootstrap:wkt -F ./packages/protobuf
 
 .PHONY: setversion
 setversion: ## Set a new version in for the project, i.e. make setversion SET_VERSION=1.2.3
@@ -172,12 +161,7 @@ setversion: ## Set a new version in for the project, i.e. make setversion SET_VE
 # 5. Tag the release
 .PHONY: release
 release: all ## Release @bufbuild/protobuf
-	@[ -z "$(shell git status --short)" ] || (echo "Uncommitted changes found." && exit 1);
-	npm publish \
-		--tag $(shell node scripts/get-workspace-publish-tag.js || kill $$PPID;) \
-		--workspace packages/protobuf \
-		--workspace packages/protoplugin \
-		--workspace packages/protoc-gen-es
+	npm run release
 
 .PHONY: checkdiff
 checkdiff:

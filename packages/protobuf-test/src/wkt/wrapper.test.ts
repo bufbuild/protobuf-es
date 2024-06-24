@@ -14,8 +14,9 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { create } from "@bufbuild/protobuf";
-import { isWrapper, isWrapperDesc } from "@bufbuild/protobuf/wkt";
 import {
+  isWrapper,
+  isWrapperDesc,
   DoubleValueSchema,
   BoolValueSchema,
   BytesValueSchema,

@@ -6,7 +6,11 @@
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza",
     "test": "tsx --test test/*.ts",
-    "generate": "buf generate proto"
+    "generate": "buf generate proto",
+    "postgenerate": "license-header src/gen",
+    "format": "prettier --write --ignore-unknown '.' '!.turbo'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 ."
   },
   "license": "Apache-2.0",
   "dependencies": {

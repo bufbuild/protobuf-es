@@ -1,0 +1,43 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "tsconfig.base.json",
+    ".eslintrc.cjs",
+    "package.json",
+    "scripts/*"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "generate"],
+      "outputs": ["dist/**"]
+    },
+    "@bufbuild/bundle-size#build": {
+      "dependsOn": ["^build", "generate"],
+      "outputs": ["README.md", "chart.svg"]
+    },
+    "generate": {
+      "dependsOn": ["^build"],
+      "outputs": ["src/gen/**"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "format": {},
+    "license-header": {
+      "dependsOn": ["generate"]
+    },
+    "lint": {
+      "dependsOn": ["format", "^build", "generate"]
+    },
+    "@bufbuild/protobuf-conformance#lint": {
+      "dependsOn": ["format", "^build", "generate", "build"]
+    },
+    "@bufbuild/protoc-gen-es#lint": {
+      "dependsOn": ["format", "^build", "generate", "build"]
+    },
+    "attw": {
+      "dependsOn": ["build"]
+    }
+  }
+}

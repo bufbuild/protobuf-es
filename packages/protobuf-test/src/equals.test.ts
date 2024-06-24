@@ -14,9 +14,12 @@
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
 import assert from "node:assert";
-import { create, equals } from "@bufbuild/protobuf";
-import type { Message } from "@bufbuild/protobuf";
-import type { DescMessage } from "@bufbuild/protobuf";
+import {
+  create,
+  equals,
+  type Message,
+  type DescMessage,
+} from "@bufbuild/protobuf";
 import { reflect } from "@bufbuild/protobuf/reflect";
 import { WireType } from "@bufbuild/protobuf/wire";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";

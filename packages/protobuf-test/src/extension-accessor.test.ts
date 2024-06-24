@@ -20,8 +20,12 @@ import {
   equals,
   hasExtension,
   clearExtension,
+  type Message,
+  protoInt64,
+  setExtension,
+  type DescExtension,
+  type DescMessage,
 } from "@bufbuild/protobuf";
-import type { Message } from "@bufbuild/protobuf";
 import { describe, expect, it, beforeEach } from "@jest/globals";
 import { UserSchema } from "./gen/ts/extra/example_pb.js";
 import type { Proto2Extendee } from "./gen/ts/extra/extensions-proto2_pb.js";
@@ -58,10 +62,7 @@ import {
   repeated_struct_ext,
 } from "./gen/ts/extra/extensions-proto2_pb.js";
 import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
-import type { DescExtension, DescMessage } from "@bufbuild/protobuf";
 import { UInt32ValueSchema, FileOptionsSchema } from "@bufbuild/protobuf/wkt";
-import { setExtension } from "@bufbuild/protobuf";
-import { protoInt64 } from "@bufbuild/protobuf";
 import {
   optional_uint32_ext as proto3_optional_uint32_ext,
   packed_uint32_ext as proto3_packed_uint32_ext,

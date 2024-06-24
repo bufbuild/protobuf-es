@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* eslint-disable n/no-missing-import */
+
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join as joinPath } from "node:path";
 import assert from "node:assert";
