@@ -40,11 +40,13 @@ jobs:
           path: |
             ~/.tmp
             .tmp
-          key: ${{ runner.os }}-protobuf-es-lint-${{ hashFiles('Makefile') }}
+          key: ${{ runner.os }}-protobuf-es-lint-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-protobuf-es-lint-
+      - name: NPM Install
+        run: npm ci
       - name: lint
-        run: make lint
+        run: npx turbo run lint attw
   typescript-compat:
     runs-on: ubuntu-20.04
     steps:
