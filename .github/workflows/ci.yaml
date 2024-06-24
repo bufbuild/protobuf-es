@@ -56,8 +56,8 @@ jobs:
           path: |
             ~/.tmp
             .tmp
-          key: ${{ runner.os }}-protobuf-es-typescript-compat-${{ hashFiles('Makefile') }}
-          restore-keys: |
-            ${{ runner.os }}-protobuf-es-typescript-compat-
-      - name: make
-        run: make test-ts-compat
+          key: ${{ runner.os }}-protobuf-es-typescript-compat-${{ hashFiles('package-lock.json') }}
+      - name: install
+        run: npm ci
+      - name: test typescript-compat
+        run: npx turbo run test -F './packages/typescript-compat/*'
