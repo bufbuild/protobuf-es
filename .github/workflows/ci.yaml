@@ -58,7 +58,13 @@ jobs:
         run: npx turbo run test -F '!./packages/protobuf-conformance' -F '!./packages/typescript-compat/*'
   conformance:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [18, 20]
     steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
       - name: checkout
         uses: actions/checkout@v4
       - name: Cache
@@ -67,7 +73,7 @@ jobs:
           path: | 
             .turbo
             packages/upstream-protobuf/.tmp
-          key: ${{ runner.os }}/protobuf-es/conformance
+          key: ${{ runner.os }}/${{ matrix.node-version }}/protobuf-es/conformance
       - name: NPM Install
         run: npm ci
       - name: Run conformance tests
