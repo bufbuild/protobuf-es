@@ -82,7 +82,25 @@ jobs:
       - name: NPM Install
         run: npm ci
       - name: lint
-        run: npx turbo run lint attw
+        run: npx turbo run lint
+  attw:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.tmp
+            .tmp
+          key: ${{ runner.os }}-protobuf-es-attw-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-protobuf-es-attw-
+      - name: NPM Install
+        run: npm ci
+      - name: Are the types wrong
+        run: npx turbo run attw
   typescript-compat:
     runs-on: ubuntu-20.04
     steps:
