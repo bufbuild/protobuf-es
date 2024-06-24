@@ -9,7 +9,7 @@
     "pregenerate": "rm -rf src/gen",
     "generate": "buf generate",
     "postgenerate": "license-header src/gen",
-    "format": "prettier --write --ignore-unknown '.' '!.turbo'",
+    "format": "prettier --write --ignore-unknown '.' '!.turbo' '!src/gen/**'",
     "license-header": "license-header",
     "lint": "eslint --max-warnings 0 ."
   },
