@@ -1,4 +1,5 @@
 {
+  "name": "protobuf-es",
   "private": true,
   "workspaces": [
     "./packages/protobuf",
@@ -16,8 +17,8 @@
   "type": "module",
   "engineStrict": true,
   "engines": {
-    "node": ">=16",
-    "npm": ">=8"
+    "node": ">=18",
+    "npm": ">=9"
   },
   "licenseHeader": {
     "licenseType": "apache",
@@ -38,7 +39,7 @@
     "prettier": "^3.2.4",
     "typescript": "^5.3.3"
   },
-  "//": "avoid hoisting, see packages/protoplugin/src/ecmascript/transpile.ts",
+  "//": "avoid hoisting of @typescript/vfs, see packages/protoplugin/src/transpile.ts",
   "dependencies": {
     "@typescript/vfs": "1.0.0"
   }
