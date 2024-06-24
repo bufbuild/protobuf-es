@@ -57,7 +57,7 @@ jobs:
             ~/.tmp
             .tmp
           key: ${{ runner.os }}-protobuf-es-typescript-compat-${{ hashFiles('package-lock.json') }}
-      - name: install
+      - name: NPM Install
         run: npm ci
-      - name: test typescript-compat
+      - name: Test typescript-compat
         run: npx turbo run test -F './packages/typescript-compat/*'
