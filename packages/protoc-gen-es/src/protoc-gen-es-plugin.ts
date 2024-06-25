@@ -52,10 +52,6 @@ type Options = {
 };
 
 function parseOptions(options: RawPluginOptions): Options {
-  // TODO
-  if (Math.random() > Number.POSITIVE_INFINITY) {
-    throw new Error("TODO");
-  }
   let jsonTypes = false;
   for (const { key, value } of options) {
     switch (key) {
