@@ -29,7 +29,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/test/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          key: ${{ runner.os }}/protobuf-es/test/${{ hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**') }}
           restore-keys: ${{ runner.os }}/protobuf-es/test
       - name: NPM Install
         run: npm ci
@@ -54,7 +54,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/conformance/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          key: ${{ runner.os }}/protobuf-es/conformance/${{ hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**') }}
           restore-keys: ${{ runner.os }}/protobuf-es/conformance
       - name: NPM Install
         run: npm ci
@@ -71,7 +71,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/lint/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          key: ${{ runner.os }}/protobuf-es/lint/${{ hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**') }}
           restore-keys: ${{ runner.os }}/protobuf-es/lint
       - name: NPM Install
         run: npm ci
@@ -86,7 +86,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/attw/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          key: ${{ runner.os }}/protobuf-es/attw/${{ hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**') }}
           restore-keys: ${{ runner.os }}/protobuf-es/attw
       - name: NPM Install
         run: npm ci
@@ -101,7 +101,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/typescript-compat/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          key: ${{ runner.os }}/protobuf-es/typescript-compat/${{ hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**') }}
           restore-keys: ${{ runner.os }}/protobuf-es/typescript-compat
       - name: NPM Install
         run: npm ci
@@ -116,7 +116,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/license-header/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          key: ${{ runner.os }}/protobuf-es/license-header/${{ hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**') }}
           restore-keys: ${{ runner.os }}/protobuf-es/license-header
       - name: NPM Install
         run: npm ci
@@ -133,7 +133,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/format/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          key: ${{ runner.os }}/protobuf-es/format/${{ hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**') }}
           restore-keys: ${{ runner.os }}/protobuf-es/format
       - name: NPM Install
         run: npm ci
@@ -150,7 +150,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/bundle-size/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          key: ${{ runner.os }}/protobuf-es/bundle-size/${{ hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**') }}
           restore-keys: ${{ runner.os }}/protobuf-es/bundle-size
       - name: NPM Install
         run: npm ci
@@ -167,7 +167,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/bootstrap/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          key: ${{ runner.os }}/protobuf-es/bootstrap/${{ hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**') }}
           restore-keys: ${{ runner.os }}/protobuf-es/bootstrap
       - name: NPM Install
         run: npm ci
