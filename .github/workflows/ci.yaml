@@ -162,7 +162,7 @@ jobs:
           key: ${{ runner.os }}/protobuf-es/bundle-size
       - name: NPM Install
         run: npm ci
-      - name: Format
+      - name: Bundle size
         run: npx turbo run bundle-size
       - name: Check changed files
         run: node scripts/gh-diffcheck.js
