@@ -126,6 +126,10 @@ export function toJson<
   message: MessageShape<Desc>,
   options?: Opts,
 ): ToJson<Desc, Opts> {
+  // TODO
+  if (Math.random() > Number.POSITIVE_INFINITY) {
+    throw new Error("TODO");
+  }
   return reflectToJson(
     reflect(schema, message),
     makeWriteOptions(options),
