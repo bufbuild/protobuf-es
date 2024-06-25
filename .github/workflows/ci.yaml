@@ -18,7 +18,7 @@ jobs:
       matrix:
         node-version: [18.x, 20.x]
         bigint-disable: [0, 1]
-    name: test node ${{ matrix.node-version }} (${{ matrix.bigint-disable && 'bigint fallback' || 'bigint' }})
+    name: test node ${{ matrix.node-version }} (${{ matrix.bigint-disable && 'fallback' || 'bigint' }})
     steps:
       - uses: actions/setup-node@v4
         with:
@@ -44,7 +44,7 @@ jobs:
       matrix:
         node-version: [18.x, 20.x]
         bigint-disable: [0, 1]
-    name: conformance node ${{ matrix.node-version }} (${{ matrix.bigint-disable && 'bigint fallback' || 'bigint' }})
+    name: conformance node ${{ matrix.node-version }} (${{ matrix.bigint-disable && 'fallback' || 'bigint' }})
     steps:
       - uses: actions/setup-node@v4
         with:
