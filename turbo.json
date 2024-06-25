@@ -1,11 +1,5 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "tsconfig.base.json",
-    ".eslintrc.cjs",
-    "package.json",
-    "scripts/*"
-  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build", "generate"],
