@@ -3,6 +3,17 @@ import {join} from "path";
 import {existsSync} from "node:fs";
 import {execSync} from "node:child_process";
 
+/*
+ * Publish protobuf-es
+ *
+ * Recommended procedure:
+ * 1. Set a new version with `npm run setversion 1.2.3`
+ * 2. Commit and push all changes to a PR, wait for approval.
+ * 3. Login with `npm login`
+ * 4. Publish to npmjs.com with `npm run release`
+ * 5. Merge PR and create a release on GitHub
+ */
+
 const tag = determinePublishTag(findWorkspaceVersion("packages"));
 const uncommitted = gitUncommitted();
 if (uncommitted.length > 0) {
