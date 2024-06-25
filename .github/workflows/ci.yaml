@@ -18,6 +18,7 @@ jobs:
       matrix:
         node-version: [18, 20]
         bigint-disable: [0, 1]
+    name: Node v${{ matrix.node-version }} - ${{ matrix.bigint-disable && 'fallback' || 'bigint' }}
     steps:
       - uses: actions/setup-node@v4
         with:
@@ -43,6 +44,7 @@ jobs:
       matrix:
         node-version: [18, 20]
         bigint-disable: [0, 1]
+    name: Node v${{ matrix.node-version }} - ${{ matrix.bigint-disable && 'fallback' || 'bigint' }}
     steps:
       - uses: actions/setup-node@v4
         with:
