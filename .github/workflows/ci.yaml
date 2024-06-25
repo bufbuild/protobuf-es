@@ -29,7 +29,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/${{ matrix.node-version }}/protobuf-es/test
+          key: ${{ runner.os }}/protobuf-es/test/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          restore-keys: ${{ runner.os }}/protobuf-es/test
       - name: NPM Install
         run: npm ci
       - name: Run all tests except conformance and TypeScript compat
@@ -53,7 +54,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/${{ matrix.node-version }}/protobuf-es/conformance
+          key: ${{ runner.os }}/protobuf-es/conformance/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          restore-keys: ${{ runner.os }}/protobuf-es/conformance
       - name: NPM Install
         run: npm ci
       - name: Run conformance tests
@@ -69,7 +71,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/lint
+          key: ${{ runner.os }}/protobuf-es/lint/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          restore-keys: ${{ runner.os }}/protobuf-es/lint
       - name: NPM Install
         run: npm ci
       - name: lint
@@ -83,7 +86,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/attw
+          key: ${{ runner.os }}/protobuf-es/attw/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          restore-keys: ${{ runner.os }}/protobuf-es/attw
       - name: NPM Install
         run: npm ci
       - name: Are the types wrong
@@ -97,7 +101,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/typescript-compat
+          key: ${{ runner.os }}/protobuf-es/typescript-compat/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          restore-keys: ${{ runner.os }}/protobuf-es/typescript-compat
       - name: NPM Install
         run: npm ci
       - name: Test typescript-compat
@@ -111,7 +116,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/license-header
+          key: ${{ runner.os }}/protobuf-es/license-header/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          restore-keys: ${{ runner.os }}/protobuf-es/license-header
       - name: NPM Install
         run: npm ci
       - name: Update license headers
@@ -127,7 +133,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/format
+          key: ${{ runner.os }}/protobuf-es/format/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          restore-keys: ${{ runner.os }}/protobuf-es/format
       - name: NPM Install
         run: npm ci
       - name: Format
@@ -143,7 +150,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/bundle-size
+          key: ${{ runner.os }}/protobuf-es/bundle-size/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          restore-keys: ${{ runner.os }}/protobuf-es/bundle-size
       - name: NPM Install
         run: npm ci
       - name: Bundle size
@@ -159,7 +167,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/bootstrap
+          key: ${{ runner.os }}/protobuf-es/bootstrap/hashFiles('package-lock.json', 'package.json', 'packages/**/package.json', 'packages/**/src/**')
+          restore-keys: ${{ runner.os }}/protobuf-es/bootstrap
       - name: NPM Install
         run: npm ci
       - name: Bootstrap well-known types
