@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "prebuild": "rm -rf ./dist/*",
-    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist --declaration",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
     "postbuild": "cp src/perf-payload.* dist && cp -r src/gen/js* dist/gen",
     "pregenerate": "rm -rf src/gen/*/*",
     "generate": "npm run generate:ts && npm run generate:js && npm run generate:ts,json_types && npm run generate:js,json_types",

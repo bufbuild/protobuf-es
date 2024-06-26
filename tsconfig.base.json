@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2017",
+    "declaration": true,
     "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

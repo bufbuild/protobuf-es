@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "prebuild": "rm -rf ./dist/*",
-    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist --declaration",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo'",
     "license-header": "license-header",
