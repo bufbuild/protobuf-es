@@ -17,7 +17,7 @@ import { buildSync } from "esbuild";
 import { sizes } from "./constants";
 import { readFileSync, writeFileSync } from "node:fs";
 
-type MarkdownRow = {
+type Row = {
   name: string;
   files: number;
   size: number;
@@ -25,18 +25,46 @@ type MarkdownRow = {
   compressed: number;
 };
 
-export function generateMarkdownTable(rows: MarkdownRow[]) {
-  let md = `| code generator  | files    | bundle size             | minified               | compressed         |\n`;
-  md += `|-----------------|----------|------------------------:|-----------------------:|-------------------:|\n`;
-  for (const row of rows) {
-    md += `| ${row.name} | ${row.files} | ${formatBytes(row.size)} | ${formatBytes(row.minified)} | ${formatBytes(row.compressed)} |\n`;
+export function generateMarkdownTable(rows: Row[]) {
+  const stringRows: Record<keyof Row, string>[] = rows.map((row) => ({
+    name: row.name,
+    files: row.files.toString(),
+    size: formatBytes(row.size),
+    minified: formatBytes(row.minified),
+    compressed: formatBytes(row.compressed),
+  }));
+  stringRows.unshift({
+    name: "code generator",
+    files: "files",
+    size: "bundle size",
+    minified: "minified",
+    compressed: "compressed",
+  });
+  // prettier-ignore
+  const colSizes: Record<keyof Row, number> = {
+    name: stringRows.reduce((size, row) => Math.max(size, row.name.length), 0),
+    files: stringRows.reduce((size, row) => Math.max(size, row.files.length), 0),
+    size: stringRows.reduce((size, row) => Math.max(size, row.size.length), 0),
+    minified: stringRows.reduce((size, row) => Math.max(size, row.minified.length), 0),
+    compressed: stringRows.reduce((size, row) => Math.max(size, row.compressed.length), 0),
+  };
+  const lines: string[] = [];
+  for (const [index, row] of stringRows.entries()) {
+    lines.push(
+      `| ${row.name.padEnd(colSizes.name)} | ${row.files.padStart(colSizes.files)} | ${row.size.padStart(colSizes.size)} | ${row.minified.padStart(colSizes.minified)} | ${row.compressed.padStart(colSizes.compressed)} |`,
+    );
+    if (index === 0) {
+      lines.push(
+        `| ${"-".repeat(colSizes.name)} | ${"-".repeat(colSizes.files - 1)}: | ${"-".repeat(colSizes.size - 1)}: | ${"-".repeat(colSizes.minified - 1)}: | ${"-".repeat(colSizes.compressed - 1)}: |`,
+      );
+    }
   }
-  return md;
+  return "\n" + lines.join("\n") + "\n\n";
 }
 
 export function injectTable(filePath: string, table: string) {
-  const cStart = "<!--- TABLE-START -->\n";
-  const cEnd = "<!--- TABLE-END -->";
+  const cStart = "<!-- TABLE-START -->\n";
+  const cEnd = "<!-- TABLE-END -->";
   const fileContent = readFileSync(filePath, "utf-8");
   const iStart = fileContent.indexOf(cStart);
   const iEnd = fileContent.indexOf(cEnd);

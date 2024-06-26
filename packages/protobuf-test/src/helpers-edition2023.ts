@@ -12,8 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { create } from "@bufbuild/protobuf";
-import { protoInt64 } from "@bufbuild/protobuf";
+import { create, protoInt64 } from "@bufbuild/protobuf";
 import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
 
 export function fillEdition2023MessageNames() {

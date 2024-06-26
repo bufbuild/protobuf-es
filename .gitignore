@@ -1,7 +1,6 @@
+.tmp
+.turbo
+dist
 node_modules
-/packages/*/dist
-/packages/typescript-compat/*/dist
 /packages/protobuf-test/*.0x
 /packages/protobuf-test/*-v8.log
-/.tmp
-/packages/*/.tmp

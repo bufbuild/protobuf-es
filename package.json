@@ -2,24 +2,33 @@
   "name": "protobuf-es",
   "private": true,
   "workspaces": [
-    "./packages/protobuf",
-    "./packages/protoc-gen-es",
-    "./packages/protoplugin",
-    "./packages/protoplugin-test",
-    "./packages/protoplugin-example",
-    "./packages/protobuf-test",
-    "./packages/protobuf-conformance",
-    "./packages/bundle-size",
-    "./packages/protobuf-example",
-    "./packages/upstream-protobuf",
-    "./packages/typescript-compat/*"
+    "packages/protobuf",
+    "packages/protoc-gen-es",
+    "packages/protoplugin",
+    "packages/protoplugin-test",
+    "packages/protoplugin-example",
+    "packages/protobuf-test",
+    "packages/protobuf-conformance",
+    "packages/bundle-size",
+    "packages/protobuf-example",
+    "packages/upstream-protobuf",
+    "packages/typescript-compat/*"
   ],
+  "scripts": {
+    "clean": "git clean -Xdf",
+    "bundle-size": "turbo run report -F ./packages/bundle-size",
+    "perf": "turbo run perf -F ./packages/protobuf-test",
+    "all": "npx turbo run build generate test lint attw bundle-size format license-header bootstrap:inject bootstrap:wkt",
+    "setversion": "node scripts/set-workspace-version.js",
+    "release": "npm run all && node scripts/release.js"
+  },
   "type": "module",
   "engineStrict": true,
   "engines": {
     "node": ">=18",
     "npm": ">=9"
   },
+  "packageManager": "npm@10.1.0",
   "licenseHeader": {
     "licenseType": "apache",
     "yearRange": "2021-2024",
@@ -37,6 +46,7 @@
     "eslint-plugin-n": "^16.6.2",
     "jest": "^29.7.0",
     "prettier": "^3.2.4",
+    "turbo": "^2.0.5",
     "typescript": "^5.3.3"
   },
   "//": "avoid hoisting of @typescript/vfs, see packages/protoplugin/src/transpile.ts",

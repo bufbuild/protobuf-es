@@ -1,11 +1,11 @@
 # @bufbuild/protoc-gen-es
 
-The code generator plugin for Protocol Buffers for ECMAScript.  Learn more about the project at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
+The code generator plugin for Protocol Buffers for ECMAScript. Learn more about the project at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
 
 ## Installation
 
 `protoc-gen-es` generates base types - messages and enumerations - from your Protocol Buffer
-schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).  It is compatible with Protocol Buffer compilers  like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
+schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf). It is compatible with Protocol Buffer compilers like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
 
 To install the plugin and the runtime library, run:
 
@@ -17,7 +17,6 @@ npm install @bufbuild/protobuf
 We use peer dependencies to ensure that code generator and runtime library are
 compatible with each other. Note that npm installs them automatically, but yarn
 and pnpm do not.
-
 
 ## Generating code
 
@@ -51,7 +50,6 @@ npx buf generate
 Note that `buf` can generate from various [inputs](https://docs.buf.build/reference/inputs),
 not just local protobuf files.
 
-
 ### With protoc
 
 ```bash
@@ -80,6 +78,7 @@ This option controls whether the plugin generates JavaScript, TypeScript,
 or TypeScript declaration files.
 
 Possible values:
+
 - `target=js` - generates a `_pb.js` file for every `.proto` input file.
 - `target=ts` - generates a `_pb.ts` file for every `.proto` input file.
 - `target=dts` - generates a `_pb.d.ts` file for every `.proto` input file.
@@ -113,6 +112,7 @@ CommonJS is difficult to avoid, this option can be used to generate CommonJS
 `require()` calls.
 
 Possible values:
+
 - `js_import_style=module` generate ECMAScript `import` / `export` statements -
   the default behavior.
 - `js_import_style=legacy_commonjs` generate CommonJS `require()` calls.

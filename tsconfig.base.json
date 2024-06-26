@@ -12,6 +12,7 @@
       // AsyncIterable is required only for src/wire/size-delimited.ts.
       "ES2018.AsyncIterable"
     ],
+    "declaration": true,
     // Prevent tsc from picking up @types/node and others
     "types": [],
     // We don't have dependencies that require interop

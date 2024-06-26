@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescMessage } from "@bufbuild/protobuf";
 import type { Writable } from "node:stream";
 import {
   create,
   fromBinary,
   fromJsonString,
+  type DescMessage,
   type Message,
   type MessageShape,
   toBinary,

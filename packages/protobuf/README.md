@@ -8,7 +8,7 @@ This package provides the runtime library for the code generator plugin
 A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript,
 suitable for web browsers and Node.js.
 
-**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem.  It is the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC functionality.
+**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem. It is the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC functionality.
 
 Some additional features that set it apart from the others:
 
@@ -17,7 +17,7 @@ Some additional features that set it apart from the others:
 - Generation of idiomatic JavaScript and TypeScript code.
 - Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size)
 - Implementation of all proto3 features, including the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json).
-- Implementation of all proto2 features, except for extensions and the text format.  
+- Implementation of all proto2 features, except for extensions and the text format.
 - Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
 - Compatibility is covered by the protocol buffers [conformance tests](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance).
 - Descriptor and reflection support
@@ -40,4 +40,3 @@ For more information on Buf, check out the official [Buf documentation](https://
 ## Examples
 
 A complete code example can be found in the **Protobuf-ES** repo [here](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example).
-

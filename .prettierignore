@@ -1,6 +1,0 @@
-/node_modules
-/.tmp
-/packages/*/.tmp
-/packages/*/dist
-/packages/*/src/gen
-/packages/protobuf/src/wkt/gen

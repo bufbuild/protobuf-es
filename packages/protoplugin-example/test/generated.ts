@@ -18,16 +18,18 @@ import { create } from "@bufbuild/protobuf";
 import { SayRequestSchema } from "../src/gen/connectrpc/eliza_pb";
 import { ElizaServiceClient } from "../src/gen/connectrpc/eliza_twirp";
 
-describe("custom plugin", async () => {
+/* eslint-disable @typescript-eslint/no-floating-promises */
+
+describe("custom plugin", () => {
   it("should generate client class", () => {
     assert.equal(typeof ElizaServiceClient, "function");
     const client = new ElizaServiceClient("https://example.com");
-    assert.ok(client !== undefined);
+    assert.ok((client as unknown) !== undefined);
   });
   describe("generated client", () => {
     it("should should take argument in constructor", () => {
       const client = new ElizaServiceClient("https://example.com");
-      assert.ok(client !== undefined);
+      assert.ok((client as unknown) !== undefined);
       assert.equal(
         (client as unknown as Record<string, unknown>).baseUrl,
         "https://example.com",
@@ -38,15 +40,16 @@ describe("custom plugin", async () => {
       assert.equal(typeof client.say, "function");
     });
     it("should use fetch", async (t) => {
-      let fetch = mock.fn<typeof globalThis.fetch>(globalThis.fetch);
+      const fetch = mock.fn<typeof globalThis.fetch>(globalThis.fetch);
       globalThis.fetch = fetch;
       t.after(() => fetch.mock.restore());
-      fetch.mock.mockImplementationOnce(
-        async () =>
+      fetch.mock.mockImplementationOnce(() =>
+        Promise.resolve(
           new Response('{"sentence":"ho"}', {
             status: 200,
             headers: { "Content-Type": "application/json" },
           }),
+        ),
       );
       const client = new ElizaServiceClient("https://example.com");
       const req = create(SayRequestSchema, { sentence: "hi" });
@@ -60,10 +63,10 @@ describe("custom plugin", async () => {
       );
       assert.equal(argInit?.method, "POST");
       assert.equal(
-        new Headers(argInit?.headers).get("Content-Type"),
+        new Headers(argInit.headers).get("Content-Type"),
         "application/json",
       );
-      assert.equal(argInit?.body, '{"sentence":"hi"}');
+      assert.equal(argInit.body, '{"sentence":"hi"}');
     });
   });
 });

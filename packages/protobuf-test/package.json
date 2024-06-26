@@ -2,8 +2,8 @@
   "name": "@bufbuild/protobuf-test",
   "private": true,
   "scripts": {
-    "clean": "rm -rf ./dist/*",
-    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist --declaration",
+    "prebuild": "rm -rf ./dist/*",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
     "postbuild": "cp src/perf-payload.* dist && cp -r src/gen/js* dist/gen",
     "pregenerate": "rm -rf src/gen/*/*",
     "generate": "npm run generate:ts && npm run generate:js && npm run generate:ts,json_types && npm run generate:js,json_types",
@@ -15,13 +15,15 @@
     "perf": "tsx src/perf.ts benchmark '.*'",
     "profile": "dexnode dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
     "flamegraph": "npx 0x -- node dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
-    "test": "npm run test:bigint && npm run test:string",
-    "test:bigint": "BUF_BIGINT_DISABLE=0 NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "test:string": "BUF_BIGINT_DISABLE=1 NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo' '!src/gen/**'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 ."
   },
   "type": "module",
   "dependencies": {
     "@bufbuild/protobuf": "2.0.0-beta.1",
+    "@bufbuild/protoc-gen-es": "2.0.0-beta.1",
     "@types/benchmark": "^2.1.5",
     "0x": "^5.7.0",
     "benchmark": "^2.1.4",

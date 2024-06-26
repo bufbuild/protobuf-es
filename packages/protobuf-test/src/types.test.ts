@@ -13,9 +13,14 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { create } from "@bufbuild/protobuf";
-import type { MessageShape, EnumShape, Message } from "@bufbuild/protobuf";
-import type { DescEnum, DescMessage } from "@bufbuild/protobuf";
+import {
+  create,
+  type MessageShape,
+  type EnumShape,
+  type Message,
+  type DescEnum,
+  type DescMessage,
+} from "@bufbuild/protobuf";
 import type { Timestamp, Duration } from "@bufbuild/protobuf/wkt";
 import type { Proto3Message, Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
 import { Proto3EnumSchema } from "./gen/ts/extra/proto3_pb.js";

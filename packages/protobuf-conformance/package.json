@@ -2,26 +2,26 @@
   "name": "@bufbuild/protobuf-conformance",
   "private": true,
   "scripts": {
-    "clean": "rm -rf ./dist/cjs/* ./dist/types/*",
-    "build": "npm run build:esm+types",
-    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/types",
+    "prebuild": "rm -rf ./dist/*",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
     "pregenerate": "rm -rf src/gen/*",
     "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --proto_path=$(upstream-include conformance) $(upstream-files conformance)",
     "postgenerate": "license-header src/gen",
-    "test": "npm run test:bigint && npm run test:string",
-    "test:bigint": "BUF_BIGINT_DISABLE=0 conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_with_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
-    "test:string": "BUF_BIGINT_DISABLE=1 conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js"
+    "test": "test '1' == \"$BUF_BIGINT_DISABLE\" && npm run test:string || npm run test:bigint",
+    "test:bigint": "conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_with_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
+    "test:string": "conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
+    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo' '!src/gen/**'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 ."
   },
   "type": "module",
-  "types": "./dist/types/index.d.ts",
   "exports": {
     "import": "./dist/esm/index.js",
     "default": "./dist/esm/index.js"
   },
-  "dependencies": {
-    "@bufbuild/protobuf": "2.0.0-beta.1"
-  },
   "devDependencies": {
+    "@bufbuild/protobuf": "2.0.0-beta.1",
+    "@bufbuild/protoc-gen-es": "2.0.0-beta.1",
     "upstream-protobuf": "*"
   }
 }

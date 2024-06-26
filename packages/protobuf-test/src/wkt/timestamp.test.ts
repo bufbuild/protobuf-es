@@ -19,10 +19,9 @@ import {
   timestampDate,
   timestampFromMs,
   timestampMs,
+  TimestampSchema,
 } from "@bufbuild/protobuf/wkt";
-import { TimestampSchema } from "@bufbuild/protobuf/wkt";
-import { protoInt64 } from "@bufbuild/protobuf";
-import { create } from "@bufbuild/protobuf";
+import { create, protoInt64 } from "@bufbuild/protobuf";
 
 describe("timestampNow()", () => {
   test("uses current time", () => {
