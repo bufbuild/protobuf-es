@@ -2,8 +2,8 @@
   "name": "@bufbuild/protobuf-conformance",
   "private": true,
   "scripts": {
-    "prebuild": "rm -rf ./dist/esm/*",
-    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm",
+    "prebuild": "rm -rf ./dist/*",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
     "pregenerate": "rm -rf src/gen/*",
     "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --proto_path=$(upstream-include conformance) $(upstream-files conformance)",
     "postgenerate": "license-header src/gen",
