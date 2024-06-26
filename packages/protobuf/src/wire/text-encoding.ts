@@ -44,8 +44,12 @@ export function configureTextEncoding(textEncoding: TextEncoding): void {
 
 export function getTextEncoding() {
   if ((globalThis as GlobalWithTextEncoding)[symbol] == undefined) {
-    const te = new globalThis.TextEncoder();
-    const td = new globalThis.TextDecoder();
+    const te = new (
+      globalThis as unknown as GlobalWithTextEncoderDecoder
+    ).TextEncoder();
+    const td = new (
+      globalThis as unknown as GlobalWithTextEncoderDecoder
+    ).TextDecoder();
     (globalThis as GlobalWithTextEncoding)[symbol] = {
       encodeUtf8(text: string): Uint8Array {
         return te.encode(text);
@@ -68,4 +72,17 @@ export function getTextEncoding() {
 
 type GlobalWithTextEncoding = {
   [symbol]?: TextEncoding;
+};
+
+type GlobalWithTextEncoderDecoder = {
+  TextEncoder: {
+    new (): {
+      encode(text: string): Uint8Array;
+    };
+  };
+  TextDecoder: {
+    new (): {
+      decode(data: Uint8Array): string;
+    };
+  };
 };

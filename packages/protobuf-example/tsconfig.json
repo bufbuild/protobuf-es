@@ -1,8 +1,9 @@
 {
   "files": ["src/add-person.ts", "src/list-people.ts"],
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es2017",
+    "moduleResolution": "Node10",
     "strict": true,
-    "moduleResolution": "Node"
+    "forceConsistentCasingInFileNames": true
   }
 }
