@@ -3,10 +3,8 @@
   "compilerOptions": {
     "target": "es2017",
     "moduleResolution": "Node10",
-    "esModuleInterop": false,
     "resolveJsonModule": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": true
+    "forceConsistentCasingInFileNames": true
   }
 }

@@ -118,6 +118,12 @@ interface Int64Support {
   uDec(lo: number, hi: number): bigint;
 }
 
+// The environment variable BUF_BIGINT_DISABLE=1 disables bigint support for
+// testing.
+declare const process: {
+  env: Record<string, string>;
+};
+
 function makeInt64Support(): Int64Support {
   const dv = new DataView(new ArrayBuffer(8));
   // note that Safari 14 implements BigInt, but not the DataView methods

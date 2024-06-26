@@ -248,7 +248,7 @@ export function createFileRegistry(
           deps.push(dep);
         }
       }
-      return [...deps, ...deps.flatMap((dep) => recurseDeps(dep))];
+      return deps.concat(...deps.map(recurseDeps));
     }
     for (const file of [input, ...recurseDeps(input)].reverse()) {
       addFile(file, registry);

@@ -3,6 +3,14 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      // src/run-node.ts uses Node.js APIs
+      "node"
+    ],
+    "lib": [
+      // @typescript/vfs references the LocalStorage type
+      "dom"
+    ]
   }
 }
