@@ -6,14 +6,5 @@
     "src/wkt/index.ts",
     "src/wire/index.ts"
   ],
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "lib": [
-      "ES2017",
-      // ES2020.BigInt for the bigint representation of 64-bit integers
-      // Note that these are only required for using bigint literals
-      // or the BigInt constructor function.
-      "ES2020.BigInt"
-    ]
-  }
+  "extends": "../../tsconfig.base.json"
 }
