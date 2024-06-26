@@ -29,8 +29,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/test/${{ github.sha }}
-          restore-keys: ${{ runner.os }}/protobuf-es/test
+          key: protobuf-es/test/${{ github.sha }}
+          restore-keys: protobuf-es/test
       - name: NPM Install
         run: npm ci
       - name: Run all tests except conformance and TypeScript compat
@@ -54,8 +54,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/conformance/${{ github.sha }}
-          restore-keys: ${{ runner.os }}/protobuf-es/conformance
+          key: protobuf-es/conformance/${{ github.sha }}
+          restore-keys: protobuf-es/conformance
       - name: NPM Install
         run: npm ci
       - name: Run conformance tests
@@ -71,8 +71,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/lint/${{ github.sha }}
-          restore-keys: ${{ runner.os }}/protobuf-es/lint
+          key: protobuf-es/lint/${{ github.sha }}
+          restore-keys: protobuf-es/lint
       - name: NPM Install
         run: npm ci
       - name: lint
@@ -86,8 +86,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/attw/${{ github.sha }}
-          restore-keys: ${{ runner.os }}/protobuf-es/attw
+          key: protobuf-es/attw/${{ github.sha }}
+          restore-keys: protobuf-es/attw
       - name: NPM Install
         run: npm ci
       - name: Are the types wrong
@@ -101,8 +101,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/typescript-compat/${{ github.sha }}
-          restore-keys: ${{ runner.os }}/protobuf-es/typescript-compat
+          key: protobuf-es/typescript-compat/${{ github.sha }}
+          restore-keys: protobuf-es/typescript-compat
       - name: NPM Install
         run: npm ci
       - name: Test typescript-compat
@@ -116,8 +116,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/license-header/${{ github.sha }}
-          restore-keys: ${{ runner.os }}/protobuf-es/license-header
+          key: protobuf-es/license-header/${{ github.sha }}
+          restore-keys: protobuf-es/license-header
       - name: NPM Install
         run: npm ci
       - name: Update license headers
@@ -133,8 +133,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/format/${{ github.sha }}
-          restore-keys: ${{ runner.os }}/protobuf-es/format
+          key: protobuf-es/format/${{ github.sha }}
+          restore-keys: protobuf-es/format
       - name: NPM Install
         run: npm ci
       - name: Format
@@ -150,8 +150,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/bundle-size/${{ github.sha }}
-          restore-keys: ${{ runner.os }}/protobuf-es/bundle-size
+          key: protobuf-es/bundle-size/${{ github.sha }}
+          restore-keys: protobuf-es/bundle-size
       - name: NPM Install
         run: npm ci
       - name: Bundle size
@@ -167,8 +167,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .turbo
-          key: ${{ runner.os }}/protobuf-es/bootstrap/${{ github.sha }}
-          restore-keys: ${{ runner.os }}/protobuf-es/bootstrap
+          key: protobuf-es/bootstrap/${{ github.sha }}
+          restore-keys: protobuf-es/bootstrap
       - name: NPM Install
         run: npm ci
       - name: Bootstrap well-known types
