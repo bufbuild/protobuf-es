@@ -20,9 +20,9 @@ In a nutshell, Protocol Buffers have two main functions:
 - They are a language for writing schemas for your data.
 - They define a binary format for serializing your data.
 
-These two independent traits functions work together to allow your project and everyone who interacts with it to define
-messages, fields, and service APIs in the exact same way. In a practical sense as it relates to **Protobuf-ES**, this
-means no more disparate JSON types all over the place. Instead, you define a common schema in a Protobuf file, such as:
+These two independent traits work together to allow your project and everyone who interacts with it to define messages,
+fields, and service APIs in the exact same way. In a practical sense as it relates to **Protobuf-ES**, this means no
+more disparate JSON types all over the place. Instead, you define a common schema in a Protobuf file, such as:
 
 ```proto
 syntax = "proto3";
