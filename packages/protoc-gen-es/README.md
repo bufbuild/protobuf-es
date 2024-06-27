@@ -29,12 +29,11 @@ npm install --save-dev @bufbuild/buf
 Add a new configuration file `buf.gen.yaml`:
 
 ```yaml
-# buf.gen.yaml defines a local generation template.
-# For details, see https://docs.buf.build/configuration/v1/buf-gen-yaml
-version: v1
+# Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
+version: v2
 plugins:
   # This will invoke protoc-gen-es and write output to src/gen
-  - plugin: es
+  - local: protoc-gen-es
     out: src/gen
     opt:
       # Add more plugin options here
@@ -61,10 +60,10 @@ PATH=$PATH:$(pwd)/node_modules/.bin \
 ```
 
 Note that we are adding `node_modules/.bin` to the `$PATH`, so that the protocol
-buffer compiler can find them. This happens automatically with npm scripts.
+buffer compiler can find the plugin.
 
 Since yarn v2 and above does not use a `node_modules` directory, you need to
-change the variable a bit:
+change the expression a bit:
 
 ```bash
 PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH

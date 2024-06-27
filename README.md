@@ -79,10 +79,12 @@ and then deserialized at its destination using the defined schema.
 2. Create a `buf.gen.yaml` file that looks like this:
 
    ```yaml
-   # Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
-   version: v1
+   # Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
+   version: v2
+   inputs:
+     - directory: proto
    plugins:
-     - plugin: es
+     - local: protoc-gen-es
        opt: target=ts
        out: src/gen
    ```
@@ -97,7 +99,7 @@ and then deserialized at its destination using the defined schema.
 4. Generate your code with `buf` or `protoc`:
 
    ```bash
-   npx buf generate proto
+   npx buf generate
    ```
 
 You should now see a generated file at `src/gen/example_pb.ts` that contains a type `User`, and a schema `UserSchema`.
