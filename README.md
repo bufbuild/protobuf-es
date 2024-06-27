@@ -20,9 +20,13 @@ In a nutshell, Protocol Buffers have two main functions:
 - They are a language for writing schemas for your data.
 - They define a binary format for serializing your data.
 
-These two independent traits functions work together to allow your project and everyone who interacts with it to define messages, fields, and service APIs in the exact same way. In a practical sense as it relates to **Protobuf-ES**, this means no more disparate JSON types all over the place. Instead, you define a common schema in a Protobuf file, such as:
+These two independent traits functions work together to allow your project and everyone who interacts with it to define
+messages, fields, and service APIs in the exact same way. In a practical sense as it relates to **Protobuf-ES**, this
+means no more disparate JSON types all over the place. Instead, you define a common schema in a Protobuf file, such as:
 
 ```proto
+syntax = "proto3";
+
 message User {
   string first_name = 1;
   string last_name = 2;
@@ -33,10 +37,13 @@ message User {
 }
 ```
 
-And it is compiled to an ECMAScript class that can be used like this:
+This schema is compiled to ECMAScript with `buf` or `protoc`, and can be used like this:
 
 ```typescript
-let user = new User({
+import { UserSchema } from "./gen/user_pb.js";
+import { create, toBinary, toJson } from "@bufbuild/protobuf";
+
+let user = create(UserSchema, {
   firstName: "Homer",
   lastName: "Simpson",
   active: true,
@@ -48,14 +55,18 @@ let user = new User({
   },
 });
 
-const bytes = user.toBinary();
-user = User.fromBinary(bytes);
-user = User.fromJsonString('{"firstName": "Homer", "lastName": "Simpson"}');
+const bytes = toBinary(UserSchema, user);
+const json = toJson(UserSchema, user);
 ```
 
-The benefits can extend to any application that interacts with yours as well. This is because the Protobuf file above can be used to generate types in many languages. The added bonus is that no one has to write any boilerplate code to make this happen. [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
+The benefits can extend to any application that interacts with yours as well. This is because the Protobuf file above
+can be used to generate types in many languages. The added bonus is that no one has to write any boilerplate code to
+make this happen. [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
 
-Protocol Buffers also allow you to serialize this structured data. So, your application running in the browser can send a `User` object to a backend running an entirely different language, but using the exact same definition. Using an RPC framework like [Connect-ES](https://github.com/connectrpc/connect-es), your data is serialized into bytes on the wire and then deserialized at its destination using the defined schema.
+Protocol Buffers also allow you to serialize this structured data. So, your application running in the browser can send
+a `User` object to a backend running an entirely different language, but using the exact same definition. Using an RPC
+framework like [Connect-ES](https://github.com/connectrpc/connect-es), your data is serialized into bytes on the wire
+and then deserialized at its destination using the defined schema.
 
 ## Quickstart
 
@@ -83,15 +94,14 @@ Protocol Buffers also allow you to serialize this structured data. So, your appl
    curl https://raw.githubusercontent.com/bufbuild/protobuf-es/main/packages/protobuf-test/extra/example.proto > proto/example.proto
    ```
 
-4. Generate your code:
+4. Generate your code with `buf` or `protoc`:
 
    ```bash
    npx buf generate proto
    ```
 
-   \*\* Note you can also use `protoc` if desired.
-
-You should now see a generated file at `src/gen/example_pb.ts` that contains a class named `User`. From here, you can begin to work with your schema.
+You should now see a generated file at `src/gen/example_pb.ts` that contains a type `User`, and a schema `UserSchema`. 
+From here, you can begin to work with your schema.
 
 ## Packages
 
