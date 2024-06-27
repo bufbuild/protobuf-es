@@ -100,7 +100,7 @@ and then deserialized at its destination using the defined schema.
    npx buf generate proto
    ```
 
-You should now see a generated file at `src/gen/example_pb.ts` that contains a type `User`, and a schema `UserSchema`. 
+You should now see a generated file at `src/gen/example_pb.ts` that contains a type `User`, and a schema `UserSchema`.
 From here, you can begin to work with your schema.
 
 ## Packages
