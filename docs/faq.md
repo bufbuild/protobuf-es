@@ -1,9 +1,8 @@
-Frequently Asked Questions
-========================
+# Frequently Asked Questions
 
 ### What features are implemented?
 
-**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem.  It is the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC functionality.
+**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem. It is the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC functionality.
 
 Some additional features that set it apart from the others:
 
@@ -21,13 +20,12 @@ To learn more, have a look at a complete [code example](https://github.com/bufbu
 the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md),
 and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
 
-
 ### Why not use string unions for Protobuf enumerations instead of TypeScript `enum`?
 
 TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't have a native equivalent in JavaScript.
 Admittedly, `{ species: "DOG" }` looks a bit more straight-forward than `{ species: Species.DOG }`.
 
-But `enum`s also have some nice properties that union types don't provide.  For example, the numeric values can actually
+But `enum`s also have some nice properties that union types don't provide. For example, the numeric values can actually
 be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.
 You can also attach comments and metadata to enum values, but not to elements of union types (see [this TypeScript issue](https://github.com/microsoft/TypeScript/issues/38106) for an example).
 
@@ -49,7 +47,9 @@ If we were to add `HAMSTER = 3;` to the enumeration, old generated code can stil
 
 ```ts
 enum Species {
-    UNSPECIFIED = 0, CAT = 1, DOG = 2
+  UNSPECIFIED = 0,
+  CAT = 1,
+  DOG = 2,
 }
 const hamster: Species = 3;
 ```
@@ -58,48 +58,47 @@ As a result, there is a range of Protobuf features we would not be able to model
 
 ### Why aren't `enum` values generated in PascalCase?
 
-We generate our `enum` values based on how they are written in the source Protobuf file.  The reason for this is that the [Protobuf JSON spec](https://developers.google.com/protocol-buffers/docs/proto3#json) requires that the name of the enum value be whatever is used in the Protobuf file and this makes it very easy to encode/decode JSON.
+We generate our `enum` values based on how they are written in the source Protobuf file. The reason for this is that the [Protobuf JSON spec](https://developers.google.com/protocol-buffers/docs/proto3#json) requires that the name of the enum value be whatever is used in the Protobuf file and this makes it very easy to encode/decode JSON.
 
 The [Buf style guide](https://docs.buf.build/best-practices/style-guide#enums) further says that `enum` values should be UPPER_SNAKE_CASE, which will result in your generated TypeScript `enum` values being in UPPER_SNAKE_CASE if you follow the style guide.
 
-We do not provide an option to generate different cases for your `enum` values because we try to limit options to ones that we feel are necessary.  This seems to be more of a stylistic choice as even [TypeScript's own documentation](https://www.typescriptlang.org/docs/handbook/enums.html) uses various ways to name `enum` members.
+We do not provide an option to generate different cases for your `enum` values because we try to limit options to ones that we feel are necessary. This seems to be more of a stylistic choice as even [TypeScript's own documentation](https://www.typescriptlang.org/docs/handbook/enums.html) uses various ways to name `enum` members.
 
 For more information on our thoughts on options, see this [question](#options).
 
-
 ### Why use `BigInt` to represent 64-bit integers?
 
-The short answer is that they are the best way to represent the 64-bit numerical types allowable in Protobuf.  `BigInt` has [widespread browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) and for those environments where it is not supported, we fall back to a [string representation](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#bigint-in-unsupported-environments).
+The short answer is that they are the best way to represent the 64-bit numerical types allowable in Protobuf. `BigInt` has [widespread browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) and for those environments where it is not supported, we fall back to a [string representation](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#bigint-in-unsupported-environments).
 
-While it is true that an `int32`'s 2^32 size is not enough to represent a 64-bit value, Javascript's [`MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#description) can safely represent integers between -(2^53 – 1) and 2^53 – 1.  However, this is obviously only effective if you can guarantee that no number in that field will ever exceed this range.  This could lead to subtle and potentially serious bugs, so the clear-cut usage of `BigInt` makes more sense.
+While it is true that an `int32`'s 2^32 size is not enough to represent a 64-bit value, Javascript's [`MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#description) can safely represent integers between -(2^53 – 1) and 2^53 – 1. However, this is obviously only effective if you can guarantee that no number in that field will ever exceed this range. This could lead to subtle and potentially serious bugs, so the clear-cut usage of `BigInt` makes more sense.
 
 ### Why generate classes instead of interfaces?
 
-This is definitely something we considered.  We are aware of the debates on whether JavaScript classes should be used and whether they're actually worthwhile.  We chose to generate classes instead of interfaces for a few reasons:
+This is definitely something we considered. We are aware of the debates on whether JavaScript classes should be used and whether they're actually worthwhile. We chose to generate classes instead of interfaces for a few reasons:
 
-- Protobuf messages and classes are very similar in how they represent data.  They are both encapsulating objects that contain properties describing the overall entity.  A class is a great way to model this relationship.  The [official MDN documentation on classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_Classes#why_classes) states:
+- Protobuf messages and classes are very similar in how they represent data. They are both encapsulating objects that contain properties describing the overall entity. A class is a great way to model this relationship. The [official MDN documentation on classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_Classes#why_classes) states:
 
   > In general, you should consider using classes when you want to create objects that store their own internal data and expose a lot of behavior.
 
   Which is exactly what our aim is when generating code from a Protobuf file.
 
-- Our messages contain numerous additional functions such as constructing an object, serializing to and from JSON, serializing to and from binary data, and cloning.  Most of this functionality is reusable, so using inheritance with a `Message` super class is beneficial.  If we only generated interfaces, we would be unable to augment the generated code with this additional behavior.
+- Our messages contain numerous additional functions such as constructing an object, serializing to and from JSON, serializing to and from binary data, and cloning. Most of this functionality is reusable, so using inheritance with a `Message` super class is beneficial. If we only generated interfaces, we would be unable to augment the generated code with this additional behavior.
 
-- We want the generated code to be approachable.  While the behavior of classes under the hood may be surprising as to how they're constructed and represented, they make for a very easy-to-read representation of a message.  The encapsulation they provide and some assurances that TypeScript provides on top of them make for a compelling argument to readability.
+- We want the generated code to be approachable. While the behavior of classes under the hood may be surprising as to how they're constructed and represented, they make for a very easy-to-read representation of a message. The encapsulation they provide and some assurances that TypeScript provides on top of them make for a compelling argument to readability.
 
 So, in summary, yes, we know that some argue classes were shoehorned into the language, but our use case seems to be the reason they were added.
 
-### OK, so why not generate *both* classes **and** interfaces?
+### OK, so why not generate _both_ classes **and** interfaces?
 
-This is also something we considered.  However, when analyzing the pros and cons, we realized that generating interfaces in addition to classes raised more questions than answers.
+This is also something we considered. However, when analyzing the pros and cons, we realized that generating interfaces in addition to classes raised more questions than answers.
 
-One of the major questions was "how should they be generated?"  As part of the current `protoc-gen-es` plugin?  In that case, generated code would include an additional interface alongside the class which could be confusing to users as to which one they should use.
+One of the major questions was "how should they be generated?" As part of the current `protoc-gen-es` plugin? In that case, generated code would include an additional interface alongside the class which could be confusing to users as to which one they should use.
 
-  If we provided an option to generate interfaces, then in addition to the above problem, we now have a plugin option that could be confusing.  A new user attempting to configure their codebase to begin using the library would most likely not know whether they needed classes or interfaces until they actually started using the library.  If they decided they wanted the alternate option, they would need to conduct a pretty invasive refactoring of their code.
+If we provided an option to generate interfaces, then in addition to the above problem, we now have a plugin option that could be confusing. A new user attempting to configure their codebase to begin using the library would most likely not know whether they needed classes or interfaces until they actually started using the library. If they decided they wanted the alternate option, they would need to conduct a pretty invasive refactoring of their code.
 
-  If we made this a separate plugin, then it seems to *really* confuse the matter because now users have to configure another plugin and face the same uncertainty mentioned above.  And because of the way plugins work, the separate plugin would generate new files presumably named something like `msg_interface_pb.ts`.  If users want to use both classes and interfaces, they would now need two separate imports.  Granted, these all may seem inconsequential at first, but they add additional overhead with arguably little payoff.  In the end, we decided that simply generating classes provided the most benefits to the users.
+If we made this a separate plugin, then it seems to _really_ confuse the matter because now users have to configure another plugin and face the same uncertainty mentioned above. And because of the way plugins work, the separate plugin would generate new files presumably named something like `msg_interface_pb.ts`. If users want to use both classes and interfaces, they would now need two separate imports. Granted, these all may seem inconsequential at first, but they add additional overhead with arguably little payoff. In the end, we decided that simply generating classes provided the most benefits to the users.
 
-All this being said, we know that some still would like an interface-like type that exposes only the properties of a message and is recursive for nested members.  As a result, we've exposed a helper type named `PlainMessage`, which will accomplish this.  It can be used as follows:
+All this being said, we know that some still would like an interface-like type that exposes only the properties of a message and is recursive for nested members. As a result, we've exposed a helper type named `PlainMessage`, which will accomplish this. It can be used as follows:
 
 ```typescript
 import { PlainMessage } from "@bufbuild/protobuf";
@@ -109,28 +108,29 @@ import { FooMessage } from "protos/foo_pb.js";
 const plainFoo: PlainMessage<FooMessage> = new FooMessage();
 ```
 
-In the above code, `plainFoo` will be a type with only its fields and `oneOf` groups.  All methods will be omitted from the type.  Additionally, we also expose `PartialMessage` which serves the same purpose except that it makes all fields optional as well.
+In the above code, `plainFoo` will be a type with only its fields and `oneOf` groups. All methods will be omitted from the type. Additionally, we also expose `PartialMessage` which serves the same purpose except that it makes all fields optional as well.
 
 ### What are the intended use cases for `PartialMessage<T>` and `PlainMessage<T>`?
 
-Great segue!  Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#advanced-typescript-types) provide a good explanation for their usage and example use cases.
+Great segue! Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#advanced-typescript-types) provide a good explanation for their usage and example use cases.
 
 ### Why doesn't Protobuf-ES simply generate interfaces for the JSON representation?
 
 There are a few reasons why it is impractical to generate interfaces for the JSON
-representation in any meaningful way.  They are as follows:
+representation in any meaningful way. They are as follows:
 
-* **Protobuf supports a much more robust range of types than JSON.**
+- **Protobuf supports a much more robust range of types than JSON.**
 
   A good example for this is a Protobuf `bytes` field. The best representation in
   TypeScript is a `Uint8Array`, but JSON does not support that type. Instead, in
   proto3 JSON, a `bytes` field is serialized by base64 encoding the data, which
   means it becomes a JSON string.
 
-* **There is no single JSON representation for a Protobuf message.**
+- **There is no single JSON representation for a Protobuf message.**
 
   Implementations are allowed to provide serialization options that can modify
   the shape of the JSON output, such as:
+
   - Output fields with their default values rather than omit them.
   - Ignore unknown fields rather than reject them.
   - Use the proto field name as the JSON name instead of converting to lowerCamelCase.
@@ -138,11 +138,12 @@ representation in any meaningful way.  They are as follows:
     the `json_name` field option.
   - Use an enum's numeric value instead of the enum name.
 
-* **JSON parsing must be lax to support all variants of the input.**
+- **JSON parsing must be lax to support all variants of the input.**
 
   To properly support proto3 JSON and make sure it interoperates correctly
   with other language implementations, Protobuf-ES has to support all variants of the input,
   which include:
+
   - If a value is missing or null, it should be interpreted as that field type's
     default value.
   - Field names can be the proto field name, _OR_ the lowerCamelCase JSON name _OR_
@@ -162,6 +163,7 @@ is the best we can do to represent a generic type for these structures.
 is rarely updated, and has fallen behind the quickly moving world of JavaScript.
 
 For example:
+
 - it does not support ECMAScript modules
 - it cannot generate TypeScript (3rd party plugins are necessary)
 - it does not support the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json)
@@ -170,6 +172,7 @@ For example:
 Because of this, we want to provide a solid, modern alternative with Protobuf-ES.
 
 The main differences of the generated code:
+
 - we use plain properties for fields, where protoc uses getter and setter methods
 - we implement the canonical JSON format
 - we generate [much smaller bundles](packages/bundle-size)

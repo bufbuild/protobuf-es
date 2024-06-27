@@ -1,9 +1,7 @@
-Protobuf-ES: Generated Code
-===========================
+# Protobuf-ES: Generated Code
 
-The following document describe how to generate, and what code precisely is generated 
+The following document describe how to generate, and what code precisely is generated
 for any given protobuf definition.
-
 
 - [How to generate](#how-to-generate)
 - [Files](#files)
@@ -22,14 +20,13 @@ for any given protobuf definition.
 - [Nested types](#nested-types)
 - [Comments](#comments)
 
-
 ## How to generate
 
 We recommend [`buf`](https://github.com/bufbuild/buf) as a protocol buffer compiler, but
 [`protoc`](https://github.com/protocolbuffers/protobuf/releases) works as well.
 
 If you have the compiler set up, you can install the code generator plugin, as well as the
-accompanying runtime package [@bufbuild/protobuf][pkg-protobuf] 
+accompanying runtime package [@bufbuild/protobuf][pkg-protobuf]
 with:
 
 ```shell
@@ -42,7 +39,7 @@ platform.
 
 #### Generate with `buf`
 
-To compile with [`buf`](https://github.com/bufbuild/buf), add a file `buf.gen.yaml` with 
+To compile with [`buf`](https://github.com/bufbuild/buf), add a file `buf.gen.yaml` with
 the following content:
 
 ```yaml
@@ -55,19 +52,18 @@ plugins:
     out: src/gen
 ```
 
-Now `buf generate` will compile your `.proto` files to idiomatic TypeScript classes. 
+Now `buf generate` will compile your `.proto` files to idiomatic TypeScript classes.
 
 #### Generate with `protoc`
 
 To compile with `protoc`:
+
 ```shell
 protoc -I . --plugin ./node_modules/.bin/protoc-gen-es --es_out src/gen --es_opt target=ts example.proto
 ```
 
-To learn about other ways to install the plugin, and about the available plugin options, 
+To learn about other ways to install the plugin, and about the available plugin options,
 see [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es).
-
-
 
 ### Files
 
@@ -79,13 +75,12 @@ By default, we generate JavaScript _and_ TypeScript declaration files, so the ge
 code can be used in JavaScript or TypeScript projects without transpilation. If you
 prefer to generate TypeScript, use the plugin option `[target=ts`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#target).
 
-By default, we generate ECMAScript modules, which means we use `import` and `export` statements. 
+By default, we generate ECMAScript modules, which means we use `import` and `export` statements.
 If you need CommonJS, set the plugin option [`js_import_style=legacy_commonjs`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#js_import_style).
 
 All import paths include a `.js` extension by default. You can remove or change the
-extension via the [`import_extension`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#import_extensionjs) 
-plugin option.  
-
+extension via the [`import_extension`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#import_extensionjs)
+plugin option.
 
 ### Messages
 
@@ -96,12 +91,11 @@ message Example {}
 ```
 
 we generate a class called `Example`, which extends the base class [Message][src-message]
-provided by [@bufbuild/protobuf][pkg-protobuf]. 
+provided by [@bufbuild/protobuf][pkg-protobuf].
 See the [runtime API documentation](#runtime-api) for details.
 
 Note that some names cannot be used as class names and will be escaped by adding the suffix `$`.
 For example, a protobuf message `break` will become a class `break$`.
-
 
 ### Field names
 
@@ -116,7 +110,6 @@ While there is no official style for ECMAScript, most style guides
 
 Note that some names cannot be used as class properties and will be escaped by adding the suffix `$`.
 For example, a protobuf field `constructor` will become a class property `constructor$`.
-
 
 ### Scalar fields
 
@@ -134,31 +127,30 @@ foo = "";
 bar?: string;
 ```
 
-Note that all scalar fields have a zero-value in proto3 syntax, unless they are 
+Note that all scalar fields have a zero-value in proto3 syntax, unless they are
 marked as `optional`. Protobuf types map to ECMAScript types as follows:
 
-| protobuf type | ECMAScript type | default value        |
-|---------------|-----------------|----------------------|
-| double        | number          | `0`                  |
-| float         | number          | `0`                  |
-| int64         | bigint          | `0n`                 |
-| uint64        | bigint          | `0n`                 |
-| int32         | number          | `0`                  |
-| fixed64       | bigint          | `0n`                 |
-| fixed32       | number          | `0`                  |
-| bool          | boolean         | `false`              |
-| string        | string          | `""`                 |
-| bytes         | Uint8Array      | `new Uint8Array(0)`  |
-| uint32        | number          | `0`                  |
-| sfixed32      | number          | `0`                  |
-| sfixed64      | bigint          | `0n`                 |
-| sint32        | number          | `0`                  |
-| sint64        | bigint          | `0n`                 |
-
+| protobuf type | ECMAScript type | default value       |
+| ------------- | --------------- | ------------------- |
+| double        | number          | `0`                 |
+| float         | number          | `0`                 |
+| int64         | bigint          | `0n`                |
+| uint64        | bigint          | `0n`                |
+| int32         | number          | `0`                 |
+| fixed64       | bigint          | `0n`                |
+| fixed32       | number          | `0`                 |
+| bool          | boolean         | `false`             |
+| string        | string          | `""`                |
+| bytes         | Uint8Array      | `new Uint8Array(0)` |
+| uint32        | number          | `0`                 |
+| sfixed32      | number          | `0`                 |
+| sfixed64      | bigint          | `0n`                |
+| sint32        | number          | `0`                 |
+| sint64        | bigint          | `0n`                |
 
 ### 64-bit integral types
 
-We use the `BigInt` primitive to represent 64-bit integral types. `BigInt` has 
+We use the `BigInt` primitive to represent 64-bit integral types. `BigInt` has
 been available in all major runtimes since 2020.
 
 If you prefer to avoid `BigInt` in generated code, you can set the field option
@@ -170,9 +162,8 @@ int64 my_field = 1 [jstype = JS_STRING]; // will generate `myField: string`
 
 If `BigInt` is unavailable in your environment, Protobuf-ES falls back to the
 string representation. This means all values typed as `bigint` will be a `string`
-at runtime. For detailed information on how to handle both variants, see the 
+at runtime. For detailed information on how to handle both variants, see the
 conversion utility [`protoInt64`][src-proto-int64] provided by [@bufbuild/protobuf][pkg-protobuf].
-
 
 ### Message fields
 
@@ -200,7 +191,6 @@ automatically "unbox" the field to an optional primitive:
 boolValueField?: boolean;
 ```
 
-
 ### Repeated fields
 
 All repeated fields are represented with an ECMAScript Array. For example, the
@@ -217,7 +207,6 @@ field: string[] = [];
 ```
 
 Note that all repeated fields will have an empty array as a default value.
-
 
 ### Map fields
 
@@ -237,10 +226,9 @@ Note that all map fields will have an empty object as a default value.
 
 While it is not a perfectly clear-cut case, we chose to represent map fields
 as plain objects instead of [ECMAScript map objects](https://tc39.es/ecma262/multipage/keyed-collections.html#sec-map-objects).
-While `Map` has better behavior around keys, they do not have a literal 
-representation, do not support the spread operator and type narrowing in 
+While `Map` has better behavior around keys, they do not have a literal
+representation, do not support the spread operator and type narrowing in
 TypeScript.
-
 
 ### Oneof groups
 
@@ -265,15 +253,15 @@ result:
 ```
 
 So the entire oneof group is turned into an object `result` with two properties:
+
 - `case` - the name of the selected field
 - `value` - the value of the selected field
 
-Refer to the [runtime API documentation](runtime_api.md#accessing-oneof-groups) for 
+Refer to the [runtime API documentation](runtime_api.md#accessing-oneof-groups) for
 details on how to use this object.
 
-> **Note:** This feature requires the TypeScript compiler option `strictNullChecks` 
+> **Note:** This feature requires the TypeScript compiler option `strictNullChecks`
 > to be true. See the [documentation](https://www.typescriptlang.org/tsconfig#strictNullChecks) for details.
-
 
 ### Enumerations
 
@@ -293,12 +281,12 @@ we generate the following TypeScript enum:
 enum Foo {
   DEFAULT_BAR = 0,
   BAR_BELLS = 1,
-  BAR_B_CUE = 2
+  BAR_B_CUE = 2,
 }
 ```
 
-Note that some names cannot be used as enum names and will be escaped by 
-adding the suffix `$`. For example, a protobuf enum `catch` will become a 
+Note that some names cannot be used as enum names and will be escaped by
+adding the suffix `$`. For example, a protobuf enum `catch` will become a
 TypeScript enum `catch$`.
 
 If all enum values share a prefix that corresponds with the enum's name, the
@@ -316,11 +304,10 @@ we generate the following TypeScript enum:
 
 ```typescript
 enum Foo {
-   BAR = 0,
-   BAZ = 1
+  BAR = 0,
+  BAZ = 1,
 }
 ```
-
 
 ### Extensions
 
@@ -340,15 +327,13 @@ const extra_string: Extension<Example, string>;
 
 See the [runtime API documentation](./runtime_api.md#extensions) for details on how to access extension values.
 
-
 ### Services
 
 `protoc-gen-es` does not generate any code for service declarations.
 
-
 ### Groups
 
-Groups are a deprecated feature in proto2 that allows to declare a field and a 
+Groups are a deprecated feature in proto2 that allows to declare a field and a
 message at the same time:
 
 ```protobuf
@@ -367,7 +352,6 @@ mygroup?: MessageWithGroup_MyGroup;
 
 We also generate the message class `MessageWithGroup_MyGroup`.
 
-
 ### Nested types
 
 A message, enum, or extension can be declared within a message. For example:
@@ -384,7 +368,6 @@ Since ECMAScript doesn't have a concept of inner classes like Java or C#, the
 nested types will be prefixed with the parent message name: We generate an empty
 message class `Example`, a nested message class `Example_Message`, a nested enum
 `Example_Enum`, and a nested extension `Example_enabled`.
-
 
 ### Comments
 
@@ -406,7 +389,6 @@ file, and how it was generated:
 
 To improve forwards and backwards compatibility, we add the annotations to
 disable eslint and type checking through the TypeScript compiler.
-
 
 #### Element comments
 
@@ -441,7 +423,6 @@ deprecatedField = "";
 
 If you mark a file as deprecated, we generate `@deprecated` JSDoc tags for all
 symbols in this file.
-
 
 [src-proto-int64]: https://github.com/bufbuild/protobuf-es/blob/5609f7aab3dcfbb468871774c70d2343ac0f265e/packages/protobuf/src/proto-int64.ts#L65
 [src-message]: https://github.com/bufbuild/protobuf-es/blob/9b8efb4f4eb8ff8ce9f56798e769914ee2069cd1/packages/protobuf/src/message.ts#L40

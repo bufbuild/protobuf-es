@@ -20,7 +20,10 @@
     "perf": "turbo run perf -F ./packages/protobuf-test",
     "all": "npx turbo run build generate test lint attw bundle-size format license-header bootstrap:inject bootstrap:wkt",
     "setversion": "node scripts/set-workspace-version.js && npm run all",
-    "release": "npm run all && node scripts/release.js"
+    "release": "npm run all && node scripts/release.js",
+    "format": "prettier --write --ignore-unknown '.' '!packages' '!.turbo' '!node_modules'",
+    "license-header": "license-header --ignore 'packages/**'",
+    "lint": "eslint --max-warnings 0 . --ignore-pattern 'packages/**'"
   },
   "type": "module",
   "engineStrict": true,

@@ -20,14 +20,24 @@
     "lint": {
       "dependsOn": ["format", "^build", "generate"]
     },
+    "attw": {
+      "dependsOn": ["build"]
+    },
+    "//#format": {
+      "inputs": ["$TURBO_DEFAULT$", "!packages/**", "package-lock.json"]
+    },
+    "//#license-header": {
+      "inputs": ["$TURBO_DEFAULT$", "!packages/**"]
+    },
+    "//#lint": {
+      "dependsOn": ["format"],
+      "inputs": ["$TURBO_DEFAULT$", "!packages/**", "package-lock.json"]
+    },
     "@bufbuild/protobuf-conformance#lint": {
       "dependsOn": ["format", "^build", "generate", "build"]
     },
     "@bufbuild/protoc-gen-es#lint": {
       "dependsOn": ["format", "^build", "generate", "build"]
-    },
-    "attw": {
-      "dependsOn": ["build"]
     }
   }
 }

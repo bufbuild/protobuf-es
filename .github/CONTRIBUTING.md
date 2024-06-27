@@ -1,5 +1,4 @@
-Contributing
-============
+# Contributing
 
 We'd love your help making `protobuf-es` better!
 
@@ -24,7 +23,7 @@ git remote add upstream https://github.com/bufbuild/protobuf-es.git
 git fetch upstream
 ```
 
-Install dependencies (you'll need Node.js in the version specified in `.nvmrc`, 
+Install dependencies (you'll need Node.js in the version specified in `.nvmrc`,
 and `npm` in the version specified in `package.json`):
 
 ```bash
@@ -37,9 +36,8 @@ Make sure that the tests and the linters pass:
 npx turbo run test lint
 ```
 
-We're using `turborepo` to run tasks. If you haven't used it yet, take a look at 
+We're using `turborepo` to run tasks. If you haven't used it yet, take a look at
 [filtering and package scoping](https://turbo.build/repo/docs/crafting-your-repository/running-tasks).
-
 
 ## Making Changes
 
@@ -52,7 +50,7 @@ git rebase upstream/main
 git checkout -b cool_new_feature
 ```
 
-Make your changes, then ensure that tests and linters still pass. 
+Make your changes, then ensure that tests and linters still pass.
 When you're satisfied with your changes, push them to your fork.
 
 ```
@@ -62,19 +60,18 @@ git push origin cool_new_feature
 
 Then use the GitHub UI to open a pull request.
 
-At this point, you're waiting on us to review your changes. We *try* to respond
+At this point, you're waiting on us to review your changes. We _try_ to respond
 to issues and pull requests within a few business days, and we may suggest some
 improvements or alternatives. Once your changes are approved, one of the
 project maintainers will merge them.
 
 We're much more likely to approve your changes if you:
 
-* Add tests for new functionality.
-* Write a [good commit message][commit-message].
-* Maintain backward compatibility.
+- Add tests for new functionality.
+- Write a [good commit message][commit-message].
+- Maintain backward compatibility.
 
 [fork]: https://github.com/bufbuild/protobuf-es/fork
 [open-issue]: https://github.com/bufbuild/protobuf-es/issues/new
 [cla]: https://cla-assistant.io/bufbuild/protobuf-es
 [commit-message]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-

@@ -1,8 +1,7 @@
-Migrating to Protobuf-ES
-========================
+# Migrating to Protobuf-ES
 
-The following guides show the changes you'll need to switch your existing code base 
-[from `protobuf-javascript`](#from-protobuf-javascript) or [from `protobuf-ts`](#from-protobuf-ts) 
+The following guides show the changes you'll need to switch your existing code base
+[from `protobuf-javascript`](#from-protobuf-javascript) or [from `protobuf-ts`](#from-protobuf-ts)
 to Protobuf-ES.
 
 - [Feature Matrix](#feature-matrix)
@@ -30,58 +29,54 @@ to Protobuf-ES.
   - [Reflection](#reflection)
   - [Dynamic Messages](#dynamic-messages)
 
-
 # Feature Matrix
 
 | Feature                | Protobuf-ES | protobuf-javascript | protobuf-ts |
-|------------------------|-------------|---------------------|-------------|
-| Initializers           | ✅           | ❌                   | ✅           |
-| Plain properties       | ✅           | ❌                   | ✅           |
-| JSON format            | ✅           | ❌                   | ✅           |
-| Binary format          | ✅           | ✅                   | ✅           |
-| TypeScript             | ✅           | ❌                   | ✅           |
-| Standard module system | ✅           | ❌                   | ✅           |
-| Tree shaking           | ✅           | ❌                   | ✅           |
-| Reflection             | ✅           | ❌                   | ✅           |
-| Dynamic messages       | ✅           | ❌                   | ✅           |
-| Wrappers unboxing      | ✅           | ❌                   | ❌           |
-| Comments               | ✅           | ❌                   | ✅           |
-| Deprecation            | ✅           | ❌                   | ✅           |
-| proto2 syntax          | ✅           | ✅                   | ❌           |
-| proto2 extensions      | ✅           | ✅                   | ❌           |
-
+| ---------------------- | ----------- | ------------------- | ----------- |
+| Initializers           | ✅          | ❌                  | ✅          |
+| Plain properties       | ✅          | ❌                  | ✅          |
+| JSON format            | ✅          | ❌                  | ✅          |
+| Binary format          | ✅          | ✅                  | ✅          |
+| TypeScript             | ✅          | ❌                  | ✅          |
+| Standard module system | ✅          | ❌                  | ✅          |
+| Tree shaking           | ✅          | ❌                  | ✅          |
+| Reflection             | ✅          | ❌                  | ✅          |
+| Dynamic messages       | ✅          | ❌                  | ✅          |
+| Wrappers unboxing      | ✅          | ❌                  | ❌          |
+| Comments               | ✅          | ❌                  | ✅          |
+| Deprecation            | ✅          | ❌                  | ✅          |
+| proto2 syntax          | ✅          | ✅                  | ❌          |
+| proto2 extensions      | ✅          | ✅                  | ❌          |
 
 # From protobuf-javascript
 
 With `protobuf-javascript`, we mean the official implementation hosted at
-[github.com/protocolbuffers/protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript), 
+[github.com/protocolbuffers/protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript),
 consisting of the code generator `protoc-gen-js` and the runtime library [`google-protobuf`](https://www.npmjs.com/package/google-protobuf).
 
-Unfortunately, the code it generates feels a bit awkward to use, because it uses getter / 
+Unfortunately, the code it generates feels a bit awkward to use, because it uses getter /
 setter methods instead of [plain properties](https://github.com/protocolbuffers/protobuf/issues/2107).
 And if you dig a bit deeper, you'll notice it [does not implement the JSON format](https://github.com/protocolbuffers/protobuf/issues/4540),
-[does not support TypeScript](https://github.com/protocolbuffers/protobuf/pull/9412), 
+[does not support TypeScript](https://github.com/protocolbuffers/protobuf/pull/9412),
 [does not have any reflection capabilities](https://github.com/protocolbuffers/protobuf/issues/1711),
-[does not use a standard module system](https://github.com/protocolbuffers/protobuf/issues/8389), 
+[does not use a standard module system](https://github.com/protocolbuffers/protobuf/issues/8389),
 and produces rather [large bundles](https://github.com/bufbuild/protobuf-es/tree/main/packages/bundle-size)
 for the web. Protobuf-ES fixes those issues. It is a modern replacement for `protobuf-javascript`.
 
 The following steps show the changes needed to migrate:
 
-
 ### Generating code
 
 Assuming you have installed [`protoc-gen-es`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es),
-change your compiler invocation as follows: 
+change your compiler invocation as follows:
 
 ```diff
 - protoc -I . helloworld.proto --js_out . -js_opt import_style=commonjs,binary
 + protoc -I . helloworld.proto --es_out .
 ```
 
-Note that the output uses [ECMAScript modules](https://nodejs.org/api/esm.html#introduction), 
-the official standard for JavaScript. 
-
+Note that the output uses [ECMAScript modules](https://nodejs.org/api/esm.html#introduction),
+the official standard for JavaScript.
 
 ### Field access
 
@@ -95,7 +90,6 @@ let message = new Example();
 + message.foo = "baz";
 + message.bar = message;
 ```
-
 
 ### Optional fields
 
@@ -139,11 +133,10 @@ declare var example: Example;
 + any.unpackTo(example);
 ```
 
-
 ### Wrapper fields
 
 Fields using wrapper messages from [`google/protobuf/wrappers.proto`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/wrappers.proto)
-simply become optional properties. For a field `google.protobuf.BoolValue tristate`: 
+simply become optional properties. For a field `google.protobuf.BoolValue tristate`:
 
 ```diff
 - let value = new BoolValue();
@@ -157,7 +150,7 @@ simply become optional properties. For a field `google.protobuf.BoolValue trista
 
 ### Map fields
 
-Where protobuf-javascript uses [goog.collections.map](https://google.github.io/closure-library/api/goog.collections.maps.html), 
+Where protobuf-javascript uses [goog.collections.map](https://google.github.io/closure-library/api/goog.collections.maps.html),
 we use [plain objects](./generated_code.md#map-fields).  
 For a field `map<string, int32> map_field`, map access changes as follows:
 
@@ -198,12 +191,12 @@ For a field `repeated string values`, array access changes as follows:
 + message.values = [];
 ```
 
-
 ### Oneof groups
 
-Where protobuf-javascript uses getters, has'ers, and a case enumeration, we use an 
+Where protobuf-javascript uses getters, has'ers, and a case enumeration, we use an
 [algebraic data type ](./generated_code.md#oneof-groups)
 for oneof groups. For the following definition:
+
 ```protobuf
 message Example {
   oneof result {
@@ -213,7 +206,7 @@ message Example {
 }
 ```
 
-Narrowing down the selected field correctly becomes much less cumbersome, 
+Narrowing down the selected field correctly becomes much less cumbersome,
 because the type system is now aware of the oneof group:
 
 ```diff
@@ -245,7 +238,6 @@ because the type system is now aware of the oneof group:
 + message.result = { case: undefined };
 ```
 
-
 ### Message constructors
 
 Protobuf-ES adds an initializer argument to constructors. Using it is optional:
@@ -259,7 +251,6 @@ Protobuf-ES adds an initializer argument to constructors. Using it is optional:
 +   bar: true,
 + });
 ```
-
 
 ### Serialization
 
@@ -277,7 +268,6 @@ Note that protobuf-javascript does _not_ implement the JSON format. Messages hav
 a `toObject()` method that returns a plain object, but it is very different
 from the canonical [JSON mapping](https://developers.google.com/protocol-buffers/docs/proto3#json).
 
-
 ### Enumerations
 
 We drop prefixes from [enum values](./generated_code.md#enumerations).
@@ -288,11 +278,9 @@ An enum definition like `enum Foo { FOO_BAR = 0; FOO_BAZ = 1; }` becomes:
 + MyEnum.FOO
 ```
 
-
-
 ### toObject()
 
-Protobuf-ES does not provide a [`toObject()`](https://github.com/protocolbuffers/protobuf/issues/6955) 
+Protobuf-ES does not provide a [`toObject()`](https://github.com/protocolbuffers/protobuf/issues/6955)
 method, because the messages it generates already are rather simple objects.
 
 ```diff
@@ -301,9 +289,8 @@ method, because the messages it generates already are rather simple objects.
 Object.keys(example); // ["foo", "bar"]
 ```
 
-Note that you can use `toJson()` to convert to an object that matches the JSON 
+Note that you can use `toJson()` to convert to an object that matches the JSON
 representation.
-
 
 # From protobuf-ts
 
@@ -330,10 +317,9 @@ change your compiler invocation as follows:
 + protoc -I . helloworld.proto --es_out .
 ```
 
-
 ### Well-known types
 
-With `protobuf-ts` you are always using locally generated versions of well-known types. 
+With `protobuf-ts` you are always using locally generated versions of well-known types.
 With Protobuf-ES, you import them from [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf):
 
 ```diff
@@ -368,8 +354,6 @@ let ts = Timestamp.fromDate(someDate);
 + someDate = ts.toDate();
 ```
 
-
-
 ### Wrapper fields
 
 Fields using wrapper messages from [`google/protobuf/wrappers.proto`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/wrappers.proto)
@@ -383,7 +367,6 @@ simply become optional properties. For a field `google.protobuf.BoolValue trista
 + messsage.tristate; // boolean | undefined
 ```
 
-
 ### Serialization
 
 ```diff
@@ -396,10 +379,9 @@ simply become optional properties. For a field `google.protobuf.BoolValue trista
 + message.toJson();
 
 // unchanged
-Example.fromBinary(); 
+Example.fromBinary();
 Example.fromJson();
 ```
-
 
 ### Message constructors
 
@@ -407,7 +389,6 @@ Example.fromJson();
 - let message = Example.create({ foo: "baz" });
 + let message = new Example({ foo: "baz" });
 ```
-
 
 ### Cloning
 
@@ -417,14 +398,12 @@ declare var message: Example;
 + let clone = message.clone();
 ```
 
-
 ### Message type guards
 
 ```diff
 - Example.is(message);
 + isMessage(message, Example);
 ```
-
 
 ### Reflection
 
@@ -455,4 +434,3 @@ In case a message refers to itself, the entire field list can be deferred:
 - [{ no: 1, name: "foo", kind: "message", T: Example } ]
 + () => [{ no: 1, name: "foo", kind: "message", T: Example } ]
 ```
-
