@@ -192,6 +192,8 @@ export function parseParameter<T extends object>(
           case ".ts":
             importExtension = "ts";
             break;
+          default:
+            throw new PluginOptionError(raw);
         }
         break;
       }

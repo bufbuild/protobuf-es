@@ -67,6 +67,14 @@ describe("import_extension", function () {
       ]);
     },
   );
+  test("throws error for unknown extension", async () => {
+    await expect(async () => {
+      await testGenerate("target=mjs", (f) => {
+        const Bar = f.import("Bar", "./foo/bar_pb.js");
+        f.print`${Bar}`;
+      });
+    }).rejects.toThrow(`invalid option "target=mjs"`);
+  });
   test("should only touch .js import paths", async () => {
     const lines = await testGenerate("target=ts,import_extension=ts", (f) => {
       const json = f.import("json", "./foo/bar_pb.json");
