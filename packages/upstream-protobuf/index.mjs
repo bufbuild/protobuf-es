@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import {
-  chmodSync,
   existsSync,
   mkdirSync,
   mkdtempSync,
@@ -343,7 +342,6 @@ export class UpstreamProtobuf {
         throw new Error(`Missing protos in protoc release`);
       }
       writeTree(entries, path);
-      chmodSync(protocPath, 755);
     }
     return {
       protocPath,
@@ -438,7 +436,6 @@ export class UpstreamProtobuf {
         throw new Error(`Missing protos in conformance release`);
       }
       writeTree(entries, path);
-      chmodSync(runnerPath, 755);
     }
     return {
       runnerPath,
@@ -566,7 +563,9 @@ function writeTree(files, dir = ".") {
     if (!existsSync(dirname(path))) {
       mkdirSync(dirname(path), { recursive: true });
     }
-    writeFileSync(path, contents);
+    writeFileSync(path, contents, {
+      mode: 0o755,
+    });
   }
 }
 
