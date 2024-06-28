@@ -22,14 +22,14 @@ describe("isMessage", () => {
     const unknown = create(UserSchema) as unknown;
     expect(isMessage(unknown)).toBe(true);
     if (isMessage(unknown)) {
-      expect(unknown.$typeName).toBe("docs.User");
+      expect(unknown.$typeName).toBe("example.User");
     }
   });
   test("narrows down to specific message", () => {
     const unknown = create(UserSchema) as unknown;
     expect(isMessage(unknown, UserSchema)).toBe(true);
     if (isMessage(unknown, UserSchema)) {
-      expect(unknown.$typeName).toBe("docs.User");
+      expect(unknown.$typeName).toBe("example.User");
       unknown.firstName = "Homer"; // proves that the type is known
     }
     expect(isMessage(unknown, UserSchema)).toBe(true);
@@ -56,7 +56,7 @@ test("falsely returns true if the argument is close enough to a Message", () => 
   expect(
     isMessage(
       {
-        $typeName: "docs.User",
+        $typeName: "example.User",
       },
       UserSchema,
     ),

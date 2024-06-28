@@ -34,7 +34,7 @@ export declare type User = Message$1<"spec.User"> & {
   /**
    * Reference the import with the same name to trigger a clash
    *
-   * @generated from field: docs.User u = 1;
+   * @generated from field: example.User u = 1;
    */
   u?: User$1;
 };
