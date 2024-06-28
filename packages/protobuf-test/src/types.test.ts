@@ -44,7 +44,7 @@ describe("type Message", () => {
     const msg = create(UserSchema) as unknown as Proto3Message | User;
     test("can switch on Message.$typeName against literal string type", () => {
       switch (msg.$typeName) {
-        case "docs.User":
+        case "example.User":
           expect(msg.firstName).toBeDefined();
           break;
         default:

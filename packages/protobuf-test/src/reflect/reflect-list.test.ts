@@ -134,7 +134,7 @@ describe("ReflectList", () => {
       const list = reflectList(repeatedMessageField, []);
       const err = catchFieldError(() => list.add(reflect(UserSchema)));
       expect(err?.message).toMatch(
-        /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
+        /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
       );
     });
     test("throws error for invalid scalar", () => {
@@ -180,7 +180,7 @@ describe("ReflectList", () => {
       const list = reflectList(repeatedMessageField, [null]);
       const err = catchFieldError(() => list.set(0, reflect(UserSchema)));
       expect(err?.message).toMatch(
-        /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
+        /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
       );
     });
   });

@@ -272,7 +272,7 @@ User.equals(user, null); // false
 ```
 
 ```typescript
-User.typeName; // docs.User
+User.typeName; // example.User
 ```
 
 ### Serializing messages
@@ -563,7 +563,7 @@ import { Timestamp } from "@bufbuild/protobuf";
 
 // Pack a message:
 let any = Any.pack(user);
-any.typeUrl; // type.googleapis.com/docs.User
+any.typeUrl; // type.googleapis.com/example.User
 
 // Check what an Any contains:
 any.is(User); // true
@@ -801,7 +801,7 @@ code](../packages/protobuf-test/src/gen/ts/extra/example_pb.ts) to get some insi
 class User extends Message<User> {
   //...
   static readonly runtime = proto3;
-  static readonly typeName = "docs.User";
+  static readonly typeName = "example.User";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -821,7 +821,7 @@ We can observe three properties here:
 This is actually all the information we need to re-create this message type at run time:
 
 ```typescript
-const User = proto3.makeMessageType("docs.User", () => [
+const User = proto3.makeMessageType("example.User", () => [
   { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   { no: 2, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   { no: 3, name: "active", kind: "scalar", T: 8 /* ScalarType.BOOL */ },

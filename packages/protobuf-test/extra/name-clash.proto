@@ -19,7 +19,7 @@ import "extra/example.proto";
 
 // This message class will clash with the imported message class
 message User {
-  docs.User u = 1; // Reference the import with the same name to trigger a clash
+  example.User u = 1; // Reference the import with the same name to trigger a clash
 }
 
 message ReservedPropertyNames {

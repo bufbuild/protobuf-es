@@ -1,5 +1,5 @@
 {
-  "files": ["src/add-person.ts", "src/list-people.ts"],
+  "files": ["src/add.ts", "src/list.ts"],
   "compilerOptions": {
     "target": "es2017",
     "moduleResolution": "Node10",

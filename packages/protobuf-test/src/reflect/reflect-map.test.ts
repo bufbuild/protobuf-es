@@ -229,7 +229,7 @@ describe("ReflectMap", () => {
       const map = reflectMap(mapInt32MessageField, {});
       const err = catchFieldError(() => map.set(1, reflect(UserSchema)));
       expect(err?.message).toMatch(
-        /^map entry 1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
+        /^map entry 1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
       );
     });
   });

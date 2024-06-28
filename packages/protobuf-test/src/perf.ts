@@ -115,7 +115,7 @@ function setupTests(): Test[] {
     });
     const data = toBinary(desc, tinyUser);
     tests.push({
-      name: `fromBinary tiny docs.User (${data.byteLength} bytes)`,
+      name: `fromBinary tiny example.User (${data.byteLength} bytes)`,
       fn: () => {
         fromBinary(desc, data);
       },
@@ -133,7 +133,7 @@ function setupTests(): Test[] {
     });
     const data = toBinary(desc, normalUser);
     tests.push({
-      name: `fromBinary normal docs.User (${data.byteLength} bytes)`,
+      name: `fromBinary normal example.User (${data.byteLength} bytes)`,
       fn: () => {
         fromBinary(desc, data);
       },

@@ -41,7 +41,7 @@ describe("create()", () => {
     test("creates a typed message", () => {
       const user: example_ts.User = create(example_ts.UserSchema);
       expect(user).toBeDefined();
-      expect(user.$typeName).toBe("docs.User");
+      expect(user.$typeName).toBe("example.User");
       expect(user.firstName).toBeDefined();
     });
   });
@@ -50,7 +50,7 @@ describe("create()", () => {
     test("creates an anonymous message", () => {
       const user = create(example_ts.UserSchema as DescMessage);
       expect(user).toBeDefined();
-      expect(user.$typeName).toBe("docs.User");
+      expect(user.$typeName).toBe("example.User");
       // @ts-expect-error property is unknown to the type system, but still there
       expect(user.firstName).toBeDefined();
     });

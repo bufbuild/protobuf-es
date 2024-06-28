@@ -490,7 +490,7 @@ describe("ReflectMessage", () => {
         r.set(f, reflect(example_ts.UserSchema)),
       );
       expect(err?.message).toMatch(
-        /^expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(docs.User\)$/,
+        /^expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
       );
       expect(err?.name).toMatch("FieldValueInvalidError");
     });

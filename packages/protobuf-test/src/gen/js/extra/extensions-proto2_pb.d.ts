@@ -217,7 +217,7 @@ export declare const enum_ext_with_default: GenDescExtension<Proto2Extendee, Pro
 export declare const message_ext: GenDescExtension<Proto2Extendee, Proto2ExtMessage>;
 
 /**
- * @generated from extension: optional docs.User message_ext_proto3 = 6002;
+ * @generated from extension: optional example.User message_ext_proto3 = 6002;
  */
 export declare const message_ext_proto3: GenDescExtension<Proto2Extendee, User>;
 

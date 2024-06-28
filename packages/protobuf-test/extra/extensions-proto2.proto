@@ -56,7 +56,7 @@ extend Proto2Extendee {
   optional Proto2ExtEnum enum_ext_with_default = 5002 [default = PROTO2_EXT_ENUM_NO];
 
   optional Proto2ExtMessage message_ext = 6001;
-  optional docs.User message_ext_proto3 = 6002;
+  optional example.User message_ext_proto3 = 6002;
 
   repeated Proto2ExtMessage repeated_message_ext = 7001;
   repeated Proto2ExtEnum repeated_enum_ext = 7005;
