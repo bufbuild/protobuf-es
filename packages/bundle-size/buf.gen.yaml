@@ -2,7 +2,7 @@
 version: v2
 plugins:
   - local: protoc-gen-es
-    opt: ts_nocheck=false,target=ts
+    opt: target=ts
     out: src/gen/protobuf-es
   - remote: buf.build/protocolbuffers/js:v3.21.2
     out: src/gen/google-protobuf
