@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import type { ImportExtension } from "./parameter.js";
+
 /**
  * A configuration for rewriting import paths, a feature mainly used for
  * remote code generation in the BSR npm registry, which makes it possible
@@ -62,7 +64,7 @@ const cache = new WeakMap<
 export function rewriteImportPath(
   importPath: string,
   rewriteImports: RewriteImports,
-  importExtension: string,
+  importExtension: ImportExtension,
 ): string {
   let ri = cache.get(rewriteImports);
   if (ri === undefined) {
@@ -85,9 +87,14 @@ export function rewriteImportPath(
       break;
     }
   }
-  if (importExtension != ".js" && importPath.endsWith(".js")) {
-    importPath =
-      importPath.substring(0, importPath.length - 3) + importExtension;
+  if (importPath.endsWith(".js")) {
+    switch (importExtension) {
+      case "none":
+        return importPath.substring(0, importPath.length - 3);
+      case "ts":
+      case "js":
+        return importPath.substring(0, importPath.length - 2) + importExtension;
+    }
   }
   return importPath;
 }

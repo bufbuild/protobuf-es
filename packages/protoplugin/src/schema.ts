@@ -34,9 +34,12 @@ import type {
 } from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
 import { createImportSymbol } from "./import-symbol.js";
-import type { Target } from "./target.js";
 import { deriveImportPath, rewriteImportPath } from "./import-path.js";
-import type { EcmaScriptPluginOptions, ParsedParameter } from "./parameter.js";
+import type {
+  EcmaScriptPluginOptions,
+  ParsedParameter,
+  Target,
+} from "./parameter.js";
 import { makeFilePreamble } from "./file-preamble.js";
 import {
   generatedDescName,
