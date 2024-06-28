@@ -338,17 +338,24 @@ describe("createFileRegistry()", function () {
         syntax="proto3";
         import "b.proto";
         import "c.proto";
-        message A {}
+        message A {
+          B b = 1;
+          C c = 2;
+        }
       `,
       "b.proto": `
         syntax="proto3";
         import "d.proto";
-        message B {}
+        message B {
+          D d = 1;
+        }
       `,
       "c.proto": `
         syntax="proto3";
         import "d.proto";
-        message C {}
+        message C {
+          D d = 1;
+        }
       `,
       "d.proto": `
         syntax="proto3";
@@ -547,11 +554,23 @@ describe("DescFile", () => {
   });
   test("dependencies", async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
-      "a.proto": `syntax="proto3";
-          import "b.proto";
-          import "c.proto";`,
-      "b.proto": `syntax="proto3";`,
-      "c.proto": `syntax="proto3";`,
+      "a.proto": `
+        syntax="proto3";
+        import "b.proto";
+        import "c.proto";
+        message A {
+          B b = 1;
+          C c = 2;
+        }
+      `,
+      "b.proto": `
+        syntax="proto3";
+        message B {}
+      `,
+      "c.proto": `
+        syntax="proto3";
+        message C {}
+      `,
     });
     const reg = createFileRegistry(fileDescriptorSet);
     const a = reg.getFile("a.proto");
