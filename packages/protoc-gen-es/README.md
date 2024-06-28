@@ -98,8 +98,8 @@ does not add a file extensions to import paths.
 Some environments require an import extension. For example, using [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html) requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions
 in import paths with the given value. For example, set
 
-- `import_extension=.js` to add the `.js` extension.
-- `import_extension=.ts` to add the `.ts` extension.
+- `import_extension=js` to add the `.js` extension.
+- `import_extension=ts` to add the `.ts` extension.
 - `import_extension=none` to not add an extension. (Default)
 
 ### `js_import_style`

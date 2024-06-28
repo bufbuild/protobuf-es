@@ -28,52 +28,47 @@ describe("import_extension", function () {
       "Bar",
     ]);
   });
-  test("should be replaced with '.js'", async () => {
-    const lines = await testGenerate("target=ts,import_extension=.js", (f) => {
-      const Bar = f.import("Bar", "./foo/bar_pb.js");
-      f.print`${Bar}`;
-    });
+  test.each([
+    { option: "js", ext: ".js" },
+    { option: ".js", ext: ".js" },
+    { option: "ts", ext: ".ts" },
+    { option: ".ts", ext: ".ts" },
+  ])("should be replaced with option '$option'", async ({ option, ext }) => {
+    const lines = await testGenerate(
+      `target=ts,import_extension=${option}`,
+      (f) => {
+        const Bar = f.import("Bar", "./foo/bar_pb.js");
+        f.print`${Bar}`;
+      },
+    );
     expect(lines).toStrictEqual([
-      'import { Bar } from "./foo/bar_pb.js";',
+      `import { Bar } from "./foo/bar_pb${ext}";`,
       "",
       "Bar",
     ]);
   });
-  test("should be replaced with '.ts'", async () => {
-    const lines = await testGenerate("target=ts,import_extension=.ts", (f) => {
-      const Bar = f.import("Bar", "./foo/bar_pb.js");
-      f.print`${Bar}`;
-    });
-    expect(lines).toStrictEqual([
-      'import { Bar } from "./foo/bar_pb.ts";',
-      "",
-      "Bar",
-    ]);
-  });
-  test("should be removed with 'none'", async () => {
-    const lines = await testGenerate("target=ts,import_extension=none", (f) => {
-      const Bar = f.import("Bar", "./foo/bar_pb.js");
-      f.print`${Bar}`;
-    });
-    expect(lines).toStrictEqual([
-      'import { Bar } from "./foo/bar_pb";',
-      "",
-      "Bar",
-    ]);
-  });
-  test("should be removed with ''", async () => {
-    const lines = await testGenerate("target=ts,import_extension=", (f) => {
-      const Bar = f.import("Bar", "./foo/bar_pb.js");
-      f.print`${Bar}`;
-    });
-    expect(lines).toStrictEqual([
-      'import { Bar } from "./foo/bar_pb";',
-      "",
-      "Bar",
-    ]);
-  });
+  test.each([
+    { option: "none", ext: "" },
+    { option: "", ext: "" },
+  ])(
+    "should be removed with with option '$option'",
+    async ({ option, ext }) => {
+      const lines = await testGenerate(
+        `target=ts,import_extension=${option}`,
+        (f) => {
+          const Bar = f.import("Bar", "./foo/bar_pb.js");
+          f.print`${Bar}`;
+        },
+      );
+      expect(lines).toStrictEqual([
+        `import { Bar } from "./foo/bar_pb${ext}";`,
+        "",
+        "Bar",
+      ]);
+    },
+  );
   test("should only touch .js import paths", async () => {
-    const lines = await testGenerate("target=ts,import_extension=.ts", (f) => {
+    const lines = await testGenerate("target=ts,import_extension=ts", (f) => {
       const json = f.import("json", "./foo/bar_pb.json");
       f.print`${json}`;
     });

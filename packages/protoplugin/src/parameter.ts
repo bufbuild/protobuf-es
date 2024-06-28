@@ -12,9 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Target } from "./target.js";
 import type { RewriteImports } from "./import-path.js";
 import { PluginOptionError } from "./error.js";
+
+/**
+ * Represents possible values of the plugin option `target`.
+ */
+export type Target = "js" | "ts" | "dts";
+
+/**
+ * Possible values of the plugin option `import_extension`.
+ */
+export type ImportExtension = "none" | "js" | "ts";
 
 /**
  * Standard plugin options that every ECMAScript plugin supports.
@@ -28,11 +37,11 @@ export interface EcmaScriptPluginOptions {
    */
   targets: Target[];
   /**
-   * Add an extension to every import, for example ".js" or ".ts".
+   * Add an extension to every import: "js" or "ts".
    *
-   * The default is "".
+   * The default is "none".
    */
-  importExtension: string;
+  importExtension: ImportExtension;
   /**
    * Generate `import` statements or `require()` calls.
    *
@@ -99,7 +108,7 @@ export function parseParameter<T extends object>(
   let bootstrapWkt = false;
   let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
-  let importExtension = "";
+  let importExtension: ImportExtension = "none";
   let jsImportStyle: "module" | "legacy_commonjs" = "module";
   const extraParameters: RawPluginOptions = [];
   const extraParametersRaw: string[] = [];
@@ -170,7 +179,20 @@ export function parseParameter<T extends object>(
         break;
       }
       case "import_extension": {
-        importExtension = value === "none" ? "" : value;
+        switch (value) {
+          case "none":
+          case "":
+            importExtension = "none";
+            break;
+          case "js":
+          case ".js":
+            importExtension = "js";
+            break;
+          case "ts":
+          case ".ts":
+            importExtension = "ts";
+            break;
+        }
         break;
       }
       case "js_import_style":
