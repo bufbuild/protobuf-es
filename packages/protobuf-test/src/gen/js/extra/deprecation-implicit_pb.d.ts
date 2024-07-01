@@ -74,8 +74,7 @@ export declare const ImplicitlyDeprecatedService: GenDescService<{
     input: typeof EmptySchema;
     output: typeof EmptySchema;
   },
-}
->;
+}>;
 
 /**
  * @generated from extension: int32 implicitly_deprecated_option = 2002;

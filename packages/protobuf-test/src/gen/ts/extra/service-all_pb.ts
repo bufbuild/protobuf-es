@@ -64,7 +64,6 @@ export const ServiceAll: GenDescService<{
     input: typeof StringValueSchema;
     output: typeof Int32ValueSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_extra_service_all, 0);
 

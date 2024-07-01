@@ -83,7 +83,6 @@ export const ServiceWithOptions: GenDescService<{
     input: typeof MessageWithOptionsSchema;
     output: typeof MessageWithOptionsSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_extra_option_usage, 0);
 

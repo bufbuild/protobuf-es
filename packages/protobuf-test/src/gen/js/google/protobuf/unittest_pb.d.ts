@@ -6806,8 +6806,7 @@ export declare const TestService: GenDescService<{
     input: typeof BarRequestSchema;
     output: typeof BarResponseSchema;
   },
-}
->;
+}>;
 
 /**
  * Singular

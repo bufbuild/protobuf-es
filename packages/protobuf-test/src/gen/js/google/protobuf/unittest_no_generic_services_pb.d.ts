@@ -69,8 +69,7 @@ export declare const TestService: GenDescService<{
     input: typeof TestMessageSchema;
     output: typeof TestMessageSchema;
   },
-}
->;
+}>;
 
 /**
  * @generated from extension: optional int32 test_extension = 1000;
