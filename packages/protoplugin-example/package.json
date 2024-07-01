@@ -10,12 +10,12 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@bufbuild/buf": "^1.32.2",
+    "@bufbuild/buf": "^1.34.0",
     "@bufbuild/protobuf": "^1.10.0",
     "@bufbuild/protoc-gen-es": "^1.10.0",
     "@bufbuild/protoplugin": "^1.10.0",
     "typescript": "^5.2.2",
-    "tsx": "^4.11.0",
+    "tsx": "^4.16.0",
     "@types/node": "~20.8.6"
   }
 }
