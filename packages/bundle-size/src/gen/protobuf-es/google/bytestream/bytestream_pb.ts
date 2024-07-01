@@ -320,7 +320,6 @@ export const ByteStream: GenDescService<{
     input: typeof QueryWriteStatusRequestSchema;
     output: typeof QueryWriteStatusResponseSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_google_bytestream_bytestream, 0);
 

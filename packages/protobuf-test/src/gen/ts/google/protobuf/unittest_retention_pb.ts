@@ -161,8 +161,7 @@ export const Service: GenDescService<{
     input: typeof TopLevelMessageSchema;
     output: typeof TopLevelMessageSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_google_protobuf_unittest_retention, 0);
 
 /**

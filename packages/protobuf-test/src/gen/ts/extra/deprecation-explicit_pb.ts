@@ -142,8 +142,7 @@ export const DeprecatedService: GenDescService<{
     input: typeof EmptySchema;
     output: typeof EmptySchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_extra_deprecation_explicit, 0);
 
 /**
@@ -169,8 +168,7 @@ export const DeprecatedRpcService: GenDescService<{
     input: typeof EmptySchema;
     output: typeof EmptySchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_extra_deprecation_explicit, 1);
 
 /**

@@ -78,6 +78,5 @@ export declare const ServiceWithOptions: GenDescService<{
     input: typeof MessageWithOptionsSchema;
     output: typeof MessageWithOptionsSchema;
   },
-}
->;
+}>;
 

@@ -7004,8 +7004,7 @@ export const TestService: GenDescService<{
     input: typeof BarRequestSchema;
     output: typeof BarResponseSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_google_protobuf_unittest, 0);
 
 /**

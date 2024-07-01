@@ -61,6 +61,5 @@ export declare const ServiceAll: GenDescService<{
     input: typeof StringValueSchema;
     output: typeof Int32ValueSchema;
   },
-}
->;
+}>;
 

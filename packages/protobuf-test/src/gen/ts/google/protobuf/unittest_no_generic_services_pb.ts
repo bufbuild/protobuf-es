@@ -73,8 +73,7 @@ export const TestService: GenDescService<{
     input: typeof TestMessageSchema;
     output: typeof TestMessageSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_google_protobuf_unittest_no_generic_services, 0);
 
 /**
