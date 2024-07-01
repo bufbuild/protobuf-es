@@ -19,6 +19,9 @@
     "import": "./dist/esm/index.js",
     "default": "./dist/esm/index.js"
   },
+  "bin": {
+    "conformance": "bin/conformance.js"
+  },
   "devDependencies": {
     "@bufbuild/protobuf": "2.0.0-beta.2",
     "@bufbuild/protoc-gen-es": "2.0.0-beta.2",
