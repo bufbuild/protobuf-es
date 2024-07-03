@@ -19,6 +19,7 @@
 import type { PartialMessage, PlainMessage } from "../../message.js";
 import { Message } from "../../message.js";
 import { proto3 } from "../../proto3.js";
+import { protoBase64 } from '../../proto-base64.js';
 import type { JsonReadOptions, JsonValue, JsonWriteOptions } from "../../json-format.js";
 import type { IMessageTypeRegistry } from "../../type-registry.js";
 import type { MessageType } from "../../message-type.js";
@@ -190,6 +191,18 @@ export class Any extends Message<Any> {
     }
     const typeUrl = json["@type"];
     if (typeof typeUrl != "string" || typeUrl == "") {
+      if (typeof json["type_url"] == "string" && json["type_url"] != "") {
+        this.typeUrl = json["type_url"];
+        const value = json["value"] 
+        if (typeof value == "string") {
+          this.value = protoBase64.dec(value);
+        } else if (value instanceof Uint8Array) {
+          this.value = value;
+        } else if (value !== undefined) {
+          throw new Error(`cannot decode message google.protobuf.Any from JSON: expected string or Uint8Array for field "value" but got ${typeof value}`);
+        }
+        return this;
+      }
       throw new Error(`cannot decode message google.protobuf.Any from JSON: "@type" is empty`);
     }
     const typeName = this.typeUrlToName(typeUrl), messageType = options?.typeRegistry?.findMessage(typeName);
