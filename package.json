@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "clean": "git clean -Xdf",
-    "bundle-size": "turbo run report -F ./packages/bundle-size",
+    "bundle-size": "turbo run bundle-size -F ./packages/bundle-size",
     "perf": "turbo run perf -F ./packages/protobuf-test",
     "all": "turbo run build generate test lint attw bundle-size format license-header bootstrap:inject bootstrap:wkt",
     "setversion": "node scripts/set-workspace-version.js && npm run all",
