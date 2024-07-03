@@ -26,6 +26,7 @@ async function main() {
   const user = create(UserSchema, {
     firstName: await prompt("Enter first name: "),
     lastName: await prompt("Enter last name: "),
+    active: true,
   });
   for (;;) {
     const location = await prompt(
