@@ -85,9 +85,9 @@ Possible values:
 Multiple values can be given by separating them with `+`, for example
 `target=js+dts`.
 
-By default, we generate JavaScript and TypeScript declaration files, which
-produces the smallest code size and is the most compatible with various
-bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
+By default, we generate JavaScript and TypeScript declaration files, so the
+generated code can be used in JavaScript or TypeScript projects without
+transpilation. If you prefer to generate TypeScript, use `target=ts`.
 
 ### `import_extension`
 
@@ -95,12 +95,11 @@ By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-e
 (and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
 does not add a file extensions to import paths.
 
-Some environments require an import extension. For example, using [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html) requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions
-in import paths with the given value. For example, set
+Some environments require an import extension. For example, using [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html) requires the
+`.js` extension, and Deno requires `.ts`. With this plugin option, you can add an extension to import paths:
 
-- `import_extension=js` to add the `.js` extension.
-- `import_extension=ts` to add the `.ts` extension.
-- `import_extension=none` to not add an extension. (Default)
+- `import_extension=js` adds the `.js` extension.
+- `import_extension=ts` adds the `.ts` extension.
 
 ### `js_import_style`
 
