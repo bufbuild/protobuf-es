@@ -89,11 +89,11 @@ and then deserialized at its destination using the defined schema.
        out: src/gen
    ```
 
-3. Download the [example.proto](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-test/extra/example.proto) into a `/proto` directory:
+3. Download the [example.proto](packages/protobuf-example/proto/example.proto) into a `proto` directory:
 
    ```bash
    mkdir proto
-   curl https://raw.githubusercontent.com/bufbuild/protobuf-es/main/packages/protobuf-test/extra/example.proto > proto/example.proto
+   curl https://raw.githubusercontent.com/bufbuild/protobuf-es/main/packages/protobuf-example/proto/example.proto > proto/example.proto
    ```
 
 4. Generate your code with `buf` or `protoc`:
@@ -105,6 +105,12 @@ and then deserialized at its destination using the defined schema.
 You should now see a generated file at `src/gen/example_pb.ts` that contains a type `User`, and a schema `UserSchema`.
 From here, you can begin to work with your schema.
 
+## Documentation
+
+- [Manual](MANUAL.md) - Explains all aspects of using Protobuf with ECMAScript.
+- [Code example](packages/protobuf-example) - Example code that uses Protobuf to manage a persistent list of users.
+- [Plugin example](packages/protoplugin-example) - Shows how to write your own plugin with `@bufbuild/protoplugin`.
+
 ## Packages
 
 - [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf):
@@ -113,17 +119,6 @@ From here, you can begin to work with your schema.
   Provides the code generator plugin `protoc-gen-es`. The code it generates depends on `@bufbuild/protobuf`. ([source code](packages/protoc-gen-es)).
 - [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
   Helps to create your own code generator plugin. The code it generates depends on `@bufbuild/protobuf`. ([source code](packages/protoplugin)).
-
-## Documentation
-
-> **TODO**
-
-- [Code example](packages/protobuf-example) - Example code that uses protocol buffers to manage an address book.
-- [Generated Code](docs/generated_code.md) - How to generate, and what code precisely is generated for any given protobuf definition.
-- [Runtime API](docs/runtime_api.md) - A detailed overview of the features provided by the library `@bufbuild/protobuf`.
-- [FAQ](docs/faq.md) - Frequently asked Questions.
-- [Migrating to Protobuf-ES](docs/migrating.md) - Shows the changes you'll need to switch your existing code base.
-- [Writing Plugins](docs/writing_plugins.md) - An overview of the process of writing a plugin using `@bufbuild/protoplugin`.
 
 ## Ecosystem
 
