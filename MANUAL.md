@@ -193,7 +193,7 @@ export declare type User = Message<"example.User"> & {
 export declare const UserSchema: GenDescMessage<User>;
 ```
 
-> **TODO** explain overview
+> **TODO** explain overview?
 
 ### Files
 
@@ -1516,15 +1516,19 @@ if (field.fieldKind == "map") {
 
 ## Writing plugins
 
-> **TODO** see https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/writing_plugins.md
+> **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/writing_plugins.md, and the plugin example in packages/protoplugin-example
+
+## Examples
+
+> **TODO** packages/protobuf-example contains a runnable example that uses the same example.User definition we've been using in this doc. We should link to it.
 
 ## Migrating
 
-> **TODO** https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/migrating.md
+> **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/migrating.md
 
 ## FAQ
 
-> **TODO** https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/faq.md
+> **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/faq.md
 
 [option-target]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#target
 [option-js_import_style]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#js_import_style
