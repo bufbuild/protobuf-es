@@ -89,7 +89,8 @@ message User {
 }
 ```
 
-To use the data structure, you generate with a Protobuf compiler and a plugin for the language of your choice. To learn more about the capabilities, please check the [official language guide][protobuf.dev].
+To use the data structure, you generate with a Protobuf compiler and a plugin for the language of your choice. To learn
+more about the capabilities, please check the [official language guide][protobuf.dev].
 
 ## What is Protobuf-ES?
 
@@ -288,9 +289,7 @@ Below the imports, we generate a file descriptor:
 export declare const file_example: GenDescFile;
 ```
 
-This object describes all elements of the Protobuf file, and can be used for reflection-based operations.
-
-> **TODO** link to reflection docs
+This object describes all elements of the Protobuf file, and can be used for [reflection-based](#reflection) operations.
 
 ### Messages
 
@@ -335,11 +334,11 @@ const bytes = new Uint8Array([10, 3, 84, 105, 109]);
 fromBinary(UserSchema, bytes); // User
 ```
 
-> **TODO** explain schema, for example `UserSchema.field.firstName`, etc.
+Schemas are a powerful feature. You can take a deeper dive in the section about [reflection](#reflection).
 
 ### Scalar fields
 
-A Protobuf message has an arbitrary number of fields, and fields have one of several available types. Scalar field types 
+A Protobuf message has an arbitrary number of fields, and fields have one of several available types. Scalar field types
 are primitive types, such as a simple string:
 
 ```protobuf
@@ -653,7 +652,7 @@ Along with the TypeScript enum, we also generate its schema:
 export declare const FooSchema: GenDescEnum<Foo>;
 ```
 
-> **TODO** explain schema
+> **TODO** explain schema / link to reflection docs (does not currently explain enum descriptors)
 
 ### Extensions
 
@@ -716,9 +715,10 @@ Note that `getExtension` never returns `undefined`. If the extension is not set,
 `getExtension` returns the default value, for example `0` for numeric types, `[]` for repeated fields, and an empty
 message instance for message fields.
 
-Extensions are stored as unknown fields on a message. If you retrieve an extension value, it is deserialized from the
-binary unknown field data. To mutate a value, make sure to store the new value with `setExtension` after mutating. For
-example, let's say we have the extension field `repeated string hobbies = 101`, and want to add values:
+Extensions are stored as [unknown fields](#unknown-fields) on a message. If you retrieve an extension value, it is
+deserialized from the binary unknown field data. To mutate a value, make sure to store the new value with `setExtension`
+after mutating. For example, let's say we have the extension field `repeated string hobbies = 101`, and want to add
+values:
 
 ```ts
 import {
@@ -1072,13 +1072,13 @@ the previous version. In general, the binary format is also more performant than
 Options for `toBinary`:
 
 - `writeUnknownFields?: boolean`<br/>
-  Include unknown fields in the serialized output? The default behavior
+  Include [unknown fields](#unknown-fields) in the serialized output? The default behavior
   is to retain unknown fields and include them in the serialized output.
 
 Options for `fromBinary`:
 
 - `readUnknownFields?: boolean`<br/>
-  Retain unknown fields during parsing? The default behavior is to retain
+  Retain [unknown fields](#unknown-fields) during parsing? The default behavior is to retain
   unknown fields and include them in the serialized output.
 
 ### JSON serialization options
@@ -1212,15 +1212,14 @@ for await (const user of sizeDelimitedDecodeStream(UserSchema, stream)) {
 Descriptors describe Protobuf definitions. Every Protobuf compiler parses source files into descriptors, which are
 Protobuf messages themselves. You can find a deep dive into the model in [Buf's reference about descriptors][buf.build/descriptors].
 
-Let's use the compiler to create descriptors. The following command compiles all Protobuf files in the directory
-`proto`, and writes the message `google.protobuf.FileDescriptorSet` to the file `set.binpb`.
+The following command compiles all Protobuf files in the directory `proto`, and writes the descriptors to a file:
 
 ```shell
 buf build proto --output set.binpb
 ```
 
-The message `google.protobuf.FileDescriptorSet` is a [well-known type](#well-known-types). We can parse `set.binpb` like
-this:
+The written data is a Protobuf message - `google.protobuf.FileDescriptorSet` from the [well-known types](#well-known-types).
+We can parse it like this:
 
 ```typescript
 import { readFileSync } from "node:fs";
@@ -1236,7 +1235,8 @@ fileDescriptorSet.file.map((file) => file.name); // all .proto file names
 ```
 
 Similar to several other Protobuf implementations, Protobuf-ES provides wrapper types for the Protobuf descriptor
-messages that avoid many of their quirks. The primary types are:
+messages for convenience. If we refer to descriptors, we usually mean the wrapped types, rather than the low-level
+Protobuf messages. The primary types are:
 
 | Type          | Wraps descriptor message                 |
 | ------------- | ---------------------------------------- |
@@ -1245,11 +1245,29 @@ messages that avoid many of their quirks. The primary types are:
 | `DescMessage` | `google.protobuf.DescriptorProto`        |
 | `DescService` | `google.protobuf.ServiceDescriptorProto` |
 
-The schemas generated by [@bufbuild/protoc-gen-es] are just these wrapper types, with additional type information
-attached. This means you can use `create()`, `toBinary()`, and all other functions with descriptors, without generating
-code at all.
+The schemas generated by [@bufbuild/protoc-gen-es] _are_ these descriptors, just with some additional type information
+attached.
 
-> **TODO** give a peek into the features, for example `UserSchema.field.firstName`, etc.
+Here are some basic examples for retrieving information from a schema:
+
+```typescript
+import { file_example, UserSchema } from "./gen/example_pb";
+
+file_example.messages[0].typeName; // "example.User"
+
+UserSchema.typeName; // "example.User"
+
+UserSchema.fields.map((field) => field.localName);
+// [ "firstName", "lastName", "active", "manager", "locations", "projects"]
+
+UserSchema.field.firstName.fieldKind; // "scalar"
+UserSchema.field.firstName.scalar; // ScalarType.STRING
+UserSchema.field.firstName.name; // "first_name"
+UserSchema.field.firstName.number; // 1
+```
+
+Descriptors also provide access to [custom options](#custom-options), are used to [generate code](#writing-plugins),
+serialize messages, and many other tasks. They are a core feature of Protobuf-ES.
 
 ### Registries
 
@@ -1357,17 +1375,17 @@ package example;
 
 message User {
   string first_name = 1;
-  string last_name = 2;
+- string last_name = 2;
++ string last_name = 2 [(example.options.sensitive) = true];
   bool active = 3;
-- User manager = 4;
-+ User manager = 4 [(example.options.sensitive) = true];
+  User manager = 4;
   repeated string locations = 5;
   map<string, string> projects = 6;
 }
 ```
 
 When the compiler parses this file, it sets the custom option value on the `options` field of the
-`google.protobuf.FieldDescriptorProto` for the field `manager`.
+`google.protobuf.FieldDescriptorProto` for the field `last_name`.
 
 After re-generating code with `buf generate`, we can read the field option with the function `getOption`:
 
@@ -1376,28 +1394,63 @@ import { getOption, hasOption } from "@bufbuild/protobuf";
 import { UserSchema } from "./gen/example_pb";
 import { sensitive } from "./gen/example-option_pb";
 
-getOption(UserSchema.field.manager, sensitive); // true
-getOption(UserSchema.field.firstName, sensitive); // false
+getOption(UserSchema.field.lastName, sensitive); // true
 ```
 
-The function `hasOption` returns true if an option is present. The functions behave the same as the functions
+The companion function `hasOption` returns true if an option is present. The functions behave the same as the functions
 `hasExtension` and `getExtension`, but accept any [descriptor](#descriptors).
 
 > [!TIP]
 >
-> Custom option can be read from the schema in generated code, or from the schema passed to a plugin. See the example in
+> To learn more about custom options, see the [language guide][protobuf.dev/customoptions].
+
+> [!TIP]
+>
+> Custom option can be read from generated code, or from the schema passed to a plugin. See the example in
 > our [guide for writing plugins](#writing-plugins).
 
 ### Reflection API
 
-The reflection API provides dynamic access and manipulation of a message.
+The reflection API provides a simple interface to access and manipulate messages without knowing their type.
 
-> **TODO**
+As an example, let's write a simple function to redact sensitive fields from a message, using the custom option we
+[created above](#custom-options):
 
 ```typescript
-import { reflect, type ReflectMessage } from "@bufbuild/protobuf/reflect";
-import { UserSchema } from "./gen/example_pb";
+import { getOption, type Message, type DescMessage } from "@bufbuild/protobuf";
+import { reflect } from "@bufbuild/protobuf/reflect";
+import { sensitive } from "./gen/example-option_pb";
+
+export function redact(schema: DescMessage, message: Message) {
+  const r = reflect(schema, message);
+  for (const field of r.fields) {
+    if (getOption(field, sensitive)) {
+      // This field has the option (example.options.sensitive) = true
+      r.clear(field);
+    }
+  }
+}
 ```
+
+We can use this function to redact any message:
+
+```typescript
+import { create } from "@bufbuild/protobuf";
+import { redact } from "./redact";
+import { UserSchema } from "./gen/example_pb";
+
+const msg = create(UserSchema, {
+  firstName: "Homer",
+  // This field has the option (example.options.sensitive) = true
+  lastName: "Simpson",
+});
+
+msg.lastName; // "Simpson"
+redact(UserSchema, msg);
+msg.lastName; // undefined
+```
+
+> **TODO** explain ReflectMessage
 
 ## Types
 
@@ -1422,6 +1475,7 @@ import { UserSchema } from "./gen/example_pb";
 [protobuf.dev]: https://protobuf.dev/overview/
 [protobuf.dev/field_presence]: https://protobuf.dev/programming-guides/field_presence/
 [protobuf.dev/encoding]: https://protobuf.dev/programming-guides/encoding/
+[protobuf.dev/customoptions]: https://protobuf.dev/programming-guides/proto2/#customoptions
 [buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
 [buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
 [wikipedia.org/idl]: https://en.wikipedia.org/wiki/Interface_description_language
