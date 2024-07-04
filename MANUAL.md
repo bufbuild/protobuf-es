@@ -1415,7 +1415,6 @@ The companion function `hasOption` returns true if an option is present. The fun
 ### Reflection API
 
 The reflection API provides a simple interface to access and manipulate messages without knowing their type.
-
 As an example, let's write a simple function to redact sensitive fields from a message, using the custom option we
 [created above](#custom-options):
 
@@ -1452,6 +1451,26 @@ msg.lastName; // "Simpson"
 redact(UserSchema, msg);
 msg.lastName; // undefined
 ```
+
+There is one gotcha with our function `redact`: It does not ensure that the schema and message match, but we can solve
+this with a type inference and constraints:
+
+```typescript
+import type { DescMessage, MessageShape } from "@bufbuild/protobuf";
+
+export function redact<Desc extends DescMessage>(
+  schema: Desc,
+  message: MessageShape<Desc>,
+) {
+  // ...
+}
+```
+
+> [!TIP]
+>
+> - `EnumShape` extracts the enum type from an enum descriptor.
+> - `MessageShape` extracts the type from a message descriptor.
+> - `MessageInitShape` extracts the init type from a message descriptor - the initializer object for `create()`.
 
 ### ReflectMessage
 
@@ -1494,7 +1513,6 @@ Returns the field value, but in a form that's most suitable for reflection:
 > [!TIP]
 >
 > If you use a switch statement on `DescField.fieldKind`, the return type of `ReflectMessage.get` will be narrowed down.
->
 > In case that's insufficient, the guard functions `isReflectMessage`, `isReflectList`, `isReflectMap` from
 > `@bufbuild/protobuf/reflect` can help.
 
@@ -1558,10 +1576,6 @@ if (field.fieldKind == "map") {
   map.set(123, "abc"); // throws an error for invalid keys or values
 }
 ```
-
-## Types
-
-> **TODO** `MessageShape`, `MessageInitShape`, `EnumShape`, `ExtensionValueShape`, `Extendee`
 
 ## Writing plugins
 
