@@ -59,6 +59,9 @@ Editing this document:
   - [Registries](#registries)
   - [Custom options](#custom-options)
   - [Reflection API](#reflection-api)
+  - [ReflectMessage](#reflectmessage)
+  - [ReflectList](#reflectlist)
+  - [ReflectMap](#reflectmap)
 - [Types](#types)
 - [Writing plugins](#writing-plugins)
 - [Migrating](#migrating)
@@ -1450,7 +1453,111 @@ redact(UserSchema, msg);
 msg.lastName; // undefined
 ```
 
-> **TODO** explain ReflectMessage
+### ReflectMessage
+
+The function `reflect` returns a `ReflectMessage`. Its most important methods are:
+
+**`isSet(field: DescField): boolean`**
+
+Returns true if the field is set, exactly like the function `isFieldSet`
+(see [Field presence and default values](#field-presence-and-default-values)).
+
+**`clear(field: DescField): void`**
+
+Resets the field, so that `isSet()` will return false.
+
+**`get<Field extends DescField>(field: Field): ReflectMessageGet<Field>`**
+
+Returns the field value, but in a form that's most suitable for reflection:
+
+- Scalar fields:
+  Returns the value, but converts 64-bit integer fields with the option `jstype=JS_STRING` to a `bigint` value. If the
+  field is not set, the default value is returned. If no default value is set, the zero value is returned.
+
+- Enum fields:
+  Returns the numeric value. If the field is not set, the default value is returned. If no default value is set, the
+  zero value is returned.
+
+- Message fields:
+  Returns a `ReflectMessage`. If the field is not set, a new message is returned, but not set on the field.
+
+- List fields:
+  Returns a `ReflectList` object.
+
+- Map fields:
+  Returns a `ReflectMap` object.
+
+> [!NOTE]
+>
+> `get()` never returns `undefined`. To determine whether a field is set, use `isSet()`.
+
+> [!TIP]
+>
+> If you use a switch statement on `DescField.fieldKind`, the return type of `ReflectMessage.get` will be narrowed down.
+>
+> In case that's insufficient, the guard functions `isReflectMessage`, `isReflectList`, `isReflectMap` from
+> `@bufbuild/protobuf/reflect` can help.
+
+**`set<Field extends DescField>(field: Field, value: unknown): void;`**
+
+Set a field value, expecting values in the same form that `get()` returns. This method throws an error with helpful
+information if the value is invalid for the field.
+
+> [!NOTE]
+>
+> `undefined` is not a valid value. To reset a field, use `clear()`.
+
+### ReflectList
+
+Repeated fields are represented with `ReflectList`. Similar to `ReflectMessage`, it provides values in a form most
+suitable for reflection:
+
+- Scalar 64-bit integer fields with the option `jstype=JS_STRING` are converted to bigint.
+- Messages are wrapped in a `ReflectMessage`.
+
+```typescript
+import type { DescField } from "@bufbuild/protobuf";
+import type { ReflectMessage } from "@bufbuild/protobuf/reflect";
+
+declare const field: DescField;
+declare const message: ReflectMessage;
+
+if (field.fieldKind == "list") {
+  const list: ReflectList = message.get(field);
+  for (const item of list) {
+    // ReflectList is iterable
+  }
+  list.get(123); // can be undefined
+  list.add(123); // throws an error for invalid values
+}
+```
+
+### ReflectMap
+
+Map fields are represented with `ReflectMap`. Similar to `ReflectMessage`, it provides values in a form most
+suitable for reflection:
+
+- A map field is a record object on a message, where keys are always strings. `ReflectMap` converts keys to their
+  closest possible type in TypeScript.
+- Messages are wrapped in a `ReflectMessage`.
+
+```typescript
+import type { DescField } from "@bufbuild/protobuf";
+import type { ReflectMessage } from "@bufbuild/protobuf/reflect";
+
+declare const field: DescField;
+declare const message: ReflectMessage;
+
+if (field.fieldKind == "map") {
+  const map: ReflectMap = message.get(field);
+  for (const [key, value] of map) {
+    // ReflectMap is iterable
+  }
+  map.has(123); // boolean
+  map.get(123); // can be undefined
+  map.set(123, "abc"); // throws an error for invalid keys or values
+}
+```
 
 ## Types
 
