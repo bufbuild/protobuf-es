@@ -2,74 +2,11 @@
 
 <!--
 Editing this document:
-- To generate the table of contents and format this file, run the command `npx turbo run format -F //`.
+- To format this file, run the command `npx turbo run format -F //`.
   Dependencies need to be installed first, with `npm ci`.
 - For alerts like [!NOTE], insert a blank line between alert and text.
 - Always use reference-style links.
 --->
-
-<details><summary>Table of Contents</summary>
-
-<!-- toc -->
-
-- [What are Protocol Buffers?](#what-are-protocol-buffers)
-- [What is Protobuf-ES?](#what-is-protobuf-es)
-- [How to generate code](#how-to-generate-code)
-- [Plugin options](#plugin-options)
-- [Generated code](#generated-code)
-  - [Files](#files)
-  - [Messages](#messages)
-  - [Scalar fields](#scalar-fields)
-  - [Message fields](#message-fields)
-  - [Repeated fields](#repeated-fields)
-  - [Map fields](#map-fields)
-  - [Oneof fields](#oneof-fields)
-  - [Proto2 group fields](#proto2-group-fields)
-  - [Proto3 optional fields](#proto3-optional-fields)
-  - [Field presence and default values](#field-presence-and-default-values)
-  - [Field names](#field-names)
-  - [Enumerations](#enumerations)
-  - [Extensions](#extensions)
-  - [Services](#services)
-  - [Reserved names](#reserved-names)
-  - [Packages](#packages)
-  - [Nested types](#nested-types)
-- [Well-known types](#well-known-types)
-  - [google.protobuf.TimeStamp](#googleprotobuftimestamp)
-  - [google.protobuf.Any](#googleprotobufany)
-  - [google.protobuf.Struct](#googleprotobufstruct)
-  - [Wrapper messages from google/protobuf/wrappers.proto](#wrapper-messages-from-googleprotobufwrappersproto)
-- [Working with messages](#working-with-messages)
-  - [Constructing a message](#constructing-a-message)
-  - [Serializing messages](#serializing-messages)
-  - [Identifying messages](#identifying-messages)
-  - [Comparing messages](#comparing-messages)
-  - [Cloning messages](#cloning-messages)
-- [Serialization](#serialization)
-  - [Binary serialization options](#binary-serialization-options)
-  - [JSON serialization options](#json-serialization-options)
-  - [Unknown fields](#unknown-fields)
-  - [Binary encoding](#binary-encoding)
-  - [Text encoding](#text-encoding)
-  - [Base64 encoding](#base64-encoding)
-  - [Size-delimited message streams](#size-delimited-message-streams)
-- [JSON types](#json-types)
-- [Reflection](#reflection)
-  - [Descriptors](#descriptors)
-  - [Registries](#registries)
-  - [Custom options](#custom-options)
-  - [Reflection API](#reflection-api)
-  - [ReflectMessage](#reflectmessage)
-  - [ReflectList](#reflectlist)
-  - [ReflectMap](#reflectmap)
-- [Types](#types)
-- [Writing plugins](#writing-plugins)
-- [Migrating](#migrating)
-- [FAQ](#faq)
-
-<!-- tocstop -->
-
-</details>
 
 ## What are Protocol Buffers?
 

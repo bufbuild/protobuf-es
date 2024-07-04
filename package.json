@@ -19,9 +19,7 @@
     "all": "turbo run build generate test lint attw bundle-size format license-header bootstrap:inject bootstrap:wkt",
     "setversion": "node scripts/set-workspace-version.js && npm run all",
     "release": "npm run all && node scripts/release.js",
-    "format": "npm run markdown-toc && npm run prettier",
-    "prettier": "prettier --write --ignore-unknown '.' '!packages' '!.turbo' '!node_modules'",
-    "markdown-toc": "markdown-toc ./MANUAL.md -i --bullets '-'",
+    "format": "prettier --write --ignore-unknown '.' '!packages' '!.turbo' '!node_modules'",
     "license-header": "license-header --ignore 'packages/**'",
     "lint": "eslint --max-warnings 0 . --ignore-pattern 'packages/**'"
   },
@@ -49,7 +47,6 @@
     "eslint-plugin-n": "^17.9.0",
     "jest": "^29.7.0",
     "prettier": "^3.3.2",
-    "markdown-toc": "^1.2.0",
     "turbo": "^2.0.5",
     "typescript": "^5.5.2"
   },
