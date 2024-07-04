@@ -114,11 +114,11 @@ From here, you can begin to work with your schema.
 ## Packages
 
 - [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf):
-  Provides the runtime library, containing base types, generated well-known types, and core functionality. ([source code](packages/protobuf)).
+  Provides the runtime library, containing base types, generated well-known types, and core functionality.
 - [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es):
-  Provides the code generator plugin `protoc-gen-es`. The code it generates depends on `@bufbuild/protobuf`. ([source code](packages/protoc-gen-es)).
+  Provides the code generator plugin `protoc-gen-es`. The code it generates depends on `@bufbuild/protobuf`.
 - [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin):
-  Helps to create your own code generator plugin. The code it generates depends on `@bufbuild/protobuf`. ([source code](packages/protoplugin)).
+  Helps to create your own code generator plugin. The code it generates depends on `@bufbuild/protobuf`.
 
 ## Ecosystem
 
