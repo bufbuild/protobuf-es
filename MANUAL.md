@@ -694,11 +694,11 @@ setExtension(user, hobbies, h);
 
 > [!NOTE]
 >
-> In proto3, extensions can only be used for custom options.
+> In proto3, extensions can only be used for [custom options](#custom-options).
 
-> **TODO** link to custom options
-
-> **TODO** explain / link to JSON serialization / registries
+> [!TIP]
+> 
+> To use extensions with the JSON format, you need to provide them in the [serialization options](#json-serialization-options).
 
 ### Services
 
@@ -1246,7 +1246,7 @@ serialize messages, and many other tasks. They are a core feature of Protobuf-ES
 ### Registries
 
 Registries are collections of descriptors, allowing to look up a type by its qualified name. To serialize or parse
-extensions or `google.protobuf.Any` from JSON, registries are used to look up types.
+[extensions](#extensions) or [`google.protobuf.Any`](#googleprotobufany) from JSON, registries are used to look up types.
 
 `Registry` is a set of descriptors for messages, enumerations, extensions, and services:
 
