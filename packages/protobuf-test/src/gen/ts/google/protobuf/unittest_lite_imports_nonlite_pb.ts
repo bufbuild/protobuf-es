@@ -20,7 +20,7 @@
 // @generated from file google/protobuf/unittest_lite_imports_nonlite.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { TestAllTypes, TestRequired } from "./unittest_pb.js";
 import { file_google_protobuf_unittest } from "./unittest_pb.js";
@@ -29,7 +29,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_lite_imports_nonlite.proto.
  */
-export const file_google_protobuf_unittest_lite_imports_nonlite: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_unittest_lite_imports_nonlite: GenFile = /*@__PURE__*/
   fileDesc("CjNnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfbGl0ZV9pbXBvcnRzX25vbmxpdGUucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0IooBChZUZXN0TGl0ZUltcG9ydHNOb25saXRlEjAKB21lc3NhZ2UYASABKAsyHy5wcm90b2J1Zl91bml0dGVzdC5UZXN0QWxsVHlwZXMSPgoVbWVzc2FnZV93aXRoX3JlcXVpcmVkGAIgASgLMh8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkQgJIAw", [file_google_protobuf_unittest]);
 
 /**
@@ -53,6 +53,6 @@ export type TestLiteImportsNonlite = Message<"protobuf_unittest.TestLiteImportsN
  * Describes the message protobuf_unittest.TestLiteImportsNonlite.
  * Use `create(TestLiteImportsNonliteSchema)` to create a new message.
  */
-export const TestLiteImportsNonliteSchema: GenDescMessage<TestLiteImportsNonlite> = /*@__PURE__*/
+export const TestLiteImportsNonliteSchema: GenMessage<TestLiteImportsNonlite> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_lite_imports_nonlite, 0);
 

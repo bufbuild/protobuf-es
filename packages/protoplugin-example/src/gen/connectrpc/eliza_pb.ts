@@ -16,7 +16,7 @@
 // @generated from file connectrpc/eliza.proto (package connectrpc.eliza.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_customoptions_default_host } from "../customoptions/default_host_pb";
 import type { Message } from "@bufbuild/protobuf";
@@ -24,7 +24,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file connectrpc/eliza.proto.
  */
-export const file_connectrpc_eliza: GenDescFile = /*@__PURE__*/
+export const file_connectrpc_eliza: GenFile = /*@__PURE__*/
   fileDesc("ChZjb25uZWN0cnBjL2VsaXphLnByb3RvEhNjb25uZWN0cnBjLmVsaXphLnYxIh4KClNheVJlcXVlc3QSEAoIc2VudGVuY2UYASABKAkiHwoLU2F5UmVzcG9uc2USEAoIc2VudGVuY2UYASABKAkyfgoMRWxpemFTZXJ2aWNlEk0KA1NheRIfLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVxdWVzdBogLmNvbm5lY3RycGMuZWxpemEudjEuU2F5UmVzcG9uc2UiA5ACARofyj4caHR0cHM6Ly9kZW1vLmNvbm5lY3RycGMuY29tL2IGcHJvdG8z", [file_customoptions_default_host]);
 
 /**
@@ -43,7 +43,7 @@ export type SayRequest = Message<"connectrpc.eliza.v1.SayRequest"> & {
  * Describes the message connectrpc.eliza.v1.SayRequest.
  * Use `create(SayRequestSchema)` to create a new message.
  */
-export const SayRequestSchema: GenDescMessage<SayRequest> = /*@__PURE__*/
+export const SayRequestSchema: GenMessage<SayRequest> = /*@__PURE__*/
   messageDesc(file_connectrpc_eliza, 0);
 
 /**
@@ -62,7 +62,7 @@ export type SayResponse = Message<"connectrpc.eliza.v1.SayResponse"> & {
  * Describes the message connectrpc.eliza.v1.SayResponse.
  * Use `create(SayResponseSchema)` to create a new message.
  */
-export const SayResponseSchema: GenDescMessage<SayResponse> = /*@__PURE__*/
+export const SayResponseSchema: GenMessage<SayResponse> = /*@__PURE__*/
   messageDesc(file_connectrpc_eliza, 1);
 
 /**
@@ -70,7 +70,7 @@ export const SayResponseSchema: GenDescMessage<SayResponse> = /*@__PURE__*/
  *
  * @generated from service connectrpc.eliza.v1.ElizaService
  */
-export const ElizaService: GenDescService<{
+export const ElizaService: GenService<{
   /**
    * Say is a unary RPC. Eliza responds to the prompt with a single sentence.
    *

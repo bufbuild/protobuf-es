@@ -16,14 +16,14 @@
 // @generated from file google/type/phone_number.proto (package google.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/type/phone_number.proto.
  */
-export const file_google_type_phone_number: GenDescFile = /*@__PURE__*/
+export const file_google_type_phone_number: GenFile = /*@__PURE__*/
   fileDesc("Ch5nb29nbGUvdHlwZS9waG9uZV9udW1iZXIucHJvdG8SC2dvb2dsZS50eXBlIqsBCgtQaG9uZU51bWJlchIVCgtlMTY0X251bWJlchgBIAEoCUgAEjgKCnNob3J0X2NvZGUYAiABKAsyIi5nb29nbGUudHlwZS5QaG9uZU51bWJlci5TaG9ydENvZGVIABIRCglleHRlbnNpb24YAyABKAkaMAoJU2hvcnRDb2RlEhMKC3JlZ2lvbl9jb2RlGAEgASgJEg4KBm51bWJlchgCIAEoCUIGCgRraW5kQnQKD2NvbS5nb29nbGUudHlwZUIQUGhvbmVOdW1iZXJQcm90b1ABWkRnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvcGhvbmVfbnVtYmVyO3Bob25lX251bWJlcvgBAaICA0dUUGIGcHJvdG8z");
 
 /**
@@ -119,7 +119,7 @@ export type PhoneNumber = Message<"google.type.PhoneNumber"> & {
  * Describes the message google.type.PhoneNumber.
  * Use `create(PhoneNumberSchema)` to create a new message.
  */
-export const PhoneNumberSchema: GenDescMessage<PhoneNumber> = /*@__PURE__*/
+export const PhoneNumberSchema: GenMessage<PhoneNumber> = /*@__PURE__*/
   messageDesc(file_google_type_phone_number, 0);
 
 /**
@@ -160,6 +160,6 @@ export type PhoneNumber_ShortCode = Message<"google.type.PhoneNumber.ShortCode">
  * Describes the message google.type.PhoneNumber.ShortCode.
  * Use `create(PhoneNumber_ShortCodeSchema)` to create a new message.
  */
-export const PhoneNumber_ShortCodeSchema: GenDescMessage<PhoneNumber_ShortCode> = /*@__PURE__*/
+export const PhoneNumber_ShortCodeSchema: GenMessage<PhoneNumber_ShortCode> = /*@__PURE__*/
   messageDesc(file_google_type_phone_number, 0, 0);
 

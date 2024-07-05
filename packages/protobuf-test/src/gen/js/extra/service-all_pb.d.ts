@@ -16,18 +16,18 @@
 // @generated from file extra/service-all.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenService } from "@bufbuild/protobuf/codegenv1";
 import type { Int32ValueSchema, StringValueSchema } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/service-all.proto.
  */
-export declare const file_extra_service_all: GenDescFile;
+export declare const file_extra_service_all: GenFile;
 
 /**
  * @generated from service spec.ServiceAll
  */
-export declare const ServiceAll: GenDescService<{
+export declare const ServiceAll: GenService<{
   /**
    * @generated from rpc spec.ServiceAll.Unary
    */

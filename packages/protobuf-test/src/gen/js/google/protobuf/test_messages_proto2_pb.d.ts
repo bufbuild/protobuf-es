@@ -18,13 +18,13 @@
 // @generated from file google/protobuf/test_messages_proto2.proto (package protobuf_test_messages.proto2, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/test_messages_proto2.proto.
  */
-export declare const file_google_protobuf_test_messages_proto2: GenDescFile;
+export declare const file_google_protobuf_test_messages_proto2: GenFile;
 
 /**
  * This proto includes every type of field in both singular and repeated
@@ -742,7 +742,7 @@ export declare type TestAllTypesProto2 = Message<"protobuf_test_messages.proto2.
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.
  * Use `create(TestAllTypesProto2Schema)` to create a new message.
  */
-export declare const TestAllTypesProto2Schema: GenDescMessage<TestAllTypesProto2>;
+export declare const TestAllTypesProto2Schema: GenMessage<TestAllTypesProto2>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage
@@ -763,7 +763,7 @@ export declare type TestAllTypesProto2_NestedMessage = Message<"protobuf_test_me
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage.
  * Use `create(TestAllTypesProto2_NestedMessageSchema)` to create a new message.
  */
-export declare const TestAllTypesProto2_NestedMessageSchema: GenDescMessage<TestAllTypesProto2_NestedMessage>;
+export declare const TestAllTypesProto2_NestedMessageSchema: GenMessage<TestAllTypesProto2_NestedMessage>;
 
 /**
  * groups
@@ -786,7 +786,7 @@ export declare type TestAllTypesProto2_Data = Message<"protobuf_test_messages.pr
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.Data.
  * Use `create(TestAllTypesProto2_DataSchema)` to create a new message.
  */
-export declare const TestAllTypesProto2_DataSchema: GenDescMessage<TestAllTypesProto2_Data>;
+export declare const TestAllTypesProto2_DataSchema: GenMessage<TestAllTypesProto2_Data>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField
@@ -807,7 +807,7 @@ export declare type TestAllTypesProto2_MultiWordGroupField = Message<"protobuf_t
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField.
  * Use `create(TestAllTypesProto2_MultiWordGroupFieldSchema)` to create a new message.
  */
-export declare const TestAllTypesProto2_MultiWordGroupFieldSchema: GenDescMessage<TestAllTypesProto2_MultiWordGroupField>;
+export declare const TestAllTypesProto2_MultiWordGroupFieldSchema: GenMessage<TestAllTypesProto2_MultiWordGroupField>;
 
 /**
  * message_set test case.
@@ -821,7 +821,7 @@ export declare type TestAllTypesProto2_MessageSetCorrect = Message<"protobuf_tes
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect.
  * Use `create(TestAllTypesProto2_MessageSetCorrectSchema)` to create a new message.
  */
-export declare const TestAllTypesProto2_MessageSetCorrectSchema: GenDescMessage<TestAllTypesProto2_MessageSetCorrect>;
+export declare const TestAllTypesProto2_MessageSetCorrectSchema: GenMessage<TestAllTypesProto2_MessageSetCorrect>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1
@@ -837,12 +837,12 @@ export declare type TestAllTypesProto2_MessageSetCorrectExtension1 = Message<"pr
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1.
  * Use `create(TestAllTypesProto2_MessageSetCorrectExtension1Schema)` to create a new message.
  */
-export declare const TestAllTypesProto2_MessageSetCorrectExtension1Schema: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension1>;
+export declare const TestAllTypesProto2_MessageSetCorrectExtension1Schema: GenMessage<TestAllTypesProto2_MessageSetCorrectExtension1>;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
  */
-export declare const TestAllTypesProto2_MessageSetCorrectExtension1_message_set_extension: GenDescExtension<TestAllTypesProto2_MessageSetCorrect, TestAllTypesProto2_MessageSetCorrectExtension1>;
+export declare const TestAllTypesProto2_MessageSetCorrectExtension1_message_set_extension: GenExtension<TestAllTypesProto2_MessageSetCorrect, TestAllTypesProto2_MessageSetCorrectExtension1>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2
@@ -858,12 +858,12 @@ export declare type TestAllTypesProto2_MessageSetCorrectExtension2 = Message<"pr
  * Describes the message protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2.
  * Use `create(TestAllTypesProto2_MessageSetCorrectExtension2Schema)` to create a new message.
  */
-export declare const TestAllTypesProto2_MessageSetCorrectExtension2Schema: GenDescMessage<TestAllTypesProto2_MessageSetCorrectExtension2>;
+export declare const TestAllTypesProto2_MessageSetCorrectExtension2Schema: GenMessage<TestAllTypesProto2_MessageSetCorrectExtension2>;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
  */
-export declare const TestAllTypesProto2_MessageSetCorrectExtension2_message_set_extension: GenDescExtension<TestAllTypesProto2_MessageSetCorrect, TestAllTypesProto2_MessageSetCorrectExtension2>;
+export declare const TestAllTypesProto2_MessageSetCorrectExtension2_message_set_extension: GenExtension<TestAllTypesProto2_MessageSetCorrect, TestAllTypesProto2_MessageSetCorrectExtension2>;
 
 /**
  * @generated from enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum
@@ -895,7 +895,7 @@ export enum TestAllTypesProto2_NestedEnum {
 /**
  * Describes the enum protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum.
  */
-export declare const TestAllTypesProto2_NestedEnumSchema: GenDescEnum<TestAllTypesProto2_NestedEnum>;
+export declare const TestAllTypesProto2_NestedEnumSchema: GenEnum<TestAllTypesProto2_NestedEnum>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.ForeignMessageProto2
@@ -911,7 +911,7 @@ export declare type ForeignMessageProto2 = Message<"protobuf_test_messages.proto
  * Describes the message protobuf_test_messages.proto2.ForeignMessageProto2.
  * Use `create(ForeignMessageProto2Schema)` to create a new message.
  */
-export declare const ForeignMessageProto2Schema: GenDescMessage<ForeignMessageProto2>;
+export declare const ForeignMessageProto2Schema: GenMessage<ForeignMessageProto2>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.GroupField
@@ -932,7 +932,7 @@ export declare type GroupField = Message<"protobuf_test_messages.proto2.GroupFie
  * Describes the message protobuf_test_messages.proto2.GroupField.
  * Use `create(GroupFieldSchema)` to create a new message.
  */
-export declare const GroupFieldSchema: GenDescMessage<GroupField>;
+export declare const GroupFieldSchema: GenMessage<GroupField>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes
@@ -973,7 +973,7 @@ export declare type UnknownToTestAllTypes = Message<"protobuf_test_messages.prot
  * Describes the message protobuf_test_messages.proto2.UnknownToTestAllTypes.
  * Use `create(UnknownToTestAllTypesSchema)` to create a new message.
  */
-export declare const UnknownToTestAllTypesSchema: GenDescMessage<UnknownToTestAllTypes>;
+export declare const UnknownToTestAllTypesSchema: GenMessage<UnknownToTestAllTypes>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup
@@ -989,7 +989,7 @@ export declare type UnknownToTestAllTypes_OptionalGroup = Message<"protobuf_test
  * Describes the message protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup.
  * Use `create(UnknownToTestAllTypes_OptionalGroupSchema)` to create a new message.
  */
-export declare const UnknownToTestAllTypes_OptionalGroupSchema: GenDescMessage<UnknownToTestAllTypes_OptionalGroup>;
+export declare const UnknownToTestAllTypes_OptionalGroupSchema: GenMessage<UnknownToTestAllTypes_OptionalGroup>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.NullHypothesisProto2
@@ -1001,7 +1001,7 @@ export declare type NullHypothesisProto2 = Message<"protobuf_test_messages.proto
  * Describes the message protobuf_test_messages.proto2.NullHypothesisProto2.
  * Use `create(NullHypothesisProto2Schema)` to create a new message.
  */
-export declare const NullHypothesisProto2Schema: GenDescMessage<NullHypothesisProto2>;
+export declare const NullHypothesisProto2Schema: GenMessage<NullHypothesisProto2>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.EnumOnlyProto2
@@ -1013,7 +1013,7 @@ export declare type EnumOnlyProto2 = Message<"protobuf_test_messages.proto2.Enum
  * Describes the message protobuf_test_messages.proto2.EnumOnlyProto2.
  * Use `create(EnumOnlyProto2Schema)` to create a new message.
  */
-export declare const EnumOnlyProto2Schema: GenDescMessage<EnumOnlyProto2>;
+export declare const EnumOnlyProto2Schema: GenMessage<EnumOnlyProto2>;
 
 /**
  * @generated from enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool
@@ -1033,7 +1033,7 @@ export enum EnumOnlyProto2_Bool {
 /**
  * Describes the enum protobuf_test_messages.proto2.EnumOnlyProto2.Bool.
  */
-export declare const EnumOnlyProto2_BoolSchema: GenDescEnum<EnumOnlyProto2_Bool>;
+export declare const EnumOnlyProto2_BoolSchema: GenEnum<EnumOnlyProto2_Bool>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.OneStringProto2
@@ -1049,7 +1049,7 @@ export declare type OneStringProto2 = Message<"protobuf_test_messages.proto2.One
  * Describes the message protobuf_test_messages.proto2.OneStringProto2.
  * Use `create(OneStringProto2Schema)` to create a new message.
  */
-export declare const OneStringProto2Schema: GenDescMessage<OneStringProto2>;
+export declare const OneStringProto2Schema: GenMessage<OneStringProto2>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.ProtoWithKeywords
@@ -1075,7 +1075,7 @@ export declare type ProtoWithKeywords = Message<"protobuf_test_messages.proto2.P
  * Describes the message protobuf_test_messages.proto2.ProtoWithKeywords.
  * Use `create(ProtoWithKeywordsSchema)` to create a new message.
  */
-export declare const ProtoWithKeywordsSchema: GenDescMessage<ProtoWithKeywords>;
+export declare const ProtoWithKeywordsSchema: GenMessage<ProtoWithKeywords>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2
@@ -1285,7 +1285,7 @@ export declare type TestAllRequiredTypesProto2 = Message<"protobuf_test_messages
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.
  * Use `create(TestAllRequiredTypesProto2Schema)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2Schema: GenDescMessage<TestAllRequiredTypesProto2>;
+export declare const TestAllRequiredTypesProto2Schema: GenMessage<TestAllRequiredTypesProto2>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage
@@ -1311,7 +1311,7 @@ export declare type TestAllRequiredTypesProto2_NestedMessage = Message<"protobuf
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage.
  * Use `create(TestAllRequiredTypesProto2_NestedMessageSchema)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_NestedMessageSchema: GenDescMessage<TestAllRequiredTypesProto2_NestedMessage>;
+export declare const TestAllRequiredTypesProto2_NestedMessageSchema: GenMessage<TestAllRequiredTypesProto2_NestedMessage>;
 
 /**
  * groups
@@ -1334,7 +1334,7 @@ export declare type TestAllRequiredTypesProto2_Data = Message<"protobuf_test_mes
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data.
  * Use `create(TestAllRequiredTypesProto2_DataSchema)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_DataSchema: GenDescMessage<TestAllRequiredTypesProto2_Data>;
+export declare const TestAllRequiredTypesProto2_DataSchema: GenMessage<TestAllRequiredTypesProto2_Data>;
 
 /**
  * message_set test case.
@@ -1348,7 +1348,7 @@ export declare type TestAllRequiredTypesProto2_MessageSetCorrect = Message<"prot
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect.
  * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectSchema)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_MessageSetCorrectSchema: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrect>;
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectSchema: GenMessage<TestAllRequiredTypesProto2_MessageSetCorrect>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1
@@ -1364,12 +1364,12 @@ export declare type TestAllRequiredTypesProto2_MessageSetCorrectExtension1 = Mes
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1.
  * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension1Schema)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension1Schema: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension1>;
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension1Schema: GenMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension1>;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1 message_set_extension = 1547769;
  */
-export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension1_message_set_extension: GenDescExtension<TestAllRequiredTypesProto2_MessageSetCorrect, TestAllRequiredTypesProto2_MessageSetCorrectExtension1>;
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension1_message_set_extension: GenExtension<TestAllRequiredTypesProto2_MessageSetCorrect, TestAllRequiredTypesProto2_MessageSetCorrectExtension1>;
 
 /**
  * @generated from message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2
@@ -1385,12 +1385,12 @@ export declare type TestAllRequiredTypesProto2_MessageSetCorrectExtension2 = Mes
  * Describes the message protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2.
  * Use `create(TestAllRequiredTypesProto2_MessageSetCorrectExtension2Schema)` to create a new message.
  */
-export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension2Schema: GenDescMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2>;
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension2Schema: GenMessage<TestAllRequiredTypesProto2_MessageSetCorrectExtension2>;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2 message_set_extension = 4135312;
  */
-export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension2_message_set_extension: GenDescExtension<TestAllRequiredTypesProto2_MessageSetCorrect, TestAllRequiredTypesProto2_MessageSetCorrectExtension2>;
+export declare const TestAllRequiredTypesProto2_MessageSetCorrectExtension2_message_set_extension: GenExtension<TestAllRequiredTypesProto2_MessageSetCorrect, TestAllRequiredTypesProto2_MessageSetCorrectExtension2>;
 
 /**
  * @generated from enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum
@@ -1422,7 +1422,7 @@ export enum TestAllRequiredTypesProto2_NestedEnum {
 /**
  * Describes the enum protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum.
  */
-export declare const TestAllRequiredTypesProto2_NestedEnumSchema: GenDescEnum<TestAllRequiredTypesProto2_NestedEnum>;
+export declare const TestAllRequiredTypesProto2_NestedEnumSchema: GenEnum<TestAllRequiredTypesProto2_NestedEnum>;
 
 /**
  * @generated from enum protobuf_test_messages.proto2.ForeignEnumProto2
@@ -1447,15 +1447,15 @@ export enum ForeignEnumProto2 {
 /**
  * Describes the enum protobuf_test_messages.proto2.ForeignEnumProto2.
  */
-export declare const ForeignEnumProto2Schema: GenDescEnum<ForeignEnumProto2>;
+export declare const ForeignEnumProto2Schema: GenEnum<ForeignEnumProto2>;
 
 /**
  * @generated from extension: optional int32 extension_int32 = 120;
  */
-export declare const extension_int32: GenDescExtension<TestAllTypesProto2, number>;
+export declare const extension_int32: GenExtension<TestAllTypesProto2, number>;
 
 /**
  * @generated from extension: optional protobuf_test_messages.proto2.GroupField groupfield = 121;
  */
-export declare const groupfield: GenDescExtension<TestAllTypesProto2, GroupField>;
+export declare const groupfield: GenExtension<TestAllTypesProto2, GroupField>;
 

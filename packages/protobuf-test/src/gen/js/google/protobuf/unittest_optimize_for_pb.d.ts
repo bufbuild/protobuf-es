@@ -22,14 +22,14 @@
 // @generated from file google/protobuf/unittest_optimize_for.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { ForeignMessage } from "./unittest_pb.js";
 
 /**
  * Describes the file google/protobuf/unittest_optimize_for.proto.
  */
-export declare const file_google_protobuf_unittest_optimize_for: GenDescFile;
+export declare const file_google_protobuf_unittest_optimize_for: GenFile;
 
 /**
  * @generated from message protobuf_unittest.TestOptimizedForSize
@@ -67,17 +67,17 @@ export declare type TestOptimizedForSize = Message<"protobuf_unittest.TestOptimi
  * Describes the message protobuf_unittest.TestOptimizedForSize.
  * Use `create(TestOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestOptimizedForSizeSchema: GenDescMessage<TestOptimizedForSize>;
+export declare const TestOptimizedForSizeSchema: GenMessage<TestOptimizedForSize>;
 
 /**
  * @generated from extension: optional int32 test_extension = 1234;
  */
-export declare const TestOptimizedForSize_test_extension: GenDescExtension<TestOptimizedForSize, number>;
+export declare const TestOptimizedForSize_test_extension: GenExtension<TestOptimizedForSize, number>;
 
 /**
  * @generated from extension: optional protobuf_unittest.TestRequiredOptimizedForSize test_extension2 = 1235;
  */
-export declare const TestOptimizedForSize_test_extension2: GenDescExtension<TestOptimizedForSize, TestRequiredOptimizedForSize>;
+export declare const TestOptimizedForSize_test_extension2: GenExtension<TestOptimizedForSize, TestRequiredOptimizedForSize>;
 
 /**
  * @generated from message protobuf_unittest.TestRequiredOptimizedForSize
@@ -93,7 +93,7 @@ export declare type TestRequiredOptimizedForSize = Message<"protobuf_unittest.Te
  * Describes the message protobuf_unittest.TestRequiredOptimizedForSize.
  * Use `create(TestRequiredOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestRequiredOptimizedForSizeSchema: GenDescMessage<TestRequiredOptimizedForSize>;
+export declare const TestRequiredOptimizedForSizeSchema: GenMessage<TestRequiredOptimizedForSize>;
 
 /**
  * @generated from message protobuf_unittest.TestOptionalOptimizedForSize
@@ -109,5 +109,5 @@ export declare type TestOptionalOptimizedForSize = Message<"protobuf_unittest.Te
  * Describes the message protobuf_unittest.TestOptionalOptimizedForSize.
  * Use `create(TestOptionalOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestOptionalOptimizedForSizeSchema: GenDescMessage<TestOptionalOptimizedForSize>;
+export declare const TestOptionalOptimizedForSizeSchema: GenMessage<TestOptionalOptimizedForSize>;
 

@@ -16,12 +16,12 @@
 // @generated from file google/protobuf/unittest_proto3_bad_macros.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv1";
 
 /**
  * Describes the file google/protobuf/unittest_proto3_bad_macros.proto.
  */
-export declare const file_google_protobuf_unittest_proto3_bad_macros: GenDescFile;
+export declare const file_google_protobuf_unittest_proto3_bad_macros: GenFile;
 
 /**
  * This generates `GID_MAX`, which is a macro in some circumstances.
@@ -38,7 +38,7 @@ export enum GID {
 /**
  * Describes the enum protobuf_unittest.GID.
  */
-export declare const GIDSchema: GenDescEnum<GID>;
+export declare const GIDSchema: GenEnum<GID>;
 
 /**
  * This generates `UID_MAX`, which is a mcro in some circumstances.
@@ -55,7 +55,7 @@ export enum UID {
 /**
  * Describes the enum protobuf_unittest.UID.
  */
-export declare const UIDSchema: GenDescEnum<UID>;
+export declare const UIDSchema: GenEnum<UID>;
 
 /**
  * Just a container for bad macro names. Some of these do not follow the normal
@@ -245,5 +245,5 @@ export enum BadNames {
 /**
  * Describes the enum protobuf_unittest.BadNames.
  */
-export declare const BadNamesSchema: GenDescEnum<BadNames>;
+export declare const BadNamesSchema: GenEnum<BadNames>;
 

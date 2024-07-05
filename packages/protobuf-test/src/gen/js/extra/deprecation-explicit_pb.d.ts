@@ -16,14 +16,14 @@
 // @generated from file extra/deprecation-explicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { EmptySchema, FieldOptions } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/deprecation-explicit.proto.
  */
-export declare const file_extra_deprecation_explicit: GenDescFile;
+export declare const file_extra_deprecation_explicit: GenFile;
 
 /**
  * The entire message is deprecated
@@ -43,7 +43,7 @@ export declare type DeprecatedMessage = Message<"spec.DeprecatedMessage"> & {
  * Use `create(DeprecatedMessageSchema)` to create a new message.
  * @deprecated
  */
-export declare const DeprecatedMessageSchema: GenDescMessage<DeprecatedMessage>;
+export declare const DeprecatedMessageSchema: GenMessage<DeprecatedMessage>;
 
 /**
  * A single field of this message is deprecated
@@ -71,7 +71,7 @@ export declare type DeprecatedFieldMessage = Message<"spec.DeprecatedFieldMessag
  * Describes the message spec.DeprecatedFieldMessage.
  * Use `create(DeprecatedFieldMessageSchema)` to create a new message.
  */
-export declare const DeprecatedFieldMessageSchema: GenDescMessage<DeprecatedFieldMessage>;
+export declare const DeprecatedFieldMessageSchema: GenMessage<DeprecatedFieldMessage>;
 
 /**
  * The entire enum is deprecated
@@ -95,7 +95,7 @@ export enum DeprecatedEnum {
  * Describes the enum spec.DeprecatedEnum.
  * @deprecated
  */
-export declare const DeprecatedEnumSchema: GenDescEnum<DeprecatedEnum>;
+export declare const DeprecatedEnumSchema: GenEnum<DeprecatedEnum>;
 
 /**
  * Only a single enum value is deprecated
@@ -118,7 +118,7 @@ export enum DeprecatedValueEnum {
 /**
  * Describes the enum spec.DeprecatedValueEnum.
  */
-export declare const DeprecatedValueEnumSchema: GenDescEnum<DeprecatedValueEnum>;
+export declare const DeprecatedValueEnumSchema: GenEnum<DeprecatedValueEnum>;
 
 /**
  * The entire service is deprecated
@@ -126,7 +126,7 @@ export declare const DeprecatedValueEnumSchema: GenDescEnum<DeprecatedValueEnum>
  * @generated from service spec.DeprecatedService
  * @deprecated
  */
-export declare const DeprecatedService: GenDescService<{
+export declare const DeprecatedService: GenService<{
   /**
    * @generated from rpc spec.DeprecatedService.Deprecated
    */
@@ -143,7 +143,7 @@ export declare const DeprecatedService: GenDescService<{
  *
  * @generated from service spec.DeprecatedRpcService
  */
-export declare const DeprecatedRpcService: GenDescService<{
+export declare const DeprecatedRpcService: GenService<{
   /**
    * @generated from rpc spec.DeprecatedRpcService.Deprecated
    * @deprecated
@@ -170,5 +170,5 @@ export declare const DeprecatedRpcService: GenDescService<{
  * @generated from extension: int32 explicitly_deprecated_option = 2001 [deprecated = true];
  * @deprecated
  */
-export declare const explicitly_deprecated_option: GenDescExtension<FieldOptions, number>;
+export declare const explicitly_deprecated_option: GenExtension<FieldOptions, number>;
 

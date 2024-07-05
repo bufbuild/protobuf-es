@@ -16,14 +16,14 @@
 // @generated from file google/bytestream/bytestream.proto (package google.bytestream, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/bytestream/bytestream.proto.
  */
-export const file_google_bytestream_bytestream: GenDescFile = /*@__PURE__*/
+export const file_google_bytestream_bytestream: GenFile = /*@__PURE__*/
   fileDesc("CiJnb29nbGUvYnl0ZXN0cmVhbS9ieXRlc3RyZWFtLnByb3RvEhFnb29nbGUuYnl0ZXN0cmVhbSJNCgtSZWFkUmVxdWVzdBIVCg1yZXNvdXJjZV9uYW1lGAEgASgJEhMKC3JlYWRfb2Zmc2V0GAIgASgDEhIKCnJlYWRfbGltaXQYAyABKAMiHAoMUmVhZFJlc3BvbnNlEgwKBGRhdGEYCiABKAwiXwoMV3JpdGVSZXF1ZXN0EhUKDXJlc291cmNlX25hbWUYASABKAkSFAoMd3JpdGVfb2Zmc2V0GAIgASgDEhQKDGZpbmlzaF93cml0ZRgDIAEoCBIMCgRkYXRhGAogASgMIicKDVdyaXRlUmVzcG9uc2USFgoOY29tbWl0dGVkX3NpemUYASABKAMiMAoXUXVlcnlXcml0ZVN0YXR1c1JlcXVlc3QSFQoNcmVzb3VyY2VfbmFtZRgBIAEoCSJEChhRdWVyeVdyaXRlU3RhdHVzUmVzcG9uc2USFgoOY29tbWl0dGVkX3NpemUYASABKAMSEAoIY29tcGxldGUYAiABKAgykgIKCkJ5dGVTdHJlYW0SSQoEUmVhZBIeLmdvb2dsZS5ieXRlc3RyZWFtLlJlYWRSZXF1ZXN0Gh8uZ29vZ2xlLmJ5dGVzdHJlYW0uUmVhZFJlc3BvbnNlMAESTAoFV3JpdGUSHy5nb29nbGUuYnl0ZXN0cmVhbS5Xcml0ZVJlcXVlc3QaIC5nb29nbGUuYnl0ZXN0cmVhbS5Xcml0ZVJlc3BvbnNlKAESawoQUXVlcnlXcml0ZVN0YXR1cxIqLmdvb2dsZS5ieXRlc3RyZWFtLlF1ZXJ5V3JpdGVTdGF0dXNSZXF1ZXN0GisuZ29vZ2xlLmJ5dGVzdHJlYW0uUXVlcnlXcml0ZVN0YXR1c1Jlc3BvbnNlQmUKFWNvbS5nb29nbGUuYnl0ZXN0cmVhbUIPQnl0ZVN0cmVhbVByb3RvWjtnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL2J5dGVzdHJlYW07Ynl0ZXN0cmVhbWIGcHJvdG8z");
 
 /**
@@ -68,7 +68,7 @@ export type ReadRequest = Message<"google.bytestream.ReadRequest"> & {
  * Describes the message google.bytestream.ReadRequest.
  * Use `create(ReadRequestSchema)` to create a new message.
  */
-export const ReadRequestSchema: GenDescMessage<ReadRequest> = /*@__PURE__*/
+export const ReadRequestSchema: GenMessage<ReadRequest> = /*@__PURE__*/
   messageDesc(file_google_bytestream_bytestream, 0);
 
 /**
@@ -92,7 +92,7 @@ export type ReadResponse = Message<"google.bytestream.ReadResponse"> & {
  * Describes the message google.bytestream.ReadResponse.
  * Use `create(ReadResponseSchema)` to create a new message.
  */
-export const ReadResponseSchema: GenDescMessage<ReadResponse> = /*@__PURE__*/
+export const ReadResponseSchema: GenMessage<ReadResponse> = /*@__PURE__*/
   messageDesc(file_google_bytestream_bytestream, 1);
 
 /**
@@ -152,7 +152,7 @@ export type WriteRequest = Message<"google.bytestream.WriteRequest"> & {
  * Describes the message google.bytestream.WriteRequest.
  * Use `create(WriteRequestSchema)` to create a new message.
  */
-export const WriteRequestSchema: GenDescMessage<WriteRequest> = /*@__PURE__*/
+export const WriteRequestSchema: GenMessage<WriteRequest> = /*@__PURE__*/
   messageDesc(file_google_bytestream_bytestream, 2);
 
 /**
@@ -173,7 +173,7 @@ export type WriteResponse = Message<"google.bytestream.WriteResponse"> & {
  * Describes the message google.bytestream.WriteResponse.
  * Use `create(WriteResponseSchema)` to create a new message.
  */
-export const WriteResponseSchema: GenDescMessage<WriteResponse> = /*@__PURE__*/
+export const WriteResponseSchema: GenMessage<WriteResponse> = /*@__PURE__*/
   messageDesc(file_google_bytestream_bytestream, 3);
 
 /**
@@ -194,7 +194,7 @@ export type QueryWriteStatusRequest = Message<"google.bytestream.QueryWriteStatu
  * Describes the message google.bytestream.QueryWriteStatusRequest.
  * Use `create(QueryWriteStatusRequestSchema)` to create a new message.
  */
-export const QueryWriteStatusRequestSchema: GenDescMessage<QueryWriteStatusRequest> = /*@__PURE__*/
+export const QueryWriteStatusRequestSchema: GenMessage<QueryWriteStatusRequest> = /*@__PURE__*/
   messageDesc(file_google_bytestream_bytestream, 4);
 
 /**
@@ -223,7 +223,7 @@ export type QueryWriteStatusResponse = Message<"google.bytestream.QueryWriteStat
  * Describes the message google.bytestream.QueryWriteStatusResponse.
  * Use `create(QueryWriteStatusResponseSchema)` to create a new message.
  */
-export const QueryWriteStatusResponseSchema: GenDescMessage<QueryWriteStatusResponse> = /*@__PURE__*/
+export const QueryWriteStatusResponseSchema: GenMessage<QueryWriteStatusResponse> = /*@__PURE__*/
   messageDesc(file_google_bytestream_bytestream, 5);
 
 /**
@@ -253,7 +253,7 @@ export const QueryWriteStatusResponseSchema: GenDescMessage<QueryWriteStatusResp
  *
  * @generated from service google.bytestream.ByteStream
  */
-export const ByteStream: GenDescService<{
+export const ByteStream: GenService<{
   /**
    * `Read()` is used to retrieve the contents of a resource as a sequence
    * of bytes. The bytes are returned in a sequence of responses, and the

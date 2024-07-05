@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/unittest_retention.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { EnumOptions, EnumValueOptions, ExtensionRangeOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/protobuf/unittest_retention.proto.
  */
-export declare const file_google_protobuf_unittest_retention: GenDescFile;
+export declare const file_google_protobuf_unittest_retention: GenFile;
 
 /**
  * Retention attributes set on fields nested within a message
@@ -51,7 +51,7 @@ export declare type OptionsMessage = Message<"protobuf_unittest.OptionsMessage">
  * Describes the message protobuf_unittest.OptionsMessage.
  * Use `create(OptionsMessageSchema)` to create a new message.
  */
-export declare const OptionsMessageSchema: GenDescMessage<OptionsMessage>;
+export declare const OptionsMessageSchema: GenMessage<OptionsMessage>;
 
 /**
  * @generated from message protobuf_unittest.Extendee
@@ -63,7 +63,7 @@ export declare type Extendee = Message<"protobuf_unittest.Extendee"> & {
  * Describes the message protobuf_unittest.Extendee.
  * Use `create(ExtendeeSchema)` to create a new message.
  */
-export declare const ExtendeeSchema: GenDescMessage<Extendee>;
+export declare const ExtendeeSchema: GenMessage<Extendee>;
 
 /**
  * @generated from message protobuf_unittest.TopLevelMessage
@@ -90,7 +90,7 @@ export declare type TopLevelMessage = Message<"protobuf_unittest.TopLevelMessage
  * Describes the message protobuf_unittest.TopLevelMessage.
  * Use `create(TopLevelMessageSchema)` to create a new message.
  */
-export declare const TopLevelMessageSchema: GenDescMessage<TopLevelMessage>;
+export declare const TopLevelMessageSchema: GenMessage<TopLevelMessage>;
 
 /**
  * @generated from message protobuf_unittest.TopLevelMessage.NestedMessage
@@ -102,7 +102,7 @@ export declare type TopLevelMessage_NestedMessage = Message<"protobuf_unittest.T
  * Describes the message protobuf_unittest.TopLevelMessage.NestedMessage.
  * Use `create(TopLevelMessage_NestedMessageSchema)` to create a new message.
  */
-export declare const TopLevelMessage_NestedMessageSchema: GenDescMessage<TopLevelMessage_NestedMessage>;
+export declare const TopLevelMessage_NestedMessageSchema: GenMessage<TopLevelMessage_NestedMessage>;
 
 /**
  * @generated from enum protobuf_unittest.TopLevelMessage.NestedEnum
@@ -117,12 +117,12 @@ export enum TopLevelMessage_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TopLevelMessage.NestedEnum.
  */
-export declare const TopLevelMessage_NestedEnumSchema: GenDescEnum<TopLevelMessage_NestedEnum>;
+export declare const TopLevelMessage_NestedEnumSchema: GenEnum<TopLevelMessage_NestedEnum>;
 
 /**
  * @generated from extension: optional string s = 2;
  */
-export declare const TopLevelMessage_s: GenDescExtension<Extendee, string>;
+export declare const TopLevelMessage_s: GenExtension<Extendee, string>;
 
 /**
  * @generated from enum protobuf_unittest.TopLevelEnum
@@ -137,12 +137,12 @@ export enum TopLevelEnum {
 /**
  * Describes the enum protobuf_unittest.TopLevelEnum.
  */
-export declare const TopLevelEnumSchema: GenDescEnum<TopLevelEnum>;
+export declare const TopLevelEnumSchema: GenEnum<TopLevelEnum>;
 
 /**
  * @generated from service protobuf_unittest.Service
  */
-export declare const Service: GenDescService<{
+export declare const Service: GenService<{
   /**
    * @generated from rpc protobuf_unittest.Service.DoStuff
    */
@@ -157,70 +157,70 @@ export declare const Service: GenDescService<{
 /**
  * @generated from extension: optional int32 plain_option = 505092806;
  */
-export declare const plain_option: GenDescExtension<FileOptions, number>;
+export declare const plain_option: GenExtension<FileOptions, number>;
 
 /**
  * @generated from extension: optional int32 runtime_retention_option = 505039132;
  */
-export declare const runtime_retention_option: GenDescExtension<FileOptions, number>;
+export declare const runtime_retention_option: GenExtension<FileOptions, number>;
 
 /**
  * @generated from extension: optional int32 source_retention_option = 504878676;
  */
-export declare const source_retention_option: GenDescExtension<FileOptions, number>;
+export declare const source_retention_option: GenExtension<FileOptions, number>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionsMessage file_option = 504871168;
  */
-export declare const file_option: GenDescExtension<FileOptions, OptionsMessage>;
+export declare const file_option: GenExtension<FileOptions, OptionsMessage>;
 
 /**
  * @generated from extension: repeated protobuf_unittest.OptionsMessage repeated_options = 504823570;
  */
-export declare const repeated_options: GenDescExtension<FileOptions, OptionsMessage[]>;
+export declare const repeated_options: GenExtension<FileOptions, OptionsMessage[]>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionsMessage extension_range_option = 504822148;
  */
-export declare const extension_range_option: GenDescExtension<ExtensionRangeOptions, OptionsMessage>;
+export declare const extension_range_option: GenExtension<ExtensionRangeOptions, OptionsMessage>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionsMessage message_option = 504820819;
  */
-export declare const message_option: GenDescExtension<MessageOptions, OptionsMessage>;
+export declare const message_option: GenExtension<MessageOptions, OptionsMessage>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionsMessage field_option = 504589219;
  */
-export declare const field_option: GenDescExtension<FieldOptions, OptionsMessage>;
+export declare const field_option: GenExtension<FieldOptions, OptionsMessage>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionsMessage oneof_option = 504479153;
  */
-export declare const oneof_option: GenDescExtension<OneofOptions, OptionsMessage>;
+export declare const oneof_option: GenExtension<OneofOptions, OptionsMessage>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionsMessage enum_option = 504451567;
  */
-export declare const enum_option: GenDescExtension<EnumOptions, OptionsMessage>;
+export declare const enum_option: GenExtension<EnumOptions, OptionsMessage>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionsMessage enum_entry_option = 504450522;
  */
-export declare const enum_entry_option: GenDescExtension<EnumValueOptions, OptionsMessage>;
+export declare const enum_entry_option: GenExtension<EnumValueOptions, OptionsMessage>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionsMessage service_option = 504387709;
  */
-export declare const service_option: GenDescExtension<ServiceOptions, OptionsMessage>;
+export declare const service_option: GenExtension<ServiceOptions, OptionsMessage>;
 
 /**
  * @generated from extension: optional protobuf_unittest.OptionsMessage method_option = 504349420;
  */
-export declare const method_option: GenDescExtension<MethodOptions, OptionsMessage>;
+export declare const method_option: GenExtension<MethodOptions, OptionsMessage>;
 
 /**
  * @generated from extension: optional int32 i = 1;
  */
-export declare const i: GenDescExtension<Extendee, number>;
+export declare const i: GenExtension<Extendee, number>;
 

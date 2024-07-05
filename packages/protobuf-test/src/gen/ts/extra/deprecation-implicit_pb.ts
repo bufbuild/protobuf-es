@@ -16,7 +16,7 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { EmptySchema, FieldOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_descriptor, file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
@@ -26,7 +26,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/deprecation-implicit.proto.
  * @deprecated
  */
-export const file_extra_deprecation_implicit: GenDescFile = /*@__PURE__*/
+export const file_extra_deprecation_implicit: GenFile = /*@__PURE__*/
   fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1pbXBsaWNpdC5wcm90bxIEc3BlYyJCChtJbXBsaWNpdGx5RGVwcmVjYXRlZE1lc3NhZ2USIwobaW1wbGljaXRseV9kZXByZWNhdGVkX2ZpZWxkGAEgASgJKkYKGEltcGxpY2l0bHlEZXByZWNhdGVkRW51bRIqCiZJTVBMSUNJVExZX0RFUFJFQ0FURURfRU5VTV9VTlNQRUNJRklFRBAAMmgKG0ltcGxpY2l0bHlEZXByZWNhdGVkU2VydmljZRJJChdJbXBsaWNpdGx5RGVwcmVjYXRlZFJwYxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRoWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eTpgChxpbXBsaWNpdGx5X2RlcHJlY2F0ZWRfb3B0aW9uEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjSDyABKAVSGmltcGxpY2l0bHlEZXByZWNhdGVkT3B0aW9uQgO4AQFiBnByb3RvMw", [file_google_protobuf_empty, file_google_protobuf_descriptor]);
 
 /**
@@ -45,7 +45,7 @@ export type ImplicitlyDeprecatedMessage = Message<"spec.ImplicitlyDeprecatedMess
  * Use `create(ImplicitlyDeprecatedMessageSchema)` to create a new message.
  * @deprecated
  */
-export const ImplicitlyDeprecatedMessageSchema: GenDescMessage<ImplicitlyDeprecatedMessage> = /*@__PURE__*/
+export const ImplicitlyDeprecatedMessageSchema: GenMessage<ImplicitlyDeprecatedMessage> = /*@__PURE__*/
   messageDesc(file_extra_deprecation_implicit, 0);
 
 /**
@@ -63,14 +63,14 @@ export enum ImplicitlyDeprecatedEnum {
  * Describes the enum spec.ImplicitlyDeprecatedEnum.
  * @deprecated
  */
-export const ImplicitlyDeprecatedEnumSchema: GenDescEnum<ImplicitlyDeprecatedEnum> = /*@__PURE__*/
+export const ImplicitlyDeprecatedEnumSchema: GenEnum<ImplicitlyDeprecatedEnum> = /*@__PURE__*/
   enumDesc(file_extra_deprecation_implicit, 0);
 
 /**
  * @generated from service spec.ImplicitlyDeprecatedService
  * @deprecated
  */
-export const ImplicitlyDeprecatedService: GenDescService<{
+export const ImplicitlyDeprecatedService: GenService<{
   /**
    * @generated from rpc spec.ImplicitlyDeprecatedService.ImplicitlyDeprecatedRpc
    */
@@ -87,6 +87,6 @@ export const ImplicitlyDeprecatedService: GenDescService<{
  * @generated from extension: int32 implicitly_deprecated_option = 2002;
  * @deprecated
  */
-export const implicitly_deprecated_option: GenDescExtension<FieldOptions, number> = /*@__PURE__*/
+export const implicitly_deprecated_option: GenExtension<FieldOptions, number> = /*@__PURE__*/
   extDesc(file_extra_deprecation_implicit, 0);
 

@@ -16,14 +16,14 @@
 // @generated from file extra/proto3.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
 import type { UInt32Value } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/proto3.proto.
  */
-export declare const file_extra_proto3: GenDescFile;
+export declare const file_extra_proto3: GenFile;
 
 /**
  * Note: We do not exhaust all field types
@@ -363,7 +363,7 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
  * Describes the message spec.Proto3Message.
  * Use `create(Proto3MessageSchema)` to create a new message.
  */
-export declare const Proto3MessageSchema: GenDescMessage<Proto3Message>;
+export declare const Proto3MessageSchema: GenMessage<Proto3Message>;
 
 /**
  * @generated from enum spec.Proto3Enum
@@ -388,5 +388,5 @@ export enum Proto3Enum {
 /**
  * Describes the enum spec.Proto3Enum.
  */
-export declare const Proto3EnumSchema: GenDescEnum<Proto3Enum>;
+export declare const Proto3EnumSchema: GenEnum<Proto3Enum>;
 

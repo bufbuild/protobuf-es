@@ -16,13 +16,13 @@
 // @generated from file extra/msg-oneof.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/msg-oneof.proto.
  */
-export declare const file_extra_msg_oneof: GenDescFile;
+export declare const file_extra_msg_oneof: GenFile;
 
 /**
  * @generated from message spec.OneofMessage
@@ -90,7 +90,7 @@ export declare type OneofMessage = Message<"spec.OneofMessage"> & {
  * Describes the message spec.OneofMessage.
  * Use `create(OneofMessageSchema)` to create a new message.
  */
-export declare const OneofMessageSchema: GenDescMessage<OneofMessage>;
+export declare const OneofMessageSchema: GenMessage<OneofMessage>;
 
 /**
  * @generated from message spec.OneofMessageFoo
@@ -111,7 +111,7 @@ export declare type OneofMessageFoo = Message<"spec.OneofMessageFoo"> & {
  * Describes the message spec.OneofMessageFoo.
  * Use `create(OneofMessageFooSchema)` to create a new message.
  */
-export declare const OneofMessageFooSchema: GenDescMessage<OneofMessageFoo>;
+export declare const OneofMessageFooSchema: GenMessage<OneofMessageFoo>;
 
 /**
  * @generated from message spec.OneofMessageBar
@@ -132,7 +132,7 @@ export declare type OneofMessageBar = Message<"spec.OneofMessageBar"> & {
  * Describes the message spec.OneofMessageBar.
  * Use `create(OneofMessageBarSchema)` to create a new message.
  */
-export declare const OneofMessageBarSchema: GenDescMessage<OneofMessageBar>;
+export declare const OneofMessageBarSchema: GenMessage<OneofMessageBar>;
 
 /**
  * @generated from enum spec.OneofEnum
@@ -157,5 +157,5 @@ export enum OneofEnum {
 /**
  * Describes the enum spec.OneofEnum.
  */
-export declare const OneofEnumSchema: GenDescEnum<OneofEnum>;
+export declare const OneofEnumSchema: GenEnum<OneofEnum>;
 

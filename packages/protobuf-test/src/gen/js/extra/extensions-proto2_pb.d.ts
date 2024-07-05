@@ -16,14 +16,14 @@
 // @generated from file extra/extensions-proto2.proto (package proto2ext, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
 import type { User } from "./example_pb.js";
 
 /**
  * Describes the file extra/extensions-proto2.proto.
  */
-export declare const file_extra_extensions_proto2: GenDescFile;
+export declare const file_extra_extensions_proto2: GenFile;
 
 /**
  * The message we're going to extend
@@ -41,7 +41,7 @@ export declare type Proto2Extendee = Message<"proto2ext.Proto2Extendee"> & {
  * Describes the message proto2ext.Proto2Extendee.
  * Use `create(Proto2ExtendeeSchema)` to create a new message.
  */
-export declare const Proto2ExtendeeSchema: GenDescMessage<Proto2Extendee>;
+export declare const Proto2ExtendeeSchema: GenMessage<Proto2Extendee>;
 
 /**
  * A message used in extensions
@@ -59,7 +59,7 @@ export declare type Proto2ExtMessage = Message<"proto2ext.Proto2ExtMessage"> & {
  * Describes the message proto2ext.Proto2ExtMessage.
  * Use `create(Proto2ExtMessageSchema)` to create a new message.
  */
-export declare const Proto2ExtMessageSchema: GenDescMessage<Proto2ExtMessage>;
+export declare const Proto2ExtMessageSchema: GenMessage<Proto2ExtMessage>;
 
 /**
  * @generated from message proto2ext.GroupExt
@@ -80,7 +80,7 @@ export declare type GroupExt = Message<"proto2ext.GroupExt"> & {
  * Describes the message proto2ext.GroupExt.
  * Use `create(GroupExtSchema)` to create a new message.
  */
-export declare const GroupExtSchema: GenDescMessage<GroupExt>;
+export declare const GroupExtSchema: GenMessage<GroupExt>;
 
 /**
  * @generated from message proto2ext.RepeatedGroupExt
@@ -101,7 +101,7 @@ export declare type RepeatedGroupExt = Message<"proto2ext.RepeatedGroupExt"> & {
  * Describes the message proto2ext.RepeatedGroupExt.
  * Use `create(RepeatedGroupExtSchema)` to create a new message.
  */
-export declare const RepeatedGroupExtSchema: GenDescMessage<RepeatedGroupExt>;
+export declare const RepeatedGroupExtSchema: GenMessage<RepeatedGroupExt>;
 
 /**
  * A container for nested extensions
@@ -115,7 +115,7 @@ export declare type Proto2ExtContainer = Message<"proto2ext.Proto2ExtContainer">
  * Describes the message proto2ext.Proto2ExtContainer.
  * Use `create(Proto2ExtContainerSchema)` to create a new message.
  */
-export declare const Proto2ExtContainerSchema: GenDescMessage<Proto2ExtContainer>;
+export declare const Proto2ExtContainerSchema: GenMessage<Proto2ExtContainer>;
 
 /**
  * @generated from message proto2ext.Proto2ExtContainer.Child
@@ -127,17 +127,17 @@ export declare type Proto2ExtContainer_Child = Message<"proto2ext.Proto2ExtConta
  * Describes the message proto2ext.Proto2ExtContainer.Child.
  * Use `create(Proto2ExtContainer_ChildSchema)` to create a new message.
  */
-export declare const Proto2ExtContainer_ChildSchema: GenDescMessage<Proto2ExtContainer_Child>;
+export declare const Proto2ExtContainer_ChildSchema: GenMessage<Proto2ExtContainer_Child>;
 
 /**
  * @generated from extension: optional uint32 uint32_ext = 9010;
  */
-export declare const Proto2ExtContainer_Child_uint32_ext: GenDescExtension<Proto2Extendee, number>;
+export declare const Proto2ExtContainer_Child_uint32_ext: GenExtension<Proto2Extendee, number>;
 
 /**
  * @generated from extension: optional uint32 uint32_ext = 9001;
  */
-export declare const Proto2ExtContainer_uint32_ext: GenDescExtension<Proto2Extendee, number>;
+export declare const Proto2ExtContainer_uint32_ext: GenExtension<Proto2Extendee, number>;
 
 /**
  * An enumeration used in extensions
@@ -159,122 +159,122 @@ export enum Proto2ExtEnum {
 /**
  * Describes the enum proto2ext.Proto2ExtEnum.
  */
-export declare const Proto2ExtEnumSchema: GenDescEnum<Proto2ExtEnum>;
+export declare const Proto2ExtEnumSchema: GenEnum<Proto2ExtEnum>;
 
 /**
  * @generated from extension: optional uint32 uint32_ext = 1001;
  */
-export declare const uint32_ext: GenDescExtension<Proto2Extendee, number>;
+export declare const uint32_ext: GenExtension<Proto2Extendee, number>;
 
 /**
  * @generated from extension: optional uint32 uint32_ext_with_default = 1002 [default = 999];
  */
-export declare const uint32_ext_with_default: GenDescExtension<Proto2Extendee, number>;
+export declare const uint32_ext_with_default: GenExtension<Proto2Extendee, number>;
 
 /**
  * @generated from extension: optional string string_ext = 2001;
  */
-export declare const string_ext: GenDescExtension<Proto2Extendee, string>;
+export declare const string_ext: GenExtension<Proto2Extendee, string>;
 
 /**
  * @generated from extension: optional string string_ext_with_default = 2002 [default = "hello \" *\/ "];
  */
-export declare const string_ext_with_default: GenDescExtension<Proto2Extendee, string>;
+export declare const string_ext_with_default: GenExtension<Proto2Extendee, string>;
 
 /**
  * @generated from extension: optional uint64 uint64_ext = 3001;
  */
-export declare const uint64_ext: GenDescExtension<Proto2Extendee, bigint>;
+export declare const uint64_ext: GenExtension<Proto2Extendee, bigint>;
 
 /**
  * @generated from extension: optional uint64 uint64_ext_js_string = 3002 [jstype = JS_STRING];
  */
-export declare const uint64_ext_js_string: GenDescExtension<Proto2Extendee, string>;
+export declare const uint64_ext_js_string: GenExtension<Proto2Extendee, string>;
 
 /**
  * @generated from extension: optional bytes bytes_ext = 4001;
  */
-export declare const bytes_ext: GenDescExtension<Proto2Extendee, Uint8Array>;
+export declare const bytes_ext: GenExtension<Proto2Extendee, Uint8Array>;
 
 /**
  * @generated from extension: optional bytes bytes_ext_with_default = 4002 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
  */
-export declare const bytes_ext_with_default: GenDescExtension<Proto2Extendee, Uint8Array>;
+export declare const bytes_ext_with_default: GenExtension<Proto2Extendee, Uint8Array>;
 
 /**
  * @generated from extension: optional proto2ext.Proto2ExtEnum enum_ext = 5001;
  */
-export declare const enum_ext: GenDescExtension<Proto2Extendee, Proto2ExtEnum>;
+export declare const enum_ext: GenExtension<Proto2Extendee, Proto2ExtEnum>;
 
 /**
  * @generated from extension: optional proto2ext.Proto2ExtEnum enum_ext_with_default = 5002 [default = PROTO2_EXT_ENUM_NO];
  */
-export declare const enum_ext_with_default: GenDescExtension<Proto2Extendee, Proto2ExtEnum>;
+export declare const enum_ext_with_default: GenExtension<Proto2Extendee, Proto2ExtEnum>;
 
 /**
  * @generated from extension: optional proto2ext.Proto2ExtMessage message_ext = 6001;
  */
-export declare const message_ext: GenDescExtension<Proto2Extendee, Proto2ExtMessage>;
+export declare const message_ext: GenExtension<Proto2Extendee, Proto2ExtMessage>;
 
 /**
  * @generated from extension: optional example.User message_ext_proto3 = 6002;
  */
-export declare const message_ext_proto3: GenDescExtension<Proto2Extendee, User>;
+export declare const message_ext_proto3: GenExtension<Proto2Extendee, User>;
 
 /**
  * @generated from extension: repeated proto2ext.Proto2ExtMessage repeated_message_ext = 7001;
  */
-export declare const repeated_message_ext: GenDescExtension<Proto2Extendee, Proto2ExtMessage[]>;
+export declare const repeated_message_ext: GenExtension<Proto2Extendee, Proto2ExtMessage[]>;
 
 /**
  * @generated from extension: repeated proto2ext.Proto2ExtEnum repeated_enum_ext = 7005;
  */
-export declare const repeated_enum_ext: GenDescExtension<Proto2Extendee, Proto2ExtEnum[]>;
+export declare const repeated_enum_ext: GenExtension<Proto2Extendee, Proto2ExtEnum[]>;
 
 /**
  * @generated from extension: repeated string repeated_string_ext = 7002;
  */
-export declare const repeated_string_ext: GenDescExtension<Proto2Extendee, string[]>;
+export declare const repeated_string_ext: GenExtension<Proto2Extendee, string[]>;
 
 /**
  * @generated from extension: repeated uint32 packed_uint32_ext = 7003 [packed = true];
  */
-export declare const packed_uint32_ext: GenDescExtension<Proto2Extendee, number[]>;
+export declare const packed_uint32_ext: GenExtension<Proto2Extendee, number[]>;
 
 /**
  * unpacked by default in proto2
  *
  * @generated from extension: repeated uint32 unpacked_uint32_ext = 7004;
  */
-export declare const unpacked_uint32_ext: GenDescExtension<Proto2Extendee, number[]>;
+export declare const unpacked_uint32_ext: GenExtension<Proto2Extendee, number[]>;
 
 /**
  * @generated from extension: repeated uint64 repeated_uint64_ext_js_string = 7006 [jstype = JS_STRING];
  */
-export declare const repeated_uint64_ext_js_string: GenDescExtension<Proto2Extendee, string[]>;
+export declare const repeated_uint64_ext_js_string: GenExtension<Proto2Extendee, string[]>;
 
 /**
  * @generated from extension: repeated google.protobuf.Struct repeated_struct_ext = 7007;
  */
-export declare const repeated_struct_ext: GenDescExtension<Proto2Extendee, JsonObject[]>;
+export declare const repeated_struct_ext: GenExtension<Proto2Extendee, JsonObject[]>;
 
 /**
  * @generated from extension: optional google.protobuf.UInt32Value wrapper_ext = 8001;
  */
-export declare const wrapper_ext: GenDescExtension<Proto2Extendee, number>;
+export declare const wrapper_ext: GenExtension<Proto2Extendee, number>;
 
 /**
  * @generated from extension: optional google.protobuf.Struct struct_ext = 8002;
  */
-export declare const struct_ext: GenDescExtension<Proto2Extendee, JsonObject>;
+export declare const struct_ext: GenExtension<Proto2Extendee, JsonObject>;
 
 /**
  * @generated from extension: optional proto2ext.GroupExt groupext = 8100;
  */
-export declare const groupext: GenDescExtension<Proto2Extendee, GroupExt>;
+export declare const groupext: GenExtension<Proto2Extendee, GroupExt>;
 
 /**
  * @generated from extension: repeated proto2ext.RepeatedGroupExt repeatedgroupext = 8101;
  */
-export declare const repeatedgroupext: GenDescExtension<Proto2Extendee, RepeatedGroupExt[]>;
+export declare const repeatedgroupext: GenExtension<Proto2Extendee, RepeatedGroupExt[]>;
 

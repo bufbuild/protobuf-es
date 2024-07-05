@@ -14,7 +14,7 @@
 
 import type { Message } from "../types.js";
 import type { DescFile } from "../descriptors.js";
-import type { GenDescMessage } from "./types.js";
+import type { GenMessage } from "./types.js";
 import type { JsonValue } from "../json-value.js";
 
 /**
@@ -29,9 +29,9 @@ export function messageDesc<
   file: DescFile,
   path: number,
   ...paths: number[]
-): GenDescMessage<Shape, JsonType> {
+): GenMessage<Shape, JsonType> {
   return paths.reduce(
     (acc, cur) => acc.nestedMessages[cur],
     file.messages[path],
-  ) as GenDescMessage<Shape, JsonType>;
+  ) as GenMessage<Shape, JsonType>;
 }

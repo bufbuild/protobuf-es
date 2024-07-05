@@ -16,14 +16,14 @@
 // @generated from file extra/service-example.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/service-example.proto.
  * @deprecated
  */
-export declare const file_extra_service_example: GenDescFile;
+export declare const file_extra_service_example: GenFile;
 
 /**
  * @generated from message spec.ExampleRequest
@@ -64,7 +64,7 @@ export declare type ExampleRequest = Message<"spec.ExampleRequest"> & {
  * Use `create(ExampleRequestSchema)` to create a new message.
  * @deprecated
  */
-export declare const ExampleRequestSchema: GenDescMessage<ExampleRequest>;
+export declare const ExampleRequestSchema: GenMessage<ExampleRequest>;
 
 /**
  * @generated from message spec.ExampleResponse
@@ -105,7 +105,7 @@ export declare type ExampleResponse = Message<"spec.ExampleResponse"> & {
  * Use `create(ExampleResponseSchema)` to create a new message.
  * @deprecated
  */
-export declare const ExampleResponseSchema: GenDescMessage<ExampleResponse>;
+export declare const ExampleResponseSchema: GenMessage<ExampleResponse>;
 
 /**
  * @generated from enum spec.FailRequest
@@ -138,13 +138,13 @@ export enum FailRequest {
  * Describes the enum spec.FailRequest.
  * @deprecated
  */
-export declare const FailRequestSchema: GenDescEnum<FailRequest>;
+export declare const FailRequestSchema: GenEnum<FailRequest>;
 
 /**
  * @generated from service spec.ExampleService
  * @deprecated
  */
-export declare const ExampleService: GenDescService<{
+export declare const ExampleService: GenService<{
   /**
    * @generated from rpc spec.ExampleService.Unary
    */

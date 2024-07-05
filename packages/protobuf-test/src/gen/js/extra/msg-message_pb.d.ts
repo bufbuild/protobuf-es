@@ -16,13 +16,13 @@
 // @generated from file extra/msg-message.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/msg-message.proto.
  */
-export declare const file_extra_msg_message: GenDescFile;
+export declare const file_extra_msg_message: GenFile;
 
 /**
  * @generated from message spec.MessageFieldMessage
@@ -43,7 +43,7 @@ export declare type MessageFieldMessage = Message<"spec.MessageFieldMessage"> & 
  * Describes the message spec.MessageFieldMessage.
  * Use `create(MessageFieldMessageSchema)` to create a new message.
  */
-export declare const MessageFieldMessageSchema: GenDescMessage<MessageFieldMessage>;
+export declare const MessageFieldMessageSchema: GenMessage<MessageFieldMessage>;
 
 /**
  * @generated from message spec.MessageFieldMessage.TestMessage
@@ -59,5 +59,5 @@ export declare type MessageFieldMessage_TestMessage = Message<"spec.MessageField
  * Describes the message spec.MessageFieldMessage.TestMessage.
  * Use `create(MessageFieldMessage_TestMessageSchema)` to create a new message.
  */
-export declare const MessageFieldMessage_TestMessageSchema: GenDescMessage<MessageFieldMessage_TestMessage>;
+export declare const MessageFieldMessage_TestMessageSchema: GenMessage<MessageFieldMessage_TestMessage>;
 

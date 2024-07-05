@@ -16,14 +16,14 @@
 // @generated from file google/type/decimal.proto (package google.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/type/decimal.proto.
  */
-export const file_google_type_decimal: GenDescFile = /*@__PURE__*/
+export const file_google_type_decimal: GenFile = /*@__PURE__*/
   fileDesc("Chlnb29nbGUvdHlwZS9kZWNpbWFsLnByb3RvEgtnb29nbGUudHlwZSIYCgdEZWNpbWFsEg0KBXZhbHVlGAEgASgJQmYKD2NvbS5nb29nbGUudHlwZUIMRGVjaW1hbFByb3RvUAFaOmdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvdHlwZS9kZWNpbWFsO2RlY2ltYWz4AQGiAgNHVFBiBnByb3RvMw");
 
 /**
@@ -109,6 +109,6 @@ export type Decimal = Message<"google.type.Decimal"> & {
  * Describes the message google.type.Decimal.
  * Use `create(DecimalSchema)` to create a new message.
  */
-export const DecimalSchema: GenDescMessage<Decimal> = /*@__PURE__*/
+export const DecimalSchema: GenMessage<Decimal> = /*@__PURE__*/
   messageDesc(file_google_type_decimal, 0);
 

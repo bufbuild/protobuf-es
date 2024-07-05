@@ -18,14 +18,14 @@
 // @generated from file google/protobuf/unittest_no_generic_services.proto (package protobuf_unittest.no_generic_services_test, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_no_generic_services.proto.
  */
-export const file_google_protobuf_unittest_no_generic_services: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_unittest_no_generic_services: GenFile = /*@__PURE__*/
   fileDesc("CjJnb29nbGUvcHJvdG9idWYvdW5pdHRlc3Rfbm9fZ2VuZXJpY19zZXJ2aWNlcy5wcm90bxIqcHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0IiMKC1Rlc3RNZXNzYWdlEgkKAWEYASABKAUqCQjoBxCAgICAAioTCghUZXN0RW51bRIHCgNGT08QATKGAQoLVGVzdFNlcnZpY2USdwoDRm9vEjcucHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0LlRlc3RNZXNzYWdlGjcucHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0LlRlc3RNZXNzYWdlOl8KDnRlc3RfZXh0ZW5zaW9uEjcucHJvdG9idWZfdW5pdHRlc3Qubm9fZ2VuZXJpY19zZXJ2aWNlc190ZXN0LlRlc3RNZXNzYWdlGOgHIAEoBVINdGVzdEV4dGVuc2lvbg");
 
 /**
@@ -42,7 +42,7 @@ export type TestMessage = Message<"protobuf_unittest.no_generic_services_test.Te
  * Describes the message protobuf_unittest.no_generic_services_test.TestMessage.
  * Use `create(TestMessageSchema)` to create a new message.
  */
-export const TestMessageSchema: GenDescMessage<TestMessage> = /*@__PURE__*/
+export const TestMessageSchema: GenMessage<TestMessage> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_no_generic_services, 0);
 
 /**
@@ -58,13 +58,13 @@ export enum TestEnum {
 /**
  * Describes the enum protobuf_unittest.no_generic_services_test.TestEnum.
  */
-export const TestEnumSchema: GenDescEnum<TestEnum> = /*@__PURE__*/
+export const TestEnumSchema: GenEnum<TestEnum> = /*@__PURE__*/
   enumDesc(file_google_protobuf_unittest_no_generic_services, 0);
 
 /**
  * @generated from service protobuf_unittest.no_generic_services_test.TestService
  */
-export const TestService: GenDescService<{
+export const TestService: GenService<{
   /**
    * @generated from rpc protobuf_unittest.no_generic_services_test.TestService.Foo
    */
@@ -80,6 +80,6 @@ export const TestService: GenDescService<{
 /**
  * @generated from extension: optional int32 test_extension = 1000;
  */
-export const test_extension: GenDescExtension<TestMessage, number> = /*@__PURE__*/
+export const test_extension: GenExtension<TestMessage, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_no_generic_services, 0);
 

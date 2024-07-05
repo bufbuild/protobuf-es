@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/unittest_proto3_optional.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { MessageOptions } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/protobuf/unittest_proto3_optional.proto.
  */
-export declare const file_google_protobuf_unittest_proto3_optional: GenDescFile;
+export declare const file_google_protobuf_unittest_proto3_optional: GenFile;
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional
@@ -143,7 +143,7 @@ export declare type TestProto3Optional = Message<"protobuf_unittest.TestProto3Op
  * Describes the message protobuf_unittest.TestProto3Optional.
  * Use `create(TestProto3OptionalSchema)` to create a new message.
  */
-export declare const TestProto3OptionalSchema: GenDescMessage<TestProto3Optional>;
+export declare const TestProto3OptionalSchema: GenMessage<TestProto3Optional>;
 
 /**
  * @generated from message protobuf_unittest.TestProto3Optional.NestedMessage
@@ -163,7 +163,7 @@ export declare type TestProto3Optional_NestedMessage = Message<"protobuf_unittes
  * Describes the message protobuf_unittest.TestProto3Optional.NestedMessage.
  * Use `create(TestProto3Optional_NestedMessageSchema)` to create a new message.
  */
-export declare const TestProto3Optional_NestedMessageSchema: GenDescMessage<TestProto3Optional_NestedMessage>;
+export declare const TestProto3Optional_NestedMessageSchema: GenMessage<TestProto3Optional_NestedMessage>;
 
 /**
  * @generated from enum protobuf_unittest.TestProto3Optional.NestedEnum
@@ -200,7 +200,7 @@ export enum TestProto3Optional_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.TestProto3Optional.NestedEnum.
  */
-export declare const TestProto3Optional_NestedEnumSchema: GenDescEnum<TestProto3Optional_NestedEnum>;
+export declare const TestProto3Optional_NestedEnumSchema: GenEnum<TestProto3Optional_NestedEnum>;
 
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage
@@ -221,7 +221,7 @@ export declare type TestProto3OptionalMessage = Message<"protobuf_unittest.TestP
  * Describes the message protobuf_unittest.TestProto3OptionalMessage.
  * Use `create(TestProto3OptionalMessageSchema)` to create a new message.
  */
-export declare const TestProto3OptionalMessageSchema: GenDescMessage<TestProto3OptionalMessage>;
+export declare const TestProto3OptionalMessageSchema: GenMessage<TestProto3OptionalMessage>;
 
 /**
  * @generated from message protobuf_unittest.TestProto3OptionalMessage.NestedMessage
@@ -237,7 +237,7 @@ export declare type TestProto3OptionalMessage_NestedMessage = Message<"protobuf_
  * Describes the message protobuf_unittest.TestProto3OptionalMessage.NestedMessage.
  * Use `create(TestProto3OptionalMessage_NestedMessageSchema)` to create a new message.
  */
-export declare const TestProto3OptionalMessage_NestedMessageSchema: GenDescMessage<TestProto3OptionalMessage_NestedMessage>;
+export declare const TestProto3OptionalMessage_NestedMessageSchema: GenMessage<TestProto3OptionalMessage_NestedMessage>;
 
 /**
  * @generated from message protobuf_unittest.Proto3OptionalExtensions
@@ -249,15 +249,15 @@ export declare type Proto3OptionalExtensions = Message<"protobuf_unittest.Proto3
  * Describes the message protobuf_unittest.Proto3OptionalExtensions.
  * Use `create(Proto3OptionalExtensionsSchema)` to create a new message.
  */
-export declare const Proto3OptionalExtensionsSchema: GenDescMessage<Proto3OptionalExtensions>;
+export declare const Proto3OptionalExtensionsSchema: GenMessage<Proto3OptionalExtensions>;
 
 /**
  * @generated from extension: int32 ext_no_optional = 355886728;
  */
-export declare const Proto3OptionalExtensions_ext_no_optional: GenDescExtension<MessageOptions, number>;
+export declare const Proto3OptionalExtensions_ext_no_optional: GenExtension<MessageOptions, number>;
 
 /**
  * @generated from extension: optional int32 ext_with_optional = 355886729;
  */
-export declare const Proto3OptionalExtensions_ext_with_optional: GenDescExtension<MessageOptions, number>;
+export declare const Proto3OptionalExtensions_ext_with_optional: GenExtension<MessageOptions, number>;
 

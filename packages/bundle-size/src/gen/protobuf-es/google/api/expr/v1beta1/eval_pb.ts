@@ -16,7 +16,7 @@
 // @generated from file google/api/expr/v1beta1/eval.proto (package google.api.expr.v1beta1, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Value } from "./value_pb";
 import { file_google_api_expr_v1beta1_value } from "./value_pb";
@@ -27,7 +27,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/api/expr/v1beta1/eval.proto.
  */
-export const file_google_api_expr_v1beta1_eval: GenDescFile = /*@__PURE__*/
+export const file_google_api_expr_v1beta1_eval: GenFile = /*@__PURE__*/
   fileDesc("CiJnb29nbGUvYXBpL2V4cHIvdjFiZXRhMS9ldmFsLnByb3RvEhdnb29nbGUuYXBpLmV4cHIudjFiZXRhMSLCAQoJRXZhbFN0YXRlEjIKBnZhbHVlcxgBIAMoCzIiLmdvb2dsZS5hcGkuZXhwci52MWJldGExLkV4cHJWYWx1ZRI6CgdyZXN1bHRzGAMgAygLMikuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuRXZhbFN0YXRlLlJlc3VsdBpFCgZSZXN1bHQSLAoEZXhwchgBIAEoCzIeLmdvb2dsZS5hcGkuZXhwci52MWJldGExLklkUmVmEg0KBXZhbHVlGAIgASgFIrABCglFeHByVmFsdWUSLwoFdmFsdWUYASABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFiZXRhMS5WYWx1ZUgAEjIKBWVycm9yGAIgASgLMiEuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuRXJyb3JTZXRIABI2Cgd1bmtub3duGAMgASgLMiMuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuVW5rbm93blNldEgAQgYKBGtpbmQiLgoIRXJyb3JTZXQSIgoGZXJyb3JzGAEgAygLMhIuZ29vZ2xlLnJwYy5TdGF0dXMiOwoKVW5rbm93blNldBItCgVleHBycxgBIAMoCzIeLmdvb2dsZS5hcGkuZXhwci52MWJldGExLklkUmVmIhMKBUlkUmVmEgoKAmlkGAEgASgFQmoKG2NvbS5nb29nbGUuYXBpLmV4cHIudjFiZXRhMUIJRXZhbFByb3RvUAFaO2dvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvYXBpL2V4cHIvdjFiZXRhMTtleHBy+AEBYgZwcm90bzM", [file_google_api_expr_v1beta1_value, file_google_rpc_status]);
 
 /**
@@ -60,7 +60,7 @@ export type EvalState = Message<"google.api.expr.v1beta1.EvalState"> & {
  * Describes the message google.api.expr.v1beta1.EvalState.
  * Use `create(EvalStateSchema)` to create a new message.
  */
-export const EvalStateSchema: GenDescMessage<EvalState> = /*@__PURE__*/
+export const EvalStateSchema: GenMessage<EvalState> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_eval, 0);
 
 /**
@@ -88,7 +88,7 @@ export type EvalState_Result = Message<"google.api.expr.v1beta1.EvalState.Result
  * Describes the message google.api.expr.v1beta1.EvalState.Result.
  * Use `create(EvalState_ResultSchema)` to create a new message.
  */
-export const EvalState_ResultSchema: GenDescMessage<EvalState_Result> = /*@__PURE__*/
+export const EvalState_ResultSchema: GenMessage<EvalState_Result> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_eval, 0, 0);
 
 /**
@@ -171,7 +171,7 @@ export type ExprValue = Message<"google.api.expr.v1beta1.ExprValue"> & {
  * Describes the message google.api.expr.v1beta1.ExprValue.
  * Use `create(ExprValueSchema)` to create a new message.
  */
-export const ExprValueSchema: GenDescMessage<ExprValue> = /*@__PURE__*/
+export const ExprValueSchema: GenMessage<ExprValue> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_eval, 1);
 
 /**
@@ -194,7 +194,7 @@ export type ErrorSet = Message<"google.api.expr.v1beta1.ErrorSet"> & {
  * Describes the message google.api.expr.v1beta1.ErrorSet.
  * Use `create(ErrorSetSchema)` to create a new message.
  */
-export const ErrorSetSchema: GenDescMessage<ErrorSet> = /*@__PURE__*/
+export const ErrorSetSchema: GenMessage<ErrorSet> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_eval, 2);
 
 /**
@@ -217,7 +217,7 @@ export type UnknownSet = Message<"google.api.expr.v1beta1.UnknownSet"> & {
  * Describes the message google.api.expr.v1beta1.UnknownSet.
  * Use `create(UnknownSetSchema)` to create a new message.
  */
-export const UnknownSetSchema: GenDescMessage<UnknownSet> = /*@__PURE__*/
+export const UnknownSetSchema: GenMessage<UnknownSet> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_eval, 3);
 
 /**
@@ -238,6 +238,6 @@ export type IdRef = Message<"google.api.expr.v1beta1.IdRef"> & {
  * Describes the message google.api.expr.v1beta1.IdRef.
  * Use `create(IdRefSchema)` to create a new message.
  */
-export const IdRefSchema: GenDescMessage<IdRef> = /*@__PURE__*/
+export const IdRefSchema: GenMessage<IdRef> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_eval, 4);
 

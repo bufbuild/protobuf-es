@@ -16,14 +16,14 @@
 // @generated from file google/api/expr/v1beta1/source.proto (package google.api.expr.v1beta1, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/api/expr/v1beta1/source.proto.
  */
-export const file_google_api_expr_v1beta1_source: GenDescFile = /*@__PURE__*/
+export const file_google_api_expr_v1beta1_source: GenFile = /*@__PURE__*/
   fileDesc("CiRnb29nbGUvYXBpL2V4cHIvdjFiZXRhMS9zb3VyY2UucHJvdG8SF2dvb2dsZS5hcGkuZXhwci52MWJldGExIq0BCgpTb3VyY2VJbmZvEhAKCGxvY2F0aW9uGAIgASgJEhQKDGxpbmVfb2Zmc2V0cxgDIAMoBRJFCglwb3NpdGlvbnMYBCADKAsyMi5nb29nbGUuYXBpLmV4cHIudjFiZXRhMS5Tb3VyY2VJbmZvLlBvc2l0aW9uc0VudHJ5GjAKDlBvc2l0aW9uc0VudHJ5EgsKA2tleRgBIAEoBRINCgV2YWx1ZRgCIAEoBToCOAEiUAoOU291cmNlUG9zaXRpb24SEAoIbG9jYXRpb24YASABKAkSDgoGb2Zmc2V0GAIgASgFEgwKBGxpbmUYAyABKAUSDgoGY29sdW1uGAQgASgFQmwKG2NvbS5nb29nbGUuYXBpLmV4cHIudjFiZXRhMUILU291cmNlUHJvdG9QAVo7Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvZXhwci92MWJldGExO2V4cHL4AQFiBnByb3RvMw");
 
 /**
@@ -67,7 +67,7 @@ export type SourceInfo = Message<"google.api.expr.v1beta1.SourceInfo"> & {
  * Describes the message google.api.expr.v1beta1.SourceInfo.
  * Use `create(SourceInfoSchema)` to create a new message.
  */
-export const SourceInfoSchema: GenDescMessage<SourceInfo> = /*@__PURE__*/
+export const SourceInfoSchema: GenMessage<SourceInfo> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_source, 0);
 
 /**
@@ -111,6 +111,6 @@ export type SourcePosition = Message<"google.api.expr.v1beta1.SourcePosition"> &
  * Describes the message google.api.expr.v1beta1.SourcePosition.
  * Use `create(SourcePositionSchema)` to create a new message.
  */
-export const SourcePositionSchema: GenDescMessage<SourcePosition> = /*@__PURE__*/
+export const SourcePositionSchema: GenMessage<SourcePosition> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_source, 1);
 

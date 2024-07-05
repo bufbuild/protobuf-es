@@ -16,13 +16,13 @@
 // @generated from file extra/edition2023-proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/edition2023-proto2.proto.
  */
-export declare const file_extra_edition2023_proto2: GenDescFile;
+export declare const file_extra_edition2023_proto2: GenFile;
 
 /**
  * see edition2023.proto
@@ -85,7 +85,7 @@ export declare type Proto2MessageForEdition2023 = Message<"spec.Proto2MessageFor
  * Describes the message spec.Proto2MessageForEdition2023.
  * Use `create(Proto2MessageForEdition2023Schema)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023Schema: GenDescMessage<Proto2MessageForEdition2023>;
+export declare const Proto2MessageForEdition2023Schema: GenMessage<Proto2MessageForEdition2023>;
 
 /**
  * @generated from message spec.Proto2MessageForEdition2023.OptionalGroup
@@ -101,7 +101,7 @@ export declare type Proto2MessageForEdition2023_OptionalGroup = Message<"spec.Pr
  * Describes the message spec.Proto2MessageForEdition2023.OptionalGroup.
  * Use `create(Proto2MessageForEdition2023_OptionalGroupSchema)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023_OptionalGroupSchema: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup>;
+export declare const Proto2MessageForEdition2023_OptionalGroupSchema: GenMessage<Proto2MessageForEdition2023_OptionalGroup>;
 
 /**
  * @generated from message spec.Proto2MessageForEdition2023.RequiredGroup
@@ -117,7 +117,7 @@ export declare type Proto2MessageForEdition2023_RequiredGroup = Message<"spec.Pr
  * Describes the message spec.Proto2MessageForEdition2023.RequiredGroup.
  * Use `create(Proto2MessageForEdition2023_RequiredGroupSchema)` to create a new message.
  */
-export declare const Proto2MessageForEdition2023_RequiredGroupSchema: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup>;
+export declare const Proto2MessageForEdition2023_RequiredGroupSchema: GenMessage<Proto2MessageForEdition2023_RequiredGroup>;
 
 /**
  * @generated from enum spec.Proto2EnumForEdition2023
@@ -132,5 +132,5 @@ export enum Proto2EnumForEdition2023 {
 /**
  * Describes the enum spec.Proto2EnumForEdition2023.
  */
-export declare const Proto2EnumForEdition2023Schema: GenDescEnum<Proto2EnumForEdition2023>;
+export declare const Proto2EnumForEdition2023Schema: GenEnum<Proto2EnumForEdition2023>;
 

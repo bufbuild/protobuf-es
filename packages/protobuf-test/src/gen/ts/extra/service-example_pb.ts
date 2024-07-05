@@ -16,7 +16,7 @@
 // @generated from file extra/service-example.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -24,7 +24,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/service-example.proto.
  * @deprecated
  */
-export const file_extra_service_example: GenDescFile = /*@__PURE__*/
+export const file_extra_service_example: GenFile = /*@__PURE__*/
   fileDesc("ChtleHRyYS9zZXJ2aWNlLWV4YW1wbGUucHJvdG8SBHNwZWMingEKDkV4YW1wbGVSZXF1ZXN0EhAKCHF1ZXN0aW9uGAEgASgJEiYKC3BsZWFzZV9mYWlsGAIgASgOMhEuc3BlYy5GYWlsUmVxdWVzdBIgChhwbGVhc2VfZGVsYXlfcmVzcG9uc2VfbXMYAyABKAUSMAooZGlzYWJsZV9zZW5kaW5nX2V4YW1wbGVfcmVzcG9uc2VfaGVhZGVycxgEIAEoCCLuAQoPRXhhbXBsZVJlc3BvbnNlEg4KBmFuc3dlchgBIAEoCRJLChR5b3VyX3JlcXVlc3RfaGVhZGVycxgCIAMoCzItLnNwZWMuRXhhbXBsZVJlc3BvbnNlLllvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EhUKDXlvdXJfZGVhZGxpbmUYAyABKAkSLAoReW91cl9mYWlsX3JlcXVlc3QYBCABKA4yES5zcGVjLkZhaWxSZXF1ZXN0GjkKF1lvdXJSZXF1ZXN0SGVhZGVyc0VudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEqWgoLRmFpbFJlcXVlc3QSFQoRRkFJTF9SRVFVRVNUX05PTkUQABIdChlNRVNTQUdFX1RIRU5fRVJST1JfU1RBVFVTEAESFQoRRVJST1JfU1RBVFVTX09OTFkQAjL9AQoORXhhbXBsZVNlcnZpY2USNAoFVW5hcnkSFC5zcGVjLkV4YW1wbGVSZXF1ZXN0GhUuc3BlYy5FeGFtcGxlUmVzcG9uc2USPQoMU2VydmVyU3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlMAESPQoMQ2xpZW50U3RyZWFtEhQuc3BlYy5FeGFtcGxlUmVxdWVzdBoVLnNwZWMuRXhhbXBsZVJlc3BvbnNlKAESNwoEQmlkaRIULnNwZWMuRXhhbXBsZVJlcXVlc3QaFS5zcGVjLkV4YW1wbGVSZXNwb25zZSgBMAFCA7gBAWIGcHJvdG8z");
 
 /**
@@ -66,7 +66,7 @@ export type ExampleRequest = Message<"spec.ExampleRequest"> & {
  * Use `create(ExampleRequestSchema)` to create a new message.
  * @deprecated
  */
-export const ExampleRequestSchema: GenDescMessage<ExampleRequest> = /*@__PURE__*/
+export const ExampleRequestSchema: GenMessage<ExampleRequest> = /*@__PURE__*/
   messageDesc(file_extra_service_example, 0);
 
 /**
@@ -108,7 +108,7 @@ export type ExampleResponse = Message<"spec.ExampleResponse"> & {
  * Use `create(ExampleResponseSchema)` to create a new message.
  * @deprecated
  */
-export const ExampleResponseSchema: GenDescMessage<ExampleResponse> = /*@__PURE__*/
+export const ExampleResponseSchema: GenMessage<ExampleResponse> = /*@__PURE__*/
   messageDesc(file_extra_service_example, 1);
 
 /**
@@ -142,14 +142,14 @@ export enum FailRequest {
  * Describes the enum spec.FailRequest.
  * @deprecated
  */
-export const FailRequestSchema: GenDescEnum<FailRequest> = /*@__PURE__*/
+export const FailRequestSchema: GenEnum<FailRequest> = /*@__PURE__*/
   enumDesc(file_extra_service_example, 0);
 
 /**
  * @generated from service spec.ExampleService
  * @deprecated
  */
-export const ExampleService: GenDescService<{
+export const ExampleService: GenService<{
   /**
    * @generated from rpc spec.ExampleService.Unary
    */

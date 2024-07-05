@@ -25,7 +25,7 @@
 // We don't put this in a package within proto2 because we need to make sure
 // that the generated code doesn't depend on being in the proto2 namespace.
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Any, EnumOptions, EnumValueOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any, file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
@@ -34,7 +34,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_custom_options.proto.
  */
-export const file_google_protobuf_unittest_custom_options: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_unittest_custom_options: GenFile = /*@__PURE__*/
   fileDesc("Ci1nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfY3VzdG9tX29wdGlvbnMucHJvdG8SEXByb3RvYnVmX3VuaXR0ZXN0ItACChxUZXN0TWVzc2FnZVdpdGhDdXN0b21PcHRpb25zEh4KBmZpZWxkMRgBIAEoCUIOCAHB4MMdLeF1CgIAAAASFQoLb25lb2ZfZmllbGQYAiABKAVIABJeCgltYXBfZmllbGQYAyADKAsyPS5wcm90b2J1Zl91bml0dGVzdC5UZXN0TWVzc2FnZVdpdGhDdXN0b21PcHRpb25zLk1hcEZpZWxkRW50cnlCDMHgwx05MAAAAAAAABovCg1NYXBGaWVsZEVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiOwoGQW5FbnVtEg8KC0FORU5VTV9WQUwxEAESFgoLQU5FTlVNX1ZBTDIQAhoFsIb6BXsaCMX2yR3r/P//OhAIAODpwh3I//////////8BQhkKB0FuT25lb2YSDviswx2d//////////8BIhgKFkN1c3RvbU9wdGlvbkZvb1JlcXVlc3QiGQoXQ3VzdG9tT3B0aW9uRm9vUmVzcG9uc2UiHgocQ3VzdG9tT3B0aW9uRm9vQ2xpZW50TWVzc2FnZSIeChxDdXN0b21PcHRpb25Gb29TZXJ2ZXJNZXNzYWdlIm0KGkR1bW15TWVzc2FnZUNvbnRhaW5pbmdFbnVtIk8KDFRlc3RFbnVtVHlwZRIaChZURVNUX09QVElPTl9FTlVNX1RZUEUxEBYSIwoWVEVTVF9PUFRJT05fRU5VTV9UWVBFMhDp//////////8BIiEKH0R1bW15TWVzc2FnZUludmFsaWRBc09wdGlvblR5cGUiigEKHEN1c3RvbU9wdGlvbk1pbkludGVnZXJWYWx1ZXM6apnWqB0AAAAAAAAAgK2Nrx0AAACAke6vHQAAAAAAAAAAnfWvHQAAAAD4l7Ad////////////AYDEsB3/////D/j1sB0AgJOyHQCwvLIdgICAgICAgICAAejGsh2AgICA+P////8B0N6yHQAikQEKHEN1c3RvbU9wdGlvbk1heEludGVnZXJWYWx1ZXM6cZnWqB3/////////f62Nrx3///9/ke6vHf//////////nfWvHf/////4l7Ad/v//////////AYDEsB3+////D/j1sB3///////////8BgJOyHf////8PsLyyHf//////////f+jGsh3/////B9Desh0BIm4KF0N1c3RvbU9wdGlvbk90aGVyVmFsdWVzOlOI2aId6f//////////AbLZoh0LSGVsbG8AV29ybGSq3KIdDkhlbGxvLCAiV29ybGQi6dyiHftZjELKwPM/9d+jHeeHRUHoxrIdnP//////////ASI0ChxTZXR0aW5nUmVhbHNGcm9tUG9zaXRpdmVJbnRzOhTp3KIdAAAAAABAY0D136MdAABAQSI0ChxTZXR0aW5nUmVhbHNGcm9tTmVnYXRpdmVJbnRzOhTp3KIdAAAAAABAY8D136MdAABAwSJVChJDb21wbGV4T3B0aW9uVHlwZTESCwoDZm9vGAEgASgFEgwKBGZvbzIYAiABKAUSDAoEZm9vMxgDIAEoBRIMCgRmb280GAQgAygFKggIZBCAgICAAiKYAwoSQ29tcGxleE9wdGlvblR5cGUyEjIKA2JhchgBIAEoCzIlLnByb3RvYnVmX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMRILCgNiYXoYAiABKAUSRgoEZnJlZBgDIAEoCzI4LnByb3RvYnVmX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMi5Db21wbGV4T3B0aW9uVHlwZTQSSAoGYmFybmV5GAQgAygLMjgucHJvdG9idWZfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUyLkNvbXBsZXhPcHRpb25UeXBlNBqkAQoSQ29tcGxleE9wdGlvblR5cGU0Eg0KBXdhbGRvGAEgASgFMn8KDGNvbXBsZXhfb3B0NBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxiK9dEDIAEoCzI4LnByb3RvYnVmX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMi5Db21wbGV4T3B0aW9uVHlwZTRSC2NvbXBsZXhPcHQ0KggIZBCAgICAAiKcAQoSQ29tcGxleE9wdGlvblR5cGUzEgsKA21vbxgBIAEoBRJUChJjb21wbGV4b3B0aW9udHlwZTUYAiABKAoyOC5wcm90b2J1Zl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTMuQ29tcGxleE9wdGlvblR5cGU1GiMKEkNvbXBsZXhPcHRpb25UeXBlNRINCgVwbHVnaBgDIAEoBSIfCgtDb21wbGV4T3B0NhIQCgV4eXp6eRjfv88DIAEoBSKXAQoVVmFyaW91c0NvbXBsZXhPcHRpb25zOn7j3Pwc+P37HBjk3Pwc0qiPHQMIsw/63pAdBggJExgWFKr9kB1AChEI5wWS9Z0dAwjYD9iFnh3PDxDbBxoDCMECIgIIZSIDCNQBwqyXHREI5QWS9Z0dAwjJENiFnh3OD/jmlx2OBaLilR0UCCogYyBYkvWdHQMI7AbYhZ4dxAIiIwoTQWdncmVnYXRlTWVzc2FnZVNldCoICAQQ/////wc6AggBIrYBChpBZ2dyZWdhdGVNZXNzYWdlU2V0RWxlbWVudBIJCgFzGAEgASgJMowBChVtZXNzYWdlX3NldF9leHRlbnNpb24SJi5wcm90b2J1Zl91bml0dGVzdC5BZ2dyZWdhdGVNZXNzYWdlU2V0GPbrrgcgASgLMi0ucHJvdG9idWZfdW5pdHRlc3QuQWdncmVnYXRlTWVzc2FnZVNldEVsZW1lbnRSE21lc3NhZ2VTZXRFeHRlbnNpb24iqAIKCUFnZ3JlZ2F0ZRIJCgFpGAEgASgFEgkKAXMYAiABKAkSKQoDc3ViGAMgASgLMhwucHJvdG9idWZfdW5pdHRlc3QuQWdncmVnYXRlEioKBGZpbGUYBCABKAsyHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMSNAoEbXNldBgFIAEoCzImLnByb3RvYnVmX3VuaXR0ZXN0LkFnZ3JlZ2F0ZU1lc3NhZ2VTZXQSIQoDYW55GAYgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueTJVCgZuZXN0ZWQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMYp9GwByABKAsyHC5wcm90b2J1Zl91bml0dGVzdC5BZ2dyZWdhdGVSBm5lc3RlZCJZChBBZ2dyZWdhdGVNZXNzYWdlEikKCWZpZWxkbmFtZRgBIAEoBUIW8qGHOxESD0ZpZWxkQW5ub3RhdGlvbjoawtGGOxUIZRIRTWVzc2FnZUFubm90YXRpb24i2gEKEE5lc3RlZE9wdGlvblR5cGUaOwoNTmVzdGVkTWVzc2FnZRIiCgxuZXN0ZWRfZmllbGQYASABKAVCDMHgwx3qAwAAAAAAADoG4OnCHekHIjUKCk5lc3RlZEVudW0SHQoRTkVTVEVEX0VOVU1fVkFMVUUQARoGsIb6BewHGgjF9skd6wMAADJSChBuZXN0ZWRfZXh0ZW5zaW9uEhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGP344gMgASgFQgbIi8od7QdSD25lc3RlZEV4dGVuc2lvbiJkCg1PbGRPcHRpb25UeXBlEjgKBXZhbHVlGAEgAigOMikucHJvdG9idWZfdW5pdHRlc3QuT2xkT3B0aW9uVHlwZS5UZXN0RW51bSIZCghUZXN0RW51bRINCglPTERfVkFMVUUQACJzCg1OZXdPcHRpb25UeXBlEjgKBXZhbHVlGAEgAigOMikucHJvdG9idWZfdW5pdHRlc3QuTmV3T3B0aW9uVHlwZS5UZXN0RW51bSIoCghUZXN0RW51bRINCglPTERfVkFMVUUQABINCglORVdfVkFMVUUQASItCiFUZXN0TWVzc2FnZVdpdGhSZXF1aXJlZEVudW1PcHRpb246CPro/JQDAggAKjYKCk1ldGhvZE9wdDESEwoPTUVUSE9ET1BUMV9WQUwxEAESEwoPTUVUSE9ET1BUMV9WQUwyEAIqTQoNQWdncmVnYXRlRW51bRIlCgVWQUxVRRABGhrK/Ik7FRITRW51bVZhbHVlQW5ub3RhdGlvbhoVkpWIOxASDkVudW1Bbm5vdGF0aW9uMo4BChxUZXN0U2VydmljZVdpdGhDdXN0b21PcHRpb25zEmMKA0ZvbxIpLnByb3RvYnVmX3VuaXR0ZXN0LkN1c3RvbU9wdGlvbkZvb1JlcXVlc3QaKi5wcm90b2J1Zl91bml0dGVzdC5DdXN0b21PcHRpb25Gb29SZXNwb25zZSIF4PqMHgIaCZCyix7T24DLSTKZAQoQQWdncmVnYXRlU2VydmljZRJrCgZNZXRob2QSIy5wcm90b2J1Zl91bml0dGVzdC5BZ2dyZWdhdGVNZXNzYWdlGiMucHJvdG9idWZfdW5pdHRlc3QuQWdncmVnYXRlTWVzc2FnZSIXysiWOxISEE1ldGhvZEFubm90YXRpb24aGMr7jjsTEhFTZXJ2aWNlQW5ub3RhdGlvbjo8CglmaWxlX29wdDESHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMYjp3YAyABKARSCGZpbGVPcHQxOkUKDG1lc3NhZ2Vfb3B0MRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxicrdgDIAEoBVILbWVzc2FnZU9wdDE6PwoKZmllbGRfb3B0MRIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMYiLzYAyABKAZSCWZpZWxkT3B0MTpDCgpmaWVsZF9vcHQyEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxi5odkDIAEoBToCNDJSCWZpZWxkT3B0Mjo/CgpvbmVvZl9vcHQxEh0uZ29vZ2xlLnByb3RvYnVmLk9uZW9mT3B0aW9ucxjPtdgDIAEoBVIJb25lb2ZPcHQxOjwKCWVudW1fb3B0MRIcLmdvb2dsZS5wcm90b2J1Zi5FbnVtT3B0aW9ucxjontkDIAEoD1IIZW51bU9wdDE6SwoPZW51bV92YWx1ZV9vcHQxEiEuZ29vZ2xlLnByb3RvYnVmLkVudW1WYWx1ZU9wdGlvbnMY5qBfIAEoBVINZW51bVZhbHVlT3B0MTpFCgxzZXJ2aWNlX29wdDESHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMYorbhAyABKBJSC3NlcnZpY2VPcHQxOmEKC21ldGhvZF9vcHQxEh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYrM/hAyABKA4yHS5wcm90b2J1Zl91bml0dGVzdC5NZXRob2RPcHQxUgptZXRob2RPcHQxOj0KCGJvb2xfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGOqr1gMgASgIUgdib29sT3B0Oj8KCWludDMyX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjtqNYDIAEoBVIIaW50MzJPcHQ6PwoJaW50NjRfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGMan1gMgASgDUghpbnQ2NE9wdDpBCgp1aW50MzJfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGLCi1gMgASgNUgl1aW50MzJPcHQ6QQoKdWludDY0X29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjfjtYDIAEoBFIJdWludDY0T3B0OkEKCnNpbnQzMl9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYwIjWAyABKBFSCXNpbnQzMk9wdDpBCgpzaW50NjRfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGP+C1gMgASgSUglzaW50NjRPcHQ6QwoLZml4ZWQzMl9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY0/7VAyABKAdSCmZpeGVkMzJPcHQ6QwoLZml4ZWQ2NF9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY4v3VAyABKAZSCmZpeGVkNjRPcHQ6RQoMc2ZpeGVkMzJfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGNXx1QMgASgPUgtzZml4ZWQzMk9wdDpFCgxzZml4ZWQ2NF9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY44rVAyABKBBSC3NmaXhlZDY0T3B0Oj8KCWZsb2F0X29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxj+u9QDIAEoAlIIZmxvYXRPcHQ6QQoKZG91YmxlX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjNq9QDIAEoAVIJZG91YmxlT3B0OkEKCnN0cmluZ19vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYxavUAyABKAlSCXN0cmluZ09wdDo/CglieXRlc19vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYlqvUAyABKAxSCGJ5dGVzT3B0OnkKCGVudW1fb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGJGr1AMgASgOMjoucHJvdG9idWZfdW5pdHRlc3QuRHVtbXlNZXNzYWdlQ29udGFpbmluZ0VudW0uVGVzdEVudW1UeXBlUgdlbnVtT3B0OoABChBtZXNzYWdlX3R5cGVfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGK/y0wMgASgLMjIucHJvdG9idWZfdW5pdHRlc3QuRHVtbXlNZXNzYWdlSW52YWxpZEFzT3B0aW9uVHlwZVIObWVzc2FnZVR5cGVPcHQ6PAoEbW9vbxIlLnByb3RvYnVmX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMRjb4NMDIAEoBVIEbW9vbzplCgVjb3JnZRIlLnByb3RvYnVmX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMRjS3tMDIAEoCzIlLnByb3RvYnVmX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlM1IFY29yZ2U6QAoGZ3JhdWx0EiUucHJvdG9idWZfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUyGO/80gMgASgFUgZncmF1bHQ6ZwoGZ2FycGx5EiUucHJvdG9idWZfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUyGMj10gMgASgLMiUucHJvdG9idWZfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUxUgZnYXJwbHk6bAoMY29tcGxleF9vcHQxEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGKTc0gMgASgLMiUucHJvdG9idWZfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUxUgtjb21wbGV4T3B0MTpsCgxjb21wbGV4X29wdDISHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY1Y/SAyABKAsyJS5wcm90b2J1Zl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTJSC2NvbXBsZXhPcHQyOmwKDGNvbXBsZXhfb3B0MxIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjvi9IDIAEoCzIlLnByb3RvYnVmX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlM1ILY29tcGxleE9wdDM6ZAoLY29tcGxleG9wdDYSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYzMvPAyABKAoyHi5wcm90b2J1Zl91bml0dGVzdC5Db21wbGV4T3B0NlILY29tcGxleG9wdDY6VwoHZmlsZW9wdBIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxjP3bAHIAEoCzIcLnByb3RvYnVmX3VuaXR0ZXN0LkFnZ3JlZ2F0ZVIHZmlsZW9wdDpYCgZtc2dvcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYmOqwByABKAsyHC5wcm90b2J1Zl91bml0dGVzdC5BZ2dyZWdhdGVSBm1zZ29wdDpaCghmaWVsZG9wdBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMYnvSwByABKAsyHC5wcm90b2J1Zl91bml0dGVzdC5BZ2dyZWdhdGVSCGZpZWxkb3B0OlcKB2VudW1vcHQSHC5nb29nbGUucHJvdG9idWYuRW51bU9wdGlvbnMY0oKxByABKAsyHC5wcm90b2J1Zl91bml0dGVzdC5BZ2dyZWdhdGVSB2VudW1vcHQ6YgoKZW51bXZhbG9wdBIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGMmfsQcgASgLMhwucHJvdG9idWZfdW5pdHRlc3QuQWdncmVnYXRlUgplbnVtdmFsb3B0OmAKCnNlcnZpY2VvcHQSHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMYue+xByABKAsyHC5wcm90b2J1Zl91bml0dGVzdC5BZ2dyZWdhdGVSCnNlcnZpY2VvcHQ6XQoJbWV0aG9kb3B0Eh4uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMYiemyByABKAsyHC5wcm90b2J1Zl91bml0dGVzdC5BZ2dyZWdhdGVSCW1ldGhvZG9wdDpwChFyZXF1aXJlZF9lbnVtX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxiPzc8yIAEoCzIgLnByb3RvYnVmX3VuaXR0ZXN0Lk9sZE9wdGlvblR5cGVSD3JlcXVpcmVkRW51bU9wdELpAYABAYgBAZABAfDowR3qrcDlJPrshTvRAQhkEg5GaWxlQW5ub3RhdGlvbhoWEhROZXN0ZWRGaWxlQW5ub3RhdGlvbiIe+uyFOxkSF0ZpbGVFeHRlbnNpb25Bbm5vdGF0aW9uKiQLEPbrrgcaGwoZRW1iZWRkZWRNZXNzYWdlU2V0RWxlbWVudAwyXwpAdHlwZS5nb29nbGVhcGlzLmNvbS9wcm90b2J1Zl91bml0dGVzdC5BZ2dyZWdhdGVNZXNzYWdlU2V0RWxlbWVudBIbChlFbWJlZGRlZE1lc3NhZ2VTZXRFbGVtZW50", [file_google_protobuf_any, file_google_protobuf_descriptor]);
 
 /**
@@ -70,7 +70,7 @@ export type TestMessageWithCustomOptions = Message<"protobuf_unittest.TestMessag
  * Describes the message protobuf_unittest.TestMessageWithCustomOptions.
  * Use `create(TestMessageWithCustomOptionsSchema)` to create a new message.
  */
-export const TestMessageWithCustomOptionsSchema: GenDescMessage<TestMessageWithCustomOptions> = /*@__PURE__*/
+export const TestMessageWithCustomOptionsSchema: GenMessage<TestMessageWithCustomOptions> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 0);
 
 /**
@@ -91,7 +91,7 @@ export enum TestMessageWithCustomOptions_AnEnum {
 /**
  * Describes the enum protobuf_unittest.TestMessageWithCustomOptions.AnEnum.
  */
-export const TestMessageWithCustomOptions_AnEnumSchema: GenDescEnum<TestMessageWithCustomOptions_AnEnum> = /*@__PURE__*/
+export const TestMessageWithCustomOptions_AnEnumSchema: GenEnum<TestMessageWithCustomOptions_AnEnum> = /*@__PURE__*/
   enumDesc(file_google_protobuf_unittest_custom_options, 0, 0);
 
 /**
@@ -107,7 +107,7 @@ export type CustomOptionFooRequest = Message<"protobuf_unittest.CustomOptionFooR
  * Describes the message protobuf_unittest.CustomOptionFooRequest.
  * Use `create(CustomOptionFooRequestSchema)` to create a new message.
  */
-export const CustomOptionFooRequestSchema: GenDescMessage<CustomOptionFooRequest> = /*@__PURE__*/
+export const CustomOptionFooRequestSchema: GenMessage<CustomOptionFooRequest> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 1);
 
 /**
@@ -120,7 +120,7 @@ export type CustomOptionFooResponse = Message<"protobuf_unittest.CustomOptionFoo
  * Describes the message protobuf_unittest.CustomOptionFooResponse.
  * Use `create(CustomOptionFooResponseSchema)` to create a new message.
  */
-export const CustomOptionFooResponseSchema: GenDescMessage<CustomOptionFooResponse> = /*@__PURE__*/
+export const CustomOptionFooResponseSchema: GenMessage<CustomOptionFooResponse> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 2);
 
 /**
@@ -133,7 +133,7 @@ export type CustomOptionFooClientMessage = Message<"protobuf_unittest.CustomOpti
  * Describes the message protobuf_unittest.CustomOptionFooClientMessage.
  * Use `create(CustomOptionFooClientMessageSchema)` to create a new message.
  */
-export const CustomOptionFooClientMessageSchema: GenDescMessage<CustomOptionFooClientMessage> = /*@__PURE__*/
+export const CustomOptionFooClientMessageSchema: GenMessage<CustomOptionFooClientMessage> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 3);
 
 /**
@@ -146,7 +146,7 @@ export type CustomOptionFooServerMessage = Message<"protobuf_unittest.CustomOpti
  * Describes the message protobuf_unittest.CustomOptionFooServerMessage.
  * Use `create(CustomOptionFooServerMessageSchema)` to create a new message.
  */
-export const CustomOptionFooServerMessageSchema: GenDescMessage<CustomOptionFooServerMessage> = /*@__PURE__*/
+export const CustomOptionFooServerMessageSchema: GenMessage<CustomOptionFooServerMessage> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 4);
 
 /**
@@ -159,7 +159,7 @@ export type DummyMessageContainingEnum = Message<"protobuf_unittest.DummyMessage
  * Describes the message protobuf_unittest.DummyMessageContainingEnum.
  * Use `create(DummyMessageContainingEnumSchema)` to create a new message.
  */
-export const DummyMessageContainingEnumSchema: GenDescMessage<DummyMessageContainingEnum> = /*@__PURE__*/
+export const DummyMessageContainingEnumSchema: GenMessage<DummyMessageContainingEnum> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 5);
 
 /**
@@ -180,7 +180,7 @@ export enum DummyMessageContainingEnum_TestEnumType {
 /**
  * Describes the enum protobuf_unittest.DummyMessageContainingEnum.TestEnumType.
  */
-export const DummyMessageContainingEnum_TestEnumTypeSchema: GenDescEnum<DummyMessageContainingEnum_TestEnumType> = /*@__PURE__*/
+export const DummyMessageContainingEnum_TestEnumTypeSchema: GenEnum<DummyMessageContainingEnum_TestEnumType> = /*@__PURE__*/
   enumDesc(file_google_protobuf_unittest_custom_options, 5, 0);
 
 /**
@@ -193,7 +193,7 @@ export type DummyMessageInvalidAsOptionType = Message<"protobuf_unittest.DummyMe
  * Describes the message protobuf_unittest.DummyMessageInvalidAsOptionType.
  * Use `create(DummyMessageInvalidAsOptionTypeSchema)` to create a new message.
  */
-export const DummyMessageInvalidAsOptionTypeSchema: GenDescMessage<DummyMessageInvalidAsOptionType> = /*@__PURE__*/
+export const DummyMessageInvalidAsOptionTypeSchema: GenMessage<DummyMessageInvalidAsOptionType> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 6);
 
 /**
@@ -206,7 +206,7 @@ export type CustomOptionMinIntegerValues = Message<"protobuf_unittest.CustomOpti
  * Describes the message protobuf_unittest.CustomOptionMinIntegerValues.
  * Use `create(CustomOptionMinIntegerValuesSchema)` to create a new message.
  */
-export const CustomOptionMinIntegerValuesSchema: GenDescMessage<CustomOptionMinIntegerValues> = /*@__PURE__*/
+export const CustomOptionMinIntegerValuesSchema: GenMessage<CustomOptionMinIntegerValues> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 7);
 
 /**
@@ -219,7 +219,7 @@ export type CustomOptionMaxIntegerValues = Message<"protobuf_unittest.CustomOpti
  * Describes the message protobuf_unittest.CustomOptionMaxIntegerValues.
  * Use `create(CustomOptionMaxIntegerValuesSchema)` to create a new message.
  */
-export const CustomOptionMaxIntegerValuesSchema: GenDescMessage<CustomOptionMaxIntegerValues> = /*@__PURE__*/
+export const CustomOptionMaxIntegerValuesSchema: GenMessage<CustomOptionMaxIntegerValues> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 8);
 
 /**
@@ -232,7 +232,7 @@ export type CustomOptionOtherValues = Message<"protobuf_unittest.CustomOptionOth
  * Describes the message protobuf_unittest.CustomOptionOtherValues.
  * Use `create(CustomOptionOtherValuesSchema)` to create a new message.
  */
-export const CustomOptionOtherValuesSchema: GenDescMessage<CustomOptionOtherValues> = /*@__PURE__*/
+export const CustomOptionOtherValuesSchema: GenMessage<CustomOptionOtherValues> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 9);
 
 /**
@@ -245,7 +245,7 @@ export type SettingRealsFromPositiveInts = Message<"protobuf_unittest.SettingRea
  * Describes the message protobuf_unittest.SettingRealsFromPositiveInts.
  * Use `create(SettingRealsFromPositiveIntsSchema)` to create a new message.
  */
-export const SettingRealsFromPositiveIntsSchema: GenDescMessage<SettingRealsFromPositiveInts> = /*@__PURE__*/
+export const SettingRealsFromPositiveIntsSchema: GenMessage<SettingRealsFromPositiveInts> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 10);
 
 /**
@@ -258,7 +258,7 @@ export type SettingRealsFromNegativeInts = Message<"protobuf_unittest.SettingRea
  * Describes the message protobuf_unittest.SettingRealsFromNegativeInts.
  * Use `create(SettingRealsFromNegativeIntsSchema)` to create a new message.
  */
-export const SettingRealsFromNegativeIntsSchema: GenDescMessage<SettingRealsFromNegativeInts> = /*@__PURE__*/
+export const SettingRealsFromNegativeIntsSchema: GenMessage<SettingRealsFromNegativeInts> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 11);
 
 /**
@@ -290,7 +290,7 @@ export type ComplexOptionType1 = Message<"protobuf_unittest.ComplexOptionType1">
  * Describes the message protobuf_unittest.ComplexOptionType1.
  * Use `create(ComplexOptionType1Schema)` to create a new message.
  */
-export const ComplexOptionType1Schema: GenDescMessage<ComplexOptionType1> = /*@__PURE__*/
+export const ComplexOptionType1Schema: GenMessage<ComplexOptionType1> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 12);
 
 /**
@@ -322,7 +322,7 @@ export type ComplexOptionType2 = Message<"protobuf_unittest.ComplexOptionType2">
  * Describes the message protobuf_unittest.ComplexOptionType2.
  * Use `create(ComplexOptionType2Schema)` to create a new message.
  */
-export const ComplexOptionType2Schema: GenDescMessage<ComplexOptionType2> = /*@__PURE__*/
+export const ComplexOptionType2Schema: GenMessage<ComplexOptionType2> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 13);
 
 /**
@@ -339,13 +339,13 @@ export type ComplexOptionType2_ComplexOptionType4 = Message<"protobuf_unittest.C
  * Describes the message protobuf_unittest.ComplexOptionType2.ComplexOptionType4.
  * Use `create(ComplexOptionType2_ComplexOptionType4Schema)` to create a new message.
  */
-export const ComplexOptionType2_ComplexOptionType4Schema: GenDescMessage<ComplexOptionType2_ComplexOptionType4> = /*@__PURE__*/
+export const ComplexOptionType2_ComplexOptionType4Schema: GenMessage<ComplexOptionType2_ComplexOptionType4> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 13, 0);
 
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOptionType2.ComplexOptionType4 complex_opt4 = 7633546;
  */
-export const ComplexOptionType2_ComplexOptionType4_complex_opt4: GenDescExtension<MessageOptions, ComplexOptionType2_ComplexOptionType4> = /*@__PURE__*/
+export const ComplexOptionType2_ComplexOptionType4_complex_opt4: GenExtension<MessageOptions, ComplexOptionType2_ComplexOptionType4> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 13, 0, 0);
 
 /**
@@ -367,7 +367,7 @@ export type ComplexOptionType3 = Message<"protobuf_unittest.ComplexOptionType3">
  * Describes the message protobuf_unittest.ComplexOptionType3.
  * Use `create(ComplexOptionType3Schema)` to create a new message.
  */
-export const ComplexOptionType3Schema: GenDescMessage<ComplexOptionType3> = /*@__PURE__*/
+export const ComplexOptionType3Schema: GenMessage<ComplexOptionType3> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 14);
 
 /**
@@ -384,7 +384,7 @@ export type ComplexOptionType3_ComplexOptionType5 = Message<"protobuf_unittest.C
  * Describes the message protobuf_unittest.ComplexOptionType3.ComplexOptionType5.
  * Use `create(ComplexOptionType3_ComplexOptionType5Schema)` to create a new message.
  */
-export const ComplexOptionType3_ComplexOptionType5Schema: GenDescMessage<ComplexOptionType3_ComplexOptionType5> = /*@__PURE__*/
+export const ComplexOptionType3_ComplexOptionType5Schema: GenMessage<ComplexOptionType3_ComplexOptionType5> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 14, 0);
 
 /**
@@ -401,7 +401,7 @@ export type ComplexOpt6 = Message<"protobuf_unittest.ComplexOpt6"> & {
  * Describes the message protobuf_unittest.ComplexOpt6.
  * Use `create(ComplexOpt6Schema)` to create a new message.
  */
-export const ComplexOpt6Schema: GenDescMessage<ComplexOpt6> = /*@__PURE__*/
+export const ComplexOpt6Schema: GenMessage<ComplexOpt6> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 15);
 
 /**
@@ -416,7 +416,7 @@ export type VariousComplexOptions = Message<"protobuf_unittest.VariousComplexOpt
  * Describes the message protobuf_unittest.VariousComplexOptions.
  * Use `create(VariousComplexOptionsSchema)` to create a new message.
  */
-export const VariousComplexOptionsSchema: GenDescMessage<VariousComplexOptions> = /*@__PURE__*/
+export const VariousComplexOptionsSchema: GenMessage<VariousComplexOptions> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 16);
 
 /**
@@ -429,7 +429,7 @@ export type AggregateMessageSet = Message<"protobuf_unittest.AggregateMessageSet
  * Describes the message protobuf_unittest.AggregateMessageSet.
  * Use `create(AggregateMessageSetSchema)` to create a new message.
  */
-export const AggregateMessageSetSchema: GenDescMessage<AggregateMessageSet> = /*@__PURE__*/
+export const AggregateMessageSetSchema: GenMessage<AggregateMessageSet> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 17);
 
 /**
@@ -446,13 +446,13 @@ export type AggregateMessageSetElement = Message<"protobuf_unittest.AggregateMes
  * Describes the message protobuf_unittest.AggregateMessageSetElement.
  * Use `create(AggregateMessageSetElementSchema)` to create a new message.
  */
-export const AggregateMessageSetElementSchema: GenDescMessage<AggregateMessageSetElement> = /*@__PURE__*/
+export const AggregateMessageSetElementSchema: GenMessage<AggregateMessageSetElement> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 18);
 
 /**
  * @generated from extension: optional protobuf_unittest.AggregateMessageSetElement message_set_extension = 15447542;
  */
-export const AggregateMessageSetElement_message_set_extension: GenDescExtension<AggregateMessageSet, AggregateMessageSetElement> = /*@__PURE__*/
+export const AggregateMessageSetElement_message_set_extension: GenExtension<AggregateMessageSet, AggregateMessageSetElement> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 18, 0);
 
 /**
@@ -504,13 +504,13 @@ export type Aggregate = Message<"protobuf_unittest.Aggregate"> & {
  * Describes the message protobuf_unittest.Aggregate.
  * Use `create(AggregateSchema)` to create a new message.
  */
-export const AggregateSchema: GenDescMessage<Aggregate> = /*@__PURE__*/
+export const AggregateSchema: GenMessage<Aggregate> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 19);
 
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate nested = 15476903;
  */
-export const Aggregate_nested: GenDescExtension<FileOptions, Aggregate> = /*@__PURE__*/
+export const Aggregate_nested: GenExtension<FileOptions, Aggregate> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 19, 0);
 
 /**
@@ -527,7 +527,7 @@ export type AggregateMessage = Message<"protobuf_unittest.AggregateMessage"> & {
  * Describes the message protobuf_unittest.AggregateMessage.
  * Use `create(AggregateMessageSchema)` to create a new message.
  */
-export const AggregateMessageSchema: GenDescMessage<AggregateMessage> = /*@__PURE__*/
+export const AggregateMessageSchema: GenMessage<AggregateMessage> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 20);
 
 /**
@@ -542,7 +542,7 @@ export type NestedOptionType = Message<"protobuf_unittest.NestedOptionType"> & {
  * Describes the message protobuf_unittest.NestedOptionType.
  * Use `create(NestedOptionTypeSchema)` to create a new message.
  */
-export const NestedOptionTypeSchema: GenDescMessage<NestedOptionType> = /*@__PURE__*/
+export const NestedOptionTypeSchema: GenMessage<NestedOptionType> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 21);
 
 /**
@@ -559,7 +559,7 @@ export type NestedOptionType_NestedMessage = Message<"protobuf_unittest.NestedOp
  * Describes the message protobuf_unittest.NestedOptionType.NestedMessage.
  * Use `create(NestedOptionType_NestedMessageSchema)` to create a new message.
  */
-export const NestedOptionType_NestedMessageSchema: GenDescMessage<NestedOptionType_NestedMessage> = /*@__PURE__*/
+export const NestedOptionType_NestedMessageSchema: GenMessage<NestedOptionType_NestedMessage> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 21, 0);
 
 /**
@@ -575,13 +575,13 @@ export enum NestedOptionType_NestedEnum {
 /**
  * Describes the enum protobuf_unittest.NestedOptionType.NestedEnum.
  */
-export const NestedOptionType_NestedEnumSchema: GenDescEnum<NestedOptionType_NestedEnum> = /*@__PURE__*/
+export const NestedOptionType_NestedEnumSchema: GenEnum<NestedOptionType_NestedEnum> = /*@__PURE__*/
   enumDesc(file_google_protobuf_unittest_custom_options, 21, 0);
 
 /**
  * @generated from extension: optional int32 nested_extension = 7912573;
  */
-export const NestedOptionType_nested_extension: GenDescExtension<FileOptions, number> = /*@__PURE__*/
+export const NestedOptionType_nested_extension: GenExtension<FileOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 21, 0);
 
 /**
@@ -601,7 +601,7 @@ export type OldOptionType = Message<"protobuf_unittest.OldOptionType"> & {
  * Describes the message protobuf_unittest.OldOptionType.
  * Use `create(OldOptionTypeSchema)` to create a new message.
  */
-export const OldOptionTypeSchema: GenDescMessage<OldOptionType> = /*@__PURE__*/
+export const OldOptionTypeSchema: GenMessage<OldOptionType> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 22);
 
 /**
@@ -617,7 +617,7 @@ export enum OldOptionType_TestEnum {
 /**
  * Describes the enum protobuf_unittest.OldOptionType.TestEnum.
  */
-export const OldOptionType_TestEnumSchema: GenDescEnum<OldOptionType_TestEnum> = /*@__PURE__*/
+export const OldOptionType_TestEnumSchema: GenEnum<OldOptionType_TestEnum> = /*@__PURE__*/
   enumDesc(file_google_protobuf_unittest_custom_options, 22, 0);
 
 /**
@@ -636,7 +636,7 @@ export type NewOptionType = Message<"protobuf_unittest.NewOptionType"> & {
  * Describes the message protobuf_unittest.NewOptionType.
  * Use `create(NewOptionTypeSchema)` to create a new message.
  */
-export const NewOptionTypeSchema: GenDescMessage<NewOptionType> = /*@__PURE__*/
+export const NewOptionTypeSchema: GenMessage<NewOptionType> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 23);
 
 /**
@@ -657,7 +657,7 @@ export enum NewOptionType_TestEnum {
 /**
  * Describes the enum protobuf_unittest.NewOptionType.TestEnum.
  */
-export const NewOptionType_TestEnumSchema: GenDescEnum<NewOptionType_TestEnum> = /*@__PURE__*/
+export const NewOptionType_TestEnumSchema: GenEnum<NewOptionType_TestEnum> = /*@__PURE__*/
   enumDesc(file_google_protobuf_unittest_custom_options, 23, 0);
 
 /**
@@ -672,7 +672,7 @@ export type TestMessageWithRequiredEnumOption = Message<"protobuf_unittest.TestM
  * Describes the message protobuf_unittest.TestMessageWithRequiredEnumOption.
  * Use `create(TestMessageWithRequiredEnumOptionSchema)` to create a new message.
  */
-export const TestMessageWithRequiredEnumOptionSchema: GenDescMessage<TestMessageWithRequiredEnumOption> = /*@__PURE__*/
+export const TestMessageWithRequiredEnumOptionSchema: GenMessage<TestMessageWithRequiredEnumOption> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_custom_options, 24);
 
 /**
@@ -693,7 +693,7 @@ export enum MethodOpt1 {
 /**
  * Describes the enum protobuf_unittest.MethodOpt1.
  */
-export const MethodOpt1Schema: GenDescEnum<MethodOpt1> = /*@__PURE__*/
+export const MethodOpt1Schema: GenEnum<MethodOpt1> = /*@__PURE__*/
   enumDesc(file_google_protobuf_unittest_custom_options, 0);
 
 /**
@@ -709,13 +709,13 @@ export enum AggregateEnum {
 /**
  * Describes the enum protobuf_unittest.AggregateEnum.
  */
-export const AggregateEnumSchema: GenDescEnum<AggregateEnum> = /*@__PURE__*/
+export const AggregateEnumSchema: GenEnum<AggregateEnum> = /*@__PURE__*/
   enumDesc(file_google_protobuf_unittest_custom_options, 1);
 
 /**
  * @generated from service protobuf_unittest.TestServiceWithCustomOptions
  */
-export const TestServiceWithCustomOptions: GenDescService<{
+export const TestServiceWithCustomOptions: GenService<{
   /**
    * @generated from rpc protobuf_unittest.TestServiceWithCustomOptions.Foo
    */
@@ -731,7 +731,7 @@ export const TestServiceWithCustomOptions: GenDescService<{
 /**
  * @generated from service protobuf_unittest.AggregateService
  */
-export const AggregateService: GenDescService<{
+export const AggregateService: GenService<{
   /**
    * @generated from rpc protobuf_unittest.AggregateService.Method
    */
@@ -747,19 +747,19 @@ export const AggregateService: GenDescService<{
 /**
  * @generated from extension: optional uint64 file_opt1 = 7736974;
  */
-export const file_opt1: GenDescExtension<FileOptions, bigint> = /*@__PURE__*/
+export const file_opt1: GenExtension<FileOptions, bigint> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 0);
 
 /**
  * @generated from extension: optional int32 message_opt1 = 7739036;
  */
-export const message_opt1: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const message_opt1: GenExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 1);
 
 /**
  * @generated from extension: optional fixed64 field_opt1 = 7740936;
  */
-export const field_opt1: GenDescExtension<FieldOptions, bigint> = /*@__PURE__*/
+export const field_opt1: GenExtension<FieldOptions, bigint> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 2);
 
 /**
@@ -768,234 +768,234 @@ export const field_opt1: GenDescExtension<FieldOptions, bigint> = /*@__PURE__*/
  *
  * @generated from extension: optional int32 field_opt2 = 7753913 [default = 42];
  */
-export const field_opt2: GenDescExtension<FieldOptions, number> = /*@__PURE__*/
+export const field_opt2: GenExtension<FieldOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 3);
 
 /**
  * @generated from extension: optional int32 oneof_opt1 = 7740111;
  */
-export const oneof_opt1: GenDescExtension<OneofOptions, number> = /*@__PURE__*/
+export const oneof_opt1: GenExtension<OneofOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 4);
 
 /**
  * @generated from extension: optional sfixed32 enum_opt1 = 7753576;
  */
-export const enum_opt1: GenDescExtension<EnumOptions, number> = /*@__PURE__*/
+export const enum_opt1: GenExtension<EnumOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 5);
 
 /**
  * @generated from extension: optional int32 enum_value_opt1 = 1560678;
  */
-export const enum_value_opt1: GenDescExtension<EnumValueOptions, number> = /*@__PURE__*/
+export const enum_value_opt1: GenExtension<EnumValueOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 6);
 
 /**
  * @generated from extension: optional sint64 service_opt1 = 7887650;
  */
-export const service_opt1: GenDescExtension<ServiceOptions, bigint> = /*@__PURE__*/
+export const service_opt1: GenExtension<ServiceOptions, bigint> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 7);
 
 /**
  * @generated from extension: optional protobuf_unittest.MethodOpt1 method_opt1 = 7890860;
  */
-export const method_opt1: GenDescExtension<MethodOptions, MethodOpt1> = /*@__PURE__*/
+export const method_opt1: GenExtension<MethodOptions, MethodOpt1> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 8);
 
 /**
  * @generated from extension: optional bool bool_opt = 7706090;
  */
-export const bool_opt: GenDescExtension<MessageOptions, boolean> = /*@__PURE__*/
+export const bool_opt: GenExtension<MessageOptions, boolean> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 9);
 
 /**
  * @generated from extension: optional int32 int32_opt = 7705709;
  */
-export const int32_opt: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const int32_opt: GenExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 10);
 
 /**
  * @generated from extension: optional int64 int64_opt = 7705542;
  */
-export const int64_opt: GenDescExtension<MessageOptions, bigint> = /*@__PURE__*/
+export const int64_opt: GenExtension<MessageOptions, bigint> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 11);
 
 /**
  * @generated from extension: optional uint32 uint32_opt = 7704880;
  */
-export const uint32_opt: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const uint32_opt: GenExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 12);
 
 /**
  * @generated from extension: optional uint64 uint64_opt = 7702367;
  */
-export const uint64_opt: GenDescExtension<MessageOptions, bigint> = /*@__PURE__*/
+export const uint64_opt: GenExtension<MessageOptions, bigint> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 13);
 
 /**
  * @generated from extension: optional sint32 sint32_opt = 7701568;
  */
-export const sint32_opt: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const sint32_opt: GenExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 14);
 
 /**
  * @generated from extension: optional sint64 sint64_opt = 7700863;
  */
-export const sint64_opt: GenDescExtension<MessageOptions, bigint> = /*@__PURE__*/
+export const sint64_opt: GenExtension<MessageOptions, bigint> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 15);
 
 /**
  * @generated from extension: optional fixed32 fixed32_opt = 7700307;
  */
-export const fixed32_opt: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const fixed32_opt: GenExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 16);
 
 /**
  * @generated from extension: optional fixed64 fixed64_opt = 7700194;
  */
-export const fixed64_opt: GenDescExtension<MessageOptions, bigint> = /*@__PURE__*/
+export const fixed64_opt: GenExtension<MessageOptions, bigint> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 17);
 
 /**
  * @generated from extension: optional sfixed32 sfixed32_opt = 7698645;
  */
-export const sfixed32_opt: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const sfixed32_opt: GenExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 18);
 
 /**
  * @generated from extension: optional sfixed64 sfixed64_opt = 7685475;
  */
-export const sfixed64_opt: GenDescExtension<MessageOptions, bigint> = /*@__PURE__*/
+export const sfixed64_opt: GenExtension<MessageOptions, bigint> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 19);
 
 /**
  * @generated from extension: optional float float_opt = 7675390;
  */
-export const float_opt: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const float_opt: GenExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 20);
 
 /**
  * @generated from extension: optional double double_opt = 7673293;
  */
-export const double_opt: GenDescExtension<MessageOptions, number> = /*@__PURE__*/
+export const double_opt: GenExtension<MessageOptions, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 21);
 
 /**
  * @generated from extension: optional string string_opt = 7673285;
  */
-export const string_opt: GenDescExtension<MessageOptions, string> = /*@__PURE__*/
+export const string_opt: GenExtension<MessageOptions, string> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 22);
 
 /**
  * @generated from extension: optional bytes bytes_opt = 7673238;
  */
-export const bytes_opt: GenDescExtension<MessageOptions, Uint8Array> = /*@__PURE__*/
+export const bytes_opt: GenExtension<MessageOptions, Uint8Array> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 23);
 
 /**
  * @generated from extension: optional protobuf_unittest.DummyMessageContainingEnum.TestEnumType enum_opt = 7673233;
  */
-export const enum_opt: GenDescExtension<MessageOptions, DummyMessageContainingEnum_TestEnumType> = /*@__PURE__*/
+export const enum_opt: GenExtension<MessageOptions, DummyMessageContainingEnum_TestEnumType> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 24);
 
 /**
  * @generated from extension: optional protobuf_unittest.DummyMessageInvalidAsOptionType message_type_opt = 7665967;
  */
-export const message_type_opt: GenDescExtension<MessageOptions, DummyMessageInvalidAsOptionType> = /*@__PURE__*/
+export const message_type_opt: GenExtension<MessageOptions, DummyMessageInvalidAsOptionType> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 25);
 
 /**
  * @generated from extension: optional int32 mooo = 7663707;
  */
-export const mooo: GenDescExtension<ComplexOptionType1, number> = /*@__PURE__*/
+export const mooo: GenExtension<ComplexOptionType1, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 26);
 
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOptionType3 corge = 7663442;
  */
-export const corge: GenDescExtension<ComplexOptionType1, ComplexOptionType3> = /*@__PURE__*/
+export const corge: GenExtension<ComplexOptionType1, ComplexOptionType3> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 27);
 
 /**
  * @generated from extension: optional int32 grault = 7650927;
  */
-export const grault: GenDescExtension<ComplexOptionType2, number> = /*@__PURE__*/
+export const grault: GenExtension<ComplexOptionType2, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 28);
 
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOptionType1 garply = 7649992;
  */
-export const garply: GenDescExtension<ComplexOptionType2, ComplexOptionType1> = /*@__PURE__*/
+export const garply: GenExtension<ComplexOptionType2, ComplexOptionType1> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 29);
 
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOptionType1 complex_opt1 = 7646756;
  */
-export const complex_opt1: GenDescExtension<MessageOptions, ComplexOptionType1> = /*@__PURE__*/
+export const complex_opt1: GenExtension<MessageOptions, ComplexOptionType1> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 30);
 
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOptionType2 complex_opt2 = 7636949;
  */
-export const complex_opt2: GenDescExtension<MessageOptions, ComplexOptionType2> = /*@__PURE__*/
+export const complex_opt2: GenExtension<MessageOptions, ComplexOptionType2> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 31);
 
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOptionType3 complex_opt3 = 7636463;
  */
-export const complex_opt3: GenDescExtension<MessageOptions, ComplexOptionType3> = /*@__PURE__*/
+export const complex_opt3: GenExtension<MessageOptions, ComplexOptionType3> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 32);
 
 /**
  * @generated from extension: optional protobuf_unittest.ComplexOpt6 complexopt6 = 7595468;
  */
-export const complexopt6: GenDescExtension<MessageOptions, ComplexOpt6> = /*@__PURE__*/
+export const complexopt6: GenExtension<MessageOptions, ComplexOpt6> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 33);
 
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate fileopt = 15478479;
  */
-export const fileopt: GenDescExtension<FileOptions, Aggregate> = /*@__PURE__*/
+export const fileopt: GenExtension<FileOptions, Aggregate> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 34);
 
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate msgopt = 15480088;
  */
-export const msgopt: GenDescExtension<MessageOptions, Aggregate> = /*@__PURE__*/
+export const msgopt: GenExtension<MessageOptions, Aggregate> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 35);
 
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate fieldopt = 15481374;
  */
-export const fieldopt: GenDescExtension<FieldOptions, Aggregate> = /*@__PURE__*/
+export const fieldopt: GenExtension<FieldOptions, Aggregate> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 36);
 
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate enumopt = 15483218;
  */
-export const enumopt: GenDescExtension<EnumOptions, Aggregate> = /*@__PURE__*/
+export const enumopt: GenExtension<EnumOptions, Aggregate> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 37);
 
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate enumvalopt = 15486921;
  */
-export const enumvalopt: GenDescExtension<EnumValueOptions, Aggregate> = /*@__PURE__*/
+export const enumvalopt: GenExtension<EnumValueOptions, Aggregate> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 38);
 
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate serviceopt = 15497145;
  */
-export const serviceopt: GenDescExtension<ServiceOptions, Aggregate> = /*@__PURE__*/
+export const serviceopt: GenExtension<ServiceOptions, Aggregate> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 39);
 
 /**
  * @generated from extension: optional protobuf_unittest.Aggregate methodopt = 15512713;
  */
-export const methodopt: GenDescExtension<MethodOptions, Aggregate> = /*@__PURE__*/
+export const methodopt: GenExtension<MethodOptions, Aggregate> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 40);
 
 /**
  * @generated from extension: optional protobuf_unittest.OldOptionType required_enum_opt = 106161807;
  */
-export const required_enum_opt: GenDescExtension<MessageOptions, OldOptionType> = /*@__PURE__*/
+export const required_enum_opt: GenExtension<MessageOptions, OldOptionType> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 41);
 

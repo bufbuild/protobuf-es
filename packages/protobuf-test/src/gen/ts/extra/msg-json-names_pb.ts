@@ -16,14 +16,14 @@
 // @generated from file extra/msg-json-names.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/msg-json-names.proto.
  */
-export const file_extra_msg_json_names: GenDescFile = /*@__PURE__*/
+export const file_extra_msg_json_names: GenFile = /*@__PURE__*/
   fileDesc("ChpleHRyYS9tc2ctanNvbi1uYW1lcy5wcm90bxIEc3BlYyKyAQoQSnNvbk5hbWVzTWVzc2FnZRIpCgxzY2FsYXJfZmllbGQYASABKAlSE3NjYWxhckZpZWxkSnNvbk5hbWUSOgoVcmVwZWF0ZWRfc2NhbGFyX2ZpZWxkGAIgAygJUhtyZXBlYXRlZFNjYWxhckZpZWxkSnNvbk5hbWUSCQoBYRgDIAEoCRILCgFiGAQgASgJUgASEAoBYxgFIAEoCVIFQHR5cGUSDQoBZBgGIAEoCVICMWRiBnByb3RvMw");
 
 /**
@@ -65,6 +65,6 @@ export type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
  * Describes the message spec.JsonNamesMessage.
  * Use `create(JsonNamesMessageSchema)` to create a new message.
  */
-export const JsonNamesMessageSchema: GenDescMessage<JsonNamesMessage> = /*@__PURE__*/
+export const JsonNamesMessageSchema: GenMessage<JsonNamesMessage> = /*@__PURE__*/
   messageDesc(file_extra_msg_json_names, 0);
 

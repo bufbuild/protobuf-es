@@ -16,7 +16,7 @@
 // @generated from file extra/json_types.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Any, AnyJson, BoolValueJson, BytesValueJson, DoubleValueJson, Duration, DurationJson, Empty, EmptyJson, FieldMask, FieldMaskJson, FloatValueJson, Int32ValueJson, Int64ValueJson, ListValue, ListValueJson, NullValue, NullValueJson, StringValueJson, StructJson, Timestamp, TimestampJson, UInt32ValueJson, UInt64ValueJson, Value, ValueJson } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_empty, file_google_protobuf_field_mask, file_google_protobuf_struct, file_google_protobuf_timestamp, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
@@ -25,7 +25,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/json_types.proto.
  */
-export const file_extra_json_types: GenDescFile = /*@__PURE__*/
+export const file_extra_json_types: GenFile = /*@__PURE__*/
   fileDesc("ChZleHRyYS9qc29uX3R5cGVzLnByb3RvEgRzcGVjItIKChBKc29uVHlwZXNNZXNzYWdlEhIKCmJvb2xfZmllbGQYASABKAgSFAoMZG91YmxlX2ZpZWxkGAIgASgBEhMKC2J5dGVzX2ZpZWxkGAMgASgMEhMKC2ludDY0X2ZpZWxkGAQgASgDEiYKCmVudW1fZmllbGQYBSABKA4yEi5zcGVjLkpzb25UeXBlRW51bRItCg1tZXNzYWdlX2ZpZWxkGAYgASgLMhYuc3BlYy5Kc29uVHlwZXNNZXNzYWdlEicKCWFueV9maWVsZBgHIAEoCzIULmdvb2dsZS5wcm90b2J1Zi5BbnkSMQoOZHVyYXRpb25fZmllbGQYCCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24SKwoLZW1wdHlfZmllbGQYCSABKAsyFi5nb29nbGUucHJvdG9idWYuRW1wdHkSNAoQZmllbGRfbWFza19maWVsZBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE1hc2sSLQoMc3RydWN0X2ZpZWxkGAsgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBIrCgt2YWx1ZV9maWVsZBgMIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5WYWx1ZRI0ChBsaXN0X3ZhbHVlX2ZpZWxkGA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLkxpc3RWYWx1ZRI0ChBudWxsX3ZhbHVlX2ZpZWxkGA4gASgOMhouZ29vZ2xlLnByb3RvYnVmLk51bGxWYWx1ZRIzCg90aW1lc3RhbXBfZmllbGQYDyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjoKFHdyYXBwZWRfZG91YmxlX2ZpZWxkGBAgASgLMhwuZ29vZ2xlLnByb3RvYnVmLkRvdWJsZVZhbHVlEjgKE3dyYXBwZWRfZmxvYXRfZmllbGQYESABKAsyGy5nb29nbGUucHJvdG9idWYuRmxvYXRWYWx1ZRI4ChN3cmFwcGVkX2ludDY0X2ZpZWxkGBIgASgLMhsuZ29vZ2xlLnByb3RvYnVmLkludDY0VmFsdWUSOgoUd3JhcHBlZF91aW50NjRfZmllbGQYEyABKAsyHC5nb29nbGUucHJvdG9idWYuVUludDY0VmFsdWUSOAoTd3JhcHBlZF9pbnQzMl9maWVsZBgUIAEoCzIbLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlEjoKFHdyYXBwZWRfdWludDMyX2ZpZWxkGBUgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlVJbnQzMlZhbHVlEjYKEndyYXBwZWRfYm9vbF9maWVsZBgWIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5Cb29sVmFsdWUSOgoUd3JhcHBlZF9zdHJpbmdfZmllbGQYFyABKAsyHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUSOAoTd3JhcHBlZF9ieXRlc19maWVsZBgYIAEoCzIbLmdvb2dsZS5wcm90b2J1Zi5CeXRlc1ZhbHVlEi8KE3JlcGVhdGVkX2VudW1fZmllbGQYGSADKA4yEi5zcGVjLkpzb25UeXBlRW51bRJJChNtYXBfYm9vbF9lbnVtX2ZpZWxkGBogAygLMiwuc3BlYy5Kc29uVHlwZXNNZXNzYWdlLk1hcEJvb2xFbnVtRmllbGRFbnRyeRpLChVNYXBCb29sRW51bUZpZWxkRW50cnkSCwoDa2V5GAEgASgIEiEKBXZhbHVlGAIgASgOMhIuc3BlYy5Kc29uVHlwZUVudW06AjgBKl0KDEpzb25UeXBlRW51bRIeChpKU09OX1RZUEVfRU5VTV9VTlNQRUNJRklFRBAAEhYKEkpTT05fVFlQRV9FTlVNX1lFUxABEhUKEUpTT05fVFlQRV9FTlVNX05PEAJiBnByb3RvMw", [file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_empty, file_google_protobuf_field_mask, file_google_protobuf_struct, file_google_protobuf_timestamp, file_google_protobuf_wrappers]);
 
 /**
@@ -302,7 +302,7 @@ export type JsonTypesMessageJson = {
  * Describes the message spec.JsonTypesMessage.
  * Use `create(JsonTypesMessageSchema)` to create a new message.
  */
-export const JsonTypesMessageSchema: GenDescMessage<JsonTypesMessage, JsonTypesMessageJson> = /*@__PURE__*/
+export const JsonTypesMessageSchema: GenMessage<JsonTypesMessage, JsonTypesMessageJson> = /*@__PURE__*/
   messageDesc(file_extra_json_types, 0);
 
 /**
@@ -333,6 +333,6 @@ export type JsonTypeEnumJson = "JSON_TYPE_ENUM_UNSPECIFIED" | "JSON_TYPE_ENUM_YE
 /**
  * Describes the enum spec.JsonTypeEnum.
  */
-export const JsonTypeEnumSchema: GenDescEnum<JsonTypeEnum, JsonTypeEnumJson> = /*@__PURE__*/
+export const JsonTypeEnumSchema: GenEnum<JsonTypeEnum, JsonTypeEnumJson> = /*@__PURE__*/
   enumDesc(file_extra_json_types, 0);
 

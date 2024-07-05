@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/type.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { Any, SourceContext } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/protobuf/type.proto.
  */
-export declare const file_google_protobuf_type: GenDescFile;
+export declare const file_google_protobuf_type: GenFile;
 
 /**
  * A protocol buffer message type.
@@ -85,7 +85,7 @@ export declare type Type = Message<"google.protobuf.Type"> & {
  * Describes the message google.protobuf.Type.
  * Use `create(TypeSchema)` to create a new message.
  */
-export declare const TypeSchema: GenDescMessage<Type>;
+export declare const TypeSchema: GenMessage<Type>;
 
 /**
  * A single field of a message type.
@@ -170,7 +170,7 @@ export declare type Field = Message<"google.protobuf.Field"> & {
  * Describes the message google.protobuf.Field.
  * Use `create(FieldSchema)` to create a new message.
  */
-export declare const FieldSchema: GenDescMessage<Field>;
+export declare const FieldSchema: GenMessage<Field>;
 
 /**
  * Basic field types.
@@ -315,7 +315,7 @@ export enum Field_Kind {
 /**
  * Describes the enum google.protobuf.Field.Kind.
  */
-export declare const Field_KindSchema: GenDescEnum<Field_Kind>;
+export declare const Field_KindSchema: GenEnum<Field_Kind>;
 
 /**
  * Whether a field is optional, required, or repeated.
@@ -355,7 +355,7 @@ export enum Field_Cardinality {
 /**
  * Describes the enum google.protobuf.Field.Cardinality.
  */
-export declare const Field_CardinalitySchema: GenDescEnum<Field_Cardinality>;
+export declare const Field_CardinalitySchema: GenEnum<Field_Cardinality>;
 
 /**
  * Enum type definition.
@@ -410,7 +410,7 @@ export declare type Enum = Message<"google.protobuf.Enum"> & {
  * Describes the message google.protobuf.Enum.
  * Use `create(EnumSchema)` to create a new message.
  */
-export declare const EnumSchema: GenDescMessage<Enum>;
+export declare const EnumSchema: GenMessage<Enum>;
 
 /**
  * Enum value definition.
@@ -444,7 +444,7 @@ export declare type EnumValue = Message<"google.protobuf.EnumValue"> & {
  * Describes the message google.protobuf.EnumValue.
  * Use `create(EnumValueSchema)` to create a new message.
  */
-export declare const EnumValueSchema: GenDescMessage<EnumValue>;
+export declare const EnumValueSchema: GenMessage<EnumValue>;
 
 /**
  * A protocol buffer option, which can be attached to a message, field,
@@ -478,7 +478,7 @@ export declare type Option = Message<"google.protobuf.Option"> & {
  * Describes the message google.protobuf.Option.
  * Use `create(OptionSchema)` to create a new message.
  */
-export declare const OptionSchema: GenDescMessage<Option>;
+export declare const OptionSchema: GenMessage<Option>;
 
 /**
  * The syntax in which a protocol buffer element is defined.
@@ -511,5 +511,5 @@ export enum Syntax {
 /**
  * Describes the enum google.protobuf.Syntax.
  */
-export declare const SyntaxSchema: GenDescEnum<Syntax>;
+export declare const SyntaxSchema: GenEnum<Syntax>;
 

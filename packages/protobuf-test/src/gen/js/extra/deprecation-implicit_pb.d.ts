@@ -16,7 +16,7 @@
 // @generated from file extra/deprecation-implicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { EmptySchema, FieldOptions } from "@bufbuild/protobuf/wkt";
 
@@ -24,7 +24,7 @@ import type { EmptySchema, FieldOptions } from "@bufbuild/protobuf/wkt";
  * Describes the file extra/deprecation-implicit.proto.
  * @deprecated
  */
-export declare const file_extra_deprecation_implicit: GenDescFile;
+export declare const file_extra_deprecation_implicit: GenFile;
 
 /**
  * @generated from message spec.ImplicitlyDeprecatedMessage
@@ -42,7 +42,7 @@ export declare type ImplicitlyDeprecatedMessage = Message<"spec.ImplicitlyDeprec
  * Use `create(ImplicitlyDeprecatedMessageSchema)` to create a new message.
  * @deprecated
  */
-export declare const ImplicitlyDeprecatedMessageSchema: GenDescMessage<ImplicitlyDeprecatedMessage>;
+export declare const ImplicitlyDeprecatedMessageSchema: GenMessage<ImplicitlyDeprecatedMessage>;
 
 /**
  * @generated from enum spec.ImplicitlyDeprecatedEnum
@@ -59,13 +59,13 @@ export enum ImplicitlyDeprecatedEnum {
  * Describes the enum spec.ImplicitlyDeprecatedEnum.
  * @deprecated
  */
-export declare const ImplicitlyDeprecatedEnumSchema: GenDescEnum<ImplicitlyDeprecatedEnum>;
+export declare const ImplicitlyDeprecatedEnumSchema: GenEnum<ImplicitlyDeprecatedEnum>;
 
 /**
  * @generated from service spec.ImplicitlyDeprecatedService
  * @deprecated
  */
-export declare const ImplicitlyDeprecatedService: GenDescService<{
+export declare const ImplicitlyDeprecatedService: GenService<{
   /**
    * @generated from rpc spec.ImplicitlyDeprecatedService.ImplicitlyDeprecatedRpc
    */
@@ -81,5 +81,5 @@ export declare const ImplicitlyDeprecatedService: GenDescService<{
  * @generated from extension: int32 implicitly_deprecated_option = 2002;
  * @deprecated
  */
-export declare const implicitly_deprecated_option: GenDescExtension<FieldOptions, number>;
+export declare const implicitly_deprecated_option: GenExtension<FieldOptions, number>;
 
