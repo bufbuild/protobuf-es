@@ -759,7 +759,8 @@ export declare const UserService: GenDescService<{
 }>;
 ```
 
-> **TODO** link to reflection, mention RPC frameworks like connect
+Protobuf-ES does not implement RPC itself, but other projects can use this typed schema. See 
+[Connect-ES][gh-connect-es] for a project that does.  
 
 ### Reserved names
 
@@ -1610,6 +1611,7 @@ if (field.fieldKind == "map") {
 [Text Encoding API]: https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API
 [gh-protoc]: https://github.com/protocolbuffers/protobuf/releases
 [gh-buf-conformance]: https://github.com/bufbuild/protobuf-conformance
+[gh-connect-es]: https://github.com/connectrpc/connect-es
 [protodelim-c++]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/util/delimited_message_util.h
 [protodelim-java]: https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/AbstractParser.html#parseDelimitedFrom-java.io.InputStream-
 [protodelim-go]: https://pkg.go.dev/google.golang.org/protobuf/encoding/protodelim
