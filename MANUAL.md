@@ -720,12 +720,7 @@ Some names that are valid in Protobuf cannot be used in ECMAScript, either becau
 `catch`, or because they would clash with built-in properties, such as `constructor`. [@bufbuild/protoc-gen-es]
 escapes reserved names by adding the suffix `$`.
 
-### Packages
-
-Protobuf files can specify a package for languages that support namespaces, like Java. ECMAScript does not have an
-equivalent, so Protobuf packages are largely ignored, but are supported in [descriptors](#descriptors) and type names.
-
-### Nested types
+### Names for nested types
 
 Message and enum declarations can be nested in a message. For example:
 
@@ -746,6 +741,29 @@ message User {
 
 Similar to Protobuf in Golang, we join the name of a nested type with its parents names, separated with an underscore.
 In generated code, the enum `User.Type` has the identifier `User_Type`.
+
+### Comments
+
+We think that your comments in proto sources files are important, and take great care to carry them over to the
+generated code as JSDocs comments. That includes license headers in your file, but also comments on messages, fields,
+services and methods.
+
+If you deprecate a Protobuf element, we add a JSDoc tag to the generated element:
+
+```typescript
+/**
+ * This field is deprecated
+ *
+ * @generated from field: string deprecated_field = 1 [deprecated = true];
+ * @deprecated
+ */
+deprecatedField = "";
+```
+
+### Packages
+
+Protobuf files can specify a package for languages that support namespaces, like Java. ECMAScript does not have an
+equivalent, so Protobuf packages are largely ignored, but are supported in [descriptors](#descriptors) and type names.
 
 ## Well-known types
 
