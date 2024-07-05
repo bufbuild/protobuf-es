@@ -476,20 +476,17 @@ We also generate the message `User_MyGroup`.
 >
 > The groups feature is deprecated and should not be used when creating new schemas. Use nested messages instead.
 
-
 ### Proto2 required fields
 
 In proto2, fields can use the `required` keyword to ensure that the field is always set. In Protobuf-ES, required fields
 are validated when serializing a message, but not when parsing or constructing a message.
 
-When consuming messages using proto2 required, properties are non-optional, so it is less of a burden to work with them 
+When consuming messages using proto2 required, properties are non-optional, so it is less of a burden to work with them
 as with v1 versions of Protobuf-ES. Note that message fields are an exception - they are always optional properties.
 
-
 > [!CAUTION]
-> 
+>
 > Required is a legacy feature. The [official language guide][protobuf.dev/required] states: **Do not use.**
-
 
 ### Proto3 optional fields
 
