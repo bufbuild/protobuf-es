@@ -220,7 +220,7 @@ import type { User } from "./example_pb";
 > By default, we generate ECMAScript modules, which means we use `import` and `export` statements. To modify imports,
 > see the plugin options [`js_import_style`][option-js_import_style] and [`import_extension`][option-import_extension].
 
-Below the import statements, we generate the schema of the Protobuf file. You typically only need this export to create 
+Below the import statements, we generate the schema of the Protobuf file. You typically only need this export to create
 a [registry](#registries), or for advanced use cases with reflection:
 
 ```typescript
@@ -502,7 +502,7 @@ as with v1 versions of Protobuf-ES. Note that message fields are an exception - 
 ### Proto3 optional fields
 
 In proto3, zero values like `0`, `false`, or `""` are not serialized. The `optional` keyword enables presence tracking
-for a field, allowing to distinguish between an absent value, and an explicitly set zero value. 
+for a field, allowing to distinguish between an absent value, and an explicitly set zero value.
 
 ```protobuf
 optional bool active = 3;
