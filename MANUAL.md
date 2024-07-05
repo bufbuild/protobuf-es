@@ -220,7 +220,8 @@ import type { User } from "./example_pb";
 > By default, we generate ECMAScript modules, which means we use `import` and `export` statements. To modify imports,
 > see the plugin options [`js_import_style`][option-js_import_style] and [`import_extension`][option-import_extension].
 
-Below the imports, we generate a file descriptor:
+Below the import statements, we generate the schema of the Protobuf file. You typically only need this export to create 
+a [registry](#registries), or for advanced use cases with reflection:
 
 ```typescript
 /**
@@ -228,8 +229,6 @@ Below the imports, we generate a file descriptor:
  */
 export declare const file_example: GenDescFile;
 ```
-
-This object describes all elements of the Protobuf file, and can be used for [reflection-based](#reflection) operations.
 
 ### Messages
 
