@@ -518,8 +518,8 @@ active?: boolean;
 ```
 
 > [!TIP]
-> 
-> See [field presence and default values](#field-presence-and-default-values) for more information about optional 
+>
+> See [field presence and default values](#field-presence-and-default-values) for more information about optional
 > fields.
 
 ### Field names
@@ -601,7 +601,7 @@ Along with the TypeScript enum, we also generate its schema:
 export declare const PhoneTypeSchema: GenDescEnum<PhoneType>;
 ```
 
-To learn more about the schema, take a look at the section about [reflection](#reflection). 
+To learn more about the schema, take a look at the section about [reflection](#reflection).
 
 ### Extensions
 
@@ -721,8 +721,8 @@ export declare const UserService: GenDescService<{
 }>;
 ```
 
-Protobuf-ES does not implement RPC itself, but other projects can use this typed schema. See 
-[Connect-ES][gh-connect-es] for a project that does.  
+Protobuf-ES does not implement RPC itself, but other projects can use this typed schema. See
+[Connect-ES][gh-connect-es] for a project that does.
 
 ### Reserved names
 
@@ -1286,7 +1286,7 @@ UserSchema.field.firstName.name; // "first_name"
 UserSchema.field.firstName.number; // 1
 
 PhoneTypeSchema.typeName; // example.PhoneType
-PhoneTypeSchema.values.map(value => value.name);
+PhoneTypeSchema.values.map((value) => value.name);
 // ["PHONE_TYPE_UNSPECIFIED", "PHONE_TYPE_MOBILE", "PHONE_TYPE_LAND_LINE"]
 ```
 
