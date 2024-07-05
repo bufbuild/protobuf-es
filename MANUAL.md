@@ -123,7 +123,7 @@ version: v2
 plugins:
   - local: protoc-gen-es
     out: src/gen
-    opt:
+    opt: # multiple options
       - target=ts
       - import_extension=js
 ```
