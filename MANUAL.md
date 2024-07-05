@@ -193,7 +193,7 @@ export declare type User = Message<"example.User"> & {
 export declare const UserSchema: GenDescMessage<User>;
 ```
 
-> **TODO** explain overview?
+> **TODO** does this overview provide value? we basically go through all parts of it (and more) in the following sections
 
 ### Files
 
@@ -329,13 +329,16 @@ If you prefer a field to use `string` instead of `bigint`, use the field option 
 For the following Protobuf field declaration:
 
 ```protobuf
-User user = 1;
+User manager = 4;
 ```
 
 We generate the following property:
 
 ```typescript
-user?: User
+/**
+ * @generated from field: example.User manager = 4;
+ */
+manager?: User
 ```
 
 Message fields do not have default values in Protobuf. They are always optional in ECMAScript.
@@ -350,13 +353,16 @@ Message fields do not have default values in Protobuf. They are always optional 
 Repeated fields are represented with an ECMAScript Array. For example, the following Protobuf field declaration:
 
 ```protobuf
-repeated string field = 1;
+repeated string locations = 5;
 ```
 
 Is generated as:
 
 ```typescript
-field: string[] = [];
+/**
+ * @generated from field: repeated string locations = 5;
+ */
+locations: string[] = [];
 ```
 
 Repeated fields will have an empty array as a default value.
@@ -366,13 +372,16 @@ Repeated fields will have an empty array as a default value.
 For the following Protobuf declaration:
 
 ```protobuf
-map<string, int32> field = 1;
+map<string, string> projects = 6;
 ```
 
 We generate the property:
 
 ```typescript
-field: { [key: string]: number } = {};
+/**
+ * @generated from field: map<string, string> projects = 6;
+ */
+projects: { [key: string]: string } = {};
 ```
 
 Map fields will have an empty object as a default value.
@@ -466,6 +475,9 @@ optional group MyGroup = 1 {
 For this group field, we generate the following property:
 
 ```ts
+/**
+ * @generated from field: optional example.User.MyGroup mygroup = 1;
+ */
 mygroup?: User_MyGroup;
 ```
 
@@ -490,12 +502,17 @@ as with v1 versions of Protobuf-ES. Note that message fields are an exception - 
 ### Proto3 optional fields
 
 In proto3, zero values like `0`, `false`, or `""` are not serialized. The `optional` keyword enables presence tracking
-for a field, allowing to distinguish between an absent value, and an explicitly set zero value. The property is
-generated as nullable:
+for a field, allowing to distinguish between an absent value, and an explicitly set zero value. 
+
+```protobuf
+optional bool active = 3;
+```
+
+The field is generated as an optional property:
 
 ```typescript
 /**
- * @generated from field: optional bool active = 1;
+ * @generated from field: optional bool active = 3;
  */
 active?: boolean;
 ```
@@ -564,20 +581,23 @@ Property names are always `lowerCamelCase`, even if the corresponding protobuf f
 For the following Protobuf definition:
 
 ```protobuf
-enum Foo {
-  DEFAULT_BAR = 0;
-  BAR_BELLS = 1;
-  BAR_B_CUE = 2;
+enum PhoneType {
+  UNSPECIFIED = 0;
+  MOBILE = 1;
+  LAND_LINE = 2;
 }
 ```
 
 We generate the following TypeScript enum:
 
 ```typescript
-enum Foo {
-  DEFAULT_BAR = 0,
-  BAR_BELLS = 1,
-  BAR_B_CUE = 2,
+/**
+ * @generated from enum example.PhoneType
+ */
+export enum PhoneType {
+  UNSPECIFIED = 0,
+  MOBILE = 1,
+  LAND_LINE = 2,
 }
 ```
 
@@ -595,8 +615,17 @@ enum Foo {
 we generate the following TypeScript enum:
 
 ```typescript
+/**
+ * @generated from enum example.Foo
+ */
 enum Foo {
+  /**
+   * @generated from enum value: FOO_BAR = 0;
+   */
   BAR = 0,
+  /**
+   * @generated from enum value: FOO_BAZ = 1;
+   */
   BAZ = 1,
 }
 ```
@@ -604,6 +633,9 @@ enum Foo {
 Along with the TypeScript enum, we also generate its schema:
 
 ```typescript
+/**
+ * Describes the enum example.Foo.
+ */
 export declare const FooSchema: GenDescEnum<Foo>;
 ```
 
