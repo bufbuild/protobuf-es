@@ -802,7 +802,7 @@ them as pre-compiled exports. If you import a well-known type in a Protobuf file
 
 For some of the well-known types, we provide additional features for convenience:
 
-#### google.protobuf.TimeStamp
+### google.protobuf.TimeStamp
 
 A `Timestamp` represents a point in time with nanosecond precision. It is independent of any time zone or local
 calendar. For convenience, we provide a few functions for conversion:
@@ -833,7 +833,7 @@ let date: Date = timestampDate(ts);
 let ms: number = timestampMs(ts);
 ```
 
-#### google.protobuf.Any
+### google.protobuf.Any
 
 `Any` stores an arbitrary messages as binary data. For convenience, we provide function to pack and unpack messages:
 
@@ -859,7 +859,7 @@ const registry = createRegistry(UserSchema);
 anyUnpack(any, registry); // Message | undefined
 ```
 
-#### google.protobuf.Struct
+### google.protobuf.Struct
 
 `Struct` stores a dynamic object with the same range of types as a plain object in JSON. When this message is used in a
 field, it is generated as the type `JsonObject` from [@bufbuild/protobuf].
@@ -882,7 +882,7 @@ myMessage.struct = {
 };
 ```
 
-#### Wrapper messages from google/protobuf/wrappers.proto
+### Wrapper messages from google/protobuf/wrappers.proto
 
 [wrappers.proto][google/protobuf/wrappers.proto] defines a message for every Protobuf primitive type. The messages are useful for embedding primitives
 in the `google.protobuf.Any` type, or to distinguish between the absence of a primitive field, and its default value.
