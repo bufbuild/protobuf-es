@@ -697,7 +697,7 @@ setExtension(user, hobbies, h);
 > In proto3, extensions can only be used for [custom options](#custom-options).
 
 > [!TIP]
-> 
+>
 > To use extensions with the JSON format, you need to provide them in the [serialization options](#json-serialization-options).
 
 ### Services
@@ -1063,7 +1063,7 @@ Options for `fromJson` and `fromJsonString`:
   By default, unknown properties are rejected. This option overrides this behavior and ignores properties, as well as
   unrecognized enum string representations.
 - `registry?: Registry`<br/>
-  A [registry](#registries) to parse `google.protobuf.Any` and [extensions](#extensions)
+  A [registry](#registries) to parse [`google.protobuf.Any`](#googleprotobufany) and [extensions](#extensions)
   from JSON.
 
 Options for `toJson` and `toJsonString`:
@@ -1080,7 +1080,7 @@ Options for `toJson` and `toJsonString`:
   Field names are converted to lowerCamelCase by default in JSON output. This
   option overrides the behavior to use the proto field name instead.
 - `registry?: Registry`<br/>
-  A [registry](#registries) to convert [extensions](#extensions) and `google.protobuf.Any` to JSON.
+  A [registry](#registries) to convert [extensions](#extensions) and [`google.protobuf.Any`](#googleprotobufany) to JSON.
 - `prettySpaces?: number`<br/>
   Only available with `toJsonString`. A convenience property for the `space` parameter to
   [JSON.stringify][JSON.stringify parameters].
