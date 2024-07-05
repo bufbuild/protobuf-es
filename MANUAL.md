@@ -517,57 +517,10 @@ The field is generated as an optional property:
 active?: boolean;
 ```
 
-### Field presence and default values
-
-In general, all fields in Protobuf are optional. The rationale is that optional fields allow the schema to evolve, and
-that applications are more robust if they handle missing fields gracefully. To avoid boilerplate, Protobuf
-implementations typically implement default values.
-
-For example, if you create a new `User` message, the boolean field `active` has the default value `false`.
-The value `false` is never serialized, so it is important to design the schema accordingly.
-
-Protobuf can distinguish between a default value `false` and a property deliberately set to `false` with explicit field
-presence. In proto3, you can use the `optional` keyword to enable explicit presence for a field:
-
-```protobuf
-syntax = "proto3";
-
-message Presence {
-  // Implicit presence - false is not serialized.
-  bool a = 1;
-  // Explicit presence - false is serialized.
-  optional bool b = 2;
-}
-```
-
-With Protobuf-ES, you can determine whether a field is present with the function `isFieldSet`. In the following example,
-the field with implicit presence always ignores `false`, while the field with explicit presence tracks that the field
-has been set:
-
-```typescript
-import { isFieldSet } from "@bufbuild/protobuf";
-import { PresenceSchema } from "./gen/example_pb";
-
-const msg = create(PresenceSchema);
-isFieldSet(msg, PresenceSchema.field.a); // false
-isFieldSet(msg, PresenceSchema.field.b); // false
-
-msg.a = false;
-msg.b = false;
-isFieldSet(msg, PresenceSchema.field.a); // false
-isFieldSet(msg, PresenceSchema.field.b); // true
-```
-
-For repeated fields, `isFieldSet` returns true if the Array has one or more elements. For map fields, `isFieldSet`
-returns true if the Object has one or more entries. `clearField` resets a field.
-
-> [!IMPORTANT]
->
-> Protobuf-ES uses the prototype chain to track explicit presence for fields with default values.
->
-> - With proto3, your messages will always be plain objects without a custom prototype.
-> - With proto2, your messages will always use a custom prototype for default values.
-> - With editions, your messages will use a custom prototype, unless all scalar and enum fields use `features.field_presence=IMPLICIT`.
+> [!TIP]
+> 
+> See [field presence and default values](#field-presence-and-default-values) for more information about optional 
+> fields.
 
 ### Field names
 
@@ -1027,6 +980,58 @@ msg.$typeName; // "example.User"
 > [!TIP]
 >
 > If you don't know the message's schema, you can look it up in a [registry](#registries).
+
+### Field presence and default values
+
+In general, all fields in Protobuf are optional. The rationale is that optional fields allow the schema to evolve, and
+that applications are more robust if they handle missing fields gracefully. To avoid boilerplate, Protobuf
+implementations typically implement default values.
+
+For example, if you create a new `User` message, the boolean field `active` has the default value `false`.
+The value `false` is never serialized, so it is important to design the schema accordingly.
+
+Protobuf can distinguish between a default value `false` and a property deliberately set to `false` with explicit field
+presence. In proto3, you can use the `optional` keyword to enable explicit presence for a field:
+
+```protobuf
+syntax = "proto3";
+
+message Presence {
+  // Implicit presence - false is not serialized.
+  bool a = 1;
+  // Explicit presence - false is serialized.
+  optional bool b = 2;
+}
+```
+
+With Protobuf-ES, you can determine whether a field is present with the function `isFieldSet`. In the following example,
+the field with implicit presence always ignores `false`, while the field with explicit presence tracks that the field
+has been set:
+
+```typescript
+import { isFieldSet } from "@bufbuild/protobuf";
+import { PresenceSchema } from "./gen/example_pb";
+
+const msg = create(PresenceSchema);
+isFieldSet(msg, PresenceSchema.field.a); // false
+isFieldSet(msg, PresenceSchema.field.b); // false
+
+msg.a = false;
+msg.b = false;
+isFieldSet(msg, PresenceSchema.field.a); // false
+isFieldSet(msg, PresenceSchema.field.b); // true
+```
+
+For repeated fields, `isFieldSet` returns true if the Array has one or more elements. For map fields, `isFieldSet`
+returns true if the Object has one or more entries. `clearField` resets a field.
+
+> [!IMPORTANT]
+>
+> Protobuf-ES uses the prototype chain to track explicit presence for fields with default values.
+>
+> - With proto3, your messages will always be plain objects without a custom prototype.
+> - With proto2, your messages will always use a custom prototype for default values.
+> - With editions, your messages will use a custom prototype, unless all scalar and enum fields use `features.field_presence=IMPLICIT`.
 
 ### Comparing messages
 
