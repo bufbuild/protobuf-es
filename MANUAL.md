@@ -472,6 +472,25 @@ mygroup?: User_MyGroup;
 
 We also generate the message `User_MyGroup`.
 
+> [!CAUTION]
+>
+> The groups feature is deprecated and should not be used when creating new schemas. Use nested messages instead.
+
+
+### Proto2 required fields
+
+In proto2, fields can use the `required` keyword to ensure that the field is always set. In Protobuf-ES, required fields
+are validated when serializing a message, but not when parsing or constructing a message.
+
+When consuming messages using proto2 required, properties are non-optional, so it is less of a burden to work with them 
+as with v1 versions of Protobuf-ES. Note that message fields are an exception - they are always optional properties.
+
+
+> [!CAUTION]
+> 
+> Required is a legacy feature. The [official language guide][protobuf.dev/required] states: **Do not use.**
+
+
 ### Proto3 optional fields
 
 In proto3, zero values like `0`, `false`, or `""` are not serialized. The `optional` keyword enables presence tracking
@@ -1556,6 +1575,7 @@ if (field.fieldKind == "map") {
 [protobuf.dev/field_presence]: https://protobuf.dev/programming-guides/field_presence/
 [protobuf.dev/encoding]: https://protobuf.dev/programming-guides/encoding/
 [protobuf.dev/customoptions]: https://protobuf.dev/programming-guides/proto2/#customoptions
+[protobuf.dev/required]: https://protobuf.dev/programming-guides/proto2/#field-labels
 [buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
 [buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
 [wikipedia.org/idl]: https://en.wikipedia.org/wiki/Interface_description_language
