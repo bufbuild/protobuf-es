@@ -21,7 +21,10 @@ import type { JsonValue } from "../json-value.js";
  *
  * @private
  */
-export function enumDesc<Shape, JsonType extends JsonValue = JsonValue>(
+export function enumDesc<
+  Shape extends number,
+  JsonType extends JsonValue = JsonValue,
+>(
   file: DescFile,
   path: number,
   ...paths: number[]

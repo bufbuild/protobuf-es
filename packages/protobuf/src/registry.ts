@@ -599,6 +599,7 @@ function addEnum(
     open: true,
     name: proto.name,
     typeName: makeTypeName(proto, parent, file),
+    value: {},
     values: [],
     sharedPrefix,
     toString(): string {
@@ -609,20 +610,24 @@ function addEnum(
   reg.add(desc);
   proto.value.forEach((proto) => {
     const name = proto.name;
-    desc.values.push({
-      kind: "enum_value",
-      proto,
-      deprecated: proto.options?.deprecated ?? false,
-      parent: desc,
-      name: proto.name,
-      localName: safeObjectProperty(
-        sharedPrefix == undefined ? name : name.substring(sharedPrefix.length),
-      ),
-      number: proto.number,
-      toString() {
-        return `enum value ${desc.typeName}.${this.name}`;
-      },
-    });
+    desc.values.push(
+      (desc.value[proto.number] = {
+        kind: "enum_value" as const,
+        proto,
+        deprecated: proto.options?.deprecated ?? false,
+        parent: desc,
+        name: proto.name,
+        localName: safeObjectProperty(
+          sharedPrefix == undefined
+            ? name
+            : name.substring(sharedPrefix.length),
+        ),
+        number: proto.number,
+        toString() {
+          return `enum value ${desc.typeName}.${this.name}`;
+        },
+      }),
+    );
   });
   (parent?.nestedEnums ?? file.enums).push(desc);
 }

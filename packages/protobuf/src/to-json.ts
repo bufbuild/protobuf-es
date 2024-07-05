@@ -14,6 +14,7 @@
 
 import {
   type DescEnum,
+  type DescEnumValue,
   type DescField,
   type DescMessage,
   ScalarType,
@@ -169,7 +170,7 @@ export function enumToJson<Desc extends DescEnum>(
   if (descEnum.typeName == "google.protobuf.NullValue") {
     return null as EnumJsonType<Desc>;
   }
-  const name = descEnum.values.find((v) => v.number === value)?.name;
+  const name = (descEnum.value[value] as DescEnumValue | undefined)?.name;
   if (name === undefined) {
     throw new Error(
       `${String(value)} is not a value in ${descEnum.toString()}`,
@@ -308,7 +309,7 @@ function enumToJsonInternal(
   if (enumAsInteger) {
     return value;
   }
-  const val = desc.values.find((v) => v.number == value);
+  const val = desc.value[value] as DescEnumValue | undefined;
   return val?.name ?? value; // if we don't know the enum value, just return the number
 }
 
