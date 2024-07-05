@@ -682,8 +682,7 @@ export declare const TestServiceWithCustomOptions: GenService<{
     input: typeof CustomOptionFooRequestSchema;
     output: typeof CustomOptionFooResponseSchema;
   },
-}
->;
+}>;
 
 /**
  * @generated from service protobuf_unittest.AggregateService
@@ -697,8 +696,7 @@ export declare const AggregateService: GenService<{
     input: typeof AggregateMessageSchema;
     output: typeof AggregateMessageSchema;
   },
-}
->;
+}>;
 
 /**
  * @generated from extension: optional uint64 file_opt1 = 7736974;

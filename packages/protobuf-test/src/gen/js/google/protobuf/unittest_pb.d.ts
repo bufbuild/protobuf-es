@@ -6806,8 +6806,7 @@ export declare const TestService: GenService<{
     input: typeof BarRequestSchema;
     output: typeof BarResponseSchema;
   },
-}
->;
+}>;
 
 /**
  * Singular

@@ -1128,7 +1128,6 @@ export const ReservedPropertyNamesService: GenService<{
     input: typeof ErrorSchema;
     output: typeof ErrorSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_extra_name_clash, 0);
 

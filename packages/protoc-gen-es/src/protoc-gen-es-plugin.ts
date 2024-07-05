@@ -353,20 +353,16 @@ function getFileDescCall(f: GeneratedFile, file: DescFile, schema: Schema) {
 
 // prettier-ignore
 function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable {
-  const p: Printable[] = [];
-  function print(...printables: Printable[]) {
-    p.push(...printables, "\n");
-  }
-  print("{");
+  const p: Printable[] = ["{\n"];
   for (const method of service.methods) {
-    print(f.jsDoc(method, "  "));
-    print("  ", method.localName, ": {");
-    print("    methodKind: ", f.string(method.methodKind), ";");
-    print("    input: typeof ", f.importSchema(method.input, true), ";");
-    print("    output: typeof ", f.importSchema(method.output, true), ";");
-    print("  },");
+    p.push(f.jsDoc(method, "  "), "\n");
+    p.push("  ", method.localName, ": {\n");
+    p.push("    methodKind: ", f.string(method.methodKind), ";\n");
+    p.push("    input: typeof ", f.importSchema(method.input, true), ";\n");
+    p.push("    output: typeof ", f.importSchema(method.output, true), ";\n");
+    p.push("  },\n");
   }
-  print("}");
+  p.push("}");
   return p;
 }
 

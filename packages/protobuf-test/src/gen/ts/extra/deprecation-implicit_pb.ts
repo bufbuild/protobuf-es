@@ -79,8 +79,7 @@ export const ImplicitlyDeprecatedService: GenService<{
     input: typeof EmptySchema;
     output: typeof EmptySchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_extra_deprecation_implicit, 0);
 
 /**

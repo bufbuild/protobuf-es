@@ -416,8 +416,7 @@ export const Operations: GenService<{
     input: typeof WaitOperationRequestSchema;
     output: typeof OperationSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_google_longrunning_operations, 0);
 
 /**

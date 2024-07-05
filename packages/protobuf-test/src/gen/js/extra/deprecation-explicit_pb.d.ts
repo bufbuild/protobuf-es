@@ -135,8 +135,7 @@ export declare const DeprecatedService: GenService<{
     input: typeof EmptySchema;
     output: typeof EmptySchema;
   },
-}
->;
+}>;
 
 /**
  * A single RPC of this service is deprecated
@@ -161,8 +160,7 @@ export declare const DeprecatedRpcService: GenService<{
     input: typeof EmptySchema;
     output: typeof EmptySchema;
   },
-}
->;
+}>;
 
 /**
  * This extension is deprecated

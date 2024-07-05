@@ -151,8 +151,7 @@ export declare const Service: GenService<{
     input: typeof TopLevelMessageSchema;
     output: typeof TopLevelMessageSchema;
   },
-}
->;
+}>;
 
 /**
  * @generated from extension: optional int32 plain_option = 505092806;

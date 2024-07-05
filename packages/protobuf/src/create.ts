@@ -200,7 +200,9 @@ const messagePrototypes = new WeakMap<
 function createZeroMessage(desc: DescMessage): Message {
   let msg: Record<string, unknown>;
   if (!needsPrototypeChain(desc)) {
-    msg = {};
+    msg = {
+      $typeName: desc.typeName,
+    };
     for (const member of desc.members) {
       if (member.kind == "oneof" || member.presence == IMPLICIT) {
         msg[member.localName] = createZeroField(member);
@@ -238,6 +240,7 @@ function createZeroMessage(desc: DescMessage): Message {
       messagePrototypes.set(desc, { prototype, members });
     }
     msg = Object.create(prototype) as Record<string, unknown>;
+    msg.$typeName = desc.typeName;
     for (const member of desc.members) {
       if (members.has(member)) {
         continue;
@@ -255,7 +258,6 @@ function createZeroMessage(desc: DescMessage): Message {
       msg[member.localName] = createZeroField(member);
     }
   }
-  msg.$typeName = desc.typeName;
   return msg as Message;
 }
 

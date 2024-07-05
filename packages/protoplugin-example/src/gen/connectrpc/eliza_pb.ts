@@ -81,7 +81,6 @@ export const ElizaService: GenService<{
     input: typeof SayRequestSchema;
     output: typeof SayResponseSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_connectrpc_eliza, 0);
 

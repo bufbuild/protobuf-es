@@ -724,8 +724,7 @@ export const TestServiceWithCustomOptions: GenService<{
     input: typeof CustomOptionFooRequestSchema;
     output: typeof CustomOptionFooResponseSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_google_protobuf_unittest_custom_options, 0);
 
 /**
@@ -740,8 +739,7 @@ export const AggregateService: GenService<{
     input: typeof AggregateMessageSchema;
     output: typeof AggregateMessageSchema;
   },
-}
-> = /*@__PURE__*/
+}> = /*@__PURE__*/
   serviceDesc(file_google_protobuf_unittest_custom_options, 1);
 
 /**

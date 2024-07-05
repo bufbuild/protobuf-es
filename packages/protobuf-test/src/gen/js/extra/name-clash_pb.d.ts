@@ -1080,6 +1080,5 @@ export declare const ReservedPropertyNamesService: GenService<{
     input: typeof ErrorSchema;
     output: typeof ErrorSchema;
   },
-}
->;
+}>;
 

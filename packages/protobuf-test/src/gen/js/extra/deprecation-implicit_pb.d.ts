@@ -74,8 +74,7 @@ export declare const ImplicitlyDeprecatedService: GenService<{
     input: typeof EmptySchema;
     output: typeof EmptySchema;
   },
-}
->;
+}>;
 
 /**
  * @generated from extension: int32 implicitly_deprecated_option = 2002;

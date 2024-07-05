@@ -78,6 +78,5 @@ export declare const ServiceWithOptions: GenService<{
     input: typeof MessageWithOptionsSchema;
     output: typeof MessageWithOptionsSchema;
   },
-}
->;
+}>;
 
