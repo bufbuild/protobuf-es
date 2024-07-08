@@ -391,7 +391,6 @@ Map fields will have an empty object as a default value.
 > ECMAScript Map objects have great support for key types, but many popular libraries do not support them correctly yet.
 > For this reason, we use an object to represent map fields.
 
-
 ### Oneof fields
 
 A `oneof` construct in Protobuf guarantees that only one of the contained fields can be selected at a time.
