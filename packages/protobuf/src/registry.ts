@@ -616,7 +616,7 @@ function addEnum(
         proto,
         deprecated: proto.options?.deprecated ?? false,
         parent: desc,
-        name: proto.name,
+        name,
         localName: safeObjectProperty(
           sharedPrefix == undefined
             ? name
@@ -624,7 +624,7 @@ function addEnum(
         ),
         number: proto.number,
         toString() {
-          return `enum value ${desc.typeName}.${this.name}`;
+          return `enum value ${desc.typeName}.${name}`;
         },
       }),
     );
