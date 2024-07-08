@@ -386,11 +386,11 @@ projects: { [key: string]: string } = {};
 
 Map fields will have an empty object as a default value.
 
-While it is not a perfectly clear-cut case, we chose to represent map fields
-as plain objects instead of [ECMAScript map objects](https://tc39.es/ecma262/multipage/keyed-collections.html#sec-map-objects).
-While `Map` has better behavior around keys, they do not have a literal
-representation, do not support the spread operator and type narrowing in
-TypeScript.
+> [!NOTE]
+>
+> ECMAScript Map objects have great support for key types, but many popular libraries do not support them correctly yet.
+> For this reason, we use an object to represent map fields.
+
 
 ### Oneof fields
 
