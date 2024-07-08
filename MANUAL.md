@@ -1610,6 +1610,19 @@ if (field.fieldKind == "map") {
 
 > **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/migrating.md
 
+## Interoperability with React Server Components, Redux, and others
+
+There are several popular frameworks and libraries in the ecosystem that only support plain objects: Classes, custom
+prototypes, the ECMAScript Map, Set, or Date objects, and sometimes even the BigInt type are unsupported.
+
+With proto3, messages are plain objects, and should work out of the box in all popular frameworks.
+If you have to work with a library that does not support BigInt, you can generate the field as a string instead with the
+[field option `jstype = JS_STRING`](#scalar-fields).
+
+If you use proto2, messages use the prototype chain to [track field presence](#field-presence-and-default-values), which
+makes them non-plain objects. In this case, serializing to JSON is a reliable solution. We support
+[JSON typings](#json-types) for interacting with JSON directly.
+
 ## FAQ
 
 > **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/faq.md
