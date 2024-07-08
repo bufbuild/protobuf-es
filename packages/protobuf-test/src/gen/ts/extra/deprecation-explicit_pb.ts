@@ -16,7 +16,7 @@
 // @generated from file extra/deprecation-explicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { EmptySchema, FieldOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_descriptor, file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/deprecation-explicit.proto.
  */
-export const file_extra_deprecation_explicit: GenDescFile = /*@__PURE__*/
+export const file_extra_deprecation_explicit: GenFile = /*@__PURE__*/
   fileDesc("CiBleHRyYS9kZXByZWNhdGlvbi1leHBsaWNpdC5wcm90bxIEc3BlYyImChFEZXByZWNhdGVkTWVzc2FnZRINCgVmaWVsZBgBIAEoCToCGAEiTQoWRGVwcmVjYXRlZEZpZWxkTWVzc2FnZRIcChBkZXByZWNhdGVkX2ZpZWxkGAEgASgJQgIYARIVCg1jdXJyZW50X2ZpZWxkGAIgASgJKkIKDkRlcHJlY2F0ZWRFbnVtEhUKEURFUFJFQ0FURURfRU5VTV9BEAASFQoRREVQUkVDQVRFRF9FTlVNX0IQARoCGAEqbAoTRGVwcmVjYXRlZFZhbHVlRW51bRIlCiFERVBSRUNBVEVEX1ZBTFVFX0VOVU1fVU5TUEVDSUZJRUQQABIuCiZERVBSRUNBVEVEX1ZBTFVFX0VOVU1fREVQUkVDQVRFRF9WQUxVRRABGgIIATJWChFEZXByZWNhdGVkU2VydmljZRI8CgpEZXByZWNhdGVkEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GgOIAgEymgEKFERlcHJlY2F0ZWRScGNTZXJ2aWNlEkEKCkRlcHJlY2F0ZWQSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiA4gCARI/Cg1Ob3REZXByZWNhdGVkEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5OmQKHGV4cGxpY2l0bHlfZGVwcmVjYXRlZF9vcHRpb24SHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGNEPIAEoBUICGAFSGmV4cGxpY2l0bHlEZXByZWNhdGVkT3B0aW9uYgZwcm90bzM", [file_google_protobuf_empty, file_google_protobuf_descriptor]);
 
 /**
@@ -46,7 +46,7 @@ export type DeprecatedMessage = Message<"spec.DeprecatedMessage"> & {
  * Use `create(DeprecatedMessageSchema)` to create a new message.
  * @deprecated
  */
-export const DeprecatedMessageSchema: GenDescMessage<DeprecatedMessage> = /*@__PURE__*/
+export const DeprecatedMessageSchema: GenMessage<DeprecatedMessage> = /*@__PURE__*/
   messageDesc(file_extra_deprecation_explicit, 0);
 
 /**
@@ -75,7 +75,7 @@ export type DeprecatedFieldMessage = Message<"spec.DeprecatedFieldMessage"> & {
  * Describes the message spec.DeprecatedFieldMessage.
  * Use `create(DeprecatedFieldMessageSchema)` to create a new message.
  */
-export const DeprecatedFieldMessageSchema: GenDescMessage<DeprecatedFieldMessage> = /*@__PURE__*/
+export const DeprecatedFieldMessageSchema: GenMessage<DeprecatedFieldMessage> = /*@__PURE__*/
   messageDesc(file_extra_deprecation_explicit, 1);
 
 /**
@@ -100,7 +100,7 @@ export enum DeprecatedEnum {
  * Describes the enum spec.DeprecatedEnum.
  * @deprecated
  */
-export const DeprecatedEnumSchema: GenDescEnum<DeprecatedEnum> = /*@__PURE__*/
+export const DeprecatedEnumSchema: GenEnum<DeprecatedEnum> = /*@__PURE__*/
   enumDesc(file_extra_deprecation_explicit, 0);
 
 /**
@@ -124,7 +124,7 @@ export enum DeprecatedValueEnum {
 /**
  * Describes the enum spec.DeprecatedValueEnum.
  */
-export const DeprecatedValueEnumSchema: GenDescEnum<DeprecatedValueEnum> = /*@__PURE__*/
+export const DeprecatedValueEnumSchema: GenEnum<DeprecatedValueEnum> = /*@__PURE__*/
   enumDesc(file_extra_deprecation_explicit, 1);
 
 /**
@@ -133,7 +133,7 @@ export const DeprecatedValueEnumSchema: GenDescEnum<DeprecatedValueEnum> = /*@__
  * @generated from service spec.DeprecatedService
  * @deprecated
  */
-export const DeprecatedService: GenDescService<{
+export const DeprecatedService: GenService<{
   /**
    * @generated from rpc spec.DeprecatedService.Deprecated
    */
@@ -150,7 +150,7 @@ export const DeprecatedService: GenDescService<{
  *
  * @generated from service spec.DeprecatedRpcService
  */
-export const DeprecatedRpcService: GenDescService<{
+export const DeprecatedRpcService: GenService<{
   /**
    * @generated from rpc spec.DeprecatedRpcService.Deprecated
    * @deprecated
@@ -177,6 +177,6 @@ export const DeprecatedRpcService: GenDescService<{
  * @generated from extension: int32 explicitly_deprecated_option = 2001 [deprecated = true];
  * @deprecated
  */
-export const explicitly_deprecated_option: GenDescExtension<FieldOptions, number> = /*@__PURE__*/
+export const explicitly_deprecated_option: GenExtension<FieldOptions, number> = /*@__PURE__*/
   extDesc(file_extra_deprecation_explicit, 0);
 

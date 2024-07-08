@@ -12,11 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type {
-  GenDescEnum,
-  GenDescExtension,
-  GenDescMessage,
-} from "./codegenv1/types.js";
+import type { GenEnum, GenExtension, GenMessage } from "./codegenv1/types.js";
 import type { DescEnum, DescExtension, DescMessage } from "./descriptors.js";
 import type { OneofADT } from "./reflect/guard.js";
 import type { WireType } from "./wire/index.js";
@@ -40,20 +36,20 @@ export type Message<TypeName extends string = string> = {
  * Extract the message type from a message descriptor.
  */
 export type MessageShape<Desc extends DescMessage> =
-  Desc extends GenDescMessage<infer RuntimeShape> ? RuntimeShape : Message;
+  Desc extends GenMessage<infer RuntimeShape> ? RuntimeShape : Message;
 
 /**
  * Extract the message JSON type from a message descriptor.
  */
 export type MessageJsonType<Desc extends DescMessage> =
-  Desc extends GenDescMessage<Message, infer JsonType> ? JsonType : JsonValue;
+  Desc extends GenMessage<Message, infer JsonType> ? JsonType : JsonValue;
 
 /**
  * Extract the init type from a message descriptor.
  * The init type is accepted by the function create().
  */
 export type MessageInitShape<Desc extends DescMessage> =
-  Desc extends GenDescMessage<infer RuntimeShape>
+  Desc extends GenMessage<infer RuntimeShape>
     ? RuntimeShape | MessageInit<RuntimeShape>
     : Record<string, unknown>;
 
@@ -61,19 +57,19 @@ export type MessageInitShape<Desc extends DescMessage> =
  * Extract the enum type of from an enum descriptor.
  */
 export type EnumShape<Desc extends DescEnum> =
-  Desc extends GenDescEnum<infer RuntimeShape> ? RuntimeShape : number;
+  Desc extends GenEnum<infer RuntimeShape> ? RuntimeShape : number;
 
 /**
  * Extract the enum JSON type from a enum descriptor.
  */
 export type EnumJsonType<Desc extends DescEnum> =
-  Desc extends GenDescEnum<number, infer JsonType> ? JsonType : string | null;
+  Desc extends GenEnum<number, infer JsonType> ? JsonType : string | null;
 
 /**
  * Extract the value type from an extension descriptor.
  */
 export type ExtensionValueShape<Desc extends DescExtension> =
-  Desc extends GenDescExtension<Message, infer RuntimeShape>
+  Desc extends GenExtension<Message, infer RuntimeShape>
     ? RuntimeShape
     : unknown;
 
@@ -81,7 +77,7 @@ export type ExtensionValueShape<Desc extends DescExtension> =
  * Extract the type of the extended message from an extension descriptor.
  */
 export type Extendee<Desc extends DescExtension> =
-  Desc extends GenDescExtension<infer Extendee> ? Extendee : Message;
+  Desc extends GenExtension<infer Extendee> ? Extendee : Message;
 
 /**
  * Unknown fields are fields that were not recognized during parsing, or

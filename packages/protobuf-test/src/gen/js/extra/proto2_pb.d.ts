@@ -16,14 +16,14 @@
 // @generated from file extra/proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { UInt32Value } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/proto2.proto.
  */
-export declare const file_extra_proto2: GenDescFile;
+export declare const file_extra_proto2: GenFile;
 
 /**
  * Note: We do not exhaust all field types
@@ -478,7 +478,7 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
  * Describes the message spec.Proto2Message.
  * Use `create(Proto2MessageSchema)` to create a new message.
  */
-export declare const Proto2MessageSchema: GenDescMessage<Proto2Message>;
+export declare const Proto2MessageSchema: GenMessage<Proto2Message>;
 
 /**
  * @generated from message spec.Proto2Message.RequiredGroup
@@ -494,7 +494,7 @@ export declare type Proto2Message_RequiredGroup = Message<"spec.Proto2Message.Re
  * Describes the message spec.Proto2Message.RequiredGroup.
  * Use `create(Proto2Message_RequiredGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_RequiredGroupSchema: GenDescMessage<Proto2Message_RequiredGroup>;
+export declare const Proto2Message_RequiredGroupSchema: GenMessage<Proto2Message_RequiredGroup>;
 
 /**
  * @generated from message spec.Proto2Message.RequiredDefaultGroup
@@ -510,7 +510,7 @@ export declare type Proto2Message_RequiredDefaultGroup = Message<"spec.Proto2Mes
  * Describes the message spec.Proto2Message.RequiredDefaultGroup.
  * Use `create(Proto2Message_RequiredDefaultGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_RequiredDefaultGroupSchema: GenDescMessage<Proto2Message_RequiredDefaultGroup>;
+export declare const Proto2Message_RequiredDefaultGroupSchema: GenMessage<Proto2Message_RequiredDefaultGroup>;
 
 /**
  * @generated from message spec.Proto2Message.OptionalGroup
@@ -526,7 +526,7 @@ export declare type Proto2Message_OptionalGroup = Message<"spec.Proto2Message.Op
  * Describes the message spec.Proto2Message.OptionalGroup.
  * Use `create(Proto2Message_OptionalGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_OptionalGroupSchema: GenDescMessage<Proto2Message_OptionalGroup>;
+export declare const Proto2Message_OptionalGroupSchema: GenMessage<Proto2Message_OptionalGroup>;
 
 /**
  * @generated from message spec.Proto2Message.OptionalDefaultGroup
@@ -542,7 +542,7 @@ export declare type Proto2Message_OptionalDefaultGroup = Message<"spec.Proto2Mes
  * Describes the message spec.Proto2Message.OptionalDefaultGroup.
  * Use `create(Proto2Message_OptionalDefaultGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_OptionalDefaultGroupSchema: GenDescMessage<Proto2Message_OptionalDefaultGroup>;
+export declare const Proto2Message_OptionalDefaultGroupSchema: GenMessage<Proto2Message_OptionalDefaultGroup>;
 
 /**
  * @generated from message spec.Proto2Message.RepeatedGroup
@@ -558,7 +558,7 @@ export declare type Proto2Message_RepeatedGroup = Message<"spec.Proto2Message.Re
  * Describes the message spec.Proto2Message.RepeatedGroup.
  * Use `create(Proto2Message_RepeatedGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_RepeatedGroupSchema: GenDescMessage<Proto2Message_RepeatedGroup>;
+export declare const Proto2Message_RepeatedGroupSchema: GenMessage<Proto2Message_RepeatedGroup>;
 
 /**
  * @generated from message spec.Proto2Message.OneofGroup
@@ -574,7 +574,7 @@ export declare type Proto2Message_OneofGroup = Message<"spec.Proto2Message.Oneof
  * Describes the message spec.Proto2Message.OneofGroup.
  * Use `create(Proto2Message_OneofGroupSchema)` to create a new message.
  */
-export declare const Proto2Message_OneofGroupSchema: GenDescMessage<Proto2Message_OneofGroup>;
+export declare const Proto2Message_OneofGroupSchema: GenMessage<Proto2Message_OneofGroup>;
 
 /**
  * @generated from enum spec.Proto2Enum
@@ -594,7 +594,7 @@ export enum Proto2Enum {
 /**
  * Describes the enum spec.Proto2Enum.
  */
-export declare const Proto2EnumSchema: GenDescEnum<Proto2Enum>;
+export declare const Proto2EnumSchema: GenEnum<Proto2Enum>;
 
 /**
  * First enum value must be 0 when used as map value type
@@ -616,5 +616,5 @@ export enum Proto2EnumWithZero {
 /**
  * Describes the enum spec.Proto2EnumWithZero.
  */
-export declare const Proto2EnumWithZeroSchema: GenDescEnum<Proto2EnumWithZero>;
+export declare const Proto2EnumWithZeroSchema: GenEnum<Proto2EnumWithZero>;
 

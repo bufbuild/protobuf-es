@@ -16,13 +16,13 @@
 // @generated from file extra/example.proto (package example, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/example.proto.
  */
-export declare const file_extra_example: GenDescFile;
+export declare const file_extra_example: GenFile;
 
 /**
  * @generated from message example.User
@@ -63,5 +63,5 @@ export declare type User = Message<"example.User"> & {
  * Describes the message example.User.
  * Use `create(UserSchema)` to create a new message.
  */
-export declare const UserSchema: GenDescMessage<User>;
+export declare const UserSchema: GenMessage<User>;
 

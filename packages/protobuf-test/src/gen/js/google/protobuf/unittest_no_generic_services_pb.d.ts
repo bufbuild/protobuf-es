@@ -18,13 +18,13 @@
 // @generated from file google/protobuf/unittest_no_generic_services.proto (package protobuf_unittest.no_generic_services_test, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_no_generic_services.proto.
  */
-export declare const file_google_protobuf_unittest_no_generic_services: GenDescFile;
+export declare const file_google_protobuf_unittest_no_generic_services: GenFile;
 
 /**
  * @generated from message protobuf_unittest.no_generic_services_test.TestMessage
@@ -40,7 +40,7 @@ export declare type TestMessage = Message<"protobuf_unittest.no_generic_services
  * Describes the message protobuf_unittest.no_generic_services_test.TestMessage.
  * Use `create(TestMessageSchema)` to create a new message.
  */
-export declare const TestMessageSchema: GenDescMessage<TestMessage>;
+export declare const TestMessageSchema: GenMessage<TestMessage>;
 
 /**
  * @generated from enum protobuf_unittest.no_generic_services_test.TestEnum
@@ -55,12 +55,12 @@ export enum TestEnum {
 /**
  * Describes the enum protobuf_unittest.no_generic_services_test.TestEnum.
  */
-export declare const TestEnumSchema: GenDescEnum<TestEnum>;
+export declare const TestEnumSchema: GenEnum<TestEnum>;
 
 /**
  * @generated from service protobuf_unittest.no_generic_services_test.TestService
  */
-export declare const TestService: GenDescService<{
+export declare const TestService: GenService<{
   /**
    * @generated from rpc protobuf_unittest.no_generic_services_test.TestService.Foo
    */
@@ -74,5 +74,5 @@ export declare const TestService: GenDescService<{
 /**
  * @generated from extension: optional int32 test_extension = 1000;
  */
-export declare const test_extension: GenDescExtension<TestMessage, number>;
+export declare const test_extension: GenExtension<TestMessage, number>;
 

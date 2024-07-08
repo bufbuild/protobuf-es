@@ -16,7 +16,7 @@
 // @generated from file google/type/color.proto (package google.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import { file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
@@ -24,7 +24,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/type/color.proto.
  */
-export const file_google_type_color: GenDescFile = /*@__PURE__*/
+export const file_google_type_color: GenFile = /*@__PURE__*/
   fileDesc("Chdnb29nbGUvdHlwZS9jb2xvci5wcm90bxILZ29vZ2xlLnR5cGUiXQoFQ29sb3ISCwoDcmVkGAEgASgCEg0KBWdyZWVuGAIgASgCEgwKBGJsdWUYAyABKAISKgoFYWxwaGEYBCABKAsyGy5nb29nbGUucHJvdG9idWYuRmxvYXRWYWx1ZUJgCg9jb20uZ29vZ2xlLnR5cGVCCkNvbG9yUHJvdG9QAVo2Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy90eXBlL2NvbG9yO2NvbG9y+AEBogIDR1RQYgZwcm90bzM", [file_google_protobuf_wrappers]);
 
 /**
@@ -199,6 +199,6 @@ export type Color = Message<"google.type.Color"> & {
  * Describes the message google.type.Color.
  * Use `create(ColorSchema)` to create a new message.
  */
-export const ColorSchema: GenDescMessage<Color> = /*@__PURE__*/
+export const ColorSchema: GenMessage<Color> = /*@__PURE__*/
   messageDesc(file_google_type_color, 0);
 

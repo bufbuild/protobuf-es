@@ -16,14 +16,14 @@
 // @generated from file extra/example-service.proto (package example, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { User } from "./example_pb.js";
 
 /**
  * Describes the file extra/example-service.proto.
  */
-export declare const file_extra_example_service: GenDescFile;
+export declare const file_extra_example_service: GenFile;
 
 /**
  * @generated from message example.CreateUserRequest
@@ -44,7 +44,7 @@ export declare type CreateUserRequest = Message<"example.CreateUserRequest"> & {
  * Describes the message example.CreateUserRequest.
  * Use `create(CreateUserRequestSchema)` to create a new message.
  */
-export declare const CreateUserRequestSchema: GenDescMessage<CreateUserRequest>;
+export declare const CreateUserRequestSchema: GenMessage<CreateUserRequest>;
 
 /**
  * @generated from message example.CreateUserResponse
@@ -60,12 +60,12 @@ export declare type CreateUserResponse = Message<"example.CreateUserResponse"> &
  * Describes the message example.CreateUserResponse.
  * Use `create(CreateUserResponseSchema)` to create a new message.
  */
-export declare const CreateUserResponseSchema: GenDescMessage<CreateUserResponse>;
+export declare const CreateUserResponseSchema: GenMessage<CreateUserResponse>;
 
 /**
  * @generated from service example.UserService
  */
-export declare const UserService: GenDescService<{
+export declare const UserService: GenService<{
   /**
    * @generated from rpc example.UserService.CreateUser
    */

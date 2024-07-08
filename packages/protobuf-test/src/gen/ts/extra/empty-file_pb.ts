@@ -16,12 +16,12 @@
 // @generated from file extra/empty-file.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc } from "@bufbuild/protobuf/codegenv1";
 
 /**
  * Describes the file extra/empty-file.proto.
  */
-export const file_extra_empty_file: GenDescFile = /*@__PURE__*/
+export const file_extra_empty_file: GenFile = /*@__PURE__*/
   fileDesc("ChZleHRyYS9lbXB0eS1maWxlLnByb3RvEgRzcGVjYgZwcm90bzM");
 

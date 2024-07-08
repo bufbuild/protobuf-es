@@ -16,7 +16,7 @@
 // @generated from file extra/wkt-wrappers.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64Value, StringValue, UInt32Value, UInt64Value } from "@bufbuild/protobuf/wkt";
 
@@ -24,7 +24,7 @@ import type { BoolValue, BytesValue, DoubleValue, FloatValue, Int32Value, Int64V
  * Describes the file extra/wkt-wrappers.proto.
  * @deprecated
  */
-export declare const file_extra_wkt_wrappers: GenDescFile;
+export declare const file_extra_wkt_wrappers: GenFile;
 
 /**
  * @generated from message spec.WrappersMessage
@@ -232,5 +232,5 @@ export declare type WrappersMessage = Message<"spec.WrappersMessage"> & {
  * Use `create(WrappersMessageSchema)` to create a new message.
  * @deprecated
  */
-export declare const WrappersMessageSchema: GenDescMessage<WrappersMessage>;
+export declare const WrappersMessageSchema: GenMessage<WrappersMessage>;
 

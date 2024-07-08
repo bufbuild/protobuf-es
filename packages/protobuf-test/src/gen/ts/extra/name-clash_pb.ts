@@ -16,7 +16,7 @@
 // @generated from file extra/name-clash.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { User as User$1 } from "./example_pb.js";
 import { file_extra_example } from "./example_pb.js";
@@ -25,7 +25,7 @@ import type { Message as Message$1 } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/name-clash.proto.
  */
-export const file_extra_name_clash: GenDescFile = /*@__PURE__*/
+export const file_extra_name_clash: GenFile = /*@__PURE__*/
   fileDesc("ChZleHRyYS9uYW1lLWNsYXNoLnByb3RvEgRzcGVjIiAKBFVzZXISGAoBdRgBIAEoCzINLmV4YW1wbGUuVXNlciLtBwoVUmVzZXJ2ZWRQcm9wZXJ0eU5hbWVzGlQKB0J1aWx0SW4SEwoLY29uc3RydWN0b3IYAiABKAkSEQoJdG9fc3RyaW5nGAMgASgJEg8KB3RvX0pTT04YBCABKAkSEAoIdmFsdWVfb2YYBSABKAkatAEKB1J1bnRpbWUSDwoHdG9fanNvbhgEIAEoCRIMCgR0eXBlGAYgASgJEg0KBWNsb25lGAcgASgJEg4KBmVxdWFscxgIIAEoCRITCgtmcm9tX2JpbmFyeRgJIAEoCRIRCglmcm9tX2pzb24YCiABKAkSGAoQZnJvbV9qc29uX3N0cmluZxgLIAEoCRIRCgl0b19iaW5hcnkYDCABKAkSFgoOdG9fanNvbl9zdHJpbmcYDiABKAkabAoLT25lb2ZCdWx0SW4SFQoLY29uc3RydWN0b3IYASABKAlIABITCgl0b19zdHJpbmcYAiABKAlIABIRCgd0b19KU09OGAMgASgJSAASEgoIdmFsdWVfb2YYBCABKAlIAEIKCghidWlsdF9pbhrWAQoMT25lb2ZSdW50aW1lEhEKB3RvX2pzb24YBSABKAlIABIOCgR0eXBlGAYgASgJSAASDwoFY2xvbmUYByABKAlIABIQCgZlcXVhbHMYCCABKAlIABIVCgtmcm9tX2JpbmFyeRgJIAEoCUgAEhMKCWZyb21fanNvbhgKIAEoCUgAEhoKEGZyb21fanNvbl9zdHJpbmcYCyABKAlIABITCgl0b19iaW5hcnkYDCABKAlIABIYCg50b19qc29uX3N0cmluZxgOIAEoCUgAQgkKB3J1bnRpbWUiRQoLRW51bUJ1aWx0SW4SDwoLY29uc3RydWN0b3IQABIMCgh0b1N0cmluZxABEgoKBnRvSlNPThACEgsKB3ZhbHVlT2YQAyKpAQoTRW51bUJ1aWx0SW5QcmVmaXhlZBImCiJFTlVNX0JVSUxUX0lOX1BSRUZJWEVEX2NvbnN0cnVjdG9yEAASIwofRU5VTV9CVUlMVF9JTl9QUkVGSVhFRF90b1N0cmluZxABEiEKHUVOVU1fQlVJTFRfSU5fUFJFRklYRURfdG9KU09OEAISIgoeRU5VTV9CVUlMVF9JTl9QUkVGSVhFRF92YWx1ZU9mEAMijAEKC0VudW1SdW50aW1lEgoKBnRvSnNvbhAAEggKBHR5cGUQBhIJCgVjbG9uZRAHEgoKBmVxdWFscxAIEg4KCmZyb21CaW5hcnkQCRIMCghmcm9tSnNvbhAKEhIKDmZyb21Kc29uU3RyaW5nEAsSDAoIdG9CaW5hcnkQDBIQCgx0b0pzb25TdHJpbmcQDiILCglpbnRlcmZhY2UiCgoIZnVuY3Rpb24iDAoKaW5zdGFuY2VvZiIICgZzd2l0Y2giBgoEY2FzZSIICgZyZXR1cm4iCQoHTWVzc2FnZSIQCg5QYXJ0aWFsTWVzc2FnZSIOCgxQbGFpbk1lc3NhZ2UiLAoFRXJyb3ISEgoKZmllbGRfbmFtZRgBIAEoCRIPCgdtZXNzYWdlGAIgASgJIggKBk9iamVjdCIICgZvYmplY3QiBwoFYXJyYXkiCAoGc3RyaW5nIggKBm51bWJlciIJCgdib29sZWFuIggKBmJpZ2ludCIMCgpVaW50OEFycmF5IgcKBUFycmF5IggKBlN0cmluZyIICgZOdW1iZXIiCQoHQm9vbGVhbiIICgZCaWdJbnQiGwoLQ2xhc2hQYXJlbnQaDAoKQ2xhc2hDaGlsZCIYChZDbGFzaFBhcmVudF9DbGFzaENoaWxkIiMKIUVudW1EZXNjQ2xhc2hXaXRoTWVzc2FnZVNoYXBlRGVzYyIfCh1FbnVtU2hhcGVDbGFzaFdpdGhNZXNzYWdlRGVzYyJxCg1Ob0NsYXNoRmllbGRzEg0KBWNvbnN0GAEgASgJEg4KBnN3aXRjaBgCIAEoCRIMCgRjYXNlGAMgASgJEhAKCGZ1bmN0aW9uGAQgASgJEhEKCWludGVyZmFjZRgFIAEoCRIOCgZyZXR1cm4YBiABKAkihAEKDE5vQ2xhc2hPbmVvZhIPCgVjb25zdBgBIAEoCUgAEhAKBnN3aXRjaBgCIAEoCUgAEg4KBGNhc2UYAyABKAlIABISCghmdW5jdGlvbhgEIAEoCUgAEhMKCWludGVyZmFjZRgFIAEoCUgAEhAKBnJldHVybhgGIAEoCUgAQgYKBGtpbmQiZgoPTm9DbGFzaE9uZW9mQURUEiIKAW0YASABKAsyFy5zcGVjLk5vQ2xhc2hPbmVvZkFEVC5NGi8KAU0SDAoEY2FzZRgBIAEoCRISCgV2YWx1ZRgCIAEoCUgAiAEBQggKBl92YWx1ZSJlCg9Ob0NsYXNoRW51bVdyYXAiUgoBWBIOCgppbnN0YW5jZW9mEAASCgoGc3dpdGNoEAESCAoEY2FzZRADEgwKCGZ1bmN0aW9uEAQSDQoJaW50ZXJmYWNlEAUSCgoGcmV0dXJuEAYqSgodRW51bURlc2NDbGFzaFdpdGhNZXNzYWdlU2hhcGUSKQolTWVzc2FnZURlc2NDbGFzaFdpdGhFbnVtRGVzY0Rlc2NfemVybxAAKk8KIUVudW1TaGFwZUNsYXNoV2l0aE1lc3NhZ2VEZXNjRGVzYxIqCiZFbnVtU2hhcGVDbGFzaFdpdGhNZXNzYWdlRGVzY0Rlc2NfemVybxAAMrgBChxSZXNlcnZlZFByb3BlcnR5TmFtZXNTZXJ2aWNlEicKC2NvbnN0cnVjdG9yEgsuc3BlYy5FcnJvchoLLnNwZWMuRXJyb3ISJAoIdG9TdHJpbmcSCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvchIjCgd0b19KU09OEgsuc3BlYy5FcnJvchoLLnNwZWMuRXJyb3ISJAoIdmFsdWVfb2YSCy5zcGVjLkVycm9yGgsuc3BlYy5FcnJvcmIGcHJvdG8z", [file_extra_example]);
 
 /**
@@ -46,7 +46,7 @@ export type User = Message$1<"spec.User"> & {
  * Describes the message spec.User.
  * Use `create(UserSchema)` to create a new message.
  */
-export const UserSchema: GenDescMessage<User> = /*@__PURE__*/
+export const UserSchema: GenMessage<User> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 0);
 
 /**
@@ -59,7 +59,7 @@ export type ReservedPropertyNames = Message$1<"spec.ReservedPropertyNames"> & {
  * Describes the message spec.ReservedPropertyNames.
  * Use `create(ReservedPropertyNamesSchema)` to create a new message.
  */
-export const ReservedPropertyNamesSchema: GenDescMessage<ReservedPropertyNames> = /*@__PURE__*/
+export const ReservedPropertyNamesSchema: GenMessage<ReservedPropertyNames> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 1);
 
 /**
@@ -99,7 +99,7 @@ export type ReservedPropertyNames_BuiltIn = Message$1<"spec.ReservedPropertyName
  * Describes the message spec.ReservedPropertyNames.BuiltIn.
  * Use `create(ReservedPropertyNames_BuiltInSchema)` to create a new message.
  */
-export const ReservedPropertyNames_BuiltInSchema: GenDescMessage<ReservedPropertyNames_BuiltIn> = /*@__PURE__*/
+export const ReservedPropertyNames_BuiltInSchema: GenMessage<ReservedPropertyNames_BuiltIn> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 1, 0);
 
 /**
@@ -174,7 +174,7 @@ export type ReservedPropertyNames_Runtime = Message$1<"spec.ReservedPropertyName
  * Describes the message spec.ReservedPropertyNames.Runtime.
  * Use `create(ReservedPropertyNames_RuntimeSchema)` to create a new message.
  */
-export const ReservedPropertyNames_RuntimeSchema: GenDescMessage<ReservedPropertyNames_Runtime> = /*@__PURE__*/
+export const ReservedPropertyNames_RuntimeSchema: GenMessage<ReservedPropertyNames_Runtime> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 1, 1);
 
 /**
@@ -215,7 +215,7 @@ export type ReservedPropertyNames_OneofBultIn = Message$1<"spec.ReservedProperty
  * Describes the message spec.ReservedPropertyNames.OneofBultIn.
  * Use `create(ReservedPropertyNames_OneofBultInSchema)` to create a new message.
  */
-export const ReservedPropertyNames_OneofBultInSchema: GenDescMessage<ReservedPropertyNames_OneofBultIn> = /*@__PURE__*/
+export const ReservedPropertyNames_OneofBultInSchema: GenMessage<ReservedPropertyNames_OneofBultIn> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 1, 2);
 
 /**
@@ -286,7 +286,7 @@ export type ReservedPropertyNames_OneofRuntime = Message$1<"spec.ReservedPropert
  * Describes the message spec.ReservedPropertyNames.OneofRuntime.
  * Use `create(ReservedPropertyNames_OneofRuntimeSchema)` to create a new message.
  */
-export const ReservedPropertyNames_OneofRuntimeSchema: GenDescMessage<ReservedPropertyNames_OneofRuntime> = /*@__PURE__*/
+export const ReservedPropertyNames_OneofRuntimeSchema: GenMessage<ReservedPropertyNames_OneofRuntime> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 1, 3);
 
 /**
@@ -317,7 +317,7 @@ export enum ReservedPropertyNames_EnumBuiltIn {
 /**
  * Describes the enum spec.ReservedPropertyNames.EnumBuiltIn.
  */
-export const ReservedPropertyNames_EnumBuiltInSchema: GenDescEnum<ReservedPropertyNames_EnumBuiltIn> = /*@__PURE__*/
+export const ReservedPropertyNames_EnumBuiltInSchema: GenEnum<ReservedPropertyNames_EnumBuiltIn> = /*@__PURE__*/
   enumDesc(file_extra_name_clash, 1, 0);
 
 /**
@@ -348,7 +348,7 @@ export enum ReservedPropertyNames_EnumBuiltInPrefixed {
 /**
  * Describes the enum spec.ReservedPropertyNames.EnumBuiltInPrefixed.
  */
-export const ReservedPropertyNames_EnumBuiltInPrefixedSchema: GenDescEnum<ReservedPropertyNames_EnumBuiltInPrefixed> = /*@__PURE__*/
+export const ReservedPropertyNames_EnumBuiltInPrefixedSchema: GenEnum<ReservedPropertyNames_EnumBuiltInPrefixed> = /*@__PURE__*/
   enumDesc(file_extra_name_clash, 1, 1);
 
 /**
@@ -404,7 +404,7 @@ export enum ReservedPropertyNames_EnumRuntime {
 /**
  * Describes the enum spec.ReservedPropertyNames.EnumRuntime.
  */
-export const ReservedPropertyNames_EnumRuntimeSchema: GenDescEnum<ReservedPropertyNames_EnumRuntime> = /*@__PURE__*/
+export const ReservedPropertyNames_EnumRuntimeSchema: GenEnum<ReservedPropertyNames_EnumRuntime> = /*@__PURE__*/
   enumDesc(file_extra_name_clash, 1, 2);
 
 /**
@@ -419,7 +419,7 @@ export type interface$ = Message$1<"spec.interface"> & {
  * Describes the message spec.interface.
  * Use `create(interfaceSchema)` to create a new message.
  */
-export const interfaceSchema: GenDescMessage<interface$> = /*@__PURE__*/
+export const interfaceSchema: GenMessage<interface$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 2);
 
 /**
@@ -434,7 +434,7 @@ export type function$ = Message$1<"spec.function"> & {
  * Describes the message spec.function.
  * Use `create(functionSchema)` to create a new message.
  */
-export const functionSchema: GenDescMessage<function$> = /*@__PURE__*/
+export const functionSchema: GenMessage<function$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 3);
 
 /**
@@ -449,7 +449,7 @@ export type instanceof$ = Message$1<"spec.instanceof"> & {
  * Describes the message spec.instanceof.
  * Use `create(instanceofSchema)` to create a new message.
  */
-export const instanceofSchema: GenDescMessage<instanceof$> = /*@__PURE__*/
+export const instanceofSchema: GenMessage<instanceof$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 4);
 
 /**
@@ -464,7 +464,7 @@ export type switch$ = Message$1<"spec.switch"> & {
  * Describes the message spec.switch.
  * Use `create(switchSchema)` to create a new message.
  */
-export const switchSchema: GenDescMessage<switch$> = /*@__PURE__*/
+export const switchSchema: GenMessage<switch$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 5);
 
 /**
@@ -479,7 +479,7 @@ export type case$ = Message$1<"spec.case"> & {
  * Describes the message spec.case.
  * Use `create(caseSchema)` to create a new message.
  */
-export const caseSchema: GenDescMessage<case$> = /*@__PURE__*/
+export const caseSchema: GenMessage<case$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 6);
 
 /**
@@ -494,7 +494,7 @@ export type return$ = Message$1<"spec.return"> & {
  * Describes the message spec.return.
  * Use `create(returnSchema)` to create a new message.
  */
-export const returnSchema: GenDescMessage<return$> = /*@__PURE__*/
+export const returnSchema: GenMessage<return$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 7);
 
 /**
@@ -509,7 +509,7 @@ export type Message = Message$1<"spec.Message"> & {
  * Describes the message spec.Message.
  * Use `create(MessageSchema)` to create a new message.
  */
-export const MessageSchema: GenDescMessage<Message> = /*@__PURE__*/
+export const MessageSchema: GenMessage<Message> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 8);
 
 /**
@@ -524,7 +524,7 @@ export type PartialMessage = Message$1<"spec.PartialMessage"> & {
  * Describes the message spec.PartialMessage.
  * Use `create(PartialMessageSchema)` to create a new message.
  */
-export const PartialMessageSchema: GenDescMessage<PartialMessage> = /*@__PURE__*/
+export const PartialMessageSchema: GenMessage<PartialMessage> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 9);
 
 /**
@@ -539,7 +539,7 @@ export type PlainMessage = Message$1<"spec.PlainMessage"> & {
  * Describes the message spec.PlainMessage.
  * Use `create(PlainMessageSchema)` to create a new message.
  */
-export const PlainMessageSchema: GenDescMessage<PlainMessage> = /*@__PURE__*/
+export const PlainMessageSchema: GenMessage<PlainMessage> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 10);
 
 /**
@@ -565,7 +565,7 @@ export type Error = Message$1<"spec.Error"> & {
  * Describes the message spec.Error.
  * Use `create(ErrorSchema)` to create a new message.
  */
-export const ErrorSchema: GenDescMessage<Error> = /*@__PURE__*/
+export const ErrorSchema: GenMessage<Error> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 11);
 
 /**
@@ -580,7 +580,7 @@ export type Object$ = Message$1<"spec.Object"> & {
  * Describes the message spec.Object.
  * Use `create(ObjectSchema)` to create a new message.
  */
-export const ObjectSchema: GenDescMessage<Object$> = /*@__PURE__*/
+export const ObjectSchema: GenMessage<Object$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 12);
 
 /**
@@ -593,7 +593,7 @@ export type object$ = Message$1<"spec.object"> & {
  * Describes the message spec.object.
  * Use `create(objectSchema)` to create a new message.
  */
-export const objectSchema: GenDescMessage<object$> = /*@__PURE__*/
+export const objectSchema: GenMessage<object$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 13);
 
 /**
@@ -608,7 +608,7 @@ export type array = Message$1<"spec.array"> & {
  * Describes the message spec.array.
  * Use `create(arraySchema)` to create a new message.
  */
-export const arraySchema: GenDescMessage<array> = /*@__PURE__*/
+export const arraySchema: GenMessage<array> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 14);
 
 /**
@@ -623,7 +623,7 @@ export type string$ = Message$1<"spec.string"> & {
  * Describes the message spec.string.
  * Use `create(stringSchema)` to create a new message.
  */
-export const stringSchema: GenDescMessage<string$> = /*@__PURE__*/
+export const stringSchema: GenMessage<string$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 15);
 
 /**
@@ -638,7 +638,7 @@ export type number$ = Message$1<"spec.number"> & {
  * Describes the message spec.number.
  * Use `create(numberSchema)` to create a new message.
  */
-export const numberSchema: GenDescMessage<number$> = /*@__PURE__*/
+export const numberSchema: GenMessage<number$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 16);
 
 /**
@@ -653,7 +653,7 @@ export type boolean$ = Message$1<"spec.boolean"> & {
  * Describes the message spec.boolean.
  * Use `create(booleanSchema)` to create a new message.
  */
-export const booleanSchema: GenDescMessage<boolean$> = /*@__PURE__*/
+export const booleanSchema: GenMessage<boolean$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 17);
 
 /**
@@ -668,7 +668,7 @@ export type bigint$ = Message$1<"spec.bigint"> & {
  * Describes the message spec.bigint.
  * Use `create(bigintSchema)` to create a new message.
  */
-export const bigintSchema: GenDescMessage<bigint$> = /*@__PURE__*/
+export const bigintSchema: GenMessage<bigint$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 18);
 
 /**
@@ -683,7 +683,7 @@ export type Uint8Array$ = Message$1<"spec.Uint8Array"> & {
  * Describes the message spec.Uint8Array.
  * Use `create(Uint8ArraySchema)` to create a new message.
  */
-export const Uint8ArraySchema: GenDescMessage<Uint8Array$> = /*@__PURE__*/
+export const Uint8ArraySchema: GenMessage<Uint8Array$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 19);
 
 /**
@@ -698,7 +698,7 @@ export type Array = Message$1<"spec.Array"> & {
  * Describes the message spec.Array.
  * Use `create(ArraySchema)` to create a new message.
  */
-export const ArraySchema: GenDescMessage<Array> = /*@__PURE__*/
+export const ArraySchema: GenMessage<Array> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 20);
 
 /**
@@ -713,7 +713,7 @@ export type String = Message$1<"spec.String"> & {
  * Describes the message spec.String.
  * Use `create(StringSchema)` to create a new message.
  */
-export const StringSchema: GenDescMessage<String> = /*@__PURE__*/
+export const StringSchema: GenMessage<String> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 21);
 
 /**
@@ -728,7 +728,7 @@ export type Number = Message$1<"spec.Number"> & {
  * Describes the message spec.Number.
  * Use `create(NumberSchema)` to create a new message.
  */
-export const NumberSchema: GenDescMessage<Number> = /*@__PURE__*/
+export const NumberSchema: GenMessage<Number> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 22);
 
 /**
@@ -743,7 +743,7 @@ export type Boolean = Message$1<"spec.Boolean"> & {
  * Describes the message spec.Boolean.
  * Use `create(BooleanSchema)` to create a new message.
  */
-export const BooleanSchema: GenDescMessage<Boolean> = /*@__PURE__*/
+export const BooleanSchema: GenMessage<Boolean> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 23);
 
 /**
@@ -758,7 +758,7 @@ export type BigInt = Message$1<"spec.BigInt"> & {
  * Describes the message spec.BigInt.
  * Use `create(BigIntSchema)` to create a new message.
  */
-export const BigIntSchema: GenDescMessage<BigInt> = /*@__PURE__*/
+export const BigIntSchema: GenMessage<BigInt> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 24);
 
 /**
@@ -771,7 +771,7 @@ export type ClashParent = Message$1<"spec.ClashParent"> & {
  * Describes the message spec.ClashParent.
  * Use `create(ClashParentSchema)` to create a new message.
  */
-export const ClashParentSchema: GenDescMessage<ClashParent> = /*@__PURE__*/
+export const ClashParentSchema: GenMessage<ClashParent> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 25);
 
 /**
@@ -786,7 +786,7 @@ export type ClashParent_ClashChild = Message$1<"spec.ClashParent.ClashChild"> & 
  * Describes the message spec.ClashParent.ClashChild.
  * Use `create(ClashParent_ClashChildSchema)` to create a new message.
  */
-export const ClashParent_ClashChildSchema: GenDescMessage<ClashParent_ClashChild> = /*@__PURE__*/
+export const ClashParent_ClashChildSchema: GenMessage<ClashParent_ClashChild> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 25, 0);
 
 /**
@@ -801,7 +801,7 @@ export type ClashParent_ClashChild$ = Message$1<"spec.ClashParent_ClashChild"> &
  * Describes the message spec.ClashParent_ClashChild.
  * Use `create(ClashParent_ClashChildSchema$)` to create a new message.
  */
-export const ClashParent_ClashChildSchema$: GenDescMessage<ClashParent_ClashChild$> = /*@__PURE__*/
+export const ClashParent_ClashChildSchema$: GenMessage<ClashParent_ClashChild$> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 26);
 
 /**
@@ -816,7 +816,7 @@ export type EnumDescClashWithMessageShapeDesc = Message$1<"spec.EnumDescClashWit
  * Describes the message spec.EnumDescClashWithMessageShapeDesc.
  * Use `create(EnumDescClashWithMessageShapeDescSchema)` to create a new message.
  */
-export const EnumDescClashWithMessageShapeDescSchema: GenDescMessage<EnumDescClashWithMessageShapeDesc> = /*@__PURE__*/
+export const EnumDescClashWithMessageShapeDescSchema: GenMessage<EnumDescClashWithMessageShapeDesc> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 27);
 
 /**
@@ -829,7 +829,7 @@ export type EnumShapeClashWithMessageDesc = Message$1<"spec.EnumShapeClashWithMe
  * Describes the message spec.EnumShapeClashWithMessageDesc.
  * Use `create(EnumShapeClashWithMessageDescSchema)` to create a new message.
  */
-export const EnumShapeClashWithMessageDescSchema: GenDescMessage<EnumShapeClashWithMessageDesc> = /*@__PURE__*/
+export const EnumShapeClashWithMessageDescSchema: GenMessage<EnumShapeClashWithMessageDesc> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 28);
 
 /**
@@ -883,7 +883,7 @@ export type NoClashFields = Message$1<"spec.NoClashFields"> & {
  * Describes the message spec.NoClashFields.
  * Use `create(NoClashFieldsSchema)` to create a new message.
  */
-export const NoClashFieldsSchema: GenDescMessage<NoClashFields> = /*@__PURE__*/
+export const NoClashFieldsSchema: GenMessage<NoClashFields> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 29);
 
 /**
@@ -948,7 +948,7 @@ export type NoClashOneof = Message$1<"spec.NoClashOneof"> & {
  * Describes the message spec.NoClashOneof.
  * Use `create(NoClashOneofSchema)` to create a new message.
  */
-export const NoClashOneofSchema: GenDescMessage<NoClashOneof> = /*@__PURE__*/
+export const NoClashOneofSchema: GenMessage<NoClashOneof> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 30);
 
 /**
@@ -965,7 +965,7 @@ export type NoClashOneofADT = Message$1<"spec.NoClashOneofADT"> & {
  * Describes the message spec.NoClashOneofADT.
  * Use `create(NoClashOneofADTSchema)` to create a new message.
  */
-export const NoClashOneofADTSchema: GenDescMessage<NoClashOneofADT> = /*@__PURE__*/
+export const NoClashOneofADTSchema: GenMessage<NoClashOneofADT> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 31);
 
 /**
@@ -987,7 +987,7 @@ export type NoClashOneofADT_M = Message$1<"spec.NoClashOneofADT.M"> & {
  * Describes the message spec.NoClashOneofADT.M.
  * Use `create(NoClashOneofADT_MSchema)` to create a new message.
  */
-export const NoClashOneofADT_MSchema: GenDescMessage<NoClashOneofADT_M> = /*@__PURE__*/
+export const NoClashOneofADT_MSchema: GenMessage<NoClashOneofADT_M> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 31, 0);
 
 /**
@@ -1002,7 +1002,7 @@ export type NoClashEnumWrap = Message$1<"spec.NoClashEnumWrap"> & {
  * Describes the message spec.NoClashEnumWrap.
  * Use `create(NoClashEnumWrapSchema)` to create a new message.
  */
-export const NoClashEnumWrapSchema: GenDescMessage<NoClashEnumWrap> = /*@__PURE__*/
+export const NoClashEnumWrapSchema: GenMessage<NoClashEnumWrap> = /*@__PURE__*/
   messageDesc(file_extra_name_clash, 32);
 
 /**
@@ -1055,7 +1055,7 @@ export enum NoClashEnumWrap_X {
 /**
  * Describes the enum spec.NoClashEnumWrap.X.
  */
-export const NoClashEnumWrap_XSchema: GenDescEnum<NoClashEnumWrap_X> = /*@__PURE__*/
+export const NoClashEnumWrap_XSchema: GenEnum<NoClashEnumWrap_X> = /*@__PURE__*/
   enumDesc(file_extra_name_clash, 32, 0);
 
 /**
@@ -1071,7 +1071,7 @@ export enum EnumDescClashWithMessageShape {
 /**
  * Describes the enum spec.EnumDescClashWithMessageShape.
  */
-export const EnumDescClashWithMessageShapeSchema: GenDescEnum<EnumDescClashWithMessageShape> = /*@__PURE__*/
+export const EnumDescClashWithMessageShapeSchema: GenEnum<EnumDescClashWithMessageShape> = /*@__PURE__*/
   enumDesc(file_extra_name_clash, 0);
 
 /**
@@ -1089,13 +1089,13 @@ export enum EnumShapeClashWithMessageDescDesc {
 /**
  * Describes the enum spec.EnumShapeClashWithMessageDescDesc.
  */
-export const EnumShapeClashWithMessageDescDescSchema: GenDescEnum<EnumShapeClashWithMessageDescDesc> = /*@__PURE__*/
+export const EnumShapeClashWithMessageDescDescSchema: GenEnum<EnumShapeClashWithMessageDescDesc> = /*@__PURE__*/
   enumDesc(file_extra_name_clash, 1);
 
 /**
  * @generated from service spec.ReservedPropertyNamesService
  */
-export const ReservedPropertyNamesService: GenDescService<{
+export const ReservedPropertyNamesService: GenService<{
   /**
    * @generated from rpc spec.ReservedPropertyNamesService.constructor
    */

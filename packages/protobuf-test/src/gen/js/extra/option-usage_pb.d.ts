@@ -16,13 +16,13 @@
 // @generated from file extra/option-usage.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/option-usage.proto.
  */
-export declare const file_extra_option_usage: GenDescFile;
+export declare const file_extra_option_usage: GenFile;
 
 /**
  * @generated from message spec.MessageWithOptions
@@ -49,7 +49,7 @@ export declare type MessageWithOptions = Message<"spec.MessageWithOptions"> & {
  * Describes the message spec.MessageWithOptions.
  * Use `create(MessageWithOptionsSchema)` to create a new message.
  */
-export declare const MessageWithOptionsSchema: GenDescMessage<MessageWithOptions>;
+export declare const MessageWithOptionsSchema: GenMessage<MessageWithOptions>;
 
 /**
  * @generated from enum spec.EnumWithOptions
@@ -64,12 +64,12 @@ export enum EnumWithOptions {
 /**
  * Describes the enum spec.EnumWithOptions.
  */
-export declare const EnumWithOptionsSchema: GenDescEnum<EnumWithOptions>;
+export declare const EnumWithOptionsSchema: GenEnum<EnumWithOptions>;
 
 /**
  * @generated from service spec.ServiceWithOptions
  */
-export declare const ServiceWithOptions: GenDescService<{
+export declare const ServiceWithOptions: GenService<{
   /**
    * @generated from rpc spec.ServiceWithOptions.Foo
    */

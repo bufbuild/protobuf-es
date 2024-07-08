@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/unittest_invalid_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/protobuf/unittest_invalid_features.proto.
  */
-export declare const file_google_protobuf_unittest_invalid_features: GenDescFile;
+export declare const file_google_protobuf_unittest_invalid_features: GenFile;
 
 /**
  * @generated from message pb.TestInvalidFeatures
@@ -39,10 +39,10 @@ export declare type TestInvalidFeatures = Message<"pb.TestInvalidFeatures"> & {
  * Describes the message pb.TestInvalidFeatures.
  * Use `create(TestInvalidFeaturesSchema)` to create a new message.
  */
-export declare const TestInvalidFeaturesSchema: GenDescMessage<TestInvalidFeatures>;
+export declare const TestInvalidFeaturesSchema: GenMessage<TestInvalidFeatures>;
 
 /**
  * @generated from extension: optional pb.TestInvalidFeatures test_invalid = 9996;
  */
-export declare const test_invalid: GenDescExtension<FeatureSet, TestInvalidFeatures>;
+export declare const test_invalid: GenExtension<FeatureSet, TestInvalidFeatures>;
 

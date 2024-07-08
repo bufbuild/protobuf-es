@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { DescEnum, DescFile } from "../descriptors.js";
-import type { GenDescEnum } from "./types.js";
+import type { GenEnum } from "./types.js";
 import type { JsonValue } from "../json-value.js";
 
 /**
@@ -24,19 +24,15 @@ import type { JsonValue } from "../json-value.js";
 export function enumDesc<
   Shape extends number,
   JsonType extends JsonValue = JsonValue,
->(
-  file: DescFile,
-  path: number,
-  ...paths: number[]
-): GenDescEnum<Shape, JsonType> {
+>(file: DescFile, path: number, ...paths: number[]): GenEnum<Shape, JsonType> {
   if (paths.length == 0) {
-    return file.enums[path] as GenDescEnum<Shape, JsonType>;
+    return file.enums[path] as GenEnum<Shape, JsonType>;
   }
   const e = paths.pop() as number; // we checked length above
   return paths.reduce(
     (acc, cur) => acc.nestedMessages[cur],
     file.messages[path],
-  ).nestedEnums[e] as GenDescEnum<Shape, JsonType>;
+  ).nestedEnums[e] as GenEnum<Shape, JsonType>;
 }
 
 /**

@@ -16,13 +16,13 @@
 // @generated from file extra/msg-scalar.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/msg-scalar.proto.
  */
-export declare const file_extra_msg_scalar: GenDescFile;
+export declare const file_extra_msg_scalar: GenFile;
 
 /**
  * @generated from message spec.ScalarValuesMessage
@@ -108,7 +108,7 @@ export declare type ScalarValuesMessage = Message<"spec.ScalarValuesMessage"> & 
  * Describes the message spec.ScalarValuesMessage.
  * Use `create(ScalarValuesMessageSchema)` to create a new message.
  */
-export declare const ScalarValuesMessageSchema: GenDescMessage<ScalarValuesMessage>;
+export declare const ScalarValuesMessageSchema: GenMessage<ScalarValuesMessage>;
 
 /**
  * @generated from message spec.RepeatedScalarValuesMessage
@@ -194,5 +194,5 @@ export declare type RepeatedScalarValuesMessage = Message<"spec.RepeatedScalarVa
  * Describes the message spec.RepeatedScalarValuesMessage.
  * Use `create(RepeatedScalarValuesMessageSchema)` to create a new message.
  */
-export declare const RepeatedScalarValuesMessageSchema: GenDescMessage<RepeatedScalarValuesMessage>;
+export declare const RepeatedScalarValuesMessageSchema: GenMessage<RepeatedScalarValuesMessage>;
 

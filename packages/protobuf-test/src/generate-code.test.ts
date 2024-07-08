@@ -18,7 +18,7 @@ import type {
   StringValueSchema,
 } from "@bufbuild/protobuf/wkt";
 import { hasExtension } from "@bufbuild/protobuf";
-import type { GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenService } from "@bufbuild/protobuf/codegenv1";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 import * as proto2_js from "./gen/js/extra/proto2_pb.js";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
@@ -97,7 +97,7 @@ test("source retention options are unavailable in generated code", () => {
 
 describe("JSON types", () => {
   const ok_ts: json_types_ts_json.JsonTypesMessageJson = {
-    boolField: true,
+    booleanFieldWithCustomName: true,
     doubleField: "Infinity",
     bytesField: "aGVsbG8gd29ybGQ=",
     int64Field: "123",
@@ -109,7 +109,7 @@ describe("JSON types", () => {
   };
   expect(ok_ts).toBeDefined();
   const ok_js: json_types_js_json.JsonTypesMessageJson = {
-    boolField: true,
+    booleanFieldWithCustomName: true,
     doubleField: "Infinity",
     bytesField: "aGVsbG8gd29ybGQ=",
     int64Field: "123",
@@ -218,7 +218,7 @@ test("service generates as expected", () => {
       output: typeof Int32ValueSchema;
     };
   };
-  type Actual<T> = T extends GenDescService<infer Shape> ? Shape : never;
+  type Actual<T> = T extends GenService<infer Shape> ? Shape : never;
   function f(expected: Expected, actual: Actual<typeof service_js.ServiceAll>) {
     expected = actual;
     actual = expected;
@@ -283,7 +283,7 @@ describe("ts generated code is equal to js generated code", () => {
   }
 });
 
-describe("GenDescMessage.field", () => {
+describe("GenMessage.field", () => {
   test("is type safe", () => {
     proto3_ts.Proto3MessageSchema.field.optionalStringField;
     // @ts-expect-error TS2339: Property foo does not exist on type

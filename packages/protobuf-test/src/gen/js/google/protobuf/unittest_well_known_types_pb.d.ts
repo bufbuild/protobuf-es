@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_well_known_types.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
 import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
 import type { Type } from "./type_pb.js";
@@ -24,7 +24,7 @@ import type { Type } from "./type_pb.js";
 /**
  * Describes the file google/protobuf/unittest_well_known_types.proto.
  */
-export declare const file_google_protobuf_unittest_well_known_types: GenDescFile;
+export declare const file_google_protobuf_unittest_well_known_types: GenFile;
 
 /**
  * Test that we can include all well-known types.
@@ -136,7 +136,7 @@ export declare type TestWellKnownTypes = Message<"protobuf_unittest.TestWellKnow
  * Describes the message protobuf_unittest.TestWellKnownTypes.
  * Use `create(TestWellKnownTypesSchema)` to create a new message.
  */
-export declare const TestWellKnownTypesSchema: GenDescMessage<TestWellKnownTypes>;
+export declare const TestWellKnownTypesSchema: GenMessage<TestWellKnownTypes>;
 
 /**
  * A repeated field for each well-known type.
@@ -241,7 +241,7 @@ export declare type RepeatedWellKnownTypes = Message<"protobuf_unittest.Repeated
  * Describes the message protobuf_unittest.RepeatedWellKnownTypes.
  * Use `create(RepeatedWellKnownTypesSchema)` to create a new message.
  */
-export declare const RepeatedWellKnownTypesSchema: GenDescMessage<RepeatedWellKnownTypes>;
+export declare const RepeatedWellKnownTypesSchema: GenMessage<RepeatedWellKnownTypes>;
 
 /**
  * @generated from message protobuf_unittest.OneofWellKnownTypes
@@ -365,7 +365,7 @@ export declare type OneofWellKnownTypes = Message<"protobuf_unittest.OneofWellKn
  * Describes the message protobuf_unittest.OneofWellKnownTypes.
  * Use `create(OneofWellKnownTypesSchema)` to create a new message.
  */
-export declare const OneofWellKnownTypesSchema: GenDescMessage<OneofWellKnownTypes>;
+export declare const OneofWellKnownTypesSchema: GenMessage<OneofWellKnownTypes>;
 
 /**
  * A map field for each well-known type. We only
@@ -470,5 +470,5 @@ export declare type MapWellKnownTypes = Message<"protobuf_unittest.MapWellKnownT
  * Describes the message protobuf_unittest.MapWellKnownTypes.
  * Use `create(MapWellKnownTypesSchema)` to create a new message.
  */
-export declare const MapWellKnownTypesSchema: GenDescMessage<MapWellKnownTypes>;
+export declare const MapWellKnownTypesSchema: GenMessage<MapWellKnownTypes>;
 

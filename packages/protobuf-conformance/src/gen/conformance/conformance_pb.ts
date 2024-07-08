@@ -16,14 +16,14 @@
 // @generated from file conformance/conformance.proto (package conformance, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file conformance/conformance.proto.
  */
-export const file_conformance_conformance: GenDescFile = /*@__PURE__*/
+export const file_conformance_conformance: GenFile = /*@__PURE__*/
   fileDesc("Ch1jb25mb3JtYW5jZS9jb25mb3JtYW5jZS5wcm90bxILY29uZm9ybWFuY2UiHQoKRmFpbHVyZVNldBIPCgdmYWlsdXJlGAEgAygJIuMCChJDb25mb3JtYW5jZVJlcXVlc3QSGgoQcHJvdG9idWZfcGF5bG9hZBgBIAEoDEgAEhYKDGpzb25fcGF5bG9hZBgCIAEoCUgAEhYKDGpzcGJfcGF5bG9hZBgHIAEoCUgAEhYKDHRleHRfcGF5bG9hZBgIIAEoCUgAEjgKF3JlcXVlc3RlZF9vdXRwdXRfZm9ybWF0GAMgASgOMhcuY29uZm9ybWFuY2UuV2lyZUZvcm1hdBIUCgxtZXNzYWdlX3R5cGUYBCABKAkSMAoNdGVzdF9jYXRlZ29yeRgFIAEoDjIZLmNvbmZvcm1hbmNlLlRlc3RDYXRlZ29yeRI+ChVqc3BiX2VuY29kaW5nX29wdGlvbnMYBiABKAsyHy5jb25mb3JtYW5jZS5Kc3BiRW5jb2RpbmdDb25maWcSHAoUcHJpbnRfdW5rbm93bl9maWVsZHMYCSABKAhCCQoHcGF5bG9hZCL6AQoTQ29uZm9ybWFuY2VSZXNwb25zZRIVCgtwYXJzZV9lcnJvchgBIAEoCUgAEhkKD3NlcmlhbGl6ZV9lcnJvchgGIAEoCUgAEhcKDXRpbWVvdXRfZXJyb3IYCSABKAlIABIXCg1ydW50aW1lX2Vycm9yGAIgASgJSAASGgoQcHJvdG9idWZfcGF5bG9hZBgDIAEoDEgAEhYKDGpzb25fcGF5bG9hZBgEIAEoCUgAEhEKB3NraXBwZWQYBSABKAlIABIWCgxqc3BiX3BheWxvYWQYByABKAlIABIWCgx0ZXh0X3BheWxvYWQYCCABKAlIAEIICgZyZXN1bHQiNwoSSnNwYkVuY29kaW5nQ29uZmlnEiEKGXVzZV9qc3BiX2FycmF5X2FueV9mb3JtYXQYASABKAgqUAoKV2lyZUZvcm1hdBIPCgtVTlNQRUNJRklFRBAAEgwKCFBST1RPQlVGEAESCAoESlNPThACEggKBEpTUEIQAxIPCgtURVhUX0ZPUk1BVBAEKo8BCgxUZXN0Q2F0ZWdvcnkSFAoQVU5TUEVDSUZJRURfVEVTVBAAEg8KC0JJTkFSWV9URVNUEAESDQoJSlNPTl9URVNUEAISJAogSlNPTl9JR05PUkVfVU5LTk9XTl9QQVJTSU5HX1RFU1QQAxINCglKU1BCX1RFU1QQBBIUChBURVhUX0ZPUk1BVF9URVNUEAVCLwofY29tLmdvb2dsZS5wcm90b2J1Zi5jb25mb3JtYW5jZaICC0NvbmZvcm1hbmNlYgZwcm90bzM");
 
 /**
@@ -44,7 +44,7 @@ export type FailureSet = Message<"conformance.FailureSet"> & {
  * Describes the message conformance.FailureSet.
  * Use `create(FailureSetSchema)` to create a new message.
  */
-export const FailureSetSchema: GenDescMessage<FailureSet> = /*@__PURE__*/
+export const FailureSetSchema: GenMessage<FailureSet> = /*@__PURE__*/
   messageDesc(file_conformance_conformance, 0);
 
 /**
@@ -137,7 +137,7 @@ export type ConformanceRequest = Message<"conformance.ConformanceRequest"> & {
  * Describes the message conformance.ConformanceRequest.
  * Use `create(ConformanceRequestSchema)` to create a new message.
  */
-export const ConformanceRequestSchema: GenDescMessage<ConformanceRequest> = /*@__PURE__*/
+export const ConformanceRequestSchema: GenMessage<ConformanceRequest> = /*@__PURE__*/
   messageDesc(file_conformance_conformance, 1);
 
 /**
@@ -244,7 +244,7 @@ export type ConformanceResponse = Message<"conformance.ConformanceResponse"> & {
  * Describes the message conformance.ConformanceResponse.
  * Use `create(ConformanceResponseSchema)` to create a new message.
  */
-export const ConformanceResponseSchema: GenDescMessage<ConformanceResponse> = /*@__PURE__*/
+export const ConformanceResponseSchema: GenMessage<ConformanceResponse> = /*@__PURE__*/
   messageDesc(file_conformance_conformance, 2);
 
 /**
@@ -265,7 +265,7 @@ export type JspbEncodingConfig = Message<"conformance.JspbEncodingConfig"> & {
  * Describes the message conformance.JspbEncodingConfig.
  * Use `create(JspbEncodingConfigSchema)` to create a new message.
  */
-export const JspbEncodingConfigSchema: GenDescMessage<JspbEncodingConfig> = /*@__PURE__*/
+export const JspbEncodingConfigSchema: GenMessage<JspbEncodingConfig> = /*@__PURE__*/
   messageDesc(file_conformance_conformance, 3);
 
 /**
@@ -303,7 +303,7 @@ export enum WireFormat {
 /**
  * Describes the enum conformance.WireFormat.
  */
-export const WireFormatSchema: GenDescEnum<WireFormat> = /*@__PURE__*/
+export const WireFormatSchema: GenEnum<WireFormat> = /*@__PURE__*/
   enumDesc(file_conformance_conformance, 0);
 
 /**
@@ -360,6 +360,6 @@ export enum TestCategory {
 /**
  * Describes the enum conformance.TestCategory.
  */
-export const TestCategorySchema: GenDescEnum<TestCategory> = /*@__PURE__*/
+export const TestCategorySchema: GenEnum<TestCategory> = /*@__PURE__*/
   enumDesc(file_conformance_conformance, 1);
 

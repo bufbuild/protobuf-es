@@ -14,7 +14,7 @@
 
 import type { Message } from "../types.js";
 import type { DescFile } from "../descriptors.js";
-import type { GenDescExtension } from "./types.js";
+import type { GenExtension } from "./types.js";
 
 /**
  * Hydrate an extension descriptor.
@@ -25,13 +25,13 @@ export function extDesc<Extendee extends Message, Value>(
   file: DescFile,
   path: number,
   ...paths: number[]
-): GenDescExtension<Extendee, Value> {
+): GenExtension<Extendee, Value> {
   if (paths.length == 0) {
-    return file.extensions[path] as GenDescExtension<Extendee, Value>;
+    return file.extensions[path] as GenExtension<Extendee, Value>;
   }
   const e = paths.pop() as number; // we checked length above
   return paths.reduce(
     (acc, cur) => acc.nestedMessages[cur],
     file.messages[path],
-  ).nestedExtensions[e] as GenDescExtension<Extendee, Value>;
+  ).nestedExtensions[e] as GenExtension<Extendee, Value>;
 }

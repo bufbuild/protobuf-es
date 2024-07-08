@@ -22,7 +22,7 @@
 // @generated from file google/protobuf/unittest_embed_optimize_for.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { TestOptimizedForSize } from "./unittest_optimize_for_pb.js";
 import { file_google_protobuf_unittest_optimize_for } from "./unittest_optimize_for_pb.js";
@@ -31,7 +31,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_embed_optimize_for.proto.
  */
-export const file_google_protobuf_unittest_embed_optimize_for: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_unittest_embed_optimize_for: GenFile = /*@__PURE__*/
   fileDesc("CjFnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZW1iZWRfb3B0aW1pemVfZm9yLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCKhAQoZVGVzdEVtYmVkT3B0aW1pemVkRm9yU2l6ZRJBChBvcHRpb25hbF9tZXNzYWdlGAEgASgLMicucHJvdG9idWZfdW5pdHRlc3QuVGVzdE9wdGltaXplZEZvclNpemUSQQoQcmVwZWF0ZWRfbWVzc2FnZRgCIAMoCzInLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RPcHRpbWl6ZWRGb3JTaXplQgJIAQ", [file_google_protobuf_unittest_optimize_for]);
 
 /**
@@ -56,6 +56,6 @@ export type TestEmbedOptimizedForSize = Message<"protobuf_unittest.TestEmbedOpti
  * Describes the message protobuf_unittest.TestEmbedOptimizedForSize.
  * Use `create(TestEmbedOptimizedForSizeSchema)` to create a new message.
  */
-export const TestEmbedOptimizedForSizeSchema: GenDescMessage<TestEmbedOptimizedForSize> = /*@__PURE__*/
+export const TestEmbedOptimizedForSizeSchema: GenMessage<TestEmbedOptimizedForSize> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_embed_optimize_for, 0);
 
