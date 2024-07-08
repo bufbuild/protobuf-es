@@ -1285,6 +1285,7 @@ UserSchema.field.firstName.name; // "first_name"
 UserSchema.field.firstName.number; // 1
 
 PhoneTypeSchema.typeName; // example.PhoneType
+PhoneTypeSchema.value[PhoneType.MOBILE].name; // "PHONE_TYPE_MOBILE"
 PhoneTypeSchema.values.map((value) => value.name);
 // ["PHONE_TYPE_UNSPECIFIED", "PHONE_TYPE_MOBILE", "PHONE_TYPE_LAND_LINE"]
 ```
