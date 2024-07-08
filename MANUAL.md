@@ -143,13 +143,13 @@ TypeScript declaration we generate for [example.proto]:
 // @generated from file example.proto (package example, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file example.proto.
  */
-export declare const file_example: GenDescFile;
+export declare const file_example: GenFile;
 
 /**
  * @generated from message example.User
@@ -190,7 +190,7 @@ export declare type User = Message<"example.User"> & {
  * Describes the message example.User.
  * Use `create(UserSchema)` to create a new message.
  */
-export declare const UserSchema: GenDescMessage<User>;
+export declare const UserSchema: GenMessage<User>;
 ```
 
 > **TODO** does this overview provide value? we basically go through all parts of it (and more) in the following sections
@@ -227,7 +227,7 @@ a [registry](#registries), or for advanced use cases with reflection:
 /**
  * Describes the file example.proto.
  */
-export declare const file_example: GenDescFile;
+export declare const file_example: GenFile;
 ```
 
 ### Messages
@@ -260,7 +260,7 @@ export declare type User = Message<"example.User"> & {
 Along with the type for the message, we also generate its schema:
 
 ```typescript
-export declare const UserSchema: GenDescMessage<User>;
+export declare const UserSchema: GenMessage<User>;
 ```
 
 Have you used [zod][gh-zod] before? Just like with zod, you use the schema to parse a message:
@@ -597,7 +597,7 @@ Along with the TypeScript enum, we also generate its schema:
 /**
  * Describes the enum example.PhoneType.
  */
-export declare const PhoneTypeSchema: GenDescEnum<PhoneType>;
+export declare const PhoneTypeSchema: GenEnum<PhoneType>;
 ```
 
 To learn more about the schema, take a look at the section about [reflection](#reflection).
@@ -626,7 +626,7 @@ For this extension, we generate the export:
 /**
  * @generated from extension: optional uint32 age = 100;
  */
-export declare const age: GenDescExtension<User, number>;
+export declare const age: GenExtension<User, number>;
 ```
 
 You can set the extension field `age` like this:
@@ -708,7 +708,7 @@ For every service, we generate just the schema that describes the service and it
 /**
  * @generated from service example.UserService
  */
-export declare const UserService: GenDescService<{
+export declare const UserService: GenService<{
   /**
    * @generated from rpc example.UserService.CreateUser
    */
