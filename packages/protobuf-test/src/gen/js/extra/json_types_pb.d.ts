@@ -30,7 +30,7 @@ export declare const file_extra_json_types: GenFile;
  */
 export declare type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   /**
-   * @generated from field: bool bool_field = 1;
+   * @generated from field: bool bool_field = 1 [json_name = "booleanFieldWithCustomName"];
    */
   boolField: boolean;
 
