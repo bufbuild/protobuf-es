@@ -290,3 +290,14 @@ describe("GenMessage.field", () => {
     proto3_ts.Proto3MessageSchema.field.foo;
   });
 });
+
+describe("GenDescEnum.value", () => {
+  test("is type safe", () => {
+    const val = proto3_ts.Proto3EnumSchema.value[proto3_ts.Proto3Enum.YES];
+    expect(val.number).toBe(1);
+    expect(val.name).toBe("PROTO3_ENUM_YES");
+    expect(val.localName).toBe("YES");
+    // @ts-expect-error TS7053: Element implicitly has an any type because expression of type 77 can't be used to index type Record<Proto3Enum, DescEnumValue>
+    proto3_ts.Proto3EnumSchema.value[77];
+  });
+});

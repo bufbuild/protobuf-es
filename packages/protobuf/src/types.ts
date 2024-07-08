@@ -63,7 +63,7 @@ export type EnumShape<Desc extends DescEnum> =
  * Extract the enum JSON type from a enum descriptor.
  */
 export type EnumJsonType<Desc extends DescEnum> =
-  Desc extends GenEnum<unknown, infer JsonType> ? JsonType : string | null;
+  Desc extends GenEnum<number, infer JsonType> ? JsonType : string | null;
 
 /**
  * Extract the value type from an extension descriptor.

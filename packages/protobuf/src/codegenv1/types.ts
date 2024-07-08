@@ -15,6 +15,7 @@
 import type { Message } from "../types.js";
 import type {
   DescEnum,
+  DescEnumValue,
   DescExtension,
   DescField,
   DescFile,
@@ -54,9 +55,11 @@ export type GenMessage<RuntimeShape extends Message, JsonType = JsonValue> =
  * @private
  */
 export type GenEnum<
-  RuntimeShape,
+  RuntimeShape extends number,
   JsonType extends JsonValue = JsonValue,
-> = DescEnum & brandv1<RuntimeShape, JsonType>;
+> = Omit<DescEnum, "value"> & {
+  value: Record<RuntimeShape, DescEnumValue>;
+} & brandv1<RuntimeShape, JsonType>;
 
 /**
  * Describes an extension in a protobuf source file.

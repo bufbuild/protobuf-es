@@ -21,11 +21,10 @@ import type { JsonValue } from "../json-value.js";
  *
  * @private
  */
-export function enumDesc<Shape, JsonType extends JsonValue = JsonValue>(
-  file: DescFile,
-  path: number,
-  ...paths: number[]
-): GenEnum<Shape, JsonType> {
+export function enumDesc<
+  Shape extends number,
+  JsonType extends JsonValue = JsonValue,
+>(file: DescFile, path: number, ...paths: number[]): GenEnum<Shape, JsonType> {
   if (paths.length == 0) {
     return file.enums[path] as GenEnum<Shape, JsonType>;
   }
