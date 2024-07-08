@@ -29,7 +29,7 @@ import type { JsonValue } from "../json-value.js";
  *
  * @private
  */
-export type GenDescFile = DescFile;
+export type GenFile = DescFile;
 
 /**
  * Describes a message declaration in a protobuf source file.
@@ -40,7 +40,7 @@ export type GenDescFile = DescFile;
  * @private
  */
 // prettier-ignore
-export type GenDescMessage<RuntimeShape extends Message, JsonType = JsonValue> =
+export type GenMessage<RuntimeShape extends Message, JsonType = JsonValue> =
   & Omit<DescMessage, "field">
   & { field: Record<MessageFieldNames<RuntimeShape>, DescField> }
   & brandv1<RuntimeShape, JsonType>;
@@ -53,7 +53,7 @@ export type GenDescMessage<RuntimeShape extends Message, JsonType = JsonValue> =
  *
  * @private
  */
-export type GenDescEnum<
+export type GenEnum<
   RuntimeShape,
   JsonType extends JsonValue = JsonValue,
 > = DescEnum & brandv1<RuntimeShape, JsonType>;
@@ -66,7 +66,7 @@ export type GenDescEnum<
  *
  * @private
  */
-export type GenDescExtension<
+export type GenExtension<
   Extendee extends Message = Message,
   RuntimeShape = unknown,
 > = DescExtension & brandv1<Extendee, RuntimeShape>;
@@ -79,7 +79,7 @@ export type GenDescExtension<
  *
  * @private
  */
-export type GenDescService<RuntimeShape extends GenDescServiceMethods> = Omit<
+export type GenService<RuntimeShape extends GenServiceMethods> = Omit<
   DescService,
   "method"
 > & {
@@ -89,7 +89,7 @@ export type GenDescService<RuntimeShape extends GenDescServiceMethods> = Omit<
 /**
  * @private
  */
-export type GenDescServiceMethods = Record<
+export type GenServiceMethods = Record<
   string,
   Pick<DescMethod, "input" | "output" | "methodKind">
 >;

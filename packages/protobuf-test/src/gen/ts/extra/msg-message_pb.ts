@@ -16,14 +16,14 @@
 // @generated from file extra/msg-message.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/msg-message.proto.
  */
-export const file_extra_msg_message: GenDescFile = /*@__PURE__*/
+export const file_extra_msg_message: GenFile = /*@__PURE__*/
   fileDesc("ChdleHRyYS9tc2ctbWVzc2FnZS5wcm90bxIEc3BlYyK3AQoTTWVzc2FnZUZpZWxkTWVzc2FnZRI8Cg1tZXNzYWdlX2ZpZWxkGAEgASgLMiUuc3BlYy5NZXNzYWdlRmllbGRNZXNzYWdlLlRlc3RNZXNzYWdlEkUKFnJlcGVhdGVkX21lc3NhZ2VfZmllbGQYAiADKAsyJS5zcGVjLk1lc3NhZ2VGaWVsZE1lc3NhZ2UuVGVzdE1lc3NhZ2UaGwoLVGVzdE1lc3NhZ2USDAoEbmFtZRgBIAEoCWIGcHJvdG8z");
 
 /**
@@ -45,7 +45,7 @@ export type MessageFieldMessage = Message<"spec.MessageFieldMessage"> & {
  * Describes the message spec.MessageFieldMessage.
  * Use `create(MessageFieldMessageSchema)` to create a new message.
  */
-export const MessageFieldMessageSchema: GenDescMessage<MessageFieldMessage> = /*@__PURE__*/
+export const MessageFieldMessageSchema: GenMessage<MessageFieldMessage> = /*@__PURE__*/
   messageDesc(file_extra_msg_message, 0);
 
 /**
@@ -62,6 +62,6 @@ export type MessageFieldMessage_TestMessage = Message<"spec.MessageFieldMessage.
  * Describes the message spec.MessageFieldMessage.TestMessage.
  * Use `create(MessageFieldMessage_TestMessageSchema)` to create a new message.
  */
-export const MessageFieldMessage_TestMessageSchema: GenDescMessage<MessageFieldMessage_TestMessage> = /*@__PURE__*/
+export const MessageFieldMessage_TestMessageSchema: GenMessage<MessageFieldMessage_TestMessage> = /*@__PURE__*/
   messageDesc(file_extra_msg_message, 0, 0);
 

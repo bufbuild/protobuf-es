@@ -16,14 +16,14 @@
 // @generated from file extra/jstype-proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/jstype-proto2.proto.
  */
-export const file_extra_jstype_proto2: GenDescFile = /*@__PURE__*/
+export const file_extra_jstype_proto2: GenFile = /*@__PURE__*/
   fileDesc("ChlleHRyYS9qc3R5cGUtcHJvdG8yLnByb3RvEgRzcGVjIqkCChpKU1R5cGVQcm90bzJPbWl0dGVkTWVzc2FnZRIVCg1maXhlZDY0X2ZpZWxkGAEgASgGEhMKC2ludDY0X2ZpZWxkGAMgASgDEhYKDnNmaXhlZDY0X2ZpZWxkGAQgASgQEhQKDHNpbnQ2NF9maWVsZBgFIAEoEhIUCgx1aW50NjRfZmllbGQYBiABKAQSHgoWcmVwZWF0ZWRfZml4ZWQ2NF9maWVsZBgLIAMoBhIcChRyZXBlYXRlZF9pbnQ2NF9maWVsZBgMIAMoAxIfChdyZXBlYXRlZF9zZml4ZWQ2NF9maWVsZBgNIAMoEBIdChVyZXBlYXRlZF9zaW50NjRfZmllbGQYDiADKBISHQoVcmVwZWF0ZWRfdWludDY0X2ZpZWxkGA8gAygEItACChlKU1R5cGVQcm90bzJOb3JtYWxNZXNzYWdlEhkKDWZpeGVkNjRfZmllbGQYASABKAZCAjAAEhcKC2ludDY0X2ZpZWxkGAMgASgDQgIwABIaCg5zZml4ZWQ2NF9maWVsZBgEIAEoEEICMAASGAoMc2ludDY0X2ZpZWxkGAUgASgSQgIwABIYCgx1aW50NjRfZmllbGQYBiABKARCAjAAEiIKFnJlcGVhdGVkX2ZpeGVkNjRfZmllbGQYCyADKAZCAjAAEiAKFHJlcGVhdGVkX2ludDY0X2ZpZWxkGAwgAygDQgIwABIjChdyZXBlYXRlZF9zZml4ZWQ2NF9maWVsZBgNIAMoEEICMAASIQoVcmVwZWF0ZWRfc2ludDY0X2ZpZWxkGA4gAygSQgIwABIhChVyZXBlYXRlZF91aW50NjRfZmllbGQYDyADKARCAjAAItACChlKU1R5cGVQcm90bzJTdHJpbmdNZXNzYWdlEhkKDWZpeGVkNjRfZmllbGQYASABKAZCAjABEhcKC2ludDY0X2ZpZWxkGAMgASgDQgIwARIaCg5zZml4ZWQ2NF9maWVsZBgEIAEoEEICMAESGAoMc2ludDY0X2ZpZWxkGAUgASgSQgIwARIYCgx1aW50NjRfZmllbGQYBiABKARCAjABEiIKFnJlcGVhdGVkX2ZpeGVkNjRfZmllbGQYCyADKAZCAjABEiAKFHJlcGVhdGVkX2ludDY0X2ZpZWxkGAwgAygDQgIwARIjChdyZXBlYXRlZF9zZml4ZWQ2NF9maWVsZBgNIAMoEEICMAESIQoVcmVwZWF0ZWRfc2ludDY0X2ZpZWxkGA4gAygSQgIwARIhChVyZXBlYXRlZF91aW50NjRfZmllbGQYDyADKARCAjABItACChlKU1R5cGVQcm90bzJOdW1iZXJNZXNzYWdlEhkKDWZpeGVkNjRfZmllbGQYASABKAZCAjACEhcKC2ludDY0X2ZpZWxkGAMgASgDQgIwAhIaCg5zZml4ZWQ2NF9maWVsZBgEIAEoEEICMAISGAoMc2ludDY0X2ZpZWxkGAUgASgSQgIwAhIYCgx1aW50NjRfZmllbGQYBiABKARCAjACEiIKFnJlcGVhdGVkX2ZpeGVkNjRfZmllbGQYCyADKAZCAjACEiAKFHJlcGVhdGVkX2ludDY0X2ZpZWxkGAwgAygDQgIwAhIjChdyZXBlYXRlZF9zZml4ZWQ2NF9maWVsZBgNIAMoEEICMAISIQoVcmVwZWF0ZWRfc2ludDY0X2ZpZWxkGA4gAygSQgIwAhIhChVyZXBlYXRlZF91aW50NjRfZmllbGQYDyADKARCAjAC");
 
 /**
@@ -85,7 +85,7 @@ export type JSTypeProto2OmittedMessage = Message<"spec.JSTypeProto2OmittedMessag
  * Describes the message spec.JSTypeProto2OmittedMessage.
  * Use `create(JSTypeProto2OmittedMessageSchema)` to create a new message.
  */
-export const JSTypeProto2OmittedMessageSchema: GenDescMessage<JSTypeProto2OmittedMessage> = /*@__PURE__*/
+export const JSTypeProto2OmittedMessageSchema: GenMessage<JSTypeProto2OmittedMessage> = /*@__PURE__*/
   messageDesc(file_extra_jstype_proto2, 0);
 
 /**
@@ -147,7 +147,7 @@ export type JSTypeProto2NormalMessage = Message<"spec.JSTypeProto2NormalMessage"
  * Describes the message spec.JSTypeProto2NormalMessage.
  * Use `create(JSTypeProto2NormalMessageSchema)` to create a new message.
  */
-export const JSTypeProto2NormalMessageSchema: GenDescMessage<JSTypeProto2NormalMessage> = /*@__PURE__*/
+export const JSTypeProto2NormalMessageSchema: GenMessage<JSTypeProto2NormalMessage> = /*@__PURE__*/
   messageDesc(file_extra_jstype_proto2, 1);
 
 /**
@@ -209,7 +209,7 @@ export type JSTypeProto2StringMessage = Message<"spec.JSTypeProto2StringMessage"
  * Describes the message spec.JSTypeProto2StringMessage.
  * Use `create(JSTypeProto2StringMessageSchema)` to create a new message.
  */
-export const JSTypeProto2StringMessageSchema: GenDescMessage<JSTypeProto2StringMessage> = /*@__PURE__*/
+export const JSTypeProto2StringMessageSchema: GenMessage<JSTypeProto2StringMessage> = /*@__PURE__*/
   messageDesc(file_extra_jstype_proto2, 2);
 
 /**
@@ -271,6 +271,6 @@ export type JSTypeProto2NumberMessage = Message<"spec.JSTypeProto2NumberMessage"
  * Describes the message spec.JSTypeProto2NumberMessage.
  * Use `create(JSTypeProto2NumberMessageSchema)` to create a new message.
  */
-export const JSTypeProto2NumberMessageSchema: GenDescMessage<JSTypeProto2NumberMessage> = /*@__PURE__*/
+export const JSTypeProto2NumberMessageSchema: GenMessage<JSTypeProto2NumberMessage> = /*@__PURE__*/
   messageDesc(file_extra_jstype_proto2, 3);
 

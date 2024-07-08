@@ -16,13 +16,13 @@
 // @generated from file google/type/calendar_period.proto (package google.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 
 /**
  * Describes the file google/type/calendar_period.proto.
  */
-export const file_google_type_calendar_period: GenDescFile = /*@__PURE__*/
+export const file_google_type_calendar_period: GenFile = /*@__PURE__*/
   fileDesc("CiFnb29nbGUvdHlwZS9jYWxlbmRhcl9wZXJpb2QucHJvdG8SC2dvb2dsZS50eXBlKn8KDkNhbGVuZGFyUGVyaW9kEh8KG0NBTEVOREFSX1BFUklPRF9VTlNQRUNJRklFRBAAEgcKA0RBWRABEggKBFdFRUsQAhINCglGT1JUTklHSFQQAxIJCgVNT05USBAEEgsKB1FVQVJURVIQBRIICgRIQUxGEAYSCAoEWUVBUhAHQngKD2NvbS5nb29nbGUudHlwZUITQ2FsZW5kYXJQZXJpb2RQcm90b1ABWkhnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvY2FsZW5kYXJwZXJpb2Q7Y2FsZW5kYXJwZXJpb2SiAgNHVFBiBnByb3RvMw");
 
 /**
@@ -97,6 +97,6 @@ export enum CalendarPeriod {
 /**
  * Describes the enum google.type.CalendarPeriod.
  */
-export const CalendarPeriodSchema: GenDescEnum<CalendarPeriod> = /*@__PURE__*/
+export const CalendarPeriodSchema: GenEnum<CalendarPeriod> = /*@__PURE__*/
   enumDesc(file_google_type_calendar_period, 0);
 

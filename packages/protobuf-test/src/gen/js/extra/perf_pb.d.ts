@@ -16,13 +16,13 @@
 // @generated from file extra/perf.proto (package perf.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/perf.proto.
  */
-export declare const file_extra_perf: GenDescFile;
+export declare const file_extra_perf: GenFile;
 
 /**
  * @generated from message perf.v1.PerfMessage
@@ -254,7 +254,7 @@ export declare type PerfMessage = Message<"perf.v1.PerfMessage"> & {
  * Describes the message perf.v1.PerfMessage.
  * Use `create(PerfMessageSchema)` to create a new message.
  */
-export declare const PerfMessageSchema: GenDescMessage<PerfMessage>;
+export declare const PerfMessageSchema: GenMessage<PerfMessage>;
 
 /**
  * @generated from enum perf.v1.PerfEnum
@@ -279,5 +279,5 @@ export enum PerfEnum {
 /**
  * Describes the enum perf.v1.PerfEnum.
  */
-export declare const PerfEnumSchema: GenDescEnum<PerfEnum>;
+export declare const PerfEnumSchema: GenEnum<PerfEnum>;
 

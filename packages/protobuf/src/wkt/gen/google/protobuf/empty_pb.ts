@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/empty.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "../../../../codegenv1/types.js";
+import type { GenFile, GenMessage } from "../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
@@ -24,7 +24,7 @@ import { messageDesc } from "../../../../codegenv1/message.js";
 /**
  * Describes the file google/protobuf/empty.proto.
  */
-export const file_google_protobuf_empty: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_empty: GenFile = /*@__PURE__*/
   fileDesc("Chtnb29nbGUvcHJvdG9idWYvZW1wdHkucHJvdG8SD2dvb2dsZS5wcm90b2J1ZiIHCgVFbXB0eUJ9ChNjb20uZ29vZ2xlLnByb3RvYnVmQgpFbXB0eVByb3RvUAFaLmdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL2VtcHR5cGL4AQGiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw");
 
 /**
@@ -51,6 +51,6 @@ export type EmptyJson = Record<string, never>;
  * Describes the message google.protobuf.Empty.
  * Use `create(EmptySchema)` to create a new message.
  */
-export const EmptySchema: GenDescMessage<Empty, EmptyJson> = /*@__PURE__*/
+export const EmptySchema: GenMessage<Empty, EmptyJson> = /*@__PURE__*/
   messageDesc(file_google_protobuf_empty, 0);
 

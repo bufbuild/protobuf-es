@@ -16,7 +16,7 @@
 // @generated from file google/api/httpbody.proto (package google.api, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Any } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any } from "@bufbuild/protobuf/wkt";
@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/api/httpbody.proto.
  */
-export const file_google_api_httpbody: GenDescFile = /*@__PURE__*/
+export const file_google_api_httpbody: GenFile = /*@__PURE__*/
   fileDesc("Chlnb29nbGUvYXBpL2h0dHBib2R5LnByb3RvEgpnb29nbGUuYXBpIlgKCEh0dHBCb2R5EhQKDGNvbnRlbnRfdHlwZRgBIAEoCRIMCgRkYXRhGAIgASgMEigKCmV4dGVuc2lvbnMYAyADKAsyFC5nb29nbGUucHJvdG9idWYuQW55QmgKDmNvbS5nb29nbGUuYXBpQg1IdHRwQm9keVByb3RvUAFaO2dvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvYXBpL2h0dHBib2R5O2h0dHBib2R5+AEBogIER0FQSWIGcHJvdG8z", [file_google_protobuf_any]);
 
 /**
@@ -103,6 +103,6 @@ export type HttpBody = Message<"google.api.HttpBody"> & {
  * Describes the message google.api.HttpBody.
  * Use `create(HttpBodySchema)` to create a new message.
  */
-export const HttpBodySchema: GenDescMessage<HttpBody> = /*@__PURE__*/
+export const HttpBodySchema: GenMessage<HttpBody> = /*@__PURE__*/
   messageDesc(file_google_api_httpbody, 0);
 

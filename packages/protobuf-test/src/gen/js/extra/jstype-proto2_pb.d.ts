@@ -16,13 +16,13 @@
 // @generated from file extra/jstype-proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/jstype-proto2.proto.
  */
-export declare const file_extra_jstype_proto2: GenDescFile;
+export declare const file_extra_jstype_proto2: GenFile;
 
 /**
  * @generated from message spec.JSTypeProto2OmittedMessage
@@ -83,7 +83,7 @@ export declare type JSTypeProto2OmittedMessage = Message<"spec.JSTypeProto2Omitt
  * Describes the message spec.JSTypeProto2OmittedMessage.
  * Use `create(JSTypeProto2OmittedMessageSchema)` to create a new message.
  */
-export declare const JSTypeProto2OmittedMessageSchema: GenDescMessage<JSTypeProto2OmittedMessage>;
+export declare const JSTypeProto2OmittedMessageSchema: GenMessage<JSTypeProto2OmittedMessage>;
 
 /**
  * @generated from message spec.JSTypeProto2NormalMessage
@@ -144,7 +144,7 @@ export declare type JSTypeProto2NormalMessage = Message<"spec.JSTypeProto2Normal
  * Describes the message spec.JSTypeProto2NormalMessage.
  * Use `create(JSTypeProto2NormalMessageSchema)` to create a new message.
  */
-export declare const JSTypeProto2NormalMessageSchema: GenDescMessage<JSTypeProto2NormalMessage>;
+export declare const JSTypeProto2NormalMessageSchema: GenMessage<JSTypeProto2NormalMessage>;
 
 /**
  * @generated from message spec.JSTypeProto2StringMessage
@@ -205,7 +205,7 @@ export declare type JSTypeProto2StringMessage = Message<"spec.JSTypeProto2String
  * Describes the message spec.JSTypeProto2StringMessage.
  * Use `create(JSTypeProto2StringMessageSchema)` to create a new message.
  */
-export declare const JSTypeProto2StringMessageSchema: GenDescMessage<JSTypeProto2StringMessage>;
+export declare const JSTypeProto2StringMessageSchema: GenMessage<JSTypeProto2StringMessage>;
 
 /**
  * @generated from message spec.JSTypeProto2NumberMessage
@@ -266,5 +266,5 @@ export declare type JSTypeProto2NumberMessage = Message<"spec.JSTypeProto2Number
  * Describes the message spec.JSTypeProto2NumberMessage.
  * Use `create(JSTypeProto2NumberMessageSchema)` to create a new message.
  */
-export declare const JSTypeProto2NumberMessageSchema: GenDescMessage<JSTypeProto2NumberMessage>;
+export declare const JSTypeProto2NumberMessageSchema: GenMessage<JSTypeProto2NumberMessage>;
 

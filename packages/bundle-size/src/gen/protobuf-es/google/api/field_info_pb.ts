@@ -16,7 +16,7 @@
 // @generated from file google/api/field_info.proto (package google.api, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { FieldOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/api/field_info.proto.
  */
-export const file_google_api_field_info: GenDescFile = /*@__PURE__*/
+export const file_google_api_field_info: GenFile = /*@__PURE__*/
   fileDesc("Chtnb29nbGUvYXBpL2ZpZWxkX2luZm8ucHJvdG8SCmdvb2dsZS5hcGkijAEKCUZpZWxkSW5mbxIsCgZmb3JtYXQYASABKA4yHC5nb29nbGUuYXBpLkZpZWxkSW5mby5Gb3JtYXQiUQoGRm9ybWF0EhYKEkZPUk1BVF9VTlNQRUNJRklFRBAAEgkKBVVVSUQ0EAESCAoESVBWNBACEggKBElQVjYQAxIQCgxJUFY0X09SX0lQVjYQBDpXCgpmaWVsZF9pbmZvEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjM8fmKASABKAsyFS5nb29nbGUuYXBpLkZpZWxkSW5mb1IJZmllbGRJbmZvQmwKDmNvbS5nb29nbGUuYXBpQg5GaWVsZEluZm9Qcm90b1ABWkFnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL2FwaS9hbm5vdGF0aW9uczthbm5vdGF0aW9uc6ICBEdBUEliBnByb3RvMw", [file_google_protobuf_descriptor]);
 
 /**
@@ -48,7 +48,7 @@ export type FieldInfo = Message<"google.api.FieldInfo"> & {
  * Describes the message google.api.FieldInfo.
  * Use `create(FieldInfoSchema)` to create a new message.
  */
-export const FieldInfoSchema: GenDescMessage<FieldInfo> = /*@__PURE__*/
+export const FieldInfoSchema: GenMessage<FieldInfo> = /*@__PURE__*/
   messageDesc(file_google_api_field_info, 0);
 
 /**
@@ -110,7 +110,7 @@ export enum FieldInfo_Format {
 /**
  * Describes the enum google.api.FieldInfo.Format.
  */
-export const FieldInfo_FormatSchema: GenDescEnum<FieldInfo_Format> = /*@__PURE__*/
+export const FieldInfo_FormatSchema: GenEnum<FieldInfo_Format> = /*@__PURE__*/
   enumDesc(file_google_api_field_info, 0, 0);
 
 /**
@@ -127,6 +127,6 @@ export const FieldInfo_FormatSchema: GenDescEnum<FieldInfo_Format> = /*@__PURE__
  *
  * @generated from extension: google.api.FieldInfo field_info = 291403980;
  */
-export const field_info: GenDescExtension<FieldOptions, FieldInfo> = /*@__PURE__*/
+export const field_info: GenExtension<FieldOptions, FieldInfo> = /*@__PURE__*/
   extDesc(file_google_api_field_info, 0);
 

@@ -16,7 +16,7 @@
 // @generated from file extra/example-service.proto (package example, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage, GenDescService } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
 import type { User } from "./example_pb.js";
 import { file_extra_example } from "./example_pb.js";
@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file extra/example-service.proto.
  */
-export const file_extra_example_service: GenDescFile = /*@__PURE__*/
+export const file_extra_example_service: GenFile = /*@__PURE__*/
   fileDesc("ChtleHRyYS9leGFtcGxlLXNlcnZpY2UucHJvdG8SB2V4YW1wbGUiOgoRQ3JlYXRlVXNlclJlcXVlc3QSEgoKZmlyc3RfbmFtZRgBIAEoCRIRCglsYXN0X25hbWUYAiABKAkiMQoSQ3JlYXRlVXNlclJlc3BvbnNlEhsKBHVzZXIYASABKAsyDS5leGFtcGxlLlVzZXIyVAoLVXNlclNlcnZpY2USRQoKQ3JlYXRlVXNlchIaLmV4YW1wbGUuQ3JlYXRlVXNlclJlcXVlc3QaGy5leGFtcGxlLkNyZWF0ZVVzZXJSZXNwb25zZWIGcHJvdG8z", [file_extra_example]);
 
 /**
@@ -47,7 +47,7 @@ export type CreateUserRequest = Message<"example.CreateUserRequest"> & {
  * Describes the message example.CreateUserRequest.
  * Use `create(CreateUserRequestSchema)` to create a new message.
  */
-export const CreateUserRequestSchema: GenDescMessage<CreateUserRequest> = /*@__PURE__*/
+export const CreateUserRequestSchema: GenMessage<CreateUserRequest> = /*@__PURE__*/
   messageDesc(file_extra_example_service, 0);
 
 /**
@@ -64,13 +64,13 @@ export type CreateUserResponse = Message<"example.CreateUserResponse"> & {
  * Describes the message example.CreateUserResponse.
  * Use `create(CreateUserResponseSchema)` to create a new message.
  */
-export const CreateUserResponseSchema: GenDescMessage<CreateUserResponse> = /*@__PURE__*/
+export const CreateUserResponseSchema: GenMessage<CreateUserResponse> = /*@__PURE__*/
   messageDesc(file_extra_example_service, 1);
 
 /**
  * @generated from service example.UserService
  */
-export const UserService: GenDescService<{
+export const UserService: GenService<{
   /**
    * @generated from rpc example.UserService.CreateUser
    */

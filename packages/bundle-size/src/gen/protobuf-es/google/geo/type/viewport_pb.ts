@@ -16,7 +16,7 @@
 // @generated from file google/geo/type/viewport.proto (package google.geo.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { LatLng } from "../../type/latlng_pb";
 import { file_google_type_latlng } from "../../type/latlng_pb";
@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/geo/type/viewport.proto.
  */
-export const file_google_geo_type_viewport: GenDescFile = /*@__PURE__*/
+export const file_google_geo_type_viewport: GenFile = /*@__PURE__*/
   fileDesc("Ch5nb29nbGUvZ2VvL3R5cGUvdmlld3BvcnQucHJvdG8SD2dvb2dsZS5nZW8udHlwZSJPCghWaWV3cG9ydBIgCgNsb3cYASABKAsyEy5nb29nbGUudHlwZS5MYXRMbmcSIQoEaGlnaBgCIAEoCzITLmdvb2dsZS50eXBlLkxhdExuZ0JvChNjb20uZ29vZ2xlLmdlby50eXBlQg1WaWV3cG9ydFByb3RvUAFaQGdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvZ2VvL3R5cGUvdmlld3BvcnQ7dmlld3BvcnSiAgRHR1RQYgZwcm90bzM", [file_google_type_latlng]);
 
 /**
@@ -87,6 +87,6 @@ export type Viewport = Message<"google.geo.type.Viewport"> & {
  * Describes the message google.geo.type.Viewport.
  * Use `create(ViewportSchema)` to create a new message.
  */
-export const ViewportSchema: GenDescMessage<Viewport> = /*@__PURE__*/
+export const ViewportSchema: GenMessage<Viewport> = /*@__PURE__*/
   messageDesc(file_google_geo_type_viewport, 0);
 

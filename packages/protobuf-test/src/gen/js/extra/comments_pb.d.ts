@@ -24,13 +24,13 @@
 
 // Comment before package.
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/comments.proto.
  */
-export declare const file_extra_comments: GenDescFile;
+export declare const file_extra_comments: GenFile;
 
 /**
  * Comment before message.
@@ -92,7 +92,7 @@ export declare type MessageWithComments = Message<"spec.MessageWithComments"> & 
  * Describes the message spec.MessageWithComments.
  * Use `create(MessageWithCommentsSchema)` to create a new message.
  */
-export declare const MessageWithCommentsSchema: GenDescMessage<MessageWithComments>;
+export declare const MessageWithCommentsSchema: GenMessage<MessageWithComments>;
 
 /**
  * Comment within empty message.
@@ -106,7 +106,7 @@ export declare type EmptyMessageWithComment = Message<"spec.EmptyMessageWithComm
  * Describes the message spec.EmptyMessageWithComment.
  * Use `create(EmptyMessageWithCommentSchema)` to create a new message.
  */
-export declare const EmptyMessageWithCommentSchema: GenDescMessage<EmptyMessageWithComment>;
+export declare const EmptyMessageWithCommentSchema: GenMessage<EmptyMessageWithComment>;
 
 /**
  * see https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/descriptor.proto
@@ -167,7 +167,7 @@ export declare type GoogleCommentExample = Message<"spec.GoogleCommentExample"> 
  * Describes the message spec.GoogleCommentExample.
  * Use `create(GoogleCommentExampleSchema)` to create a new message.
  */
-export declare const GoogleCommentExampleSchema: GenDescMessage<GoogleCommentExample>;
+export declare const GoogleCommentExampleSchema: GenMessage<GoogleCommentExample>;
 
 /**
  * Leading comment for enum.
@@ -190,7 +190,7 @@ export enum EnumWithComments {
 /**
  * Describes the enum spec.EnumWithComments.
  */
-export declare const EnumWithCommentsSchema: GenDescEnum<EnumWithComments>;
+export declare const EnumWithCommentsSchema: GenEnum<EnumWithComments>;
 
 /**
  * Leading comment for deprecated enum
@@ -214,7 +214,7 @@ export enum DeprecatedEnumWithComment {
  * Describes the enum spec.DeprecatedEnumWithComment.
  * @deprecated
  */
-export declare const DeprecatedEnumWithCommentSchema: GenDescEnum<DeprecatedEnumWithComment>;
+export declare const DeprecatedEnumWithCommentSchema: GenEnum<DeprecatedEnumWithComment>;
 
 /**
  * @generated from enum spec.DeprecatedEnumNoComment
@@ -236,5 +236,5 @@ export enum DeprecatedEnumNoComment {
  * Describes the enum spec.DeprecatedEnumNoComment.
  * @deprecated
  */
-export declare const DeprecatedEnumNoCommentSchema: GenDescEnum<DeprecatedEnumNoComment>;
+export declare const DeprecatedEnumNoCommentSchema: GenEnum<DeprecatedEnumNoComment>;
 

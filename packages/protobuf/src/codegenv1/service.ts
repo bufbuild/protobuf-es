@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { GenDescService, GenDescServiceMethods } from "./types.js";
+import type { GenService, GenServiceMethods } from "./types.js";
 import type { DescFile } from "../descriptors.js";
 
 /**
@@ -20,13 +20,13 @@ import type { DescFile } from "../descriptors.js";
  *
  * @private
  */
-export function serviceDesc<T extends GenDescServiceMethods>(
+export function serviceDesc<T extends GenServiceMethods>(
   file: DescFile,
   path: number,
   ...paths: number[]
-): GenDescService<T> {
+): GenService<T> {
   if (paths.length > 0) {
     throw new Error();
   }
-  return file.services[path] as GenDescService<T>;
+  return file.services[path] as GenService<T>;
 }

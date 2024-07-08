@@ -16,13 +16,13 @@
 // @generated from file extra/msg-maps.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/msg-maps.proto.
  */
-export declare const file_extra_msg_maps: GenDescFile;
+export declare const file_extra_msg_maps: GenFile;
 
 /**
  * @generated from message spec.MapsMessage
@@ -103,7 +103,7 @@ export declare type MapsMessage = Message<"spec.MapsMessage"> & {
  * Describes the message spec.MapsMessage.
  * Use `create(MapsMessageSchema)` to create a new message.
  */
-export declare const MapsMessageSchema: GenDescMessage<MapsMessage>;
+export declare const MapsMessageSchema: GenMessage<MapsMessage>;
 
 /**
  * @generated from enum spec.MapsEnum
@@ -128,5 +128,5 @@ export enum MapsEnum {
 /**
  * Describes the enum spec.MapsEnum.
  */
-export declare const MapsEnumSchema: GenDescEnum<MapsEnum>;
+export declare const MapsEnumSchema: GenEnum<MapsEnum>;
 

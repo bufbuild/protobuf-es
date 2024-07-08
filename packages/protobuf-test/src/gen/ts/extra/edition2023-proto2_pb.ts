@@ -16,14 +16,14 @@
 // @generated from file extra/edition2023-proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/edition2023-proto2.proto.
  */
-export const file_extra_edition2023_proto2: GenDescFile = /*@__PURE__*/
+export const file_extra_edition2023_proto2: GenFile = /*@__PURE__*/
   fileDesc("Ch5leHRyYS9lZGl0aW9uMjAyMy1wcm90bzIucHJvdG8SBHNwZWMi5gQKG1Byb3RvMk1lc3NhZ2VGb3JFZGl0aW9uMjAyMxIbChNvcHRpb25hbF9ib29sX2ZpZWxkGAEgASgIEkIKGm9wdGlvbmFsX2Nsb3NlZF9lbnVtX2ZpZWxkGAIgASgOMh4uc3BlYy5Qcm90bzJFbnVtRm9yRWRpdGlvbjIwMjMSLAoib3B0aW9uYWxfc3RyaW5nX2ZpZWxkX3dpdGhfZGVmYXVsdBgDIAEoCToAEkYKDW9wdGlvbmFsZ3JvdXAYBCABKAoyLy5zcGVjLlByb3RvMk1lc3NhZ2VGb3JFZGl0aW9uMjAyMy5PcHRpb25hbEdyb3VwEhsKE3JlcXVpcmVkX2Jvb2xfZmllbGQYBSACKAgSQgoacmVxdWlyZWRfY2xvc2VkX2VudW1fZmllbGQYBiACKA4yHi5zcGVjLlByb3RvMkVudW1Gb3JFZGl0aW9uMjAyMxI3CiJyZXF1aXJlZF9zdHJpbmdfZmllbGRfd2l0aF9kZWZhdWx0GAcgAigJOgtoZWxsbyAiICovIBJGCg1yZXF1aXJlZGdyb3VwGAggAigKMi8uc3BlYy5Qcm90bzJNZXNzYWdlRm9yRWRpdGlvbjIwMjMuUmVxdWlyZWRHcm91cBIfChNwYWNrZWRfZG91YmxlX2ZpZWxkGAkgAygBQgIQARIhChV1bnBhY2tlZF9kb3VibGVfZmllbGQYCiADKAFCAhAAGiQKDU9wdGlvbmFsR3JvdXASEwoLaW50MzJfZmllbGQYASABKAUaJAoNUmVxdWlyZWRHcm91cBITCgtpbnQzMl9maWVsZBgBIAEoBSo9ChhQcm90bzJFbnVtRm9yRWRpdGlvbjIwMjMSIQodUFJPVE8yX0VOVU1fRk9SX0VESVRJT04yMDIzX0EQAQ");
 
 /**
@@ -87,7 +87,7 @@ export type Proto2MessageForEdition2023 = Message<"spec.Proto2MessageForEdition2
  * Describes the message spec.Proto2MessageForEdition2023.
  * Use `create(Proto2MessageForEdition2023Schema)` to create a new message.
  */
-export const Proto2MessageForEdition2023Schema: GenDescMessage<Proto2MessageForEdition2023> = /*@__PURE__*/
+export const Proto2MessageForEdition2023Schema: GenMessage<Proto2MessageForEdition2023> = /*@__PURE__*/
   messageDesc(file_extra_edition2023_proto2, 0);
 
 /**
@@ -104,7 +104,7 @@ export type Proto2MessageForEdition2023_OptionalGroup = Message<"spec.Proto2Mess
  * Describes the message spec.Proto2MessageForEdition2023.OptionalGroup.
  * Use `create(Proto2MessageForEdition2023_OptionalGroupSchema)` to create a new message.
  */
-export const Proto2MessageForEdition2023_OptionalGroupSchema: GenDescMessage<Proto2MessageForEdition2023_OptionalGroup> = /*@__PURE__*/
+export const Proto2MessageForEdition2023_OptionalGroupSchema: GenMessage<Proto2MessageForEdition2023_OptionalGroup> = /*@__PURE__*/
   messageDesc(file_extra_edition2023_proto2, 0, 0);
 
 /**
@@ -121,7 +121,7 @@ export type Proto2MessageForEdition2023_RequiredGroup = Message<"spec.Proto2Mess
  * Describes the message spec.Proto2MessageForEdition2023.RequiredGroup.
  * Use `create(Proto2MessageForEdition2023_RequiredGroupSchema)` to create a new message.
  */
-export const Proto2MessageForEdition2023_RequiredGroupSchema: GenDescMessage<Proto2MessageForEdition2023_RequiredGroup> = /*@__PURE__*/
+export const Proto2MessageForEdition2023_RequiredGroupSchema: GenMessage<Proto2MessageForEdition2023_RequiredGroup> = /*@__PURE__*/
   messageDesc(file_extra_edition2023_proto2, 0, 1);
 
 /**
@@ -137,6 +137,6 @@ export enum Proto2EnumForEdition2023 {
 /**
  * Describes the enum spec.Proto2EnumForEdition2023.
  */
-export const Proto2EnumForEdition2023Schema: GenDescEnum<Proto2EnumForEdition2023> = /*@__PURE__*/
+export const Proto2EnumForEdition2023Schema: GenEnum<Proto2EnumForEdition2023> = /*@__PURE__*/
   enumDesc(file_extra_edition2023_proto2, 0);
 

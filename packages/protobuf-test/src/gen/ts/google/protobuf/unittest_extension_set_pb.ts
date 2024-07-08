@@ -22,14 +22,14 @@
 // @generated from file google/protobuf/unittest_extension_set.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_extension_set.proto.
  */
-export const file_google_protobuf_unittest_extension_set: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_unittest_extension_set: GenFile = /*@__PURE__*/
   fileDesc("Cixnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZXh0ZW5zaW9uX3NldC5wcm90bxIRcHJvdG9idWZfdW5pdHRlc3QiHAoQVGVzdEV4dGVuc2lvblNldCoICAQQgICAgAIiUwoZVGVzdEV4dGVuc2lvblNldENvbnRhaW5lchI2CglleHRlbnNpb24YASABKAsyIy5wcm90b2J1Zl91bml0dGVzdC5UZXN0RXh0ZW5zaW9uU2V0QiZIAaoCIUdvb2dsZS5Qcm90b2NvbEJ1ZmZlcnMuVGVzdFByb3Rvcw");
 
 /**
@@ -44,7 +44,7 @@ export type TestExtensionSet = Message<"protobuf_unittest.TestExtensionSet"> & {
  * Describes the message protobuf_unittest.TestExtensionSet.
  * Use `create(TestExtensionSetSchema)` to create a new message.
  */
-export const TestExtensionSetSchema: GenDescMessage<TestExtensionSet> = /*@__PURE__*/
+export const TestExtensionSetSchema: GenMessage<TestExtensionSet> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_extension_set, 0);
 
 /**
@@ -61,6 +61,6 @@ export type TestExtensionSetContainer = Message<"protobuf_unittest.TestExtension
  * Describes the message protobuf_unittest.TestExtensionSetContainer.
  * Use `create(TestExtensionSetContainerSchema)` to create a new message.
  */
-export const TestExtensionSetContainerSchema: GenDescMessage<TestExtensionSetContainer> = /*@__PURE__*/
+export const TestExtensionSetContainerSchema: GenMessage<TestExtensionSetContainer> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_extension_set, 1);
 

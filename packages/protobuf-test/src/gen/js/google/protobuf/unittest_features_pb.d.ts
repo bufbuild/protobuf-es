@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/unittest_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/protobuf/unittest_features.proto.
  */
-export declare const file_google_protobuf_unittest_features: GenDescFile;
+export declare const file_google_protobuf_unittest_features: GenFile;
 
 /**
  * @generated from message pb.TestMessage
@@ -35,7 +35,7 @@ export declare type TestMessage = Message<"pb.TestMessage"> & {
  * Describes the message pb.TestMessage.
  * Use `create(TestMessageSchema)` to create a new message.
  */
-export declare const TestMessageSchema: GenDescMessage<TestMessage>;
+export declare const TestMessageSchema: GenMessage<TestMessage>;
 
 /**
  * @generated from message pb.TestMessage.Nested
@@ -47,17 +47,17 @@ export declare type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
  * Describes the message pb.TestMessage.Nested.
  * Use `create(TestMessage_NestedSchema)` to create a new message.
  */
-export declare const TestMessage_NestedSchema: GenDescMessage<TestMessage_Nested>;
+export declare const TestMessage_NestedSchema: GenMessage<TestMessage_Nested>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test_nested = 9997;
  */
-export declare const TestMessage_Nested_test_nested: GenDescExtension<FeatureSet, TestFeatures>;
+export declare const TestMessage_Nested_test_nested: GenExtension<FeatureSet, TestFeatures>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test_message = 9998;
  */
-export declare const TestMessage_test_message: GenDescExtension<FeatureSet, TestFeatures>;
+export declare const TestMessage_test_message: GenExtension<FeatureSet, TestFeatures>;
 
 /**
  * @generated from message pb.TestFeatures
@@ -148,7 +148,7 @@ export declare type TestFeatures = Message<"pb.TestFeatures"> & {
  * Describes the message pb.TestFeatures.
  * Use `create(TestFeaturesSchema)` to create a new message.
  */
-export declare const TestFeaturesSchema: GenDescMessage<TestFeatures>;
+export declare const TestFeaturesSchema: GenMessage<TestFeatures>;
 
 /**
  * @generated from enum pb.EnumFeature
@@ -248,10 +248,10 @@ export enum EnumFeature {
 /**
  * Describes the enum pb.EnumFeature.
  */
-export declare const EnumFeatureSchema: GenDescEnum<EnumFeature>;
+export declare const EnumFeatureSchema: GenEnum<EnumFeature>;
 
 /**
  * @generated from extension: optional pb.TestFeatures test = 9999;
  */
-export declare const test: GenDescExtension<FeatureSet, TestFeatures>;
+export declare const test: GenExtension<FeatureSet, TestFeatures>;
 

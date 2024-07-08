@@ -16,14 +16,14 @@
 // @generated from file google/type/fraction.proto (package google.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/type/fraction.proto.
  */
-export const file_google_type_fraction: GenDescFile = /*@__PURE__*/
+export const file_google_type_fraction: GenFile = /*@__PURE__*/
   fileDesc("Chpnb29nbGUvdHlwZS9mcmFjdGlvbi5wcm90bxILZ29vZ2xlLnR5cGUiMgoIRnJhY3Rpb24SEQoJbnVtZXJhdG9yGAEgASgDEhMKC2Rlbm9taW5hdG9yGAIgASgDQmYKD2NvbS5nb29nbGUudHlwZUINRnJhY3Rpb25Qcm90b1ABWjxnb29nbGUuZ29sYW5nLm9yZy9nZW5wcm90by9nb29nbGVhcGlzL3R5cGUvZnJhY3Rpb247ZnJhY3Rpb26iAgNHVFBiBnByb3RvMw");
 
 /**
@@ -52,6 +52,6 @@ export type Fraction = Message<"google.type.Fraction"> & {
  * Describes the message google.type.Fraction.
  * Use `create(FractionSchema)` to create a new message.
  */
-export const FractionSchema: GenDescMessage<Fraction> = /*@__PURE__*/
+export const FractionSchema: GenMessage<Fraction> = /*@__PURE__*/
   messageDesc(file_google_type_fraction, 0);
 

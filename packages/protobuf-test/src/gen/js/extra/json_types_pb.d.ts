@@ -16,14 +16,14 @@
 // @generated from file extra/json_types.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
 import type { Any, Duration, Empty, FieldMask, ListValue, NullValue, Timestamp, Value } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/json_types.proto.
  */
-export declare const file_extra_json_types: GenDescFile;
+export declare const file_extra_json_types: GenFile;
 
 /**
  * @generated from message spec.JsonTypesMessage
@@ -164,7 +164,7 @@ export declare type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
  * Describes the message spec.JsonTypesMessage.
  * Use `create(JsonTypesMessageSchema)` to create a new message.
  */
-export declare const JsonTypesMessageSchema: GenDescMessage<JsonTypesMessage>;
+export declare const JsonTypesMessageSchema: GenMessage<JsonTypesMessage>;
 
 /**
  * @generated from enum spec.JsonTypeEnum
@@ -189,5 +189,5 @@ export enum JsonTypeEnum {
 /**
  * Describes the enum spec.JsonTypeEnum.
  */
-export declare const JsonTypeEnumSchema: GenDescEnum<JsonTypeEnum>;
+export declare const JsonTypeEnumSchema: GenEnum<JsonTypeEnum>;
 

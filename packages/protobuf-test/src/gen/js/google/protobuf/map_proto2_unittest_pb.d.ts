@@ -20,14 +20,14 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In map_test_util.h we do "using namespace unittest = protobuf_unittest".
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { ImportEnumForMap } from "./unittest_import_pb.js";
 
 /**
  * Describes the file google/protobuf/map_proto2_unittest.proto.
  */
-export declare const file_google_protobuf_map_proto2_unittest: GenDescFile;
+export declare const file_google_protobuf_map_proto2_unittest: GenFile;
 
 /**
  * @generated from message protobuf_unittest.TestEnumMap
@@ -110,7 +110,7 @@ export declare type TestEnumMap = Message<"protobuf_unittest.TestEnumMap"> & {
  * Describes the message protobuf_unittest.TestEnumMap.
  * Use `create(TestEnumMapSchema)` to create a new message.
  */
-export declare const TestEnumMapSchema: GenDescMessage<TestEnumMap>;
+export declare const TestEnumMapSchema: GenMessage<TestEnumMap>;
 
 /**
  * @generated from message protobuf_unittest.TestEnumMapPlusExtra
@@ -193,7 +193,7 @@ export declare type TestEnumMapPlusExtra = Message<"protobuf_unittest.TestEnumMa
  * Describes the message protobuf_unittest.TestEnumMapPlusExtra.
  * Use `create(TestEnumMapPlusExtraSchema)` to create a new message.
  */
-export declare const TestEnumMapPlusExtraSchema: GenDescMessage<TestEnumMapPlusExtra>;
+export declare const TestEnumMapPlusExtraSchema: GenMessage<TestEnumMapPlusExtra>;
 
 /**
  * @generated from message protobuf_unittest.TestImportEnumMap
@@ -209,7 +209,7 @@ export declare type TestImportEnumMap = Message<"protobuf_unittest.TestImportEnu
  * Describes the message protobuf_unittest.TestImportEnumMap.
  * Use `create(TestImportEnumMapSchema)` to create a new message.
  */
-export declare const TestImportEnumMapSchema: GenDescMessage<TestImportEnumMap>;
+export declare const TestImportEnumMapSchema: GenMessage<TestImportEnumMap>;
 
 /**
  * @generated from message protobuf_unittest.TestIntIntMap
@@ -225,7 +225,7 @@ export declare type TestIntIntMap = Message<"protobuf_unittest.TestIntIntMap"> &
  * Describes the message protobuf_unittest.TestIntIntMap.
  * Use `create(TestIntIntMapSchema)` to create a new message.
  */
-export declare const TestIntIntMapSchema: GenDescMessage<TestIntIntMap>;
+export declare const TestIntIntMapSchema: GenMessage<TestIntIntMap>;
 
 /**
  * Test all key types: string, plus the non-floating-point scalars.
@@ -298,7 +298,7 @@ export declare type TestMaps = Message<"protobuf_unittest.TestMaps"> & {
  * Describes the message protobuf_unittest.TestMaps.
  * Use `create(TestMapsSchema)` to create a new message.
  */
-export declare const TestMapsSchema: GenDescMessage<TestMaps>;
+export declare const TestMapsSchema: GenMessage<TestMaps>;
 
 /**
  * Test maps in submessages.
@@ -316,7 +316,7 @@ export declare type TestSubmessageMaps = Message<"protobuf_unittest.TestSubmessa
  * Describes the message protobuf_unittest.TestSubmessageMaps.
  * Use `create(TestSubmessageMapsSchema)` to create a new message.
  */
-export declare const TestSubmessageMapsSchema: GenDescMessage<TestSubmessageMaps>;
+export declare const TestSubmessageMapsSchema: GenMessage<TestSubmessageMaps>;
 
 /**
  * @generated from message protobuf_unittest.TestProto2BytesMap
@@ -337,7 +337,7 @@ export declare type TestProto2BytesMap = Message<"protobuf_unittest.TestProto2By
  * Describes the message protobuf_unittest.TestProto2BytesMap.
  * Use `create(TestProto2BytesMapSchema)` to create a new message.
  */
-export declare const TestProto2BytesMapSchema: GenDescMessage<TestProto2BytesMap>;
+export declare const TestProto2BytesMapSchema: GenMessage<TestProto2BytesMap>;
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnum
@@ -362,7 +362,7 @@ export enum Proto2MapEnum {
 /**
  * Describes the enum protobuf_unittest.Proto2MapEnum.
  */
-export declare const Proto2MapEnumSchema: GenDescEnum<Proto2MapEnum>;
+export declare const Proto2MapEnumSchema: GenEnum<Proto2MapEnum>;
 
 /**
  * @generated from enum protobuf_unittest.Proto2MapEnumPlusExtra
@@ -392,5 +392,5 @@ export enum Proto2MapEnumPlusExtra {
 /**
  * Describes the enum protobuf_unittest.Proto2MapEnumPlusExtra.
  */
-export declare const Proto2MapEnumPlusExtraSchema: GenDescEnum<Proto2MapEnumPlusExtra>;
+export declare const Proto2MapEnumPlusExtraSchema: GenEnum<Proto2MapEnumPlusExtra>;
 

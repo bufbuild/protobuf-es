@@ -17,13 +17,13 @@
 // option features.message_encoding = DELIMITED;
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/edition2023-map-encoding.proto.
  */
-export declare const file_extra_edition2023_map_encoding: GenDescFile;
+export declare const file_extra_edition2023_map_encoding: GenFile;
 
 /**
  * Map fields are syntactic sugar for a repeated message field with field 1 for
@@ -49,7 +49,7 @@ export declare type Edition2023MapEncodingMessage = Message<"spec.Edition2023Map
  * Describes the message spec.Edition2023MapEncodingMessage.
  * Use `create(Edition2023MapEncodingMessageSchema)` to create a new message.
  */
-export declare const Edition2023MapEncodingMessageSchema: GenDescMessage<Edition2023MapEncodingMessage>;
+export declare const Edition2023MapEncodingMessageSchema: GenMessage<Edition2023MapEncodingMessage>;
 
 /**
  * @generated from message spec.Edition2023MapEncodingMessage.Child
@@ -61,5 +61,5 @@ export declare type Edition2023MapEncodingMessage_Child = Message<"spec.Edition2
  * Describes the message spec.Edition2023MapEncodingMessage.Child.
  * Use `create(Edition2023MapEncodingMessage_ChildSchema)` to create a new message.
  */
-export declare const Edition2023MapEncodingMessage_ChildSchema: GenDescMessage<Edition2023MapEncodingMessage_Child>;
+export declare const Edition2023MapEncodingMessage_ChildSchema: GenMessage<Edition2023MapEncodingMessage_Child>;
 

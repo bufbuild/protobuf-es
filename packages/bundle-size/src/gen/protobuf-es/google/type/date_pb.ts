@@ -16,14 +16,14 @@
 // @generated from file google/type/date.proto (package google.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/type/date.proto.
  */
-export const file_google_type_date: GenDescFile = /*@__PURE__*/
+export const file_google_type_date: GenFile = /*@__PURE__*/
   fileDesc("ChZnb29nbGUvdHlwZS9kYXRlLnByb3RvEgtnb29nbGUudHlwZSIwCgREYXRlEgwKBHllYXIYASABKAUSDQoFbW9udGgYAiABKAUSCwoDZGF5GAMgASgFQl0KD2NvbS5nb29nbGUudHlwZUIJRGF0ZVByb3RvUAFaNGdvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvdHlwZS9kYXRlO2RhdGX4AQGiAgNHVFBiBnByb3RvMw");
 
 /**
@@ -74,6 +74,6 @@ export type Date = Message<"google.type.Date"> & {
  * Describes the message google.type.Date.
  * Use `create(DateSchema)` to create a new message.
  */
-export const DateSchema: GenDescMessage<Date> = /*@__PURE__*/
+export const DateSchema: GenMessage<Date> = /*@__PURE__*/
   messageDesc(file_google_type_date, 0);
 

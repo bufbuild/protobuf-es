@@ -25,13 +25,13 @@
 // @generated from file google/protobuf/unittest_enormous_descriptor.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_enormous_descriptor.proto.
  */
-export declare const file_google_protobuf_unittest_enormous_descriptor: GenDescFile;
+export declare const file_google_protobuf_unittest_enormous_descriptor: GenFile;
 
 /**
  * clang-format off
@@ -5044,5 +5044,5 @@ export declare type TestEnormousDescriptor = Message<"protobuf_unittest.TestEnor
  * Describes the message protobuf_unittest.TestEnormousDescriptor.
  * Use `create(TestEnormousDescriptorSchema)` to create a new message.
  */
-export declare const TestEnormousDescriptorSchema: GenDescMessage<TestEnormousDescriptor>;
+export declare const TestEnormousDescriptorSchema: GenMessage<TestEnormousDescriptor>;
 

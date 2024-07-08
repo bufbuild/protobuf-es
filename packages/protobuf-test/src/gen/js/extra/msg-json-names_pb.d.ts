@@ -16,13 +16,13 @@
 // @generated from file extra/msg-json-names.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/msg-json-names.proto.
  */
-export declare const file_extra_msg_json_names: GenDescFile;
+export declare const file_extra_msg_json_names: GenFile;
 
 /**
  * @generated from message spec.JsonNamesMessage
@@ -63,5 +63,5 @@ export declare type JsonNamesMessage = Message<"spec.JsonNamesMessage"> & {
  * Describes the message spec.JsonNamesMessage.
  * Use `create(JsonNamesMessageSchema)` to create a new message.
  */
-export declare const JsonNamesMessageSchema: GenDescMessage<JsonNamesMessage>;
+export declare const JsonNamesMessageSchema: GenMessage<JsonNamesMessage>;
 

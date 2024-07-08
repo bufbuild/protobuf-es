@@ -16,7 +16,7 @@
 // @generated from file google/api/expr/v1beta1/value.proto (package google.api.expr.v1beta1, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Any, NullValue } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_any, file_google_protobuf_struct } from "@bufbuild/protobuf/wkt";
@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/api/expr/v1beta1/value.proto.
  */
-export const file_google_api_expr_v1beta1_value: GenDescFile = /*@__PURE__*/
+export const file_google_api_expr_v1beta1_value: GenFile = /*@__PURE__*/
   fileDesc("CiNnb29nbGUvYXBpL2V4cHIvdjFiZXRhMS92YWx1ZS5wcm90bxIXZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEivQMKBVZhbHVlEjAKCm51bGxfdmFsdWUYASABKA4yGi5nb29nbGUucHJvdG9idWYuTnVsbFZhbHVlSAASFAoKYm9vbF92YWx1ZRgCIAEoCEgAEhUKC2ludDY0X3ZhbHVlGAMgASgDSAASFgoMdWludDY0X3ZhbHVlGAQgASgESAASFgoMZG91YmxlX3ZhbHVlGAUgASgBSAASFgoMc3RyaW5nX3ZhbHVlGAYgASgJSAASFQoLYnl0ZXNfdmFsdWUYByABKAxIABI4CgplbnVtX3ZhbHVlGAkgASgLMiIuZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuRW51bVZhbHVlSAASLAoMb2JqZWN0X3ZhbHVlGAogASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueUgAEjYKCW1hcF92YWx1ZRgLIAEoCzIhLmdvb2dsZS5hcGkuZXhwci52MWJldGExLk1hcFZhbHVlSAASOAoKbGlzdF92YWx1ZRgMIAEoCzIiLmdvb2dsZS5hcGkuZXhwci52MWJldGExLkxpc3RWYWx1ZUgAEhQKCnR5cGVfdmFsdWUYDyABKAlIAEIGCgRraW5kIigKCUVudW1WYWx1ZRIMCgR0eXBlGAEgASgJEg0KBXZhbHVlGAIgASgFIjsKCUxpc3RWYWx1ZRIuCgZ2YWx1ZXMYASADKAsyHi5nb29nbGUuYXBpLmV4cHIudjFiZXRhMS5WYWx1ZSKpAQoITWFwVmFsdWUSOAoHZW50cmllcxgBIAMoCzInLmdvb2dsZS5hcGkuZXhwci52MWJldGExLk1hcFZhbHVlLkVudHJ5GmMKBUVudHJ5EisKA2tleRgBIAEoCzIeLmdvb2dsZS5hcGkuZXhwci52MWJldGExLlZhbHVlEi0KBXZhbHVlGAIgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYmV0YTEuVmFsdWVCawobY29tLmdvb2dsZS5hcGkuZXhwci52MWJldGExQgpWYWx1ZVByb3RvUAFaO2dvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvYXBpL2V4cHIvdjFiZXRhMTtleHBy+AEBYgZwcm90bzM", [file_google_protobuf_any, file_google_protobuf_struct]);
 
 /**
@@ -145,7 +145,7 @@ export type Value = Message<"google.api.expr.v1beta1.Value"> & {
  * Describes the message google.api.expr.v1beta1.Value.
  * Use `create(ValueSchema)` to create a new message.
  */
-export const ValueSchema: GenDescMessage<Value> = /*@__PURE__*/
+export const ValueSchema: GenMessage<Value> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 0);
 
 /**
@@ -173,7 +173,7 @@ export type EnumValue = Message<"google.api.expr.v1beta1.EnumValue"> & {
  * Describes the message google.api.expr.v1beta1.EnumValue.
  * Use `create(EnumValueSchema)` to create a new message.
  */
-export const EnumValueSchema: GenDescMessage<EnumValue> = /*@__PURE__*/
+export const EnumValueSchema: GenMessage<EnumValue> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 1);
 
 /**
@@ -197,7 +197,7 @@ export type ListValue = Message<"google.api.expr.v1beta1.ListValue"> & {
  * Describes the message google.api.expr.v1beta1.ListValue.
  * Use `create(ListValueSchema)` to create a new message.
  */
-export const ListValueSchema: GenDescMessage<ListValue> = /*@__PURE__*/
+export const ListValueSchema: GenMessage<ListValue> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 2);
 
 /**
@@ -224,7 +224,7 @@ export type MapValue = Message<"google.api.expr.v1beta1.MapValue"> & {
  * Describes the message google.api.expr.v1beta1.MapValue.
  * Use `create(MapValueSchema)` to create a new message.
  */
-export const MapValueSchema: GenDescMessage<MapValue> = /*@__PURE__*/
+export const MapValueSchema: GenMessage<MapValue> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 3);
 
 /**
@@ -255,6 +255,6 @@ export type MapValue_Entry = Message<"google.api.expr.v1beta1.MapValue.Entry"> &
  * Describes the message google.api.expr.v1beta1.MapValue.Entry.
  * Use `create(MapValue_EntrySchema)` to create a new message.
  */
-export const MapValue_EntrySchema: GenDescMessage<MapValue_Entry> = /*@__PURE__*/
+export const MapValue_EntrySchema: GenMessage<MapValue_Entry> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1beta1_value, 3, 0);
 
