@@ -8,7 +8,7 @@ A complete implementation of [Protocol Buffers](https://protobuf.dev/) in TypeSc
 suitable for web browsers and Node.js, created by [Buf](https://buf.build).
 
 Protobuf-ES is the only fully-compliant JavaScript Protobuf library that passes the
-Protobuf conformance tests. [Read more on our blog](https://buf.build/blog/protobuf-conformance).
+Protobuf conformance tests—[read more on our blog][blog-post].
 
 Protobuf-ES's companion RPC library is [Connect-ES](https://github.com/connectrpc/connect-es),
 which supports the Connect, gRPC, and gRPC-Web protocols.
@@ -72,8 +72,8 @@ and then deserialized at its destination using the defined schema.
 
 1. Install the code generator, the runtime library, and the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview):
 
-   ```bash
-   npm install @bufbuild/protobuf @bufbuild/protoc-gen-es @bufbuild/buf
+   ```shellsession
+   $ npm install @bufbuild/protobuf @bufbuild/protoc-gen-es @bufbuild/buf
    ```
 
 2. Create a `buf.gen.yaml` file that looks like this:
@@ -91,15 +91,15 @@ and then deserialized at its destination using the defined schema.
 
 3. Download the [example.proto](packages/protobuf-example/proto/example.proto) into a `proto` directory:
 
-   ```bash
-   mkdir proto
-   curl https://raw.githubusercontent.com/bufbuild/protobuf-es/main/packages/protobuf-example/proto/example.proto > proto/example.proto
+   ```shellsession
+   $ mkdir proto
+   $ curl https://raw.githubusercontent.com/bufbuild/protobuf-es/main/packages/protobuf-example/proto/example.proto > proto/example.proto
    ```
 
-4. Generate your code with `buf` or `protoc`:
+4. Generate your code with `buf` or [`protoc`]:
 
-   ```bash
-   npx buf generate
+   ```shellsession
+   $ npx buf generate
    ```
 
 You should now see a generated file at `src/gen/example_pb.ts` that contains a type `User`, and a schema `UserSchema`.
@@ -130,7 +130,7 @@ From here, you can begin to work with your schema.
   A repository running the Protobuf conformance tests against various libraries.
 - [Buf Studio](https://buf.build/studio): Web UI for ad-hoc RPCs
 
-## TypeScript
+## TypeScript compatibility
 
 The generated code is compatible with TypeScript **v4.9.5** or later, with the default compiler settings.
 
@@ -139,3 +139,6 @@ The generated code is compatible with TypeScript **v4.9.5** or later, with the d
 The [code to encode and decode varint](packages/protobuf/src/wire/varint.ts) is Copyright 2008 Google Inc., licensed
 under BSD-3-Clause.
 All other files are licensed under Apache-2.0, see [LICENSE](LICENSE).
+
+[blog-post]: https://buf.build/blog/protobuf-conformance
+[`protoc`]: MANUAL.md#generate-with-protoc

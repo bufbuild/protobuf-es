@@ -8,12 +8,12 @@ Editing this document:
 - Always use reference-style links.
 --->
 
-## What are Protocol Buffers?
+## What is Protocol Buffers?
 
-Protocol Buffers is an [interface definition language][wikipedia.org/idl] and binary serialization format. Schemas defined in
-.proto files are platform-independent and can be used in many languages.
+Protocol Buffers (aka Protobuf) is an [interface definition language][wikipedia.org/idl] and binary serialization
+format. Schemas defined in `.proto` files are platform-independent and can be used in many languages.
 
-For example, the following Protobuf file [example.proto] defines a data structure named `User`:
+For example, the following Protobuf file ([example.proto]) defines a data structure named `User`:
 
 ```protobuf
 syntax = "proto3";
@@ -29,14 +29,14 @@ message User {
 }
 ```
 
-To use the data structure, you generate with a Protobuf compiler and a plugin for the language of your choice. To learn
-more about the capabilities, please check the [official language guide][protobuf.dev].
+To use the data structure, you generate code with a Protobuf compiler and a plugin for the language of your choice.
+To learn more about Protobuf's capabilities, read the [official language guide][protobuf.dev].
 
 ## What is Protobuf-ES?
 
 Protobuf-ES is a complete implementation of Protocol Buffers in TypeScript, suitable for web browsers and Node.js,
-created by [Buf](https://buf.build). It is the only fully-compliant JavaScript Protobuf library that passes the
-Protobuf conformance tests - [read more on our blog][buf.build/conformance-blog].
+created by [Buf]. It's the only fully-compliant JavaScript Protobuf library that passes the Protobuf conformance 
+tests—[read more on our blog][blog-post].
 
 Protobuf-ES consists of three npm packages:
 
@@ -46,34 +46,37 @@ Protobuf-ES consists of three npm packages:
 
 ## How to generate code
 
-Let's install the compiler [@bufbuild/buf], our plugin and runtime library:
+The quickstart below shows a simple example of code generation for a `.proto` file.
 
-```shell
-npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
-npm install @bufbuild/protobuf
-```
+1.  Install the compiler [@bufbuild/buf], plugin, and runtime library:
 
-Create a `buf.gen.yaml` file that looks like this:
+    ```shellsession
+    npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
+    npm install @bufbuild/protobuf
+    ```
 
-```yaml
-# Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
-version: v2
-inputs:
-  - directory: proto
-plugins:
-  - local: protoc-gen-es
-    out: src/gen
-    opt: target=ts
-```
+2.  In a new folder, create a `buf.gen.yaml` file that looks like this:
 
-To generate code for all Protobuf files in the directory `proto`, simply run:
+    ```yaml
+    # Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
+    version: v2
+    inputs:
+      - directory: proto
+    plugins:
+      - local: protoc-gen-es
+        out: src/gen
+        opt: target=ts
+    ```
 
-```shell
-npx buf generate
-```
+3.  Create a `proto` subdirectory and download [example.proto] into it.
 
-Download [example.proto] into the directory `proto` for an easy start. As a result, you'll have a new file in
-`src/gen/example_pb.ts`:
+4.  To generate code for all Protobuf files in the `proto` directory, simply run:
+
+    ```shellsession
+    $ npx buf generate
+    ```
+
+The generated code now exists in `src/gen/example_pb.ts`:
 
 ```diff
   .
@@ -86,25 +89,25 @@ Download [example.proto] into the directory `proto` for an easy start. As a resu
 +         └── example_pb.ts
 ```
 
-<details><summary>Generate with protoc</summary>
+### Generate with `protoc`
 
 `protoc-gen-es` is a standard Protobuf plugin, and can also be used with [`protoc`][gh-protoc]:
 
-```bash
-PATH=$PATH:$(pwd)/node_modules/.bin \
-  protoc -I . \
-  --es_out src/gen \
-  --es_opt target=ts \
-  proto/example.proto
+```shellsession
+$ PATH=$PATH:$(pwd)/node_modules/.bin \
+    protoc -I . \
+    --es_out src/gen \
+    --es_opt target=ts \
+    proto/example.proto
 ```
 
-Note that we are adding `node_modules/.bin` to the `$PATH`, so that the Protobuf compiler can find the plugin. This
-happens automatically with npm scripts.
+Note that `node_modules/.bin` to the `$PATH` needs to be added to the page so that the Protobuf compiler can find the
+plugin. This happens automatically with npm scripts.
 
-Do you use `yarn`? Since yarn v2 and above does not use a `node_modules` directory, you need to change the variable a
+If you use Yarn, versions v2 and above don't use a `node_modules` directory, so you need to change the variable a
 bit:
 
-```bash
+```shellsession
 PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
 ```
 
@@ -112,8 +115,8 @@ PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
 
 ## Plugin options
 
-Our plugin supports a few options to control the generated code. For example, we have used the option `target=ts` in
-the example above to generate TypeScript files.
+Our plugin supports a few options to control the generated code. The example above used `target=ts` to generate 
+TypeScript files.
 
 With [@bufbuild/buf], multiple options can be specified as a YAML list:
 
@@ -128,10 +131,60 @@ plugins:
       - import_extension=js
 ```
 
-With [`protoc`][gh-protoc], multiple options are specified with multiple `--es_opt` flags. Alternatively, both compilers
-allow to specify multiple options as a single comma-separated value like `target=ts,import_extension=js`.
+With [`protoc`][gh-protoc], you specify multiple options with multiple `--es_opt` flags. Alternatively, both compilers
+allow you to specify multiple options as a single comma-separated value like `target=ts,import_extension=js`.
 
-> **TODO** include all options from https://github.com/bufbuild/protobuf-es/tree/v2/packages/protoc-gen-es#plugin-options here.
+## Plugin options
+
+### `target`
+
+This option controls whether the plugin generates JavaScript, TypeScript, or TypeScript declaration files. Possible 
+values:
+
+- `target=js`: Generates a `_pb.js` file for every `.proto` input file.
+- `target=ts`: Generates a `_pb.ts` file for every `.proto` input file.
+- `target=dts`: Generates a `_pb.d.ts` file for every `.proto` input file.
+
+You can pass multiple values by separating them with `+`—for example, `target=js+dts`.
+
+By default, we generate JavaScript and TypeScript declaration files, which produces the smallest code size and is the 
+most compatible with various bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
+
+### `import_extension`
+
+By default, [protoc-gen-es] doesn't add file extensions to import paths. However, some environments require an import 
+extension. For example, using [ECMAScript modules in Node.js][ecmascript-modules] requires the `.js` extension, and 
+Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions in import paths with the given value. 
+Possible values:
+
+- `import_extension=js`: Adds the `.js` extension.
+- `import_extension=ts`. Adds the `.ts` extension.
+- `import_extension=none`: Doesn't add an extension. (Default)
+
+### `js_import_style`
+
+By default, [protoc-gen-es] generates ECMAScript `import` and `export` statements. For use cases where CommonJS is 
+difficult to avoid, this option can be used to generate CommonJS `require()` calls. Possible values:
+
+- `js_import_style=module`: Generates ECMAScript `import`/`export` statements. (Default)
+- `js_import_style=legacy_commonjs`: Generates CommonJS `require()` calls.
+
+### `keep_empty_files=true`
+
+By default, [protoc-gen-es] omits empty files from the plugin output. This option disables pruning of empty files to 
+allow for smooth interoperation with Bazel and similar tooling that requires all output files to be declared ahead of 
+time. Unless you use Bazel, you probably don't need this option.
+
+### `ts_nocheck=true`
+
+[protoc-gen-es] generates valid TypeScript for current versions of the TypeScript compiler with standard settings.
+If you use compiler settings that yield an error for generated code, setting this option generates an annotation at
+the top of each file to skip type checks: `// @ts-nocheck`.
+
+### `json_types=true`
+
+Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type 
+if available.
 
 ## Generated code
 
@@ -1233,7 +1286,7 @@ Protobuf messages themselves. You can find a deep dive into the model in [Buf's 
 
 The following command compiles all Protobuf files in the directory `proto`, and writes the descriptors to a file:
 
-```shell
+```shellsession
 buf build proto --output set.binpb
 ```
 
@@ -1627,131 +1680,136 @@ makes them non-plain objects. In this case, serializing to JSON is a reliable so
 
 > **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/faq.md
 
-[option-target]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#target
-[option-js_import_style]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#js_import_style
-[option-import_extension]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#import_extensionjs
-[example.proto]: ./packages/protobuf-example/proto/example.proto
-[protobuf.dev]: https://protobuf.dev/overview/
-[protobuf.dev/field_presence]: https://protobuf.dev/programming-guides/field_presence/
-[protobuf.dev/encoding]: https://protobuf.dev/programming-guides/encoding/
-[protobuf.dev/customoptions]: https://protobuf.dev/programming-guides/proto2/#customoptions
-[protobuf.dev/required]: https://protobuf.dev/programming-guides/proto2/#field-labels
-[buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
-[buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
-[wikipedia.org/idl]: https://en.wikipedia.org/wiki/Interface_description_language
-[Text Encoding API]: https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API
-[gh-protoc]: https://github.com/protocolbuffers/protobuf/releases
-[gh-buf-conformance]: https://github.com/bufbuild/protobuf-conformance
-[gh-connect-es]: https://github.com/connectrpc/connect-es
-[protodelim-c++]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/util/delimited_message_util.h
-[protodelim-java]: https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/AbstractParser.html#parseDelimitedFrom-java.io.InputStream-
-[protodelim-go]: https://pkg.go.dev/google.golang.org/protobuf/encoding/protodelim
 [@bufbuild/buf]: https://www.npmjs.com/package/@bufbuild/buf
 [@bufbuild/protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
 [@bufbuild/protoc-gen-es]: https://www.npmjs.com/package/@bufbuild/protoc-gen-es
 [@bufbuild/protoplugin]: https://www.npmjs.com/package/@bufbuild/protoplugin
+[buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
+[buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
+[Buf]: https://buf.build
+[ecmascript-modules]: https://www.typescriptlang.org/docs/handbook/esm-node.html
+[example.proto]: ./packages/protobuf-example/proto/example.proto
+[gh-buf-conformance]: https://github.com/bufbuild/protobuf-conformance
+[gh-connect-es]: https://github.com/connectrpc/connect-es
+[gh-protoc]: https://github.com/protocolbuffers/protobuf/releases
 [gh-zod]: https://github.com/colinhacks/zod
-[JSON.stringify parameters]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters
-[js-style-guide-airbnb]: https://github.com/airbnb/javascript#naming--camelCase
-[js-style-guide-mdn]: https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript#variable_naming
-[js-style-guide-google]: https://google.github.io/styleguide/jsguide.html#naming-non-constant-field-names
-[js-style-node]: https://nodejs.org/dist/latest-v16.x/docs/api/child_process.html#child_processforkmodulepath-args-options
-[js-style-fetch]: https://fetch.spec.whatwg.org/#request-class
-[strictNullChecks]: https://www.typescriptlang.org/tsconfig#strictNullChecks
 [google/protobuf/any.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/any.proto
-[google/protobuf/duration.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/duration.proto
-[google/protobuf/timestamp.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/timestamp.proto
-[google/protobuf/wrappers.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/wrappers.proto
-[google/protobuf/struct.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/struct.proto
-[google/protobuf/field_mask.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/field_mask.proto
-[google/protobuf/empty.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/empty.proto
 [google/protobuf/api.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/api.proto
-[google/protobuf/type.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/type.proto
-[google/protobuf/source_context.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/source_context.proto
-[google/protobuf/descriptor.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/descriptor.proto
 [google/protobuf/compiler/plugin.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/compiler/plugin.proto
+[google/protobuf/descriptor.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/descriptor.proto
+[google/protobuf/duration.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/duration.proto
+[google/protobuf/empty.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/empty.proto
+[google/protobuf/field_mask.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/field_mask.proto
+[google/protobuf/source_context.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/source_context.proto
+[google/protobuf/struct.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/struct.proto
+[google/protobuf/timestamp.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/timestamp.proto
+[google/protobuf/type.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/type.proto
+[google/protobuf/wrappers.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/wrappers.proto
+[js-style-fetch]: https://fetch.spec.whatwg.org/#request-class
+[js-style-guide-airbnb]: https://github.com/airbnb/javascript#naming--camelCase
+[js-style-guide-google]: https://google.github.io/styleguide/jsguide.html#naming-non-constant-field-names
+[js-style-guide-mdn]: https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript#variable_naming
+[js-style-node]: https://nodejs.org/dist/latest-v16.x/docs/api/child_process.html#child_processforkmodulepath-args-options
+[JSON.stringify parameters]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters
+[official language guide]: https://protobuf.dev
+[option-import_extension]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#import_extensionjs
+[option-js_import_style]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#js_import_style
+[option-target]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#target
+[protobuf.dev/customoptions]: https://protobuf.dev/programming-guides/proto2/#customoptions
+[protobuf.dev/encoding]: https://protobuf.dev/programming-guides/encoding/
+[protobuf.dev/field_presence]: https://protobuf.dev/programming-guides/field_presence/
+[protobuf.dev/required]: https://protobuf.dev/programming-guides/proto2/#field-labels
+[protobuf.dev]: https://protobuf.dev/overview/
+[protoc-gen-es]: https://www.npmjs.com/package/@bufbuild/protoc-gen-es
+[protodelim-c++]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/util/delimited_message_util.h
+[protodelim-go]: https://pkg.go.dev/google.golang.org/protobuf/encoding/protodelim
+[protodelim-java]: https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/AbstractParser.html#parseDelimitedFrom-java.io.InputStream-
+[blog-post]: https://buf.build/conformance-blog # Actual link TBD
 [src/wkt/Any]: ./packages/protobuf/src/wkt/gen/google/protobuf/any_pb.ts
-[src/wkt/Duration]: ./packages/protobuf/src/wkt/gen/google/protobuf/duration_pb.ts
-[src/wkt/Timestamp]: ./packages/protobuf/src/wkt/gen/google/protobuf/timestamp_pb.ts
-[src/wkt/DoubleValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/FloatValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/Int64Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/UInt64Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/Int32Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/UInt32Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/BoolValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/StringValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/BytesValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/Struct]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
-[src/wkt/Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
-[src/wkt/ListValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
-[src/wkt/NullValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
-[src/wkt/FieldMask]: ./packages/protobuf/src/wkt/gen/google/protobuf/field_mask_pb.ts
-[src/wkt/Empty]: ./packages/protobuf/src/wkt/gen/google/protobuf/empty_pb.ts
 [src/wkt/Api]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
-[src/wkt/Method]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
-[src/wkt/Mixin]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
-[src/wkt/Type]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Field]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Field_Kind]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Field_Cardinality]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Enum]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/EnumValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Option]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Syntax]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/SourceContext]: ./packages/protobuf/src/wkt/gen/google/protobuf/source_context_pb.ts
-[src/wkt/FileDescriptorSet]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FileDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/BoolValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/BytesValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/CodeGeneratorRequest]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
+[src/wkt/CodeGeneratorResponse]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
+[src/wkt/CodeGeneratorResponse_Feature]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
+[src/wkt/CodeGeneratorResponse_File]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
 [src/wkt/DescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/DescriptorProto_ExtensionRange]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/DescriptorProto_ReservedRange]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/DoubleValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/Duration]: ./packages/protobuf/src/wkt/gen/google/protobuf/duration_pb.ts
+[src/wkt/Edition]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Empty]: ./packages/protobuf/src/wkt/gen/google/protobuf/empty_pb.ts
+[src/wkt/Enum]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/EnumDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/EnumDescriptorProto_EnumReservedRange]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/EnumOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/EnumValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/EnumValueDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/EnumValueOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/ExtensionRangeOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/ExtensionRangeOptions_Declaration]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/ExtensionRangeOptions_VerificationState]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_EnumType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_FieldPresence]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_JsonFormat]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_MessageEncoding]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_RepeatedFieldEncoding]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_Utf8Validation]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSetDefaults]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSetDefaults_FeatureSetEditionDefault]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Field]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/Field_Cardinality]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/Field_Kind]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
 [src/wkt/FieldDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FieldDescriptorProto_Type]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldDescriptorProto_Label]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/OneofDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumDescriptorProto_EnumReservedRange]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumValueDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/ServiceDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/MethodDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FileOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FileOptions_OptimizeMode]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/MessageOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FieldDescriptorProto_Type]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FieldMask]: ./packages/protobuf/src/wkt/gen/google/protobuf/field_mask_pb.ts
 [src/wkt/FieldOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FieldOptions_CType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_EditionDefault]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_FeatureSupport]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FieldOptions_CType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_JSType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_OptionRetention]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_OptionTargetType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/OneofOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumValueOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/ServiceOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/MethodOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/MethodOptions_IdempotencyLevel]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/UninterpretedOption]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/UninterpretedOption_NamePart]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_FieldPresence]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_EnumType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_RepeatedFieldEncoding]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_Utf8Validation]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_MessageEncoding]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_JsonFormat]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSetDefaults]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSetDefaults_FeatureSetEditionDefault]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/SourceCodeInfo]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/SourceCodeInfo_Location]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FileDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FileDescriptorSet]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FileOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FileOptions_OptimizeMode]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FloatValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
 [src/wkt/GeneratedCodeInfo]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/GeneratedCodeInfo_Annotation]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/GeneratedCodeInfo_Annotation_Semantic]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/Edition]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Int32Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/Int64Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/ListValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
+[src/wkt/MessageOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Method]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
+[src/wkt/MethodDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/MethodOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/MethodOptions_IdempotencyLevel]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Mixin]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
+[src/wkt/NullValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
+[src/wkt/OneofDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/OneofOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Option]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/ServiceDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/ServiceOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/SourceCodeInfo]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/SourceCodeInfo_Location]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/SourceContext]: ./packages/protobuf/src/wkt/gen/google/protobuf/source_context_pb.ts
+[src/wkt/StringValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/Struct]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
+[src/wkt/Syntax]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/Timestamp]: ./packages/protobuf/src/wkt/gen/google/protobuf/timestamp_pb.ts
+[src/wkt/Type]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/UInt32Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/UInt64Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/UninterpretedOption]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/UninterpretedOption_NamePart]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
 [src/wkt/Version]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
-[src/wkt/CodeGeneratorRequest]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
-[src/wkt/CodeGeneratorResponse]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
-[src/wkt/CodeGeneratorResponse_File]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
-[src/wkt/CodeGeneratorResponse_Feature]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
+[strictNullChecks]: https://www.typescriptlang.org/tsconfig#strictNullChecks
+[Text Encoding API]: https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API
+[wikipedia.org/idl]: https://en.wikipedia.org/wiki/Interface_description_language
