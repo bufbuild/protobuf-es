@@ -482,7 +482,7 @@ mygroup?: User_MyGroup;
 >
 > The groups feature is deprecated and shouldn't be used when creating new schemas. Use nested messages instead.
 
-### proto2 required fields
+### Proto2 required fields
 
 In proto2, fields can use the `required` keyword to ensure that the field is always set. In Protobuf-ES, required fields
 are validated when serializing a message, but not when parsing or constructing a message.
@@ -930,7 +930,7 @@ const user: User = create(UserSchema, {
 Messages can be serialized with the binary or the JSON format. The [conformance test suite][gh-buf-conformance] ensures
 interoperability with implementations in other languages.
 
-To serialize a message, you call the function `toBinary` with the schema and the message. To parse a message, use
+To serialize a message, call the function `toBinary` with the schema and the message. To parse a message, use
 `fromBinary`:
 
 ```typescript
@@ -1081,22 +1081,24 @@ const b = clone(UserSchema, a);
 
 ## Serialization
 
-As a general guide to decide between the binary format and JSON: The JSON format is great for debugging, but the binary
-format is more resilient to changes. For example, you can rename a field, and still parse binary data serialized with
+As a general guide when deciding between the binary format and JSON, the JSON format is great for debugging, but the binary
+format is more resilient to changes. For example, you can rename a field and still parse binary data serialized with
 the previous version. In general, the binary format is also more performant than JSON.
 
 ### Binary serialization options
 
+TODO: Examples to show these in context?
+
 Options for `toBinary`:
 
 - `writeUnknownFields?: boolean`<br/>
-  Include [unknown fields](#unknown-fields) in the serialized output? The default behavior
+  Controls whether to include [unknown fields](#unknown-fields) in the serialized output. The default behavior
   is to retain unknown fields and include them in the serialized output.
 
 Options for `fromBinary`:
 
 - `readUnknownFields?: boolean`<br/>
-  Retain [unknown fields](#unknown-fields) during parsing? The default behavior is to retain
+  Controls whether to retain [unknown fields](#unknown-fields) during parsing. The default behavior is to retain
   unknown fields and include them in the serialized output.
 
 ### JSON serialization options
@@ -1104,17 +1106,17 @@ Options for `fromBinary`:
 Options for `fromJson` and `fromJsonString`:
 
 - `ignoreUnknownFields?: boolean`<br/>
-  By default, unknown properties are rejected. This option overrides this behavior and ignores properties, as well as
+  By default, unknown properties are rejected. This option overrides that behavior and ignores properties, as well as
   unrecognized enum string representations.
 - `registry?: Registry`<br/>
-  A [registry](#registries) to parse [`google.protobuf.Any`](#googleprotobufany) and [extensions](#extensions)
+  A [registry](#registries) to use for parsing [`google.protobuf.Any`](#googleprotobufany) and [extensions](#extensions)
   from JSON.
 
 Options for `toJson` and `toJsonString`:
 
 - `alwaysEmitImplicit?: boolean`<br/>
   By default, fields with implicit presence are not serialized if they are
-  unset. For example, an empty list field or a proto3 int32 field with 0 is
+  unset. For example, an empty list field or a proto3 int32 field with `0` is
   not serialized. With this option enabled, such fields are included in the
   output.
 - `enumAsInteger?: boolean`<br/>
@@ -1124,7 +1126,8 @@ Options for `toJson` and `toJsonString`:
   Field names are converted to lowerCamelCase by default in JSON output. This
   option overrides the behavior to use the proto field name instead.
 - `registry?: Registry`<br/>
-  A [registry](#registries) to convert [extensions](#extensions) and [`google.protobuf.Any`](#googleprotobufany) to JSON.
+  A [registry](#registries) to use for converting [extensions](#extensions) and 
+  [`google.protobuf.Any`](#googleprotobufany) to JSON.
 - `prettySpaces?: number`<br/>
   Only available with `toJsonString`. A convenience property for the `space` parameter to
   [JSON.stringify][JSON.stringify parameters].
@@ -1187,10 +1190,10 @@ base64Decode("AgQIEA=="); // Uint8Array(4) [ 2, 4, 8, 16 ]
 
 ### Size-delimited message streams
 
-Protobuf-ES supports the size-delimited format for messages. It lets you serialize multiple messages to a stream, and
+Protobuf-ES supports the size-delimited format for messages. It lets you serialize multiple messages to a stream and
 parse multiple messages from a stream. A size-delimited message is a varint size in bytes, followed by exactly that many
-bytes of a message serialized with the binary format. This implementation is compatible with the counterparts in
-[C++][protodelim-c++], [Java][protodelim-java], [Go][protodelim-go], and others.
+bytes of a message serialized with the binary format. This implementation is compatible with its counterparts in
+[C++][protodelim-c++], [Java][protodelim-java], [Go][protodelim-go], and other languages.
 
 Serialize size-delimited messages with `sizeDelimitedEncode`:
 
@@ -1206,8 +1209,8 @@ stream.write(sizeDelimitedEncode(UserSchema, user));
 stream.end();
 ```
 
-Parse size-delimited messages with `sizeDelimitedDecodeStream`. The function expects an `AsyncIterable<Uint8Array>`, so
-it works with Node.js out of the box, and can be easily adapted to other stream APIs:
+You can parse size-delimited messages with `sizeDelimitedDecodeStream`. The function expects an `AsyncIterable<Uint8Array>`, 
+so it works with Node.js out of the box and can be easily adapted to other stream APIs:
 
 ```typescript
 import { sizeDelimitedDecodeStream } from "@bufbuild/protobuf/wire";
@@ -1221,7 +1224,83 @@ for await (const user of sizeDelimitedDecodeStream(UserSchema, stream)) {
 
 ## JSON types
 
-> **TODO** https://github.com/bufbuild/protobuf-es/pull/866
+This is an advanced feature that's set with the plugin option `json_types=true`. If it's enabled, `protoc-gen-es` 
+generates a JSON type for every Protobuf message.
+
+Given this definition:
+
+```protobuf
+syntax = "proto3";
+
+message Example {
+  int32 amount = 1;
+  bytes data = 2;
+}
+```
+
+the following additional export is generated:
+
+```ts
+/**
+ * JSON type for the message Example.
+ */
+export type ExampleJson = {
+  /**
+   * @generated from field: int32 amount = 1;
+   */
+  amount?: number;
+
+  /**
+   * @generated from field: bytes data = 2;
+   */
+  data?: string;
+};
+```
+
+The JSON type matches exactly what `toJson()` will emit with standard serialization options, and `toJson()` 
+automatically returns the JSON type if available:
+
+```ts
+const example = create(ExampleSchema, { amount: 123 });
+const json: ExampleJson = toJson(ExampleSchema, example);
+
+// Without json_types=true, the following would be a type error:
+json.amount // number | undefined
+json.data // string | undefined
+```
+
+For enumerations, a similar mechanism applies. We generate a union type with all JSON string values for the enum:
+
+```protobuf
+syntax = "proto3";
+
+enum Format {
+  FORMAT_UNSPECIFIED = 0;
+  FORMAT_BINARY = 1;
+  FORMAT_JSON = 2;
+}
+```
+```ts
+/**
+ * JSON type for the enum Format.
+ */
+export type FormatJson = "FORMAT_UNSPECIFIED" | "FORMAT_BINARY" | "FORMAT_JSON";
+```
+
+With the `enumToJson()` and `enumFromJson()` functions, values can be converted between both representations. With 
+`isEnumJson()`, unknown input can be narrowed down to known values. If JSON types are available, the functions are 
+type safe:
+
+```ts
+const strVal: FormatJson = enumToJson(FormatSchema, Format.BINARY);
+
+const enumVal: Format = enumFromJson(FormatSchema, strVal);
+
+const someString: string = "FORMAT_BINARY";
+if (isEnumJson(FormatSchema, someString)) {
+  someString // FormatJson
+}
+```
 
 ## Reflection
 
