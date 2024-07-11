@@ -280,27 +280,35 @@ When the `ImportSymbol` is printed (and only when it is printed), an import stat
 
 #### Importing from `protoc-gen-es` generated code
 
-To import a message or enumeration from `protoc-gen-es` generated code, you can simply pass the descriptor to `import()`:
+To import a schema from `protoc-gen-es` generated code, use `importSchema()`:
 
 ```ts
-declare var someMessageDescriptor: DescMessage;
-const someMessage = f.import(someMessageDescriptor);
-f.print("const msg = new ", someMessage, "();");
+const schema = f.importSchema(schema.files[0].messages[0]);
+f.print("const msg = create(", schema, ");");
+
+// Generates:
+// import { UserSchema } from "./gen/example";
+// const msg = create(UserSchema);
 ```
 
-There is also a shortcut in `print` which does the above for you:
+To import a message type or enum from `protoc-gen-es` generated code, use `importShape()`:
 
 ```ts
-f.print("const msg = new ", someMessageDescriptor, "();");
+const type = f.importShape(schema.files[0].messages[0]);
+f.print("let msg: ", type, ";");
+
+// Generates:
+// import type { User } from "./gen/example";
+// let msg: User;
 ```
 
 #### Importing from the @bufbuild/protobuf runtime
 
-The `Schema` object contains a `runtime` property which provides an `ImportSymbol` for all important types as a convenience:
+The `GeneratedFile` object contains a `runtime` property which provides an `ImportSymbol` for all important types as a
+convenience:
 
 ```ts
-const { JsonValue } = schema.runtime;
-f.print("const j: ", JsonValue, ' = "hello";');
+f.print("const j: ", f.runtime.JsonValue, ' = "hello";');
 ```
 
 #### Type-only imports
@@ -308,22 +316,9 @@ f.print("const j: ", JsonValue, ' = "hello";');
 If you would like the printing of your `ImportSymbol` to generate a type-only import, then you can convert it using the `toTypeOnly()` function:
 
 ```ts
-const { Message } = schema.runtime;
-const MessageAsType = Message.toTypeOnly();
-f.print("isFoo<T extends ", MessageAsType, "<T>>(data: T): bool {");
-f.print("   return true;");
-f.print("}");
+const symbol = f.importSchema(schema.files[0].messages[0]);
+const typeOnly = symbol.toTypeOnly();
 ```
-
-This will instead generate the following import:
-
-```ts
-import type { Message } from "@bufbuild/protobuf";
-```
-
-This is useful when `importsNotUsedAsValues` is set to `error` in your tsconfig, which will not allow you to use a plain import if that import is never used as a value.
-
-Note that some of the `ImportSymbol` types in the schema runtime (such as `JsonValue`) are type-only imports by default since they cannot be used as a value. Most, though, can be used as both and will default to a regular import.
 
 #### Why use `f.import()`?
 
@@ -368,7 +363,9 @@ automatically generate the correct export for CommonJS.
 
 ### Parsing plugin options
 
-The plugin framework recognizes a set of pre-defined key/value pairs that can be passed to all plugins when executed (i.e. `target`, `keep_empty_files`, etc.), but if your plugin needs to be passed additional parameters, you can specify a `parseOptions` function as part of your plugin initialization.
+The plugin framework recognizes a set of options that can be passed to all plugins when executed (i.e. `target`,
+`import_extension`, etc.), but if your plugin needs to be passed additional parameters, you can specify a `parseOptions`
+function as part of your plugin initialization.
 
 ```ts
 parseOptions(rawOptions: {key: string, value: string}[]): T;
@@ -429,22 +426,13 @@ Now we can utilize this extension to read custom options in our plugin:
 
 ```ts
 import type { GeneratedFile } from "@bufbuild/protoplugin";
-import {
-  ServiceOptions,
-  ServiceDesc,
-  hasExtension,
-  getExtension,
-} from "@bufbuild/protobuf";
-import { default_host } from "./customoptions/default_host_pb.js";
+import { type DescService, getOption, hasOption } from "@bufbuild/protobuf";
+import { default_host } from "./gen/customoptions/default_host_pb.js";
 
-function generateService(desc: ServiceDesc, f: GeneratedFile) {
-  // The protobuf message google.protobuf.ServiceOptions contains our custom
-  // option.
-  const serviceOptions: ServiceOptions | undefined = service.proto.options;
-
+function generateService(service: DescService, f: GeneratedFile) {
   // Let's see if our option was set:
-  if (serviceOptions && hasExtension(serviceOption, default_host)) {
-    const value = getExtension(serviceOption, default_host); // "https://demo.connectrpc.com/"
+  if (hasOption(service, default_host)) {
+    const value = getOption(service, default_host); // "https://demo.connectrpc.com/"
     // Our option was set, we can use it here.
   }
 }
