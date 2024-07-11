@@ -1681,15 +1681,907 @@ if (field.fieldKind == "map") {
 
 ## Writing plugins
 
-> **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/writing_plugins.md, and the plugin example in packages/protoplugin-example
+Code generator plugins can be created using the npm packages [@bufbuild/protoplugin](https://npmjs.com/package/@bufbuild/protoplugin) and [@bufbuild/protobuf](https://npmjs.com/package/@bufbuild/protobuf). This is a detailed overview of the process of writing a plugin.
+
+- [Introduction](#introduction)
+- [Writing a plugin](#writing-a-plugin)
+  - [Installing the plugin framework and dependencies](#installing-the-plugin-framework-and-dependencies)
+  - [Setting up your plugin](#setting-up-your-plugin)
+  - [Providing generator functions](#providing-generator-functions)
+    - [Overriding transpilation](#overriding-transpilation)
+  - [Generating a file](#generating-a-file)
+  - [Walking through the schema](#walking-through-the-schema)
+  - [Printing to a generated file](#printing-to-a-generated-file)
+    - [As a variadic function](#as-a-variadic-function)
+    - [As a template literal tagged function](#as-a-template-literal-tagged-function)
+  - [Importing](#importing)
+    - [Importing from an NPM package](#importing-from-an-npm-package)
+    - [Importing from `protoc-gen-es` generated code](#importing-from-protoc-gen-es-generated-code)
+    - [Importing from the `@bufbuild/protobuf` runtime](#importing-from-the-bufbuildprotobuf-runtime)
+    - [Type-only imports](#type-only-imports)
+    - [Why use `f.import()`?](#why-use-fimport)
+  - [Exporting](#exporting)
+  - [Parsing plugin options](#parsing-plugin-options)
+  - [Using custom Protobuf options](#using-custom-protobuf-options)
+- [Testing](#testing)
+- [Examples](#examples)
+
+## Introduction
+
+Code generator plugins are a unique feature of protocol buffer compilers like protoc and the [buf CLI](https://docs.buf.build/introduction#the-buf-cli). With a plugin, you can generate files based on Protobuf schemas as the input. Outputs such as RPC clients and server stubs, mappings from protobuf to SQL, validation code, and pretty much anything else you can think of can all be produced.
+
+The contract between the protobuf compiler and a code generator plugin is defined in [plugin.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto). Plugins are simple executables (typically on your `$PATH`) that are named `protoc-gen-x`, where `x` is the name of the language or feature that the plugin provides. The protobuf compiler parses the protobuf files, and invokes the plugin, sending a `CodeGeneratorRequest` on standard in, and expecting a `CodeGeneratorResponse` on standard out. The request contains a set of descriptors (see [descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto)) - an abstract version of the parsed protobuf files. The response contains a list of files, each having a name and text content.
+
+For more information on how plugins work, check out [our documentation](https://docs.buf.build/reference/images).
+
+## Writing a plugin
+
+The following will describe the steps and things to know when writing your own code generator plugin. The main step in the process is passing a plugin initialization object to the `createEcmaScriptPlugin` function exported by the plugin framework. This plugin initalization object will contain various properties pertaining to different aspects of your plugin.
+
+### Installing the plugin framework and dependencies
+
+The main dependencies for writing plugins are the main plugin package at [@bufbuild/protoplugin](https://npmjs.com/package/@bufbuild/protoplugin) and the runtime API at [@bufbuild/protobuf](https://npmjs.com/package/@bufbuild/protobuf). Using your package manager of choice, install the above packages:
+
+**npm**
+
+```bash
+npm install @bufbuild/protoplugin @bufbuild/protobuf
+```
+
+**pnpm**
+
+```bash
+pnpm install @bufbuild/protoplugin @bufbuild/protobuf
+```
+
+**Yarn**
+
+```bash
+yarn add @bufbuild/protoplugin @bufbuild/protobuf
+```
+
+### Setting up your plugin
+
+The first thing to determine for your plugin is the `name` and `version`. These are both passed as properties on the plugin initialization object.
+
+The `name` property denotes the name of your plugin. Most plugins are prefixed with `protoc-gen` as required by `protoc` i.e. [protoc-gen-es](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es).
+
+The `version` property is the semantic version number of your plugin. Typically, this should mirror the version specified in your package.json.
+
+The above values will be placed into the preamble of generated code, which provides an easy way to determine the plugin and version that was used to generate a specific file.
+
+For example, with a `name` of **protoc-gen-foo** and `version` of **v0.1.0**, the following will be added to generated files:
+
+```ts
+// @generated by protoc-gen-foo v0.1.0 with parameter "target=ts"
+```
+
+### Providing generator functions
+
+Generator functions are functions that are used to generate the actual file content parsed from protobuf files. There are three that can be implemented, corresponding to the three possible target outputs for plugins:
+
+| Target Out | Function                            |
+| :--------- | :---------------------------------- |
+| `ts`       | `generateTs(schema: Schema): void`  |
+| `js`       | `generateJs(schema: Schema): void`  |
+| `dts`      | `generateDts(schema: Schema): void` |
+
+Of the three, only `generateTs` is required. These functions will be passed as part of your plugin initialization and as the plugin runs, the framework will invoke the functions depending on which target outputs were specified by the plugin consumer.
+
+Since `generateJs` and `generateDts` are both optional, if they are not provided, the plugin framework will attempt to transpile your generated TypeScript files to generate any desired `js` or `dts` outputs if necessary.
+
+In most cases, implementing the `generateTs` function only and letting the plugin framework transpile any additionally required files should be sufficient. However, the transpilation process is somewhat expensive and if plugin performance is a concern, then it is recommended to implement `generateJs` and `generateDts` functions also as the generation processing is much faster than transpilation.
+
+#### Overriding transpilation
+
+As mentioned, if you do not provide a `generateJs` and/or a `generateDts` function and either `js` or `dts` is specified as a target out, the plugin framework will use its own TypeScript compiler to generate these files for you. This process uses a stable version of TypeScript with lenient compiler options so that files are generated under most conditions. However, if this is not sufficient, you also have the option of providing your own `transpile` function, which can be used to override the plugin framework's transpilation process.
+
+```ts
+transpile(
+  fileInfo: FileInfo[],
+  transpileJs: boolean,
+  transpileDts: boolean,
+  jsImportStyle: "module" | "legacy_commonjs",
+): FileInfo[]
+```
+
+The function will be invoked with an array of `FileInfo` objects representing the TypeScript file content
+to use for transpilation as well as two booleans indicating whether the function should transpile JavaScript,
+declaration files, or both. It should return a list of `FileInfo` objects representing the transpiled content.
+
+**NOTE**: The `transpile` function is meant to be used in place of either `generateJs`, `generateDts`, or both.  
+However, those functions will take precedence. This means that if `generateJs`, `generateDts`, and
+`transpile` are all provided, `transpile` will be ignored.
+
+A sample invocation of `createEcmaScriptPlugin` after the above steps will look similar to:
+
+```ts
+export const protocGenFoo = createEcmaScriptPlugin({
+  name: "protoc-gen-foo",
+  version: "v0.1.0",
+  generateTs,
+});
+```
+
+### Generating a file
+
+As illustrated above, the generator functions are invoked by the plugin framework with a parameter of type `Schema`. This object contains the information needed to generate code. In addition to the [`CodeGeneratorRequest`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto) that is standard when working with protoc plugins, the `Schema` object also contains some convenience interfaces that make it a bit easier to work with the various descriptor objects. See [Walking through the schema](#walking-through-the-schema) for more information on the structure.
+
+For example, the `Schema` object contains a `files` property, which is a list of `DescFile` objects representing the files requested to be generated. The first thing you will most likely do in your generator function is iterate over this list and issue a call to a function that is also present on the `Schema` object: `generateFile`. This function expects a filename and returns a generated file object containing a `print` function which you can then use to "print" to the file. For more information, see [Printing to a generated file](#printing-to-a-generated-file) below.
+
+Each `file` object on the schema contains a `name` property representing the name of the file that was parsed by the compiler (minus the `.proto` extension). When specifying the filename to pass to `generateFile`, it is recommended to use this file name plus the name of your plugin (minus `protoc-gen`). So, for example, for a file named `user_service.proto` being processed by `protoc-gen-foo`, the value passed to `generateFile` would be `user_service_foo.ts`.
+
+A more detailed example:
+
+```ts
+function generateTs(schema: Schema) {
+   for (const file of schema.files) {
+     const f = schema.generateFile(file.name + "_foo.ts");
+     ...
+   }
+}
+```
+
+### Walking through the schema
+
+The `Schema` object contains the hierarchy of the grammar contained within a
+Protobuf file. Every element is represented by a "descriptor", similar to nodes
+in an abstract syntax tree. To learn more about descriptors, see the
+[runtime API documentation](./runtime_api.md#descriptors).
+
+The hierarchy starts with `DescFile`, which contains all the nested `Desc` types
+necessary to begin generating code. For example:
+
+```ts
+for (const file of schema.files) {
+  // file is type DescFile
+
+  for (const enumeration of file.enums) {
+    // enumeration is type DescEnum
+  }
+
+  for (const message of file.messages) {
+    // message is type DescMessage
+  }
+
+  for (const service of file.services) {
+    // service is type DescService
+
+    for (const method of service.methods) {
+      // method is type DescMethod
+    }
+  }
+}
+```
+
+### Printing to a generated file
+
+As mentioned, the object returned from `generateFile` contains a `print` function which can be used to print your generated code to a file. The `print` function is an overloaded function which can be used in one of two ways:
+
+#### As a variadic function
+
+The first way is as a variadic function which accepts zero-to-many string arguments. These values will then be "printed" to the file so that when the actual physical file is generated by the compiler, all values given to `print` will be included in the file. Successive strings passed in the same invocation will be appended to one another. To print an empty line, pass zero arguments to `print`.
+
+For example:
+
+```ts
+const name = "UserService";
+f.print("export class ", name, "Client {");
+f.print("    console.log('Hello world');");
+f.print("}");
+```
+
+The above will generate:
+
+```ts
+export class UserServiceClient {
+    console.log('Hello world');
+}
+```
+
+#### As a template literal tagged function
+
+You can also pass a template literal to the function and use string interpolation as you would do in regular JavaScript:
+
+For example:
+
+```ts
+const name = "UserService";
+f.print`export class ${name}Client {`;
+f.print`    console.log('Hello world');`;
+f.print`}`;
+```
+
+The above will generate:
+
+```ts
+export class UserServiceClient {
+    console.log('Hello world');
+}
+```
+
+Putting all of the above together for a simple example:
+
+```ts
+function generateTs(schema: Schema) {
+ for (const file of schema.files) {
+
+   for (const enumeration of file.enums) {
+      f.print`// generating enums from ${file.name}`;
+      f.print();
+      ...
+   }
+
+   for (const message of file.messages) {
+      f.print`// generating messages from ${file.name}`;
+      f.print();
+      ...
+   }
+
+   for (const service of file.services) {
+      f.print`// generating services from ${file.name}`;
+      f.print();
+      for (const method of service.methods) {
+          f.print`// generating methods for service ${service.name}`;
+          f.print();
+          ...
+      }
+   }
+ }
+}
+```
+
+**NOTE**: Messages can be recursive structures, containing other message and enum definitions. The example above does not illustrate generating _all_ possible messages in a `Schema` object. It has been simplified for brevity.
+
+### Importing
+
+Generating import statements is accomplished via a combination of the methods `import` and `print` on the generated file
+object.
+
+#### Importing from an NPM package
+
+To import from an NPM package, you first invoke the `import` function, passing the name of the symbol to import, and the
+package in which it is located. For example, to import the `useEffect` hook from React:
+
+```ts
+const useEffect = f.import("useEffect", "react");
+```
+
+This will return you an object of type `ImportSymbol`. This object can then be used in your generation code with the `print` function:
+
+```ts
+f.print(useEffect, "(() => {");
+f.print("    document.title = `You clicked ${count} times`;
+f.print("});");
+```
+
+When the `ImportSymbol` is printed (and only when it is printed), an import statement will be automatically generated for you:
+
+`import { useEffect } from 'react';`
+
+#### Importing from `protoc-gen-es` generated code
+
+To import a schema from `protoc-gen-es` generated code, use `importSchema()`:
+
+```ts
+const schema = f.importSchema(schema.files[0].messages[0]);
+f.print("const msg = create(", schema, ");");
+
+// Generates:
+// import { UserSchema } from "./gen/example";
+// const msg = create(UserSchema);
+```
+
+To import a message type or enum from `protoc-gen-es` generated code, use `importShape()`:
+
+```ts
+const type = f.importShape(schema.files[0].messages[0]);
+f.print("let msg: ", type, ";");
+
+// Generates:
+// import type { User } from "./gen/example";
+// let msg: User;
+```
+
+#### Importing from the @bufbuild/protobuf runtime
+
+The `GeneratedFile` object contains a `runtime` property which provides an `ImportSymbol` for all important types as a
+convenience:
+
+```ts
+f.print("const j: ", f.runtime.JsonValue, ' = "hello";');
+```
+
+#### Type-only imports
+
+If you would like the printing of your `ImportSymbol` to generate a type-only import, then you can convert it using the `toTypeOnly()` function:
+
+```ts
+const symbol = f.importSchema(schema.files[0].messages[0]);
+const typeOnly = symbol.toTypeOnly();
+```
+
+#### Why use `f.import()`?
+
+The natural instinct would be to simply print your own import statements as `f.print("import { Foo } from 'bar'")`, but this is not the recommended approach. Using `f.import()` has many advantages such as:
+
+- **Conditional imports**: Import statements belong at the top of a file, but you usually only find out later whether you need the import, such as further in your code in a nested if statement. Conditionally printing the import symbol will only generate the import statement when it is actually used.
+- **Preventing name collisions**: For example if you `import { Foo } from "bar"` and `import { Foo } from "baz"` , `f.import()` will automatically rename one of them `Foo$1`, preventing name collisions in your import statements and code.
+
+- **Import styles**: If the plugin option `js_import_style=legacy_commonjs` is set, code is automatically generated
+  with `require()` calls instead of `import` statements.
+
+### Exporting
+
+To export a declaration from your code, use `export`:
+
+```typescript
+const name = "foo";
+f.export("const", name);
+```
+
+This method takes two arguments:
+
+1. The declaration, for example `const`, `enum`, `abstract class`, or anything
+   you might need.
+2. The name of the declaration, which is also used for the export.
+
+The return value of the method can be passed to `print`:
+
+```typescript
+const name = "foo";
+f.print(f.export("const", name), " = 123;");
+```
+
+The example above will generate the following code:
+
+```typescript
+export const foo = 123;
+```
+
+If the plugin option `js_import_style=legacy_commonjs` is set, the example will
+automatically generate the correct export for CommonJS.
+
+### Parsing plugin options
+
+The plugin framework recognizes a set of options that can be passed to all plugins when executed (i.e. `target`,
+`import_extension`, etc.), but if your plugin needs to be passed additional parameters, you can specify a `parseOptions`
+function as part of your plugin initialization.
+
+```ts
+parseOptions(rawOptions: {key: string, value: string}[]): T;
+```
+
+This function will be invoked by the framework, passing in any key/value pairs that it does not recognize from its pre-defined list. The returned option will be merged with the pre-defined options and passed to the generate functions along via the `options` property of the schema.
+
+### Using custom Protobuf options
+
+Your plugin can support custom Protobuf options to modify the code it generates.
+
+As an example, let's use a custom service option to provide a default host.
+Here is how this option would be used:
+
+```protobuf
+syntax = "proto3";
+import "customoptions/default_host.proto";
+package connectrpc.eliza.v1;
+
+service MyService {
+
+  // Set the default host for this service with our custom option.
+  option (customoptions.default_host) = "https://demo.connectrpc.com/";
+
+  // ...
+}
+```
+
+Custom options are extensions to one of the options messages defined in
+`google/protobuf/descriptor.proto`. Here is how we can define the option we are
+using above:
+
+```protobuf
+// customoptions/default_host.proto
+syntax = "proto3";
+import "google/protobuf/descriptor.proto";
+package customoptions;
+
+extend google.protobuf.ServiceOptions {
+  // We extend the ServiceOptions message, so that other proto files can import
+  // this file, and set the option on a service declaration.
+  optional string default_host = 1001;
+}
+```
+
+You can learn more about custom options in the [language guide](https://protobuf.dev/programming-guides/proto3/#customoptions).
+
+First, we need to generate code for our custom option. This will generate a file
+`customoptions/default_host_pb.ts` with a new export - our [extension](./runtime_api.md#extensions):
+
+```ts
+import { ServiceOptions, Extension } from "@bufbuild/protobuf";
+
+export const default_host: Extension<ServiceOptions, string> = ...
+```
+
+Now we can utilize this extension to read custom options in our plugin:
+
+```ts
+import type { GeneratedFile } from "@bufbuild/protoplugin";
+import { type DescService, getOption, hasOption } from "@bufbuild/protobuf";
+import { default_host } from "./gen/customoptions/default_host_pb.js";
+
+function generateService(service: DescService, f: GeneratedFile) {
+  // Let's see if our option was set:
+  if (hasOption(service, default_host)) {
+    const value = getOption(service, default_host); // "https://demo.connectrpc.com/"
+    // Our option was set, we can use it here.
+  }
+}
+```
+
+Custom options can be set on any Protobuf element. They can be simple singular
+string fields as the one above, but also repeated fields, message fields, etc.
+
+Take a look at our [plugin example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example)
+to see the custom option above in action, and run the code yourself.
+
+## Testing
+
+We recommend to test generated code just like handwritten code. Identify a
+representative protobuf file for your use case, generate code, and then simply
+run tests against the generated code.
+
+If you implement your own generator functions for the `js` and `dts` targets,
+we recommend to run all tests against both.
+
+## Examples
+
+For a small example of generating a Twirp client based on a simple service definition, take a look at [protoplugin-example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example).
+
+Additionally, check out [protoc-gen-es](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es), which is the official code generator for Protobuf-ES.
+
 
 ## Examples
 
 > **TODO** packages/protobuf-example contains a runnable example that uses the same example.User definition we've been using in this doc. We should link to it.
 
-## Migrating
+## Migrating to Protobuf-ES
 
-> **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/migrating.md
+The following guides show the changes you'll need to switch your existing code base
+[from `protobuf-javascript`](#from-protobuf-javascript) or [from `protobuf-ts`](#from-protobuf-ts)
+to Protobuf-ES.
+
+- [Feature Matrix](#feature-matrix)
+- [From protobuf-javascript](#from-protobuf-javascript)
+  - [Generating Code](#generating-code)
+  - [Field Access](#field-access)
+  - [Optional Fields](#optional-fields)
+  - [Well-Known Types](#well-known-types)
+  - [Wrapper Fields](#wrapper-fields)
+  - [Map Fields](#map-fields)
+  - [Repeated Fields](#repeated-fields)
+  - [Oneof Groups](#oneof-groups)
+  - [Message Constructors](#message-constructors)
+  - [Serialization](#serialization)
+  - [Enumerations](#enumerations)
+  - [`toObject()`](#toobject)
+- [From protobuf-ts](#from-protobuf-ts)
+  - [Generating Code](#generating-code-1)
+  - [Well-Known Types](#well-known-types-1)
+  - [Wrapper Fields](#wrapper-fields-1)
+  - [Serialization](#serialization-1)
+  - [Message Constructors](#message-constructors-1)
+  - [Cloning](#cloning)
+  - [Message Type Guards](#message-type-guards)
+  - [Reflection](#reflection)
+  - [Dynamic Messages](#dynamic-messages)
+
+# Feature Matrix
+
+| Feature                | Protobuf-ES | protobuf-javascript | protobuf-ts |
+| ---------------------- | ----------- | ------------------- | ----------- |
+| Initializers           | ✅          | ❌                  | ✅          |
+| Plain properties       | ✅          | ❌                  | ✅          |
+| JSON format            | ✅          | ❌                  | ✅          |
+| Binary format          | ✅          | ✅                  | ✅          |
+| TypeScript             | ✅          | ❌                  | ✅          |
+| Standard module system | ✅          | ❌                  | ✅          |
+| Tree shaking           | ✅          | ❌                  | ✅          |
+| Reflection             | ✅          | ❌                  | ✅          |
+| Dynamic messages       | ✅          | ❌                  | ✅          |
+| Wrappers unboxing      | ✅          | ❌                  | ❌          |
+| Comments               | ✅          | ❌                  | ✅          |
+| Deprecation            | ✅          | ❌                  | ✅          |
+| proto2 syntax          | ✅          | ✅                  | ❌          |
+| proto2 extensions      | ✅          | ✅                  | ❌          |
+
+# From protobuf-javascript
+
+With `protobuf-javascript`, we mean the official implementation hosted at
+[github.com/protocolbuffers/protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript),
+consisting of the code generator `protoc-gen-js` and the runtime library [`google-protobuf`](https://www.npmjs.com/package/google-protobuf).
+
+Unfortunately, the code it generates feels a bit awkward to use, because it uses getter /
+setter methods instead of [plain properties](https://github.com/protocolbuffers/protobuf/issues/2107).
+And if you dig a bit deeper, you'll notice it [does not implement the JSON format](https://github.com/protocolbuffers/protobuf/issues/4540),
+[does not support TypeScript](https://github.com/protocolbuffers/protobuf/pull/9412),
+[does not have any reflection capabilities](https://github.com/protocolbuffers/protobuf/issues/1711),
+[does not use a standard module system](https://github.com/protocolbuffers/protobuf/issues/8389),
+and produces rather [large bundles](https://github.com/bufbuild/protobuf-es/tree/main/packages/bundle-size)
+for the web. Protobuf-ES fixes those issues. It is a modern replacement for `protobuf-javascript`.
+
+The following steps show the changes needed to migrate:
+
+### Generating code
+
+Assuming you have installed [`protoc-gen-es`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es),
+change your compiler invocation as follows:
+
+```diff
+- protoc -I . helloworld.proto --js_out . -js_opt import_style=commonjs,binary
++ protoc -I . helloworld.proto --es_out .
+```
+
+Note that the output uses [ECMAScript modules](https://nodejs.org/api/esm.html#introduction),
+the official standard for JavaScript.
+
+### Field access
+
+Singular scalar fields like `string foo` and message fields like `Example bar` become
+[plain properties](./generated_code.md#field-names):
+
+```diff
+let message = new Example();
+- message.setFoo("baz");
+- message.setBar(message);
++ message.foo = "baz";
++ message.bar = message;
+```
+
+### Optional fields
+
+Optional fields like `optional string value` simply become optional properties:
+
+```diff
+- message.getValue(); // string - might be the default value ""
+- if (message.hasValue()) {
+-   message.getValue(); // string
+- }
++ message.value; // string | undefined
+```
+
+### Well-known types
+
+Update your import paths for well-known types as follows:
+
+```diff
+- import { Timestamp } from "google-protobuf/google/protobuf/timestamp_pb";
++ import { Timestamp } from "@bufbuild/protobuf";
+```
+
+```diff
+// google.protobuf.Timestamp
+
+- let ts = new Timestamp();
+- ts.fromDate(someDateObject);
++ let ts = Timestamp.fromDate(someDateObject);
+```
+
+```diff
+// google.protobuf.Any
+
+declare var example: Example;
+
+- let any = new Any();
+- any.pack(example.serializeBinary(), "Example");
++ let any = Any.pack(example);
+
+- any.unpack((packed) => Timestamp.deserializeBinary(packed), "Example");
++ any.unpackTo(example);
+```
+
+### Wrapper fields
+
+Fields using wrapper messages from [`google/protobuf/wrappers.proto`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/wrappers.proto)
+simply become optional properties. For a field `google.protobuf.BoolValue tristate`:
+
+```diff
+- let value = new BoolValue();
+- value.setValue(true);
+- message.setTristrate(value);
++ message.tristate = true;
+
+- message.getTristate()?.value;
++ messsage.tristate; // boolean | undefined
+```
+
+### Map fields
+
+Where protobuf-javascript uses [goog.collections.map](https://google.github.io/closure-library/api/goog.collections.maps.html),
+we use [plain objects](./generated_code.md#map-fields).  
+For a field `map<string, int32> map_field`, map access changes as follows:
+
+```diff
+// setting a value:
+- message.getMapField().set("a", 123);
++ message.mapField["a"] = 123;
+
+// retrieving a value:
+- message.getMapField().get("a"); // number | undefined
++ message.mapField["a"]; // number | undefined
+
+// clearing all values:
+- message.clearMapField();
++ message.mapField = {};
+```
+
+### Repeated fields
+
+For a field `repeated string values`, array access changes as follows:
+
+```diff
+// accessing the array:
+- message.getValuesList();
++ message.values;
+
+// replacing the array:
+- message.setValuesList(["a", "b", "c"]);
++ message.values = ["a", "b", "c"];
+
+// adding a value:
+- message.addValues("a");
+- message.addValues("b");
++ message.values.push("a", "b");
+
+// clearing all values:
+- message.clearValues();
++ message.values = [];
+```
+
+### Oneof groups
+
+Where protobuf-javascript uses getters, has'ers, and a case enumeration, we use an
+[algebraic data type ](./generated_code.md#oneof-groups)
+for oneof groups. For the following definition:
+
+```protobuf
+message Example {
+  oneof result {
+    Example a = 1;
+    string b = 2;
+  }
+}
+```
+
+Narrowing down the selected field correctly becomes much less cumbersome,
+because the type system is now aware of the oneof group:
+
+```diff
+- switch (message.getResultCase()) {
+-   case Example.ResultCase.A:
+-     let a = message.getA(); // undefined | Example
+-     if (a !== undefined) {
+-         a; // Example
+-     }
+-     break;
+-   // ...
+- }
++ switch (message.result.case) {
++   case "a":
++     message.result.value; // Example
++     break;
++   // ...
++ }
+```
+
+```diff
+// selecting a field:
+- message.setB("foo");
++ message.result = { case: "b", value: "foo" };
+
+// clearing the selected field:
+- message.clearA();
+- message.clearB();
++ message.result = { case: undefined };
+```
+
+### Message constructors
+
+Protobuf-ES adds an initializer argument to constructors. Using it is optional:
+
+```diff
+- let message = new Example();
+- message.setFoo("baz");
+- message.setBar(true);
++ let message = new Example({
++   foo: "baz",
++   bar: true,
++ });
+```
+
+### Serialization
+
+Using the binary format is a simple change:
+
+```diff
+let message = new Example();
+- let bytes = message.serializeBinary();
++ let bytes = message.toBinary();
+- message = Example.deserializeBinary(bytes);
++ message = Example.fromBinary(bytes);
+```
+
+Note that protobuf-javascript does _not_ implement the JSON format. Messages have
+a `toObject()` method that returns a plain object, but it is very different
+from the canonical [JSON mapping](https://developers.google.com/protocol-buffers/docs/proto3#json).
+
+### Enumerations
+
+We drop prefixes from [enum values](./generated_code.md#enumerations).
+An enum definition like `enum Foo { FOO_BAR = 0; FOO_BAZ = 1; }` becomes:
+
+```diff
+- MyEnum.MY_ENUM_FOO
++ MyEnum.FOO
+```
+
+### toObject()
+
+Protobuf-ES does not provide a [`toObject()`](https://github.com/protocolbuffers/protobuf/issues/6955)
+method, because the messages it generates already are rather simple objects.
+
+```diff
+- example.toObject()
++ example
+Object.keys(example); // ["foo", "bar"]
+```
+
+Note that you can use `toJson()` to convert to an object that matches the JSON
+representation.
+
+# From protobuf-ts
+
+[`protobuf-ts`](https://github.com/timostamm/protobuf-ts) is an open source implementation
+of protocol buffers focused on TypeScript. If you are familiar with it, you will probably
+recognize many concepts from `protobuf-ts` in Protobuf-ES. To some degree, that is because
+many bits are from the same author, but also because they have proven themselves.
+
+So why add another implementation? `protobuf-ts` comes with several RPC implementations,
+uses interfaces for messages (which is nice, but also has some downsides), and is married
+to the TypeScript compiler API to generate code, so it is not straight-forward to write
+plugins based on it. You can think of Protobuf-ES as a refined version of `protobuf-ts`,
+that is suitable as a foundation for other projects to build upon.
+
+The following steps show the changes needed to migrate:
+
+### Generating code
+
+Assuming you have installed [`protoc-gen-es`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es),
+change your compiler invocation as follows:
+
+```diff
+- protoc -I . helloworld.proto --ts_out . -ts_opt long_type_bigint,output_javascript
++ protoc -I . helloworld.proto --es_out .
+```
+
+### Well-known types
+
+With `protobuf-ts` you are always using locally generated versions of well-known types.
+With Protobuf-ES, you import them from [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf):
+
+```diff
+- import { Timestamp } from "./google/protobuf/timestamp_pb";
++ import { Timestamp } from "@bufbuild/protobuf";
+```
+
+There are slight API changes, mostly because Protobuf-ES has instance methods:
+
+```diff
+// google.protobuf.Any
+
+declare var message: Example;
+declare var any: Any;
+
+- any = Any.pack(message, Example);
++ any = Any.pack(message);
+
+- Any.contains(any, Example);
++ any.is(Example);
+
+- message = Any.unpack(any, Example);
++ any.unpackTo(message);
+```
+
+```diff
+// google.protobuf.Timestamp
+
+declare var someDate: Date;
+let ts = Timestamp.fromDate(someDate);
+- someDate = Timestamp.toDate(ts);
++ someDate = ts.toDate();
+```
+
+### Wrapper fields
+
+Fields using wrapper messages from [`google/protobuf/wrappers.proto`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/wrappers.proto)
+simply become optional properties. For a field `google.protobuf.BoolValue tristate`:
+
+```diff
+- message.triState = BoolValue.create(true);
++ message.tristate = true;
+
+- message.tristate?.value;
++ messsage.tristate; // boolean | undefined
+```
+
+### Serialization
+
+```diff
+// serialize to the binary format
+- Example.toBinary(message);
++ message.toBinary();
+
+// serialize to JSON
+- Example.toJson(message);
++ message.toJson();
+
+// unchanged
+Example.fromBinary();
+Example.fromJson();
+```
+
+### Message constructors
+
+```diff
+- let message = Example.create({ foo: "baz" });
++ let message = new Example({ foo: "baz" });
+```
+
+### Cloning
+
+```diff
+declare var message: Example;
+- let clone = Example.clone(message);
++ let clone = message.clone();
+```
+
+### Message type guards
+
+```diff
+- Example.is(message);
++ isMessage(message, Example);
+```
+
+### Reflection
+
+```diff
+- for (let field of Example.fields)
++ for (let field of Example.fields.byNumber())
+```
+
+### Dynamic messages
+
+```diff
+- const Example = new MessageType("Example", [
++ const Example = proto3.makeMessageType("Example", [
+  { no: 1, name: "foo", kind: "scalar", T: ScalarType.STRING },
+]);
+```
+
+Note that the type of message and enum fields does not need to be deferred:
+
+```diff
+- { no: 1, name: "foo", kind: "message", T: () => OtherMessage },
++ { no: 1, name: "foo", kind: "message", T: OtherMessage },
+```
+
+In case a message refers to itself, the entire field list can be deferred:
+
+```diff
+- [{ no: 1, name: "foo", kind: "message", T: Example } ]
++ () => [{ no: 1, name: "foo", kind: "message", T: Example } ]
+```
+
 
 ## Interoperability with React Server Components, Redux, and others
 
@@ -1704,9 +2596,206 @@ If you use proto2, messages use the prototype chain to [track field presence](#f
 makes them non-plain objects. In this case, serializing to JSON is a reliable solution. We support
 [JSON typings](#json-types) for interacting with JSON directly.
 
-## FAQ
+## FAQs
 
-> **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/faq.md
+### What features are implemented?
+
+**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem. It is the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC functionality.
+
+Some additional features that set it apart from the others:
+
+- ECMAScript module support
+- First-class TypeScript support
+- Generation of idiomatic JavaScript and TypeScript code.
+- Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size)
+- Implementation of all proto3 features, including the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json).
+- Implementation of all proto2 features, except for the text format.
+- Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
+- Compatibility is covered by the protocol buffers [conformance tests](https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance).
+- Descriptor and reflection support
+
+To learn more, have a look at a complete [code example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example),
+the documentation for the [generated code](https://github.com/bufbuild/protobuf-es/blob/main/docs/generated_code.md),
+and the documentation for the [runtime API](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md).
+
+### Why not use string unions for Protobuf enumerations instead of TypeScript `enum`?
+
+TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't have a native equivalent in JavaScript.
+Admittedly, `{ species: "DOG" }` looks a bit more straight-forward than `{ species: Species.DOG }`.
+
+But `enum`s also have some nice properties that union types don't provide. For example, the numeric values can actually
+be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.
+You can also attach comments and metadata to enum values, but not to elements of union types (see [this TypeScript issue](https://github.com/microsoft/TypeScript/issues/38106) for an example).
+
+**Protobuf-ES** actually makes use of this ability and attaches metadata to the enum object in our generated code to
+implement the JSON format. This would not be possible with a union type.
+
+TypeScript `enum`s also have a property that's important for backwards compatibility in Protobuf: Similar to enumerations in C# and C++, you can actually assign values other than the declared ones to an enum. For example, consider the following Protobuf file:
+
+```proto
+enum Species {
+  UNSPECIFIED = 0; CAT = 1; DOG = 2;
+}
+message Animal {
+  Species species = 1;
+}
+```
+
+If we were to add `HAMSTER = 3;` to the enumeration, old generated code can still (de)serialize an `Animal` created by new generated code:
+
+```ts
+enum Species {
+  UNSPECIFIED = 0,
+  CAT = 1,
+  DOG = 2,
+}
+const hamster: Species = 3;
+```
+
+As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as [Connect-ES](https://github.com/connectrpc/connect-es), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
+
+### Why aren't `enum` values generated in PascalCase?
+
+We generate our `enum` values based on how they are written in the source Protobuf file. The reason for this is that the [Protobuf JSON spec](https://developers.google.com/protocol-buffers/docs/proto3#json) requires that the name of the enum value be whatever is used in the Protobuf file and this makes it very easy to encode/decode JSON.
+
+The [Buf style guide](https://docs.buf.build/best-practices/style-guide#enums) further says that `enum` values should be UPPER_SNAKE_CASE, which will result in your generated TypeScript `enum` values being in UPPER_SNAKE_CASE if you follow the style guide.
+
+We do not provide an option to generate different cases for your `enum` values because we try to limit options to ones that we feel are necessary. This seems to be more of a stylistic choice as even [TypeScript's own documentation](https://www.typescriptlang.org/docs/handbook/enums.html) uses various ways to name `enum` members.
+
+For more information on our thoughts on options, see this [question](#options).
+
+### Why use `BigInt` to represent 64-bit integers?
+
+The short answer is that they are the best way to represent the 64-bit numerical types allowable in Protobuf. `BigInt` has [widespread browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) and for those environments where it is not supported, we fall back to a [string representation](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#bigint-in-unsupported-environments).
+
+While it is true that an `int32`'s 2^32 size is not enough to represent a 64-bit value, Javascript's [`MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#description) can safely represent integers between -(2^53 – 1) and 2^53 – 1. However, this is obviously only effective if you can guarantee that no number in that field will ever exceed this range. This could lead to subtle and potentially serious bugs, so the clear-cut usage of `BigInt` makes more sense.
+
+### Why generate classes instead of interfaces?
+
+This is definitely something we considered. We are aware of the debates on whether JavaScript classes should be used and whether they're actually worthwhile. We chose to generate classes instead of interfaces for a few reasons:
+
+- Protobuf messages and classes are very similar in how they represent data. They are both encapsulating objects that contain properties describing the overall entity. A class is a great way to model this relationship. The [official MDN documentation on classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_Classes#why_classes) states:
+
+  > In general, you should consider using classes when you want to create objects that store their own internal data and expose a lot of behavior.
+
+  Which is exactly what our aim is when generating code from a Protobuf file.
+
+- Our messages contain numerous additional functions such as constructing an object, serializing to and from JSON, serializing to and from binary data, and cloning. Most of this functionality is reusable, so using inheritance with a `Message` super class is beneficial. If we only generated interfaces, we would be unable to augment the generated code with this additional behavior.
+
+- We want the generated code to be approachable. While the behavior of classes under the hood may be surprising as to how they're constructed and represented, they make for a very easy-to-read representation of a message. The encapsulation they provide and some assurances that TypeScript provides on top of them make for a compelling argument to readability.
+
+So, in summary, yes, we know that some argue classes were shoehorned into the language, but our use case seems to be the reason they were added.
+
+### OK, so why not generate _both_ classes **and** interfaces?
+
+This is also something we considered. However, when analyzing the pros and cons, we realized that generating interfaces in addition to classes raised more questions than answers.
+
+One of the major questions was "how should they be generated?" As part of the current `protoc-gen-es` plugin? In that case, generated code would include an additional interface alongside the class which could be confusing to users as to which one they should use.
+
+If we provided an option to generate interfaces, then in addition to the above problem, we now have a plugin option that could be confusing. A new user attempting to configure their codebase to begin using the library would most likely not know whether they needed classes or interfaces until they actually started using the library. If they decided they wanted the alternate option, they would need to conduct a pretty invasive refactoring of their code.
+
+If we made this a separate plugin, then it seems to _really_ confuse the matter because now users have to configure another plugin and face the same uncertainty mentioned above. And because of the way plugins work, the separate plugin would generate new files presumably named something like `msg_interface_pb.ts`. If users want to use both classes and interfaces, they would now need two separate imports. Granted, these all may seem inconsequential at first, but they add additional overhead with arguably little payoff. In the end, we decided that simply generating classes provided the most benefits to the users.
+
+All this being said, we know that some still would like an interface-like type that exposes only the properties of a message and is recursive for nested members. As a result, we've exposed a helper type named `PlainMessage`, which will accomplish this. It can be used as follows:
+
+```typescript
+import { PlainMessage } from "@bufbuild/protobuf";
+
+import { FooMessage } from "protos/foo_pb.js";
+
+const plainFoo: PlainMessage<FooMessage> = new FooMessage();
+```
+
+In the above code, `plainFoo` will be a type with only its fields and `oneOf` groups. All methods will be omitted from the type. Additionally, we also expose `PartialMessage` which serves the same purpose except that it makes all fields optional as well.
+
+### What are the intended use cases for `PartialMessage<T>` and `PlainMessage<T>`?
+
+Great segue! Our [docs](https://github.com/bufbuild/protobuf-es/blob/main/docs/runtime_api.md#advanced-typescript-types) provide a good explanation for their usage and example use cases.
+
+### Why doesn't Protobuf-ES simply generate interfaces for the JSON representation?
+
+There are a few reasons why it is impractical to generate interfaces for the JSON
+representation in any meaningful way. They are as follows:
+
+- **Protobuf supports a much more robust range of types than JSON.**
+
+  A good example for this is a Protobuf `bytes` field. The best representation in
+  TypeScript is a `Uint8Array`, but JSON does not support that type. Instead, in
+  proto3 JSON, a `bytes` field is serialized by base64 encoding the data, which
+  means it becomes a JSON string.
+
+- **There is no single JSON representation for a Protobuf message.**
+
+  Implementations are allowed to provide serialization options that can modify
+  the shape of the JSON output, such as:
+
+  - Output fields with their default values rather than omit them.
+  - Ignore unknown fields rather than reject them.
+  - Use the proto field name as the JSON name instead of converting to lowerCamelCase.
+    Also, important to note that the expected lowerCamelCase name can be modified with
+    the `json_name` field option.
+  - Use an enum's numeric value instead of the enum name.
+
+- **JSON parsing must be lax to support all variants of the input.**
+
+  To properly support proto3 JSON and make sure it interoperates correctly
+  with other language implementations, Protobuf-ES has to support all variants of the input,
+  which include:
+
+  - If a value is missing or null, it should be interpreted as that field type's
+    default value.
+  - Field names can be the proto field name, _OR_ the lowerCamelCase JSON name _OR_
+    if present, the `json_name` field option.
+  - Enums can be given as integers or by their enum value name.
+  - All numeric types can be provided as a string or number.
+  - Doubles can also be given in exponent notation or be one of the special strings
+    of `NaN`, `Infinity` or `-Infinity`.
+
+Taking the above into account, it becomes evident that it is not
+feasible to generate code for the JSON structure. The Protobuf-ES type `JsonValue`
+is the best we can do to represent a generic type for these structures.
+
+### How does this compare to protoc's JavaScript generator?
+
+[`js_generator.cc`](https://github.com/protocolbuffers/protobuf-javascript/blob/main/generator/js_generator.cc)
+is rarely updated, and has fallen behind the quickly moving world of JavaScript.
+
+For example:
+
+- it does not support ECMAScript modules
+- it cannot generate TypeScript (3rd party plugins are necessary)
+- it does not support the [canonical JSON format](https://developers.google.com/protocol-buffers/docs/proto3#json)
+- it does not carry over comments from your `.proto` files
+
+Because of this, we want to provide a solid, modern alternative with Protobuf-ES.
+
+The main differences of the generated code:
+
+- we use plain properties for fields, where protoc uses getter and setter methods
+- we implement the canonical JSON format
+- we generate [much smaller bundles](packages/bundle-size)
+- we rely on standard APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
+
+### <a name="options"></a>What is your stance on adding options to the plugin?
+
+In general, we feel that an abundance of options tends to make the plugin less approachable. It can be daunting to a
+new user to have to sift through numerous configuration choices when they are just beginning to use the plugin. Our
+default position is to try to be as opinionated as possible about the generated code and this tends to result in fewer
+knobs that need turned at configuration time. In addition, a plethora of options also makes debugging more difficult. It
+is much easier to reason about the generated code when it conforms to a predictable standard.
+
+There are also more concrete reasons why we prefer to add options judiciously. Consider a popular option request,
+which is to add the ability to generate `snake_case` field names as opposed to `camelCase`. If we were to provide this
+as an option, that means that any plugin downstream that accesses these fields or uses the base types has to also
+support this option and ensure that it is set to the same value across plugins every time files are generated. In
+addition, any functionality that uses the generated code must also now stay in sync. Exposing options, especially those
+that affect the generated code, introduces an entirely new way for breaking changes to happen. The generated code is no
+longer predictable, which defeats the purpose of generating code.
+
+This is not to say that we are completely against adding _any_ options to the plugin. There are obviously cases where
+adding an option is necessary. However, for cases such as stylistic choices or user preferences, we tend to err on the
+side of caution.
+
 
 [@bufbuild/buf]: https://www.npmjs.com/package/@bufbuild/buf
 [@bufbuild/protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
