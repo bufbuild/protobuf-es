@@ -487,9 +487,9 @@ mygroup?: User_MyGroup;
 In proto2, fields can use the `required` keyword to ensure that the field is always set. In Protobuf-ES, required fields
 are validated when serializing a message, but not when parsing or constructing a message.
 
-TODO: Get clarification from Timo
-When consuming messages using proto2 required, properties are non-optional, so it is less of a burden to work with them
-as with v1 versions of Protobuf-ES. Note that message fields are an exception—they're always optional properties.
+With Protobuf-ES v2, `required` is less of a burden because the properties are no longer optional. However, the
+improvement only applies to scalar and enum fields, not to message fields. For message fields, the behavior for
+proto2 `required` is unchanged between v1 and v2.
 
 > [!CAUTION]
 >
