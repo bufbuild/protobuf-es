@@ -1315,8 +1315,8 @@ The following command compiles all Protobuf files in the directory `proto`, and 
 buf build proto --output set.binpb
 ```
 
-The written data is a Protobuf message - `google.protobuf.FileDescriptorSet` from the [well-known types](#well-known-types).
-We can parse it like this:
+The written data is a Protobuf message—`google.protobuf.FileDescriptorSet` from the [well-known types](#well-known-types).
+You can parse it like this:
 
 ```typescript
 import { readFileSync } from "node:fs";
@@ -1328,7 +1328,7 @@ const fileDescriptorSet = fromBinary(
   readFileSync("set.binpb"),
 );
 
-fileDescriptorSet.file.map((file) => file.name); // all .proto file names
+fileDescriptorSet.file.map((file) => file.name); // All .proto file names
 ```
 
 Similar to several other Protobuf implementations, Protobuf-ES provides wrapper types for the Protobuf descriptor
@@ -1368,13 +1368,14 @@ PhoneTypeSchema.values.map((value) => value.name);
 // ["PHONE_TYPE_UNSPECIFIED", "PHONE_TYPE_MOBILE", "PHONE_TYPE_LAND_LINE"]
 ```
 
-Descriptors also provide access to [custom options](#custom-options), are used to [generate code](#writing-plugins),
+Descriptors also provide access to [custom options](#custom-options) and are used to [generate code](#writing-plugins),
 serialize messages, and many other tasks. They are a core feature of Protobuf-ES.
 
 ### Registries
 
-Registries are collections of descriptors, allowing to look up a type by its qualified name. To serialize or parse
-[extensions](#extensions) or [`google.protobuf.Any`](#googleprotobufany) from JSON, registries are used to look up types.
+Registries are collections of descriptors that enable you to look up a type by its qualified name. When serializing
+or parsing [extensions](#extensions) or [`google.protobuf.Any`](#googleprotobufany) from JSON, registries are used to 
+look up types.
 
 `Registry` is a set of descriptors for messages, enumerations, extensions, and services:
 
@@ -1393,7 +1394,7 @@ for (const type of registry) {
 }
 ```
 
-Registries can be composed with the `createRegistry` function.
+Registries can be composed with the `createRegistry` function:
 
 ```typescript
 import { createRegistry } from "@bufbuild/protobuf";
@@ -1406,7 +1407,7 @@ const registry = createRegistry(
 );
 ```
 
-Mutable registries allow to add descriptors after creation:
+Mutable registries allow you to add descriptors after creation:
 
 ```typescript
 import { createMutableRegistry } from "@bufbuild/protobuf";
@@ -1455,8 +1456,10 @@ for (const file of registry.files) {
 
 With custom options, you can annotate elements in a Protobuf file with arbitrary information.
 
-Custom options are [extensions](#extensions) to the `google.protobuf.*Options` messages defined in [google/protobuf/descriptor.proto].
-Let's define an option to mark sensitive fields. Add `proto/options-example.proto`:
+Custom options are [extensions](#extensions) to the `google.protobuf.*Options` messages defined in 
+[google/protobuf/descriptor.proto]. Let's define an option to mark sensitive fields. 
+
+Create a `proto/options-example.proto` file:
 
 ```protobuf
 syntax = "proto3";
@@ -1469,7 +1472,7 @@ extend google.protobuf.FieldOptions {
 }
 ```
 
-To use this option, let's edit `example.proto`:
+To use this option, edit `example.proto`:
 
 ```diff
 syntax = "proto3";
@@ -1489,7 +1492,7 @@ message User {
 When the compiler parses this file, it sets the custom option value on the `options` field of the
 `google.protobuf.FieldDescriptorProto` for the field `last_name`.
 
-After re-generating code with `buf generate`, we can read the field option with the function `getOption`:
+After re-generating code with `buf generate`, you can read the field option with the function `getOption`:
 
 ```typescript
 import { getOption, hasOption } from "@bufbuild/protobuf";
@@ -1504,14 +1507,14 @@ The companion function `hasOption` returns true if an option is present. The fun
 
 > [!TIP]
 >
-> Custom option can be read from generated code, or from the schema passed to a plugin. See the example in
+> Custom options can be read from generated code, or from the schema passed to a plugin. See the example in
 > our [guide for writing plugins](#writing-plugins).
-
-> [!TIP]
 >
 > To learn more about custom options in Protobuf, see the [language guide][protobuf.dev/customoptions].
 
 ### Reflection API
+
+TODO: Can the API be used without the BSR? We should note requirements and link to the BSR docs if not.
 
 The reflection API provides a simple interface to access and manipulate messages without knowing their type.
 As an example, let's write a simple function to redact sensitive fields from a message, using the custom option we
@@ -1551,7 +1554,7 @@ redact(UserSchema, msg);
 msg.lastName; // undefined
 ```
 
-There is one gotcha with our function `redact`: It does not ensure that the schema and message match, but we can solve
+There is one gotcha with our `redact` function—it doesn't ensure that the schema and message match—but we can solve
 this with a type inference and constraints:
 
 ```typescript
