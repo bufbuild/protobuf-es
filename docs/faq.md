@@ -2,8 +2,8 @@
 
 ### What features are implemented?
 
-**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript 
-ecosystem. It is the first project in this space to provide a comprehensive plugin framework and decouple the base types 
+**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript
+ecosystem. It is the first project in this space to provide a comprehensive plugin framework and decouple the base types
 from RPC functionality.
 
 Some additional features that set it apart from the others:
@@ -21,15 +21,15 @@ Some additional features that set it apart from the others:
 
 ### Why not use string unions for Protobuf enumerations instead of TypeScript `enum`?
 
-TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't 
+TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't
 have a native equivalent in JavaScript.
 Admittedly, `{ species: "DOG" }` looks a bit more straight-forward than `{ species: Species.DOG }`.
 
 But `enum`s also have some nice properties that union types don't provide. For example, the numeric values can actually
 be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.
 
-TypeScript `enum`s also have a property that's important for backwards compatibility in Protobuf: Similar to 
-enumerations in C# and C++, you can actually assign values other than the declared ones to an enum. For example, 
+TypeScript `enum`s also have a property that's important for backwards compatibility in Protobuf: Similar to
+enumerations in C# and C++, you can actually assign values other than the declared ones to an enum. For example,
 consider the following Protobuf file:
 
 ```proto
@@ -41,7 +41,7 @@ message Animal {
 }
 ```
 
-If we were to add `HAMSTER = 3;` to the enumeration, old generated code can still (de)serialize an `Animal` created by 
+If we were to add `HAMSTER = 3;` to the enumeration, old generated code can still (de)serialize an `Animal` created by
 new generated code:
 
 ```ts
@@ -53,33 +53,33 @@ enum Species {
 const hamster: Species = 3;
 ```
 
-As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for 
-enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as 
+As a result, there is a range of Protobuf features we would not be able to model if we were using string union types for
+enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as
 [Connect-ES](https://github.com/connectrpc/connect-es), which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
 
 ### Why aren't `enum` values generated in PascalCase?
 
-We generate our `enum` values based on how they are written in the source Protobuf file. The reason for this is that 
-the [Protobuf JSON spec](https://developers.google.com/protocol-buffers/docs/proto3#json) requires that the name of the enum value be whatever is used in the Protobuf file and 
+We generate our `enum` values based on how they are written in the source Protobuf file. The reason for this is that
+the [Protobuf JSON spec](https://developers.google.com/protocol-buffers/docs/proto3#json) requires that the name of the enum value be whatever is used in the Protobuf file and
 this makes it very easy to encode/decode JSON.
 
-The [Buf style guide](https://docs.buf.build/best-practices/style-guide#enums) further says that `enum` values should be UPPER_SNAKE_CASE, which will result in your 
+The [Buf style guide](https://docs.buf.build/best-practices/style-guide#enums) further says that `enum` values should be UPPER_SNAKE_CASE, which will result in your
 generated TypeScript `enum` values being in UPPER_SNAKE_CASE if you follow the style guide.
 
-We do not provide an option to generate different cases for your `enum` values because we try to limit options to ones 
-that we feel are necessary. This seems to be more of a stylistic choice as even [TypeScript's own documentation](https://www.typescriptlang.org/docs/handbook/enums.html) 
-uses various ways to name `enum` members. For more information on our thoughts on options, see this 
+We do not provide an option to generate different cases for your `enum` values because we try to limit options to ones
+that we feel are necessary. This seems to be more of a stylistic choice as even [TypeScript's own documentation](https://www.typescriptlang.org/docs/handbook/enums.html)
+uses various ways to name `enum` members. For more information on our thoughts on options, see this
 [question](#what-is-your-stance-on-adding-options-to-the-plugin).
 
 ### Why use `BigInt` to represent 64-bit integers?
 
-The short answer is that they are the best way to represent the 64-bit numerical types allowable in Protobuf. `BigInt` 
-has [widespread browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility) 
+The short answer is that they are the best way to represent the 64-bit numerical types allowable in Protobuf. `BigInt`
+has [widespread browser support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility)
 and for those environments where it is not supported, we fall back to a string representation.
 
-While it is true that an `int32`'s 2^32 size is not enough to represent a 64-bit value, Javascript's 
-[`MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#description) can safely represent integers between -(2^53 – 1) and 2^53 – 1. However, this is obviously 
-only effective if you can guarantee that no number in that field will ever exceed this range. This could lead to subtle 
+While it is true that an `int32`'s 2^32 size is not enough to represent a 64-bit value, Javascript's
+[`MAX_SAFE_INTEGER`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#description) can safely represent integers between -(2^53 – 1) and 2^53 – 1. However, this is obviously
+only effective if you can guarantee that no number in that field will ever exceed this range. This could lead to subtle
 and potentially serious bugs, so the clear-cut usage of `BigInt` makes more sense.
 
 ### How does this compare to protoc's JavaScript generator?
