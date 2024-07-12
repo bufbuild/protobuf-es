@@ -48,7 +48,7 @@ Protobuf-ES consists of three npm packages:
 
 The quickstart below shows a simple example of code generation for a `.proto` file.
 
-1.  Install the compiler [@bufbuild/buf], plugin, and runtime library:
+1.  Start with a new project:
 
     ```shellsession
     mkdir example
@@ -56,11 +56,16 @@ The quickstart below shows a simple example of code generation for a `.proto` fi
     npm init -y
     npm install typescript
     npx tsc --init
+    ```
+
+2.  Install the compiler [@bufbuild/buf], plugin, and runtime library:
+
+    ```shellsession
     npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
     npm install @bufbuild/protobuf
     ```
 
-2.  Create a `buf.gen.yaml` file that looks like this:
+3.  Create a `buf.gen.yaml` file that looks like this:
 
     ```yaml
     # Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
@@ -73,9 +78,9 @@ The quickstart below shows a simple example of code generation for a `.proto` fi
         opt: target=ts
     ```
 
-3.  Create a `proto` subdirectory and download [example.proto] into it.
+4.  Create a `proto` subdirectory and download [example.proto] into it.
 
-4.  To generate code for all Protobuf files in the `proto` directory, simply run:
+5.  To generate code for all Protobuf files in the `proto` directory, simply run:
 
     ```shellsession
     npx buf generate
@@ -155,10 +160,10 @@ most compatible with various bundler configurations. If you prefer to generate T
 
 ### `import_extension`
 
-By default, [protoc-gen-es] doesn't add file extensions to import paths. However, some environments require an import 
-extension. For example, using [ECMAScript modules in Node.js][ecmascript-modules] requires the `.js` extension, and 
-Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions in import paths with the given value. 
-Possible values:
+By default, [protoc-gen-es][@bufbuild/protoc-gen-es] doesn't add file extensions to import paths. However, some 
+environments require an import extension. For example, using [ECMAScript modules in Node.js][ecmascript-modules] 
+requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions in 
+import paths with the given value. Possible values:
 
 - `import_extension=none`: Doesn't add an extension. (Default)
 - `import_extension=js`: Adds the `.js` extension.
@@ -187,7 +192,7 @@ the top of each file to skip type checks: `// @ts-nocheck`.
 ### `json_types=true`
 
 Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type 
-if available.
+if available. Learn more about [JSON types](#json-types).
 
 ## Generated code
 
@@ -1681,46 +1686,28 @@ if (field.fieldKind == "map") {
 
 ## Writing plugins
 
-Code generator plugins can be created using the npm packages [@bufbuild/protoplugin](https://npmjs.com/package/@bufbuild/protoplugin) and [@bufbuild/protobuf](https://npmjs.com/package/@bufbuild/protobuf). This is a detailed overview of the process of writing a plugin.
+Code generator plugins are a unique feature of Protobuf compilers like `protoc` and the [Buf CLI][buf-cli]. With a 
+plugin, you can generate files based on Protobuf schemas as the input. They can generate outputs like RPC clients and 
+server stubs, mappings from Protobuf to SQL, validation code, and pretty much anything else you can think of can all be produced.
 
-- [Introduction](#introduction)
-- [Writing a plugin](#writing-a-plugin)
-  - [Installing the plugin framework and dependencies](#installing-the-plugin-framework-and-dependencies)
-  - [Setting up your plugin](#setting-up-your-plugin)
-  - [Providing generator functions](#providing-generator-functions)
-    - [Overriding transpilation](#overriding-transpilation)
-  - [Generating a file](#generating-a-file)
-  - [Walking through the schema](#walking-through-the-schema)
-  - [Printing to a generated file](#printing-to-a-generated-file)
-    - [As a variadic function](#as-a-variadic-function)
-    - [As a template literal tagged function](#as-a-template-literal-tagged-function)
-  - [Importing](#importing)
-    - [Importing from an NPM package](#importing-from-an-npm-package)
-    - [Importing from `protoc-gen-es` generated code](#importing-from-protoc-gen-es-generated-code)
-    - [Importing from the `@bufbuild/protobuf` runtime](#importing-from-the-bufbuildprotobuf-runtime)
-    - [Type-only imports](#type-only-imports)
-    - [Why use `f.import()`?](#why-use-fimport)
-  - [Exporting](#exporting)
-  - [Parsing plugin options](#parsing-plugin-options)
-  - [Using custom Protobuf options](#using-custom-protobuf-options)
-- [Testing](#testing)
-- [Examples](#examples)
+The contract between the Protobuf compiler and a code generator plugin is defined in [plugin.proto]. Plugins are simple 
+executables (typically on your `$PATH`) named `protoc-gen-x`, where `x` is the name of the language or feature that the 
+plugin provides. The Protobuf compiler parses the Protobuf files and invokes the plugin, sending a 
+`CodeGeneratorRequest` on stdin, and expecting a `CodeGeneratorResponse` on stdout. The request contains a set of 
+descriptors—an abstract version of the parsed Protobuf files (see [descriptor.proto]). The response contains a list of 
+files, each with a name and text content.
 
-## Introduction
+For more information on how plugins work, check out [the Buf image documentation][buf-images].
+TODO: Is this still the best place to link to? It's pretty Buf-specific in this more general context.
 
-Code generator plugins are a unique feature of protocol buffer compilers like protoc and the [buf CLI](https://docs.buf.build/introduction#the-buf-cli). With a plugin, you can generate files based on Protobuf schemas as the input. Outputs such as RPC clients and server stubs, mappings from protobuf to SQL, validation code, and pretty much anything else you can think of can all be produced.
-
-The contract between the protobuf compiler and a code generator plugin is defined in [plugin.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto). Plugins are simple executables (typically on your `$PATH`) that are named `protoc-gen-x`, where `x` is the name of the language or feature that the plugin provides. The protobuf compiler parses the protobuf files, and invokes the plugin, sending a `CodeGeneratorRequest` on standard in, and expecting a `CodeGeneratorResponse` on standard out. The request contains a set of descriptors (see [descriptor.proto](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto)) - an abstract version of the parsed protobuf files. The response contains a list of files, each having a name and text content.
-
-For more information on how plugins work, check out [our documentation](https://docs.buf.build/reference/images).
-
-## Writing a plugin
-
-The following will describe the steps and things to know when writing your own code generator plugin. The main step in the process is passing a plugin initialization object to the `createEcmaScriptPlugin` function exported by the plugin framework. This plugin initalization object will contain various properties pertaining to different aspects of your plugin.
+The main step in the process is to pass a plugin initialization object to the `createEcmaScriptPlugin` function 
+exported by the plugin framework. This plugin initialization object contains various properties about different 
+aspects of your plugin.
 
 ### Installing the plugin framework and dependencies
 
-The main dependencies for writing plugins are the main plugin package at [@bufbuild/protoplugin](https://npmjs.com/package/@bufbuild/protoplugin) and the runtime API at [@bufbuild/protobuf](https://npmjs.com/package/@bufbuild/protobuf). Using your package manager of choice, install the above packages:
+The key dependencies for writing plugins are the main plugin package at [@bufbuild/protoplugin] and the runtime API at 
+[@bufbuild/protobuf]. Using your package manager of choice, install them:
 
 **npm**
 
@@ -1742,15 +1729,16 @@ yarn add @bufbuild/protoplugin @bufbuild/protobuf
 
 ### Setting up your plugin
 
-The first thing to determine for your plugin is the `name` and `version`. These are both passed as properties on the plugin initialization object.
+The first thing to determine for your plugin is the `name` and `version`. These are both passed as properties on the 
+plugin initialization object.
 
-The `name` property denotes the name of your plugin. Most plugins are prefixed with `protoc-gen` as required by `protoc` i.e. [protoc-gen-es](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es).
+The `name` property denotes the name of your plugin. Most plugins are prefixed with `protoc-gen` as required by 
+`protoc`—for example, [protoc-gen-es]. The `version` property is the semantic version number of your plugin. Typically, 
+this should mirror the version specified in your `package.json` file. These values are placed into the preamble of 
+generated code, providing an easy way to determine the plugin and version that were used to generate a specific file.
 
-The `version` property is the semantic version number of your plugin. Typically, this should mirror the version specified in your package.json.
-
-The above values will be placed into the preamble of generated code, which provides an easy way to determine the plugin and version that was used to generate a specific file.
-
-For example, with a `name` of **protoc-gen-foo** and `version` of **v0.1.0**, the following will be added to generated files:
+For example, with a `name` of **protoc-gen-foo** and `version` of **v0.1.0**, the following line is added to 
+generated files:
 
 ```ts
 // @generated by protoc-gen-foo v0.1.0 with parameter "target=ts"
@@ -1758,23 +1746,29 @@ For example, with a `name` of **protoc-gen-foo** and `version` of **v0.1.0**, th
 
 ### Providing generator functions
 
-Generator functions are functions that are used to generate the actual file content parsed from protobuf files. There are three that can be implemented, corresponding to the three possible target outputs for plugins:
+Generator functions create the actual file content parsed from Protobuf files. Protobuf-ES offers three, corresponding 
+to the three possible target outputs for plugins:
 
-| Target Out | Function                            |
+| Target out | Function                            |
 | :--------- | :---------------------------------- |
 | `ts`       | `generateTs(schema: Schema): void`  |
 | `js`       | `generateJs(schema: Schema): void`  |
 | `dts`      | `generateDts(schema: Schema): void` |
 
-Of the three, only `generateTs` is required. These functions will be passed as part of your plugin initialization and as the plugin runs, the framework will invoke the functions depending on which target outputs were specified by the plugin consumer.
+Of the three, only `generateTs` is required. These functions are passed as part of your plugin initialization, and as 
+the plugin runs, the framework invokes the functions depending on the target outputs specified by the plugin consumer.
 
-Since `generateJs` and `generateDts` are both optional, if they are not provided, the plugin framework will attempt to transpile your generated TypeScript files to generate any desired `js` or `dts` outputs if necessary.
-
-In most cases, implementing the `generateTs` function only and letting the plugin framework transpile any additionally required files should be sufficient. However, the transpilation process is somewhat expensive and if plugin performance is a concern, then it is recommended to implement `generateJs` and `generateDts` functions also as the generation processing is much faster than transpilation.
+Because `generateJs` and `generateDts` are both optional, if they aren't provided, the plugin framework attempts to 
+transpile your generated TypeScript files to generate any desired `js` or `dts` outputs if necessary. In most cases, 
+implementing only the `generateTs` function is sufficient. However, the transpilation process is somewhat expensive, so 
+if plugin performance is a concern, we recommend implementing `generateJs` and `generateDts` also as generation is much 
+faster than transpilation.
 
 #### Overriding transpilation
 
-As mentioned, if you do not provide a `generateJs` and/or a `generateDts` function and either `js` or `dts` is specified as a target out, the plugin framework will use its own TypeScript compiler to generate these files for you. This process uses a stable version of TypeScript with lenient compiler options so that files are generated under most conditions. However, if this is not sufficient, you also have the option of providing your own `transpile` function, which can be used to override the plugin framework's transpilation process.
+The default transpilation by the plugin framework uses its own TypeScript compiler to generate code.I t uses a stable 
+version of TypeScript with lenient compiler options so that files are generated under most conditions. However, if this 
+isn't sufficient, you can also provide your own `transpile` function to override the plugin framework's transpilation process:
 
 ```ts
 transpile(
@@ -1785,15 +1779,17 @@ transpile(
 ): FileInfo[]
 ```
 
-The function will be invoked with an array of `FileInfo` objects representing the TypeScript file content
-to use for transpilation as well as two booleans indicating whether the function should transpile JavaScript,
+The function is invoked with an array of `FileInfo` objects representing the TypeScript file content
+to use for transpilation, and two booleans indicating whether the function should transpile JavaScript,
 declaration files, or both. It should return a list of `FileInfo` objects representing the transpiled content.
 
-**NOTE**: The `transpile` function is meant to be used in place of either `generateJs`, `generateDts`, or both.  
-However, those functions will take precedence. This means that if `generateJs`, `generateDts`, and
-`transpile` are all provided, `transpile` will be ignored.
+> [!NOTE]
+>
+> The `transpile` function is meant to be used in place of either `generateJs`, `generateDts`, or both. However, those 
+> functions will take precedence. This means that if `generateJs`, `generateDts`, and `transpile` are all provided, 
+> `transpile` will be ignored.
 
-A sample invocation of `createEcmaScriptPlugin` after the above steps will look similar to:
+A sample invocation of `createEcmaScriptPlugin` after the above steps looks similar to this:
 
 ```ts
 export const protocGenFoo = createEcmaScriptPlugin({
@@ -1805,9 +1801,17 @@ export const protocGenFoo = createEcmaScriptPlugin({
 
 ### Generating a file
 
-As illustrated above, the generator functions are invoked by the plugin framework with a parameter of type `Schema`. This object contains the information needed to generate code. In addition to the [`CodeGeneratorRequest`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto) that is standard when working with protoc plugins, the `Schema` object also contains some convenience interfaces that make it a bit easier to work with the various descriptor objects. See [Walking through the schema](#walking-through-the-schema) for more information on the structure.
+As illustrated above, the generator functions are invoked by the plugin framework with a parameter of type `Schema`. 
+This object contains the information needed to generate code. In addition to the 
+[`CodeGeneratorRequest`][google/protobuf/compiler/plugin.proto] that's standard when working with `protoc` plugins, the `
+`Schema` object also contains some convenient interfaces that make working with the various descriptor objects easier. 
+See [Walking through the schema](#walking-through-the-schema) for more information on the structure.
 
-For example, the `Schema` object contains a `files` property, which is a list of `DescFile` objects representing the files requested to be generated. The first thing you will most likely do in your generator function is iterate over this list and issue a call to a function that is also present on the `Schema` object: `generateFile`. This function expects a filename and returns a generated file object containing a `print` function which you can then use to "print" to the file. For more information, see [Printing to a generated file](#printing-to-a-generated-file) below.
+For example, the `Schema` object contains a `files` property, which is a list of `DescFile` objects representing the 
+files in the generation request. The first thing your generator function will likely do is iterate over this list and 
+issue a call to the `generateFile` function that's also present on the `Schema` object. This function expects a 
+filename and returns a generated file object containing a `print` function that you can then use to "print" to the file. 
+For more information, see [Printing to a generated file](#printing-to-a-generated-file) below.
 
 Each `file` object on the schema contains a `name` property representing the name of the file that was parsed by the compiler (minus the `.proto` extension). When specifying the filename to pass to `generateFile`, it is recommended to use this file name plus the name of your plugin (minus `protoc-gen`). So, for example, for a file named `user_service.proto` being processed by `protoc-gen-foo`, the value passed to `generateFile` would be `user_service_foo.ts`.
 
@@ -2128,7 +2132,7 @@ to see the custom option above in action, and run the code yourself.
 ## Testing
 
 We recommend to test generated code just like handwritten code. Identify a
-representative protobuf file for your use case, generate code, and then simply
+representative Protobuf file for your use case, generate code, and then simply
 run tests against the generated code.
 
 If you implement your own generator functions for the `js` and `dts` targets,
@@ -2804,6 +2808,7 @@ side of caution.
 [buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
 [buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
 [Buf]: https://buf.build
+[buf-cli]: https://buf.build/docs/ecosystem/cli-overview
 [ecmascript-modules]: https://www.typescriptlang.org/docs/handbook/esm-node.html
 [example.proto]: ./packages/protobuf-example/proto/example.proto
 [gh-buf-conformance]: https://github.com/bufbuild/protobuf-conformance
@@ -2931,3 +2936,6 @@ side of caution.
 [Text Encoding API]: https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API
 [wikipedia.org/idl]: https://en.wikipedia.org/wiki/Interface_description_language
 [proto2]: https://protobuf.dev/programming-guides/proto2/
+[plugin.proto]: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/compiler/plugin.proto
+[descriptor.proto]: https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto
+[buf-images]: https://buf.build/docs/reference/images
