@@ -674,6 +674,371 @@ export enum TestOneof2_NestedEnum {
 export declare const TestOneof2_NestedEnumSchema: GenEnum<TestOneof2_NestedEnum>;
 
 /**
+ * If bool fields are incorrectly assumed to have hasbits, InternalSwap would
+ * result in swapping N more 32bit hasbits incorrectly. Considering padding, we
+ * need many bool fields to stress this.
+ *
+ * @generated from message proto3_unittest.TestHasbits
+ */
+export declare type TestHasbits = Message<"proto3_unittest.TestHasbits"> & {
+  /**
+   * @generated from field: bool b1 = 1;
+   */
+  b1: boolean;
+
+  /**
+   * @generated from field: bool b2 = 2;
+   */
+  b2: boolean;
+
+  /**
+   * @generated from field: bool b3 = 3;
+   */
+  b3: boolean;
+
+  /**
+   * @generated from field: bool b4 = 4;
+   */
+  b4: boolean;
+
+  /**
+   * @generated from field: bool b5 = 5;
+   */
+  b5: boolean;
+
+  /**
+   * @generated from field: bool b6 = 6;
+   */
+  b6: boolean;
+
+  /**
+   * @generated from field: bool b7 = 7;
+   */
+  b7: boolean;
+
+  /**
+   * @generated from field: bool b8 = 8;
+   */
+  b8: boolean;
+
+  /**
+   * @generated from field: bool b9 = 9;
+   */
+  b9: boolean;
+
+  /**
+   * @generated from field: bool b10 = 10;
+   */
+  b10: boolean;
+
+  /**
+   * @generated from field: bool b11 = 11;
+   */
+  b11: boolean;
+
+  /**
+   * @generated from field: bool b12 = 12;
+   */
+  b12: boolean;
+
+  /**
+   * @generated from field: bool b13 = 13;
+   */
+  b13: boolean;
+
+  /**
+   * @generated from field: bool b14 = 14;
+   */
+  b14: boolean;
+
+  /**
+   * @generated from field: bool b15 = 15;
+   */
+  b15: boolean;
+
+  /**
+   * @generated from field: bool b16 = 16;
+   */
+  b16: boolean;
+
+  /**
+   * @generated from field: bool b17 = 17;
+   */
+  b17: boolean;
+
+  /**
+   * @generated from field: bool b18 = 18;
+   */
+  b18: boolean;
+
+  /**
+   * @generated from field: bool b19 = 19;
+   */
+  b19: boolean;
+
+  /**
+   * @generated from field: bool b20 = 20;
+   */
+  b20: boolean;
+
+  /**
+   * @generated from field: bool b21 = 21;
+   */
+  b21: boolean;
+
+  /**
+   * @generated from field: bool b22 = 22;
+   */
+  b22: boolean;
+
+  /**
+   * @generated from field: bool b23 = 23;
+   */
+  b23: boolean;
+
+  /**
+   * @generated from field: bool b24 = 24;
+   */
+  b24: boolean;
+
+  /**
+   * @generated from field: bool b25 = 25;
+   */
+  b25: boolean;
+
+  /**
+   * @generated from field: bool b26 = 26;
+   */
+  b26: boolean;
+
+  /**
+   * @generated from field: bool b27 = 27;
+   */
+  b27: boolean;
+
+  /**
+   * @generated from field: bool b28 = 28;
+   */
+  b28: boolean;
+
+  /**
+   * @generated from field: bool b29 = 29;
+   */
+  b29: boolean;
+
+  /**
+   * @generated from field: bool b30 = 30;
+   */
+  b30: boolean;
+
+  /**
+   * @generated from field: bool b31 = 31;
+   */
+  b31: boolean;
+
+  /**
+   * @generated from field: bool b32 = 32;
+   */
+  b32: boolean;
+
+  /**
+   * @generated from field: bool b33 = 33;
+   */
+  b33: boolean;
+
+  /**
+   * @generated from field: bool b34 = 34;
+   */
+  b34: boolean;
+
+  /**
+   * @generated from field: bool b35 = 35;
+   */
+  b35: boolean;
+
+  /**
+   * @generated from field: bool b36 = 36;
+   */
+  b36: boolean;
+
+  /**
+   * @generated from field: bool b37 = 37;
+   */
+  b37: boolean;
+
+  /**
+   * @generated from field: bool b38 = 38;
+   */
+  b38: boolean;
+
+  /**
+   * @generated from field: bool b39 = 39;
+   */
+  b39: boolean;
+
+  /**
+   * @generated from field: bool b40 = 40;
+   */
+  b40: boolean;
+
+  /**
+   * @generated from field: bool b41 = 41;
+   */
+  b41: boolean;
+
+  /**
+   * @generated from field: bool b42 = 42;
+   */
+  b42: boolean;
+
+  /**
+   * @generated from field: bool b43 = 43;
+   */
+  b43: boolean;
+
+  /**
+   * @generated from field: bool b44 = 44;
+   */
+  b44: boolean;
+
+  /**
+   * @generated from field: bool b45 = 45;
+   */
+  b45: boolean;
+
+  /**
+   * @generated from field: bool b46 = 46;
+   */
+  b46: boolean;
+
+  /**
+   * @generated from field: bool b47 = 47;
+   */
+  b47: boolean;
+
+  /**
+   * @generated from field: bool b48 = 48;
+   */
+  b48: boolean;
+
+  /**
+   * @generated from field: bool b49 = 49;
+   */
+  b49: boolean;
+
+  /**
+   * @generated from field: bool b50 = 50;
+   */
+  b50: boolean;
+
+  /**
+   * @generated from field: bool b51 = 51;
+   */
+  b51: boolean;
+
+  /**
+   * @generated from field: bool b52 = 52;
+   */
+  b52: boolean;
+
+  /**
+   * @generated from field: bool b53 = 53;
+   */
+  b53: boolean;
+
+  /**
+   * @generated from field: bool b54 = 54;
+   */
+  b54: boolean;
+
+  /**
+   * @generated from field: bool b55 = 55;
+   */
+  b55: boolean;
+
+  /**
+   * @generated from field: bool b56 = 56;
+   */
+  b56: boolean;
+
+  /**
+   * @generated from field: bool b57 = 57;
+   */
+  b57: boolean;
+
+  /**
+   * @generated from field: bool b58 = 58;
+   */
+  b58: boolean;
+
+  /**
+   * @generated from field: bool b59 = 59;
+   */
+  b59: boolean;
+
+  /**
+   * @generated from field: bool b60 = 60;
+   */
+  b60: boolean;
+
+  /**
+   * @generated from field: bool b61 = 61;
+   */
+  b61: boolean;
+
+  /**
+   * @generated from field: bool b62 = 62;
+   */
+  b62: boolean;
+
+  /**
+   * @generated from field: bool b63 = 63;
+   */
+  b63: boolean;
+
+  /**
+   * @generated from field: bool b64 = 64;
+   */
+  b64: boolean;
+
+  /**
+   * @generated from field: bool b65 = 65;
+   */
+  b65: boolean;
+
+  /**
+   * @generated from field: bool b66 = 66;
+   */
+  b66: boolean;
+
+  /**
+   * @generated from field: bool b67 = 67;
+   */
+  b67: boolean;
+
+  /**
+   * @generated from field: bool b68 = 68;
+   */
+  b68: boolean;
+
+  /**
+   * @generated from field: bool b69 = 69;
+   */
+  b69: boolean;
+
+  /**
+   * @generated from field: proto3_unittest.TestAllTypes child = 100;
+   */
+  child?: TestAllTypes;
+};
+
+/**
+ * Describes the message proto3_unittest.TestHasbits.
+ * Use `create(TestHasbitsSchema)` to create a new message.
+ */
+export declare const TestHasbitsSchema: GenMessage<TestHasbits>;
+
+/**
  * @generated from enum proto3_unittest.ForeignEnum
  */
 export enum ForeignEnum {
@@ -696,6 +1061,13 @@ export enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAZ = 6;
    */
   FOREIGN_BAZ = 6,
+
+  /**
+   * Large enough to escape the Boxed Integer cache.
+   *
+   * @generated from enum value: FOREIGN_LARGE = 123456;
+   */
+  FOREIGN_LARGE = 123456,
 }
 
 /**

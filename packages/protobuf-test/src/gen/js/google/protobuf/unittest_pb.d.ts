@@ -5610,6 +5610,11 @@ export declare type RedactedFields = Message<"protobuf_unittest.RedactedFields">
    * @generated from field: map<string, string> map_unredacted_string = 10;
    */
   mapUnredactedString: { [key: string]: string };
+
+  /**
+   * @generated from field: optional string optional_redacted_false_string = 11;
+   */
+  optionalRedactedFalseString: string;
 };
 
 /**
@@ -6165,6 +6170,13 @@ export enum ForeignEnum {
    * @generated from enum value: FOREIGN_BAX = 32;
    */
   FOREIGN_BAX = 32,
+
+  /**
+   * Large enough to escape the Boxed Integer cache.
+   *
+   * @generated from enum value: FOREIGN_LARGE = 123456;
+   */
+  FOREIGN_LARGE = 123456,
 }
 
 /**
@@ -7369,4 +7381,9 @@ export declare const test_extension_inside_table_extension: GenExtension<TestExt
  * @generated from extension: optional protobuf_unittest.TestNestedGroupExtensionInnerExtension inner = 3;
  */
 export declare const inner: GenExtension<TestNestedGroupExtensionOuter_Layer1OptionalGroup_Layer2RepeatedGroup, TestNestedGroupExtensionInnerExtension>;
+
+/**
+ * @generated from extension: optional string redacted_extension = 20;
+ */
+export declare const redacted_extension: GenExtension<RedactedFields, string>;
 

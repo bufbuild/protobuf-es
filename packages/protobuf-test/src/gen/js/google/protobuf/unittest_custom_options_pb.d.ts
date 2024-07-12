@@ -245,6 +245,54 @@ export declare type SettingRealsFromNegativeInts = Message<"protobuf_unittest.Se
 export declare const SettingRealsFromNegativeIntsSchema: GenMessage<SettingRealsFromNegativeInts>;
 
 /**
+ * @generated from message protobuf_unittest.SettingRealsFromInf
+ */
+export declare type SettingRealsFromInf = Message<"protobuf_unittest.SettingRealsFromInf"> & {
+};
+
+/**
+ * Describes the message protobuf_unittest.SettingRealsFromInf.
+ * Use `create(SettingRealsFromInfSchema)` to create a new message.
+ */
+export declare const SettingRealsFromInfSchema: GenMessage<SettingRealsFromInf>;
+
+/**
+ * @generated from message protobuf_unittest.SettingRealsFromNegativeInf
+ */
+export declare type SettingRealsFromNegativeInf = Message<"protobuf_unittest.SettingRealsFromNegativeInf"> & {
+};
+
+/**
+ * Describes the message protobuf_unittest.SettingRealsFromNegativeInf.
+ * Use `create(SettingRealsFromNegativeInfSchema)` to create a new message.
+ */
+export declare const SettingRealsFromNegativeInfSchema: GenMessage<SettingRealsFromNegativeInf>;
+
+/**
+ * @generated from message protobuf_unittest.SettingRealsFromNan
+ */
+export declare type SettingRealsFromNan = Message<"protobuf_unittest.SettingRealsFromNan"> & {
+};
+
+/**
+ * Describes the message protobuf_unittest.SettingRealsFromNan.
+ * Use `create(SettingRealsFromNanSchema)` to create a new message.
+ */
+export declare const SettingRealsFromNanSchema: GenMessage<SettingRealsFromNan>;
+
+/**
+ * @generated from message protobuf_unittest.SettingRealsFromNegativeNan
+ */
+export declare type SettingRealsFromNegativeNan = Message<"protobuf_unittest.SettingRealsFromNegativeNan"> & {
+};
+
+/**
+ * Describes the message protobuf_unittest.SettingRealsFromNegativeNan.
+ * Use `create(SettingRealsFromNegativeNanSchema)` to create a new message.
+ */
+export declare const SettingRealsFromNegativeNanSchema: GenMessage<SettingRealsFromNegativeNan>;
+
+/**
  * @generated from message protobuf_unittest.ComplexOptionType1
  */
 export declare type ComplexOptionType1 = Message<"protobuf_unittest.ComplexOptionType1"> & {

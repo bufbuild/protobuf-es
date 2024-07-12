@@ -424,7 +424,7 @@ const OPEN: FeatureSet_EnumType.OPEN = 1;
 
 // prettier-ignore
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2023: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
-// generated from protoc v27.0
+// generated from protoc v28.0-rc1
 export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1000;
 const featureDefaults = {
   // EDITION_PROTO2
