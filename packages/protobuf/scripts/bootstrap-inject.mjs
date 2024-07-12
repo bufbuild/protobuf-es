@@ -125,12 +125,6 @@ async function processFile(filePath, content, descriptorProto, upstream) {
         /^\/\/ bootstrap-inject defaults: ([A-Z0-_]+) to ([A-Z0-_]+): (.+)$/,
       );
       if (match !== null) {
-        const enumDesc = descriptorProto.getEnum("google.protobuf.Edition");
-        if (!enumDesc) {
-          throw new Error(
-            `${filePath}:${i}: enum google.protobuf.Edition not found`,
-          );
-        }
         const [, minimumEditionString, maximumEditionString, template] = match;
         const featureSetDefaults = await compileDefaults(
           upstream,
@@ -153,9 +147,14 @@ async function processFile(filePath, content, descriptorProto, upstream) {
           }),
         );
         lines.push(`const featureDefaults = {`);
-        for (const def of featureSetDefaults.defaults) {
-          lines.push(`  // ${Edition[def.edition]}`);
-          lines.push(`  ${def.edition}: {`);
+        for (const edition of editionNumbersBetween(
+          descriptorProto,
+          featureSetDefaults.minimumEdition,
+          featureSetDefaults.maximumEdition,
+        )) {
+          const def = bestDefaults(featureSetDefaults, edition);
+          lines.push(`  // ${Edition[edition]}`);
+          lines.push(`  ${edition}: {`);
           const r = reflect(
             FeatureSetSchema,
             featureSetHasAllSet(def.overridableFeatures)
@@ -276,6 +275,52 @@ function featureSetHasAllSet(featureSet) {
     featureSet.messageEncoding !== 0 &&
     featureSet.jsonFormat !== 0
   );
+}
+
+/**
+ * @param {FileRegistry} descriptorProto
+ * @param {number} minimumEdition
+ * @param {number} maximumEdition
+ * @returns {Array<number>}
+ */
+function editionNumbersBetween(
+  descriptorProto,
+  minimumEdition,
+  maximumEdition,
+) {
+  const editionEnum = descriptorProto.getEnum("google.protobuf.Edition");
+  if (!editionEnum) {
+    throw new Error(
+      `enum google.protobuf.Edition not found in descriptor.proto`,
+    );
+  }
+  return editionEnum.values
+    .filter((value) => value.number >= minimumEdition)
+    .filter((value) => value.number <= maximumEdition)
+    .map((value) => value.number)
+    .sort((a, b) => a - b);
+}
+
+/**
+ * @param {FeatureSetDefaults} featureSetDefaults
+ * @param {number} edition
+ * @return {FeatureSetDefaults_FeatureSetEditionDefault}
+ */
+function bestDefaults(featureSetDefaults, edition) {
+  let best = undefined;
+  for (const def of featureSetDefaults.defaults) {
+    if (def.edition <= edition) {
+      if (best === undefined || def.edition > best.edition) {
+        best = def;
+      }
+    }
+  }
+  if (!best) {
+    throw new Error(
+      `Unable to find google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault for edition ${edition}`,
+    );
+  }
+  return best;
 }
 
 /**
