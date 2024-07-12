@@ -1229,7 +1229,7 @@ for await (const user of sizeDelimitedDecodeStream(UserSchema, stream)) {
 
 ## JSON types
 
-This is an advanced feature that's set with the plugin option `json_types=true`. If it's enabled, `protoc-gen-es` 
+This is an advanced feature that's set with the plugin option [`json_types=true`](#json_typestrue). If it's enabled, [@bufbuild/protoc-gen-es] 
 generates a JSON type for every Protobuf message.
 
 Given this definition:
