@@ -35,7 +35,7 @@ To learn more about Protobuf's capabilities, read the [official language guide][
 ## What is Protobuf-ES?
 
 Protobuf-ES is a complete implementation of Protocol Buffers in TypeScript, suitable for web browsers and Node.js,
-created by [Buf]. It's the only fully-compliant JavaScript Protobuf library that passes the Protobuf conformance 
+created by [Buf]. It's the only fully-compliant JavaScript Protobuf library that passes the Protobuf conformance
 tests—[read more on our blog][blog-post].
 
 Protobuf-ES consists of three npm packages:
@@ -125,7 +125,7 @@ PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
 
 ## Plugin options
 
-Our plugin supports a few options to control the generated code. The example above used `target=ts` to generate 
+Our plugin supports a few options to control the generated code. The example above used `target=ts` to generate
 TypeScript files.
 
 With [@bufbuild/buf], multiple options can be specified as a YAML list:
@@ -146,7 +146,7 @@ allow you to specify multiple options as a single comma-separated value like `ta
 
 ### `target`
 
-This option controls whether the plugin generates JavaScript, TypeScript, or TypeScript declaration files. Possible 
+This option controls whether the plugin generates JavaScript, TypeScript, or TypeScript declaration files. Possible
 values:
 
 - `target=js`: Generates a `_pb.js` file for every `.proto` input file.
@@ -155,14 +155,14 @@ values:
 
 You can pass multiple values by separating them with `+`—for example, `target=js+dts`.
 
-By default, it generates JavaScript and TypeScript declaration files, which produces the smallest code size and is the 
+By default, it generates JavaScript and TypeScript declaration files, which produces the smallest code size and is the
 most compatible with various bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
 
 ### `import_extension`
 
-By default, [protoc-gen-es][@bufbuild/protoc-gen-es] doesn't add file extensions to import paths. However, some 
-environments require an import extension. For example, using [ECMAScript modules in Node.js][ecmascript-modules] 
-requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions in 
+By default, [protoc-gen-es][@bufbuild/protoc-gen-es] doesn't add file extensions to import paths. However, some
+environments require an import extension. For example, using [ECMAScript modules in Node.js][ecmascript-modules]
+requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions in
 import paths with the given value. Possible values:
 
 - `import_extension=none`: Doesn't add an extension. (Default)
@@ -171,7 +171,7 @@ import paths with the given value. Possible values:
 
 ### `js_import_style`
 
-By default, [protoc-gen-es] generates ECMAScript `import` and `export` statements. For use cases where CommonJS is 
+By default, [protoc-gen-es] generates ECMAScript `import` and `export` statements. For use cases where CommonJS is
 difficult to avoid, this option can be used to generate CommonJS `require()` calls. Possible values:
 
 - `js_import_style=module`: Generates ECMAScript `import`/`export` statements. (Default)
@@ -179,8 +179,8 @@ difficult to avoid, this option can be used to generate CommonJS `require()` cal
 
 ### `keep_empty_files=true`
 
-By default, [protoc-gen-es] omits empty files from the plugin output. This option disables pruning of empty files to 
-allow for smooth interoperation with Bazel and similar tooling that requires all output files to be declared ahead of 
+By default, [protoc-gen-es] omits empty files from the plugin output. This option disables pruning of empty files to
+allow for smooth interoperation with Bazel and similar tooling that requires all output files to be declared ahead of
 time. Unless you use Bazel, you probably don't need this option.
 
 ### `ts_nocheck=true`
@@ -191,7 +191,7 @@ the top of each file to skip type checks: `// @ts-nocheck`.
 
 ### `json_types=true`
 
-Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type 
+Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
 if available. Learn more about [JSON types](#json-types).
 
 ## Generated code
@@ -200,7 +200,7 @@ This section shows the code that Protobuf-ES generates for each Protobuf definit
 
 ### Files
 
-For every Protobuf source file, it generates a corresponding `.js`, `.ts`, or `.d.ts` file, and adds a `_pb` suffix to 
+For every Protobuf source file, it generates a corresponding `.js`, `.ts`, or `.d.ts` file, and adds a `_pb` suffix to
 the name. For example, for `foo/bar.proto`, it generates `foo/bar_pb.js`.
 
 At the top of each file, it generates a preamble with information about the source file and how it was generated:
@@ -424,7 +424,7 @@ The entire `oneof` group is turned into an object `result` with two properties:
 This property is always defined on the message—similar to the way map or repeated fields are always defined. By default,
 it's `{case: undefined}`.
 
-In our example, `result.case` can be either `"number"`, `"error"`, or `undefined`. If a field is selected, the 
+In our example, `result.case` can be either `"number"`, `"error"`, or `undefined`. If a field is selected, the
 property `result.value` contains the value of the
 selected field.
 
@@ -456,7 +456,7 @@ switch (user.result.case) {
 }
 ```
 
-This representation is particularly useful in TypeScript, because the compiler narrows down the type. The if blocks and 
+This representation is particularly useful in TypeScript, because the compiler narrows down the type. The if blocks and
 switch statements above tell the compiler the type of the `value` property.
 
 > [!TIP]
@@ -606,7 +606,7 @@ To learn more about the schema, take a look at the section about [reflection](#r
 
 ### Extensions
 
-An extension is a field defined outside of its container message. For example, we can add the field `age` to the 
+An extension is a field defined outside of its container message. For example, we can add the field `age` to the
 message `User`:
 
 ```protobuf
@@ -664,9 +664,9 @@ hasExtension(user, age); // false
 Note that `getExtension` never returns `undefined`. If the extension isn't set, `hasExtension` returns `false`, but
 `getExtension` returns the default value, for example:
 
-* `0` for numeric types
-* `[]` for repeated fields
-* an empty message instance for message fields
+- `0` for numeric types
+- `[]` for repeated fields
+- an empty message instance for message fields
 
 Extensions are stored as [unknown fields](#unknown-fields) on a message. If you retrieve an extension value, it's
 deserialized from the binary unknown field data. To mutate a value, make sure to store the new value with `setExtension`
@@ -886,8 +886,8 @@ myMessage.struct = {
 
 ### Wrapper messages from google/protobuf/wrappers.proto
 
-[wrappers.proto][google/protobuf/wrappers.proto] defines a message for every Protobuf primitive type. The messages are 
-useful for embedding primitives in the `google.protobuf.Any` type, or to distinguish between the absence of a primitive 
+[wrappers.proto][google/protobuf/wrappers.proto] defines a message for every Protobuf primitive type. The messages are
+useful for embedding primitives in the `google.protobuf.Any` type, or to distinguish between the absence of a primitive
 field and its default value.
 
 For convenience, it generates fields that use one of the wrapper messages as "unboxed" optional primitives:
@@ -1131,7 +1131,7 @@ Options for `toJson` and `toJsonString`:
   Field names are converted to lowerCamelCase by default in JSON output. This
   option overrides the behavior to use the proto field name instead.
 - `registry?: Registry`<br/>
-  A [registry](#registries) to use for converting [extensions](#extensions) and 
+  A [registry](#registries) to use for converting [extensions](#extensions) and
   [`google.protobuf.Any`](#googleprotobufany) to JSON.
 - `prettySpaces?: number`<br/>
   Only available with `toJsonString`. A convenience property for the `space` parameter to
@@ -1214,7 +1214,7 @@ stream.write(sizeDelimitedEncode(UserSchema, user));
 stream.end();
 ```
 
-You can parse size-delimited messages with `sizeDelimitedDecodeStream`. The function expects an `AsyncIterable<Uint8Array>`, 
+You can parse size-delimited messages with `sizeDelimitedDecodeStream`. The function expects an `AsyncIterable<Uint8Array>`,
 so it works with Node.js out of the box and can be easily adapted to other stream APIs:
 
 ```typescript
@@ -1229,7 +1229,7 @@ for await (const user of sizeDelimitedDecodeStream(UserSchema, stream)) {
 
 ## JSON types
 
-This is an advanced feature that's set with the plugin option [`json_types=true`](#json_typestrue). If it's enabled, 
+This is an advanced feature that's set with the plugin option [`json_types=true`](#json_typestrue). If it's enabled,
 [@bufbuild/protoc-gen-es] generates a JSON type for every Protobuf message.
 
 Given this definition:
@@ -1262,7 +1262,7 @@ export type ExampleJson = {
 };
 ```
 
-The JSON type matches exactly what `toJson()` will emit with standard serialization options, and `toJson()` 
+The JSON type matches exactly what `toJson()` will emit with standard serialization options, and `toJson()`
 automatically returns the JSON type if available:
 
 ```ts
@@ -1270,8 +1270,8 @@ const example = create(ExampleSchema, { amount: 123 });
 const json: ExampleJson = toJson(ExampleSchema, example);
 
 // Without json_types=true, the following would be a type error:
-json.amount // number | undefined
-json.data // string | undefined
+json.amount; // number | undefined
+json.data; // string | undefined
 ```
 
 For enumerations, a similar mechanism applies. We generate a union type with all JSON string values for the enum:
@@ -1285,6 +1285,7 @@ enum Format {
   FORMAT_JSON = 2;
 }
 ```
+
 ```ts
 /**
  * JSON type for the enum Format.
@@ -1292,8 +1293,8 @@ enum Format {
 export type FormatJson = "FORMAT_UNSPECIFIED" | "FORMAT_BINARY" | "FORMAT_JSON";
 ```
 
-With the `enumToJson()` and `enumFromJson()` functions, values can be converted between both representations. With 
-`isEnumJson()`, unknown input can be narrowed down to known values. If JSON types are available, the functions are 
+With the `enumToJson()` and `enumFromJson()` functions, values can be converted between both representations. With
+`isEnumJson()`, unknown input can be narrowed down to known values. If JSON types are available, the functions are
 type safe:
 
 ```ts
@@ -1303,7 +1304,7 @@ const enumVal: Format = enumFromJson(FormatSchema, strVal);
 
 const someString: string = "FORMAT_BINARY";
 if (isEnumJson(FormatSchema, someString)) {
-  someString // FormatJson
+  someString; // FormatJson
 }
 ```
 
@@ -1383,7 +1384,7 @@ serialize messages, and many other tasks. They are a core feature of Protobuf-ES
 ### Registries
 
 Registries are collections of descriptors that enable you to look up a type by its qualified name. When serializing
-or parsing [extensions](#extensions) or [`google.protobuf.Any`](#googleprotobufany) from JSON, registries are used to 
+or parsing [extensions](#extensions) or [`google.protobuf.Any`](#googleprotobufany) from JSON, registries are used to
 look up types.
 
 `Registry` is a set of descriptors for messages, enumerations, extensions, and services:
@@ -1465,8 +1466,8 @@ for (const file of registry.files) {
 
 With custom options, you can annotate elements in a Protobuf file with arbitrary information.
 
-Custom options are [extensions](#extensions) to the `google.protobuf.*Options` messages defined in 
-[google/protobuf/descriptor.proto]. Let's define an option to mark sensitive fields. 
+Custom options are [extensions](#extensions) to the `google.protobuf.*Options` messages defined in
+[google/protobuf/descriptor.proto]. Let's define an option to mark sensitive fields.
 
 Create a `proto/options-example.proto` file:
 
@@ -1523,7 +1524,7 @@ The companion function `hasOption` returns true if an option is present. The fun
 
 ### Reflection API
 
-Reflection allows you to inspect a schema and dynamically manipulate data. This section explains the core primitives and 
+Reflection allows you to inspect a schema and dynamically manipulate data. This section explains the core primitives and
 shows how to write a function to redact sensitive information from messages.
 
 The reflection API provides a simple interface to access and manipulate messages without knowing their type.
@@ -1691,27 +1692,27 @@ if (field.fieldKind == "map") {
 
 ## Writing plugins
 
-Code generator plugins are a unique feature of Protobuf compilers like `protoc` and the [Buf CLI][buf-cli]. With a 
-plugin, you can generate files based on Protobuf schemas as the input. They can generate outputs like RPC clients and 
+Code generator plugins are a unique feature of Protobuf compilers like `protoc` and the [Buf CLI][buf-cli]. With a
+plugin, you can generate files based on Protobuf schemas as the input. They can generate outputs like RPC clients and
 server stubs, mappings from Protobuf to SQL, validation code, and pretty much anything else you can think of can all be produced.
 
-The contract between the Protobuf compiler and a code generator plugin is defined in [plugin.proto]. Plugins are simple 
-executables (typically on your `$PATH`) named `protoc-gen-x`, where `x` is the name of the language or feature that the 
-plugin provides. The Protobuf compiler parses the Protobuf files and invokes the plugin, sending a 
-`CodeGeneratorRequest` on stdin, and expecting a `CodeGeneratorResponse` on stdout. The request contains a set of 
-descriptors—an abstract version of the parsed Protobuf files (see [descriptor.proto]). The response contains a list of 
+The contract between the Protobuf compiler and a code generator plugin is defined in [plugin.proto]. Plugins are simple
+executables (typically on your `$PATH`) named `protoc-gen-x`, where `x` is the name of the language or feature that the
+plugin provides. The Protobuf compiler parses the Protobuf files and invokes the plugin, sending a
+`CodeGeneratorRequest` on stdin, and expecting a `CodeGeneratorResponse` on stdout. The request contains a set of
+descriptors—an abstract version of the parsed Protobuf files (see [descriptor.proto]). The response contains a list of
 files, each with a name and text content.
 
 For more information on how plugins work, check out [the Buf image documentation][buf-images].
 TODO: Is this still the best place to link to? It's pretty Buf-specific in this more general context.
 
-The main step in the process is to pass a plugin initialization object to the `createEcmaScriptPlugin` function 
-exported by the plugin framework. This plugin initialization object contains various properties about different 
+The main step in the process is to pass a plugin initialization object to the `createEcmaScriptPlugin` function
+exported by the plugin framework. This plugin initialization object contains various properties about different
 aspects of your plugin.
 
 ### Installing the plugin framework and dependencies
 
-The key dependencies for writing plugins are the main plugin package at [@bufbuild/protoplugin] and the runtime API at 
+The key dependencies for writing plugins are the main plugin package at [@bufbuild/protoplugin] and the runtime API at
 [@bufbuild/protobuf]. Using your package manager of choice, install them:
 
 **npm**
@@ -1734,15 +1735,15 @@ yarn add @bufbuild/protoplugin @bufbuild/protobuf
 
 ### Setting up your plugin
 
-The first thing to determine for your plugin is the `name` and `version`. These are both passed as properties on the 
+The first thing to determine for your plugin is the `name` and `version`. These are both passed as properties on the
 plugin initialization object.
 
-The `name` property denotes the name of your plugin. Most plugins are prefixed with `protoc-gen` as required by 
-`protoc`—for example, [protoc-gen-es]. The `version` property is the semantic version number of your plugin. Typically, 
-this should mirror the version specified in your `package.json` file. These values are placed into the preamble of 
+The `name` property denotes the name of your plugin. Most plugins are prefixed with `protoc-gen` as required by
+`protoc`—for example, [protoc-gen-es]. The `version` property is the semantic version number of your plugin. Typically,
+this should mirror the version specified in your `package.json` file. These values are placed into the preamble of
 generated code, providing an easy way to determine the plugin and version that were used to generate a specific file.
 
-For example, with a `name` of **protoc-gen-foo** and `version` of **v0.1.0**, the following line is added to 
+For example, with a `name` of **protoc-gen-foo** and `version` of **v0.1.0**, the following line is added to
 generated files:
 
 ```ts
@@ -1751,7 +1752,7 @@ generated files:
 
 ### Providing generator functions
 
-Generator functions create the actual file content parsed from Protobuf files. Protobuf-ES offers three, corresponding 
+Generator functions create the actual file content parsed from Protobuf files. Protobuf-ES offers three, corresponding
 to the three possible target outputs for plugins:
 
 | Target out | Function                            |
@@ -1760,19 +1761,19 @@ to the three possible target outputs for plugins:
 | `js`       | `generateJs(schema: Schema): void`  |
 | `dts`      | `generateDts(schema: Schema): void` |
 
-Of the three, only `generateTs` is required. These functions are passed as part of your plugin initialization, and as 
+Of the three, only `generateTs` is required. These functions are passed as part of your plugin initialization, and as
 the plugin runs, the framework invokes the functions depending on the target outputs specified by the plugin consumer.
 
-Because `generateJs` and `generateDts` are both optional, if they aren't provided, the plugin framework attempts to 
-transpile your generated TypeScript files to generate any desired `js` or `dts` outputs if necessary. In most cases, 
-implementing only the `generateTs` function is sufficient. However, the transpilation process is somewhat expensive, so 
-if plugin performance is a concern, we recommend implementing `generateJs` and `generateDts` also as generation is much 
+Because `generateJs` and `generateDts` are both optional, if they aren't provided, the plugin framework attempts to
+transpile your generated TypeScript files to generate any desired `js` or `dts` outputs if necessary. In most cases,
+implementing only the `generateTs` function is sufficient. However, the transpilation process is somewhat expensive, so
+if plugin performance is a concern, we recommend implementing `generateJs` and `generateDts` also as generation is much
 faster than transpilation.
 
 #### Overriding transpilation
 
-The default transpilation by the plugin framework uses its own TypeScript compiler to generate code.I t uses a stable 
-version of TypeScript with lenient compiler options so that files are generated under most conditions. However, if this 
+The default transpilation by the plugin framework uses its own TypeScript compiler to generate code.I t uses a stable
+version of TypeScript with lenient compiler options so that files are generated under most conditions. However, if this
 isn't sufficient, you can also provide your own `transpile` function to override the plugin framework's transpilation process:
 
 ```ts
@@ -1790,8 +1791,8 @@ declaration files, or both. It should return a list of `FileInfo` objects repres
 
 > [!NOTE]
 >
-> The `transpile` function is meant to be used in place of either `generateJs`, `generateDts`, or both. However, those 
-> functions will take precedence. This means that if `generateJs`, `generateDts`, and `transpile` are all provided, 
+> The `transpile` function is meant to be used in place of either `generateJs`, `generateDts`, or both. However, those
+> functions will take precedence. This means that if `generateJs`, `generateDts`, and `transpile` are all provided,
 > `transpile` will be ignored.
 
 A sample invocation of `createEcmaScriptPlugin` after the above steps looks similar to this:
@@ -1806,21 +1807,21 @@ export const protocGenFoo = createEcmaScriptPlugin({
 
 ### Generating a file
 
-As illustrated above, the generator functions are invoked by the plugin framework with a parameter of type `Schema`. 
-This object contains the information needed to generate code. In addition to the 
+As illustrated above, the generator functions are invoked by the plugin framework with a parameter of type `Schema`.
+This object contains the information needed to generate code. In addition to the
 [`CodeGeneratorRequest`][google/protobuf/compiler/plugin.proto] that's standard when working with `protoc` plugins, the `
-`Schema` object also contains some convenient interfaces that make working with the various descriptor objects easier. 
+`Schema` object also contains some convenient interfaces that make working with the various descriptor objects easier.
 See [Walking through the schema](#walking-through-the-schema) for more information on the structure.
 
-For example, the `Schema` object contains a `files` property, which is a list of `DescFile` objects representing the 
-files in the generation request. The first thing your generator function will likely do is iterate over this list and 
-issue a call to the `generateFile` function that's also present on the `Schema` object. This function expects a 
-filename and returns a generated file object containing a `print` function that you can then use to "print" to the file. 
+For example, the `Schema` object contains a `files` property, which is a list of `DescFile` objects representing the
+files in the generation request. The first thing your generator function will likely do is iterate over this list and
+issue a call to the `generateFile` function that's also present on the `Schema` object. This function expects a
+filename and returns a generated file object containing a `print` function that you can then use to "print" to the file.
 For more information, see [Printing to a generated file](#printing-to-a-generated-file) below.
 
-Each `file` object on the schema contains a `name` property representing the the file that the compiler parsed (minus 
-the `.proto` extension). When passing the filename to `generateFile`, we recommend using this file name plus the name 
-of your plugin (minus `protoc-gen`). For example, for a file named `user_service.proto` being processed by 
+Each `file` object on the schema contains a `name` property representing the the file that the compiler parsed (minus
+the `.proto` extension). When passing the filename to `generateFile`, we recommend using this file name plus the name
+of your plugin (minus `protoc-gen`). For example, for a file named `user_service.proto` being processed by
 `protoc-gen-foo`, the value passed to `generateFile` would be `user_service_foo.ts`.
 
 A more detailed example:
@@ -1868,14 +1869,14 @@ for (const file of schema.files) {
 
 ### Printing to a generated file
 
-The object returned from `generateFile` contains a `print` function that can be used to print your generated code to 
+The object returned from `generateFile` contains a `print` function that can be used to print your generated code to
 a file. It's an overloaded function that can be used two ways:
 
 #### As a variadic function
 
-The first way is as a variadic function which accepts zero-to-many string arguments. These values are "printed" to the 
-file so that when the actual physical file is generated by the compiler, all values given to `print` are included in 
-the file. Successive strings passed in the same invocation are appended to one another. To print an empty line, pass 
+The first way is as a variadic function which accepts zero-to-many string arguments. These values are "printed" to the
+file so that when the actual physical file is generated by the compiler, all values given to `print` are included in
+the file. Successive strings passed in the same invocation are appended to one another. To print an empty line, pass
 zero arguments to `print`. For example:
 
 ```ts
@@ -1945,7 +1946,7 @@ function generateTs(schema: Schema) {
 
 > [!NOTE]
 >
-> Messages can be recursive structures, containing other message and enum definitions. The example has been simplified 
+> Messages can be recursive structures, containing other message and enum definitions. The example has been simplified
 > for brevity and doesn't illustrate generating _all_ possible messages in a `Schema` object.
 
 ### Importing
@@ -1970,11 +1971,11 @@ f.print("    document.title = `You clicked ${count} times`;
 f.print("});");
 ```
 
-When the `ImportSymbol` is printed (and only when it is printed), an import statement is automatically generated 
+When the `ImportSymbol` is printed (and only when it is printed), an import statement is automatically generated
 for you:
 
 ```ts
-`import { useEffect } from 'react';`
+`import { useEffect } from 'react';`;
 ```
 
 #### Importing from `protoc-gen-es` generated code
@@ -2024,9 +2025,9 @@ const typeOnly = symbol.toTypeOnly();
 The natural instinct is to simply print your own import statements as `f.print("import { Foo } from 'bar'")`, but we don't recommend this approach. Using `f.import()` has many advantages, such as:
 
 - **Conditional imports**: Import statements belong at the top of a file, but you usually only find out later in your  
-  code whether you need the import, such as in a nested if statement. Conditionally printing the import symbol only 
+  code whether you need the import, such as in a nested if statement. Conditionally printing the import symbol only
   generates the import statement when it's actually used.
-- **Preventing name collisions**: For example, if you `import { Foo } from "bar"` and `import { Foo } from "baz"`, 
+- **Preventing name collisions**: For example, if you `import { Foo } from "bar"` and `import { Foo } from "baz"`,
   `f.import()` automatically renames one of them `Foo$1`, preventing name collisions in your import statements and code.
 - **Import styles**: If the plugin option `js_import_style=legacy_commonjs` is set, code is automatically generated
   with `require()` calls instead of `import` statements.
@@ -2065,20 +2066,20 @@ automatically generates the correct export for CommonJS.
 ### Parsing plugin options
 
 The plugin framework recognizes a set of options that can be passed to all plugins when executed (for example `target`,
-`import_extension`, etc.), but if your plugin needs to have additional parameters passed, you can specify a 
+`import_extension`, etc.), but if your plugin needs to have additional parameters passed, you can specify a
 `parseOptions` function as part of your plugin initialization:
 
 ```ts
 parseOptions(rawOptions: {key: string, value: string}[]): T;
 ```
 
-This function is invoked by the framework, passing in any key/value pairs that it doesn't recognize from its 
-pre-defined list. The returned option is merged with the pre-defined options and passed to the generate functions 
+This function is invoked by the framework, passing in any key/value pairs that it doesn't recognize from its
+pre-defined list. The returned option is merged with the pre-defined options and passed to the generate functions
 via the `options` property of the schema.
 
 ### Using custom Protobuf options
 
-Your plugin can support custom Protobuf options to modify the code it generates. As an example, let's use a custom 
+Your plugin can support custom Protobuf options to modify the code it generates. As an example, let's use a custom
 service option to provide a default host:
 
 ```protobuf
@@ -2145,8 +2146,8 @@ to see the custom option above in action and run the code yourself.
 
 ## Testing
 
-We recommend testing generated code just like handwritten code. Identify a representative Protobuf file for your use 
-case, generate code, and then  run tests against the generated code. If you implement your own generator functions for 
+We recommend testing generated code just like handwritten code. Identify a representative Protobuf file for your use
+case, generate code, and then run tests against the generated code. If you implement your own generator functions for
 the `js` and `dts` targets, we also recommend running all tests against both.
 
 ## Examples
@@ -2190,7 +2191,7 @@ TypeScript's `enum` definitely has drawbacks. It requires an extra import, `cons
 have a native equivalent in JavaScript.
 Admittedly, `{ species: "DOG" }` looks a bit more straight-forward than `{ species: Species.DOG }`.
 
-But `enum`s also have some nice properties that union types don't provide. For example, the numeric values can 
+But `enum`s also have some nice properties that union types don't provide. For example, the numeric values can
 actually be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.
 
 TypeScript `enum`s also have a property that's important for backwards compatibility in Protobuf. Like
@@ -2199,8 +2200,8 @@ consider the following Protobuf file:
 
 ```proto
 enum Species {
-  UNSPECIFIED = 0; 
-  CAT = 1; 
+  UNSPECIFIED = 0;
+  CAT = 1;
   DOG = 2;
 }
 message Animal {
@@ -2233,20 +2234,20 @@ keeping them identical makes it very easy to encode/decode JSON.
 The [Buf style guide] further says that `enum` values should be UPPER_SNAKE_CASE, which will result in your
 generated TypeScript `enum` values being in UPPER_SNAKE_CASE if you follow it.
 
-We don't provide an option to generate different cases for your `enum` values because we try to limit options to those 
-we feel are necessary. PascalCase seems to be more of a stylistic choice, as even 
-[TypeScript's documentation][ts-enums] uses various ways to name `enum` members. For more about our thoughts on 
+We don't provide an option to generate different cases for your `enum` values because we try to limit options to those
+we feel are necessary. PascalCase seems to be more of a stylistic choice, as even
+[TypeScript's documentation][ts-enums] uses various ways to name `enum` members. For more about our thoughts on
 options, see [this question](#what-is-your-stance-on-adding-options-to-the-plugin).
 
 ### Why use `BigInt` to represent 64-bit integers?
 
 The short answer is that they're the best way to represent the 64-bit numerical types allowable in Protobuf. `BigInt`
-has [widespread browser support][bigint-compat], and for those environments where it isn't supported, we fall back to 
+has [widespread browser support][bigint-compat], and for those environments where it isn't supported, we fall back to
 a string representation.
 
 Though it's true that an `int32` type's 2^32 size isn't enough to represent a 64-bit value, Javascript's
-[`MAX_SAFE_INTEGER`][max-safe-int] can safely represent integers between -(2^53 – 1) and 2^53 – 1. However, this is 
-obviously only effective if you can guarantee that no number in that field will ever exceed that range. Exceeding it 
+[`MAX_SAFE_INTEGER`][max-safe-int] can safely represent integers between -(2^53 – 1) and 2^53 – 1. However, this is
+obviously only effective if you can guarantee that no number in that field will ever exceed that range. Exceeding it
 could lead to subtle and potentially serious bugs, so the clear-cut usage of `BigInt` makes more sense.
 
 ### How does Protobuf-ES compare to `protoc`'s JavaScript generator?
@@ -2259,7 +2260,7 @@ For example:
 - It doesn't support the [canonical JSON format][canonical-json]
 - It doesn't carry over comments from your `.proto` files
 
-Because of this, we want to provide a solid, modern alternative with Protobuf-ES. The main differences of the 
+Because of this, we want to provide a solid, modern alternative with Protobuf-ES. The main differences of the
 generated code arw:
 
 - We use plain properties for fields, whereas `protoc` uses getter and setter methods
@@ -2272,13 +2273,13 @@ generated code arw:
 In general, we feel that an abundance of options makes the plugin less approachable. It can be daunting to
 new users to sift through numerous configuration choices when they're just beginning to use the plugin. Our
 default position is to be as opinionated as possible about the generated code, and this results in fewer
-knobs that need turning at configuration time. In addition, too many options also makes debugging more difficult. It's 
+knobs that need turning at configuration time. In addition, too many options also makes debugging more difficult. It's
 much easier to reason about the generated code when it conforms to a predictable standard.
 
 There are also more concrete reasons why we prefer to add options judiciously. Consider a popular option request,
 which is to add the ability to generate `snake_case` field names as opposed to `camelCase`. If we provided this
 option, any plugin downstream that accesses these fields or uses the base types has to also
-support it and ensure that it's set to the same value across plugins every time files are generated. Any functionality 
+support it and ensure that it's set to the same value across plugins every time files are generated. Any functionality
 that uses the generated code must also now stay in sync. Exposing options, especially those
 that affect the generated code, introduces an entirely new way for breaking changes to happen. The generated code is no
 longer predictable, which defeats the purpose of generating code.
