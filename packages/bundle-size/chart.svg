@@ -44,7 +44,7 @@
 </g>
 <g transform="translate(110, 20)">
   <polyline fill="none" stroke="#ffa600" stroke-width="2" points="0,246.78603515625 140,244.79794921875 280,243.362109375 420,236.86826171875 560,221.32607421875">
-    <title>protobuf-es</title>
+    <title>Protobuf-ES</title>
   </polyline>
 <circle cx="0" cy="246.78603515625" r="4" fill="#ffa600"><title>Protobuf-ES 14.9 KiB for 1 files</title></circle>
 <circle cx="140" cy="244.79794921875" r="4" fill="#ffa600"><title>Protobuf-ES 15.59 KiB for 4 files</title></circle>

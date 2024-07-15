@@ -1,6 +1,6 @@
 # Conformance tests
 
-This package implements a testee for the Protocol buffers [conformance test
+This package implements a testee for the Protocol Buffers [conformance test
 suite](https://github.com/protocolbuffers/protobuf/tree/main/conformance) to
 ensure completeness and correctness of the implementation.
 
