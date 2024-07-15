@@ -1,56 +1,56 @@
 # Protobuf Example
 
 This directory contains example code that uses Protocol Buffers to manage a
-list of users. The script [add.ts](./src/add.ts) adds a new user, prompting the
-user to input the person's information. The script [list.ts](./src/list.ts)
+list of users. The [add.ts](./src/add.ts) script adds a new user, prompting the
+user to input the person's information. The [list.ts](./src/list.ts) script 
 lists users.
 
-Note that this example is can be easily implemented in other languages, because
+Note that this example can be easily implemented in other languages, because
 the serialization format is standardized. That means you could add a user to the
 list with Dart, and list people with TypeScript interchangeably.
 
 ### Build and run the example
 
-You can easily run the example for yourself - you will only need npm or yarn.
+To run the example, you only need npm or Yarn.
 [Download the source](https://github.com/bufbuild/protobuf-es/archive/refs/heads/main.zip),
 then run the following commands:
 
 From the project root, first install and build all required packages:
 
-```shell
+```shellsession
 npm ci
 npm run generate --filter ./packages/protobuf-example
 ```
 
 Next, `cd` into the example directory:
 
-```shell
+```shellsession
 cd packages/protobuf-example
 ```
 
 To add a user:
 
-```shell
+```shellsession
 npm run add
 ```
 
 To list all users:
 
-```shell
+```shellsession
 npm run list
 ```
 
-### Generate code yourself
+### Generate code
 
-If you want to use [`buf`](https://github.com/bufbuild/buf) to generate the code,
+If you want to use the [Buf CLI](https://github.com/bufbuild/buf) to generate the code,
 simply run `npx buf generate` in this directory. [`buf.gen.yaml`](./buf.gen.yaml)
 contains the plugin configuration.
 
 If you want to use `protoc`, the following command is equivalent:
 
-```shell
+```shellsession
 protoc -I . --es_out=src/gen --es_opt=target=ts --plugin=protoc-gen-es=./node_modules/.bin/protoc-gen-es proto/example.proto
 ```
 
-You do not need TypeScript to use **Protobuf-ES**. Just set the plugin option `target=js` if you prefer plain JavaScript,
+You don't need TypeScript to use **Protobuf-ES**. Just set the plugin option `target=js` if you prefer plain JavaScript,
 or `target=js+dts` if you prefer JavaScript with TypeScript declaration files.

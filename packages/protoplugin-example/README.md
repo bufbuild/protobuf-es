@@ -1,11 +1,11 @@
-# Protoplugin Example
+# Protoplugin example
 
-This example shows how to write a custom plugin. We generate [Twirp](https://twitchtv.github.io/twirp/docs/spec_v7.html)
+This example shows how to write a custom plugin. It generates [Twirp](https://twitchtv.github.io/twirp/docs/spec_v7.html)
 clients from service definitions in Protobuf files.
 
 ## Run the example
 
-You will need [Node](https://nodejs.org/en/download/) in version 18.17.0 or later installed.
+You need [Node](https://nodejs.org/en/download/) version 18.17.0 or later installed.
 Download the example project and install its dependencies:
 
 ```shell
@@ -41,7 +41,7 @@ npm test
 
 ## About this example
 
-This example is a starting point - we encourage you to try it out and experiment.
+This example is a starting point—we encourage you to try it out and experiment.
 
 Take a look at the code generation logic in [protoc-gen-twirp-es.ts](./src/protoc-gen-twirp-es.ts),
-and at [buf.gen.yaml](./buf.gen.yaml) for how it is invoked.
+and at [buf.gen.yaml](./buf.gen.yaml) to see how it's invoked.
