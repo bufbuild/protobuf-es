@@ -2304,7 +2304,7 @@ side of caution.
 [bundle-size]: https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size
 [canonical-json]: https://protobuf.dev/programming-guides/proto3/#json
 [closure]: http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html
-[conformance]: https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance)
+[conformance]: https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance
 [Connect-ES]: https://github.com/connectrpc/connect-es
 [custom-options]: https://protobuf.dev/programming-guides/proto3/#customoptions
 [ecmascript-modules]: https://www.typescriptlang.org/docs/handbook/esm-node.html
