@@ -1092,8 +1092,6 @@ the previous version. In general, the binary format is also more performant than
 
 ### Binary serialization options
 
-TODO: Examples to show these in context?
-
 Options for `toBinary`:
 
 - `writeUnknownFields?: boolean`<br/>
@@ -1703,9 +1701,6 @@ plugin provides. The Protobuf compiler parses the Protobuf files and invokes the
 [descriptors](#descriptors)—an abstract version of the parsed Protobuf files. The response contains a list of
 files, each with a name and text content.
 
-For more information on how plugins work, check out [the Buf image documentation][buf-images].
-TODO: Is this still the best place to link to? It's pretty Buf-specific in this more general context.
-
 The main step in the process is to pass a plugin initialization object to the `createEcmaScriptPlugin` function
 exported by the plugin framework. This plugin initialization object contains various properties about different
 aspects of your plugin.
@@ -2144,7 +2139,7 @@ string fields as the one above, but also repeated fields, message fields, etc.
 Take a look at our [plugin example](./packages/protoplugin-example/)
 to see the custom option above in action and run the code yourself.
 
-## Testing
+### Testing plugins
 
 We recommend testing generated code just like handwritten code. Identify a representative Protobuf file for your use
 case, generate code, and then run tests against the generated code. If you implement your own generator functions for
@@ -2157,12 +2152,10 @@ For a small example of generating a Twirp client based on a simple service defin
 Additionally, check out [protoc-gen-es](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es), which is the official code generator for Protobuf-ES.
 
 ## Examples
-
-> **TODO** packages/protobuf-example contains a runnable example that uses the same example.User definition we've been using in this doc. We should link to it.
-
-## Migrating to Protobuf-ES
-
-TODO: Need to update migration.md and move to this doc
+For a runnable example that uses Protocol Buffers to manage a list of users, see
+[packages/protobuf-example](packages/protobuf-example). For a custom plugin, see 
+[packages/protoplugin-example](packages/protoplugin-example). It generates Twirp clients for your services, and also 
+uses [custom options](#custom-options).
 
 ## FAQs
 

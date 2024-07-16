@@ -89,8 +89,8 @@ most compatible with various bundler configurations. If you prefer to generate T
 
 ### `import_extension`
 
-By default, [protoc-gen-es][@bufbuild/protoc-gen-es] doesn't add file extensions to import paths. However, some
-environments require an import extension. For example, using [ECMAScript modules in Node.js][ecmascript-modules]
+By default, `protoc-gen-es` doesn't add file extensions to import paths. However, some
+environments require an import extension. For example, using ECMAScript modules in Node.js
 requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions in
 import paths with the given value. Possible values:
 
@@ -121,4 +121,4 @@ the top of each file to skip type checks: `// @ts-nocheck`.
 ### `json_types=true`
 
 Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
-if available. Learn more about [JSON types](#json-types).
+if available. Learn more about [JSON types](https://github.com/bufbuild/protobuf-es/blob/main/MANUAL.md#json-types).
