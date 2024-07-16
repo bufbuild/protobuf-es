@@ -160,7 +160,7 @@ export function generateChart(lines: Chartline[]): string {
     </g>\n`;
   }
   svg += `</g>\n`;
-  svg += `</svg>`;
+  svg += `</svg>\n`;
   return svg;
 }
 
