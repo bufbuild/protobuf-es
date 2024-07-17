@@ -61,8 +61,8 @@ PATH=$PATH:$(pwd)/node_modules/.bin \
   a.proto b.proto c.proto
 ```
 
-Note that `node_modules/.bin` to the `$PATH` needs to be added to the page so that the Protobuf compiler can find the
-plugin. This happens automatically with npm scripts.
+Note that `node_modules/.bin` needs to be added to the `$PATH` so that the Protobuf compiler can find the plugin. This
+happens automatically with npm scripts.
 
 If you use Yarn, versions v2 and above don't use a `node_modules` directory, so you need to change the variable a
 bit:
