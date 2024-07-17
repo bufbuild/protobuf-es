@@ -18,13 +18,13 @@
 // @generated from file google/protobuf/unittest_import_public.proto (package protobuf_unittest_import, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_import_public.proto.
  */
-export declare const file_google_protobuf_unittest_import_public: GenDescFile;
+export declare const file_google_protobuf_unittest_import_public: GenFile;
 
 /**
  * @generated from message protobuf_unittest_import.PublicImportMessage
@@ -40,5 +40,5 @@ export declare type PublicImportMessage = Message<"protobuf_unittest_import.Publ
  * Describes the message protobuf_unittest_import.PublicImportMessage.
  * Use `create(PublicImportMessageSchema)` to create a new message.
  */
-export declare const PublicImportMessageSchema: GenDescMessage<PublicImportMessage>;
+export declare const PublicImportMessageSchema: GenMessage<PublicImportMessage>;
 

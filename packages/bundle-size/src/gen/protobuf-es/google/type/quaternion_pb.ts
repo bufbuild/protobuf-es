@@ -16,14 +16,14 @@
 // @generated from file google/type/quaternion.proto (package google.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/type/quaternion.proto.
  */
-export const file_google_type_quaternion: GenDescFile = /*@__PURE__*/
+export const file_google_type_quaternion: GenFile = /*@__PURE__*/
   fileDesc("Chxnb29nbGUvdHlwZS9xdWF0ZXJuaW9uLnByb3RvEgtnb29nbGUudHlwZSI4CgpRdWF0ZXJuaW9uEgkKAXgYASABKAESCQoBeRgCIAEoARIJCgF6GAMgASgBEgkKAXcYBCABKAFCbwoPY29tLmdvb2dsZS50eXBlQg9RdWF0ZXJuaW9uUHJvdG9QAVpAZ29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy90eXBlL3F1YXRlcm5pb247cXVhdGVybmlvbvgBAaICA0dUUGIGcHJvdG8z");
 
 /**
@@ -120,6 +120,6 @@ export type Quaternion = Message<"google.type.Quaternion"> & {
  * Describes the message google.type.Quaternion.
  * Use `create(QuaternionSchema)` to create a new message.
  */
-export const QuaternionSchema: GenDescMessage<Quaternion> = /*@__PURE__*/
+export const QuaternionSchema: GenMessage<Quaternion> = /*@__PURE__*/
   messageDesc(file_google_type_quaternion, 0);
 

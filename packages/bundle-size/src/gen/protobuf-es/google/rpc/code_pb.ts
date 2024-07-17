@@ -16,13 +16,13 @@
 // @generated from file google/rpc/code.proto (package google.rpc, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 
 /**
  * Describes the file google/rpc/code.proto.
  */
-export const file_google_rpc_code: GenDescFile = /*@__PURE__*/
+export const file_google_rpc_code: GenFile = /*@__PURE__*/
   fileDesc("ChVnb29nbGUvcnBjL2NvZGUucHJvdG8SCmdvb2dsZS5ycGMqtwIKBENvZGUSBgoCT0sQABINCglDQU5DRUxMRUQQARILCgdVTktOT1dOEAISFAoQSU5WQUxJRF9BUkdVTUVOVBADEhUKEURFQURMSU5FX0VYQ0VFREVEEAQSDQoJTk9UX0ZPVU5EEAUSEgoOQUxSRUFEWV9FWElTVFMQBhIVChFQRVJNSVNTSU9OX0RFTklFRBAHEhMKD1VOQVVUSEVOVElDQVRFRBAQEhYKElJFU09VUkNFX0VYSEFVU1RFRBAIEhcKE0ZBSUxFRF9QUkVDT05ESVRJT04QCRILCgdBQk9SVEVEEAoSEAoMT1VUX09GX1JBTkdFEAsSEQoNVU5JTVBMRU1FTlRFRBAMEgwKCElOVEVSTkFMEA0SDwoLVU5BVkFJTEFCTEUQDhINCglEQVRBX0xPU1MQD0JYCg5jb20uZ29vZ2xlLnJwY0IJQ29kZVByb3RvUAFaM2dvb2dsZS5nb2xhbmcub3JnL2dlbnByb3RvL2dvb2dsZWFwaXMvcnBjL2NvZGU7Y29kZaICA1JQQ2IGcHJvdG8z");
 
 /**
@@ -263,6 +263,6 @@ export enum Code {
 /**
  * Describes the enum google.rpc.Code.
  */
-export const CodeSchema: GenDescEnum<Code> = /*@__PURE__*/
+export const CodeSchema: GenEnum<Code> = /*@__PURE__*/
   enumDesc(file_google_rpc_code, 0);
 

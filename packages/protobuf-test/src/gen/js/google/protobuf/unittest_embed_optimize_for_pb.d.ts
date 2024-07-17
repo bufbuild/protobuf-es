@@ -22,14 +22,14 @@
 // @generated from file google/protobuf/unittest_embed_optimize_for.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 import type { TestOptimizedForSize } from "./unittest_optimize_for_pb.js";
 
 /**
  * Describes the file google/protobuf/unittest_embed_optimize_for.proto.
  */
-export declare const file_google_protobuf_unittest_embed_optimize_for: GenDescFile;
+export declare const file_google_protobuf_unittest_embed_optimize_for: GenFile;
 
 /**
  * @generated from message protobuf_unittest.TestEmbedOptimizedForSize
@@ -53,5 +53,5 @@ export declare type TestEmbedOptimizedForSize = Message<"protobuf_unittest.TestE
  * Describes the message protobuf_unittest.TestEmbedOptimizedForSize.
  * Use `create(TestEmbedOptimizedForSizeSchema)` to create a new message.
  */
-export declare const TestEmbedOptimizedForSizeSchema: GenDescMessage<TestEmbedOptimizedForSize>;
+export declare const TestEmbedOptimizedForSizeSchema: GenMessage<TestEmbedOptimizedForSize>;
 

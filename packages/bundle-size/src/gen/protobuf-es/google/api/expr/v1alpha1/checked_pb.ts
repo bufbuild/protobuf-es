@@ -16,7 +16,7 @@
 // @generated from file google/api/expr/v1alpha1/checked.proto (package google.api.expr.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Constant, Expr, SourceInfo } from "./syntax_pb";
 import { file_google_api_expr_v1alpha1_syntax } from "./syntax_pb";
@@ -27,7 +27,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/api/expr/v1alpha1/checked.proto.
  */
-export const file_google_api_expr_v1alpha1_checked: GenDescFile = /*@__PURE__*/
+export const file_google_api_expr_v1alpha1_checked: GenFile = /*@__PURE__*/
   fileDesc("CiZnb29nbGUvYXBpL2V4cHIvdjFhbHBoYTEvY2hlY2tlZC5wcm90bxIYZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExIswDCgtDaGVja2VkRXhwchJOCg1yZWZlcmVuY2VfbWFwGAIgAygLMjcuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkNoZWNrZWRFeHByLlJlZmVyZW5jZU1hcEVudHJ5EkQKCHR5cGVfbWFwGAMgAygLMjIuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkNoZWNrZWRFeHByLlR5cGVNYXBFbnRyeRI5Cgtzb3VyY2VfaW5mbxgFIAEoCzIkLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5Tb3VyY2VJbmZvEhQKDGV4cHJfdmVyc2lvbhgGIAEoCRIsCgRleHByGAQgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkV4cHIaWAoRUmVmZXJlbmNlTWFwRW50cnkSCwoDa2V5GAEgASgDEjIKBXZhbHVlGAIgASgLMiMuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlJlZmVyZW5jZToCOAEaTgoMVHlwZU1hcEVudHJ5EgsKA2tleRgBIAEoAxItCgV2YWx1ZRgCIAEoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5UeXBlOgI4ASKCCgoEVHlwZRIlCgNkeW4YASABKAsyFi5nb29nbGUucHJvdG9idWYuRW1wdHlIABIqCgRudWxsGAIgASgOMhouZ29vZ2xlLnByb3RvYnVmLk51bGxWYWx1ZUgAEkEKCXByaW1pdGl2ZRgDIAEoDjIsLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5UeXBlLlByaW1pdGl2ZVR5cGVIABI/Cgd3cmFwcGVyGAQgASgOMiwuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlR5cGUuUHJpbWl0aXZlVHlwZUgAEkIKCndlbGxfa25vd24YBSABKA4yLC5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuVHlwZS5XZWxsS25vd25UeXBlSAASPAoJbGlzdF90eXBlGAYgASgLMicuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlR5cGUuTGlzdFR5cGVIABI6CghtYXBfdHlwZRgHIAEoCzImLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5UeXBlLk1hcFR5cGVIABI/CghmdW5jdGlvbhgIIAEoCzIrLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5UeXBlLkZ1bmN0aW9uVHlwZUgAEhYKDG1lc3NhZ2VfdHlwZRgJIAEoCUgAEhQKCnR5cGVfcGFyYW0YCiABKAlIABIuCgR0eXBlGAsgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlR5cGVIABInCgVlcnJvchgMIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eUgAEkQKDWFic3RyYWN0X3R5cGUYDiABKAsyKy5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuVHlwZS5BYnN0cmFjdFR5cGVIABo9CghMaXN0VHlwZRIxCgllbGVtX3R5cGUYASABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuVHlwZRpvCgdNYXBUeXBlEjAKCGtleV90eXBlGAEgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlR5cGUSMgoKdmFsdWVfdHlwZRgCIAEoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5UeXBlGnYKDEZ1bmN0aW9uVHlwZRIzCgtyZXN1bHRfdHlwZRgBIAEoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5UeXBlEjEKCWFyZ190eXBlcxgCIAMoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5UeXBlGlUKDEFic3RyYWN0VHlwZRIMCgRuYW1lGAEgASgJEjcKD3BhcmFtZXRlcl90eXBlcxgCIAMoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5UeXBlInMKDVByaW1pdGl2ZVR5cGUSHgoaUFJJTUlUSVZFX1RZUEVfVU5TUEVDSUZJRUQQABIICgRCT09MEAESCQoFSU5UNjQQAhIKCgZVSU5UNjQQAxIKCgZET1VCTEUQBBIKCgZTVFJJTkcQBRIJCgVCWVRFUxAGIlYKDVdlbGxLbm93blR5cGUSHwobV0VMTF9LTk9XTl9UWVBFX1VOU1BFQ0lGSUVEEAASBwoDQU5ZEAESDQoJVElNRVNUQU1QEAISDAoIRFVSQVRJT04QA0ILCgl0eXBlX2tpbmQiuQQKBERlY2wSDAoEbmFtZRgBIAEoCRI5CgVpZGVudBgCIAEoCzIoLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5EZWNsLklkZW50RGVjbEgAEj8KCGZ1bmN0aW9uGAMgASgLMisuZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLkRlY2wuRnVuY3Rpb25EZWNsSAAaeQoJSWRlbnREZWNsEiwKBHR5cGUYASABKAsyHi5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuVHlwZRIxCgV2YWx1ZRgCIAEoCzIiLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5Db25zdGFudBILCgNkb2MYAyABKAkangIKDEZ1bmN0aW9uRGVjbBJHCglvdmVybG9hZHMYASADKAsyNC5nb29nbGUuYXBpLmV4cHIudjFhbHBoYTEuRGVjbC5GdW5jdGlvbkRlY2wuT3ZlcmxvYWQaxAEKCE92ZXJsb2FkEhMKC292ZXJsb2FkX2lkGAEgASgJEi4KBnBhcmFtcxgCIAMoCzIeLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5UeXBlEhMKC3R5cGVfcGFyYW1zGAMgAygJEjMKC3Jlc3VsdF90eXBlGAQgASgLMh4uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExLlR5cGUSHAoUaXNfaW5zdGFuY2VfZnVuY3Rpb24YBSABKAgSCwoDZG9jGAYgASgJQgsKCWRlY2xfa2luZCJhCglSZWZlcmVuY2USDAoEbmFtZRgBIAEoCRITCgtvdmVybG9hZF9pZBgDIAMoCRIxCgV2YWx1ZRgEIAEoCzIiLmdvb2dsZS5hcGkuZXhwci52MWFscGhhMS5Db25zdGFudEJsChxjb20uZ29vZ2xlLmFwaS5leHByLnYxYWxwaGExQglEZWNsUHJvdG9QAVo8Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy9hcGkvZXhwci92MWFscGhhMTtleHBy+AEBYgZwcm90bzM", [file_google_api_expr_v1alpha1_syntax, file_google_protobuf_empty, file_google_protobuf_struct]);
 
 /**
@@ -102,7 +102,7 @@ export type CheckedExpr = Message<"google.api.expr.v1alpha1.CheckedExpr"> & {
  * Describes the message google.api.expr.v1alpha1.CheckedExpr.
  * Use `create(CheckedExprSchema)` to create a new message.
  */
-export const CheckedExprSchema: GenDescMessage<CheckedExpr> = /*@__PURE__*/
+export const CheckedExprSchema: GenMessage<CheckedExpr> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 0);
 
 /**
@@ -241,7 +241,7 @@ export type Type = Message<"google.api.expr.v1alpha1.Type"> & {
  * Describes the message google.api.expr.v1alpha1.Type.
  * Use `create(TypeSchema)` to create a new message.
  */
-export const TypeSchema: GenDescMessage<Type> = /*@__PURE__*/
+export const TypeSchema: GenMessage<Type> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 1);
 
 /**
@@ -262,7 +262,7 @@ export type Type_ListType = Message<"google.api.expr.v1alpha1.Type.ListType"> & 
  * Describes the message google.api.expr.v1alpha1.Type.ListType.
  * Use `create(Type_ListTypeSchema)` to create a new message.
  */
-export const Type_ListTypeSchema: GenDescMessage<Type_ListType> = /*@__PURE__*/
+export const Type_ListTypeSchema: GenMessage<Type_ListType> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 1, 0);
 
 /**
@@ -290,7 +290,7 @@ export type Type_MapType = Message<"google.api.expr.v1alpha1.Type.MapType"> & {
  * Describes the message google.api.expr.v1alpha1.Type.MapType.
  * Use `create(Type_MapTypeSchema)` to create a new message.
  */
-export const Type_MapTypeSchema: GenDescMessage<Type_MapType> = /*@__PURE__*/
+export const Type_MapTypeSchema: GenMessage<Type_MapType> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 1, 1);
 
 /**
@@ -318,7 +318,7 @@ export type Type_FunctionType = Message<"google.api.expr.v1alpha1.Type.FunctionT
  * Describes the message google.api.expr.v1alpha1.Type.FunctionType.
  * Use `create(Type_FunctionTypeSchema)` to create a new message.
  */
-export const Type_FunctionTypeSchema: GenDescMessage<Type_FunctionType> = /*@__PURE__*/
+export const Type_FunctionTypeSchema: GenMessage<Type_FunctionType> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 1, 2);
 
 /**
@@ -346,7 +346,7 @@ export type Type_AbstractType = Message<"google.api.expr.v1alpha1.Type.AbstractT
  * Describes the message google.api.expr.v1alpha1.Type.AbstractType.
  * Use `create(Type_AbstractTypeSchema)` to create a new message.
  */
-export const Type_AbstractTypeSchema: GenDescMessage<Type_AbstractType> = /*@__PURE__*/
+export const Type_AbstractTypeSchema: GenMessage<Type_AbstractType> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 1, 3);
 
 /**
@@ -414,7 +414,7 @@ export enum Type_PrimitiveType {
 /**
  * Describes the enum google.api.expr.v1alpha1.Type.PrimitiveType.
  */
-export const Type_PrimitiveTypeSchema: GenDescEnum<Type_PrimitiveType> = /*@__PURE__*/
+export const Type_PrimitiveTypeSchema: GenEnum<Type_PrimitiveType> = /*@__PURE__*/
   enumDesc(file_google_api_expr_v1alpha1_checked, 1, 0);
 
 /**
@@ -459,7 +459,7 @@ export enum Type_WellKnownType {
 /**
  * Describes the enum google.api.expr.v1alpha1.Type.WellKnownType.
  */
-export const Type_WellKnownTypeSchema: GenDescEnum<Type_WellKnownType> = /*@__PURE__*/
+export const Type_WellKnownTypeSchema: GenEnum<Type_WellKnownType> = /*@__PURE__*/
   enumDesc(file_google_api_expr_v1alpha1_checked, 1, 1);
 
 /**
@@ -515,7 +515,7 @@ export type Decl = Message<"google.api.expr.v1alpha1.Decl"> & {
  * Describes the message google.api.expr.v1alpha1.Decl.
  * Use `create(DeclSchema)` to create a new message.
  */
-export const DeclSchema: GenDescMessage<Decl> = /*@__PURE__*/
+export const DeclSchema: GenMessage<Decl> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 2);
 
 /**
@@ -556,7 +556,7 @@ export type Decl_IdentDecl = Message<"google.api.expr.v1alpha1.Decl.IdentDecl"> 
  * Describes the message google.api.expr.v1alpha1.Decl.IdentDecl.
  * Use `create(Decl_IdentDeclSchema)` to create a new message.
  */
-export const Decl_IdentDeclSchema: GenDescMessage<Decl_IdentDecl> = /*@__PURE__*/
+export const Decl_IdentDeclSchema: GenMessage<Decl_IdentDecl> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 2, 0);
 
 /**
@@ -581,7 +581,7 @@ export type Decl_FunctionDecl = Message<"google.api.expr.v1alpha1.Decl.FunctionD
  * Describes the message google.api.expr.v1alpha1.Decl.FunctionDecl.
  * Use `create(Decl_FunctionDeclSchema)` to create a new message.
  */
-export const Decl_FunctionDeclSchema: GenDescMessage<Decl_FunctionDecl> = /*@__PURE__*/
+export const Decl_FunctionDeclSchema: GenMessage<Decl_FunctionDecl> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 2, 1);
 
 /**
@@ -669,7 +669,7 @@ export type Decl_FunctionDecl_Overload = Message<"google.api.expr.v1alpha1.Decl.
  * Describes the message google.api.expr.v1alpha1.Decl.FunctionDecl.Overload.
  * Use `create(Decl_FunctionDecl_OverloadSchema)` to create a new message.
  */
-export const Decl_FunctionDecl_OverloadSchema: GenDescMessage<Decl_FunctionDecl_Overload> = /*@__PURE__*/
+export const Decl_FunctionDecl_OverloadSchema: GenMessage<Decl_FunctionDecl_Overload> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 2, 1, 0);
 
 /**
@@ -713,6 +713,6 @@ export type Reference = Message<"google.api.expr.v1alpha1.Reference"> & {
  * Describes the message google.api.expr.v1alpha1.Reference.
  * Use `create(ReferenceSchema)` to create a new message.
  */
-export const ReferenceSchema: GenDescMessage<Reference> = /*@__PURE__*/
+export const ReferenceSchema: GenMessage<Reference> = /*@__PURE__*/
   messageDesc(file_google_api_expr_v1alpha1_checked, 3);
 

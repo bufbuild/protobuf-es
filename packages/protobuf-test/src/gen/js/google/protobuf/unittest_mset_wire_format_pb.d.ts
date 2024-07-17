@@ -22,13 +22,13 @@
 // @generated from file google/protobuf/unittest_mset_wire_format.proto (package proto2_wireformat_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_mset_wire_format.proto.
  */
-export declare const file_google_protobuf_unittest_mset_wire_format: GenDescFile;
+export declare const file_google_protobuf_unittest_mset_wire_format: GenFile;
 
 /**
  * A message with message_set_wire_format.
@@ -42,7 +42,7 @@ export declare type TestMessageSet = Message<"proto2_wireformat_unittest.TestMes
  * Describes the message proto2_wireformat_unittest.TestMessageSet.
  * Use `create(TestMessageSetSchema)` to create a new message.
  */
-export declare const TestMessageSetSchema: GenDescMessage<TestMessageSet>;
+export declare const TestMessageSetSchema: GenMessage<TestMessageSet>;
 
 /**
  * @generated from message proto2_wireformat_unittest.TestMessageSetWireFormatContainer
@@ -58,5 +58,5 @@ export declare type TestMessageSetWireFormatContainer = Message<"proto2_wireform
  * Describes the message proto2_wireformat_unittest.TestMessageSetWireFormatContainer.
  * Use `create(TestMessageSetWireFormatContainerSchema)` to create a new message.
  */
-export declare const TestMessageSetWireFormatContainerSchema: GenDescMessage<TestMessageSetWireFormatContainer>;
+export declare const TestMessageSetWireFormatContainerSchema: GenMessage<TestMessageSetWireFormatContainer>;
 

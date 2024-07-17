@@ -22,7 +22,7 @@
 // @generated from file google/protobuf/unittest_optimize_for.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescExtension, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { ForeignMessage } from "./unittest_pb.js";
 import { file_google_protobuf_unittest } from "./unittest_pb.js";
@@ -31,7 +31,7 @@ import type { Message } from "@bufbuild/protobuf";
 /**
  * Describes the file google/protobuf/unittest_optimize_for.proto.
  */
-export const file_google_protobuf_unittest_optimize_for: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_unittest_optimize_for: GenFile = /*@__PURE__*/
   fileDesc("Citnb29nbGUvcHJvdG9idWYvdW5pdHRlc3Rfb3B0aW1pemVfZm9yLnByb3RvEhFwcm90b2J1Zl91bml0dGVzdCLqAgoUVGVzdE9wdGltaXplZEZvclNpemUSCQoBaRgBIAEoBRIuCgNtc2cYEyABKAsyIS5wcm90b2J1Zl91bml0dGVzdC5Gb3JlaWduTWVzc2FnZRIXCg1pbnRlZ2VyX2ZpZWxkGAIgASgFSAASFgoMc3RyaW5nX2ZpZWxkGAMgASgJSAAqCQjoBxCAgICAAjJPCg50ZXN0X2V4dGVuc2lvbhInLnByb3RvYnVmX3VuaXR0ZXN0LlRlc3RPcHRpbWl6ZWRGb3JTaXplGNIJIAEoBVINdGVzdEV4dGVuc2lvbjKCAQoPdGVzdF9leHRlbnNpb24yEicucHJvdG9idWZfdW5pdHRlc3QuVGVzdE9wdGltaXplZEZvclNpemUY0wkgASgLMi8ucHJvdG9idWZfdW5pdHRlc3QuVGVzdFJlcXVpcmVkT3B0aW1pemVkRm9yU2l6ZVIOdGVzdEV4dGVuc2lvbjJCBQoDZm9vIikKHFRlc3RSZXF1aXJlZE9wdGltaXplZEZvclNpemUSCQoBeBgBIAIoBSJaChxUZXN0T3B0aW9uYWxPcHRpbWl6ZWRGb3JTaXplEjoKAW8YASABKAsyLy5wcm90b2J1Zl91bml0dGVzdC5UZXN0UmVxdWlyZWRPcHRpbWl6ZWRGb3JTaXplQgJIAg", [file_google_protobuf_unittest]);
 
 /**
@@ -70,19 +70,19 @@ export type TestOptimizedForSize = Message<"protobuf_unittest.TestOptimizedForSi
  * Describes the message protobuf_unittest.TestOptimizedForSize.
  * Use `create(TestOptimizedForSizeSchema)` to create a new message.
  */
-export const TestOptimizedForSizeSchema: GenDescMessage<TestOptimizedForSize> = /*@__PURE__*/
+export const TestOptimizedForSizeSchema: GenMessage<TestOptimizedForSize> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_optimize_for, 0);
 
 /**
  * @generated from extension: optional int32 test_extension = 1234;
  */
-export const TestOptimizedForSize_test_extension: GenDescExtension<TestOptimizedForSize, number> = /*@__PURE__*/
+export const TestOptimizedForSize_test_extension: GenExtension<TestOptimizedForSize, number> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_optimize_for, 0, 0);
 
 /**
  * @generated from extension: optional protobuf_unittest.TestRequiredOptimizedForSize test_extension2 = 1235;
  */
-export const TestOptimizedForSize_test_extension2: GenDescExtension<TestOptimizedForSize, TestRequiredOptimizedForSize> = /*@__PURE__*/
+export const TestOptimizedForSize_test_extension2: GenExtension<TestOptimizedForSize, TestRequiredOptimizedForSize> = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_optimize_for, 0, 1);
 
 /**
@@ -99,7 +99,7 @@ export type TestRequiredOptimizedForSize = Message<"protobuf_unittest.TestRequir
  * Describes the message protobuf_unittest.TestRequiredOptimizedForSize.
  * Use `create(TestRequiredOptimizedForSizeSchema)` to create a new message.
  */
-export const TestRequiredOptimizedForSizeSchema: GenDescMessage<TestRequiredOptimizedForSize> = /*@__PURE__*/
+export const TestRequiredOptimizedForSizeSchema: GenMessage<TestRequiredOptimizedForSize> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_optimize_for, 1);
 
 /**
@@ -116,6 +116,6 @@ export type TestOptionalOptimizedForSize = Message<"protobuf_unittest.TestOption
  * Describes the message protobuf_unittest.TestOptionalOptimizedForSize.
  * Use `create(TestOptionalOptimizedForSizeSchema)` to create a new message.
  */
-export const TestOptionalOptimizedForSizeSchema: GenDescMessage<TestOptionalOptimizedForSize> = /*@__PURE__*/
+export const TestOptionalOptimizedForSizeSchema: GenMessage<TestOptionalOptimizedForSize> = /*@__PURE__*/
   messageDesc(file_google_protobuf_unittest_optimize_for, 2);
 

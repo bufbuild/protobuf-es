@@ -16,13 +16,13 @@
 // @generated from file extra/edition2023-proto3.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/edition2023-proto3.proto.
  */
-export declare const file_extra_edition2023_proto3: GenDescFile;
+export declare const file_extra_edition2023_proto3: GenFile;
 
 /**
  * see edition2023.proto
@@ -65,7 +65,7 @@ export declare type Proto3MessageForEdition2023 = Message<"spec.Proto3MessageFor
  * Describes the message spec.Proto3MessageForEdition2023.
  * Use `create(Proto3MessageForEdition2023Schema)` to create a new message.
  */
-export declare const Proto3MessageForEdition2023Schema: GenDescMessage<Proto3MessageForEdition2023>;
+export declare const Proto3MessageForEdition2023Schema: GenMessage<Proto3MessageForEdition2023>;
 
 /**
  * @generated from enum spec.Proto3EnumForEdition2023
@@ -85,5 +85,5 @@ export enum Proto3EnumForEdition2023 {
 /**
  * Describes the enum spec.Proto3EnumForEdition2023.
  */
-export declare const Proto3EnumForEdition2023Schema: GenDescEnum<Proto3EnumForEdition2023>;
+export declare const Proto3EnumForEdition2023Schema: GenEnum<Proto3EnumForEdition2023>;
 

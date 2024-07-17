@@ -22,13 +22,13 @@
 // @generated from file google/protobuf/unittest_extension_set.proto (package protobuf_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_extension_set.proto.
  */
-export declare const file_google_protobuf_unittest_extension_set: GenDescFile;
+export declare const file_google_protobuf_unittest_extension_set: GenFile;
 
 /**
  * A message with message_set_wire_format.
@@ -42,7 +42,7 @@ export declare type TestExtensionSet = Message<"protobuf_unittest.TestExtensionS
  * Describes the message protobuf_unittest.TestExtensionSet.
  * Use `create(TestExtensionSetSchema)` to create a new message.
  */
-export declare const TestExtensionSetSchema: GenDescMessage<TestExtensionSet>;
+export declare const TestExtensionSetSchema: GenMessage<TestExtensionSet>;
 
 /**
  * @generated from message protobuf_unittest.TestExtensionSetContainer
@@ -58,5 +58,5 @@ export declare type TestExtensionSetContainer = Message<"protobuf_unittest.TestE
  * Describes the message protobuf_unittest.TestExtensionSetContainer.
  * Use `create(TestExtensionSetContainerSchema)` to create a new message.
  */
-export declare const TestExtensionSetContainerSchema: GenDescMessage<TestExtensionSetContainer>;
+export declare const TestExtensionSetContainerSchema: GenMessage<TestExtensionSetContainer>;
 

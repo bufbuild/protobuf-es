@@ -27,13 +27,13 @@
 // In test_util.h we do
 // "using namespace unittest_import = protobuf_unittest_import".
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/protobuf/unittest_import.proto.
  */
-export declare const file_google_protobuf_unittest_import: GenDescFile;
+export declare const file_google_protobuf_unittest_import: GenFile;
 
 /**
  * @generated from message protobuf_unittest_import.ImportMessage
@@ -49,7 +49,7 @@ export declare type ImportMessage = Message<"protobuf_unittest_import.ImportMess
  * Describes the message protobuf_unittest_import.ImportMessage.
  * Use `create(ImportMessageSchema)` to create a new message.
  */
-export declare const ImportMessageSchema: GenDescMessage<ImportMessage>;
+export declare const ImportMessageSchema: GenMessage<ImportMessage>;
 
 /**
  * @generated from enum protobuf_unittest_import.ImportEnum
@@ -74,7 +74,7 @@ export enum ImportEnum {
 /**
  * Describes the enum protobuf_unittest_import.ImportEnum.
  */
-export declare const ImportEnumSchema: GenDescEnum<ImportEnum>;
+export declare const ImportEnumSchema: GenEnum<ImportEnum>;
 
 /**
  * To use an enum in a map, it must has the first value as 0.
@@ -101,5 +101,5 @@ export enum ImportEnumForMap {
 /**
  * Describes the enum protobuf_unittest_import.ImportEnumForMap.
  */
-export declare const ImportEnumForMapSchema: GenDescEnum<ImportEnumForMap>;
+export declare const ImportEnumForMapSchema: GenEnum<ImportEnumForMap>;
 

@@ -16,21 +16,21 @@
 // @generated from file extra/json_types.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescEnum, GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
 import type { Any, AnyJson, BoolValueJson, BytesValueJson, DoubleValueJson, Duration, DurationJson, Empty, EmptyJson, FieldMask, FieldMaskJson, FloatValueJson, Int32ValueJson, Int64ValueJson, ListValue, ListValueJson, NullValue, NullValueJson, StringValueJson, StructJson, Timestamp, TimestampJson, UInt32ValueJson, UInt64ValueJson, Value, ValueJson } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/json_types.proto.
  */
-export declare const file_extra_json_types: GenDescFile;
+export declare const file_extra_json_types: GenFile;
 
 /**
  * @generated from message spec.JsonTypesMessage
  */
 export declare type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   /**
-   * @generated from field: bool bool_field = 1;
+   * @generated from field: bool bool_field = 1 [json_name = "booleanFieldWithCustomName"];
    */
   boolField: boolean;
 
@@ -165,9 +165,9 @@ export declare type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
  */
 export declare type JsonTypesMessageJson = {
   /**
-   * @generated from field: bool bool_field = 1;
+   * @generated from field: bool bool_field = 1 [json_name = "booleanFieldWithCustomName"];
    */
-  boolField?: boolean;
+  booleanFieldWithCustomName?: boolean;
 
   /**
    * @generated from field: double double_field = 2;
@@ -299,7 +299,7 @@ export declare type JsonTypesMessageJson = {
  * Describes the message spec.JsonTypesMessage.
  * Use `create(JsonTypesMessageSchema)` to create a new message.
  */
-export declare const JsonTypesMessageSchema: GenDescMessage<JsonTypesMessage, JsonTypesMessageJson>;
+export declare const JsonTypesMessageSchema: GenMessage<JsonTypesMessage, JsonTypesMessageJson>;
 
 /**
  * @generated from enum spec.JsonTypeEnum
@@ -329,5 +329,5 @@ export declare type JsonTypeEnumJson = "JSON_TYPE_ENUM_UNSPECIFIED" | "JSON_TYPE
 /**
  * Describes the enum spec.JsonTypeEnum.
  */
-export declare const JsonTypeEnumSchema: GenDescEnum<JsonTypeEnum, JsonTypeEnumJson>;
+export declare const JsonTypeEnumSchema: GenEnum<JsonTypeEnum, JsonTypeEnumJson>;
 

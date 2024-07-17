@@ -16,14 +16,14 @@
 // @generated from file example.proto (package example, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file example.proto.
  */
-export const file_example: GenDescFile = /*@__PURE__*/
+export const file_example: GenFile = /*@__PURE__*/
   fileDesc("Cg1leGFtcGxlLnByb3RvEgdleGFtcGxlItABCgRVc2VyEhIKCmZpcnN0X25hbWUYASABKAkSEQoJbGFzdF9uYW1lGAIgASgJEg4KBmFjdGl2ZRgDIAEoCBIeCgdtYW5hZ2VyGAQgASgLMg0uZXhhbXBsZS5Vc2VyEhEKCWxvY2F0aW9ucxgFIAMoCRItCghwcm9qZWN0cxgGIAMoCzIbLmV4YW1wbGUuVXNlci5Qcm9qZWN0c0VudHJ5Gi8KDVByb2plY3RzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4AWIGcHJvdG8z");
 
 /**
@@ -65,6 +65,6 @@ export type User = Message<"example.User"> & {
  * Describes the message example.User.
  * Use `create(UserSchema)` to create a new message.
  */
-export const UserSchema: GenDescMessage<User> = /*@__PURE__*/
+export const UserSchema: GenMessage<User> = /*@__PURE__*/
   messageDesc(file_example, 0);
 

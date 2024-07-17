@@ -16,14 +16,14 @@
 // @generated from file google/type/expr.proto (package google.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file google/type/expr.proto.
  */
-export const file_google_type_expr: GenDescFile = /*@__PURE__*/
+export const file_google_type_expr: GenFile = /*@__PURE__*/
   fileDesc("ChZnb29nbGUvdHlwZS9leHByLnByb3RvEgtnb29nbGUudHlwZSJQCgRFeHByEhIKCmV4cHJlc3Npb24YASABKAkSDQoFdGl0bGUYAiABKAkSEwoLZGVzY3JpcHRpb24YAyABKAkSEAoIbG9jYXRpb24YBCABKAlCWgoPY29tLmdvb2dsZS50eXBlQglFeHByUHJvdG9QAVo0Z29vZ2xlLmdvbGFuZy5vcmcvZ2VucHJvdG8vZ29vZ2xlYXBpcy90eXBlL2V4cHI7ZXhwcqICA0dUUGIGcHJvdG8z");
 
 /**
@@ -100,6 +100,6 @@ export type Expr = Message<"google.type.Expr"> & {
  * Describes the message google.type.Expr.
  * Use `create(ExprSchema)` to create a new message.
  */
-export const ExprSchema: GenDescMessage<Expr> = /*@__PURE__*/
+export const ExprSchema: GenMessage<Expr> = /*@__PURE__*/
   messageDesc(file_google_type_expr, 0);
 

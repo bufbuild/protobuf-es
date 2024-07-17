@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/timestamp.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenDescFile, GenDescMessage } from "../../../../codegenv1/types.js";
+import type { GenFile, GenMessage } from "../../../../codegenv1/types.js";
 import { fileDesc } from "../../../../codegenv1/file.js";
 import type { Message } from "../../../../types.js";
 import { messageDesc } from "../../../../codegenv1/message.js";
@@ -24,7 +24,7 @@ import { messageDesc } from "../../../../codegenv1/message.js";
 /**
  * Describes the file google/protobuf/timestamp.proto.
  */
-export const file_google_protobuf_timestamp: GenDescFile = /*@__PURE__*/
+export const file_google_protobuf_timestamp: GenFile = /*@__PURE__*/
   fileDesc("Ch9nb29nbGUvcHJvdG9idWYvdGltZXN0YW1wLnByb3RvEg9nb29nbGUucHJvdG9idWYiKwoJVGltZXN0YW1wEg8KB3NlY29uZHMYASABKAMSDQoFbmFub3MYAiABKAVChQEKE2NvbS5nb29nbGUucHJvdG9idWZCDlRpbWVzdGFtcFByb3RvUAFaMmdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL3RpbWVzdGFtcHBi+AEBogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
 /**
@@ -151,6 +151,6 @@ export type TimestampJson = string;
  * Describes the message google.protobuf.Timestamp.
  * Use `create(TimestampSchema)` to create a new message.
  */
-export const TimestampSchema: GenDescMessage<Timestamp, TimestampJson> = /*@__PURE__*/
+export const TimestampSchema: GenMessage<Timestamp, TimestampJson> = /*@__PURE__*/
   messageDesc(file_google_protobuf_timestamp, 0);
 

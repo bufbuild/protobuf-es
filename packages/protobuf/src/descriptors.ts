@@ -172,6 +172,10 @@ export interface DescEnum {
    */
   readonly values: DescEnumValue[];
   /**
+   * All values of this enum by their number.
+   */
+  readonly value: Record<number, DescEnumValue>;
+  /**
    * A prefix shared by all enum values.
    * For example, `my_enum_` for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`
    */
