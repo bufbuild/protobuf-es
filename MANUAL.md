@@ -1814,7 +1814,7 @@ issue a call to the `generateFile` function that's also present on the `Schema` 
 filename and returns a generated file object containing a `print` function that you can then use to "print" to the file.
 For more information, see [Printing to a generated file](#printing-to-a-generated-file) below.
 
-Each `file` object on the schema contains a `name` property representing the the file that the compiler parsed (minus
+Each `file` object on the schema contains a `name` property representing the file that the compiler parsed (minus
 the `.proto` extension). When passing the filename to `generateFile`, we recommend using this file name plus the name
 of your plugin (minus `protoc-gen`). For example, for a file named `user_service.proto` being processed by
 `protoc-gen-foo`, the value passed to `generateFile` would be `user_service_foo.ts`.
