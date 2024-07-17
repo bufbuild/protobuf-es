@@ -17,7 +17,7 @@ Some additional features that set it apart from the others:
 - ECMAScript module support
 - First-class TypeScript support
 - Generation of idiomatic JavaScript and TypeScript code
-- Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/tree/main/package/bundle-size/)
+- Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/tree/main/packages/bundle-size/)
 - Implementation of all proto3 features, including the [canonical JSON format](https://protobuf.dev/programming-guides/proto3/#json)
 - Implementation of all proto2 features, except for extensions and the text format
 - Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
