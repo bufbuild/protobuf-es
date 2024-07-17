@@ -8,12 +8,12 @@ Editing this document:
 - Always use reference-style links.
 --->
 
-## What are Protocol Buffers?
+## What is Protocol Buffers?
 
-Protocol Buffers is an [interface definition language][wikipedia.org/idl] and binary serialization format. Schemas defined in
-.proto files are platform-independent and can be used in many languages.
+Protocol Buffers (aka Protobuf) is an [interface definition language][wikipedia.org/idl] and binary serialization
+format. Schemas defined in `.proto` files are platform-independent and can be used in many languages.
 
-For example, the following Protobuf file [example.proto] defines a data structure named `User`:
+For example, the following Protobuf file ([example.proto]) defines a data structure named `User`:
 
 ```protobuf
 syntax = "proto3";
@@ -29,14 +29,14 @@ message User {
 }
 ```
 
-To use the data structure, you generate with a Protobuf compiler and a plugin for the language of your choice. To learn
-more about the capabilities, please check the [official language guide][protobuf.dev].
+To use the data structure, you generate code with a Protobuf compiler and a plugin for the language of your choice.
+To learn more about Protobuf's capabilities, read the [official language guide][protobuf.dev].
 
 ## What is Protobuf-ES?
 
 Protobuf-ES is a complete implementation of Protocol Buffers in TypeScript, suitable for web browsers and Node.js,
-created by [Buf](https://buf.build). It is the only fully-compliant JavaScript Protobuf library that passes the
-Protobuf conformance tests - [read more on our blog][buf.build/conformance-blog].
+created by [Buf]. It's the only fully-compliant JavaScript Protobuf library that passes the Protobuf conformance
+tests—[read more on our blog][blog-post].
 
 Protobuf-ES consists of three npm packages:
 
@@ -46,34 +46,47 @@ Protobuf-ES consists of three npm packages:
 
 ## How to generate code
 
-Let's install the compiler [@bufbuild/buf], our plugin and runtime library:
+The quickstart below shows a simple example of code generation for a `.proto` file.
 
-```shell
-npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
-npm install @bufbuild/protobuf
-```
+1.  Start with a new project:
 
-Create a `buf.gen.yaml` file that looks like this:
+    ```shellsession
+    mkdir example
+    cd example
+    npm init -y
+    npm install typescript
+    npx tsc --init
+    ```
 
-```yaml
-# Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
-version: v2
-inputs:
-  - directory: proto
-plugins:
-  - local: protoc-gen-es
-    out: src/gen
-    opt: target=ts
-```
+2.  Install the compiler [@bufbuild/buf], plugin, and runtime library:
 
-To generate code for all Protobuf files in the directory `proto`, simply run:
+    ```shellsession
+    npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
+    npm install @bufbuild/protobuf
+    ```
 
-```shell
-npx buf generate
-```
+3.  Create a `buf.gen.yaml` file that looks like this:
 
-Download [example.proto] into the directory `proto` for an easy start. As a result, you'll have a new file in
-`src/gen/example_pb.ts`:
+    ```yaml
+    # Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
+    version: v2
+    inputs:
+      - directory: proto
+    plugins:
+      - local: protoc-gen-es
+        out: src/gen
+        opt: target=ts
+    ```
+
+4.  Create a `proto` subdirectory and download [example.proto] into it.
+
+5.  To generate code for all Protobuf files in the `proto` directory, simply run:
+
+    ```shellsession
+    npx buf generate
+    ```
+
+The generated code now exists in `src/gen/example_pb.ts`:
 
 ```diff
   .
@@ -86,25 +99,25 @@ Download [example.proto] into the directory `proto` for an easy start. As a resu
 +         └── example_pb.ts
 ```
 
-<details><summary>Generate with protoc</summary>
+### Generate with `protoc`
 
 `protoc-gen-es` is a standard Protobuf plugin, and can also be used with [`protoc`][gh-protoc]:
 
-```bash
+```shellsession
 PATH=$PATH:$(pwd)/node_modules/.bin \
-  protoc -I . \
-  --es_out src/gen \
-  --es_opt target=ts \
-  proto/example.proto
+    protoc -I . \
+    --es_out src/gen \
+    --es_opt target=ts \
+    proto/example.proto
 ```
 
-Note that we are adding `node_modules/.bin` to the `$PATH`, so that the Protobuf compiler can find the plugin. This
-happens automatically with npm scripts.
+Note that `node_modules/.bin` to the `$PATH` needs to be added to the page so that the Protobuf compiler can find the
+plugin. This happens automatically with npm scripts.
 
-Do you use `yarn`? Since yarn v2 and above does not use a `node_modules` directory, you need to change the variable a
+If you use Yarn, versions v2 and above don't use a `node_modules` directory, so you need to change the variable a
 bit:
 
-```bash
+```shellsession
 PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
 ```
 
@@ -112,8 +125,8 @@ PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
 
 ## Plugin options
 
-Our plugin supports a few options to control the generated code. For example, we have used the option `target=ts` in
-the example above to generate TypeScript files.
+Our plugin supports a few options to control the generated code. The example above used `target=ts` to generate
+TypeScript files.
 
 With [@bufbuild/buf], multiple options can be specified as a YAML list:
 
@@ -128,80 +141,69 @@ plugins:
       - import_extension=js
 ```
 
-With [`protoc`][gh-protoc], multiple options are specified with multiple `--es_opt` flags. Alternatively, both compilers
-allow to specify multiple options as a single comma-separated value like `target=ts,import_extension=js`.
+With [`protoc`][gh-protoc], you specify multiple options with multiple `--es_opt` flags. Alternatively, both compilers
+allow you to specify multiple options as a single comma-separated value like `target=ts,import_extension=js`.
 
-> **TODO** include all options from https://github.com/bufbuild/protobuf-es/tree/v2/packages/protoc-gen-es#plugin-options here.
+### `target`
+
+This option controls whether the plugin generates JavaScript, TypeScript, or TypeScript declaration files. Possible
+values:
+
+- `target=js`: Generates a `_pb.js` file for every `.proto` input file.
+- `target=ts`: Generates a `_pb.ts` file for every `.proto` input file.
+- `target=dts`: Generates a `_pb.d.ts` file for every `.proto` input file.
+
+You can pass multiple values by separating them with `+`—for example, `target=js+dts`.
+
+By default, it generates JavaScript and TypeScript declaration files, which produces the smallest code size and is the
+most compatible with various bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
+
+### `import_extension`
+
+By default, [protoc-gen-es][@bufbuild/protoc-gen-es] doesn't add file extensions to import paths. However, some
+environments require an import extension. For example, using [ECMAScript modules in Node.js][ecmascript-modules]
+requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions in
+import paths with the given value. Possible values:
+
+- `import_extension=none`: Doesn't add an extension. (Default)
+- `import_extension=js`: Adds the `.js` extension.
+- `import_extension=ts`. Adds the `.ts` extension.
+
+### `js_import_style`
+
+By default, [protoc-gen-es] generates ECMAScript `import` and `export` statements. For use cases where CommonJS is
+difficult to avoid, this option can be used to generate CommonJS `require()` calls. Possible values:
+
+- `js_import_style=module`: Generates ECMAScript `import`/`export` statements. (Default)
+- `js_import_style=legacy_commonjs`: Generates CommonJS `require()` calls.
+
+### `keep_empty_files=true`
+
+By default, [protoc-gen-es] omits empty files from the plugin output. This option disables pruning of empty files to
+allow for smooth interoperation with Bazel and similar tooling that requires all output files to be declared ahead of
+time. Unless you use Bazel, you probably don't need this option.
+
+### `ts_nocheck=true`
+
+[protoc-gen-es] generates valid TypeScript for current versions of the TypeScript compiler with standard settings.
+If you use compiler settings that yield an error for generated code, setting this option generates an annotation at
+the top of each file to skip type checks: `// @ts-nocheck`.
+
+### `json_types=true`
+
+Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
+if available. Learn more about [JSON types](#json-types).
 
 ## Generated code
 
-This section shows what code is generated for any given Protobuf definition. For a quick overview, here is the
-TypeScript declaration we generate for [example.proto]:
-
-```typescript
-// @generated by protoc-gen-es v2.0.0 with parameter "target=dts"
-// @generated from file example.proto (package example, syntax proto3)
-/* eslint-disable */
-
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import type { Message } from "@bufbuild/protobuf";
-
-/**
- * Describes the file example.proto.
- */
-export declare const file_example: GenFile;
-
-/**
- * @generated from message example.User
- */
-export declare type User = Message<"example.User"> & {
-  /**
-   * @generated from field: string first_name = 1;
-   */
-  firstName: string;
-
-  /**
-   * @generated from field: string last_name = 2;
-   */
-  lastName: string;
-
-  /**
-   * @generated from field: bool active = 3;
-   */
-  active: boolean;
-
-  /**
-   * @generated from field: example.User manager = 4;
-   */
-  manager?: User;
-
-  /**
-   * @generated from field: repeated string locations = 5;
-   */
-  locations: string[];
-
-  /**
-   * @generated from field: map<string, string> projects = 6;
-   */
-  projects: { [key: string]: string };
-};
-
-/**
- * Describes the message example.User.
- * Use `create(UserSchema)` to create a new message.
- */
-export declare const UserSchema: GenMessage<User>;
-```
-
-> **TODO** does this overview provide value? we basically go through all parts of it (and more) in the following sections
+This section shows the code that Protobuf-ES generates for each Protobuf definition, based on [example.proto].
 
 ### Files
 
-For every protobuf source file, we generate a corresponding `.js`, `.ts`, or `.d.ts` file,
-but add a `_pb` suffix to the name. For example, for the protobuf file `foo/bar.proto`,
-we generate `foo/bar_pb.js`.
+For every Protobuf source file, it generates a corresponding `.js`, `.ts`, or `.d.ts` file, and adds a `_pb` suffix to
+the name. For example, for `foo/bar.proto`, it generates `foo/bar_pb.js`.
 
-At the top of each file, we generate a preamble with information about the source file, and how it was generated:
+At the top of each file, it generates a preamble with information about the source file and how it was generated:
 
 ```typescript
 // @generated by protoc-gen-es v2.0.0 with parameter "target=dts"
@@ -217,11 +219,10 @@ import type { User } from "./example_pb";
 
 > [!TIP]
 >
-> By default, we generate ECMAScript modules, which means we use `import` and `export` statements. To modify imports,
+> By default, it generates ECMAScript modules, which means we use `import` and `export` statements. To modify imports,
 > see the plugin options [`js_import_style`][option-js_import_style] and [`import_extension`][option-import_extension].
 
-Below the import statements, we generate the schema of the Protobuf file. You typically only need this export to create
-a [registry](#registries), or for advanced use cases with reflection:
+Below the import statements, it generates the schema of the Protobuf file:
 
 ```typescript
 /**
@@ -230,9 +231,11 @@ a [registry](#registries), or for advanced use cases with reflection:
 export declare const file_example: GenFile;
 ```
 
+You typically only need this export to create a [registry](#registries), or for advanced use cases with reflection.
+
 ### Messages
 
-Messages are the primary data structures in Protobuf. They are simple objects, with an arbitrary number of fields. For
+Messages are the primary data structures in Protobuf. They're simple objects with an arbitrary number of fields. For
 the following declaration:
 
 ```protobuf
@@ -241,7 +244,7 @@ message User {
 }
 ```
 
-We generate a type `User`:
+Protobuf-ES generates a `User` type:
 
 ```typescript
 import type { Message } from "@bufbuild/protobuf";
@@ -257,13 +260,13 @@ export declare type User = Message<"example.User"> & {
 };
 ```
 
-Along with the type for the message, we also generate its schema:
+and its schema:
 
 ```typescript
 export declare const UserSchema: GenMessage<User>;
 ```
 
-Have you used [zod][gh-zod] before? Just like with zod, you use the schema to parse a message:
+If you've used [zod][gh-zod] before, it's similar—you use the schema to parse a message:
 
 ```typescript
 import { fromBinary } from "@bufbuild/protobuf";
@@ -284,7 +287,7 @@ are primitive types, such as a simple string:
 string first_name = 1;
 ```
 
-They are generated as the closest matching type in ECMAScript:
+They're generated as the closest matching type in ECMAScript:
 
 ```typescript
 /**
@@ -313,12 +316,12 @@ Here is a complete list of scalar types, and how they map to ECMAScript:
 | sint32        | number          | 32-bit signed integer with variable length, most efficient for negative numbers | `0`                 |
 | sint64        | bigint          | 64-bit signed integer with variable length, most efficient for negative numbers | `0n`                |
 
-Scalar fields use the zero-value as default.
+Scalar fields use the zero-value as the default.
 
-If `bigint` is not available in your environment, you can still serialize and deserialize messages with 64-bit integral
-fields without losing any data, but the fields will hold `string` values instead of `bigint`.
+If `bigint` isn't available in your environment, you can still serialize and deserialize messages with 64-bit integral
+fields without losing any data, but the fields hold `string` values instead of `bigint`.
 
-If you prefer a field to use `string` instead of `bigint`, use the field option `jstype = JS_STRING`:
+If you prefer that a field use `string` instead of `bigint`, use the field option `jstype = JS_STRING`:
 
 ```protobuf
   int64 field = 1 [jstype = JS_STRING]; // will generate `field: string`
@@ -332,7 +335,7 @@ For the following Protobuf field declaration:
 User manager = 4;
 ```
 
-We generate the following property:
+Protobuf-ES generates the following property:
 
 ```typescript
 /**
@@ -341,7 +344,7 @@ We generate the following property:
 manager?: User
 ```
 
-Message fields do not have default values in Protobuf. They are always optional in ECMAScript.
+Message fields don't have default values in Protobuf. They are always optional in ECMAScript.
 
 > [!TIP]
 >
@@ -356,7 +359,7 @@ Repeated fields are represented with an ECMAScript Array. For example, the follo
 repeated string locations = 5;
 ```
 
-Is generated as:
+is generated as:
 
 ```typescript
 /**
@@ -365,7 +368,7 @@ Is generated as:
 locations: string[] = [];
 ```
 
-Repeated fields will have an empty array as a default value.
+Repeated fields have an empty array as the default value.
 
 ### Map fields
 
@@ -375,7 +378,7 @@ For the following Protobuf declaration:
 map<string, string> projects = 6;
 ```
 
-We generate the property:
+Protobuf-ES generates the property:
 
 ```typescript
 /**
@@ -384,11 +387,11 @@ We generate the property:
 projects: { [key: string]: string } = {};
 ```
 
-Map fields will have an empty object as a default value.
+Map fields have an empty object as the default value.
 
 > [!NOTE]
 >
-> ECMAScript Map objects have great support for key types, but many popular libraries do not support them correctly yet.
+> ECMAScript Map objects have great support for key types, but many popular libraries don't support them correctly yet.
 > For this reason, we use an object to represent map fields.
 
 ### Oneof fields
@@ -404,7 +407,7 @@ oneof result {
 }
 ```
 
-We generate the following property:
+Protobuf-ES generates the following property:
 
 ```typescript
 result:
@@ -415,14 +418,14 @@ result:
 
 The entire `oneof` group is turned into an object `result` with two properties:
 
-- `case` - the name of the selected field
-- `value` - the value of the selected field
+- `case`: The name of the selected field
+- `value`: The value of the selected field
 
-This property is always defined on the message - similar how map or repeated
-fields are always defined. By default, it is `{case: undefined}`.
+This property is always defined on the message—similar to the way map or repeated fields are always defined. By default,
+it's `{case: undefined}`.
 
-In our example, `result.case` can be either `"number"`, `"error"`, or `undefined`.
-If a field is selected, the property `result.value` contains the value of the
+In our example, `result.case` can be either `"number"`, `"error"`, or `undefined`. If a field is selected, the
+property `result.value` contains the value of the
 selected field.
 
 To select a field, simply replace the `result` object:
@@ -432,7 +435,7 @@ user.result = { case: "number", value: 123 };
 user.result = { case: undefined };
 ```
 
-To query a oneof group, you can use if-blocks:
+To query a `oneof` group, you can use if blocks:
 
 ```typescript
 if (user.result.case === "number") {
@@ -440,7 +443,7 @@ if (user.result.case === "number") {
 }
 ```
 
-Or a switch statement:
+or a switch statement:
 
 ```typescript
 switch (user.result.case) {
@@ -453,8 +456,8 @@ switch (user.result.case) {
 }
 ```
 
-This representation is particularly useful in TypeScript, because the compiler narrows down the type. That means the if
-blocks and switch statements above tell the compiler the type of the `value` property.
+This representation is particularly useful in TypeScript, because the compiler narrows down the type. The if blocks and
+switch statements above tell the compiler the type of the `value` property.
 
 > [!TIP]
 >
@@ -463,7 +466,7 @@ blocks and switch statements above tell the compiler the type of the `value` pro
 
 ### Proto2 group fields
 
-Groups are a deprecated language feature of proto2, that allows to declare a field and a message at the same time:
+Groups are a deprecated language feature of [proto2] that allows you to declare a field and a message at the same time:
 
 ```protobuf
 optional group MyGroup = 1 {
@@ -471,7 +474,7 @@ optional group MyGroup = 1 {
 }
 ```
 
-For this group field, we generate the following property:
+For this group field, Protobuf-ES generates the following property and the message `User_MyGroup`:
 
 ```ts
 /**
@@ -480,28 +483,27 @@ For this group field, we generate the following property:
 mygroup?: User_MyGroup;
 ```
 
-We also generate the message `User_MyGroup`.
-
 > [!CAUTION]
 >
-> The groups feature is deprecated and should not be used when creating new schemas. Use nested messages instead.
+> The groups feature is deprecated and shouldn't be used when creating new schemas. Use nested messages instead.
 
 ### Proto2 required fields
 
 In proto2, fields can use the `required` keyword to ensure that the field is always set. In Protobuf-ES, required fields
 are validated when serializing a message, but not when parsing or constructing a message.
 
-When consuming messages using proto2 required, properties are non-optional, so it is less of a burden to work with them
-as with v1 versions of Protobuf-ES. Note that message fields are an exception - they are always optional properties.
+With Protobuf-ES v2, `required` is less of a burden because the properties are no longer optional. However, the
+improvement only applies to scalar and enum fields, not to message fields. For message fields, the behavior for
+proto2 `required` is unchanged between v1 and v2.
 
 > [!CAUTION]
 >
-> Required is a legacy feature. The [official language guide][protobuf.dev/required] states: **Do not use.**
+> `required` is a legacy feature. The [official language guide][protobuf.dev/required] states: **Do not use.**
 
 ### Proto3 optional fields
 
-In proto3, zero values like `0`, `false`, or `""` are not serialized. The `optional` keyword enables presence tracking
-for a field, allowing to distinguish between an absent value, and an explicitly set zero value.
+In proto3, zero values like `0`, `false`, or `""` aren't serialized. The `optional` keyword enables presence tracking
+for a field, allowing you to distinguish between an absent value and an explicitly set zero value.
 
 ```protobuf
 optional bool active = 3;
@@ -523,8 +525,8 @@ active?: boolean;
 
 ### Field names
 
-Property names are always `lowerCamelCase`, even if the corresponding protobuf field uses
-`snake_case`. While there is no official style for ECMAScript, most style guides ([AirBnB][js-style-guide-airbnb],
+Property names are always `lowerCamelCase`, even if the corresponding Protobuf field uses
+`snake_case`. Though there's no official style for ECMAScript, most style guides ([AirBnB][js-style-guide-airbnb],
 [MDN][js-style-guide-mdn], [Google][js-style-guide-google]) as well as [Node.js APIs][js-style-node] and
 [browser APIs][js-style-fetch] use `lowerCamelCase`, and so do we.
 
@@ -540,7 +542,7 @@ enum PhoneType {
 }
 ```
 
-We generate the following TypeScript enum:
+Protobuf-ES generates the following TypeScript enum:
 
 ```typescript
 /**
@@ -554,7 +556,7 @@ export enum PhoneType {
 ```
 
 If all enum values share a prefix that corresponds with the enum's name, the
-prefix is dropped from all enum value names. For example, for the following
+prefix is dropped from all enum value names. For example, given the following
 enum declaration:
 
 ```protobuf
@@ -565,7 +567,7 @@ enum PhoneType {
 }
 ```
 
-we generate the following TypeScript enum:
+Protobuf-ES generates the following TypeScript enum:
 
 ```typescript
 /**
@@ -589,7 +591,7 @@ A quick refresher about TypeScript enums:
   ```typescript
   let val: PhoneType = PhoneType["MOBILE"];
   ```
-- TypeScript enums support aliases - as does Protobuf with the `allow_alias` option.
+- TypeScript enums support aliases, as does Protobuf with the `allow_alias` option.
 
 Along with the TypeScript enum, we also generate its schema:
 
@@ -604,8 +606,8 @@ To learn more about the schema, take a look at the section about [reflection](#r
 
 ### Extensions
 
-An extension is a field defined outside its container message. For example, we can add the field `age` to the message
-`User`:
+An extension is a field defined outside of its container message. For example, we can add the field `age` to the
+message `User`:
 
 ```protobuf
 syntax = "proto2";
@@ -620,7 +622,7 @@ extend User {
 }
 ```
 
-For this extension, we generate the export:
+Given that extension, Protobuf-ES generates the export:
 
 ```typescript
 /**
@@ -629,7 +631,7 @@ For this extension, we generate the export:
 export declare const age: GenExtension<User, number>;
 ```
 
-You can set the extension field `age` like this:
+You can set the `age` extension field like this:
 
 ```ts
 import { setExtension } from "@bufbuild/protobuf";
@@ -659,13 +661,16 @@ clearExtension(user, age);
 hasExtension(user, age); // false
 ```
 
-Note that `getExtension` never returns `undefined`. If the extension is not set, `hasExtension` returns `false`, but
-`getExtension` returns the default value, for example `0` for numeric types, `[]` for repeated fields, and an empty
-message instance for message fields.
+Note that `getExtension` never returns `undefined`. If the extension isn't set, `hasExtension` returns `false`, but
+`getExtension` returns the default value, for example:
 
-Extensions are stored as [unknown fields](#unknown-fields) on a message. If you retrieve an extension value, it is
+- `0` for numeric types
+- `[]` for repeated fields
+- an empty message instance for message fields
+
+Extensions are stored as [unknown fields](#unknown-fields) on a message. If you retrieve an extension value, it's
 deserialized from the binary unknown field data. To mutate a value, make sure to store the new value with `setExtension`
-after mutating. For example, let's say we have the extension field `repeated string hobbies = 101`, and want to add
+after mutating. For example, let's say you have the extension field `repeated string hobbies = 101`, and want to add
 values:
 
 ```ts
@@ -694,7 +699,7 @@ setExtension(user, hobbies, h);
 
 ### Services
 
-In Protobuf, you can define a service for Remote Procedure Calls:
+In Protobuf, you can define a service for Remote Procedure Calls (RPCs):
 
 ```protobuf
 service UserService {
@@ -702,7 +707,7 @@ service UserService {
 }
 ```
 
-For every service, we generate just the schema that describes the service and its methods:
+For every service, Protobuf-ES generates just the schema that describes the service and its methods:
 
 ```typescript
 /**
@@ -720,13 +725,13 @@ export declare const UserService: GenService<{
 }>;
 ```
 
-Protobuf-ES does not implement RPC itself, but other projects can use this typed schema. See
+Protobuf-ES doesn't implement RPC itself, but other projects can use this typed schema. See
 [Connect-ES][gh-connect-es] for a project that does.
 
 ### Reserved names
 
-Some names that are valid in Protobuf cannot be used in ECMAScript, either because they are reserved keywords, such as
-`catch`, or because they would clash with built-in properties, such as `constructor`. [@bufbuild/protoc-gen-es]
+Some names that are valid in Protobuf can't be used in ECMAScript, either because they are reserved keywords like
+`catch`, or because they would clash with built-in properties like `constructor`. [@bufbuild/protoc-gen-es]
 escapes reserved names by adding the suffix `$`.
 
 ### Names for nested types
@@ -748,12 +753,12 @@ message User {
 }
 ```
 
-Similar to Protobuf in Golang, we join the name of a nested type with its parents names, separated with an underscore.
+Similar to Protobuf in Go, we join the name of a nested type with its parents' names, separated with an underscore.
 In generated code, the enum `User.Type` has the identifier `User_Type`.
 
 ### Comments
 
-We think that your comments in proto sources files are important, and take great care to carry them over to the
+We believe that comments in Protobuf source files are important, and take great care to carry them over to the
 generated code as JSDocs comments. That includes license headers in your file, but also comments on messages, fields,
 services and methods.
 
@@ -776,11 +781,11 @@ equivalent, so Protobuf packages are largely ignored, but are supported in [desc
 
 ## Well-known types
 
-Protocol buffers have a small standard library of well-known types. [@bufbuild/protobuf] provides all of
-them as pre-compiled exports. If you import a well-known type in a Protobuf file, the generated code simply import from
-`@bufbuild/protobuf/wkt`.
+Protobuf has a small standard library of well-known types. [@bufbuild/protobuf] provides all of
+them as pre-compiled exports. If you import a well-known type in a Protobuf file, the generated code simply imports from
+[`@bufbuild/protobuf/wkt`][@bufbuild/protobuf/wkt].
 
-<details><summary>Expand the list of Well-known types</summary>
+<details><summary>Expand to see the list of Well-known types</summary>
 
 | Protobuf file                                                                                                                                                                                                                              | Well-known types                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -803,7 +808,7 @@ For some of the well-known types, we provide additional features for convenience
 
 ### google.protobuf.TimeStamp
 
-A `Timestamp` represents a point in time with nanosecond precision. It is independent of any time zone or local
+A `Timestamp` represents a point in time with nanosecond precision. It's independent of any time zone or local
 calendar. For convenience, we provide a few functions for conversion:
 
 ```typescript
@@ -834,7 +839,7 @@ let ms: number = timestampMs(ts);
 
 ### google.protobuf.Any
 
-`Any` stores an arbitrary messages as binary data. For convenience, we provide function to pack and unpack messages:
+`Any` stores an arbitrary message as binary data. For convenience, we provide function to pack and unpack messages:
 
 ```typescript
 import { type Any, anyPack, anyIs } from "@bufbuild/protobuf/wkt";
@@ -861,9 +866,7 @@ anyUnpack(any, registry); // Message | undefined
 ### google.protobuf.Struct
 
 `Struct` stores a dynamic object with the same range of types as a plain object in JSON. When this message is used in a
-field, it is generated as the type `JsonObject` from [@bufbuild/protobuf].
-
-For example:
+field, it's generated as the type `JsonObject` from [@bufbuild/protobuf]. For example:
 
 ```typescript
 /**
@@ -883,10 +886,11 @@ myMessage.struct = {
 
 ### Wrapper messages from google/protobuf/wrappers.proto
 
-[wrappers.proto][google/protobuf/wrappers.proto] defines a message for every Protobuf primitive type. The messages are useful for embedding primitives
-in the `google.protobuf.Any` type, or to distinguish between the absence of a primitive field, and its default value.
+[wrappers.proto][google/protobuf/wrappers.proto] defines a message for every Protobuf primitive type. The messages are
+useful for embedding primitives in the `google.protobuf.Any` type, or to distinguish between the absence of a primitive
+field and its default value.
 
-For convenience, we generate fields that use one of the wrapper messages as "unboxed" optional primitives:
+For convenience, it generates fields that use one of the wrapper messages as "unboxed" optional primitives:
 
 ```typescript
 /**
@@ -931,7 +935,7 @@ const user: User = create(UserSchema, {
 Messages can be serialized with the binary or the JSON format. The [conformance test suite][gh-buf-conformance] ensures
 interoperability with implementations in other languages.
 
-To serialize a message, you call the function `toBinary` with the schema and the message. To parse a message, use
+To serialize a message, call the function `toBinary` with the schema and the message. To parse a message, use
 `fromBinary`:
 
 ```typescript
@@ -1082,8 +1086,8 @@ const b = clone(UserSchema, a);
 
 ## Serialization
 
-As a general guide to decide between the binary format and JSON: The JSON format is great for debugging, but the binary
-format is more resilient to changes. For example, you can rename a field, and still parse binary data serialized with
+As a general guide when deciding between the binary format and JSON, the JSON format is great for debugging, but the binary
+format is more resilient to changes. For example, you can rename a field and still parse binary data serialized with
 the previous version. In general, the binary format is also more performant than JSON.
 
 ### Binary serialization options
@@ -1091,13 +1095,13 @@ the previous version. In general, the binary format is also more performant than
 Options for `toBinary`:
 
 - `writeUnknownFields?: boolean`<br/>
-  Include [unknown fields](#unknown-fields) in the serialized output? The default behavior
+  Controls whether to include [unknown fields](#unknown-fields) in the serialized output. The default behavior
   is to retain unknown fields and include them in the serialized output.
 
 Options for `fromBinary`:
 
 - `readUnknownFields?: boolean`<br/>
-  Retain [unknown fields](#unknown-fields) during parsing? The default behavior is to retain
+  Controls whether to retain [unknown fields](#unknown-fields) during parsing. The default behavior is to retain
   unknown fields and include them in the serialized output.
 
 ### JSON serialization options
@@ -1105,17 +1109,17 @@ Options for `fromBinary`:
 Options for `fromJson` and `fromJsonString`:
 
 - `ignoreUnknownFields?: boolean`<br/>
-  By default, unknown properties are rejected. This option overrides this behavior and ignores properties, as well as
+  By default, unknown properties are rejected. This option overrides that behavior and ignores properties, as well as
   unrecognized enum string representations.
 - `registry?: Registry`<br/>
-  A [registry](#registries) to parse [`google.protobuf.Any`](#googleprotobufany) and [extensions](#extensions)
+  A [registry](#registries) to use for parsing [`google.protobuf.Any`](#googleprotobufany) and [extensions](#extensions)
   from JSON.
 
 Options for `toJson` and `toJsonString`:
 
 - `alwaysEmitImplicit?: boolean`<br/>
   By default, fields with implicit presence are not serialized if they are
-  unset. For example, an empty list field or a proto3 int32 field with 0 is
+  unset. For example, an empty list field or a proto3 int32 field with `0` is
   not serialized. With this option enabled, such fields are included in the
   output.
 - `enumAsInteger?: boolean`<br/>
@@ -1125,7 +1129,8 @@ Options for `toJson` and `toJsonString`:
   Field names are converted to lowerCamelCase by default in JSON output. This
   option overrides the behavior to use the proto field name instead.
 - `registry?: Registry`<br/>
-  A [registry](#registries) to convert [extensions](#extensions) and [`google.protobuf.Any`](#googleprotobufany) to JSON.
+  A [registry](#registries) to use for converting [extensions](#extensions) and
+  [`google.protobuf.Any`](#googleprotobufany) to JSON.
 - `prettySpaces?: number`<br/>
   Only available with `toJsonString`. A convenience property for the `space` parameter to
   [JSON.stringify][JSON.stringify parameters].
@@ -1188,10 +1193,10 @@ base64Decode("AgQIEA=="); // Uint8Array(4) [ 2, 4, 8, 16 ]
 
 ### Size-delimited message streams
 
-Protobuf-ES supports the size-delimited format for messages. It lets you serialize multiple messages to a stream, and
+Protobuf-ES supports the size-delimited format for messages. It lets you serialize multiple messages to a stream and
 parse multiple messages from a stream. A size-delimited message is a varint size in bytes, followed by exactly that many
-bytes of a message serialized with the binary format. This implementation is compatible with the counterparts in
-[C++][protodelim-c++], [Java][protodelim-java], [Go][protodelim-go], and others.
+bytes of a message serialized with the binary format. This implementation is compatible with its counterparts in
+[C++][protodelim-c++], [Java][protodelim-java], [Go][protodelim-go], and other languages.
 
 Serialize size-delimited messages with `sizeDelimitedEncode`:
 
@@ -1207,8 +1212,8 @@ stream.write(sizeDelimitedEncode(UserSchema, user));
 stream.end();
 ```
 
-Parse size-delimited messages with `sizeDelimitedDecodeStream`. The function expects an `AsyncIterable<Uint8Array>`, so
-it works with Node.js out of the box, and can be easily adapted to other stream APIs:
+You can parse size-delimited messages with `sizeDelimitedDecodeStream`. The function expects an `AsyncIterable<Uint8Array>`,
+so it works with Node.js out of the box and can be easily adapted to other stream APIs:
 
 ```typescript
 import { sizeDelimitedDecodeStream } from "@bufbuild/protobuf/wire";
@@ -1222,7 +1227,84 @@ for await (const user of sizeDelimitedDecodeStream(UserSchema, stream)) {
 
 ## JSON types
 
-> **TODO** https://github.com/bufbuild/protobuf-es/pull/866
+This is an advanced feature that's set with the plugin option [`json_types=true`](#json_typestrue). If it's enabled,
+[@bufbuild/protoc-gen-es] generates a JSON type for every Protobuf message.
+
+Given this definition:
+
+```protobuf
+syntax = "proto3";
+
+message Example {
+  int32 amount = 1;
+  bytes data = 2;
+}
+```
+
+the following additional export is generated:
+
+```ts
+/**
+ * JSON type for the message Example.
+ */
+export type ExampleJson = {
+  /**
+   * @generated from field: int32 amount = 1;
+   */
+  amount?: number;
+
+  /**
+   * @generated from field: bytes data = 2;
+   */
+  data?: string;
+};
+```
+
+The JSON type matches exactly what `toJson()` will emit with standard serialization options, and `toJson()`
+automatically returns the JSON type if available:
+
+```ts
+const example = create(ExampleSchema, { amount: 123 });
+const json: ExampleJson = toJson(ExampleSchema, example);
+
+// Without json_types=true, the following would be a type error:
+json.amount; // number | undefined
+json.data; // string | undefined
+```
+
+For enumerations, a similar mechanism applies. We generate a union type with all JSON string values for the enum:
+
+```protobuf
+syntax = "proto3";
+
+enum Format {
+  FORMAT_UNSPECIFIED = 0;
+  FORMAT_BINARY = 1;
+  FORMAT_JSON = 2;
+}
+```
+
+```ts
+/**
+ * JSON type for the enum Format.
+ */
+export type FormatJson = "FORMAT_UNSPECIFIED" | "FORMAT_BINARY" | "FORMAT_JSON";
+```
+
+With the `enumToJson()` and `enumFromJson()` functions, values can be converted between both representations. With
+`isEnumJson()`, unknown input can be narrowed down to known values. If JSON types are available, the functions are
+type safe:
+
+```ts
+const strVal: FormatJson = enumToJson(FormatSchema, Format.BINARY);
+
+const enumVal: Format = enumFromJson(FormatSchema, strVal);
+
+const someString: string = "FORMAT_BINARY";
+if (isEnumJson(FormatSchema, someString)) {
+  someString; // FormatJson
+}
+```
 
 ## Reflection
 
@@ -1233,12 +1315,12 @@ Protobuf messages themselves. You can find a deep dive into the model in [Buf's 
 
 The following command compiles all Protobuf files in the directory `proto`, and writes the descriptors to a file:
 
-```shell
+```shellsession
 buf build proto --output set.binpb
 ```
 
-The written data is a Protobuf message - `google.protobuf.FileDescriptorSet` from the [well-known types](#well-known-types).
-We can parse it like this:
+The written data is a Protobuf message—`google.protobuf.FileDescriptorSet` from the [well-known types](#well-known-types).
+You can parse it like this:
 
 ```typescript
 import { readFileSync } from "node:fs";
@@ -1250,7 +1332,7 @@ const fileDescriptorSet = fromBinary(
   readFileSync("set.binpb"),
 );
 
-fileDescriptorSet.file.map((file) => file.name); // all .proto file names
+fileDescriptorSet.file.map((file) => file.name); // All .proto file names
 ```
 
 Similar to several other Protobuf implementations, Protobuf-ES provides wrapper types for the Protobuf descriptor
@@ -1290,13 +1372,18 @@ PhoneTypeSchema.values.map((value) => value.name);
 // ["PHONE_TYPE_UNSPECIFIED", "PHONE_TYPE_MOBILE", "PHONE_TYPE_LAND_LINE"]
 ```
 
-Descriptors also provide access to [custom options](#custom-options), are used to [generate code](#writing-plugins),
+Descriptors also provide access to [custom options](#custom-options) and are used to [generate code](#writing-plugins),
 serialize messages, and many other tasks. They are a core feature of Protobuf-ES.
+
+> [!TIP]
+>
+> You can also fetch descriptors from the [Buf Schema Registry][bsr-reflection].
 
 ### Registries
 
-Registries are collections of descriptors, allowing to look up a type by its qualified name. To serialize or parse
-[extensions](#extensions) or [`google.protobuf.Any`](#googleprotobufany) from JSON, registries are used to look up types.
+Registries are collections of descriptors that enable you to look up a type by its qualified name. When serializing
+or parsing [extensions](#extensions) or [`google.protobuf.Any`](#googleprotobufany) from JSON, registries are used to
+look up types.
 
 `Registry` is a set of descriptors for messages, enumerations, extensions, and services:
 
@@ -1315,7 +1402,7 @@ for (const type of registry) {
 }
 ```
 
-Registries can be composed with the `createRegistry` function.
+Registries can be composed with the `createRegistry` function:
 
 ```typescript
 import { createRegistry } from "@bufbuild/protobuf";
@@ -1328,7 +1415,7 @@ const registry = createRegistry(
 );
 ```
 
-Mutable registries allow to add descriptors after creation:
+Mutable registries allow you to add descriptors after creation:
 
 ```typescript
 import { createMutableRegistry } from "@bufbuild/protobuf";
@@ -1377,8 +1464,10 @@ for (const file of registry.files) {
 
 With custom options, you can annotate elements in a Protobuf file with arbitrary information.
 
-Custom options are [extensions](#extensions) to the `google.protobuf.*Options` messages defined in [google/protobuf/descriptor.proto].
-Let's define an option to mark sensitive fields. Add `proto/options-example.proto`:
+Custom options are [extensions](#extensions) to the `google.protobuf.*Options` messages defined in
+[google/protobuf/descriptor.proto]. Let's define an option to mark sensitive fields.
+
+Create a `proto/options-example.proto` file:
 
 ```protobuf
 syntax = "proto3";
@@ -1391,7 +1480,7 @@ extend google.protobuf.FieldOptions {
 }
 ```
 
-To use this option, let's edit `example.proto`:
+To use this option, edit `example.proto`:
 
 ```diff
 syntax = "proto3";
@@ -1411,7 +1500,7 @@ message User {
 When the compiler parses this file, it sets the custom option value on the `options` field of the
 `google.protobuf.FieldDescriptorProto` for the field `last_name`.
 
-After re-generating code with `buf generate`, we can read the field option with the function `getOption`:
+After re-generating code with `buf generate`, you can read the field option with the function `getOption`:
 
 ```typescript
 import { getOption, hasOption } from "@bufbuild/protobuf";
@@ -1426,14 +1515,15 @@ The companion function `hasOption` returns true if an option is present. The fun
 
 > [!TIP]
 >
-> Custom option can be read from generated code, or from the schema passed to a plugin. See the example in
+> Custom options can be read from generated code, or from the schema passed to a plugin. See the example in
 > our [guide for writing plugins](#writing-plugins).
-
-> [!TIP]
 >
 > To learn more about custom options in Protobuf, see the [language guide][protobuf.dev/customoptions].
 
 ### Reflection API
+
+Reflection allows you to inspect a schema and dynamically manipulate data. This section explains the core primitives and
+shows how to write a function to redact sensitive information from messages.
 
 The reflection API provides a simple interface to access and manipulate messages without knowing their type.
 As an example, let's write a simple function to redact sensitive fields from a message, using the custom option we
@@ -1473,7 +1563,7 @@ redact(UserSchema, msg);
 msg.lastName; // undefined
 ```
 
-There is one gotcha with our function `redact`: It does not ensure that the schema and message match, but we can solve
+There is one gotcha with our `redact` function—it doesn't ensure that the schema and message match—but we can solve
 this with a type inference and constraints:
 
 ```typescript
@@ -1600,158 +1690,743 @@ if (field.fieldKind == "map") {
 
 ## Writing plugins
 
-> **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/writing_plugins.md, and the plugin example in packages/protoplugin-example
+Code generator plugins are a unique feature of Protobuf compilers like `protoc` and the [Buf CLI][buf-cli]. With a
+plugin, you can generate files based on Protobuf schemas as the input. They can generate outputs like RPC clients and
+server stubs, mappings from Protobuf to SQL, validation code, and pretty much anything else you can think of can all be produced.
+
+The contract between the Protobuf compiler and a code generator plugin is defined in [google/protobuf/compiler/plugin.proto]. Plugins are simple
+executables (typically on your `$PATH`) named `protoc-gen-x`, where `x` is the name of the language or feature that the
+plugin provides. The Protobuf compiler parses the Protobuf files and invokes the plugin, sending a
+`CodeGeneratorRequest` on stdin, and expecting a `CodeGeneratorResponse` on stdout. The request contains a set of
+[descriptors](#descriptors)—an abstract version of the parsed Protobuf files. The response contains a list of
+files, each with a name and text content.
+
+The main step in the process is to pass a plugin initialization object to the `createEcmaScriptPlugin` function
+exported by the plugin framework. This plugin initialization object contains various properties about different
+aspects of your plugin.
+
+### Installing the plugin framework and dependencies
+
+The key dependencies for writing plugins are the main plugin package at [@bufbuild/protoplugin] and the runtime API at
+[@bufbuild/protobuf]. Using your package manager of choice, install them:
+
+**npm**
+
+```bash
+npm install @bufbuild/protoplugin @bufbuild/protobuf
+```
+
+**pnpm**
+
+```bash
+pnpm install @bufbuild/protoplugin @bufbuild/protobuf
+```
+
+**Yarn**
+
+```bash
+yarn add @bufbuild/protoplugin @bufbuild/protobuf
+```
+
+### Setting up your plugin
+
+The first thing to determine for your plugin is the `name` and `version`. These are both passed as properties on the
+plugin initialization object.
+
+The `name` property denotes the name of your plugin. Most plugins are prefixed with `protoc-gen` as required by
+`protoc`—for example, [protoc-gen-es]. The `version` property is the semantic version number of your plugin. Typically,
+this should mirror the version specified in your `package.json` file. These values are placed into the preamble of
+generated code, providing an easy way to determine the plugin and version that were used to generate a specific file.
+
+For example, with a `name` of **protoc-gen-foo** and `version` of **v0.1.0**, the following line is added to
+generated files:
+
+```ts
+// @generated by protoc-gen-foo v0.1.0 with parameter "target=ts"
+```
+
+### Providing generator functions
+
+Generator functions create the actual file content parsed from Protobuf files. Protobuf-ES offers three, corresponding
+to the three possible target outputs for plugins:
+
+| Target out | Function                            |
+| :--------- | :---------------------------------- |
+| `ts`       | `generateTs(schema: Schema): void`  |
+| `js`       | `generateJs(schema: Schema): void`  |
+| `dts`      | `generateDts(schema: Schema): void` |
+
+Of the three, only `generateTs` is required. These functions are passed as part of your plugin initialization, and as
+the plugin runs, the framework invokes the functions depending on the target outputs specified by the plugin consumer.
+
+Because `generateJs` and `generateDts` are both optional, if they aren't provided, the plugin framework attempts to
+transpile your generated TypeScript files to generate any desired `js` or `dts` outputs if necessary. In most cases,
+implementing only the `generateTs` function is sufficient. However, the transpilation process is somewhat expensive, so
+if plugin performance is a concern, we recommend implementing `generateJs` and `generateDts` also as generation is much
+faster than transpilation.
+
+#### Overriding transpilation
+
+The default transpilation by the plugin framework uses its own TypeScript compiler to generate code.I t uses a stable
+version of TypeScript with lenient compiler options so that files are generated under most conditions. However, if this
+isn't sufficient, you can also provide your own `transpile` function to override the plugin framework's transpilation process:
+
+```ts
+transpile(
+  fileInfo: FileInfo[],
+  transpileJs: boolean,
+  transpileDts: boolean,
+  jsImportStyle: "module" | "legacy_commonjs",
+): FileInfo[]
+```
+
+The function is invoked with an array of `FileInfo` objects representing the TypeScript file content
+to use for transpilation, and two booleans indicating whether the function should transpile JavaScript,
+declaration files, or both. It should return a list of `FileInfo` objects representing the transpiled content.
+
+> [!NOTE]
+>
+> The `transpile` function is meant to be used in place of either `generateJs`, `generateDts`, or both. However, those
+> functions will take precedence. This means that if `generateJs`, `generateDts`, and `transpile` are all provided,
+> `transpile` will be ignored.
+
+A sample invocation of `createEcmaScriptPlugin` after the above steps looks similar to this:
+
+```ts
+export const protocGenFoo = createEcmaScriptPlugin({
+  name: "protoc-gen-foo",
+  version: "v0.1.0",
+  generateTs,
+});
+```
+
+### Generating a file
+
+As illustrated above, the generator functions are invoked by the plugin framework with a parameter of type `Schema`.
+This object contains the information needed to generate code. In addition to the
+[`CodeGeneratorRequest`][google/protobuf/compiler/plugin.proto] that's standard when working with `protoc` plugins, the `
+`Schema` object also contains some convenient interfaces that make working with the various descriptor objects easier.
+See [Walking through the schema](#walking-through-the-schema) for more information on the structure.
+
+For example, the `Schema` object contains a `files` property, which is a list of `DescFile` objects representing the
+files in the generation request. The first thing your generator function will likely do is iterate over this list and
+issue a call to the `generateFile` function that's also present on the `Schema` object. This function expects a
+filename and returns a generated file object containing a `print` function that you can then use to "print" to the file.
+For more information, see [Printing to a generated file](#printing-to-a-generated-file) below.
+
+Each `file` object on the schema contains a `name` property representing the the file that the compiler parsed (minus
+the `.proto` extension). When passing the filename to `generateFile`, we recommend using this file name plus the name
+of your plugin (minus `protoc-gen`). For example, for a file named `user_service.proto` being processed by
+`protoc-gen-foo`, the value passed to `generateFile` would be `user_service_foo.ts`.
+
+A more detailed example:
+
+```ts
+function generateTs(schema: Schema) {
+   for (const file of schema.files) {
+     const f = schema.generateFile(file.name + "_foo.ts");
+     ...
+   }
+}
+```
+
+### Walking through the schema
+
+The `Schema` object contains the hierarchy of the grammar within a
+Protobuf file. Every element is represented by a "descriptor", similar to nodes
+in an abstract syntax tree. To learn more about descriptors, see the
+[Descriptors](#descriptors) section.
+
+The hierarchy starts with `DescFile`, which contains all the nested `Desc` types
+necessary to begin generating code. For example:
+
+```ts
+for (const file of schema.files) {
+  // file is type DescFile
+
+  for (const enumeration of file.enums) {
+    // enumeration is type DescEnum
+  }
+
+  for (const message of file.messages) {
+    // message is type DescMessage
+  }
+
+  for (const service of file.services) {
+    // service is type DescService
+
+    for (const method of service.methods) {
+      // method is type DescMethod
+    }
+  }
+}
+```
+
+### Printing to a generated file
+
+The object returned from `generateFile` contains a `print` function that can be used to print your generated code to
+a file. It's an overloaded function that can be used two ways:
+
+#### As a variadic function
+
+The first way is as a variadic function which accepts zero-to-many string arguments. These values are "printed" to the
+file so that when the actual physical file is generated by the compiler, all values given to `print` are included in
+the file. Successive strings passed in the same invocation are appended to one another. To print an empty line, pass
+zero arguments to `print`. For example:
+
+```ts
+const name = "UserService";
+f.print("export class ", name, "Client {");
+f.print("    console.log('Hello world');");
+f.print("}");
+```
+
+this generates:
+
+```ts
+export class UserServiceClient {
+    console.log('Hello world');
+}
+```
+
+#### As a template literal tagged function
+
+You can also pass a template literal to the function and use string interpolation as you would in regular JavaScript:
+
+```ts
+const name = "UserService";
+f.print`export class ${name}Client {`;
+f.print`    console.log('Hello world');`;
+f.print`}`;
+```
+
+this generates:
+
+```ts
+export class UserServiceClient {
+    console.log('Hello world');
+}
+```
+
+Putting all of the above together:
+
+```ts
+function generateTs(schema: Schema) {
+ for (const file of schema.files) {
+
+   for (const enumeration of file.enums) {
+      f.print`// generating enums from ${file.name}`;
+      f.print();
+      ...
+   }
+
+   for (const message of file.messages) {
+      f.print`// generating messages from ${file.name}`;
+      f.print();
+      ...
+   }
+
+   for (const service of file.services) {
+      f.print`// generating services from ${file.name}`;
+      f.print();
+      for (const method of service.methods) {
+          f.print`// generating methods for service ${service.name}`;
+          f.print();
+          ...
+      }
+   }
+ }
+}
+```
+
+> [!NOTE]
+>
+> Messages can be recursive structures, containing other message and enum definitions. The example has been simplified
+> for brevity and doesn't illustrate generating _all_ possible messages in a `Schema` object.
+
+### Importing
+
+You can generate import statements via a combination of the `import` and `print` methods on the generated file
+object.
+
+#### Importing from an npm package
+
+To import from an npm package, you first invoke the `import` function, passing the name of the symbol to import and the
+package where it's located. For example, to import the `useEffect` hook from React:
+
+```ts
+const useEffect = f.import("useEffect", "react");
+```
+
+This returns an `ImportSymbol` object that can then be used in your generation code with the `print` function:
+
+```ts
+f.print(useEffect, "(() => {");
+f.print("    document.title = `You clicked ${count} times`;
+f.print("});");
+```
+
+When the `ImportSymbol` is printed (and only when it is printed), an import statement is automatically generated
+for you:
+
+```ts
+`import { useEffect } from 'react';`;
+```
+
+#### Importing from `protoc-gen-es` generated code
+
+To import a schema from `protoc-gen-es` generated code, use `importSchema()`:
+
+```ts
+const schema = f.importSchema(schema.files[0].messages[0]);
+f.print("const msg = create(", schema, ");");
+
+// Generates:
+// import { UserSchema } from "./gen/example";
+// const msg = create(UserSchema);
+```
+
+To import a message type or enum from `protoc-gen-es` generated code, use `importShape()`:
+
+```ts
+const type = f.importShape(schema.files[0].messages[0]);
+f.print("let msg: ", type, ";");
+
+// Generates:
+// import type { User } from "./gen/example";
+// let msg: User;
+```
+
+#### Importing from the @bufbuild/protobuf runtime
+
+The `GeneratedFile` object contains a `runtime` property which provides an `ImportSymbol` for all important types as a
+convenience:
+
+```ts
+f.print("const j: ", f.runtime.JsonValue, ' = "hello";');
+```
+
+#### Type-only imports
+
+If you would like the printing of your `ImportSymbol` to generate a type-only import, then you can convert it using the `toTypeOnly()` function:
+
+```ts
+const symbol = f.importSchema(schema.files[0].messages[0]);
+const typeOnly = symbol.toTypeOnly();
+```
+
+#### Why use `f.import()`?
+
+The natural instinct is to simply print your own import statements as `f.print("import { Foo } from 'bar'")`, but we don't recommend this approach. Using `f.import()` has many advantages, such as:
+
+- **Conditional imports**: Import statements belong at the top of a file, but you usually only find out later in your  
+  code whether you need the import, such as in a nested if statement. Conditionally printing the import symbol only
+  generates the import statement when it's actually used.
+- **Preventing name collisions**: For example, if you `import { Foo } from "bar"` and `import { Foo } from "baz"`,
+  `f.import()` automatically renames one of them `Foo$1`, preventing name collisions in your import statements and code.
+- **Import styles**: If the plugin option `js_import_style=legacy_commonjs` is set, code is automatically generated
+  with `require()` calls instead of `import` statements.
+
+### Exporting
+
+To export a declaration from your code, use `export`:
+
+```typescript
+const name = "foo";
+f.export("const", name);
+```
+
+This method takes two arguments:
+
+1. The declaration, for example `const`, `enum`, `abstract class`, or anything
+   you might need.
+2. The name of the declaration, which is also used for the export.
+
+The return value of the method can be passed to `print`:
+
+```typescript
+const name = "foo";
+f.print(f.export("const", name), " = 123;");
+```
+
+The example above generates the following code:
+
+```typescript
+export const foo = 123;
+```
+
+If the plugin option `js_import_style=legacy_commonjs` is set, the example
+automatically generates the correct export for CommonJS.
+
+### Parsing plugin options
+
+The plugin framework recognizes a set of options that can be passed to all plugins when executed (for example `target`,
+`import_extension`, etc.), but if your plugin needs to have additional parameters passed, you can specify a
+`parseOptions` function as part of your plugin initialization:
+
+```ts
+parseOptions(rawOptions: {key: string, value: string}[]): T;
+```
+
+This function is invoked by the framework, passing in any key/value pairs that it doesn't recognize from its
+pre-defined list. The returned option is merged with the pre-defined options and passed to the generate functions
+via the `options` property of the schema.
+
+### Using custom Protobuf options
+
+Your plugin can support custom Protobuf options to modify the code it generates. As an example, let's use a custom
+service option to provide a default host:
+
+```protobuf
+syntax = "proto3";
+import "customoptions/default_host.proto";
+package connectrpc.eliza.v1;
+
+service MyService {
+
+  // Set the default host for this service with our custom option.
+  option (customoptions.default_host) = "https://demo.connectrpc.com/";
+
+  // ...
+}
+```
+
+Custom options are extensions to one of the options messages defined in
+`google/protobuf/descriptor.proto`. You can learn more about them in the [language guide][custom-options].
+The above option can be defined like this:
+
+```protobuf
+// customoptions/default_host.proto
+syntax = "proto3";
+import "google/protobuf/descriptor.proto";
+package customoptions;
+
+extend google.protobuf.ServiceOptions {
+  // We extend the ServiceOptions message, so that other proto files can import
+  // this file, and set the option on a service declaration.
+  optional string default_host = 1001;
+}
+```
+
+First, you need to generate code for the custom option. This will result in a file named
+`customoptions/default_host_pb.ts` with a new export: our [extension](d#extensions):
+
+```ts
+import { ServiceOptions, Extension } from "@bufbuild/protobuf";
+
+export const default_host: Extension<ServiceOptions, string> = ...
+```
+
+Now we can utilize this extension to read custom options in our plugin:
+
+```ts
+import type { GeneratedFile } from "@bufbuild/protoplugin";
+import { type DescService, getOption, hasOption } from "@bufbuild/protobuf";
+import { default_host } from "./gen/customoptions/default_host_pb.js";
+
+function generateService(service: DescService, f: GeneratedFile) {
+  // Let's see if our option was set:
+  if (hasOption(service, default_host)) {
+    const value = getOption(service, default_host); // "https://demo.connectrpc.com/"
+    // Our option was set, we can use it here.
+  }
+}
+```
+
+Custom options can be set on any Protobuf element. They can be simple singular
+string fields as the one above, but also repeated fields, message fields, etc.
+
+Take a look at our [plugin example](./packages/protoplugin-example/)
+to see the custom option above in action and run the code yourself.
+
+### Testing plugins
+
+We recommend testing generated code just like handwritten code. Identify a representative Protobuf file for your use
+case, generate code, and then run tests against the generated code. If you implement your own generator functions for
+the `js` and `dts` targets, we also recommend running all tests against both.
 
 ## Examples
 
-> **TODO** packages/protobuf-example contains a runnable example that uses the same example.User definition we've been using in this doc. We should link to it.
+For a small example of generating a Twirp client based on a simple service definition, take a look at [protoplugin-example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example).
 
-## Migrating
+Additionally, check out [protoc-gen-es](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es), which is the official code generator for Protobuf-ES.
 
-> **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/migrating.md
+## Examples
+For a runnable example that uses Protocol Buffers to manage a list of users, see
+[packages/protobuf-example](packages/protobuf-example). For a custom plugin, see 
+[packages/protoplugin-example](packages/protoplugin-example). It generates Twirp clients for your services, and also 
+uses [custom options](#custom-options).
 
-## Interoperability with React Server Components, Redux, and others
+## FAQs
 
-There are several popular frameworks and libraries in the ecosystem that only support plain objects: Classes, custom
-prototypes, the ECMAScript Map, Set, or Date objects, and sometimes even the BigInt type are unsupported.
+### What features are implemented?
 
-With proto3, messages are plain objects, and should work out of the box in all popular frameworks.
-If you have to work with a library that does not support BigInt, you can generate the field as a string instead with the
-[field option `jstype = JS_STRING`](#scalar-fields).
+**Protobuf-ES** is intended to be a solid, modern alternative to existing Protobuf implementations for the JavaScript
+ecosystem. It's the first project in this space to provide a comprehensive plugin framework and decouple the base types
+from RPC functionality.
 
-If you use proto2, messages use the prototype chain to [track field presence](#field-presence-and-default-values), which
-makes them non-plain objects. In this case, serializing to JSON is a reliable solution. We support
-[JSON typings](#json-types) for interacting with JSON directly.
+Some additional features that set it apart from the others:
 
-## FAQ
+- ECMAScript module support
+- First-class TypeScript support
+- Generation of idiomatic JavaScript and TypeScript code
+- Generation of [much smaller bundles][bundle-size]
+- Implementation of all proto3 features, including the [canonical JSON format][canonical-json]
+- Implementation of all proto2 features except for the text format
+- Support for Editions
+- Usage of standard JavaScript APIs instead of the [Closure Library][closure]
+- Compatibility is covered by the Protocol Buffers [conformance tests][conformance]
+- Descriptor and reflection support
 
-> **TODO** see v1 docs https://github.com/bufbuild/protobuf-es/blob/v1.10.0/docs/faq.md
+### Why not use string unions for Protobuf enumerations instead of TypeScript `enum`?
 
-[option-target]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#target
-[option-js_import_style]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#js_import_style
-[option-import_extension]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#import_extensionjs
-[example.proto]: ./packages/protobuf-example/proto/example.proto
-[protobuf.dev]: https://protobuf.dev/overview/
-[protobuf.dev/field_presence]: https://protobuf.dev/programming-guides/field_presence/
-[protobuf.dev/encoding]: https://protobuf.dev/programming-guides/encoding/
-[protobuf.dev/customoptions]: https://protobuf.dev/programming-guides/proto2/#customoptions
-[protobuf.dev/required]: https://protobuf.dev/programming-guides/proto2/#field-labels
-[buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
-[buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
-[wikipedia.org/idl]: https://en.wikipedia.org/wiki/Interface_description_language
-[Text Encoding API]: https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API
-[gh-protoc]: https://github.com/protocolbuffers/protobuf/releases
-[gh-buf-conformance]: https://github.com/bufbuild/protobuf-conformance
-[gh-connect-es]: https://github.com/connectrpc/connect-es
-[protodelim-c++]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/util/delimited_message_util.h
-[protodelim-java]: https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/AbstractParser.html#parseDelimitedFrom-java.io.InputStream-
-[protodelim-go]: https://pkg.go.dev/google.golang.org/protobuf/encoding/protodelim
+TypeScript's `enum` definitely has drawbacks. It requires an extra import, `console.log` loses the name, and they don't
+have a native equivalent in JavaScript.
+Admittedly, `{ species: "DOG" }` looks a bit more straight-forward than `{ species: Species.DOG }`.
+
+But `enum`s also have some nice properties that union types don't provide. For example, the numeric values can
+actually be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.
+
+TypeScript `enum`s also have a property that's important for backwards compatibility in Protobuf. Like
+enumerations in C# and C++, you can actually assign values other than the declared ones to an enum. For example,
+consider the following Protobuf file:
+
+```proto
+enum Species {
+  UNSPECIFIED = 0;
+  CAT = 1;
+  DOG = 2;
+}
+message Animal {
+  Species species = 1;
+}
+```
+
+If we were to add `HAMSTER = 3;` to the enumeration, old generated code can still (de)serialize an `Animal` created by
+new generated code:
+
+```ts
+enum Species {
+  UNSPECIFIED = 0,
+  CAT = 1,
+  DOG = 2,
+}
+const hamster: Species = 3;
+```
+
+As a result, there is a range of Protobuf features we wouldn't be able to model if we were using string union types for
+enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as
+[Connect-ES], which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
+
+### Why aren't `enum` values generated in PascalCase?
+
+We generate our `enum` values based on how they are written in the source Protobuf file. The reason is that
+the [Protobuf JSON spec] requires that the name of the enum value be whatever is used in the Protobuf file and
+keeping them identical makes it very easy to encode/decode JSON.
+
+The [Buf style guide] further says that `enum` values should be UPPER_SNAKE_CASE, which will result in your
+generated TypeScript `enum` values being in UPPER_SNAKE_CASE if you follow it.
+
+We don't provide an option to generate different cases for your `enum` values because we try to limit options to those
+we feel are necessary. PascalCase seems to be more of a stylistic choice, as even
+[TypeScript's documentation][ts-enums] uses various ways to name `enum` members. For more about our thoughts on
+options, see [this question](#what-is-your-stance-on-adding-options-to-the-plugin).
+
+### Why use `BigInt` to represent 64-bit integers?
+
+The short answer is that they're the best way to represent the 64-bit numerical types allowable in Protobuf. `BigInt`
+has [widespread browser support][bigint-compat], and for those environments where it isn't supported, we fall back to
+a string representation.
+
+Though it's true that an `int32` type's 2^32 size isn't enough to represent a 64-bit value, Javascript's
+[`MAX_SAFE_INTEGER`][max-safe-int] can safely represent integers between -(2^53 – 1) and 2^53 – 1. However, this is
+obviously only effective if you can guarantee that no number in that field will ever exceed that range. Exceeding it
+could lead to subtle and potentially serious bugs, so the clear-cut usage of `BigInt` makes more sense.
+
+### How does Protobuf-ES compare to `protoc`'s JavaScript generator?
+
+[`js_generator.cc`][js-generator-cc] is rarely updated and has fallen behind the quickly moving world of JavaScript.
+For example:
+
+- It doesn't support ECMAScript modules
+- It can't generate TypeScript (third-party plugins are necessary)
+- It doesn't support the [canonical JSON format][canonical-json]
+- It doesn't carry over comments from your `.proto` files
+
+Because of this, we want to provide a solid, modern alternative with Protobuf-ES. The main differences of the
+generated code arw:
+
+- We use plain properties for fields, whereas `protoc` uses getter and setter methods
+- We implement the canonical JSON format
+- We generate [much smaller bundles](./packages/bundle-size)
+- We rely on standard APIs instead of the [Closure Library][closure]
+
+### What is your stance on adding options to the plugin?
+
+In general, we feel that an abundance of options makes the plugin less approachable. It can be daunting to
+new users to sift through numerous configuration choices when they're just beginning to use the plugin. Our
+default position is to be as opinionated as possible about the generated code, and this results in fewer
+knobs that need turning at configuration time. In addition, too many options also makes debugging more difficult. It's
+much easier to reason about the generated code when it conforms to a predictable standard.
+
+There are also more concrete reasons why we prefer to add options judiciously. Consider a popular option request,
+which is to add the ability to generate `snake_case` field names as opposed to `camelCase`. If we provided this
+option, any plugin downstream that accesses these fields or uses the base types has to also
+support it and ensure that it's set to the same value across plugins every time files are generated. Any functionality
+that uses the generated code must also now stay in sync. Exposing options, especially those
+that affect the generated code, introduces an entirely new way for breaking changes to happen. The generated code is no
+longer predictable, which defeats the purpose of generating code.
+
+This isn't to say that we're completely against adding _any_ options to the plugin. There are obviously cases where
+adding an option is necessary. However, for cases such as stylistic choices or user preferences, we tend to err on the
+side of caution.
+
 [@bufbuild/buf]: https://www.npmjs.com/package/@bufbuild/buf
 [@bufbuild/protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
 [@bufbuild/protoc-gen-es]: https://www.npmjs.com/package/@bufbuild/protoc-gen-es
 [@bufbuild/protoplugin]: https://www.npmjs.com/package/@bufbuild/protoplugin
+[bigint-compat]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility
+[blog-post]: https://buf.build/blog/protobuf-conformance
+[bsr-reflection]: https://buf.build/docs/bsr/reflection/overview
+[Buf style guide]: https://buf.build/best-practices/style-guide#enums
+[buf-cli]: https://buf.build/docs/ecosystem/cli-overview
+[buf-images]: https://buf.build/docs/reference/images
+[buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
+[buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
+[Buf]: https://buf.build
+[bundle-size]: https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size
+[canonical-json]: https://protobuf.dev/programming-guides/proto3/#json
+[closure]: http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html
+[conformance]: https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance
+[Connect-ES]: https://github.com/connectrpc/connect-es
+[custom-options]: https://protobuf.dev/programming-guides/proto3/#customoptions
+[ecmascript-modules]: https://www.typescriptlang.org/docs/handbook/esm-node.html
+[example.proto]: ./packages/protobuf-example/proto/example.proto
+[gh-buf-conformance]: https://github.com/bufbuild/protobuf-conformance
+[gh-connect-es]: https://github.com/connectrpc/connect-es
+[gh-protoc]: https://github.com/protocolbuffers/protobuf/releases
 [gh-zod]: https://github.com/colinhacks/zod
-[JSON.stringify parameters]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters
-[js-style-guide-airbnb]: https://github.com/airbnb/javascript#naming--camelCase
-[js-style-guide-mdn]: https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript#variable_naming
-[js-style-guide-google]: https://google.github.io/styleguide/jsguide.html#naming-non-constant-field-names
-[js-style-node]: https://nodejs.org/dist/latest-v16.x/docs/api/child_process.html#child_processforkmodulepath-args-options
-[js-style-fetch]: https://fetch.spec.whatwg.org/#request-class
-[strictNullChecks]: https://www.typescriptlang.org/tsconfig#strictNullChecks
 [google/protobuf/any.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/any.proto
-[google/protobuf/duration.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/duration.proto
-[google/protobuf/timestamp.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/timestamp.proto
-[google/protobuf/wrappers.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/wrappers.proto
-[google/protobuf/struct.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/struct.proto
-[google/protobuf/field_mask.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/field_mask.proto
-[google/protobuf/empty.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/empty.proto
 [google/protobuf/api.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/api.proto
-[google/protobuf/type.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/type.proto
-[google/protobuf/source_context.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/source_context.proto
-[google/protobuf/descriptor.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/descriptor.proto
 [google/protobuf/compiler/plugin.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/compiler/plugin.proto
+[google/protobuf/descriptor.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/descriptor.proto
+[google/protobuf/duration.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/duration.proto
+[google/protobuf/empty.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/empty.proto
+[google/protobuf/field_mask.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/field_mask.proto
+[google/protobuf/source_context.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/source_context.proto
+[google/protobuf/struct.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/struct.proto
+[google/protobuf/timestamp.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/timestamp.proto
+[google/protobuf/type.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/type.proto
+[google/protobuf/wrappers.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/wrappers.proto
+[js-generator-cc]: https://github.com/protocolbuffers/protobuf-javascript/blob/main/generator/js_generator.cc
+[js-style-fetch]: https://fetch.spec.whatwg.org/#request-class
+[js-style-guide-airbnb]: https://github.com/airbnb/javascript#naming--camelCase
+[js-style-guide-google]: https://google.github.io/styleguide/jsguide.html#naming-non-constant-field-names
+[js-style-guide-mdn]: https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript#variable_naming
+[js-style-node]: https://nodejs.org/dist/latest-v16.x/docs/api/child_process.html#child_processforkmodulepath-args-options
+[JSON.stringify parameters]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#parameters
+[max-safe-int]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER#description
+[official language guide]: https://protobuf.dev
+[option-import_extension]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#import_extensionjs
+[option-js_import_style]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#js_import_style
+[option-target]: https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es#target
+[proto2]: https://protobuf.dev/programming-guides/proto2/
+[Protobuf JSON spec]: https://developers.google.com/protocol-buffers/docs/proto3#json
+[protobuf.dev/customoptions]: https://protobuf.dev/programming-guides/proto2/#customoptions
+[protobuf.dev/encoding]: https://protobuf.dev/programming-guides/encoding/
+[protobuf.dev/field_presence]: https://protobuf.dev/programming-guides/field_presence/
+[protobuf.dev/required]: https://protobuf.dev/programming-guides/proto2/#field-labels
+[protobuf.dev]: https://protobuf.dev/overview/
+[protoc-gen-es]: https://www.npmjs.com/package/@bufbuild/protoc-gen-es
+[protodelim-c++]: https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/util/delimited_message_util.h
+[protodelim-go]: https://pkg.go.dev/google.golang.org/protobuf/encoding/protodelim
+[protodelim-java]: https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/AbstractParser.html#parseDelimitedFrom-java.io.InputStream-
 [src/wkt/Any]: ./packages/protobuf/src/wkt/gen/google/protobuf/any_pb.ts
-[src/wkt/Duration]: ./packages/protobuf/src/wkt/gen/google/protobuf/duration_pb.ts
-[src/wkt/Timestamp]: ./packages/protobuf/src/wkt/gen/google/protobuf/timestamp_pb.ts
-[src/wkt/DoubleValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/FloatValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/Int64Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/UInt64Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/Int32Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/UInt32Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/BoolValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/StringValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/BytesValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
-[src/wkt/Struct]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
-[src/wkt/Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
-[src/wkt/ListValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
-[src/wkt/NullValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
-[src/wkt/FieldMask]: ./packages/protobuf/src/wkt/gen/google/protobuf/field_mask_pb.ts
-[src/wkt/Empty]: ./packages/protobuf/src/wkt/gen/google/protobuf/empty_pb.ts
 [src/wkt/Api]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
-[src/wkt/Method]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
-[src/wkt/Mixin]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
-[src/wkt/Type]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Field]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Field_Kind]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Field_Cardinality]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Enum]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/EnumValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Option]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/Syntax]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
-[src/wkt/SourceContext]: ./packages/protobuf/src/wkt/gen/google/protobuf/source_context_pb.ts
-[src/wkt/FileDescriptorSet]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FileDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/BoolValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/BytesValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/CodeGeneratorRequest]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
+[src/wkt/CodeGeneratorResponse]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
+[src/wkt/CodeGeneratorResponse_Feature]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
+[src/wkt/CodeGeneratorResponse_File]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
 [src/wkt/DescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/DescriptorProto_ExtensionRange]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/DescriptorProto_ReservedRange]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/DoubleValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/Duration]: ./packages/protobuf/src/wkt/gen/google/protobuf/duration_pb.ts
+[src/wkt/Edition]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Empty]: ./packages/protobuf/src/wkt/gen/google/protobuf/empty_pb.ts
+[src/wkt/Enum]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/EnumDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/EnumDescriptorProto_EnumReservedRange]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/EnumOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/EnumValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/EnumValueDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/EnumValueOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/ExtensionRangeOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/ExtensionRangeOptions_Declaration]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/ExtensionRangeOptions_VerificationState]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_EnumType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_FieldPresence]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_JsonFormat]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_MessageEncoding]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_RepeatedFieldEncoding]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSet_Utf8Validation]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSetDefaults]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FeatureSetDefaults_FeatureSetEditionDefault]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Field]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/Field_Cardinality]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/Field_Kind]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
 [src/wkt/FieldDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FieldDescriptorProto_Type]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldDescriptorProto_Label]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/OneofDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumDescriptorProto_EnumReservedRange]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumValueDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/ServiceDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/MethodDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FileOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FileOptions_OptimizeMode]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/MessageOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FieldDescriptorProto_Type]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FieldMask]: ./packages/protobuf/src/wkt/gen/google/protobuf/field_mask_pb.ts
 [src/wkt/FieldOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FieldOptions_CType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_EditionDefault]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_FeatureSupport]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FieldOptions_CType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_JSType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_OptionRetention]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/FieldOptions_OptionTargetType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/OneofOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/EnumValueOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/ServiceOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/MethodOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/MethodOptions_IdempotencyLevel]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/UninterpretedOption]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/UninterpretedOption_NamePart]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_FieldPresence]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_EnumType]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_RepeatedFieldEncoding]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_Utf8Validation]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_MessageEncoding]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSet_JsonFormat]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSetDefaults]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/FeatureSetDefaults_FeatureSetEditionDefault]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/SourceCodeInfo]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/SourceCodeInfo_Location]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FileDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FileDescriptorSet]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FileOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FileOptions_OptimizeMode]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/FloatValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
 [src/wkt/GeneratedCodeInfo]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/GeneratedCodeInfo_Annotation]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/GeneratedCodeInfo_Annotation_Semantic]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
-[src/wkt/Edition]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Int32Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/Int64Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/ListValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
+[src/wkt/MessageOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Method]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
+[src/wkt/MethodDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/MethodOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/MethodOptions_IdempotencyLevel]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Mixin]: ./packages/protobuf/src/wkt/gen/google/protobuf/api_pb.ts
+[src/wkt/NullValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
+[src/wkt/OneofDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/OneofOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Option]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/ServiceDescriptorProto]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/ServiceOptions]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/SourceCodeInfo]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/SourceCodeInfo_Location]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/SourceContext]: ./packages/protobuf/src/wkt/gen/google/protobuf/source_context_pb.ts
+[src/wkt/StringValue]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/Struct]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
+[src/wkt/Syntax]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/Timestamp]: ./packages/protobuf/src/wkt/gen/google/protobuf/timestamp_pb.ts
+[src/wkt/Type]: ./packages/protobuf/src/wkt/gen/google/protobuf/type_pb.ts
+[src/wkt/UInt32Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/UInt64Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/wrappers_pb.ts
+[src/wkt/UninterpretedOption]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/UninterpretedOption_NamePart]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
+[src/wkt/Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
 [src/wkt/Version]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
-[src/wkt/CodeGeneratorRequest]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
-[src/wkt/CodeGeneratorResponse]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
-[src/wkt/CodeGeneratorResponse_File]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
-[src/wkt/CodeGeneratorResponse_Feature]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
+[strictNullChecks]: https://www.typescriptlang.org/tsconfig#strictNullChecks
+[Text Encoding API]: https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API
+[ts-enums]: https://www.typescriptlang.org/docs/handbook/enums.html
+[wikipedia.org/idl]: https://en.wikipedia.org/wiki/Interface_description_language

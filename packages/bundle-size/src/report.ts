@@ -22,7 +22,7 @@ import {
 import { sizes } from "./constants.js";
 
 const protobufEs = sizes.map((size) => ({
-  name: "protobuf-es",
+  name: "Protobuf-ES",
   files: size,
   ...bundleStats(`src/gen/protobuf-es/entry-${size}.ts`),
 }));

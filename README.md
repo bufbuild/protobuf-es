@@ -4,21 +4,21 @@
 
 [![License](https://img.shields.io/github/license/bufbuild/protobuf-es?color=blue)](./LICENSE) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protobuf/latest?color=green&label=%40bufbuild%2Fprotobuf)](https://www.npmjs.com/package/@bufbuild/protobuf) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoplugin/latest?color=green&label=%40bufbuild%2Fprotoplugin)](https://www.npmjs.com/package/@bufbuild/protoplugin) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoc-gen-es/latest?color=green&label=%40bufbuild%2Fprotoc-gen-es)](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
 
-A complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript,
+A complete implementation of [Protocol Buffers](https://protobuf.dev/) in TypeScript,
 suitable for web browsers and Node.js, created by [Buf](https://buf.build).
 
 Protobuf-ES is the only fully-compliant JavaScript Protobuf library that passes the
-Protobuf conformance tests. [Read more on our blog.](https://buf.build/blog/protobuf-conformance)
+Protobuf conformance tests—[read more on our blog][blog-post].
 
 Protobuf-ES's companion RPC library is [Connect-ES](https://github.com/connectrpc/connect-es),
 which supports the Connect, gRPC, and gRPC-Web protocols.
 
-## What are Protocol Buffers?
+## What is Protocol Buffers?
 
-In a nutshell, Protocol Buffers have two main functions:
+In a nutshell, Protocol Buffers (aka Protobuf) has two main functions:
 
-- They are a language for writing schemas for your data.
-- They define a binary format for serializing your data.
+- It's a language for writing schemas for your data.
+- It defines a binary format for serializing your data.
 
 These two independent traits work together to allow your project and everyone who interacts with it to define messages,
 fields, and service APIs in the exact same way. In a practical sense as it relates to **Protobuf-ES**, this means no
@@ -37,7 +37,7 @@ message User {
 }
 ```
 
-This schema is compiled to ECMAScript with `buf` or `protoc`, and can be used like this:
+You can then compile it to ECMAScript with `buf` or `protoc`, and use it like this:
 
 ```typescript
 import { UserSchema } from "./gen/user_pb.js";
@@ -59,20 +59,20 @@ const bytes = toBinary(UserSchema, user);
 const json = toJson(UserSchema, user);
 ```
 
-The benefits can extend to any application that interacts with yours as well. This is because the Protobuf file above
+The benefits of using Protobuf extend to any application that interacts with yours, because the Protobuf file above
 can be used to generate types in many languages. The added bonus is that no one has to write any boilerplate code to
 make this happen. [Code generators](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) handle all of this for you.
 
-Protocol Buffers also allow you to serialize this structured data. So, your application running in the browser can send
+Protobuf also allows you to serialize this structured data. Your application running in the browser can send
 a `User` object to a backend running an entirely different language, but using the exact same definition. Using an RPC
 framework like [Connect-ES](https://github.com/connectrpc/connect-es), your data is serialized into bytes on the wire
 and then deserialized at its destination using the defined schema.
 
 ## Quickstart
 
-1. Install the code generator, the runtime library, and the [Buf CLI](https://docs.buf.build/build/usage):
+1. Install the code generator, the runtime library, and the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview):
 
-   ```bash
+   ```shellsession
    npm install @bufbuild/protobuf @bufbuild/protoc-gen-es @bufbuild/buf
    ```
 
@@ -91,14 +91,14 @@ and then deserialized at its destination using the defined schema.
 
 3. Download the [example.proto](packages/protobuf-example/proto/example.proto) into a `proto` directory:
 
-   ```bash
+   ```shellsession
    mkdir proto
    curl https://raw.githubusercontent.com/bufbuild/protobuf-es/main/packages/protobuf-example/proto/example.proto > proto/example.proto
    ```
 
-4. Generate your code with `buf` or `protoc`:
+4. Generate your code with `buf` or [`protoc`]:
 
-   ```bash
+   ```shellsession
    npx buf generate
    ```
 
@@ -109,7 +109,7 @@ From here, you can begin to work with your schema.
 
 - [Manual](MANUAL.md) - Explains all aspects of using Protobuf with ECMAScript.
 - [Code example](packages/protobuf-example) - Example code that uses Protobuf to manage a persistent list of users.
-- [Plugin example](packages/protoplugin-example) - Shows how to write your own plugin with `@bufbuild/protoplugin`.
+- [Plugin guide](packages/protoplugin-example) - Shows how to write your own plugin with `@bufbuild/protoplugin`.
 
 ## Packages
 
@@ -122,15 +122,15 @@ From here, you can begin to work with your schema.
 
 ## Ecosystem
 
-- [connect-es](https://github.com/connectrpc/connect-es):
-  Type-safe APIs with Protobuf and TypeScript.
-- [connect-es Examples](https://github.com/connectrpc/examples-es):
+- [Connect-ES](https://github.com/connectrpc/connect-es):
+  Type-safe APIs with Protobuf and TypeScript
+- [Connect-ES examples](https://github.com/connectrpc/examples-es):
   Examples for using Connect with various TypeScript web frameworks and tooling
 - [protobuf-conformance](https://github.com/bufbuild/protobuf-conformance):
   A repository running the Protobuf conformance tests against various libraries.
 - [Buf Studio](https://buf.build/studio): Web UI for ad-hoc RPCs
 
-## TypeScript
+## TypeScript compatibility
 
 The generated code is compatible with TypeScript **v4.9.5** or later, with the default compiler settings.
 
@@ -139,3 +139,6 @@ The generated code is compatible with TypeScript **v4.9.5** or later, with the d
 The [code to encode and decode varint](packages/protobuf/src/wire/varint.ts) is Copyright 2008 Google Inc., licensed
 under BSD-3-Clause.
 All other files are licensed under Apache-2.0, see [LICENSE](LICENSE).
+
+[blog-post]: https://buf.build/blog/protobuf-conformance
+[`protoc`]: MANUAL.md#generate-with-protoc
