@@ -1,12 +1,12 @@
 # @bufbuild/protoc-gen-es
 
-The code generator plugin for Protocol Buffers for ECMAScript. Learn more about the project at 
+The code generator plugin for Protocol Buffers for ECMAScript. Learn more about the project at
 [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
 
 ## Installation
 
 `protoc-gen-es` generates base types—messages and enumerations—from your Protocol Buffer
-schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf). 
+schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
 It's compatible with Protocol Buffer compilers like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
 
 To install the plugin and the runtime library, run:

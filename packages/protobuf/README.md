@@ -8,8 +8,8 @@ code generator plugin.
 A complete implementation of [Protocol Buffers](https://protobuf.dev/) in TypeScript,
 suitable for web browsers and Node.js, created by [Buf](https://buf.build).
 
-**Protobuf-ES** is a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem. It's 
-the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC 
+**Protobuf-ES** is a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem. It's
+the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC
 functionality.
 
 Some additional features that set it apart from the others:

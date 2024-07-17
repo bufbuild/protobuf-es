@@ -2,7 +2,7 @@
 
 This directory contains example code that uses Protocol Buffers to manage a
 list of users. The [add.ts](./src/add.ts) script adds a new user, prompting the
-user to input the person's information. The [list.ts](./src/list.ts) script 
+user to input the person's information. The [list.ts](./src/list.ts) script
 lists users.
 
 Note that this example can be easily implemented in other languages, because
