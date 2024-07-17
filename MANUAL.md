@@ -2147,14 +2147,9 @@ the `js` and `dts` targets, we also recommend running all tests against both.
 
 ## Examples
 
-For a small example of generating a Twirp client based on a simple service definition, take a look at [protoplugin-example](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example).
-
-Additionally, check out [protoc-gen-es](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoc-gen-es), which is the official code generator for Protobuf-ES.
-
-## Examples
 For a runnable example that uses Protocol Buffers to manage a list of users, see
-[packages/protobuf-example](packages/protobuf-example). For a custom plugin, see 
-[packages/protoplugin-example](packages/protoplugin-example). It generates Twirp clients for your services, and also 
+[packages/protobuf-example](packages/protobuf-example). For a custom plugin, see
+[packages/protoplugin-example](packages/protoplugin-example). It generates Twirp clients for your services, and also
 uses [custom options](#custom-options).
 
 ## FAQs
