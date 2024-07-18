@@ -783,7 +783,7 @@ equivalent, so Protobuf packages are largely ignored, but are supported in [desc
 
 Protobuf has a small standard library of well-known types. [@bufbuild/protobuf] provides all of
 them as pre-compiled exports. If you import a well-known type in a Protobuf file, the generated code simply imports from
-[`@bufbuild/protobuf/wkt`][@bufbuild/protobuf/wkt].
+`@bufbuild/protobuf/wkt`.
 
 <details><summary>Expand to see the list of Well-known types</summary>
 
@@ -1311,73 +1311,278 @@ if (isEnumJson(FormatSchema, someString)) {
 ### Descriptors
 
 Descriptors describe Protobuf definitions. Every Protobuf compiler parses source files into descriptors, which are
-Protobuf messages themselves. You can find a deep dive into the model in [Buf's reference about descriptors][buf.build/descriptors].
-
-The following command compiles all Protobuf files in the directory `proto`, and writes the descriptors to a file:
-
-```shellsession
-buf build proto --output set.binpb
-```
-
-The written data is a Protobuf message—`google.protobuf.FileDescriptorSet` from the [well-known types](#well-known-types).
-You can parse it like this:
-
-```typescript
-import { readFileSync } from "node:fs";
-import { fromBinary } from "@bufbuild/protobuf";
-import { FileDescriptorSetSchema } from "@bufbuild/protobuf/wkt";
-
-const fileDescriptorSet = fromBinary(
-  FileDescriptorSetSchema,
-  readFileSync("set.binpb"),
-);
-
-fileDescriptorSet.file.map((file) => file.name); // All .proto file names
-```
+Protobuf messages themselves. They are a core feature of Protobuf, and of Protobuf-ES: They provide access to
+[custom options](#custom-options) and are used to [generate code](#writing-plugins), serialize messages, and many other
+tasks.
 
 Similar to several other Protobuf implementations, Protobuf-ES provides wrapper types for the Protobuf descriptor
-messages for convenience. If we refer to descriptors, we usually mean the wrapped types, rather than the low-level
-Protobuf messages. The primary types are:
+messages. If we refer to descriptors, we usually mean the wrapped types, rather than the low-level Protobuf messages.
+Our descriptor types are easy to identify—their names always start with `Desc`.
 
-| Type          | Wraps descriptor message                 |
-| ------------- | ---------------------------------------- |
-| `DescFile`    | `google.protobuf.FileDescriptorProto`    |
-| `DescEnum`    | `google.protobuf.EnumDescriptorProto`    |
-| `DescMessage` | `google.protobuf.DescriptorProto`        |
-| `DescService` | `google.protobuf.ServiceDescriptorProto` |
+| Type            | Wraps descriptor message                   | Purpose                                                                                                                                                                       |
+| :-------------- | :----------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DescFile`      | `google.protobuf.FileDescriptorProto`      | The root of the hierarchy. This describes a single source file. It contains references to all top-level types defined in the file: messages, enums, extensions, and services. |
+| `DescMessage`   | `google.protobuf.DescriptorProto`          | This describes a **message**. This element may also contain references to other nested types: messages, enums, and extensions that are defined inside another message.        |
+| `DescField`     | `google.protobuf.FieldDescriptorProto`     | This describes a **field**, defined in a message.                                                                                                                             |
+| `DescOneof`     | `google.protobuf.OneofDescriptorProto`     | This describes a **oneof** defined in a message.                                                                                                                              |
+| `DescEnum`      | `google.protobuf.EnumDescriptorProto`      | This describes an **enum**. It contains enum values.                                                                                                                          |
+| `DescEnumValue` | `google.protobuf.EnumValueDescriptorProto` | This describes an **enum value**.                                                                                                                                             |
+| `DescService`   | `google.protobuf.ServiceDescriptorProto`   | This describes a **service**. It contains methods.                                                                                                                            |
+| `DescMethod`    | `google.protobuf.MethodDescriptorProto`    | This describes a **method**, also called an “RPC”.                                                                                                                            |
+| `DescExtension` | `google.protobuf.FieldDescriptorProto`     | This describes an **extension**, a special kind of field defined outside of its container message.                                                                            |
 
-The schemas generated by [@bufbuild/protoc-gen-es] _are_ these descriptors, just with some additional type information
-attached.
+Descriptors form a hierarchy with a file at the root:
 
-Here are some basic examples for retrieving information from descriptors:
-
-```typescript
-import { file_example, UserSchema, PhoneTypeSchema } from "./gen/example_pb";
-
-file_example.messages[0].typeName; // "example.User"
-
-UserSchema.typeName; // "example.User"
-
-UserSchema.fields.map((field) => field.localName);
-// [ "firstName", "lastName", "active", "manager", "locations", "projects"]
-
-UserSchema.field.firstName.fieldKind; // "scalar"
-UserSchema.field.firstName.scalar; // ScalarType.STRING
-UserSchema.field.firstName.name; // "first_name"
-UserSchema.field.firstName.number; // 1
-
-PhoneTypeSchema.typeName; // example.PhoneType
-PhoneTypeSchema.value[PhoneType.MOBILE].name; // "PHONE_TYPE_MOBILE"
-PhoneTypeSchema.values.map((value) => value.name);
-// ["PHONE_TYPE_UNSPECIFIED", "PHONE_TYPE_MOBILE", "PHONE_TYPE_LAND_LINE"]
+```
+─ DescFile
+   │
+   ├─ messages: DescMessage
+   │   ├─ fields: DescField[]
+   │   ├─ oneofs: DescOneof[]
+   │   ├─ nestedMessages: DescMessage[]
+   │   │   └─ (...more...)
+   │   ├─ nestedExtensions: DescExtension[]
+   │   └─ nestedEnums: DescEnum[]
+   │       └─ values: DescEnumValue[]
+   │
+   ├─ enums: DescEnum[]
+   │   └─ values: DescEnumValue[]
+   │
+   ├─ extensions: DescExtension[]
+   │
+   └─ services: DescService[]
+       └─ methods: DescMethod[]
 ```
 
-Descriptors also provide access to [custom options](#custom-options) and are used to [generate code](#writing-plugins),
-serialize messages, and many other tasks. They are a core feature of Protobuf-ES.
+To convert descriptor messages to the more convenient wrapper types, you can use a [registry](#registries). You can
+also access descriptors from generated code—the schemas generated by [@bufbuild/protoc-gen-es] _are_ these descriptors,
+just with some additional type information attached.
 
 > [!TIP]
 >
-> You can also fetch descriptors from the [Buf Schema Registry][bsr-reflection].
+> You can find a deep dive into the model in [Buf's reference about descriptors][buf.build/descriptors].
+>
+> You can fetch descriptors from the [Buf Schema Registry][bsr-reflection].
+
+### Walking through a schema
+
+The file `example.proto` is described by the export `file_example`. It is a `DescFile`, and we can easily walk through
+its elements:
+
+```typescript
+import { file_example as file } from "./gen/example_pb";
+
+// Loop through all messages defined at the root
+for (const message of file.messages) {
+  message; // DescMessage
+  message.typeName; // The fully qualified name, e.g. "example.User"
+
+  // Loop through all fields for this message
+  for (const field of message.fields) {
+    field; // DescField
+  }
+
+  // Messages, enumerations, and extensions can be nested in a message definition
+  message.nestedMessages; // DescMessage[]
+  message.nestedEnums; // DescEnum[]
+  message.nestedExtensions; // DescExtension[]
+}
+
+// Loop through all enumerations defined at the root
+for (const enumeration of file.enums) {
+  enumeration; // DescEnum
+  enumeration.typeName; // The fully qualified name, e.g. "example.PhoneType"
+
+  // Loop through all values of this enumeration
+  for (const value of enumeration.values) {
+    value; // DescEnumValue
+    value.name; // The name as specified in the source, e.g. "PHONE_TYPE_MOBILE"
+  }
+}
+
+// Loop through all services
+for (const service of file.services) {
+  service; // DescService
+  service.typeName; // The fully qualified name, e.g. "example.UserService"
+
+  // Loop through all methods of this service
+  for (const method of service.methods) {
+    method; // DescMethod
+    method.name; // The name as specified in the source, e.g. "CreateUser"
+  }
+}
+
+// Loop through all extensions defined at the root
+for (const extension of file.extensions) {
+  method; // DescExtension
+  extension.typeName; // The fully qualified name, e.g. "example.sensitive"
+}
+```
+
+Messages, enumerations, and extensions can be defined at the root, but they can also be nested in a message definition.
+With the utility `nestedTypes()`, you can iterate through all nested types recursively with a single loop. The function
+accepts a `DescFile` or `DescMessage`.
+
+```typescript
+import { nestedTypes } from "@bufbuild/protobuf/reflect";
+import { file_example as file } from "./gen/example_pb";
+
+for (const type of nestedTypes(file)) {
+  type; // DescMessage | DescEnum | DescExtension | DescService
+  type.kind; // "message" | "enum" | "extension" | "service"
+}
+```
+
+The schemas generated by [@bufbuild/protoc-gen-es] have some additional type information attached, and allow for a
+type-safe lookup for some elements:
+
+```typescript
+import { UserSchema, PhoneTypeSchema, UserService } from "./gen/example_pb";
+
+// Look up fields by their localName
+UserSchema.field.firstName; // DescField
+UserSchema.field.firstName.name; // "first_name"
+
+// Look up enum values by their number
+PhoneTypeSchema.value[PhoneType.MOBILE]; // DescEnumValue
+PhoneTypeSchema.value[PhoneType.MOBILE].name; // "PHONE_TYPE_MOBILE"
+
+// Look up methods by their localName
+UserService.method.createUser; // DescMethod
+UserService.method.createUser.name; // "CreateUser"
+```
+
+### Walking through message fields
+
+To walk through fields of a message, there are several options, depending on how you prefer to handle fields in a
+`oneof` group.
+
+For example, let's use the following message:
+
+```protobuf
+syntax = "proto3";
+
+message Question {
+  string text = 1;
+  oneof result {
+    int32 number = 2;
+    string error = 3;
+  }
+}
+```
+
+You can use `DescMessage.fields` to list all fields, including fields in `oneof`:
+
+```typescript
+import type { DescMessage } from "@bufbuild/protobuf";
+
+function walkFields(message: DescMessage) {
+  for (const field of message.fields) {
+    console.log(field.name); // prints "text", "number", "error"
+    field.oneof; // DescOneof | undefined
+  }
+}
+```
+
+You can use `DescMessage.oneofs` to list oneof groups, and descend into fields:
+
+```typescript
+import type { DescMessage } from "@bufbuild/protobuf";
+
+function walkOneofs(message: DescMessage) {
+  for (const oneof of message.oneofs) {
+    console.log(oneof.name); // prints "result"
+    for (const field of oneof.fields) {
+      console.log(field.name); // prints "number", "error"
+    }
+  }
+}
+```
+
+You can use `DescMessage.members` to list both regular fields, and oneof groups:
+
+```typescript
+import type { DescMessage } from "@bufbuild/protobuf";
+
+function walkMembers(message: DescMessage) {
+  for (const member of message.members) {
+    console.log(member.name); // prints "text", "result"
+    if (member.kind == "oneof") {
+      for (const field of member.fields) {
+        console.log(field.name); // prints "number", "error"
+      }
+    }
+  }
+}
+```
+
+### Field descriptors
+
+Protobuf has [scalar](#scalar-fields), [enum](#enumerations), [map](#map-fields), [repeated](#repeated-fields), and
+[message](#message-fields) fields. They are all represented by the type `DescField`, and share the following properties:
+
+- `name`: The name as specified in source, e.g. "first_name"
+- `number`: The field number as specified in source
+- `localName`: A safe and idiomatic name for ECMAScript, e.g. "firstName"
+
+Depending on the field type, `DescField` provides more details, for example the descriptor for the message of a message
+field. To discriminate between the different kinds of fields, use the property `fieldKind`, which can be one of
+`"scalar"`, `"enum"`, `"message"`, `"list"`, and `"map"`.
+
+The following example exhaustively inspects all field kinds:
+
+```typescript
+import type { DescField } from "@bufbuild/protobuf";
+
+function handleField(field: DescField) {
+  field.scalar; // ScalarType | undefined
+  field.message; // DescMessage | undefined
+  field.enum; // DescEnum | undefined
+  switch (field.fieldKind) {
+    case "scalar":
+      field.scalar; // ScalarType.STRING for a Protobuf field string first_name = 1
+      break;
+    case "enum":
+      field.enum; // DescEnum
+      break;
+    case "message":
+      field.message; // DescMessage
+      break;
+    case "list":
+      field.listKind; // "scalar" | "message" | "enum"
+      switch (field.listKind) {
+        case "scalar":
+          field.scalar; // ScalarType.INT32 for the values in `repeated int32 numbers = 2`
+          break;
+        case "message":
+          field.message; // DescMessage for the values in `repeated User users = 2`
+          break;
+        case "enum":
+          field.enum; // DescEnum for the values in `repeated PhoneType types = 2`
+          break;
+      }
+      break;
+    case "map":
+      field.mapKey; // ScalarType.STRING for the keys in `map<string, int32> map = 2`
+      switch (field.mapKind) {
+        case "scalar":
+          field.scalar; // ScalarType.INT32 for the values in `map<string, int32> map = 2`
+          break;
+        case "message":
+          field.message; // DescMessage for the values in `map<string, User> map = 2`
+          break;
+        case "enum":
+          field.enum; // DescEnum for the values in `map<string, PhoneType> map = 2`
+          break;
+      }
+      break;
+  }
+}
+```
+
+> [!TIP]
+>
+> The `fieldKind` and related properties are also available on extension descriptors, `DescExtension`.
 
 ### Registries
 
@@ -1395,6 +1600,8 @@ declare const registry: Registry;
 // Retrieve a type by its qualified name
 registry.getMessage("example.User"); // DescMessage | undefined
 registry.getEnum("example.PhoneType"); // DescEnum | undefined
+registry.getService("example.MyService"); // DescService | undefined
+registry.getExtension("example.sensitive"); // DescExtension | undefined
 
 // Loop through types
 for (const type of registry) {
@@ -1430,7 +1637,14 @@ registry.add(UserSchema);
 registry.remove(UserSchema);
 ```
 
-File registries provide access to file descriptors, and can be created from a `google.protobuf.FileDescriptorSet`:
+File registries provide access to file descriptors, and can be created from a `google.protobuf.FileDescriptorSet` from
+the [well-known types](#well-known-types). The following command compiles all Protobuf files in the directory `proto`:
+
+```shellsession
+buf build proto --output set.binpb
+```
+
+You can read the data and create a file registry with just two steps:
 
 ```typescript
 import { readFileSync } from "node:fs";
@@ -1448,15 +1662,17 @@ const fileDescriptorSet = fromBinary(
   readFileSync("set.binpb"),
 );
 
+// Create a FileRegistry from the google.protobuf.FileDescriptorSet message:
 const registry = createFileRegistry(fileDescriptorSet);
 
 // Loop through files
 for (const file of registry.files) {
   file.name;
-  file.enums; // top-level enum declarations
-  file.messages; // top-level message declarations
-  file.services; // top-level service declarations
-  file.extensions; // top-level extension declarations
+}
+
+// Loop through types
+for (const type of registry) {
+  type.kind; // "message" | "enum" | "extension" | "service"
 }
 ```
 
@@ -1560,7 +1776,7 @@ const msg = create(UserSchema, {
 
 msg.lastName; // "Simpson"
 redact(UserSchema, msg);
-msg.lastName; // undefined
+msg.lastName; // ""
 ```
 
 There is one gotcha with our `redact` function—it doesn't ensure that the schema and message match—but we can solve
