@@ -210,6 +210,9 @@ export function createFileRegistry(
     | FileRegistry[]
 ): FileRegistry {
   const registry = createBaseRegistry();
+  if (!args.length) {
+    return registry;
+  }
   if (
     "$typeName" in args[0] &&
     args[0].$typeName == "google.protobuf.FileDescriptorSet"
