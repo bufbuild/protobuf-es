@@ -1978,7 +1978,7 @@ plugins:
 +   out: src/gen
 ```
 
-If you run `npx buf generate` again, you will see a new file with the contents `// hello word`:
+If you run `npx buf generate` again, you will see a new file with the contents `// hello world`:
 
 ```diff
 .
