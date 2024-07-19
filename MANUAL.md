@@ -2203,7 +2203,7 @@ via the `options` property of the schema.
 
 ### Automatic transpilation to JavaScript and TypeScript Declarations
 
-Our [Hello world plugin](#hello-world-plugin) only implements `generateTs`, but it can still generate JavaScript and
+Our [Hello world plugin](#example-hello-world-plugin) only implements `generateTs`, but it can still generate JavaScript and
 TypeScript Declaration files with the plugin option `target=js+dts`. Under the hood, [@bufbuild/protoplugin] uses the
 TypeScript compiler to transpile the output from `generateTs` to `.js` and `.d.ts` files if necessary.
 
