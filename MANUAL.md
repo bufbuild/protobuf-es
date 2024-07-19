@@ -2126,7 +2126,7 @@ useEffect(() => {
 >
 > If you need a type-only import, call `toTypeOnly()` on `ImportSymbol`.
 
-It's common to import from `protoc-gen-es` generated code in other plugins. To make it as easy as possible, the 
+It's common to import from `protoc-gen-es` generated code in other plugins. To make it as easy as possible, the
 `importSchema` method imports the schema for a descriptor, and the `importShape` method imports the type:
 
 ```ts
