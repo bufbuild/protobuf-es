@@ -27,11 +27,8 @@ Open http://127.0.0.1:3000/ in your browser.
 To re-generate code:
 
 ```shell
-npx buf generate buf.build/connectrpc/eliza
+npx buf generate
 ```
-
-This will generate the [Eliza module](https://buf.build/connectrpc/eliza) from the Buf Schema Registry (BSR).
-You can change this path to generate additional files locally or from the BSR.
 
 Test the generated code:
 
@@ -44,4 +41,5 @@ npm test
 This example is a starting point—we encourage you to try it out and experiment.
 
 Take a look at the code generation logic in [protoc-gen-twirp-es.ts](./src/protoc-gen-twirp-es.ts),
-and at [buf.gen.yaml](./buf.gen.yaml) to see how it's invoked.
+and at [buf.gen.yaml](./buf.gen.yaml) to see how it's invoked. To learn more, see our guide
+for [writing plugins](../../MANUAL.md#writing-plugins).
