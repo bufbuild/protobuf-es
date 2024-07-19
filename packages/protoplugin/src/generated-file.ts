@@ -81,6 +81,11 @@ export interface GeneratedFile {
   string(string: string): Printable;
 
   /**
+   * Create an array literal.
+   */
+  array(elements: Printable[]): Printable;
+
+  /**
    * Create a JSDoc comment block with the given text. Line breaks and white-space
    * stay intact.
    */
@@ -237,6 +242,18 @@ export function createGeneratedFile(
         kind: "es_string",
         value: string,
       };
+    },
+    array(elements) {
+      const p: Printable = [];
+      p.push("[");
+      for (const [index, element] of elements.entries()) {
+        p.push(element);
+        if (index < elements.length - 1) {
+          p.push(", ");
+        }
+      }
+      p.push("]");
+      return p;
     },
     jsDoc(textOrSchema, indentation) {
       return {

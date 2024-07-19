@@ -38,7 +38,7 @@ function generateTs(schema: Schema<PluginOptions>) {
     f.preamble(file);
     for (const service of file.services) {
       f.print(f.jsDoc(service));
-      f.print(f.export("class", safeIdentifier(service.name) + "Client"), " {");
+      f.print(f.export("class", safeIdentifier(service.name + "Client")), " {");
       f.print();
 
       // To support the custom option we defined in customoptions/default_host.proto,
