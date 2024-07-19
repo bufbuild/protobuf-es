@@ -29,12 +29,7 @@ import {
   type Schema,
   type Target,
 } from "@bufbuild/protoplugin";
-import {
-  arrayLiteral,
-  fieldJsonType,
-  fieldTypeScriptType,
-  functionCall,
-} from "./util";
+import { fieldJsonType, fieldTypeScriptType, functionCall } from "./util";
 import { version } from "../package.json";
 import { RawPluginOptions } from "@bufbuild/protoplugin/dist/cjs/parameter";
 
@@ -345,7 +340,7 @@ function getFileDescCall(f: GeneratedFile, file: DescFile, schema: Schema) {
     }));
     return functionCall(fileDesc, [
       f.string(info.base64()),
-      arrayLiteral(deps),
+      f.array(deps),
     ]);
   }
   return functionCall(fileDesc, [f.string(info.base64())]);

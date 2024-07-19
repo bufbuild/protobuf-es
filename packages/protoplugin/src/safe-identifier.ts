@@ -83,9 +83,11 @@ const reservedIdentifiers = new Set([
 ]);
 
 /**
- * Escapes names that are reserved identifiers in ECMAScript, TypeScript.
+ * Escapes reserved words in ECMAScript and TypeScript identifiers, by appending
+ * a dollar sign.
  *
- * Also see safeObjectProperty() from @bufbuild/protoplugin/reflect.
+ * This function is intended for use with identifiers from Protobuf. The passed
+ * string must be a valid identifier (e.g. not start with a digit).
  */
 export function safeIdentifier(name: string): string {
   return reservedIdentifiers.has(name) ? name + "$" : name;
