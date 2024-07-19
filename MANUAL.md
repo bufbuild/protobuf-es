@@ -2080,7 +2080,7 @@ descriptors, it will use any comments on the Protobuf element, and add a helpful
 
 > [!TIP]
 >
-> If you want to generate complex expressions at multiple places, you can move the logic to function that returns
+> If you want to generate complex expressions at multiple places, you can move the logic to a function that returns
 > `Printable`. You can pass `Printable` to `GeneratedFile.print`.
 
 > [!TIP]
