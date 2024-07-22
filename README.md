@@ -109,7 +109,8 @@ From here, you can begin to work with your schema.
 
 - [Manual](MANUAL.md) - Explains all aspects of using Protobuf with ECMAScript.
 - [Code example](packages/protobuf-example) - Example code that uses Protobuf to manage a persistent list of users.
-- [Plugin guide](packages/protoplugin-example) - Shows how to write your own plugin with `@bufbuild/protoplugin`.
+- [Plugin example](packages/protoplugin-example) - Shows how to write a custom plugin to generate Twirp clients from
+  Protobuf service definitions.
 
 ## Packages
 

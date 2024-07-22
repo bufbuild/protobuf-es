@@ -1731,8 +1731,8 @@ The companion function `hasOption` returns true if an option is present. The fun
 
 > [!TIP]
 >
-> Custom options can be read from generated code, or from the schema passed to a plugin. See the example in
-> our [guide for writing plugins](#writing-plugins).
+> Custom options can be read from generated code, from the schema passed to a [plugin](#writing-plugins), or from any
+> other [descriptor](#descriptors).
 >
 > To learn more about custom options in Protobuf, see the [language guide][protobuf.dev/customoptions].
 

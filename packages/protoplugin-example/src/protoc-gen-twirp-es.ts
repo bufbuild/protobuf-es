@@ -89,7 +89,7 @@ interface PluginOptions {
   logRequests: boolean;
 }
 
-// Our example plugin support the option "log_requests". We parse it here.
+// Our example plugin supports the option "log_requests". We parse it here.
 function parseOptions(
   options: {
     key: string;
