@@ -207,27 +207,27 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
   optionalgroup?: Proto2Message_OptionalGroup;
 
   /**
-   * @generated from field: required google.protobuf.UInt32Value optional_wrapped_uint32_field = 207;
+   * @generated from field: optional google.protobuf.UInt32Value optional_wrapped_uint32_field = 207;
    */
   optionalWrappedUint32Field?: number;
 
   /**
-   * @generated from field: required string optional_default_string_field = 28 [default = "hello \" *\/ "];
+   * @generated from field: optional string optional_default_string_field = 28 [default = "hello \" *\/ "];
    */
   optionalDefaultStringField: string;
 
   /**
-   * @generated from field: required bytes optional_default_bytes_field = 29 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
+   * @generated from field: optional bytes optional_default_bytes_field = 29 [default = "\000x\\x\\"x\'AAAAAA\010\014\n\r\t\013"];
    */
   optionalDefaultBytesField: Uint8Array;
 
   /**
-   * @generated from field: required int32 optional_default_int32_field = 30 [default = 128];
+   * @generated from field: optional int32 optional_default_int32_field = 30 [default = 128];
    */
   optionalDefaultInt32Field: number;
 
   /**
-   * @generated from field: required int64 optional_default_int64_field = 31 [default = -256];
+   * @generated from field: optional int64 optional_default_int64_field = 31 [default = -256];
    */
   optionalDefaultInt64Field: bigint;
 
@@ -242,17 +242,17 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
   optionalDefaultInt64JsStringField: string;
 
   /**
-   * @generated from field: required float optional_default_float_field = 32 [default = -512.13];
+   * @generated from field: optional float optional_default_float_field = 32 [default = -512.13];
    */
   optionalDefaultFloatField: number;
 
   /**
-   * @generated from field: required bool optional_default_bool_field = 33 [default = true];
+   * @generated from field: optional bool optional_default_bool_field = 33 [default = true];
    */
   optionalDefaultBoolField: boolean;
 
   /**
-   * @generated from field: required spec.Proto2Enum optional_default_enum_field = 34 [default = PROTO2_ENUM_YES];
+   * @generated from field: optional spec.Proto2Enum optional_default_enum_field = 34 [default = PROTO2_ENUM_YES];
    */
   optionalDefaultEnumField: Proto2Enum;
 
@@ -267,7 +267,7 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
   optionaldefaultgroup?: Proto2Message_OptionalDefaultGroup;
 
   /**
-   * @generated from field: required google.protobuf.UInt32Value optional_default_wrapped_uint32_field = 203;
+   * @generated from field: optional google.protobuf.UInt32Value optional_default_wrapped_uint32_field = 203;
    */
   optionalDefaultWrappedUint32Field?: number;
 
