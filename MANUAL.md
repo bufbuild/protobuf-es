@@ -327,6 +327,20 @@ If you prefer that a field use `string` instead of `bigint`, use the field optio
   int64 field = 1 [jstype = JS_STRING]; // will generate `field: string`
 ```
 
+> [!TIP]
+> 
+> Set `jstype = JS_STRING` on all applicable fields automatically with [buf][buf-cli]. Add the following 
+> [managed mode][buf.build/managed-mode] config:
+> 
+> ```yaml
+> # Add to buf.gen.yaml:
+> managed:
+>   enabled: true
+>   override:
+>     - field_option: jstype
+>       value: JS_STRING
+> ```
+
 ### Message fields
 
 For the following Protobuf field declaration:
@@ -2374,6 +2388,7 @@ side of caution.
 [buf-images]: https://buf.build/docs/reference/images
 [buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
 [buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
+[buf.build/managed-mode]: https://buf.build/docs/generate/managed-mode#optimization-and-field-options
 [Buf]: https://buf.build
 [bundle-size]: https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size
 [canonical-json]: https://protobuf.dev/programming-guides/proto3/#json
