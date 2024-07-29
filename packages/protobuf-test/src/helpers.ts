@@ -64,42 +64,48 @@ export async function compileFile(proto: string, name = "input.proto") {
 
 export async function compileEnum(proto: string) {
   const file = await compileFile(proto);
-  const firstEnum = file.enums[0];
-  assert(firstEnum);
-  return firstEnum;
+  if (file.enums.length != 1) {
+    throw new Error(`expected 1 enum, got ${file.enums.length}`);
+  }
+  return file.enums[0];
 }
 
 export async function compileMessage(proto: string) {
   const file = await compileFile(proto);
-  const firstMessage = file.messages[0];
-  assert(firstMessage);
-  return firstMessage;
+  if (file.messages.length == 0) {
+    throw new Error("missing message");
+  }
+  return file.messages[0];
 }
 
 export async function compileField(proto: string) {
   const message = await compileMessage(proto);
-  const firstField = message.fields[0];
-  assert(firstField);
-  return firstField;
+  if (message.fields.length == 0) {
+    throw new Error("missing field");
+  }
+  return message.fields[0];
 }
 
 export async function compileExtension(proto: string) {
   const file = await compileFile(proto);
-  const firstExt = file.extensions[0];
-  assert(firstExt);
-  return firstExt;
+  if (file.extensions.length == 0) {
+    throw new Error("missing extension");
+  }
+  return file.extensions[0];
 }
 
 export async function compileService(proto: string) {
   const file = await compileFile(proto);
-  const firstService = file.services[0];
-  assert(firstService);
-  return firstService;
+  if (file.services.length == 0) {
+    throw new Error("missing service");
+  }
+  return file.services[0];
 }
 
 export async function compileMethod(proto: string) {
   const service = await compileService(proto);
-  const firstMethod = service.methods[0];
-  assert(firstMethod);
-  return firstMethod;
+  if (service.methods.length == 0) {
+    throw new Error("missing method");
+  }
+  return service.methods[0];
 }

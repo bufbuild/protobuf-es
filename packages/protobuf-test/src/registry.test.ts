@@ -395,8 +395,7 @@ describe("createFileRegistry()", function () {
     beforeAll(() => {
       testFileReg = createFileRegistry(testFileDescriptorSet);
       const a = testFileReg.getFile("a.proto");
-      assert(a);
-      assert(a.proto);
+      assert(a !== undefined);
       descFileA = a;
     });
     test("resolves all dependencies as FileDescriptorProto", function () {
