@@ -38,8 +38,7 @@ function generateTs(schema: Schema<PluginOptions>) {
     f.preamble(file);
     for (const service of file.services) {
       f.print(f.jsDoc(service));
-      f.print(f.export("class", safeIdentifier(service.name) + "Client"), " {");
-      f.print();
+      f.print(f.export("class", safeIdentifier(service.name + "Client")), " {");
 
       // To support the custom option we defined in customoptions/default_host.proto,
       // we need to generate code for this proto file first. This will generate the
@@ -49,42 +48,37 @@ function generateTs(schema: Schema<PluginOptions>) {
       // option is set, and set the value as the default for the constructor argument.
       if (hasOption(service, default_host)) {
         const defaultHost = getOption(service, default_host);
-        f.print("    constructor(private readonly baseUrl = ", f.string(defaultHost), ") {");
-        f.print("    }");
+        f.print("  constructor(private readonly baseUrl = ", f.string(defaultHost), ") {}");
       } else {
-        f.print("    constructor(private readonly baseUrl: string) {");
-        f.print("    }");
+        f.print("  constructor(private readonly baseUrl: string) {}");
       }
       f.print();
       for (const method of service.methods) {
-        if (method.methodKind === "unary") {
-          f.print(f.jsDoc(method, "    "));
-          const inputType = f.importShape(method.input);
-          const inputDesc = f.importSchema(method.input);
-          const outputType = f.importShape(method.output);
-          const outputDesc = f.importSchema(method.output);
-          const jsonValue = f.import("JsonValue", "@bufbuild/protobuf").toTypeOnly();
-          f.print("    async ", method.localName, "(request: ", inputType, "): Promise<", outputType, "> {");
-          f.print("        const headers = new Headers([]);");
-          f.print("        headers.set('content-type', 'application/json');");
-          if (schema.options.logRequests) {
-            f.print("        console.log(`POST ${this.baseUrl}/", service.typeName, "/", method.name,"`, request);");
-          }
-          f.print("        const fetchResponse = await fetch(");
-          f.print("            `${this.baseUrl}/", service.typeName, "/", method.name, "`,");
-          f.print("            {");
-          f.print("                method: 'POST',");
-          f.print("                headers,");
-          f.print("                body: ", f.runtime.toJsonString, "(", inputDesc, ", request),");
-          f.print("            }");
-          f.print("        );");
-          f.print("        if (fetchResponse.status !== 200) {");
-          f.print("          throw Error(`HTTP ${fetchResponse.status} ${fetchResponse.statusText}`)");
-          f.print("        }");
-          f.print("        const json = await fetchResponse.json() as ", jsonValue, ";");
-          f.print("        return ", f.runtime.fromJson, "(", outputDesc, ", json);");
-          f.print("    }");
+        if (method.methodKind != "unary") {
+          // Fetch only supports unary RPCs
+          continue;
         }
+        f.print(f.jsDoc(method, "  "));
+        const inputType = f.importShape(method.input);
+        const inputDesc = f.importSchema(method.input);
+        const outputType = f.importShape(method.output);
+        const outputDesc = f.importSchema(method.output);
+        f.print("  async ", method.localName, "(request: ", inputType, "): Promise<", outputType, "> {");
+        f.print('    const method = "POST";');
+        f.print('    const url = `${this.baseUrl}/', service.typeName, '/', method.name, '`;');
+        f.print('    const headers = new Headers({');
+        f.print('      "Content-Type": "application/json",');
+        f.print('    });');
+        f.print('    const body = ', f.runtime.toJsonString, '(', inputDesc, ', request);');
+        if (schema.options.logRequests) {
+          f.print("    console.log(`${method} ${url}`, request);");
+        }
+        f.print("    const response = await fetch(url, { method, headers, body });");
+        f.print("    if (response.status !== 200) {");
+        f.print("      throw Error(`HTTP ${response.status} ${response.statusText}`);");
+        f.print("    }");
+        f.print("    return ", f.runtime.fromJson, "(", outputDesc, ", await response.json());");
+        f.print("  }");
       }
       f.print("}");
     }
@@ -95,7 +89,7 @@ interface PluginOptions {
   logRequests: boolean;
 }
 
-// Our example plugin support the option "log_requests". We parse it here.
+// Our example plugin supports the option "log_requests". We parse it here.
 function parseOptions(
   options: {
     key: string;

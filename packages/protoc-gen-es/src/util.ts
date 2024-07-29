@@ -230,10 +230,6 @@ export function functionCall(
   return [fn, ...tp, "(", commaSeparate(args), ")"];
 }
 
-export function arrayLiteral(elements: Printable[]): Printable {
-  return ["[", commaSeparate(elements), "]"];
-}
-
 function commaSeparate(elements: Printable[]): Printable {
   const r: Printable[] = [];
   for (let i = 0; i < elements.length; i++) {

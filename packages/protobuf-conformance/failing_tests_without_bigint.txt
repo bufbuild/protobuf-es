@@ -1,7 +1,7 @@
 # Without BigInt support, a JavaScript runtime can only safely represent values
 # in the range from Number.MIN_SAFE_INTEGER to Number.MAX_SAFE_INTEGER.
 # That means number values in JSON will be unsafe as well. If you plan to use
-# protobuf-es on runtimes without BigInt support, make sure that the JSON data
+# Protobuf-ES on runtimes without BigInt support, make sure that the JSON data
 # you consume does contains 64-bit values as strings instead of numbers.
 Required.Proto3.JsonInput.Int64FieldMaxValueNotQuoted.ProtobufOutput
 Required.Proto3.JsonInput.Int64FieldMaxValueNotQuoted.JsonOutput

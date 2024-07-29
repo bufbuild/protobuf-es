@@ -210,6 +210,9 @@ export function createFileRegistry(
     | FileRegistry[]
 ): FileRegistry {
   const registry = createBaseRegistry();
+  if (!args.length) {
+    return registry;
+  }
   if (
     "$typeName" in args[0] &&
     args[0].$typeName == "google.protobuf.FileDescriptorSet"
@@ -886,12 +889,14 @@ function newField(
       case TYPE_GROUP:
         field.listKind = "message";
         field.message = reg.getMessage(trimLeadingDot(proto.typeName));
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         assert(field.message);
         field.delimitedEncoding = isDelimitedEncoding(proto, parentOrFile);
         break;
       case TYPE_ENUM:
         field.listKind = "enum";
         field.enum = reg.getEnum(trimLeadingDot(proto.typeName));
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         assert(field.enum);
         break;
       default:
@@ -910,6 +915,7 @@ function newField(
       field.fieldKind = "message";
       field.message = reg.getMessage(trimLeadingDot(proto.typeName));
       assert(
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         field.message,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
@@ -1080,6 +1086,7 @@ function findOneof(
   }
   const oneof = allOneofs[proto.oneofIndex];
   assert(
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     oneof,
     `invalid FieldDescriptorProto: oneof #${proto.oneofIndex} for field #${proto.number} not found`,
   );

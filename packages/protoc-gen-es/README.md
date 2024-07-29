@@ -1,11 +1,13 @@
 # @bufbuild/protoc-gen-es
 
-The code generator plugin for Protocol Buffers for ECMAScript. Learn more about the project at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
+The code generator plugin for Protocol Buffers for ECMAScript. Learn more about the project at
+[github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
 
 ## Installation
 
-`protoc-gen-es` generates base types - messages and enumerations - from your Protocol Buffer
-schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf). It is compatible with Protocol Buffer compilers like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
+`protoc-gen-es` generates base types—messages and enumerations—from your Protocol Buffer
+schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
+It's compatible with Protocol Buffer compilers like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
 
 To install the plugin and the runtime library, run:
 
@@ -14,8 +16,8 @@ npm install --save-dev @bufbuild/protoc-gen-es
 npm install @bufbuild/protobuf
 ```
 
-We use peer dependencies to ensure that code generator and runtime library are
-compatible with each other. Note that npm installs them automatically, but yarn
+We use peer dependencies to ensure that the code generator and runtime library are
+compatible with each other. Note that npm installs them automatically, but Yarn
 and pnpm do not.
 
 ## Generating code
@@ -26,7 +28,7 @@ and pnpm do not.
 npm install --save-dev @bufbuild/buf
 ```
 
-Add a new configuration file `buf.gen.yaml`:
+Add a new `buf.gen.yaml` configuration file:
 
 ```yaml
 # Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
@@ -40,16 +42,16 @@ plugins:
       - target=ts
 ```
 
-To generate code for all protobuf files within your project, simply run:
+To generate code for all Protobuf files within your project, run:
 
 ```bash
 npx buf generate
 ```
 
-Note that `buf` can generate from various [inputs](https://docs.buf.build/reference/inputs),
-not just local protobuf files.
+Note that `buf` can generate from various [inputs](https://buf.build/docs/reference/inputs),
+not just local Protobuf files.
 
-### With protoc
+### With `protoc`
 
 ```bash
 PATH=$PATH:$(pwd)/node_modules/.bin \
@@ -59,13 +61,13 @@ PATH=$PATH:$(pwd)/node_modules/.bin \
   a.proto b.proto c.proto
 ```
 
-Note that we are adding `node_modules/.bin` to the `$PATH`, so that the protocol
-buffer compiler can find the plugin.
+Note that `node_modules/.bin` needs to be added to the `$PATH` so that the Protobuf compiler can find the plugin. This
+happens automatically with npm scripts.
 
-Since yarn v2 and above does not use a `node_modules` directory, you need to
-change the expression a bit:
+If you use Yarn, versions v2 and above don't use a `node_modules` directory, so you need to change the variable a
+bit:
 
-```bash
+```shellsession
 PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
 ```
 
@@ -73,69 +75,50 @@ PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
 
 ### `target`
 
-This option controls whether the plugin generates JavaScript, TypeScript,
-or TypeScript declaration files.
+This option controls whether the plugin generates JavaScript, TypeScript, or TypeScript declaration files. Possible
+values:
 
-Possible values:
+- `target=js`: Generates a `_pb.js` file for every `.proto` input file.
+- `target=ts`: Generates a `_pb.ts` file for every `.proto` input file.
+- `target=dts`: Generates a `_pb.d.ts` file for every `.proto` input file.
 
-- `target=js` - generates a `_pb.js` file for every `.proto` input file.
-- `target=ts` - generates a `_pb.ts` file for every `.proto` input file.
-- `target=dts` - generates a `_pb.d.ts` file for every `.proto` input file.
+You can pass multiple values by separating them with `+`—for example, `target=js+dts`.
 
-Multiple values can be given by separating them with `+`, for example
-`target=js+dts`.
-
-By default, we generate JavaScript and TypeScript declaration files, which
-produces the smallest code size and is the most compatible with various
-bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
+By default, it generates JavaScript and TypeScript declaration files, which produces the smallest code size and is the
+most compatible with various bundler configurations. If you prefer to generate TypeScript, use `target=ts`.
 
 ### `import_extension`
 
-By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
-(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
-does not add a file extensions to import paths.
+By default, `protoc-gen-es` doesn't add file extensions to import paths. However, some
+environments require an import extension. For example, using ECMAScript modules in Node.js
+requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions in
+import paths with the given value. Possible values:
 
-Some environments require an import extension. For example, using [ECMAScript modules in Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html) requires the `.js` extension, and Deno requires `.ts`. With this plugin option, you can add `.js`/`.ts` extensions
-in import paths with the given value. For example, set
-
-- `import_extension=js` to add the `.js` extension.
-- `import_extension=ts` to add the `.ts` extension.
-- `import_extension=none` to not add an extension. (Default)
+- `import_extension=none`: Doesn't add an extension. (Default)
+- `import_extension=js`: Adds the `.js` extension.
+- `import_extension=ts`. Adds the `.ts` extension.
 
 ### `js_import_style`
 
-By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
-(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
-generate ECMAScript `import` and `export` statements. For use cases where
-CommonJS is difficult to avoid, this option can be used to generate CommonJS
-`require()` calls.
+By default, `protoc-gen-es` generates ECMAScript `import` and `export` statements. For use cases where CommonJS is
+difficult to avoid, this option can be used to generate CommonJS `require()` calls. Possible values:
 
-Possible values:
-
-- `js_import_style=module` generate ECMAScript `import` / `export` statements -
-  the default behavior.
-- `js_import_style=legacy_commonjs` generate CommonJS `require()` calls.
+- `js_import_style=module`: Generates ECMAScript `import`/`export` statements. (Default)
+- `js_import_style=legacy_commonjs`: Generates CommonJS `require()` calls.
 
 ### `keep_empty_files=true`
 
-By default, [protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
-(and all other plugins based on [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin))
-omit empty files from the plugin output. This option disables pruning of
-empty files, to allow for smooth interoperation with Bazel and similar
-tooling that requires all output files to be declared ahead of time.
-Unless you use Bazel, it is very unlikely that you need this option.
+By default, `protoc-gen-es` omits empty files from the plugin output. This option disables pruning of empty files to
+allow for smooth interoperation with Bazel and similar tooling that requires all output files to be declared ahead of
+time. Unless you use Bazel, you probably don't need this option.
 
 ### `ts_nocheck=true`
 
-[protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es) generates
-valid TypeScript for current versions of the TypeScript compiler with standard
-settings.
-
-In case you use compiler settings that yield an error for generated code, you
-can set the plugin option `ts_nocheck=true`. This will generate an annotation at
+`protoc-gen-es` generates valid TypeScript for current versions of the TypeScript compiler with standard settings.
+If you use compiler settings that yield an error for generated code, setting this option generates an annotation at
 the top of each file to skip type checks: `// @ts-nocheck`.
 
 ### `json_types=true`
 
-Generates JSON types for every Protobuf message and enumeration. Calling `toJson()`
-will automatically return the JSON type if available.
+Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
+if available. Learn more about [JSON types](https://github.com/bufbuild/protobuf-es/blob/main/MANUAL.md#json-types).

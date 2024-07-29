@@ -1,13 +1,14 @@
 # @bufbuild/protoplugin
 
-This package helps to create your own code generator plugin using the
+This package helps you create your own code generator plugin using the
 Protobuf-ES plugin framework.
 
-**Protobuf-ES** is a complete implementation of [Protocol Buffers](https://developers.google.com/protocol-buffers) in TypeScript, suitable for web browsers and Node.js.
+**Protobuf-ES** is a complete implementation of [Protocol Buffers](https://protobuf.dev) in TypeScript, suitable for
+web browsers and Node.js.
 
-In addition to a full Protobuf runtime library, it also provides a code generator
-[`protoc-gen-es`](https://www.npmjs.com/package/@bufbuild/protoc-gen-es), which utilizes a plugin framework to generate base types from
-your Protobuf schema. It is fully compatible with both Buf and protoc compilers.
+In addition to a full Protobuf runtime library, it provides the [`protoc-gen-es`](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
+code generator, which uses a plugin framework to generate base types from
+your Protobuf schema. It is fully compatible with both `buf` and `protoc` compilers.
 
 And now, you can write your own **Protobuf-ES** compatible plugins using this same
 plugin framework with the `@bufbuild/protoplugin` package.
@@ -31,4 +32,4 @@ ECMAScript-compliant code.
 
 ## Usage
 
-Get started now with our [plugin documentation](https://github.com/bufbuild/protobuf-es/blob/main/docs/writing_plugins.md).
+Get started now with our [plugin documentation](https://github.com/bufbuild/protobuf-es/blob/main/MANUAL.md#writing-plugins).

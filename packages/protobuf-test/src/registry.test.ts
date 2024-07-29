@@ -395,8 +395,7 @@ describe("createFileRegistry()", function () {
     beforeAll(() => {
       testFileReg = createFileRegistry(testFileDescriptorSet);
       const a = testFileReg.getFile("a.proto");
-      assert(a);
-      assert(a.proto);
+      assert(a !== undefined);
       descFileA = a;
     });
     test("resolves all dependencies as FileDescriptorProto", function () {
@@ -436,6 +435,13 @@ describe("createFileRegistry()", function () {
       }
       expect(t).toThrow(/^Unable to resolve c.proto, imported by a.proto$/);
     });
+  });
+  test("accepts empty arguments", function () {
+    const registry = createFileRegistry();
+    const types = Array.from(registry);
+    const files = Array.from(registry.files);
+    expect(types.length).toBe(0);
+    expect(files.length).toBe(0);
   });
   test("raises error on unsupported edition from the past", function () {
     testFileDescriptorSet.file[0].syntax = "editions";

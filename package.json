@@ -17,7 +17,8 @@
   "scripts": {
     "clean": "git clean -Xdf",
     "all": "turbo run build generate test lint attw bundle-size format license-header bootstrap:inject bootstrap:wkt",
-    "setversion": "node scripts/set-workspace-version.js && npm run all",
+    "setversion": "node scripts/set-workspace-version.js",
+    "postsetversion": "npm run all",
     "release": "npm run all && node scripts/release.js",
     "format": "prettier --write --ignore-unknown '.' '!packages' '!.turbo' '!node_modules'",
     "license-header": "license-header --ignore 'packages/**'",
@@ -36,19 +37,19 @@
     "copyrightHolder": "Buf Technologies, Inc."
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.15.2",
+    "@arethetypeswrong/cli": "^0.15.3",
     "@bufbuild/license-header": "^0.0.4",
-    "@types/node": "^20.11.19",
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.14.1",
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.17.0",
     "eslint": "^8.57.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^17.9.0",
+    "eslint-plugin-n": "^17.10.1",
     "jest": "^29.7.0",
-    "prettier": "^3.3.2",
-    "turbo": "^2.0.5",
-    "typescript": "^5.5.2"
+    "prettier": "^3.3.3",
+    "turbo": "^2.0.9",
+    "typescript": "^5.5.4"
   },
   "//": "avoid hoisting of @typescript/vfs, see packages/protoplugin/src/transpile.ts",
   "dependencies": {
