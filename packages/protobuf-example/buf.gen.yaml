@@ -7,7 +7,6 @@ plugins:
   - local: protoc-gen-es
     opt: target=ts
     out: src/gen
-
 # Uncomment to set `jstype = JS_STRING` on all applicable fields automatically:
 # managed:
 #   enabled: true

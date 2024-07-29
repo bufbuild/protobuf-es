@@ -328,10 +328,10 @@ If you prefer that a field use `string` instead of `bigint`, use the field optio
 ```
 
 > [!TIP]
-> 
-> Set `jstype = JS_STRING` on all applicable fields automatically with [buf][buf-cli]. Add the following 
+>
+> Set `jstype = JS_STRING` on all applicable fields automatically with [buf][buf-cli]. Add the following
 > [managed mode][buf.build/managed-mode] config:
-> 
+>
 > ```yaml
 > # Add to buf.gen.yaml:
 > managed:
