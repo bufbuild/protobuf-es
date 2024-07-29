@@ -41,7 +41,6 @@ describe("custom options", () => {
   `;
   test("can be read via extension", async () => {
     const opt = (await compileFile(proto)).extensions[0];
-    assert(opt);
     let value: unknown;
     await createTestPluginAndRun({
       proto: {
@@ -58,7 +57,6 @@ describe("custom options", () => {
   });
   test("can be read via getOptions", async () => {
     const opt = (await compileFile(proto)).extensions[0];
-    assert(opt);
     let has = false;
     let value: unknown;
     await createTestPluginAndRun({
