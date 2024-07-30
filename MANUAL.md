@@ -2284,7 +2284,7 @@ function show(user: User) {
 }
 ```
 
-The generated properties remain largely unchanged. There are just two improvements:
+The generated properties remain largely unchanged. There are two improvements:
 
 - A message field using [`google.protobuf.Struct`](#googleprotobufstruct) is generated as `JsonObject`.
 - Proto2 fields support default values now and are no longer generated as optional properties.
