@@ -2251,6 +2251,57 @@ For a runnable example that uses Protocol Buffers to manage a list of users, see
 [packages/protoplugin-example](packages/protoplugin-example). It generates Twirp clients for your services, and also
 uses [custom options](#custom-options).
 
+## Migrating from version 1
+
+Version 2 provides many new features around reflection, and support for
+[Protobuf editions][protobuf.dev/editions].
+
+The biggest change is that the generated code no longer uses classes. To create a new instance, you call the function
+`create()` and pass the generated schema:
+
+```diff
+- import { User } from "./gen/example_pb";
++ import { create } from "@bufbuild/protobuf";
++ import { UserSchema } from "./gen/example_pb";
+
+- let user = new User({
++ let user = create(UserSchema, {
+  firstName: "Homer",
+});
+```
+
+Methods like `toBinary` and `toJson` are no longer attached to the object. Similar to `create()`, they're simple
+functions that you call with two arguments: the schema and the message:
+
+```diff
+import type { User } from "./gen/example_pb";
++ import { UserSchema } from "./gen/example_pb";
++ import { toJsonString } from "@bufbuild/protobuf";
+
+function show(user: User) {
+-  alert(user.toJsonString());
++  alert(toJsonString(UserSchema, user));
+}
+```
+
+The generated properties remain largely unchanged. There are two improvements:
+
+- A message field using [`google.protobuf.Struct`](#googleprotobufstruct) is generated as `JsonObject`.
+- Proto2 fields support default values now and are no longer generated as optional properties.
+
+Plugin options now have more convenient default behavior:
+
+- [`import_extension`](#import_extension) is now `none` by default, which means we don't add a `.js` extension to import
+  paths. If you use the plugin option `import_extension=none`, you can delete it. If you require imports to have the `.js`
+  extension, use `import_extension=js`.
+- [`ts_nocheck`](#ts_nochecktrue) is now off by default. If you require a `// @ts-nocheck` annotation at the top of generated code, use `ts_nocheck=true`.
+
+To upgrade, run the following command:
+
+```shell
+npm install @bufbuild/protobuf@^2.0.0 @bufbuild/protoc-gen-es@^2.0.0
+```
+
 ## FAQs
 
 ### What features are implemented?
@@ -2391,6 +2442,7 @@ side of caution.
 [buf.build/managed-mode]: https://buf.build/docs/generate/managed-mode#optimization-and-field-options
 [Buf]: https://buf.build
 [bundle-size]: https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size
+[protobuf.dev/editions]: https://protobuf.dev/editions/overview/
 [canonical-json]: https://protobuf.dev/programming-guides/proto3/#json
 [closure]: http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html
 [conformance]: https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance
