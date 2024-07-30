@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeOfDay } from "./google/type/timeofday_pb.js";
-import { Quaternion } from "./google/type/quaternion_pb.js";
-import { PostalAddress } from "./google/type/postal_address_pb.js";
-import { PhoneNumber } from "./google/type/phone_number_pb.js";
+import { TimeOfDay } from "./google/type/timeofday_pb";
+import { Quaternion } from "./google/type/quaternion_pb";
+import { PostalAddress } from "./google/type/postal_address_pb";
+import { PhoneNumber } from "./google/type/phone_number_pb";
 
 /* eslint-disable no-console,@typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
 

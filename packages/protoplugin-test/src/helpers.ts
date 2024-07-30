@@ -12,23 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  CodeGeneratorRequest,
+import type {
   CodeGeneratorResponse,
-} from "@bufbuild/protobuf";
-import type { Plugin } from "@bufbuild/protoplugin";
+  FileDescriptorSet,
+} from "@bufbuild/protobuf/wkt";
+import {
+  CodeGeneratorRequestSchema,
+  FileDescriptorSetSchema,
+} from "@bufbuild/protobuf/wkt";
+import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 import type {
   GeneratedFile,
   Schema,
   Target,
-} from "@bufbuild/protoplugin/ecmascript";
+  Plugin,
+} from "@bufbuild/protoplugin";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { expect } from "@jest/globals";
+import assert from "node:assert";
 
-const upstream = new UpstreamProtobuf();
+let upstreamProtobuf: UpstreamProtobuf | undefined;
 
-type PluginInit = Parameters<typeof createEcmaScriptPlugin>[0];
+type PluginInit = Parameters<
+  typeof createEcmaScriptPlugin<Record<string, never>>
+>[0];
 
 // prettier-ignore
 type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | undefined> =
@@ -36,27 +44,27 @@ type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | unde
     returnLinesOfFirstFile?: ReturnLinesOfFirstFile;
   }
   &
-    {
-      proto: string | Record<string, string>;
-      filesToGenerate?: string[];
-      parameter?: string;
-      name?: PluginInit["name"];
-      version?: PluginInit["version"];
-      parseOption?: PluginInit["parseOption"];
-      supportsEditions?: PluginInit["supportsEditions"];
-      featureSetDefaults?: PluginInit["featureSetDefaults"];
-    }
+  {
+    proto: string | Record<string, string>;
+    filesToGenerate?: string[];
+    parameter?: string;
+    name?: PluginInit["name"];
+    version?: PluginInit["version"];
+    parseOptions?: PluginInit["parseOptions"];
+    minimumEdition?: PluginInit["minimumEdition"];
+    maximumEdition?: PluginInit["maximumEdition"];
+  }
   &
-    (
-      {
-        generateTs: PluginInit["generateTs"];
-        generateJs?: PluginInit["generateJs"];
-        generateDts?: PluginInit["generateDts"];
-        transpile?: PluginInit["transpile"];
-      }
+  (
+    {
+      generateTs: PluginInit["generateTs"];
+      generateJs?: PluginInit["generateJs"];
+      generateDts?: PluginInit["generateDts"];
+      transpile?: PluginInit["transpile"];
+    }
     |
-      { generateAny: (f: GeneratedFile, schema: Schema, target: Target) => void; }
-    );
+    { generateAny: (f: GeneratedFile, schema: Schema, target: Target) => void; }
+  );
 
 export async function createTestPluginAndRun(
   opt: CreateTestPluginAndRunOptions<false | undefined>,
@@ -67,10 +75,14 @@ export async function createTestPluginAndRun(
 export async function createTestPluginAndRun(
   opt: CreateTestPluginAndRunOptions<boolean | undefined>,
 ) {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
   const protoFiles =
     typeof opt.proto == "string" ? { "x.proto": opt.proto } : opt.proto;
-  const reqBytes = await upstream.createCodeGeneratorRequest(protoFiles, opt);
-  const req = CodeGeneratorRequest.fromBinary(reqBytes);
+  const reqBytes = await upstreamProtobuf.createCodeGeneratorRequest(
+    protoFiles,
+    opt,
+  );
+  const req = fromBinary(CodeGeneratorRequestSchema, reqBytes);
   let plugin: Plugin;
   const defaultPluginInit = {
     name: "test",
@@ -109,4 +121,57 @@ export async function createTestPluginAndRun(
     return content.split("\n");
   }
   return res;
+}
+
+export async function compileFileDescriptorSet(
+  files: Record<string, string>,
+): Promise<FileDescriptorSet> {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
+  const bytes = await upstreamProtobuf.compileToDescriptorSet(files, {
+    includeImports: true,
+  });
+  return fromBinary(FileDescriptorSetSchema, bytes);
+}
+
+export async function compileFile(proto: string) {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
+  const bytes = await upstreamProtobuf.compileToDescriptorSet(
+    {
+      "input.proto": proto,
+    },
+    {
+      includeImports: true,
+      retainOptions: true,
+      includeSourceInfo: true,
+    },
+  );
+  const fds = fromBinary(FileDescriptorSetSchema, bytes);
+  const reg = createFileRegistry(fds);
+  const file = reg.getFile("input.proto");
+  assert(file);
+  return file;
+}
+
+export async function compileEnum(proto: string) {
+  const file = await compileFile(proto);
+  if (file.enums.length != 1) {
+    throw new Error(`expected 1 enum, got ${file.enums.length}`);
+  }
+  return file.enums[0];
+}
+
+export async function compileMessage(proto: string) {
+  const file = await compileFile(proto);
+  if (file.messages.length == 0) {
+    throw new Error("missing message");
+  }
+  return file.messages[0];
+}
+
+export async function compileField(proto: string) {
+  const message = await compileMessage(proto);
+  if (message.fields.length == 0) {
+    throw new Error("missing field");
+  }
+  return message.fields[0];
 }

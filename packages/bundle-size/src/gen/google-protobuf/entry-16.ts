@@ -12,22 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeOfDay } from "./google/type/timeofday_pb.js";
-import { Quaternion } from "./google/type/quaternion_pb.js";
-import { PostalAddress } from "./google/type/postal_address_pb.js";
-import { PhoneNumber } from "./google/type/phone_number_pb.js";
-import { Money } from "./google/type/money_pb.js";
-import { LocalizedText } from "./google/type/localized_text_pb.js";
-import { Interval } from "./google/type/interval_pb.js";
-import { Fraction } from "./google/type/fraction_pb.js";
-import { Expr } from "./google/type/expr_pb.js";
-import { Decimal } from "./google/type/decimal_pb.js";
-import { DateTime, TimeZone } from "./google/type/datetime_pb.js";
-import { Date } from "./google/type/date_pb.js";
-import { Color } from "./google/type/color_pb.js";
-import { AttributeContext } from "./google/rpc/context/attribute_context_pb.js";
-import { Viewport } from "./google/geo/type/viewport_pb.js";
-import { LatLng } from "./google/type/latlng_pb.js";
+import { TimeOfDay } from "./google/type/timeofday_pb";
+import { Quaternion } from "./google/type/quaternion_pb";
+import { PostalAddress } from "./google/type/postal_address_pb";
+import { PhoneNumber } from "./google/type/phone_number_pb";
+import { Money } from "./google/type/money_pb";
+import { LocalizedText } from "./google/type/localized_text_pb";
+import { Interval } from "./google/type/interval_pb";
+import { Fraction } from "./google/type/fraction_pb";
+import { Expr } from "./google/type/expr_pb";
+import { Decimal } from "./google/type/decimal_pb";
+import { DateTime, TimeZone } from "./google/type/datetime_pb";
+import { Date } from "./google/type/date_pb";
+import { Color } from "./google/type/color_pb";
+import { AttributeContext } from "./google/rpc/context/attribute_context_pb";
+import { Viewport } from "./google/geo/type/viewport_pb";
+import { LatLng } from "./google/type/latlng_pb";
 
 /* eslint-disable no-console,@typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
 

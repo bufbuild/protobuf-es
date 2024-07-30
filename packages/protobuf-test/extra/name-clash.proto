@@ -19,7 +19,7 @@ import "extra/example.proto";
 
 // This message class will clash with the imported message class
 message User {
-  docs.User u = 1; // Reference the import with the same name to trigger a clash
+  example.User u = 1; // Reference the import with the same name to trigger a clash
 }
 
 message ReservedPropertyNames {
@@ -177,16 +177,21 @@ message BigInt {
 
 
 message ClashParent {
-    // should clash with message ClashParent_ClashChild
-    message ClashChild {
-    }
+  // should clash with message ClashParent_ClashChild
+  message ClashChild {}
 }
 
-// TODO we do not support this case
 // should clash with name of ClashParent.ClashChild
-//message ClashParent_ClashChild {
-//}
+message ClashParent_ClashChild {
+}
 
+// message shape should clash with enum descriptor
+message EnumDescClashWithMessageShapeDesc {}
+enum EnumDescClashWithMessageShape { MessageDescClashWithEnumDescDesc_zero = 0; }
+
+// enum shape should clash with message descriptor
+enum EnumShapeClashWithMessageDescDesc { EnumShapeClashWithMessageDescDesc_zero = 0; }
+message EnumShapeClashWithMessageDesc {}
 
 message NoClashFields {
     // ok as object property

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeOfDay } from "./google/type/timeofday_pb.js";
+import { TimeOfDay } from "./google/type/timeofday_pb";
 
 /* eslint-disable no-console,@typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
 

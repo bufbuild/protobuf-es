@@ -15,7 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("file preamble", () => {
+describe("GeneratedFile.preamble", () => {
   test("contains plugin name and version", async () => {
     const lines = await testGenerate({
       proto: `syntax="proto3";`,
@@ -53,19 +53,19 @@ describe("file preamble", () => {
     expect(lines).toContain("/* eslint-disable */");
   });
 
-  test("contains ts-nocheck annotation by default", async () => {
+  test("does not contain ts-nocheck annotation by default", async () => {
     const lines = await testGenerate({
       proto: `syntax="proto3";`,
-    });
-    expect(lines).toContain("// @ts-nocheck");
-  });
-
-  test("does not contain ts-nocheck annotation when turned off", async () => {
-    const lines = await testGenerate({
-      proto: `syntax="proto3";`,
-      parameter: "ts_nocheck=false",
     });
     expect(lines).not.toContain("// @ts-nocheck");
+  });
+
+  test("contains ts-nocheck annotation when opted in", async () => {
+    const lines = await testGenerate({
+      proto: `syntax="proto3";`,
+      parameter: `ts_nocheck=true`,
+    });
+    expect(lines).toContain("// @ts-nocheck");
   });
 
   test("contains source file info for proto3", async () => {
@@ -99,6 +99,20 @@ describe("file preamble", () => {
     expect(lines).toContain(
       "// @generated from file foo/bar.proto (edition 2023)",
     );
+  });
+
+  test("contains edition file features", async () => {
+    const lines = await testGenerate({
+      proto: {
+        "foo/bar.proto": `
+          edition="2023";
+          option features.field_presence = EXPLICIT;
+          option features.enum_type = OPEN;
+        `,
+      },
+    });
+    expect(lines).toContain("// option features.field_presence = EXPLICIT;");
+    expect(lines).toContain("// option features.enum_type = OPEN;");
   });
 
   test("contains syntax comments", async () => {
@@ -149,9 +163,7 @@ describe("file preamble", () => {
                 package foo;
            `,
     });
-    const lastLines = lines.slice(lines.indexOf("// @ts-nocheck"));
-    expect(lastLines).toStrictEqual([
-      "// @ts-nocheck",
+    expect(lines.slice(3)).toStrictEqual([
       "",
       "// comment above...",
       "// ... the package declaration",
@@ -169,15 +181,15 @@ describe("file preamble", () => {
   }) {
     return await createTestPluginAndRun({
       ...opt,
-      supportsEditions: true,
       generateAny(f, schema) {
         f.preamble(schema.files[0]);
         f.print(
           "const placeholder = 1; // ensure file is not considered empty",
         );
       },
-      parseOption() {
+      parseOptions() {
         // accept all options
+        return {};
       },
       returnLinesOfFirstFile: true,
     });

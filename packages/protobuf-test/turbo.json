@@ -1,0 +1,18 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "perf": {
+      "dependsOn": ["^build", "generate"],
+      "cache": false
+    },
+    "profile": {
+      "dependsOn": ["^build", "generate"],
+      "cache": false
+    },
+    "flamegraph": {
+      "dependsOn": ["^build", "generate"],
+      "cache": false
+    }
+  }
+}

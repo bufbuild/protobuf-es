@@ -1,0 +1,43 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "generate"],
+      "outputs": ["dist/**"]
+    },
+    "generate": {
+      "dependsOn": ["^build"],
+      "outputs": ["src/gen/**"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "format": {},
+    "license-header": {
+      "dependsOn": ["generate"]
+    },
+    "lint": {
+      "dependsOn": ["format", "^build", "generate"]
+    },
+    "attw": {
+      "dependsOn": ["build"]
+    },
+    "//#format": {
+      "inputs": ["$TURBO_DEFAULT$", "!packages/**", "package-lock.json"]
+    },
+    "//#license-header": {
+      "inputs": ["$TURBO_DEFAULT$", "!packages/**"]
+    },
+    "//#lint": {
+      "dependsOn": ["format"],
+      "inputs": ["$TURBO_DEFAULT$", "!packages/**", "package-lock.json"]
+    },
+    "@bufbuild/protobuf-conformance#lint": {
+      "dependsOn": ["format", "^build", "generate", "build"]
+    },
+    "@bufbuild/protoc-gen-es#lint": {
+      "dependsOn": ["format", "^build", "generate", "build"]
+    }
+  }
+}

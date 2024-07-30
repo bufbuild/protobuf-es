@@ -1,10 +1,15 @@
-# The buf.gen.yaml file defines a local generation template, and is used
-# by the buf generate command to generate code for the language(s) of
-# your choice.
-# Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
-version: v1
+# Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
+version: v2
+inputs:
+  - directory: proto
 plugins:
-  - plugin: es
-    # The code generator is installed with `npm install @bufbuild/protoc-gen-es`.
+  # The code generator is installed with `npm install @bufbuild/protoc-gen-es`.
+  - local: protoc-gen-es
     opt: target=ts
     out: src/gen
+# Uncomment to set `jstype = JS_STRING` on all applicable fields automatically:
+# managed:
+#   enabled: true
+#   override:
+#     - field_option: jstype
+#       value: JS_STRING

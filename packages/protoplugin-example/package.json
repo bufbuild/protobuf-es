@@ -1,21 +1,25 @@
 {
   "name": "@bufbuild/protoplugin-example",
-  "version": "1.10.0",
+  "version": "2.0.0-beta.3",
   "private": true,
   "scripts": {
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza",
     "test": "tsx --test test/*.ts",
-    "generate": "buf generate proto"
+    "generate": "buf generate",
+    "postgenerate": "license-header src/gen",
+    "format": "prettier --write --ignore-unknown '.' '!.turbo' '!src/gen/**'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 ."
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@bufbuild/buf": "^1.34.0",
-    "@bufbuild/protobuf": "^1.10.0",
-    "@bufbuild/protoc-gen-es": "^1.10.0",
-    "@bufbuild/protoplugin": "^1.10.0",
-    "typescript": "^5.2.2",
-    "tsx": "^4.16.0",
-    "@types/node": "~20.8.6"
+    "@bufbuild/buf": "^1.35.1",
+    "@bufbuild/protobuf": "^2.0.0-beta.3",
+    "@bufbuild/protoc-gen-es": "^2.0.0-beta.3",
+    "@bufbuild/protoplugin": "^2.0.0-beta.3",
+    "typescript": "^5.5.4",
+    "tsx": "^4.16.1",
+    "@types/node": "^22.0.0"
   }
 }

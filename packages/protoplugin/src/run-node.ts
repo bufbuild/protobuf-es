@@ -14,8 +14,12 @@
 
 import type { Plugin } from "./plugin.js";
 import type { ReadStream, WriteStream } from "tty";
-import { CodeGeneratorRequest } from "@bufbuild/protobuf";
 import { isPluginOptionError, reasonToString } from "./error.js";
+import { fromBinary, toBinary } from "@bufbuild/protobuf";
+import {
+  CodeGeneratorRequestSchema,
+  CodeGeneratorResponseSchema,
+} from "@bufbuild/protobuf/wkt";
 
 /**
  * Run a plugin with Node.js.
@@ -43,9 +47,12 @@ export function runNodeJs(plugin: Plugin): void {
   }
   readBytes(process.stdin)
     .then((data) => {
-      const req = CodeGeneratorRequest.fromBinary(data);
+      const req = fromBinary(CodeGeneratorRequestSchema, data);
       const res = plugin.run(req);
-      return writeBytes(process.stdout, res.toBinary());
+      return writeBytes(
+        process.stdout,
+        toBinary(CodeGeneratorResponseSchema, res),
+      );
     })
     .then(() => process.exit(0))
     .catch((reason) => {

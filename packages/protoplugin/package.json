@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoplugin",
-  "version": "1.10.0",
+  "version": "2.0.0-beta.3",
   "license": "Apache-2.0",
   "description": "Helps to create your own Protocol Buffers code generators.",
   "keywords": [
@@ -16,10 +16,13 @@
     "directory": "packages/protoplugin"
   },
   "scripts": {
-    "clean": "rm -rf ./dist/*",
+    "prebuild": "rm -rf ./dist/*",
     "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs --declaration --declarationDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/esm",
+    "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
+    "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm",
+    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 .",
     "attw": "attw --pack"
   },
   "type": "module",
@@ -29,24 +32,16 @@
     ".": {
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
-    },
-    "./ecmascript": {
-      "import": "./dist/esm/ecmascript/index.js",
-      "require": "./dist/cjs/ecmascript/index.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "ecmascript": [
-        "./dist/cjs/ecmascript/index.d.ts"
-      ]
     }
   },
   "dependencies": {
-    "@bufbuild/protobuf": "1.10.0",
-    "@typescript/vfs": "^1.4.0",
-    "typescript": "4.5.2"
+    "@bufbuild/protobuf": "2.0.0-beta.3",
+    "@typescript/vfs": "^1.5.2",
+    "typescript": "5.4.5"
   },
+  "files": [
+    "dist/**"
+  ],
   "devDependencies": {
     "@types/lz-string": "^1.5.0"
   }

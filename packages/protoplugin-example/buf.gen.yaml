@@ -1,15 +1,12 @@
-# The buf.gen.yaml file defines a local generation template, and is used
-# by the buf generate command to generate code for the language(s) of
-# your choice.
-# Learn more: https://docs.buf.build/configuration/v1/buf-gen-yaml
-version: v1
+# Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
+version: v2
+inputs:
+  - directory: proto
 plugins:
-  - plugin: es
+  - local: protoc-gen-es
     opt: target=ts
     out: src/gen
-  - plugin: twirp-es
-    # Override the path to the plugin binary.
-    # See https://buf.build/docs/configuration/v1/buf-gen-yaml#path
-    path: ["tsx", "./src/protoc-gen-twirp-es.ts"]
-    opt: target=ts
+    # Run the plugin with tsx
+  - local: ["tsx", "./src/protoc-gen-twirp-es.ts"]
+    opt: target=ts,log_requests=true
     out: src/gen

@@ -1,7 +1,7 @@
 # Without BigInt support, a JavaScript runtime can only safely represent values
 # in the range from Number.MIN_SAFE_INTEGER to Number.MAX_SAFE_INTEGER.
 # That means number values in JSON will be unsafe as well. If you plan to use
-# protobuf-es on runtimes without BigInt support, make sure that the JSON data
+# Protobuf-ES on runtimes without BigInt support, make sure that the JSON data
 # you consume does contains 64-bit values as strings instead of numbers.
 Required.Proto3.JsonInput.Int64FieldMaxValueNotQuoted.ProtobufOutput
 Required.Proto3.JsonInput.Int64FieldMaxValueNotQuoted.JsonOutput
@@ -15,6 +15,18 @@ Required.Proto2.JsonInput.Int64FieldMinValueNotQuoted.JsonOutput
 Required.Proto2.JsonInput.Int64FieldMinValueNotQuoted.ProtobufOutput
 Required.Proto2.JsonInput.Uint64FieldMaxValueNotQuoted.JsonOutput
 Required.Proto2.JsonInput.Uint64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Editions_Proto2.JsonInput.Int64FieldMaxValueNotQuoted.JsonOutput
+Required.Editions_Proto2.JsonInput.Int64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Editions_Proto2.JsonInput.Int64FieldMinValueNotQuoted.JsonOutput
+Required.Editions_Proto2.JsonInput.Int64FieldMinValueNotQuoted.ProtobufOutput
+Required.Editions_Proto2.JsonInput.Uint64FieldMaxValueNotQuoted.JsonOutput
+Required.Editions_Proto2.JsonInput.Uint64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Editions_Proto3.JsonInput.Int64FieldMaxValueNotQuoted.JsonOutput
+Required.Editions_Proto3.JsonInput.Int64FieldMaxValueNotQuoted.ProtobufOutput
+Required.Editions_Proto3.JsonInput.Int64FieldMinValueNotQuoted.JsonOutput
+Required.Editions_Proto3.JsonInput.Int64FieldMinValueNotQuoted.ProtobufOutput
+Required.Editions_Proto3.JsonInput.Uint64FieldMaxValueNotQuoted.JsonOutput
+Required.Editions_Proto3.JsonInput.Uint64FieldMaxValueNotQuoted.ProtobufOutput
 
 # Without BigInt support, our implementation does not validate that 64-bit
 # values are within bounds.
@@ -24,3 +36,9 @@ Required.Proto3.JsonInput.Uint64FieldTooLarge
 Required.Proto2.JsonInput.Int64FieldTooLarge
 Required.Proto2.JsonInput.Int64FieldTooSmall
 Required.Proto2.JsonInput.Uint64FieldTooLarge
+Required.Editions_Proto2.JsonInput.Int64FieldTooLarge
+Required.Editions_Proto2.JsonInput.Int64FieldTooSmall
+Required.Editions_Proto2.JsonInput.Uint64FieldTooLarge
+Required.Editions_Proto3.JsonInput.Int64FieldTooLarge
+Required.Editions_Proto3.JsonInput.Int64FieldTooSmall
+Required.Editions_Proto3.JsonInput.Uint64FieldTooLarge

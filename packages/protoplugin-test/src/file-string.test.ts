@@ -13,10 +13,10 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import type { GeneratedFile } from "@bufbuild/protoplugin/ecmascript";
+import type { GeneratedFile } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("file string", () => {
+describe("GeneratedFile.string", () => {
   test("surrounds string in quotes", async () => {
     const lines = await testGenerate((f) => {
       f.print("const s = ", f.string("abc"), ";");

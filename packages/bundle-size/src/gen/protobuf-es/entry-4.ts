@@ -12,18 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeOfDay } from "./google/type/timeofday_pb.js";
-import { Quaternion } from "./google/type/quaternion_pb.js";
-import { PostalAddress } from "./google/type/postal_address_pb.js";
-import { PhoneNumber } from "./google/type/phone_number_pb.js";
+import { create, toBinary } from "@bufbuild/protobuf";
+import { TimeOfDaySchema } from "./google/type/timeofday_pb";
+import { QuaternionSchema } from "./google/type/quaternion_pb";
+import { PostalAddressSchema } from "./google/type/postal_address_pb";
+import { PhoneNumberSchema } from "./google/type/phone_number_pb";
 
 /* eslint-disable no-console */
 
 // google/type/timeofday.proto
-console.log(new TimeOfDay().toBinary().length);
+console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);
 // google/type/quaternion.proto
-console.log(new Quaternion().toBinary().length);
+console.log(toBinary(QuaternionSchema, create(QuaternionSchema)).length);
 // google/type/postal_address.proto
-console.log(new PostalAddress().toBinary().length);
+console.log(toBinary(PostalAddressSchema, create(PostalAddressSchema)).length);
 // google/type/phone_number.proto
-console.log(new PhoneNumber().toBinary().length);
+console.log(toBinary(PhoneNumberSchema, create(PhoneNumberSchema)).length);

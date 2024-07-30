@@ -17,6 +17,9 @@ package spec;
 
 import "google/protobuf/wrappers.proto";
 
+// See proto2.proto and proto2.proto - extend them to all wrapper types if necessary
+option deprecated = true;
+
 message WrappersMessage {
     google.protobuf.DoubleValue double_value_field = 1;
     google.protobuf.BoolValue bool_value_field = 2;

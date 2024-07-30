@@ -13,13 +13,18 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, jest, test } from "@jest/globals";
-import type { FileInfo, Schema } from "@bufbuild/protoplugin/ecmascript";
 import { createTestPluginAndRun } from "./helpers.js";
-import type { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
-import { CodeGeneratorResponse } from "@bufbuild/protobuf";
+import type {
+  createEcmaScriptPlugin,
+  FileInfo,
+  Schema,
+} from "@bufbuild/protoplugin";
+import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
 
 describe("target", () => {
-  type PluginInit = Parameters<typeof createEcmaScriptPlugin>[0];
+  type PluginInit = Parameters<
+    typeof createEcmaScriptPlugin<Record<string, never>>
+  >[0];
   let generateTs: jest.Mock<PluginInit["generateTs"]>;
   let generateJs: jest.Mock<Required<PluginInit>["generateJs"]>;
   let generateDts: jest.Mock<Required<PluginInit>["generateDts"]>;
@@ -76,7 +81,7 @@ describe("target", () => {
         generateDts,
         transpile,
       });
-      const gotFiles = res.file.map((f) => f.name ?? "").sort();
+      const gotFiles = res.file.map((f) => f.name).sort();
       expect(gotFiles).toStrictEqual(["test.js", "test.d.ts"].sort());
     });
     test("should call generateJs and generateDts", async () => {
@@ -115,7 +120,7 @@ describe("target", () => {
         generateDts,
         transpile,
       });
-      const gotFiles = res.file.map((f) => f.name ?? "").sort();
+      const gotFiles = res.file.map((f) => f.name).sort();
       const wantFiles = targets
         .map((t) => (t == "dts" ? "test.d.ts" : `test.${t}`))
         .sort();
@@ -226,7 +231,7 @@ describe("target", () => {
       });
 
       test("should generate expected files", () => {
-        const gotFiles = res.file.map((f) => f.name ?? "").sort();
+        const gotFiles = res.file.map((f) => f.name).sort();
         expect(gotFiles).toStrictEqual(expectedFiles);
       });
     },

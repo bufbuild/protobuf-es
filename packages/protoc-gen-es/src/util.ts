@@ -13,59 +13,71 @@
 // limitations under the License.
 
 import {
-  codegenInfo,
-  DescEnumValue,
-  DescExtension,
-  DescField,
-  FieldDescriptorProto_Label,
-  LongType,
+  type DescExtension,
+  type DescField,
+  DescMessage,
   ScalarType,
-  ScalarValue,
 } from "@bufbuild/protobuf";
-import type { Printable } from "@bufbuild/protoplugin/ecmascript";
-import { localName } from "@bufbuild/protoplugin/ecmascript";
+import {
+  scalarJsonType,
+  scalarTypeScriptType,
+} from "@bufbuild/protobuf/codegenv1";
+import {
+  isWrapperDesc,
+  StructSchema,
+  ValueSchema,
+} from "@bufbuild/protobuf/wkt";
+import type { GeneratedFile, Printable } from "@bufbuild/protoplugin";
 
-export function getFieldTypeInfo(field: DescField | DescExtension): {
+export function fieldTypeScriptType(
+  field: DescField | DescExtension,
+  imports: GeneratedFile["runtime"],
+): {
   typing: Printable;
   optional: boolean;
-  typingInferrableFromZeroValue: boolean;
 } {
   const typing: Printable = [];
-  let typingInferrableFromZeroValue: boolean;
   let optional = false;
   switch (field.fieldKind) {
     case "scalar":
-      typing.push(scalarTypeScriptType(field.scalar, field.longType));
-      optional =
-        field.optional ||
-        field.proto.label === FieldDescriptorProto_Label.REQUIRED;
-      typingInferrableFromZeroValue = true;
+      typing.push(scalarTypeScriptType(field.scalar, field.longAsString));
+      optional = field.proto.proto3Optional;
       break;
     case "message": {
-      const baseType = codegenInfo.getUnwrappedFieldType(field);
-      if (baseType !== undefined) {
-        typing.push(scalarTypeScriptType(baseType, LongType.BIGINT));
-      } else {
-        typing.push({
-          kind: "es_ref_message",
-          type: field.message,
-          typeOnly: true,
-        });
-      }
+      typing.push(messageFieldTypeScriptType(field, imports));
       optional = true;
-      typingInferrableFromZeroValue = true;
       break;
     }
     case "enum":
       typing.push({
-        kind: "es_ref_enum",
-        type: field.enum,
-        typeOnly: true,
+        kind: "es_shape_ref",
+        desc: field.enum,
       });
-      optional =
-        field.optional ||
-        field.proto.label === FieldDescriptorProto_Label.REQUIRED;
-      typingInferrableFromZeroValue = true;
+      optional = field.proto.proto3Optional;
+      break;
+    case "list":
+      optional = false;
+      switch (field.listKind) {
+        case "enum":
+          typing.push(
+            {
+              kind: "es_shape_ref",
+              desc: field.enum,
+            },
+            "[]",
+          );
+          break;
+        case "scalar":
+          typing.push(
+            scalarTypeScriptType(field.scalar, field.longAsString),
+            "[]",
+          );
+          break;
+        case "message": {
+          typing.push(messageFieldTypeScriptType(field, imports), "[]");
+          break;
+        }
+      }
       break;
     case "map": {
       let keyType: string;
@@ -82,234 +94,149 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
           break;
       }
       let valueType: Printable;
-      switch (field.mapValue.kind) {
+      switch (field.mapKind) {
         case "scalar":
-          valueType = scalarTypeScriptType(
-            field.mapValue.scalar,
-            LongType.BIGINT,
-          );
+          valueType = scalarTypeScriptType(field.scalar, false);
           break;
         case "message":
-          valueType = {
-            kind: "es_ref_message",
-            type: field.mapValue.message,
-            typeOnly: true,
-          };
+          valueType = messageFieldTypeScriptType(field, imports);
           break;
         case "enum":
           valueType = {
-            kind: "es_ref_enum",
-            type: field.mapValue.enum,
-            typeOnly: true,
+            kind: "es_shape_ref",
+            desc: field.enum,
           };
           break;
       }
       typing.push("{ [key: ", keyType, "]: ", valueType, " }");
-      typingInferrableFromZeroValue = false;
       optional = false;
       break;
     }
   }
-  if (field.repeated) {
-    typing.push("[]");
-    optional = false;
-    typingInferrableFromZeroValue = false;
-  }
-  return { typing, optional, typingInferrableFromZeroValue };
+  return { typing, optional };
 }
 
-/**
- * Return a printable expression for the default value of a field.
- * Only applicable for singular scalar and enum fields.
- */
-export function getFieldDefaultValueExpression(
-  field: DescField | DescExtension,
-  enumAs:
-    | "enum_value_as_is"
-    | "enum_value_as_integer"
-    | "enum_value_as_cast_integer" = "enum_value_as_is",
-): Printable | undefined {
-  if (field.repeated) {
-    return undefined;
+function messageFieldTypeScriptType(
+  field: (DescField | DescExtension) & { message: DescMessage },
+  imports: GeneratedFile["runtime"],
+): Printable {
+  if (
+    isWrapperDesc(field.message) &&
+    !field.oneof &&
+    field.fieldKind == "message"
+  ) {
+    const baseType = field.message.fields[0].scalar;
+    return scalarTypeScriptType(baseType, false);
   }
-  if (field.fieldKind !== "enum" && field.fieldKind !== "scalar") {
-    return undefined;
+  if (
+    field.message.typeName == StructSchema.typeName &&
+    field.parent?.typeName != ValueSchema.typeName
+  ) {
+    return imports.JsonObject;
   }
-  const defaultValue = field.getDefaultValue();
-  if (defaultValue === undefined) {
-    return undefined;
-  }
+  return {
+    kind: "es_shape_ref",
+    desc: field.message,
+  };
+}
+
+export function fieldJsonType(field: DescField | DescExtension): Printable {
   switch (field.fieldKind) {
-    case "enum": {
-      const enumValue = field.enum.values.find(
-        (value) => value.number === defaultValue,
-      );
-      if (enumValue === undefined) {
-        throw new Error(
-          `invalid enum default value: ${String(defaultValue)} for ${enumValue}`,
-        );
-      }
-      return literalEnumValue(enumValue, enumAs);
-    }
     case "scalar":
-      return literalScalarValue(defaultValue, field);
-  }
-}
-
-/**
- * Return a printable expression for the zero value of a field.
- *
- * Returns either:
- * - empty array literal for repeated fields
- * - empty object literal for maps
- * - undefined for message fields
- * - an enums first value
- * - scalar zero value
- */
-export function getFieldZeroValueExpression(
-  field: DescField | DescExtension,
-  enumAs:
-    | "enum_value_as_is"
-    | "enum_value_as_integer"
-    | "enum_value_as_cast_integer" = "enum_value_as_is",
-): Printable | undefined {
-  if (field.repeated) {
-    return "[]";
-  }
-  switch (field.fieldKind) {
+      return scalarJsonType(field.scalar);
     case "message":
-      return undefined;
-    case "map":
-      return "{}";
-    case "enum": {
-      // In proto3, the first enum value must be zero.
-      // In proto2, protobuf-go returns the first value as the default.
-      if (field.enum.values.length < 1) {
-        throw new Error("invalid enum: missing at least one value");
-      }
-      const zeroValue = field.enum.values[0];
-      return literalEnumValue(zeroValue, enumAs);
-    }
-    case "scalar": {
-      const defaultValue = codegenInfo.scalarZeroValue(
-        field.scalar,
-        field.longType,
-      );
-      return literalScalarValue(defaultValue, field);
-    }
-  }
-}
-
-function literalScalarValue(
-  value: ScalarValue,
-  field: (DescField | DescExtension) & { fieldKind: "scalar" },
-): Printable {
-  switch (field.scalar) {
-    case ScalarType.DOUBLE:
-    case ScalarType.FLOAT:
-    case ScalarType.INT32:
-    case ScalarType.FIXED32:
-    case ScalarType.UINT32:
-    case ScalarType.SFIXED32:
-    case ScalarType.SINT32:
-      if (typeof value != "number") {
-        throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
-        );
-      }
-      return value;
-    case ScalarType.BOOL:
-      if (typeof value != "boolean") {
-        throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
-        );
-      }
-      return value;
-    case ScalarType.STRING:
-      if (typeof value != "string") {
-        throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
-        );
-      }
-      return { kind: "es_string", value };
-    case ScalarType.BYTES:
-      if (!(value instanceof Uint8Array)) {
-        throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
-        );
-      }
-      return value;
-    case ScalarType.INT64:
-    case ScalarType.SINT64:
-    case ScalarType.SFIXED64:
-    case ScalarType.UINT64:
-    case ScalarType.FIXED64:
-      if (typeof value != "bigint" && typeof value != "string") {
-        throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
-        );
-      }
       return {
-        kind: "es_proto_int64",
-        type: field.scalar,
-        longType: field.longType,
-        value,
+        kind: "es_json_type_ref",
+        desc: field.message,
       };
-  }
-}
-
-function literalEnumValue(
-  value: DescEnumValue,
-  enumAs:
-    | "enum_value_as_is"
-    | "enum_value_as_integer"
-    | "enum_value_as_cast_integer",
-): Printable {
-  switch (enumAs) {
-    case "enum_value_as_is":
-      return [
-        { kind: "es_ref_enum", type: value.parent, typeOnly: false },
-        ".",
-        localName(value),
-      ];
-    case "enum_value_as_integer":
-      return [
-        value.number,
-        " /* ",
-        value.parent.typeName,
-        ".",
-        value.name,
-        " */",
-      ];
-    case "enum_value_as_cast_integer":
-      return [
-        value.number,
-        " as ",
-        { kind: "es_ref_enum", type: value.parent, typeOnly: true },
-        ".",
-        localName(value),
-      ];
-  }
-}
-
-function scalarTypeScriptType(type: ScalarType, longType: LongType): Printable {
-  switch (type) {
-    case ScalarType.STRING:
-      return "string";
-    case ScalarType.BOOL:
-      return "boolean";
-    case ScalarType.UINT64:
-    case ScalarType.SFIXED64:
-    case ScalarType.FIXED64:
-    case ScalarType.SINT64:
-    case ScalarType.INT64:
-      if (longType === LongType.STRING) {
-        return "string";
+    case "enum":
+      return {
+        kind: "es_json_type_ref",
+        desc: field.enum,
+      };
+    case "list":
+      switch (field.listKind) {
+        case "enum":
+          return [
+            {
+              kind: "es_json_type_ref",
+              desc: field.enum,
+            },
+            "[]",
+          ];
+        case "scalar": {
+          const t = scalarJsonType(field.scalar);
+          if (t.includes("|")) {
+            return ["(", t, ")[]"];
+          }
+          return [t, "[]"];
+        }
+        case "message":
+          return [
+            {
+              kind: "es_json_type_ref",
+              desc: field.message,
+            },
+            "[]",
+          ];
       }
-      return "bigint";
-    case ScalarType.BYTES:
-      return "Uint8Array";
-    default:
-      return "number";
+      break;
+    case "map": {
+      let keyType: string;
+      switch (field.mapKey) {
+        case ScalarType.INT32:
+        case ScalarType.FIXED32:
+        case ScalarType.UINT32:
+        case ScalarType.SFIXED32:
+        case ScalarType.SINT32:
+          keyType = "number";
+          break;
+        default:
+          keyType = "string";
+          break;
+      }
+      let valueType: Printable;
+      switch (field.mapKind) {
+        case "scalar":
+          valueType = scalarJsonType(field.scalar);
+          break;
+        case "message":
+          valueType = {
+            kind: "es_json_type_ref",
+            desc: field.message,
+          };
+          break;
+        case "enum":
+          valueType = {
+            kind: "es_json_type_ref",
+            desc: field.enum,
+          };
+          break;
+      }
+      return ["{ [key: ", keyType, "]: ", valueType, " }"];
+    }
   }
+}
+
+export function functionCall(
+  fn: Printable,
+  args: Printable[],
+  typeParams?: Printable[],
+): Printable {
+  let tp: Printable = [];
+  if (typeParams !== undefined && typeParams.length > 0) {
+    tp = ["<", commaSeparate(typeParams), ">"];
+  }
+  return [fn, ...tp, "(", commaSeparate(args), ")"];
+}
+
+function commaSeparate(elements: Printable[]): Printable {
+  const r: Printable[] = [];
+  for (let i = 0; i < elements.length; i++) {
+    r.push(elements[i]);
+    if (i < elements.length - 1) {
+      r.push(", ");
+    }
+  }
+  return r;
 }

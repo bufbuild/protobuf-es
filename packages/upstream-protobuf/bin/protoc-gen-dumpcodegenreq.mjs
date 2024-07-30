@@ -22,8 +22,9 @@ stdin.pipe(createWriteStream("dumpcodegenreq.binpb"));
 
 // Write a minimal a google.protobuf.CodeGenerateResponse to stdout.
 /*
-import {CodeGeneratorResponse_Feature, CodeGeneratorResponse, Edition} from "@bufbuild/protobuf";
-const res = new CodeGeneratorResponse({
+import {create, toBinary} from "@bufbuild/protobuf";
+import {CodeGeneratorResponse_Feature, CodeGeneratorResponseSchema, Edition} from "@bufbuild/protobuf/wkt";
+const res = create(CodeGeneratorResponseSchema, {
   supportedFeatures: BigInt(
     CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS | CodeGeneratorResponse_Feature.PROTO3_OPTIONAL
   ),
@@ -31,7 +32,7 @@ const res = new CodeGeneratorResponse({
   maximumEdition: Edition.EDITION_MAX,
 });
 console.log(
-  res.toBinary()
+  toBinary(CodeGeneratorResponseSchema, res)
 );
 */
 const minimalResponse = new Uint8Array([

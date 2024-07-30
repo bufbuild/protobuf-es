@@ -14,91 +14,103 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
-import { version } from "../package.json";
-import { localName, type Schema } from "@bufbuild/protoplugin/ecmascript";
-import { getExtension, hasExtension, MethodKind } from "@bufbuild/protobuf";
+import {
+  createEcmaScriptPlugin,
+  runNodeJs,
+  type Schema,
+  safeIdentifier,
+} from "@bufbuild/protoplugin";
+import { getOption, hasOption } from "@bufbuild/protobuf";
 import { default_host } from "./gen/customoptions/default_host_pb.js";
+import { version } from "../package.json";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
   version: `v${String(version)}`,
   generateTs,
+  parseOptions,
 });
 
 // prettier-ignore
-function generateTs(schema: Schema) {
+function generateTs(schema: Schema<PluginOptions>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_twirp.ts");
     f.preamble(file);
-    const {
-      Message,
-      JsonValue
-    } = schema.runtime;
     for (const service of file.services) {
       f.print(f.jsDoc(service));
-      f.print(f.exportDecl("class", localName(service) + "Client"), " {");
-      f.print();
+      f.print(f.export("class", safeIdentifier(service.name + "Client")), " {");
 
       // To support the custom option we defined in customoptions/default_host.proto,
       // we need to generate code for this proto file first. This will generate the
-      // file customoptions/default_host_pb.ts, which contains the generated extension
-      // `default_host`.
-      // Then we use the functions hasExtension() and getExtension() to see whether
-      // the option is set, and set the value as the default for the constructor argument.
-      if (service.proto.options && hasExtension(service.proto.options, default_host)) {
-        const defaultHost = getExtension(service.proto.options, default_host);
-        f.print("    constructor(private readonly baseUrl = ", f.string(defaultHost), ") {");
-        f.print("    }");
+      // file customoptions/default_host_pb.ts, which contains the generated option
+      // extension `default_host`.
+      // Then we use the functions hasOption() and getOption() to see whether the
+      // option is set, and set the value as the default for the constructor argument.
+      if (hasOption(service, default_host)) {
+        const defaultHost = getOption(service, default_host);
+        f.print("  constructor(private readonly baseUrl = ", f.string(defaultHost), ") {}");
       } else {
-        f.print("    constructor(private readonly baseUrl: string) {");
-        f.print("    }");
+        f.print("  constructor(private readonly baseUrl: string) {}");
       }
       f.print();
-      f.print("    async request<T extends ", Message.toTypeOnly(), "<T>>(");
-      f.print("        service: string,");
-      f.print("        method: string,");
-      f.print("        contentType: string,");
-      f.print("        data: T");
-      f.print("    ) {");
-      f.print("        const headers = new Headers([]);");
-      f.print("        headers.set('content-type', contentType);");
-      f.print("        const response = await fetch(");
-      f.print("            `${this.baseUrl}/${service}/${method}`,");
-      f.print("            {");
-      f.print("                method: 'POST',");
-      f.print("                headers,");
-      f.print("                body: data.toJsonString(),");
-      f.print("            }");
-      f.print("        );");
-      f.print("        if (response.status === 200) {");
-      f.print("            if (contentType === 'application/json') {");
-      f.print("                return await response.json();");
-      f.print("            }");
-      f.print("            return new Uint8Array(await response.arrayBuffer());");
-      f.print("        }");
-      f.print("        throw Error(`HTTP ${response.status} ${response.statusText}`)");
-      f.print("    }");
       for (const method of service.methods) {
-        if (method.methodKind === MethodKind.Unary) {
-          f.print();
-          f.print(f.jsDoc(method, "    "));
-          f.print("    async ", localName(method), "(request: ", method.input, "): Promise<", method.output, "> {");
-          f.print("        const promise = this.request(");
-          f.print("            ", f.string(service.typeName), ",");
-          f.print("            ", f.string(method.name), ",");
-          f.print('            "application/json",');
-          f.print("            request");
-          f.print("        );");
-          f.print("        return promise.then(async (data) =>");
-          f.print("             ", method.output, ".fromJson(data as ", JsonValue, ")");
-          f.print("        );");
-          f.print("    }");
+        if (method.methodKind != "unary") {
+          // Fetch only supports unary RPCs
+          continue;
         }
+        f.print(f.jsDoc(method, "  "));
+        const inputType = f.importShape(method.input);
+        const inputDesc = f.importSchema(method.input);
+        const outputType = f.importShape(method.output);
+        const outputDesc = f.importSchema(method.output);
+        f.print("  async ", method.localName, "(request: ", inputType, "): Promise<", outputType, "> {");
+        f.print('    const method = "POST";');
+        f.print('    const url = `${this.baseUrl}/', service.typeName, '/', method.name, '`;');
+        f.print('    const headers = new Headers({');
+        f.print('      "Content-Type": "application/json",');
+        f.print('    });');
+        f.print('    const body = ', f.runtime.toJsonString, '(', inputDesc, ', request);');
+        if (schema.options.logRequests) {
+          f.print("    console.log(`${method} ${url}`, request);");
+        }
+        f.print("    const response = await fetch(url, { method, headers, body });");
+        f.print("    if (response.status !== 200) {");
+        f.print("      throw Error(`HTTP ${response.status} ${response.statusText}`);");
+        f.print("    }");
+        f.print("    return ", f.runtime.fromJson, "(", outputDesc, ", await response.json());");
+        f.print("  }");
       }
       f.print("}");
     }
   }
+}
+
+interface PluginOptions {
+  logRequests: boolean;
+}
+
+// Our example plugin supports the option "log_requests". We parse it here.
+function parseOptions(
+  options: {
+    key: string;
+    value: string;
+  }[],
+): PluginOptions {
+  let logRequests = false;
+  for (const { key, value } of options) {
+    switch (key) {
+      case "log_requests": {
+        if (!["true", "false"].includes(value)) {
+          throw "please provide true or false";
+        }
+        logRequests = value === "true";
+        break;
+      }
+      default:
+        throw new Error();
+    }
+  }
+  return { logRequests };
 }
 
 runNodeJs(protocGenTwirpEs);

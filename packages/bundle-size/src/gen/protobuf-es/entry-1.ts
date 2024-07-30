@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeOfDay } from "./google/type/timeofday_pb.js";
+import { create, toBinary } from "@bufbuild/protobuf";
+import { TimeOfDaySchema } from "./google/type/timeofday_pb";
 
 /* eslint-disable no-console */
 
 // google/type/timeofday.proto
-console.log(new TimeOfDay().toBinary().length);
+console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);

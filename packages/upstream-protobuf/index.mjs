@@ -68,17 +68,22 @@ export class UpstreamProtobuf {
   #testprotos = [
     "src/google/protobuf/test_messages_*.proto",
     "src/google/protobuf/*unittest*.proto",
-    "!src/google/protobuf/edition_unittest.proto",
+    "editions/golden/test_messages_proto3_editions.proto",
     "!src/google/protobuf/map_proto3_unittest.proto",
-    "!src/google/protobuf/unittest_lite.proto",
-    "!src/google/protobuf/unittest_import_public_lite.proto",
-    "!src/google/protobuf/unittest_import_lite.proto",
+    "!src/google/protobuf/edition_unittest.proto",
+    "!src/google/protobuf/unittest_arena.proto",
+    "!src/google/protobuf/map_unittest.proto",
     "!src/google/protobuf/map_lite_unittest.proto",
+    "!src/google/protobuf/unittest_lite.proto",
+    "!src/google/protobuf/unittest_import_lite.proto",
+    "!src/google/protobuf/unittest_import_public_lite.proto",
     "!src/google/protobuf/unittest_delimited.proto",
     "!src/google/protobuf/unittest_delimited_import.proto",
+    "!src/google/protobuf/unittest_proto3_extensions.proto",
+    "!src/google/protobuf/unittest_proto3_lite.proto",
+    "!src/google/protobuf/unittest_proto3_arena.proto",
+    "!src/google/protobuf/unittest_proto3_arena_lite.proto",
     "!src/google/protobuf/unittest_string_view.proto",
-    "!src/google/protobuf/editions/**/*.proto",
-    "!src/google/protobuf/unittest_arena.proto",
     "!src/google/protobuf/unittest_drop_unknown_fields.proto",
     "!src/google/protobuf/unittest_lazy_dependencies.proto",
     "!src/google/protobuf/unittest_lazy_dependencies_custom_option.proto",
@@ -113,6 +118,10 @@ export class UpstreamProtobuf {
       temp = joinPath(thisFilePath, "..", ".tmp", this.#version + "-" + digest);
     }
     this.#temp = temp;
+  }
+
+  version() {
+    return this.#version;
   }
 
   /**
@@ -395,7 +404,12 @@ export class UpstreamProtobuf {
         }
         break;
     }
-    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protoc-${this.#version}-${build}.zip`;
+    let archiveVersion = this.#version;
+    const rcMatch = /^(\d+\.\d+-rc)(\d)$/.exec(archiveVersion);
+    if (rcMatch != null) {
+      archiveVersion = rcMatch[1] + "-" + rcMatch[2];
+    }
+    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protoc-${archiveVersion}-${build}.zip`;
     return this.#download(url, "protoc.zip");
   }
 
@@ -543,7 +557,6 @@ export class UpstreamProtobuf {
     if (existsSync(path)) {
       return path;
     }
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     const res = await fetch(url);
     if (!res.ok) {
       throw new Error(`HTTP ${res.status} ${res.statusText} for ${url}`);

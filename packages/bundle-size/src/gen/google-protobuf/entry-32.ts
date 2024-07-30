@@ -12,38 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeOfDay } from "./google/type/timeofday_pb.js";
-import { Quaternion } from "./google/type/quaternion_pb.js";
-import { PostalAddress } from "./google/type/postal_address_pb.js";
-import { PhoneNumber } from "./google/type/phone_number_pb.js";
-import { Money } from "./google/type/money_pb.js";
-import { LocalizedText } from "./google/type/localized_text_pb.js";
-import { Interval } from "./google/type/interval_pb.js";
-import { Fraction } from "./google/type/fraction_pb.js";
-import { Expr } from "./google/type/expr_pb.js";
-import { Decimal } from "./google/type/decimal_pb.js";
-import { DateTime, TimeZone } from "./google/type/datetime_pb.js";
-import { Date } from "./google/type/date_pb.js";
-import { Color } from "./google/type/color_pb.js";
-import { AttributeContext } from "./google/rpc/context/attribute_context_pb.js";
-import { Viewport } from "./google/geo/type/viewport_pb.js";
-import { LatLng } from "./google/type/latlng_pb.js";
-import { Visibility, VisibilityRule } from "./google/api/visibility_pb.js";
-import { ResourceDescriptor, ResourceReference } from "./google/api/resource_pb.js";
-import { HttpBody } from "./google/api/httpbody_pb.js";
-import { FieldInfo } from "./google/api/field_info_pb.js";
-import { EvalState, ExprValue } from "./google/api/expr/v1beta1/eval_pb.js";
-import { EnumValue, Value } from "./google/api/expr/v1beta1/value_pb.js";
-import { Decl, DeclType } from "./google/api/expr/v1beta1/decl_pb.js";
-import { Expr as Expr$1, ParsedExpr } from "./google/api/expr/v1beta1/expr_pb.js";
-import { SourceInfo, SourcePosition } from "./google/api/expr/v1beta1/source_pb.js";
-import { Explain } from "./google/api/expr/v1alpha1/explain_pb.js";
-import { EvalState as EvalState$1, ExprValue as ExprValue$1 } from "./google/api/expr/v1alpha1/eval_pb.js";
-import { Status } from "./google/rpc/status_pb.js";
-import { EnumValue as EnumValue$1, Value as Value$1 } from "./google/api/expr/v1alpha1/value_pb.js";
-import { CheckedExpr, Type } from "./google/api/expr/v1alpha1/checked_pb.js";
-import { Expr as Expr$2, ParsedExpr as ParsedExpr$1 } from "./google/api/expr/v1alpha1/syntax_pb.js";
-import { Http, HttpRule } from "./google/api/http_pb.js";
+import { TimeOfDay } from "./google/type/timeofday_pb";
+import { Quaternion } from "./google/type/quaternion_pb";
+import { PostalAddress } from "./google/type/postal_address_pb";
+import { PhoneNumber } from "./google/type/phone_number_pb";
+import { Money } from "./google/type/money_pb";
+import { LocalizedText } from "./google/type/localized_text_pb";
+import { Interval } from "./google/type/interval_pb";
+import { Fraction } from "./google/type/fraction_pb";
+import { Expr } from "./google/type/expr_pb";
+import { Decimal } from "./google/type/decimal_pb";
+import { DateTime, TimeZone } from "./google/type/datetime_pb";
+import { Date } from "./google/type/date_pb";
+import { Color } from "./google/type/color_pb";
+import { AttributeContext } from "./google/rpc/context/attribute_context_pb";
+import { Viewport } from "./google/geo/type/viewport_pb";
+import { LatLng } from "./google/type/latlng_pb";
+import { Visibility, VisibilityRule } from "./google/api/visibility_pb";
+import { ResourceDescriptor, ResourceReference } from "./google/api/resource_pb";
+import { HttpBody } from "./google/api/httpbody_pb";
+import { FieldInfo } from "./google/api/field_info_pb";
+import { EvalState, ExprValue } from "./google/api/expr/v1beta1/eval_pb";
+import { EnumValue, Value } from "./google/api/expr/v1beta1/value_pb";
+import { Decl, DeclType } from "./google/api/expr/v1beta1/decl_pb";
+import { Expr as Expr$1, ParsedExpr } from "./google/api/expr/v1beta1/expr_pb";
+import { SourceInfo, SourcePosition } from "./google/api/expr/v1beta1/source_pb";
+import { Explain } from "./google/api/expr/v1alpha1/explain_pb";
+import { EvalState as EvalState$1, ExprValue as ExprValue$1 } from "./google/api/expr/v1alpha1/eval_pb";
+import { Status } from "./google/rpc/status_pb";
+import { EnumValue as EnumValue$1, Value as Value$1 } from "./google/api/expr/v1alpha1/value_pb";
+import { CheckedExpr, Type } from "./google/api/expr/v1alpha1/checked_pb";
+import { Expr as Expr$2, ParsedExpr as ParsedExpr$1 } from "./google/api/expr/v1alpha1/syntax_pb";
+import { Http, HttpRule } from "./google/api/http_pb";
 
 /* eslint-disable no-console,@typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
 

@@ -13,12 +13,12 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { protoInt64 } from "@bufbuild/protobuf";
-import type { GeneratedFile, Schema } from "@bufbuild/protoplugin/ecmascript";
-import { createImportSymbol } from "@bufbuild/protoplugin/ecmascript";
+import { protoInt64, ScalarType } from "@bufbuild/protobuf";
+import type { GeneratedFile, Schema } from "@bufbuild/protoplugin";
+import { createImportSymbol } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("file print", () => {
+describe("GeneratedFile.print", () => {
   test("should print bigint literals", async () => {
     const lines = await testGenerate((f) => {
       f.print(0n);
@@ -42,9 +42,21 @@ describe("file print", () => {
 
   test("should print number literals", async () => {
     const lines = await testGenerate((f) => {
-      f.print(123);
+      f.print(
+        123,
+        " ",
+        3.145,
+        " ",
+        Number.NaN,
+        " ",
+        Number.POSITIVE_INFINITY,
+        " ",
+        Number.NEGATIVE_INFINITY,
+      );
     });
-    expect(lines).toStrictEqual(["123"]);
+    expect(lines).toStrictEqual([
+      "123 3.145 globalThis.NaN globalThis.Infinity -globalThis.Infinity",
+    ]);
   });
 
   test("should print boolean literals", async () => {
@@ -64,6 +76,126 @@ describe("file print", () => {
       `new Uint8Array(0)`,
       `new Uint8Array([0xDE, 0xAD, 0xBE, 0xEF])`,
     ]);
+  });
+
+  test(`should print "es_string" Printable`, async () => {
+    const lines = await testGenerate((f) => {
+      f.print({
+        kind: "es_string",
+        value: `ab"c`,
+      });
+    });
+    expect(lines).toStrictEqual([`"ab\\"c"`]);
+  });
+
+  describe(`should print "es_proto_int64" Printable`, () => {
+    test("should honor longAsString", async () => {
+      const lines = await testGenerate((f) => {
+        f.print({
+          kind: "es_proto_int64",
+          type: ScalarType.INT64,
+          longAsString: true,
+          value: 123n,
+        });
+      });
+      expect(lines).toStrictEqual([`"123"`]);
+    });
+
+    test("should honor longAsString for 0", async () => {
+      const lines = await testGenerate((f) => {
+        f.print({
+          kind: "es_proto_int64",
+          type: ScalarType.INT64,
+          longAsString: true,
+          value: 0n,
+        });
+      });
+      expect(lines).toStrictEqual([`"0"`]);
+    });
+
+    test("should honor longAsString for string value", async () => {
+      const lines = await testGenerate((f) => {
+        f.print({
+          kind: "es_proto_int64",
+          type: ScalarType.INT64,
+          longAsString: true,
+          value: "123",
+        });
+      });
+      expect(lines).toStrictEqual([`"123"`]);
+    });
+
+    const signedTypes = [
+      ScalarType.INT64,
+      ScalarType.SINT64,
+      ScalarType.SFIXED64,
+    ] as const;
+    for (const t of signedTypes) {
+      test(`should use protoInt64.zero for ${ScalarType[t]}`, async () => {
+        const lines = await testGenerate((f) => {
+          f.print({
+            kind: "es_proto_int64",
+            type: t,
+            longAsString: false,
+            value: 0n,
+          });
+        });
+        expect(lines).toStrictEqual([
+          `import { protoInt64 } from "@bufbuild/protobuf";`,
+          ``,
+          `protoInt64.zero`,
+        ]);
+      });
+      test(`should use protoInt64.parse for ${ScalarType[t]}`, async () => {
+        const lines = await testGenerate((f) => {
+          f.print({
+            kind: "es_proto_int64",
+            type: t,
+            longAsString: false,
+            value: 123n,
+          });
+        });
+        expect(lines).toStrictEqual([
+          `import { protoInt64 } from "@bufbuild/protobuf";`,
+          ``,
+          `protoInt64.parse("123")`,
+        ]);
+      });
+    }
+
+    const unsignedTypes = [ScalarType.UINT64, ScalarType.FIXED64] as const;
+    for (const t of unsignedTypes) {
+      test(`should use protoInt64.zero for ${ScalarType[t]}`, async () => {
+        const lines = await testGenerate((f) => {
+          f.print({
+            kind: "es_proto_int64",
+            type: t,
+            longAsString: false,
+            value: 0n,
+          });
+        });
+        expect(lines).toStrictEqual([
+          `import { protoInt64 } from "@bufbuild/protobuf";`,
+          ``,
+          `protoInt64.zero`,
+        ]);
+      });
+      test(`should use protoInt64.uParse for ${ScalarType[t]}`, async () => {
+        const lines = await testGenerate((f) => {
+          f.print({
+            kind: "es_proto_int64",
+            type: t,
+            longAsString: false,
+            value: 123n,
+          });
+        });
+        expect(lines).toStrictEqual([
+          `import { protoInt64 } from "@bufbuild/protobuf";`,
+          ``,
+          `protoInt64.uParse("123")`,
+        ]);
+      });
+    }
   });
 
   test("should print import symbol", async function () {
@@ -152,32 +284,13 @@ describe("file print", () => {
   });
 
   test("should print runtime imports", async () => {
-    const lines = await testGenerate((f, schema) => {
-      f.print(schema.runtime.ScalarType, ".INT32");
+    const lines = await testGenerate((f) => {
+      f.print(f.runtime.create, "(FooDesc);");
     });
     expect(lines).toStrictEqual([
-      'import { ScalarType } from "@bufbuild/protobuf";',
+      'import { create } from "@bufbuild/protobuf";',
       "",
-      "ScalarType.INT32",
-    ]);
-  });
-
-  test("should print descriptor", async function () {
-    const lines = await createTestPluginAndRun({
-      proto: `
-          syntax="proto3";
-          message Person {}
-          `,
-      parameter: "target=ts",
-      generateAny(f, schema) {
-        f.print(schema.files[0].messages[0], ".typeName");
-      },
-      returnLinesOfFirstFile: true,
-    });
-    expect(lines).toStrictEqual([
-      'import { Person } from "./x_pb.js";',
-      "",
-      "Person.typeName",
+      "create(FooDesc);",
     ]);
   });
 

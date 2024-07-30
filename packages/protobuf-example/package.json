@@ -4,16 +4,20 @@
   "license": "(Apache-2.0 AND BSD-3-Clause)",
   "scripts": {
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
-    "add-person": "tsx src/add-person.ts addressbook.binpb",
-    "list-people": "tsx src/list-people.ts addressbook.binpb",
+    "add": "tsx src/add.ts",
+    "list": "tsx src/list.ts",
     "pregenerate": "rm -rf src/gen",
-    "generate": "buf generate"
+    "generate": "buf generate",
+    "postgenerate": "license-header src/gen",
+    "format": "prettier --write --ignore-unknown '.' '!.turbo' '!src/gen/**'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 ."
   },
   "type": "module",
   "dependencies": {
-    "@bufbuild/buf": "^1.34.0",
-    "@bufbuild/protobuf": "1.10.0",
-    "@bufbuild/protoc-gen-es": "1.10.0",
-    "typescript": "^5.2.2"
+    "@bufbuild/buf": "^1.35.1",
+    "@bufbuild/protobuf": "2.0.0-beta.3",
+    "@bufbuild/protoc-gen-es": "2.0.0-beta.3",
+    "typescript": "^5.5.4"
   }
 }

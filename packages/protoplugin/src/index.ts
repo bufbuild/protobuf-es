@@ -12,12 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Schema as SchemaInternal } from "./ecmascript/schema.js";
 export type { Plugin } from "./plugin.js";
 export { runNodeJs } from "./run-node.js";
 export { createEcmaScriptPlugin } from "./create-es-plugin.js";
+export {
+  getComments,
+  getDeclarationString,
+  getPackageComments,
+  getSyntaxComments,
+} from "./source-code-info.js";
 
-/**
- * @deprecated Please use Schema from @bufbuild/protoplugin/ecmascript instead
- */
-export type Schema = SchemaInternal;
+export type { Schema } from "./schema.js";
+export type {
+  EcmaScriptPluginOptions,
+  Target,
+  ImportExtension,
+} from "./parameter.js";
+export type { GeneratedFile, FileInfo } from "./generated-file.js";
+export type { ImportSymbol } from "./import-symbol.js";
+export { createImportSymbol } from "./import-symbol.js";
+export type { Printable } from "./printable.js";
+export { safeIdentifier } from "./safe-identifier.js";
