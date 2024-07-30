@@ -1,10 +1,10 @@
 name: ci
 on:
   push:
-    branches: [main, v2]
+    branches: [main, "v*"]
     tags: ["v*"]
   pull_request:
-    branches: [main, v2]
+    branches: [main, "v*"]
   workflow_dispatch:
 
 env:
