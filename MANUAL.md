@@ -2253,7 +2253,7 @@ uses [custom options](#custom-options).
 
 ## Migrating from version 1
 
-Compared to version 1, version 2 provides many new features around reflection, and support for
+Version 2 provides many new features around reflection, and support for
 [Protobuf editions][protobuf.dev/editions].
 
 The biggest change is that the generated code no longer uses classes. To create a new instance, you call the function
