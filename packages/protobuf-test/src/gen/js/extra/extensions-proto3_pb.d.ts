@@ -44,12 +44,12 @@ export declare type Proto3ExtMessage = Message<"proto3ext.Proto3ExtMessage"> & {
 export declare const Proto3ExtMessageSchema: GenMessage<Proto3ExtMessage>;
 
 /**
- * @generated from extension: uint32 uint32_ext = 1001;
+ * @generated from extension: uint32 uint32_ext = 7001;
  */
 export declare const uint32_ext: GenExtension<FileOptions, number>;
 
 /**
- * @generated from extension: optional uint32 optional_uint32_ext = 1002;
+ * @generated from extension: optional uint32 optional_uint32_ext = 7002;
  */
 export declare const optional_uint32_ext: GenExtension<FileOptions, number>;
 

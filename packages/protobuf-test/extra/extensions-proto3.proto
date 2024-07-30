@@ -19,8 +19,8 @@ import "google/protobuf/descriptor.proto";
 
 // In proto3, we can only extend options.
 extend google.protobuf.FileOptions {
-  uint32 uint32_ext = 1001;
-  optional uint32 optional_uint32_ext = 1002;
+  uint32 uint32_ext = 7001;
+  optional uint32 optional_uint32_ext = 7002;
   repeated uint32 packed_uint32_ext = 7003;
   repeated uint32 unpacked_uint32_ext = 7004 [packed = false];
   Proto3ExtMessage message_ext = 7005;

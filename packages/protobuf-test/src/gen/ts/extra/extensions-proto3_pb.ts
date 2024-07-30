@@ -26,7 +26,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/extensions-proto3.proto.
  */
 export const file_extra_extensions_proto3: GenFile = /*@__PURE__*/
-  fileDesc("Ch1leHRyYS9leHRlbnNpb25zLXByb3RvMy5wcm90bxIJcHJvdG8zZXh0IigKEFByb3RvM0V4dE1lc3NhZ2USFAoMc3RyaW5nX2ZpZWxkGAEgASgJOjwKCnVpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY6QcgASgNUgl1aW50MzJFeHQ6UAoTb3B0aW9uYWxfdWludDMyX2V4dBIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxjqByABKA1SEW9wdGlvbmFsVWludDMyRXh0iAEBOkkKEXBhY2tlZF91aW50MzJfZXh0EhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGNs2IAMoDVIPcGFja2VkVWludDMyRXh0OlEKE3VucGFja2VkX3VpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY3DYgAygNQgIQAFIRdW5wYWNrZWRVaW50MzJFeHQ6WwoLbWVzc2FnZV9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY3TYgASgLMhsucHJvdG8zZXh0LlByb3RvM0V4dE1lc3NhZ2VSCm1lc3NhZ2VFeHRiBnByb3RvMw", [file_google_protobuf_descriptor]);
+  fileDesc("Ch1leHRyYS9leHRlbnNpb25zLXByb3RvMy5wcm90bxIJcHJvdG8zZXh0IigKEFByb3RvM0V4dE1lc3NhZ2USFAoMc3RyaW5nX2ZpZWxkGAEgASgJOjwKCnVpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY2TYgASgNUgl1aW50MzJFeHQ6UAoTb3B0aW9uYWxfdWludDMyX2V4dBIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxjaNiABKA1SEW9wdGlvbmFsVWludDMyRXh0iAEBOkkKEXBhY2tlZF91aW50MzJfZXh0EhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGNs2IAMoDVIPcGFja2VkVWludDMyRXh0OlEKE3VucGFja2VkX3VpbnQzMl9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY3DYgAygNQgIQAFIRdW5wYWNrZWRVaW50MzJFeHQ6WwoLbWVzc2FnZV9leHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMY3TYgASgLMhsucHJvdG8zZXh0LlByb3RvM0V4dE1lc3NhZ2VSCm1lc3NhZ2VFeHRiBnByb3RvMw", [file_google_protobuf_descriptor]);
 
 /**
  * A message used in extensions
@@ -48,13 +48,13 @@ export const Proto3ExtMessageSchema: GenMessage<Proto3ExtMessage> = /*@__PURE__*
   messageDesc(file_extra_extensions_proto3, 0);
 
 /**
- * @generated from extension: uint32 uint32_ext = 1001;
+ * @generated from extension: uint32 uint32_ext = 7001;
  */
 export const uint32_ext: GenExtension<FileOptions, number> = /*@__PURE__*/
   extDesc(file_extra_extensions_proto3, 0);
 
 /**
- * @generated from extension: optional uint32 optional_uint32_ext = 1002;
+ * @generated from extension: optional uint32 optional_uint32_ext = 7002;
  */
 export const optional_uint32_ext: GenExtension<FileOptions, number> = /*@__PURE__*/
   extDesc(file_extra_extensions_proto3, 1);
