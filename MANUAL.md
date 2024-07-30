@@ -2271,7 +2271,7 @@ The biggest change is that the generated code no longer uses classes. To create 
 ```
 
 Methods like `toBinary` and `toJson` are no longer attached to the object. Similar to `create()`, they're simple
-functions that you call with two arguments: the schema, and the message:
+functions that you call with two arguments: the schema and the message:
 
 ```diff
 import type { User } from "./gen/example_pb";
