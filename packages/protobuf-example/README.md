@@ -1,61 +1,56 @@
 # Protobuf Example
 
-This directory contains example code that uses Protocol Buffers to manage an 
-address book. The script [add-person.ts](./src/add-person.ts) adds a new person
-to an address book, prompting the user to input the person's information. The
-script [list-people.ts](./src/list-people.ts) lists people already in the 
-address book.
+This directory contains example code that uses Protocol Buffers to manage a
+list of users. The [add.ts](./src/add.ts) script adds a new user, prompting the
+user to input the person's information. The [list.ts](./src/list.ts) script
+lists users.
 
-Note that this example is compatible with all [other language implementations](https://github.com/protocolbuffers/protobuf/tree/main/examples), 
-because the serialization format is standardized. That means you could add a 
-person with Dart to an address book, and list people with TypeScript 
-interchangeably.
-
+Note that this example can be easily implemented in other languages, because
+the serialization format is standardized. That means you could add a user to the
+list with Dart, and list people with TypeScript interchangeably.
 
 ### Build and run the example
 
-You can easily run the example for yourself - you will only need npm or yarn. 
+To run the example, you only need npm or Yarn.
 [Download the source](https://github.com/bufbuild/protobuf-es/archive/refs/heads/main.zip),
 then run the following commands:
 
 From the project root, first install and build all required packages:
 
-```shell
-npm install -w packages/protobuf-example
-npm run -w packages/protobuf build
-npm run -w packages/protoplugin build
-npm run -w packages/protoc-gen-es build
+```shellsession
+npm ci
+npm run generate --filter ./packages/protobuf-example
 ```
 
 Next, `cd` into the example directory:
 
-```shell
+```shellsession
 cd packages/protobuf-example
 ```
 
-To add a person to the address book:
+To add a user:
 
-```shell
-npm run add-person
+```shellsession
+npm run add
 ```
 
-To list all entries of the address book:
+To list all users:
 
-```shell
-npm run list-people
+```shellsession
+npm run list
 ```
 
-### Generate code yourself
+### Generate code
 
-If you want to use [`buf`](https://github.com/bufbuild/buf) to generate the code, 
-simply run `npm run generate` in this directory. [`buf.gen.yaml`](./buf.gen.yaml) 
+If you want to use the [Buf CLI](https://github.com/bufbuild/buf) to generate the code,
+simply run `npx buf generate` in this directory. [`buf.gen.yaml`](./buf.gen.yaml)
 contains the plugin configuration.
 
 If you want to use `protoc`, the following command is equivalent:
 
-```shell
-protoc -I . --es_out=src/gen --es_opt=target=ts --plugin=protoc-gen-es=./node_modules/.bin/protoc-gen-es addressbook.proto
+```shellsession
+protoc -I . --es_out=src/gen --es_opt=target=ts --plugin=protoc-gen-es=./node_modules/.bin/protoc-gen-es proto/example.proto
 ```
 
-You do not need TypeScript to use **Protobuf-ES**. Just set the plugin option `target=js` if you prefer plain JavaScript, 
+You don't need TypeScript to use **Protobuf-ES**. Just set the plugin option `target=js` if you prefer plain JavaScript,
 or `target=js+dts` if you prefer JavaScript with TypeScript declaration files.

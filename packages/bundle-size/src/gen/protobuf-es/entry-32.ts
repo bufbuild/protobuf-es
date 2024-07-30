@@ -12,115 +12,116 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeOfDay } from "./google/type/timeofday_pb.js";
-import { Quaternion } from "./google/type/quaternion_pb.js";
-import { PostalAddress } from "./google/type/postal_address_pb.js";
-import { PhoneNumber } from "./google/type/phone_number_pb.js";
-import { Money } from "./google/type/money_pb.js";
-import { LocalizedText } from "./google/type/localized_text_pb.js";
-import { Interval } from "./google/type/interval_pb.js";
-import { Fraction } from "./google/type/fraction_pb.js";
-import { Expr } from "./google/type/expr_pb.js";
-import { Decimal } from "./google/type/decimal_pb.js";
-import { DateTime, TimeZone } from "./google/type/datetime_pb.js";
-import { Date } from "./google/type/date_pb.js";
-import { Color } from "./google/type/color_pb.js";
-import { AttributeContext } from "./google/rpc/context/attribute_context_pb.js";
-import { Viewport } from "./google/geo/type/viewport_pb.js";
-import { LatLng } from "./google/type/latlng_pb.js";
-import { Visibility, VisibilityRule } from "./google/api/visibility_pb.js";
-import { ResourceDescriptor, ResourceReference } from "./google/api/resource_pb.js";
-import { HttpBody } from "./google/api/httpbody_pb.js";
-import { FieldInfo } from "./google/api/field_info_pb.js";
-import { EvalState, ExprValue } from "./google/api/expr/v1beta1/eval_pb.js";
-import { EnumValue, Value } from "./google/api/expr/v1beta1/value_pb.js";
-import { Decl, DeclType } from "./google/api/expr/v1beta1/decl_pb.js";
-import { Expr as Expr$1, ParsedExpr } from "./google/api/expr/v1beta1/expr_pb.js";
-import { SourceInfo, SourcePosition } from "./google/api/expr/v1beta1/source_pb.js";
-import { Explain } from "./google/api/expr/v1alpha1/explain_pb.js";
-import { EvalState as EvalState$1, ExprValue as ExprValue$1 } from "./google/api/expr/v1alpha1/eval_pb.js";
-import { Status } from "./google/rpc/status_pb.js";
-import { EnumValue as EnumValue$1, Value as Value$1 } from "./google/api/expr/v1alpha1/value_pb.js";
-import { CheckedExpr, Type } from "./google/api/expr/v1alpha1/checked_pb.js";
-import { Expr as Expr$2, ParsedExpr as ParsedExpr$1 } from "./google/api/expr/v1alpha1/syntax_pb.js";
-import { Http, HttpRule } from "./google/api/http_pb.js";
+import { create, toBinary } from "@bufbuild/protobuf";
+import { TimeOfDaySchema } from "./google/type/timeofday_pb";
+import { QuaternionSchema } from "./google/type/quaternion_pb";
+import { PostalAddressSchema } from "./google/type/postal_address_pb";
+import { PhoneNumberSchema } from "./google/type/phone_number_pb";
+import { MoneySchema } from "./google/type/money_pb";
+import { LocalizedTextSchema } from "./google/type/localized_text_pb";
+import { IntervalSchema } from "./google/type/interval_pb";
+import { FractionSchema } from "./google/type/fraction_pb";
+import { ExprSchema } from "./google/type/expr_pb";
+import { DecimalSchema } from "./google/type/decimal_pb";
+import { DateTimeSchema, TimeZoneSchema } from "./google/type/datetime_pb";
+import { DateSchema } from "./google/type/date_pb";
+import { ColorSchema } from "./google/type/color_pb";
+import { AttributeContextSchema } from "./google/rpc/context/attribute_context_pb";
+import { ViewportSchema } from "./google/geo/type/viewport_pb";
+import { LatLngSchema } from "./google/type/latlng_pb";
+import { VisibilityRuleSchema, VisibilitySchema } from "./google/api/visibility_pb";
+import { ResourceDescriptorSchema, ResourceReferenceSchema } from "./google/api/resource_pb";
+import { HttpBodySchema } from "./google/api/httpbody_pb";
+import { FieldInfoSchema } from "./google/api/field_info_pb";
+import { EvalStateSchema, ExprValueSchema } from "./google/api/expr/v1beta1/eval_pb";
+import { EnumValueSchema, ValueSchema } from "./google/api/expr/v1beta1/value_pb";
+import { DeclSchema, DeclTypeSchema } from "./google/api/expr/v1beta1/decl_pb";
+import { ExprSchema as ExprSchema$1, ParsedExprSchema } from "./google/api/expr/v1beta1/expr_pb";
+import { SourceInfoSchema, SourcePositionSchema } from "./google/api/expr/v1beta1/source_pb";
+import { ExplainSchema } from "./google/api/expr/v1alpha1/explain_pb";
+import { EvalStateSchema as EvalStateSchema$1, ExprValueSchema as ExprValueSchema$1 } from "./google/api/expr/v1alpha1/eval_pb";
+import { StatusSchema } from "./google/rpc/status_pb";
+import { EnumValueSchema as EnumValueSchema$1, ValueSchema as ValueSchema$1 } from "./google/api/expr/v1alpha1/value_pb";
+import { CheckedExprSchema, TypeSchema } from "./google/api/expr/v1alpha1/checked_pb";
+import { ExprSchema as ExprSchema$2, ParsedExprSchema as ParsedExprSchema$1 } from "./google/api/expr/v1alpha1/syntax_pb";
+import { HttpRuleSchema, HttpSchema } from "./google/api/http_pb";
 
 /* eslint-disable no-console */
 
 // google/type/timeofday.proto
-console.log(new TimeOfDay().toBinary().length);
+console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);
 // google/type/quaternion.proto
-console.log(new Quaternion().toBinary().length);
+console.log(toBinary(QuaternionSchema, create(QuaternionSchema)).length);
 // google/type/postal_address.proto
-console.log(new PostalAddress().toBinary().length);
+console.log(toBinary(PostalAddressSchema, create(PostalAddressSchema)).length);
 // google/type/phone_number.proto
-console.log(new PhoneNumber().toBinary().length);
+console.log(toBinary(PhoneNumberSchema, create(PhoneNumberSchema)).length);
 // google/type/money.proto
-console.log(new Money().toBinary().length);
+console.log(toBinary(MoneySchema, create(MoneySchema)).length);
 // google/type/localized_text.proto
-console.log(new LocalizedText().toBinary().length);
+console.log(toBinary(LocalizedTextSchema, create(LocalizedTextSchema)).length);
 // google/type/interval.proto
-console.log(new Interval().toBinary().length);
+console.log(toBinary(IntervalSchema, create(IntervalSchema)).length);
 // google/type/fraction.proto
-console.log(new Fraction().toBinary().length);
+console.log(toBinary(FractionSchema, create(FractionSchema)).length);
 // google/type/expr.proto
-console.log(new Expr().toBinary().length);
+console.log(toBinary(ExprSchema, create(ExprSchema)).length);
 // google/type/decimal.proto
-console.log(new Decimal().toBinary().length);
+console.log(toBinary(DecimalSchema, create(DecimalSchema)).length);
 // google/type/datetime.proto
-console.log(new DateTime().toBinary().length);
-console.log(new TimeZone().toBinary().length);
+console.log(toBinary(DateTimeSchema, create(DateTimeSchema)).length);
+console.log(toBinary(TimeZoneSchema, create(TimeZoneSchema)).length);
 // google/type/date.proto
-console.log(new Date().toBinary().length);
+console.log(toBinary(DateSchema, create(DateSchema)).length);
 // google/type/color.proto
-console.log(new Color().toBinary().length);
+console.log(toBinary(ColorSchema, create(ColorSchema)).length);
 // google/rpc/context/attribute_context.proto
-console.log(new AttributeContext().toBinary().length);
+console.log(toBinary(AttributeContextSchema, create(AttributeContextSchema)).length);
 // google/geo/type/viewport.proto
-console.log(new Viewport().toBinary().length);
+console.log(toBinary(ViewportSchema, create(ViewportSchema)).length);
 // google/type/latlng.proto
-console.log(new LatLng().toBinary().length);
+console.log(toBinary(LatLngSchema, create(LatLngSchema)).length);
 // google/api/visibility.proto
-console.log(new Visibility().toBinary().length);
-console.log(new VisibilityRule().toBinary().length);
+console.log(toBinary(VisibilitySchema, create(VisibilitySchema)).length);
+console.log(toBinary(VisibilityRuleSchema, create(VisibilityRuleSchema)).length);
 // google/api/resource.proto
-console.log(new ResourceDescriptor().toBinary().length);
-console.log(new ResourceReference().toBinary().length);
+console.log(toBinary(ResourceDescriptorSchema, create(ResourceDescriptorSchema)).length);
+console.log(toBinary(ResourceReferenceSchema, create(ResourceReferenceSchema)).length);
 // google/api/httpbody.proto
-console.log(new HttpBody().toBinary().length);
+console.log(toBinary(HttpBodySchema, create(HttpBodySchema)).length);
 // google/api/field_info.proto
-console.log(new FieldInfo().toBinary().length);
+console.log(toBinary(FieldInfoSchema, create(FieldInfoSchema)).length);
 // google/api/expr/v1beta1/eval.proto
-console.log(new EvalState().toBinary().length);
-console.log(new ExprValue().toBinary().length);
+console.log(toBinary(EvalStateSchema, create(EvalStateSchema)).length);
+console.log(toBinary(ExprValueSchema, create(ExprValueSchema)).length);
 // google/api/expr/v1beta1/value.proto
-console.log(new Value().toBinary().length);
-console.log(new EnumValue().toBinary().length);
+console.log(toBinary(ValueSchema, create(ValueSchema)).length);
+console.log(toBinary(EnumValueSchema, create(EnumValueSchema)).length);
 // google/api/expr/v1beta1/decl.proto
-console.log(new Decl().toBinary().length);
-console.log(new DeclType().toBinary().length);
+console.log(toBinary(DeclSchema, create(DeclSchema)).length);
+console.log(toBinary(DeclTypeSchema, create(DeclTypeSchema)).length);
 // google/api/expr/v1beta1/expr.proto
-console.log(new ParsedExpr().toBinary().length);
-console.log(new Expr$1().toBinary().length);
+console.log(toBinary(ParsedExprSchema, create(ParsedExprSchema)).length);
+console.log(toBinary(ExprSchema$1, create(ExprSchema$1)).length);
 // google/api/expr/v1beta1/source.proto
-console.log(new SourceInfo().toBinary().length);
-console.log(new SourcePosition().toBinary().length);
+console.log(toBinary(SourceInfoSchema, create(SourceInfoSchema)).length);
+console.log(toBinary(SourcePositionSchema, create(SourcePositionSchema)).length);
 // google/api/expr/v1alpha1/explain.proto
-console.log(new Explain().toBinary().length);
+console.log(toBinary(ExplainSchema, create(ExplainSchema)).length);
 // google/api/expr/v1alpha1/eval.proto
-console.log(new EvalState$1().toBinary().length);
-console.log(new ExprValue$1().toBinary().length);
+console.log(toBinary(EvalStateSchema$1, create(EvalStateSchema$1)).length);
+console.log(toBinary(ExprValueSchema$1, create(ExprValueSchema$1)).length);
 // google/rpc/status.proto
-console.log(new Status().toBinary().length);
+console.log(toBinary(StatusSchema, create(StatusSchema)).length);
 // google/api/expr/v1alpha1/value.proto
-console.log(new Value$1().toBinary().length);
-console.log(new EnumValue$1().toBinary().length);
+console.log(toBinary(ValueSchema$1, create(ValueSchema$1)).length);
+console.log(toBinary(EnumValueSchema$1, create(EnumValueSchema$1)).length);
 // google/api/expr/v1alpha1/checked.proto
-console.log(new CheckedExpr().toBinary().length);
-console.log(new Type().toBinary().length);
+console.log(toBinary(CheckedExprSchema, create(CheckedExprSchema)).length);
+console.log(toBinary(TypeSchema, create(TypeSchema)).length);
 // google/api/expr/v1alpha1/syntax.proto
-console.log(new ParsedExpr$1().toBinary().length);
-console.log(new Expr$2().toBinary().length);
+console.log(toBinary(ParsedExprSchema$1, create(ParsedExprSchema$1)).length);
+console.log(toBinary(ExprSchema$2, create(ExprSchema$2)).length);
 // google/api/http.proto
-console.log(new Http().toBinary().length);
-console.log(new HttpRule().toBinary().length);
+console.log(toBinary(HttpSchema, create(HttpSchema)).length);
+console.log(toBinary(HttpRuleSchema, create(HttpRuleSchema)).length);

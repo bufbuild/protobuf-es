@@ -12,154 +12,100 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
-import type {
-  EnumType,
-  Extension,
-  FieldInfo,
-  Message,
-  MessageType,
-} from "@bufbuild/protobuf";
-import { createRegistryFromDescriptors } from "@bufbuild/protobuf";
-import { readFileSync } from "fs";
+import { UpstreamProtobuf } from "upstream-protobuf";
+import { fromBinary, createFileRegistry } from "@bufbuild/protobuf";
+import type { FileDescriptorSet } from "@bufbuild/protobuf/wkt";
+import { FileDescriptorSetSchema } from "@bufbuild/protobuf/wkt";
+import { FieldError } from "@bufbuild/protobuf/reflect";
+import assert from "node:assert";
 
-/**
- * Runs a describe.each() with three test cases:
- * 1. the TS generated MessageType
- * 2. the JS generated MessageType
- * 3. a dynamic version of the MessageType
- */
-export function describeMT<T extends Message<T>>(
-  opt: {
-    ts: MessageType<T>;
-    js: MessageType<T>;
-  },
-  fn: (type: MessageType<T>) => void,
-) {
-  const tsDynType = makeMessageTypeDynamic(opt.ts);
-  type testCase = { name: string; messageType: MessageType<T> };
-  describe.each<testCase>([
-    { name: opt.ts.typeName + " (generated ts)", messageType: opt.ts },
-    { name: opt.js.typeName + " (generated js)", messageType: opt.js },
-    { name: tsDynType.typeName + " (dynamic)", messageType: tsDynType },
-  ])("$name", function (testCase: testCase) {
-    fn(testCase.messageType);
+export function catchFieldError(fn: () => unknown): FieldError | undefined {
+  try {
+    fn();
+  } catch (e) {
+    if (e instanceof FieldError) {
+      return e;
+    }
+  }
+  return undefined;
+}
+
+let upstreamProtobuf: UpstreamProtobuf | undefined;
+
+export async function compileFileDescriptorSet(
+  files: Record<string, string>,
+): Promise<FileDescriptorSet> {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
+  const bytes = await upstreamProtobuf.compileToDescriptorSet(files, {
+    includeImports: true,
+    retainOptions: true,
   });
+  return fromBinary(FileDescriptorSetSchema, bytes);
 }
 
-/**
- * Runs a test.each() with three test cases:
- * 1. the TS generated MessageType
- * 2. the JS generated MessageType
- * 3. a dynamic version of the MessageType
- */
-export function testMT<T extends Message<T>>(
-  opt: {
-    ts: MessageType<T>;
-    js: MessageType<T>;
-  },
-  fn: (type: MessageType<T>) => void,
-) {
-  const tsDynType = makeMessageTypeDynamic(opt.ts);
-  type testCase = { name: string; messageType: MessageType<T> };
-  test.each<testCase>([
-    { name: opt.ts.typeName + " (generated ts)", messageType: opt.ts },
-    { name: opt.js.typeName + " (generated js)", messageType: opt.js },
-    { name: tsDynType.typeName + " (dynamic)", messageType: tsDynType },
-  ])("$name", function (testCase: testCase) {
-    fn(testCase.messageType);
-  });
+export async function compileFile(proto: string, name = "input.proto") {
+  upstreamProtobuf = upstreamProtobuf ?? new UpstreamProtobuf();
+  const bytes = await upstreamProtobuf.compileToDescriptorSet(
+    {
+      [name]: proto,
+    },
+    {
+      includeImports: true,
+      retainOptions: true,
+      includeSourceInfo: true,
+    },
+  );
+  const fds = fromBinary(FileDescriptorSetSchema, bytes);
+  const reg = createFileRegistry(fds);
+  const file = reg.getFile(name);
+  assert(file);
+  return file;
 }
 
-let testFileDescriptorSetBytes: Uint8Array | undefined;
-
-export function getTestFileDescriptorSetBytes(): Uint8Array {
-  if (!testFileDescriptorSetBytes) {
-    testFileDescriptorSetBytes = readFileSync("./descriptorset.binpb");
+export async function compileEnum(proto: string) {
+  const file = await compileFile(proto);
+  if (file.enums.length != 1) {
+    throw new Error(`expected 1 enum, got ${file.enums.length}`);
   }
-  return testFileDescriptorSetBytes;
+  return file.enums[0];
 }
 
-let testRegistry: ReturnType<typeof createRegistryFromDescriptors> | undefined;
-
-function makeMessageTypeDynamic<T extends Message<T>>(
-  type: MessageType<T>,
-): MessageType<T> {
-  if (!testRegistry) {
-    testRegistry = createRegistryFromDescriptors(
-      getTestFileDescriptorSetBytes(),
-    );
+export async function compileMessage(proto: string) {
+  const file = await compileFile(proto);
+  if (file.messages.length == 0) {
+    throw new Error("missing message");
   }
-  const dyn = testRegistry.findMessage(type.typeName);
-  if (!dyn) {
-    throw new Error();
-  }
-  return dyn as MessageType<T>;
+  return file.messages[0];
 }
 
-export function assertExtensionEquals(a: Extension, b: Extension): void {
-  expect(a.typeName).toBe(b.typeName);
-  expect(a.runtime).toBe(b.runtime);
-  assertMessageTypeEquals(a.extendee, b.extendee);
-  assertFieldInfoEquals(a.field, b.field);
+export async function compileField(proto: string) {
+  const message = await compileMessage(proto);
+  if (message.fields.length == 0) {
+    throw new Error("missing field");
+  }
+  return message.fields[0];
 }
 
-export function assertMessageTypeEquals(a: MessageType, b: MessageType): void {
-  expect(a.name).toBe(b.name);
-  expect(a.typeName).toBe(b.typeName);
-  // We do not surface options at this time
-  // expect(a.options).toStrictEqual(b.options);
-  expect(!!a.fieldWrapper).toBe(!!b.fieldWrapper);
-  expect(a.runtime.syntax).toBe(b.runtime.syntax);
-  expect(a.fields.list().length).toBe(b.fields.list().length);
-  if (a.fields.list().length > 0 && b.fields.list().length > 0) {
-    for (let i = 0; i < a.fields.list().length; i++) {
-      const fa = a.fields.list()[i];
-      const fb = b.fields.list()[i];
-      assertFieldInfoEquals(fa, fb);
-    }
+export async function compileExtension(proto: string) {
+  const file = await compileFile(proto);
+  if (file.extensions.length == 0) {
+    throw new Error("missing extension");
   }
+  return file.extensions[0];
 }
 
-export function assertEnumTypeEquals(a: EnumType, b: EnumType): void {
-  expect(a.typeName).toBe(b.typeName);
-  // We do not surface options at this time
-  // expect(a.options).toStrictEqual(b.options);
-  expect(a.values).toStrictEqual(b.values);
+export async function compileService(proto: string) {
+  const file = await compileFile(proto);
+  if (file.services.length == 0) {
+    throw new Error("missing service");
+  }
+  return file.services[0];
 }
 
-export function assertFieldInfoEquals(a: FieldInfo, b: FieldInfo): void {
-  expect(a.no).toBe(b.no);
-  expect(a.name).toBe(b.name);
-  expect(a.localName).toBe(b.localName);
-  expect(a.jsonName).toBe(b.jsonName);
-  expect(a.repeated).toBe(b.repeated);
-  expect(a.packed).toBe(b.packed);
-  expect(a.default).toStrictEqual(b.default);
-  expect(a.opt).toBe(b.opt);
-  // We do not surface options at this time
-  // expect(a.options).toStrictEqual(b.options);
-  expect(a.kind).toStrictEqual(b.kind);
-  if (a.kind === "scalar" && b.kind === "scalar") {
-    expect(a.T).toBe(b.T);
+export async function compileMethod(proto: string) {
+  const service = await compileService(proto);
+  if (service.methods.length == 0) {
+    throw new Error("missing method");
   }
-  if (a.kind === "message" && b.kind === "message") {
-    assertMessageTypeEquals(a.T, b.T);
-  }
-  if (a.kind === "enum" && b.kind === "enum") {
-    assertEnumTypeEquals(a.T, b.T);
-  }
-  if (a.kind === "map" && b.kind === "map") {
-    expect(a.K).toBe(b.K);
-    expect(a.V.kind).toBe(b.V.kind);
-    if (a.V.kind === "scalar" && b.V.kind === "scalar") {
-      expect(a.V.T).toBe(b.V.T);
-    }
-    if (a.V.kind === "enum" && b.V.kind === "enum") {
-      assertEnumTypeEquals(a.V.T, b.V.T);
-    }
-    if (a.V.kind === "message" && b.V.kind === "message") {
-      assertMessageTypeEquals(a.V.T, b.V.T);
-    }
-  }
+  return service.methods[0];
 }

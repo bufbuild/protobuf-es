@@ -15,7 +15,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("file import", () => {
+describe("GeneratedFile.import", () => {
   test("should create import symbol for package", async function () {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
@@ -52,36 +52,13 @@ describe("file import", () => {
       },
     });
   });
-  test("should create import symbol for enum descriptor", async function () {
+  test("should honor typeOnly argument", async function () {
     await createTestPluginAndRun({
-      proto: `
-      syntax="proto3";
-      enum Foo {
-        FOO_UNSPECIFIED = 0;
-        FOO_BAR = 1;
-      }
-      `,
+      proto: `syntax="proto3";`,
       parameter: "target=ts",
-      generateAny(f, schema) {
-        const imp = f.import(schema.files[0].enums[0]);
-        expect(imp.name).toBe("Foo");
-        expect(imp.from).toBe("./x_pb.js");
-        expect(imp.typeOnly).toBe(false);
-      },
-    });
-  });
-  test("should create import symbol for message descriptor", async function () {
-    await createTestPluginAndRun({
-      proto: `
-      syntax="proto3";
-      message Person {}
-      `,
-      parameter: "target=ts",
-      generateAny(f, schema) {
-        const imp = f.import(schema.files[0].messages[0]);
-        expect(imp.name).toBe("Person");
-        expect(imp.from).toBe("./x_pb.js");
-        expect(imp.typeOnly).toBe(false);
+      generateAny(f) {
+        const imp = f.import("Foo", "@scope/pkg", true);
+        expect(imp.typeOnly).toBe(true);
       },
     });
   });

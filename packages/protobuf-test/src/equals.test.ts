@@ -13,308 +13,167 @@
 // limitations under the License.
 
 import { beforeEach, describe, expect, test } from "@jest/globals";
-import { MapsMessage as TS_MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
-import { MapsMessage as JS_MapsMessage } from "./gen/js/extra/msg-maps_pb.js";
-import { MessageFieldMessage as TS_MessageFieldMessage } from "./gen/ts/extra/msg-message_pb.js";
-import { MessageFieldMessage as JS_MessageFieldMessage } from "./gen/js/extra/msg-message_pb.js";
-import { ScalarValuesMessage as TS_ScalarValuesMessage } from "./gen/ts/extra/msg-scalar_pb.js";
-import { ScalarValuesMessage as JS_ScalarValuesMessage } from "./gen/js/extra/msg-scalar_pb.js";
-import { OneofMessage as TS_OneofMessage } from "./gen/ts/extra/msg-oneof_pb.js";
-import { OneofMessage as JS_OneofMessage } from "./gen/js/extra/msg-oneof_pb.js";
-import { JSTypeStringMessage as TS_JSTypeStringMessage } from "./gen/ts/extra/jstype_pb.js";
-import { JSTypeStringMessage as JS_JSTypeStringMessage } from "./gen/js/extra/jstype_pb.js";
-import { JSTypeProto2StringMessage as TS_JSTypeProto2StringMessage } from "./gen/ts/extra/jstype-proto2_pb.js";
-import { JSTypeProto2StringMessage as JS_JSTypeProto2StringMessage } from "./gen/js/extra/jstype-proto2_pb.js";
-import { describeMT } from "./helpers.js";
+import assert from "node:assert";
+import {
+  create,
+  equals,
+  type Message,
+  type DescMessage,
+} from "@bufbuild/protobuf";
+import { reflect } from "@bufbuild/protobuf/reflect";
+import { WireType } from "@bufbuild/protobuf/wire";
+import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
+import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
+import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
+import { UserSchema } from "./gen/ts/extra/example_pb.js";
+import { fillProto3Message } from "./helpers-proto3.js";
+import { fillProto2Message } from "./helpers-proto2.js";
+import { fillEdition2023Message } from "./helpers-edition2023.js";
 
-describe("equals", function () {
-  describeMT(
-    { ts: TS_JSTypeProto2StringMessage, js: JS_JSTypeProto2StringMessage },
-    (messageType) => {
-      let a: TS_JSTypeProto2StringMessage | JS_JSTypeProto2StringMessage,
-        b: TS_JSTypeProto2StringMessage | JS_JSTypeProto2StringMessage;
-      beforeEach(() => {
-        a = new messageType({
-          fixed64Field: "123",
-          int64Field: "123",
-          sfixed64Field: "123",
-          sint64Field: "123",
-          uint64Field: "123",
-          repeatedFixed64Field: ["123"],
-          repeatedInt64Field: ["123"],
-          repeatedSfixed64Field: ["123"],
-          repeatedSint64Field: ["123"],
-          repeatedUint64Field: ["123"],
-        });
-        b = new messageType({
-          fixed64Field: "123",
-          int64Field: "123",
-          sfixed64Field: "123",
-          sint64Field: "123",
-          uint64Field: "123",
-          repeatedFixed64Field: ["123"],
-          repeatedInt64Field: ["123"],
-          repeatedSfixed64Field: ["123"],
-          repeatedSint64Field: ["123"],
-          repeatedUint64Field: ["123"],
-        });
-      });
-      test("same are equal", () => {
-        expect(a).toStrictEqual(b);
-        expect(a.equals(b)).toBeTruthy();
-      });
-      test("changed are not equal", () => {
-        a.int64Field = undefined;
-        expect(a).not.toStrictEqual(b);
-        expect(a.equals(b)).toBeFalsy();
-      });
-    },
-  );
-
-  describeMT(
-    { ts: TS_JSTypeStringMessage, js: JS_JSTypeStringMessage },
-    (messageType) => {
-      let a: TS_JSTypeStringMessage | JS_JSTypeStringMessage,
-        b: TS_JSTypeStringMessage | JS_JSTypeStringMessage;
-      beforeEach(() => {
-        a = new messageType({
-          fixed64Field: "123",
-          int64Field: "123",
-          sfixed64Field: "123",
-          sint64Field: "123",
-          uint64Field: "123",
-          repeatedFixed64Field: ["123"],
-          repeatedInt64Field: ["123"],
-          repeatedSfixed64Field: ["123"],
-          repeatedSint64Field: ["123"],
-          repeatedUint64Field: ["123"],
-        });
-        b = new messageType({
-          fixed64Field: "123",
-          int64Field: "123",
-          sfixed64Field: "123",
-          sint64Field: "123",
-          uint64Field: "123",
-          repeatedFixed64Field: ["123"],
-          repeatedInt64Field: ["123"],
-          repeatedSfixed64Field: ["123"],
-          repeatedSint64Field: ["123"],
-          repeatedUint64Field: ["123"],
-        });
-      });
-      test("same are equal", () => {
-        expect(a).toStrictEqual(b);
-        expect(a.equals(b)).toBeTruthy();
-      });
-      test("changed are not equal", () => {
-        a.int64Field = "456";
-        expect(a).not.toStrictEqual(b);
-        expect(a.equals(b)).toBeFalsy();
-      });
-    },
-  );
-
-  describeMT({ ts: TS_OneofMessage, js: JS_OneofMessage }, (messageType) => {
-    test("oneof scalars are equal", () => {
-      const a = new messageType({ scalar: { case: "value", value: 1 } });
-      const b = new messageType({ scalar: { case: "value", value: 1 } });
-      expect(a).toStrictEqual(b);
-      expect(a.equals(b)).toBeTruthy();
-    });
-
-    test("oneof scalars are not equal", () => {
-      const a = new messageType({ scalar: { case: "value", value: 1 } });
-      const b = new messageType({ scalar: { case: "value", value: 2 } });
-      expect(a).not.toStrictEqual(b);
-      expect(a.equals(b)).toBeFalsy();
-    });
-
-    test("oneof messages are equal", () => {
-      const a = new messageType({
-        message: { case: "foo", value: { name: "a" } },
-      });
-      const b = new messageType({
-        message: { case: "foo", value: { name: "a" } },
-      });
-      expect(a).toStrictEqual(b);
-      expect(a.equals(b)).toBeTruthy();
-    });
-
-    test("oneof messages are not equal", () => {
-      const a = new messageType({
-        message: { case: "foo", value: { name: "a" } },
-      });
-      const b = new messageType({
-        message: { case: "foo", value: { name: "b" } },
-      });
-      expect(a).not.toStrictEqual(b);
-      expect(a.equals(b)).toBeFalsy();
-    });
-
-    test("oneof messages are different", () => {
-      const a = new messageType({
-        message: { case: "foo", value: { name: "a" } },
-      });
-      const b = new messageType({
-        message: { case: "bar", value: { a: 1 } },
-      });
-      expect(a).not.toStrictEqual(b);
-      expect(a.equals(b)).toBeFalsy();
-    });
-
-    test("oneof enums are equal", () => {
-      const a = new messageType({ enum: { case: "e", value: 1 } });
-      const b = new messageType({ enum: { case: "e", value: 1 } });
-      expect(a).toStrictEqual(b);
-      expect(a.equals(b)).toBeTruthy();
-    });
-
-    test("oneof enums are not equal", () => {
-      const a = new messageType({ enum: { case: "e", value: 1 } });
-      const b = new messageType({ enum: { case: "e", value: 2 } });
-      expect(a).not.toStrictEqual(b);
-      expect(a.equals(b)).toBeFalsy();
-    });
+describe("equals()", () => {
+  test("same messages are equal", () => {
+    const a = create(proto3_ts.Proto3MessageSchema);
+    const b = a;
+    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(true);
   });
-  describeMT(
-    { ts: TS_MessageFieldMessage, js: JS_MessageFieldMessage },
-    (messageType) => {
-      let a: TS_MessageFieldMessage | JS_MessageFieldMessage,
-        b: TS_MessageFieldMessage | JS_MessageFieldMessage;
-      beforeEach(() => {
-        a = new messageType({
-          messageField: { name: "test" },
-          repeatedMessageField: [{ name: "a" }, { name: "b" }],
-        });
-        b = new messageType({
-          messageField: { name: "test" },
-          repeatedMessageField: [{ name: "a" }, { name: "b" }],
-        });
-      });
-      test("static nullish equals nullish", () => {
-        expect(messageType.equals(undefined, undefined)).toBeTruthy();
-        expect(messageType.equals(null, null)).toBeTruthy();
-      });
-      test("same are equal", () => {
-        expect(a).toStrictEqual(b);
-        expect(a.equals(b)).toBeTruthy();
-      });
-      test("changed message field field is not equal", () => {
-        expect(a.messageField).toBeDefined();
-        if (a.messageField !== undefined) {
-          a.messageField.name = "changed";
-          expect(a).not.toStrictEqual(b);
-          expect(a.equals(b)).toBeFalsy();
-        }
-      });
-      test("changed repeated message field field is not equal", () => {
-        a.repeatedMessageField[0].name = "changed";
-        expect(a.equals(b)).toBeFalsy();
-      });
-    },
-  );
-
-  describeMT(
-    { ts: TS_ScalarValuesMessage, js: JS_ScalarValuesMessage },
-    (messageType) => {
-      let a: TS_ScalarValuesMessage | JS_ScalarValuesMessage,
-        b: TS_ScalarValuesMessage | JS_ScalarValuesMessage;
-      beforeEach(() => {
-        a = new messageType({
-          doubleField: 0.75,
-          boolField: true,
-          stringField: "hello world",
-          bytesField: new Uint8Array([
-            104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100,
-          ]),
-        });
-        b = new messageType({
-          doubleField: 0.75,
-          boolField: true,
-          stringField: "hello world",
-          bytesField: new Uint8Array([
-            104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100,
-          ]),
-        });
-      });
-      test("same are equal", () => {
-        expect(a).toStrictEqual(b);
-        expect(a.equals(b)).toBeTruthy();
-      });
-      test("changed string field is not equal", () => {
-        a.stringField = "changed";
-        expect(a).not.toStrictEqual(b);
-        expect(a.equals(b)).toBeFalsy();
-      });
-      test("changed bytes field is not equal", () => {
-        a.bytesField.set([0, 1], 0);
-        expect(a).not.toStrictEqual(b);
-        expect(a.equals(b)).toBeFalsy();
-      });
-    },
-  );
-
-  describeMT({ ts: TS_MapsMessage, js: JS_MapsMessage }, (messageType) => {
-    test("different order are equal", () => {
-      expect(
-        new messageType({
-          strMsgField: {
-            a: { strStrField: { c: "d", e: "f" } },
-          },
-        }).equals(
-          new messageType({
-            strMsgField: {
-              a: { strStrField: { e: "f", c: "d" } },
-            },
-          }),
-        ),
-      ).toBeTruthy();
+  test.each([
+    proto3_ts.Proto3MessageSchema,
+    proto2_ts.Proto2MessageSchema,
+    edition2023_ts.Edition2023MessageSchema,
+  ])("equal zero messages are equal $typeName", (desc) => {
+    const a = create(desc);
+    const b = create(desc);
+    expect(equals(desc, a, b)).toBe(true);
+  });
+  test("equal proto3 messages are equal", () => {
+    const a = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
+    const b = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
+    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(true);
+  });
+  test("equal proto2 messages are equal", () => {
+    const a = fillProto2Message(create(proto2_ts.Proto2MessageSchema));
+    const b = fillProto2Message(create(proto2_ts.Proto2MessageSchema));
+    expect(equals(proto2_ts.Proto2MessageSchema, a, b)).toBe(true);
+  });
+  test("equal edition2023 messages are equal", () => {
+    const a = fillEdition2023Message(
+      create(edition2023_ts.Edition2023MessageSchema),
+    );
+    const b = fillEdition2023Message(
+      create(edition2023_ts.Edition2023MessageSchema),
+    );
+    expect(equals(edition2023_ts.Edition2023MessageSchema, a, b)).toBe(true);
+  });
+  test("different message types are not equal", () => {
+    const a = create(proto3_ts.Proto3MessageSchema);
+    const b = create(UserSchema);
+    expect(equals(proto3_ts.Proto3MessageSchema as DescMessage, a, b)).toBe(
+      false,
+    );
+    expect(equals(proto3_ts.Proto3MessageSchema as DescMessage, b, b)).toBe(
+      false,
+    );
+  });
+  test("accepts anonymous messages", () => {
+    const desc: DescMessage = proto3_ts.Proto3MessageSchema;
+    const a: Message = create(proto3_ts.Proto3MessageSchema);
+    const b: Message = create(proto3_ts.Proto3MessageSchema);
+    expect(equals(desc, a, b)).toBe(true);
+  });
+  test("NaN does not equal NaN", () => {
+    const a = create(proto3_ts.Proto3MessageSchema);
+    a.singularFloatField = Number.NaN;
+    const b = create(proto3_ts.Proto3MessageSchema);
+    b.singularFloatField = Number.NaN;
+    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+  });
+  test("extensions and unknown fields are disregarded", () => {
+    const a = create(proto3_ts.Proto3MessageSchema);
+    a.$unknown = [
+      { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
+    ];
+    const b = create(proto3_ts.Proto3MessageSchema);
+    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(true);
+  });
+  test("set proto2 field is not equal unset field", () => {
+    const a = create(proto2_ts.Proto2MessageSchema);
+    const b = create(proto2_ts.Proto2MessageSchema);
+    b.optionalStringField = "";
+    expect(equals(proto2_ts.Proto2MessageSchema, a, b)).toBe(false);
+  });
+  describe("set proto3 field is not equal unset field", () => {
+    const desc = proto3_ts.Proto3MessageSchema;
+    const a = fillProto3Message(create(desc));
+    let b: proto3_ts.Proto3Message;
+    beforeEach(() => {
+      b = fillProto3Message(create(desc));
     });
-    test("added key not equal", () => {
-      expect(
-        new messageType({
-          strMsgField: {
-            a: {},
-          },
-        }).equals(
-          new messageType({
-            strMsgField: {
-              a: {},
-              b: {},
-            },
-          }),
-        ),
-      ).toBeFalsy();
+    test.each(desc.fields.filter((f) => reflect(desc, a).isSet(f)))(
+      "$name",
+      (f) => {
+        reflect(desc, b).clear(f);
+        expect(reflect(desc, b).isSet(f)).toBe(false);
+        expect(reflect(desc, a).isSet(f)).toBe(true);
+        expect(equals(desc, a, b)).toBe(false);
+      },
+    );
+  });
+  describe("set edition2023 field is not equal unset field", () => {
+    const desc = edition2023_ts.Edition2023MessageSchema;
+    const a = fillEdition2023Message(create(desc));
+    let b: edition2023_ts.Edition2023Message;
+    beforeEach(() => {
+      b = fillEdition2023Message(create(desc));
     });
-    test("removed key not equal", () => {
-      expect(
-        new messageType({
-          strMsgField: {
-            a: { strStrField: { c: "d", e: "f" } },
-          },
-        }).equals(
-          new messageType({
-            strMsgField: {
-              a: { strStrField: { c: "d" } },
-            },
-          }),
-        ),
-      ).toBeFalsy();
+    test.each(desc.fields.filter((f) => reflect(desc, a).isSet(f)))(
+      "$name",
+      (f) => {
+        reflect(desc, b).clear(f);
+        expect(reflect(desc, b).isSet(f)).toBe(false);
+        expect(reflect(desc, a).isSet(f)).toBe(true);
+        expect(equals(desc, a, b)).toBe(false);
+      },
+    );
+  });
+  describe("modified", () => {
+    let a: proto3_ts.Proto3Message;
+    let b: proto3_ts.Proto3Message;
+    beforeEach(() => {
+      a = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
+      b = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
     });
-    test("changed value not equal", () => {
-      expect(
-        new messageType({
-          strMsgField: {
-            a: { strStrField: { c: "d" } },
-          },
-        }).equals(
-          new messageType({
-            strMsgField: {
-              a: { strStrField: { c: "e" } },
-            },
-          }),
-        ),
-      ).toBeFalsy();
+    test("singularStringField is not equal", () => {
+      b.singularStringField = "modified";
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+    });
+    test("singularBytesField is not equal", () => {
+      b.singularBytesField[0] = 0x01;
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+    });
+    test("optionalStringField is not equal", () => {
+      b.optionalStringField = "modified";
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+    });
+    test("repeatedStringField is not equal", () => {
+      b.repeatedStringField.push("modified");
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+    });
+    test("oneof is not equal", () => {
+      b.either = { case: "oneofInt32Field", value: 123 };
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+    });
+    test("singularMessageField is not equal", () => {
+      assert(b.singularMessageField);
+      b.singularMessageField.singularStringField = "modified";
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+    });
+    test("mapStringStringField is not equal", () => {
+      b.mapStringStringField["modified"] = "modified";
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+    });
+    test("mapInt32MessageField is not equal", () => {
+      b.mapInt32MessageField[123].singularStringField = "modified";
+      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
   });
 });

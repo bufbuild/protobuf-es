@@ -13,53 +13,52 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { User as TS_User } from "./gen/ts/extra/example_pb.js";
-import { User as JS_User } from "./gen/js/extra/example_pb.js";
-import { isMessage } from "@bufbuild/protobuf";
+import { UserSchema } from "./gen/ts/extra/example_pb.js";
+import { create, isMessage } from "@bufbuild/protobuf";
+import { MessageFieldMessageSchema } from "./gen/ts/extra/msg-message_pb.js";
 
 describe("isMessage", () => {
-  test("subclass of Message", () => {
-    const user = new TS_User({
-      firstName: "Homer",
-      lastName: "Simpson",
-    });
-
-    expect(isMessage(user)).toBeTruthy();
-    expect(isMessage(user, TS_User)).toBeTruthy();
-  });
-  test("returns false if expected Message property is not a function", () => {
-    const user = new TS_User({
-      firstName: "Homer",
-      lastName: "Simpson",
-    });
-    // @ts-expect-error: Setting to a boolean to force a failure
-    user.toJson = false;
-
-    expect(isMessage(user, TS_User)).toBeFalsy();
-  });
-  test("null returns false", () => {
-    expect(isMessage(null)).toBeFalsy();
-    expect(isMessage(null, TS_User)).toBeFalsy();
-  });
-  test("non-object returns false", () => {
-    expect(isMessage("test")).toBeFalsy();
-    expect(isMessage("test", TS_User)).toBeFalsy();
-  });
-  test("mixed instances", () => {
-    const user = new TS_User({
-      firstName: "Homer",
-      lastName: "Simpson",
-    });
-
-    expect(isMessage(user, JS_User)).toBeTruthy();
-  });
-  test("type guard works as expected", () => {
-    const user: unknown = new TS_User();
-    if (isMessage(user)) {
-      expect(user.toJsonString()).toBeDefined();
-    }
-    if (isMessage(user, TS_User)) {
-      expect(user.firstName).toBeDefined();
+  test("narrows down to anonymous message", () => {
+    const unknown = create(UserSchema) as unknown;
+    expect(isMessage(unknown)).toBe(true);
+    if (isMessage(unknown)) {
+      expect(unknown.$typeName).toBe("example.User");
     }
   });
+  test("narrows down to specific message", () => {
+    const unknown = create(UserSchema) as unknown;
+    expect(isMessage(unknown, UserSchema)).toBe(true);
+    if (isMessage(unknown, UserSchema)) {
+      expect(unknown.$typeName).toBe("example.User");
+      unknown.firstName = "Homer"; // proves that the type is known
+    }
+    expect(isMessage(unknown, UserSchema)).toBe(true);
+    expect(isMessage(unknown, UserSchema)).toBe(true);
+  });
+});
+test("rejects foreign message", () => {
+  const user = create(UserSchema);
+  expect(isMessage(user, MessageFieldMessageSchema)).toBe(false);
+});
+test("rejects non-message values", () => {
+  expect(isMessage(null)).toBe(false);
+  expect(isMessage(undefined)).toBe(false);
+  expect(isMessage(123)).toBe(false);
+  expect(isMessage("str")).toBe(false);
+  expect(isMessage({})).toBe(false);
+});
+test("falsely returns true if the argument is close enough to a Message", () => {
+  expect(
+    isMessage({
+      $typeName: "",
+    }),
+  ).toBe(true);
+  expect(
+    isMessage(
+      {
+        $typeName: "example.User",
+      },
+      UserSchema,
+    ),
+  ).toBe(true);
 });

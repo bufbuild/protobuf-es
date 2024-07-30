@@ -14,32 +14,81 @@
 
 syntax = "proto3";
 package spec;
-
 option go_package = "github.com/bufbuild/protobuf-es";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/struct.proto";
 
-message Proto3PackedMessage {
-  repeated double packed_double_field = 101 [packed = true];
-  repeated uint32 packed_uint32_field = 102 [packed = true];
-  repeated uint64 packed_uint64_field = 103 [packed = true];
-}
+// Note: We do not exhaust all field types
+message Proto3Message {
+  string singular_string_field = 1;
+  bytes singular_bytes_field = 2;
+  int32 singular_int32_field = 3;
+  int64 singular_int64_field = 4;
+  int64 singular_int64_js_number_field = 103 [jstype=JS_NUMBER];
+  int64 singular_int64_js_string_field = 102 [jstype=JS_STRING];
+  float singular_float_field = 5;
+  bool singular_bool_field = 6;
+  Proto3Enum singular_enum_field = 7;
+  Proto3Message singular_message_field = 8;
+  google.protobuf.UInt32Value singular_wrapped_uint32_field = 211;
+  google.protobuf.Struct singular_struct_field = 214;
 
-message Proto3UnpackedMessage {
-  repeated double unpacked_double_field = 201 [packed = false];
-  repeated uint32 unpacked_uint32_field = 202 [packed = false];
-  repeated uint64 unpacked_uint64_field = 203 [packed = false];
-}
+  optional string optional_string_field = 9;
+  optional bytes optional_bytes_field = 10;
+  optional int32 optional_int32_field = 11;
+  optional int64 optional_int64_field = 12;
+  optional int64 optional_int64_js_number_field = 106 [jstype=JS_NUMBER];
+  optional int64 optional_int64_js_string_field = 105 [jstype=JS_STRING];
+  optional float optional_float_field = 13;
+  optional bool optional_bool_field = 14;
+  optional Proto3Enum optional_enum_field = 15;
+  optional Proto3Message optional_message_field = 16;
+  optional google.protobuf.UInt32Value optional_wrapped_uint32_field = 212;
+  optional google.protobuf.Struct optional_struct_field = 215;
 
-message Proto3UnlabelledMessage {
-  repeated double double_field = 1;
-  repeated uint32 uint32_field = 2;
-  repeated uint64 uint64_field = 3;
-}
+  repeated string repeated_string_field = 17;
+  repeated bytes repeated_bytes_field = 18;
+  repeated int32 repeated_int32_field = 19;
+  repeated int64 repeated_int64_field = 20;
+  repeated int64 repeated_int64_js_number_field = 109 [jstype=JS_NUMBER];
+  repeated int64 repeated_int64_js_string_field = 108 [jstype=JS_STRING];
+  repeated float repeated_float_field = 21;
+  repeated bool repeated_bool_field = 22;
+  repeated Proto3Enum repeated_enum_field = 23;
+  repeated Proto3Message repeated_message_field = 24;
+  repeated google.protobuf.UInt32Value repeated_wrapped_uint32_field = 213;
+  repeated google.protobuf.Struct repeated_struct_field = 216;
 
-message Proto3OptionalMessage {
-  optional string string_field = 1;
-  optional bytes bytes_field = 2;
-  optional Proto3Enum enum_field = 3;
-  optional Proto3OptionalMessage message_field = 4;
+  repeated double packed_double_field = 25 [packed = true];
+  repeated uint32 packed_uint32_field = 26 [packed = true];
+  repeated uint64 packed_uint64_field = 27 [packed = true];
+
+  repeated double unpacked_double_field = 28 [packed = false];
+  repeated uint32 unpacked_uint32_field = 29 [packed = false];
+  repeated uint64 unpacked_uint64_field = 30 [packed = false];
+
+  oneof either {
+    string oneof_string_field = 31;
+    bytes oneof_bytes_field = 32;
+    int32 oneof_int32_field = 33;
+    int64 oneof_int64_field = 34;
+    int64 oneof_int64_js_number_field = 112 [jstype=JS_NUMBER];
+    int64 oneof_int64_js_string_field = 111 [jstype=JS_STRING];
+    float oneof_float_field = 35;
+    bool oneof_bool_field = 36;
+    Proto3Enum oneof_enum_field = 37;
+    Proto3Message oneof_message_field = 38;
+    google.protobuf.UInt32Value oneof_wrapped_uint32_field = 204;
+    google.protobuf.Struct oneof_struct_field = 217;
+  }
+  map<string, string> map_string_string_field = 39;
+  map<int32, int32> map_int32_int32_field = 40;
+  map<bool, bool> map_bool_bool_field = 41;
+  map<int64, int64> map_int64_int64_field = 42;
+  map<int32, Proto3Enum> map_int32_enum_field = 43;
+  map<int32, Proto3Message> map_int32_message_field = 44;
+  map<int32, google.protobuf.UInt32Value> map_int32_wrapped_uint32_field = 205;
+  map<int32, google.protobuf.Struct> map_int32_struct_field = 218;
 }
 
 enum Proto3Enum {

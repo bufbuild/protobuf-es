@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeOfDay } from "./google/type/timeofday_pb.js";
-import { Quaternion } from "./google/type/quaternion_pb.js";
-import { PostalAddress } from "./google/type/postal_address_pb.js";
-import { PhoneNumber } from "./google/type/phone_number_pb.js";
-import { Money } from "./google/type/money_pb.js";
-import { LocalizedText } from "./google/type/localized_text_pb.js";
-import { Interval } from "./google/type/interval_pb.js";
-import { Fraction } from "./google/type/fraction_pb.js";
+import { TimeOfDay } from "./google/type/timeofday_pb";
+import { Quaternion } from "./google/type/quaternion_pb";
+import { PostalAddress } from "./google/type/postal_address_pb";
+import { PhoneNumber } from "./google/type/phone_number_pb";
+import { Money } from "./google/type/money_pb";
+import { LocalizedText } from "./google/type/localized_text_pb";
+import { Interval } from "./google/type/interval_pb";
+import { Fraction } from "./google/type/fraction_pb";
 
 /* eslint-disable no-console,@typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
 

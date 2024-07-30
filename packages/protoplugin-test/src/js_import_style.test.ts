@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import type { Schema } from "@bufbuild/protoplugin/ecmascript";
+import type { Schema } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("js_import_style", () => {
@@ -102,7 +102,7 @@ describe("js_import_style", () => {
     ) {
       const f = schema.generateFile(`test.${target}`);
       f.print("const thirdParty = ", f.import("third", "party"), ";");
-      f.print(f.exportDecl("class", "MyClass"), " {}");
+      f.print(f.export("class", "MyClass"), " {}");
       switch (f.jsImportStyle) {
         case "module":
           f.print(`import { hand } from "written";`);

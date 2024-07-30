@@ -13,19 +13,19 @@
 // limitations under the License.
 
 import Benchmark from "benchmark";
-import { readFileSync } from "node:fs";
-import { protoInt64 } from "@bufbuild/protobuf";
-import { PerfMessage } from "./gen/ts/extra/perf_pb.js";
-import { User } from "./gen/ts/extra/example_pb.js";
+import { create, fromBinary, toBinary, protoInt64 } from "@bufbuild/protobuf";
+import { readFileSync } from "fs";
+import { UserSchema } from "./gen/ts/extra/example_pb.js";
 import {
-  RepeatedScalarValuesMessage,
-  ScalarValuesMessage,
+  ScalarValuesMessageSchema,
+  RepeatedScalarValuesMessageSchema,
 } from "./gen/ts/extra/msg-scalar_pb.js";
-import { MapsMessage } from "./gen/ts/extra/msg-maps_pb.js";
+import { MapsMessageSchema } from "./gen/ts/extra/msg-maps_pb.js";
 import {
-  MessageFieldMessage,
-  MessageFieldMessage_TestMessage,
+  MessageFieldMessageSchema,
+  MessageFieldMessage_TestMessageSchema,
 } from "./gen/ts/extra/msg-message_pb.js";
+import { PerfMessageSchema } from "./gen/ts/extra/perf_pb.js";
 
 /* eslint-disable no-console, import/no-named-as-default-member */
 
@@ -103,25 +103,27 @@ function setupTests(): Test[] {
     tests.push({
       name: `fromBinary perf-payload.bin`,
       fn: () => {
-        PerfMessage.fromBinary(bytes);
+        fromBinary(PerfMessageSchema, bytes);
       },
     });
   }
   {
-    const tinyUser = new User({
+    const desc = UserSchema;
+    const tinyUser = create(desc, {
       active: false,
       manager: { active: true },
     });
-    const data = tinyUser.toBinary();
+    const data = toBinary(desc, tinyUser);
     tests.push({
-      name: `fromBinary tiny docs.User (${data.byteLength} bytes)`,
+      name: `fromBinary tiny example.User (${data.byteLength} bytes)`,
       fn: () => {
-        User.fromBinary(data);
+        fromBinary(desc, data);
       },
     });
   }
   {
-    const normalUser = new User({
+    const desc = UserSchema;
+    const normalUser = create(desc, {
       firstName: "Jane",
       lastName: "Doe",
       active: true,
@@ -129,16 +131,17 @@ function setupTests(): Test[] {
       locations: ["Seattle", "New York", "Tokyo"],
       projects: { foo: "project foo", bar: "project bar" },
     });
-    const data = normalUser.toBinary();
+    const data = toBinary(desc, normalUser);
     tests.push({
-      name: `fromBinary normal docs.User (${data.byteLength} bytes)`,
+      name: `fromBinary normal example.User (${data.byteLength} bytes)`,
       fn: () => {
-        User.fromBinary(data);
+        fromBinary(desc, data);
       },
     });
   }
   {
-    const message = new ScalarValuesMessage({
+    const desc = ScalarValuesMessageSchema;
+    const message = create(ScalarValuesMessageSchema, {
       doubleField: 0.75,
       floatField: -0.75,
       int64Field: protoInt64.parse(-1),
@@ -157,16 +160,17 @@ function setupTests(): Test[] {
       sint32Field: -1,
       sint64Field: protoInt64.parse(-1),
     });
-    const data = message.toBinary();
+    const data = toBinary(desc, message);
     tests.push({
       name: `fromBinary scalar values (${data.byteLength} bytes)`,
       fn: () => {
-        ScalarValuesMessage.fromBinary(data);
+        fromBinary(desc, data);
       },
     });
   }
   {
-    const message = new RepeatedScalarValuesMessage({
+    const desc = RepeatedScalarValuesMessageSchema;
+    const message = create(desc, {
       doubleField: [0.75, 0, 1],
       floatField: [0.75, -0.75],
       int64Field: [protoInt64.parse(-1), protoInt64.parse(-2)],
@@ -193,16 +197,17 @@ function setupTests(): Test[] {
         protoInt64.parse(99),
       ],
     });
-    const data = message.toBinary();
+    const data = toBinary(desc, message);
     tests.push({
       name: `fromBinary repeated scalar fields (${data.byteLength} bytes)`,
       fn: () => {
-        RepeatedScalarValuesMessage.fromBinary(data);
+        fromBinary(desc, data);
       },
     });
   }
   {
-    const message = new MapsMessage({
+    const desc = MapsMessageSchema;
+    const message = create(desc, {
       strStrField: { a: "str", b: "xx" },
       strInt32Field: { a: 123, b: 455 },
       strInt64Field: { a: protoInt64.parse(123) },
@@ -219,37 +224,41 @@ function setupTests(): Test[] {
       int32EnuField: { 1: 0, 2: 1, 0: 2 },
       int64EnuField: { "-1": 0, "2": 1, "0": 2 },
     });
-    const data = message.toBinary();
+    const data = toBinary(desc, message);
     tests.push({
       name: `fromBinary map with scalar keys and values (${data.byteLength} bytes)`,
       fn: () => {
-        MapsMessage.fromBinary(data);
+        fromBinary(desc, data);
       },
     });
   }
   {
-    const message = new MessageFieldMessage();
+    const desc = MessageFieldMessageSchema;
+    const message = create(desc);
     for (let i = 0; i < 1000; i++) {
-      message.repeatedMessageField.push(new MessageFieldMessage_TestMessage());
+      message.repeatedMessageField.push(
+        create(MessageFieldMessage_TestMessageSchema),
+      );
     }
-    const data = message.toBinary();
+    const data = toBinary(desc, message);
     tests.push({
       name: `fromBinary repeated field with 1000 messages (${data.byteLength} bytes)`,
       fn: () => {
-        MessageFieldMessage.fromBinary(data);
+        fromBinary(desc, data);
       },
     });
   }
   {
-    const message = new MapsMessage();
+    const desc = MapsMessageSchema;
+    const message = create(desc);
     for (let i = 0; i < 1000; i++) {
-      message.strMsgField[i.toString()] = new MapsMessage();
+      message.strMsgField[i.toString()] = create(desc);
     }
-    const data = message.toBinary();
+    const data = toBinary(desc, message);
     tests.push({
       name: `fromBinary map field with 1000 messages (${data.byteLength} bytes)`,
       fn: () => {
-        MapsMessage.fromBinary(data);
+        fromBinary(desc, data);
       },
     });
   }

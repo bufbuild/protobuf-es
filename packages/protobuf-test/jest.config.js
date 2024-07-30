@@ -22,7 +22,11 @@ const config = {
   coverageProvider: "v8",
 
   // The root directory that Jest should scan for tests and modules within
-  rootDir: "dist/esm",
+  rootDir: "dist",
+
+  // Enable worker threads for assertion failures involving BigInt
+  // See https://github.com/jestjs/jest/issues/11617#issuecomment-1458155552
+  workerThreads: true,
 
   transform: {},
 };

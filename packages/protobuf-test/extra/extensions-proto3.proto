@@ -23,4 +23,10 @@ extend google.protobuf.FileOptions {
   optional uint32 optional_uint32_ext = 7002;
   repeated uint32 packed_uint32_ext = 7003;
   repeated uint32 unpacked_uint32_ext = 7004 [packed = false];
+  Proto3ExtMessage message_ext = 7005;
+}
+
+// A message used in extensions
+message Proto3ExtMessage {
+  string string_field = 1;
 }

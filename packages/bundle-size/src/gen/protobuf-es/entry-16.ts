@@ -12,55 +12,56 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { TimeOfDay } from "./google/type/timeofday_pb.js";
-import { Quaternion } from "./google/type/quaternion_pb.js";
-import { PostalAddress } from "./google/type/postal_address_pb.js";
-import { PhoneNumber } from "./google/type/phone_number_pb.js";
-import { Money } from "./google/type/money_pb.js";
-import { LocalizedText } from "./google/type/localized_text_pb.js";
-import { Interval } from "./google/type/interval_pb.js";
-import { Fraction } from "./google/type/fraction_pb.js";
-import { Expr } from "./google/type/expr_pb.js";
-import { Decimal } from "./google/type/decimal_pb.js";
-import { DateTime, TimeZone } from "./google/type/datetime_pb.js";
-import { Date } from "./google/type/date_pb.js";
-import { Color } from "./google/type/color_pb.js";
-import { AttributeContext } from "./google/rpc/context/attribute_context_pb.js";
-import { Viewport } from "./google/geo/type/viewport_pb.js";
-import { LatLng } from "./google/type/latlng_pb.js";
+import { create, toBinary } from "@bufbuild/protobuf";
+import { TimeOfDaySchema } from "./google/type/timeofday_pb";
+import { QuaternionSchema } from "./google/type/quaternion_pb";
+import { PostalAddressSchema } from "./google/type/postal_address_pb";
+import { PhoneNumberSchema } from "./google/type/phone_number_pb";
+import { MoneySchema } from "./google/type/money_pb";
+import { LocalizedTextSchema } from "./google/type/localized_text_pb";
+import { IntervalSchema } from "./google/type/interval_pb";
+import { FractionSchema } from "./google/type/fraction_pb";
+import { ExprSchema } from "./google/type/expr_pb";
+import { DecimalSchema } from "./google/type/decimal_pb";
+import { DateTimeSchema, TimeZoneSchema } from "./google/type/datetime_pb";
+import { DateSchema } from "./google/type/date_pb";
+import { ColorSchema } from "./google/type/color_pb";
+import { AttributeContextSchema } from "./google/rpc/context/attribute_context_pb";
+import { ViewportSchema } from "./google/geo/type/viewport_pb";
+import { LatLngSchema } from "./google/type/latlng_pb";
 
 /* eslint-disable no-console */
 
 // google/type/timeofday.proto
-console.log(new TimeOfDay().toBinary().length);
+console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);
 // google/type/quaternion.proto
-console.log(new Quaternion().toBinary().length);
+console.log(toBinary(QuaternionSchema, create(QuaternionSchema)).length);
 // google/type/postal_address.proto
-console.log(new PostalAddress().toBinary().length);
+console.log(toBinary(PostalAddressSchema, create(PostalAddressSchema)).length);
 // google/type/phone_number.proto
-console.log(new PhoneNumber().toBinary().length);
+console.log(toBinary(PhoneNumberSchema, create(PhoneNumberSchema)).length);
 // google/type/money.proto
-console.log(new Money().toBinary().length);
+console.log(toBinary(MoneySchema, create(MoneySchema)).length);
 // google/type/localized_text.proto
-console.log(new LocalizedText().toBinary().length);
+console.log(toBinary(LocalizedTextSchema, create(LocalizedTextSchema)).length);
 // google/type/interval.proto
-console.log(new Interval().toBinary().length);
+console.log(toBinary(IntervalSchema, create(IntervalSchema)).length);
 // google/type/fraction.proto
-console.log(new Fraction().toBinary().length);
+console.log(toBinary(FractionSchema, create(FractionSchema)).length);
 // google/type/expr.proto
-console.log(new Expr().toBinary().length);
+console.log(toBinary(ExprSchema, create(ExprSchema)).length);
 // google/type/decimal.proto
-console.log(new Decimal().toBinary().length);
+console.log(toBinary(DecimalSchema, create(DecimalSchema)).length);
 // google/type/datetime.proto
-console.log(new DateTime().toBinary().length);
-console.log(new TimeZone().toBinary().length);
+console.log(toBinary(DateTimeSchema, create(DateTimeSchema)).length);
+console.log(toBinary(TimeZoneSchema, create(TimeZoneSchema)).length);
 // google/type/date.proto
-console.log(new Date().toBinary().length);
+console.log(toBinary(DateSchema, create(DateSchema)).length);
 // google/type/color.proto
-console.log(new Color().toBinary().length);
+console.log(toBinary(ColorSchema, create(ColorSchema)).length);
 // google/rpc/context/attribute_context.proto
-console.log(new AttributeContext().toBinary().length);
+console.log(toBinary(AttributeContextSchema, create(AttributeContextSchema)).length);
 // google/geo/type/viewport.proto
-console.log(new Viewport().toBinary().length);
+console.log(toBinary(ViewportSchema, create(ViewportSchema)).length);
 // google/type/latlng.proto
-console.log(new LatLng().toBinary().length);
+console.log(toBinary(LatLngSchema, create(LatLngSchema)).length);

@@ -12,43 +12,53 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import type { Writable } from "node:stream";
 import {
-  ConformanceRequest,
-  ConformanceResponse,
-  FailureSet,
+  create,
+  fromBinary,
+  fromJsonString,
+  type DescMessage,
+  type Message,
+  type MessageShape,
+  toBinary,
+  toJsonString,
+  createRegistry,
+} from "@bufbuild/protobuf";
+import {
+  type ConformanceRequest,
+  type ConformanceResponse,
+  ConformanceRequestSchema,
+  ConformanceResponseSchema,
+  FailureSetSchema,
   TestCategory,
   WireFormat,
 } from "./gen/conformance/conformance_pb.js";
-import { TestAllTypesProto3 } from "./gen/google/protobuf/test_messages_proto3_pb.js";
+import { file_google_protobuf_test_messages_proto3 } from "./gen/google/protobuf/test_messages_proto3_pb.js";
+import { file_google_protobuf_test_messages_proto2 } from "./gen/google/protobuf/test_messages_proto2_pb.js";
+import { file_google_protobuf_test_messages_edition2023 } from "./gen/google/protobuf/test_messages_edition2023_pb.js";
+import { file_google_protobuf_test_messages_proto2_editions } from "./gen/google/protobuf/test_messages_proto2_editions_pb.js";
+import { file_google_protobuf_test_messages_proto3_editions } from "./gen/google/protobuf/test_messages_proto3_editions_pb.js";
 import {
-  extension_int32,
-  TestAllTypesProto2,
-} from "./gen/google/protobuf/test_messages_proto2_pb.js";
-import type { MessageType } from "@bufbuild/protobuf";
-import {
-  Any,
-  createRegistry,
-  Duration,
-  FieldMask,
-  Int32Value,
-  Message,
-  Struct,
-  Timestamp,
-  Value,
-} from "@bufbuild/protobuf";
-import type { Writable } from "node:stream";
+  file_google_protobuf_any,
+  file_google_protobuf_duration,
+  file_google_protobuf_field_mask,
+  file_google_protobuf_struct,
+  file_google_protobuf_timestamp,
+  file_google_protobuf_wrappers,
+} from "@bufbuild/protobuf/wkt";
 
 const registry = createRegistry(
-  Value,
-  Struct,
-  FieldMask,
-  Timestamp,
-  Duration,
-  Int32Value,
-  TestAllTypesProto3,
-  TestAllTypesProto2,
-  Any,
-  extension_int32,
+  file_google_protobuf_test_messages_proto2,
+  file_google_protobuf_test_messages_proto3,
+  file_google_protobuf_test_messages_edition2023,
+  file_google_protobuf_test_messages_proto2_editions,
+  file_google_protobuf_test_messages_proto3_editions,
+  file_google_protobuf_any,
+  file_google_protobuf_struct,
+  file_google_protobuf_field_mask,
+  file_google_protobuf_timestamp,
+  file_google_protobuf_duration,
+  file_google_protobuf_wrappers,
 );
 
 void main();
@@ -56,14 +66,17 @@ void main();
 async function main() {
   let testCount = 0;
   try {
-    const requests = readMessages(process.stdin, ConformanceRequest);
-    const responses = processMessages(requests, (request) => {
-      testCount += 1;
-      return new ConformanceResponse({
-        result: test(request),
-      });
-    });
-    await writeMessages(process.stdout, responses);
+    const requests = readMessages(process.stdin, ConformanceRequestSchema);
+    const responses = processMessages(
+      requests,
+      (request: ConformanceRequest): ConformanceResponse => {
+        testCount += 1;
+        return create(ConformanceResponseSchema, {
+          result: test(request),
+        });
+      },
+    );
+    await writeMessages(process.stdout, ConformanceResponseSchema, responses);
   } catch (e) {
     process.stderr.write(
       `conformance.ts: exiting after ${testCount} tests: ${String(e)}`,
@@ -73,15 +86,18 @@ async function main() {
 }
 
 function test(request: ConformanceRequest): ConformanceResponse["result"] {
-  if (request.messageType === FailureSet.typeName) {
+  if (request.messageType === FailureSetSchema.typeName) {
     // > The conformance runner will request a list of failures as the first request.
     // > This will be known by message_type == "conformance.FailureSet", a conformance
     // > test should return a serialized FailureSet in protobuf_payload.
-    const failureSet = new FailureSet();
-    return { case: "protobufPayload", value: failureSet.toBinary() };
+    const failureSet = create(FailureSetSchema);
+    return {
+      case: "protobufPayload",
+      value: toBinary(FailureSetSchema, failureSet),
+    };
   }
 
-  const payloadType = registry.findMessage(request.messageType);
+  const payloadType = registry.getMessage(request.messageType);
   if (!payloadType) {
     return {
       case: "runtimeError",
@@ -94,15 +110,15 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
   try {
     switch (request.payload.case) {
       case "protobufPayload":
-        payload = payloadType.fromBinary(request.payload.value);
+        payload = fromBinary(payloadType, request.payload.value);
         break;
 
       case "jsonPayload":
-        payload = payloadType.fromJsonString(request.payload.value, {
+        payload = fromJsonString(payloadType, request.payload.value, {
           ignoreUnknownFields:
             request.testCategory ===
             TestCategory.JSON_IGNORE_UNKNOWN_PARSING_TEST,
-          typeRegistry: registry,
+          registry,
         });
         break;
 
@@ -127,14 +143,14 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
       case WireFormat.PROTOBUF:
         return {
           case: "protobufPayload",
-          value: payload.toBinary(),
+          value: toBinary(payloadType, payload),
         };
 
       case WireFormat.JSON:
         return {
           case: "jsonPayload",
-          value: payload.toJsonString({
-            typeRegistry: registry,
+          value: toJsonString(payloadType, payload, {
+            registry,
           }),
         };
 
@@ -159,10 +175,10 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
 }
 
 // Reads length-prefixed messages from a stream.
-async function* readMessages<T extends Message<T>>(
+async function* readMessages<Desc extends DescMessage>(
   stream: AsyncIterable<Uint8Array>,
-  type: MessageType<T>,
-): AsyncIterable<T> {
+  messageDesc: Desc,
+): AsyncIterable<MessageShape<Desc>> {
   // append chunk to buffer, returning updated buffer
   function append(buffer: Uint8Array, chunk: Uint8Array): Uint8Array {
     const n = new Uint8Array(buffer.byteLength + chunk.byteLength);
@@ -184,7 +200,7 @@ async function* readMessages<T extends Message<T>>(
         // message is incomplete, buffer more data
         break;
       }
-      yield type.fromBinary(buffer.subarray(4, 4 + size));
+      yield fromBinary(messageDesc, buffer.subarray(4, 4 + size));
       buffer = buffer.subarray(4 + size);
     }
   }
@@ -194,7 +210,7 @@ async function* readMessages<T extends Message<T>>(
 }
 
 // Returns a new iterable that processes each element of the input.
-function processMessages<I extends Message<I>, O extends Message<O> = I>(
+function processMessages<I, O>(
   requests: AsyncIterable<I>,
   processor: (req: I) => O,
 ): AsyncIterable<O> {
@@ -221,13 +237,16 @@ function processMessages<I extends Message<I>, O extends Message<O> = I>(
 }
 
 // Writes length-prefixed messages to a stream.
-async function writeMessages(
+async function writeMessages<Desc extends DescMessage>(
   stream: Writable,
-  messages: AsyncIterable<Message> | (() => AsyncIterable<Message>),
+  messageDesc: Desc,
+  messages:
+    | AsyncIterable<MessageShape<Desc>>
+    | (() => AsyncIterable<MessageShape<Desc>>),
 ) {
   const input = typeof messages == "function" ? messages() : messages;
   for await (const message of input) {
-    const bytes = message.toBinary();
+    const bytes = toBinary(messageDesc, message);
     await new Promise<void>((resolve, reject) => {
       const lengthBytes = new Uint8Array(4);
       new DataView(lengthBytes.buffer).setInt32(0, bytes.length, true);

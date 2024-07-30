@@ -1,8 +1,7 @@
+.tmp
+.turbo
+dist
 node_modules
-/packages/*/dist
-/packages/typescript-compat/*/dist
 /packages/protobuf-test/*.0x
-/packages/protobuf-test/descriptorset.binpb
-/packages/protoplugin-test/descriptorset.binpb
-/.tmp
-/packages/*/.tmp
+/packages/protobuf-test/*-v8.log
+/packages/protobuf-example/users.binpb

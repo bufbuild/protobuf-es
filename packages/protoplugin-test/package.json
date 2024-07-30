@@ -2,22 +2,16 @@
   "name": "@bufbuild/protoplugin-test",
   "private": true,
   "scripts": {
-    "clean": "rm -rf ./dist/cjs/* ./dist/esm/* ./dist/types/*",
-    "build": "npm run build:esm+types",
-    "build:esm+types": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm --declaration --declarationDir ./dist/types",
-    "pregenerate": "rm -rf src/gen/*/*",
-    "generate": "protoc --es_out=src/gen --es_opt=ts_nocheck=false,target=ts --proto_path=proto option-enum.proto option-message.proto file-option.proto",
-    "postgenerate": "license-header src/gen",
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "prebuild": "rm -rf ./dist/*",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo'",
+    "license-header": "license-header",
+    "lint": "eslint --max-warnings 0 ."
   },
   "type": "module",
-  "types": "./dist/types/index.d.ts",
-  "exports": {
-    "import": "./dist/esm/index.js",
-    "default": "./dist/esm/index.js"
-  },
   "dependencies": {
     "upstream-protobuf": "*",
-    "@bufbuild/protoplugin": "1.10.0"
+    "@bufbuild/protoplugin": "2.0.0-beta.3"
   }
 }

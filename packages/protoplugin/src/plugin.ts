@@ -15,7 +15,7 @@
 import type {
   CodeGeneratorRequest,
   CodeGeneratorResponse,
-} from "@bufbuild/protobuf";
+} from "@bufbuild/protobuf/wkt";
 
 /**
  * Represents any code generator plugin.

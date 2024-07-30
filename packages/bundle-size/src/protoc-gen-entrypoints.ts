@@ -16,7 +16,7 @@
 
 import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
 import { DescMessage } from "@bufbuild/protobuf";
-import { type Schema } from "@bufbuild/protoplugin/ecmascript";
+import type { Schema } from "@bufbuild/protoplugin";
 import { files, sizes } from "./constants.js";
 
 runNodeJs(
@@ -49,13 +49,21 @@ runNodeJs(
           f.print("/* eslint-disable no-console */");
           f.print();
           for (const file of files) {
-            f.print("// ", file.file.proto.name ?? "");
+            f.print("// ", file.file.proto.name);
             for (const message of file.messages) {
-              const ctor = f.import(
-                `${message.name}`,
+              const desc = f.import(
+                f.importSchema(message).name,
                 `./protobuf-es/${message.file.name}_pb.js`,
               );
-              const toBinaryCall = ["new ", ctor, "().toBinary()"];
+              const createCall = [f.runtime.create, "(", desc, ")"];
+              const toBinaryCall = [
+                f.runtime.toBinary,
+                "(",
+                desc,
+                ", ",
+                createCall,
+                ")",
+              ];
               f.print("console.log(", toBinaryCall, ".length);");
             }
           }
@@ -67,14 +75,18 @@ runNodeJs(
           );
           f.print();
           for (const file of files) {
-            f.print("// ", file.file.proto.name ?? "");
+            f.print("// ", file.file.proto.name);
             for (const message of file.messages) {
               const ctor = f.import(
                 message.name,
                 `./google-protobuf/${message.file.name}_pb.js`,
               );
-              const toBinaryCall = ["new ", ctor, "().serializeBinary()"];
-              f.print("console.log(", toBinaryCall, ".length);");
+              const serializeBinaryCall = [
+                "new ",
+                ctor,
+                "().serializeBinary()",
+              ];
+              f.print("console.log(", serializeBinaryCall, ".length);");
             }
           }
         }
