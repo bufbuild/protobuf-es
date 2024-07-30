@@ -12,6 +12,6 @@
   "type": "module",
   "dependencies": {
     "upstream-protobuf": "*",
-    "@bufbuild/protoplugin": "2.0.0-beta.3"
+    "@bufbuild/protoplugin": "2.0.0"
   }
 }
