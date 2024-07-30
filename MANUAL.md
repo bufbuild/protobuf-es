@@ -2289,7 +2289,7 @@ The generated properties remain largely unchanged. There are two improvements:
 - A message field using [`google.protobuf.Struct`](#googleprotobufstruct) is generated as `JsonObject`.
 - Proto2 fields support default values now and are no longer generated as optional properties.
 
-Plugin options change to more convenient default behavior:
+Plugin options now have more convenient default behavior:
 
 - [`import_extension`](#import_extension) is now `none` by default, which means we do not add a `.js` extension to import
   paths. If you use the plugin option `import_extension=none`, you can delete it. If you require imports to have the `.js`
