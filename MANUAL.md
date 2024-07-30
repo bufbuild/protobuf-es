@@ -2291,7 +2291,7 @@ The generated properties remain largely unchanged. There are two improvements:
 
 Plugin options now have more convenient default behavior:
 
-- [`import_extension`](#import_extension) is now `none` by default, which means we do not add a `.js` extension to import
+- [`import_extension`](#import_extension) is now `none` by default, which means we don't add a `.js` extension to import
   paths. If you use the plugin option `import_extension=none`, you can delete it. If you require imports to have the `.js`
   extension, use `import_extension=js`.
 - [`ts_nocheck`](#ts_nochecktrue) is now off by default. If you require a `// @ts-nocheck` annotation at the top of generated code, use `ts_nocheck=true`.
