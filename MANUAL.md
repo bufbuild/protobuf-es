@@ -2296,6 +2296,8 @@ Plugin options now have more convenient default behavior:
   extension, use `import_extension=js`.
 - [`ts_nocheck`](#ts_nochecktrue) is now off by default. If you require a `// @ts-nocheck` annotation at the top of generated code, use `ts_nocheck=true`.
 
+[Well-known types](#well-known-types) have moved to a subpath export `@bufbuild/protobuf/wkt`.
+
 To upgrade, run the following command:
 
 ```shell
