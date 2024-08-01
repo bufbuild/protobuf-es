@@ -2428,6 +2428,21 @@ This isn't to say that we're completely against adding _any_ options to the plug
 adding an option is necessary. However, for cases such as stylistic choices or user preferences, we tend to err on the
 side of caution.
 
+### Parcel/Metro fails to resolve imports
+
+Protobuf-ES uses [package exports][package.json/exports]. If you see the following error with [Parcel], make sure to
+[enable package exports][parcel/exports]:
+
+```
+@parcel/core: Failed to resolve '@bufbuild/protobuf/codegenv1'
+```
+
+If you see the following error with [Metro] or [Expo], make sure to [enable package exports][metro/exports]:
+
+```
+Metro error: Unable to resolve module @bufbuild/protobuf/codegenv1
+```
+
 [@bufbuild/buf]: https://www.npmjs.com/package/@bufbuild/buf
 [@bufbuild/protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
 [@bufbuild/protoc-gen-es]: https://www.npmjs.com/package/@bufbuild/protoc-gen-es
@@ -2452,11 +2467,17 @@ side of caution.
 [custom-options]: https://protobuf.dev/programming-guides/proto3/#customoptions
 [ecmascript-modules]: https://www.typescriptlang.org/docs/handbook/esm-node.html
 [example.proto]: ./packages/protobuf-example/proto/example.proto
+[expo]: https://github.com/expo/expo
 [gh-buf-conformance]: https://github.com/bufbuild/protobuf-conformance
 [gh-connect-es]: https://github.com/connectrpc/connect-es
 [gh-protoc]: https://github.com/protocolbuffers/protobuf/releases
 [gh-zod]: https://github.com/colinhacks/zod
+[metro]: https://github.com/facebook/metro
+[metro/exports]: https://metrobundler.dev/docs/package-exports
 [package.json/bin]: https://docs.npmjs.com/cli/v10/configuring-npm/package-json#bin
+[package.json/exports]: https://nodejs.org/docs/latest-v12.x/api/packages.html#packages_exports
+[parcel]: https://github.com/parcel-bundler/parcel
+[parcel/exports]: https://parceljs.org/features/dependency-resolution/#package-exports
 [google/protobuf/any.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/any.proto
 [google/protobuf/api.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/api.proto
 [google/protobuf/compiler/plugin.proto]: https://github.com/protocolbuffers/protobuf/blob/v27.2/src/google/protobuf/compiler/plugin.proto
