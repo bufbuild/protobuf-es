@@ -2,6 +2,8 @@
 version: v2
 inputs:
   - directory: proto
+# Deletes the directories specified in the `out` field for all plugins before running code generation.
+clean: true
 plugins:
   # The code generator is installed with `npm install @bufbuild/protoc-gen-es`.
   - local: protoc-gen-es

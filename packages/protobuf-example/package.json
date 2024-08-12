@@ -6,7 +6,6 @@
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
     "add": "tsx src/add.ts",
     "list": "tsx src/list.ts",
-    "pregenerate": "rm -rf src/gen",
     "generate": "buf generate",
     "postgenerate": "license-header src/gen",
     "format": "prettier --write --ignore-unknown '.' '!.turbo' '!src/gen/**'",
@@ -15,7 +14,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@bufbuild/buf": "^1.35.1",
+    "@bufbuild/buf": "^1.36.0",
     "@bufbuild/protobuf": "2.0.0",
     "@bufbuild/protoc-gen-es": "2.0.0",
     "typescript": "^5.5.4"
