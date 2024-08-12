@@ -3,7 +3,6 @@
   "private": true,
   "scripts": {
     "bundle-size": "tsx src/report.ts",
-    "pregenerate": "rm -rf src/gen",
     "generate": "buf generate buf.build/googleapis/googleapis:9475e2896f8a46d09806149f9382e538",
     "postgenerate": "license-header .",
     "format": "prettier --write --ignore-unknown '.' '!src/gen/**' '!.turbo'",
@@ -11,7 +10,7 @@
     "lint": "eslint --max-warnings 0 ."
   },
   "dependencies": {
-    "@bufbuild/buf": "^1.35.1",
+    "@bufbuild/buf": "^1.36.0",
     "@bufbuild/protobuf": "2.0.0",
     "@bufbuild/protoplugin": "2.0.0",
     "@bufbuild/protoc-gen-es": "2.0.0",
