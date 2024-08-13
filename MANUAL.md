@@ -2298,7 +2298,7 @@ plugins:
 
 </details>
 
-<details><summary>Are you using a Generated SDK?</summary>
+<details><summary>Are you using a generated SDK?</summary>
 
 If you are using a [Generated SDK][buf.build/generated-sdks], install `latest` with plugin version v2.0.0:
 
