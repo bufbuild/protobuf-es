@@ -2253,8 +2253,65 @@ uses [custom options](#custom-options).
 
 ## Migrating from version 1
 
-Version 2 provides many new features around reflection, and support for
-[Protobuf editions][protobuf.dev/editions].
+Version 2 provides many new features around reflection, and support for [Protobuf editions][protobuf.dev/editions]. To
+upgrade, you'll need to update your dependencies, re-generate code, and update call sites in your application.
+
+The following npm packages are available with version 2.0.0:
+
+- [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf): The runtime library, containing base types,
+  generated well-known types, and core functionality.
+- [@bufbuild/protoc-gen-es](https://www.npmjs.com/package/@bufbuild/protoc-gen-es): Provides the code generator plugin
+  `protoc-gen-es`.
+- [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin): Framework to create your own code
+  generator plugin.
+
+Update the ones you use with npm:
+
+```shellsession
+npm install @bufbuild/protobuf@^2.0.0 @bufbuild/protoc-gen-es@^2.0.0
+```
+
+Make sure to re-generate code with the new plugin, and verify that the package versions match the generated code.
+
+Plugin options now have more convenient default behavior:
+
+- [`import_extension`](#import_extension) is now `none` by default, which means we don't add a `.js` extension to import
+  paths. If you use the plugin option `import_extension=none`, you can delete it. If you require imports to have the `.js`
+  extension, use `import_extension=js`.
+- [`ts_nocheck`](#ts_nochecktrue) is now off by default. If you require a `// @ts-nocheck` annotation at the top of
+  generated code, use `ts_nocheck=true`.
+
+Update your `buf.gen.yaml` file if you require the previous behavior.
+
+<details><summary>Are you using the remote plugin?</summary>
+
+If you are using the [remote plugin][buf.build/remote-plugins] instead of the locally installed `protoc-gen-es`, make
+sure to update the version in your config:
+
+```yaml
+# buf.gen.yaml
+version: v2
+plugins:
+  - remote: buf.build/bufbuild/es:v2.0.0
+    out: gen
+```
+
+</details>
+
+<details><summary>Are you using a Generated SDK?</summary>
+
+If you are using a [Generated SDK][buf.build/generated-sdks], install `latest` with plugin version v2.0.0:
+
+![Generated SDK](./.github/manual-remote-sdk.png)
+
+</details>
+
+### Update your code
+
+Next, you'll need to update call sites that construct or serialize messages. For small applications, this will only take
+a few minutes. For more complex applications, migration can be more involved. If necessary, you can run
+[both versions in parallel](https://github.com/timostamm/example-protobuf-es-v1-to-v2) to migrate the application piece
+by piece.
 
 The biggest change is that the generated code no longer uses classes. To create a new instance, you call the function
 `create()` and pass the generated schema:
@@ -2284,6 +2341,11 @@ function show(user: User) {
 }
 ```
 
+The generated properties remain largely unchanged. There are two improvements:
+
+- A message field using [`google.protobuf.Struct`](#googleprotobufstruct) is generated as `JsonObject`.
+- Proto2 fields support [default values](#field-presence-and-default-values) now and are no longer generated as optional properties.
+
 The function `toPlainMessage` and the type `PlainMessage<T>` are no longer necessary: If you create a proto3 message with
 `create(UserSchema)`, the returned object is already a plain object.
 
@@ -2291,25 +2353,7 @@ You can replace the type `PlainMessage<User>` with `User`. The only difference i
 `$typeName`, which is a simple string with the full name of the message like `"example.User"`.
 This property makes sure you don't pass the wrong message to a function by accident.
 
-The generated properties remain largely unchanged. There are two improvements:
-
-- A message field using [`google.protobuf.Struct`](#googleprotobufstruct) is generated as `JsonObject`.
-- Proto2 fields support [default values](#field-presence-and-default-values) now and are no longer generated as optional properties.
-
-Plugin options now have more convenient default behavior:
-
-- [`import_extension`](#import_extension) is now `none` by default, which means we don't add a `.js` extension to import
-  paths. If you use the plugin option `import_extension=none`, you can delete it. If you require imports to have the `.js`
-  extension, use `import_extension=js`.
-- [`ts_nocheck`](#ts_nochecktrue) is now off by default. If you require a `// @ts-nocheck` annotation at the top of generated code, use `ts_nocheck=true`.
-
 [Well-known types](#well-known-types) have moved to a subpath export `@bufbuild/protobuf/wkt`.
-
-To upgrade, run the following command:
-
-```shell
-npm install @bufbuild/protobuf@^2.0.0 @bufbuild/protoc-gen-es@^2.0.0
-```
 
 ## FAQs
 
@@ -2464,6 +2508,8 @@ Metro error: Unable to resolve module @bufbuild/protobuf/codegenv1
 [buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
 [buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
 [buf.build/managed-mode]: https://buf.build/docs/generate/managed-mode#optimization-and-field-options
+[buf.build/remote-plugins]: https://buf.build/docs/bsr/remote-plugins/overview
+[buf.build/generated-sdks]: https://buf.build/docs/bsr/generated-sdks/overview
 [Buf]: https://buf.build
 [bundle-size]: https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size
 [protobuf.dev/editions]: https://protobuf.dev/editions/overview/
