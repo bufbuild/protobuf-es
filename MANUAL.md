@@ -2300,7 +2300,7 @@ plugins:
 
 <details><summary>Are you using a generated SDK?</summary>
 
-If you are using a [Generated SDK][buf.build/generated-sdks], install `latest` with plugin version v2.0.0:
+If you are using a [generated SDK][buf.build/generated-sdks], install `latest` with plugin version v2.0.0:
 
 ![Generated SDK](./.github/manual-remote-sdk.png)
 
