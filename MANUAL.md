@@ -2285,7 +2285,7 @@ Update your `buf.gen.yaml` file if you require the previous behavior.
 
 <details><summary>Are you using the remote plugin?</summary>
 
-If you are using the [remote plugin][buf.build/remote-plugins] instead of the locally installed `protoc-gen-es`, make
+If you're using the [remote plugin][buf.build/remote-plugins] instead of the locally installed `protoc-gen-es`, make
 sure to update the version in your config:
 
 ```yaml
@@ -2300,7 +2300,7 @@ plugins:
 
 <details><summary>Are you using a generated SDK?</summary>
 
-If you are using a [generated SDK][buf.build/generated-sdks], install `latest` with plugin version v2.0.0:
+If you're using a [generated SDK][buf.build/generated-sdks], install `latest` with plugin version v2.0.0:
 
 ![Generated SDK](./.github/manual-remote-sdk.png)
 
