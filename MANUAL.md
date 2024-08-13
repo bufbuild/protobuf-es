@@ -2346,7 +2346,7 @@ The generated properties remain largely unchanged. There are two improvements:
 - A message field using [`google.protobuf.Struct`](#googleprotobufstruct) is generated as `JsonObject`.
 - Proto2 fields support [default values](#field-presence-and-default-values) now and are no longer generated as optional properties.
 
-The function `toPlainMessage` and the type `PlainMessage<T>` are no longer necessary: If you create a proto3 message with
+The `toPlainMessage` function and the `PlainMessage<T>` type are no longer necessary. If you create a proto3 message with
 `create(UserSchema)`, the returned object is already a plain object.
 
 You can replace the `PlainMessage<User>` type with `User`. The only difference is that `User` has a property
