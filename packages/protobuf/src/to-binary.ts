@@ -45,7 +45,7 @@ const writeDefaults: Readonly<BinaryWriteOptions> = {
 };
 
 function makeWriteOptions(
-  options?: Partial<BinaryWriteOptions>,
+  options?: Partial<BinaryWriteOptions>
 ): Readonly<BinaryWriteOptions> {
   return options ? { ...writeDefaults, ...options } : writeDefaults;
 }
@@ -53,25 +53,25 @@ function makeWriteOptions(
 export function toBinary<Desc extends DescMessage>(
   schema: Desc,
   message: MessageShape<Desc>,
-  options?: Partial<BinaryWriteOptions>,
+  options?: Partial<BinaryWriteOptions>
 ): Uint8Array {
   return writeFields(
     new BinaryWriter(),
     makeWriteOptions(options),
-    reflect(schema, message),
+    reflect(schema, message)
   ).finish();
 }
 
 function writeFields(
   writer: BinaryWriter,
   opts: BinaryWriteOptions,
-  msg: ReflectMessage,
+  msg: ReflectMessage
 ): BinaryWriter {
   for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
       if (f.presence == LEGACY_REQUIRED) {
         throw new Error(
-          `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,
+          `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`
         );
       }
       continue;
@@ -80,7 +80,7 @@ function writeFields(
   }
   if (opts.writeUnknownFields) {
     for (const { no, wireType, data } of msg.getUnknown() ?? []) {
-      writer.tag(no, wireType).raw(data);
+      writer.tag(no, wireType).bytes(data);
     }
   }
   return writer;
@@ -93,7 +93,7 @@ export function writeField(
   writer: BinaryWriter,
   opts: BinaryWriteOptions,
   msg: ReflectMessage,
-  field: DescField,
+  field: DescField
 ) {
   switch (field.fieldKind) {
     case "scalar":
@@ -102,7 +102,7 @@ export function writeField(
         writer,
         field.scalar ?? ScalarType.INT32,
         field.number,
-        msg.get(field),
+        msg.get(field)
       );
       break;
     case "list":
@@ -123,12 +123,12 @@ function writeScalar(
   writer: BinaryWriter,
   scalarType: ScalarType,
   fieldNo: number,
-  value: unknown,
+  value: unknown
 ) {
   writeScalarValue(
     writer.tag(fieldNo, writeTypeOfScalar(scalarType)),
     scalarType,
-    value as ScalarValue,
+    value as ScalarValue
   );
 }
 
@@ -137,20 +137,14 @@ function writeMessageField(
   opts: BinaryWriteOptions,
   field: DescField &
     ({ fieldKind: "message" } | { fieldKind: "list"; listKind: "message" }),
-  message: ReflectMessage,
+  message: ReflectMessage
 ) {
   if (field.delimitedEncoding) {
-    writeFields(
-      writer.tag(field.number, WireType.StartGroup),
-      opts,
-      message,
-    ).tag(field.number, WireType.EndGroup);
+    writer.tag(field.number, WireType.StartGroup);
+    writeFields(writer, opts, message).tag(field.number, WireType.EndGroup);
   } else {
-    writeFields(
-      writer.tag(field.number, WireType.LengthDelimited).fork(),
-      opts,
-      message,
-    ).join();
+    writeFields(writer, opts, message);
+    writer.tag(field.number, WireType.LengthDelimited);
   }
 }
 
@@ -158,7 +152,7 @@ function writeListField(
   writer: BinaryWriter,
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "list" },
-  list: ReflectList,
+  list: ReflectList
 ) {
   if (field.listKind == "message") {
     for (const item of list) {
@@ -171,11 +165,10 @@ function writeListField(
     if (!list.size) {
       return;
     }
-    writer.tag(field.number, WireType.LengthDelimited).fork();
     for (const item of list) {
       writeScalarValue(writer, scalarType, item as ScalarValue);
     }
-    writer.join();
+    writer.tag(field.number, WireType.LengthDelimited);
     return;
   }
   for (const item of list) {
@@ -188,10 +181,8 @@ function writeMapEntry(
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "map" },
   key: unknown,
-  value: unknown,
+  value: unknown
 ) {
-  writer.tag(field.number, WireType.LengthDelimited).fork();
-
   // write key, expecting key field number = 1
   writeScalar(writer, field.mapKey, 1, key);
 
@@ -202,20 +193,17 @@ function writeMapEntry(
       writeScalar(writer, field.scalar ?? ScalarType.INT32, 2, value);
       break;
     case "message":
-      writeFields(
-        writer.tag(2, WireType.LengthDelimited).fork(),
-        opts,
-        value as ReflectMessage,
-      ).join();
+      writeFields(writer, opts, value as ReflectMessage);
+      writer.tag(2, WireType.LengthDelimited);
       break;
   }
-  writer.join();
+  writer.tag(field.number, WireType.LengthDelimited);
 }
 
 function writeScalarValue(
   writer: BinaryWriter,
   type: ScalarType,
-  value: ScalarValue,
+  value: ScalarValue
 ) {
   switch (type) {
     case ScalarType.STRING:

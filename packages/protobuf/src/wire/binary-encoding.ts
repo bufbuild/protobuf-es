@@ -96,34 +96,12 @@ export const INT32_MAX = 0x7fffffff;
 export const INT32_MIN = -0x80000000;
 
 export class BinaryWriter {
-  // /**
-  //  * We cannot allocate a buffer for the entire output
-  //  * because we don't know it's size.
-  //  *
-  //  * So we collect smaller chunks of known size and
-  //  * concat them later.
-  //  *
-  //  * Use `raw()` to push data to this array. It will flush
-  //  * `buf` first.
-  //  */
-  // private chunks: Uint8Array[];
-
-  // /**
-  //  * A growing buffer for byte values. If you don't know
-  //  * the size of the data you are writing, push to this
-  //  * array.
-  //  */
-  // protected buf: number[];
-
-  // /**
-  //  * Previous fork states.
-  //  */
-  // private stack: Array<{ chunks: Uint8Array[]; buf: number[] }> = [];
-
   /**
    * This is the storage backing for the bytes buffer.
+   *
    * Max byte length is 2GB - 1, which is the maximum for array buffers.
-   * TODO(ekrekr): remove any cast once types are fixed:
+   *
+   * TODO(ekrekr): remove the `any` cast once types are fixed:
    * https://github.com/microsoft/TypeScript/pull/58573.
    */
   private bytesBufStorage = new (ArrayBuffer as any)(0, {
@@ -149,60 +127,32 @@ export class BinaryWriter {
     return this.bytesBuf;
   }
 
-  // /**
-  //  * Start a new fork for length-delimited data like a message
-  //  * or a packed repeated field.
-  //  *
-  //  * Must be joined later with `join()`.
-  //  */
-  // fork(): this {
-  //   this.stack.push({ chunks: this.chunks, buf: this.buf });
-  //   this.chunks = [];
-  //   this.buf = [];
-  //   return this;
-  // }
-
-  // /**
-  //  * Join the last fork. Write its length and bytes, then
-  //  * return to the previous state.
-  //  */
-  // join(): this {
-  //   // get chunk of fork
-  //   let chunk = this.finish();
-
-  //   // restore previous state
-  //   let prev = this.stack.pop();
-  //   if (!prev) throw new Error("invalid state, fork stack empty");
-  //   this.chunks = prev.chunks;
-  //   this.buf = prev.buf;
-
-  //   // write length of chunk as varint
-  //   this.uint32(chunk.byteLength);
-  //   return this.raw(chunk);
-  // }
-
   /**
-   * Writes a tag (field number and wire type).
+   * Gets a tag (field number and wire type) without writing it.
    *
    * Equivalent to `uint32( (fieldNo << 3 | type) >>> 0 )`.
    *
    * Generated code should compute the tag ahead of time and call `uint32()`.
    */
+  getTag(fieldNo: number, type: WireType): number[] {
+    let value = ((fieldNo << 3) | type) >>> 0;
+    assertUInt32(value);
+    const numberBuf: number[] = [];
+    // write value as varint 32, inlined for speed
+    while (value > 0x7f) {
+      numberBuf.push((value & 0x7f) | 0x80);
+      value = value >>> 7;
+    }
+    numberBuf.push(value);
+    return numberBuf;
+  }
+
+  /**
+   * Writes a tag (field number and wire type).
+   */
   tag(fieldNo: number, type: WireType): this {
     return this.uint32(((fieldNo << 3) | type) >>> 0);
   }
-
-  // /**
-  //  * Write a chunk of raw bytes.
-  //  */
-  // raw(chunk: Uint8Array): this {
-  //   if (this.buf.length) {
-  //     this.chunks.push(new Uint8Array(this.buf));
-  //     this.buf = [];
-  //   }
-  //   this.chunks.push(chunk);
-  //   return this;
-  // }
 
   /**
    * Write a `uint32` value, an unsigned 32 bit varint.
