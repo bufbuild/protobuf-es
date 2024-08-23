@@ -125,11 +125,8 @@ function writeScalar(
   fieldNo: number,
   value: unknown
 ) {
-  writeScalarValue(
-    writer.tag(fieldNo, writeTypeOfScalar(scalarType)),
-    scalarType,
-    value as ScalarValue
-  );
+  writer.tag(fieldNo, writeTypeOfScalar(scalarType));
+  writeScalarValue(writer, scalarType, value as ScalarValue);
 }
 
 function writeMessageField(

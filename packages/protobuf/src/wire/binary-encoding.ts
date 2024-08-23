@@ -99,13 +99,13 @@ export class BinaryWriter {
   /**
    * This is the storage backing for the bytes buffer.
    *
-   * Max byte length is 2GB - 1, which is the maximum for array buffers.
+   * Max byte length is 2GiB - 1, which is the maximum for array buffers.
    *
    * TODO(ekrekr): remove the `any` cast once types are fixed:
    * https://github.com/microsoft/TypeScript/pull/58573.
    */
   private bytesBufStorage = new (ArrayBuffer as any)(0, {
-    maxByteLength: (((2 << 10) << 10) << 10) - 1,
+    maxByteLength: -(((2 << 10) << 10) << 10) - 1,
   });
 
   /**
@@ -125,26 +125,6 @@ export class BinaryWriter {
    */
   finish(): Uint8Array {
     return this.bytesBuf;
-  }
-
-  /**
-   * Gets a tag (field number and wire type) without writing it.
-   *
-   * Equivalent to `uint32( (fieldNo << 3 | type) >>> 0 )`.
-   *
-   * Generated code should compute the tag ahead of time and call `uint32()`.
-   */
-  getTag(fieldNo: number, type: WireType): number[] {
-    let value = ((fieldNo << 3) | type) >>> 0;
-    assertUInt32(value);
-    const numberBuf: number[] = [];
-    // write value as varint 32, inlined for speed
-    while (value > 0x7f) {
-      numberBuf.push((value & 0x7f) | 0x80);
-      value = value >>> 7;
-    }
-    numberBuf.push(value);
-    return numberBuf;
   }
 
   /**
@@ -211,13 +191,13 @@ export class BinaryWriter {
    * Write a `string` value, length-delimited data converted to UTF-8 text.
    */
   string(value: string): this {
-    const currentBufHead = this.bytesBufStorage.byteLength;
-
     // NodeJS strings are by default UTF-8, so we can assume the byte length as the length of
     // the string.
     const valueBytesLength = value.length;
 
     this.uint32(valueBytesLength);
+
+    const currentBufHead = this.bytesBufStorage.byteLength;
 
     // Allocate new bytes for the string.
     this.bytesBufStorage.resize(currentBufHead + valueBytesLength);
@@ -238,7 +218,7 @@ export class BinaryWriter {
     const currentBufHead = this.bytesBufStorage.byteLength;
     assertFloat32(value);
     this.bytesBufStorage.resize(currentBufHead + 4);
-    new DataView(this.bytesBufStorage).setFloat64(currentBufHead, value, true);
+    new DataView(this.bytesBufStorage).setFloat32(currentBufHead, value, true);
     return this;
   }
 
