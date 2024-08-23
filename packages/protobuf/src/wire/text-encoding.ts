@@ -24,6 +24,13 @@ interface TextEncoding {
    */
   encodeUtf8: (text: string) => Uint8Array;
   /**
+   * Encode UTF-8 text to an existing binary.
+   */
+  encodeInto: (
+    text: string,
+    buf: Uint8Array
+  ) => { read: number; written: number };
+  /**
    * Decode UTF-8 text from binary.
    */
   decodeUtf8: (bytes: Uint8Array) => string;
@@ -54,6 +61,12 @@ export function getTextEncoding() {
       encodeUtf8(text: string): Uint8Array {
         return te.encode(text);
       },
+      encodeInto(
+        text: string,
+        buf: Uint8Array
+      ): { read: number; written: number } {
+        return te.encodeInto(text, buf);
+      },
       decodeUtf8(bytes: Uint8Array): string {
         return td.decode(bytes);
       },
@@ -78,6 +91,10 @@ type GlobalWithTextEncoderDecoder = {
   TextEncoder: {
     new (): {
       encode(text: string): Uint8Array;
+      encodeInto(
+        text: string,
+        buf: Uint8Array
+      ): { read: number; written: number };
     };
   };
   TextDecoder: {
