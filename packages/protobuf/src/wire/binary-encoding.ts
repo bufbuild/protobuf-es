@@ -100,6 +100,7 @@ export class BinaryWriter {
    * This is the storage backing for the bytes buffer.
    *
    * Max byte length is 2GiB - 1, which is the maximum for array buffers.
+   * This value is generally accepted the maximum protobuf size, so this is fine.
    *
    * TODO(ekrekr): remove the `any` cast once types are fixed:
    * https://github.com/microsoft/TypeScript/pull/58573.

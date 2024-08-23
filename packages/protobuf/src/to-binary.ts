@@ -139,9 +139,19 @@ function writeMessageField(
   if (field.delimitedEncoding) {
     writer.tag(field.number, WireType.StartGroup);
     writeFields(writer, opts, message).tag(field.number, WireType.EndGroup);
+    writer.tag(field.number, WireType.EndGroup);
   } else {
-    writeFields(writer, opts, message);
+    // TODO(ekrekr): this is really slow, because it has to allocate a whole new array buffer.
+    // Instead we should be writing the message directly to the original arraybuffer, then inserting
+    // the length beforehand.
+    const subMessage = writeFields(new BinaryWriter(), opts, message).finish();
+
+    // Add the prefix for the number of bytes in the submessage.
     writer.tag(field.number, WireType.LengthDelimited);
+    writer.uint32(subMessage.byteLength);
+
+    // Insert the sub message to the message.
+    writer.bytes(subMessage);
   }
 }
 
