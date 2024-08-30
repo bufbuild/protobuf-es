@@ -102,7 +102,10 @@ export type ConformanceRequest = Message<"conformance.ConformanceRequest"> & {
   /**
    * The full name for the test message to use; for the moment, either:
    * protobuf_test_messages.proto3.TestAllTypesProto3 or
-   * protobuf_test_messages.google.protobuf.TestAllTypesProto2.
+   * protobuf_test_messages.proto2.TestAllTypesProto2 or
+   * protobuf_test_messages.editions.proto2.TestAllTypesProto2 or
+   * protobuf_test_messages.editions.proto3.TestAllTypesProto3 or
+   * protobuf_test_messages.editions.TestAllTypesEdition2023.
    *
    * @generated from field: string message_type = 4;
    */
