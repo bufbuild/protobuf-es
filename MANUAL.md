@@ -1259,7 +1259,7 @@ the following additional export is generated:
 
 ```ts
 /**
- * JSON type for the message Example.
+ * @generated from message Example
  */
 export type ExampleJson = {
   /**
@@ -1300,7 +1300,7 @@ enum Format {
 
 ```ts
 /**
- * JSON type for the enum Format.
+ * @generated from enum Format
  */
 export type FormatJson = "FORMAT_UNSPECIFIED" | "FORMAT_BINARY" | "FORMAT_JSON";
 ```

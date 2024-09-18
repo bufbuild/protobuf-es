@@ -89,40 +89,56 @@ export type Type = Message<"google.protobuf.Type"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.Type.
+ * A protocol buffer message type.
+ *
+ * @generated from message google.protobuf.Type
  */
 export type TypeJson = {
   /**
+   * The fully qualified message name.
+   *
    * @generated from field: string name = 1;
    */
   name?: string;
 
   /**
+   * The list of fields.
+   *
    * @generated from field: repeated google.protobuf.Field fields = 2;
    */
   fields?: FieldJson[];
 
   /**
+   * The list of types appearing in `oneof` definitions in this type.
+   *
    * @generated from field: repeated string oneofs = 3;
    */
   oneofs?: string[];
 
   /**
+   * The protocol buffer options.
+   *
    * @generated from field: repeated google.protobuf.Option options = 4;
    */
   options?: OptionJson[];
 
   /**
+   * The source context.
+   *
    * @generated from field: google.protobuf.SourceContext source_context = 5;
    */
   sourceContext?: SourceContextJson;
 
   /**
+   * The source syntax.
+   *
    * @generated from field: google.protobuf.Syntax syntax = 6;
    */
   syntax?: SyntaxJson;
 
   /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
    * @generated from field: string edition = 7;
    */
   edition?: string;
@@ -215,55 +231,79 @@ export type Field = Message<"google.protobuf.Field"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.Field.
+ * A single field of a message type.
+ *
+ * @generated from message google.protobuf.Field
  */
 export type FieldJson = {
   /**
+   * The field type.
+   *
    * @generated from field: google.protobuf.Field.Kind kind = 1;
    */
   kind?: Field_KindJson;
 
   /**
+   * The field cardinality.
+   *
    * @generated from field: google.protobuf.Field.Cardinality cardinality = 2;
    */
   cardinality?: Field_CardinalityJson;
 
   /**
+   * The field number.
+   *
    * @generated from field: int32 number = 3;
    */
   number?: number;
 
   /**
+   * The field name.
+   *
    * @generated from field: string name = 4;
    */
   name?: string;
 
   /**
+   * The field type URL, without the scheme, for message or enumeration
+   * types. Example: `"type.googleapis.com/google.protobuf.Timestamp"`.
+   *
    * @generated from field: string type_url = 6;
    */
   typeUrl?: string;
 
   /**
+   * The index of the field type in `Type.oneofs`, for message or enumeration
+   * types. The first type has index 1; zero means the type is not in the list.
+   *
    * @generated from field: int32 oneof_index = 7;
    */
   oneofIndex?: number;
 
   /**
+   * Whether to use alternative packed wire representation.
+   *
    * @generated from field: bool packed = 8;
    */
   packed?: boolean;
 
   /**
+   * The protocol buffer options.
+   *
    * @generated from field: repeated google.protobuf.Option options = 9;
    */
   options?: OptionJson[];
 
   /**
+   * The field JSON name.
+   *
    * @generated from field: string json_name = 10;
    */
   jsonName?: string;
 
   /**
+   * The string value of the default value of this field. Proto2 syntax only.
+   *
    * @generated from field: string default_value = 11;
    */
   defaultValue?: string;
@@ -417,7 +457,9 @@ export enum Field_Kind {
 }
 
 /**
- * JSON type for the enum google.protobuf.Field.Kind.
+ * Basic field types.
+ *
+ * @generated from enum google.protobuf.Field.Kind
  */
 export type Field_KindJson = "TYPE_UNKNOWN" | "TYPE_DOUBLE" | "TYPE_FLOAT" | "TYPE_INT64" | "TYPE_UINT64" | "TYPE_INT32" | "TYPE_FIXED64" | "TYPE_FIXED32" | "TYPE_BOOL" | "TYPE_STRING" | "TYPE_GROUP" | "TYPE_MESSAGE" | "TYPE_BYTES" | "TYPE_UINT32" | "TYPE_ENUM" | "TYPE_SFIXED32" | "TYPE_SFIXED64" | "TYPE_SINT32" | "TYPE_SINT64";
 
@@ -463,7 +505,9 @@ export enum Field_Cardinality {
 }
 
 /**
- * JSON type for the enum google.protobuf.Field.Cardinality.
+ * Whether a field is optional, required, or repeated.
+ *
+ * @generated from enum google.protobuf.Field.Cardinality
  */
 export type Field_CardinalityJson = "CARDINALITY_UNKNOWN" | "CARDINALITY_OPTIONAL" | "CARDINALITY_REQUIRED" | "CARDINALITY_REPEATED";
 
@@ -523,35 +567,49 @@ export type Enum = Message<"google.protobuf.Enum"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.Enum.
+ * Enum type definition.
+ *
+ * @generated from message google.protobuf.Enum
  */
 export type EnumJson = {
   /**
+   * Enum type name.
+   *
    * @generated from field: string name = 1;
    */
   name?: string;
 
   /**
+   * Enum value definitions.
+   *
    * @generated from field: repeated google.protobuf.EnumValue enumvalue = 2;
    */
   enumvalue?: EnumValueJson[];
 
   /**
+   * Protocol buffer options.
+   *
    * @generated from field: repeated google.protobuf.Option options = 3;
    */
   options?: OptionJson[];
 
   /**
+   * The source context.
+   *
    * @generated from field: google.protobuf.SourceContext source_context = 4;
    */
   sourceContext?: SourceContextJson;
 
   /**
+   * The source syntax.
+   *
    * @generated from field: google.protobuf.Syntax syntax = 5;
    */
   syntax?: SyntaxJson;
 
   /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
    * @generated from field: string edition = 6;
    */
   edition?: string;
@@ -593,20 +651,28 @@ export type EnumValue = Message<"google.protobuf.EnumValue"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.EnumValue.
+ * Enum value definition.
+ *
+ * @generated from message google.protobuf.EnumValue
  */
 export type EnumValueJson = {
   /**
+   * Enum value name.
+   *
    * @generated from field: string name = 1;
    */
   name?: string;
 
   /**
+   * Enum value number.
+   *
    * @generated from field: int32 number = 2;
    */
   number?: number;
 
   /**
+   * Protocol buffer options.
+   *
    * @generated from field: repeated google.protobuf.Option options = 3;
    */
   options?: OptionJson[];
@@ -648,15 +714,28 @@ export type Option = Message<"google.protobuf.Option"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.Option.
+ * A protocol buffer option, which can be attached to a message, field,
+ * enumeration, etc.
+ *
+ * @generated from message google.protobuf.Option
  */
 export type OptionJson = {
   /**
+   * The option's name. For protobuf built-in options (options defined in
+   * descriptor.proto), this is the short name. For example, `"map_entry"`.
+   * For custom options, it should be the fully-qualified name. For example,
+   * `"google.api.http"`.
+   *
    * @generated from field: string name = 1;
    */
   name?: string;
 
   /**
+   * The option's value packed in an Any message. If the value is a primitive,
+   * the corresponding wrapper type defined in google/protobuf/wrappers.proto
+   * should be used. If the value is an enum, it should be stored as an int32
+   * value using the google.protobuf.Int32Value type.
+   *
    * @generated from field: google.protobuf.Any value = 2;
    */
   value?: AnyJson;
@@ -698,7 +777,9 @@ export enum Syntax {
 }
 
 /**
- * JSON type for the enum google.protobuf.Syntax.
+ * The syntax in which a protocol buffer element is defined.
+ *
+ * @generated from enum google.protobuf.Syntax
  */
 export type SyntaxJson = "SYNTAX_PROTO2" | "SYNTAX_PROTO3" | "SYNTAX_EDITIONS";
 
