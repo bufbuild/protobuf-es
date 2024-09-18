@@ -23,7 +23,6 @@ import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv1";
 import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
 import {
   createEcmaScriptPlugin,
-  getDeclarationString,
   type GeneratedFile,
   type Printable,
   type Schema,
@@ -378,7 +377,7 @@ function generateEnumShape(f: GeneratedFile, enumeration: DescEnum) {
 
 // prettier-ignore
 function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: Extract<Target, "ts" | "dts">) {
-  f.print(f.jsDoc(`JSON type for the ${enumeration.toString()}.`));
+  f.print(f.jsDoc(enumeration));
   const declaration = target == "ts" ? "type" : "declare type";
   const values: Printable[] = [];
   if (enumeration.typeName == "google.protobuf.NullValue") {
@@ -439,11 +438,11 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
 // prettier-ignore
 function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target: Extract<Target, "ts" | "dts">) {
   const exp = f.export(target == "ts" ? "type" : "declare type", f.importJson(message).name);
-  f.print(f.jsDoc(`JSON type for the ${message.toString()}.`));
+  f.print(f.jsDoc(message));
   switch (message.typeName) {
     case "google.protobuf.Any":
       f.print(exp, " = {");
-      f.print(`  "@type"?: string`);
+      f.print(`  "@type"?: string;`);
       f.print("};");
       break;
     case "google.protobuf.Timestamp":
@@ -475,7 +474,7 @@ function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target
         for (const field of message.fields) {
           switch (field.kind) {
             default:
-              f.print(f.jsDoc(`@generated from field: ${getDeclarationString(field)};`, "  "));
+              f.print(f.jsDoc(field, "  "));
               // eslint-disable-next-line no-case-declarations
               let jsonName: Printable = field.jsonName;
               if (jsonName === ""

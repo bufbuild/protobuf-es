@@ -44,10 +44,16 @@ export type SourceContext = Message<"google.protobuf.SourceContext"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.SourceContext.
+ * `SourceContext` represents information about the source of a
+ * protobuf element, like the file in which it is defined.
+ *
+ * @generated from message google.protobuf.SourceContext
  */
 export type SourceContextJson = {
   /**
+   * The path-qualified name of the .proto file that contained the associated
+   * protobuf element.  For example: `"google/protobuf/source_context.proto"`.
+   *
    * @generated from field: string file_name = 1;
    */
   fileName?: string;

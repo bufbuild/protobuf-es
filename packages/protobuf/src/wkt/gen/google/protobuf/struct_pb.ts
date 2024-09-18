@@ -51,7 +51,16 @@ export type Struct = Message<"google.protobuf.Struct"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.Struct.
+ * `Struct` represents a structured data value, consisting of fields
+ * which map to dynamically typed values. In some languages, `Struct`
+ * might be supported by a native representation. For example, in
+ * scripting languages like JS a struct is represented as an
+ * object. The details of that representation are described together
+ * with the proto support for the language.
+ *
+ * The JSON representation for `Struct` is JSON object.
+ *
+ * @generated from message google.protobuf.Struct
  */
 export type StructJson = JsonObject;
 
@@ -130,7 +139,14 @@ export type Value = Message<"google.protobuf.Value"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.Value.
+ * `Value` represents a dynamically typed value which can be either
+ * null, a number, a string, a boolean, a recursive struct value, or a
+ * list of values. A producer of value is expected to set one of these
+ * variants. Absence of any variant indicates an error.
+ *
+ * The JSON representation for `Value` is JSON value.
+ *
+ * @generated from message google.protobuf.Value
  */
 export type ValueJson = JsonValue;
 
@@ -158,7 +174,11 @@ export type ListValue = Message<"google.protobuf.ListValue"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.ListValue.
+ * `ListValue` is a wrapper around a repeated field of values.
+ *
+ * The JSON representation for `ListValue` is JSON array.
+ *
+ * @generated from message google.protobuf.ListValue
  */
 export type ListValueJson = JsonValue[];
 
@@ -187,7 +207,12 @@ export enum NullValue {
 }
 
 /**
- * JSON type for the enum google.protobuf.NullValue.
+ * `NullValue` is a singleton enumeration to represent the null value for the
+ * `Value` type union.
+ *
+ * The JSON representation for `NullValue` is JSON `null`.
+ *
+ * @generated from enum google.protobuf.NullValue
  */
 export type NullValueJson = null;
 

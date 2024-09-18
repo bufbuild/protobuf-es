@@ -44,7 +44,11 @@ export type DoubleValue = Message<"google.protobuf.DoubleValue"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.DoubleValue.
+ * Wrapper message for `double`.
+ *
+ * The JSON representation for `DoubleValue` is JSON number.
+ *
+ * @generated from message google.protobuf.DoubleValue
  */
 export type DoubleValueJson = number | "NaN" | "Infinity" | "-Infinity";
 
@@ -72,7 +76,11 @@ export type FloatValue = Message<"google.protobuf.FloatValue"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.FloatValue.
+ * Wrapper message for `float`.
+ *
+ * The JSON representation for `FloatValue` is JSON number.
+ *
+ * @generated from message google.protobuf.FloatValue
  */
 export type FloatValueJson = number | "NaN" | "Infinity" | "-Infinity";
 
@@ -100,7 +108,11 @@ export type Int64Value = Message<"google.protobuf.Int64Value"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.Int64Value.
+ * Wrapper message for `int64`.
+ *
+ * The JSON representation for `Int64Value` is JSON string.
+ *
+ * @generated from message google.protobuf.Int64Value
  */
 export type Int64ValueJson = string;
 
@@ -128,7 +140,11 @@ export type UInt64Value = Message<"google.protobuf.UInt64Value"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.UInt64Value.
+ * Wrapper message for `uint64`.
+ *
+ * The JSON representation for `UInt64Value` is JSON string.
+ *
+ * @generated from message google.protobuf.UInt64Value
  */
 export type UInt64ValueJson = string;
 
@@ -156,7 +172,11 @@ export type Int32Value = Message<"google.protobuf.Int32Value"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.Int32Value.
+ * Wrapper message for `int32`.
+ *
+ * The JSON representation for `Int32Value` is JSON number.
+ *
+ * @generated from message google.protobuf.Int32Value
  */
 export type Int32ValueJson = number;
 
@@ -184,7 +204,11 @@ export type UInt32Value = Message<"google.protobuf.UInt32Value"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.UInt32Value.
+ * Wrapper message for `uint32`.
+ *
+ * The JSON representation for `UInt32Value` is JSON number.
+ *
+ * @generated from message google.protobuf.UInt32Value
  */
 export type UInt32ValueJson = number;
 
@@ -212,7 +236,11 @@ export type BoolValue = Message<"google.protobuf.BoolValue"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.BoolValue.
+ * Wrapper message for `bool`.
+ *
+ * The JSON representation for `BoolValue` is JSON `true` and `false`.
+ *
+ * @generated from message google.protobuf.BoolValue
  */
 export type BoolValueJson = boolean;
 
@@ -240,7 +268,11 @@ export type StringValue = Message<"google.protobuf.StringValue"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.StringValue.
+ * Wrapper message for `string`.
+ *
+ * The JSON representation for `StringValue` is JSON string.
+ *
+ * @generated from message google.protobuf.StringValue
  */
 export type StringValueJson = string;
 
@@ -268,7 +300,11 @@ export type BytesValue = Message<"google.protobuf.BytesValue"> & {
 };
 
 /**
- * JSON type for the message google.protobuf.BytesValue.
+ * Wrapper message for `bytes`.
+ *
+ * The JSON representation for `BytesValue` is JSON string.
+ *
+ * @generated from message google.protobuf.BytesValue
  */
 export type BytesValueJson = string;
 
