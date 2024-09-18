@@ -2452,7 +2452,7 @@ For example:
 - It doesn't carry over comments from your `.proto` files
 
 Because of this, we want to provide a solid, modern alternative with Protobuf-ES. The main differences of the
-generated code arw:
+generated code are:
 
 - We use plain properties for fields, whereas `protoc` uses getter and setter methods
 - We implement the canonical JSON format
