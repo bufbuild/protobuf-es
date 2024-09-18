@@ -7,6 +7,9 @@ on:
     branches: [main, "v*"]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env:
   # https://consoledonottrack.com/
   DO_NOT_TRACK: 1
@@ -16,162 +19,123 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
         bigint-disable: [0, 1]
     name: test ${{ matrix.node-version }} (${{ matrix.bigint-disable && 'fallback' || 'bigint' }})
     steps:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/test/${{ github.sha }}
           restore-keys: protobuf-es/test
-      - name: NPM Install
-        run: npm ci
-      - name: Run all tests except conformance and TypeScript compat
-        run: npx turbo run test -F '!./packages/protobuf-conformance' -F '!./packages/typescript-compat/*'
+      - run: npm ci
+      - run: npx turbo run test -F '!./packages/protobuf-conformance' -F '!./packages/typescript-compat/*'
         env:
           BUF_BIGINT_DISABLE: ${{ matrix.bigint-disable }}
   conformance:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
         bigint-disable: [0, 1]
     name: conformance ${{ matrix.node-version }} (${{ matrix.bigint-disable && 'fallback' || 'bigint' }})
     steps:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/conformance/${{ github.sha }}
           restore-keys: protobuf-es/conformance
-      - name: NPM Install
-        run: npm ci
-      - name: Run conformance tests
-        run: npx turbo run test -F './packages/protobuf-conformance'
+      - run: npm ci
+      - run: npx turbo run test -F './packages/protobuf-conformance'
         env:
           BUF_BIGINT_DISABLE: ${{ matrix.bigint-disable }}
   lint:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/lint/${{ github.sha }}
           restore-keys: protobuf-es/lint
-      - name: NPM Install
-        run: npm ci
-      - name: lint
-        run: npx turbo run lint
+      - run: npm ci
+      - run: npx turbo run lint
   attw:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/attw/${{ github.sha }}
           restore-keys: protobuf-es/attw
-      - name: NPM Install
-        run: npm ci
-      - name: Are the types wrong
-        run: npx turbo run attw
+      - run: npm ci
+      - run: npx turbo run attw
   typescript-compat:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/typescript-compat/${{ github.sha }}
           restore-keys: protobuf-es/typescript-compat
-      - name: NPM Install
-        run: npm ci
-      - name: Test typescript-compat
-        run: npx turbo run test -F './packages/typescript-compat/*'
+      - run: npm ci
+      - run: npx turbo run test -F './packages/typescript-compat/*'
   license-header:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/license-header/${{ github.sha }}
           restore-keys: protobuf-es/license-header
-      - name: NPM Install
-        run: npm ci
-      - name: Update license headers
-        run: npx turbo run license-header
-      - name: Check changed files
-        run: node scripts/gh-diffcheck.js
+      - run: npm ci
+      - run: npx turbo run license-header
+      - run: node scripts/gh-diffcheck.js
   format:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/format/${{ github.sha }}
           restore-keys: protobuf-es/format
-      - name: NPM Install
-        run: npm ci
-      - name: Format
-        run: npx turbo run format
-      - name: Check changed files
-        run: node scripts/gh-diffcheck.js
+      - run: npm ci
+      - run: npx turbo run format
+      - run: node scripts/gh-diffcheck.js
   bundle-size:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/bundle-size/${{ github.sha }}
           restore-keys: protobuf-es/bundle-size
-      - name: NPM Install
-        run: npm ci
-      - name: Bundle size
-        run: npx turbo run bundle-size
-      - name: Check changed files
-        run: node scripts/gh-diffcheck.js
+      - run: npm ci
+      - run: npx turbo run bundle-size
+      - run: node scripts/gh-diffcheck.js
   bootstrap:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache
-        uses: actions/cache@v4
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/bootstrap/${{ github.sha }}
           restore-keys: protobuf-es/bootstrap
-      - name: NPM Install
-        run: npm ci
+      - run: npm ci
       - name: Bootstrap well-known types
         run: npx turbo run bootstrap:inject bootstrap:wkt
-      - name: Check changed files
-        run: node scripts/gh-diffcheck.js
+      - run: node scripts/gh-diffcheck.js
