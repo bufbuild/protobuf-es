@@ -50,7 +50,7 @@ export type MessageJsonType<Desc extends DescMessage> =
  */
 export type MessageInitShape<Desc extends DescMessage> =
   Desc extends GenMessage<infer RuntimeShape>
-    ? RuntimeShape | MessageInit<RuntimeShape>
+    ? MessageInit<RuntimeShape>
     : Record<string, unknown>;
 
 /**
@@ -93,10 +93,11 @@ export type UnknownField = {
  * The init type for a message, which makes all fields optional.
  * The init type is accepted by the function create().
  */
-type MessageInit<T extends Message> = {
-  [P in keyof T as P extends "$typeName" | "$unknown" ? never : P]?: FieldInit<
-    T[P]
-  >;
+// prettier-ignore
+type MessageInit<T extends Message> = T | {
+  [P in keyof T as P extends "$unknown" ? never : P]?: P extends "$typeName"
+    ? never
+    : FieldInit<T[P]>;
 };
 
 // prettier-ignore
