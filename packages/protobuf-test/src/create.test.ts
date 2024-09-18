@@ -27,6 +27,7 @@ import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 import * as edition2023_ts from "./gen/ts/extra/edition2023_pb.js";
 import * as test_messages_proto3_editions_ts from "./gen/ts/editions/golden/test_messages_proto3_editions_pb.js";
+import * as ts_types from "./gen/ts/extra/ts-types-proto2_pb.js";
 import { fillProto3Message, fillProto3MessageNames } from "./helpers-proto3.js";
 import {
   fillEdition2023Message,
@@ -548,6 +549,12 @@ describe("create()", () => {
       // @ts-expect-error TS2345
       const notAUser = create(proto3_ts.Proto3MessageSchema, user);
       expect(notAUser).toBeDefined();
+    });
+    test("rejects foreign typed message with assignable properties as a type error", () => {
+      const a = create(ts_types.TsTypeASchema);
+      // @ts-expect-error TS2345: Argument of type TsTypeA is not assignable to parameter of type MessageInit<TsTypeB> | undefined
+      const b = create(ts_types.TsTypeBSchema, a);
+      expect(b).toBeDefined();
     });
     test("rejects extra properties in the object literal as a type error", () => {
       const msg = create(proto3_ts.Proto3MessageSchema, {
