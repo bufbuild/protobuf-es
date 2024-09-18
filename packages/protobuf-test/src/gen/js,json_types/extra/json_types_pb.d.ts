@@ -161,7 +161,7 @@ export declare type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
 };
 
 /**
- * JSON type for the message spec.JsonTypesMessage.
+ * @generated from message spec.JsonTypesMessage
  */
 export declare type JsonTypesMessageJson = {
   /**
@@ -322,7 +322,7 @@ export enum JsonTypeEnum {
 }
 
 /**
- * JSON type for the enum spec.JsonTypeEnum.
+ * @generated from enum spec.JsonTypeEnum
  */
 export declare type JsonTypeEnumJson = "JSON_TYPE_ENUM_UNSPECIFIED" | "JSON_TYPE_ENUM_YES" | "JSON_TYPE_ENUM_NO";
 
