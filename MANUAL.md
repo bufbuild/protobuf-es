@@ -2341,17 +2341,18 @@ function show(user: User) {
 }
 ```
 
+Note that messages also no longer implement the special method `toJSON`. Before you pass a message to `JSON.stringify`,
+convert it to a JSON value first (using `toJson`).
+
 The generated properties remain largely unchanged. There are two improvements:
 
 - A message field using [`google.protobuf.Struct`](#googleprotobufstruct) is generated as `JsonObject`.
 - Proto2 fields support [default values](#field-presence-and-default-values) now and are no longer generated as optional properties.
 
 The `toPlainMessage` function and the `PlainMessage<T>` type are no longer necessary. If you create a proto3 message with
-`create(UserSchema)`, the returned object is already a plain object.
-
-You can replace the `PlainMessage<User>` type with `User`. The only difference is that `User` has a property
-`$typeName`, which is a simple string with the full name of the message like `"example.User"`.
-This property makes sure you don't pass the wrong message to a function by accident.
+`create(UserSchema)`, the returned object is already a plain object. You can replace the `PlainMessage<User>` type with
+`User`. The only difference is that `User` has a property `$typeName`, which is a simple string with the full name of
+the message like `"example.User"`. This property makes sure you don't pass the wrong message to a function by accident.
 
 [Well-known types](#well-known-types) have moved to a subpath export `@bufbuild/protobuf/wkt`.
 
