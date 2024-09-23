@@ -5,7 +5,7 @@ clients from service definitions in Protobuf files.
 
 ## Run the example
 
-You need [Node](https://nodejs.org/en/download/) version 18.17.0 or later installed.
+You need [Node](https://nodejs.org/en/download/) version 20.17.0 or later installed.
 Download the example project and install its dependencies:
 
 ```shell
