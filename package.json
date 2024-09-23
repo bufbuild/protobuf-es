@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "clean": "git clean -Xdf",
-    "all": "turbo run build generate test lint attw bundle-size format license-header bootstrap:inject bootstrap:wkt",
+    "all": "turbo run --ui tui build generate test lint attw bundle-size format license-header bootstrap:inject bootstrap:wkt",
     "setversion": "node scripts/set-workspace-version.js",
     "postsetversion": "npm run all",
     "release": "npm run all && node scripts/release.js",

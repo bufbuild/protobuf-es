@@ -7,7 +7,6 @@
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza",
     "test": "tsx --test test/*.ts",
     "generate": "buf generate",
-    "postgenerate": "license-header src/gen",
     "format": "prettier --write --ignore-unknown '.' '!.turbo' '!src/gen/**'",
     "license-header": "license-header",
     "lint": "eslint --max-warnings 0 ."
