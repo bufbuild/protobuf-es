@@ -9,23 +9,17 @@ Note that this example can be easily implemented in other languages, because
 the serialization format is standardized. That means you could add a user to the
 list with Dart, and list people with TypeScript interchangeably.
 
-### Build and run the example
+### Run the example
 
-To run the example, you only need npm or Yarn.
-[Download the source](https://github.com/bufbuild/protobuf-es/archive/refs/heads/main.zip),
-then run the following commands:
+You need [Node](https://nodejs.org/en/download/) version 20.17.0 or later installed.
+Download the example project and install its dependencies:
 
-From the project root, first install and build all required packages:
+```shell
+curl -L https://github.com/bufbuild/protobuf-es/archive/refs/heads/main.zip > protobuf-es-main.zip
+unzip protobuf-es-main.zip 'protobuf-es-main/packages/protobuf-example/*'
 
-```shellsession
-npm ci
-npm run generate --filter ./packages/protobuf-example
-```
-
-Next, `cd` into the example directory:
-
-```shellsession
-cd packages/protobuf-example
+cd protobuf-es-main/packages/protobuf-example
+npm install
 ```
 
 To add a user:
