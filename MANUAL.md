@@ -2495,6 +2495,10 @@ If you see the following error with [Metro] or [Expo], make sure to [enable pack
 Metro error: Unable to resolve module @bufbuild/protobuf/codegenv1
 ```
 
+### Is serialization deterministic?
+
+Serialization to JSON and binary is deterministic within a version of protobuf-es, but map entries, repeated fields and extensions are ordered by insertion. Regular fields are sorted by field number.
+
 [@bufbuild/buf]: https://www.npmjs.com/package/@bufbuild/buf
 [@bufbuild/protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
 [@bufbuild/protoc-gen-es]: https://www.npmjs.com/package/@bufbuild/protoc-gen-es
