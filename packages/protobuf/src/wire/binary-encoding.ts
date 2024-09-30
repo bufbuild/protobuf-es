@@ -97,108 +97,42 @@ export const INT32_MIN = -0x80000000;
 
 export class BinaryWriter {
   /**
-   * We cannot allocate a buffer for the entire output
-   * because we don't know it's size.
+   * This is the storage backing for the bytes buffer.
    *
-   * So we collect smaller chunks of known size and
-   * concat them later.
+   * Max byte length is 2GiB - 1, which is the maximum for array buffers.
+   * This value is generally accepted the maximum protobuf size, so this is fine.
    *
-   * Use `raw()` to push data to this array. It will flush
-   * `buf` first.
+   * TODO(ekrekr): remove the `any` cast once types are fixed:
+   * https://github.com/microsoft/TypeScript/pull/58573.
    */
-  private chunks: Uint8Array[];
+  private bytesBufStorage = new (ArrayBuffer as any)(0, {
+    maxByteLength: -(((2 << 10) << 10) << 10) - 1,
+  });
 
   /**
-   * A growing buffer for byte values. If you don't know
-   * the size of the data you are writing, push to this
-   * array.
+   * This contains the editable view onto the storage backing.
    */
-  protected buf: number[];
-
-  /**
-   * Previous fork states.
-   */
-  private stack: Array<{ chunks: Uint8Array[]; buf: number[] }> = [];
+  private bytesBuf = new Uint8Array(this.bytesBufStorage);
 
   constructor(
-    private readonly encodeUtf8: (
+    private readonly encodeInto: (
       text: string,
-    ) => Uint8Array = getTextEncoding().encodeUtf8,
-  ) {
-    this.chunks = [];
-    this.buf = [];
-  }
+      buf: Uint8Array
+    ) => { read: number; written: number } = getTextEncoding().encodeInto
+  ) {}
 
   /**
    * Return all bytes written and reset this writer.
    */
   finish(): Uint8Array {
-    this.chunks.push(new Uint8Array(this.buf)); // flush the buffer
-    let len = 0;
-    for (let i = 0; i < this.chunks.length; i++) len += this.chunks[i].length;
-    let bytes = new Uint8Array(len);
-    let offset = 0;
-    for (let i = 0; i < this.chunks.length; i++) {
-      bytes.set(this.chunks[i], offset);
-      offset += this.chunks[i].length;
-    }
-    this.chunks = [];
-    return bytes;
-  }
-
-  /**
-   * Start a new fork for length-delimited data like a message
-   * or a packed repeated field.
-   *
-   * Must be joined later with `join()`.
-   */
-  fork(): this {
-    this.stack.push({ chunks: this.chunks, buf: this.buf });
-    this.chunks = [];
-    this.buf = [];
-    return this;
-  }
-
-  /**
-   * Join the last fork. Write its length and bytes, then
-   * return to the previous state.
-   */
-  join(): this {
-    // get chunk of fork
-    let chunk = this.finish();
-
-    // restore previous state
-    let prev = this.stack.pop();
-    if (!prev) throw new Error("invalid state, fork stack empty");
-    this.chunks = prev.chunks;
-    this.buf = prev.buf;
-
-    // write length of chunk as varint
-    this.uint32(chunk.byteLength);
-    return this.raw(chunk);
+    return this.bytesBuf;
   }
 
   /**
    * Writes a tag (field number and wire type).
-   *
-   * Equivalent to `uint32( (fieldNo << 3 | type) >>> 0 )`.
-   *
-   * Generated code should compute the tag ahead of time and call `uint32()`.
    */
   tag(fieldNo: number, type: WireType): this {
     return this.uint32(((fieldNo << 3) | type) >>> 0);
-  }
-
-  /**
-   * Write a chunk of raw bytes.
-   */
-  raw(chunk: Uint8Array): this {
-    if (this.buf.length) {
-      this.chunks.push(new Uint8Array(this.buf));
-      this.buf = [];
-    }
-    this.chunks.push(chunk);
-    return this;
   }
 
   /**
@@ -206,14 +140,17 @@ export class BinaryWriter {
    */
   uint32(value: number): this {
     assertUInt32(value);
-
     // write value as varint 32, inlined for speed
     while (value > 0x7f) {
-      this.buf.push((value & 0x7f) | 0x80);
+      const currentBufHead = this.bytesBufStorage.byteLength;
+      this.bytesBufStorage.resize(currentBufHead + 1);
+      this.bytesBuf.set([(value & 0x7f) | 0x80], currentBufHead);
       value = value >>> 7;
     }
-    this.buf.push(value);
-
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    // Expand the bytes buffer, then allocate the byte at the head.
+    this.bytesBufStorage.resize(currentBufHead + 1);
+    this.bytesBuf.set([value], currentBufHead);
     return this;
   }
 
@@ -222,7 +159,11 @@ export class BinaryWriter {
    */
   int32(value: number): this {
     assertInt32(value);
-    varint32write(value, this.buf);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    const numberBuf: number[] = [];
+    varint32write(value, numberBuf);
+    this.bytesBufStorage.resize(currentBufHead + numberBuf.length);
+    this.bytesBuf.set(numberBuf, currentBufHead);
     return this;
   }
 
@@ -230,7 +171,9 @@ export class BinaryWriter {
    * Write a `bool` value, a variant.
    */
   bool(value: boolean): this {
-    this.buf.push(value ? 1 : 0);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + 1);
+    this.bytesBuf.set([value ? 1 : 0], currentBufHead);
     return this;
   }
 
@@ -238,36 +181,56 @@ export class BinaryWriter {
    * Write a `bytes` value, length-delimited arbitrary data.
    */
   bytes(value: Uint8Array): this {
+    const currentBufHead = this.bytesBufStorage.byteLength;
     this.uint32(value.byteLength); // write length of chunk as varint
-    return this.raw(value);
+    this.bytesBufStorage.resize(currentBufHead + value.byteLength);
+    this.bytesBuf.set(value, currentBufHead);
+    return this;
   }
 
   /**
    * Write a `string` value, length-delimited data converted to UTF-8 text.
    */
   string(value: string): this {
-    let chunk = this.encodeUtf8(value);
-    this.uint32(chunk.byteLength); // write length of chunk as varint
-    return this.raw(chunk);
+    // NodeJS strings are by default UTF-8, so we can assume the byte length as the length of
+    // the string.
+    const valueBytesLength = value.length;
+
+    this.uint32(valueBytesLength);
+
+    const currentBufHead = this.bytesBufStorage.byteLength;
+
+    // Allocate new bytes for the string.
+    this.bytesBufStorage.resize(currentBufHead + valueBytesLength);
+
+    // Write the decoded string directly into the encoded message array buffer.
+    this.encodeInto(
+      value,
+      this.bytesBuf.subarray(currentBufHead, currentBufHead + valueBytesLength)
+    );
+
+    return this;
   }
 
   /**
    * Write a `float` value, 32-bit floating point number.
    */
   float(value: number): this {
+    const currentBufHead = this.bytesBufStorage.byteLength;
     assertFloat32(value);
-    let chunk = new Uint8Array(4);
-    new DataView(chunk.buffer).setFloat32(0, value, true);
-    return this.raw(chunk);
+    this.bytesBufStorage.resize(currentBufHead + 4);
+    new DataView(this.bytesBufStorage).setFloat32(currentBufHead, value, true);
+    return this;
   }
 
   /**
    * Write a `double` value, a 64-bit floating point number.
    */
   double(value: number): this {
-    let chunk = new Uint8Array(8);
-    new DataView(chunk.buffer).setFloat64(0, value, true);
-    return this.raw(chunk);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + 8);
+    new DataView(this.bytesBufStorage).setFloat64(currentBufHead, value, true);
+    return this;
   }
 
   /**
@@ -275,9 +238,10 @@ export class BinaryWriter {
    */
   fixed32(value: number): this {
     assertUInt32(value);
-    let chunk = new Uint8Array(4);
-    new DataView(chunk.buffer).setUint32(0, value, true);
-    return this.raw(chunk);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + 4);
+    new DataView(this.bytesBufStorage).setUint32(currentBufHead, value, true);
+    return this;
   }
 
   /**
@@ -285,9 +249,10 @@ export class BinaryWriter {
    */
   sfixed32(value: number): this {
     assertInt32(value);
-    let chunk = new Uint8Array(4);
-    new DataView(chunk.buffer).setInt32(0, value, true);
-    return this.raw(chunk);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + 4);
+    new DataView(this.bytesBufStorage).setInt32(currentBufHead, value, true);
+    return this;
   }
 
   /**
@@ -297,7 +262,11 @@ export class BinaryWriter {
     assertInt32(value);
     // zigzag encode
     value = ((value << 1) ^ (value >> 31)) >>> 0;
-    varint32write(value, this.buf);
+    const numberBuf: number[] = [];
+    varint32write(value, numberBuf);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + numberBuf.length);
+    this.bytesBuf.set(numberBuf, currentBufHead);
     return this;
   }
 
@@ -305,24 +274,26 @@ export class BinaryWriter {
    * Write a `fixed64` value, a signed, fixed-length 64-bit integer.
    */
   sfixed64(value: string | number | bigint): this {
-    let chunk = new Uint8Array(8),
-      view = new DataView(chunk.buffer),
-      tc = protoInt64.enc(value);
-    view.setInt32(0, tc.lo, true);
-    view.setInt32(4, tc.hi, true);
-    return this.raw(chunk);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + 8);
+    let view = new DataView(this.bytesBufStorage);
+    let tc = protoInt64.enc(value);
+    view.setInt32(currentBufHead, tc.lo, true);
+    view.setInt32(currentBufHead + 4, tc.hi, true);
+    return this;
   }
 
   /**
    * Write a `fixed64` value, an unsigned, fixed-length 64 bit integer.
    */
   fixed64(value: string | number | bigint): this {
-    let chunk = new Uint8Array(8),
-      view = new DataView(chunk.buffer),
-      tc = protoInt64.uEnc(value);
-    view.setInt32(0, tc.lo, true);
-    view.setInt32(4, tc.hi, true);
-    return this.raw(chunk);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + 8);
+    let view = new DataView(this.bytesBufStorage);
+    let tc = protoInt64.uEnc(value);
+    view.setInt32(currentBufHead, tc.lo, true);
+    view.setInt32(currentBufHead + 4, tc.hi, true);
+    return this;
   }
 
   /**
@@ -330,7 +301,11 @@ export class BinaryWriter {
    */
   int64(value: string | number | bigint): this {
     let tc = protoInt64.enc(value);
-    varint64write(tc.lo, tc.hi, this.buf);
+    const numberBuf: number[] = [];
+    varint64write(tc.lo, tc.hi, numberBuf);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + numberBuf.length);
+    this.bytesBuf.set(numberBuf, currentBufHead);
     return this;
   }
 
@@ -343,7 +318,11 @@ export class BinaryWriter {
       sign = tc.hi >> 31,
       lo = (tc.lo << 1) ^ sign,
       hi = ((tc.hi << 1) | (tc.lo >>> 31)) ^ sign;
-    varint64write(lo, hi, this.buf);
+    const numberBuf: number[] = [];
+    varint64write(lo, hi, numberBuf);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + numberBuf.length);
+    this.bytesBuf.set(numberBuf, currentBufHead);
     return this;
   }
 
@@ -352,7 +331,11 @@ export class BinaryWriter {
    */
   uint64(value: string | number | bigint): this {
     let tc = protoInt64.uEnc(value);
-    varint64write(tc.lo, tc.hi, this.buf);
+    const numberBuf: number[] = [];
+    varint64write(tc.lo, tc.hi, numberBuf);
+    const currentBufHead = this.bytesBufStorage.byteLength;
+    this.bytesBufStorage.resize(currentBufHead + numberBuf.length);
+    this.bytesBuf.set(numberBuf, currentBufHead);
     return this;
   }
 }
@@ -374,8 +357,8 @@ export class BinaryReader {
   constructor(
     buf: Uint8Array,
     private readonly decodeUtf8: (
-      bytes: Uint8Array,
-    ) => string = getTextEncoding().decodeUtf8,
+      bytes: Uint8Array
+    ) => string = getTextEncoding().decodeUtf8
   ) {
     this.buf = buf;
     this.len = buf.length;
@@ -392,7 +375,7 @@ export class BinaryReader {
       wireType = tag & 7;
     if (fieldNo <= 0 || wireType < 0 || wireType > 5)
       throw new Error(
-        "illegal tag: field no " + fieldNo + " wire type " + wireType,
+        "illegal tag: field no " + fieldNo + " wire type " + wireType
       );
     return [fieldNo, wireType];
   }
