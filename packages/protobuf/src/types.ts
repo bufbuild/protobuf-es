@@ -13,7 +13,12 @@
 // limitations under the License.
 
 import type { GenEnum, GenExtension, GenMessage } from "./codegenv1/types.js";
-import type { DescEnum, DescExtension, DescMessage } from "./descriptors.js";
+import type {
+  DescEnum,
+  DescExtension,
+  DescMessage,
+  DescMethod,
+} from "./descriptors.js";
 import type { OneofADT } from "./reflect/guard.js";
 import type { WireType } from "./wire/index.js";
 import type { JsonValue } from "./json-value.js";
@@ -90,6 +95,65 @@ export type UnknownField = {
 };
 
 /**
+ * Describes a streaming RPC declaration.
+ */
+export type DescMethodStreaming<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> =
+  | DescMethodClientStreaming<I, O>
+  | DescMethodServerStreaming<I, O>
+  | DescMethodBiDiStreaming<I, O>;
+
+/**
+ * Describes a unary RPC declaration.
+ */
+export type DescMethodUnary<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> = DescMethodCommon & {
+  methodKind: "unary";
+  input: I;
+  output: O;
+};
+
+/**
+ * Describes a server streaming RPC declaration.
+ */
+export type DescMethodServerStreaming<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> = DescMethodCommon & {
+  methodKind: "server_streaming";
+  input: I;
+  output: O;
+};
+
+/**
+ * Describes a client streaming RPC declaration.
+ */
+export type DescMethodClientStreaming<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> = DescMethodCommon & {
+  methodKind: "client_streaming";
+  input: I;
+  output: O;
+};
+
+/**
+ * Describes a bidi streaming RPC declaration.
+ */
+export type DescMethodBiDiStreaming<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> = DescMethodCommon & {
+  methodKind: "bidi_streaming";
+  input: I;
+  output: O;
+};
+
+/**
  * The init type for a message, which makes all fields optional.
  * The init type is accepted by the function create().
  */
@@ -119,3 +183,5 @@ type OneofSelectedMessage<K extends string, M extends Message> = {
   case: K;
   value: M;
 };
+
+type DescMethodCommon = Omit<DescMethod, "methodKind" | "input" | "output">;
