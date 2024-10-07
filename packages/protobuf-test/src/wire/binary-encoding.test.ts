@@ -135,12 +135,12 @@ describe("BinaryWriter", () => {
     );
   });
   it("should be completely reset after finish", () => {
-    const writer = new BinaryWriter()
+    const writer = new BinaryWriter();
     // Make sure we have both a chunk and a buffer
-    writer.raw(new Uint8Array([1,2,3])).int32(1);
+    writer.raw(new Uint8Array([1, 2, 3])).int32(1);
     const bytes = writer.finish();
     // Reuse the same writer to write the same data
-    writer.raw(new Uint8Array([1,2,3])).int32(1);
+    writer.raw(new Uint8Array([1, 2, 3])).int32(1);
     const bytes2 = writer.finish();
     expect(bytes2).toStrictEqual(bytes);
   });
