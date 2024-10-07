@@ -182,6 +182,16 @@ describe(`binary serialization`, () => {
       ).toEqual("foo");
     });
   });
+  test("error for invalid data", () => {
+    const msg = create(ScalarValuesMessageSchema, {
+      uint32Field: -1, // -1 is invalid for a uint
+    });
+    expect(() => toBinary(ScalarValuesMessageSchema, msg)).toThrow(
+      new Error(
+        "cannot encode field spec.ScalarValuesMessage.uint32_field to binary: invalid uint32: -1",
+      ),
+    );
+  });
 });
 
 function testBinary<Desc extends DescMessage>(

@@ -13,7 +13,14 @@
 // limitations under the License.
 
 import Benchmark from "benchmark";
-import { create, fromBinary, toBinary, protoInt64 } from "@bufbuild/protobuf";
+import {
+  create,
+  fromBinary,
+  toBinary,
+  protoInt64,
+  toJsonString,
+  fromJsonString,
+} from "@bufbuild/protobuf";
 import { readFileSync } from "fs";
 import { UserSchema } from "./gen/ts/extra/example_pb.js";
 import {
@@ -95,173 +102,163 @@ interface Test {
 }
 
 function setupTests(): Test[] {
-  const tests: Test[] = [];
-  {
-    const bytes = readFileSync(
-      new URL("perf-payload.bin", import.meta.url).pathname,
-    );
-    tests.push({
-      name: `fromBinary perf-payload.bin`,
-      fn: () => {
-        fromBinary(PerfMessageSchema, bytes);
-      },
-    });
-  }
-  {
-    const desc = UserSchema;
-    const tinyUser = create(desc, {
-      active: false,
-      manager: { active: true },
-    });
-    const data = toBinary(desc, tinyUser);
-    tests.push({
-      name: `fromBinary tiny example.User (${data.byteLength} bytes)`,
-      fn: () => {
-        fromBinary(desc, data);
-      },
-    });
-  }
-  {
-    const desc = UserSchema;
-    const normalUser = create(desc, {
-      firstName: "Jane",
-      lastName: "Doe",
-      active: true,
-      manager: { firstName: "Jane", lastName: "Doe", active: false },
-      locations: ["Seattle", "New York", "Tokyo"],
-      projects: { foo: "project foo", bar: "project bar" },
-    });
-    const data = toBinary(desc, normalUser);
-    tests.push({
-      name: `fromBinary normal example.User (${data.byteLength} bytes)`,
-      fn: () => {
-        fromBinary(desc, data);
-      },
-    });
-  }
-  {
-    const desc = ScalarValuesMessageSchema;
-    const message = create(ScalarValuesMessageSchema, {
-      doubleField: 0.75,
-      floatField: -0.75,
-      int64Field: protoInt64.parse(-1),
-      uint64Field: protoInt64.uParse(1),
-      int32Field: -123,
-      fixed64Field: protoInt64.uParse(1),
-      fixed32Field: 123,
-      boolField: true,
-      stringField: "hello world",
-      bytesField: new Uint8Array([
-        104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100,
-      ]),
-      uint32Field: 123,
-      sfixed32Field: -123,
-      sfixed64Field: protoInt64.parse(-1),
-      sint32Field: -1,
-      sint64Field: protoInt64.parse(-1),
-    });
-    const data = toBinary(desc, message);
-    tests.push({
-      name: `fromBinary scalar values (${data.byteLength} bytes)`,
-      fn: () => {
-        fromBinary(desc, data);
-      },
-    });
-  }
-  {
-    const desc = RepeatedScalarValuesMessageSchema;
-    const message = create(desc, {
-      doubleField: [0.75, 0, 1],
-      floatField: [0.75, -0.75],
-      int64Field: [protoInt64.parse(-1), protoInt64.parse(-2)],
-      uint64Field: [protoInt64.uParse(1), protoInt64.uParse(2)],
-      int32Field: [-123, 500],
-      fixed64Field: [protoInt64.uParse(1), protoInt64.uParse(99)],
-      fixed32Field: [123, 999],
-      boolField: [true, false, true],
-      stringField: ["hello", "world"],
-      bytesField: [
-        new Uint8Array([104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100]),
-      ],
-      uint32Field: [123, 123],
-      sfixed32Field: [-123, -123, -123],
-      sfixed64Field: [
-        protoInt64.parse(-1),
-        protoInt64.parse(-2),
-        protoInt64.parse(100),
-      ],
-      sint32Field: [-1, -2, 999],
-      sint64Field: [
-        protoInt64.parse(-1),
-        protoInt64.parse(-99),
-        protoInt64.parse(99),
-      ],
-    });
-    const data = toBinary(desc, message);
-    tests.push({
-      name: `fromBinary repeated scalar fields (${data.byteLength} bytes)`,
-      fn: () => {
-        fromBinary(desc, data);
-      },
-    });
-  }
-  {
-    const desc = MapsMessageSchema;
-    const message = create(desc, {
-      strStrField: { a: "str", b: "xx" },
-      strInt32Field: { a: 123, b: 455 },
-      strInt64Field: { a: protoInt64.parse(123) },
-      strBoolField: { a: true, b: false },
-      strBytesField: {
-        a: new Uint8Array([
+  const tests: Test[] = [
+    {
+      name: "perf-payload.bin",
+      desc: PerfMessageSchema,
+      msg: fromBinary(
+        PerfMessageSchema,
+        readFileSync(new URL("perf-payload.bin", import.meta.url).pathname),
+      ),
+    },
+    {
+      name: "tiny example.User",
+      desc: UserSchema,
+      msg: create(UserSchema, { active: false, manager: { active: true } }),
+    },
+    {
+      name: "normal example.User",
+      desc: UserSchema,
+      msg: create(UserSchema, {
+        firstName: "Jane",
+        lastName: "Doe",
+        active: true,
+        manager: { firstName: "Jane", lastName: "Doe", active: false },
+        locations: ["Seattle", "New York", "Tokyo"],
+        projects: { foo: "project foo", bar: "project bar" },
+      }),
+    },
+    {
+      name: "scalar values",
+      desc: ScalarValuesMessageSchema,
+      msg: create(ScalarValuesMessageSchema, {
+        doubleField: 0.75,
+        floatField: -0.75,
+        int64Field: protoInt64.parse(-1),
+        uint64Field: protoInt64.uParse(1),
+        int32Field: -123,
+        fixed64Field: protoInt64.uParse(1),
+        fixed32Field: 123,
+        boolField: true,
+        stringField: "hello world",
+        bytesField: new Uint8Array([
           104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100,
         ]),
+        uint32Field: 123,
+        sfixed32Field: -123,
+        sfixed64Field: protoInt64.parse(-1),
+        sint32Field: -1,
+        sint64Field: protoInt64.parse(-1),
+      }),
+    },
+    {
+      name: "repeated scalar values",
+      desc: RepeatedScalarValuesMessageSchema,
+      msg: create(RepeatedScalarValuesMessageSchema, {
+        doubleField: [0.75, 0, 1],
+        floatField: [0.75, -0.75],
+        int64Field: [protoInt64.parse(-1), protoInt64.parse(-2)],
+        uint64Field: [protoInt64.uParse(1), protoInt64.uParse(2)],
+        int32Field: [-123, 500],
+        fixed64Field: [protoInt64.uParse(1), protoInt64.uParse(99)],
+        fixed32Field: [123, 999],
+        boolField: [true, false, true],
+        stringField: ["hello", "world"],
+        bytesField: [
+          new Uint8Array([
+            104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100,
+          ]),
+        ],
+        uint32Field: [123, 123],
+        sfixed32Field: [-123, -123, -123],
+        sfixed64Field: [
+          protoInt64.parse(-1),
+          protoInt64.parse(-2),
+          protoInt64.parse(100),
+        ],
+        sint32Field: [-1, -2, 999],
+        sint64Field: [
+          protoInt64.parse(-1),
+          protoInt64.parse(-99),
+          protoInt64.parse(99),
+        ],
+      }),
+    },
+    {
+      name: "map with scalar keys and values",
+      desc: MapsMessageSchema,
+      msg: create(MapsMessageSchema, {
+        strStrField: { a: "str", b: "xx" },
+        strInt32Field: { a: 123, b: 455 },
+        strInt64Field: { a: protoInt64.parse(123) },
+        strBoolField: { a: true, b: false },
+        strBytesField: {
+          a: new Uint8Array([
+            104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100,
+          ]),
+        },
+        int32StrField: { 123: "hello" },
+        int64StrField: { "9223372036854775807": "hello" },
+        boolStrField: { true: "yes", false: "no" },
+        strEnuField: { a: 0, b: 1, c: 2 },
+        int32EnuField: { 1: 0, 2: 1, 0: 2 },
+        int64EnuField: { "-1": 0, "2": 1, "0": 2 },
+      }),
+    },
+    {
+      name: "repeated field with 1000 messages",
+      desc: MessageFieldMessageSchema,
+      msg: (() => {
+        const message = create(MessageFieldMessageSchema);
+        for (let i = 0; i < 1000; i++) {
+          message.repeatedMessageField.push(
+            create(MessageFieldMessage_TestMessageSchema),
+          );
+        }
+        return message;
+      })(),
+    },
+    {
+      name: "map field with 1000 messages",
+      desc: MapsMessageSchema,
+      msg: (() => {
+        const message = create(MapsMessageSchema);
+        for (let i = 0; i < 1000; i++) {
+          message.strMsgField[i.toString()] = create(MapsMessageSchema);
+        }
+        return message;
+      })(),
+    },
+  ].flatMap(({ name, msg, desc }) => {
+    const bytes = toBinary(desc, msg);
+    const jsonString = toJsonString(desc, msg);
+    return [
+      {
+        name: `fromBinary ${name}`,
+        fn: () => {
+          fromBinary(desc, bytes);
+        },
       },
-      int32StrField: { 123: "hello" },
-      int64StrField: { "9223372036854775807": "hello" },
-      boolStrField: { true: "yes", false: "no" },
-      strEnuField: { a: 0, b: 1, c: 2 },
-      int32EnuField: { 1: 0, 2: 1, 0: 2 },
-      int64EnuField: { "-1": 0, "2": 1, "0": 2 },
-    });
-    const data = toBinary(desc, message);
-    tests.push({
-      name: `fromBinary map with scalar keys and values (${data.byteLength} bytes)`,
-      fn: () => {
-        fromBinary(desc, data);
+      {
+        name: `fromJson   ${name}`,
+        fn: () => {
+          fromJsonString(desc, jsonString);
+        },
       },
-    });
-  }
-  {
-    const desc = MessageFieldMessageSchema;
-    const message = create(desc);
-    for (let i = 0; i < 1000; i++) {
-      message.repeatedMessageField.push(
-        create(MessageFieldMessage_TestMessageSchema),
-      );
-    }
-    const data = toBinary(desc, message);
-    tests.push({
-      name: `fromBinary repeated field with 1000 messages (${data.byteLength} bytes)`,
-      fn: () => {
-        fromBinary(desc, data);
+      {
+        name: `toBinary   ${name}`,
+        fn: () => {
+          toBinary(desc, msg);
+        },
       },
-    });
-  }
-  {
-    const desc = MapsMessageSchema;
-    const message = create(desc);
-    for (let i = 0; i < 1000; i++) {
-      message.strMsgField[i.toString()] = create(desc);
-    }
-    const data = toBinary(desc, message);
-    tests.push({
-      name: `fromBinary map field with 1000 messages (${data.byteLength} bytes)`,
-      fn: () => {
-        fromBinary(desc, data);
+      {
+        name: `toJson     ${name}`,
+        fn: () => {
+          toJsonString(desc, msg);
+        },
       },
-    });
-  }
+    ];
+  });
   return tests;
 }
 

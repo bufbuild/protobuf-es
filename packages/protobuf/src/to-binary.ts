@@ -100,20 +100,22 @@ export function writeField(
     case "enum":
       writeScalar(
         writer,
+        msg.desc.typeName,
+        field.name,
         field.scalar ?? ScalarType.INT32,
         field.number,
         msg.get(field),
       );
       break;
     case "list":
-      writeListField(writer, opts, field, msg.get(field));
+      writeListField(writer, msg.desc.typeName, opts, field, msg.get(field));
       break;
     case "message":
       writeMessageField(writer, opts, field, msg.get(field));
       break;
     case "map":
       for (const [key, val] of msg.get(field)) {
-        writeMapEntry(writer, opts, field, key, val);
+        writeMapEntry(writer, msg.desc.typeName, opts, field, key, val);
       }
       break;
   }
@@ -121,12 +123,16 @@ export function writeField(
 
 function writeScalar(
   writer: BinaryWriter,
+  msgName: string,
+  fieldName: string,
   scalarType: ScalarType,
   fieldNo: number,
   value: unknown,
 ) {
   writeScalarValue(
     writer.tag(fieldNo, writeTypeOfScalar(scalarType)),
+    msgName,
+    fieldName,
     scalarType,
     value as ScalarValue,
   );
@@ -156,6 +162,7 @@ function writeMessageField(
 
 function writeListField(
   writer: BinaryWriter,
+  msgName: string,
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "list" },
   list: ReflectList,
@@ -173,18 +180,25 @@ function writeListField(
     }
     writer.tag(field.number, WireType.LengthDelimited).fork();
     for (const item of list) {
-      writeScalarValue(writer, scalarType, item as ScalarValue);
+      writeScalarValue(
+        writer,
+        msgName,
+        field.name,
+        scalarType,
+        item as ScalarValue,
+      );
     }
     writer.join();
     return;
   }
   for (const item of list) {
-    writeScalar(writer, scalarType, field.number, item);
+    writeScalar(writer, msgName, field.name, scalarType, field.number, item);
   }
 }
 
 function writeMapEntry(
   writer: BinaryWriter,
+  msgName: string,
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "map" },
   key: unknown,
@@ -193,13 +207,20 @@ function writeMapEntry(
   writer.tag(field.number, WireType.LengthDelimited).fork();
 
   // write key, expecting key field number = 1
-  writeScalar(writer, field.mapKey, 1, key);
+  writeScalar(writer, msgName, field.name, field.mapKey, 1, key);
 
   // write value, expecting value field number = 2
   switch (field.mapKind) {
     case "scalar":
     case "enum":
-      writeScalar(writer, field.scalar ?? ScalarType.INT32, 2, value);
+      writeScalar(
+        writer,
+        msgName,
+        field.name,
+        field.scalar ?? ScalarType.INT32,
+        2,
+        value,
+      );
       break;
     case "message":
       writeFields(
@@ -214,55 +235,66 @@ function writeMapEntry(
 
 function writeScalarValue(
   writer: BinaryWriter,
+  msgName: string,
+  fieldName: string,
   type: ScalarType,
   value: ScalarValue,
 ) {
-  switch (type) {
-    case ScalarType.STRING:
-      writer.string(value as string);
-      break;
-    case ScalarType.BOOL:
-      writer.bool(value as boolean);
-      break;
-    case ScalarType.DOUBLE:
-      writer.double(value as number);
-      break;
-    case ScalarType.FLOAT:
-      writer.float(value as number);
-      break;
-    case ScalarType.INT32:
-      writer.int32(value as number);
-      break;
-    case ScalarType.INT64:
-      writer.int64(value as number);
-      break;
-    case ScalarType.UINT64:
-      writer.uint64(value as number);
-      break;
-    case ScalarType.FIXED64:
-      writer.fixed64(value as number);
-      break;
-    case ScalarType.BYTES:
-      writer.bytes(value as Uint8Array);
-      break;
-    case ScalarType.FIXED32:
-      writer.fixed32(value as number);
-      break;
-    case ScalarType.SFIXED32:
-      writer.sfixed32(value as number);
-      break;
-    case ScalarType.SFIXED64:
-      writer.sfixed64(value as number);
-      break;
-    case ScalarType.SINT64:
-      writer.sint64(value as number);
-      break;
-    case ScalarType.UINT32:
-      writer.uint32(value as number);
-      break;
-    case ScalarType.SINT32:
-      writer.sint32(value as number);
-      break;
+  try {
+    switch (type) {
+      case ScalarType.STRING:
+        writer.string(value as string);
+        break;
+      case ScalarType.BOOL:
+        writer.bool(value as boolean);
+        break;
+      case ScalarType.DOUBLE:
+        writer.double(value as number);
+        break;
+      case ScalarType.FLOAT:
+        writer.float(value as number);
+        break;
+      case ScalarType.INT32:
+        writer.int32(value as number);
+        break;
+      case ScalarType.INT64:
+        writer.int64(value as number);
+        break;
+      case ScalarType.UINT64:
+        writer.uint64(value as number);
+        break;
+      case ScalarType.FIXED64:
+        writer.fixed64(value as number);
+        break;
+      case ScalarType.BYTES:
+        writer.bytes(value as Uint8Array);
+        break;
+      case ScalarType.FIXED32:
+        writer.fixed32(value as number);
+        break;
+      case ScalarType.SFIXED32:
+        writer.sfixed32(value as number);
+        break;
+      case ScalarType.SFIXED64:
+        writer.sfixed64(value as number);
+        break;
+      case ScalarType.SINT64:
+        writer.sint64(value as number);
+        break;
+      case ScalarType.UINT32:
+        writer.uint32(value as number);
+        break;
+      case ScalarType.SINT32:
+        writer.sint32(value as number);
+        break;
+    }
+  } catch (e) {
+    if (e instanceof Error) {
+      throw new Error(
+        `cannot encode field ${msgName}.${fieldName} to binary: ${e.message}`,
+      );
+    }
+    throw e;
   }
 }
 
