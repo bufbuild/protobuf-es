@@ -111,11 +111,7 @@ export type DescMethodStreaming<
 export type DescMethodUnary<
   I extends DescMessage = DescMessage,
   O extends DescMessage = DescMessage,
-> = DescMethodCommon & {
-  methodKind: "unary";
-  input: I;
-  output: O;
-};
+> = DescMethodTyped<"unary", I, O>;
 
 /**
  * Describes a server streaming RPC declaration.
@@ -123,11 +119,7 @@ export type DescMethodUnary<
 export type DescMethodServerStreaming<
   I extends DescMessage = DescMessage,
   O extends DescMessage = DescMessage,
-> = DescMethodCommon & {
-  methodKind: "server_streaming";
-  input: I;
-  output: O;
-};
+> = DescMethodTyped<"server_streaming", I, O>;
 
 /**
  * Describes a client streaming RPC declaration.
@@ -135,11 +127,7 @@ export type DescMethodServerStreaming<
 export type DescMethodClientStreaming<
   I extends DescMessage = DescMessage,
   O extends DescMessage = DescMessage,
-> = DescMethodCommon & {
-  methodKind: "client_streaming";
-  input: I;
-  output: O;
-};
+> = DescMethodTyped<"client_streaming", I, O>;
 
 /**
  * Describes a bidi streaming RPC declaration.
@@ -147,11 +135,7 @@ export type DescMethodClientStreaming<
 export type DescMethodBiDiStreaming<
   I extends DescMessage = DescMessage,
   O extends DescMessage = DescMessage,
-> = DescMethodCommon & {
-  methodKind: "bidi_streaming";
-  input: I;
-  output: O;
-};
+> = DescMethodTyped<"bidi_streaming", I, O>;
 
 /**
  * The init type for a message, which makes all fields optional.
@@ -184,4 +168,17 @@ type OneofSelectedMessage<K extends string, M extends Message> = {
   value: M;
 };
 
-type DescMethodCommon = Omit<DescMethod, "methodKind" | "input" | "output">;
+type DescMethodTyped<K extends DescMethod["methodKind"], I extends DescMessage, O extends DescMessage> = Omit<DescMethod, "methodKind" | "input" | "output"> & {
+  /**
+   * One of the four available method types.
+   */
+  readonly methodKind: K;
+  /**
+   * The message type for requests.
+   */
+  readonly input: I;
+  /**
+   * The message type for responses.
+   */
+  readonly output: O;
+}
