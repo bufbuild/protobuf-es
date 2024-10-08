@@ -168,7 +168,11 @@ type OneofSelectedMessage<K extends string, M extends Message> = {
   value: M;
 };
 
-type DescMethodTyped<K extends DescMethod["methodKind"], I extends DescMessage, O extends DescMessage> = Omit<DescMethod, "methodKind" | "input" | "output"> & {
+type DescMethodTyped<
+  K extends DescMethod["methodKind"],
+  I extends DescMessage,
+  O extends DescMessage,
+> = Omit<DescMethod, "methodKind" | "input" | "output"> & {
   /**
    * One of the four available method types.
    */
@@ -181,4 +185,4 @@ type DescMethodTyped<K extends DescMethod["methodKind"], I extends DescMessage, 
    * The message type for responses.
    */
   readonly output: O;
-}
+};
