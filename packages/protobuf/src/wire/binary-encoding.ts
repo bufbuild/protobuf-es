@@ -133,7 +133,10 @@ export class BinaryWriter {
    * Return all bytes written and reset this writer.
    */
   finish(): Uint8Array {
-    this.chunks.push(new Uint8Array(this.buf)); // flush the buffer
+    if (this.buf.length) {
+      this.chunks.push(new Uint8Array(this.buf)); // flush the buffer
+      this.buf = [];
+    }
     let len = 0;
     for (let i = 0; i < this.chunks.length; i++) len += this.chunks[i].length;
     let bytes = new Uint8Array(len);
