@@ -1376,7 +1376,7 @@ just with some additional type information attached.
 >
 > You can find a deep dive into the model in [Buf's reference about descriptors][buf.build/descriptors].
 >
-> You can fetch descriptors from the [Buf Schema Registry][bsr-reflection]. In tests, you can use [@bufbuild/protocompile] 
+> You can fetch descriptors from the [Buf Schema Registry][bsr-reflection]. In tests, you can use [@bufbuild/protocompile]
 > to compile inline Protobuf source to a descriptor.
 
 ### Walking through a schema
