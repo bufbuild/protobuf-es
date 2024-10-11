@@ -1376,7 +1376,8 @@ just with some additional type information attached.
 >
 > You can find a deep dive into the model in [Buf's reference about descriptors][buf.build/descriptors].
 >
-> You can fetch descriptors from the [Buf Schema Registry][bsr-reflection].
+> You can fetch descriptors from the [Buf Schema Registry][bsr-reflection]. In tests, you can use [@bufbuild/protocompile] 
+> to compile inline Protobuf source to a descriptor.
 
 ### Walking through a schema
 
@@ -2503,6 +2504,7 @@ Serialization to JSON and binary is deterministic within a version of protobuf-e
 [@bufbuild/protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
 [@bufbuild/protoc-gen-es]: https://www.npmjs.com/package/@bufbuild/protoc-gen-es
 [@bufbuild/protoplugin]: https://www.npmjs.com/package/@bufbuild/protoplugin
+[@bufbuild/protocompile]: https://www.npmjs.com/package/@bufbuild/protocompile
 [tsx]: https://www.npmjs.com/package/tsx
 [bigint-compat]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility
 [blog-post]: https://buf.build/blog/protobuf-conformance
