@@ -164,15 +164,17 @@ export function parseParameter<T extends object>(
         }
         break;
       case "rewrite_imports": {
-        const parts = value.split(":");
-        if (parts.length !== 2) {
+        const i = value.indexOf(":");
+        if (i < 0) {
           throw new PluginOptionError(
             raw,
             "must be in the form of <pattern>:<target>",
           );
         }
-        const [pattern, target] = parts;
-        rewriteImports.push({ pattern, target });
+        rewriteImports.push({
+          pattern: value.substring(0, i),
+          target: value.substring(i + 1),
+        });
         // rewrite_imports can be noisy and is more of an implementation detail
         // so we strip it out of the preamble
         sanitize = true;
