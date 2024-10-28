@@ -165,7 +165,7 @@ export function parseParameter<T extends object>(
         break;
       case "rewrite_imports": {
         const i = value.indexOf(":");
-        if (i <= 0) {
+        if (i < 0) {
           throw new PluginOptionError(
             raw,
             "must be in the form of <pattern>:<target>",
