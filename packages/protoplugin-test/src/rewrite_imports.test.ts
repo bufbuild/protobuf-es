@@ -47,6 +47,34 @@ describe("rewrite_imports", function () {
       "Foo",
     ]);
   });
+  test("should rewrite to target with package prefix", async () => {
+    const lines = await testGenerate(
+      "target=ts,rewrite_imports=@scope/pkg:npm:@scope/pkg",
+      (f) => {
+        const Foo = f.import("Foo", "@scope/pkg");
+        f.print`${Foo}`;
+      },
+    );
+    expect(lines).toStrictEqual([
+      'import { Foo } from "npm:@scope/pkg";',
+      "",
+      "Foo",
+    ]);
+  });
+  test("should rewrite to target with package prefix and subpath", async () => {
+    const lines = await testGenerate(
+      "target=ts,rewrite_imports=@scope/pkg/subpath:npm:@scope/pkg/subpath",
+      (f) => {
+        const Foo = f.import("Foo", "@scope/pkg/subpath");
+        f.print`${Foo}`;
+      },
+    );
+    expect(lines).toStrictEqual([
+      'import { Foo } from "npm:@scope/pkg/subpath";',
+      "",
+      "Foo",
+    ]);
+  });
 
   async function testGenerate(
     parameter: string,
