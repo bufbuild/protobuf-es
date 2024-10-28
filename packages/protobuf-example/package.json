@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protobuf-example",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "private": true,
   "scripts": {
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
@@ -15,8 +15,8 @@
   "type": "module",
   "dependencies": {
     "@bufbuild/buf": "^1.36.0",
-    "@bufbuild/protobuf": "2.2.0",
-    "@bufbuild/protoc-gen-es": "2.2.0",
+    "@bufbuild/protobuf": "2.2.1",
+    "@bufbuild/protoc-gen-es": "2.2.1",
     "tsx": "^4.16.1",
     "typescript": "^5.5.4"
   }
