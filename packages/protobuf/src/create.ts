@@ -66,7 +66,7 @@ function initMessage<Desc extends DescMessage>(
   init: MessageInitShape<Desc>,
 ): MessageShape<Desc> | FieldError {
   for (const member of messageDesc.members) {
-    let value = (init as Record<string, unknown>)[member.localName];
+    let value = (init as Record<string, unknown>)[member.localName] ?? (init as Record<string, unknown>)[member.name] ?? null;
     if (value == null) {
       // intentionally ignore undefined and null
       continue;
