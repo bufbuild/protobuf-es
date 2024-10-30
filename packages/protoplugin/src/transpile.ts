@@ -158,8 +158,14 @@ export function transpile(
     throw err;
   }
   if (result.emitSkipped) {
+    const fileNames = files.map((f) => f.name).join("\n");
+    const diagnosticMessages = result.diagnostics
+      .map((d) => d.messageText)
+      .join("\n");
+
+    // When compilation fails, this error will be shown in the results of the NPM install error log.
     throw Error(
-      "A problem occurred during transpilation and files were not generated.  Contact the plugin author for support.",
+      `A problem occurred during transpilation and files were not generated.  Contact the plugin author for support.\n\nGenerating Files:\n\n${fileNames}\n\nDiagnostics:\n\n${diagnosticMessages}`
     );
   }
   return results;
