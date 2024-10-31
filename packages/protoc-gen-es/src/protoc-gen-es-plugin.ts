@@ -477,9 +477,13 @@ function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target
               f.print(f.jsDoc(field, "  "));
               // eslint-disable-next-line no-case-declarations
               let jsonName: Printable = field.jsonName;
+              const startWithNumber = /^[0-9]/;
+              const containsSpecialChar = /[^a-zA-Z0-9_$]/;
+              const isAscii = /^[\x00-\x7F]*$/;
               if (jsonName === ""
-                || /^[0-9]/.test(jsonName)
-                || jsonName.indexOf("@") > -1) {
+                || startWithNumber.test(jsonName)
+                || containsSpecialChar.test(jsonName)
+                || isAscii.test(jsonName)) {
                 jsonName = f.string(jsonName);
               }
               f.print("  ", jsonName, "?: ", fieldJsonType(field), ";");
