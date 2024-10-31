@@ -158,15 +158,35 @@ export function transpile(
     throw err;
   }
   if (result.emitSkipped) {
-    const fileNames = files.map((f) => f.name).join("\n");
-    const diagnosticMessages = result.diagnostics
-      .map((d) => d.messageText)
-      .join("\n");
-
-    // When compilation fails, this error will be shown in the results of the NPM install error log.
+    // When compilation fails, this error message is printed to stderr.
+    const diagnostics = formatDiagnostics(result.diagnostics);
     throw Error(
-      `A problem occurred during transpilation and files were not generated.  Contact the plugin author for support.\n\nGenerating Files:\n\n${fileNames}\n\nDiagnostics:\n\n${diagnosticMessages}`,
+      `A problem occurred during transpilation and files were not generated.  Contact the plugin author for support.\n\n${diagnostics}`,
     );
   }
   return results;
+}
+
+function formatDiagnostics(diagnostics: readonly ts.Diagnostic[]): string {
+  const sorted = ts.sortAndDeduplicateDiagnostics(diagnostics);
+  if (sorted.length == 0) {
+    return "";
+  }
+  const first = sorted.slice(0, 3);
+  const formatHost: ts.FormatDiagnosticsHost = {
+    getCanonicalFileName(fileName: string): string {
+      return fileName;
+    },
+    getCurrentDirectory(): string {
+      return ".";
+    },
+    getNewLine(): string {
+      return "\n";
+    },
+  };
+  let out = ts.formatDiagnostics(first, formatHost).trim();
+  if (first.length < sorted.length) {
+    out += `\n${sorted.length - first.length} more diagnostics elided`;
+  }
+  return out;
 }
