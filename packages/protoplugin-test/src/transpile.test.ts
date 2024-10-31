@@ -97,4 +97,66 @@ describe("built-in transpile", () => {
       ]);
     });
   });
+
+  describe("failing to emit", () => {
+    test("raises error with helpful message", async () => {
+      await expect(async () =>
+        testTranspileToDts([
+          `export interface Foo {`,
+          `  p: {`,
+          `    [K in keyof P]: string;`,
+          `  },`,
+          `}`,
+        ]),
+      ).rejects.toThrow(
+        /^A problem occurred during transpilation and files were not generated\. {2}Contact the plugin author for support\.\n/,
+      );
+    });
+    test("raises error with diagnostics", async () => {
+      await expect(async () =>
+        testTranspileToDts([
+          `export interface Foo {`,
+          `  p: {`,
+          `    [K in keyof P]: string;`,
+          `  },`,
+          `}`,
+        ]),
+      ).rejects.toThrow(
+        /test\.ts\(3,17\): error TS4033: Property 'p' of exported interface has or is using private name 'P'\.$/,
+      );
+    });
+    test("raises error with 3 diagnostics, and elides the rest", async () => {
+      await expect(async () =>
+        testTranspileToDts([
+          `export interface Foo1 {`,
+          `  p: {`,
+          `    [K in keyof P]: string;`,
+          `  },`,
+          `}`,
+          `export interface Foo2 {`,
+          `  p: {`,
+          `    [K in keyof P]: string;`,
+          `  },`,
+          `}`,
+          `export interface Foo3 {`,
+          `  p: {`,
+          `    [K in keyof P]: string;`,
+          `  },`,
+          `}`,
+          `export interface Foo4 {`,
+          `  p: {`,
+          `    [K in keyof P]: string;`,
+          `  },`,
+          `}`,
+          `export interface Foo5 {`,
+          `  p: {`,
+          `    [K in keyof P]: string;`,
+          `  },`,
+          `}`,
+        ]),
+      ).rejects.toThrow(
+        /(?:test\.ts\(\d+,\d+\): .+\n){3}2 more diagnostics elided/,
+      );
+    });
+  });
 });
