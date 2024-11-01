@@ -472,19 +472,16 @@ function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target
       } else {
         f.print(exp, " = {");
         for (const field of message.fields) {
-          switch (field.kind) {
-            default:
-              f.print(f.jsDoc(field, "  "));
-              // eslint-disable-next-line no-case-declarations
-              let jsonName: Printable = field.jsonName;
-              if (jsonName === ""
-                || /^[0-9]/.test(jsonName)
-                || jsonName.indexOf("@") > -1) {
-                jsonName = f.string(jsonName);
-              }
-              f.print("  ", jsonName, "?: ", fieldJsonType(field), ";");
-              break;
+          f.print(f.jsDoc(field, "  "));
+          let jsonName: Printable = field.jsonName;
+          const startWithNumber = /^[0-9]/;
+          const containsSpecialChar = /[^a-zA-Z0-9_$]/;
+          if (jsonName === ""
+            || startWithNumber.test(jsonName)
+            || containsSpecialChar.test(jsonName)) {
+            jsonName = f.string(jsonName);
           }
+          f.print("  ", jsonName, "?: ", fieldJsonType(field), ";");
           if (message.fields.indexOf(field) < message.fields.length - 1) {
             f.print();
           }

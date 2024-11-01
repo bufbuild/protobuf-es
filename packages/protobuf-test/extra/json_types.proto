@@ -50,6 +50,14 @@ message JsonTypesMessage {
   google.protobuf.BytesValue wrapped_bytes_field = 24;
   repeated JsonTypeEnum repeated_enum_field = 25;
   map<bool, JsonTypeEnum> map_bool_enum_field = 26;
+  bool json_name_ok = 27 [json_name = "Foo123_bar$"];
+  bool json_name_at = 28 [json_name = "foo@"];
+  bool json_name_hyphen = 29 [json_name = "foo-bar"];
+  bool json_name_start_with_digit = 30 [json_name = "1foo"];
+  bool json_name_space = 31 [json_name = "foo bar"];
+  bool json_name_tab = 32 [json_name = "foo\tbar"];
+  bool json_name_non_ascii = 33 [json_name = "你好"];
+  bool json_name_escape = 34 [json_name = "foo\nbar\\n"];
 }
 
 enum JsonTypeEnum {
