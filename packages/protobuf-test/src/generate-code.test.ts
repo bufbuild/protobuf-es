@@ -98,7 +98,7 @@ test("source retention options are unavailable in generated code", () => {
 describe("JSON types", () => {
   const ok_ts: json_types_ts_json.JsonTypesMessageJson = {
     booleanFieldWithCustomName: true,
-    "Foo123_bar$": true,
+    Foo123_bar$: true,
     "foo@":true,
     "foo-bar":true,
     "1foo":true,
@@ -118,7 +118,7 @@ describe("JSON types", () => {
   expect(ok_ts).toBeDefined();
   const ok_js: json_types_js_json.JsonTypesMessageJson = {
     booleanFieldWithCustomName: true,
-    "Foo123_bar$": true,
+    Foo123_bar$: true,
     "foo@":true,
     "foo-bar":true,
     "1foo":true,
