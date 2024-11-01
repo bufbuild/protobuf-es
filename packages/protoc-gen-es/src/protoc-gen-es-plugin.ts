@@ -483,7 +483,7 @@ function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target
               if (jsonName === ""
                 || startWithNumber.test(jsonName)
                 || containsSpecialChar.test(jsonName)
-                || isAscii.test(jsonName)) {
+                || !isAscii.test(jsonName)) {
                 jsonName = f.string(jsonName);
               }
               f.print("  ", jsonName, "?: ", fieldJsonType(field), ";");

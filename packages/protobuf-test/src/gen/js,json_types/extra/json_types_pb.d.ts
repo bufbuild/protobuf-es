@@ -158,6 +158,47 @@ export declare type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
    * @generated from field: map<bool, spec.JsonTypeEnum> map_bool_enum_field = 26;
    */
   mapBoolEnumField: { [key: string]: JsonTypeEnum };
+
+  /**
+   * @generated from field: bool json_name_ok = 27 [json_name = "Foo123_bar$"];
+   */
+  jsonNameOk: boolean;
+
+  /**
+   * @generated from field: bool json_name_at = 28 [json_name = "foo@"];
+   */
+  jsonNameAt: boolean;
+
+  /**
+   * @generated from field: bool json_name_hyphen = 29 [json_name = "foo-bar"];
+   */
+  jsonNameHyphen: boolean;
+
+  /**
+   * @generated from field: bool json_name_start_with_digit = 30 [json_name = "1foo"];
+   */
+  jsonNameStartWithDigit: boolean;
+
+  /**
+   * @generated from field: bool json_name_space = 31 [json_name = "foo bar"];
+   */
+  jsonNameSpace: boolean;
+
+  /**
+   * @generated from field: bool json_name_tab = 32 [json_name = "foo	bar"];
+   */
+  jsonNameTab: boolean;
+
+  /**
+   * @generated from field: bool json_name_non_ascii = 33 [json_name = "你好"];
+   */
+  jsonNameNonAscii: boolean;
+
+  /**
+   * @generated from field: bool json_name_escape = 34 [json_name = "foo
+   * bar\n"];
+   */
+  jsonNameEscape: boolean;
 };
 
 /**
@@ -293,6 +334,47 @@ export declare type JsonTypesMessageJson = {
    * @generated from field: map<bool, spec.JsonTypeEnum> map_bool_enum_field = 26;
    */
   mapBoolEnumField?: { [key: string]: JsonTypeEnumJson };
+
+  /**
+   * @generated from field: bool json_name_ok = 27 [json_name = "Foo123_bar$"];
+   */
+  Foo123_bar$?: boolean;
+
+  /**
+   * @generated from field: bool json_name_at = 28 [json_name = "foo@"];
+   */
+  "foo@"?: boolean;
+
+  /**
+   * @generated from field: bool json_name_hyphen = 29 [json_name = "foo-bar"];
+   */
+  "foo-bar"?: boolean;
+
+  /**
+   * @generated from field: bool json_name_start_with_digit = 30 [json_name = "1foo"];
+   */
+  "1foo"?: boolean;
+
+  /**
+   * @generated from field: bool json_name_space = 31 [json_name = "foo bar"];
+   */
+  "foo bar"?: boolean;
+
+  /**
+   * @generated from field: bool json_name_tab = 32 [json_name = "foo	bar"];
+   */
+  "foo	bar"?: boolean;
+
+  /**
+   * @generated from field: bool json_name_non_ascii = 33 [json_name = "你好"];
+   */
+  "你好"?: boolean;
+
+  /**
+   * @generated from field: bool json_name_escape = 34 [json_name = "foo
+   * bar\n"];
+   */
+  "foo\nbar\\n"?: boolean;
 };
 
 /**

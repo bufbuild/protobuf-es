@@ -25,14 +25,6 @@ import "google/protobuf/wrappers.proto";
 
 message JsonTypesMessage {
   bool bool_field = 1 [json_name = "booleanFieldWithCustomName"];
-  bool json_name_ok = 30 [json_name = "Foo123_bar$"];
-  bool json_name_at = 31 [json_name = "foo@"];
-  bool json_name_hyphen = 32 [json_name = "foo-bar"];
-  bool json_name_start_with_digit = 33 [json_name = "1foo"];
-  bool json_name_space = 34 [json_name = "foo bar"];
-  bool json_name_tab = 35 [json_name = "foo\tbar"];
-  bool json_name_non_ascii = 36 [json_name = "你好"];
-  bool json_name_escape = 37 [json_name = "foo\nbar\\n"];
   double double_field = 2;
   bytes bytes_field = 3;
   int64 int64_field = 4;
@@ -58,6 +50,14 @@ message JsonTypesMessage {
   google.protobuf.BytesValue wrapped_bytes_field = 24;
   repeated JsonTypeEnum repeated_enum_field = 25;
   map<bool, JsonTypeEnum> map_bool_enum_field = 26;
+  bool json_name_ok = 27 [json_name = "Foo123_bar$"];
+  bool json_name_at = 28 [json_name = "foo@"];
+  bool json_name_hyphen = 29 [json_name = "foo-bar"];
+  bool json_name_start_with_digit = 30 [json_name = "1foo"];
+  bool json_name_space = 31 [json_name = "foo bar"];
+  bool json_name_tab = 32 [json_name = "foo\tbar"];
+  bool json_name_non_ascii = 33 [json_name = "你好"];
+  bool json_name_escape = 34 [json_name = "foo\nbar\\n"];
 }
 
 enum JsonTypeEnum {
