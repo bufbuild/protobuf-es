@@ -89,10 +89,10 @@ proto.google.type.Quaternion.prototype.toObject = function(opt_includeInstance) 
  */
 proto.google.type.Quaternion.toObject = function(includeInstance, msg) {
   var f, obj = {
-    x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    w: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
+x: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+y: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+z: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+w: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {

@@ -22,10 +22,10 @@ usually do. We repeat this for an increasing number of files.
 | Protobuf-ES         |    16 |   141,986 b |  76,944 b |   18,756 b |
 | Protobuf-ES         |    32 |   169,777 b |  98,962 b |   24,290 b |
 | protobuf-javascript |     1 |   104,048 b |  70,318 b |   15,474 b |
-| protobuf-javascript |     4 |   130,525 b |  85,665 b |   16,994 b |
-| protobuf-javascript |     8 |   152,417 b |  98,037 b |   18,112 b |
-| protobuf-javascript |    16 |   311,442 b | 192,876 b |   25,475 b |
-| protobuf-javascript |    32 | 1,070,371 b | 679,494 b |   55,049 b |
+| protobuf-javascript |     4 |   130,537 b |  85,670 b |   16,986 b |
+| protobuf-javascript |     8 |   152,429 b |  98,042 b |   18,111 b |
+| protobuf-javascript |    16 |   311,454 b | 192,881 b |   25,504 b |
+| protobuf-javascript |    32 | 1,070,891 b | 679,746 b |   54,963 b |
 
 <!-- TABLE-END -->
 

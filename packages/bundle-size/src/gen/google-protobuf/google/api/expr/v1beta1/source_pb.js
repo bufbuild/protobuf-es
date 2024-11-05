@@ -118,9 +118,9 @@ proto.google.api.expr.v1beta1.SourceInfo.prototype.toObject = function(opt_inclu
  */
 proto.google.api.expr.v1beta1.SourceInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    lineOffsetsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    positionsMap: (f = msg.getPositionsMap()) ? f.toObject(includeInstance, undefined) : []
+location: jspb.Message.getFieldWithDefault(msg, 2, ""),
+lineOffsetsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+positionsMap: (f = msg.getPositionsMap()) ? f.toObject(includeInstance, undefined) : []
   };
 
   if (includeInstance) {
@@ -333,10 +333,10 @@ proto.google.api.expr.v1beta1.SourcePosition.prototype.toObject = function(opt_i
  */
 proto.google.api.expr.v1beta1.SourcePosition.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    offset: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    line: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    column: jspb.Message.getFieldWithDefault(msg, 4, 0)
+location: jspb.Message.getFieldWithDefault(msg, 1, ""),
+offset: jspb.Message.getFieldWithDefault(msg, 2, 0),
+line: jspb.Message.getFieldWithDefault(msg, 3, 0),
+column: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {

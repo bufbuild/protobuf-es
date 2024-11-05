@@ -89,10 +89,10 @@ proto.google.type.TimeOfDay.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.TimeOfDay.toObject = function(includeInstance, msg) {
   var f, obj = {
-    hours: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    minutes: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    seconds: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    nanos: jspb.Message.getFieldWithDefault(msg, 4, 0)
+hours: jspb.Message.getFieldWithDefault(msg, 1, 0),
+minutes: jspb.Message.getFieldWithDefault(msg, 2, 0),
+seconds: jspb.Message.getFieldWithDefault(msg, 3, 0),
+nanos: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {

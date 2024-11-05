@@ -89,7 +89,7 @@ proto.google.type.Decimal.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Decimal.toObject = function(includeInstance, msg) {
   var f, obj = {
-    value: jspb.Message.getFieldWithDefault(msg, 1, "")
+value: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {

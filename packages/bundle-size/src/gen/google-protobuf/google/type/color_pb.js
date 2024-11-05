@@ -91,10 +91,10 @@ proto.google.type.Color.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Color.toObject = function(includeInstance, msg) {
   var f, obj = {
-    red: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    green: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    blue: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    alpha: (f = msg.getAlpha()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f)
+red: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+green: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+blue: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+alpha: (f = msg.getAlpha()) && google_protobuf_wrappers_pb.FloatValue.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

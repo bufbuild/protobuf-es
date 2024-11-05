@@ -89,8 +89,8 @@ proto.google.type.LatLng.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.LatLng.toObject = function(includeInstance, msg) {
   var f, obj = {
-    latitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
-    longitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
+latitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
+longitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {

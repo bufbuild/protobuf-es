@@ -89,9 +89,9 @@ proto.google.type.Date.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Date.toObject = function(includeInstance, msg) {
   var f, obj = {
-    year: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    month: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    day: jspb.Message.getFieldWithDefault(msg, 3, 0)
+year: jspb.Message.getFieldWithDefault(msg, 1, 0),
+month: jspb.Message.getFieldWithDefault(msg, 2, 0),
+day: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
