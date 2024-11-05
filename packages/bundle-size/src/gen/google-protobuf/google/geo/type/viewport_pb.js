@@ -91,8 +91,8 @@ proto.google.geo.type.Viewport.prototype.toObject = function(opt_includeInstance
  */
 proto.google.geo.type.Viewport.toObject = function(includeInstance, msg) {
   var f, obj = {
-    low: (f = msg.getLow()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f),
-    high: (f = msg.getHigh()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f)
+low: (f = msg.getLow()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f),
+high: (f = msg.getHigh()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

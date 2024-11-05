@@ -89,9 +89,9 @@ proto.google.type.Money.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Money.toObject = function(includeInstance, msg) {
   var f, obj = {
-    currencyCode: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    units: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    nanos: jspb.Message.getFieldWithDefault(msg, 3, 0)
+currencyCode: jspb.Message.getFieldWithDefault(msg, 1, ""),
+units: jspb.Message.getFieldWithDefault(msg, 2, 0),
+nanos: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
