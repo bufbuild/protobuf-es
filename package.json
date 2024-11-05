@@ -48,7 +48,7 @@
     "eslint-plugin-n": "^17.10.1",
     "jest": "^29.7.0",
     "prettier": "^3.3.3",
-    "turbo": "^2.0.9",
+    "turbo": "^2.2.3",
     "typescript": "^5.5.4"
   },
   "//": "avoid hoisting of @typescript/vfs, see packages/protoplugin/src/transpile.ts",
