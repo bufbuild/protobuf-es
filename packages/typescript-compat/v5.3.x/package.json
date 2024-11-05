@@ -1,11 +1,11 @@
 {
-  "name": "ts5.0",
+  "name": "ts5.3",
   "scripts": {
     "test": "node_modules/.bin/tsc --outDir dist"
   },
   "dependencies": {
     "@bufbuild/protobuf-test": "*",
     "@types/node": "22.9.0",
-    "typescript": "5.0.x"
+    "typescript": "5.3.x"
   }
 }
