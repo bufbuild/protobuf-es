@@ -52,7 +52,7 @@ export async function* sizeDelimitedDecodeStream<Desc extends DescMessage>(
   messageDesc: Desc,
   iterable: AsyncIterable<Uint8Array>,
   options?: BinaryReadOptions,
-) {
+): AsyncIterableIterator<MessageShape<Desc>> {
   // append chunk to buffer, returning updated buffer
   function append(buffer: Uint8Array, chunk: Uint8Array): Uint8Array {
     const n = new Uint8Array(buffer.byteLength + chunk.byteLength);

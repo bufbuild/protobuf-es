@@ -370,12 +370,12 @@ class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
   has(key: K) {
     return Object.prototype.hasOwnProperty.call(this.obj, mapKeyToLocal(key));
   }
-  *keys() {
+  *keys(): MapIterator<K> {
     for (const objKey of Object.keys(this.obj)) {
       yield mapKeyToReflect(objKey, this._field.mapKey) as K;
     }
   }
-  *entries(): IterableIterator<[K, V]> {
+  *entries(): MapIterator<[K, V]> {
     for (const objEntry of Object.entries(this.obj)) {
       yield [
         mapKeyToReflect(objEntry[0], this._field.mapKey) as K,
@@ -389,7 +389,7 @@ class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
   get size() {
     return Object.keys(this.obj).length;
   }
-  *values() {
+  *values(): MapIterator<V> {
     for (const val of Object.values(this.obj)) {
       yield mapValueToReflect(this._field, val, this.check) as V;
     }
