@@ -126,7 +126,7 @@ proto.google.api.Visibility.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.api.Visibility.toObject = function(includeInstance, msg) {
   var f, obj = {
-    rulesList: jspb.Message.toObjectList(msg.getRulesList(),
+rulesList: jspb.Message.toObjectList(msg.getRulesList(),
     proto.google.api.VisibilityRule.toObject, includeInstance)
   };
 
@@ -279,8 +279,8 @@ proto.google.api.VisibilityRule.prototype.toObject = function(opt_includeInstanc
  */
 proto.google.api.VisibilityRule.toObject = function(includeInstance, msg) {
   var f, obj = {
-    selector: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    restriction: jspb.Message.getFieldWithDefault(msg, 2, "")
+selector: jspb.Message.getFieldWithDefault(msg, 1, ""),
+restriction: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

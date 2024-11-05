@@ -98,9 +98,9 @@ proto.google.api.HttpBody.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.api.HttpBody.toObject = function(includeInstance, msg) {
   var f, obj = {
-    contentType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    data: msg.getData_asB64(),
-    extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
+contentType: jspb.Message.getFieldWithDefault(msg, 1, ""),
+data: msg.getData_asB64(),
+extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
     google_protobuf_any_pb.Any.toObject, includeInstance)
   };
 

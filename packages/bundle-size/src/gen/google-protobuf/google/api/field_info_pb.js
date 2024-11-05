@@ -93,7 +93,7 @@ proto.google.api.FieldInfo.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.api.FieldInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    format: jspb.Message.getFieldWithDefault(msg, 1, 0)
+format: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {

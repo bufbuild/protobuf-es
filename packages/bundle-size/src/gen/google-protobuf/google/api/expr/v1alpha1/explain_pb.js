@@ -120,9 +120,9 @@ proto.google.api.expr.v1alpha1.Explain.prototype.toObject = function(opt_include
  */
 proto.google.api.expr.v1alpha1.Explain.toObject = function(includeInstance, msg) {
   var f, obj = {
-    valuesList: jspb.Message.toObjectList(msg.getValuesList(),
+valuesList: jspb.Message.toObjectList(msg.getValuesList(),
     google_api_expr_v1alpha1_value_pb.Value.toObject, includeInstance),
-    exprStepsList: jspb.Message.toObjectList(msg.getExprStepsList(),
+exprStepsList: jspb.Message.toObjectList(msg.getExprStepsList(),
     proto.google.api.expr.v1alpha1.Explain.ExprStep.toObject, includeInstance)
   };
 
@@ -250,8 +250,8 @@ proto.google.api.expr.v1alpha1.Explain.ExprStep.prototype.toObject = function(op
  */
 proto.google.api.expr.v1alpha1.Explain.ExprStep.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    valueIndex: jspb.Message.getFieldWithDefault(msg, 2, 0)
+id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+valueIndex: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {

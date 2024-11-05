@@ -184,11 +184,11 @@ proto.google.api.expr.v1beta1.Decl.prototype.toObject = function(opt_includeInst
  */
 proto.google.api.expr.v1beta1.Decl.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    doc: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    ident: (f = msg.getIdent()) && proto.google.api.expr.v1beta1.IdentDecl.toObject(includeInstance, f),
-    pb_function: (f = msg.getFunction()) && proto.google.api.expr.v1beta1.FunctionDecl.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+doc: jspb.Message.getFieldWithDefault(msg, 3, ""),
+ident: (f = msg.getIdent()) && proto.google.api.expr.v1beta1.IdentDecl.toObject(includeInstance, f),
+pb_function: (f = msg.getFunction()) && proto.google.api.expr.v1beta1.FunctionDecl.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -483,9 +483,9 @@ proto.google.api.expr.v1beta1.DeclType.prototype.toObject = function(opt_include
  */
 proto.google.api.expr.v1beta1.DeclType.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    typeParamsList: jspb.Message.toObjectList(msg.getTypeParamsList(),
+id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+type: jspb.Message.getFieldWithDefault(msg, 2, ""),
+typeParamsList: jspb.Message.toObjectList(msg.getTypeParamsList(),
     proto.google.api.expr.v1beta1.DeclType.toObject, includeInstance)
   };
 
@@ -696,8 +696,8 @@ proto.google.api.expr.v1beta1.IdentDecl.prototype.toObject = function(opt_includ
  */
 proto.google.api.expr.v1beta1.IdentDecl.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: (f = msg.getType()) && proto.google.api.expr.v1beta1.DeclType.toObject(includeInstance, f),
-    value: (f = msg.getValue()) && google_api_expr_v1beta1_expr_pb.Expr.toObject(includeInstance, f)
+type: (f = msg.getType()) && proto.google.api.expr.v1beta1.DeclType.toObject(includeInstance, f),
+value: (f = msg.getValue()) && google_api_expr_v1beta1_expr_pb.Expr.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -905,10 +905,10 @@ proto.google.api.expr.v1beta1.FunctionDecl.prototype.toObject = function(opt_inc
  */
 proto.google.api.expr.v1beta1.FunctionDecl.toObject = function(includeInstance, msg) {
   var f, obj = {
-    argsList: jspb.Message.toObjectList(msg.getArgsList(),
+argsList: jspb.Message.toObjectList(msg.getArgsList(),
     proto.google.api.expr.v1beta1.IdentDecl.toObject, includeInstance),
-    returnType: (f = msg.getReturnType()) && proto.google.api.expr.v1beta1.DeclType.toObject(includeInstance, f),
-    receiverFunction: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+returnType: (f = msg.getReturnType()) && proto.google.api.expr.v1beta1.DeclType.toObject(includeInstance, f),
+receiverFunction: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
