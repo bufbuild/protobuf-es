@@ -105,7 +105,7 @@ export function anyUnpack(
     registryOrMessageDesc.kind == "message"
       ? registryOrMessageDesc
       : registryOrMessageDesc.getMessage(typeUrlToName(any.typeUrl));
-  if (!desc) {
+  if (!desc || !anyIs(any, desc)) {
     return undefined;
   }
   return fromBinary(desc, any.value);
@@ -119,7 +119,7 @@ export function anyUnpackTo<Desc extends DescMessage>(
   schema: Desc,
   message: MessageShape<Desc>,
 ) {
-  if (any.typeUrl === "") {
+  if (!anyIs(any, schema)) {
     return undefined;
   }
   return mergeFromBinary(schema, message, any.value);
