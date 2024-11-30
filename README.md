@@ -71,26 +71,11 @@ and then deserialized at its destination using the defined schema.
 ## Quickstart
 
 1. Install the the runtime library, code generator, and the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview):
-
-   <details open>
-   <summary>npm</summary>
      
    ```shellsession
    npm install @bufbuild/protobuf
    npm install --save-dev @bufbuild/protoc-gen-es @bufbuild/buf
    ```
-     
-   </details>
-
-   <details>
-   <summary>yarn</summary>
-     
-   ```shellsession
-   yarn add @bufbuild/protobuf
-   yarn add -D @bufbuild/protoc-gen-es @bufbuild/buf
-   ```
-   
-   </details>
 
 2. Create a `buf.gen.yaml` file that looks like this:
 
@@ -114,23 +99,9 @@ and then deserialized at its destination using the defined schema.
 
 4. Generate your code with `buf` or [`protoc`]:
 
-   <details open>
-   <summary>npm</summary>
-     
    ```shellsession
    npx buf generate
    ```
-   
-   </details>
-
-   <details>
-   <summary>yarn</summary>
-     
-   ```shellsession
-   yarn buf generate
-   ```
-   
-   </details>
 
 You should now see a generated file at `src/gen/example_pb.ts` that contains a type `User`, and a schema `UserSchema`.
 From here, you can begin to work with your schema.
