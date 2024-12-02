@@ -70,7 +70,7 @@ and then deserialized at its destination using the defined schema.
 
 ## Quickstart
 
-1. Install the the runtime library, code generator, and the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview):
+1. Install the runtime library, code generator, and the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview):
      
    ```shellsession
    npm install @bufbuild/protobuf

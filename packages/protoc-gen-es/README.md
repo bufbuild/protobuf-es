@@ -9,16 +9,12 @@ The code generator plugin for Protocol Buffers for ECMAScript. Learn more about 
 schema. The generated code requires the runtime library [@bufbuild/protobuf](https://www.npmjs.com/package/@bufbuild/protobuf).
 It's compatible with Protocol Buffer compilers like [buf](https://github.com/bufbuild/buf) and [protoc](https://github.com/protocolbuffers/protobuf/releases).
 
-To install the plugin and the runtime library, run:
+To install the runtime library and the plugin, run:
 
 ```shell
-npm install --save-dev @bufbuild/protoc-gen-es
 npm install @bufbuild/protobuf
+npm install --save-dev @bufbuild/protoc-gen-es
 ```
-
-We use peer dependencies to ensure that the code generator and runtime library are
-compatible with each other. Note that npm installs them automatically, but Yarn
-and pnpm do not.
 
 ## Generating code
 

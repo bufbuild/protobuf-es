@@ -58,11 +58,11 @@ The quickstart below shows a simple example of code generation for a `.proto` fi
     npx tsc --init
     ```
 
-2.  Install the compiler [@bufbuild/buf], plugin, and runtime library:
+2.  Install the runtime library, code generator, and the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview):
 
     ```shellsession
-    npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
     npm install @bufbuild/protobuf
+    npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
     ```
 
 3.  Create a `buf.gen.yaml` file that looks like this:
