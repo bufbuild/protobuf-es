@@ -26,7 +26,7 @@ import type { Registry } from "./registry.js";
 import { type Any, anyUnpack } from "./wkt/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
 
-export interface EqualsOptions {
+interface EqualsOptions {
   /**
    * A registry to look up extensions, and messages packed in Any.
    *
