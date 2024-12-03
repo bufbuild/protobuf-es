@@ -255,7 +255,7 @@ function extensionsEquals(
   ): DescExtension[] {
     return (msg.getUnknown() ?? [])
       .map((uf) => registry.getExtensionFor(msg.desc, uf.no))
-      .filter((e) => !!e)
+      .filter((e) => e != undefined)
       .filter((e, index, arr) => arr.indexOf(e) === index);
   }
   const extensionsA = getSetExtensions(a, opts.registry);
