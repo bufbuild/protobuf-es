@@ -120,6 +120,7 @@ function fieldEquals(
     case "message":
       return reflectEquals(a.get(f), b.get(f), opts);
     case "map": {
+      // TODO(tstamm) can't we compare sizes first?
       const mapA = a.get(f);
       const mapB = b.get(f);
       const keys: unknown[] = [];
