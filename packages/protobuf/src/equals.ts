@@ -100,6 +100,7 @@ function reflectEquals(
   return true;
 }
 
+// TODO(tstamm) add an option to consider NaN equal to NaN?
 function fieldEquals(
   f: DescField,
   a: ReflectMessage,
