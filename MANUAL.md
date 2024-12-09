@@ -58,7 +58,7 @@ The quickstart below shows a simple example of code generation for a `.proto` fi
     npx tsc --init
     ```
 
-2.  Install the runtime library, code generator, and the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview):
+2.  Install the runtime library, code generator, and the [Buf CLI][buf-cli]:
 
     ```shellsession
     npm install @bufbuild/protobuf
@@ -2496,6 +2496,28 @@ If you see the following error with [Metro] or [Expo], make sure to [enable pack
 Metro error: Unable to resolve module @bufbuild/protobuf/codegenv1
 ```
 
+### The plugin generates missing imports
+
+The [Buf CLI][buf-cli] does not generate dependencies by default. For example, if you have a Protobuf message that uses
+validation rules from [buf.build/bufbuild/protovalidate](https://buf.build/bufbuild/protovalidate), your Protobuf file
+has an import for the validation options:
+
+```protobuf
+import "buf/validate/validate.proto";
+```
+
+Generated code will include an import for `./buf/validate/validate_pb`. To generate this file, add the following option
+to your buf.gen.yaml config:
+
+```diff
+# buf.gen.yaml
+version: v2
+plugins:
+  - local: protoc-gen-es
+    out: src/gen
++   include_imports: true
+```
+
 ### Is serialization deterministic?
 
 Serialization to JSON and binary is deterministic within a version of protobuf-es, but map entries, repeated fields and extensions are ordered by insertion. Regular fields are sorted by field number.
@@ -2510,7 +2532,7 @@ Serialization to JSON and binary is deterministic within a version of protobuf-e
 [blog-post]: https://buf.build/blog/protobuf-conformance
 [bsr-reflection]: https://buf.build/docs/bsr/reflection/overview
 [Buf style guide]: https://buf.build/best-practices/style-guide#enums
-[buf-cli]: https://buf.build/docs/ecosystem/cli-overview
+[buf-cli]: https://buf.build/docs/cli/
 [buf-images]: https://buf.build/docs/reference/images
 [buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
 [buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model
