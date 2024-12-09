@@ -5,10 +5,12 @@ inputs:
 # Deletes the directories specified in the `out` field for all plugins before running code generation.
 clean: true
 plugins:
-  # The code generator is installed with `npm install @bufbuild/protoc-gen-es`.
+  # The local plugin is installed with `npm install @bufbuild/protoc-gen-es`.
   - local: protoc-gen-es
     opt: target=ts
     out: src/gen
+    # Also generate any imported dependencies
+    include_imports: true
 # Uncomment to set `jstype = JS_STRING` on all applicable fields automatically:
 # managed:
 #   enabled: true
