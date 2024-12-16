@@ -420,7 +420,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
         f.print(f.jsDoc(member, "  "));
         const { typing, optional } = fieldTypeScriptType(member, f.runtime);
         if (optional) {
-          f.print("  ", member.localName, "?: ", typing, ";");
+          f.print("  ", member.localName, "?: ", typing, " | undefined;");
         } else {
           f.print("  ", member.localName, ": ", typing, ";");
         }
