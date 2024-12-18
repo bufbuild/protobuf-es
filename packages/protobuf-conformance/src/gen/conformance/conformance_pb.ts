@@ -24,7 +24,41 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file conformance/conformance.proto.
  */
 export const file_conformance_conformance: GenFile = /*@__PURE__*/
-  fileDesc("Ch1jb25mb3JtYW5jZS9jb25mb3JtYW5jZS5wcm90bxILY29uZm9ybWFuY2UiHQoKRmFpbHVyZVNldBIPCgdmYWlsdXJlGAEgAygJIuMCChJDb25mb3JtYW5jZVJlcXVlc3QSGgoQcHJvdG9idWZfcGF5bG9hZBgBIAEoDEgAEhYKDGpzb25fcGF5bG9hZBgCIAEoCUgAEhYKDGpzcGJfcGF5bG9hZBgHIAEoCUgAEhYKDHRleHRfcGF5bG9hZBgIIAEoCUgAEjgKF3JlcXVlc3RlZF9vdXRwdXRfZm9ybWF0GAMgASgOMhcuY29uZm9ybWFuY2UuV2lyZUZvcm1hdBIUCgxtZXNzYWdlX3R5cGUYBCABKAkSMAoNdGVzdF9jYXRlZ29yeRgFIAEoDjIZLmNvbmZvcm1hbmNlLlRlc3RDYXRlZ29yeRI+ChVqc3BiX2VuY29kaW5nX29wdGlvbnMYBiABKAsyHy5jb25mb3JtYW5jZS5Kc3BiRW5jb2RpbmdDb25maWcSHAoUcHJpbnRfdW5rbm93bl9maWVsZHMYCSABKAhCCQoHcGF5bG9hZCL6AQoTQ29uZm9ybWFuY2VSZXNwb25zZRIVCgtwYXJzZV9lcnJvchgBIAEoCUgAEhkKD3NlcmlhbGl6ZV9lcnJvchgGIAEoCUgAEhcKDXRpbWVvdXRfZXJyb3IYCSABKAlIABIXCg1ydW50aW1lX2Vycm9yGAIgASgJSAASGgoQcHJvdG9idWZfcGF5bG9hZBgDIAEoDEgAEhYKDGpzb25fcGF5bG9hZBgEIAEoCUgAEhEKB3NraXBwZWQYBSABKAlIABIWCgxqc3BiX3BheWxvYWQYByABKAlIABIWCgx0ZXh0X3BheWxvYWQYCCABKAlIAEIICgZyZXN1bHQiNwoSSnNwYkVuY29kaW5nQ29uZmlnEiEKGXVzZV9qc3BiX2FycmF5X2FueV9mb3JtYXQYASABKAgqUAoKV2lyZUZvcm1hdBIPCgtVTlNQRUNJRklFRBAAEgwKCFBST1RPQlVGEAESCAoESlNPThACEggKBEpTUEIQAxIPCgtURVhUX0ZPUk1BVBAEKo8BCgxUZXN0Q2F0ZWdvcnkSFAoQVU5TUEVDSUZJRURfVEVTVBAAEg8KC0JJTkFSWV9URVNUEAESDQoJSlNPTl9URVNUEAISJAogSlNPTl9JR05PUkVfVU5LTk9XTl9QQVJTSU5HX1RFU1QQAxINCglKU1BCX1RFU1QQBBIUChBURVhUX0ZPUk1BVF9URVNUEAVCLwofY29tLmdvb2dsZS5wcm90b2J1Zi5jb25mb3JtYW5jZaICC0NvbmZvcm1hbmNlYgZwcm90bzM");
+  fileDesc("Ch1jb25mb3JtYW5jZS9jb25mb3JtYW5jZS5wcm90bxILY29uZm9ybWFuY2UiSQoKVGVzdFN0YXR1cxIMCgRuYW1lGAEgASgJEhcKD2ZhaWx1cmVfbWVzc2FnZRgCIAEoCRIUCgxtYXRjaGVkX25hbWUYAyABKAkiOQoKRmFpbHVyZVNldBIlCgR0ZXN0GAIgAygLMhcuY29uZm9ybWFuY2UuVGVzdFN0YXR1c0oECAEQAiLjAgoSQ29uZm9ybWFuY2VSZXF1ZXN0EhoKEHByb3RvYnVmX3BheWxvYWQYASABKAxIABIWCgxqc29uX3BheWxvYWQYAiABKAlIABIWCgxqc3BiX3BheWxvYWQYByABKAlIABIWCgx0ZXh0X3BheWxvYWQYCCABKAlIABI4ChdyZXF1ZXN0ZWRfb3V0cHV0X2Zvcm1hdBgDIAEoDjIXLmNvbmZvcm1hbmNlLldpcmVGb3JtYXQSFAoMbWVzc2FnZV90eXBlGAQgASgJEjAKDXRlc3RfY2F0ZWdvcnkYBSABKA4yGS5jb25mb3JtYW5jZS5UZXN0Q2F0ZWdvcnkSPgoVanNwYl9lbmNvZGluZ19vcHRpb25zGAYgASgLMh8uY29uZm9ybWFuY2UuSnNwYkVuY29kaW5nQ29uZmlnEhwKFHByaW50X3Vua25vd25fZmllbGRzGAkgASgIQgkKB3BheWxvYWQi+gEKE0NvbmZvcm1hbmNlUmVzcG9uc2USFQoLcGFyc2VfZXJyb3IYASABKAlIABIZCg9zZXJpYWxpemVfZXJyb3IYBiABKAlIABIXCg10aW1lb3V0X2Vycm9yGAkgASgJSAASFwoNcnVudGltZV9lcnJvchgCIAEoCUgAEhoKEHByb3RvYnVmX3BheWxvYWQYAyABKAxIABIWCgxqc29uX3BheWxvYWQYBCABKAlIABIRCgdza2lwcGVkGAUgASgJSAASFgoManNwYl9wYXlsb2FkGAcgASgJSAASFgoMdGV4dF9wYXlsb2FkGAggASgJSABCCAoGcmVzdWx0IjcKEkpzcGJFbmNvZGluZ0NvbmZpZxIhChl1c2VfanNwYl9hcnJheV9hbnlfZm9ybWF0GAEgASgIKlAKCldpcmVGb3JtYXQSDwoLVU5TUEVDSUZJRUQQABIMCghQUk9UT0JVRhABEggKBEpTT04QAhIICgRKU1BCEAMSDwoLVEVYVF9GT1JNQVQQBCqPAQoMVGVzdENhdGVnb3J5EhQKEFVOU1BFQ0lGSUVEX1RFU1QQABIPCgtCSU5BUllfVEVTVBABEg0KCUpTT05fVEVTVBACEiQKIEpTT05fSUdOT1JFX1VOS05PV05fUEFSU0lOR19URVNUEAMSDQoJSlNQQl9URVNUEAQSFAoQVEVYVF9GT1JNQVRfVEVTVBAFQi8KH2NvbS5nb29nbGUucHJvdG9idWYuY29uZm9ybWFuY2WiAgtDb25mb3JtYW5jZWIGcHJvdG8z");
+
+/**
+ * Meant to encapsulate all types of tests: successes, skips, failures, etc.
+ * Therefore, this may or may not have a failure message. Failure messages
+ * may be truncated for our failure lists.
+ *
+ * @generated from message conformance.TestStatus
+ */
+export type TestStatus = Message<"conformance.TestStatus"> & {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string failure_message = 2;
+   */
+  failureMessage: string;
+
+  /**
+   * What an actual test name matched to in a failure list. Can be wildcarded or
+   * an exact match without wildcards.
+   *
+   * @generated from field: string matched_name = 3;
+   */
+  matchedName: string;
+};
+
+/**
+ * Describes the message conformance.TestStatus.
+ * Use `create(TestStatusSchema)` to create a new message.
+ */
+export const TestStatusSchema: GenMessage<TestStatus> = /*@__PURE__*/
+  messageDesc(file_conformance_conformance, 0);
 
 /**
  * The conformance runner will request a list of failures as the first request.
@@ -35,9 +69,9 @@ export const file_conformance_conformance: GenFile = /*@__PURE__*/
  */
 export type FailureSet = Message<"conformance.FailureSet"> & {
   /**
-   * @generated from field: repeated string failure = 1;
+   * @generated from field: repeated conformance.TestStatus test = 2;
    */
-  failure: string[];
+  test: TestStatus[];
 };
 
 /**
@@ -45,7 +79,7 @@ export type FailureSet = Message<"conformance.FailureSet"> & {
  * Use `create(FailureSetSchema)` to create a new message.
  */
 export const FailureSetSchema: GenMessage<FailureSet> = /*@__PURE__*/
-  messageDesc(file_conformance_conformance, 0);
+  messageDesc(file_conformance_conformance, 1);
 
 /**
  * Represents a single test case's input.  The testee should:
@@ -141,7 +175,7 @@ export type ConformanceRequest = Message<"conformance.ConformanceRequest"> & {
  * Use `create(ConformanceRequestSchema)` to create a new message.
  */
 export const ConformanceRequestSchema: GenMessage<ConformanceRequest> = /*@__PURE__*/
-  messageDesc(file_conformance_conformance, 1);
+  messageDesc(file_conformance_conformance, 2);
 
 /**
  * Represents a single test case's output.
@@ -248,7 +282,7 @@ export type ConformanceResponse = Message<"conformance.ConformanceResponse"> & {
  * Use `create(ConformanceResponseSchema)` to create a new message.
  */
 export const ConformanceResponseSchema: GenMessage<ConformanceResponse> = /*@__PURE__*/
-  messageDesc(file_conformance_conformance, 2);
+  messageDesc(file_conformance_conformance, 3);
 
 /**
  * Encoding options for jspb format.
@@ -269,7 +303,7 @@ export type JspbEncodingConfig = Message<"conformance.JspbEncodingConfig"> & {
  * Use `create(JspbEncodingConfigSchema)` to create a new message.
  */
 export const JspbEncodingConfigSchema: GenMessage<JspbEncodingConfig> = /*@__PURE__*/
-  messageDesc(file_conformance_conformance, 3);
+  messageDesc(file_conformance_conformance, 4);
 
 /**
  * @generated from enum conformance.WireFormat

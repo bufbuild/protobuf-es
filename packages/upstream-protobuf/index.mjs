@@ -69,6 +69,7 @@ export class UpstreamProtobuf {
     "src/google/protobuf/test_messages_*.proto",
     "src/google/protobuf/*unittest*.proto",
     "editions/golden/test_messages_proto3_editions.proto",
+    "!src/google/protobuf/unittest_lite_edition_2024.proto",
     "!src/google/protobuf/unittest_string_type.proto",
     "!src/google/protobuf/map_proto3_unittest.proto",
     "!src/google/protobuf/edition_unittest.proto",
@@ -141,6 +142,7 @@ export class UpstreamProtobuf {
    * @property {boolean} [includeImports] Also include all dependencies of the input files in the set, so that the set is self-contained.
    * @property {boolean} [includeSourceInfo] Do not strip SourceCodeInfo from the FileDescriptorProto.
    * @property {boolean} [retainOptions] Do not strip any options from the FileDescriptorProto.
+   * @property {boolean} [experimentalEditions] Enable compiling unreleased editions in protoc (undocumented flag `--experimental_editions`).
    */
   /**
    * @param {Record<string, string>|string} filesOrFileContent
@@ -174,6 +176,9 @@ export class UpstreamProtobuf {
       }
       if (opt?.retainOptions) {
         args.unshift("--retain_options");
+      }
+      if (opt?.experimentalEditions) {
+        args.unshift("--experimental_editions");
       }
       execFileSync(protocPath, args, {
         shell: false,
