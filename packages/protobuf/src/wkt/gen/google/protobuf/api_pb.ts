@@ -375,7 +375,7 @@ export const MethodSchema: GenMessage<Method, MethodJson> = /*@__PURE__*/
  * The mixin construct implies that all methods in `AccessControl` are
  * also declared with same name and request/response types in
  * `Storage`. A documentation generator or annotation processor will
- * see the effective `Storage.GetAcl` method after inherting
+ * see the effective `Storage.GetAcl` method after inheriting
  * documentation and annotations as follows:
  *
  *     service Storage {
@@ -474,7 +474,7 @@ export type Mixin = Message<"google.protobuf.Mixin"> & {
  * The mixin construct implies that all methods in `AccessControl` are
  * also declared with same name and request/response types in
  * `Storage`. A documentation generator or annotation processor will
- * see the effective `Storage.GetAcl` method after inherting
+ * see the effective `Storage.GetAcl` method after inheriting
  * documentation and annotations as follows:
  *
  *     service Storage {

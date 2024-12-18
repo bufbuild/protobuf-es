@@ -6251,6 +6251,110 @@ export declare type TestMessageWithManyRepeatedPtrFields = Message<"protobuf_uni
 export declare const TestMessageWithManyRepeatedPtrFieldsSchema: GenMessage<TestMessageWithManyRepeatedPtrFields>;
 
 /**
+ * @generated from message protobuf_unittest.MessageCreatorZeroInit
+ */
+export declare type MessageCreatorZeroInit = Message<"protobuf_unittest.MessageCreatorZeroInit"> & {
+  /**
+   * @generated from field: int32 i = 1;
+   */
+  i: number;
+
+  /**
+   * @generated from field: double d = 2;
+   */
+  d: number;
+
+  /**
+   * @generated from field: protobuf_unittest.MessageCreatorZeroInit m = 3;
+   */
+  m?: MessageCreatorZeroInit;
+
+  /**
+   * @generated from oneof protobuf_unittest.MessageCreatorZeroInit.one
+   */
+  one: {
+    /**
+     * @generated from field: string os = 10;
+     */
+    value: string;
+    case: "os";
+  } | {
+    /**
+     * @generated from field: string oc = 11;
+     */
+    value: string;
+    case: "oc";
+  } | {
+    /**
+     * @generated from field: fixed64 of = 12;
+     */
+    value: bigint;
+    case: "of";
+  } | {
+    /**
+     * @generated from field: protobuf_unittest.MessageCreatorZeroInit ol = 13;
+     */
+    value: MessageCreatorZeroInit;
+    case: "ol";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message protobuf_unittest.MessageCreatorZeroInit.
+ * Use `create(MessageCreatorZeroInitSchema)` to create a new message.
+ */
+export declare const MessageCreatorZeroInitSchema: GenMessage<MessageCreatorZeroInit>;
+
+/**
+ * @generated from message protobuf_unittest.MessageCreatorMemcpy
+ */
+export declare type MessageCreatorMemcpy = Message<"protobuf_unittest.MessageCreatorMemcpy"> & {
+  /**
+   * @generated from field: string s = 1;
+   */
+  s: string;
+
+  /**
+   * @generated from field: repeated int32 i = 2 [features.repeated_field_encoding = PACKED];
+   */
+  i: number[];
+
+  /**
+   * @generated from field: protobuf_unittest.MessageCreatorMemcpy m = 3;
+   */
+  m?: MessageCreatorMemcpy;
+
+  /**
+   * @generated from field: map<int32, int32> m2 = 4;
+   */
+  m2: { [key: number]: number };
+};
+
+/**
+ * Describes the message protobuf_unittest.MessageCreatorMemcpy.
+ * Use `create(MessageCreatorMemcpySchema)` to create a new message.
+ */
+export declare const MessageCreatorMemcpySchema: GenMessage<MessageCreatorMemcpy>;
+
+/**
+ * @generated from message protobuf_unittest.MessageCreatorFunc
+ */
+export declare type MessageCreatorFunc = Message<"protobuf_unittest.MessageCreatorFunc"> & {
+  /**
+   * This one is ArenaDtorNeeds::kRequired so we must run the constructor.
+   *
+   * @generated from field: string c = 3;
+   */
+  c: string;
+};
+
+/**
+ * Describes the message protobuf_unittest.MessageCreatorFunc.
+ * Use `create(MessageCreatorFuncSchema)` to create a new message.
+ */
+export declare const MessageCreatorFuncSchema: GenMessage<MessageCreatorFunc>;
+
+/**
  * @generated from enum protobuf_unittest.ForeignEnum
  */
 export enum ForeignEnum {

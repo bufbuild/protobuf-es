@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { fromBinary, minimumEdition } from "@bufbuild/protobuf";
+import { fromBinary, minimumEdition, maximumEdition } from "@bufbuild/protobuf";
 import {
   CodeGeneratorRequestSchema,
   CodeGeneratorResponse_Feature,
@@ -70,7 +70,7 @@ describe("editions support in plugins", () => {
       generateAny() {},
     });
     expect(res.minimumEdition).toBe(minimumEdition);
-    expect(res.minimumEdition).toBe(minimumEdition);
+    expect(res.maximumEdition).toBe(maximumEdition);
   });
   test("sets supported edition range to the provided range", async () => {
     const res = await createTestPluginAndRun({
