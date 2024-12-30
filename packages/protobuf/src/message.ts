@@ -46,7 +46,7 @@ export class Message<T extends Message<T> = AnyMessage> {
     return this.getType().runtime.util.equals(
       this.getType(),
       this as unknown as T,
-      other
+      other,
     );
   }
 
@@ -96,7 +96,7 @@ export class Message<T extends Message<T> = AnyMessage> {
       throw new Error(
         `cannot decode ${this.getType().typeName} from JSON: ${
           e instanceof Error ? e.message : String(e)
-        }`
+        }`,
       );
     }
     return this.fromJson(json, options);

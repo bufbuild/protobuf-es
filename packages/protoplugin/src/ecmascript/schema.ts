@@ -95,7 +95,7 @@ export function createSchema(
   parameter: ParsedParameter,
   pluginName: string,
   pluginVersion: string,
-  featureSetDefaults: FeatureSetDefaults | undefined
+  featureSetDefaults: FeatureSetDefaults | undefined,
 ): SchemaController {
   const descriptorSet = createDescriptorSet(request.protoFile, {
     featureSetDefaults,
@@ -103,13 +103,13 @@ export function createSchema(
   const filesToGenerate = findFilesToGenerate(descriptorSet, request);
   const runtime = createRuntimeImports(parameter.bootstrapWkt);
   const createTypeImport = (
-    desc: DescMessage | DescEnum | DescExtension
+    desc: DescMessage | DescEnum | DescExtension,
   ): ImportSymbol => {
     const name = codegenInfo.localName(desc);
     const from = makeImportPath(
       desc.file,
       parameter.bootstrapWkt,
-      filesToGenerate
+      filesToGenerate,
     );
     return createImportSymbol(name, from);
   };
@@ -119,7 +119,7 @@ export function createSchema(
       pluginName,
       pluginVersion,
       parameter.sanitizedParameter,
-      parameter.tsNocheck
+      parameter.tsNocheck,
     );
   let target: Target | undefined;
   const generatedFiles: GeneratedFileController[] = [];
@@ -133,7 +133,7 @@ export function createSchema(
     generateFile(name) {
       if (target === undefined) {
         throw new Error(
-          "prepareGenerate() must be called before generateFile()"
+          "prepareGenerate() must be called before generateFile()",
         );
       }
       const genFile = createGeneratedFile(
@@ -144,11 +144,11 @@ export function createSchema(
           rewriteImportPath(
             importPath,
             parameter.rewriteImports,
-            parameter.importExtension
+            parameter.importExtension,
           ),
         createTypeImport,
         runtime,
-        createPreamble
+        createPreamble,
       );
       generatedFiles.push(genFile);
       return genFile;
@@ -166,15 +166,17 @@ export function createSchema(
 
 function findFilesToGenerate(
   descriptorSet: DescriptorSet,
-  request: CodeGeneratorRequest
+  request: CodeGeneratorRequest,
 ) {
   const missing = request.fileToGenerate.filter((fileToGenerate) =>
-    descriptorSet.files.every((file) => fileToGenerate !== file.name + ".proto")
+    descriptorSet.files.every(
+      (file) => fileToGenerate !== file.name + ".proto",
+    ),
   );
   if (missing.length) {
     throw `files_to_generate missing in the request: ${missing.join(", ")}`;
   }
   return descriptorSet.files.filter((file) =>
-    request.fileToGenerate.includes(file.name + ".proto")
+    request.fileToGenerate.includes(file.name + ".proto"),
   );
 }

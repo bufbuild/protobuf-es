@@ -47,11 +47,11 @@ interface CodegenInfo {
       | DescOneof
       | DescField
       | DescService
-      | DescMethod
+      | DescMethod,
   ) => string;
   readonly symbols: Record<RuntimeSymbolName, RuntimeSymbolInfo>;
   readonly getUnwrappedFieldType: (
-    field: DescField | DescExtension
+    field: DescField | DescExtension,
   ) => ScalarType | undefined;
   readonly wktSourceFiles: readonly string[];
   /**
@@ -60,7 +60,7 @@ interface CodegenInfo {
   readonly scalarDefaultValue: (type: ScalarType, longType: LongType) => any; // eslint-disable-line @typescript-eslint/no-explicit-any
   readonly scalarZeroValue: <T extends ScalarType, L extends LongType>(
     type: T,
-    longType: L
+    longType: L,
   ) => ScalarValue<T, L>;
   /**
    * @deprecated please use reifyWkt from @bufbuild/protoplugin/ecmascript instead

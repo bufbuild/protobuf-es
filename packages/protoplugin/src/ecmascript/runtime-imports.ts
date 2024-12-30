@@ -71,12 +71,12 @@ export function createRuntimeImports(bootstrapWkt: boolean): RuntimeImports {
 
 function infoToSymbol(
   name: keyof typeof codegenInfo.symbols,
-  bootstrapWkt: boolean
+  bootstrapWkt: boolean,
 ): ImportSymbol {
   const info = codegenInfo.symbols[name];
   const symbol = createImportSymbol(
     name,
-    bootstrapWkt ? info.privateImportPath : info.publicImportPath
+    bootstrapWkt ? info.privateImportPath : info.publicImportPath,
   );
   return info.typeOnly ? symbol.toTypeOnly() : symbol;
 }

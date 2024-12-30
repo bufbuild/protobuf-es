@@ -27,7 +27,7 @@ import { localName } from "@bufbuild/protoplugin/ecmascript";
 
 export function getFieldTypeInfo(
   field: DescField | DescExtension,
-  strict: boolean
+  strict: boolean,
 ): {
   typing: Printable;
   optional: boolean;
@@ -89,7 +89,7 @@ export function getFieldTypeInfo(
         case "scalar":
           valueType = scalarTypeScriptType(
             field.mapValue.scalar,
-            LongType.BIGINT
+            LongType.BIGINT,
           );
           break;
         case "message":
@@ -130,7 +130,7 @@ export function getFieldDefaultValueExpression(
   enumAs:
     | "enum_value_as_is"
     | "enum_value_as_integer"
-    | "enum_value_as_cast_integer" = "enum_value_as_is"
+    | "enum_value_as_cast_integer" = "enum_value_as_is",
 ): Printable | undefined {
   if (field.repeated) {
     return undefined;
@@ -145,11 +145,11 @@ export function getFieldDefaultValueExpression(
   switch (field.fieldKind) {
     case "enum": {
       const enumValue = field.enum.values.find(
-        (value) => value.number === defaultValue
+        (value) => value.number === defaultValue,
       );
       if (enumValue === undefined) {
         throw new Error(
-          `invalid enum default value: ${String(defaultValue)} for ${enumValue}`
+          `invalid enum default value: ${String(defaultValue)} for ${enumValue}`,
         );
       }
       return literalEnumValue(enumValue, enumAs);
@@ -174,7 +174,7 @@ export function getFieldZeroValueExpression(
   enumAs:
     | "enum_value_as_is"
     | "enum_value_as_integer"
-    | "enum_value_as_cast_integer" = "enum_value_as_is"
+    | "enum_value_as_cast_integer" = "enum_value_as_is",
 ): Printable | undefined {
   if (field.repeated) {
     return "[]";
@@ -196,7 +196,7 @@ export function getFieldZeroValueExpression(
     case "scalar": {
       const defaultValue = codegenInfo.scalarZeroValue(
         field.scalar,
-        field.longType
+        field.longType,
       );
       return literalScalarValue(defaultValue, field);
     }
@@ -205,7 +205,7 @@ export function getFieldZeroValueExpression(
 
 function literalScalarValue(
   value: ScalarValue,
-  field: (DescField | DescExtension) & { fieldKind: "scalar" }
+  field: (DescField | DescExtension) & { fieldKind: "scalar" },
 ): Printable {
   switch (field.scalar) {
     case ScalarType.DOUBLE:
@@ -217,28 +217,28 @@ function literalScalarValue(
     case ScalarType.SINT32:
       if (typeof value != "number") {
         throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`
+          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
         );
       }
       return value;
     case ScalarType.BOOL:
       if (typeof value != "boolean") {
         throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`
+          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
         );
       }
       return value;
     case ScalarType.STRING:
       if (typeof value != "string") {
         throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`
+          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
         );
       }
       return { kind: "es_string", value };
     case ScalarType.BYTES:
       if (!(value instanceof Uint8Array)) {
         throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`
+          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
         );
       }
       return value;
@@ -249,7 +249,7 @@ function literalScalarValue(
     case ScalarType.FIXED64:
       if (typeof value != "bigint" && typeof value != "string") {
         throw new Error(
-          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`
+          `Unexpected value for ${ScalarType[field.scalar]} ${field.toString()}: ${String(value)}`,
         );
       }
       return {
@@ -266,7 +266,7 @@ function literalEnumValue(
   enumAs:
     | "enum_value_as_is"
     | "enum_value_as_integer"
-    | "enum_value_as_cast_integer"
+    | "enum_value_as_cast_integer",
 ): Printable {
   switch (enumAs) {
     case "enum_value_as_is":

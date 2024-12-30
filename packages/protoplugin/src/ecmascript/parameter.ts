@@ -30,7 +30,7 @@ export interface ParsedParameter {
 
 export function parseParameter(
   parameter: string | undefined,
-  parseExtraOption: ((key: string, value: string) => void) | undefined
+  parseExtraOption: ((key: string, value: string) => void) | undefined,
 ): ParsedParameter {
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = true;
@@ -96,7 +96,7 @@ export function parseParameter(
         if (parts.length !== 2) {
           throw new PluginOptionError(
             raw,
-            "must be in the form of <pattern>:<target>"
+            "must be in the form of <pattern>:<target>",
           );
         }
         const [pattern, target] = parts;
@@ -184,7 +184,7 @@ export function parseParameter(
 }
 
 function splitParameter(
-  parameter: string | undefined
+  parameter: string | undefined,
 ): { key: string; value: string; raw: string }[] {
   if (parameter == undefined) {
     return [];
