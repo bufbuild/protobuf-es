@@ -21,7 +21,12 @@ export { protoDelimited } from "./proto-delimited.js";
 export { codegenInfo } from "./codegen-info.js";
 
 export { Message } from "./message.js";
-export type { AnyMessage, PartialMessage, PlainMessage } from "./message.js";
+export type {
+  AnyMessage,
+  PartialMessage,
+  PartialStrictMessage,
+  PlainMessage,
+} from "./message.js";
 export { isMessage } from "./is-message.js";
 
 export type { FieldInfo, OneofInfo } from "./field.js";

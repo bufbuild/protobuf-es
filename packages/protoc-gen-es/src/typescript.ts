@@ -74,6 +74,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
   const protoN = getNonEditionRuntime(schema, message.file);
   const {
     PartialMessage,
+    PartialStrictMessage,
     FieldList,
     Message,
     PlainMessage,
@@ -94,7 +95,7 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     }
     f.print();
   }
-  f.print("  constructor(data?: ", PartialMessage, "<", message, ">) {");
+  f.print("  constructor(data?: ", schema.strict ? PartialStrictMessage : PartialMessage, "<", message, ">) {");
   f.print("    super();");
   f.print("    ", protoN, ".util.initPartial(data, this);");
   f.print("  }");
@@ -148,7 +149,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
       f.print(`  } | {`);
     }
     f.print(f.jsDoc(field, "    "));
-    const { typing } = getFieldTypeInfo(field);
+    const { typing } = getFieldTypeInfo(field, schema.strict);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
   }
@@ -159,7 +160,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
   f.print(f.jsDoc(field, "  "));
   const e: Printable = [];
-  const { typing, optional, typingInferrableFromZeroValue } = getFieldTypeInfo(field);
+  const { typing, optional, typingInferrableFromZeroValue } = getFieldTypeInfo(field, schema.strict);
   if (optional) {
     e.push("  ", localName(field), "?: ", typing, ";");
   } else {
@@ -184,7 +185,7 @@ function generateExtension(
   ext: DescExtension,
 ) {
   const protoN = getNonEditionRuntime(schema, ext.file);
-  const { typing } = getFieldTypeInfo(ext);
+  const { typing } = getFieldTypeInfo(ext, schema.strict);
   f.print(f.jsDoc(ext));
   f.print(f.exportDecl("const", ext), " = ", protoN, ".makeExtension<", ext.extendee, ", ", typing, ">(");
   f.print("  ", f.string(ext.typeName), ", ");
@@ -651,7 +652,7 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
-      const {typing} = getFieldTypeInfo(ref.value);
+      const {typing} = getFieldTypeInfo(ref.value, schema.strict);
       f.print("  static readonly fieldWrapper = {")
       f.print("    wrapField(value: ", typing, "): ", message, " {")
       f.print("      return new ", message, "({value});")

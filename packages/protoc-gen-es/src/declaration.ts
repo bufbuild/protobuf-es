@@ -64,10 +64,11 @@ function generateEnum(schema: Schema, f: GeneratedFile, enumeration: DescEnum) {
 function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage) {
   const protoN = getNonEditionRuntime(schema, message.file);
   const {
-    PartialMessage,
     FieldList,
     Message,
     PlainMessage,
+    PartialStrictMessage,
+    PartialMessage,
     BinaryReadOptions,
     JsonReadOptions,
     JsonValue
@@ -86,7 +87,8 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     }
     f.print();
   }
-  f.print("  constructor(data?: ", PartialMessage, "<", m, ">);");
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  f.print("  constructor(data?: ", schema.strict ? PartialStrictMessage : PartialMessage, "<", m, ">);");
   f.print();
   generateWktMethods(schema, f, message);
   f.print("  static readonly runtime: typeof ", protoN, ";");
@@ -125,7 +127,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
       f.print(`  } | {`);
     }
     f.print(f.jsDoc(field, "    "));
-    const { typing } = getFieldTypeInfo(field);
+    const { typing } = getFieldTypeInfo(field, schema.strict);
     f.print(`    value: `, typing, `;`);
     f.print(`    case: "`, localName(field), `";`);
   }
@@ -136,7 +138,7 @@ function generateOneof(schema: Schema, f: GeneratedFile, oneof: DescOneof) {
 function generateField(schema: Schema, f: GeneratedFile, field: DescField) {
     f.print(f.jsDoc(field, "  "));
     const e: Printable = [];
-    const { typing, optional } = getFieldTypeInfo(field);
+    const { typing, optional } = getFieldTypeInfo(field, schema.strict);
     if (!optional) {
         e.push("  ", localName(field), ": ", typing, ";");
     } else {
@@ -151,7 +153,7 @@ function generateExtension(
   f: GeneratedFile,
   ext: DescExtension,
 ) {
-  const { typing } = getFieldTypeInfo(ext);
+  const { typing } = getFieldTypeInfo(ext, schema.strict);
   const e = f.import(ext.extendee).toTypeOnly();
   f.print(f.jsDoc(ext));
   f.print(f.exportDecl("declare const", localName(ext)), ": ", schema.runtime.Extension, "<", e, ", ", typing, ">;");
@@ -232,7 +234,7 @@ function generateWktStaticMethods(schema: Schema, f: GeneratedFile, message: Des
     case "google.protobuf.BoolValue":
     case "google.protobuf.StringValue":
     case "google.protobuf.BytesValue": {
-      const {typing} = getFieldTypeInfo(ref.value);
+      const {typing} = getFieldTypeInfo(ref.value, schema.strict);
       f.print("  static readonly fieldWrapper: {")
       f.print("    wrapField(value: ", typing, "): ", message, ",")
       f.print("    unwrapField(value: ", message, "): ", typing, ",")
