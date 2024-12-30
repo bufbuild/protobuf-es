@@ -78,6 +78,11 @@ export interface Schema {
    * The original google.protobuf.compiler.CodeGeneratorRequest.
    */
   readonly proto: CodeGeneratorRequest;
+
+  /**
+   * strict mode with `required` support
+   */
+  readonly strict: boolean;
 }
 
 interface SchemaController extends Schema {
@@ -120,6 +125,7 @@ export function createSchema(
   const generatedFiles: GeneratedFileController[] = [];
   return {
     targets: parameter.targets,
+    strict: parameter.strict,
     runtime,
     proto: request,
     files: filesToGenerate,

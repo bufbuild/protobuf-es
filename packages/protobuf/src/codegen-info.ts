@@ -75,6 +75,7 @@ type RuntimeSymbolName =
   | "proto3"
   | "Message"
   | "PartialMessage"
+  | "PartialStrictMessage"
   | "PlainMessage"
   | "FieldList"
   | "MessageType"
@@ -116,6 +117,7 @@ export const codegenInfo: CodegenInfo = {
     proto3:               {typeOnly: false, privateImportPath: "./proto3.js",        publicImportPath: packageName},
     Message:              {typeOnly: false, privateImportPath: "./message.js",       publicImportPath: packageName},
     PartialMessage:       {typeOnly: true,  privateImportPath: "./message.js",       publicImportPath: packageName},
+    PartialStrictMessage: {typeOnly: true,  privateImportPath: "./message.js",       publicImportPath: packageName},
     PlainMessage:         {typeOnly: true,  privateImportPath: "./message.js",       publicImportPath: packageName},
     FieldList:            {typeOnly: true,  privateImportPath: "./field-list.js",    publicImportPath: packageName},
     MessageType:          {typeOnly: true,  privateImportPath: "./message-type.js",  publicImportPath: packageName},

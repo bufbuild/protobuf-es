@@ -25,6 +25,7 @@ export interface ParsedParameter {
   importExtension: string;
   jsImportStyle: "module" | "legacy_commonjs";
   sanitizedParameter: string;
+  strict: boolean;
 }
 
 export function parseParameter(
@@ -38,6 +39,7 @@ export function parseParameter(
   const rewriteImports: RewriteImports = [];
   let importExtension = ".js";
   let jsImportStyle: "module" | "legacy_commonjs" = "module";
+  let strict = false;
   const rawParameters: string[] = [];
   for (const { key, value, raw } of splitParameter(parameter)) {
     // Whether this key/value plugin parameter pair should be
@@ -135,6 +137,21 @@ export function parseParameter(
         }
         break;
       }
+      case "strict": {
+        switch (value) {
+          case "true":
+          case "1":
+            strict = true;
+            break;
+          case "false":
+          case "0":
+            strict = false;
+            break;
+          default:
+            throw new PluginOptionError(raw);
+        }
+        break;
+      }
       default:
         if (parseExtraOption === undefined) {
           throw new PluginOptionError(raw);
@@ -154,6 +171,7 @@ export function parseParameter(
   const sanitizedParameter = rawParameters.join(",");
 
   return {
+    strict,
     targets,
     tsNocheck,
     bootstrapWkt,

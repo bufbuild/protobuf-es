@@ -21,6 +21,7 @@ export interface RuntimeImports {
   proto3: ImportSymbol;
   Message: ImportSymbol;
   PartialMessage: ImportSymbol;
+  PartialStrictMessage: ImportSymbol;
   PlainMessage: ImportSymbol;
   FieldList: ImportSymbol;
   MessageType: ImportSymbol;
@@ -47,6 +48,7 @@ export function createRuntimeImports(bootstrapWkt: boolean): RuntimeImports {
     proto3:                infoToSymbol("proto3",               bootstrapWkt),
     Message:               infoToSymbol("Message",              bootstrapWkt),
     PartialMessage:        infoToSymbol("PartialMessage",       bootstrapWkt),
+    PartialStrictMessage:  infoToSymbol("PartialStrictMessage", bootstrapWkt),
     PlainMessage:          infoToSymbol("PlainMessage",         bootstrapWkt),
     FieldList:             infoToSymbol("FieldList",            bootstrapWkt),
     MessageType:           infoToSymbol("MessageType",          bootstrapWkt),

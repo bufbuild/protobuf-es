@@ -25,7 +25,10 @@ import {
 import type { Printable } from "@bufbuild/protoplugin/ecmascript";
 import { localName } from "@bufbuild/protoplugin/ecmascript";
 
-export function getFieldTypeInfo(field: DescField | DescExtension): {
+export function getFieldTypeInfo(
+  field: DescField | DescExtension,
+  strict: boolean,
+): {
   typing: Printable;
   optional: boolean;
   typingInferrableFromZeroValue: boolean;
@@ -38,7 +41,7 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
       typing.push(scalarTypeScriptType(field.scalar, field.longType));
       optional =
         field.optional ||
-        field.proto.label === FieldDescriptorProto_Label.REQUIRED;
+        (!strict && field.proto.label === FieldDescriptorProto_Label.REQUIRED);
       typingInferrableFromZeroValue = true;
       break;
     case "message": {
@@ -64,7 +67,7 @@ export function getFieldTypeInfo(field: DescField | DescExtension): {
       });
       optional =
         field.optional ||
-        field.proto.label === FieldDescriptorProto_Label.REQUIRED;
+        (!strict && field.proto.label === FieldDescriptorProto_Label.REQUIRED);
       typingInferrableFromZeroValue = true;
       break;
     case "map": {

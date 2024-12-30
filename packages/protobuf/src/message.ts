@@ -204,6 +204,22 @@ export type PartialMessage<T extends Message<T>> = {
   [P in keyof T as T[P] extends Function ? never : P]?: PartialField<T[P]>;
 };
 
+export type PartialStrictMessage<T extends Message<T>> = {
+  // eslint-disable-next-line @typescript-eslint/ban-types -- we use `Function` to identify methods
+  [P in keyof T as T[P] extends Function ? never : P]: PartialStrictField<T[P]>;
+};
+
+// prettier-ignore
+type PartialStrictField<F> =
+  F extends (Date | Uint8Array | bigint | boolean | string | number) ? F
+  : F extends Array<infer U> ? Array<PartialField<U>>
+  : F extends ReadonlyArray<infer U> ? ReadonlyArray<PartialField<U>>
+  : F extends Message<infer U> ? PartialStrictMessage<U>
+  : F extends OneofSelectedMessage<infer C, infer V> ? {case: C; value: PartialStrictMessage<V>}
+  : F extends { case: string | undefined; value?: unknown; } ? F
+  : F extends {[key: string|number]: Message<infer U>} ? {[key: string|number]: PartialStrictMessage<U>}
+  : F ;
+
 // prettier-ignore
 type PartialField<F> =
   F extends (Date | Uint8Array | bigint | boolean | string | number) ? F
