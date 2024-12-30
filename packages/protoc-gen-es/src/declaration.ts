@@ -87,7 +87,6 @@ function generateMessage(schema: Schema, f: GeneratedFile, message: DescMessage)
     }
     f.print();
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   f.print("  constructor(data?: ", schema.strict ? PartialStrictMessage : PartialMessage, "<", m, ">);");
   f.print();
   generateWktMethods(schema, f, message);
