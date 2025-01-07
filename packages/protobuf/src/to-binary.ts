@@ -108,14 +108,14 @@ export function writeField(
       );
       break;
     case "list":
-      writeListField(writer, msg.desc.typeName, opts, field, msg.get(field));
+      writeListField(writer, opts, field, msg.get(field));
       break;
     case "message":
       writeMessageField(writer, opts, field, msg.get(field));
       break;
     case "map":
       for (const [key, val] of msg.get(field)) {
-        writeMapEntry(writer, msg.desc.typeName, opts, field, key, val);
+        writeMapEntry(writer, opts, field, key, val);
       }
       break;
   }
@@ -162,7 +162,6 @@ function writeMessageField(
 
 function writeListField(
   writer: BinaryWriter,
-  msgName: string,
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "list" },
   list: ReflectList,
@@ -182,7 +181,7 @@ function writeListField(
     for (const item of list) {
       writeScalarValue(
         writer,
-        msgName,
+        field.parent.typeName,
         field.name,
         scalarType,
         item as ScalarValue,
@@ -192,13 +191,12 @@ function writeListField(
     return;
   }
   for (const item of list) {
-    writeScalar(writer, msgName, field.name, scalarType, field.number, item);
+    writeScalar(writer, field.parent.typeName, field.name, scalarType, field.number, item);
   }
 }
 
 function writeMapEntry(
   writer: BinaryWriter,
-  msgName: string,
   opts: BinaryWriteOptions,
   field: DescField & { fieldKind: "map" },
   key: unknown,
@@ -207,7 +205,7 @@ function writeMapEntry(
   writer.tag(field.number, WireType.LengthDelimited).fork();
 
   // write key, expecting key field number = 1
-  writeScalar(writer, msgName, field.name, field.mapKey, 1, key);
+  writeScalar(writer, field.parent.typeName, field.name, field.mapKey, 1, key);
 
   // write value, expecting value field number = 2
   switch (field.mapKind) {
@@ -215,7 +213,7 @@ function writeMapEntry(
     case "enum":
       writeScalar(
         writer,
-        msgName,
+        field.parent.typeName,
         field.name,
         field.scalar ?? ScalarType.INT32,
         2,
