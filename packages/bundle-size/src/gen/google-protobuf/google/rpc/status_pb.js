@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -98,9 +98,9 @@ proto.google.rpc.Status.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.rpc.Status.toObject = function(includeInstance, msg) {
   var f, obj = {
-    code: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    message: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    detailsList: jspb.Message.toObjectList(msg.getDetailsList(),
+code: jspb.Message.getFieldWithDefault(msg, 1, 0),
+message: jspb.Message.getFieldWithDefault(msg, 2, ""),
+detailsList: jspb.Message.toObjectList(msg.getDetailsList(),
     google_protobuf_any_pb.Any.toObject, includeInstance)
   };
 

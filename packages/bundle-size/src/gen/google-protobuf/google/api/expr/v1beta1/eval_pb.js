@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -211,9 +211,9 @@ proto.google.api.expr.v1beta1.EvalState.prototype.toObject = function(opt_includ
  */
 proto.google.api.expr.v1beta1.EvalState.toObject = function(includeInstance, msg) {
   var f, obj = {
-    valuesList: jspb.Message.toObjectList(msg.getValuesList(),
+valuesList: jspb.Message.toObjectList(msg.getValuesList(),
     proto.google.api.expr.v1beta1.ExprValue.toObject, includeInstance),
-    resultsList: jspb.Message.toObjectList(msg.getResultsList(),
+resultsList: jspb.Message.toObjectList(msg.getResultsList(),
     proto.google.api.expr.v1beta1.EvalState.Result.toObject, includeInstance)
   };
 
@@ -341,8 +341,8 @@ proto.google.api.expr.v1beta1.EvalState.Result.prototype.toObject = function(opt
  */
 proto.google.api.expr.v1beta1.EvalState.Result.toObject = function(includeInstance, msg) {
   var f, obj = {
-    expr: (f = msg.getExpr()) && proto.google.api.expr.v1beta1.IdRef.toObject(includeInstance, f),
-    value: jspb.Message.getFieldWithDefault(msg, 2, 0)
+expr: (f = msg.getExpr()) && proto.google.api.expr.v1beta1.IdRef.toObject(includeInstance, f),
+value: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -625,9 +625,9 @@ proto.google.api.expr.v1beta1.ExprValue.prototype.toObject = function(opt_includ
  */
 proto.google.api.expr.v1beta1.ExprValue.toObject = function(includeInstance, msg) {
   var f, obj = {
-    value: (f = msg.getValue()) && google_api_expr_v1beta1_value_pb.Value.toObject(includeInstance, f),
-    error: (f = msg.getError()) && proto.google.api.expr.v1beta1.ErrorSet.toObject(includeInstance, f),
-    unknown: (f = msg.getUnknown()) && proto.google.api.expr.v1beta1.UnknownSet.toObject(includeInstance, f)
+value: (f = msg.getValue()) && google_api_expr_v1beta1_value_pb.Value.toObject(includeInstance, f),
+error: (f = msg.getError()) && proto.google.api.expr.v1beta1.ErrorSet.toObject(includeInstance, f),
+unknown: (f = msg.getUnknown()) && proto.google.api.expr.v1beta1.UnknownSet.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -885,7 +885,7 @@ proto.google.api.expr.v1beta1.ErrorSet.prototype.toObject = function(opt_include
  */
 proto.google.api.expr.v1beta1.ErrorSet.toObject = function(includeInstance, msg) {
   var f, obj = {
-    errorsList: jspb.Message.toObjectList(msg.getErrorsList(),
+errorsList: jspb.Message.toObjectList(msg.getErrorsList(),
     google_rpc_status_pb.Status.toObject, includeInstance)
   };
 
@@ -1045,7 +1045,7 @@ proto.google.api.expr.v1beta1.UnknownSet.prototype.toObject = function(opt_inclu
  */
 proto.google.api.expr.v1beta1.UnknownSet.toObject = function(includeInstance, msg) {
   var f, obj = {
-    exprsList: jspb.Message.toObjectList(msg.getExprsList(),
+exprsList: jspb.Message.toObjectList(msg.getExprsList(),
     proto.google.api.expr.v1beta1.IdRef.toObject, includeInstance)
   };
 
@@ -1198,7 +1198,7 @@ proto.google.api.expr.v1beta1.IdRef.prototype.toObject = function(opt_includeIns
  */
 proto.google.api.expr.v1beta1.IdRef.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0)
+id: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {

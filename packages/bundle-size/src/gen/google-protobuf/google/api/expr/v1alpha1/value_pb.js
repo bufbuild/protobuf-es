@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -218,18 +218,18 @@ proto.google.api.expr.v1alpha1.Value.prototype.toObject = function(opt_includeIn
  */
 proto.google.api.expr.v1alpha1.Value.toObject = function(includeInstance, msg) {
   var f, obj = {
-    nullValue: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    boolValue: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    int64Value: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    uint64Value: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    doubleValue: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    stringValue: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    bytesValue: msg.getBytesValue_asB64(),
-    enumValue: (f = msg.getEnumValue()) && proto.google.api.expr.v1alpha1.EnumValue.toObject(includeInstance, f),
-    objectValue: (f = msg.getObjectValue()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
-    mapValue: (f = msg.getMapValue()) && proto.google.api.expr.v1alpha1.MapValue.toObject(includeInstance, f),
-    listValue: (f = msg.getListValue()) && proto.google.api.expr.v1alpha1.ListValue.toObject(includeInstance, f),
-    typeValue: jspb.Message.getFieldWithDefault(msg, 15, "")
+nullValue: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+boolValue: (f = jspb.Message.getBooleanField(msg, 2)) == null ? undefined : f,
+int64Value: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+uint64Value: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+doubleValue: (f = jspb.Message.getOptionalFloatingPointField(msg, 5)) == null ? undefined : f,
+stringValue: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+bytesValue: msg.getBytesValue_asB64(),
+enumValue: (f = msg.getEnumValue()) && proto.google.api.expr.v1alpha1.EnumValue.toObject(includeInstance, f),
+objectValue: (f = msg.getObjectValue()) && google_protobuf_any_pb.Any.toObject(includeInstance, f),
+mapValue: (f = msg.getMapValue()) && proto.google.api.expr.v1alpha1.MapValue.toObject(includeInstance, f),
+listValue: (f = msg.getListValue()) && proto.google.api.expr.v1alpha1.ListValue.toObject(includeInstance, f),
+typeValue: (f = jspb.Message.getField(msg, 15)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -930,8 +930,8 @@ proto.google.api.expr.v1alpha1.EnumValue.prototype.toObject = function(opt_inclu
  */
 proto.google.api.expr.v1alpha1.EnumValue.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    value: jspb.Message.getFieldWithDefault(msg, 2, 0)
+type: jspb.Message.getFieldWithDefault(msg, 1, ""),
+value: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -1097,7 +1097,7 @@ proto.google.api.expr.v1alpha1.ListValue.prototype.toObject = function(opt_inclu
  */
 proto.google.api.expr.v1alpha1.ListValue.toObject = function(includeInstance, msg) {
   var f, obj = {
-    valuesList: jspb.Message.toObjectList(msg.getValuesList(),
+valuesList: jspb.Message.toObjectList(msg.getValuesList(),
     proto.google.api.expr.v1alpha1.Value.toObject, includeInstance)
   };
 
@@ -1257,7 +1257,7 @@ proto.google.api.expr.v1alpha1.MapValue.prototype.toObject = function(opt_includ
  */
 proto.google.api.expr.v1alpha1.MapValue.toObject = function(includeInstance, msg) {
   var f, obj = {
-    entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
+entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
     proto.google.api.expr.v1alpha1.MapValue.Entry.toObject, includeInstance)
   };
 
@@ -1372,8 +1372,8 @@ proto.google.api.expr.v1alpha1.MapValue.Entry.prototype.toObject = function(opt_
  */
 proto.google.api.expr.v1alpha1.MapValue.Entry.toObject = function(includeInstance, msg) {
   var f, obj = {
-    key: (f = msg.getKey()) && proto.google.api.expr.v1alpha1.Value.toObject(includeInstance, f),
-    value: (f = msg.getValue()) && proto.google.api.expr.v1alpha1.Value.toObject(includeInstance, f)
+key: (f = msg.getKey()) && proto.google.api.expr.v1alpha1.Value.toObject(includeInstance, f),
+value: (f = msg.getValue()) && proto.google.api.expr.v1alpha1.Value.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

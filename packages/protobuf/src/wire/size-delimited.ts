@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ export async function* sizeDelimitedDecodeStream<Desc extends DescMessage>(
   messageDesc: Desc,
   iterable: AsyncIterable<Uint8Array>,
   options?: BinaryReadOptions,
-) {
+): AsyncIterableIterator<MessageShape<Desc>> {
   // append chunk to buffer, returning updated buffer
   function append(buffer: Uint8Array, chunk: Uint8Array): Uint8Array {
     const n = new Uint8Array(buffer.byteLength + chunk.byteLength);

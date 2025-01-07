@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -89,9 +89,9 @@ proto.google.type.Money.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Money.toObject = function(includeInstance, msg) {
   var f, obj = {
-    currencyCode: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    units: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    nanos: jspb.Message.getFieldWithDefault(msg, 3, 0)
+currencyCode: jspb.Message.getFieldWithDefault(msg, 1, ""),
+units: jspb.Message.getFieldWithDefault(msg, 2, 0),
+nanos: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {

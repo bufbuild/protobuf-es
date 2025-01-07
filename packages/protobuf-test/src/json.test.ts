@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -816,6 +816,7 @@ describe("JsonWriteOptions", () => {
 // Coverage for JSON parse errors to guard against regressions.
 // We do not cover all cases here. Map fields and oneofs are incomplete,
 // and bytes, string, and other scalar types are not tested.
+// For serialization errors, see serialization-errors.test.ts
 describe("JSON parse errors", () => {
   test("fromJsonString() with invalid JSON", () => {
     expect(() => fromJsonString(TestAllTypesProto3Schema, "}")).toThrow(
@@ -1098,58 +1099,6 @@ describe("JSON parse errors", () => {
     }
     expect(gotErrorMessage).toBe(errorMessage);
   }
-});
-
-describe("JSON serialize errors", () => {
-  const desc = proto3_ts.Proto3MessageSchema;
-  test("enum field not a number throws", () => {
-    const msg = create(desc);
-    // @ts-expect-error TS2322
-    msg.singularEnumField = "abc";
-    expect(() => toJson(desc, msg)).toThrow(
-      /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
-    );
-  });
-  test("INT32 field not a number throws", () => {
-    const msg = create(desc);
-    // @ts-expect-error TS2322
-    msg.singularInt32Field = "abc";
-    expect(() => toJson(desc, msg)).toThrow(
-      /^cannot encode field spec.Proto3Message.singular_int32_field to JSON: expected number \(int32\), got "abc"$/,
-    );
-  });
-  test("STRING field not a number throws", () => {
-    const msg = create(desc);
-    // @ts-expect-error TS2322
-    msg.singularStringField = 123;
-    expect(() => toJson(desc, msg)).toThrow(
-      /^cannot encode field spec.Proto3Message.singular_string_field to JSON: expected string, got 123$/,
-    );
-  });
-  test("BOOL field not a boolean throws", () => {
-    const msg = create(desc);
-    // @ts-expect-error TS2322
-    msg.optionalBoolField = "abc";
-    expect(() => toJson(desc, msg)).toThrow(
-      /^cannot encode field spec.Proto3Message.optional_bool_field to JSON: expected boolean, got "abc"$/,
-    );
-  });
-  test("INT64 field not a bigint throws", () => {
-    const msg = create(desc);
-    // @ts-expect-error TS2322
-    msg.singularInt64Field = true;
-    expect(() => toJson(desc, msg)).toThrow(
-      /^cannot encode field spec.Proto3Message.singular_int64_field to JSON: expected bigint \(int64\), got true$/,
-    );
-  });
-  test("BYTES field not a Uint8Array throws", () => {
-    const msg = create(desc);
-    // @ts-expect-error TS2322
-    msg.singularBytesField = true;
-    expect(() => toJson(desc, msg)).toThrow(
-      /^cannot encode field spec.Proto3Message.singular_bytes_field to JSON: expected Uint8Array, got true$/,
-    );
-  });
 });
 
 function testJson<Desc extends DescMessage>(

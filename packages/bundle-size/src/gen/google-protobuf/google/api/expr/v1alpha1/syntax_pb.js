@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -385,8 +385,8 @@ proto.google.api.expr.v1alpha1.ParsedExpr.prototype.toObject = function(opt_incl
  */
 proto.google.api.expr.v1alpha1.ParsedExpr.toObject = function(includeInstance, msg) {
   var f, obj = {
-    expr: (f = msg.getExpr()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    sourceInfo: (f = msg.getSourceInfo()) && proto.google.api.expr.v1alpha1.SourceInfo.toObject(includeInstance, f)
+expr: (f = msg.getExpr()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+sourceInfo: (f = msg.getSourceInfo()) && proto.google.api.expr.v1alpha1.SourceInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -618,14 +618,14 @@ proto.google.api.expr.v1alpha1.Expr.prototype.toObject = function(opt_includeIns
  */
 proto.google.api.expr.v1alpha1.Expr.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    constExpr: (f = msg.getConstExpr()) && proto.google.api.expr.v1alpha1.Constant.toObject(includeInstance, f),
-    identExpr: (f = msg.getIdentExpr()) && proto.google.api.expr.v1alpha1.Expr.Ident.toObject(includeInstance, f),
-    selectExpr: (f = msg.getSelectExpr()) && proto.google.api.expr.v1alpha1.Expr.Select.toObject(includeInstance, f),
-    callExpr: (f = msg.getCallExpr()) && proto.google.api.expr.v1alpha1.Expr.Call.toObject(includeInstance, f),
-    listExpr: (f = msg.getListExpr()) && proto.google.api.expr.v1alpha1.Expr.CreateList.toObject(includeInstance, f),
-    structExpr: (f = msg.getStructExpr()) && proto.google.api.expr.v1alpha1.Expr.CreateStruct.toObject(includeInstance, f),
-    comprehensionExpr: (f = msg.getComprehensionExpr()) && proto.google.api.expr.v1alpha1.Expr.Comprehension.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 2, 0),
+constExpr: (f = msg.getConstExpr()) && proto.google.api.expr.v1alpha1.Constant.toObject(includeInstance, f),
+identExpr: (f = msg.getIdentExpr()) && proto.google.api.expr.v1alpha1.Expr.Ident.toObject(includeInstance, f),
+selectExpr: (f = msg.getSelectExpr()) && proto.google.api.expr.v1alpha1.Expr.Select.toObject(includeInstance, f),
+callExpr: (f = msg.getCallExpr()) && proto.google.api.expr.v1alpha1.Expr.Call.toObject(includeInstance, f),
+listExpr: (f = msg.getListExpr()) && proto.google.api.expr.v1alpha1.Expr.CreateList.toObject(includeInstance, f),
+structExpr: (f = msg.getStructExpr()) && proto.google.api.expr.v1alpha1.Expr.CreateStruct.toObject(includeInstance, f),
+comprehensionExpr: (f = msg.getComprehensionExpr()) && proto.google.api.expr.v1alpha1.Expr.Comprehension.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -828,7 +828,7 @@ proto.google.api.expr.v1alpha1.Expr.Ident.prototype.toObject = function(opt_incl
  */
 proto.google.api.expr.v1alpha1.Expr.Ident.toObject = function(includeInstance, msg) {
   var f, obj = {
-    name: jspb.Message.getFieldWithDefault(msg, 1, "")
+name: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -958,9 +958,9 @@ proto.google.api.expr.v1alpha1.Expr.Select.prototype.toObject = function(opt_inc
  */
 proto.google.api.expr.v1alpha1.Expr.Select.toObject = function(includeInstance, msg) {
   var f, obj = {
-    operand: (f = msg.getOperand()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    field: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    testOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+operand: (f = msg.getOperand()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+field: jspb.Message.getFieldWithDefault(msg, 2, ""),
+testOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -1176,9 +1176,9 @@ proto.google.api.expr.v1alpha1.Expr.Call.prototype.toObject = function(opt_inclu
  */
 proto.google.api.expr.v1alpha1.Expr.Call.toObject = function(includeInstance, msg) {
   var f, obj = {
-    target: (f = msg.getTarget()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    pb_function: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    argsList: jspb.Message.toObjectList(msg.getArgsList(),
+target: (f = msg.getTarget()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+pb_function: jspb.Message.getFieldWithDefault(msg, 2, ""),
+argsList: jspb.Message.toObjectList(msg.getArgsList(),
     proto.google.api.expr.v1alpha1.Expr.toObject, includeInstance)
   };
 
@@ -1417,9 +1417,9 @@ proto.google.api.expr.v1alpha1.Expr.CreateList.prototype.toObject = function(opt
  */
 proto.google.api.expr.v1alpha1.Expr.CreateList.toObject = function(includeInstance, msg) {
   var f, obj = {
-    elementsList: jspb.Message.toObjectList(msg.getElementsList(),
+elementsList: jspb.Message.toObjectList(msg.getElementsList(),
     proto.google.api.expr.v1alpha1.Expr.toObject, includeInstance),
-    optionalIndicesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+optionalIndicesList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1628,8 +1628,8 @@ proto.google.api.expr.v1alpha1.Expr.CreateStruct.prototype.toObject = function(o
  */
 proto.google.api.expr.v1alpha1.Expr.CreateStruct.toObject = function(includeInstance, msg) {
   var f, obj = {
-    messageName: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
+messageName: jspb.Message.getFieldWithDefault(msg, 1, ""),
+entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
     proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.toObject, includeInstance)
   };
 
@@ -1781,11 +1781,11 @@ proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.prototype.toObject = func
  */
 proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    fieldKey: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    mapKey: (f = msg.getMapKey()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    value: (f = msg.getValue()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    optionalEntry: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+fieldKey: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+mapKey: (f = msg.getMapKey()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+value: (f = msg.getValue()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+optionalEntry: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
   if (includeInstance) {
@@ -2147,13 +2147,13 @@ proto.google.api.expr.v1alpha1.Expr.Comprehension.prototype.toObject = function(
  */
 proto.google.api.expr.v1alpha1.Expr.Comprehension.toObject = function(includeInstance, msg) {
   var f, obj = {
-    iterVar: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    iterRange: (f = msg.getIterRange()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    accuVar: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    accuInit: (f = msg.getAccuInit()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    loopCondition: (f = msg.getLoopCondition()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    loopStep: (f = msg.getLoopStep()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
-    result: (f = msg.getResult()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f)
+iterVar: jspb.Message.getFieldWithDefault(msg, 1, ""),
+iterRange: (f = msg.getIterRange()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+accuVar: jspb.Message.getFieldWithDefault(msg, 3, ""),
+accuInit: (f = msg.getAccuInit()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+loopCondition: (f = msg.getLoopCondition()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+loopStep: (f = msg.getLoopStep()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f),
+result: (f = msg.getResult()) && proto.google.api.expr.v1alpha1.Expr.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2872,15 +2872,15 @@ proto.google.api.expr.v1alpha1.Constant.prototype.toObject = function(opt_includ
  */
 proto.google.api.expr.v1alpha1.Constant.toObject = function(includeInstance, msg) {
   var f, obj = {
-    nullValue: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    boolValue: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    int64Value: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    uint64Value: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    doubleValue: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    stringValue: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    bytesValue: msg.getBytesValue_asB64(),
-    durationValue: (f = msg.getDurationValue()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
-    timestampValue: (f = msg.getTimestampValue()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+nullValue: (f = jspb.Message.getField(msg, 1)) == null ? undefined : f,
+boolValue: (f = jspb.Message.getBooleanField(msg, 2)) == null ? undefined : f,
+int64Value: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+uint64Value: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+doubleValue: (f = jspb.Message.getOptionalFloatingPointField(msg, 5)) == null ? undefined : f,
+stringValue: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+bytesValue: msg.getBytesValue_asB64(),
+durationValue: (f = msg.getDurationValue()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
+timestampValue: (f = msg.getTimestampValue()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3441,12 +3441,12 @@ proto.google.api.expr.v1alpha1.SourceInfo.prototype.toObject = function(opt_incl
  */
 proto.google.api.expr.v1alpha1.SourceInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    syntaxVersion: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    lineOffsetsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
-    positionsMap: (f = msg.getPositionsMap()) ? f.toObject(includeInstance, undefined) : [],
-    macroCallsMap: (f = msg.getMacroCallsMap()) ? f.toObject(includeInstance, proto.google.api.expr.v1alpha1.Expr.toObject) : [],
-    extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
+syntaxVersion: jspb.Message.getFieldWithDefault(msg, 1, ""),
+location: jspb.Message.getFieldWithDefault(msg, 2, ""),
+lineOffsetsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+positionsMap: (f = msg.getPositionsMap()) ? f.toObject(includeInstance, undefined) : [],
+macroCallsMap: (f = msg.getMacroCallsMap()) ? f.toObject(includeInstance, proto.google.api.expr.v1alpha1.Expr.toObject) : [],
+extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
     proto.google.api.expr.v1alpha1.SourceInfo.Extension.toObject, includeInstance)
   };
 
@@ -3623,9 +3623,9 @@ proto.google.api.expr.v1alpha1.SourceInfo.Extension.prototype.toObject = functio
  */
 proto.google.api.expr.v1alpha1.SourceInfo.Extension.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    affectedComponentsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
-    version: (f = msg.getVersion()) && proto.google.api.expr.v1alpha1.SourceInfo.Extension.Version.toObject(includeInstance, f)
+id: jspb.Message.getFieldWithDefault(msg, 1, ""),
+affectedComponentsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f,
+version: (f = msg.getVersion()) && proto.google.api.expr.v1alpha1.SourceInfo.Extension.Version.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3773,8 +3773,8 @@ proto.google.api.expr.v1alpha1.SourceInfo.Extension.Version.prototype.toObject =
  */
 proto.google.api.expr.v1alpha1.SourceInfo.Extension.Version.toObject = function(includeInstance, msg) {
   var f, obj = {
-    major: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    minor: jspb.Message.getFieldWithDefault(msg, 2, 0)
+major: jspb.Message.getFieldWithDefault(msg, 1, 0),
+minor: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -4182,10 +4182,10 @@ proto.google.api.expr.v1alpha1.SourcePosition.prototype.toObject = function(opt_
  */
 proto.google.api.expr.v1alpha1.SourcePosition.toObject = function(includeInstance, msg) {
   var f, obj = {
-    location: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    offset: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    line: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    column: jspb.Message.getFieldWithDefault(msg, 4, 0)
+location: jspb.Message.getFieldWithDefault(msg, 1, ""),
+offset: jspb.Message.getFieldWithDefault(msg, 2, 0),
+line: jspb.Message.getFieldWithDefault(msg, 3, 0),
+column: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {

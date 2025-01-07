@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -89,10 +89,10 @@ proto.google.type.Expr.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.type.Expr.toObject = function(includeInstance, msg) {
   var f, obj = {
-    expression: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    title: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    location: jspb.Message.getFieldWithDefault(msg, 4, "")
+expression: jspb.Message.getFieldWithDefault(msg, 1, ""),
+title: jspb.Message.getFieldWithDefault(msg, 2, ""),
+description: jspb.Message.getFieldWithDefault(msg, 3, ""),
+location: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {

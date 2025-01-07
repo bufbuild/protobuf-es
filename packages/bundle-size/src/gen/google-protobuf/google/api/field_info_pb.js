@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ proto.google.api.FieldInfo.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.api.FieldInfo.toObject = function(includeInstance, msg) {
   var f, obj = {
-    format: jspb.Message.getFieldWithDefault(msg, 1, 0)
+format: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {

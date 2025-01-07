@@ -58,11 +58,11 @@ The quickstart below shows a simple example of code generation for a `.proto` fi
     npx tsc --init
     ```
 
-2.  Install the compiler [@bufbuild/buf], plugin, and runtime library:
+2.  Install the runtime library, code generator, and the [Buf CLI][buf-cli]:
 
     ```shellsession
-    npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
     npm install @bufbuild/protobuf
+    npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
     ```
 
 3.  Create a `buf.gen.yaml` file that looks like this:
@@ -1376,7 +1376,8 @@ just with some additional type information attached.
 >
 > You can find a deep dive into the model in [Buf's reference about descriptors][buf.build/descriptors].
 >
-> You can fetch descriptors from the [Buf Schema Registry][bsr-reflection].
+> You can fetch descriptors from the [Buf Schema Registry][bsr-reflection]. In tests, you can use [@bufbuild/protocompile]
+> to compile inline Protobuf source to a descriptor.
 
 ### Walking through a schema
 
@@ -2495,6 +2496,28 @@ If you see the following error with [Metro] or [Expo], make sure to [enable pack
 Metro error: Unable to resolve module @bufbuild/protobuf/codegenv1
 ```
 
+### The plugin generates missing imports
+
+The [Buf CLI][buf-cli] does not generate dependencies by default. For example, if you have a Protobuf message that uses
+validation rules from [buf.build/bufbuild/protovalidate](https://buf.build/bufbuild/protovalidate), your Protobuf file
+has an import for the validation options:
+
+```protobuf
+import "buf/validate/validate.proto";
+```
+
+Generated code will include an import for `./buf/validate/validate_pb`. To generate this file, add the following option
+to your buf.gen.yaml config:
+
+```diff
+# buf.gen.yaml
+version: v2
+plugins:
+  - local: protoc-gen-es
+    out: src/gen
++   include_imports: true
+```
+
 ### Is serialization deterministic?
 
 Serialization to JSON and binary is deterministic within a version of protobuf-es, but map entries, repeated fields and extensions are ordered by insertion. Regular fields are sorted by field number.
@@ -2503,12 +2526,13 @@ Serialization to JSON and binary is deterministic within a version of protobuf-e
 [@bufbuild/protobuf]: https://www.npmjs.com/package/@bufbuild/protobuf
 [@bufbuild/protoc-gen-es]: https://www.npmjs.com/package/@bufbuild/protoc-gen-es
 [@bufbuild/protoplugin]: https://www.npmjs.com/package/@bufbuild/protoplugin
+[@bufbuild/protocompile]: https://www.npmjs.com/package/@bufbuild/protocompile
 [tsx]: https://www.npmjs.com/package/tsx
 [bigint-compat]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#browser_compatibility
 [blog-post]: https://buf.build/blog/protobuf-conformance
 [bsr-reflection]: https://buf.build/docs/bsr/reflection/overview
 [Buf style guide]: https://buf.build/best-practices/style-guide#enums
-[buf-cli]: https://buf.build/docs/ecosystem/cli-overview
+[buf-cli]: https://buf.build/docs/cli/
 [buf-images]: https://buf.build/docs/reference/images
 [buf.build/conformance-blog]: https://buf.build/blog/protobuf-conformance
 [buf.build/descriptors]: https://buf.build/docs/reference/descriptors#deep-dive-into-the-model

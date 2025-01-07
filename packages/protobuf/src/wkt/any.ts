@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -105,7 +105,7 @@ export function anyUnpack(
     registryOrMessageDesc.kind == "message"
       ? registryOrMessageDesc
       : registryOrMessageDesc.getMessage(typeUrlToName(any.typeUrl));
-  if (!desc) {
+  if (!desc || !anyIs(any, desc)) {
     return undefined;
   }
   return fromBinary(desc, any.value);
@@ -119,7 +119,7 @@ export function anyUnpackTo<Desc extends DescMessage>(
   schema: Desc,
   message: MessageShape<Desc>,
 ) {
-  if (any.typeUrl === "") {
+  if (!anyIs(any, schema)) {
     return undefined;
   }
   return mergeFromBinary(schema, message, any.value);

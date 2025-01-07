@@ -1,11 +1,12 @@
 {
   "name": "ts5.1",
+  "private": true,
   "scripts": {
     "test": "node_modules/.bin/tsc --outDir dist"
   },
   "dependencies": {
     "@bufbuild/protobuf-test": "*",
-    "@types/node": "^20.8.8",
+    "@types/node": "22.10.3",
     "typescript": "5.1.x"
   }
 }

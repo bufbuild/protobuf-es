@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -133,6 +133,16 @@ describe("BinaryWriter", () => {
         );
       },
     );
+  });
+  it("should be completely reset after finish", () => {
+    const writer = new BinaryWriter();
+    // Make sure we have both a chunk and a buffer
+    writer.raw(new Uint8Array([1, 2, 3])).int32(1);
+    const bytes = writer.finish();
+    // Reuse the same writer to write the same data
+    writer.raw(new Uint8Array([1, 2, 3])).int32(1);
+    const bytes2 = writer.finish();
+    expect(bytes2).toStrictEqual(bytes);
   });
 });
 

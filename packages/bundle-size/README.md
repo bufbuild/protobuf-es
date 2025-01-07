@@ -16,16 +16,16 @@ usually do. We repeat this for an increasing number of files.
 
 | code generator      | files | bundle size |  minified | compressed |
 | ------------------- | ----: | ----------: | --------: | ---------: |
-| Protobuf-ES         |     1 |   126,619 b |  65,868 b |   15,324 b |
-| Protobuf-ES         |     4 |   128,808 b |  67,376 b |   16,007 b |
-| Protobuf-ES         |     8 |   131,570 b |  69,147 b |   16,553 b |
-| Protobuf-ES         |    16 |   142,020 b |  77,128 b |   18,849 b |
-| Protobuf-ES         |    32 |   169,811 b |  99,146 b |   24,363 b |
-| protobuf-javascript |     1 |   334,193 b | 255,820 b |   42,481 b |
-| protobuf-javascript |     4 |   360,861 b | 271,092 b |   43,912 b |
-| protobuf-javascript |     8 |   382,904 b | 283,409 b |   45,038 b |
-| protobuf-javascript |    16 |   542,945 b | 378,100 b |   52,204 b |
-| protobuf-javascript |    32 | 1,235,469 b | 819,610 b |   78,780 b |
+| Protobuf-ES         |     1 |   127,197 b |  66,017 b |   15,359 b |
+| Protobuf-ES         |     4 |   129,386 b |  67,525 b |   16,031 b |
+| Protobuf-ES         |     8 |   132,148 b |  69,296 b |   16,564 b |
+| Protobuf-ES         |    16 |   142,598 b |  77,277 b |   18,875 b |
+| Protobuf-ES         |    32 |   170,389 b |  99,295 b |   24,350 b |
+| protobuf-javascript |     1 |   104,048 b |  70,318 b |   15,474 b |
+| protobuf-javascript |     4 |   130,537 b |  85,670 b |   16,986 b |
+| protobuf-javascript |     8 |   152,429 b |  98,042 b |   18,111 b |
+| protobuf-javascript |    16 |   311,454 b | 192,881 b |   25,504 b |
+| protobuf-javascript |    32 | 1,070,891 b | 679,746 b |   54,963 b |
 
 <!-- TABLE-END -->
 

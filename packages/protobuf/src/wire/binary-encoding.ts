@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -133,7 +133,10 @@ export class BinaryWriter {
    * Return all bytes written and reset this writer.
    */
   finish(): Uint8Array {
-    this.chunks.push(new Uint8Array(this.buf)); // flush the buffer
+    if (this.buf.length) {
+      this.chunks.push(new Uint8Array(this.buf)); // flush the buffer
+      this.buf = [];
+    }
     let len = 0;
     for (let i = 0; i < this.chunks.length; i++) len += this.chunks[i].length;
     let bytes = new Uint8Array(len);

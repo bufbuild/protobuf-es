@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -141,9 +141,9 @@ proto.google.api.Http.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.api.Http.toObject = function(includeInstance, msg) {
   var f, obj = {
-    rulesList: jspb.Message.toObjectList(msg.getRulesList(),
+rulesList: jspb.Message.toObjectList(msg.getRulesList(),
     proto.google.api.HttpRule.toObject, includeInstance),
-    fullyDecodeReservedExpansion: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
+fullyDecodeReservedExpansion: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
   };
 
   if (includeInstance) {
@@ -361,16 +361,16 @@ proto.google.api.HttpRule.prototype.toObject = function(opt_includeInstance) {
  */
 proto.google.api.HttpRule.toObject = function(includeInstance, msg) {
   var f, obj = {
-    selector: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    get: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    put: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    post: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    pb_delete: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    patch: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    custom: (f = msg.getCustom()) && proto.google.api.CustomHttpPattern.toObject(includeInstance, f),
-    body: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    responseBody: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    additionalBindingsList: jspb.Message.toObjectList(msg.getAdditionalBindingsList(),
+selector: jspb.Message.getFieldWithDefault(msg, 1, ""),
+get: (f = jspb.Message.getField(msg, 2)) == null ? undefined : f,
+put: (f = jspb.Message.getField(msg, 3)) == null ? undefined : f,
+post: (f = jspb.Message.getField(msg, 4)) == null ? undefined : f,
+pb_delete: (f = jspb.Message.getField(msg, 5)) == null ? undefined : f,
+patch: (f = jspb.Message.getField(msg, 6)) == null ? undefined : f,
+custom: (f = msg.getCustom()) && proto.google.api.CustomHttpPattern.toObject(includeInstance, f),
+body: jspb.Message.getFieldWithDefault(msg, 7, ""),
+responseBody: jspb.Message.getFieldWithDefault(msg, 12, ""),
+additionalBindingsList: jspb.Message.toObjectList(msg.getAdditionalBindingsList(),
     proto.google.api.HttpRule.toObject, includeInstance)
   };
 
@@ -895,8 +895,8 @@ proto.google.api.CustomHttpPattern.prototype.toObject = function(opt_includeInst
  */
 proto.google.api.CustomHttpPattern.toObject = function(includeInstance, msg) {
   var f, obj = {
-    kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    path: jspb.Message.getFieldWithDefault(msg, 2, "")
+kind: jspb.Message.getFieldWithDefault(msg, 1, ""),
+path: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {

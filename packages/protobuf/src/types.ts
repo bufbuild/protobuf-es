@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,7 +13,12 @@
 // limitations under the License.
 
 import type { GenEnum, GenExtension, GenMessage } from "./codegenv1/types.js";
-import type { DescEnum, DescExtension, DescMessage } from "./descriptors.js";
+import type {
+  DescEnum,
+  DescExtension,
+  DescMessage,
+  DescMethod,
+} from "./descriptors.js";
 import type { OneofADT } from "./reflect/guard.js";
 import type { WireType } from "./wire/index.js";
 import type { JsonValue } from "./json-value.js";
@@ -90,6 +95,49 @@ export type UnknownField = {
 };
 
 /**
+ * Describes a streaming RPC declaration.
+ */
+export type DescMethodStreaming<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> =
+  | DescMethodClientStreaming<I, O>
+  | DescMethodServerStreaming<I, O>
+  | DescMethodBiDiStreaming<I, O>;
+
+/**
+ * Describes a unary RPC declaration.
+ */
+export type DescMethodUnary<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> = DescMethodTyped<"unary", I, O>;
+
+/**
+ * Describes a server streaming RPC declaration.
+ */
+export type DescMethodServerStreaming<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> = DescMethodTyped<"server_streaming", I, O>;
+
+/**
+ * Describes a client streaming RPC declaration.
+ */
+export type DescMethodClientStreaming<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> = DescMethodTyped<"client_streaming", I, O>;
+
+/**
+ * Describes a bidi streaming RPC declaration.
+ */
+export type DescMethodBiDiStreaming<
+  I extends DescMessage = DescMessage,
+  O extends DescMessage = DescMessage,
+> = DescMethodTyped<"bidi_streaming", I, O>;
+
+/**
  * The init type for a message, which makes all fields optional.
  * The init type is accepted by the function create().
  */
@@ -118,4 +166,23 @@ type MapWithMessage<V extends Message> = {
 type OneofSelectedMessage<K extends string, M extends Message> = {
   case: K;
   value: M;
+};
+
+type DescMethodTyped<
+  K extends DescMethod["methodKind"],
+  I extends DescMessage,
+  O extends DescMessage,
+> = Omit<DescMethod, "methodKind" | "input" | "output"> & {
+  /**
+   * One of the four available method types.
+   */
+  readonly methodKind: K;
+  /**
+   * The message type for requests.
+   */
+  readonly input: I;
+  /**
+   * The message type for responses.
+   */
+  readonly output: O;
 };

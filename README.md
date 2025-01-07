@@ -70,10 +70,11 @@ and then deserialized at its destination using the defined schema.
 
 ## Quickstart
 
-1. Install the code generator, the runtime library, and the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview):
+1. Install the runtime library, code generator, and the [Buf CLI](https://buf.build/docs/ecosystem/cli-overview):
 
    ```shellsession
-   npm install @bufbuild/protobuf @bufbuild/protoc-gen-es @bufbuild/buf
+   npm install @bufbuild/protobuf
+   npm install --save-dev @bufbuild/protoc-gen-es @bufbuild/buf
    ```
 
 2. Create a `buf.gen.yaml` file that looks like this:

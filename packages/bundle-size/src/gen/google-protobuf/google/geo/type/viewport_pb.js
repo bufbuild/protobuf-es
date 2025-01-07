@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -91,8 +91,8 @@ proto.google.geo.type.Viewport.prototype.toObject = function(opt_includeInstance
  */
 proto.google.geo.type.Viewport.toObject = function(includeInstance, msg) {
   var f, obj = {
-    low: (f = msg.getLow()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f),
-    high: (f = msg.getHigh()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f)
+low: (f = msg.getLow()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f),
+high: (f = msg.getHigh()) && google_type_latlng_pb.LatLng.toObject(includeInstance, f)
   };
 
   if (includeInstance) {

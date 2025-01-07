@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { fromBinary, minimumEdition } from "@bufbuild/protobuf";
+import { fromBinary, minimumEdition, maximumEdition } from "@bufbuild/protobuf";
 import {
   CodeGeneratorRequestSchema,
   CodeGeneratorResponse_Feature,
@@ -70,7 +70,7 @@ describe("editions support in plugins", () => {
       generateAny() {},
     });
     expect(res.minimumEdition).toBe(minimumEdition);
-    expect(res.minimumEdition).toBe(minimumEdition);
+    expect(res.maximumEdition).toBe(maximumEdition);
   });
   test("sets supported edition range to the provided range", async () => {
     const res = await createTestPluginAndRun({

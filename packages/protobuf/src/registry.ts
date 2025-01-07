@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -427,7 +427,7 @@ const OPEN: FeatureSet_EnumType.OPEN = 1;
 
 // prettier-ignore
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2023: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
-// generated from protoc v28.0
+// generated from protoc v29.2
 export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1000;
 const featureDefaults = {
   // EDITION_PROTO2

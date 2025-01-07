@@ -72,4 +72,8 @@ interface CompileToDescriptorSetOptions {
    * Do not strip any options from the FileDescriptorProto.
    */
   retainOptions?: boolean;
+  /**
+   * Enable compiling unreleased editions in protoc (undocumented flag `--experimental_editions`).
+   */
+  experimentalEditions?: boolean;
 }

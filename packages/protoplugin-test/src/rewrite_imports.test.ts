@@ -1,4 +1,4 @@
-// Copyright 2021-2024 Buf Technologies, Inc.
+// Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -43,6 +43,34 @@ describe("rewrite_imports", function () {
     );
     expect(lines).toStrictEqual([
       'import { Foo } from "@other-scope/other-pkg";',
+      "",
+      "Foo",
+    ]);
+  });
+  test("should rewrite to target with package prefix", async () => {
+    const lines = await testGenerate(
+      "target=ts,rewrite_imports=@scope/pkg:npm:@scope/pkg",
+      (f) => {
+        const Foo = f.import("Foo", "@scope/pkg");
+        f.print`${Foo}`;
+      },
+    );
+    expect(lines).toStrictEqual([
+      'import { Foo } from "npm:@scope/pkg";',
+      "",
+      "Foo",
+    ]);
+  });
+  test("should rewrite to target with package prefix and subpath", async () => {
+    const lines = await testGenerate(
+      "target=ts,rewrite_imports=@scope/pkg/subpath:npm:@scope/pkg/subpath",
+      (f) => {
+        const Foo = f.import("Foo", "@scope/pkg/subpath");
+        f.print`${Foo}`;
+      },
+    );
+    expect(lines).toStrictEqual([
+      'import { Foo } from "npm:@scope/pkg/subpath";',
       "",
       "Foo",
     ]);
