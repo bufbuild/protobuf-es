@@ -104,7 +104,9 @@ describe("serialization errors", () => {
       );
     });
     test("toBinary", () => {
-      expect(() => toBinary(desc, msg)).toThrow(/^invalid int32: NaN$/);
+      expect(() => toBinary(desc, msg)).toThrow(
+        /^cannot encode field spec.Proto3Message.singular_enum_field to binary: invalid int32: NaN$/,
+      );
     });
   });
   describe("repeated enum field", () => {
@@ -118,7 +120,9 @@ describe("serialization errors", () => {
       );
     });
     test("toBinary", () => {
-      expect(() => toBinary(desc, msg)).toThrow(/^invalid int32: NaN$/);
+      expect(() => toBinary(desc, msg)).toThrow(
+        /^cannot encode field spec.Proto3Message.repeated_enum_field to binary: invalid int32: NaN$/,
+      );
     });
   });
   describe("required field", () => {
@@ -150,7 +154,8 @@ describe("serialization errors", () => {
       },
       jsonErr:
         /^cannot encode field spec.ScalarValuesMessage.int32_field to JSON: expected number \(int32\), got "abc"$/,
-      binaryErr: /^invalid int32: NaN$/,
+      binaryErr:
+        /^cannot encode field spec.ScalarValuesMessage.int32_field to binary: invalid int32: NaN$/,
     },
     {
       name: "uint32 field -1",
@@ -158,7 +163,8 @@ describe("serialization errors", () => {
         m.uint32Field = -1;
       },
       jsonErr: null,
-      binaryErr: /^invalid uint32: -1$/,
+      binaryErr:
+        /^cannot encode field spec.ScalarValuesMessage.uint32_field to binary: invalid uint32: -1$/,
     },
     {
       name: "string field 123",
@@ -196,7 +202,8 @@ describe("serialization errors", () => {
         m.uint64Field = BigInt(-1);
       },
       jsonErr: null,
-      binaryErr: /^invalid uint64: -1$/,
+      binaryErr:
+        /^cannot encode field spec.ScalarValuesMessage.uint64_field to binary: invalid uint64: -1$/,
     },
     {
       name: "bytes field true",
@@ -206,7 +213,8 @@ describe("serialization errors", () => {
       },
       jsonErr:
         /^cannot encode field spec.ScalarValuesMessage.bytes_field to JSON: expected Uint8Array, got true/,
-      binaryErr: /^invalid uint32: undefined$/,
+      binaryErr:
+        /^cannot encode field spec.ScalarValuesMessage.bytes_field to binary: invalid uint32: undefined$/,
     },
   ] as ScalarCase[])("$name", (kase) => {
     const desc = scalar_ts.ScalarValuesMessageSchema;
@@ -240,7 +248,8 @@ describe("serialization errors", () => {
         m.uint32Field = [-1];
       },
       jsonErr: null,
-      binaryErr: /^invalid uint32: -1$/,
+      binaryErr:
+        /^cannot encode field spec.RepeatedScalarValuesMessage.uint32_field to binary: invalid uint32: -1$/,
     },
     {
       name: `repeated int32 field ["abc"]`,
@@ -250,7 +259,8 @@ describe("serialization errors", () => {
       },
       jsonErr:
         /^cannot encode field spec.RepeatedScalarValuesMessage.int32_field to JSON: expected ReflectList \(INT32\), got "abc"$/,
-      binaryErr: /^invalid int32: NaN$/,
+      binaryErr:
+        /^cannot encode field spec.RepeatedScalarValuesMessage.int32_field to binary: invalid int32: NaN$/,
     },
   ] as RepeatedScalarCase[])("$name", (kase) => {
     const desc = scalar_ts.RepeatedScalarValuesMessageSchema;
