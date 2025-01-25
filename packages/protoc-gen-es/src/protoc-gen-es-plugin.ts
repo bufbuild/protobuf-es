@@ -399,7 +399,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
   const { Message } = f.runtime;
   const declaration = target == "ts" ? "type" : "declare type";
   f.print(f.jsDoc(message));
-  f.print(f.export(declaration, f.importShape(message).name), " = ", Message, "<", f.string(message.typeName), "> & {");
+  f.print(f.export(declaration, `${f.importShape(message).name}Plain`), " = {");
   for (const member of message.members) {
     switch (member.kind) {
       case "oneof":
@@ -432,6 +432,9 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
     }
   }
   f.print("};");
+  f.print();
+  f.print(f.export(declaration, f.importShape(message).name), " = ", Message, "<", f.string(message.typeName), "> & ", `${f.importShape(message).name}Plain`);
+
   f.print();
 }
 
