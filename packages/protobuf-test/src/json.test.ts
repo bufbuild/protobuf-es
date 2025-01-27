@@ -455,6 +455,26 @@ describe("JSON serialization", () => {
       });
     });
     testJson(TimestampSchema, {}, "1970-01-01T00:00:00Z");
+    test(`fromJson decodes ${TimestampSchema.typeName}`, () => {
+      const decode = (str: string, seconds: number, nanos: number) =>
+        expect(fromJson(TimestampSchema, str)).toStrictEqual({
+          $typeName: "google.protobuf.Timestamp",
+          seconds: protoInt64.parse(seconds),
+          nanos,
+        });
+
+      decode("2025-01-27T11:42:15.689823456+01:00", 1737974535, 689823456);
+      decode("2025-01-27T11:42:15.6898+01:00", 1737974535, 689800000);
+      decode("2025-01-27T11:42:15.6+01:00", 1737974535, 600000000);
+      decode("2025-01-27T11:42:15.0+01:00", 1737974535, 0);
+      decode("2025-01-27T11:42:15+01:00", 1737974535, 0);
+      decode("2025-01-27T11:42:15.689823456Z", 1737978135, 689823456);
+      decode("2025-01-27T11:42:15.689800Z", 1737978135, 689800000);
+      decode("2025-01-27T11:42:15.6898Z", 1737978135, 689800000);
+      decode("2025-01-27T11:42:15.6Z", 1737978135, 600000000);
+      decode("2025-01-27T11:42:15.0Z", 1737978135, 0);
+      decode("2025-01-27T11:42:15Z", 1737978135, 0);
+    });
     describe("FieldMask", () => {
       testJson(
         FieldMaskSchema,
