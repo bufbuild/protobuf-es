@@ -16,7 +16,7 @@ env:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
@@ -37,7 +37,7 @@ jobs:
         env:
           BUF_BIGINT_DISABLE: ${{ matrix.bigint-disable }}
   conformance:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
@@ -58,7 +58,7 @@ jobs:
         env:
           BUF_BIGINT_DISABLE: ${{ matrix.bigint-disable }}
   lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -69,7 +69,7 @@ jobs:
       - run: npm ci
       - run: npx turbo run lint
   attw:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -80,7 +80,7 @@ jobs:
       - run: npm ci
       - run: npx turbo run attw
   typescript-compat:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -91,7 +91,7 @@ jobs:
       - run: npm ci
       - run: npx turbo run test -F './packages/typescript-compat/*'
   license-header:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -103,7 +103,7 @@ jobs:
       - run: npx turbo run license-header
       - run: node scripts/gh-diffcheck.js
   format:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -115,7 +115,7 @@ jobs:
       - run: npx turbo run format
       - run: node scripts/gh-diffcheck.js
   bundle-size:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -127,7 +127,7 @@ jobs:
       - run: npx turbo run bundle-size
       - run: node scripts/gh-diffcheck.js
   bootstrap:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
