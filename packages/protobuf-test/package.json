@@ -28,7 +28,7 @@
     "0x": "^5.8.0",
     "benchmark": "^2.1.4",
     "dexnode": "^1.2.2",
-    "long": "~5.2.3",
+    "long": "~5.3.1",
     "upstream-protobuf": "*"
   }
 }
