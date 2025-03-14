@@ -177,35 +177,35 @@ function checkScalarValue(
     case ScalarType.SINT64:
       // signed
       if (
-        typeof value != "string" &&
-        typeof value !== "bigint" &&
-        typeof value !== "number"
+        typeof value == "bigint" ||
+        typeof value == "number" ||
+        (typeof value == "string" && value.length > 0)
       ) {
-        return false;
+        try {
+          protoInt64.parse(value);
+          return true;
+        } catch (e) {
+          return `${value} out of range`;
+        }
       }
-      try {
-        protoInt64.parse(value);
-      } catch (e) {
-        return `${value} out of range`;
-      }
-      return true;
+      return false;
 
     case ScalarType.FIXED64:
     case ScalarType.UINT64:
       // unsigned
       if (
-        typeof value != "string" &&
-        typeof value !== "bigint" &&
-        typeof value !== "number"
+        typeof value == "bigint" ||
+        typeof value == "number" ||
+        (typeof value == "string" && value.length > 0)
       ) {
-        return false;
+        try {
+          protoInt64.uParse(value);
+          return true;
+        } catch (e) {
+          return `${value} out of range`;
+        }
       }
-      try {
-        protoInt64.uParse(value);
-      } catch (e) {
-        return `${value} out of range`;
-      }
-      return true;
+      return false;
   }
 }
 
