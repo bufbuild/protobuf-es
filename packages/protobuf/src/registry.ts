@@ -427,7 +427,7 @@ const OPEN: FeatureSet_EnumType.OPEN = 1;
 
 // prettier-ignore
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2023: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
-// generated from protoc v29.2
+// generated from protoc v30.0
 export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1000;
 const featureDefaults = {
   // EDITION_PROTO2
@@ -438,6 +438,7 @@ const featureDefaults = {
     utf8Validation: 3, // NONE,
     messageEncoding: 1, // LENGTH_PREFIXED,
     jsonFormat: 2, // LEGACY_BEST_EFFORT,
+    enforceNamingStyle: 2, // STYLE_LEGACY,
   },
   // EDITION_PROTO3
   999: {
@@ -447,6 +448,7 @@ const featureDefaults = {
     utf8Validation: 2, // VERIFY,
     messageEncoding: 1, // LENGTH_PREFIXED,
     jsonFormat: 1, // ALLOW,
+    enforceNamingStyle: 2, // STYLE_LEGACY,
   },
   // EDITION_2023
   1000: {
@@ -456,6 +458,7 @@ const featureDefaults = {
     utf8Validation: 2, // VERIFY,
     messageEncoding: 1, // LENGTH_PREFIXED,
     jsonFormat: 1, // ALLOW,
+    enforceNamingStyle: 2, // STYLE_LEGACY,
   },
 } as const;
 
