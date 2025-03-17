@@ -618,6 +618,14 @@ export declare const PhoneTypeSchema: GenEnum<PhoneType>;
 
 To learn more about the schema, take a look at the section about [reflection](#reflection).
 
+> [!WARNING]
+>
+> Protobuf has [closed and open enums][protobuf.dev/enum]. A closed enum (proto) only accepts declared values, while an
+> open enum (proto3) also accepts other values. If you work with open enums, make sure to handle unexpected values.
+>
+> TypeScript enums are [closed since version 5.0][ts-5.0-enum-overhaul]. Generated code has not been updated to properly
+> model open enums with TypeScript v5 and later because Protobuf-ES still supports TypeScript v4.9.5.
+
 ### Extensions
 
 An extension is a field defined outside of its container message. For example, we can add the field `age` to the
@@ -2387,8 +2395,8 @@ Admittedly, `{ species: "DOG" }` looks a bit more straight-forward than `{ speci
 But `enum`s also have some nice properties that union types don't provide. For example, the numeric values can
 actually be meaningful (`enum {ONE=1, TWO=2}` for a silly example), and they can be used for bitwise flags.
 
-TypeScript `enum`s also have a property that's important for backwards compatibility in Protobuf. Like
-enumerations in C# and C++, you can actually assign values other than the declared ones to an enum. For example,
+[Until 5.0][ts-5.0-enum-overhaul], TypeScript `enum`s also had a property that's important for backwards compatibility in Protobuf. Like
+enumerations in C# and C++, you could actually assign values other than the declared ones to an enum. For example,
 consider the following Protobuf file:
 
 ```proto
@@ -2414,7 +2422,13 @@ enum Species {
 const hamster: Species = 3;
 ```
 
-As a result, there is a range of Protobuf features we wouldn't be able to model if we were using string union types for
+Since 5.0, [this behavior is no longer supported in the type checker][ts-5.0-enum-playground]. However, Protobuf-ES
+still supports TypeScript 4.9.5, where this usage of `enum`s continues to work. So, in 5.x, Protobuf-ES has unsound
+behavior with respect to `enum` typechecking: you may still encounter `enum` values other than those included in the
+declaration. In the future, Protobuf-ES may evolve its code generation to accommodate the changed `enum` semantics from
+TypeScript 5.0, and the general distinction between [closed and open enums in Protocol Buffers][protobuf.dev/enum].
+
+As a result of the above considerations, there is a range of Protobuf features we wouldn't be able to model if we were using string union types for
 enumerations. Many users may not need those features, but this also has downstream impacts on frameworks such as
 [Connect-ES], which couldn't be a fully featured replacement for gRPC-web if we didn't use TypeScript enums.
 
@@ -2588,6 +2602,7 @@ Serialization to JSON and binary is deterministic within a version of protobuf-e
 [Protobuf JSON spec]: https://developers.google.com/protocol-buffers/docs/proto3#json
 [protobuf.dev/customoptions]: https://protobuf.dev/programming-guides/proto2/#customoptions
 [protobuf.dev/encoding]: https://protobuf.dev/programming-guides/encoding/
+[protobuf.dev/enum]: https://protobuf.dev/programming-guides/enum/
 [protobuf.dev/field_presence]: https://protobuf.dev/programming-guides/field_presence/
 [protobuf.dev/required]: https://protobuf.dev/programming-guides/proto2/#field-labels
 [protobuf.dev]: https://protobuf.dev/overview/
@@ -2683,4 +2698,6 @@ Serialization to JSON and binary is deterministic within a version of protobuf-e
 [strictNullChecks]: https://www.typescriptlang.org/tsconfig#strictNullChecks
 [Text Encoding API]: https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API
 [ts-enums]: https://www.typescriptlang.org/docs/handbook/enums.html
+[ts-5.0-enum-overhaul]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html#enum-overhaul
+[ts-5.0-enum-playground]: https://www.typescriptlang.org/play/?ts=5.0.4#code/KYOwrgtgBAygDsAxgS2AZygbwFBSgVQDkYAFAUQGEBJAMSrIBEoBeKABgBpcoKBBAFRZQAjFzwMA8gHEhAJi4BfbIgD2INABcoACwCGETcABOALlgIU6IQGYA3EA
 [wikipedia.org/idl]: https://en.wikipedia.org/wiki/Interface_description_language
