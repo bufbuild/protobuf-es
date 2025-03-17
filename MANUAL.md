@@ -618,6 +618,14 @@ export declare const PhoneTypeSchema: GenEnum<PhoneType>;
 
 To learn more about the schema, take a look at the section about [reflection](#reflection).
 
+> [!WARNING]
+>
+> Protobuf has [closed and open enums][protobuf.dev/enum]. A closed enum (proto) only accepts declared values, while an
+> open enum (proto3) also accepts other values. If you work with open enums, make sure to handle unexpected values.
+>
+> TypeScript enums are [closed since version 5.0][ts-5.0-enum-overhaul]. Generated code has not been updated to properly
+> model open enums with TypeScript v5 and later because Protobuf-ES still supports TypeScript v4.9.5.
+
 ### Extensions
 
 An extension is a field defined outside of its container message. For example, we can add the field `age` to the
