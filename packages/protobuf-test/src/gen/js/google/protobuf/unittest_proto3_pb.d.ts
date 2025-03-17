@@ -121,7 +121,7 @@ export declare type TestAllTypes = Message<"proto3_unittest.TestAllTypes"> & {
   optionalForeignMessage?: ForeignMessage;
 
   /**
-   * @generated from field: protobuf_unittest_import.ImportMessage optional_import_message = 20;
+   * @generated from field: proto2_unittest_import.ImportMessage optional_import_message = 20;
    */
   optionalImportMessage?: ImportMessage;
 
@@ -148,7 +148,7 @@ export declare type TestAllTypes = Message<"proto3_unittest.TestAllTypes"> & {
   /**
    * Defined in unittest_import_public.proto
    *
-   * @generated from field: protobuf_unittest_import.PublicImportMessage optional_public_import_message = 26;
+   * @generated from field: proto2_unittest_import.PublicImportMessage optional_public_import_message = 26;
    */
   optionalPublicImportMessage?: PublicImportMessage;
 
@@ -163,7 +163,7 @@ export declare type TestAllTypes = Message<"proto3_unittest.TestAllTypes"> & {
   optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage;
 
   /**
-   * @generated from field: protobuf_unittest_import.ImportMessage optional_lazy_import_message = 115;
+   * @generated from field: proto2_unittest_import.ImportMessage optional_lazy_import_message = 115;
    */
   optionalLazyImportMessage?: ImportMessage;
 
@@ -255,7 +255,7 @@ export declare type TestAllTypes = Message<"proto3_unittest.TestAllTypes"> & {
   repeatedForeignMessage: ForeignMessage[];
 
   /**
-   * @generated from field: repeated protobuf_unittest_import.ImportMessage repeated_import_message = 50;
+   * @generated from field: repeated proto2_unittest_import.ImportMessage repeated_import_message = 50;
    */
   repeatedImportMessage: ImportMessage[];
 
