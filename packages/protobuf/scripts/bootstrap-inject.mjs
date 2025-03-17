@@ -24,7 +24,6 @@ import { reflect } from "@bufbuild/protobuf/reflect";
 import {
   Edition,
   FeatureSetDefaultsSchema,
-  FeatureSetSchema,
   FileDescriptorSetSchema,
 } from "@bufbuild/protobuf/wkt";
 
@@ -128,9 +127,22 @@ async function processFile(filePath, content, descriptorProto, upstream) {
         const [, minimumEditionString, maximumEditionString, template] = match;
         const featureSetDefaults = await compileDefaults(
           upstream,
+          descriptorProto,
           minimumEditionString.replace(/^EDITION_/, ""),
           maximumEditionString.replace(/^EDITION_/, ""),
         );
+        const minimumEdition = featureSetDefaults.get(
+          FeatureSetDefaultsSchema.field.minimumEdition,
+        );
+        const maximumEdition = featureSetDefaults.get(
+          FeatureSetDefaultsSchema.field.maximumEdition,
+        );
+        if (
+          typeof minimumEdition !== "number" ||
+          typeof maximumEdition != "number"
+        ) {
+          throw new Error("Missing minimum_edition / maximum_edition");
+        }
         const endOfPrevious = lines.findIndex(
           (line, index) => index > i && line.trim() === "",
         );
@@ -142,35 +154,26 @@ async function processFile(filePath, content, descriptorProto, upstream) {
         lines.push(`// generated from protoc v${upstream.version()}`);
         lines.push(
           injectVars(template, {
-            $minimumEdition: featureSetDefaults.minimumEdition,
-            $maximumEdition: featureSetDefaults.maximumEdition,
+            $minimumEdition: minimumEdition,
+            $maximumEdition: maximumEdition,
           }),
         );
         lines.push(`const featureDefaults = {`);
         for (const edition of editionNumbersBetween(
           descriptorProto,
-          featureSetDefaults.minimumEdition,
-          featureSetDefaults.maximumEdition,
+          minimumEdition,
+          maximumEdition,
         )) {
-          const def = bestDefaults(featureSetDefaults, edition);
           lines.push(`  // ${Edition[edition]}`);
           lines.push(`  ${edition}: {`);
-          const r = reflect(
-            FeatureSetSchema,
-            featureSetHasAllSet(def.overridableFeatures)
-              ? def.overridableFeatures
-              : def.fixedFeatures,
-          );
-          for (const f of r.fields) {
+          const features = bestDefaults(featureSetDefaults, edition);
+          for (const f of features.fields) {
             if (f.fieldKind !== "enum") {
               throw new Error(
                 `${filePath}:${i}: unexpected field kind "${f.fieldKind}" for ${f}`,
               );
             }
-            if (!r.isSet(f)) {
-              throw new Error(`${filePath}:${i}: ${f} is not set`);
-            }
-            const val = r.get(f);
+            const val = features.get(f);
             assert(val !== undefined);
             const valDesc = f.enum.values.find((e) => e.number === val);
             assert(valDesc !== undefined);
@@ -220,61 +223,65 @@ function injectVars(text, vars) {
 
 /**
  * @param {UpstreamProtobuf} upstream
+ * @param {import("@bufbuild/protobuf").FileRegistry} descriptorProto
  * @param {string} [minimumEdition]
  * @param {string} [maximumEdition]
- * @return {Promise<import("@bufbuild/protobuf/wkt").FeatureSetDefaults>}
+ * @return {Promise<import("@bufbuild/protobuf/reflect").ReflectMessage>}
  */
-async function compileDefaults(upstream, minimumEdition, maximumEdition) {
-  const featureSetDefaultsBytes = await upstream.getFeatureSetDefaults(
+async function compileDefaults(
+  upstream,
+  descriptorProto,
+  minimumEdition,
+  maximumEdition,
+) {
+  const bytes = await upstream.getFeatureSetDefaults(
     minimumEdition,
     maximumEdition,
   );
-  const featureSetDefaults = fromBinary(
-    FeatureSetDefaultsSchema,
-    featureSetDefaultsBytes,
+  const descDefaults = descriptorProto.getMessage(
+    "google.protobuf.FeatureSetDefaults",
   );
-  if (!validateDefaults(featureSetDefaults)) {
-    throw new Error(`invalid ${FeatureSetDefaultsSchema.typeName}`);
+  if (!descDefaults) {
+    throw new Error("Cannot find google.protobuf.FeatureSetDefaults");
   }
-  return featureSetDefaults;
-}
-
-/**
- * @param {import("@bufbuild/protobuf/wkt").FeatureSetDefaults} def
- * @returns {boolean}
- */
-function validateDefaults(def) {
-  const hasUnknownFields =
-    def.$unknown !== undefined && def.$unknown.length > 0;
-  const hasValidEditionRange =
-    def.minimumEdition !== 0 &&
-    def.maximumEdition !== 0 &&
-    def.maximumEdition >= def.minimumEdition;
-  const hasValidDefaults = def.defaults.every((d) => {
-    if (d.edition === 0) {
-      return false;
-    }
-    return (
-      featureSetHasAllSet(d.fixedFeatures) ||
-      featureSetHasAllSet(d.overridableFeatures)
+  const defaults = reflect(descDefaults, fromBinary(descDefaults, bytes));
+  // validate all fields known
+  if (defaults.getUnknown() !== undefined && defaults.getUnknown().length > 0) {
+    throw new Error(
+      "Unexpected unknown fields in google.protobuf.FeatureSetDefaults",
     );
-  });
-  return !hasUnknownFields && hasValidEditionRange && hasValidDefaults;
-}
-
-/**
- * @param {import("@bufbuild/protobuf/wkt").FeatureSet} featureSet
- */
-function featureSetHasAllSet(featureSet) {
-  return (
-    !!featureSet &&
-    featureSet.fieldPresence !== 0 &&
-    featureSet.enumType !== 0 &&
-    featureSet.repeatedFieldEncoding !== 0 &&
-    featureSet.utf8Validation !== 0 &&
-    featureSet.messageEncoding !== 0 &&
-    featureSet.jsonFormat !== 0
+  }
+  // validate min/max
+  const f_minimumEdition = descDefaults.fields.find(
+    (f) => f.name === "minimum_edition",
   );
+  if (!f_minimumEdition || f_minimumEdition.fieldKind !== "enum") {
+    throw new Error(
+      "Need field google.protobuf.FeatureSetDefaults.minimum_edition",
+    );
+  }
+  if (!defaults.isSet(f_minimumEdition)) {
+    throw new Error(`${f_minimumEdition} unset`);
+  }
+  const f_maximumEdition = descDefaults.fields.find(
+    (f) => f.name === "maximum_edition",
+  );
+  if (!f_maximumEdition || f_maximumEdition.fieldKind !== "enum") {
+    throw new Error(
+      "Need field google.protobuf.FeatureSetDefaults.maximum_edition",
+    );
+  }
+  if (!defaults.isSet(f_maximumEdition)) {
+    throw new Error(`${f_maximumEdition} unset`);
+  }
+  const min = defaults.get(f_minimumEdition);
+  const max = defaults.get(f_maximumEdition);
+  if (max < min) {
+    throw new Error(
+      `${f_maximumEdition} (${max}) must be greater or equal ${f_minimumEdition} (${min})`,
+    );
+  }
+  return defaults;
 }
 
 /**
@@ -302,15 +309,41 @@ function editionNumbersBetween(
 }
 
 /**
- * @param {FeatureSetDefaults} featureSetDefaults
+ * @param {import("@bufbuild/protobuf/reflect").ReflectMessage} featureSetDefaults - google.protobuf.FeatureSetDefaults
  * @param {number} edition
- * @return {FeatureSetDefaults_FeatureSetEditionDefault}
+ * @return {import("@bufbuild/protobuf/reflect").ReflectMessage} - google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault
  */
 function bestDefaults(featureSetDefaults, edition) {
+  if (
+    featureSetDefaults.desc.typeName !== "google.protobuf.FeatureSetDefaults"
+  ) {
+    throw new Error("Need google.protobuf.FeatureSetDefaults");
+  }
+  const f_defaults = featureSetDefaults.desc.field.defaults;
+  if (
+    !f_defaults ||
+    f_defaults.fieldKind !== "list" ||
+    f_defaults.listKind !== "message" ||
+    f_defaults.message.typeName !==
+      "google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault"
+  ) {
+    throw new Error("Need google.protobuf.FeatureSetDefaults.defaults");
+  }
+  const f_edition = f_defaults.message.field.edition;
+  if (
+    !f_edition ||
+    f_edition.fieldKind !== "enum" ||
+    f_edition.enum.typeName !== "google.protobuf.Edition"
+  ) {
+    throw new Error(
+      "Need field google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.edition",
+    );
+  }
   let best = undefined;
-  for (const def of featureSetDefaults.defaults) {
-    if (def.edition <= edition) {
-      if (best === undefined || def.edition > best.edition) {
+  const editionDefaults = featureSetDefaults.get(f_defaults);
+  for (const def of editionDefaults) {
+    if (def.get(f_edition) <= edition) {
+      if (best === undefined || def.get(f_edition) > best.get(f_edition)) {
         best = def;
       }
     }
@@ -320,7 +353,43 @@ function bestDefaults(featureSetDefaults, edition) {
       `Unable to find google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault for edition ${edition}`,
     );
   }
-  return best;
+  // merge fixed and overridable features
+  const f_fixedFeatures = best.desc.field.fixedFeatures;
+  if (
+    !f_fixedFeatures ||
+    f_fixedFeatures.fieldKind !== "message" ||
+    f_fixedFeatures.message.typeName !== "google.protobuf.FeatureSet"
+  ) {
+    throw new Error(
+      "Need field google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.fixed_features",
+    );
+  }
+  const f_overridableFeatures = best.desc.field.overridableFeatures;
+  if (
+    !f_overridableFeatures ||
+    f_overridableFeatures.fieldKind !== "message" ||
+    f_overridableFeatures.message.typeName !== "google.protobuf.FeatureSet"
+  ) {
+    throw new Error(
+      "Need field google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.overridable_features",
+    );
+  }
+  const fixedFeatures = best.get(f_fixedFeatures);
+  const overridableFeatures = best.get(f_overridableFeatures);
+  const features = reflect(fixedFeatures.desc);
+  for (const f of features.fields) {
+    if (f.fieldKind !== "enum") {
+      throw new Error(`Unexpected type ${f.fieldKind} of ${f}`);
+    }
+    if (overridableFeatures.isSet(f)) {
+      features.set(f, overridableFeatures.get(f));
+    } else if (fixedFeatures.isSet(f)) {
+      features.set(f, fixedFeatures.get(f));
+    } else {
+      throw new Error(`Incomplete feature defaults for ${f}`);
+    }
+  }
+  return features;
 }
 
 /**

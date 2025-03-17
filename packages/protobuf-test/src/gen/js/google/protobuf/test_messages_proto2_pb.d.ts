@@ -1425,6 +1425,112 @@ export enum TestAllRequiredTypesProto2_NestedEnum {
 export declare const TestAllRequiredTypesProto2_NestedEnumSchema: GenEnum<TestAllRequiredTypesProto2_NestedEnum>;
 
 /**
+ * @generated from message protobuf_test_messages.proto2.TestLargeOneof
+ */
+export declare type TestLargeOneof = Message<"protobuf_test_messages.proto2.TestLargeOneof"> & {
+  /**
+   * @generated from oneof protobuf_test_messages.proto2.TestLargeOneof.large_oneof
+   */
+  largeOneof: {
+    /**
+     * @generated from field: protobuf_test_messages.proto2.TestLargeOneof.A1 a1 = 1;
+     */
+    value: TestLargeOneof_A1;
+    case: "a1";
+  } | {
+    /**
+     * @generated from field: protobuf_test_messages.proto2.TestLargeOneof.A2 a2 = 2;
+     */
+    value: TestLargeOneof_A2;
+    case: "a2";
+  } | {
+    /**
+     * @generated from field: protobuf_test_messages.proto2.TestLargeOneof.A3 a3 = 3;
+     */
+    value: TestLargeOneof_A3;
+    case: "a3";
+  } | {
+    /**
+     * @generated from field: protobuf_test_messages.proto2.TestLargeOneof.A4 a4 = 4;
+     */
+    value: TestLargeOneof_A4;
+    case: "a4";
+  } | {
+    /**
+     * @generated from field: protobuf_test_messages.proto2.TestLargeOneof.A5 a5 = 5;
+     */
+    value: TestLargeOneof_A5;
+    case: "a5";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message protobuf_test_messages.proto2.TestLargeOneof.
+ * Use `create(TestLargeOneofSchema)` to create a new message.
+ */
+export declare const TestLargeOneofSchema: GenMessage<TestLargeOneof>;
+
+/**
+ * @generated from message protobuf_test_messages.proto2.TestLargeOneof.A1
+ */
+export declare type TestLargeOneof_A1 = Message<"protobuf_test_messages.proto2.TestLargeOneof.A1"> & {
+};
+
+/**
+ * Describes the message protobuf_test_messages.proto2.TestLargeOneof.A1.
+ * Use `create(TestLargeOneof_A1Schema)` to create a new message.
+ */
+export declare const TestLargeOneof_A1Schema: GenMessage<TestLargeOneof_A1>;
+
+/**
+ * @generated from message protobuf_test_messages.proto2.TestLargeOneof.A2
+ */
+export declare type TestLargeOneof_A2 = Message<"protobuf_test_messages.proto2.TestLargeOneof.A2"> & {
+};
+
+/**
+ * Describes the message protobuf_test_messages.proto2.TestLargeOneof.A2.
+ * Use `create(TestLargeOneof_A2Schema)` to create a new message.
+ */
+export declare const TestLargeOneof_A2Schema: GenMessage<TestLargeOneof_A2>;
+
+/**
+ * @generated from message protobuf_test_messages.proto2.TestLargeOneof.A3
+ */
+export declare type TestLargeOneof_A3 = Message<"protobuf_test_messages.proto2.TestLargeOneof.A3"> & {
+};
+
+/**
+ * Describes the message protobuf_test_messages.proto2.TestLargeOneof.A3.
+ * Use `create(TestLargeOneof_A3Schema)` to create a new message.
+ */
+export declare const TestLargeOneof_A3Schema: GenMessage<TestLargeOneof_A3>;
+
+/**
+ * @generated from message protobuf_test_messages.proto2.TestLargeOneof.A4
+ */
+export declare type TestLargeOneof_A4 = Message<"protobuf_test_messages.proto2.TestLargeOneof.A4"> & {
+};
+
+/**
+ * Describes the message protobuf_test_messages.proto2.TestLargeOneof.A4.
+ * Use `create(TestLargeOneof_A4Schema)` to create a new message.
+ */
+export declare const TestLargeOneof_A4Schema: GenMessage<TestLargeOneof_A4>;
+
+/**
+ * @generated from message protobuf_test_messages.proto2.TestLargeOneof.A5
+ */
+export declare type TestLargeOneof_A5 = Message<"protobuf_test_messages.proto2.TestLargeOneof.A5"> & {
+};
+
+/**
+ * Describes the message protobuf_test_messages.proto2.TestLargeOneof.A5.
+ * Use `create(TestLargeOneof_A5Schema)` to create a new message.
+ */
+export declare const TestLargeOneof_A5Schema: GenMessage<TestLargeOneof_A5>;
+
+/**
  * @generated from enum protobuf_test_messages.proto2.ForeignEnumProto2
  */
 export enum ForeignEnumProto2 {
