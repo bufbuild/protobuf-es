@@ -72,7 +72,7 @@ export function getExtension<Desc extends DescExtension>(
   const [container, field, get] = createExtensionContainer(extension);
   for (const uf of ufs) {
     readField(container, new BinaryReader(uf.data), field, uf.wireType, {
-      readUnknownFields: false,
+      readUnknownFields: true,
     });
   }
   return get();
@@ -95,7 +95,7 @@ export function setExtension<Desc extends DescExtension>(
   );
   const [container, field] = createExtensionContainer(extension, value);
   const writer = new BinaryWriter();
-  writeField(writer, { writeUnknownFields: false }, container, field);
+  writeField(writer, { writeUnknownFields: true }, container, field);
   const reader = new BinaryReader(writer.finish());
   while (reader.pos < reader.len) {
     const [no, wireType] = reader.tag();

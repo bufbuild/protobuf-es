@@ -34,6 +34,7 @@ enum Proto2ExtEnum {
 // A message used in extensions
 message Proto2ExtMessage {
   optional string string_field = 1;
+  extensions 900;
 }
 
 // Testing all kinds of extensions.
