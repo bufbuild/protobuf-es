@@ -341,7 +341,26 @@ describe("getExtension()", () => {
         },
       ];
     }
-
+    it("should read unknown fields", () => {
+      const msg = create(Proto2ExtendeeSchema);
+      const wantValue = create(Proto2ExtMessageSchema, {
+        stringField: "John",
+      });
+      wantValue.$unknown = [{
+        no: 900,
+        wireType: WireType.Varint,
+        data: new BinaryWriter().uint32(123).finish(),
+      }];
+      addUnknownMessageField(
+        msg,
+        message_ext.number,
+        Proto2ExtMessageSchema,
+        wantValue,
+      );
+      const gotValue = getExtension(msg, message_ext);
+      expect(gotValue.stringField).toBe("John");
+      expect(gotValue.$unknown).toStrictEqual(wantValue.$unknown);
+    });
     it("should return value parsed from unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       addUnknownMessageField(
@@ -680,6 +699,21 @@ describe("setExtension()", () => {
       expect(getExtension(msg, ext)).toStrictEqual(val);
     },
   );
+  it("should write unknown fields", () => {
+    const msg = create(Proto2ExtendeeSchema);
+    const wantValue = create(Proto2ExtMessageSchema, {
+      stringField: "John",
+    });
+    wantValue.$unknown = [{
+      no: 900,
+      wireType: WireType.Varint,
+      data: new BinaryWriter().uint32(123).finish(),
+    }];
+    setExtension(msg, message_ext, wantValue);
+    const gotValue = getExtension(msg, message_ext);
+    expect(gotValue.stringField).toBe("John");
+    expect(gotValue.$unknown).toStrictEqual(wantValue.$unknown);
+  });
   describe("setting repeated extension twice", () => {
     it("should not merge", () => {
       const msg = create(Proto2ExtendeeSchema);
