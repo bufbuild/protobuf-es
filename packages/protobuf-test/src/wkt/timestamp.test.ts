@@ -64,6 +64,26 @@ describe("timestampFromMs()", () => {
     expect(Number(timestampWithMs.seconds)).toBe(818035920);
     expect(timestampWithMs.nanos).toBe(123000000);
   });
+  test("1000 ms", () => {
+    const ts = timestampFromMs(1000);
+    expect(Number(ts.seconds)).toBe(1);
+    expect(ts.nanos).toBe(0);
+  });
+  test("1020 ms", () => {
+    const ts = timestampFromMs(1020);
+    expect(Number(ts.seconds)).toBe(1);
+    expect(ts.nanos).toBe(20 * 1000000);
+  });
+  test("-1070 ms", () => {
+    const ts = timestampFromMs(-1070);
+    expect(Number(ts.seconds)).toBe(-2);
+    expect(ts.nanos).toBe(930 * 1000000);
+  });
+  test("-1000 ms", () => {
+    const ts = timestampFromMs(-1000);
+    expect(Number(ts.seconds)).toBe(-1);
+    expect(ts.nanos).toBe(0);
+  });
 });
 
 describe("timestampFromDate()", () => {
