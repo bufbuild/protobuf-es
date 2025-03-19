@@ -42,9 +42,10 @@ export function timestampDate(timestamp: Timestamp): Date {
  * Create a google.protobuf.Timestamp message from a Unix timestamp in milliseconds.
  */
 export function timestampFromMs(timestampMs: number): Timestamp {
+  const seconds = Math.floor(timestampMs / 1000);
   return create(TimestampSchema, {
-    seconds: protoInt64.parse(Math.floor(timestampMs / 1000)),
-    nanos: (timestampMs % 1000) * 1000000,
+    seconds: protoInt64.parse(seconds),
+    nanos: (timestampMs - seconds * 1000) * 1000000,
   });
 }
 
