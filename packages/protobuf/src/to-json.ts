@@ -99,6 +99,12 @@ export interface JsonWriteOptions {
  * Options for serializing to JSON.
  */
 export interface JsonWriteStringOptions extends JsonWriteOptions {
+  /**
+   * Format JSON with indentation. Indicates the number of space characters to
+   * be used as indentation.
+   *
+   * This option is passed to JSON.stringify as `space`.
+   */
   prettySpaces: number;
 }
 
