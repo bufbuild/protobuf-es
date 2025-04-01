@@ -184,7 +184,7 @@ function checkScalarValue(
         try {
           protoInt64.parse(value);
           return true;
-        } catch (e) {
+        } catch (_) {
           return `${value} out of range`;
         }
       }
@@ -201,7 +201,7 @@ function checkScalarValue(
         try {
           protoInt64.uParse(value);
           return true;
-        } catch (e) {
+        } catch (_) {
           return `${value} out of range`;
         }
       }

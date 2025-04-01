@@ -805,7 +805,7 @@ function newField(
   proto: FieldDescriptorProto,
   parentOrFile: DescMessage | DescFile,
   reg: Registry,
-  oneof?: DescOneof | undefined,
+  oneof?: DescOneof,
   mapEntries?: FileMapEntries,
 ): DescField | DescExtension {
   const isExtension = mapEntries === undefined;

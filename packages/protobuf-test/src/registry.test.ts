@@ -45,6 +45,8 @@ import {
   compileService,
 } from "./helpers.js";
 
+/* eslint-disable @typescript-eslint/no-unused-expressions -- we use expressions for type tests */
+
 describe("createRegistry()", function () {
   let testReg: FileRegistry;
   let testDescs: {

@@ -52,11 +52,35 @@ module.exports = {
         "@typescript-eslint/strict-boolean-expressions": "error",
         "@typescript-eslint/no-unnecessary-condition": "error",
         "@typescript-eslint/array-type": "off", // we use complex typings, where Array is actually more readable than T[]
-        "@typescript-eslint/switch-exhaustiveness-check": "error",
-        "@typescript-eslint/prefer-nullish-coalescing": "error",
+        "@typescript-eslint/switch-exhaustiveness-check": [
+          "error",
+          {
+            considerDefaultExhaustiveForUnions: true,
+          },
+        ],
+        "@typescript-eslint/prefer-nullish-coalescing": [
+          "error",
+          {
+            // as long as we don't target es2020, we
+            ignoreIfStatements: true,
+          },
+        ],
         "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
         "@typescript-eslint/no-invalid-void-type": "error",
         "@typescript-eslint/no-base-to-string": "error",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            args: "all",
+            argsIgnorePattern: "^_",
+            caughtErrors: "all",
+            caughtErrorsIgnorePattern: "^_",
+            destructuredArrayIgnorePattern: "^_",
+            varsIgnorePattern: "^_",
+            ignoreRestSiblings: true,
+          },
+        ],
+        "@typescript-eslint/only-throw-error": "off",
       },
     },
     // For scripts and configurations, use Node.js rules

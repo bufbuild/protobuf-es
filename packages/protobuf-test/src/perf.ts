@@ -283,6 +283,7 @@ function bench(tests: Test[]): void {
   const suite = new Benchmark.Suite({
     name: "Benchmark",
     onCycle(event: Event) {
+      // eslint-disable-next-line @typescript-eslint/no-base-to-string
       console.log(String(event.target));
     },
     onError(event: Event) {
