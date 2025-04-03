@@ -121,8 +121,8 @@ export function transpile(
     (
       fileName: string,
       data: string,
-      writeByteOrderMark: boolean,
-      onError?: (message: string) => void,
+      _writeByteOrderMark: boolean,
+      _onError?: (message: string) => void,
       sourceFiles?: readonly ts.SourceFile[],
     ) => {
       // We have to go through some hoops here because the header we add to each

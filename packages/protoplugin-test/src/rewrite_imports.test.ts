@@ -23,7 +23,7 @@ describe("rewrite_imports", function () {
       (f) => {
         const Bar = f.import("Bar", "./foo/bar_pb.js");
         const Baz = f.import("Baz", "./foo/bar/baz_pb.js");
-        f.print`console.log(${Bar}, ${Baz});`;
+        f.print("console.log(", Bar, ", ", Baz, ");");
       },
     );
     expect(lines).toStrictEqual([
@@ -38,7 +38,7 @@ describe("rewrite_imports", function () {
       "target=ts,rewrite_imports=@scope/pkg:@other-scope/other-pkg",
       (f) => {
         const Foo = f.import("Foo", "@scope/pkg");
-        f.print`${Foo}`;
+        f.print(Foo);
       },
     );
     expect(lines).toStrictEqual([
@@ -52,7 +52,7 @@ describe("rewrite_imports", function () {
       "target=ts,rewrite_imports=@scope/pkg:npm:@scope/pkg",
       (f) => {
         const Foo = f.import("Foo", "@scope/pkg");
-        f.print`${Foo}`;
+        f.print(Foo);
       },
     );
     expect(lines).toStrictEqual([
@@ -66,7 +66,7 @@ describe("rewrite_imports", function () {
       "target=ts,rewrite_imports=@scope/pkg/subpath:npm:@scope/pkg/subpath",
       (f) => {
         const Foo = f.import("Foo", "@scope/pkg/subpath");
-        f.print`${Foo}`;
+        f.print(Foo);
       },
     );
     expect(lines).toStrictEqual([

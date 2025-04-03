@@ -61,7 +61,7 @@ export function getTextEncoding() {
         try {
           encodeURIComponent(text);
           return true;
-        } catch (e) {
+        } catch (_) {
           return false;
         }
       },
