@@ -10,7 +10,7 @@
     "test": "test '1' == \"$BUF_BIGINT_DISABLE\" && npm run test:string || npm run test:bigint",
     "test:bigint": "conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_with_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
     "test:string": "conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
-    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo' '!src/gen/**'",
+    "format": "biome format --write",
     "license-header": "license-header",
     "lint": "eslint --max-warnings 0 ."
   },

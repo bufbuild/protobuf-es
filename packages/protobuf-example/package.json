@@ -7,7 +7,7 @@
     "add": "tsx src/add.ts",
     "list": "tsx src/list.ts",
     "generate": "buf generate",
-    "format": "prettier --write --ignore-unknown '.' '!.turbo' '!src/gen/**'",
+    "format": "biome format --write",
     "license-header": "license-header",
     "lint": "eslint --max-warnings 0 ."
   },

@@ -18,7 +18,7 @@ import { ScalarType } from "../descriptors.js";
 /**
  * ScalarValue maps from a scalar field type to a TypeScript value type.
  */
-// prettier-ignore
+// biome-ignore format: want this to read well
 export type ScalarValue<
   T = ScalarType,
   LongAsString extends boolean = false,

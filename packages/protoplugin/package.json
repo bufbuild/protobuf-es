@@ -20,7 +20,7 @@
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
     "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm",
-    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo'",
+    "format": "biome format --write",
     "license-header": "license-header",
     "lint": "eslint --max-warnings 0 .",
     "attw": "attw --pack"
@@ -39,9 +39,7 @@
     "@typescript/vfs": "^1.5.2",
     "typescript": "5.4.5"
   },
-  "files": [
-    "dist/**"
-  ],
+  "files": ["dist/**"],
   "devDependencies": {
     "@types/lz-string": "^1.5.0"
   }

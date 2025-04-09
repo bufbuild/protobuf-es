@@ -37,6 +37,6 @@ updates:
           - "@typescript-eslint/*"
           - "eslint-*"
           - "eslint"
-          - "prettier"
+          - "biome"
           - "@bufbuild/license-header"
           - "@arethetypeswrong/*"

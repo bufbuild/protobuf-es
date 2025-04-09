@@ -174,7 +174,7 @@ export function getOption<
   return getExtension(message, option);
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 type DescForOptionExtension<Ext extends DescExtension> =
     Extendee<Ext> extends FileOptions ? DescFile
   : Extendee<Ext> extends EnumOptions ? DescEnum

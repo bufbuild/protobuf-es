@@ -250,7 +250,7 @@ export interface ReflectMap<K = unknown, V = unknown>
 /**
  * The return type of ReflectMessage.get()
  */
-// prettier-ignore
+// biome-ignore format: want this to read well
 export type ReflectMessageGet<Field extends DescField = DescField> = (
   Field extends { fieldKind: "map" } ? ReflectMap :
   Field extends { fieldKind: "list" } ? ReflectList :

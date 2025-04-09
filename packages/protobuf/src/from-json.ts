@@ -726,7 +726,7 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
     );
   }
   const ms = Date.parse(
-    //prettier-ignore
+    // biome-ignore format: want this to read well
     matches[1] + "-" + matches[2] + "-" + matches[3] + "T" + matches[4] + ":" + matches[5] + ":" + matches[6] + (matches[8] ? matches[8] : "Z"),
   );
   if (Number.isNaN(ms)) {

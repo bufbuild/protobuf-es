@@ -425,7 +425,7 @@ const DELIMITED: FeatureSet_MessageEncoding.DELIMITED = 2;
 // bootstrap-inject google.protobuf.FeatureSet.EnumType.OPEN: const $name: FeatureSet_EnumType.$localName = $number;
 const OPEN: FeatureSet_EnumType.OPEN = 1;
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2023: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
 // generated from protoc v30.0
 export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1000;

@@ -40,7 +40,7 @@ export function generateMarkdownTable(rows: Row[]) {
     minified: "minified",
     compressed: "compressed",
   });
-  // prettier-ignore
+  // biome-ignore format: want this to read well
   const colSizes: Record<keyof Row, number> = {
     name: stringRows.reduce((size, row) => Math.max(size, row.name.length), 0),
     files: stringRows.reduce((size, row) => Math.max(size, row.files.length), 0),

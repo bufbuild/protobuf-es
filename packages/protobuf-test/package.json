@@ -16,7 +16,7 @@
     "profile": "dexnode dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
     "flamegraph": "npx 0x -- node dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo' '!src/gen/**'",
+    "format": "biome format --write",
     "license-header": "license-header",
     "lint": "eslint --max-warnings 0 ."
   },

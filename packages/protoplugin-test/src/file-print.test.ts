@@ -312,7 +312,7 @@ describe("GeneratedFile.print", () => {
 
   test("should print nested printables", async () => {
     const lines = await testGenerate((f) => {
-      // prettier-ignore
+      // biome-ignore format: want this to read well
       f.print("a", ["b", ["c", "d", [1, " ", createImportSymbol("Foo", "bar")]]]);
     });
     expect(lines).toStrictEqual([
@@ -369,7 +369,7 @@ describe("GeneratedFile.print", () => {
     });
     test("should print nested printables", async () => {
       const lines = await testGenerate((f) => {
-        // prettier-ignore
+        // biome-ignore format: want this to read well
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         f.print`${"a"}${["b", ["c", "d", [1, " ", createImportSymbol("Foo", "bar")]]]}`;
       });
