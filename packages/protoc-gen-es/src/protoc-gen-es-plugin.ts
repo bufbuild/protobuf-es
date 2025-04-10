@@ -30,7 +30,6 @@ import {
 } from "@bufbuild/protoplugin";
 import { fieldJsonType, fieldTypeScriptType, functionCall } from "./util";
 import { version } from "../package.json";
-import { RawPluginOptions } from "@bufbuild/protoplugin/dist/cjs/parameter";
 
 export const protocGenEs = createEcmaScriptPlugin({
   name: "protoc-gen-es",
@@ -45,7 +44,12 @@ type Options = {
   jsonTypes: boolean;
 };
 
-function parseOptions(options: RawPluginOptions): Options {
+function parseOptions(
+  options: {
+    key: string;
+    value: string;
+  }[],
+): Options {
   let jsonTypes = false;
   for (const { key, value } of options) {
     switch (key) {

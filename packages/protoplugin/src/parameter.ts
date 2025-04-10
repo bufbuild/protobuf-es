@@ -76,32 +76,16 @@ export interface ParsedParameter<T> {
   sanitized: string;
 }
 
-/**
- * Raw options to parse.
- *
- * For example, if a plugin is run with the options foo=123,bar,baz=a,baz=b
- * the raw options are:
- *
- * ```ts
- * [
- *   { key: "foo", value: "123" },
- *   { key: "bar", value: "" },
- *   { key: "baz", value: "a" },
- *   { key: "baz", value: "b" },
- * ]
- * ```
- *
- * If your plugin does not recognize an option, it must throw an Error in
- * parseOptions.
- */
-export type RawPluginOptions = {
-  key: string;
-  value: string;
-}[];
-
 export function parseParameter<T extends object>(
   parameter: string,
-  parseExtraOptions: ((rawOptions: RawPluginOptions) => T) | undefined,
+  parseExtraOptions:
+    | ((
+        rawOptions: {
+          key: string;
+          value: string;
+        }[],
+      ) => T)
+    | undefined,
 ): ParsedParameter<T> {
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = false;
@@ -110,7 +94,10 @@ export function parseParameter<T extends object>(
   const rewriteImports: RewriteImports = [];
   let importExtension: ImportExtension = "none";
   let jsImportStyle: "module" | "legacy_commonjs" = "module";
-  const extraParameters: RawPluginOptions = [];
+  const extraParameters: {
+    key: string;
+    value: string;
+  }[] = [];
   const extraParametersRaw: string[] = [];
   const rawParameters: string[] = [];
   for (const { key, value, raw } of splitParameter(parameter)) {
