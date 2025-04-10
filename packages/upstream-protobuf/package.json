@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node bin/upstream-warmup.mjs",
     "format": "biome format --write",
-    "license-header": "license-header"
+    "license-header": "license-header",
+    "lint": "biome lint --error-on-warnings"
   },
   "bin": {
     "protoc": "bin/protoc.mjs",
