@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node bin/upstream-warmup.mjs"
+    "build": "node bin/upstream-warmup.mjs",
+    "format": "prettier --write --ignore-unknown '.' '!.tmp'",
+    "license-header": "license-header"
   },
   "bin": {
     "protoc": "bin/protoc.mjs",
@@ -11,10 +13,7 @@
     "conformance_test_runner": "bin/conformance_test_runner.mjs",
     "upstream-files": "bin/upstream-files.mjs",
     "upstream-include": "bin/upstream-include.mjs",
-    "upstream-warmup": "bin/upstream-warmup.mjs",
-    "format": "prettier --write --ignore-unknown '.' '!.tmp'",
-    "license-header": "license-header",
-    "lint": "eslint --max-warnings 0 ."
+    "upstream-warmup": "bin/upstream-warmup.mjs"
   },
   "exports": {
     ".": {
