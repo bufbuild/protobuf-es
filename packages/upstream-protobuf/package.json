@@ -14,7 +14,6 @@
     "conformance_test_runner": "bin/conformance_test_runner.mjs",
     "upstream-files": "bin/upstream-files.mjs",
     "upstream-include": "bin/upstream-include.mjs",
-    "upstream-warmup": "bin/upstream-warmup.mjs"
   },
   "exports": {
     ".": {
