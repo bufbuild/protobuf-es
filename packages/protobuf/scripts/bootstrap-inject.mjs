@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* eslint-disable n/no-missing-import */
-
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join as joinPath } from "node:path";
 import assert from "node:assert";
@@ -44,7 +42,7 @@ void main(argv.slice(2)).catch((e) => {
  */
 async function main(args) {
   if (args.length !== 1) {
-    throw new Error(`USAGE: bootstrap-inject <dir-path>`);
+    throw new Error("USAGE: bootstrap-inject <dir-path>");
   }
   const upstream = new UpstreamProtobuf();
   const descriptorProto = await compileDescriptorProto(upstream);
@@ -67,10 +65,10 @@ async function main(args) {
     );
     if (newContent === fileContent) {
       processedFiles++;
-      stdout.write(`no changes\n`);
+      stdout.write("no changes\n");
     } else {
       writeFileSync(filePath, newContent);
-      stdout.write(`updated\n`);
+      stdout.write("updated\n");
     }
   }
   if (processedFiles === 0) {
@@ -85,7 +83,7 @@ async function main(args) {
  * @param {UpstreamProtobuf} upstream
  */
 async function processFile(filePath, content, descriptorProto, upstream) {
-  let lines = content.split("\n");
+  const lines = content.split("\n");
   for (let i = 0; i < lines.length; i++) {
     if (!lines[i].startsWith(injectComment)) {
       continue;
@@ -158,7 +156,7 @@ async function processFile(filePath, content, descriptorProto, upstream) {
             $maximumEdition: maximumEdition,
           }),
         );
-        lines.push(`const featureDefaults = {`);
+        lines.push("const featureDefaults = {");
         for (const edition of editionNumbersBetween(
           descriptorProto,
           minimumEdition,
@@ -179,9 +177,9 @@ async function processFile(filePath, content, descriptorProto, upstream) {
             assert(valDesc !== undefined);
             lines.push(`    ${f.localName}: ${val}, // ${valDesc.name},`);
           }
-          lines.push(`  },`);
+          lines.push("  },");
         }
-        lines.push(`} as const;`);
+        lines.push("} as const;");
         lines.push();
         i = lines.length;
         lines.push(...remainder);
@@ -298,7 +296,7 @@ function editionNumbersBetween(
   const editionEnum = descriptorProto.getEnum("google.protobuf.Edition");
   if (!editionEnum) {
     throw new Error(
-      `enum google.protobuf.Edition not found in descriptor.proto`,
+      "enum google.protobuf.Edition not found in descriptor.proto",
     );
   }
   return editionEnum.values

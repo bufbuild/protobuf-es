@@ -12,11 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  type DescField,
-  type DescMessage,
-  type DescOneof,
-} from "../descriptors.js";
+import type { DescField, DescMessage, DescOneof } from "../descriptors.js";
 import { unsafeLocal } from "./unsafe.js";
 import type { Message, UnknownField } from "../types.js";
 import type { ScalarValue } from "./scalar.js";

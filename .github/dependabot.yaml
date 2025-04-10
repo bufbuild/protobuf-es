@@ -34,9 +34,6 @@ updates:
           - "esbuild"
       lint-and-format:
         patterns:
-          - "@typescript-eslint/*"
-          - "eslint-*"
-          - "eslint"
           - "biome"
           - "@bufbuild/license-header"
           - "@arethetypeswrong/*"

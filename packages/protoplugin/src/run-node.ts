@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import type { Plugin } from "./plugin.js";
-import type { ReadStream, WriteStream } from "tty";
+import type { ReadStream, WriteStream } from "node:tty";
 import { isPluginOptionError, reasonToString } from "./error.js";
 import { fromBinary, toBinary } from "@bufbuild/protobuf";
 import {

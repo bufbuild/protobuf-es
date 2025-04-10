@@ -63,7 +63,7 @@ describe("GeneratedFile.preamble", () => {
   test("contains ts-nocheck annotation when opted in", async () => {
     const lines = await testGenerate({
       proto: `syntax="proto3";`,
-      parameter: `ts_nocheck=true`,
+      parameter: "ts_nocheck=true",
     });
     expect(lines).toContain("// @ts-nocheck");
   });

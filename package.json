@@ -22,7 +22,7 @@
     "release": "npm run all && node scripts/release.js",
     "format": "biome format --write --config-path biome.root.json",
     "license-header": "license-header --ignore 'packages/**'",
-    "lint": "eslint --max-warnings 0 . --ignore-pattern 'packages/**'"
+    "lint": "biome lint --error-on-warnings --config-path biome.root.json"
   },
   "type": "module",
   "engineStrict": true,
@@ -41,12 +41,6 @@
     "@biomejs/biome": "^1.9.4",
     "@bufbuild/license-header": "^0.0.4",
     "@types/node": "^22.13.15",
-    "@typescript-eslint/eslint-plugin": "^8.29.0",
-    "@typescript-eslint/parser": "^8.29.0",
-    "eslint": "^8.57.1",
-    "eslint-import-resolver-typescript": "^4.3.1",
-    "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-n": "^17.17.0",
     "jest": "^29.7.0",
     "turbo": "^2.4.4",
     "typescript": "~5.6.3"

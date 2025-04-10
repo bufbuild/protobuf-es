@@ -12,7 +12,7 @@
     "test:string": "conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
     "format": "biome format --write",
     "license-header": "license-header",
-    "lint": "eslint --max-warnings 0 ."
+    "lint": "biome lint --error-on-warnings"
   },
   "type": "module",
   "exports": {

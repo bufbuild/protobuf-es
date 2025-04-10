@@ -30,7 +30,7 @@ import {
 } from "@bufbuild/protoplugin";
 import { fieldJsonType, fieldTypeScriptType, functionCall } from "./util";
 import { version } from "../package.json";
-import { RawPluginOptions } from "@bufbuild/protoplugin/dist/cjs/parameter";
+import type { RawPluginOptions } from "@bufbuild/protoplugin/dist/cjs/parameter";
 
 export const protocGenEs = createEcmaScriptPlugin({
   name: "protoc-gen-es",

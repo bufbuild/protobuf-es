@@ -33,10 +33,10 @@ describe("built-in transpile", () => {
   describe("ECMAScript types", () => {
     test("global Promise type transpiles", async () => {
       const linesDts = await testTranspileToDts([
-        `export const p = Promise.resolve(true);`,
+        "export const p = Promise.resolve(true);",
       ]);
       expect(linesDts).toStrictEqual([
-        `export declare const p: Promise<boolean>;`,
+        "export declare const p: Promise<boolean>;",
       ]);
     });
   });
@@ -44,10 +44,10 @@ describe("built-in transpile", () => {
   describe("TypeScript built-in types", () => {
     test("global ReturnType transpiles", async () => {
       const linesDts = await testTranspileToDts([
-        `export const n: ReturnType<typeof parseInt> = 1;`,
+        "export const n: ReturnType<typeof parseInt> = 1;",
       ]);
       expect(linesDts).toStrictEqual([
-        `export declare const n: ReturnType<typeof parseInt>;`,
+        "export declare const n: ReturnType<typeof parseInt>;",
       ]);
     });
   });
@@ -55,9 +55,9 @@ describe("built-in transpile", () => {
   describe("DOM types", () => {
     test("global Headers transpiles", async () => {
       const linesDts = await testTranspileToDts([
-        `export const h = new Headers();`,
+        "export const h = new Headers();",
       ]);
-      expect(linesDts).toStrictEqual([`export declare const h: Headers;`]);
+      expect(linesDts).toStrictEqual(["export declare const h: Headers;"]);
     });
   });
 
@@ -65,11 +65,11 @@ describe("built-in transpile", () => {
     test("JsonValue transpiles", async () => {
       const linesDts = await testTranspileToDts([
         `import type { JsonValue } from "@bufbuild/protobuf";`,
-        `export const j: JsonValue = 1;`,
+        "export const j: JsonValue = 1;",
       ]);
       expect(linesDts).toStrictEqual([
         `import type { JsonValue } from "@bufbuild/protobuf";`,
-        `export declare const j: JsonValue;`,
+        "export declare const j: JsonValue;",
       ]);
     });
   });
@@ -78,22 +78,22 @@ describe("built-in transpile", () => {
     test("is not inferred correctly", async () => {
       const linesDts = await testTranspileToDts([
         `import { Foo } from "foo";`,
-        ``,
-        `export function foo() { return new Foo(); };`,
+        "",
+        "export function foo() { return new Foo(); };",
       ]);
       // The return type is inferred as `any` instead of the expected
       // `Foo`. This is a limitation of the TypeScript compiler.
-      expect(linesDts).toStrictEqual([`export declare function foo(): any;`]);
+      expect(linesDts).toStrictEqual(["export declare function foo(): any;"]);
     });
     test("can be typed explicitly", async () => {
       const linesDts = await testTranspileToDts([
         `import { Foo } from "foo";`,
-        ``,
-        `export function foo(): Foo { return new Foo(); };`,
+        "",
+        "export function foo(): Foo { return new Foo(); };",
       ]);
       expect(linesDts).toStrictEqual([
         `import { Foo } from "foo";`,
-        `export declare function foo(): Foo;`,
+        "export declare function foo(): Foo;",
       ]);
     });
   });
@@ -102,11 +102,11 @@ describe("built-in transpile", () => {
     test("raises error with helpful message", async () => {
       await expect(async () =>
         testTranspileToDts([
-          `export interface Foo {`,
-          `  p: {`,
-          `    [K in keyof P]: string;`,
-          `  },`,
-          `}`,
+          "export interface Foo {",
+          "  p: {",
+          "    [K in keyof P]: string;",
+          "  },",
+          "}",
         ]),
       ).rejects.toThrow(
         /^A problem occurred during transpilation and files were not generated\. {2}Contact the plugin author for support\.\n/,
@@ -115,11 +115,11 @@ describe("built-in transpile", () => {
     test("raises error with diagnostics", async () => {
       await expect(async () =>
         testTranspileToDts([
-          `export interface Foo {`,
-          `  p: {`,
-          `    [K in keyof P]: string;`,
-          `  },`,
-          `}`,
+          "export interface Foo {",
+          "  p: {",
+          "    [K in keyof P]: string;",
+          "  },",
+          "}",
         ]),
       ).rejects.toThrow(
         /test\.ts\(3,17\): error TS4033: Property 'p' of exported interface has or is using private name 'P'\.$/,
@@ -128,31 +128,31 @@ describe("built-in transpile", () => {
     test("raises error with 3 diagnostics, and elides the rest", async () => {
       await expect(async () =>
         testTranspileToDts([
-          `export interface Foo1 {`,
-          `  p: {`,
-          `    [K in keyof P]: string;`,
-          `  },`,
-          `}`,
-          `export interface Foo2 {`,
-          `  p: {`,
-          `    [K in keyof P]: string;`,
-          `  },`,
-          `}`,
-          `export interface Foo3 {`,
-          `  p: {`,
-          `    [K in keyof P]: string;`,
-          `  },`,
-          `}`,
-          `export interface Foo4 {`,
-          `  p: {`,
-          `    [K in keyof P]: string;`,
-          `  },`,
-          `}`,
-          `export interface Foo5 {`,
-          `  p: {`,
-          `    [K in keyof P]: string;`,
-          `  },`,
-          `}`,
+          "export interface Foo1 {",
+          "  p: {",
+          "    [K in keyof P]: string;",
+          "  },",
+          "}",
+          "export interface Foo2 {",
+          "  p: {",
+          "    [K in keyof P]: string;",
+          "  },",
+          "}",
+          "export interface Foo3 {",
+          "  p: {",
+          "    [K in keyof P]: string;",
+          "  },",
+          "}",
+          "export interface Foo4 {",
+          "  p: {",
+          "    [K in keyof P]: string;",
+          "  },",
+          "}",
+          "export interface Foo5 {",
+          "  p: {",
+          "    [K in keyof P]: string;",
+          "  },",
+          "}",
         ]),
       ).rejects.toThrow(
         /(?:test\.ts\(\d+,\d+\): .+\n){3}2 more diagnostics elided/,

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createInterface } from "readline";
-import { appendFileSync } from "fs";
+import { createInterface } from "node:readline";
+import { appendFileSync } from "node:fs";
 import { create } from "@bufbuild/protobuf";
 import { UserSchema } from "./gen/example_pb.js";
 import { sizeDelimitedEncode } from "@bufbuild/protobuf/wire";

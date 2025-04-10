@@ -14,9 +14,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createEcmaScriptPlugin, runNodeJs } from "@bufbuild/protoplugin";
-import { DescMessage } from "@bufbuild/protobuf";
-import type { Schema } from "@bufbuild/protoplugin";
+import {
+  createEcmaScriptPlugin,
+  runNodeJs,
+  type Schema,
+} from "@bufbuild/protoplugin";
+import type { DescMessage } from "@bufbuild/protobuf";
 import { files, sizes } from "./constants.js";
 
 runNodeJs(
@@ -46,7 +49,6 @@ runNodeJs(
         const files = schemaFiles.slice(0, size);
         {
           const f = schema.generateFile(`protobuf-es/entry-${size}.ts`);
-          f.print("/* eslint-disable no-console */");
           f.print();
           for (const file of files) {
             f.print("// ", file.file.proto.name);
@@ -70,9 +72,6 @@ runNodeJs(
         }
         {
           const f = schema.generateFile(`google-protobuf/entry-${size}.ts`);
-          f.print(
-            "/* eslint-disable no-console,@typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */",
-          );
           f.print();
           for (const file of files) {
             f.print("// ", file.file.proto.name);

@@ -22,7 +22,6 @@ import { LocalizedTextSchema } from "./google/type/localized_text_pb";
 import { IntervalSchema } from "./google/type/interval_pb";
 import { FractionSchema } from "./google/type/fraction_pb";
 
-/* eslint-disable no-console */
 
 // google/type/timeofday.proto
 console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);

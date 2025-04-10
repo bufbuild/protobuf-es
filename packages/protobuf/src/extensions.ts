@@ -235,7 +235,7 @@ export function createExtensionContainer<Desc extends DescExtension>(
     () => {
       const value = (container as Record<string, unknown>)[localName];
       if (value === undefined) {
-        // Only message fields are undefined, rest will have a zero value.
+        // biome-ignore lint/style/noNonNullAssertion: Only message fields are undefined, rest will have a zero value.
         const desc = extension.message!;
         if (isWrapperDesc(desc)) {
           return scalarZeroValue(

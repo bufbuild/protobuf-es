@@ -18,7 +18,7 @@
     "bootstrap:wkt": "protoc --es_out=src/wkt/gen --es_opt=bootstrap_wkt=true,target=ts,import_extension=js,json_types=true --proto_path $(upstream-include wkt) $(upstream-files wkt) && license-header src/wkt/gen",
     "format": "biome format --write",
     "license-header": "license-header --ignore 'src/wire/varint.ts'",
-    "lint": "eslint --max-warnings 0 .",
+    "lint": "biome lint --error-on-warnings",
     "attw": "attw --pack"
   },
   "type": "module",

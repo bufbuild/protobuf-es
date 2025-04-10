@@ -175,7 +175,7 @@ describe("equals()", () => {
       expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
     test("mapStringStringField is not equal", () => {
-      b.mapStringStringField["modified"] = "modified";
+      b.mapStringStringField.modified = "modified";
       expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
     });
     test("mapInt32MessageField is not equal", () => {
