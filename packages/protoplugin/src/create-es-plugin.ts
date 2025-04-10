@@ -29,7 +29,6 @@ import type { FileInfo } from "./generated-file.js";
 import type { Plugin } from "./plugin.js";
 import { transpile } from "./transpile.js";
 import { parseParameter } from "./parameter.js";
-import type { RawPluginOptions } from "./parameter.js";
 
 interface PluginInit<Options extends object> {
   /**
@@ -45,8 +44,28 @@ interface PluginInit<Options extends object> {
   /**
    * An optional parsing function which can be used to parse your own plugin
    * options.
+   *
+   * For example, if a plugin is run with the options foo=123,bar,baz=a,baz=b
+   * the raw options are:
+   *
+   * ```ts
+   * [
+   *   { key: "foo", value: "123" },
+   *   { key: "bar", value: "" },
+   *   { key: "baz", value: "a" },
+   *   { key: "baz", value: "b" },
+   * ]
+   * ```
+   *
+   * If your plugin does not recognize an option, it must throw an Error in
+   * parseOptions.
    */
-  parseOptions?: (rawOptions: RawPluginOptions) => Options;
+  parseOptions?: (
+    rawOptions: {
+      key: string;
+      value: string;
+    }[],
+  ) => Options;
 
   /**
    * The earliest edition supported by this plugin. Defaults to the minimum
