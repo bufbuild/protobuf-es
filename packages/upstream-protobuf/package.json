@@ -13,7 +13,7 @@
     "protoc-gen-dumpcodegenreq": "bin/protoc-gen-dumpcodegenreq.mjs",
     "conformance_test_runner": "bin/conformance_test_runner.mjs",
     "upstream-files": "bin/upstream-files.mjs",
-    "upstream-include": "bin/upstream-include.mjs",
+    "upstream-include": "bin/upstream-include.mjs"
   },
   "exports": {
     ".": {
