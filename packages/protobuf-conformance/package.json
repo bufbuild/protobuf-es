@@ -19,7 +19,7 @@
     "default": "./dist/esm/index.js"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "1.10.0"
+    "@bufbuild/protobuf": "1.10.1"
   },
   "devDependencies": {
     "upstream-protobuf": "*"
