@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("import_extension", function () {
+describe("import_extension", () => {
   test("should default to 'none'", async () => {
     const lines = await testGenerate("target=ts", (f) => {
       const Bar = f.import("Bar", "./foo/bar_pb.js");

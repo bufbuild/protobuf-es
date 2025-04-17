@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import type { CompileToDescriptorSetOptions } from "upstream-protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { join as joinPath } from "node:path";
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { clearField, equals, fromBinary, toBinary } from "@bufbuild/protobuf";
 import {
   type DescriptorProto,

@@ -174,7 +174,7 @@ export function getOption<
   return getExtension(message, option);
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 type DescForOptionExtension<Ext extends DescExtension> =
     Extendee<Ext> extends FileOptions ? DescFile
   : Extendee<Ext> extends EnumOptions ? DescEnum
@@ -235,7 +235,7 @@ export function createExtensionContainer<Desc extends DescExtension>(
     () => {
       const value = (container as Record<string, unknown>)[localName];
       if (value === undefined) {
-        // Only message fields are undefined, rest will have a zero value.
+        // biome-ignore lint/style/noNonNullAssertion: Only message fields are undefined, rest will have a zero value.
         const desc = extension.message!;
         if (isWrapperDesc(desc)) {
           return scalarZeroValue(

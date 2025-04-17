@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("GeneratedFile.import", () => {
-  test("should create import symbol for package", async function () {
+  test("should create import symbol for package", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
@@ -28,7 +28,7 @@ describe("GeneratedFile.import", () => {
       },
     });
   });
-  test("should create import symbol for relative import", async function () {
+  test("should create import symbol for relative import", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
@@ -40,7 +40,7 @@ describe("GeneratedFile.import", () => {
       },
     });
   });
-  test("should create import symbol for https import", async function () {
+  test("should create import symbol for https import", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
@@ -52,7 +52,7 @@ describe("GeneratedFile.import", () => {
       },
     });
   });
-  test("should honor typeOnly argument", async function () {
+  test("should honor typeOnly argument", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",

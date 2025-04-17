@@ -53,9 +53,8 @@ export function isReflectList(
     typeof arg.field == "function"
   ) {
     if (field !== undefined) {
-      const a = field,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-        b = arg.field() as DescField & { fieldKind: "list" };
+      const a = field;
+      const b = arg.field() as DescField & { fieldKind: "list" };
       return (
         a.listKind == b.listKind &&
         a.scalar === b.scalar &&
@@ -81,7 +80,6 @@ export function isReflectMap(
   ) {
     if (field !== undefined) {
       const a = field,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         b = arg.field() as DescField & { fieldKind: "map" };
       return (
         a.mapKey === b.mapKey &&

@@ -45,7 +45,6 @@ import { CheckedExpr, Type } from "./google/api/expr/v1alpha1/checked_pb";
 import { Expr as Expr$2, ParsedExpr as ParsedExpr$1 } from "./google/api/expr/v1alpha1/syntax_pb";
 import { Http, HttpRule } from "./google/api/http_pb";
 
-/* eslint-disable no-console,@typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
 
 // google/type/timeofday.proto
 console.log(new TimeOfDay().serializeBinary().length);

@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("GeneratedFile.importSchema", () => {
-  test("should create import symbol for enum descriptor", async function () {
+  test("should create import symbol for enum descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto3";
@@ -34,7 +34,7 @@ describe("GeneratedFile.importSchema", () => {
       },
     });
   });
-  test("should create import symbol for message descriptor", async function () {
+  test("should create import symbol for message descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto3";
@@ -49,7 +49,7 @@ describe("GeneratedFile.importSchema", () => {
       },
     });
   });
-  test("should create import symbol for service descriptor", async function () {
+  test("should create import symbol for service descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto3";
@@ -67,7 +67,7 @@ describe("GeneratedFile.importSchema", () => {
       },
     });
   });
-  test("should create import symbol for extension descriptor", async function () {
+  test("should create import symbol for extension descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto2";
@@ -87,7 +87,7 @@ describe("GeneratedFile.importSchema", () => {
       },
     });
   });
-  test("should create import symbol for file descriptor", async function () {
+  test("should create import symbol for file descriptor", async () => {
     await createTestPluginAndRun({
       proto: {
         "my-proto-files/23/dir:/joe's files/x.proto": `syntax="proto3";`,

@@ -46,7 +46,6 @@ import { CheckedExprSchema, TypeSchema } from "./google/api/expr/v1alpha1/checke
 import { ExprSchema as ExprSchema$2, ParsedExprSchema as ParsedExprSchema$1 } from "./google/api/expr/v1alpha1/syntax_pb";
 import { HttpRuleSchema, HttpSchema } from "./google/api/http_pb";
 
-/* eslint-disable no-console */
 
 // google/type/timeofday.proto
 console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);

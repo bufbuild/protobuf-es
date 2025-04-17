@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("rewrite_imports", function () {
+describe("rewrite_imports", () => {
   test("example works as documented", async () => {
     const lines = await testGenerate(
       "target=ts,rewrite_imports=./foo/**/*_pb.js:@scope/pkg",

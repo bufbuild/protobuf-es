@@ -30,7 +30,6 @@ import { AttributeContextSchema } from "./google/rpc/context/attribute_context_p
 import { ViewportSchema } from "./google/geo/type/viewport_pb";
 import { LatLngSchema } from "./google/type/latlng_pb";
 
-/* eslint-disable no-console */
 
 // google/type/timeofday.proto
 console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);

@@ -403,8 +403,8 @@ describe("ReflectMessage", () => {
     });
     test("returns error setting float for int", () => {
       const f = desc.field.singularInt32Field;
-      const err = catchFieldError(() => r.set(f, 3.142));
-      expect(err?.message).toMatch(/^expected number \(int32\), got 3.142$/);
+      const err = catchFieldError(() => r.set(f, 3.14));
+      expect(err?.message).toMatch(/^expected number \(int32\), got 3.14$/);
       expect(err?.name).toMatch("FieldValueInvalidError");
     });
     describe("returns error setting undefined", () => {
@@ -478,9 +478,9 @@ describe("ReflectMessage", () => {
         expect(err?.message).toMatch(/^expected enum .*, got "abc"$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
-      test.each(fields)("set $name 3.142", (f) => {
-        const err = catchFieldError(() => r.set(f, 3.142));
-        expect(err?.message).toMatch(/^expected enum .*, got 3.142$/);
+      test.each(fields)("set $name 3.14", (f) => {
+        const err = catchFieldError(() => r.set(f, 3.14));
+        expect(err?.message).toMatch(/^expected enum .*, got 3.14$/);
         expect(err?.name).toMatch("FieldValueInvalidError");
       });
     });

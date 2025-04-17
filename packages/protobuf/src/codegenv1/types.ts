@@ -40,7 +40,7 @@ export type GenFile = DescFile;
  *
  * @private
  */
-// prettier-ignore
+// biome-ignore format: want this to read well
 export type GenMessage<RuntimeShape extends Message, JsonType = JsonValue> =
   & Omit<DescMessage, "field">
   & { field: Record<MessageFieldNames<RuntimeShape>, DescField> }
@@ -107,7 +107,7 @@ class brandv1<A, B = unknown> {
  * Union of the property names of all fields, including oneof members.
  * For an anonymous message (no generated message shape), it's simply a string.
  */
-// prettier-ignore
+// biome-ignore format: want this to read well
 type MessageFieldNames<T extends Message> = Message extends T ? string :
   Exclude<keyof {
     [P in keyof T as

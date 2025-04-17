@@ -27,8 +27,8 @@ describe("GeneratedFile.print", () => {
     });
     expect(lines).toStrictEqual([
       `import { protoInt64 } from "@bufbuild/protobuf";`,
-      ``,
-      `protoInt64.zero`,
+      "",
+      "protoInt64.zero",
       `protoInt64.parse("-9223372036854775808")`,
       `protoInt64.uParse("18446744073709551615")`,
     ]);
@@ -73,8 +73,8 @@ describe("GeneratedFile.print", () => {
       f.print(new Uint8Array([0xde, 0xad, 0xbe, 0xef]));
     });
     expect(lines).toStrictEqual([
-      `new Uint8Array(0)`,
-      `new Uint8Array([0xDE, 0xAD, 0xBE, 0xEF])`,
+      "new Uint8Array(0)",
+      "new Uint8Array([0xDE, 0xAD, 0xBE, 0xEF])",
     ]);
   });
 
@@ -142,8 +142,8 @@ describe("GeneratedFile.print", () => {
         });
         expect(lines).toStrictEqual([
           `import { protoInt64 } from "@bufbuild/protobuf";`,
-          ``,
-          `protoInt64.zero`,
+          "",
+          "protoInt64.zero",
         ]);
       });
       test(`should use protoInt64.parse for ${ScalarType[t]}`, async () => {
@@ -157,7 +157,7 @@ describe("GeneratedFile.print", () => {
         });
         expect(lines).toStrictEqual([
           `import { protoInt64 } from "@bufbuild/protobuf";`,
-          ``,
+          "",
           `protoInt64.parse("123")`,
         ]);
       });
@@ -176,8 +176,8 @@ describe("GeneratedFile.print", () => {
         });
         expect(lines).toStrictEqual([
           `import { protoInt64 } from "@bufbuild/protobuf";`,
-          ``,
-          `protoInt64.zero`,
+          "",
+          "protoInt64.zero",
         ]);
       });
       test(`should use protoInt64.uParse for ${ScalarType[t]}`, async () => {
@@ -191,14 +191,14 @@ describe("GeneratedFile.print", () => {
         });
         expect(lines).toStrictEqual([
           `import { protoInt64 } from "@bufbuild/protobuf";`,
-          ``,
+          "",
           `protoInt64.uParse("123")`,
         ]);
       });
     }
   });
 
-  test("should print import symbol", async function () {
+  test("should print import symbol", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "bar");
       f.print(imp);
@@ -206,7 +206,7 @@ describe("GeneratedFile.print", () => {
     expect(lines).toStrictEqual(['import { Foo } from "bar";', "", "Foo"]);
   });
 
-  test("should print type-only import symbol", async function () {
+  test("should print type-only import symbol", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "bar");
       f.print(imp.toTypeOnly());
@@ -214,7 +214,7 @@ describe("GeneratedFile.print", () => {
     expect(lines).toStrictEqual(['import type { Foo } from "bar";', "", "Foo"]);
   });
 
-  test("should print import symbol used as type and value", async function () {
+  test("should print import symbol used as type and value", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "bar");
       f.print(imp);
@@ -228,7 +228,7 @@ describe("GeneratedFile.print", () => {
     ]);
   });
 
-  test("should print only one import for the same symbol", async function () {
+  test("should print only one import for the same symbol", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "bar");
       const imp2 = createImportSymbol("Foo", "bar");
@@ -243,7 +243,7 @@ describe("GeneratedFile.print", () => {
     ]);
   });
 
-  test("should escape clashing import symbols", async function () {
+  test("should escape clashing import symbols", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "a");
       const imp2 = createImportSymbol("Foo", "b");
@@ -259,7 +259,7 @@ describe("GeneratedFile.print", () => {
     ]);
   });
 
-  test("should escape clashing import symbols with commonjs", async function () {
+  test("should escape clashing import symbols with commonjs", async () => {
     const lines = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=js,js_import_style=legacy_commonjs",
@@ -274,12 +274,12 @@ describe("GeneratedFile.print", () => {
     expect(lines).toStrictEqual([
       `"use strict";`,
       `Object.defineProperty(exports, "__esModule", { value: true });`,
-      ``,
+      "",
       `const { Foo } = require("a");`,
       `const { Foo: Foo$1 } = require("b");`,
-      ``,
-      `Foo`,
-      `Foo$1`,
+      "",
+      "Foo",
+      "Foo$1",
     ]);
   });
 
@@ -312,7 +312,7 @@ describe("GeneratedFile.print", () => {
 
   test("should print nested printables", async () => {
     const lines = await testGenerate((f) => {
-      // prettier-ignore
+      // biome-ignore format: want this to read well
       f.print("a", ["b", ["c", "d", [1, " ", createImportSymbol("Foo", "bar")]]]);
     });
     expect(lines).toStrictEqual([
@@ -325,9 +325,7 @@ describe("GeneratedFile.print", () => {
   describe("with tagged template literals", () => {
     test("should print empty lines", async () => {
       const lines = await testGenerate((f) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         f.print` `;
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         f.print``;
       });
       expect(lines).toStrictEqual([" ", ""]);
@@ -335,7 +333,6 @@ describe("GeneratedFile.print", () => {
     test("should print import symbol", async () => {
       const lines = await testGenerate((f) => {
         const imp = createImportSymbol("Foo", "bar");
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         f.print`${imp}`;
       });
       expect(lines).toStrictEqual(['import { Foo } from "bar";', "", "Foo"]);
@@ -343,7 +340,6 @@ describe("GeneratedFile.print", () => {
     test("should print real-world import use case", async () => {
       const lines = await testGenerate((f) => {
         const Foo = createImportSymbol("Foo", "bar");
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         f.print`export function foo(): ${Foo.toTypeOnly()} {
   return new ${Foo}();
 };`;
@@ -358,7 +354,6 @@ describe("GeneratedFile.print", () => {
     });
     test("should print multiple printables", async () => {
       const lines = await testGenerate((f) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         f.print`${"a"}${"b"}${"c"}${1} ${createImportSymbol("Foo", "bar")}`;
       });
       expect(lines).toStrictEqual([
@@ -369,8 +364,7 @@ describe("GeneratedFile.print", () => {
     });
     test("should print nested printables", async () => {
       const lines = await testGenerate((f) => {
-        // prettier-ignore
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        // biome-ignore format: want this to read well
         f.print`${"a"}${["b", ["c", "d", [1, " ", createImportSymbol("Foo", "bar")]]]}`;
       });
       expect(lines).toStrictEqual([

@@ -101,20 +101,20 @@ function idealDescName(
   desc: DescFile | DescEnum | DescMessage | DescExtension | DescService,
   i: number,
 ): string {
-  const escape = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
+  const salt = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
   if (desc.kind == "file") {
     const name = "file_" + desc.name.replace(/[^a-zA-Z0-9_]+/g, "_");
-    return safeIdentifier(name + escape);
+    return safeIdentifier(name + salt);
   }
   switch (desc.kind) {
     case "enum":
-      return safeIdentifier(identifier(desc) + "Schema" + escape);
+      return safeIdentifier(identifier(desc) + "Schema" + salt);
     case "message":
-      return safeIdentifier(identifier(desc) + "Schema" + escape);
+      return safeIdentifier(identifier(desc) + "Schema" + salt);
     case "extension":
-      return safeIdentifier(identifier(desc) + escape);
+      return safeIdentifier(identifier(desc) + salt);
     case "service":
-      return safeIdentifier(identifier(desc) + escape);
+      return safeIdentifier(identifier(desc) + salt);
   }
 }
 
@@ -122,16 +122,16 @@ function idealDescName(
  * Compute the ideal name for a generated shape.
  */
 function idealShapeName(desc: DescEnum | DescMessage, i: number): string {
-  const escape = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
-  return safeIdentifier(identifier(desc) + escape);
+  const salt = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
+  return safeIdentifier(identifier(desc) + salt);
 }
 
 /**
  * Compute the ideal name for a generated JSON type.
  */
 function idealJsonTypeName(desc: DescEnum | DescMessage, i: number): string {
-  const escape = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
-  return safeIdentifier(identifier(desc) + "Json" + escape);
+  const salt = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
+  return safeIdentifier(identifier(desc) + "Json" + salt);
 }
 
 /**

@@ -277,9 +277,7 @@ describe("edition2023 serialization", () => {
         expect(number).toBe(2);
         expect(r.string()).toBe("abc");
       }
-      {
-        expect(r.pos).toBe(r.len);
-      }
+      expect(r.pos).toBe(r.len);
     });
     test("should serialize map value message LENGTH_PREFIXED", () => {
       const msg = create(Edition2023MapEncodingMessageSchema);
@@ -305,9 +303,7 @@ describe("edition2023 serialization", () => {
         const length = r.uint32();
         expect(length).toBe(0);
       }
-      {
-        expect(r.pos).toBe(r.len);
-      }
+      expect(r.pos).toBe(r.len);
     });
   });
 });

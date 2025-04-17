@@ -28,7 +28,8 @@ export const unsafeLocal = Symbol.for("reflect unsafe local");
  * @private
  */
 export function unsafeOneofCase(
-  target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
+  // biome-ignore lint/suspicious/noExplicitAny: `any` is the best choice for dynamic access
+  target: Record<string, any>,
   oneof: DescOneof,
 ) {
   const c = (target[oneof.localName] as OneofADT).case;
@@ -44,12 +45,13 @@ export function unsafeOneofCase(
  * @private
  */
 export function unsafeIsSet(
-  target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
+  // biome-ignore lint/suspicious/noExplicitAny: `any` is the best choice for dynamic access
+  target: Record<string, any>,
   field: DescField,
 ) {
   const name = field.localName;
   if (field.oneof) {
-    return target[field.oneof.localName].case === name; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+    return target[field.oneof.localName].case === name;
   }
   if (field.presence != IMPLICIT) {
     // Fields with explicit presence have properties on the prototype chain
@@ -59,12 +61,11 @@ export function unsafeIsSet(
       Object.prototype.hasOwnProperty.call(target, name)
     );
   }
-  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (field.fieldKind) {
     case "list":
       return (target[name] as unknown[]).length > 0;
     case "map":
-      return Object.keys(target[name]).length > 0; // eslint-disable-line @typescript-eslint/no-unsafe-argument
+      return Object.keys(target[name]).length > 0;
     case "scalar":
       return !isScalarZeroValue(field.scalar, target[name]);
     case "enum":
@@ -131,7 +132,8 @@ export function unsafeSet(
  * @private
  */
 export function unsafeClear(
-  target: Record<string, any>, // eslint-disable-line @typescript-eslint/no-explicit-any -- `any` is the best choice for dynamic access
+  // biome-ignore lint/suspicious/noExplicitAny: `any` is the best choice for dynamic access
+  target: Record<string, any>,
   field: DescField,
 ) {
   const name = field.localName;
@@ -146,7 +148,6 @@ export function unsafeClear(
     // property, the field is reset.
     delete target[name];
   } else {
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     switch (field.fieldKind) {
       case "map":
         target[name] = {};

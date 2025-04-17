@@ -12,11 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {
-  type DescField,
-  type DescMessage,
-  type DescOneof,
-} from "../descriptors.js";
+import type { DescField, DescMessage, DescOneof } from "../descriptors.js";
 import { unsafeLocal } from "./unsafe.js";
 import type { Message, UnknownField } from "../types.js";
 import type { ScalarValue } from "./scalar.js";
@@ -250,7 +246,7 @@ export interface ReflectMap<K = unknown, V = unknown>
 /**
  * The return type of ReflectMessage.get()
  */
-// prettier-ignore
+// biome-ignore format: want this to read well
 export type ReflectMessageGet<Field extends DescField = DescField> = (
   Field extends { fieldKind: "map" } ? ReflectMap :
   Field extends { fieldKind: "list" } ? ReflectList :

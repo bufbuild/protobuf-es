@@ -19,11 +19,11 @@ import { createTestPluginAndRun } from "./helpers.js";
 describe("js_import_style", () => {
   const linesEsm = [
     `import { third } from "party";`,
-    ``,
-    `const thirdParty = third;`,
-    `export class MyClass {}`,
+    "",
+    "const thirdParty = third;",
+    "export class MyClass {}",
     `import { hand } from "written";`,
-    `hand();`,
+    "hand();",
   ];
   describe("unset", () => {
     test.each(["js", "ts", "dts"])(
@@ -56,38 +56,38 @@ describe("js_import_style", () => {
     });
     test(`uses CommonJs with target "js"`, async () => {
       const lines = await testGenerate(
-        `js_import_style=legacy_commonjs,target=js`,
+        "js_import_style=legacy_commonjs,target=js",
       );
       expect(lines).toStrictEqual([
         `"use strict";`,
         `Object.defineProperty(exports, "__esModule", { value: true });`,
-        ``,
+        "",
         `const { third } = require("party");`,
-        ``,
+        "",
         "const thirdParty = third;",
-        `class MyClass {}`,
+        "class MyClass {}",
         `const { hand } = require("written");`,
-        `hand();`,
-        ``,
-        `exports.MyClass = MyClass;`,
+        "hand();",
+        "",
+        "exports.MyClass = MyClass;",
       ]);
     });
     test("uses CommonJs with built-in transpile", async () => {
       const lines = await testGenerate(
-        `js_import_style=legacy_commonjs,target=js`,
+        "js_import_style=legacy_commonjs,target=js",
         true,
       );
       expect(lines).toStrictEqual([
         `"use strict";`,
         `Object.defineProperty(exports, "__esModule", { value: true });`,
-        `exports.MyClass = void 0;`,
+        "exports.MyClass = void 0;",
         `const party_1 = require("party");`,
-        `const thirdParty = party_1.third;`,
-        `class MyClass {`,
-        `}`,
-        `exports.MyClass = MyClass;`,
+        "const thirdParty = party_1.third;",
+        "class MyClass {",
+        "}",
+        "exports.MyClass = MyClass;",
         `const written_1 = require("written");`,
-        `(0, written_1.hand)();`,
+        "(0, written_1.hand)();",
       ]);
     });
   });

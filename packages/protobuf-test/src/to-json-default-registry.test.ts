@@ -20,8 +20,6 @@ import {
 import { anyPack, AnySchema, DurationSchema } from "@bufbuild/protobuf/wkt";
 import { describe, expect, test } from "@jest/globals";
 
-/* eslint-disable @typescript-eslint/no-unsafe-return,@typescript-eslint/no-explicit-any */
-
 describe("default registry with custom toJson()", () => {
   // Define you own default registry
   const registry = createRegistry(
@@ -32,6 +30,7 @@ describe("default registry with custom toJson()", () => {
 
   // Define your own toJson function that uses your default registry
   const toJson: typeof toJsonOriginal = (schema, message, options) => {
+    // biome-ignore lint/suspicious/noExplicitAny: `any` is the best choice here
     return toJsonOriginal(schema, message, options ?? { registry }) as any;
   };
 

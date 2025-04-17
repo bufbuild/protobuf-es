@@ -38,7 +38,7 @@ describe("parse custom plugin option", () => {
           switch (key) {
             case "foo": {
               const foo = parseInt(value);
-              if (isNaN(foo)) {
+              if (Number.isNaN(foo)) {
                 throw "please provide an integer for foo";
               }
               parsed.foo = foo;
@@ -81,25 +81,40 @@ describe("parse custom plugin option", () => {
   });
   test("error from parseOption is wrapped", () => {
     expect(() =>
-      runPlugin(() => {}, {
-        parameter: "foo=abc",
-      }),
+      runPlugin(
+        () => {
+          //
+        },
+        {
+          parameter: "foo=abc",
+        },
+      ),
     ).toThrowError(
       /^invalid option "foo=abc": please provide an integer for foo$/,
     );
   });
   test("unknown option raises an error", () => {
     expect(() =>
-      runPlugin(() => {}, {
-        parameter: "unknown",
-      }),
+      runPlugin(
+        () => {
+          //
+        },
+        {
+          parameter: "unknown",
+        },
+      ),
     ).toThrowError(/^invalid option "unknown"$/);
   });
   test("unknown option with value raises an error", () => {
     expect(() =>
-      runPlugin(() => {}, {
-        parameter: "unknown=bar",
-      }),
+      runPlugin(
+        () => {
+          //
+        },
+        {
+          parameter: "unknown=bar",
+        },
+      ),
     ).toThrowError(/^invalid option "unknown=bar"$/);
   });
 });

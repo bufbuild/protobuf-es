@@ -547,7 +547,7 @@ type descFieldMap =
   | (descFieldMapEnum & descFieldMapCommon)
   | (descFieldMapMessage & descFieldMapCommon);
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 type descFieldMapCommon<T extends ScalarType = ScalarType> = T extends Exclude<ScalarType, ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES> ? {
   readonly fieldKind: "map";
   /**

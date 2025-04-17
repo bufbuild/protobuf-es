@@ -16,7 +16,7 @@ import { describe, expect, test } from "@jest/globals";
 import { createTestPluginAndRun } from "./helpers.js";
 
 describe("GeneratedFile.runtime", () => {
-  test("should provide import symbols", async function () {
+  test("should provide import symbols", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",

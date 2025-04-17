@@ -58,10 +58,10 @@ export function makeFilePreamble(
   }
   switch (file.edition) {
     case Edition.EDITION_PROTO2:
-      builder.push(`syntax proto2)\n`);
+      builder.push("syntax proto2)\n");
       break;
     case Edition.EDITION_PROTO3:
-      builder.push(`syntax proto3)\n`);
+      builder.push("syntax proto3)\n");
       break;
     default: {
       const editionString = Edition[file.edition] as string | undefined;
@@ -69,7 +69,7 @@ export function makeFilePreamble(
         const e = editionString.replace("EDITION_", "").toLowerCase();
         builder.push(`edition ${e})\n`);
       } else {
-        builder.push(`unknown edition\n`);
+        builder.push("unknown edition\n");
       }
       break;
     }

@@ -23,27 +23,27 @@ import {
 } from "@bufbuild/protobuf/wire";
 import { create, toBinary } from "@bufbuild/protobuf";
 import { TestAllTypesProto3Schema } from "../gen/ts/google/protobuf/test_messages_proto3_pb.js";
-import { join } from "path";
-import { tmpdir } from "os";
-import { createReadStream, createWriteStream } from "fs";
+import { join } from "node:path";
+import { tmpdir } from "node:os";
+import { createReadStream, createWriteStream } from "node:fs";
 
 describe("sizeDelimitedEncode()", () => {
   const desc = TestAllTypesProto3Schema;
   const msg = create(desc, {
     optionalBool: true,
   });
-  it("should store length as varint", function () {
+  it("should store length as varint", () => {
     const bytes = sizeDelimitedEncode(desc, msg);
     const reader = new BinaryReader(bytes);
     const storedLength = reader.uint32();
     expect(storedLength).toBe(toBinary(desc, msg).byteLength);
   });
-  it("should store serialized message", function () {
+  it("should store serialized message", () => {
     const bytes = sizeDelimitedEncode(desc, msg);
     const storeMessageBytes = new BinaryReader(bytes).bytes();
     expect(storeMessageBytes).toStrictEqual(toBinary(desc, msg));
   });
-  it("should not store extra bytes", function () {
+  it("should not store extra bytes", () => {
     const bytes = sizeDelimitedEncode(desc, msg);
     const reader = new BinaryReader(bytes);
     reader.skip(WireType.LengthDelimited);
@@ -52,7 +52,7 @@ describe("sizeDelimitedEncode()", () => {
 });
 
 describe("sizeDelimitedDecodeStream()", () => {
-  describe("with async generator", function () {
+  describe("with async generator", () => {
     const desc = TestAllTypesProto3Schema;
     const testMessages = [
       create(desc, {
@@ -78,7 +78,7 @@ describe("sizeDelimitedDecodeStream()", () => {
         }
       }
     }
-    it("should decode stream", async function () {
+    it("should decode stream", async () => {
       const stream = createAsyncIterableBytes(
         new BinaryWriter()
           .bytes(toBinary(desc, testMessages[0]))
@@ -93,8 +93,8 @@ describe("sizeDelimitedDecodeStream()", () => {
       expect(i).toBe(2);
     });
   });
-  describe("with Node.js APIS", function () {
-    it("should decode stream", async function () {
+  describe("with Node.js APIS", () => {
+    it("should decode stream", async () => {
       const desc = TestAllTypesProto3Schema;
       const testMessages = [
         create(desc, {
@@ -126,38 +126,38 @@ describe("sizeDelimitedDecodeStream()", () => {
 describe("sizeDelimitedPeek()", () => {
   describe.each([0, 1, 2, 4, 8, 16, 32, 64, 0xffffffff])(
     "with just a size",
-    function (size: number) {
+    (size: number) => {
       const bytes = new BinaryWriter().uint32(size).finish();
-      it("should return EOF", function () {
+      it("should return EOF", () => {
         const got = sizeDelimitedPeek(bytes);
         expect(got.size).toBe(size);
       });
-      it("should return expected offset", function () {
+      it("should return expected offset", () => {
         const got = sizeDelimitedPeek(bytes);
         expect(got.offset).toBe(bytes.byteLength);
       });
     },
   );
-  describe("with incomplete varint", function () {
+  describe("with incomplete varint", () => {
     const complete = new BinaryWriter().uint32(0xffffffff).finish(); // uint32 max is 5 bytes as varint
-    it.each([0, 1, 2, 3, 4])("should return EOF for %s", function (x) {
+    it.each([0, 1, 2, 3, 4])("should return EOF for %s", (x) => {
       const bytes = complete.slice(0, x);
       const got = sizeDelimitedPeek(bytes);
       expect(got.eof).toBeTruthy();
     });
   });
-  describe("with invalid varint", function () {
+  describe("with invalid varint", () => {
     const invalid = new Uint8Array([
       0xde, 0xad, 0xbe, 0xef, 0xde, 0xad, 0xbe, 0xef, 0xde, 0xad,
     ]);
-    it("should raise error", function () {
+    it("should raise error", () => {
       expect(() => sizeDelimitedPeek(invalid)).toThrowError({
         name: "Error",
         message: "invalid varint",
       });
     });
   });
-  describe("with size and message", function () {
+  describe("with size and message", () => {
     const desc = TestAllTypesProto3Schema;
     const msg = create(desc, {
       optionalBool: true,
@@ -167,11 +167,11 @@ describe("sizeDelimitedPeek()", () => {
       .uint32(msgBytes.byteLength)
       .raw(msgBytes)
       .finish();
-    it("should return size", function () {
+    it("should return size", () => {
       const got = sizeDelimitedPeek(bytes);
       expect(got.size).toBe(msgBytes.byteLength);
     });
-    it("should return expected offset", function () {
+    it("should return expected offset", () => {
       const got = sizeDelimitedPeek(bytes);
       expect(got.offset).toBe(bytes.byteLength - msgBytes.byteLength);
     });

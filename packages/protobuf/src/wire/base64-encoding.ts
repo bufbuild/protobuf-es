@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* eslint-disable @typescript-eslint/ban-ts-comment, @typescript-eslint/no-unnecessary-condition, prefer-const */
-
 /**
  * Decodes a base64 string to a byte array.
  *
@@ -35,7 +33,7 @@ export function base64Decode(base64Str: string) {
   let bytes = new Uint8Array(es),
     bytePos = 0, // position in byte array
     groupPos = 0, // position in base64 group
-    b, // current byte
+    b: number, // current byte
     p = 0; // previous byte
   for (let i = 0; i < base64Str.length; i++) {
     b = table[base64Str.charCodeAt(i)];
@@ -44,7 +42,6 @@ export function base64Decode(base64Str: string) {
         // @ts-expect-error TS7029: Fallthrough case in switch
         case "=":
           groupPos = 0; // reset state when padding found
-        // eslint-disable-next-line no-fallthrough
         case "\n":
         case "\r":
         case "\t":
@@ -97,7 +94,7 @@ export function base64Encode(
   const pad = encoding == "std";
   let base64 = "",
     groupPos = 0, // position in base64 group
-    b, // current byte
+    b: number, // current byte
     p = 0; // carry over from previous byte
 
   for (let i = 0; i < bytes.length; i++) {
@@ -148,7 +145,10 @@ function getEncodeTable(encoding: "std" | "std_raw" | "url"): string[] {
       );
     encodeTableUrl = encodeTableStd.slice(0, -2).concat("-", "_");
   }
-  return encoding == "url" ? encodeTableUrl! : encodeTableStd;
+  return encoding == "url"
+    ? // biome-ignore lint/style/noNonNullAssertion: TS fails to narrow down
+      encodeTableUrl!
+    : encodeTableStd;
 }
 
 function getDecodeTable(): Record<number, number> {

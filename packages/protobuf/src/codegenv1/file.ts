@@ -31,6 +31,6 @@ export function fileDesc(b64: string, imports?: DescFile[]): DescFile {
   const reg = createFileRegistry(root, (protoFileName) =>
     imports?.find((f) => f.proto.name === protoFileName),
   );
-  // non-null assertion because we just created the registry from the file we look up
+  // biome-ignore lint/style/noNonNullAssertion: non-null assertion because we just created the registry from the file we look up
   return reg.getFile(root.name)!;
 }

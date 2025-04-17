@@ -98,7 +98,7 @@ describe("npm package 'long'", () => {
   });
 });
 
-describe("protoInt64", function () {
+describe("protoInt64", () => {
   describe("parse()", () => {
     for (const [k] of Object.entries(SIGNED)) {
       test(`should parse string ${k}`, () => {

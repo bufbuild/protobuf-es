@@ -221,7 +221,8 @@ function reasonSingular(
     typeof details == "string" ? `: ${details}` : `, got ${formatVal(val)}`;
   if (field.scalar !== undefined) {
     return `expected ${scalarTypeDescription(field.scalar)}` + details;
-  } else if (field.enum !== undefined) {
+  }
+  if (field.enum !== undefined) {
     return `expected ${field.enum.toString()}` + details;
   }
   return `expected ${formatReflectMessage(field.message)}` + details;

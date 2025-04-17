@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { createReadStream, existsSync } from "fs";
+import { createReadStream, existsSync } from "node:fs";
 import * as process from "node:process";
 import { sizeDelimitedDecodeStream } from "@bufbuild/protobuf/wire";
 import { UserSchema } from "./gen/example_pb.js";

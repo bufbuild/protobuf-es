@@ -201,11 +201,13 @@ export declare const EnumWithCommentsSchema: GenEnum<EnumWithComments>;
 export enum DeprecatedEnumWithComment {
   /**
    * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_A = 0;
+   * @deprecated
    */
   A = 0,
 
   /**
    * @generated from enum value: DEPRECATED_ENUM_WITH_COMMENT_B = 1;
+   * @deprecated
    */
   B = 1,
 }
@@ -223,11 +225,13 @@ export declare const DeprecatedEnumWithCommentSchema: GenEnum<DeprecatedEnumWith
 export enum DeprecatedEnumNoComment {
   /**
    * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_A = 0;
+   * @deprecated
    */
   A = 0,
 
   /**
    * @generated from enum value: DEPRECATED_ENUM_NO_COMMENT_B = 1;
+   * @deprecated
    */
   B = 1,
 }

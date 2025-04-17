@@ -18,7 +18,7 @@ import { ScalarType } from "../descriptors.js";
 /**
  * ScalarValue maps from a scalar field type to a TypeScript value type.
  */
-// prettier-ignore
+// biome-ignore format: want this to read well
 export type ScalarValue<
   T = ScalarType,
   LongAsString extends boolean = false,
@@ -68,7 +68,6 @@ export function scalarEquals(
     return true;
   }
   // Special case 64-bit integers - we support number, string and bigint representation.
-  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (type) {
     case ScalarType.UINT64:
     case ScalarType.FIXED64:
@@ -95,10 +94,6 @@ export function scalarZeroValue<
       return "" as ScalarValue<T, LongAsString>;
     case ScalarType.BOOL:
       return false as ScalarValue<T, LongAsString>;
-    default:
-      // Handles INT32, UINT32, SINT32, FIXED32, SFIXED32.
-      // We do not use individual cases to save a few bytes code size.
-      return 0 as ScalarValue<T, LongAsString>;
     case ScalarType.DOUBLE:
     case ScalarType.FLOAT:
       return 0.0 as ScalarValue<T, LongAsString>;
@@ -113,6 +108,10 @@ export function scalarZeroValue<
       >;
     case ScalarType.BYTES:
       return new Uint8Array(0) as ScalarValue<T, LongAsString>;
+    default:
+      // Handles INT32, UINT32, SINT32, FIXED32, SFIXED32.
+      // We do not use individual cases to save a few bytes code size.
+      return 0 as ScalarValue<T, LongAsString>;
   }
 }
 

@@ -231,8 +231,8 @@ function unknownEquals(
     return false;
   }
   for (let i = 0; i < unknownA.length; i++) {
-    const a = unknownA[i],
-      b = unknownB[i];
+    const a = unknownA[i];
+    const b = unknownB[i];
     if (a.no != b.no) {
       return false;
     }

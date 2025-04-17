@@ -51,8 +51,6 @@ import { base64Encode } from "./wire/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
 import { checkField, formatVal } from "./reflect/reflect-check.js";
 
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
 const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
 
@@ -346,7 +344,7 @@ function scalarToJson(
           `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
         );
       }
-      if (isNaN(value)) return "NaN";
+      if (Number.isNaN(value)) return "NaN";
       if (value === Number.POSITIVE_INFINITY) return "Infinity";
       if (value === Number.NEGATIVE_INFINITY) return "-Infinity";
       return value;
@@ -490,7 +488,6 @@ function durationToJson(val: Duration) {
 function fieldMaskToJson(val: FieldMask) {
   return val.paths
     .map((p) => {
-      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
       if (p.match(/_[0-9]?_/g) || p.match(/[A-Z]/g)) {
         throw new Error(
           `cannot encode message ${val.$typeName} to JSON: lowerCamelCase of path name "` +

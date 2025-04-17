@@ -247,7 +247,7 @@ export function getDeclarationString(
     protoOptions !== undefined &&
     isFieldSet(protoOptions, FieldOptionsSchema.field.deprecated)
   ) {
-    options.push(`deprecated = true`);
+    options.push("deprecated = true");
   }
   options.push(...getFeatureOptionStrings(desc));
   if (options.length > 0) {

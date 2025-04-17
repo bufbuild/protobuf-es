@@ -15,8 +15,6 @@
 import { type DescEnum, ScalarType } from "../descriptors.js";
 import { protoInt64 } from "../proto-int64.js";
 
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-
 /**
  * Parse an enum value from the Protobuf text format.
  *
@@ -149,7 +147,7 @@ function unescapeBytesDefaultValue(str: string): Uint8Array | false {
                 return false;
               }
               const n = parseInt(s + t, 8);
-              if (isNaN(n)) {
+              if (Number.isNaN(n)) {
                 return false;
               }
               b.push(n);
@@ -162,7 +160,7 @@ function unescapeBytesDefaultValue(str: string): Uint8Array | false {
                 return false;
               }
               const n = parseInt(s + t, 16);
-              if (isNaN(n)) {
+              if (Number.isNaN(n)) {
                 return false;
               }
               b.push(n);
@@ -175,7 +173,7 @@ function unescapeBytesDefaultValue(str: string): Uint8Array | false {
                 return false;
               }
               const n = parseInt(s + t, 16);
-              if (isNaN(n)) {
+              if (Number.isNaN(n)) {
                 return false;
               }
               const chunk = new Uint8Array(4);

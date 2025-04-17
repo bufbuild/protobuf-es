@@ -34,8 +34,8 @@ describe("BinaryWriter", () => {
   describe("float32()", () => {
     it.each([
       1024,
-      3.142,
-      -3.142,
+      3.14,
+      -3.14,
       -1024,
       Number.POSITIVE_INFINITY,
       Number.NEGATIVE_INFINITY,
@@ -89,7 +89,7 @@ describe("BinaryWriter", () => {
       // @ts-expect-error TS2345
       expect(() => new BinaryWriter()[type](val)).toThrow(err);
     });
-    it.each([0x7fffffff + 1, -0x80000000 - 1, 3.142])(
+    it.each([0x7fffffff + 1, -0x80000000 - 1, 3.14])(
       "should error for value out of range %s",
       (val) => {
         expect(() => new BinaryWriter()[type](val)).toThrow(
@@ -121,7 +121,7 @@ describe("BinaryWriter", () => {
       // @ts-expect-error TS2345
       expect(() => new BinaryWriter()[type](val)).toThrow(err);
     });
-    it.each([0xffffffff + 1, -1, 3.142])(
+    it.each([0xffffffff + 1, -1, 3.14])(
       "should error for value out of range %s",
       (val) => {
         expect(() => new BinaryWriter()[type](val)).toThrow(

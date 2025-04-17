@@ -38,7 +38,7 @@ export const wktPublicImportPaths: Readonly<Record<string, string>> = {
 /**
  * @private
  */
-// prettier-ignore
+// biome-ignore format: want this to read well
 export const symbols = {
   isMessage:           {typeOnly: false, bootstrapWktFrom: "../../is-message.js",           from: packageName },
   Message:             {typeOnly: true,  bootstrapWktFrom: "../../types.js",                from: packageName },

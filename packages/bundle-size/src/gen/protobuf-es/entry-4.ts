@@ -18,7 +18,6 @@ import { QuaternionSchema } from "./google/type/quaternion_pb";
 import { PostalAddressSchema } from "./google/type/postal_address_pb";
 import { PhoneNumberSchema } from "./google/type/phone_number_pb";
 
-/* eslint-disable no-console */
 
 // google/type/timeofday.proto
 console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);

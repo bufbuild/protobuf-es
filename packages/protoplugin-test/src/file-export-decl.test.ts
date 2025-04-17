@@ -41,9 +41,9 @@ describe("GeneratedFile.export", () => {
     });
     expect(lines).toStrictEqual([
       `import { Foo as Foo$1 } from "pkg";`,
-      ``,
-      `Foo$1`,
-      `export const Foo = 123;`,
+      "",
+      "Foo$1",
+      "export const Foo = 123;",
     ]);
   });
 
