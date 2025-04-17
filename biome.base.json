@@ -7,12 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": [
-      "tsconfig.json",
-      "tsconfig.*.json",
-      "src/gen/**",
-      "packages/*/dist/**"
-    ]
+    "ignore": ["tsconfig.*.json", "src/gen/**", "packages/*/dist/**"]
   },
   "formatter": {
     "indentStyle": "space"
