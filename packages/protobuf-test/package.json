@@ -28,7 +28,7 @@
     "default": "./dist/esm/index.js"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "1.10.0",
+    "@bufbuild/protobuf": "1.10.1",
     "@types/benchmark": "^2.1.5",
     "0x": "^5.7.0",
     "benchmark": "^2.1.4",
