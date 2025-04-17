@@ -25,6 +25,8 @@ import { JSTypeStringMessage as TS_JSTypeStringMessage } from "./gen/ts/extra/js
 import { JSTypeStringMessage as JS_JSTypeStringMessage } from "./gen/js/extra/jstype_pb.js";
 import { JSTypeProto2StringMessage as TS_JSTypeProto2StringMessage } from "./gen/ts/extra/jstype-proto2_pb.js";
 import { JSTypeProto2StringMessage as JS_JSTypeProto2StringMessage } from "./gen/js/extra/jstype-proto2_pb.js";
+import { WrappersMessage as TS_WrappersMessage } from "./gen/ts/extra/wkt-wrappers_pb.js";
+import { WrappersMessage as JS_WrappersMessage } from "./gen/js/extra/wkt-wrappers_pb.js";
 import { describeMT } from "./helpers.js";
 
 describe("equals", function () {
@@ -317,4 +319,29 @@ describe("equals", function () {
       ).toBeFalsy();
     });
   });
+
+  describeMT(
+    { ts: TS_WrappersMessage, js: JS_WrappersMessage },
+    (messageType) => {
+      let a: TS_WrappersMessage | JS_WrappersMessage,
+        b: TS_WrappersMessage | JS_WrappersMessage;
+      beforeEach(() => {
+        a = new messageType({
+          stringValueField: "abc",
+        });
+        b = new messageType({
+          stringValueField: "abc",
+        });
+      });
+      test("same are equal", () => {
+        expect(a).toStrictEqual(b);
+        expect(a.equals(b)).toBeTruthy();
+      });
+      test("changed are not equal", () => {
+        a.stringValueField = "cba";
+        expect(a).not.toStrictEqual(b);
+        expect(a.equals(b)).toBeFalsy();
+      });
+    },
+  );
 });
