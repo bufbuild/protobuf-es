@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 jobs:
   ci:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18, 20]
@@ -30,7 +30,7 @@ jobs:
       - name: make
         run: make ci
   typescript-compat:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
