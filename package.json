@@ -20,9 +20,9 @@
     "setversion": "node scripts/set-workspace-version.js",
     "postsetversion": "npm run all",
     "release": "npm run all && node scripts/release.js",
-    "format": "biome format --write --config-path biome.root.json",
+    "format": "biome format --write --config-path biome.json",
     "license-header": "license-header --ignore 'packages/**'",
-    "lint": "biome lint --error-on-warnings --config-path biome.root.json"
+    "lint": "biome lint --error-on-warnings --config-path biome.json"
   },
   "type": "module",
   "engineStrict": true,
