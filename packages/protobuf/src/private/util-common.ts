@@ -162,7 +162,17 @@ export function makeUtilCommon(): Omit<Util, "newFieldList" | "initFields"> {
         }
         switch (m.kind) {
           case "message":
-            return m.T.equals(va, vb);
+            let a = va;
+            let b = vb;
+            if (m.T.fieldWrapper) {
+              if (a !== undefined && !isMessage(a)) {
+                a = m.T.fieldWrapper.wrapField(a);
+              }
+              if (b !== undefined && !isMessage(b)) {
+                b = m.T.fieldWrapper.wrapField(b);
+              }
+            }
+            return m.T.equals(a, b);
           case "enum":
             return scalarEquals(ScalarType.INT32, va, vb);
           case "scalar":
