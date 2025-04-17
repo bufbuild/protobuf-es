@@ -151,9 +151,7 @@ export class BinaryWriter {
     const tmp: number[] = [];
     varint32write(len, tmp);
     this.ensureCapacity(tmp.length);
-    for (let i = this.pos - 1; i >= forkPos; i--) {
-      this.buffer[i + tmp.length] = this.buffer[i];
-    }
+    this.buffer.copyWithin(forkPos + tmp.length, forkPos, this.pos);
     for (let i = 0; i < tmp.length; i++) {
       this.buffer[forkPos + i] = tmp[i];
     }
