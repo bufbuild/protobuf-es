@@ -289,6 +289,10 @@ const decimalFrom1e7WithLeadingZeros = (digit1e7: number) => {
  * See https://github.com/protocolbuffers/protobuf/blob/1b18833f4f2a2f681f4e4a25cdf3b0a43115ec26/js/binary/encoder.js#L144
  */
 export function varint32write(value: number, bytes: number[]): void {
+  if (value >>> 0 < 0x80) {
+    bytes.push(value);
+    return;
+  }
   if (value >= 0) {
     // write value as varint 32
     while (value > 0x7f) {
@@ -312,45 +316,36 @@ export function varint32write(value: number, bytes: number[]): void {
  */
 export function varint32read<T extends ReaderLike>(this: T): number {
   let b = this.buf[this.pos++];
-  let result = b & 0x7f;
-  if ((b & 0x80) == 0) {
+  if ((b & 0x80) === 0) {
     this.assertBounds();
-    return result;
+    return b;
   }
-
+  let result = b & 0x7f;
   b = this.buf[this.pos++];
   result |= (b & 0x7f) << 7;
-  if ((b & 0x80) == 0) {
+  if ((b & 0x80) === 0) {
     this.assertBounds();
     return result;
   }
-
   b = this.buf[this.pos++];
   result |= (b & 0x7f) << 14;
-  if ((b & 0x80) == 0) {
+  if ((b & 0x80) === 0) {
     this.assertBounds();
     return result;
   }
-
   b = this.buf[this.pos++];
   result |= (b & 0x7f) << 21;
-  if ((b & 0x80) == 0) {
+  if ((b & 0x80) === 0) {
     this.assertBounds();
     return result;
   }
-
   // Extract only last 4 bits
   b = this.buf[this.pos++];
   result |= (b & 0x0f) << 28;
-
   for (let readBytes = 5; (b & 0x80) !== 0 && readBytes < 10; readBytes++)
     b = this.buf[this.pos++];
-
-  if ((b & 0x80) != 0) throw new Error("invalid varint");
-
+  if ((b & 0x80) !== 0) throw new Error("invalid varint");
   this.assertBounds();
-
-  // Result can have 32 bits, convert it to unsigned
   return result >>> 0;
 }
 

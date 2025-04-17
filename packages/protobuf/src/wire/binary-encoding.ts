@@ -96,59 +96,39 @@ export const INT32_MAX = 0x7fffffff;
 export const INT32_MIN = -0x80000000;
 
 export class BinaryWriter {
-  /**
-   * We cannot allocate a buffer for the entire output
-   * because we don't know it's size.
-   *
-   * So we collect smaller chunks of known size and
-   * concat them later.
-   *
-   * Use `raw()` to push data to this array. It will flush
-   * `buf` first.
-   */
-  private chunks: Uint8Array[];
-
-  /**
-   * A growing buffer for byte values. If you don't know
-   * the size of the data you are writing, push to this
-   * array.
-   */
-  protected buf: number[];
-
-  /**
-   * Previous fork states.
-   */
-  private stack: Array<{ chunks: Uint8Array[]; buf: number[] }> = [];
-
+  private buffer: Uint8Array;
+  private pos: number;
+  private stackPos: number[] = [];
+  private readonly initialSize = 128;
   constructor(
     private readonly encodeUtf8: (
       text: string,
     ) => Uint8Array = getTextEncoding().encodeUtf8,
   ) {
-    this.chunks = [];
-    this.buf = [];
+    this.buffer = new Uint8Array(this.initialSize);
+    this.pos = 0;
   }
 
+  private ensureCapacity(size: number) {
+    if (this.buffer.length - this.pos < size) {
+      let newLen = this.buffer.length;
+      while (newLen - this.pos < size) newLen *= 2;
+      const newBuf = new Uint8Array(newLen);
+      newBuf.set(this.buffer.subarray(0, this.pos));
+      this.buffer = newBuf;
+    }
+  }
   /**
    * Return all bytes written and reset this writer.
    */
   finish(): Uint8Array {
-    if (this.buf.length) {
-      this.chunks.push(new Uint8Array(this.buf)); // flush the buffer
-      this.buf = [];
-    }
-    let len = 0;
-    for (let i = 0; i < this.chunks.length; i++) len += this.chunks[i].length;
-    let bytes = new Uint8Array(len);
-    let offset = 0;
-    for (let i = 0; i < this.chunks.length; i++) {
-      bytes.set(this.chunks[i], offset);
-      offset += this.chunks[i].length;
-    }
-    this.chunks = [];
-    return bytes;
+    const out = this.buffer.subarray(0, this.pos);
+    // Return a copy to avoid mutation if writer is reused
+    const result = new Uint8Array(out);
+    this.pos = 0;
+    this.stackPos = [];
+    return result;
   }
-
   /**
    * Start a new fork for length-delimited data like a message
    * or a packed repeated field.
@@ -156,143 +136,147 @@ export class BinaryWriter {
    * Must be joined later with `join()`.
    */
   fork(): this {
-    this.stack.push({ chunks: this.chunks, buf: this.buf });
-    this.chunks = [];
-    this.buf = [];
+    this.stackPos.push(this.pos);
     return this;
   }
-
   /**
    * Join the last fork. Write its length and bytes, then
    * return to the previous state.
    */
   join(): this {
-    // get chunk of fork
-    let chunk = this.finish();
-
-    // restore previous state
-    let prev = this.stack.pop();
-    if (!prev) throw new Error("invalid state, fork stack empty");
-    this.chunks = prev.chunks;
-    this.buf = prev.buf;
-
-    // write length of chunk as varint
-    this.uint32(chunk.byteLength);
-    return this.raw(chunk);
+    const forkPos = this.stackPos.pop();
+    if (forkPos === undefined)
+      throw new Error("invalid state, fork stack empty");
+    const len = this.pos - forkPos;
+    const tmp: number[] = [];
+    varint32write(len, tmp);
+    this.ensureCapacity(tmp.length);
+    this.buffer.copyWithin(forkPos + tmp.length, forkPos, this.pos);
+    for (let i = 0; i < tmp.length; i++) {
+      this.buffer[forkPos + i] = tmp[i];
+    }
+    this.pos += tmp.length;
+    return this;
   }
 
-  /**
-   * Writes a tag (field number and wire type).
-   *
-   * Equivalent to `uint32( (fieldNo << 3 | type) >>> 0 )`.
-   *
-   * Generated code should compute the tag ahead of time and call `uint32()`.
-   */
   tag(fieldNo: number, type: WireType): this {
     return this.uint32(((fieldNo << 3) | type) >>> 0);
   }
-
   /**
    * Write a chunk of raw bytes.
    */
   raw(chunk: Uint8Array): this {
-    if (this.buf.length) {
-      this.chunks.push(new Uint8Array(this.buf));
-      this.buf = [];
-    }
-    this.chunks.push(chunk);
+    this.ensureCapacity(chunk.length);
+    this.buffer.set(chunk, this.pos);
+    this.pos += chunk.length;
     return this;
   }
-
   /**
    * Write a `uint32` value, an unsigned 32 bit varint.
    */
   uint32(value: number): this {
     assertUInt32(value);
-
-    // write value as varint 32, inlined for speed
-    while (value > 0x7f) {
-      this.buf.push((value & 0x7f) | 0x80);
-      value = value >>> 7;
+    // Unrolled for single-byte varints
+    if (value < 0x80) {
+      this.ensureCapacity(1);
+      this.buffer[this.pos++] = value;
+      return this;
     }
-    this.buf.push(value);
-
+    let tmp = value;
+    while (tmp > 0x7f) {
+      this.ensureCapacity(1);
+      this.buffer[this.pos++] = (tmp & 0x7f) | 0x80;
+      tmp >>>= 7;
+    }
+    this.ensureCapacity(1);
+    this.buffer[this.pos++] = tmp;
     return this;
   }
 
-  /**
-   * Write a `int32` value, a signed 32 bit varint.
-   */
   int32(value: number): this {
     assertInt32(value);
-    varint32write(value, this.buf);
+    // Use varint32write for correct negative encoding
+    const varintBytes: number[] = [];
+    varint32write(value, varintBytes);
+    this.raw(Uint8Array.from(varintBytes));
     return this;
   }
-
   /**
    * Write a `bool` value, a variant.
    */
   bool(value: boolean): this {
-    this.buf.push(value ? 1 : 0);
+    this.ensureCapacity(1);
+    this.buffer[this.pos++] = value ? 1 : 0;
     return this;
   }
-
   /**
    * Write a `bytes` value, length-delimited arbitrary data.
    */
   bytes(value: Uint8Array): this {
-    this.uint32(value.byteLength); // write length of chunk as varint
+    this.uint32(value.byteLength);
     return this.raw(value);
   }
-
   /**
    * Write a `string` value, length-delimited data converted to UTF-8 text.
    */
   string(value: string): this {
     let chunk = this.encodeUtf8(value);
-    this.uint32(chunk.byteLength); // write length of chunk as varint
+    this.uint32(chunk.byteLength);
     return this.raw(chunk);
   }
 
-  /**
-   * Write a `float` value, 32-bit floating point number.
-   */
   float(value: number): this {
     assertFloat32(value);
-    let chunk = new Uint8Array(4);
-    new DataView(chunk.buffer).setFloat32(0, value, true);
-    return this.raw(chunk);
+    this.ensureCapacity(4);
+    new DataView(
+      this.buffer.buffer,
+      this.buffer.byteOffset,
+      this.buffer.byteLength,
+    ).setFloat32(this.pos, value, true);
+    this.pos += 4;
+    return this;
   }
-
   /**
    * Write a `double` value, a 64-bit floating point number.
    */
   double(value: number): this {
-    let chunk = new Uint8Array(8);
-    new DataView(chunk.buffer).setFloat64(0, value, true);
-    return this.raw(chunk);
+    this.ensureCapacity(8);
+    new DataView(
+      this.buffer.buffer,
+      this.buffer.byteOffset,
+      this.buffer.byteLength,
+    ).setFloat64(this.pos, value, true);
+    this.pos += 8;
+    return this;
   }
-
   /**
    * Write a `fixed32` value, an unsigned, fixed-length 32-bit integer.
    */
   fixed32(value: number): this {
     assertUInt32(value);
-    let chunk = new Uint8Array(4);
-    new DataView(chunk.buffer).setUint32(0, value, true);
-    return this.raw(chunk);
+    this.ensureCapacity(4);
+    new DataView(
+      this.buffer.buffer,
+      this.buffer.byteOffset,
+      this.buffer.byteLength,
+    ).setUint32(this.pos, value, true);
+    this.pos += 4;
+    return this;
   }
-
   /**
    * Write a `sfixed32` value, a signed, fixed-length 32-bit integer.
    */
   sfixed32(value: number): this {
     assertInt32(value);
-    let chunk = new Uint8Array(4);
-    new DataView(chunk.buffer).setInt32(0, value, true);
-    return this.raw(chunk);
+    this.ensureCapacity(4);
+    new DataView(
+      this.buffer.buffer,
+      this.buffer.byteOffset,
+      this.buffer.byteLength,
+    ).setInt32(this.pos, value, true);
+    this.pos += 4;
+    return this;
   }
-
   /**
    * Write a `sint32` value, a signed, zigzag-encoded 32-bit varint.
    */
@@ -300,62 +284,64 @@ export class BinaryWriter {
     assertInt32(value);
     // zigzag encode
     value = ((value << 1) ^ (value >> 31)) >>> 0;
-    varint32write(value, this.buf);
+    const tmp: number[] = [];
+    varint32write(value, tmp);
+    this.raw(Uint8Array.from(tmp));
     return this;
   }
-
   /**
    * Write a `fixed64` value, a signed, fixed-length 64-bit integer.
    */
   sfixed64(value: string | number | bigint): this {
     let chunk = new Uint8Array(8),
-      view = new DataView(chunk.buffer),
-      tc = protoInt64.enc(value);
+      view = new DataView(chunk.buffer);
+    const tc = protoInt64.enc(value);
     view.setInt32(0, tc.lo, true);
     view.setInt32(4, tc.hi, true);
     return this.raw(chunk);
   }
-
   /**
    * Write a `fixed64` value, an unsigned, fixed-length 64 bit integer.
    */
   fixed64(value: string | number | bigint): this {
     let chunk = new Uint8Array(8),
-      view = new DataView(chunk.buffer),
-      tc = protoInt64.uEnc(value);
+      view = new DataView(chunk.buffer);
+    const tc = protoInt64.uEnc(value);
     view.setInt32(0, tc.lo, true);
     view.setInt32(4, tc.hi, true);
     return this.raw(chunk);
   }
-
   /**
    * Write a `int64` value, a signed 64-bit varint.
    */
   int64(value: string | number | bigint): this {
-    let tc = protoInt64.enc(value);
-    varint64write(tc.lo, tc.hi, this.buf);
+    const tc = protoInt64.enc(value);
+    const tmp: number[] = [];
+    varint64write(tc.lo, tc.hi, tmp);
+    this.raw(Uint8Array.from(tmp));
     return this;
   }
-
   /**
    * Write a `sint64` value, a signed, zig-zag-encoded 64-bit varint.
    */
   sint64(value: string | number | bigint): this {
-    let tc = protoInt64.enc(value),
-      // zigzag encode
+    const tc = protoInt64.enc(value),
       sign = tc.hi >> 31,
       lo = (tc.lo << 1) ^ sign,
       hi = ((tc.hi << 1) | (tc.lo >>> 31)) ^ sign;
-    varint64write(lo, hi, this.buf);
+    const tmp: number[] = [];
+    varint64write(lo, hi, tmp);
+    this.raw(Uint8Array.from(tmp));
     return this;
   }
-
   /**
    * Write a `uint64` value, an unsigned 64-bit varint.
    */
   uint64(value: string | number | bigint): this {
-    let tc = protoInt64.uEnc(value);
-    varint64write(tc.lo, tc.hi, this.buf);
+    const tc = protoInt64.uEnc(value);
+    const tmp: number[] = [];
+    varint64write(tc.lo, tc.hi, tmp);
+    this.raw(Uint8Array.from(tmp));
     return this;
   }
 }
