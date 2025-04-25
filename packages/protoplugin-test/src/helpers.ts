@@ -38,7 +38,7 @@ type PluginInit = Parameters<
   typeof createEcmaScriptPlugin<Record<string, never>>
 >[0];
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 type CreateTestPluginAndRunOptions<ReturnLinesOfFirstFile extends boolean | undefined> =
   {
     returnLinesOfFirstFile?: ReturnLinesOfFirstFile;

@@ -7,9 +7,9 @@
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza",
     "test": "tsx --test test/*.ts",
     "generate": "buf generate",
-    "format": "prettier --write --ignore-unknown '.' '!.turbo' '!src/gen/**'",
+    "format": "biome format --write",
     "license-header": "license-header",
-    "lint": "eslint --max-warnings 0 ."
+    "lint": "biome lint --error-on-warnings"
   },
   "license": "Apache-2.0",
   "dependencies": {

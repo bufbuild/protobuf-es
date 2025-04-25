@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* eslint-disable no-case-declarations,@typescript-eslint/restrict-template-expressions */
-
 import {
   type DescEnum,
   type DescExtension,
@@ -236,6 +234,7 @@ function readMessage(
       if (
         jsonKey.startsWith("[") &&
         jsonKey.endsWith("]") &&
+        // biome-ignore lint/suspicious/noAssignInExpressions: no
         (extension = opts.registry?.getExtension(
           jsonKey.substring(1, jsonKey.length - 1),
         )) &&
@@ -426,7 +425,6 @@ function readEnum(
     }
     return nullAsZeroValue ? desc.values[0].number : tokenNull;
   }
-  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (typeof json) {
     case "number":
       if (Number.isInteger(json)) {
@@ -487,7 +485,6 @@ function scalarFromJson(
   }
   // int64, sfixed64, sint64, fixed64, uint64: Reflect supports string and number.
   // string, bool: Supported by reflect.
-  // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
   switch (field.scalar) {
     // float, double: JSON value will be a number or one of the special string values "NaN", "Infinity", and "-Infinity".
     // Either numbers or strings are accepted. Exponent notation is also accepted.
@@ -497,11 +494,11 @@ function scalarFromJson(
       if (json === "Infinity") return Number.POSITIVE_INFINITY;
       if (json === "-Infinity") return Number.NEGATIVE_INFINITY;
       if (typeof json == "number") {
-        if (isNaN(json)) {
+        if (Number.isNaN(json)) {
           // NaN must be encoded with string constants
           throw new FieldError(field, "unexpected NaN number");
         }
-        if (!isFinite(json)) {
+        if (!Number.isFinite(json)) {
           // Infinity must be encoded with string constants
           throw new FieldError(field, "unexpected infinite number");
         }
@@ -517,7 +514,7 @@ function scalarFromJson(
           break;
         }
         const float = Number(json);
-        if (!isFinite(float)) {
+        if (!Number.isFinite(float)) {
           // Infinity and NaN must be encoded with string constants
           break;
         }
@@ -566,7 +563,6 @@ function mapKeyFromJson(
 ) {
   switch (type) {
     case ScalarType.BOOL:
-      // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
       switch (json) {
         case "true":
           return true;
@@ -701,10 +697,11 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
     typeName.startsWith("google.protobuf.") &&
     Object.prototype.hasOwnProperty.call(json, "value")
   ) {
-    const value = json["value"];
+    const value = json.value;
     readMessage(msg, value, opts);
   } else {
     const copy = Object.assign({}, json);
+    // biome-ignore lint/performance/noDelete: <explanation>
     delete copy["@type"];
     readMessage(msg, copy, opts);
   }
@@ -726,7 +723,7 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
     );
   }
   const ms = Date.parse(
-    //prettier-ignore
+    // biome-ignore format: want this to read well
     matches[1] + "-" + matches[2] + "-" + matches[3] + "T" + matches[4] + ":" + matches[5] + ":" + matches[6] + (matches[8] ? matches[8] : "Z"),
   );
   if (Number.isNaN(ms)) {

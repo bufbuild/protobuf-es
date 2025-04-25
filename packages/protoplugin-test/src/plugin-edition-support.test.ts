@@ -45,18 +45,22 @@ async function runPlugin(
     version: "v1",
     minimumEdition,
     maximumEdition,
-    generateTs: () => {},
-    generateJs: () => {},
-    generateDts: () => {},
+    generateTs: noop,
+    generateJs: noop,
+    generateDts: noop,
   });
   return plugin.run(req);
+}
+
+function noop() {
+  //
 }
 
 describe("editions support in plugins", () => {
   test("sets SUPPORTS_EDITIONS", async () => {
     const res = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
-      generateAny() {},
+      generateAny: noop,
     });
     const supportsEditions =
       (res.supportedFeatures &
@@ -67,7 +71,7 @@ describe("editions support in plugins", () => {
   test("sets supported edition range to @bufbuild/protobuf's supported range", async () => {
     const res = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
-      generateAny() {},
+      generateAny: noop,
     });
     expect(res.minimumEdition).toBe(minimumEdition);
     expect(res.maximumEdition).toBe(maximumEdition);
@@ -77,7 +81,7 @@ describe("editions support in plugins", () => {
       proto: `syntax="proto3";`,
       minimumEdition: Edition.EDITION_PROTO2,
       maximumEdition: Edition.EDITION_PROTO3,
-      generateAny() {},
+      generateAny: noop,
     });
     expect(res.minimumEdition).toBe(Edition.EDITION_PROTO2);
     expect(res.maximumEdition).toBe(Edition.EDITION_PROTO3);

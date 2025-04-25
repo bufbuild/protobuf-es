@@ -17,12 +17,13 @@ import { SayRequestSchema } from "./gen/connectrpc/eliza_pb";
 import { create } from "@bufbuild/protobuf";
 
 const client = new ElizaServiceClient();
-const input = document.querySelector("input")!;
-const conversationContainer = document.querySelector(
-  `#conversation-container`,
-)!;
+const input = document.querySelector("input");
+const conversationContainer = document.querySelector("#conversation-container");
+if (!input || !conversationContainer) {
+  throw new Error();
+}
 
-document.querySelector("form")!.addEventListener("submit", (event) => {
+document.querySelector("form")?.addEventListener("submit", (event) => {
   event.preventDefault();
   void send(input.value);
   input.value = "";
@@ -43,5 +44,5 @@ function addConversationPill(text: string, sender: string): void {
   const p = div.appendChild(document.createElement("p"));
   p.className = "resp-text";
   p.innerText = text;
-  conversationContainer.appendChild(div);
+  conversationContainer?.appendChild(div);
 }

@@ -17,7 +17,6 @@ import { Quaternion } from "./google/type/quaternion_pb";
 import { PostalAddress } from "./google/type/postal_address_pb";
 import { PhoneNumber } from "./google/type/phone_number_pb";
 
-/* eslint-disable no-console,@typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
 
 // google/type/timeofday.proto
 console.log(new TimeOfDay().serializeBinary().length);

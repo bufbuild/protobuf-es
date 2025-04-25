@@ -23,7 +23,7 @@ import {
 } from "@bufbuild/protobuf";
 import type { Timestamp, Duration } from "@bufbuild/protobuf/wkt";
 import type { Proto3Message, Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
-import { Proto3EnumSchema } from "./gen/ts/extra/proto3_pb.js";
+import type { Proto3EnumSchema } from "./gen/ts/extra/proto3_pb.js";
 import type { User } from "./gen/ts/extra/example_pb.js";
 import { UserSchema } from "./gen/ts/extra/example_pb.js";
 

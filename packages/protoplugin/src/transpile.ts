@@ -20,8 +20,6 @@ import {
   createVirtualCompilerHost,
 } from "@typescript/vfs";
 
-/* eslint-disable import/no-named-as-default-member */
-
 // The default options used to auto-transpile if needed.
 const defaultOptions: ts.CompilerOptions = {
   // Type checking
@@ -80,9 +78,9 @@ function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
     target: options.target,
   });
 
-  files.forEach((file) => {
+  for (const file of files) {
     fsMap.set(file.name, file.content);
-  });
+  }
 
   const system = createSystem(fsMap);
   const host = createVirtualCompilerHost(system, options, ts);

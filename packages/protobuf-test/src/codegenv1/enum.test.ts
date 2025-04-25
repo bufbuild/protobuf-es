@@ -28,8 +28,8 @@ describe("tsEnum()", () => {
     const e = tsEnum(descEnum);
     expect(e[0]).toBe("A");
     expect(e[1]).toBe("B");
-    expect(e["A"]).toBe(0);
-    expect(e["B"]).toBe(1);
+    expect(e.A).toBe(0);
+    expect(e.B).toBe(1);
     expect(e).toStrictEqual({
       0: "A",
       1: "B",
