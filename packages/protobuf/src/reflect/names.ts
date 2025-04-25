@@ -12,6 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import type { AnyDesc } from "../descriptors.js";
+
+/**
+ * Return a fully-qualified name for a Protobuf descriptor.
+ * For a file descriptor, return the original file path.
+ *
+ * See https://protobuf.com/docs/language-spec#fully-qualified-names
+ */
+export function qualifiedName(desc: AnyDesc) {
+  switch (desc.kind) {
+    case "field":
+    case "oneof":
+    case "rpc":
+      return desc.parent.typeName + "." + desc.name;
+    case "enum_value": {
+      const p = desc.parent.parent
+        ? desc.parent.parent.typeName
+        : desc.parent.file.proto.package;
+      return p + (p.length > 0 ? "." : "") + desc.name;
+    }
+    case "service":
+    case "message":
+    case "enum":
+    case "extension":
+      return desc.typeName;
+    case "file":
+      return desc.proto.name;
+  }
+}
+
 /**
  * Converts snake_case to protoCamelCase according to the convention
  * used by protoc to convert a field name to a JSON name.
