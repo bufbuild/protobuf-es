@@ -40,14 +40,21 @@ export type Message<TypeName extends string = string> = {
 /**
  * Extract the message type from a message descriptor.
  */
-export type MessageShape<Desc extends DescMessage> =
-  Desc extends GenMessage<infer RuntimeShape> ? RuntimeShape : Message;
+export type MessageShape<Desc extends DescMessage> = Desc extends GenMessage<
+  infer RuntimeShape
+>
+  ? RuntimeShape
+  : Message;
 
 /**
  * Extract the message JSON type from a message descriptor.
  */
-export type MessageJsonType<Desc extends DescMessage> =
-  Desc extends GenMessage<Message, infer JsonType> ? JsonType : JsonValue;
+export type MessageJsonType<Desc extends DescMessage> = Desc extends GenMessage<
+  Message,
+  infer JsonType
+>
+  ? JsonType
+  : JsonValue;
 
 /**
  * Extract the init type from a message descriptor.
@@ -61,14 +68,21 @@ export type MessageInitShape<Desc extends DescMessage> =
 /**
  * Extract the enum type of from an enum descriptor.
  */
-export type EnumShape<Desc extends DescEnum> =
-  Desc extends GenEnum<infer RuntimeShape> ? RuntimeShape : number;
+export type EnumShape<Desc extends DescEnum> = Desc extends GenEnum<
+  infer RuntimeShape
+>
+  ? RuntimeShape
+  : number;
 
 /**
  * Extract the enum JSON type from a enum descriptor.
  */
-export type EnumJsonType<Desc extends DescEnum> =
-  Desc extends GenEnum<number, infer JsonType> ? JsonType : string | null;
+export type EnumJsonType<Desc extends DescEnum> = Desc extends GenEnum<
+  number,
+  infer JsonType
+>
+  ? JsonType
+  : string | null;
 
 /**
  * Extract the value type from an extension descriptor.
@@ -81,8 +95,11 @@ export type ExtensionValueShape<Desc extends DescExtension> =
 /**
  * Extract the type of the extended message from an extension descriptor.
  */
-export type Extendee<Desc extends DescExtension> =
-  Desc extends GenExtension<infer Extendee> ? Extendee : Message;
+export type Extendee<Desc extends DescExtension> = Desc extends GenExtension<
+  infer Extendee
+>
+  ? Extendee
+  : Message;
 
 /**
  * Unknown fields are fields that were not recognized during parsing, or
@@ -141,14 +158,14 @@ export type DescMethodBiDiStreaming<
  * The init type for a message, which makes all fields optional.
  * The init type is accepted by the function create().
  */
-// prettier-ignore
+// biome-ignore format: want this to read well
 type MessageInit<T extends Message> = T | {
   [P in keyof T as P extends "$unknown" ? never : P]?: P extends "$typeName"
     ? never
     : FieldInit<T[P]>;
 };
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 type FieldInit<F> =
     F extends (Date | Uint8Array | bigint | boolean | string | number) ? F
   : F extends Array<infer U> ? Array<FieldInit<U>>

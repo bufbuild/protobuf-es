@@ -31,7 +31,7 @@ const protocGenTwirpEs = createEcmaScriptPlugin({
   parseOptions,
 });
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function generateTs(schema: Schema<PluginOptions>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_twirp.ts");

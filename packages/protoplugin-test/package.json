@@ -5,9 +5,9 @@
     "prebuild": "rm -rf ./dist/*",
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "format": "prettier --write --ignore-unknown '.' '!dist' '!.turbo'",
+    "format": "biome format --write",
     "license-header": "license-header",
-    "lint": "eslint --max-warnings 0 ."
+    "lint": "biome lint --error-on-warnings"
   },
   "type": "module",
   "dependencies": {

@@ -21,8 +21,6 @@ import {
 import { protoInt64 } from "../proto-int64.js";
 import { getTextEncoding } from "./text-encoding.js";
 
-/* eslint-disable prefer-const,no-case-declarations,@typescript-eslint/restrict-plus-operands */
-
 /**
  * Protobuf binary format wire types.
  *
@@ -341,7 +339,7 @@ export class BinaryWriter {
    * Write a `sint64` value, a signed, zig-zag-encoded 64-bit varint.
    */
   sint64(value: string | number | bigint): this {
-    let tc = protoInt64.enc(value),
+    const tc = protoInt64.enc(value),
       // zigzag encode
       sign = tc.hi >> 31,
       lo = (tc.lo << 1) ^ sign,
@@ -354,7 +352,7 @@ export class BinaryWriter {
    * Write a `uint64` value, an unsigned 64-bit varint.
    */
   uint64(value: string | number | bigint): this {
-    let tc = protoInt64.uEnc(value);
+    const tc = protoInt64.uEnc(value);
     varint64write(tc.lo, tc.hi, this.buf);
     return this;
   }
@@ -414,11 +412,9 @@ export class BinaryReader {
           // ignore
         }
         break;
-      // eslint-disable-next-line
       // @ts-expect-error TS7029: Fallthrough case in switch
       case WireType.Bit64:
         this.pos += 4;
-      // eslint-disable-next-line no-fallthrough
       case WireType.Bit32:
         this.pos += 4;
         break;
@@ -513,6 +509,7 @@ export class BinaryReader {
    * Read a `fixed32` field, an unsigned, fixed-length 32-bit integer.
    */
   fixed32(): number {
+    // biome-ignore lint/suspicious/noAssignInExpressions: no
     return this.view.getUint32((this.pos += 4) - 4, true);
   }
 
@@ -520,6 +517,7 @@ export class BinaryReader {
    * Read a `sfixed32` field, a signed, fixed-length 32-bit integer.
    */
   sfixed32(): number {
+    // biome-ignore lint/suspicious/noAssignInExpressions: no
     return this.view.getInt32((this.pos += 4) - 4, true);
   }
 
@@ -541,6 +539,7 @@ export class BinaryReader {
    * Read a `float` field, 32-bit floating point number.
    */
   float(): number {
+    // biome-ignore lint/suspicious/noAssignInExpressions: no
     return this.view.getFloat32((this.pos += 4) - 4, true);
   }
 
@@ -548,6 +547,7 @@ export class BinaryReader {
    * Read a `double` field, a 64-bit floating point number.
    */
   double(): number {
+    // biome-ignore lint/suspicious/noAssignInExpressions: no
     return this.view.getFloat64((this.pos += 8) - 8, true);
   }
 
@@ -611,7 +611,7 @@ function assertFloat32(arg: unknown): asserts arg is number {
   if (typeof arg == "string") {
     const o = arg;
     arg = Number(arg);
-    if (isNaN(arg as number) && o !== "NaN") {
+    if (Number.isNaN(arg as number) && o !== "NaN") {
       throw new Error("invalid float32: " + o);
     }
   } else if (typeof arg != "number") {

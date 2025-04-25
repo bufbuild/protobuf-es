@@ -70,7 +70,9 @@ describe("isFieldError()", () => {
   test("falsely returns true if the argument is close enough to a FieldError", () => {
     const err = new Error();
     err.name = "FieldValueInvalidError";
-    (err as unknown as Record<"field", () => unknown>).field = function () {};
+    (err as unknown as Record<"field", () => unknown>).field = () => {
+      //
+    };
     expect(isFieldError(err)).toBe(true);
   });
 });

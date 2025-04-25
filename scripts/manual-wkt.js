@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/* eslint-disable n/no-extraneous-import,n/no-missing-import */
-
 import { fromBinary } from "@bufbuild/protobuf";
 import { CodeGeneratorRequestSchema } from "@bufbuild/protobuf/wkt";
 import { nestedTypes } from "@bufbuild/protobuf/reflect";
@@ -59,8 +57,8 @@ createEcmaScriptPlugin({
     const files = schema.allFiles.filter((f) =>
       wktFiles.includes(f.proto.name),
     );
-    md.push(`| Protobuf file | Well-known types |`);
-    md.push(`| -------- | ----- |`);
+    md.push("| Protobuf file | Well-known types |");
+    md.push("| -------- | ----- |");
     for (const file of files) {
       const types = [];
       for (const type of nestedTypes(file)) {

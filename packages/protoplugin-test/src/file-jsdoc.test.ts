@@ -21,7 +21,7 @@ describe("GeneratedFile.jsDoc", () => {
       proto: `syntax="proto3";`,
       parameter: "target=ts",
       generateAny(f) {
-        f.print(f.jsDoc(`hello world`));
+        f.print(f.jsDoc("hello world"));
       },
       returnLinesOfFirstFile: true,
     });
@@ -122,7 +122,7 @@ describe("GeneratedFile.jsDoc", () => {
       proto: `syntax="proto3";`,
       parameter: "target=ts",
       generateAny(f) {
-        f.print(f.jsDoc(`multi-line\ncomment`, "  "));
+        f.print(f.jsDoc("multi-line\ncomment", "  "));
       },
       returnLinesOfFirstFile: true,
     });
@@ -139,7 +139,7 @@ describe("GeneratedFile.jsDoc", () => {
       proto: `syntax="proto3";`,
       parameter: "target=ts",
       generateAny(f) {
-        f.print(f.jsDoc(`*/`));
+        f.print(f.jsDoc("*/"));
       },
       returnLinesOfFirstFile: true,
     });
@@ -151,7 +151,7 @@ describe("GeneratedFile.jsDoc", () => {
       proto: `syntax="proto3";`,
       parameter: "target=ts",
       generateAny(f) {
-        f.print(f.jsDoc(`\na\n b\n  c\t`));
+        f.print(f.jsDoc("\na\n b\n  c\t"));
       },
       returnLinesOfFirstFile: true,
     });

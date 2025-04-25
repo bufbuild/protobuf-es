@@ -108,7 +108,8 @@ function readMessage(
   lengthOrDelimitedFieldNo: number,
 ): void {
   const end = delimited ? reader.len : reader.pos + lengthOrDelimitedFieldNo;
-  let fieldNo: number | undefined, wireType: WireType | undefined;
+  let fieldNo: number | undefined;
+  let wireType: WireType | undefined;
   const unknownFields = message.getUnknown() ?? [];
   while (reader.pos < end) {
     [fieldNo, wireType] = reader.tag();
@@ -127,7 +128,7 @@ function readMessage(
   }
   if (delimited) {
     if (wireType != WireType.EndGroup || fieldNo !== lengthOrDelimitedFieldNo) {
-      throw new Error(`invalid end group tag`);
+      throw new Error("invalid end group tag");
     }
   }
   if (unknownFields.length > 0) {
@@ -174,8 +175,8 @@ function readMapEntry(
   options: BinaryReadOptions,
 ): void {
   const field = map.field();
-  let key: ScalarValue | undefined,
-    val: ScalarValue | ReflectMessage | undefined;
+  let key: ScalarValue | undefined;
+  let val: ScalarValue | ReflectMessage | undefined;
   const end = reader.pos + reader.uint32();
   while (reader.pos < end) {
     const [fieldNo] = reader.tag();

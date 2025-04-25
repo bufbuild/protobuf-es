@@ -15,7 +15,7 @@
 import {
   type DescExtension,
   type DescField,
-  DescMessage,
+  type DescMessage,
   ScalarType,
 } from "@bufbuild/protobuf";
 import {
@@ -23,9 +23,9 @@ import {
   scalarTypeScriptType,
 } from "@bufbuild/protobuf/codegenv1";
 import {
-  isWrapperDesc,
   StructSchema,
   ValueSchema,
+  isWrapperDesc,
 } from "@bufbuild/protobuf/wkt";
 import type { GeneratedFile, Printable } from "@bufbuild/protoplugin";
 

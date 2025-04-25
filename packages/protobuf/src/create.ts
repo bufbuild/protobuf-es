@@ -21,7 +21,7 @@ import {
 } from "./descriptors.js";
 import type { Message, MessageInitShape, MessageShape } from "./types.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
-import { FieldError } from "./reflect/error.js";
+import type { FieldError } from "./reflect/error.js";
 import { isObject, type OneofADT } from "./reflect/guard.js";
 import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
@@ -82,7 +82,6 @@ function initMessage<Desc extends DescMessage>(
     } else {
       field = member;
     }
-    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- no need to convert enum
     switch (field.fieldKind) {
       case "message":
         value = toMessage(field, value);
