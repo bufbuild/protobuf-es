@@ -159,7 +159,7 @@ export type DescMethodBiDiStreaming<
  * The init type is accepted by the function create().
  */
 // biome-ignore format: want this to read well
-type MessageInit<T extends Message> = T | {
+export type MessageInit<T extends Message> = T | {
   [P in keyof T as P extends "$unknown" ? never : P]?: P extends "$typeName"
     ? never
     : FieldInit<T[P]>;
