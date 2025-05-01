@@ -137,10 +137,10 @@ function makeInt64Support(): Int64Support {
       typeof process.env != "object" ||
       process.env.BUF_BIGINT_DISABLE !== "1");
   if (ok) {
-    const MIN = BigInt("-9223372036854775808"),
-      MAX = BigInt("9223372036854775807"),
-      UMIN = BigInt("0"),
-      UMAX = BigInt("18446744073709551615");
+    const MIN = BigInt("-9223372036854775808");
+    const MAX = BigInt("9223372036854775807");
+    const UMIN = BigInt("0");
+    const UMAX = BigInt("18446744073709551615");
     return {
       zero: BigInt(0),
       supported: true,

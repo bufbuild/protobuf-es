@@ -30,7 +30,6 @@ import {
 } from "@bufbuild/protoplugin";
 import { fieldJsonType, fieldTypeScriptType, functionCall } from "./util";
 import { version } from "../package.json";
-import { RawPluginOptions } from "@bufbuild/protoplugin/dist/cjs/parameter";
 
 export const protocGenEs = createEcmaScriptPlugin({
   name: "protoc-gen-es",
@@ -45,7 +44,12 @@ type Options = {
   jsonTypes: boolean;
 };
 
-function parseOptions(options: RawPluginOptions): Options {
+function parseOptions(
+  options: {
+    key: string;
+    value: string;
+  }[],
+): Options {
   let jsonTypes = false;
   for (const { key, value } of options) {
     switch (key) {
@@ -68,7 +72,7 @@ function parseOptions(options: RawPluginOptions): Options {
 // See https://github.com/bufbuild/protobuf-es/pull/470
 const pure = "/*@__PURE__*/";
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function generateTs(schema: Schema<Options>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.ts");
@@ -148,7 +152,7 @@ function generateTs(schema: Schema<Options>) {
   }
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function generateJs(schema: Schema<Options>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.js");
@@ -217,7 +221,7 @@ function generateJs(schema: Schema<Options>) {
   }
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function generateDts(schema: Schema<Options>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.d.ts");
@@ -318,7 +322,7 @@ function generateDescDoc(
   });
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function getFileDescCall(f: GeneratedFile, file: DescFile, schema: Schema) {
   // Schema provides files with source retention options. Since we do not want to
   // embed source retention options in generated code, we use FileDescriptorProto
@@ -345,7 +349,7 @@ function getFileDescCall(f: GeneratedFile, file: DescFile, schema: Schema) {
   return functionCall(fileDesc, [f.string(info.base64())]);
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable {
   const p: Printable[] = ["{\n"];
   for (const method of service.methods) {
@@ -360,7 +364,7 @@ function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable 
   return p;
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function generateEnumShape(f: GeneratedFile, enumeration: DescEnum) {
   f.print(f.jsDoc(enumeration));
   f.print(f.export("enum", f.importShape(enumeration).name), " {");
@@ -375,7 +379,7 @@ function generateEnumShape(f: GeneratedFile, enumeration: DescEnum) {
   f.print();
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: Extract<Target, "ts" | "dts">) {
   f.print(f.jsDoc(enumeration));
   const declaration = target == "ts" ? "type" : "declare type";
@@ -394,7 +398,7 @@ function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: 
   f.print();
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Extract<Target, "ts" | "dts">) {
   const { Message } = f.runtime;
   const declaration = target == "ts" ? "type" : "declare type";
@@ -435,7 +439,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
   f.print();
 }
 
-// prettier-ignore
+// biome-ignore format: want this to read well
 function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target: Extract<Target, "ts" | "dts">) {
   const exp = f.export(target == "ts" ? "type" : "declare type", f.importJson(message).name);
   f.print(f.jsDoc(message));

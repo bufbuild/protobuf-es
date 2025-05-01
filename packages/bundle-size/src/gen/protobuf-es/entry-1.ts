@@ -15,7 +15,6 @@
 import { create, toBinary } from "@bufbuild/protobuf";
 import { TimeOfDaySchema } from "./google/type/timeofday_pb";
 
-/* eslint-disable no-console */
 
 // google/type/timeofday.proto
 console.log(toBinary(TimeOfDaySchema, create(TimeOfDaySchema)).length);

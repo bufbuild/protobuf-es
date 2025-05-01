@@ -196,12 +196,13 @@ describe("target", () => {
       let res: CodeGeneratorResponse;
       beforeEach(
         async () =>
+          // biome-ignore lint/suspicious/noAssignInExpressions: no
           (res = await createTestPluginAndRun({
             proto: `syntax="proto3";`,
             parameter,
             generateTs,
-            generateJs: definedGenerators.includes("js") ? generateJs : undefined, // prettier-ignore
-            generateDts: definedGenerators.includes("dts") ? generateDts : undefined, // prettier-ignore
+            generateJs: definedGenerators.includes("js") ? generateJs : undefined, // biome-ignore format: want this to read well
+            generateDts: definedGenerators.includes("dts") ? generateDts : undefined, // biome-ignore format: want this to read well
             transpile,
           })),
       );
@@ -210,8 +211,8 @@ describe("target", () => {
         expect(generateTs).toBeCalledTimes(
           calledGenerators.includes("ts") ? 1 : 0,
         );
-        expect(generateJs).toBeCalledTimes(calledGenerators.includes("js") ? 1 : 0); // prettier-ignore
-        expect(generateDts).toBeCalledTimes(calledGenerators.includes("dts") ? 1 : 0); // prettier-ignore
+        expect(generateJs).toBeCalledTimes(calledGenerators.includes("js") ? 1 : 0); // biome-ignore format: want this to read well
+        expect(generateDts).toBeCalledTimes(calledGenerators.includes("dts") ? 1 : 0); // biome-ignore format: want this to read well
       });
 
       test("should call transpile function", () => {

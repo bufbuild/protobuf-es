@@ -309,7 +309,7 @@ function elToContent(
   if (legacyCommonJs) {
     c.push(`"use strict";\n`);
     c.push(`Object.defineProperty(exports, "__esModule", { value: true });\n`);
-    c.push(`\n`);
+    c.push("\n");
   }
   const symbolToIdentifier = processImports(
     el,
@@ -367,10 +367,10 @@ function elToContent(
   }
   if (legacyCommonJs) {
     if (legacyCommonJsExportNames.length > 0) {
-      c.push(`\n`);
+      c.push("\n");
     }
     for (const name of legacyCommonJsExportNames) {
-      c.push(`exports.`, name, " = ", name, ";\n");
+      c.push("exports.", name, " = ", name, ";\n");
     }
   }
   return c.join("");

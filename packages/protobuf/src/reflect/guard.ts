@@ -53,8 +53,8 @@ export function isReflectList(
     typeof arg.field == "function"
   ) {
     if (field !== undefined) {
-      const a = field,
-        b = arg.field() as DescField & { fieldKind: "list" };
+      const a = field;
+      const b = arg.field() as DescField & { fieldKind: "list" };
       return (
         a.listKind == b.listKind &&
         a.scalar === b.scalar &&

@@ -45,7 +45,9 @@ import {
   compileService,
 } from "./helpers.js";
 
-describe("createRegistry()", function () {
+/* eslint-disable @typescript-eslint/no-unused-expressions -- we use expressions for type tests */
+
+describe("createRegistry()", () => {
   let testReg: FileRegistry;
   let testDescs: {
     message: DescMessage;
@@ -330,7 +332,7 @@ describe("createMutableRegistry()", () => {
   });
 });
 
-describe("createFileRegistry()", function () {
+describe("createFileRegistry()", () => {
   let testFileDescriptorSet: FileDescriptorSet;
   beforeEach(async () => {
     testFileDescriptorSet = await compileFileDescriptorSet({
@@ -363,7 +365,7 @@ describe("createFileRegistry()", function () {
       `,
     });
   });
-  describe("from FileDescriptorSet", function () {
+  describe("from FileDescriptorSet", () => {
     test("provides files through getFile()", () => {
       const fileReg = createFileRegistry(testFileDescriptorSet);
       const a = fileReg.getFile("a.proto");
@@ -389,7 +391,7 @@ describe("createFileRegistry()", function () {
       ]);
     });
   });
-  describe("from FileDescriptorProto", function () {
+  describe("from FileDescriptorProto", () => {
     let descFileA: DescFile;
     let testFileReg: FileRegistry;
     beforeAll(() => {
@@ -398,7 +400,7 @@ describe("createFileRegistry()", function () {
       assert(a !== undefined);
       descFileA = a;
     });
-    test("resolves all dependencies as FileDescriptorProto", function () {
+    test("resolves all dependencies as FileDescriptorProto", () => {
       const reg = createFileRegistry(descFileA.proto, (protoFileName) =>
         testFileReg.getFile(protoFileName),
       );
@@ -411,7 +413,7 @@ describe("createFileRegistry()", function () {
       expect(reg.getMessage("C")).toBeDefined();
       expect(reg.getMessage("D")).toBeDefined();
     });
-    test("resolves all dependencies as DescFile", function () {
+    test("resolves all dependencies as DescFile", () => {
       const reg = createFileRegistry(descFileA.proto, (protoFileName) =>
         testFileReg.getFile(protoFileName),
       );
@@ -424,7 +426,7 @@ describe("createFileRegistry()", function () {
       expect(reg.getMessage("C")).toBeDefined();
       expect(reg.getMessage("D")).toBeDefined();
     });
-    test("raises error on unresolvable dependency", function () {
+    test("raises error on unresolvable dependency", () => {
       function t() {
         createFileRegistry(descFileA.proto, (protoFileName) => {
           if (protoFileName === "c.proto") {
@@ -436,14 +438,14 @@ describe("createFileRegistry()", function () {
       expect(t).toThrow(/^Unable to resolve c.proto, imported by a.proto$/);
     });
   });
-  test("accepts empty arguments", function () {
+  test("accepts empty arguments", () => {
     const registry = createFileRegistry();
     const types = Array.from(registry);
     const files = Array.from(registry.files);
     expect(types.length).toBe(0);
     expect(files.length).toBe(0);
   });
-  test("raises error on unsupported edition from the past", function () {
+  test("raises error on unsupported edition from the past", () => {
     testFileDescriptorSet.file[0].syntax = "editions";
     testFileDescriptorSet.file[0].edition = Edition.EDITION_1_TEST_ONLY;
     function t() {
@@ -451,7 +453,7 @@ describe("createFileRegistry()", function () {
     }
     expect(t).toThrow(/^d.proto: unsupported edition$/);
   });
-  test("raises error on unsupported edition from the future", function () {
+  test("raises error on unsupported edition from the future", () => {
     testFileDescriptorSet.file[0].syntax = "editions";
     testFileDescriptorSet.file[0].edition = Edition.EDITION_99999_TEST_ONLY;
     function t() {
@@ -459,7 +461,7 @@ describe("createFileRegistry()", function () {
     }
     expect(t).toThrow(/^d.proto: unsupported edition$/);
   });
-  describe("from FileRegistry", function () {
+  describe("from FileRegistry", () => {
     test("creates a copy of the given FileRegistry", () => {
       const testReg = createFileRegistry(testFileDescriptorSet);
       const testRegFileNames = Array.from(testReg.files)

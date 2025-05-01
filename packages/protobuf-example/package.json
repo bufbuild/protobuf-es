@@ -7,17 +7,17 @@
     "add": "tsx src/add.ts",
     "list": "tsx src/list.ts",
     "generate": "buf generate",
-    "format": "prettier --write --ignore-unknown '.' '!.turbo' '!src/gen/**'",
+    "format": "biome format --write",
     "license-header": "license-header",
-    "lint": "eslint --max-warnings 0 ."
+    "lint": "biome lint --error-on-warnings"
   },
   "license": "Apache-2.0",
   "type": "module",
   "dependencies": {
-    "@bufbuild/buf": "^1.50.0",
+    "@bufbuild/buf": "^1.53.0",
     "@bufbuild/protobuf": "2.2.5",
     "@bufbuild/protoc-gen-es": "2.2.5",
-    "tsx": "^4.19.3",
+    "tsx": "^4.19.4",
     "typescript": "^5.6.3"
   }
 }

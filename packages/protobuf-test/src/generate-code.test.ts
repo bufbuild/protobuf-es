@@ -29,14 +29,16 @@ import * as nameclash_ts from "./gen/ts/extra/name-clash_pb.js";
 import * as nameclash_js from "./gen/js/extra/name-clash_pb.js";
 import * as service_ts from "./gen/ts/extra/service-all_pb.js";
 import * as service_js from "./gen/js/extra/service-all_pb.js";
-import * as test_messages_proto2_ts from "./gen/ts/google/protobuf/test_messages_proto2_pb.js";
-import * as test_messages_proto2_js from "./gen/js/google/protobuf/test_messages_proto2_pb.js";
+import type * as test_messages_proto2_ts from "./gen/ts/google/protobuf/test_messages_proto2_pb.js";
+import type * as test_messages_proto2_js from "./gen/js/google/protobuf/test_messages_proto2_pb.js";
 import * as test_messages_proto3_ts from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import * as test_messages_proto3_js from "./gen/js/google/protobuf/test_messages_proto3_pb.js";
 import * as options_ts from "./gen/ts/extra/options_pb.js";
 import * as option_usage_ts from "./gen/ts/extra/option-usage_pb.js";
-import * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
-import * as json_types_js_json from "./gen/js,json_types/extra/json_types_pb.js";
+import type * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
+import type * as json_types_js_json from "./gen/js,json_types/extra/json_types_pb.js";
+
+/* eslint-disable @typescript-eslint/no-unused-expressions -- we use expressions for type tests */
 
 test("source retention options are unavailable in generated code", () => {
   const fileOptions = option_usage_ts.file_extra_option_usage.proto.options;

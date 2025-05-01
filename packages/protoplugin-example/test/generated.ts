@@ -18,8 +18,6 @@ import { create } from "@bufbuild/protobuf";
 import { SayRequestSchema } from "../src/gen/connectrpc/eliza_pb";
 import { ElizaServiceClient } from "../src/gen/connectrpc/eliza_twirp";
 
-/* eslint-disable @typescript-eslint/no-floating-promises */
-
 describe("custom plugin", () => {
   it("should generate client class", () => {
     assert.equal(typeof ElizaServiceClient, "function");

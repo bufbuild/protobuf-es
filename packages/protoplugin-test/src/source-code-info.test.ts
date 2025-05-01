@@ -45,12 +45,12 @@ describe("getComments()", () => {
     const comments = getSyntaxComments(file);
     expect(comments.leadingDetached).toStrictEqual([
       [
-        ` Copyright ACME, Inc.`,
-        ``,
-        `      http://www.apache.org/licenses/LICENSE-2.0`,
-        ``,
-        ` WITHOUT WARRANTIES`,
-        ``,
+        " Copyright ACME, Inc.",
+        "",
+        "      http://www.apache.org/licenses/LICENSE-2.0",
+        "",
+        " WITHOUT WARRANTIES",
+        "",
       ].join("\n"),
     ]);
     expect(comments.leading).toBe(" Comment before syntax.\n");

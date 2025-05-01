@@ -16,11 +16,11 @@ import { describe, expect, test } from "@jest/globals";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("import_extension", function () {
+describe("import_extension", () => {
   test("should default to 'none'", async () => {
     const lines = await testGenerate("target=ts", (f) => {
       const Bar = f.import("Bar", "./foo/bar_pb.js");
-      f.print`${Bar}`;
+      f.print(Bar);
     });
     expect(lines).toStrictEqual([
       'import { Bar } from "./foo/bar_pb";',
@@ -38,7 +38,7 @@ describe("import_extension", function () {
       `target=ts,import_extension=${option}`,
       (f) => {
         const Bar = f.import("Bar", "./foo/bar_pb.js");
-        f.print`${Bar}`;
+        f.print(Bar);
       },
     );
     expect(lines).toStrictEqual([
@@ -57,7 +57,7 @@ describe("import_extension", function () {
         `target=ts,import_extension=${option}`,
         (f) => {
           const Bar = f.import("Bar", "./foo/bar_pb.js");
-          f.print`${Bar}`;
+          f.print(Bar);
         },
       );
       expect(lines).toStrictEqual([
@@ -71,14 +71,14 @@ describe("import_extension", function () {
     await expect(async () => {
       await testGenerate("target=mjs", (f) => {
         const Bar = f.import("Bar", "./foo/bar_pb.js");
-        f.print`${Bar}`;
+        f.print(Bar);
       });
     }).rejects.toThrow(`invalid option "target=mjs"`);
   });
   test("should only touch .js import paths", async () => {
     const lines = await testGenerate("target=ts,import_extension=ts", (f) => {
       const json = f.import("json", "./foo/bar_pb.json");
-      f.print`${json}`;
+      f.print(json);
     });
     expect(lines).toStrictEqual([
       'import { json } from "./foo/bar_pb.json";',
