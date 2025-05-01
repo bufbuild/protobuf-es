@@ -23,7 +23,7 @@ import {
 import type { Registry } from "../registry.js";
 
 /**
- * A path to a member of a Protobuf message, such as a field, oneof,
+ * A path to a (nested) member of a Protobuf message, such as a field, oneof,
  * extension, list element, or map entry.
  */
 export type Path = (
