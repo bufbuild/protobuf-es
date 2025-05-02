@@ -176,9 +176,7 @@ export function enumToJson<Desc extends DescEnum>(
   }
   const name = (descEnum.value[value] as DescEnumValue | undefined)?.name;
   if (name === undefined) {
-    throw new Error(
-      `${String(value)} is not a value in ${descEnum.toString()}`,
-    );
+    throw new Error(`${value} is not a value in ${descEnum}`);
   }
   return name as EnumJsonType<Desc>;
 }
@@ -190,9 +188,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
   for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
       if (f.presence == LEGACY_REQUIRED) {
-        throw new Error(
-          `cannot encode field ${msg.desc.typeName}.${f.name} to JSON: required field not set`,
-        );
+        throw new Error(`cannot encode ${f} to JSON: required field not set`);
       }
       if (!opts.alwaysEmitImplicit || f.presence !== IMPLICIT) {
         // Fields with implicit presence omit zero values (e.g. empty string) by default

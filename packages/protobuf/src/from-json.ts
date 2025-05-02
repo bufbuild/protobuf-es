@@ -178,9 +178,7 @@ export function enumFromJson<Desc extends DescEnum>(
 ): EnumShape<Desc> {
   const val = readEnum(descEnum, json, false, false);
   if (val === tokenIgnoredUnknownEnum) {
-    throw new Error(
-      `cannot decode ${String(descEnum)} from JSON: ${formatVal(json)}`,
-    );
+    throw new Error(`cannot decode ${descEnum} from JSON: ${formatVal(json)}`);
   }
   return val as EnumShape<Desc>;
 }

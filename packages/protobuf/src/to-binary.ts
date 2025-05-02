@@ -70,9 +70,7 @@ function writeFields(
   for (const f of msg.sortedFields) {
     if (!msg.isSet(f)) {
       if (f.presence == LEGACY_REQUIRED) {
-        throw new Error(
-          `cannot encode field ${msg.desc.typeName}.${f.name} to binary: required field not set`,
-        );
+        throw new Error(`cannot encode ${f} to binary: required field not set`);
       }
       continue;
     }
