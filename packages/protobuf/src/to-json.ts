@@ -212,6 +212,7 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
       if (tagSeen.has(uf.no)) {
         continue;
       }
+      tagSeen.add(uf.no);
       const extension = opts.registry.getExtensionFor(msg.desc, uf.no);
       if (!extension) {
         continue;
