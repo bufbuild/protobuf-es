@@ -130,7 +130,7 @@ describe("PathBuilder", () => {
             b = b.list(ele.index);
             break;
           case "map_sub":
-            b = b.mapKey(ele.key);
+            b = b.map(ele.key);
             break;
         }
       }
@@ -207,17 +207,17 @@ describe("PathBuilder", () => {
         message: `Invalid list index`,
       });
     });
-    test("mapKey() on non-map", () => {
+    test("map() on non-map", () => {
       const builder = buildPath(schema);
-      assert.throws(() => builder.mapKey(77), {
+      assert.throws(() => builder.map(77), {
         name: "InvalidPathError",
         message: `Invalid map access`,
       });
     });
-    test("mapKey() with wrong type", () => {
+    test("map() with wrong type", () => {
       const builder = buildPath(schema).field(schema.field.projects);
-      assert.doesNotThrow(() => builder.clone().mapKey("abc"));
-      assert.throws(() => builder.mapKey(true), {
+      assert.doesNotThrow(() => builder.clone().map("abc"));
+      assert.throws(() => builder.map(true), {
         name: "InvalidPathError",
         message: `Invalid map key`,
       });

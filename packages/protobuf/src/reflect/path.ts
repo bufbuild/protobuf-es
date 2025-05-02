@@ -78,7 +78,7 @@ export type PathBuilder = {
    *
    * Throws an InvalidPathError if the map access cannot be added to the path.
    */
-  mapKey(key: string | number | bigint | boolean): PathBuilder;
+  map(key: string | number | bigint | boolean): PathBuilder;
   /**
    * Append a path.
    *
@@ -265,7 +265,7 @@ class PathBuilderImpl implements PathBuilder {
     return this.push({ kind: "list_sub", index });
   }
 
-  mapKey(key: string | number | bigint | boolean) {
+  map(key: string | number | bigint | boolean) {
     return this.push({ kind: "map_sub", key });
   }
 
