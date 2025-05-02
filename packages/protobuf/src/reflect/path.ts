@@ -165,7 +165,7 @@ export function parsePath(
  * Stringify a path.
  */
 export function pathToString(path: Path): string {
-  const str: string[] = [];
+  const str: (string | number | bigint | boolean)[] = [];
   for (const ele of path) {
     switch (ele.kind) {
       case "field":
@@ -179,7 +179,7 @@ export function pathToString(path: Path): string {
         str.push("[", ele.typeName, "]");
         break;
       case "list_sub":
-        str.push("[", ele.index.toString(), "]");
+        str.push("[", ele.index, "]");
         break;
       case "map_sub":
         if (typeof ele.key == "string") {
@@ -197,7 +197,7 @@ export function pathToString(path: Path): string {
             '"]',
           );
         } else {
-          str.push("[", ele.key.toString(), "]");
+          str.push("[", ele.key, "]");
         }
         break;
     }
