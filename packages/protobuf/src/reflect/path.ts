@@ -111,11 +111,16 @@ export function buildPath(schema: DescMessage): PathBuilder {
  * Parse a Path from a string.
  *
  * Throws an InvalidPathError if the path is invalid.
+ *
+ * Note that a Registry must be provided via the options argument to parse
+ * paths that refer to an extension.
  */
 export function parsePath(
   schema: DescMessage,
   path: string,
-  registry?: Registry,
+  options?: {
+    registry?: Registry;
+  },
 ): Path {
   const builder = new PathBuilderImpl(schema, schema, []);
   const err = (message: string, i: number) =>
@@ -134,7 +139,7 @@ export function parsePath(
         throw err(`Unknown field "${token.field}"`, i);
       }
     } else if ("ext" in token) {
-      right = registry?.getExtension(token.ext);
+      right = options?.registry?.getExtension(token.ext);
       if (!right) {
         throw err(`Unknown extension "${token.ext}"`, i);
       }

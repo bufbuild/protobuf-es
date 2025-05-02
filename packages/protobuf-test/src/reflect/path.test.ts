@@ -31,8 +31,10 @@ describe("buildPath()", () => {
 describe("parsePath()", () => {
   for (const { schema, string, golden, usesExtension } of cases) {
     test(`parses "${string}"`, () => {
-      const reg = usesExtension ? createRegistry(usesExtension) : undefined;
-      const path = parsePath(schema, string, reg);
+      const registry = usesExtension
+        ? createRegistry(usesExtension)
+        : undefined;
+      const path = parsePath(schema, string, { registry });
       assertPathsEqual(path, golden);
     });
   }
