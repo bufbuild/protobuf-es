@@ -205,6 +205,10 @@ export function pathToString(path: Path): string {
   return str.join("");
 }
 
+/**
+ * InvalidPathError is thrown for invalid Paths, for example during parsing from
+ * a string, or when a new Path is built.
+ */
 export class InvalidPathError extends Error {
   override name = "InvalidPathError";
   readonly schema: DescMessage;
