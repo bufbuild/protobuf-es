@@ -89,15 +89,9 @@ export type PathBuilder = {
 
 /**
  * Create a PathBuilder.
- *
- * Optionally, a Path can be given as a base. Throws an error if the path is invalid.
  */
-export function buildPath(schema: DescMessage, base?: Path): PathBuilder {
-  const builder = new PathBuilderImpl(schema, schema, []);
-  if (base) {
-    builder.add(base);
-  }
-  return builder;
+export function buildPath(schema: DescMessage): PathBuilder {
+  return new PathBuilderImpl(schema, schema, []);
 }
 
 /**

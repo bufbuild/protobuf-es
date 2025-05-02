@@ -22,19 +22,9 @@ import { assertPathsEqual, getTestDataForPaths } from "./path.testdata.js";
 const { cases, invalid, schema } = await getTestDataForPaths();
 
 describe("buildPath()", () => {
-  describe("with schema argument only", () => {
-    test("returns PathBuilder", () => {
-      const builder = buildPath(schema);
-      expect(builder.schema).toBe(schema);
-    });
-  });
-  describe("with Path argument", () => {
-    for (const { string, schema, golden } of cases) {
-      test(`re-builds path "${string}"`, () => {
-        const path = buildPath(schema, golden).toPath();
-        assertPathsEqual(path, golden);
-      });
-    }
+  test("returns PathBuilder", () => {
+    const builder = buildPath(schema);
+    expect(builder.schema).toBe(schema);
   });
 });
 
