@@ -47,26 +47,39 @@ export type PathBuilder = {
   readonly schema: DescMessage;
   /**
    * Add field access.
+   *
+   * Throws an InvalidPathError if the field cannot be added to the path.
    */
   field(field: DescField): PathBuilder;
   /**
    * Access a oneof.
+   *
+   * Throws an InvalidPathError if the oneof cannot be added to the path.
+   *
    */
   oneof(oneof: DescOneof): PathBuilder;
   /**
    * Access an extension.
+   *
+   * Throws an InvalidPathError if the extension cannot be added to the path.
    */
   extension(extension: DescExtension): PathBuilder;
   /**
    * Access a list field by index.
+   *
+   * Throws an InvalidPathError if the list access cannot be added to the path.
    */
   list(index: number): PathBuilder;
   /**
    * Access a map field by key.
+   *
+   * Throws an InvalidPathError if the map access cannot be added to the path.
    */
   mapKey(key: string | number | bigint | boolean): PathBuilder;
   /**
    * Append a path.
+   *
+   * Throws an InvalidPathError if the path cannot be added.
    */
   add(path: Path | PathBuilder): PathBuilder;
   /**
@@ -95,7 +108,9 @@ export function buildPath(schema: DescMessage): PathBuilder {
 }
 
 /**
- * Parse a Path from a string. Throws an error if the path is invalid.
+ * Parse a Path from a string.
+ *
+ * Throws an InvalidPathError if the path is invalid.
  */
 export function parsePath(
   schema: DescMessage,
