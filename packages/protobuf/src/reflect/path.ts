@@ -27,7 +27,7 @@ import type { Registry } from "../registry.js";
  * extension, list element, or map entry.
  *
  * Note that we may add additional types to this union in the future to support
- * more use cases. 
+ * more use cases.
  */
 export type Path = (
   | DescField
