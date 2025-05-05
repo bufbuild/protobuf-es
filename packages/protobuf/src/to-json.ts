@@ -202,21 +202,21 @@ function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
   }
   if (opts.registry) {
     const tagSeen = new Set<number>();
-    for (const uf of msg.getUnknown() ?? []) {
+    for (const { no } of msg.getUnknown() ?? []) {
       // Same tag can appear multiple times, so we
       // keep track and skip identical ones.
-      if (tagSeen.has(uf.no)) {
-        continue;
-      }
-      const extension = opts.registry.getExtensionFor(msg.desc, uf.no);
-      if (!extension) {
-        continue;
-      }
-      const value = getExtension(msg.message, extension);
-      const [container, field] = createExtensionContainer(extension, value);
-      const jsonValue = fieldToJson(field, container.get(field), opts);
-      if (jsonValue !== undefined) {
-        json[extension.jsonName] = jsonValue;
+      if (!tagSeen.has(no)) {
+        tagSeen.add(no);
+        const extension = opts.registry.getExtensionFor(msg.desc, no);
+        if (!extension) {
+          continue;
+        }
+        const value = getExtension(msg.message, extension);
+        const [container, field] = createExtensionContainer(extension, value);
+        const jsonValue = fieldToJson(field, container.get(field), opts);
+        if (jsonValue !== undefined) {
+          json[extension.jsonName] = jsonValue;
+        }
       }
     }
   }
