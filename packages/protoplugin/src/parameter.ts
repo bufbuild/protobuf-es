@@ -235,7 +235,7 @@ export function parseParameter<T extends object>(
     jsImportStyle,
     keepEmptyFiles,
   };
-  if (parseExtraOptions === undefined || extraParameters.length === 0) {
+  if (parseExtraOptions === undefined) {
     return {
       parsed: ecmaScriptPluginOptions as T & EcmaScriptPluginOptions,
       sanitized: sanitizedParameters,

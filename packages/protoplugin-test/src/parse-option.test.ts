@@ -79,6 +79,18 @@ describe("parse custom plugin option", () => {
       }),
     );
   });
+  test("custom option is initialized to default if no plugin option is provided", () => {
+    runPlugin(
+      (options) => {
+        expect(options.foo).toBeUndefined();
+        expect(options.bar).toBe(false);
+        expect(options.baz).toStrictEqual([]);
+      },
+      create(CodeGeneratorRequestSchema, {
+        parameter: "",
+      }),
+    );
+  });
   test("error from parseOption is wrapped", () => {
     expect(() =>
       runPlugin(
