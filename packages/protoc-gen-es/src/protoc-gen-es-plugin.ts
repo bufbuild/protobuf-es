@@ -14,13 +14,18 @@
 
 import type {
   DescEnum,
+  DescField,
   DescFile,
   DescMessage,
+  DescOneof,
   DescService,
 } from "@bufbuild/protobuf";
 import { parentTypes } from "@bufbuild/protobuf/reflect";
 import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv1";
-import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
+import {
+  FeatureSet_FieldPresence,
+  isWrapperDesc,
+} from "@bufbuild/protobuf/wkt";
 import {
   createEcmaScriptPlugin,
   type GeneratedFile,
@@ -42,6 +47,10 @@ export const protocGenEs = createEcmaScriptPlugin({
 
 type Options = {
   jsonTypes: boolean;
+  validTypes: {
+    legacyRequired: boolean;
+    protovalidate: boolean;
+  };
 };
 
 function parseOptions(
@@ -51,6 +60,10 @@ function parseOptions(
   }[],
 ): Options {
   let jsonTypes = false;
+  let validTypes = {
+    legacyRequired: false,
+    protovalidate: false,
+  };
   for (const { key, value } of options) {
     switch (key) {
       case "json_types":
@@ -59,11 +72,25 @@ function parseOptions(
         }
         jsonTypes = ["true", "1"].includes(value);
         break;
+      case "valid_types":
+        for (const part of value.split("+")) {
+          switch (part) {
+            case "protovalidate":
+              validTypes.protovalidate = true;
+              break;
+            case "legacy_required":
+              validTypes.legacyRequired = true;
+              break;
+            default:
+              throw new Error();
+          }
+        }
+        break;
       default:
         throw new Error();
     }
   }
-  return { jsonTypes };
+  return { jsonTypes, validTypes };
 }
 
 // This annotation informs bundlers that the succeeding function call is free of
@@ -89,6 +116,9 @@ function generateTs(schema: Schema<Options>) {
           generateMessageShape(f, desc, "ts");
           if (schema.options.jsonTypes) {
             generateMessageJsonShape(f, desc, "ts");
+          }
+          if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidate) {
+            generateMessageValidShape(f, desc, schema.options.validTypes, "ts");
           }
           generateDescDoc(f, desc);
           const name = f.importSchema(desc).name;
@@ -237,6 +267,9 @@ function generateDts(schema: Schema<Options>) {
           generateMessageShape(f, desc, "dts");
           if (schema.options.jsonTypes) {
             generateMessageJsonShape(f, desc, "dts");
+          }
+          if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidate) {
+            generateMessageValidShape(f, desc, schema.options.validTypes, "dts");
           }
           const name = f.importSchema(desc).name;
           const Shape = f.importShape(desc);
@@ -405,38 +438,77 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
   f.print(f.jsDoc(message));
   f.print(f.export(declaration, f.importShape(message).name), " = ", Message, "<", f.string(message.typeName), "> & {");
   for (const member of message.members) {
-    switch (member.kind) {
-      case "oneof":
-        f.print(f.jsDoc(member, "  "));
-        f.print("  ", member.localName, ": {");
-        for (const field of member.fields) {
-          if (member.fields.indexOf(field) > 0) {
-            f.print(`  } | {`);
-          }
-          f.print(f.jsDoc(field, "    "));
-          const { typing } = fieldTypeScriptType(field, f.runtime);
-          f.print(`    value: `, typing, `;`);
-          f.print(`    case: "`, field.localName, `";`);
-        }
-        f.print(`  } | { case: undefined; value?: undefined };`);
-        break;
-      default: {
-        f.print(f.jsDoc(member, "  "));
-        const { typing, optional } = fieldTypeScriptType(member, f.runtime);
-        if (optional) {
-          f.print("  ", member.localName, "?: ", typing, ";");
-        } else {
-          f.print("  ", member.localName, ": ", typing, ";");
-        }
-        break;
-      }
-    }
+    generateMessageShapeMember(f, member);
     if (message.members.indexOf(member) < message.members.length - 1) {
       f.print();
     }
   }
   f.print("};");
   f.print();
+}
+
+// biome-ignore format: want this to read well
+function generateMessageValidShape(f: GeneratedFile, message: DescMessage, validTypes: Options["validTypes"], target: Extract<Target, "ts" | "dts">) {
+  const declaration = target == "ts" ? "type" : "declare type";
+  const needsLegacyRequiredValid = validTypes.legacyRequired && message.fields.some(descField => descField.fieldKind == "message" && descField.presence == FeatureSet_FieldPresence.LEGACY_REQUIRED);
+  // TODO protovalidate required
+  if (!needsLegacyRequiredValid) {
+    f.print(f.export(declaration, f.importValid(message).name), " = ", f.importShape(message), ";");
+    f.print();
+    return;
+  }
+  f.print(f.jsDoc(message));
+  // TODO remove
+  f.print("// validTypes.legacyRequired: ", validTypes.legacyRequired);
+  // TODO remove
+  f.print("// validTypes.protovalidate: ", validTypes.protovalidate);
+  const { Message } = f.runtime;
+  f.print(f.export(declaration, f.importValid(message).name), " = ", Message, "<", f.string(message.typeName), "> & {");
+  for (const member of message.members) {
+    generateMessageShapeMember(f, member, validTypes);
+    if (message.members.indexOf(member) < message.members.length - 1) {
+      f.print();
+    }
+  }
+  f.print("};");
+  f.print();
+}
+
+// biome-ignore format: want this to read well
+function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOneof, validTypes?: Options["validTypes"]) {
+  switch (member.kind) {
+    case "oneof":
+      f.print(f.jsDoc(member, "  "));
+      f.print("  ", member.localName, ": {");
+      for (const field of member.fields) {
+        if (member.fields.indexOf(field) > 0) {
+          f.print(`  } | {`);
+        }
+        f.print(f.jsDoc(field, "    "));
+        const { typing } = fieldTypeScriptType(field, f.runtime, validTypes !== undefined);
+        f.print(`    value: `, typing, `;`);
+        f.print(`    case: "`, field.localName, `";`);
+      }
+      f.print(`  } | { case: undefined; value?: undefined };`);
+      break;
+    case "field":
+      f.print(f.jsDoc(member, "  "));
+      let { typing, optional } = fieldTypeScriptType(member, f.runtime, validTypes !== undefined);
+      if (optional && validTypes) {
+        if (validTypes.legacyRequired) {
+          if (member.presence === FeatureSet_FieldPresence.LEGACY_REQUIRED) {
+            optional = false;
+          }
+        }
+        // TODO protovalidate required
+      }
+      if (optional) {
+        f.print("  ", member.localName, "?: ", typing, ";");
+      } else {
+        f.print("  ", member.localName, ": ", typing, ";");
+      }
+      break;
+  }
 }
 
 // biome-ignore format: want this to read well

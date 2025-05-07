@@ -95,6 +95,20 @@ export function generatedJsonTypeName(desc: DescEnum | DescMessage): string {
 }
 
 /**
+ * Return a safe identifier for a generated Valid type.
+ */
+export function generatedValidTypeName(desc: DescEnum | DescMessage): string {
+  const { validTypeNames } = allNames(desc.file);
+  const name = validTypeNames.get(desc);
+  if (name === undefined) {
+    throw new Error(
+      `unable to determine unique valid type name for ${desc.toString()}`,
+    );
+  }
+  return name;
+}
+
+/**
  * Compute the ideal name for a generated descriptor.
  */
 function idealDescName(
@@ -132,6 +146,14 @@ function idealShapeName(desc: DescEnum | DescMessage, i: number): string {
 function idealJsonTypeName(desc: DescEnum | DescMessage, i: number): string {
   const salt = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
   return safeIdentifier(identifier(desc) + "Json" + salt);
+}
+
+/**
+ * Compute the ideal name for a generated Valid type.
+ */
+function idealValidTypeName(desc: DescEnum | DescMessage, i: number): string {
+  const salt = i === 0 ? "" : i === 1 ? "$" : `$${i - 1}`;
+  return safeIdentifier(identifier(desc) + "Valid" + salt);
 }
 
 /**
@@ -222,5 +244,21 @@ function allNames(file: DescFile) {
     taken.add(name);
     jsonTypeNames.set(desc, name);
   }
-  return { shapeNames, jsonTypeNames, descNames };
+  const validTypeNames = new Map<DescEnum | DescMessage, string>();
+  for (const desc of nestedTypes(file)) {
+    if (desc.kind != "enum" && desc.kind != "message") {
+      continue;
+    }
+    let name: string;
+    for (let i = 0; ; i++) {
+      name = idealValidTypeName(desc, i);
+      if (!taken.has(name)) {
+        break;
+      }
+    }
+    taken.add(name);
+    validTypeNames.set(desc, name);
+  }
+
+  return { shapeNames, jsonTypeNames, validTypeNames, descNames };
 }

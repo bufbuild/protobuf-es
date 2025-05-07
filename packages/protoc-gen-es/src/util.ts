@@ -32,6 +32,7 @@ import type { GeneratedFile, Printable } from "@bufbuild/protoplugin";
 export function fieldTypeScriptType(
   field: DescField | DescExtension,
   imports: GeneratedFile["runtime"],
+  validTypes = false,
 ): {
   typing: Printable;
   optional: boolean;
@@ -44,7 +45,7 @@ export function fieldTypeScriptType(
       optional = field.proto.proto3Optional;
       break;
     case "message": {
-      typing.push(messageFieldTypeScriptType(field, imports));
+      typing.push(messageFieldTypeScriptType(field, imports, validTypes));
       optional = true;
       break;
     }
@@ -74,7 +75,10 @@ export function fieldTypeScriptType(
           );
           break;
         case "message": {
-          typing.push(messageFieldTypeScriptType(field, imports), "[]");
+          typing.push(
+            messageFieldTypeScriptType(field, imports, validTypes),
+            "[]",
+          );
           break;
         }
       }
@@ -99,7 +103,7 @@ export function fieldTypeScriptType(
           valueType = scalarTypeScriptType(field.scalar, false);
           break;
         case "message":
-          valueType = messageFieldTypeScriptType(field, imports);
+          valueType = messageFieldTypeScriptType(field, imports, validTypes);
           break;
         case "enum":
           valueType = {
@@ -119,6 +123,7 @@ export function fieldTypeScriptType(
 function messageFieldTypeScriptType(
   field: (DescField | DescExtension) & { message: DescMessage },
   imports: GeneratedFile["runtime"],
+  validTypes: boolean,
 ): Printable {
   if (
     isWrapperDesc(field.message) &&
@@ -133,6 +138,12 @@ function messageFieldTypeScriptType(
     field.parent?.typeName != ValueSchema.typeName
   ) {
     return imports.JsonObject;
+  }
+  if (validTypes) {
+    return {
+      kind: "es_valid_type_ref",
+      desc: field.message,
+    };
   }
   return {
     kind: "es_shape_ref",
