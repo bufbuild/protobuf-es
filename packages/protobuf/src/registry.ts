@@ -1118,7 +1118,10 @@ function getFieldPresence(
     return EXPLICIT;
   }
   const resolved = resolveFeature("fieldPresence", { proto, parent });
-  if (resolved == IMPLICIT && (proto.type == TYPE_MESSAGE || proto.type == TYPE_GROUP)) {
+  if (
+    resolved == IMPLICIT &&
+    (proto.type == TYPE_MESSAGE || proto.type == TYPE_GROUP)
+  ) {
     // singular message field cannot be implicit
     return EXPLICIT;
   }
