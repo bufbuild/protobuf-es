@@ -22,10 +22,7 @@ import type {
 } from "@bufbuild/protobuf";
 import { parentTypes } from "@bufbuild/protobuf/reflect";
 import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv1";
-import {
-  FeatureSet_FieldPresence,
-  isWrapperDesc,
-} from "@bufbuild/protobuf/wkt";
+import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
 import {
   createEcmaScriptPlugin,
   type GeneratedFile,
@@ -33,8 +30,13 @@ import {
   type Schema,
   type Target,
 } from "@bufbuild/protoplugin";
-import { fieldJsonType, fieldTypeScriptType, functionCall } from "./util";
+import { fieldJsonType, fieldTypeScriptType, functionCall } from "./util.js";
 import { version } from "../package.json";
+import {
+  isLegacyRequired,
+  isProtovalidateDisabled,
+  isProtovalidateRequired,
+} from "./valid-types.js";
 
 export const protocGenEs = createEcmaScriptPlugin({
   name: "protoc-gen-es",
@@ -450,18 +452,13 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
 // biome-ignore format: want this to read well
 function generateMessageValidShape(f: GeneratedFile, message: DescMessage, validTypes: Options["validTypes"], target: Extract<Target, "ts" | "dts">) {
   const declaration = target == "ts" ? "type" : "declare type";
-  const needsLegacyRequiredValid = validTypes.legacyRequired && message.fields.some(descField => descField.fieldKind == "message" && descField.presence == FeatureSet_FieldPresence.LEGACY_REQUIRED);
-  // TODO protovalidate required
-  if (!needsLegacyRequiredValid) {
+  const needsCustomValidType = (validTypes.legacyRequired && message.fields.some(isLegacyRequired)) || (validTypes.protovalidate && message.fields.some(isProtovalidateRequired));
+  if (!needsCustomValidType) {
     f.print(f.export(declaration, f.importValid(message).name), " = ", f.importShape(message), ";");
     f.print();
     return;
   }
   f.print(f.jsDoc(message));
-  // TODO remove
-  f.print("// validTypes.legacyRequired: ", validTypes.legacyRequired);
-  // TODO remove
-  f.print("// validTypes.protovalidate: ", validTypes.protovalidate);
   const { Message } = f.runtime;
   f.print(f.export(declaration, f.importValid(message).name), " = ", Message, "<", f.string(message.typeName), "> & {");
   for (const member of message.members) {
@@ -485,7 +482,7 @@ function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOn
           f.print(`  } | {`);
         }
         f.print(f.jsDoc(field, "    "));
-        const { typing } = fieldTypeScriptType(field, f.runtime, validTypes !== undefined);
+        const { typing } = fieldTypeScriptType(field, f.runtime, validTypes && !isProtovalidateDisabled(field));
         f.print(`    value: `, typing, `;`);
         f.print(`    case: "`, field.localName, `";`);
       }
@@ -493,14 +490,12 @@ function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOn
       break;
     case "field":
       f.print(f.jsDoc(member, "  "));
-      let { typing, optional } = fieldTypeScriptType(member, f.runtime, validTypes !== undefined);
+      let { typing, optional } = fieldTypeScriptType(member, f.runtime, validTypes && !isProtovalidateDisabled(member));
       if (optional && validTypes) {
-        if (validTypes.legacyRequired) {
-          if (member.presence === FeatureSet_FieldPresence.LEGACY_REQUIRED) {
-            optional = false;
-          }
+        const isRequired = (validTypes.legacyRequired && isLegacyRequired(member)) || (validTypes.protovalidate && isProtovalidateRequired(member));
+        if (isRequired) {
+          optional = false;
         }
-        // TODO protovalidate required
       }
       if (optional) {
         f.print("  ", member.localName, "?: ", typing, ";");

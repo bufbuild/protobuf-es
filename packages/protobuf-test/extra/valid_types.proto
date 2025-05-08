@@ -1,0 +1,138 @@
+// Copyright 2021-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+edition="2023";
+package spec;
+
+import "extra/minimal-validate.proto";
+
+message VTypes {
+
+  // In the generated valid type, the property should:
+  // - be optional
+  // - refer to the valid type for Other
+  Other msg = 1;
+
+  // In the generated valid type, this property should:
+  // - not be optional
+  // - refer to the valid type for Other
+  Other required_msg = 2 [(buf.validate.field).required = true];
+
+  // In the generated valid type, this property should:
+  // - be optional
+  // - refer to the regular type for Other
+  Other required_msg_ignore_always = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+
+  // In the generated valid type, this property should:
+  // - be optional
+  // - refer to the valid type for Other
+  Other msg_ignore_unpopulated = 4 [
+    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
+  ];
+
+  // In the generated valid type, this property should:
+  // - be optional
+  // - refer to the regular type for Other, because rules are ignored for empty messages
+  Other msg_ignore_default = 5 [
+    (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional (lists never are)
+  // - refer to the valid type for Other
+  repeated Other repeated_msg = 6;
+
+  // In the generated valid type, this property should:
+  // - not be optional (lists never are)
+  // - refer to the regular type for Other
+  repeated Other repeated_msg_always_ignore = 8 [
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional (lists never are)
+  // - refer to the regular type for Other
+  repeated Other repeated_msg_always_ignore_items = 9 [
+    (buf.validate.field).repeated.items.ignore = IGNORE_ALWAYS
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional (lists never are)
+  // - refer to the valid type for Other, because messages in a list are never unpopulated
+  repeated Other repeated_msg_ignore_unpopulated_items = 10 [
+    (buf.validate.field).repeated.items.ignore = IGNORE_IF_UNPOPULATED
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional (lists never are)
+  // - refer to the regular type for Other, because rules are ignored for empty messages
+  repeated Other repeated_msg_ignore_default_items = 11 [
+    (buf.validate.field).repeated.items.ignore = IGNORE_IF_DEFAULT_VALUE
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional (maps never are)
+  // - refer to the valid type for Other
+  map<string, Other> map = 12;
+
+  // In the generated valid type, this property should:
+  // - not be optional (maps never are)
+  // - refer to the regular type for Other
+  map<string, Other> map_ignore_always = 13 [
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional (maps never are)
+  // - refer to the regular type for Other
+  map<string, Other> map_always_ignore_values = 14 [
+    (buf.validate.field).map.values.ignore = IGNORE_ALWAYS
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional (maps never are)
+  // - refer to the regular type for Other, because map entries are never unpopulated
+  map<string, Other> map_ignore_unpopulated_values = 15 [
+    (buf.validate.field).map.values.ignore = IGNORE_IF_UNPOPULATED
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional (maps never are)
+  // - refer to the regular type for Other, because rules are ignored for empty messages
+  map<string, Other> map_ignore_default_values = 16 [
+    (buf.validate.field).map.values.ignore = IGNORE_IF_DEFAULT_VALUE
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional
+  // - refer to the valid type for Other
+  Other legacy_required_msg = 20 [
+    features.field_presence = LEGACY_REQUIRED
+  ];
+
+  // In the generated valid type, this property should:
+  // - not be optional
+  // - refer to the regular type for Other, because IGNORE_ALWAYS is set
+  Other legacy_required_msg_ignore_always = 21 [
+    features.field_presence = LEGACY_REQUIRED,
+    (buf.validate.field).ignore = IGNORE_ALWAYS
+  ];
+
+  message Other {}
+
+}
+

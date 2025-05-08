@@ -24,6 +24,8 @@
   "scripts": {
     "prebuild": "rm -rf ./dist/cjs/*",
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/cjs",
+    "bootstrap": "protoc --es_out=src/gen --es_opt=target=ts,import_extension=js --proto_path proto proto/minimal-validate.proto",
+    "postbootstrap": "license-header src/gen",
     "format": "biome format --write",
     "license-header": "license-header",
     "lint": "biome lint --error-on-warnings"
@@ -32,6 +34,9 @@
   "dependencies": {
     "@bufbuild/protobuf": "^2.3.0",
     "@bufbuild/protoplugin": "2.3.0"
+  },
+  "devDependencies": {
+    "upstream-protobuf": "*"
   },
   "peerDependencies": {
     "@bufbuild/protobuf": "2.3.0"
