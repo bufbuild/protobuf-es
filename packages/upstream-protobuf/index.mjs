@@ -55,10 +55,7 @@ export class UpstreamProtobuf {
    *
    * @type {string[]}
    */
-  #wktprotos = [
-    "google/protobuf/**/*.proto",
-    "!google/protobuf/*_features.proto",
-  ];
+  #wktprotos = ["google/protobuf/**/*.proto"];
 
   /**
    * Relevant proto files for testing in upstream protobuf.
