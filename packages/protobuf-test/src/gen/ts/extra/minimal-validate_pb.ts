@@ -30,7 +30,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/minimal-validate.proto.
  */
 export const file_extra_minimal_validate: GenFile = /*@__PURE__*/
-  fileDesc("ChxleHRyYS9taW5pbWFsLXZhbGlkYXRlLnByb3RvEgxidWYudmFsaWRhdGUiIAoMTWVzc2FnZVJ1bGVzEhAKCGRpc2FibGVkGAEgASgIIh4KCk9uZW9mUnVsZXMSEAoIcmVxdWlyZWQYASABKAgipAEKCkZpZWxkUnVsZXMSEAoIcmVxdWlyZWQYGSABKAgSJAoGaWdub3JlGBsgASgOMhQuYnVmLnZhbGlkYXRlLklnbm9yZRIvCghyZXBlYXRlZBgSIAEoCzIbLmJ1Zi52YWxpZGF0ZS5SZXBlYXRlZFJ1bGVzSAASJQoDbWFwGBMgASgLMhYuYnVmLnZhbGlkYXRlLk1hcFJ1bGVzSABCBgoEdHlwZSI4Cg1SZXBlYXRlZFJ1bGVzEicKBWl0ZW1zGAQgASgLMhguYnVmLnZhbGlkYXRlLkZpZWxkUnVsZXMiNAoITWFwUnVsZXMSKAoGdmFsdWVzGAUgASgLMhguYnVmLnZhbGlkYXRlLkZpZWxkUnVsZXMqhwEKBklnbm9yZRIWChJJR05PUkVfVU5TUEVDSUZJRUQQABIZChVJR05PUkVfSUZfVU5QT1BVTEFURUQQARIbChdJR05PUkVfSUZfREVGQVVMVF9WQUxVRRACEhEKDUlHTk9SRV9BTFdBWVMQAyoaSUdOT1JFX0VNUFRZSUdOT1JFX0RFRkFVTFQ6VgoHbWVzc2FnZRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxiHCSABKAsyGi5idWYudmFsaWRhdGUuTWVzc2FnZVJ1bGVzUgdtZXNzYWdlOk4KBW9uZW9mEh0uZ29vZ2xlLnByb3RvYnVmLk9uZW9mT3B0aW9ucxiHCSABKAsyGC5idWYudmFsaWRhdGUuT25lb2ZSdWxlc1IFb25lb2Y6TgoFZmllbGQSHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGIcJIAEoCzIYLmJ1Zi52YWxpZGF0ZS5GaWVsZFJ1bGVzUgVmaWVsZA", [file_google_protobuf_descriptor]);
+  fileDesc("ChxleHRyYS9taW5pbWFsLXZhbGlkYXRlLnByb3RvEgxidWYudmFsaWRhdGUiIAoMTWVzc2FnZVJ1bGVzEhAKCGRpc2FibGVkGAEgASgIIh4KCk9uZW9mUnVsZXMSEAoIcmVxdWlyZWQYASABKAgipAEKCkZpZWxkUnVsZXMSEAoIcmVxdWlyZWQYGSABKAgSJAoGaWdub3JlGBsgASgOMhQuYnVmLnZhbGlkYXRlLklnbm9yZRIvCghyZXBlYXRlZBgSIAEoCzIbLmJ1Zi52YWxpZGF0ZS5SZXBlYXRlZFJ1bGVzSAASJQoDbWFwGBMgASgLMhYuYnVmLnZhbGlkYXRlLk1hcFJ1bGVzSABCBgoEdHlwZSI4Cg1SZXBlYXRlZFJ1bGVzEicKBWl0ZW1zGAQgASgLMhguYnVmLnZhbGlkYXRlLkZpZWxkUnVsZXMiNAoITWFwUnVsZXMSKAoGdmFsdWVzGAUgASgLMhguYnVmLnZhbGlkYXRlLkZpZWxkUnVsZXMqawoGSWdub3JlEhYKEklHTk9SRV9VTlNQRUNJRklFRBAAEhkKFUlHTk9SRV9JRl9VTlBPUFVMQVRFRBABEhsKF0lHTk9SRV9JRl9ERUZBVUxUX1ZBTFVFEAISEQoNSUdOT1JFX0FMV0FZUxADOlYKB21lc3NhZ2USHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYhwkgASgLMhouYnVmLnZhbGlkYXRlLk1lc3NhZ2VSdWxlc1IHbWVzc2FnZTpOCgVvbmVvZhIdLmdvb2dsZS5wcm90b2J1Zi5PbmVvZk9wdGlvbnMYhwkgASgLMhguYnVmLnZhbGlkYXRlLk9uZW9mUnVsZXNSBW9uZW9mOk4KBWZpZWxkEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxiHCSABKAsyGC5idWYudmFsaWRhdGUuRmllbGRSdWxlc1IFZmllbGQ", [file_google_protobuf_descriptor]);
 
 /**
  * @generated from message buf.validate.MessageRules
@@ -127,8 +127,6 @@ export const RepeatedRulesSchema: GenMessage<RepeatedRules> = /*@__PURE__*/
  */
 export type MapRules = Message<"buf.validate.MapRules"> & {
   /**
-   * optional FieldRules keys = 4;
-   *
    * @generated from field: optional buf.validate.FieldRules values = 5;
    */
   values?: FieldRules;
@@ -146,159 +144,21 @@ export const MapRulesSchema: GenMessage<MapRules> = /*@__PURE__*/
  */
 export enum Ignore {
   /**
-   * Validation is only skipped if it's an unpopulated nullable fields.
-   *
-   * ```proto
-   * syntax="proto3";
-   *
-   * message Request {
-   *   // The uri rule applies to any value, including the empty string.
-   *   string foo = 1 [
-   *     (buf.validate.field).string.uri = true
-   *   ];
-   *
-   *   // The uri rule only applies if the field is set, including if it's
-   *   // set to the empty string.
-   *   optional string bar = 2 [
-   *     (buf.validate.field).string.uri = true
-   *   ];
-   *
-   *   // The min_items rule always applies, even if the list is empty.
-   *   repeated string baz = 3 [
-   *     (buf.validate.field).repeated.min_items = 3
-   *   ];
-   *
-   *   // The custom CEL rule applies only if the field is set, including if
-   *   // it's the "zero" value of that message.
-   *   SomeMessage quux = 4 [
-   *     (buf.validate.field).cel = {/* ... *\/}
-   *   ];
-   * }
-   * ```
-   *
    * @generated from enum value: IGNORE_UNSPECIFIED = 0;
    */
   UNSPECIFIED = 0,
 
   /**
-   * Validation is skipped if the field is unpopulated. This rule is redundant
-   * if the field is already nullable.
-   *
-   * ```proto
-   * syntax="proto3
-   *
-   * message Request {
-   *   // The uri rule applies only if the value is not the empty string.
-   *   string foo = 1 [
-   *     (buf.validate.field).string.uri = true,
-   *     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
-   *   ];
-   *
-   *   // IGNORE_IF_UNPOPULATED is equivalent to IGNORE_UNSPECIFIED in this
-   *   // case: the uri rule only applies if the field is set, including if
-   *   // it's set to the empty string.
-   *   optional string bar = 2 [
-   *     (buf.validate.field).string.uri = true,
-   *     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
-   *   ];
-   *
-   *   // The min_items rule only applies if the list has at least one item.
-   *   repeated string baz = 3 [
-   *     (buf.validate.field).repeated.min_items = 3,
-   *     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
-   *   ];
-   *
-   *   // IGNORE_IF_UNPOPULATED is equivalent to IGNORE_UNSPECIFIED in this
-   *   // case: the custom CEL rule applies only if the field is set, including
-   *   // if it's the "zero" value of that message.
-   *   SomeMessage quux = 4 [
-   *     (buf.validate.field).cel = {/* ... *\/},
-   *     (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
-   *   ];
-   * }
-   * ```
-   *
    * @generated from enum value: IGNORE_IF_UNPOPULATED = 1;
    */
   IF_UNPOPULATED = 1,
 
   /**
-   * Validation is skipped if the field is unpopulated or if it is a nullable
-   * field populated with its default value. This is typically the zero or
-   * empty value, but proto2 scalars support custom defaults. For messages, the
-   * default is a non-null message with all its fields unpopulated.
-   *
-   * ```proto
-   * syntax="proto3
-   *
-   * message Request {
-   *   // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_UNPOPULATED in
-   *   // this case; the uri rule applies only if the value is not the empty
-   *   // string.
-   *   string foo = 1 [
-   *     (buf.validate.field).string.uri = true,
-   *     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
-   *   ];
-   *
-   *   // The uri rule only applies if the field is set to a value other than
-   *   // the empty string.
-   *   optional string bar = 2 [
-   *     (buf.validate.field).string.uri = true,
-   *     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
-   *   ];
-   *
-   *   // IGNORE_IF_DEFAULT_VALUE is equivalent to IGNORE_IF_UNPOPULATED in
-   *   // this case; the min_items rule only applies if the list has at least
-   *   // one item.
-   *   repeated string baz = 3 [
-   *     (buf.validate.field).repeated.min_items = 3,
-   *     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
-   *   ];
-   *
-   *   // The custom CEL rule only applies if the field is set to a value other
-   *   // than an empty message (i.e., fields are unpopulated).
-   *   SomeMessage quux = 4 [
-   *     (buf.validate.field).cel = {/* ... *\/},
-   *     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
-   *   ];
-   * }
-   * ```
-   *
-   * This rule is affected by proto2 custom default values:
-   *
-   * ```proto
-   * syntax="proto2";
-   *
-   * message Request {
-   *   // The gt rule only applies if the field is set and it's value is not
-   *   the default (i.e., not -42). The rule even applies if the field is set
-   *   to zero since the default value differs.
-   *   optional int32 value = 1 [
-   *     default = -42,
-   *     (buf.validate.field).int32.gt = 0,
-   *     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
-   *   ];
-   * }
-   *
    * @generated from enum value: IGNORE_IF_DEFAULT_VALUE = 2;
    */
   IF_DEFAULT_VALUE = 2,
 
   /**
-   * The validation rules of this field will be skipped and not evaluated. This
-   * is useful for situations that necessitate turning off the rules of a field
-   * containing a message that may not make sense in the current context, or to
-   * temporarily disable rules during development.
-   *
-   * ```proto
-   * message MyMessage {
-   *   // The field's rules will always be ignored, including any validation's
-   *   // on value's fields.
-   *   MyOtherMessage value = 1 [
-   *     (buf.validate.field).ignore = IGNORE_ALWAYS];
-   * }
-   * ```
-   *
    * @generated from enum value: IGNORE_ALWAYS = 3;
    */
   ALWAYS = 3,
