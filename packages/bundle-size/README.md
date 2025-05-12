@@ -19,8 +19,8 @@ usually do. We repeat this for an increasing number of files.
 | Protobuf-ES         |     1 |   128,579 b |  66,681 b |   15,401 b |
 | Protobuf-ES         |     4 |   130,768 b |  68,189 b |   16,142 b |
 | Protobuf-ES         |     8 |   133,530 b |  69,960 b |   16,659 b |
-| Protobuf-ES         |    16 |   143,980 b |  77,941 b |   18,987 b |
-| Protobuf-ES         |    32 |   171,771 b |  99,959 b |   24,411 b |
+| Protobuf-ES         |    16 |   143,980 b |  77,941 b |   18,961 b |
+| Protobuf-ES         |    32 |   171,771 b |  99,959 b |   24,465 b |
 | protobuf-javascript |     1 |   104,048 b |  70,320 b |   15,540 b |
 | protobuf-javascript |     4 |   130,537 b |  85,672 b |   16,956 b |
 | protobuf-javascript |     8 |   152,429 b |  98,044 b |   18,138 b |
