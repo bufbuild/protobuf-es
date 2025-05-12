@@ -82,13 +82,11 @@ export declare const DeprecatedFieldMessageSchema: GenMessage<DeprecatedFieldMes
 export enum DeprecatedEnum {
   /**
    * @generated from enum value: DEPRECATED_ENUM_A = 0;
-   * @deprecated
    */
   A = 0,
 
   /**
    * @generated from enum value: DEPRECATED_ENUM_B = 1;
-   * @deprecated
    */
   B = 1,
 }
@@ -112,6 +110,7 @@ export enum DeprecatedValueEnum {
 
   /**
    * @generated from enum value: DEPRECATED_VALUE_ENUM_DEPRECATED_VALUE = 1 [deprecated = true];
+   * @deprecated
    */
   DEPRECATED_VALUE = 1,
 }
