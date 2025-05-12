@@ -1475,6 +1475,19 @@ UserService.method.createUser; // DescMethod
 UserService.method.createUser.name; // "CreateUser"
 ```
 
+> [!TIP]
+>
+> The function `usedTypes()` from `@bufbuild/protobuf/reflect` returns 
+> messages and enumerations referenced by fields of a given message. 
+> 
+> The function `parentTypes()` returns the ancestors of a given Protobuf
+> element, up to the file.
+> 
+> The type `Path` represents a path to a (nested) member of a Protobuf
+> message, such as a field, oneof, extension, list element, or map entry.
+> See the utilities `buildPath()`, `parsePath()`, and `pathToString()`. 
+
+
 ### Walking through message fields
 
 To walk through the fields of a message, there are several options depending on how you prefer to handle fields in a
