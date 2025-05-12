@@ -1113,15 +1113,19 @@ function getFieldPresence(
     // oneof is always explicit
     return EXPLICIT;
   }
-  if (proto.type == TYPE_MESSAGE) {
-    // singular message field cannot be implicit
-    return EXPLICIT;
-  }
   if (isExtension) {
     // extensions always track presence
     return EXPLICIT;
   }
-  return resolveFeature("fieldPresence", { proto, parent });
+  const resolved = resolveFeature("fieldPresence", { proto, parent });
+  if (
+    resolved == IMPLICIT &&
+    (proto.type == TYPE_MESSAGE || proto.type == TYPE_GROUP)
+  ) {
+    // singular message field cannot be implicit
+    return EXPLICIT;
+  }
+  return resolved;
 }
 
 /**
