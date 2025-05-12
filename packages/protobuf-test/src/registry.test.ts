@@ -45,8 +45,6 @@ import {
   compileService,
 } from "./helpers.js";
 
-/* eslint-disable @typescript-eslint/no-unused-expressions -- we use expressions for type tests */
-
 describe("createRegistry()", () => {
   let testReg: FileRegistry;
   let testDescs: {
@@ -732,6 +730,37 @@ describe("DescEnum", () => {
       expect(descEnum.sharedPrefix).toBeUndefined();
     });
   });
+  describe("deprecated", () => {
+    test("not deprecated by default", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum E {
+          A = 0;
+        }
+      `);
+      expect(descEnum.deprecated).toBe(false);
+    });
+    test("deprecated is deprecated", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum E {
+          option deprecated = true;
+          A = 0;
+        }
+      `);
+      expect(descEnum.deprecated).toBe(true);
+    });
+    test("deprecated file is not deprecated", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        option deprecated = true;
+        enum E {
+          A = 0;
+        }
+      `);
+      expect(descEnum.deprecated).toBe(false);
+    });
+  });
 });
 
 describe("DescEnumValue", () => {
@@ -796,11 +825,59 @@ describe("DescEnumValue", () => {
       expect(value.localName).toBe("constructor$");
     });
   });
+  describe("deprecated", () => {
+    test("not deprecated by default", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum E {
+          A = 0;
+        }
+      `)
+      ).values[0];
+      expect(value.deprecated).toBe(false);
+    });
+    test("deprecated is deprecated", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum E {
+          A = 0 [deprecated = true];
+        }
+      `)
+      ).values[0];
+      expect(value.deprecated).toBe(true);
+    });
+    test("deprecated enum is not deprecated", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum E {
+        option deprecated = true;
+          A = 0;
+        }
+      `)
+      ).values[0];
+      expect(value.deprecated).toBe(false);
+    });
+    test("deprecated file is not deprecated", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        option deprecated = true;
+        enum E {
+          A = 0;
+        }
+      `)
+      ).values[0];
+      expect(value.deprecated).toBe(false);
+    });
+  });
 });
 
 describe("DescField", () => {
   describe("presence", () => {
-    test("proto2 optional is EXPLICIT", async () => {
+    test("proto2 optional scalar is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
         message M { 
@@ -818,7 +895,7 @@ describe("DescField", () => {
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
     });
-    test("proto2 required is LEGACY_REQUIRED", async () => {
+    test("proto2 required scalar is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
         syntax="proto2";
         message M { 
@@ -836,7 +913,7 @@ describe("DescField", () => {
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
     });
-    test("proto2 list is IMPLICIT", async () => {
+    test("proto2 scalar list is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
         message M { 
@@ -845,11 +922,29 @@ describe("DescField", () => {
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
     });
-    test("proto2 map is IMPLICIT", async () => {
+    test("proto2 message list is IMPLICIT", async () => {
+      const field = await compileField(`
+        syntax="proto2";
+        message M { 
+          repeated M f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+    test("proto2 scalar map is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
         message M { 
           map <int32, int32> f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+    test("proto2 message map is IMPLICIT", async () => {
+      const field = await compileField(`
+        syntax="proto2";
+        message M { 
+          map <int32, M> f = 1;
         }
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
@@ -865,7 +960,7 @@ describe("DescField", () => {
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
     });
-    test("proto3 is IMPLICIT", async () => {
+    test("proto3 scalar is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
         message M { 
@@ -874,7 +969,7 @@ describe("DescField", () => {
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
     });
-    test("proto3 optional is EXPLICIT", async () => {
+    test("proto3 optional scalar is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
         message M { 
@@ -883,7 +978,7 @@ describe("DescField", () => {
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
     });
-    test("proto3 list is IMPLICIT", async () => {
+    test("proto3 scalar list is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
         message M { 
@@ -892,11 +987,29 @@ describe("DescField", () => {
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
     });
-    test("proto3 map is IMPLICIT", async () => {
+    test("proto3 message list is IMPLICIT", async () => {
+      const field = await compileField(`
+        syntax="proto3";
+        message M { 
+          repeated M f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+    test("proto3 scalar map is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
         message M { 
           map <int32, int32> f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+    test("proto3 message map is IMPLICIT", async () => {
+      const field = await compileField(`
+        syntax="proto3";
+        message M { 
+          map <int32, M> f = 1;
         }
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
@@ -939,7 +1052,7 @@ describe("DescField", () => {
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
     });
-    test("edition2023 inherited features.field_presence is IMPLICIT", async () => {
+    test("edition2023 scalar inherits IMPLICIT", async () => {
       const field = await compileField(`
         edition="2023";
         option features.field_presence = IMPLICIT;
@@ -948,6 +1061,62 @@ describe("DescField", () => {
         }
       `);
       expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+    test("edition2023 message is EXPLICIT", async () => {
+      const field = await compileField(`
+        edition="2023";
+        option features.field_presence = IMPLICIT;
+        message M { 
+          M f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+    });
+    test("edition2023 message does not inherit IMPLICIT", async () => {
+      const field = await compileField(`
+        edition="2023";
+        option features.field_presence = IMPLICIT;
+        message M { 
+          M f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+    });
+    test("edition2023 scalar list is IMPLICIT", async () => {
+      const field = await compileField(`
+        edition="2023";
+        message M { 
+          repeated int32 f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+    test("edition2023 message list is IMPLICIT", async () => {
+      const field = await compileField(`
+        edition="2023";
+        message M { 
+          repeated M f = 1;
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+    });
+    test("edition2023 scalar with LEGACY_REQUIRED is LEGACY_REQUIRED", async () => {
+      const field = await compileField(`
+        edition="2023";
+        message M { 
+          int32 f = 1 [features.field_presence = LEGACY_REQUIRED];
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
+    });
+    test("edition2023 message with LEGACY_REQUIRED is LEGACY_REQUIRED", async () => {
+      const field = await compileField(`
+        edition="2023";
+        message M { 
+          M f = 1 [features.field_presence = LEGACY_REQUIRED];
+        }
+      `);
+      expect(field.presence).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
     });
   });
   describe("delimitedEncoding", () => {
