@@ -619,7 +619,7 @@ function addEnum(
       (desc.value[p.number] = {
         kind: "enum_value" as const,
         proto: p,
-        deprecated: proto.options?.deprecated ?? false,
+        deprecated: p.options?.deprecated ?? false,
         parent: desc,
         name,
         localName: safeObjectProperty(
