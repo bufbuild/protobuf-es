@@ -732,6 +732,37 @@ describe("DescEnum", () => {
       expect(descEnum.sharedPrefix).toBeUndefined();
     });
   });
+  describe("deprecated", () => {
+    test("not deprecated by default", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum E {
+          A = 0;
+        }
+      `);
+      expect(descEnum.deprecated).toBe(false);
+    });
+    test("deprecated is deprecated", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum E {
+          option deprecated = true;
+          A = 0;
+        }
+      `);
+      expect(descEnum.deprecated).toBe(true);
+    });
+    test("deprecated file is not deprecated", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        option deprecated = true;
+        enum E {
+          A = 0;
+        }
+      `);
+      expect(descEnum.deprecated).toBe(false);
+    });
+  });
 });
 
 describe("DescEnumValue", () => {
@@ -794,6 +825,54 @@ describe("DescEnumValue", () => {
       `)
       ).values[0];
       expect(value.localName).toBe("constructor$");
+    });
+  });
+  describe("deprecated", () => {
+    test("not deprecated by default", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum E {
+          A = 0;
+        }
+      `)
+      ).values[0];
+      expect(value.deprecated).toBe(false);
+    });
+    test("deprecated is deprecated", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum E {
+          A = 0 [deprecated = true];
+        }
+      `)
+      ).values[0];
+      expect(value.deprecated).toBe(true);
+    });
+    test("deprecated enum is not deprecated", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        enum E {
+        option deprecated = true;
+          A = 0;
+        }
+      `)
+      ).values[0];
+      expect(value.deprecated).toBe(false);
+    });
+    test("deprecated file is not deprecated", async () => {
+      const value = (
+        await compileEnum(`
+        syntax="proto3";
+        option deprecated = true;
+        enum E {
+          A = 0;
+        }
+      `)
+      ).values[0];
+      expect(value.deprecated).toBe(false);
     });
   });
 });
