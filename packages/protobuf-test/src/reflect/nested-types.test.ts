@@ -14,7 +14,11 @@
 
 import { describe, expect, test } from "@jest/globals";
 import { compileFile, compileMessage, compileMethod } from "../helpers.js";
-import { nestedTypes, parentTypes } from "@bufbuild/protobuf/reflect";
+import {
+  nestedTypes,
+  usedTypes,
+  parentTypes,
+} from "@bufbuild/protobuf/reflect";
 
 describe("nestedTypes()", () => {
   test("lists nested types", async () => {
@@ -55,6 +59,131 @@ describe("nestedTypes()", () => {
   });
 });
 
+describe("usedTypes()", () => {
+  test("example", async () => {
+    const file = await compileFile(`
+      syntax="proto3";
+      message Example {
+        Msg singular = 1;
+        repeated Level list = 2;
+      }
+      message Msg {}
+      enum Level {
+        LEVEL_UNSPECIFIED = 0;
+      }
+    `);
+    const message = file.messages[0];
+    const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
+    expect(used).toStrictEqual(["message Msg", "enum Level"]);
+  });
+  test("supports message singular, list, map", async () => {
+    const file = await compileFile(`
+      syntax="proto3";
+      message Example {
+        Singular singular = 1;
+        repeated List list = 2;
+        map<int32, Map> map = 3;
+      }
+      message Singular {}
+      message List {}
+      message Map {}
+    `);
+    const message = file.messages[0];
+    const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
+    expect(used).toStrictEqual([
+      "message Singular",
+      "message List",
+      "message Map",
+    ]);
+  });
+  test("supports enum singular, list, map", async () => {
+    const file = await compileFile(`
+      syntax="proto3";
+      message Example {
+        Singular singular = 1;
+        repeated List list = 2;
+        map<int32, Map> map = 3;
+      }
+      enum Singular {
+        SINGULAR_UNSPECIFIED = 0;
+      }
+      enum List {
+        LIST_UNSPECIFIED = 0;
+      }
+      enum Map {
+        MAP_UNSPECIFIED = 0;
+      }
+    `);
+    const message = file.messages[0];
+    const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
+    expect(used).toStrictEqual(["enum Singular", "enum List", "enum Map"]);
+  });
+  test("supports singular, list, map", async () => {
+    const file = await compileFile(`
+      syntax="proto3";
+      message Example {
+        MsgSingular singular = 1;
+        repeated MsgList list = 2;
+        map<int32, MsgMap> map = 3;
+      }
+      message MsgSingular {}
+      message MsgList {}
+      message MsgMap {}
+    `);
+    const message = file.messages[0];
+    const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
+    expect(used).toStrictEqual([
+      "message MsgSingular",
+      "message MsgList",
+      "message MsgMap",
+    ]);
+  });
+  test("yields a type only once", async () => {
+    const file = await compileFile(`
+      syntax="proto3";
+      message Example {
+        Msg singular = 1;
+        repeated Msg list = 2;
+      }
+      message Msg {}
+    `);
+    const message = file.messages[0];
+    const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
+    expect(used).toStrictEqual(["message Msg"]);
+  });
+  test("recurses into messages", async () => {
+    const file = await compileFile(`
+      syntax="proto3";
+      message Example {
+        A a = 1;
+      }
+      message A {
+        B b = 1;
+      }
+      message B {
+        C c = 1;
+      }
+      enum C {
+        C_UNSPECIFIED = 0;
+      }
+    `);
+    const message = file.messages[0];
+    const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
+    expect(used).toStrictEqual(["message A", "message B", "enum C"]);
+  });
+  test("yields itself", async () => {
+    const file = await compileFile(`
+      syntax="proto3";
+      message Example {
+        Example example = 1;
+      }
+    `);
+    const message = file.messages[0];
+    const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
+    expect(used).toStrictEqual(["message Example"]);
+  });
+});
+
 describe("parentTypes()", () => {
   test("lists parents of field", async () => {
     const message = await compileMessage(`
@@ -66,8 +195,8 @@ describe("parentTypes()", () => {
       }
     `);
     const field = message.nestedMessages[0].fields[0];
-    const parents = parentTypes(field);
-    expect(parents.map((d) => d.toString())).toStrictEqual([
+    const parents = parentTypes(field).map((desc) => desc.toString());
+    expect(parents).toStrictEqual([
       "message A.B",
       "message A",
       "file input.proto",
@@ -83,8 +212,8 @@ describe("parentTypes()", () => {
       }
     `);
     const enumValue = message.nestedEnums[0].values[0];
-    const parents = parentTypes(enumValue);
-    expect(parents.map((d) => d.toString())).toStrictEqual([
+    const parents = parentTypes(enumValue).map((desc) => desc.toString());
+    expect(parents).toStrictEqual([
       "enum A.B",
       "message A",
       "file input.proto",
@@ -98,11 +227,8 @@ describe("parentTypes()", () => {
       }
       message M {}
     `);
-    const parents = parentTypes(method);
-    expect(parents.map((d) => d.toString())).toStrictEqual([
-      "service A",
-      "file input.proto",
-    ]);
+    const parents = parentTypes(method).map((desc) => desc.toString());
+    expect(parents).toStrictEqual(["service A", "file input.proto"]);
   });
   test("lists parents of extension", async () => {
     const message = await compileMessage(`
@@ -119,8 +245,8 @@ describe("parentTypes()", () => {
       }
     `);
     const ext = message.nestedMessages[0].nestedExtensions[0];
-    const parents = parentTypes(ext);
-    expect(parents.map((d) => d.toString())).toStrictEqual([
+    const parents = parentTypes(ext).map((desc) => desc.toString());
+    expect(parents).toStrictEqual([
       "message A.B",
       "message A",
       "file input.proto",
