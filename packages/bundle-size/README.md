@@ -20,7 +20,7 @@ usually do. We repeat this for an increasing number of files.
 | Protobuf-ES         |     4 |   130,848 b |  68,249 b |   16,099 b |
 | Protobuf-ES         |     8 |   133,610 b |  70,020 b |   16,656 b |
 | Protobuf-ES         |    16 |   144,060 b |  78,001 b |   19,012 b |
-| Protobuf-ES         |    32 |   171,851 b | 100,017 b |   24,417 b |
+| Protobuf-ES         |    32 |   171,851 b | 100,017 b |   24,452 b |
 | protobuf-javascript |     1 |   104,048 b |  70,320 b |   15,540 b |
 | protobuf-javascript |     4 |   130,537 b |  85,672 b |   16,956 b |
 | protobuf-javascript |     8 |   152,429 b |  98,044 b |   18,138 b |

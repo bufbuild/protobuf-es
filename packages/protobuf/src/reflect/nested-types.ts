@@ -50,6 +50,51 @@ export function* nestedTypes(
 }
 
 /**
+ * Iterate over types referenced by fields of the given message.
+ *
+ * For example:
+ *
+ * ```proto
+ * syntax="proto3";
+ *
+ * message Example {
+ *   Msg singular = 1;
+ *   repeated Level list = 2;
+ * }
+ *
+ * message Msg {}
+ *
+ * enum Level {
+ *   LEVEL_UNSPECIFIED = 0;
+ * }
+ * ```
+ *
+ * The message Example references the message Msg, and the enum Level.
+ */
+export function usedTypes(
+  descMessage: DescMessage,
+): Iterable<DescMessage | DescEnum> {
+  return usedTypesInternal(descMessage, new Set<string>());
+}
+
+function* usedTypesInternal(
+  descMessage: DescMessage,
+  seen: Set<string>,
+): Iterable<DescMessage | DescEnum> {
+  for (const field of descMessage.fields) {
+    const ref = field.enum ?? field.message ?? undefined;
+    if (!ref || seen.has(ref.typeName)) {
+      continue;
+    }
+    seen.add(ref.typeName);
+    yield ref;
+    if (ref.kind == "message") {
+      yield* usedTypesInternal(ref, seen);
+    }
+  }
+}
+
+/**
  * Returns the ancestors of a given Protobuf element, up to the file.
  */
 export function parentTypes(desc: AnyDesc): Parent[] {
