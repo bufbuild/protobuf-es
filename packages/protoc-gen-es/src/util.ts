@@ -21,13 +21,48 @@ import {
 import {
   scalarJsonType,
   scalarTypeScriptType,
-} from "@bufbuild/protobuf/codegenv1";
+} from "@bufbuild/protobuf/codegenv2";
 import {
   StructSchema,
   ValueSchema,
   isWrapperDesc,
 } from "@bufbuild/protobuf/wkt";
 import type { GeneratedFile, Printable } from "@bufbuild/protoplugin";
+
+/**
+ * Returns a type expression for `GenMessage` from @bufbuild/protobuf/codegenv2,
+ * with the mandatory `RuntimeShape` parameter, and the optional `OptShapes`
+ * parameter providing a JSON type, and/or a Valid type.
+ *
+ * For example:
+ * - `GenMessage<Example>`
+ * - `GenMessage<Example, {jsonType: ExampleJson}>`
+ * - `GenMessage<Example, {validType: ExampleValid}>`
+ * - `GenMessage<Example, {jsonType: ExampleJson, validType: ExampleValid}>`
+ */
+export function messageGenType(
+  desc: DescMessage,
+  f: GeneratedFile,
+  options: {
+    jsonTypes: boolean;
+    validTypes: {
+      legacyRequired: boolean;
+      protovalidate: boolean;
+    };
+  },
+): Printable {
+  let p2: Printable = [];
+  if (options.jsonTypes) {
+    p2.push(["jsonType: ", f.importJson(desc)]);
+  }
+  if (options.validTypes.legacyRequired || options.validTypes.protovalidate) {
+    p2.push(["validType: ", f.importValid(desc)]);
+  }
+  if (p2.length > 0) {
+    p2 = [", {", commaSeparate(p2), "}"];
+  }
+  return [f.runtime.codegen.GenMessage, "<", f.importShape(desc), p2, ">"];
+}
 
 export function fieldTypeScriptType(
   field: DescField | DescExtension,

@@ -12,4 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { boot } from "../codegenv2/boot.js";
+import type { Message } from "../types.js";
+import type { DescFile } from "../descriptors.js";
+import type { GenMessage } from "./types.js";
+
+/**
+ * Hydrate a message descriptor.
+ *
+ * @private
+ */
+export function messageDesc<
+  Shape extends Message,
+  Opt extends { jsonType?: unknown; validType?: unknown } = {
+    jsonType: undefined;
+    validType: undefined;
+  },
+>(file: DescFile, path: number, ...paths: number[]): GenMessage<Shape, Opt> {
+  return paths.reduce(
+    (acc, cur) => acc.nestedMessages[cur],
+    file.messages[path],
+  ) as GenMessage<Shape, Opt>;
+}

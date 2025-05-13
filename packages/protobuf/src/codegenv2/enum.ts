@@ -12,11 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { DescFile } from "../descriptors.js";
+import type { DescEnum, DescFile } from "../descriptors.js";
 import type { GenEnum } from "./types.js";
 import type { JsonValue } from "../json-value.js";
-
-export { tsEnum } from "../codegenv2/enum.js";
 
 /**
  * Hydrate an enum descriptor.
@@ -36,3 +34,20 @@ export function enumDesc<
     file.messages[path],
   ).nestedEnums[e] as GenEnum<Shape, JsonType>;
 }
+
+/**
+ * Construct a TypeScript enum object at runtime from a descriptor.
+ */
+export function tsEnum(desc: DescEnum) {
+  const enumObject = {} as enumObject;
+  for (const value of desc.values) {
+    enumObject[value.localName] = value.number;
+    enumObject[value.number] = value.localName;
+  }
+  return enumObject;
+}
+
+type enumObject = {
+  [key: number]: string;
+  [k: string]: number | string;
+};

@@ -19,7 +19,7 @@ import type {
   DescMessage,
   DescService,
 } from "@bufbuild/protobuf";
-import { wktPublicImportPaths } from "@bufbuild/protobuf/codegenv1";
+import { wktPublicImportPaths } from "@bufbuild/protobuf/codegenv2";
 import { nestedTypes } from "@bufbuild/protobuf/reflect";
 import { safeIdentifier } from "./safe-identifier.js";
 

@@ -21,7 +21,7 @@ import type {
   DescService,
 } from "@bufbuild/protobuf";
 import { parentTypes } from "@bufbuild/protobuf/reflect";
-import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv1";
+import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv2";
 import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
 import {
   createEcmaScriptPlugin,
@@ -30,7 +30,12 @@ import {
   type Schema,
   type Target,
 } from "@bufbuild/protoplugin";
-import { fieldJsonType, fieldTypeScriptType, functionCall } from "./util.js";
+import {
+  fieldJsonType,
+  fieldTypeScriptType,
+  functionCall,
+  messageGenType,
+} from "./util.js";
 import { version } from "../package.json";
 import {
   isLegacyRequired,
@@ -124,15 +129,8 @@ function generateTs(schema: Schema<Options>) {
           }
           generateDescDoc(f, desc);
           const name = f.importSchema(desc).name;
-          const Shape = f.importShape(desc);
-          const { GenMessage, messageDesc } = f.runtime.codegen;
-          if (schema.options.jsonTypes) {
-            const JsonType = f.importJson(desc);
-            f.print(f.export("const", name), ": ", GenMessage, "<", Shape, ", ", JsonType, ">", " = ", pure);
-          } else {
-            f.print(f.export("const", name), ": ", GenMessage, "<", Shape, ">", " = ", pure);
-          }
-          const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
+          f.print(f.export("const", name), ": ", messageGenType(desc, f, schema.options), " = ", pure);
+          const call = functionCall(f.runtime.codegen.messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print("  ", call, ";");
           f.print();
           break;
@@ -274,15 +272,8 @@ function generateDts(schema: Schema<Options>) {
             generateMessageValidShape(f, desc, schema.options.validTypes, "dts");
           }
           const name = f.importSchema(desc).name;
-          const Shape = f.importShape(desc);
-          const { GenMessage } = f.runtime.codegen;
           generateDescDoc(f, desc);
-          if (schema.options.jsonTypes) {
-            const JsonType = f.importJson(desc);
-            f.print(f.export("declare const", name), ": ", GenMessage, "<", Shape, ", ", JsonType, ">", ";");
-          } else {
-            f.print(f.export("declare const", name), ": ", GenMessage, "<", Shape, ">", ";");
-          }
+          f.print(f.export("declare const", name), ": ", messageGenType(desc, f, schema.options), ";");
           f.print();
           break;
         }

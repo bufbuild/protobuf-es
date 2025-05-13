@@ -12,4 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { boot } from "../codegenv2/boot.js";
+import { describe, expect, test } from "@jest/globals";
+import { compileFile } from "../helpers.js";
+import { extDesc } from "@bufbuild/protobuf/codegenv2";
+
+describe("extDesc()", () => {
+  test("resolves extension", async () => {
+    const descFile = await compileFile(`
+      syntax="proto3";
+      import "google/protobuf/descriptor.proto";
+      extend google.protobuf.MethodOptions {
+        bool http = 72295729;
+      }
+    `);
+    const descExtension = extDesc(descFile, 0);
+    expect(descExtension.typeName).toBe("http");
+  });
+});

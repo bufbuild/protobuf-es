@@ -12,4 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { boot } from "../codegenv2/boot.js";
+import type { GenService, GenServiceMethods } from "./types.js";
+import type { DescFile } from "../descriptors.js";
+
+/**
+ * Hydrate a service descriptor.
+ *
+ * @private
+ */
+export function serviceDesc<T extends GenServiceMethods>(
+  file: DescFile,
+  path: number,
+  ...paths: number[]
+): GenService<T> {
+  if (paths.length > 0) {
+    throw new Error();
+  }
+  return file.services[path] as GenService<T>;
+}

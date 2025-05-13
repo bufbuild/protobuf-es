@@ -12,4 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export { boot } from "../codegenv2/boot.js";
+import { describe, expect, test } from "@jest/globals";
+import { compileFile } from "../helpers.js";
+import { serviceDesc } from "@bufbuild/protobuf/codegenv2";
+
+describe("serviceDesc()", () => {
+  test("resolves service", async () => {
+    const descFile = await compileFile(`
+      syntax="proto3";
+      service Foo {
+        rpc Bar(E) returns (E);
+      }
+      message E {}
+    `);
+    const descService = serviceDesc(descFile, 0);
+    expect(descService.typeName).toBe("Foo");
+  });
+});

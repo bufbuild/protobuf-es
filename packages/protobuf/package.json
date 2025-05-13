@@ -35,6 +35,10 @@
       "import": "./dist/esm/codegenv1/index.js",
       "require": "./dist/cjs/codegenv1/index.js"
     },
+    "./codegenv2": {
+      "import": "./dist/esm/codegenv2/index.js",
+      "require": "./dist/cjs/codegenv2/index.js"
+    },
     "./reflect": {
       "import": "./dist/esm/reflect/index.js",
       "require": "./dist/cjs/reflect/index.js"
@@ -51,6 +55,7 @@
   "typesVersions": {
     "*": {
       "codegenv1": ["./dist/cjs/codegenv1/index.d.ts"],
+      "codegenv2": ["./dist/cjs/codegenv2/index.d.ts"],
       "reflect": ["./dist/cjs/reflect/index.d.ts"],
       "wkt": ["./dist/cjs/wkt/index.d.ts"],
       "wire": ["./dist/cjs/wire/index.d.ts"]

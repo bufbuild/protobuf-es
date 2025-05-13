@@ -12,7 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { GenEnum, GenExtension, GenMessage } from "./codegenv1/types.js";
+import type {
+  GenEnum as GenEnumV1,
+  GenExtension as GenExtensionV1,
+  GenMessage as GenMessageV1,
+} from "./codegenv1/types.js";
+import type {
+  GenEnum as GenEnumV2,
+  GenExtension as GenExtensionV2,
+  GenMessage as GenMessageV2,
+} from "./codegenv2/types.js";
 import type {
   DescEnum,
   DescExtension,
@@ -40,65 +49,75 @@ export type Message<TypeName extends string = string> = {
 /**
  * Extract the message type from a message descriptor.
  */
-export type MessageShape<Desc extends DescMessage> = Desc extends GenMessage<
-  infer RuntimeShape
->
-  ? RuntimeShape
+// biome-ignore format: want this to read well
+export type MessageShape<Desc extends DescMessage> =
+    Desc extends GenMessageV1<infer RuntimeShape> ? RuntimeShape
+  : Desc extends GenMessageV2<infer RuntimeShape> ? RuntimeShape
   : Message;
 
 /**
  * Extract the message JSON type from a message descriptor.
  */
-export type MessageJsonType<Desc extends DescMessage> = Desc extends GenMessage<
-  Message,
-  infer JsonType
->
-  ? JsonType
+// biome-ignore format: want this to read well
+export type MessageJsonType<Desc extends DescMessage> =
+    Desc extends GenMessageV1<Message, infer JsonTypeV1 extends JsonValue> ? JsonTypeV1
+  : Desc extends GenMessageV2<Message, {jsonType: infer JsonType extends JsonValue}> ? JsonType
   : JsonValue;
+
+/**
+ * Extract the message Valid type from a message descriptor.
+ */
+// biome-ignore format: want this to read well
+export type MessageValidType<Desc extends DescMessage> =
+    Desc extends GenMessageV1<infer RuntimeShapeV1> ? RuntimeShapeV1
+  : Desc extends GenMessageV2<Message, {validType: infer ValidType extends Message}> ? ValidType
+  : Desc extends GenMessageV2<infer RuntimeShape> ? RuntimeShape
+  : Message;
 
 /**
  * Extract the init type from a message descriptor.
  * The init type is accepted by the function create().
  */
+// biome-ignore format: want this to read well
 export type MessageInitShape<Desc extends DescMessage> =
-  Desc extends GenMessage<infer RuntimeShape>
-    ? MessageInit<RuntimeShape>
-    : Record<string, unknown>;
+    Desc extends GenMessageV1<infer RuntimeShape> ? MessageInit<RuntimeShape>
+  : Desc extends GenMessageV2<infer RuntimeShape> ? MessageInit<RuntimeShape>
+  : Record<string, unknown>;
 
 /**
  * Extract the enum type of from an enum descriptor.
  */
-export type EnumShape<Desc extends DescEnum> = Desc extends GenEnum<
-  infer RuntimeShape
->
-  ? RuntimeShape
+// biome-ignore format: want this to read well
+export type EnumShape<Desc extends DescEnum> =
+    Desc extends GenEnumV1<infer RuntimeShape> ? RuntimeShape
+  : Desc extends GenEnumV2<infer RuntimeShape> ? RuntimeShape
   : number;
 
 /**
  * Extract the enum JSON type from a enum descriptor.
  */
-export type EnumJsonType<Desc extends DescEnum> = Desc extends GenEnum<
-  number,
-  infer JsonType
->
-  ? JsonType
+// biome-ignore format: want this to read well
+export type EnumJsonType<Desc extends DescEnum> =
+    Desc extends GenEnumV1<number, infer JsonType> ? JsonType
+  : Desc extends GenEnumV2<number, infer JsonType> ? JsonType
   : string | null;
 
 /**
  * Extract the value type from an extension descriptor.
  */
+// biome-ignore format: want this to read well
 export type ExtensionValueShape<Desc extends DescExtension> =
-  Desc extends GenExtension<Message, infer RuntimeShape>
-    ? RuntimeShape
-    : unknown;
+    Desc extends GenExtensionV1<Message, infer RuntimeShape> ? RuntimeShape
+  : Desc extends GenExtensionV2<Message, infer RuntimeShape> ? RuntimeShape
+  : unknown;
 
 /**
  * Extract the type of the extended message from an extension descriptor.
  */
-export type Extendee<Desc extends DescExtension> = Desc extends GenExtension<
-  infer Extendee
->
-  ? Extendee
+// biome-ignore format: want this to read well
+export type Extendee<Desc extends DescExtension> =
+    Desc extends GenExtensionV1<infer Extendee> ? Extendee
+  : Desc extends GenExtensionV2<infer Extendee> ? Extendee
   : Message;
 
 /**
