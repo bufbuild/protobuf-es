@@ -7,7 +7,6 @@
     "../../protobuf-test/src/generate-code.test.ts",
     "../../protobuf-test/src/fields.test.ts",
     "../../protobuf-test/src/create.test.ts",
-    "../../protobuf-test/src/create.test.ts",
     "../../protobuf-test/src/wkt/*.test.ts",
     "../../protobuf-test/src/gen/**/*",
     "../../protobuf-test/src/codegenv1/types.test.ts"
