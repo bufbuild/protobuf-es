@@ -13,8 +13,22 @@
 // limitations under the License.
 
 import { describe, expect, test } from "@jest/globals";
-import { compileEnum } from "../helpers.js";
-import { tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { compileEnum, compileFile } from "../helpers.js";
+import { enumDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+
+describe("enumDesc()", () => {
+  test("resolves enum", async () => {
+    const descFile = await compileFile(`
+      syntax="proto3";
+      enum E {
+        A = 0;
+        B = 1;
+      }
+    `);
+    const descEnum = enumDesc(descFile, 0);
+    expect(descEnum.name).toBe("E");
+  });
+});
 
 describe("tsEnum()", () => {
   test("creates TS enum", async () => {
