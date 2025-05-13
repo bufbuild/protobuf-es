@@ -38,8 +38,6 @@ import * as option_usage_ts from "./gen/ts/extra/option-usage_pb.js";
 import type * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
 import type * as json_types_js_json from "./gen/js,json_types/extra/json_types_pb.js";
 
-/* eslint-disable @typescript-eslint/no-unused-expressions -- we use expressions for type tests */
-
 test("source retention options are unavailable in generated code", () => {
   const fileOptions = option_usage_ts.file_extra_option_usage.proto.options;
   expect(
