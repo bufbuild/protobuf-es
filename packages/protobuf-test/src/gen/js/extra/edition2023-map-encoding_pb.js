@@ -17,7 +17,7 @@
 // option features.message_encoding = DELIMITED;
 /* eslint-disable */
 
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file extra/edition2023-map-encoding.proto.

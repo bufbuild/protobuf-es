@@ -16,8 +16,8 @@
 // @generated from file google/api/expr/v1alpha1/checked.proto (package google.api.expr.v1alpha1, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Constant, Expr, SourceInfo } from "./syntax_pb";
 import { file_google_api_expr_v1alpha1_syntax } from "./syntax_pb";
 import type { Empty, NullValue } from "@bufbuild/protobuf/wkt";

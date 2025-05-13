@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_large_oneof.proto (package proto2_unittest, edition 2023)
 /* eslint-disable */
 
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file google/protobuf/unittest_large_oneof.proto.

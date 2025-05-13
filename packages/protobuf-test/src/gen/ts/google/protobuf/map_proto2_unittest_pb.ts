@@ -20,8 +20,8 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In map_test_util.h we do "using namespace unittest = proto2_unittest".
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { ImportEnumForMap } from "./unittest_import_pb.js";
 import { file_google_protobuf_unittest_import } from "./unittest_import_pb.js";
 import type { Message } from "@bufbuild/protobuf";

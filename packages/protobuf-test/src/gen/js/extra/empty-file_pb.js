@@ -16,7 +16,7 @@
 // @generated from file extra/empty-file.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { fileDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file extra/empty-file.proto.

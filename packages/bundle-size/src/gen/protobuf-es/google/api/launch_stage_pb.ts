@@ -16,8 +16,8 @@
 // @generated from file google/api/launch_stage.proto (package google.api, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file google/api/launch_stage.proto.

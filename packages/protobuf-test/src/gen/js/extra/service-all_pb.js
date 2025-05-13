@@ -16,7 +16,7 @@
 // @generated from file extra/service-all.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { fileDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 
 /**

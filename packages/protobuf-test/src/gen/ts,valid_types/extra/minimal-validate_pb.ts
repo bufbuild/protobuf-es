@@ -20,8 +20,8 @@
 // It only contains the definitions necessary to resolve `required` rule, ignores,
 // and disabled.
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { FieldOptions, MessageOptions, OneofOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
@@ -48,7 +48,7 @@ export type MessageRulesValid = MessageRules;
  * Describes the message buf.validate.MessageRules.
  * Use `create(MessageRulesSchema)` to create a new message.
  */
-export const MessageRulesSchema: GenMessage<MessageRules> = /*@__PURE__*/
+export const MessageRulesSchema: GenMessage<MessageRules, {validType: MessageRulesValid}> = /*@__PURE__*/
   messageDesc(file_extra_minimal_validate, 0);
 
 /**
@@ -67,7 +67,7 @@ export type OneofRulesValid = OneofRules;
  * Describes the message buf.validate.OneofRules.
  * Use `create(OneofRulesSchema)` to create a new message.
  */
-export const OneofRulesSchema: GenMessage<OneofRules> = /*@__PURE__*/
+export const OneofRulesSchema: GenMessage<OneofRules, {validType: OneofRulesValid}> = /*@__PURE__*/
   messageDesc(file_extra_minimal_validate, 1);
 
 /**
@@ -108,7 +108,7 @@ export type FieldRulesValid = FieldRules;
  * Describes the message buf.validate.FieldRules.
  * Use `create(FieldRulesSchema)` to create a new message.
  */
-export const FieldRulesSchema: GenMessage<FieldRules> = /*@__PURE__*/
+export const FieldRulesSchema: GenMessage<FieldRules, {validType: FieldRulesValid}> = /*@__PURE__*/
   messageDesc(file_extra_minimal_validate, 2);
 
 /**
@@ -127,7 +127,7 @@ export type RepeatedRulesValid = RepeatedRules;
  * Describes the message buf.validate.RepeatedRules.
  * Use `create(RepeatedRulesSchema)` to create a new message.
  */
-export const RepeatedRulesSchema: GenMessage<RepeatedRules> = /*@__PURE__*/
+export const RepeatedRulesSchema: GenMessage<RepeatedRules, {validType: RepeatedRulesValid}> = /*@__PURE__*/
   messageDesc(file_extra_minimal_validate, 3);
 
 /**
@@ -146,7 +146,7 @@ export type MapRulesValid = MapRules;
  * Describes the message buf.validate.MapRules.
  * Use `create(MapRulesSchema)` to create a new message.
  */
-export const MapRulesSchema: GenMessage<MapRules> = /*@__PURE__*/
+export const MapRulesSchema: GenMessage<MapRules, {validType: MapRulesValid}> = /*@__PURE__*/
   messageDesc(file_extra_minimal_validate, 4);
 
 /**

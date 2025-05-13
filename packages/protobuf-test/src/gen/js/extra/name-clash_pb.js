@@ -16,7 +16,7 @@
 // @generated from file extra/name-clash.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { enumDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 import { file_extra_example } from "./example_pb.js";
 
 /**

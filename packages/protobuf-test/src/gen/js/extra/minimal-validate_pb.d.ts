@@ -20,7 +20,7 @@
 // It only contains the definitions necessary to resolve `required` rule, ignores,
 // and disabled.
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { FieldOptions, MessageOptions, OneofOptions } from "@bufbuild/protobuf/wkt";
 

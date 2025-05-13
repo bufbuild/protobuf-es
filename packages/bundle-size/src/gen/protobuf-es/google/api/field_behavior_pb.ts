@@ -16,8 +16,8 @@
 // @generated from file google/api/field_behavior.proto (package google.api, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenExtension, GenFile } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, extDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
 import type { FieldOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 

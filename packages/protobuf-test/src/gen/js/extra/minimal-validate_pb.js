@@ -20,7 +20,7 @@
 // It only contains the definitions necessary to resolve `required` rule, ignores,
 // and disabled.
 
-import { enumDesc, extDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, extDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 
 /**

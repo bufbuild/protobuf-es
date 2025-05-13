@@ -16,10 +16,10 @@
 // @generated from file google/protobuf/empty.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
 
 /**
  * Describes the file google/protobuf/empty.proto.
@@ -60,6 +60,6 @@ export type EmptyJson = Record<string, never>;
  * Describes the message google.protobuf.Empty.
  * Use `create(EmptySchema)` to create a new message.
  */
-export const EmptySchema: GenMessage<Empty, EmptyJson> = /*@__PURE__*/
+export const EmptySchema: GenMessage<Empty, {jsonType: EmptyJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_empty, 0);
 

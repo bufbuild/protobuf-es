@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/type.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_any, file_google_protobuf_source_context } from "@bufbuild/protobuf/wkt";
 
 /**

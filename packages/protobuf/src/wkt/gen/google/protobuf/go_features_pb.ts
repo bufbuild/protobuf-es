@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/go_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { FeatureSet } from "./descriptor_pb.js";
 import { file_google_protobuf_descriptor } from "./descriptor_pb.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
-import { enumDesc } from "../../../../codegenv1/enum.js";
-import { extDesc } from "../../../../codegenv1/extension.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
+import { enumDesc } from "../../../../codegenv2/enum.js";
+import { extDesc } from "../../../../codegenv2/extension.js";
 
 /**
  * Describes the file google/protobuf/go_features.proto.
@@ -85,7 +85,7 @@ export type GoFeaturesJson = {
  * Describes the message pb.GoFeatures.
  * Use `create(GoFeaturesSchema)` to create a new message.
  */
-export const GoFeaturesSchema: GenMessage<GoFeatures, GoFeaturesJson> = /*@__PURE__*/
+export const GoFeaturesSchema: GenMessage<GoFeatures, {jsonType: GoFeaturesJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_go_features, 0);
 
 /**

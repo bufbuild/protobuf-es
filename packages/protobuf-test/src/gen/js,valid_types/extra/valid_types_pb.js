@@ -16,7 +16,7 @@
 // @generated from file extra/valid_types.proto (package spec, edition 2023)
 /* eslint-disable */
 
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_extra_minimal_validate } from "./minimal-validate_pb.js";
 
 /**

@@ -31,7 +31,7 @@
 // that the generated code doesn't depend on being in the proto2 namespace.
 // In test_util.h we do "using namespace unittest = proto2_unittest".
 
-import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { ImportEnum, ImportMessage } from "./unittest_import_pb.js";
 import type { PublicImportMessage } from "./unittest_import_public_pb.js";

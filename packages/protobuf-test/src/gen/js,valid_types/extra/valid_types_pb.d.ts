@@ -16,7 +16,7 @@
 // @generated from file extra/valid_types.proto (package spec, edition 2023)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
@@ -344,7 +344,7 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
  * Describes the message spec.VTypes.
  * Use `create(VTypesSchema)` to create a new message.
  */
-export declare const VTypesSchema: GenMessage<VTypes>;
+export declare const VTypesSchema: GenMessage<VTypes, {validType: VTypesValid}>;
 
 /**
  * @generated from message spec.VTypes.Other
@@ -358,5 +358,5 @@ export declare type VTypes_OtherValid = VTypes_Other;
  * Describes the message spec.VTypes.Other.
  * Use `create(VTypes_OtherSchema)` to create a new message.
  */
-export declare const VTypes_OtherSchema: GenMessage<VTypes_Other>;
+export declare const VTypes_OtherSchema: GenMessage<VTypes_Other, {validType: VTypes_OtherValid}>;
 

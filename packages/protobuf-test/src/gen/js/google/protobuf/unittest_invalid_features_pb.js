@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_invalid_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 
 /**

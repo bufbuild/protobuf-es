@@ -20,7 +20,7 @@
 // It only contains the definitions necessary to resolve `required` rule, ignores,
 // and disabled.
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { FieldOptions, MessageOptions, OneofOptions } from "@bufbuild/protobuf/wkt";
 
@@ -45,7 +45,7 @@ export declare type MessageRulesValid = MessageRules;
  * Describes the message buf.validate.MessageRules.
  * Use `create(MessageRulesSchema)` to create a new message.
  */
-export declare const MessageRulesSchema: GenMessage<MessageRules>;
+export declare const MessageRulesSchema: GenMessage<MessageRules, {validType: MessageRulesValid}>;
 
 /**
  * @generated from message buf.validate.OneofRules
@@ -63,7 +63,7 @@ export declare type OneofRulesValid = OneofRules;
  * Describes the message buf.validate.OneofRules.
  * Use `create(OneofRulesSchema)` to create a new message.
  */
-export declare const OneofRulesSchema: GenMessage<OneofRules>;
+export declare const OneofRulesSchema: GenMessage<OneofRules, {validType: OneofRulesValid}>;
 
 /**
  * @generated from message buf.validate.FieldRules
@@ -103,7 +103,7 @@ export declare type FieldRulesValid = FieldRules;
  * Describes the message buf.validate.FieldRules.
  * Use `create(FieldRulesSchema)` to create a new message.
  */
-export declare const FieldRulesSchema: GenMessage<FieldRules>;
+export declare const FieldRulesSchema: GenMessage<FieldRules, {validType: FieldRulesValid}>;
 
 /**
  * @generated from message buf.validate.RepeatedRules
@@ -121,7 +121,7 @@ export declare type RepeatedRulesValid = RepeatedRules;
  * Describes the message buf.validate.RepeatedRules.
  * Use `create(RepeatedRulesSchema)` to create a new message.
  */
-export declare const RepeatedRulesSchema: GenMessage<RepeatedRules>;
+export declare const RepeatedRulesSchema: GenMessage<RepeatedRules, {validType: RepeatedRulesValid}>;
 
 /**
  * @generated from message buf.validate.MapRules
@@ -139,7 +139,7 @@ export declare type MapRulesValid = MapRules;
  * Describes the message buf.validate.MapRules.
  * Use `create(MapRulesSchema)` to create a new message.
  */
-export declare const MapRulesSchema: GenMessage<MapRules>;
+export declare const MapRulesSchema: GenMessage<MapRules, {validType: MapRulesValid}>;
 
 /**
  * @generated from enum buf.validate.Ignore

@@ -16,7 +16,7 @@
 // @generated from file extra/edition2023.proto (package spec, edition 2023)
 /* eslint-disable */
 
-import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 
 /**

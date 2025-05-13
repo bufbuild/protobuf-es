@@ -16,7 +16,7 @@
 // @generated from file extra/proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 
 /**

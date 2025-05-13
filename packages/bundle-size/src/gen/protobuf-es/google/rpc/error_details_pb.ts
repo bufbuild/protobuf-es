@@ -16,8 +16,8 @@
 // @generated from file google/rpc/error_details.proto (package google.rpc, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Duration } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_duration } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
