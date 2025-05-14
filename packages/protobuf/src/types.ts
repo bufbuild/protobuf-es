@@ -57,6 +57,10 @@ export type MessageShape<Desc extends DescMessage> =
 
 /**
  * Extract the message JSON type from a message descriptor.
+ *
+ * JSON types are only available for code generated with the plugin option
+ * `json_types=true`. If JSON types are unavailable, this type falls back to the
+ * `JsonValue` type.
  */
 // biome-ignore format: want this to read well
 export type MessageJsonType<Desc extends DescMessage> =
@@ -66,6 +70,10 @@ export type MessageJsonType<Desc extends DescMessage> =
 
 /**
  * Extract the message Valid type from a message descriptor.
+ *
+ * Valid types are only available for code generated with the plugin option
+ * `valid_types`. If Valid types are unavailable, this type falls back to the
+ * regular message shape.
  */
 // biome-ignore format: want this to read well
 export type MessageValidType<Desc extends DescMessage> =
