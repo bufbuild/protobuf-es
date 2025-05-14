@@ -1350,7 +1350,7 @@ if (isEnumJson(FormatSchema, someString)) {
 
 ## Valid types
 
-This is an advanced feature that's set with the plugin option [`valid_types=legacy_required` or `valid_types=protovalidate`](#valid-types).
+This is an advanced feature that's set with the plugin option [`valid_types=legacy_required` or `valid_types=protovalidate`](#valid_types-experimental).
 If it's enabled, [@bufbuild/protoc-gen-es] generates a Valid type for every Protobuf message.  
 
 > [!NOTE]
