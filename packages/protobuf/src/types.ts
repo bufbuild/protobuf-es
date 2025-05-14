@@ -51,7 +51,7 @@ export type Message<TypeName extends string = string> = {
  */
 // biome-ignore format: want this to read well
 export type MessageShape<Desc extends DescMessage> =
-    Desc extends GenMessageV1<infer RuntimeShape> ? RuntimeShape
+    Desc extends GenMessageV1<infer RuntimeShapeV1> ? RuntimeShapeV1
   : Desc extends GenMessageV2<infer RuntimeShape> ? RuntimeShape
   : Message;
 
