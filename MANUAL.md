@@ -194,6 +194,19 @@ the top of each file to skip type checks: `// @ts-nocheck`.
 Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
 if available. Learn more about [JSON types](#json-types).
 
+### `valid_types` (experimental)
+
+Generates a Valid type for every Protobuf message. Possible values:
+
+- `valid_types=legacy_required`: Message fields with the `required` label, or the Edition feature
+  `features.field_presence=LEGACY_REQUIRED`, are generated as non-optional properties.
+- `valid_types=protovalidate`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required)
+  are generated as non-optional properties.
+
+You can combine both options with `+`—for example, `valid_types=legacy_required+protovalidate`.
+
+Learn more about [Valid types](#valid-types).
+
 ## Generated code
 
 This section shows the code that Protobuf-ES generates for each Protobuf definition, based on [example.proto].
@@ -1328,6 +1341,70 @@ if (isEnumJson(FormatSchema, someString)) {
 }
 ```
 
+> [!TIP]
+>
+> - `MessageJsonType` extracts the JSON type from a message descriptor.
+> - `EnumJsonType` extracts the JSON type from an enum descriptor.
+> - When [writing a plugin](#writing-plugins), the method `importJson` of `GeneratedFile` imports a JSON type.
+
+
+## Valid types
+
+This is an advanced feature that's set with the plugin option [`valid_types=legacy_required` or `valid_types=protovalidate`](#valid-types).
+If it's enabled, [@bufbuild/protoc-gen-es] generates a Valid type for every Protobuf message.  
+
+> [!NOTE]
+>
+> Valid types is an experimental feature. At this point, Protobuf-ES only generates a type with modified optional message
+> fields.
+
+With `valid_types=legacy_required`, message fields with the proto2 `required` label are generated as non-optional
+properties. Given this definition:
+
+```protobuf
+syntax = "proto2";
+
+message Example {
+  required User user = 2;
+}
+
+message User {
+  optional string first_name = 1;
+}
+```
+
+the following additional export is generated with `valid_types=legacy_required`:
+
+```ts
+/**
+ * @generated from message Example
+ */
+export type ExampleValid = Message<"Example"> & {
+  msg: UserValid;
+}
+```
+
+With `valid_types=protovalidate`, message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required)
+are generated as non-optional properties:
+
+```protobuf
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message Example {
+  // Enabling this rule has the same effect on the 
+  // generated property as the proto2 `required` label.
+  User user = 2 [(buf.validate.field).required = true];
+}
+```
+
+> [!TIP]
+>
+> - `MessageValidType` extracts the Valid type from a message descriptor.
+> - When [writing a plugin](#writing-plugins), the method `importValid` of `GeneratedFile` imports a Valid type.
+
+
 ## Reflection
 
 ### Descriptors
@@ -1834,6 +1911,9 @@ export function redact<Desc extends DescMessage>(
 > - `EnumShape` extracts the enum type from an enum descriptor.
 > - `MessageShape` extracts the type from a message descriptor.
 > - `MessageInitShape` extracts the init type from a message descriptor - the initializer object for `create()`.
+> - `MessageJsonType` extracts the [JSON type](#json-types) from a message descriptor.
+> - `EnumJsonType` extracts the [JSON type](#json-types) from an enum descriptor.
+> - `MessageValidType` extracts the [Valid type](#valid-types) from a message descriptor.
 
 ### ReflectMessage
 
