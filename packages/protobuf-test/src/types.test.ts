@@ -51,10 +51,9 @@ describe("type Message", () => {
           throw new Error();
       }
     });
-    test("cannot switch on Message.$typeName against embedded desc's typeName", () => {
+    test("cam switch on Message.$typeName against embedded desc's typeName", () => {
       switch (msg.$typeName) {
         case UserSchema.typeName:
-          // @ts-expect-error TS2339
           expect(msg.firstName).toBeDefined();
           break;
         default:
