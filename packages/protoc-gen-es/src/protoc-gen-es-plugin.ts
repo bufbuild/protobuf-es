@@ -56,7 +56,7 @@ type Options = {
   jsonTypes: boolean;
   validTypes: {
     legacyRequired: boolean;
-    protovalidate: boolean;
+    protovalidateRequired: boolean;
   };
 };
 
@@ -69,7 +69,7 @@ function parseOptions(
   let jsonTypes = false;
   let validTypes = {
     legacyRequired: false,
-    protovalidate: false,
+    protovalidateRequired: false,
   };
   for (const { key, value } of options) {
     switch (key) {
@@ -82,8 +82,8 @@ function parseOptions(
       case "valid_types":
         for (const part of value.split("+")) {
           switch (part) {
-            case "protovalidate":
-              validTypes.protovalidate = true;
+            case "protovalidate_required":
+              validTypes.protovalidateRequired = true;
               break;
             case "legacy_required":
               validTypes.legacyRequired = true;
@@ -124,7 +124,7 @@ function generateTs(schema: Schema<Options>) {
           if (schema.options.jsonTypes) {
             generateMessageJsonShape(f, desc, "ts");
           }
-          if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidate) {
+          if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidateRequired) {
             generateMessageValidShape(f, desc, schema.options.validTypes, "ts");
           }
           generateDescDoc(f, desc);
@@ -268,7 +268,7 @@ function generateDts(schema: Schema<Options>) {
           if (schema.options.jsonTypes) {
             generateMessageJsonShape(f, desc, "dts");
           }
-          if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidate) {
+          if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidateRequired) {
             generateMessageValidShape(f, desc, schema.options.validTypes, "dts");
           }
           const name = f.importSchema(desc).name;
@@ -443,7 +443,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
 // biome-ignore format: want this to read well
 function generateMessageValidShape(f: GeneratedFile, message: DescMessage, validTypes: Options["validTypes"], target: Extract<Target, "ts" | "dts">) {
   const declaration = target == "ts" ? "type" : "declare type";
-  const needsCustomValidType = (validTypes.legacyRequired && message.fields.some(isLegacyRequired)) || (validTypes.protovalidate && message.fields.some(isProtovalidateRequired));
+  const needsCustomValidType = (validTypes.legacyRequired && message.fields.some(isLegacyRequired)) || (validTypes.protovalidateRequired && message.fields.some(isProtovalidateRequired));
   if (!needsCustomValidType) {
     f.print(f.export(declaration, f.importValid(message).name), " = ", f.importShape(message), ";");
     f.print();
@@ -483,7 +483,7 @@ function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOn
       f.print(f.jsDoc(member, "  "));
       let { typing, optional } = fieldTypeScriptType(member, f.runtime, validTypes && !isProtovalidateDisabled(member));
       if (optional && validTypes) {
-        const isRequired = (validTypes.legacyRequired && isLegacyRequired(member)) || (validTypes.protovalidate && isProtovalidateRequired(member));
+        const isRequired = (validTypes.legacyRequired && isLegacyRequired(member)) || (validTypes.protovalidateRequired && isProtovalidateRequired(member));
         if (isRequired) {
           optional = false;
         }

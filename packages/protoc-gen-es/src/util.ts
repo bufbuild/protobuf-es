@@ -47,7 +47,7 @@ export function messageGenType(
     jsonTypes: boolean;
     validTypes: {
       legacyRequired: boolean;
-      protovalidate: boolean;
+      protovalidateRequired: boolean;
     };
   },
 ): Printable {
@@ -55,7 +55,10 @@ export function messageGenType(
   if (options.jsonTypes) {
     p2.push(["jsonType: ", f.importJson(desc)]);
   }
-  if (options.validTypes.legacyRequired || options.validTypes.protovalidate) {
+  if (
+    options.validTypes.legacyRequired ||
+    options.validTypes.protovalidateRequired
+  ) {
     p2.push(["validType: ", f.importValid(desc)]);
   }
   if (p2.length > 0) {

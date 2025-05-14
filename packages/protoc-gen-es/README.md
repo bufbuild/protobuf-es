@@ -125,9 +125,9 @@ Generates a Valid type for every Protobuf message. Possible values:
 
 - `valid_types=legacy_required`: Message fields with the `required` label, or the Edition feature 
   `features.field_presence=LEGACY_REQUIRED`, are generated as non-optional properties. 
-- `valid_types=protovalidate`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required) 
+- `valid_types=protovalidate_required`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required) 
   rule are generated as non-optional properties.
 
-You can combine both options with `+`—for example, `valid_types=legacy_required+protovalidate`.
+You can combine both options with `+`—for example, `valid_types=legacy_required+protovalidate_required`.
 
 Learn more about [Valid types](https://github.com/bufbuild/protobuf-es/blob/main/MANUAL.md#valid-types).

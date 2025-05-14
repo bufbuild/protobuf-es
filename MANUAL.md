@@ -200,10 +200,10 @@ Generates a Valid type for every Protobuf message. Possible values:
 
 - `valid_types=legacy_required`: Message fields with the `required` label, or the Edition feature
   `features.field_presence=LEGACY_REQUIRED`, are generated as non-optional properties.
-- `valid_types=protovalidate`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required)
+- `valid_types=protovalidate_required`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required)
   are generated as non-optional properties.
 
-You can combine both options with `+`—for example, `valid_types=legacy_required+protovalidate`.
+You can combine both options with `+`—for example, `valid_types=legacy_required+protovalidate_required`.
 
 Learn more about [Valid types](#valid-types).
 
@@ -1350,7 +1350,7 @@ if (isEnumJson(FormatSchema, someString)) {
 
 ## Valid types
 
-This is an advanced feature that's set with the plugin option [`valid_types=legacy_required` or `valid_types=protovalidate`](#valid_types-experimental).
+This is an advanced feature that's set with the plugin option [`valid_types`](#valid_types-experimental).
 If it's enabled, [@bufbuild/protoc-gen-es] generates a Valid type for every Protobuf message.  
 
 > [!NOTE]
@@ -1359,12 +1359,14 @@ If it's enabled, [@bufbuild/protoc-gen-es] generates a Valid type for every Prot
 > fields.
 
 With `valid_types=legacy_required`, message fields with the proto2 `required` label are generated as non-optional
-properties. Given this definition:
+properties:
 
 ```protobuf
 syntax = "proto2";
 
 message Example {
+  // A proto required field.
+  // A field with the Edition feature field_presence=LEGACY_REQUIRED works as well.
   required User user = 2;
 }
 
@@ -1373,14 +1375,20 @@ message User {
 }
 ```
 
-the following additional export is generated with `valid_types=legacy_required`:
+The following additional export is generated:
 
 ```ts
 /**
  * @generated from message Example
  */
 export type ExampleValid = Message<"Example"> & {
-  msg: UserValid;
+  /**
+   * A proto required field.
+   * A field with the Edition feature field_presence=LEGACY_REQUIRED works as well.
+   * 
+   * @generated from field: required User = 1;
+   */
+  user: UserValid;
 }
 ```
 
