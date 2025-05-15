@@ -16,7 +16,7 @@
 // @generated from file extra/deprecation-explicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { EmptySchema, FieldOptions } from "@bufbuild/protobuf/wkt";
 

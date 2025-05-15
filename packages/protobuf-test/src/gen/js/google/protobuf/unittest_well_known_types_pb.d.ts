@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_well_known_types.proto (package proto2_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
 import type { Any, Api, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, SourceContext, StringValue, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
 import type { Type } from "./type_pb.js";

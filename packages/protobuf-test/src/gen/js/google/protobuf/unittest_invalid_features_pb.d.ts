@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_invalid_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 

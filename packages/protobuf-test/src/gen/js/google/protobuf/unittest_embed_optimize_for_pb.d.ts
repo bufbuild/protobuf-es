@@ -22,7 +22,7 @@
 // @generated from file google/protobuf/unittest_embed_optimize_for.proto (package proto2_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { TestOptimizedForSize } from "./unittest_optimize_for_pb.js";
 

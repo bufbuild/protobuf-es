@@ -24,7 +24,7 @@
 
 // Comment before package.
 
-import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file extra/comments.proto.

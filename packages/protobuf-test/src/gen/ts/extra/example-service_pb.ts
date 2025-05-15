@@ -16,8 +16,8 @@
 // @generated from file extra/example-service.proto (package example, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { User } from "./example_pb.js";
 import { file_extra_example } from "./example_pb.js";
 import type { Message } from "@bufbuild/protobuf";

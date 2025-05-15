@@ -16,10 +16,10 @@
 // @generated from file google/protobuf/timestamp.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
 
 /**
  * Describes the file google/protobuf/timestamp.proto.
@@ -242,6 +242,6 @@ export type TimestampJson = string;
  * Describes the message google.protobuf.Timestamp.
  * Use `create(TimestampSchema)` to create a new message.
  */
-export const TimestampSchema: GenMessage<Timestamp, TimestampJson> = /*@__PURE__*/
+export const TimestampSchema: GenMessage<Timestamp, {jsonType: TimestampJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_timestamp, 0);
 

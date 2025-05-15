@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/api.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { SourceContext, SourceContextJson } from "./source_context_pb.js";
 import { file_google_protobuf_source_context } from "./source_context_pb.js";
 import type { Option, OptionJson, Syntax, SyntaxJson } from "./type_pb.js";
 import { file_google_protobuf_type } from "./type_pb.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
 
 /**
  * Describes the file google/protobuf/api.proto.
@@ -205,7 +205,7 @@ export type ApiJson = {
  * Describes the message google.protobuf.Api.
  * Use `create(ApiSchema)` to create a new message.
  */
-export const ApiSchema: GenMessage<Api, ApiJson> = /*@__PURE__*/
+export const ApiSchema: GenMessage<Api, {jsonType: ApiJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_api, 0);
 
 /**
@@ -324,7 +324,7 @@ export type MethodJson = {
  * Describes the message google.protobuf.Method.
  * Use `create(MethodSchema)` to create a new message.
  */
-export const MethodSchema: GenMessage<Method, MethodJson> = /*@__PURE__*/
+export const MethodSchema: GenMessage<Method, {jsonType: MethodJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_api, 1);
 
 /**
@@ -529,6 +529,6 @@ export type MixinJson = {
  * Describes the message google.protobuf.Mixin.
  * Use `create(MixinSchema)` to create a new message.
  */
-export const MixinSchema: GenMessage<Mixin, MixinJson> = /*@__PURE__*/
+export const MixinSchema: GenMessage<Mixin, {jsonType: MixinJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_api, 2);
 

@@ -16,10 +16,10 @@
 // @generated from file google/protobuf/duration.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
 
 /**
  * Describes the file google/protobuf/duration.proto.
@@ -182,6 +182,6 @@ export type DurationJson = string;
  * Describes the message google.protobuf.Duration.
  * Use `create(DurationSchema)` to create a new message.
  */
-export const DurationSchema: GenMessage<Duration, DurationJson> = /*@__PURE__*/
+export const DurationSchema: GenMessage<Duration, {jsonType: DurationJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_duration, 0);
 

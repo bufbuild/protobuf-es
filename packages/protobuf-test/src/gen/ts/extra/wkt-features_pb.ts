@@ -16,8 +16,8 @@
 // @generated from file extra/wkt-features.proto (package spec, edition 2023)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_cpp_features, file_google_protobuf_go_features, file_google_protobuf_java_features } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 

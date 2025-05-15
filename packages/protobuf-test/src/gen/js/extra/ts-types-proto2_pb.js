@@ -16,7 +16,7 @@
 // @generated from file extra/ts-types-proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file extra/ts-types-proto2.proto.

@@ -16,8 +16,8 @@
 // @generated from file google/api/annotations.proto (package google.api, syntax proto3)
 /* eslint-disable */
 
-import type { GenExtension, GenFile } from "@bufbuild/protobuf/codegenv1";
-import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile } from "@bufbuild/protobuf/codegenv2";
+import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
 import type { HttpRule } from "./http_pb";
 import { file_google_api_http } from "./http_pb";
 import type { MethodOptions } from "@bufbuild/protobuf/wkt";

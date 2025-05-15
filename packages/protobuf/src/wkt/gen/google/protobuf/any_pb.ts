@@ -16,10 +16,10 @@
 // @generated from file google/protobuf/any.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
 
 /**
  * Describes the file google/protobuf/any.proto.
@@ -259,6 +259,6 @@ export type AnyJson = {
  * Describes the message google.protobuf.Any.
  * Use `create(AnySchema)` to create a new message.
  */
-export const AnySchema: GenMessage<Any, AnyJson> = /*@__PURE__*/
+export const AnySchema: GenMessage<Any, {jsonType: AnyJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_any, 0);
 

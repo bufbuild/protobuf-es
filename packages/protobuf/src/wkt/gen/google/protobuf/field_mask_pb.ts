@@ -16,10 +16,10 @@
 // @generated from file google/protobuf/field_mask.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
 
 /**
  * Describes the file google/protobuf/field_mask.proto.
@@ -448,6 +448,6 @@ export type FieldMaskJson = string;
  * Describes the message google.protobuf.FieldMask.
  * Use `create(FieldMaskSchema)` to create a new message.
  */
-export const FieldMaskSchema: GenMessage<FieldMask, FieldMaskJson> = /*@__PURE__*/
+export const FieldMaskSchema: GenMessage<FieldMask, {jsonType: FieldMaskJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_field_mask, 0);
 

@@ -18,7 +18,7 @@
 // @generated from file google/protobuf/unittest_import_public.proto (package proto2_unittest_import, syntax proto2)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

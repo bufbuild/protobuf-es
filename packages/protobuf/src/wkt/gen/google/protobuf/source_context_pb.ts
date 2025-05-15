@@ -16,10 +16,10 @@
 // @generated from file google/protobuf/source_context.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
 
 /**
  * Describes the file google/protobuf/source_context.proto.
@@ -63,6 +63,6 @@ export type SourceContextJson = {
  * Describes the message google.protobuf.SourceContext.
  * Use `create(SourceContextSchema)` to create a new message.
  */
-export const SourceContextSchema: GenMessage<SourceContext, SourceContextJson> = /*@__PURE__*/
+export const SourceContextSchema: GenMessage<SourceContext, {jsonType: SourceContextJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_source_context, 0);
 

@@ -18,7 +18,7 @@ import type {
   StringValueSchema,
 } from "@bufbuild/protobuf/wkt";
 import { hasExtension } from "@bufbuild/protobuf";
-import type { GenService } from "@bufbuild/protobuf/codegenv1";
+import type { GenService } from "@bufbuild/protobuf/codegenv2";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 import * as proto2_js from "./gen/js/extra/proto2_pb.js";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";

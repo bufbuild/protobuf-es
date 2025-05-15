@@ -16,7 +16,7 @@
 // @generated from file extra/jstype-proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file extra/jstype-proto2.proto.

@@ -22,7 +22,7 @@
 // @generated from file google/protobuf/unittest_embed_optimize_for.proto (package proto2_unittest, syntax proto2)
 /* eslint-disable */
 
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_unittest_optimize_for } from "./unittest_optimize_for_pb.js";
 
 /**

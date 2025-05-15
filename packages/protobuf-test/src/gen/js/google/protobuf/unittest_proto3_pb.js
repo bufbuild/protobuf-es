@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_proto3.proto (package proto3_unittest, syntax proto3)
 /* eslint-disable */
 
-import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_unittest_import } from "./unittest_import_pb.js";
 
 /**

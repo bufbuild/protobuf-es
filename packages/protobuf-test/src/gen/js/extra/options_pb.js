@@ -16,7 +16,7 @@
 // @generated from file extra/options.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
+import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 
 /**

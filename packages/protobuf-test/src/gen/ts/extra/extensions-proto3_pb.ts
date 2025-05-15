@@ -16,8 +16,8 @@
 // @generated from file extra/extensions-proto3.proto (package proto3ext, syntax proto3)
 /* eslint-disable */
 
-import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { FileOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";

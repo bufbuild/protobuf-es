@@ -22,8 +22,8 @@
 // @generated from file google/protobuf/unittest_optimize_for.proto (package proto2_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { ForeignMessage } from "./unittest_pb.js";
 import { file_google_protobuf_unittest } from "./unittest_pb.js";
 import type { Message } from "@bufbuild/protobuf";

@@ -16,8 +16,8 @@
 // @generated from file google/api/expr/v1beta1/eval.proto (package google.api.expr.v1beta1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Value } from "./value_pb";
 import { file_google_api_expr_v1beta1_value } from "./value_pb";
 import type { Status } from "../../../rpc/status_pb";

@@ -16,8 +16,8 @@
 // @generated from file extra/options.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenExtension, GenFile } from "@bufbuild/protobuf/codegenv1";
-import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile } from "@bufbuild/protobuf/codegenv2";
+import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
 import type { EnumOptions, EnumValueOptions, FieldOptions, FileOptions, MessageOptions, MethodOptions, OneofOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 

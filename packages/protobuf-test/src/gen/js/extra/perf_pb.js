@@ -16,7 +16,7 @@
 // @generated from file extra/perf.proto (package perf.v1, syntax proto3)
 /* eslint-disable */
 
-import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file extra/perf.proto.

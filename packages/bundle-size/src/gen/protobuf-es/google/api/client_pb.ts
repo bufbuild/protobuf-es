@@ -16,8 +16,8 @@
 // @generated from file google/api/client.proto (package google.api, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { LaunchStage } from "./launch_stage_pb";
 import { file_google_api_launch_stage } from "./launch_stage_pb";
 import type { Duration, MethodOptions, ServiceOptions } from "@bufbuild/protobuf/wkt";

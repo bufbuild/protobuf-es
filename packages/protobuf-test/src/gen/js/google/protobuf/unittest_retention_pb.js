@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_retention.proto (package proto2_unittest, syntax proto2)
 /* eslint-disable */
 
-import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 
 /**

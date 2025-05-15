@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/java_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { FeatureSet } from "./descriptor_pb.js";
 import { file_google_protobuf_descriptor } from "./descriptor_pb.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
-import { enumDesc } from "../../../../codegenv1/enum.js";
-import { extDesc } from "../../../../codegenv1/extension.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
+import { enumDesc } from "../../../../codegenv2/enum.js";
+import { extDesc } from "../../../../codegenv2/extension.js";
 
 /**
  * Describes the file google/protobuf/java_features.proto.
@@ -99,7 +99,7 @@ export type JavaFeaturesJson = {
  * Describes the message pb.JavaFeatures.
  * Use `create(JavaFeaturesSchema)` to create a new message.
  */
-export const JavaFeaturesSchema: GenMessage<JavaFeatures, JavaFeaturesJson> = /*@__PURE__*/
+export const JavaFeaturesSchema: GenMessage<JavaFeatures, {jsonType: JavaFeaturesJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_java_features, 0);
 
 /**

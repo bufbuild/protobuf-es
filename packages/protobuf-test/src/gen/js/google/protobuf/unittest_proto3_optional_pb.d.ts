@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_proto3_optional.proto (package proto2_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { MessageOptions } from "@bufbuild/protobuf/wkt";
 

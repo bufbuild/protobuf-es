@@ -16,7 +16,7 @@
 // @generated from file extra/deprecation-explicit.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, extDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_descriptor, file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
 
 /**

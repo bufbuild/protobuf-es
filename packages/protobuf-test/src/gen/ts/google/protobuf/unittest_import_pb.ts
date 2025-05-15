@@ -27,8 +27,8 @@
 // In test_util.h we do
 // "using namespace unittest_import = proto2_unittest_import".
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_protobuf_unittest_import_public } from "./unittest_import_public_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 

@@ -16,8 +16,8 @@
 // @generated from file google/type/dayofweek.proto (package google.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv1";
-import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file google/type/dayofweek.proto.

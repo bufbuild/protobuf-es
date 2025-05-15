@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_proto3_bad_macros.proto (package protobuf_unittest, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file google/protobuf/unittest_proto3_bad_macros.proto.

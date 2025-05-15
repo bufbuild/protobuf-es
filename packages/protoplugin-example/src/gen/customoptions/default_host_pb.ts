@@ -16,8 +16,8 @@
 // @generated from file customoptions/default_host.proto (package customoptions, syntax proto3)
 /* eslint-disable */
 
-import type { GenExtension, GenFile } from "@bufbuild/protobuf/codegenv1";
-import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile } from "@bufbuild/protobuf/codegenv2";
+import { extDesc, fileDesc } from "@bufbuild/protobuf/codegenv2";
 import type { ServiceOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 

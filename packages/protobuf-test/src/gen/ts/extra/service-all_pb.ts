@@ -16,8 +16,8 @@
 // @generated from file extra/service-all.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenService } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenService } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Int32ValueSchema, StringValueSchema } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
 

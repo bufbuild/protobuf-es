@@ -23,8 +23,8 @@
 // @generated from file google/protobuf/unittest_mset.proto (package proto2_unittest, syntax proto2)
 /* eslint-disable */
 
-import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { TestMessageSet } from "./unittest_mset_wire_format_pb.js";
 import { file_google_protobuf_unittest_mset_wire_format } from "./unittest_mset_wire_format_pb.js";
 import type { Message } from "@bufbuild/protobuf";

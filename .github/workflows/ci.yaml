@@ -136,6 +136,6 @@ jobs:
           key: protobuf-es/bootstrap/${{ github.sha }}
           restore-keys: protobuf-es/bootstrap
       - run: npm ci
-      - name: Bootstrap well-known types
-        run: npx turbo run bootstrap:inject bootstrap:wkt
+      - name: Bootstrap
+        run: npx turbo run bootstrap
       - run: node scripts/gh-diffcheck.js

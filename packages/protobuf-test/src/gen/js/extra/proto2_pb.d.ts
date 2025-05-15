@@ -16,7 +16,7 @@
 // @generated from file extra/proto2.proto (package spec, syntax proto2)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { UInt32Value } from "@bufbuild/protobuf/wkt";
 

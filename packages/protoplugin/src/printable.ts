@@ -39,6 +39,7 @@ export type Printable =
   | DescImport
   | ShapeImport
   | JsonTypeImport
+  | ValidTypeImport
   | Printable[];
 
 export type ExportStatement = {
@@ -78,6 +79,11 @@ export type ShapeImport = {
 export type JsonTypeImport = {
   readonly kind: "es_json_type_ref";
   desc: DescMessage | DescEnum;
+};
+
+export type ValidTypeImport = {
+  readonly kind: "es_valid_type_ref";
+  desc: DescMessage;
 };
 
 export type JSDocBlock = {
