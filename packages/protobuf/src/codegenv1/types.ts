@@ -42,8 +42,11 @@ export type GenFile = DescFile;
  */
 // biome-ignore format: want this to read well
 export type GenMessage<RuntimeShape extends Message, JsonType = JsonValue> =
-  & Omit<DescMessage, "field">
-  & { field: Record<MessageFieldNames<RuntimeShape>, DescField> }
+  & Omit<DescMessage, "field" | "typeName">
+  & {
+    field: Record<MessageFieldNames<RuntimeShape>, DescField>,
+    typeName: RuntimeShape["$typeName"],
+  }
   & brandv1<RuntimeShape, JsonType>;
 
 /**
