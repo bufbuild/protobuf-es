@@ -723,6 +723,30 @@ describe("extensions in JSON", () => {
   });
 });
 
+describe("JsonReadOptions", () => {
+  describe("ignoreUnknownFields", () => {
+    test("throws error when false", () => {
+      expect(() =>
+        fromJsonString(proto3_ts.Proto3MessageSchema, '{ "unknown": 1 }', {
+          ignoreUnknownFields: false,
+        }),
+      ).toThrow();
+    });
+    test("does not throw error when true", () => {
+      expect(() =>
+        fromJsonString(proto3_ts.Proto3MessageSchema, '{ "unknown": 1 }', {
+          ignoreUnknownFields: true,
+        }),
+      ).not.toThrow();
+    });
+    test("defaults to false", () => {
+      expect(() =>
+        fromJsonString(proto3_ts.Proto3MessageSchema, '{ "unknown": 1 }'),
+      ).toThrow();
+    });
+  });
+});
+
 describe("JsonWriteOptions", () => {
   describe("alwaysEmitImplicit", () => {
     test("emits proto3 implicit fields", async () => {
@@ -829,6 +853,56 @@ describe("JsonWriteOptions", () => {
       expect(json).toStrictEqual({
         scalar_field: "a",
       });
+    });
+  });
+});
+
+describe("parsing funny JSON", () => {
+  describe("field casing", () => {
+    test("is case agnostic", () => {
+      const a = fromJsonString(
+        proto3_ts.Proto3MessageSchema,
+        '{ "singular_string_field": "a" }',
+      );
+      const b = fromJsonString(
+        proto3_ts.Proto3MessageSchema,
+        '{ "singularStringField": "b" }',
+      );
+
+      expect(a.singularStringField).toBe("a");
+      expect(b.singularStringField).toBe("b");
+    });
+  });
+  describe("duplicate fields", () => {
+    // This depends on the ECMA-262-defined JSON.parse() behavior, which is itself
+    // specified to choose the last field value for a duplicate field.
+    test("chooses last field when duplicated", () => {
+      const a = fromJsonString(
+        proto3_ts.Proto3MessageSchema,
+        '{ "singularStringField": "b", "singularStringField": "a" }',
+      );
+      const b = fromJsonString(
+        proto3_ts.Proto3MessageSchema,
+        '{ "singularStringField": "a", "singularStringField": "b" }',
+      );
+
+      expect(a.singularStringField).toBe("a");
+      expect(b.singularStringField).toBe("b");
+    });
+    // This depends on the ECMA-262-defined behavior for JSON.parse() and
+    // Object.entries() and the internal preservation of object key order.
+    test("chooses last field when duplicated, even when fields have different casing", () => {
+      const a = fromJsonString(
+        proto3_ts.Proto3MessageSchema,
+        '{ "singular_string_field": "b", "singularStringField": "a" }',
+      );
+      const b = fromJsonString(
+        proto3_ts.Proto3MessageSchema,
+        '{ "singularStringField": "a", "singular_string_field": "b" }',
+      );
+
+      expect(a.singularStringField).toBe("a");
+      expect(b.singularStringField).toBe("b");
     });
   });
 });
