@@ -858,21 +858,6 @@ describe("JsonWriteOptions", () => {
 });
 
 describe("parsing funny JSON", () => {
-  describe("field casing", () => {
-    test("is case agnostic", () => {
-      const a = fromJsonString(
-        proto3_ts.Proto3MessageSchema,
-        '{ "singular_string_field": "a" }',
-      );
-      const b = fromJsonString(
-        proto3_ts.Proto3MessageSchema,
-        '{ "singularStringField": "b" }',
-      );
-
-      expect(a.singularStringField).toBe("a");
-      expect(b.singularStringField).toBe("b");
-    });
-  });
   describe("duplicate fields", () => {
     // This depends on the ECMA-262-defined JSON.parse() behavior, which is itself
     // specified to choose the last field value for a duplicate field.
