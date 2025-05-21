@@ -22,7 +22,7 @@ import {
   type Message,
   type DescEnum,
   type DescMessage,
-  type DescExtension,
+  type DescExtension, type MessageJsonType, type JsonValue, type EnumJsonType,
 } from "@bufbuild/protobuf";
 import type { Timestamp, Duration } from "@bufbuild/protobuf/wkt";
 import type { Proto3Message, Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
@@ -37,6 +37,8 @@ import type {
   Proto2ExtMessage,
   repeated_message_ext,
 } from "./gen/ts/extra/extensions-proto2_pb.js";
+import * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
+import type * as json_types_ts_nojson from "./gen/ts/extra/json_types_pb.js";
 import type * as codegenv1 from "@bufbuild/protobuf/codegenv1";
 
 describe("type Message", () => {
@@ -217,5 +219,83 @@ describe("type ExtensionValueShape", () => {
       anon = derived;
     }
     expect(t).toBeDefined();
+  });
+});
+
+describe("type MessageJsonType", () => {
+  test("should resolve generated type", () => {
+    function f(
+      derived: MessageJsonType<
+        typeof json_types_ts_json.JsonTypesMessageSchema
+      >,
+      direct: json_types_ts_json.JsonTypesMessageJson,
+    ) {
+      direct = derived;
+      return direct;
+    }
+    expect(f).toBeDefined();
+  });
+  test("supports codegenv1", () => {
+    function t(
+      derived: MessageJsonType<codegenv1.GenMessage<json_types_ts_json.JsonTypesMessage, json_types_ts_json.JsonTypesMessageJson>>,
+      direct: json_types_ts_json.JsonTypesMessageJson,
+    ) {
+      // @ts-expect-error - prove that this is not just fallback JsonObject
+      derived.unknownField;
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("should resolve JsonValue without generated type", () => {
+    function f(
+      pickedFromDesc: MessageJsonType<
+        typeof json_types_ts_nojson.JsonTypesMessageSchema
+      >,
+      genericJsonValue: JsonValue,
+    ) {
+      pickedFromDesc = genericJsonValue;
+      return pickedFromDesc;
+    }
+    expect(f).toBeDefined();
+  });
+});
+
+describe("type EnumJsonType", () => {
+  test("should resolve generated type", () => {
+    function f(
+      pickedFromDesc: EnumJsonType<
+        typeof json_types_ts_json.JsonTypeEnumSchema
+      >,
+      generatedType: json_types_ts_json.JsonTypeEnumJson,
+    ) {
+      generatedType = pickedFromDesc;
+      return generatedType;
+    }
+    expect(f).toBeDefined();
+  });
+  test("supports codegenv1", () => {
+    function t(
+      derived: EnumJsonType<codegenv1.GenEnum<json_types_ts_json.JsonTypeEnum, json_types_ts_json.JsonTypeEnumJson>>,
+      direct: json_types_ts_json.JsonTypeEnumJson,
+    ) {
+      // @ts-expect-error - prove that this is not just fallback string
+      derived = "X";
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("should resolve string without generated type", () => {
+    function f(
+      pickedFromDesc: EnumJsonType<
+        typeof json_types_ts_nojson.JsonTypeEnumSchema
+      >,
+      stringOrNull: string | null,
+    ) {
+      pickedFromDesc = stringOrNull;
+      return pickedFromDesc;
+    }
+    expect(f).toBeDefined();
   });
 });
