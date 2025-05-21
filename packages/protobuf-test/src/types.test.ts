@@ -17,15 +17,27 @@ import {
   create,
   type MessageShape,
   type EnumShape,
+  type Extendee,
+  type ExtensionValueShape,
   type Message,
   type DescEnum,
   type DescMessage,
+  type DescExtension,
 } from "@bufbuild/protobuf";
 import type { Timestamp, Duration } from "@bufbuild/protobuf/wkt";
 import type { Proto3Message, Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
 import type { Proto3EnumSchema } from "./gen/ts/extra/proto3_pb.js";
 import type { User } from "./gen/ts/extra/example_pb.js";
 import { UserSchema } from "./gen/ts/extra/example_pb.js";
+import type {
+  Proto2Extendee,
+  repeated_string_ext,
+  uint32_ext,
+  message_ext,
+  Proto2ExtMessage,
+  repeated_message_ext,
+} from "./gen/ts/extra/extensions-proto2_pb.js";
+import type * as codegenv1 from "@bufbuild/protobuf/codegenv1";
 
 describe("type Message", () => {
   describe("assigning different messages with same shape to each other", () => {
@@ -71,6 +83,14 @@ describe("type MessageShape", () => {
     }
     expect(t).toBeDefined();
   });
+  test("supports codegenv1", () => {
+    type M = Message<"M"> & { v1: true };
+    function t(derived: MessageShape<codegenv1.GenMessage<M>>, direct: M) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
   test("derives anonymous shape", () => {
     function t(derived: MessageShape<DescMessage>, anon: Message) {
       derived = anon;
@@ -91,8 +111,108 @@ describe("type EnumShape", () => {
     }
     expect(t).toBeDefined();
   });
-  test("derives generated shape", () => {
+  test("supports codegenv1", () => {
+    type E = 1;
+    function t(
+      derived: EnumShape<codegenv1.GenEnum<E>>,
+      direct: E,
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives anonymous shape", () => {
     function t(derived: EnumShape<DescEnum>, anon: number) {
+      derived = anon;
+      anon = derived;
+    }
+    expect(t).toBeDefined();
+  });
+});
+
+describe("type Extendee", () => {
+  test("derives generated type info", () => {
+    function t(derived: Extendee<typeof uint32_ext>, direct: Proto2Extendee) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("supports codegenv1", () => {
+    type E = Message<"E"> & {v1: true};
+    function t(
+      derived: Extendee<codegenv1.GenExtension<E>>,
+      direct: E,
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives anonymous type info", () => {
+    function t(derived: Extendee<DescExtension>, anon: Message) {
+      derived = anon;
+      anon = derived;
+    }
+    expect(t).toBeDefined();
+  });
+});
+
+describe("type ExtensionValueShape", () => {
+  test("derives generated type info for singular scalar", () => {
+    function t(
+      derived: ExtensionValueShape<typeof uint32_ext>,
+      direct: number,
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("supports codegenv1", () => {
+    type E = Message<"E"> & {v1: true};
+    function t(
+      derived: Extendee<codegenv1.GenExtension<E>>,
+      direct: E,
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives generated type info for repeated scalar", () => {
+    function t(
+      derived: ExtensionValueShape<typeof repeated_string_ext>,
+      direct: string[],
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives generated type info for singular message", () => {
+    function t(
+      derived: ExtensionValueShape<typeof message_ext>,
+      direct: Proto2ExtMessage,
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives generated type info for repeated message", () => {
+    function t(
+      derived: ExtensionValueShape<typeof repeated_message_ext>,
+      direct: Proto2ExtMessage[],
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives anonymous as unknown", () => {
+    function t(derived: ExtensionValueShape<DescExtension>, anon: unknown) {
       derived = anon;
       anon = derived;
     }
