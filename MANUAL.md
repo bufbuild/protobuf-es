@@ -1393,7 +1393,7 @@ export type ExampleValid = Message<"Example"> & {
 }
 ```
 
-With `valid_types=protovalidate`, message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required)
+With `valid_types=protovalidate_required`, message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required)
 are generated as non-optional properties:
 
 ```protobuf
