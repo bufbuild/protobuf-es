@@ -24,11 +24,11 @@
 // @generated from file google/protobuf/descriptor.proto (package google.protobuf, syntax proto2)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { boot } from "../../../../codegenv1/boot.js";
+import type { GenEnum, GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { boot } from "../../../../codegenv2/boot.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
-import { enumDesc } from "../../../../codegenv1/enum.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
+import { enumDesc } from "../../../../codegenv2/enum.js";
 
 /**
  * Describes the file google/protobuf/descriptor.proto.
@@ -66,7 +66,7 @@ export type FileDescriptorSetJson = {
  * Describes the message google.protobuf.FileDescriptorSet.
  * Use `create(FileDescriptorSetSchema)` to create a new message.
  */
-export const FileDescriptorSetSchema: GenMessage<FileDescriptorSet, FileDescriptorSetJson> = /*@__PURE__*/
+export const FileDescriptorSetSchema: GenMessage<FileDescriptorSet, {jsonType: FileDescriptorSetJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 0);
 
 /**
@@ -279,7 +279,7 @@ export type FileDescriptorProtoJson = {
  * Describes the message google.protobuf.FileDescriptorProto.
  * Use `create(FileDescriptorProtoSchema)` to create a new message.
  */
-export const FileDescriptorProtoSchema: GenMessage<FileDescriptorProto, FileDescriptorProtoJson> = /*@__PURE__*/
+export const FileDescriptorProtoSchema: GenMessage<FileDescriptorProto, {jsonType: FileDescriptorProtoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 1);
 
 /**
@@ -406,7 +406,7 @@ export type DescriptorProtoJson = {
  * Describes the message google.protobuf.DescriptorProto.
  * Use `create(DescriptorProtoSchema)` to create a new message.
  */
-export const DescriptorProtoSchema: GenMessage<DescriptorProto, DescriptorProtoJson> = /*@__PURE__*/
+export const DescriptorProtoSchema: GenMessage<DescriptorProto, {jsonType: DescriptorProtoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 2);
 
 /**
@@ -461,7 +461,7 @@ export type DescriptorProto_ExtensionRangeJson = {
  * Describes the message google.protobuf.DescriptorProto.ExtensionRange.
  * Use `create(DescriptorProto_ExtensionRangeSchema)` to create a new message.
  */
-export const DescriptorProto_ExtensionRangeSchema: GenMessage<DescriptorProto_ExtensionRange, DescriptorProto_ExtensionRangeJson> = /*@__PURE__*/
+export const DescriptorProto_ExtensionRangeSchema: GenMessage<DescriptorProto_ExtensionRange, {jsonType: DescriptorProto_ExtensionRangeJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 2, 0);
 
 /**
@@ -514,7 +514,7 @@ export type DescriptorProto_ReservedRangeJson = {
  * Describes the message google.protobuf.DescriptorProto.ReservedRange.
  * Use `create(DescriptorProto_ReservedRangeSchema)` to create a new message.
  */
-export const DescriptorProto_ReservedRangeSchema: GenMessage<DescriptorProto_ReservedRange, DescriptorProto_ReservedRangeJson> = /*@__PURE__*/
+export const DescriptorProto_ReservedRangeSchema: GenMessage<DescriptorProto_ReservedRange, {jsonType: DescriptorProto_ReservedRangeJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 2, 1);
 
 /**
@@ -595,7 +595,7 @@ export type ExtensionRangeOptionsJson = {
  * Describes the message google.protobuf.ExtensionRangeOptions.
  * Use `create(ExtensionRangeOptionsSchema)` to create a new message.
  */
-export const ExtensionRangeOptionsSchema: GenMessage<ExtensionRangeOptions, ExtensionRangeOptionsJson> = /*@__PURE__*/
+export const ExtensionRangeOptionsSchema: GenMessage<ExtensionRangeOptions, {jsonType: ExtensionRangeOptionsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 3);
 
 /**
@@ -694,7 +694,7 @@ export type ExtensionRangeOptions_DeclarationJson = {
  * Describes the message google.protobuf.ExtensionRangeOptions.Declaration.
  * Use `create(ExtensionRangeOptions_DeclarationSchema)` to create a new message.
  */
-export const ExtensionRangeOptions_DeclarationSchema: GenMessage<ExtensionRangeOptions_Declaration, ExtensionRangeOptions_DeclarationJson> = /*@__PURE__*/
+export const ExtensionRangeOptions_DeclarationSchema: GenMessage<ExtensionRangeOptions_Declaration, {jsonType: ExtensionRangeOptions_DeclarationJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 3, 0);
 
 /**
@@ -951,7 +951,7 @@ export type FieldDescriptorProtoJson = {
  * Describes the message google.protobuf.FieldDescriptorProto.
  * Use `create(FieldDescriptorProtoSchema)` to create a new message.
  */
-export const FieldDescriptorProtoSchema: GenMessage<FieldDescriptorProto, FieldDescriptorProtoJson> = /*@__PURE__*/
+export const FieldDescriptorProtoSchema: GenMessage<FieldDescriptorProto, {jsonType: FieldDescriptorProtoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 4);
 
 /**
@@ -1158,7 +1158,7 @@ export type OneofDescriptorProtoJson = {
  * Describes the message google.protobuf.OneofDescriptorProto.
  * Use `create(OneofDescriptorProtoSchema)` to create a new message.
  */
-export const OneofDescriptorProtoSchema: GenMessage<OneofDescriptorProto, OneofDescriptorProtoJson> = /*@__PURE__*/
+export const OneofDescriptorProtoSchema: GenMessage<OneofDescriptorProto, {jsonType: OneofDescriptorProtoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 5);
 
 /**
@@ -1243,7 +1243,7 @@ export type EnumDescriptorProtoJson = {
  * Describes the message google.protobuf.EnumDescriptorProto.
  * Use `create(EnumDescriptorProtoSchema)` to create a new message.
  */
-export const EnumDescriptorProtoSchema: GenMessage<EnumDescriptorProto, EnumDescriptorProtoJson> = /*@__PURE__*/
+export const EnumDescriptorProtoSchema: GenMessage<EnumDescriptorProto, {jsonType: EnumDescriptorProtoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 6);
 
 /**
@@ -1302,7 +1302,7 @@ export type EnumDescriptorProto_EnumReservedRangeJson = {
  * Describes the message google.protobuf.EnumDescriptorProto.EnumReservedRange.
  * Use `create(EnumDescriptorProto_EnumReservedRangeSchema)` to create a new message.
  */
-export const EnumDescriptorProto_EnumReservedRangeSchema: GenMessage<EnumDescriptorProto_EnumReservedRange, EnumDescriptorProto_EnumReservedRangeJson> = /*@__PURE__*/
+export const EnumDescriptorProto_EnumReservedRangeSchema: GenMessage<EnumDescriptorProto_EnumReservedRange, {jsonType: EnumDescriptorProto_EnumReservedRangeJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 6, 0);
 
 /**
@@ -1353,7 +1353,7 @@ export type EnumValueDescriptorProtoJson = {
  * Describes the message google.protobuf.EnumValueDescriptorProto.
  * Use `create(EnumValueDescriptorProtoSchema)` to create a new message.
  */
-export const EnumValueDescriptorProtoSchema: GenMessage<EnumValueDescriptorProto, EnumValueDescriptorProtoJson> = /*@__PURE__*/
+export const EnumValueDescriptorProtoSchema: GenMessage<EnumValueDescriptorProto, {jsonType: EnumValueDescriptorProtoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 7);
 
 /**
@@ -1404,7 +1404,7 @@ export type ServiceDescriptorProtoJson = {
  * Describes the message google.protobuf.ServiceDescriptorProto.
  * Use `create(ServiceDescriptorProtoSchema)` to create a new message.
  */
-export const ServiceDescriptorProtoSchema: GenMessage<ServiceDescriptorProto, ServiceDescriptorProtoJson> = /*@__PURE__*/
+export const ServiceDescriptorProtoSchema: GenMessage<ServiceDescriptorProto, {jsonType: ServiceDescriptorProtoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 8);
 
 /**
@@ -1499,7 +1499,7 @@ export type MethodDescriptorProtoJson = {
  * Describes the message google.protobuf.MethodDescriptorProto.
  * Use `create(MethodDescriptorProtoSchema)` to create a new message.
  */
-export const MethodDescriptorProtoSchema: GenMessage<MethodDescriptorProto, MethodDescriptorProtoJson> = /*@__PURE__*/
+export const MethodDescriptorProtoSchema: GenMessage<MethodDescriptorProto, {jsonType: MethodDescriptorProtoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 9);
 
 /**
@@ -1906,7 +1906,7 @@ export type FileOptionsJson = {
  * Describes the message google.protobuf.FileOptions.
  * Use `create(FileOptionsSchema)` to create a new message.
  */
-export const FileOptionsSchema: GenMessage<FileOptions, FileOptionsJson> = /*@__PURE__*/
+export const FileOptionsSchema: GenMessage<FileOptions, {jsonType: FileOptionsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 10);
 
 /**
@@ -2174,7 +2174,7 @@ export type MessageOptionsJson = {
  * Describes the message google.protobuf.MessageOptions.
  * Use `create(MessageOptionsSchema)` to create a new message.
  */
-export const MessageOptionsSchema: GenMessage<MessageOptions, MessageOptionsJson> = /*@__PURE__*/
+export const MessageOptionsSchema: GenMessage<MessageOptions, {jsonType: MessageOptionsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 11);
 
 /**
@@ -2475,7 +2475,7 @@ export type FieldOptionsJson = {
  * Describes the message google.protobuf.FieldOptions.
  * Use `create(FieldOptionsSchema)` to create a new message.
  */
-export const FieldOptionsSchema: GenMessage<FieldOptions, FieldOptionsJson> = /*@__PURE__*/
+export const FieldOptionsSchema: GenMessage<FieldOptions, {jsonType: FieldOptionsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 12);
 
 /**
@@ -2516,7 +2516,7 @@ export type FieldOptions_EditionDefaultJson = {
  * Describes the message google.protobuf.FieldOptions.EditionDefault.
  * Use `create(FieldOptions_EditionDefaultSchema)` to create a new message.
  */
-export const FieldOptions_EditionDefaultSchema: GenMessage<FieldOptions_EditionDefault, FieldOptions_EditionDefaultJson> = /*@__PURE__*/
+export const FieldOptions_EditionDefaultSchema: GenMessage<FieldOptions_EditionDefault, {jsonType: FieldOptions_EditionDefaultJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 12, 0);
 
 /**
@@ -2605,7 +2605,7 @@ export type FieldOptions_FeatureSupportJson = {
  * Describes the message google.protobuf.FieldOptions.FeatureSupport.
  * Use `create(FieldOptions_FeatureSupportSchema)` to create a new message.
  */
-export const FieldOptions_FeatureSupportSchema: GenMessage<FieldOptions_FeatureSupport, FieldOptions_FeatureSupportJson> = /*@__PURE__*/
+export const FieldOptions_FeatureSupportSchema: GenMessage<FieldOptions_FeatureSupport, {jsonType: FieldOptions_FeatureSupportJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 12, 1);
 
 /**
@@ -2842,7 +2842,7 @@ export type OneofOptionsJson = {
  * Describes the message google.protobuf.OneofOptions.
  * Use `create(OneofOptionsSchema)` to create a new message.
  */
-export const OneofOptionsSchema: GenMessage<OneofOptions, OneofOptionsJson> = /*@__PURE__*/
+export const OneofOptionsSchema: GenMessage<OneofOptions, {jsonType: OneofOptionsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 13);
 
 /**
@@ -2955,7 +2955,7 @@ export type EnumOptionsJson = {
  * Describes the message google.protobuf.EnumOptions.
  * Use `create(EnumOptionsSchema)` to create a new message.
  */
-export const EnumOptionsSchema: GenMessage<EnumOptions, EnumOptionsJson> = /*@__PURE__*/
+export const EnumOptionsSchema: GenMessage<EnumOptions, {jsonType: EnumOptionsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 14);
 
 /**
@@ -3058,7 +3058,7 @@ export type EnumValueOptionsJson = {
  * Describes the message google.protobuf.EnumValueOptions.
  * Use `create(EnumValueOptionsSchema)` to create a new message.
  */
-export const EnumValueOptionsSchema: GenMessage<EnumValueOptions, EnumValueOptionsJson> = /*@__PURE__*/
+export const EnumValueOptionsSchema: GenMessage<EnumValueOptions, {jsonType: EnumValueOptionsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 15);
 
 /**
@@ -3129,7 +3129,7 @@ export type ServiceOptionsJson = {
  * Describes the message google.protobuf.ServiceOptions.
  * Use `create(ServiceOptionsSchema)` to create a new message.
  */
-export const ServiceOptionsSchema: GenMessage<ServiceOptions, ServiceOptionsJson> = /*@__PURE__*/
+export const ServiceOptionsSchema: GenMessage<ServiceOptions, {jsonType: ServiceOptionsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 16);
 
 /**
@@ -3210,7 +3210,7 @@ export type MethodOptionsJson = {
  * Describes the message google.protobuf.MethodOptions.
  * Use `create(MethodOptionsSchema)` to create a new message.
  */
-export const MethodOptionsSchema: GenMessage<MethodOptions, MethodOptionsJson> = /*@__PURE__*/
+export const MethodOptionsSchema: GenMessage<MethodOptions, {jsonType: MethodOptionsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 17);
 
 /**
@@ -3360,7 +3360,7 @@ export type UninterpretedOptionJson = {
  * Describes the message google.protobuf.UninterpretedOption.
  * Use `create(UninterpretedOptionSchema)` to create a new message.
  */
-export const UninterpretedOptionSchema: GenMessage<UninterpretedOption, UninterpretedOptionJson> = /*@__PURE__*/
+export const UninterpretedOptionSchema: GenMessage<UninterpretedOption, {jsonType: UninterpretedOptionJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 18);
 
 /**
@@ -3409,7 +3409,7 @@ export type UninterpretedOption_NamePartJson = {
  * Describes the message google.protobuf.UninterpretedOption.NamePart.
  * Use `create(UninterpretedOption_NamePartSchema)` to create a new message.
  */
-export const UninterpretedOption_NamePartSchema: GenMessage<UninterpretedOption_NamePart, UninterpretedOption_NamePartJson> = /*@__PURE__*/
+export const UninterpretedOption_NamePartSchema: GenMessage<UninterpretedOption_NamePart, {jsonType: UninterpretedOption_NamePartJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 18, 0);
 
 /**
@@ -3510,7 +3510,7 @@ export type FeatureSetJson = {
  * Describes the message google.protobuf.FeatureSet.
  * Use `create(FeatureSetSchema)` to create a new message.
  */
-export const FeatureSetSchema: GenMessage<FeatureSet, FeatureSetJson> = /*@__PURE__*/
+export const FeatureSetSchema: GenMessage<FeatureSet, {jsonType: FeatureSetJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 19);
 
 /**
@@ -3801,7 +3801,7 @@ export type FeatureSetDefaultsJson = {
  * Describes the message google.protobuf.FeatureSetDefaults.
  * Use `create(FeatureSetDefaultsSchema)` to create a new message.
  */
-export const FeatureSetDefaultsSchema: GenMessage<FeatureSetDefaults, FeatureSetDefaultsJson> = /*@__PURE__*/
+export const FeatureSetDefaultsSchema: GenMessage<FeatureSetDefaults, {jsonType: FeatureSetDefaultsJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 20);
 
 /**
@@ -3866,7 +3866,7 @@ export type FeatureSetDefaults_FeatureSetEditionDefaultJson = {
  * Describes the message google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.
  * Use `create(FeatureSetDefaults_FeatureSetEditionDefaultSchema)` to create a new message.
  */
-export const FeatureSetDefaults_FeatureSetEditionDefaultSchema: GenMessage<FeatureSetDefaults_FeatureSetEditionDefault, FeatureSetDefaults_FeatureSetEditionDefaultJson> = /*@__PURE__*/
+export const FeatureSetDefaults_FeatureSetEditionDefaultSchema: GenMessage<FeatureSetDefaults_FeatureSetEditionDefault, {jsonType: FeatureSetDefaults_FeatureSetEditionDefaultJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 20, 0);
 
 /**
@@ -3987,7 +3987,7 @@ export type SourceCodeInfoJson = {
  * Describes the message google.protobuf.SourceCodeInfo.
  * Use `create(SourceCodeInfoSchema)` to create a new message.
  */
-export const SourceCodeInfoSchema: GenMessage<SourceCodeInfo, SourceCodeInfoJson> = /*@__PURE__*/
+export const SourceCodeInfoSchema: GenMessage<SourceCodeInfo, {jsonType: SourceCodeInfoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 21);
 
 /**
@@ -4210,7 +4210,7 @@ export type SourceCodeInfo_LocationJson = {
  * Describes the message google.protobuf.SourceCodeInfo.Location.
  * Use `create(SourceCodeInfo_LocationSchema)` to create a new message.
  */
-export const SourceCodeInfo_LocationSchema: GenMessage<SourceCodeInfo_Location, SourceCodeInfo_LocationJson> = /*@__PURE__*/
+export const SourceCodeInfo_LocationSchema: GenMessage<SourceCodeInfo_Location, {jsonType: SourceCodeInfo_LocationJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 21, 0);
 
 /**
@@ -4251,7 +4251,7 @@ export type GeneratedCodeInfoJson = {
  * Describes the message google.protobuf.GeneratedCodeInfo.
  * Use `create(GeneratedCodeInfoSchema)` to create a new message.
  */
-export const GeneratedCodeInfoSchema: GenMessage<GeneratedCodeInfo, GeneratedCodeInfoJson> = /*@__PURE__*/
+export const GeneratedCodeInfoSchema: GenMessage<GeneratedCodeInfo, {jsonType: GeneratedCodeInfoJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 22);
 
 /**
@@ -4342,7 +4342,7 @@ export type GeneratedCodeInfo_AnnotationJson = {
  * Describes the message google.protobuf.GeneratedCodeInfo.Annotation.
  * Use `create(GeneratedCodeInfo_AnnotationSchema)` to create a new message.
  */
-export const GeneratedCodeInfo_AnnotationSchema: GenMessage<GeneratedCodeInfo_Annotation, GeneratedCodeInfo_AnnotationJson> = /*@__PURE__*/
+export const GeneratedCodeInfo_AnnotationSchema: GenMessage<GeneratedCodeInfo_Annotation, {jsonType: GeneratedCodeInfo_AnnotationJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_descriptor, 22, 0);
 
 /**

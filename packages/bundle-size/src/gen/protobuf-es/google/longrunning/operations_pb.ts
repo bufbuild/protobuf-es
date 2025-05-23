@@ -16,8 +16,8 @@
 // @generated from file google/longrunning/operations.proto (package google.longrunning, syntax proto3)
 /* eslint-disable */
 
-import type { GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv1";
-import { extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenExtension, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { extDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_google_api_annotations } from "../api/annotations_pb";
 import { file_google_api_client } from "../api/client_pb";
 import type { Any, Duration, EmptySchema, MethodOptions } from "@bufbuild/protobuf/wkt";

@@ -16,8 +16,8 @@
 // @generated from file google/geo/type/viewport.proto (package google.geo.type, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import type { LatLng } from "../../type/latlng_pb";
 import { file_google_type_latlng } from "../../type/latlng_pb";
 import type { Message } from "@bufbuild/protobuf";

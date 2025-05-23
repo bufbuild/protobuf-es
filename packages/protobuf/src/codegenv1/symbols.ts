@@ -12,49 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * @private
- */
-export const packageName = "@bufbuild/protobuf";
+import {
+  symbols as symbolsV2,
+  packageName as packageNameV1,
+  wktPublicImportPaths as wktPublicImportPathsV2,
+} from "../codegenv2/symbols.js";
 
 /**
  * @private
  */
-export const wktPublicImportPaths: Readonly<Record<string, string>> = {
-  "google/protobuf/compiler/plugin.proto": packageName + "/wkt",
-  "google/protobuf/any.proto": packageName + "/wkt",
-  "google/protobuf/api.proto": packageName + "/wkt",
-  "google/protobuf/cpp_features.proto": packageName + "/wkt",
-  "google/protobuf/descriptor.proto": packageName + "/wkt",
-  "google/protobuf/duration.proto": packageName + "/wkt",
-  "google/protobuf/empty.proto": packageName + "/wkt",
-  "google/protobuf/field_mask.proto": packageName + "/wkt",
-  "google/protobuf/go_features.proto": packageName + "/wkt",
-  "google/protobuf/java_features.proto": packageName + "/wkt",
-  "google/protobuf/source_context.proto": packageName + "/wkt",
-  "google/protobuf/struct.proto": packageName + "/wkt",
-  "google/protobuf/timestamp.proto": packageName + "/wkt",
-  "google/protobuf/type.proto": packageName + "/wkt",
-  "google/protobuf/wrappers.proto": packageName + "/wkt",
-};
+export const packageName = packageNameV1;
+
+/**
+ * @private
+ */
+export const wktPublicImportPaths = wktPublicImportPathsV2;
 
 /**
  * @private
  */
 // biome-ignore format: want this to read well
 export const symbols = {
-  isMessage:           {typeOnly: false, bootstrapWktFrom: "../../is-message.js",           from: packageName },
-  Message:             {typeOnly: true,  bootstrapWktFrom: "../../types.js",                from: packageName },
-  create:              {typeOnly: false, bootstrapWktFrom: "../../create.js",               from: packageName },
-  fromJson:            {typeOnly: false, bootstrapWktFrom: "../../from-json.js",            from: packageName },
-  fromJsonString:      {typeOnly: false, bootstrapWktFrom: "../../from-json.js",            from: packageName },
-  fromBinary:          {typeOnly: false, bootstrapWktFrom: "../../from-binary.js",          from: packageName },
-  toBinary:            {typeOnly: false, bootstrapWktFrom: "../../to-binary.js",            from: packageName },
-  toJson:              {typeOnly: false, bootstrapWktFrom: "../../to-json.js",              from: packageName },
-  toJsonString:        {typeOnly: false, bootstrapWktFrom: "../../to-json.js",              from: packageName },
-  protoInt64:          {typeOnly: false, bootstrapWktFrom: "../../proto-int64.js",          from: packageName },
-  JsonValue:           {typeOnly: true,  bootstrapWktFrom: "../../json-value.js",           from: packageName },
-  JsonObject:          {typeOnly: true,  bootstrapWktFrom: "../../json-value.js",           from: packageName },
+  ...symbolsV2,
   codegen: {
     boot:              {typeOnly: false, bootstrapWktFrom: "../../codegenv1/boot.js",       from: packageName + "/codegenv1" },
     fileDesc:          {typeOnly: false, bootstrapWktFrom: "../../codegenv1/file.js",       from: packageName + "/codegenv1" },

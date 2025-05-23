@@ -16,7 +16,7 @@
 // @generated from file google/protobuf/unittest_features.proto (package pb, edition 2023)
 /* eslint-disable */
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { FeatureSet } from "@bufbuild/protobuf/wkt";
 

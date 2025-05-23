@@ -16,7 +16,7 @@
 // @generated from file extra/edition2023-proto3.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv1";
+import { enumDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file extra/edition2023-proto3.proto.

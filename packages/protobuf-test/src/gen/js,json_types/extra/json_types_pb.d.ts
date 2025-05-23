@@ -16,7 +16,7 @@
 // @generated from file extra/json_types.proto (package spec, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
 import type { Any, AnyJson, BoolValueJson, BytesValueJson, DoubleValueJson, Duration, DurationJson, Empty, EmptyJson, FieldMask, FieldMaskJson, FloatValueJson, Int32ValueJson, Int64ValueJson, ListValue, ListValueJson, NullValue, NullValueJson, StringValueJson, StructJson, Timestamp, TimestampJson, UInt32ValueJson, UInt64ValueJson, Value, ValueJson } from "@bufbuild/protobuf/wkt";
 
@@ -381,7 +381,7 @@ export declare type JsonTypesMessageJson = {
  * Describes the message spec.JsonTypesMessage.
  * Use `create(JsonTypesMessageSchema)` to create a new message.
  */
-export declare const JsonTypesMessageSchema: GenMessage<JsonTypesMessage, JsonTypesMessageJson>;
+export declare const JsonTypesMessageSchema: GenMessage<JsonTypesMessage, {jsonType: JsonTypesMessageJson}>;
 
 /**
  * @generated from enum spec.JsonTypeEnum

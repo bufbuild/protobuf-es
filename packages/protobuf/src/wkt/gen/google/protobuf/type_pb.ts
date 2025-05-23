@@ -16,15 +16,15 @@
 // @generated from file google/protobuf/type.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "../../../../codegenv1/types.js";
-import { fileDesc } from "../../../../codegenv1/file.js";
+import type { GenEnum, GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { Any, AnyJson } from "./any_pb.js";
 import { file_google_protobuf_any } from "./any_pb.js";
 import type { SourceContext, SourceContextJson } from "./source_context_pb.js";
 import { file_google_protobuf_source_context } from "./source_context_pb.js";
 import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv1/message.js";
-import { enumDesc } from "../../../../codegenv1/enum.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
+import { enumDesc } from "../../../../codegenv2/enum.js";
 
 /**
  * Describes the file google/protobuf/type.proto.
@@ -148,7 +148,7 @@ export type TypeJson = {
  * Describes the message google.protobuf.Type.
  * Use `create(TypeSchema)` to create a new message.
  */
-export const TypeSchema: GenMessage<Type, TypeJson> = /*@__PURE__*/
+export const TypeSchema: GenMessage<Type, {jsonType: TypeJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_type, 0);
 
 /**
@@ -313,7 +313,7 @@ export type FieldJson = {
  * Describes the message google.protobuf.Field.
  * Use `create(FieldSchema)` to create a new message.
  */
-export const FieldSchema: GenMessage<Field, FieldJson> = /*@__PURE__*/
+export const FieldSchema: GenMessage<Field, {jsonType: FieldJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_type, 1);
 
 /**
@@ -619,7 +619,7 @@ export type EnumJson = {
  * Describes the message google.protobuf.Enum.
  * Use `create(EnumSchema)` to create a new message.
  */
-export const EnumSchema: GenMessage<Enum, EnumJson> = /*@__PURE__*/
+export const EnumSchema: GenMessage<Enum, {jsonType: EnumJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_type, 2);
 
 /**
@@ -682,7 +682,7 @@ export type EnumValueJson = {
  * Describes the message google.protobuf.EnumValue.
  * Use `create(EnumValueSchema)` to create a new message.
  */
-export const EnumValueSchema: GenMessage<EnumValue, EnumValueJson> = /*@__PURE__*/
+export const EnumValueSchema: GenMessage<EnumValue, {jsonType: EnumValueJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_type, 3);
 
 /**
@@ -745,7 +745,7 @@ export type OptionJson = {
  * Describes the message google.protobuf.Option.
  * Use `create(OptionSchema)` to create a new message.
  */
-export const OptionSchema: GenMessage<Option, OptionJson> = /*@__PURE__*/
+export const OptionSchema: GenMessage<Option, {jsonType: OptionJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_type, 4);
 
 /**

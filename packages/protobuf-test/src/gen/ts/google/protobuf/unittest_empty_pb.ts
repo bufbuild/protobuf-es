@@ -32,8 +32,8 @@
 // @generated from file google/protobuf/unittest_empty.proto (syntax proto2)
 /* eslint-disable */
 
-import type { GenFile } from "@bufbuild/protobuf/codegenv1";
-import { fileDesc } from "@bufbuild/protobuf/codegenv1";
+import type { GenFile } from "@bufbuild/protobuf/codegenv2";
+import { fileDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file google/protobuf/unittest_empty.proto.

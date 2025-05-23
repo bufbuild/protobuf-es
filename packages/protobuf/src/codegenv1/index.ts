@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export * from "./boot.js";
-export * from "./embed.js";
+export * from "../codegenv2/boot.js";
+export * from "../codegenv2/embed.js";
 export * from "./enum.js";
 export * from "./extension.js";
 export * from "./file.js";
 export * from "./message.js";
 export * from "./service.js";
 export * from "./symbols.js";
-export * from "./scalar.js";
+export * from "../codegenv2/scalar.js";
 export * from "./types.js";

@@ -22,7 +22,7 @@
 // @generated from file google/protobuf/unittest_extension_set.proto (package proto2_unittest, syntax proto2)
 /* eslint-disable */
 
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file google/protobuf/unittest_extension_set.proto.

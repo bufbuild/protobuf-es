@@ -20,7 +20,7 @@
 // option features.utf8_validation = NONE;
 /* eslint-disable */
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 import type { Any, FieldOptions } from "@bufbuild/protobuf/wkt";
 

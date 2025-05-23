@@ -25,7 +25,7 @@
 // @generated from file google/protobuf/unittest_enormous_descriptor.proto (package proto2_unittest, syntax proto2)
 /* eslint-disable */
 
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv1";
+import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 
 /**
  * Describes the file google/protobuf/unittest_enormous_descriptor.proto.

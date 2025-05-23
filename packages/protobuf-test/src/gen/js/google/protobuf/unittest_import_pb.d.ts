@@ -27,7 +27,7 @@
 // In test_util.h we do
 // "using namespace unittest_import = proto2_unittest_import".
 
-import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv1";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
 
 /**

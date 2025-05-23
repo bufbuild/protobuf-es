@@ -18,7 +18,7 @@ import type {
   StringValueSchema,
 } from "@bufbuild/protobuf/wkt";
 import { hasExtension } from "@bufbuild/protobuf";
-import type { GenService } from "@bufbuild/protobuf/codegenv1";
+import type { GenService } from "@bufbuild/protobuf/codegenv2";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 import * as proto2_js from "./gen/js/extra/proto2_pb.js";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
@@ -37,6 +37,8 @@ import * as options_ts from "./gen/ts/extra/options_pb.js";
 import * as option_usage_ts from "./gen/ts/extra/option-usage_pb.js";
 import type * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
 import type * as json_types_js_json from "./gen/js,json_types/extra/json_types_pb.js";
+import type * as valid_types_ts from "./gen/ts,valid_types/extra/valid_types_pb.js";
+import type * as valid_types_js from "./gen/js,valid_types/extra/valid_types_pb.js";
 
 test("source retention options are unavailable in generated code", () => {
   const fileOptions = option_usage_ts.file_extra_option_usage.proto.options;
@@ -140,6 +142,16 @@ describe("JSON types", () => {
 
 test("ts generated code is assignable to js", () => {
   expect([
+    function f(ts: valid_types_ts.VTypes, js: valid_types_js.VTypes) {
+      ts = js;
+      js = ts;
+      return [ts, js];
+    },
+    function f(ts: valid_types_ts.VTypesValid, js: valid_types_js.VTypesValid) {
+      ts = js;
+      js = ts;
+      return [ts, js];
+    },
     function f(
       ts: json_types_ts_json.JsonTypesMessageJson,
       js: json_types_js_json.JsonTypesMessageJson,

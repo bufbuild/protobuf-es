@@ -17,15 +17,35 @@ import {
   create,
   type MessageShape,
   type EnumShape,
+  type Extendee,
+  type ExtensionValueShape,
   type Message,
   type DescEnum,
   type DescMessage,
+  type DescExtension,
+  type MessageJsonType,
+  type JsonValue,
+  type EnumJsonType,
+  type MessageValidType,
 } from "@bufbuild/protobuf";
 import type { Timestamp, Duration } from "@bufbuild/protobuf/wkt";
 import type { Proto3Message, Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
 import type { Proto3EnumSchema } from "./gen/ts/extra/proto3_pb.js";
 import type { User } from "./gen/ts/extra/example_pb.js";
 import { UserSchema } from "./gen/ts/extra/example_pb.js";
+import type {
+  Proto2Extendee,
+  repeated_string_ext,
+  uint32_ext,
+  message_ext,
+  Proto2ExtMessage,
+  repeated_message_ext,
+} from "./gen/ts/extra/extensions-proto2_pb.js";
+import type * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
+import type * as json_types_ts_nojson from "./gen/ts/extra/json_types_pb.js";
+import type * as valid_types_ts from "./gen/ts,valid_types/extra/valid_types_pb.js";
+import type * as valid_types_ts_novalid from "./gen/ts/extra/valid_types_pb.js";
+import type * as codegenv1 from "@bufbuild/protobuf/codegenv1";
 
 describe("type Message", () => {
   describe("assigning different messages with same shape to each other", () => {
@@ -71,6 +91,14 @@ describe("type MessageShape", () => {
     }
     expect(t).toBeDefined();
   });
+  test("supports codegenv1", () => {
+    type M = Message<"M"> & { v1: true };
+    function t(derived: MessageShape<codegenv1.GenMessage<M>>, direct: M) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
   test("derives anonymous shape", () => {
     function t(derived: MessageShape<DescMessage>, anon: Message) {
       derived = anon;
@@ -91,11 +119,215 @@ describe("type EnumShape", () => {
     }
     expect(t).toBeDefined();
   });
-  test("derives generated shape", () => {
+  test("supports codegenv1", () => {
+    type E = 1;
+    function t(derived: EnumShape<codegenv1.GenEnum<E>>, direct: E) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives anonymous shape", () => {
     function t(derived: EnumShape<DescEnum>, anon: number) {
       derived = anon;
       anon = derived;
     }
     expect(t).toBeDefined();
+  });
+});
+
+describe("type Extendee", () => {
+  test("derives generated type info", () => {
+    function t(derived: Extendee<typeof uint32_ext>, direct: Proto2Extendee) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("supports codegenv1", () => {
+    type E = Message<"E"> & { v1: true };
+    function t(derived: Extendee<codegenv1.GenExtension<E>>, direct: E) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives anonymous type info", () => {
+    function t(derived: Extendee<DescExtension>, anon: Message) {
+      derived = anon;
+      anon = derived;
+    }
+    expect(t).toBeDefined();
+  });
+});
+
+describe("type ExtensionValueShape", () => {
+  test("derives generated type info for singular scalar", () => {
+    function t(
+      derived: ExtensionValueShape<typeof uint32_ext>,
+      direct: number,
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("supports codegenv1", () => {
+    type E = Message<"E"> & { v1: true };
+    function t(derived: Extendee<codegenv1.GenExtension<E>>, direct: E) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives generated type info for repeated scalar", () => {
+    function t(
+      derived: ExtensionValueShape<typeof repeated_string_ext>,
+      direct: string[],
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives generated type info for singular message", () => {
+    function t(
+      derived: ExtensionValueShape<typeof message_ext>,
+      direct: Proto2ExtMessage,
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives generated type info for repeated message", () => {
+    function t(
+      derived: ExtensionValueShape<typeof repeated_message_ext>,
+      direct: Proto2ExtMessage[],
+    ) {
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("derives anonymous as unknown", () => {
+    function t(derived: ExtensionValueShape<DescExtension>, anon: unknown) {
+      derived = anon;
+      anon = derived;
+    }
+    expect(t).toBeDefined();
+  });
+});
+
+describe("type MessageJsonType", () => {
+  test("should resolve generated type", () => {
+    function f(
+      derived: MessageJsonType<
+        typeof json_types_ts_json.JsonTypesMessageSchema
+      >,
+      direct: json_types_ts_json.JsonTypesMessageJson,
+    ) {
+      direct = derived;
+      return direct;
+    }
+    expect(f).toBeDefined();
+  });
+  test("supports codegenv1", () => {
+    function t(
+      derived: MessageJsonType<
+        codegenv1.GenMessage<
+          json_types_ts_json.JsonTypesMessage,
+          json_types_ts_json.JsonTypesMessageJson
+        >
+      >,
+      direct: json_types_ts_json.JsonTypesMessageJson,
+    ) {
+      // @ts-expect-error - prove that this is not just fallback JsonObject
+      derived.unknownField;
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("should resolve JsonValue without generated type", () => {
+    function f(
+      derived: MessageJsonType<
+        typeof json_types_ts_nojson.JsonTypesMessageSchema
+      >,
+      direct: JsonValue,
+    ) {
+      direct = derived;
+      derived = direct;
+      return derived;
+    }
+    expect(f).toBeDefined();
+  });
+});
+
+describe("type EnumJsonType", () => {
+  test("should resolve generated type", () => {
+    function f(
+      derived: EnumJsonType<typeof json_types_ts_json.JsonTypeEnumSchema>,
+      direct: json_types_ts_json.JsonTypeEnumJson,
+    ) {
+      direct = derived;
+      derived = direct;
+      return direct;
+    }
+    expect(f).toBeDefined();
+  });
+  test("supports codegenv1", () => {
+    function t(
+      derived: EnumJsonType<
+        codegenv1.GenEnum<
+          json_types_ts_json.JsonTypeEnum,
+          json_types_ts_json.JsonTypeEnumJson
+        >
+      >,
+      direct: json_types_ts_json.JsonTypeEnumJson,
+    ) {
+      // @ts-expect-error - prove that this is not just fallback string
+      derived = "X";
+      derived = direct;
+      direct = derived;
+    }
+    expect(t).toBeDefined();
+  });
+  test("should resolve string without generated type", () => {
+    function f(
+      derived: EnumJsonType<typeof json_types_ts_nojson.JsonTypeEnumSchema>,
+      direct: string | null,
+    ) {
+      derived = direct;
+      direct = derived;
+      return derived;
+    }
+    expect(f).toBeDefined();
+  });
+});
+
+describe("type MessageValidType", () => {
+  test("should resolve generated type", () => {
+    function f(
+      derived: MessageValidType<typeof valid_types_ts.VTypesSchema>,
+      direct: valid_types_ts.VTypesValid,
+    ) {
+      let str: string = direct.requiredMsg.$typeName;
+      str = derived.requiredMsg.$typeName;
+      direct = derived;
+      return [direct, str];
+    }
+    expect(f).toBeDefined();
+  });
+  test("should resolve regular type as fallback", () => {
+    function f(
+      derived: MessageValidType<typeof valid_types_ts_novalid.VTypesSchema>,
+      direct: valid_types_ts_novalid.VTypes,
+    ) {
+      derived = direct;
+      direct = derived;
+      return direct;
+    }
+    expect(f).toBeDefined();
   });
 });

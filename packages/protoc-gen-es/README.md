@@ -118,3 +118,16 @@ the top of each file to skip type checks: `// @ts-nocheck`.
 
 Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
 if available. Learn more about [JSON types](https://github.com/bufbuild/protobuf-es/blob/main/MANUAL.md#json-types).
+
+### `valid_types` (experimental)
+
+Generates a Valid type for every Protobuf message. Possible values:
+
+- `valid_types=legacy_required`: Message fields with the `required` label, or the Edition feature 
+  `features.field_presence=LEGACY_REQUIRED`, are generated as non-optional properties. 
+- `valid_types=protovalidate_required`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required) 
+  rule are generated as non-optional properties.
+
+You can combine both options with `+`—for example, `valid_types=legacy_required+protovalidate_required`.
+
+Learn more about [Valid types](https://github.com/bufbuild/protobuf-es/blob/main/MANUAL.md#valid-types).
