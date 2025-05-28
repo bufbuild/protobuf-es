@@ -20,37 +20,6 @@ import {
   createVirtualCompilerHost,
 } from "@typescript/vfs";
 
-// The default options used to auto-transpile if needed.
-const defaultOptions: ts.CompilerOptions = {
-  // Type checking
-  strict: false,
-
-  // modules
-  module: ts.ModuleKind.ES2020,
-  moduleResolution: ts.ModuleResolutionKind.Node10,
-  noResolve: true,
-  resolveJsonModule: false,
-
-  // emit
-  emitBOM: false,
-  importsNotUsedAsValues: ts.ImportsNotUsedAsValues.Preserve,
-  newLine: ts.NewLineKind.LineFeed,
-  preserveValueImports: false,
-
-  // JavaScript Support
-  allowJs: true,
-  checkJs: false,
-
-  // Language and Environment
-  lib: [],
-  moduleDetection: ts.ModuleDetectionKind.Force,
-  target: ts.ScriptTarget.ES2017,
-
-  // Completeness
-  skipLibCheck: true,
-  skipDefaultLibCheck: false,
-};
-
 /**
  * Create a transpiler using the given compiler options, which will compile the
  * content provided in the files array.
@@ -59,7 +28,7 @@ const defaultOptions: ts.CompilerOptions = {
  * TypeScript for stability.  This version is denoted in this workspace's
  * package.json.  For the default set of compiler options, we use a lenient
  * set of options because the general goal is to emit code as best as we can.
- * For a list of the options used, see `defaultOptions` above.
+ * For a list of the options used, see `const defaultOptions` in function transpile.
  *
  * If this is not desirable for plugin authors, they are free to provide their
  * own transpile function as part of the plugin initialization.  If one is
@@ -98,6 +67,36 @@ export function transpile(
   transpileDts: boolean,
   jsImportStyle: "module" | "legacy_commonjs",
 ): FileInfo[] {
+  const defaultOptions: ts.CompilerOptions = {
+    // Type checking
+    strict: false,
+
+    // modules
+    module: ts.ModuleKind.ES2020,
+    moduleResolution: ts.ModuleResolutionKind.Node10,
+    noResolve: true,
+    resolveJsonModule: false,
+
+    // emit
+    emitBOM: false,
+    importsNotUsedAsValues: ts.ImportsNotUsedAsValues.Preserve,
+    newLine: ts.NewLineKind.LineFeed,
+    preserveValueImports: false,
+
+    // JavaScript Support
+    allowJs: true,
+    checkJs: false,
+
+    // Language and Environment
+    lib: [],
+    moduleDetection: ts.ModuleDetectionKind.Force,
+    target: ts.ScriptTarget.ES2017,
+
+    // Completeness
+    skipLibCheck: true,
+    skipDefaultLibCheck: false,
+  };
+
   const options: ts.CompilerOptions = {
     ...defaultOptions,
     declaration: transpileDts,
