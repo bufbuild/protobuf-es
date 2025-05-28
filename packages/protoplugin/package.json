@@ -39,8 +39,5 @@
     "@typescript/vfs": "^1.5.2",
     "typescript": "5.4.5"
   },
-  "files": ["dist/**"],
-  "devDependencies": {
-    "@types/lz-string": "^1.5.0"
-  }
+  "files": ["dist/**"]
 }
