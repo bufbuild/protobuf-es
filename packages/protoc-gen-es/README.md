@@ -119,6 +119,20 @@ the top of each file to skip type checks: `// @ts-nocheck`.
 Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
 if available. Learn more about [JSON types](https://github.com/bufbuild/protobuf-es/blob/main/MANUAL.md#json-types).
 
+### `enum_as_const=true`
+
+Generates TypeScript const objects with `as const` instead of traditional `enums` for Protobuf enumerations.
+
+Example output with `enum_as_const=true`:
+```typescript
+export const Status = {
+  UNKNOWN: 0,
+  ACTIVE: 1,
+  INACTIVE: 2,
+} as const;
+export type Status = typeof Status[keyof typeof Status];
+```
+
 ### `valid_types` (experimental)
 
 Generates a Valid type for every Protobuf message. Possible values:
