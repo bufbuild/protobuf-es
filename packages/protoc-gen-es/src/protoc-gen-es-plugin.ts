@@ -412,10 +412,8 @@ function generateEnumShape(f: GeneratedFile, enumeration: DescEnum, enumAsConst 
       f.print("  ", value.localName, ": ", value.number, ",");
     }
     f.print("} as const;");
-    // TypeScriptの型定義を追加
     f.print(f.export("type", f.importShape(enumeration).name), " = typeof ", f.importShape(enumeration).name, "[keyof typeof ", f.importShape(enumeration).name, "];");
   } else {
-    // 従来のenumを生成
     f.print(f.export("enum", f.importShape(enumeration).name), " {");
     for (const value of enumeration.values) {
       if (enumeration.values.indexOf(value) > 0) {
