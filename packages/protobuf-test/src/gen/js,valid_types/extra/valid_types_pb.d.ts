@@ -18,6 +18,7 @@
 
 import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
+import type { Timestamp, TimestampValid } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file extra/valid_types.proto.
@@ -180,6 +181,11 @@ export declare type VTypes = Message<"spec.VTypes"> & {
    * @generated from field: spec.VTypes.Other legacy_required_msg_ignore_always = 21 [features.field_presence = LEGACY_REQUIRED];
    */
   legacyRequiredMsgIgnoreAlways?: VTypes_Other;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp wkt = 22;
+   */
+  wkt?: Timestamp;
 };
 
 /**
@@ -338,6 +344,11 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
    * @generated from field: spec.VTypes.Other legacy_required_msg_ignore_always = 21 [features.field_presence = LEGACY_REQUIRED];
    */
   legacyRequiredMsgIgnoreAlways: VTypes_Other;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp wkt = 22;
+   */
+  wkt?: TimestampValid;
 };
 
 /**
