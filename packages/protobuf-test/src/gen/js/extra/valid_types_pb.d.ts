@@ -183,6 +183,9 @@ export declare type VTypes = Message<"spec.VTypes"> & {
   legacyRequiredMsgIgnoreAlways?: VTypes_Other;
 
   /**
+   * In the generated valid type, this property should point to the regular
+   * type, since we currently do not generate Valid types for the WKT.
+   *
    * @generated from field: google.protobuf.Timestamp wkt = 22;
    */
   wkt?: Timestamp;
