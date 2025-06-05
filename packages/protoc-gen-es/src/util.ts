@@ -21,6 +21,7 @@ import {
 import {
   scalarJsonType,
   scalarTypeScriptType,
+  wktPublicImportPaths,
 } from "@bufbuild/protobuf/codegenv2";
 import {
   StructSchema,
@@ -177,7 +178,7 @@ function messageFieldTypeScriptType(
   ) {
     return imports.JsonObject;
   }
-  if (validTypes) {
+  if (validTypes && !(field.message.file.proto.name in wktPublicImportPaths)) {
     return {
       kind: "es_valid_type_ref",
       desc: field.message,

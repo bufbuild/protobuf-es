@@ -15,6 +15,7 @@
 edition="2023";
 package spec;
 
+import "google/protobuf/timestamp.proto";
 import "extra/minimal-validate.proto";
 
 message VTypes {
@@ -131,6 +132,10 @@ message VTypes {
     features.field_presence = LEGACY_REQUIRED,
     (buf.validate.field).ignore = IGNORE_ALWAYS
   ];
+
+  // In the generated valid type, this property should point to the regular
+  // type, since we currently do not generate Valid types for the WKT.
+  google.protobuf.Timestamp wkt = 22;
 
   message Other {}
 
