@@ -1422,6 +1422,9 @@ message Example {
 }
 ```
 
+To see integration with protovalidate in action, see the [Valid types example][protovalidate-es-example] 
+in the protovalidate-es repository.
+
 > [!TIP]
 >
 > - `MessageValidType` extracts the Valid type from a message descriptor.
@@ -2676,6 +2679,7 @@ Serialization to JSON and binary is deterministic within a version of protobuf-e
 [closure]: http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html
 [conformance]: https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance
 [Connect-ES]: https://github.com/connectrpc/connect-es
+[protovalidate-es-example]: https://github.com/bufbuild/protovalidate-es/tree/main/packages/example#valid-types
 [custom-options]: https://protobuf.dev/programming-guides/proto3/#customoptions
 [ecmascript-modules]: https://www.typescriptlang.org/docs/handbook/esm-node.html
 [example.proto]: ./packages/protobuf-example/proto/example.proto
