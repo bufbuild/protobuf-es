@@ -54,6 +54,7 @@ export const protocGenEs = createEcmaScriptPlugin({
 
 type Options = {
   jsonTypes: boolean;
+  erasableSyntaxOnly: boolean;
   validTypes: {
     legacyRequired: boolean;
     protovalidateRequired: boolean;
@@ -67,6 +68,7 @@ function parseOptions(
   }[],
 ): Options {
   let jsonTypes = false;
+  let erasableSyntaxOnly = false;
   let validTypes = {
     legacyRequired: false,
     protovalidateRequired: false,
@@ -78,6 +80,12 @@ function parseOptions(
           throw "please provide true or false";
         }
         jsonTypes = ["true", "1"].includes(value);
+        break;
+      case "erasable_syntax_only":
+        if (!["true", "1", "false", "0"].includes(value)) {
+          throw "please provide true or false";
+        }
+        erasableSyntaxOnly = ["true", "1"].includes(value);
         break;
       case "valid_types":
         for (const part of value.split("+")) {
@@ -97,7 +105,7 @@ function parseOptions(
         throw new Error();
     }
   }
-  return { jsonTypes, validTypes };
+  return { jsonTypes, erasableSyntaxOnly, validTypes };
 }
 
 // This annotation informs bundlers that the succeeding function call is free of
@@ -136,7 +144,7 @@ function generateTs(schema: Schema<Options>) {
           break;
         }
         case "enum": {
-          generateEnumShape(f, desc);
+          generateEnumShape(f, desc, schema.options.erasableSyntaxOnly);
           if (schema.options.jsonTypes) {
             generateEnumJsonShape(f, desc, "ts");
           }
@@ -278,7 +286,7 @@ function generateDts(schema: Schema<Options>) {
           break;
         }
         case "enum": {
-          generateEnumShape(f, desc);
+          generateEnumShape(f, desc, schema.options.erasableSyntaxOnly);
           if (schema.options.jsonTypes) {
             generateEnumJsonShape(f, desc, "dts");
           }
@@ -391,17 +399,31 @@ function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable 
 }
 
 // biome-ignore format: want this to read well
-function generateEnumShape(f: GeneratedFile, enumeration: DescEnum) {
+function generateEnumShape(f: GeneratedFile, enumeration: DescEnum, erasableSyntaxOnly = false) {
   f.print(f.jsDoc(enumeration));
-  f.print(f.export("enum", f.importShape(enumeration).name), " {");
-  for (const value of enumeration.values) {
-    if (enumeration.values.indexOf(value) > 0) {
-      f.print();
+  if (erasableSyntaxOnly) {
+    // when erasable_syntax_only is, we generate a const object instead of an enum
+    f.print(f.export("const", f.importShape(enumeration).name), " = {");
+    for (const value of enumeration.values) {
+      if (enumeration.values.indexOf(value) > 0) {
+        f.print();
+      }
+      f.print(f.jsDoc(value, "  "));
+      f.print("  ", value.localName, ": ", value.number, ",");
     }
-    f.print(f.jsDoc(value, "  "));
-    f.print("  ", value.localName, " = ", value.number, ",");
+    f.print("} as const;");
+    f.print(f.export("type", f.importShape(enumeration).name), " = typeof ", f.importShape(enumeration).name, "[keyof typeof ", f.importShape(enumeration).name, "];");
+  } else {
+    f.print(f.export("enum", f.importShape(enumeration).name), " {");
+    for (const value of enumeration.values) {
+      if (enumeration.values.indexOf(value) > 0) {
+        f.print();
+      }
+      f.print(f.jsDoc(value, "  "));
+      f.print("  ", value.localName, " = ", value.number, ",");
+    }
+    f.print("}");
   }
-  f.print("}");
   f.print();
 }
 
