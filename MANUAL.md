@@ -983,7 +983,7 @@ const bytes: Uint8Array = toBinary(UserSchema, user);
 user = fromBinary(UserSchema, bytes);
 ```
 
-JSON serialization follows the [ProtoJSON][protobuf.dev/protojson] format. It's available with the functions `toJson` and `fromJson`:
+JSON serialization follows the [ProtoJSON][protobuf.dev/protojson] format. Use it with the functions `toJson` and `fromJson`:
 
 ```typescript
 import { toJson, fromjson, type JsonValue } from "@bufbuild/protobuf";
