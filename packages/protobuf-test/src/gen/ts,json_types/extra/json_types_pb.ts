@@ -26,7 +26,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file extra/json_types.proto.
  */
 export const file_extra_json_types: GenFile = /*@__PURE__*/
-  fileDesc("ChZleHRyYS9qc29uX3R5cGVzLnByb3RvEgRzcGVjIoYNChBKc29uVHlwZXNNZXNzYWdlEi4KCmJvb2xfZmllbGQYASABKAhSGmJvb2xlYW5GaWVsZFdpdGhDdXN0b21OYW1lEhQKDGRvdWJsZV9maWVsZBgCIAEoARITCgtieXRlc19maWVsZBgDIAEoDBITCgtpbnQ2NF9maWVsZBgEIAEoAxImCgplbnVtX2ZpZWxkGAUgASgOMhIuc3BlYy5Kc29uVHlwZUVudW0SLQoNbWVzc2FnZV9maWVsZBgGIAEoCzIWLnNwZWMuSnNvblR5cGVzTWVzc2FnZRInCglhbnlfZmllbGQYByABKAsyFC5nb29nbGUucHJvdG9idWYuQW55EjEKDmR1cmF0aW9uX2ZpZWxkGAggASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEisKC2VtcHR5X2ZpZWxkGAkgASgLMhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5EjQKEGZpZWxkX21hc2tfZmllbGQYCiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrEi0KDHN0cnVjdF9maWVsZBgLIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSKwoLdmFsdWVfZmllbGQYDCABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWUSNAoQbGlzdF92YWx1ZV9maWVsZBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5MaXN0VmFsdWUSNAoQbnVsbF92YWx1ZV9maWVsZBgOIAEoDjIaLmdvb2dsZS5wcm90b2J1Zi5OdWxsVmFsdWUSMwoPdGltZXN0YW1wX2ZpZWxkGA8gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI6ChR3cmFwcGVkX2RvdWJsZV9maWVsZBgQIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5Eb3VibGVWYWx1ZRI4ChN3cmFwcGVkX2Zsb2F0X2ZpZWxkGBEgASgLMhsuZ29vZ2xlLnByb3RvYnVmLkZsb2F0VmFsdWUSOAoTd3JhcHBlZF9pbnQ2NF9maWVsZBgSIAEoCzIbLmdvb2dsZS5wcm90b2J1Zi5JbnQ2NFZhbHVlEjoKFHdyYXBwZWRfdWludDY0X2ZpZWxkGBMgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlVJbnQ2NFZhbHVlEjgKE3dyYXBwZWRfaW50MzJfZmllbGQYFCABKAsyGy5nb29nbGUucHJvdG9idWYuSW50MzJWYWx1ZRI6ChR3cmFwcGVkX3VpbnQzMl9maWVsZBgVIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5VSW50MzJWYWx1ZRI2ChJ3cmFwcGVkX2Jvb2xfZmllbGQYFiABKAsyGi5nb29nbGUucHJvdG9idWYuQm9vbFZhbHVlEjoKFHdyYXBwZWRfc3RyaW5nX2ZpZWxkGBcgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlEjgKE3dyYXBwZWRfYnl0ZXNfZmllbGQYGCABKAsyGy5nb29nbGUucHJvdG9idWYuQnl0ZXNWYWx1ZRIvChNyZXBlYXRlZF9lbnVtX2ZpZWxkGBkgAygOMhIuc3BlYy5Kc29uVHlwZUVudW0SSQoTbWFwX2Jvb2xfZW51bV9maWVsZBgaIAMoCzIsLnNwZWMuSnNvblR5cGVzTWVzc2FnZS5NYXBCb29sRW51bUZpZWxkRW50cnkSIQoManNvbl9uYW1lX29rGBsgASgIUgtGb28xMjNfYmFyJBIaCgxqc29uX25hbWVfYXQYHCABKAhSBGZvb0ASIQoQanNvbl9uYW1lX2h5cGhlbhgdIAEoCFIHZm9vLWJhchIoChpqc29uX25hbWVfc3RhcnRfd2l0aF9kaWdpdBgeIAEoCFIEMWZvbxIgCg9qc29uX25hbWVfc3BhY2UYHyABKAhSB2ZvbyBiYXISHgoNanNvbl9uYW1lX3RhYhggIAEoCFIHZm9vCWJhchIjChNqc29uX25hbWVfbm9uX2FzY2lpGCEgASgIUgbkvaDlpb0SIwoQanNvbl9uYW1lX2VzY2FwZRgiIAEoCFIJZm9vCmJhclxuGksKFU1hcEJvb2xFbnVtRmllbGRFbnRyeRILCgNrZXkYASABKAgSIQoFdmFsdWUYAiABKA4yEi5zcGVjLkpzb25UeXBlRW51bToCOAEqXQoMSnNvblR5cGVFbnVtEh4KGkpTT05fVFlQRV9FTlVNX1VOU1BFQ0lGSUVEEAASFgoSSlNPTl9UWVBFX0VOVU1fWUVTEAESFQoRSlNPTl9UWVBFX0VOVU1fTk8QAmIGcHJvdG8z", [file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_empty, file_google_protobuf_field_mask, file_google_protobuf_struct, file_google_protobuf_timestamp, file_google_protobuf_wrappers]);
+  fileDesc("ChZleHRyYS9qc29uX3R5cGVzLnByb3RvEgRzcGVjIsoNChBKc29uVHlwZXNNZXNzYWdlEi4KCmJvb2xfZmllbGQYASABKAhSGmJvb2xlYW5GaWVsZFdpdGhDdXN0b21OYW1lEhQKDGRvdWJsZV9maWVsZBgCIAEoARITCgtieXRlc19maWVsZBgDIAEoDBITCgtpbnQ2NF9maWVsZBgEIAEoAxImCgplbnVtX2ZpZWxkGAUgASgOMhIuc3BlYy5Kc29uVHlwZUVudW0SLQoNbWVzc2FnZV9maWVsZBgGIAEoCzIWLnNwZWMuSnNvblR5cGVzTWVzc2FnZRInCglhbnlfZmllbGQYByABKAsyFC5nb29nbGUucHJvdG9idWYuQW55EjEKDmR1cmF0aW9uX2ZpZWxkGAggASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEisKC2VtcHR5X2ZpZWxkGAkgASgLMhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5EjQKEGZpZWxkX21hc2tfZmllbGQYCiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrEi0KDHN0cnVjdF9maWVsZBgLIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSKwoLdmFsdWVfZmllbGQYDCABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWUSNAoQbGlzdF92YWx1ZV9maWVsZBgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5MaXN0VmFsdWUSNAoQbnVsbF92YWx1ZV9maWVsZBgOIAEoDjIaLmdvb2dsZS5wcm90b2J1Zi5OdWxsVmFsdWUSMwoPdGltZXN0YW1wX2ZpZWxkGA8gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBI6ChR3cmFwcGVkX2RvdWJsZV9maWVsZBgQIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5Eb3VibGVWYWx1ZRI4ChN3cmFwcGVkX2Zsb2F0X2ZpZWxkGBEgASgLMhsuZ29vZ2xlLnByb3RvYnVmLkZsb2F0VmFsdWUSOAoTd3JhcHBlZF9pbnQ2NF9maWVsZBgSIAEoCzIbLmdvb2dsZS5wcm90b2J1Zi5JbnQ2NFZhbHVlEjoKFHdyYXBwZWRfdWludDY0X2ZpZWxkGBMgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlVJbnQ2NFZhbHVlEjgKE3dyYXBwZWRfaW50MzJfZmllbGQYFCABKAsyGy5nb29nbGUucHJvdG9idWYuSW50MzJWYWx1ZRI6ChR3cmFwcGVkX3VpbnQzMl9maWVsZBgVIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5VSW50MzJWYWx1ZRI2ChJ3cmFwcGVkX2Jvb2xfZmllbGQYFiABKAsyGi5nb29nbGUucHJvdG9idWYuQm9vbFZhbHVlEjoKFHdyYXBwZWRfc3RyaW5nX2ZpZWxkGBcgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlEjgKE3dyYXBwZWRfYnl0ZXNfZmllbGQYGCABKAsyGy5nb29nbGUucHJvdG9idWYuQnl0ZXNWYWx1ZRIvChNyZXBlYXRlZF9lbnVtX2ZpZWxkGBkgAygOMhIuc3BlYy5Kc29uVHlwZUVudW0SSQoTbWFwX2Jvb2xfZW51bV9maWVsZBgaIAMoCzIsLnNwZWMuSnNvblR5cGVzTWVzc2FnZS5NYXBCb29sRW51bUZpZWxkRW50cnkSHAoSb25lb2Zfc3RyaW5nX2ZpZWxkGBsgASgJSAASGgoQb25lb2ZfYm9vbF9maWVsZBgcIAEoCUgAEiEKDGpzb25fbmFtZV9vaxgdIAEoCFILRm9vMTIzX2JhciQSGgoManNvbl9uYW1lX2F0GB4gASgIUgRmb29AEiEKEGpzb25fbmFtZV9oeXBoZW4YHyABKAhSB2Zvby1iYXISKAoaanNvbl9uYW1lX3N0YXJ0X3dpdGhfZGlnaXQYICABKAhSBDFmb28SIAoPanNvbl9uYW1lX3NwYWNlGCEgASgIUgdmb28gYmFyEh4KDWpzb25fbmFtZV90YWIYIiABKAhSB2ZvbwliYXISIwoTanNvbl9uYW1lX25vbl9hc2NpaRgjIAEoCFIG5L2g5aW9EiMKEGpzb25fbmFtZV9lc2NhcGUYJCABKAhSCWZvbwpiYXJcbhpLChVNYXBCb29sRW51bUZpZWxkRW50cnkSCwoDa2V5GAEgASgIEiEKBXZhbHVlGAIgASgOMhIuc3BlYy5Kc29uVHlwZUVudW06AjgBQggKBmVpdGhlcipdCgxKc29uVHlwZUVudW0SHgoaSlNPTl9UWVBFX0VOVU1fVU5TUEVDSUZJRUQQABIWChJKU09OX1RZUEVfRU5VTV9ZRVMQARIVChFKU09OX1RZUEVfRU5VTV9OTxACYgZwcm90bzM", [file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_empty, file_google_protobuf_field_mask, file_google_protobuf_struct, file_google_protobuf_timestamp, file_google_protobuf_wrappers]);
 
 /**
  * @generated from message spec.JsonTypesMessage
@@ -163,42 +163,59 @@ export type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   mapBoolEnumField: { [key: string]: JsonTypeEnum };
 
   /**
-   * @generated from field: bool json_name_ok = 27 [json_name = "Foo123_bar$"];
+   * @generated from oneof spec.JsonTypesMessage.either
+   */
+  either: {
+    /**
+     * @generated from field: string oneof_string_field = 27;
+     */
+    value: string;
+    case: "oneofStringField";
+  } | {
+    /**
+     * @generated from field: string oneof_bool_field = 28;
+     */
+    value: string;
+    case: "oneofBoolField";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * @generated from field: bool json_name_ok = 29 [json_name = "Foo123_bar$"];
    */
   jsonNameOk: boolean;
 
   /**
-   * @generated from field: bool json_name_at = 28 [json_name = "foo@"];
+   * @generated from field: bool json_name_at = 30 [json_name = "foo@"];
    */
   jsonNameAt: boolean;
 
   /**
-   * @generated from field: bool json_name_hyphen = 29 [json_name = "foo-bar"];
+   * @generated from field: bool json_name_hyphen = 31 [json_name = "foo-bar"];
    */
   jsonNameHyphen: boolean;
 
   /**
-   * @generated from field: bool json_name_start_with_digit = 30 [json_name = "1foo"];
+   * @generated from field: bool json_name_start_with_digit = 32 [json_name = "1foo"];
    */
   jsonNameStartWithDigit: boolean;
 
   /**
-   * @generated from field: bool json_name_space = 31 [json_name = "foo bar"];
+   * @generated from field: bool json_name_space = 33 [json_name = "foo bar"];
    */
   jsonNameSpace: boolean;
 
   /**
-   * @generated from field: bool json_name_tab = 32 [json_name = "foo	bar"];
+   * @generated from field: bool json_name_tab = 34 [json_name = "foo	bar"];
    */
   jsonNameTab: boolean;
 
   /**
-   * @generated from field: bool json_name_non_ascii = 33 [json_name = "你好"];
+   * @generated from field: bool json_name_non_ascii = 35 [json_name = "你好"];
    */
   jsonNameNonAscii: boolean;
 
   /**
-   * @generated from field: bool json_name_escape = 34 [json_name = "foo
+   * @generated from field: bool json_name_escape = 36 [json_name = "foo
    * bar\n"];
    */
   jsonNameEscape: boolean;
@@ -339,42 +356,52 @@ export type JsonTypesMessageJson = {
   mapBoolEnumField?: { [key: string]: JsonTypeEnumJson };
 
   /**
-   * @generated from field: bool json_name_ok = 27 [json_name = "Foo123_bar$"];
+   * @generated from field: string oneof_string_field = 27;
+   */
+  oneofStringField?: string;
+
+  /**
+   * @generated from field: string oneof_bool_field = 28;
+   */
+  oneofBoolField?: string;
+
+  /**
+   * @generated from field: bool json_name_ok = 29 [json_name = "Foo123_bar$"];
    */
   Foo123_bar$?: boolean;
 
   /**
-   * @generated from field: bool json_name_at = 28 [json_name = "foo@"];
+   * @generated from field: bool json_name_at = 30 [json_name = "foo@"];
    */
   "foo@"?: boolean;
 
   /**
-   * @generated from field: bool json_name_hyphen = 29 [json_name = "foo-bar"];
+   * @generated from field: bool json_name_hyphen = 31 [json_name = "foo-bar"];
    */
   "foo-bar"?: boolean;
 
   /**
-   * @generated from field: bool json_name_start_with_digit = 30 [json_name = "1foo"];
+   * @generated from field: bool json_name_start_with_digit = 32 [json_name = "1foo"];
    */
   "1foo"?: boolean;
 
   /**
-   * @generated from field: bool json_name_space = 31 [json_name = "foo bar"];
+   * @generated from field: bool json_name_space = 33 [json_name = "foo bar"];
    */
   "foo bar"?: boolean;
 
   /**
-   * @generated from field: bool json_name_tab = 32 [json_name = "foo	bar"];
+   * @generated from field: bool json_name_tab = 34 [json_name = "foo	bar"];
    */
   "foo	bar"?: boolean;
 
   /**
-   * @generated from field: bool json_name_non_ascii = 33 [json_name = "你好"];
+   * @generated from field: bool json_name_non_ascii = 35 [json_name = "你好"];
    */
   "你好"?: boolean;
 
   /**
-   * @generated from field: bool json_name_escape = 34 [json_name = "foo
+   * @generated from field: bool json_name_escape = 36 [json_name = "foo
    * bar\n"];
    */
   "foo\nbar\\n"?: boolean;

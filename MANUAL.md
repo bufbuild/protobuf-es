@@ -983,7 +983,7 @@ const bytes: Uint8Array = toBinary(UserSchema, user);
 user = fromBinary(UserSchema, bytes);
 ```
 
-JSON serialization uses the functions `toJson` and `fromJson`:
+JSON serialization follows the [ProtoJSON][protobuf.dev/protojson] format. Use it with the functions `toJson` and `fromJson`:
 
 ```typescript
 import { toJson, fromjson, type JsonValue } from "@bufbuild/protobuf";
@@ -1123,7 +1123,7 @@ const b = clone(UserSchema, a);
 
 As a general guide when deciding between the binary format and JSON, the JSON format is great for debugging, but the binary
 format is more resilient to changes. For example, you can rename a field and still parse binary data serialized with
-the previous version. In general, the binary format is also more performant than JSON.
+the previous version. In general, the binary format is also more performant than JSON. JSON serialization follows the [ProtoJSON][protobuf.dev/protojson] format.
 
 ### Binary serialization options
 
@@ -1272,7 +1272,10 @@ syntax = "proto3";
 
 message Example {
   int32 amount = 1;
-  bytes data = 2;
+  oneof either {
+    bytes data = 2;
+    string error_message = 3;
+  }
 }
 ```
 
@@ -1292,6 +1295,11 @@ export type ExampleJson = {
    * @generated from field: bytes data = 2;
    */
   data?: string;
+
+  /**
+   * @generated from field: string error_message = 3;
+   */
+  errorMessage?: string;
 };
 ```
 
@@ -2484,7 +2492,7 @@ Some additional features that set it apart from the others:
 - First-class TypeScript support
 - Generation of idiomatic JavaScript and TypeScript code
 - Generation of [much smaller bundles][bundle-size]
-- Implementation of all proto3 features, including the [canonical JSON format][canonical-json]
+- Implementation of all proto3 features, including [ProtoJSON][protobuf.dev/protojson]
 - Implementation of all proto2 features except for the text format
 - Support for Editions
 - Usage of standard JavaScript APIs instead of the [Closure Library][closure]
@@ -2569,14 +2577,14 @@ For example:
 
 - It doesn't support ECMAScript modules
 - It can't generate TypeScript (third-party plugins are necessary)
-- It doesn't support the [canonical JSON format][canonical-json]
+- It doesn't support [ProtoJSON][protobuf.dev/protojson]
 - It doesn't carry over comments from your `.proto` files
 
 Because of this, we want to provide a solid, modern alternative with Protobuf-ES. The main differences of the
 generated code are:
 
 - We use plain properties for fields, whereas `protoc` uses getter and setter methods
-- We implement the canonical JSON format
+- We implement [ProtoJSON][protobuf.dev/protojson]
 - We generate [much smaller bundles](./packages/bundle-size)
 - We rely on standard APIs instead of the [Closure Library][closure]
 
@@ -2661,7 +2669,7 @@ Serialization to JSON and binary is deterministic within a version of protobuf-e
 [Buf]: https://buf.build
 [bundle-size]: https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size
 [protobuf.dev/editions]: https://protobuf.dev/editions/overview/
-[canonical-json]: https://protobuf.dev/programming-guides/proto3/#json
+[protobuf.dev/protojson]: https://protobuf.dev/programming-guides/json/
 [closure]: http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html
 [conformance]: https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance
 [Connect-ES]: https://github.com/connectrpc/connect-es
