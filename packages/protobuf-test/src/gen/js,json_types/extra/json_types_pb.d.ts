@@ -160,42 +160,59 @@ export declare type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   mapBoolEnumField: { [key: string]: JsonTypeEnum };
 
   /**
-   * @generated from field: bool json_name_ok = 27 [json_name = "Foo123_bar$"];
+   * @generated from oneof spec.JsonTypesMessage.either
+   */
+  either: {
+    /**
+     * @generated from field: string oneof_string_field = 27;
+     */
+    value: string;
+    case: "oneofStringField";
+  } | {
+    /**
+     * @generated from field: string oneof_bool_field = 28;
+     */
+    value: string;
+    case: "oneofBoolField";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * @generated from field: bool json_name_ok = 29 [json_name = "Foo123_bar$"];
    */
   jsonNameOk: boolean;
 
   /**
-   * @generated from field: bool json_name_at = 28 [json_name = "foo@"];
+   * @generated from field: bool json_name_at = 30 [json_name = "foo@"];
    */
   jsonNameAt: boolean;
 
   /**
-   * @generated from field: bool json_name_hyphen = 29 [json_name = "foo-bar"];
+   * @generated from field: bool json_name_hyphen = 31 [json_name = "foo-bar"];
    */
   jsonNameHyphen: boolean;
 
   /**
-   * @generated from field: bool json_name_start_with_digit = 30 [json_name = "1foo"];
+   * @generated from field: bool json_name_start_with_digit = 32 [json_name = "1foo"];
    */
   jsonNameStartWithDigit: boolean;
 
   /**
-   * @generated from field: bool json_name_space = 31 [json_name = "foo bar"];
+   * @generated from field: bool json_name_space = 33 [json_name = "foo bar"];
    */
   jsonNameSpace: boolean;
 
   /**
-   * @generated from field: bool json_name_tab = 32 [json_name = "foo	bar"];
+   * @generated from field: bool json_name_tab = 34 [json_name = "foo	bar"];
    */
   jsonNameTab: boolean;
 
   /**
-   * @generated from field: bool json_name_non_ascii = 33 [json_name = "你好"];
+   * @generated from field: bool json_name_non_ascii = 35 [json_name = "你好"];
    */
   jsonNameNonAscii: boolean;
 
   /**
-   * @generated from field: bool json_name_escape = 34 [json_name = "foo
+   * @generated from field: bool json_name_escape = 36 [json_name = "foo
    * bar\n"];
    */
   jsonNameEscape: boolean;
@@ -336,42 +353,52 @@ export declare type JsonTypesMessageJson = {
   mapBoolEnumField?: { [key: string]: JsonTypeEnumJson };
 
   /**
-   * @generated from field: bool json_name_ok = 27 [json_name = "Foo123_bar$"];
+   * @generated from field: string oneof_string_field = 27;
+   */
+  oneofStringField?: string;
+
+  /**
+   * @generated from field: string oneof_bool_field = 28;
+   */
+  oneofBoolField?: string;
+
+  /**
+   * @generated from field: bool json_name_ok = 29 [json_name = "Foo123_bar$"];
    */
   Foo123_bar$?: boolean;
 
   /**
-   * @generated from field: bool json_name_at = 28 [json_name = "foo@"];
+   * @generated from field: bool json_name_at = 30 [json_name = "foo@"];
    */
   "foo@"?: boolean;
 
   /**
-   * @generated from field: bool json_name_hyphen = 29 [json_name = "foo-bar"];
+   * @generated from field: bool json_name_hyphen = 31 [json_name = "foo-bar"];
    */
   "foo-bar"?: boolean;
 
   /**
-   * @generated from field: bool json_name_start_with_digit = 30 [json_name = "1foo"];
+   * @generated from field: bool json_name_start_with_digit = 32 [json_name = "1foo"];
    */
   "1foo"?: boolean;
 
   /**
-   * @generated from field: bool json_name_space = 31 [json_name = "foo bar"];
+   * @generated from field: bool json_name_space = 33 [json_name = "foo bar"];
    */
   "foo bar"?: boolean;
 
   /**
-   * @generated from field: bool json_name_tab = 32 [json_name = "foo	bar"];
+   * @generated from field: bool json_name_tab = 34 [json_name = "foo	bar"];
    */
   "foo	bar"?: boolean;
 
   /**
-   * @generated from field: bool json_name_non_ascii = 33 [json_name = "你好"];
+   * @generated from field: bool json_name_non_ascii = 35 [json_name = "你好"];
    */
   "你好"?: boolean;
 
   /**
-   * @generated from field: bool json_name_escape = 34 [json_name = "foo
+   * @generated from field: bool json_name_escape = 36 [json_name = "foo
    * bar\n"];
    */
   "foo\nbar\\n"?: boolean;
