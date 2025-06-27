@@ -1272,7 +1272,10 @@ syntax = "proto3";
 
 message Example {
   int32 amount = 1;
-  bytes data = 2;
+  oneof either {
+    bytes data = 2;
+    string error_message = 3;
+  }
 }
 ```
 
@@ -1292,6 +1295,11 @@ export type ExampleJson = {
    * @generated from field: bytes data = 2;
    */
   data?: string;
+
+  /**
+   * @generated from field: string error_message = 3;
+   */
+  errorMessage?: string;
 };
 ```
 
