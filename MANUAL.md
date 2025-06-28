@@ -396,7 +396,6 @@ phoneType: PhoneType;
 ```
 
 Enum fields use the first value of the enum as the default. 
-For example, if `PhoneType.UNSPECIFIED = 0`, then the default value for the `phoneType` field is `PhoneType.UNSPECIFIED`.
 
 ### Repeated fields
 
