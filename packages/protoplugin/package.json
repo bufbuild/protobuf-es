@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoplugin",
-  "version": "2.5.2",
+  "version": "2.6.0",
   "license": "Apache-2.0",
   "description": "Helps to create your own Protocol Buffers code generators.",
   "keywords": [
@@ -35,7 +35,7 @@
     }
   },
   "dependencies": {
-    "@bufbuild/protobuf": "2.5.2",
+    "@bufbuild/protobuf": "2.6.0",
     "@typescript/vfs": "^1.5.2",
     "typescript": "5.4.5"
   },
