@@ -549,8 +549,9 @@ proto2 `required` is unchanged between v1 and v2.
 
 ### Proto3 optional fields
 
-In proto3, zero values like `0`, `false`, or `""` aren't serialized. The `optional` keyword enables presence tracking
-for a field, allowing you to distinguish between an absent value and an explicitly set zero value.
+In proto3, zero values like `0`, `false`, or `""` aren't serialized by default. 
+When the `optional` keyword is added to a field, zero values are serialized. 
+The keyword enables presence tracking for a field, allowing you to distinguish between an absent value, and an explicitly set zero value. 
 
 ```protobuf
 optional bool active = 3;
