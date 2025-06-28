@@ -1210,7 +1210,7 @@ Both classes are part of the public API and can be used on their own. The follow
 serialize data for our example message:
 
 ```ts
-import { BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import { UserSchema } from "./gen/example_pb";
 
 const bytes = new BinaryWriter()
