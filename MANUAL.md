@@ -378,6 +378,26 @@ Message fields don't have default values in Protobuf. They are always optional i
 > [google.protobuf.Struct](#googleprotobufstruct) and the messages from [wrappers.proto](#wrapper-messages-from-googleprotobufwrappersproto)
 > have a special representation in generated code.
 
+### Enum fields
+
+For the following Protobuf field declaration that uses an enum type:
+
+```protobuf
+PhoneType phone_type = 3;
+```
+
+Protobuf-ES generates the following property:
+
+```typescript
+/**
+ * @generated from field: example.PhoneType phone_type = 3;
+ */
+phoneType: PhoneType;
+```
+
+Enum fields use the first value of the enum as the default. 
+For example, if `PhoneType.UNSPECIFIED = 0`, then the default value for the `phoneType` field is `PhoneType.UNSPECIFIED`.
+
 ### Repeated fields
 
 Repeated fields are represented with an ECMAScript Array. For example, the following Protobuf field declaration:
