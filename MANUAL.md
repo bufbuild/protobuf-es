@@ -378,6 +378,25 @@ Message fields don't have default values in Protobuf. They are always optional i
 > [google.protobuf.Struct](#googleprotobufstruct) and the messages from [wrappers.proto](#wrapper-messages-from-googleprotobufwrappersproto)
 > have a special representation in generated code.
 
+### Enum fields
+
+For the following Protobuf field declaration that uses an enum type:
+
+```protobuf
+PhoneType phone_type = 3;
+```
+
+Protobuf-ES generates the following property:
+
+```typescript
+/**
+ * @generated from field: example.PhoneType phone_type = 3;
+ */
+phoneType: PhoneType;
+```
+
+Enum fields use the first value of the enum as the default. 
+
 ### Repeated fields
 
 Repeated fields are represented with an ECMAScript Array. For example, the following Protobuf field declaration:
@@ -529,8 +548,9 @@ proto2 `required` is unchanged between v1 and v2.
 
 ### Proto3 optional fields
 
-In proto3, zero values like `0`, `false`, or `""` aren't serialized. The `optional` keyword enables presence tracking
-for a field, allowing you to distinguish between an absent value and an explicitly set zero value.
+In proto3, zero values like `0`, `false`, or `""` aren't serialized by default. 
+When the `optional` keyword is added to a field, zero values are serialized. 
+The keyword enables presence tracking for a field, allowing you to distinguish between an absent value, and an explicitly set zero value. 
 
 ```protobuf
 optional bool active = 3;
@@ -841,7 +861,7 @@ them as pre-compiled exports. If you import a well-known type in a Protobuf file
 
 For some of the well-known types, we provide additional features for convenience:
 
-### google.protobuf.TimeStamp
+### google.protobuf.Timestamp
 
 A `Timestamp` represents a point in time with nanosecond precision. It's independent of any time zone or local
 calendar. For convenience, we provide a few functions for conversion:
@@ -857,7 +877,7 @@ import {
 } from "@bufbuild/protobuf/wkt";
 
 // Create a Timestamp for the current time.
-let ts: TimeStamp = timestampNow();
+let ts: Timestamp = timestampNow();
 
 // Create a Timestamp message from an ECMAScript Date.
 ts = timestampFromDate(new Date(1938, 0, 10));
@@ -986,13 +1006,13 @@ user = fromBinary(UserSchema, bytes);
 JSON serialization follows the [ProtoJSON][protobuf.dev/protojson] format. Use it with the functions `toJson` and `fromJson`:
 
 ```typescript
-import { toJson, fromjson, type JsonValue } from "@bufbuild/protobuf";
+import { toJson, fromJson, type JsonValue } from "@bufbuild/protobuf";
 import { type User, UserSchema } from "./gen/example_pb";
 
 declare let user: User;
 
 const json: JsonValue = toJson(UserSchema, user);
-user = fromjson(UserSchema, json);
+user = fromJson(UserSchema, json);
 ```
 
 `JsonValue` can be serialized to a `string` with `JSON.stringify`. For convenience, we also provide the functions
@@ -1189,7 +1209,7 @@ Both classes are part of the public API and can be used on their own. The follow
 serialize data for our example message:
 
 ```ts
-import { BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import { UserSchema } from "./gen/example_pb";
 
 const bytes = new BinaryWriter()
