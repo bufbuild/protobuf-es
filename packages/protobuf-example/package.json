@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "type": "module",
   "dependencies": {
-    "@bufbuild/buf": "^1.54.0",
+    "@bufbuild/buf": "^1.55.1",
     "@bufbuild/protobuf": "2.6.0",
     "@bufbuild/protoc-gen-es": "2.6.0",
     "tsx": "^4.20.3",
