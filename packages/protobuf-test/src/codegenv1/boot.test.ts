@@ -21,6 +21,7 @@ import { clearField, equals, fromBinary, toBinary } from "@bufbuild/protobuf";
 import {
   type DescriptorProto,
   type FileDescriptorProto,
+  type EnumDescriptorProto,
   DescriptorProtoSchema,
   FileDescriptorProtoSchema,
   FileDescriptorSetSchema,
@@ -88,26 +89,38 @@ describe("bootFileDescriptorProto()", () => {
     const bootedBytes = toBinary(FileDescriptorProtoSchema, booted);
     expect(bootedBytes).toStrictEqual(compiledBytes);
   });
-  function stripLikeBoot(d: FileDescriptorProto | DescriptorProto): void {
-    if (d.$typeName == "google.protobuf.FileDescriptorProto") {
-      d.options = undefined;
-      d.messageType.forEach(stripLikeBoot);
-      return;
-    }
-    clearField(d, DescriptorProtoSchema.field.reservedRange);
-    clearField(d, DescriptorProtoSchema.field.reservedName);
-    for (const f of d.field) {
-      clearField(f, FieldDescriptorProtoSchema.field.jsonName);
-      if (f.options) {
-        clearField(f.options, FieldOptionsSchema.field.featureSupport);
-      }
-    }
-    for (const e of d.enumType) {
-      clearField(e, EnumDescriptorProtoSchema.field.reservedRange);
-      clearField(e, EnumDescriptorProtoSchema.field.reservedName);
-    }
-    for (const n of d.nestedType) {
-      stripLikeBoot(n);
+  function stripLikeBoot(
+    d: FileDescriptorProto | DescriptorProto | EnumDescriptorProto,
+  ): void {
+    switch (d.$typeName) {
+      case "google.protobuf.FileDescriptorProto":
+        d.options = undefined;
+        d.optionDependency = [];
+        d.messageType.forEach(stripLikeBoot);
+        d.enumType.forEach(stripLikeBoot);
+        break;
+      case "google.protobuf.EnumDescriptorProto":
+        clearField(d, EnumDescriptorProtoSchema.field.visibility);
+        clearField(d, EnumDescriptorProtoSchema.field.reservedRange);
+        clearField(d, EnumDescriptorProtoSchema.field.reservedName);
+        break;
+      case "google.protobuf.DescriptorProto":
+        clearField(d, DescriptorProtoSchema.field.visibility);
+        clearField(d, DescriptorProtoSchema.field.reservedRange);
+        clearField(d, DescriptorProtoSchema.field.reservedName);
+        for (const f of d.field) {
+          clearField(f, FieldDescriptorProtoSchema.field.jsonName);
+          if (f.options) {
+            clearField(f.options, FieldOptionsSchema.field.featureSupport);
+          }
+        }
+        for (const e of d.enumType) {
+          stripLikeBoot(e);
+        }
+        for (const n of d.nestedType) {
+          stripLikeBoot(n);
+        }
+        break;
     }
   }
 });

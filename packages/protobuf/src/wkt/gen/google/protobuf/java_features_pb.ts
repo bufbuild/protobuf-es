@@ -29,7 +29,7 @@ import { extDesc } from "../../../../codegenv2/extension.js";
  * Describes the file google/protobuf/java_features.proto.
  */
 export const file_google_protobuf_java_features: GenFile = /*@__PURE__*/
-  fileDesc("CiNnb29nbGUvcHJvdG9idWYvamF2YV9mZWF0dXJlcy5wcm90bxICcGIizAUKDEphdmFGZWF0dXJlcxL+AQoSbGVnYWN5X2Nsb3NlZF9lbnVtGAEgASgIQuEBiAEBmAEEmAEBogEJEgR0cnVlGIQHogEKEgVmYWxzZRjnB7IBuwEI6AcQ6AcasgFUaGUgbGVnYWN5IGNsb3NlZCBlbnVtIGJlaGF2aW9yIGluIEphdmEgaXMgZGVwcmVjYXRlZCBhbmQgaXMgc2NoZWR1bGVkIHRvIGJlIHJlbW92ZWQgaW4gZWRpdGlvbiAyMDI1LiAgU2VlIGh0dHA6Ly9wcm90b2J1Zi5kZXYvcHJvZ3JhbW1pbmctZ3VpZGVzL2VudW0vI2phdmEgZm9yIG1vcmUgaW5mb3JtYXRpb24uEp8CCg91dGY4X3ZhbGlkYXRpb24YAiABKA4yHy5wYi5KYXZhRmVhdHVyZXMuVXRmOFZhbGlkYXRpb25C5AGIAQGYAQSYAQGiAQwSB0RFRkFVTFQYhAeyAcgBCOgHEOkHGr8BVGhlIEphdmEtc3BlY2lmaWMgdXRmOCB2YWxpZGF0aW9uIGZlYXR1cmUgaXMgZGVwcmVjYXRlZCBhbmQgaXMgc2NoZWR1bGVkIHRvIGJlIHJlbW92ZWQgaW4gZWRpdGlvbiAyMDI1LiAgVXRmOCB2YWxpZGF0aW9uIGJlaGF2aW9yIHNob3VsZCB1c2UgdGhlIGdsb2JhbCBjcm9zcy1sYW5ndWFnZSB1dGY4X3ZhbGlkYXRpb24gZmVhdHVyZS4SUQofdXNlX29sZF9vdXRlcl9jbGFzc25hbWVfZGVmYXVsdBgEIAEoCEIoiAEBmAEBogEJEgR0cnVlGIQHogEKEgVmYWxzZRjpB7IBBgjpByDpByJGCg5VdGY4VmFsaWRhdGlvbhIbChdVVEY4X1ZBTElEQVRJT05fVU5LTk9XThAAEgsKB0RFRkFVTFQQARIKCgZWRVJJRlkQAjpCCgRqYXZhEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQY6QcgASgLMhAucGIuSmF2YUZlYXR1cmVzUgRqYXZhQigKE2NvbS5nb29nbGUucHJvdG9idWZCEUphdmFGZWF0dXJlc1Byb3Rv", [file_google_protobuf_descriptor]);
+  fileDesc("CiNnb29nbGUvcHJvdG9idWYvamF2YV9mZWF0dXJlcy5wcm90bxICcGIi/QcKDEphdmFGZWF0dXJlcxL+AQoSbGVnYWN5X2Nsb3NlZF9lbnVtGAEgASgIQuEBiAEBmAEEmAEBogEJEgR0cnVlGIQHogEKEgVmYWxzZRjnB7IBuwEI6AcQ6AcasgFUaGUgbGVnYWN5IGNsb3NlZCBlbnVtIGJlaGF2aW9yIGluIEphdmEgaXMgZGVwcmVjYXRlZCBhbmQgaXMgc2NoZWR1bGVkIHRvIGJlIHJlbW92ZWQgaW4gZWRpdGlvbiAyMDI1LiAgU2VlIGh0dHA6Ly9wcm90b2J1Zi5kZXYvcHJvZ3JhbW1pbmctZ3VpZGVzL2VudW0vI2phdmEgZm9yIG1vcmUgaW5mb3JtYXRpb24uEp8CCg91dGY4X3ZhbGlkYXRpb24YAiABKA4yHy5wYi5KYXZhRmVhdHVyZXMuVXRmOFZhbGlkYXRpb25C5AGIAQGYAQSYAQGiAQwSB0RFRkFVTFQYhAeyAcgBCOgHEOkHGr8BVGhlIEphdmEtc3BlY2lmaWMgdXRmOCB2YWxpZGF0aW9uIGZlYXR1cmUgaXMgZGVwcmVjYXRlZCBhbmQgaXMgc2NoZWR1bGVkIHRvIGJlIHJlbW92ZWQgaW4gZWRpdGlvbiAyMDI1LiAgVXRmOCB2YWxpZGF0aW9uIGJlaGF2aW9yIHNob3VsZCB1c2UgdGhlIGdsb2JhbCBjcm9zcy1sYW5ndWFnZSB1dGY4X3ZhbGlkYXRpb24gZmVhdHVyZS4SMAoKbGFyZ2VfZW51bRgDIAEoCEIciAEBmAEGmAEBogEKEgVmYWxzZRiEB7IBAwjpBxJRCh91c2Vfb2xkX291dGVyX2NsYXNzbmFtZV9kZWZhdWx0GAQgASgIQiiIAQGYAQGiAQkSBHRydWUYhAeiAQoSBWZhbHNlGOkHsgEGCOkHIOkHEn8KEm5lc3RfaW5fZmlsZV9jbGFzcxgFIAEoDjI3LnBiLkphdmFGZWF0dXJlcy5OZXN0SW5GaWxlQ2xhc3NGZWF0dXJlLk5lc3RJbkZpbGVDbGFzc0IqiAECmAEDmAEGmAEIogELEgZMRUdBQ1kYhAeiAQcSAk5PGOkHsgEDCOkHGnwKFk5lc3RJbkZpbGVDbGFzc0ZlYXR1cmUiWAoPTmVzdEluRmlsZUNsYXNzEh4KGk5FU1RfSU5fRklMRV9DTEFTU19VTktOT1dOEAASBgoCTk8QARIHCgNZRVMQAhIUCgZMRUdBQ1kQAxoIIgYI6Qcg6QdKCAgBEICAgIACIkYKDlV0ZjhWYWxpZGF0aW9uEhsKF1VURjhfVkFMSURBVElPTl9VTktOT1dOEAASCwoHREVGQVVMVBABEgoKBlZFUklGWRACOkIKBGphdmESGy5nb29nbGUucHJvdG9idWYuRmVhdHVyZVNldBjpByABKAsyEC5wYi5KYXZhRmVhdHVyZXNSBGphdmFCKAoTY29tLmdvb2dsZS5wcm90b2J1ZkIRSmF2YUZlYXR1cmVzUHJvdG8", [file_google_protobuf_descriptor]);
 
 /**
  * @generated from message pb.JavaFeatures
@@ -51,6 +51,14 @@ export type JavaFeatures = Message<"pb.JavaFeatures"> & {
   utf8Validation: JavaFeatures_Utf8Validation;
 
   /**
+   * Allows creation of large Java enums, extending beyond the standard
+   * constant limits imposed by the Java language.
+   *
+   * @generated from field: optional bool large_enum = 3;
+   */
+  largeEnum: boolean;
+
+  /**
    * Whether to use the old default outer class name scheme, or the new feature
    * which adds a "Proto" suffix to the outer class name.
    *
@@ -61,6 +69,14 @@ export type JavaFeatures = Message<"pb.JavaFeatures"> & {
    * @generated from field: optional bool use_old_outer_classname_default = 4;
    */
   useOldOuterClassnameDefault: boolean;
+
+  /**
+   * Whether to nest the generated class in the generated file class. This is
+   * only applicable to *top-level* messages, enums, and services.
+   *
+   * @generated from field: optional pb.JavaFeatures.NestInFileClassFeature.NestInFileClass nest_in_file_class = 5;
+   */
+  nestInFileClass: JavaFeatures_NestInFileClassFeature_NestInFileClass;
 };
 
 /**
@@ -83,6 +99,14 @@ export type JavaFeaturesJson = {
   utf8Validation?: JavaFeatures_Utf8ValidationJson;
 
   /**
+   * Allows creation of large Java enums, extending beyond the standard
+   * constant limits imposed by the Java language.
+   *
+   * @generated from field: optional bool large_enum = 3;
+   */
+  largeEnum?: boolean;
+
+  /**
    * Whether to use the old default outer class name scheme, or the new feature
    * which adds a "Proto" suffix to the outer class name.
    *
@@ -93,6 +117,14 @@ export type JavaFeaturesJson = {
    * @generated from field: optional bool use_old_outer_classname_default = 4;
    */
   useOldOuterClassnameDefault?: boolean;
+
+  /**
+   * Whether to nest the generated class in the generated file class. This is
+   * only applicable to *top-level* messages, enums, and services.
+   *
+   * @generated from field: optional pb.JavaFeatures.NestInFileClassFeature.NestInFileClass nest_in_file_class = 5;
+   */
+  nestInFileClass?: JavaFeatures_NestInFileClassFeature_NestInFileClassJson;
 };
 
 /**
@@ -103,8 +135,71 @@ export const JavaFeaturesSchema: GenMessage<JavaFeatures, {jsonType: JavaFeature
   messageDesc(file_google_protobuf_java_features, 0);
 
 /**
- * The UTF8 validation strategy to use.  See go/editions-utf8-validation for
- * more information on this feature.
+ * @generated from message pb.JavaFeatures.NestInFileClassFeature
+ */
+export type JavaFeatures_NestInFileClassFeature = Message<"pb.JavaFeatures.NestInFileClassFeature"> & {
+};
+
+/**
+ * @generated from message pb.JavaFeatures.NestInFileClassFeature
+ */
+export type JavaFeatures_NestInFileClassFeatureJson = {
+};
+
+/**
+ * Describes the message pb.JavaFeatures.NestInFileClassFeature.
+ * Use `create(JavaFeatures_NestInFileClassFeatureSchema)` to create a new message.
+ */
+export const JavaFeatures_NestInFileClassFeatureSchema: GenMessage<JavaFeatures_NestInFileClassFeature, {jsonType: JavaFeatures_NestInFileClassFeatureJson}> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_java_features, 0, 0);
+
+/**
+ * @generated from enum pb.JavaFeatures.NestInFileClassFeature.NestInFileClass
+ */
+export enum JavaFeatures_NestInFileClassFeature_NestInFileClass {
+  /**
+   * Invalid default, which should never be used.
+   *
+   * @generated from enum value: NEST_IN_FILE_CLASS_UNKNOWN = 0;
+   */
+  NEST_IN_FILE_CLASS_UNKNOWN = 0,
+
+  /**
+   * Do not nest the generated class in the file class.
+   *
+   * @generated from enum value: NO = 1;
+   */
+  NO = 1,
+
+  /**
+   * Nest the generated class in the file class.
+   *
+   * @generated from enum value: YES = 2;
+   */
+  YES = 2,
+
+  /**
+   * Fall back to the `java_multiple_files` option. Users won't be able to
+   * set this option.
+   *
+   * @generated from enum value: LEGACY = 3;
+   */
+  LEGACY = 3,
+}
+
+/**
+ * @generated from enum pb.JavaFeatures.NestInFileClassFeature.NestInFileClass
+ */
+export type JavaFeatures_NestInFileClassFeature_NestInFileClassJson = "NEST_IN_FILE_CLASS_UNKNOWN" | "NO" | "YES" | "LEGACY";
+
+/**
+ * Describes the enum pb.JavaFeatures.NestInFileClassFeature.NestInFileClass.
+ */
+export const JavaFeatures_NestInFileClassFeature_NestInFileClassSchema: GenEnum<JavaFeatures_NestInFileClassFeature_NestInFileClass, JavaFeatures_NestInFileClassFeature_NestInFileClassJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_java_features, 0, 0, 0);
+
+/**
+ * The UTF8 validation strategy to use.
  *
  * @generated from enum pb.JavaFeatures.Utf8Validation
  */
@@ -134,8 +229,7 @@ export enum JavaFeatures_Utf8Validation {
 }
 
 /**
- * The UTF8 validation strategy to use.  See go/editions-utf8-validation for
- * more information on this feature.
+ * The UTF8 validation strategy to use.
  *
  * @generated from enum pb.JavaFeatures.Utf8Validation
  */
