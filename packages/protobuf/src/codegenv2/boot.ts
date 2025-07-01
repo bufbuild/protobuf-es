@@ -123,6 +123,7 @@ export function bootFileDescriptorProto(
     dependency: [],
     publicDependency: [],
     weakDependency: [],
+    optionDependency: [],
     service: [],
     extension: [],
     ...init,
@@ -132,8 +133,12 @@ export function bootFileDescriptorProto(
 }
 
 function bootDescriptorProto(init: DescriptorProtoBoot): DescriptorProto {
-  return {
-    $typeName: "google.protobuf.DescriptorProto",
+  type Prototype = Pick<DescriptorProto, "visibility">;
+  const proto = Object.create({
+    visibility: 0,
+  } satisfies Prototype) as Prototype;
+  return Object.assign(proto, {
+    $typeName: "google.protobuf.DescriptorProto" as const,
     name: init.name,
     field: init.field?.map(bootFieldDescriptorProto) ?? [],
     extension: [],
@@ -141,13 +146,13 @@ function bootDescriptorProto(init: DescriptorProtoBoot): DescriptorProto {
     enumType: init.enumType?.map(bootEnumDescriptorProto) ?? [],
     extensionRange:
       init.extensionRange?.map((e) => ({
-        $typeName: "google.protobuf.DescriptorProto.ExtensionRange",
+        $typeName: "google.protobuf.DescriptorProto.ExtensionRange" as const,
         ...e,
       })) ?? [],
     oneofDecl: [],
     reservedRange: [],
     reservedName: [],
-  };
+  });
 }
 
 function bootFieldDescriptorProto(
@@ -219,14 +224,18 @@ function bootFieldOptions(init: FieldOptionsBoot): FieldOptions {
 function bootEnumDescriptorProto(
   init: EnumDescriptorProtoBoot,
 ): EnumDescriptorProto {
-  return {
-    $typeName: "google.protobuf.EnumDescriptorProto",
+  type Prototype = Pick<DescriptorProto, "visibility">;
+  const proto = Object.create({
+    visibility: 0,
+  } satisfies Prototype) as Prototype;
+  return Object.assign(proto, {
+    $typeName: "google.protobuf.EnumDescriptorProto" as const,
     name: init.name,
     reservedName: [],
     reservedRange: [],
     value: init.value.map((e) => ({
-      $typeName: "google.protobuf.EnumValueDescriptorProto",
+      $typeName: "google.protobuf.EnumValueDescriptorProto" as const,
       ...e,
     })),
-  };
+  });
 }
