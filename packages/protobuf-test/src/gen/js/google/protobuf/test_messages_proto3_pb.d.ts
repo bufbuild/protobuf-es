@@ -39,6 +39,7 @@ export declare const file_google_protobuf_test_messages_proto3: GenFile;
 export declare type TestAllTypesProto3 = Message<"protobuf_test_messages.proto3.TestAllTypesProto3"> & {
   /**
    * Singular
+   * test [kotlin] comment
    *
    * @generated from field: int32 optional_int32 = 1;
    */
