@@ -22,7 +22,11 @@ import type {
 import { scalarZeroValue } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
-import { BinaryReader, WireType } from "./wire/binary-encoding.js";
+import {
+  BinaryReader,
+  BinaryWriter,
+  WireType,
+} from "./wire/binary-encoding.js";
 
 /**
  * Options for parsing binary data.
@@ -151,7 +155,20 @@ export function readField(
       message.set(field, readScalar(reader, field.scalar));
       break;
     case "enum":
-      message.set(field, readScalar(reader, ScalarType.INT32) as number);
+      const val = readScalar(reader, ScalarType.INT32);
+      if (field.enum.open) {
+        message.set(field, val);
+      } else {
+        const ok = field.enum.values.some((v) => v.number === val);
+        if (ok) {
+          message.set(field, val);
+        } else if (options.readUnknownFields) {
+          const data = new BinaryWriter().int32(val as number).finish();
+          const unknownFields = message.getUnknown() ?? [];
+          unknownFields.push({ no: field.number, wireType, data });
+          message.setUnknown(unknownFields);
+        }
+      }
       break;
     case "message":
       message.set(
