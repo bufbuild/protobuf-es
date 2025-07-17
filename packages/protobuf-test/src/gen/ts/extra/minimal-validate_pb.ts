@@ -30,14 +30,17 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/minimal-validate.proto.
  */
 export const file_extra_minimal_validate: GenFile = /*@__PURE__*/
-  fileDesc("ChxleHRyYS9taW5pbWFsLXZhbGlkYXRlLnByb3RvEgxidWYudmFsaWRhdGUiIAoMTWVzc2FnZVJ1bGVzEhAKCGRpc2FibGVkGAEgASgIIh4KCk9uZW9mUnVsZXMSEAoIcmVxdWlyZWQYASABKAgipAEKCkZpZWxkUnVsZXMSEAoIcmVxdWlyZWQYGSABKAgSJAoGaWdub3JlGBsgASgOMhQuYnVmLnZhbGlkYXRlLklnbm9yZRIvCghyZXBlYXRlZBgSIAEoCzIbLmJ1Zi52YWxpZGF0ZS5SZXBlYXRlZFJ1bGVzSAASJQoDbWFwGBMgASgLMhYuYnVmLnZhbGlkYXRlLk1hcFJ1bGVzSABCBgoEdHlwZSI4Cg1SZXBlYXRlZFJ1bGVzEicKBWl0ZW1zGAQgASgLMhguYnVmLnZhbGlkYXRlLkZpZWxkUnVsZXMiNAoITWFwUnVsZXMSKAoGdmFsdWVzGAUgASgLMhguYnVmLnZhbGlkYXRlLkZpZWxkUnVsZXMqawoGSWdub3JlEhYKEklHTk9SRV9VTlNQRUNJRklFRBAAEhkKFUlHTk9SRV9JRl9VTlBPUFVMQVRFRBABEhsKF0lHTk9SRV9JRl9ERUZBVUxUX1ZBTFVFEAISEQoNSUdOT1JFX0FMV0FZUxADOlYKB21lc3NhZ2USHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYhwkgASgLMhouYnVmLnZhbGlkYXRlLk1lc3NhZ2VSdWxlc1IHbWVzc2FnZTpOCgVvbmVvZhIdLmdvb2dsZS5wcm90b2J1Zi5PbmVvZk9wdGlvbnMYhwkgASgLMhguYnVmLnZhbGlkYXRlLk9uZW9mUnVsZXNSBW9uZW9mOk4KBWZpZWxkEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxiHCSABKAsyGC5idWYudmFsaWRhdGUuRmllbGRSdWxlc1IFZmllbGQ", [file_google_protobuf_descriptor]);
+  fileDesc("ChxleHRyYS9taW5pbWFsLXZhbGlkYXRlLnByb3RvEgxidWYudmFsaWRhdGUiJAoMTWVzc2FnZVJ1bGVzEhQKCGRpc2FibGVkGAEgASgIQgIYASIeCgpPbmVvZlJ1bGVzEhAKCHJlcXVpcmVkGAEgASgIIqQBCgpGaWVsZFJ1bGVzEhAKCHJlcXVpcmVkGBkgASgIEiQKBmlnbm9yZRgbIAEoDjIULmJ1Zi52YWxpZGF0ZS5JZ25vcmUSLwoIcmVwZWF0ZWQYEiABKAsyGy5idWYudmFsaWRhdGUuUmVwZWF0ZWRSdWxlc0gAEiUKA21hcBgTIAEoCzIWLmJ1Zi52YWxpZGF0ZS5NYXBSdWxlc0gAQgYKBHR5cGUiOAoNUmVwZWF0ZWRSdWxlcxInCgVpdGVtcxgEIAEoCzIYLmJ1Zi52YWxpZGF0ZS5GaWVsZFJ1bGVzIjQKCE1hcFJ1bGVzEigKBnZhbHVlcxgFIAEoCzIYLmJ1Zi52YWxpZGF0ZS5GaWVsZFJ1bGVzKm4KBklnbm9yZRIWChJJR05PUkVfVU5TUEVDSUZJRUQQABIYChRJR05PUkVfSUZfWkVST19WQUxVRRABEh8KF0lHTk9SRV9JRl9ERUZBVUxUX1ZBTFVFEAIaAggBEhEKDUlHTk9SRV9BTFdBWVMQAzpWCgdtZXNzYWdlEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGIcJIAEoCzIaLmJ1Zi52YWxpZGF0ZS5NZXNzYWdlUnVsZXNSB21lc3NhZ2U6TgoFb25lb2YSHS5nb29nbGUucHJvdG9idWYuT25lb2ZPcHRpb25zGIcJIAEoCzIYLmJ1Zi52YWxpZGF0ZS5PbmVvZlJ1bGVzUgVvbmVvZjpOCgVmaWVsZBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMYhwkgASgLMhguYnVmLnZhbGlkYXRlLkZpZWxkUnVsZXNSBWZpZWxk", [file_google_protobuf_descriptor]);
 
 /**
  * @generated from message buf.validate.MessageRules
  */
 export type MessageRules = Message<"buf.validate.MessageRules"> & {
   /**
-   * @generated from field: optional bool disabled = 1;
+   * removed in https://github.com/bufbuild/protovalidate/pull/394
+   *
+   * @generated from field: optional bool disabled = 1 [deprecated = true];
+   * @deprecated
    */
   disabled: boolean;
 };
@@ -149,12 +152,17 @@ export enum Ignore {
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: IGNORE_IF_UNPOPULATED = 1;
+   * renamed in https://github.com/bufbuild/protovalidate/pull/397
+   *
+   * @generated from enum value: IGNORE_IF_ZERO_VALUE = 1;
    */
-  IF_UNPOPULATED = 1,
+  IF_ZERO_VALUE = 1,
 
   /**
-   * @generated from enum value: IGNORE_IF_DEFAULT_VALUE = 2;
+   * removed in https://github.com/bufbuild/protovalidate/pull/396
+   *
+   * @generated from enum value: IGNORE_IF_DEFAULT_VALUE = 2 [deprecated = true];
+   * @deprecated
    */
   IF_DEFAULT_VALUE = 2,
 

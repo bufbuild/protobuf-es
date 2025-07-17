@@ -34,7 +34,10 @@ export declare const file_extra_minimal_validate: GenFile;
  */
 export declare type MessageRules = Message<"buf.validate.MessageRules"> & {
   /**
-   * @generated from field: optional bool disabled = 1;
+   * removed in https://github.com/bufbuild/protovalidate/pull/394
+   *
+   * @generated from field: optional bool disabled = 1 [deprecated = true];
+   * @deprecated
    */
   disabled: boolean;
 };
@@ -141,12 +144,17 @@ export enum Ignore {
   UNSPECIFIED = 0,
 
   /**
-   * @generated from enum value: IGNORE_IF_UNPOPULATED = 1;
+   * renamed in https://github.com/bufbuild/protovalidate/pull/397
+   *
+   * @generated from enum value: IGNORE_IF_ZERO_VALUE = 1;
    */
-  IF_UNPOPULATED = 1,
+  IF_ZERO_VALUE = 1,
 
   /**
-   * @generated from enum value: IGNORE_IF_DEFAULT_VALUE = 2;
+   * removed in https://github.com/bufbuild/protovalidate/pull/396
+   *
+   * @generated from enum value: IGNORE_IF_DEFAULT_VALUE = 2 [deprecated = true];
+   * @deprecated
    */
   IF_DEFAULT_VALUE = 2,
 

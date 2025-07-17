@@ -42,12 +42,10 @@ message VTypes {
   // - be optional
   // - refer to the valid type for Other
   Other msg_ignore_unpopulated = 4 [
-    (buf.validate.field).ignore = IGNORE_IF_UNPOPULATED
+    (buf.validate.field).ignore = IGNORE_IF_ZERO_VALUE
   ];
 
-  // In the generated valid type, this property should:
-  // - be optional
-  // - refer to the regular type for Other, because rules are ignored for empty messages
+  // In the generated valid type, this property should be the same as the regular type
   Other msg_ignore_default = 5 [
     (buf.validate.field).ignore = IGNORE_IF_DEFAULT_VALUE
   ];
@@ -75,12 +73,10 @@ message VTypes {
   // - not be optional (lists never are)
   // - refer to the valid type for Other, because messages in a list are never unpopulated
   repeated Other repeated_msg_ignore_unpopulated_items = 10 [
-    (buf.validate.field).repeated.items.ignore = IGNORE_IF_UNPOPULATED
+    (buf.validate.field).repeated.items.ignore = IGNORE_IF_ZERO_VALUE
   ];
 
-  // In the generated valid type, this property should:
-  // - not be optional (lists never are)
-  // - refer to the regular type for Other, because rules are ignored for empty messages
+  // In the generated valid type, this property should be the same as the regular type
   repeated Other repeated_msg_ignore_default_items = 11 [
     (buf.validate.field).repeated.items.ignore = IGNORE_IF_DEFAULT_VALUE
   ];
@@ -108,12 +104,10 @@ message VTypes {
   // - not be optional (maps never are)
   // - refer to the regular type for Other, because map entries are never unpopulated
   map<string, Other> map_ignore_unpopulated_values = 15 [
-    (buf.validate.field).map.values.ignore = IGNORE_IF_UNPOPULATED
+    (buf.validate.field).map.values.ignore = IGNORE_IF_ZERO_VALUE
   ];
 
-  // In the generated valid type, this property should:
-  // - not be optional (maps never are)
-  // - refer to the regular type for Other, because rules are ignored for empty messages
+  // In the generated valid type, this property should be the same as the regular type
   map<string, Other> map_ignore_default_values = 16 [
     (buf.validate.field).map.values.ignore = IGNORE_IF_DEFAULT_VALUE
   ];

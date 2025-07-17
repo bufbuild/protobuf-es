@@ -21,20 +21,12 @@ package buf.validate;
 
 import "google/protobuf/descriptor.proto";
 
-extend google.protobuf.MessageOptions {
-  optional MessageRules message = 1159;
-}
-
 extend google.protobuf.OneofOptions {
   optional OneofRules oneof = 1159;
 }
 
 extend google.protobuf.FieldOptions {
   optional FieldRules field = 1159;
-}
-
-message MessageRules {
-  optional bool disabled = 1;
 }
 
 message OneofRules {
@@ -52,8 +44,7 @@ message FieldRules {
 
 enum Ignore {
   IGNORE_UNSPECIFIED = 0;
-  IGNORE_IF_UNPOPULATED = 1;
-  IGNORE_IF_DEFAULT_VALUE = 2;
+  IGNORE_IF_ZERO_VALUE = 1;
   IGNORE_ALWAYS = 3;
 }
 

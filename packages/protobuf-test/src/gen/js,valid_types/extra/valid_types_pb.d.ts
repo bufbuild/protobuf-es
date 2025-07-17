@@ -66,9 +66,7 @@ export declare type VTypes = Message<"spec.VTypes"> & {
   msgIgnoreUnpopulated?: VTypes_Other;
 
   /**
-   * In the generated valid type, this property should:
-   * - be optional
-   * - refer to the regular type for Other, because rules are ignored for empty messages
+   * In the generated valid type, this property should be the same as the regular type
    *
    * @generated from field: spec.VTypes.Other msg_ignore_default = 5;
    */
@@ -111,9 +109,7 @@ export declare type VTypes = Message<"spec.VTypes"> & {
   repeatedMsgIgnoreUnpopulatedItems: VTypes_Other[];
 
   /**
-   * In the generated valid type, this property should:
-   * - not be optional (lists never are)
-   * - refer to the regular type for Other, because rules are ignored for empty messages
+   * In the generated valid type, this property should be the same as the regular type
    *
    * @generated from field: repeated spec.VTypes.Other repeated_msg_ignore_default_items = 11;
    */
@@ -156,9 +152,7 @@ export declare type VTypes = Message<"spec.VTypes"> & {
   mapIgnoreUnpopulatedValues: { [key: string]: VTypes_Other };
 
   /**
-   * In the generated valid type, this property should:
-   * - not be optional (maps never are)
-   * - refer to the regular type for Other, because rules are ignored for empty messages
+   * In the generated valid type, this property should be the same as the regular type
    *
    * @generated from field: map<string, spec.VTypes.Other> map_ignore_default_values = 16;
    */
@@ -232,13 +226,11 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
   msgIgnoreUnpopulated?: VTypes_OtherValid;
 
   /**
-   * In the generated valid type, this property should:
-   * - be optional
-   * - refer to the regular type for Other, because rules are ignored for empty messages
+   * In the generated valid type, this property should be the same as the regular type
    *
    * @generated from field: spec.VTypes.Other msg_ignore_default = 5;
    */
-  msgIgnoreDefault?: VTypes_Other;
+  msgIgnoreDefault?: VTypes_OtherValid;
 
   /**
    * In the generated valid type, this property should:
@@ -277,13 +269,11 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
   repeatedMsgIgnoreUnpopulatedItems: VTypes_OtherValid[];
 
   /**
-   * In the generated valid type, this property should:
-   * - not be optional (lists never are)
-   * - refer to the regular type for Other, because rules are ignored for empty messages
+   * In the generated valid type, this property should be the same as the regular type
    *
    * @generated from field: repeated spec.VTypes.Other repeated_msg_ignore_default_items = 11;
    */
-  repeatedMsgIgnoreDefaultItems: VTypes_Other[];
+  repeatedMsgIgnoreDefaultItems: VTypes_OtherValid[];
 
   /**
    * In the generated valid type, this property should:
@@ -322,13 +312,11 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
   mapIgnoreUnpopulatedValues: { [key: string]: VTypes_OtherValid };
 
   /**
-   * In the generated valid type, this property should:
-   * - not be optional (maps never are)
-   * - refer to the regular type for Other, because rules are ignored for empty messages
+   * In the generated valid type, this property should be the same as the regular type
    *
    * @generated from field: map<string, spec.VTypes.Other> map_ignore_default_values = 16;
    */
-  mapIgnoreDefaultValues: { [key: string]: VTypes_Other };
+  mapIgnoreDefaultValues: { [key: string]: VTypes_OtherValid };
 
   /**
    * In the generated valid type, this property should:
