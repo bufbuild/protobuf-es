@@ -18,7 +18,6 @@ import {
   field as ext_field,
   type FieldRules,
   Ignore,
-  message as ext_message,
 } from "./gen/minimal-validate_pb.js";
 
 /**
@@ -31,16 +30,8 @@ export function isProtovalidateDisabled(descField: DescField): boolean {
   if (descField.message === undefined) {
     return false;
   }
-  const messageRules = getOption(descField.parent, ext_message);
-  if (messageRules.disabled) {
-    return true;
-  }
   const fieldRules = getOption(descField, ext_field);
-  if (
-    fieldRules.ignore == Ignore.ALWAYS ||
-    (descField.fieldKind == "message" &&
-      fieldRules.ignore == Ignore.IF_DEFAULT_VALUE)
-  ) {
+  if (fieldRules.ignore == Ignore.ALWAYS) {
     return true;
   }
   const childRules: FieldRules | undefined =
@@ -50,10 +41,7 @@ export function isProtovalidateDisabled(descField: DescField): boolean {
         ? fieldRules.type.value.values
         : undefined;
   if (childRules) {
-    return (
-      childRules.ignore == Ignore.ALWAYS ||
-      childRules.ignore == Ignore.IF_DEFAULT_VALUE
-    );
+    return childRules.ignore == Ignore.ALWAYS;
   }
   return false;
 }
@@ -66,10 +54,6 @@ export function isProtovalidateDisabled(descField: DescField): boolean {
  */
 export function isProtovalidateRequired(descField: DescField): boolean {
   if (!hasOption(descField, ext_field)) {
-    return false;
-  }
-  const messageRules = getOption(descField.parent, ext_message);
-  if (messageRules.disabled) {
     return false;
   }
   const fieldRules = getOption(descField, ext_field);

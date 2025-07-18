@@ -34,7 +34,8 @@ extend google.protobuf.FieldOptions {
 }
 
 message MessageRules {
-  optional bool disabled = 1;
+  // removed in https://github.com/bufbuild/protovalidate/pull/394
+  optional bool disabled = 1 [deprecated = true];
 }
 
 message OneofRules {
@@ -52,8 +53,10 @@ message FieldRules {
 
 enum Ignore {
   IGNORE_UNSPECIFIED = 0;
-  IGNORE_IF_UNPOPULATED = 1;
-  IGNORE_IF_DEFAULT_VALUE = 2;
+  // renamed in https://github.com/bufbuild/protovalidate/pull/397
+  IGNORE_IF_ZERO_VALUE = 1;
+  // removed in https://github.com/bufbuild/protovalidate/pull/396
+  IGNORE_IF_DEFAULT_VALUE = 2 [deprecated = true];
   IGNORE_ALWAYS = 3;
 }
 
