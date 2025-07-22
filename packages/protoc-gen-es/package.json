@@ -32,7 +32,7 @@
   },
   "preferUnplugged": true,
   "dependencies": {
-    "@bufbuild/protobuf": "^2.6.1",
+    "@bufbuild/protobuf": "2.6.1",
     "@bufbuild/protoplugin": "2.6.1"
   },
   "devDependencies": {
