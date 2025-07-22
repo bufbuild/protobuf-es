@@ -54,6 +54,6 @@ export function timestampFromMs(timestampMs: number): Timestamp {
  */
 export function timestampMs(timestamp: Timestamp): number {
   return (
-    Number(timestamp.seconds) * 1000 + Math.ceil(timestamp.nanos / 1000000)
+    Number(timestamp.seconds) * 1000 + Math.round(timestamp.nanos / 1000000)
   );
 }
