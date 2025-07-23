@@ -24,8 +24,8 @@
   },
   "type": "module",
   "dependencies": {
-    "@bufbuild/protobuf": "2.6.1",
-    "@bufbuild/protoc-gen-es": "2.6.1",
+    "@bufbuild/protobuf": "2.6.2",
+    "@bufbuild/protoc-gen-es": "2.6.2",
     "@types/benchmark": "^2.1.5",
     "0x": "^5.8.0",
     "benchmark": "^2.1.4",
