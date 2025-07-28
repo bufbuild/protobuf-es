@@ -13,10 +13,10 @@
 // limitations under the License.
 
 import { describe, expect, it } from "@jest/globals";
-import { fromBinary } from "@bufbuild/protobuf";
+import { fromBinary, toJson } from "@bufbuild/protobuf";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import { UserSchema } from "../gen/ts/extra/example_pb.js";
-import {MessageSchema} from "../gen/ts/extra/parsemaperror_pb.js";
+import { MessageSchema } from "../gen/ts/extra/parsemaperror_pb.js";
 
 describe("BinaryWriter", () => {
   it("example should work as expected", () => {
@@ -266,7 +266,11 @@ describe("BinaryReader", () => {
     // check it actually decodes as a map (this was previously broken)
     {
       const decoded = fromBinary(MessageSchema, bytes);
-      expect(decoded).toStrictEqual({ myMap: "TODO update" });
+      expect(toJson(MessageSchema, decoded)).toStrictEqual({
+        myMap: {
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": 1,
+        },
+      });
     }
   });
 });
