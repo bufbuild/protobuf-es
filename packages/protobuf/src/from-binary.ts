@@ -194,7 +194,11 @@ function readMapEntry(
   const field = map.field();
   let key: ScalarValue | undefined;
   let val: ScalarValue | ReflectMessage | undefined;
-  const end = reader.pos + reader.uint32();
+  // Read the length of the map entry, which is a varint.
+  const len = reader.uint32();
+  // WARNING: Calculate end AFTER advancing reader.pos (above), so that
+  //          reader.pos is at the start of the map entry.
+  const end = reader.pos + len;
   while (reader.pos < end) {
     const [fieldNo] = reader.tag();
     switch (fieldNo) {

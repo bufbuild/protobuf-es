@@ -13,9 +13,10 @@
 // limitations under the License.
 
 import { describe, expect, it } from "@jest/globals";
-import { fromBinary } from "@bufbuild/protobuf";
+import { fromBinary, toJson } from "@bufbuild/protobuf";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import { UserSchema } from "../gen/ts/extra/example_pb.js";
+import { MessageSchema } from "../gen/ts/extra/parsemaperror_pb.js";
 
 describe("BinaryWriter", () => {
   it("example should work as expected", () => {
@@ -218,5 +219,58 @@ describe("BinaryReader", () => {
         expect(sr.pos).toBe(sr.len);
       }
     });
+  });
+
+  it("should correctly parse map field given element delimited by varint larger than one byte", () => {
+    const bytes = new Uint8Array([
+      10, 128, 1, 10, 124, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97,
+      97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97,
+      97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97,
+      97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97,
+      97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97,
+      97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97,
+      97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97, 97,
+      97, 97, 97, 16, 1,
+    ]);
+    const innerBytes = bytes.slice(-128); // the last 128 bytes are the inner map element
+
+    // sanity check outer message
+    {
+      const reader = new BinaryReader(bytes);
+      const [fieldNo, wireType] = reader.tag();
+      expect(fieldNo).toStrictEqual(1);
+      expect(wireType).toStrictEqual(WireType.LengthDelimited);
+      expect(reader.bytes()).toStrictEqual(innerBytes);
+      expect(reader.pos).toStrictEqual(reader.len);
+    }
+
+    // sanity check inner message
+    {
+      const reader = new BinaryReader(innerBytes);
+      let [fieldNo, wireType] = reader.tag();
+      expect(fieldNo).toStrictEqual(1);
+      expect(wireType).toStrictEqual(WireType.LengthDelimited);
+      const key = reader.string();
+      // the key is 124 'a' characters, and is (synthetic) field 1
+      expect(key).toStrictEqual(
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      );
+      // the value is 1, uint32, and is (synthetic) field 2
+      [fieldNo, wireType] = reader.tag();
+      expect(fieldNo).toStrictEqual(2);
+      expect(wireType).toStrictEqual(WireType.Varint);
+      const value = reader.uint32();
+      expect(value).toStrictEqual(1);
+    }
+
+    // check it actually decodes as a map (this was previously broken)
+    {
+      const decoded = fromBinary(MessageSchema, bytes);
+      expect(toJson(MessageSchema, decoded)).toStrictEqual({
+        myMap: {
+          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: 1,
+        },
+      });
+    }
   });
 });
