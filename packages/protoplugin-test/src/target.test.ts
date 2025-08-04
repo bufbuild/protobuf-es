@@ -93,10 +93,10 @@ describe("target", () => {
         generateDts,
         transpile,
       });
-      expect(generateTs).toBeCalledTimes(0);
-      expect(generateJs).toBeCalledTimes(1);
-      expect(generateDts).toBeCalledTimes(1);
-      expect(transpile).toBeCalledTimes(0);
+      expect(generateTs).toHaveBeenCalledTimes(0);
+      expect(generateJs).toHaveBeenCalledTimes(1);
+      expect(generateDts).toHaveBeenCalledTimes(1);
+      expect(transpile).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -135,10 +135,12 @@ describe("target", () => {
         generateDts,
         transpile,
       });
-      expect(generateTs).toBeCalledTimes(targets.includes("ts") ? 1 : 0);
-      expect(generateJs).toBeCalledTimes(targets.includes("js") ? 1 : 0);
-      expect(generateDts).toBeCalledTimes(targets.includes("dts") ? 1 : 0);
-      expect(transpile).toBeCalledTimes(0);
+      expect(generateTs).toHaveBeenCalledTimes(targets.includes("ts") ? 1 : 0);
+      expect(generateJs).toHaveBeenCalledTimes(targets.includes("js") ? 1 : 0);
+      expect(generateDts).toHaveBeenCalledTimes(
+        targets.includes("dts") ? 1 : 0,
+      );
+      expect(transpile).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -208,16 +210,16 @@ describe("target", () => {
       );
 
       test("should call expected generator functions", () => {
-        expect(generateTs).toBeCalledTimes(
+        expect(generateTs).toHaveBeenCalledTimes(
           calledGenerators.includes("ts") ? 1 : 0,
         );
-        expect(generateJs).toBeCalledTimes(calledGenerators.includes("js") ? 1 : 0); // biome-ignore format: want this to read well
-        expect(generateDts).toBeCalledTimes(calledGenerators.includes("dts") ? 1 : 0); // biome-ignore format: want this to read well
+        expect(generateJs).toHaveBeenCalledTimes(calledGenerators.includes("js") ? 1 : 0); // biome-ignore format: want this to read well
+        expect(generateDts).toHaveBeenCalledTimes(calledGenerators.includes("dts") ? 1 : 0); // biome-ignore format: want this to read well
       });
 
       test("should call transpile function", () => {
-        expect(transpile).toBeCalledTimes(1);
-        expect(transpile).toBeCalledWith(
+        expect(transpile).toHaveBeenCalledTimes(1);
+        expect(transpile).toHaveBeenCalledWith(
           [
             {
               name: "test.ts",

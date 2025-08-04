@@ -151,7 +151,7 @@ describe("sizeDelimitedPeek()", () => {
       0xde, 0xad, 0xbe, 0xef, 0xde, 0xad, 0xbe, 0xef, 0xde, 0xad,
     ]);
     it("should raise error", () => {
-      expect(() => sizeDelimitedPeek(invalid)).toThrowError({
+      expect(() => sizeDelimitedPeek(invalid)).toThrow({
         name: "Error",
         message: "invalid varint",
       });

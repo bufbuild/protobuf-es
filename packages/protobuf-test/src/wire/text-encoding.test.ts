@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeEach, describe, expect, test } from "@jest/globals";
+import { beforeEach, afterEach, describe, expect, test } from "@jest/globals";
 import {
   getTextEncoding,
   configureTextEncoding,
 } from "@bufbuild/protobuf/wire";
-import { afterEach } from "node:test";
 
 describe("getTextEncoding()", () => {
   test("returns TextEncoding", () => {
@@ -75,15 +74,6 @@ describe("configureTextEncoding()", () => {
         }
         return false;
       },
-      decodeUtf8: backup.decodeUtf8,
-      encodeUtf8: backup.encodeUtf8,
-    });
-    expect(getTextEncoding().checkUtf8("valid")).toBe(true);
-    expect(getTextEncoding().checkUtf8("no valid")).toBe(false);
-  });
-  test("configures checkUtf8", () => {
-    configureTextEncoding({
-      checkUtf8: backup.checkUtf8,
       decodeUtf8: backup.decodeUtf8,
       encodeUtf8: backup.encodeUtf8,
     });

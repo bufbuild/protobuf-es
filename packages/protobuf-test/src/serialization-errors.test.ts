@@ -45,12 +45,12 @@ describe("serialization errors", () => {
       // See struct.proto
       const value = create(ValueSchema);
       test("toJson", () => {
-        expect(() => toJson(ValueSchema, value)).toThrowError(
+        expect(() => toJson(ValueSchema, value)).toThrow(
           "google.protobuf.Value must have a value",
         );
       });
       test("toBinary", () => {
-        expect(() => toBinary(ValueSchema, value)).not.toThrowError();
+        expect(() => toBinary(ValueSchema, value)).not.toThrow();
       });
     });
     describe("numberValue NaN", () => {
@@ -58,12 +58,12 @@ describe("serialization errors", () => {
         kind: { case: "numberValue", value: NaN },
       });
       test("toJson", () => {
-        expect(() => toJson(ValueSchema, value)).toThrowError(
+        expect(() => toJson(ValueSchema, value)).toThrow(
           "google.protobuf.Value cannot be NaN or Infinity",
         );
       });
       test("toBinary", () => {
-        expect(() => toBinary(ValueSchema, value)).not.toThrowError();
+        expect(() => toBinary(ValueSchema, value)).not.toThrow();
       });
     });
     describe("numberValue Infinity", () => {
@@ -71,12 +71,12 @@ describe("serialization errors", () => {
         kind: { case: "numberValue", value: Infinity },
       });
       test("toJson", () => {
-        expect(() => toJson(ValueSchema, value)).toThrowError(
+        expect(() => toJson(ValueSchema, value)).toThrow(
           "google.protobuf.Value cannot be NaN or Infinity",
         );
       });
       test("toBinary", () => {
-        expect(() => toBinary(ValueSchema, value)).not.toThrowError();
+        expect(() => toBinary(ValueSchema, value)).not.toThrow();
       });
     });
     describe("numberValue -Infinity", () => {
@@ -84,12 +84,12 @@ describe("serialization errors", () => {
         kind: { case: "numberValue", value: -Infinity },
       });
       test("toJson", () => {
-        expect(() => toJson(ValueSchema, value)).toThrowError(
+        expect(() => toJson(ValueSchema, value)).toThrow(
           "google.protobuf.Value cannot be NaN or Infinity",
         );
       });
       test("toBinary", () => {
-        expect(() => toBinary(ValueSchema, value)).not.toThrowError();
+        expect(() => toBinary(ValueSchema, value)).not.toThrow();
       });
     });
   });
