@@ -38,3 +38,7 @@ enum MapsEnum {
     MAPS_ENUM_YES = 1;
     MAPS_ENUM_NO = 2;
 }
+
+message MapsMessageBug1183 {
+  map<string, int32> map = 1;
+}
