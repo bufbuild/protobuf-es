@@ -22,11 +22,8 @@ import type {
 import { scalarZeroValue } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
-import {
-  BinaryReader,
-  BinaryWriter,
-  WireType,
-} from "./wire/binary-encoding.js";
+import { BinaryReader, WireType } from "./wire/binary-encoding.js";
+import { varint32write } from "./wire/varint.js";
 
 /**
  * Options for parsing binary data.
@@ -163,9 +160,14 @@ export function readField(
         if (ok) {
           message.set(field, val);
         } else if (options.readUnknownFields) {
-          const data = new BinaryWriter().int32(val as number).finish();
+          const bytes: number[] = [];
+          varint32write(val as number, bytes);
           const unknownFields = message.getUnknown() ?? [];
-          unknownFields.push({ no: field.number, wireType, data });
+          unknownFields.push({
+            no: field.number,
+            wireType,
+            data: new Uint8Array(bytes),
+          });
           message.setUnknown(unknownFields);
         }
       }
