@@ -106,6 +106,22 @@ export declare type MapsMessage = Message<"spec.MapsMessage"> & {
 export declare const MapsMessageSchema: GenMessage<MapsMessage>;
 
 /**
+ * @generated from message spec.MapsMessageBug1183
+ */
+export declare type MapsMessageBug1183 = Message<"spec.MapsMessageBug1183"> & {
+  /**
+   * @generated from field: map<string, int32> map = 1;
+   */
+  map: { [key: string]: number };
+};
+
+/**
+ * Describes the message spec.MapsMessageBug1183.
+ * Use `create(MapsMessageBug1183Schema)` to create a new message.
+ */
+export declare const MapsMessageBug1183Schema: GenMessage<MapsMessageBug1183>;
+
+/**
  * @generated from enum spec.MapsEnum
  */
 export enum MapsEnum {

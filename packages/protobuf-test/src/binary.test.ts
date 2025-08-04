@@ -30,7 +30,10 @@ import {
   RepeatedScalarValuesMessageSchema,
   ScalarValuesMessageSchema,
 } from "./gen/ts/extra/msg-scalar_pb.js";
-import { MapsMessageSchema } from "./gen/ts/extra/msg-maps_pb.js";
+import {
+  MapsMessageBug1183Schema,
+  MapsMessageSchema,
+} from "./gen/ts/extra/msg-maps_pb.js";
 import { MessageFieldMessageSchema } from "./gen/ts/extra/msg-message_pb.js";
 
 import {
@@ -115,6 +118,20 @@ describe(`binary serialization`, () => {
     strEnuField: { a: 0, b: 1, c: 2 },
     int32EnuField: { 1: 0, 2: 1, 0: 2 },
     int64EnuField: { "-1": 0, "2": 1, "0": 2 },
+  });
+  test(MapsMessageBug1183Schema.typeName, () => {
+    const str128bytes = "x".repeat(128);
+    const msg = create(MapsMessageBug1183Schema, {
+      map: {
+        [str128bytes]: 1,
+      },
+    });
+    const bytes = toBinary(MapsMessageBug1183Schema, msg);
+    const msg2 = fromBinary(MapsMessageBug1183Schema, bytes);
+    expect(msg2.map).toStrictEqual({
+      [str128bytes]: 1,
+    });
+    expect(msg2.$unknown).toBeUndefined();
   });
   testBinary(OneofMessageSchema, {
     message: {
