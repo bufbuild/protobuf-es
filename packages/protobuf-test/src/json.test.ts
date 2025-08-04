@@ -524,7 +524,7 @@ describe("JSON serialization", () => {
         // Absence of any variant indicates an error.
         // See struct.proto
         const value = create(ValueSchema);
-        expect(() => toJson(ValueSchema, value)).toThrowError(
+        expect(() => toJson(ValueSchema, value)).toThrow(
           "google.protobuf.Value must have a value",
         );
       });
@@ -536,7 +536,7 @@ describe("JSON serialization", () => {
               kind: { case: "numberValue", value: NaN },
             }),
           );
-        }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+        }).toThrow("google.protobuf.Value cannot be NaN or Infinity");
 
         expect(() => {
           toJson(
@@ -545,7 +545,7 @@ describe("JSON serialization", () => {
               kind: { case: "numberValue", value: Infinity },
             }),
           );
-        }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+        }).toThrow("google.protobuf.Value cannot be NaN or Infinity");
 
         expect(() => {
           toJson(
@@ -554,7 +554,7 @@ describe("JSON serialization", () => {
               kind: { case: "numberValue", value: Number.POSITIVE_INFINITY },
             }),
           );
-        }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+        }).toThrow("google.protobuf.Value cannot be NaN or Infinity");
 
         expect(() => {
           toJson(
@@ -563,7 +563,7 @@ describe("JSON serialization", () => {
               kind: { case: "numberValue", value: Number.NEGATIVE_INFINITY },
             }),
           );
-        }).toThrowError("google.protobuf.Value cannot be NaN or Infinity");
+        }).toThrow("google.protobuf.Value cannot be NaN or Infinity");
       });
       describe("Value with Struct field", () => {
         testJson(

@@ -101,9 +101,7 @@ describe("parse custom plugin option", () => {
           parameter: "foo=abc",
         },
       ),
-    ).toThrowError(
-      /^invalid option "foo=abc": please provide an integer for foo$/,
-    );
+    ).toThrow(/^invalid option "foo=abc": please provide an integer for foo$/);
   });
   test("unknown option raises an error", () => {
     expect(() =>
@@ -115,7 +113,7 @@ describe("parse custom plugin option", () => {
           parameter: "unknown",
         },
       ),
-    ).toThrowError(/^invalid option "unknown"$/);
+    ).toThrow(/^invalid option "unknown"$/);
   });
   test("unknown option with value raises an error", () => {
     expect(() =>
@@ -127,6 +125,6 @@ describe("parse custom plugin option", () => {
           parameter: "unknown=bar",
         },
       ),
-    ).toThrowError(/^invalid option "unknown=bar"$/);
+    ).toThrow(/^invalid option "unknown=bar"$/);
   });
 });
