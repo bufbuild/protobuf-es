@@ -130,7 +130,7 @@ export class BinaryWriter {
   /**
    * Return all bytes written and reset this writer.
    */
-  finish(): Uint8Array {
+  finish(): Uint8Array<ArrayBuffer> {
     if (this.buf.length) {
       this.chunks.push(new Uint8Array(this.buf)); // flush the buffer
       this.buf = [];
@@ -412,7 +412,7 @@ export class BinaryReader {
           // ignore
         }
         break;
-      // @ts-expect-error TS7029: Fallthrough case in switch
+      // @ts-ignore TS7029: Fallthrough case in switch -- ignore instead of expect-error for compiler settings without noFallthroughCasesInSwitch: true
       case WireType.Bit64:
         this.pos += 4;
       case WireType.Bit32:
