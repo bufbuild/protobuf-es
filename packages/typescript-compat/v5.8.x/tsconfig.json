@@ -1,5 +1,6 @@
 {
   "include": [
+    "./src/**/*.ts",
     "../../protobuf-test/src/types.test.ts",
     "../../protobuf-test/src/registry.test.ts",
     "../../protobuf-test/src/json_types.test.ts",
