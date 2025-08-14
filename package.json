@@ -27,8 +27,8 @@
   "type": "module",
   "engineStrict": true,
   "engines": {
-    "node": ">=18",
-    "npm": ">=9"
+    "node": ">=20",
+    "npm": ">=10"
   },
   "packageManager": "npm@10.9.0",
   "licenseHeader": {
