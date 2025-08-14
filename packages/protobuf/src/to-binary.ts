@@ -54,7 +54,7 @@ export function toBinary<Desc extends DescMessage>(
   schema: Desc,
   message: MessageShape<Desc>,
   options?: Partial<BinaryWriteOptions>,
-): Uint8Array {
+): Uint8Array<ArrayBuffer> {
   return writeFields(
     new BinaryWriter(),
     makeWriteOptions(options),

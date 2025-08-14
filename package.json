@@ -43,7 +43,7 @@
     "@types/node": "^24.1.0",
     "jest": "^29.7.0",
     "turbo": "^2.5.5",
-    "typescript": "~5.6.3"
+    "typescript": "^5.9.2"
   },
   "//": "avoid hoisting of @typescript/vfs, see packages/protoplugin/src/transpile.ts",
   "dependencies": {

@@ -100,7 +100,7 @@ describe("configureTextEncoding()", () => {
     configureTextEncoding({
       checkUtf8: backup.checkUtf8,
       decodeUtf8: backup.decodeUtf8,
-      encodeUtf8(text: string): Uint8Array {
+      encodeUtf8(text: string) {
         arg = text;
         return new Uint8Array(10);
       },

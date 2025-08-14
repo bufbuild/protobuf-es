@@ -22,7 +22,7 @@ interface TextEncoding {
   /**
    * Encode UTF-8 text to binary.
    */
-  encodeUtf8: (text: string) => Uint8Array;
+  encodeUtf8: (text: string) => Uint8Array<ArrayBuffer>;
   /**
    * Decode UTF-8 text from binary.
    */
@@ -51,7 +51,7 @@ export function getTextEncoding() {
       globalThis as unknown as GlobalWithTextEncoderDecoder
     ).TextDecoder();
     (globalThis as GlobalWithTextEncoding)[symbol] = {
-      encodeUtf8(text: string): Uint8Array {
+      encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
         return te.encode(text);
       },
       decodeUtf8(bytes: Uint8Array): string {
@@ -77,7 +77,7 @@ type GlobalWithTextEncoding = {
 type GlobalWithTextEncoderDecoder = {
   TextEncoder: {
     new (): {
-      encode(text: string): Uint8Array;
+      encode(text: string): Uint8Array<ArrayBuffer>;
     };
   };
   TextDecoder: {
