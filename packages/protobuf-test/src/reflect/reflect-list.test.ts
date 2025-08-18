@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   isReflectList,
   reflectList,
@@ -20,29 +21,28 @@ import {
   isReflectMessage,
 } from "@bufbuild/protobuf/reflect";
 import { create, protoInt64 } from "@bufbuild/protobuf";
-import assert from "node:assert";
 import { catchFieldError } from "../helpers.js";
 import { StructSchema } from "@bufbuild/protobuf/wkt";
 import { UserSchema } from "../gen/ts/extra/example_pb.js";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 
-describe("reflectList()", () => {
+void suite("reflectList()", () => {
   test("creates ReflectList", () => {
     const f = proto3_ts.Proto3MessageSchema.field.repeatedStringField;
-    assert(f.fieldKind == "list");
+    assert.strictEqual(f.fieldKind, "list");
     const list = reflectList(f);
-    expect(typeof list.field).toBe("function");
-    expect(isReflectList(list)).toBe(true);
+    assert.strictEqual(typeof list.field, "function");
+    assert.strictEqual(isReflectList(list), true);
   });
   test("creates ReflectList with unsafe input", () => {
     const f = proto3_ts.Proto3MessageSchema.field.repeatedStringField;
-    assert(f.fieldKind == "list");
+    assert.strictEqual(f.fieldKind, "list");
     const list = reflectList(f, [1, 2, 3]);
-    expect(isReflectList(list)).toBe(true);
+    assert.strictEqual(isReflectList(list), true);
   });
 });
 
-describe("ReflectList", () => {
+void suite("ReflectList", () => {
   const {
     repeatedStringField,
     repeatedInt64Field,
@@ -50,63 +50,63 @@ describe("ReflectList", () => {
     repeatedMessageField,
     repeatedStructField,
   } = proto3_ts.Proto3MessageSchema.field;
-  assert(repeatedStringField.fieldKind == "list");
-  assert(repeatedInt64Field.fieldKind == "list");
-  assert(repeatedInt64JsStringField.fieldKind == "list");
-  assert(repeatedMessageField.fieldKind == "list");
-  assert(repeatedStructField.fieldKind == "list");
+  assert.strictEqual(repeatedStringField.fieldKind, "list");
+  assert.strictEqual(repeatedInt64Field.fieldKind, "list");
+  assert.strictEqual(repeatedInt64JsStringField.fieldKind, "list");
+  assert.strictEqual(repeatedMessageField.fieldKind, "list");
+  assert.strictEqual(repeatedStructField.fieldKind, "list");
   const n0 = protoInt64.zero;
   const n1 = protoInt64.parse(1);
   const n2 = protoInt64.parse(2);
   const n3 = protoInt64.parse(3);
-  describe("field()", () => {
+  void suite("field()", () => {
     test("returns the field", () => {
       const list = reflectList(repeatedStringField, []);
-      expect(list.field()).toBe(repeatedStringField);
+      assert.strictEqual(list.field(), repeatedStringField);
     });
   });
-  describe("size", () => {
+  void suite("size", () => {
     test("returns size of the list", () => {
       const a = reflectList(repeatedStringField, []);
-      expect(a.size).toBe(0);
+      assert.strictEqual(a.size, 0);
       const b = reflectList(repeatedStringField, ["a", "b"]);
-      expect(b.size).toBe(2);
+      assert.strictEqual(b.size, 2);
     });
   });
-  describe("get()", () => {
+  void suite("get()", () => {
     test("returns item at index", () => {
       const list = reflectList(repeatedStringField, ["a", "b"]);
-      expect(list.get(1)).toBe("b");
+      assert.strictEqual(list.get(1), "b");
     });
     test("returns undefined if out of range", () => {
       const list = reflectList(repeatedStringField, []);
-      expect(list.get(0)).toBeUndefined();
+      assert.strictEqual(list.get(0), undefined);
     });
     test("converts jstype=JS_STRING to bigint", () => {
       const local: unknown[] = ["1"];
       const list = reflectList(repeatedInt64JsStringField, local);
-      expect(list.get(0)).toBe(n1);
+      assert.strictEqual(list.get(0), n1);
     });
     test("returns ReflectMessage for message list", () => {
       const list = reflectList(repeatedMessageField, [
         create(proto3_ts.Proto3MessageSchema),
       ]);
       const val = list.get(0);
-      expect(isReflectMessage(val)).toBe(true);
+      assert.strictEqual(isReflectMessage(val), true);
     });
     test("returns ReflectMessage for google.protobuf.Struct list", () => {
       const list = reflectList(repeatedStructField, [{ shouldBeJson: true }]);
       const val = list.get(0);
-      expect(isReflectMessage(val)).toBe(true);
+      assert.strictEqual(isReflectMessage(val), true);
     });
   });
-  describe("add()", () => {
+  void suite("add()", () => {
     test("adds item", () => {
       const local: unknown[] = ["a"];
       const list = reflectList(repeatedStringField, local);
       list.add("b");
       list.add("c");
-      expect(local).toStrictEqual(["a", "b", "c"]);
+      assert.deepStrictEqual(local, ["a", "b", "c"]);
     });
     test("converts number, string, bigint to bigint for 64-bit integer field", () => {
       const local: unknown[] = [];
@@ -114,7 +114,7 @@ describe("ReflectList", () => {
       list.add(1);
       list.add("2");
       list.add(n3);
-      expect(local).toStrictEqual([n1, n2, n3]);
+      assert.deepStrictEqual(local, [n1, n2, n3]);
     });
     test("converts number, string, bigint to string for 64-bit integer field with jstype=JS_STRING", () => {
       const local: unknown[] = [];
@@ -122,33 +122,33 @@ describe("ReflectList", () => {
       list.add(1);
       list.add("2");
       list.add(n3);
-      expect(local).toStrictEqual(["1", "2", "3"]);
+      assert.deepStrictEqual(local, ["1", "2", "3"]);
     });
     test("adds google.protobuf.Struct as JsonObject", () => {
       const local: unknown[] = [];
       const list = reflectList(repeatedStructField, local);
       list.add(reflect(StructSchema));
-      expect(local).toStrictEqual([{}]);
+      assert.deepStrictEqual(local, [{}]);
     });
     test("throws error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, []);
       const err = catchFieldError(() => list.add(reflect(UserSchema)));
-      expect(err?.message).toMatch(
-        /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
-      );
+      assert.ok(err !== undefined);
+      assert.match(err.message, /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/);
     });
     test("throws error for invalid scalar", () => {
       const list = reflectList(repeatedStringField, []);
       const err = catchFieldError(() => list.add(true));
-      expect(err?.message).toMatch(/^list item #1: expected string, got true$/);
+      assert.ok(err !== undefined);
+      assert.match(err.message, /^list item #1: expected string, got true$/);
     });
   });
-  describe("set()", () => {
+  void suite("set()", () => {
     test("replaces item at index", () => {
       const local: unknown[] = ["a", "b"];
       const list = reflectList(repeatedStringField, local);
       list.set(0, "c");
-      expect(local).toStrictEqual(["c", "b"]);
+      assert.deepStrictEqual(local, ["c", "b"]);
     });
     test("converts number, string, bigint to bigint for 64-bit integer field", () => {
       const local: unknown[] = [n0, n0, n0];
@@ -156,7 +156,7 @@ describe("ReflectList", () => {
       list.set(0, 1);
       list.set(1, "2");
       list.set(2, n3);
-      expect(local).toStrictEqual([n1, n2, n3]);
+      assert.deepStrictEqual(local, [n1, n2, n3]);
     });
     test("converts number, string, bigint to string for 64-bit integer field with jstype=JS_STRING", () => {
       const local: unknown[] = ["0", "0", "0"];
@@ -164,63 +164,64 @@ describe("ReflectList", () => {
       list.set(0, 1);
       list.set(1, "2");
       list.set(2, n3);
-      expect(local).toStrictEqual(["1", "2", "3"]);
+      assert.deepStrictEqual(local, ["1", "2", "3"]);
     });
     test("throws error if out of range", () => {
       const list = reflectList(repeatedStringField, []);
       const err = catchFieldError(() => list.set(0, "abc"));
-      expect(err?.message).toMatch(/^list item #1: out of range$/);
+      assert.ok(err !== undefined);
+      assert.match(err.message, /^list item #1: out of range$/);
     });
     test("throws error for invalid scalar", () => {
       const list = reflectList(repeatedStringField, [null]);
       const err = catchFieldError(() => list.set(0, true));
-      expect(err?.message).toMatch(/^list item #1: expected string, got true$/);
+      assert.ok(err !== undefined);
+      assert.match(err.message, /^list item #1: expected string, got true$/);
     });
     test("throws error for wrong message type", () => {
       const list = reflectList(repeatedMessageField, [null]);
       const err = catchFieldError(() => list.set(0, reflect(UserSchema)));
-      expect(err?.message).toMatch(
-        /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
-      );
+      assert.ok(err !== undefined);
+      assert.match(err.message, /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/);
     });
   });
-  describe("clear()", () => {
+  void suite("clear()", () => {
     test("removes all items", () => {
       const local: unknown[] = ["a", "b"];
       const list = reflectList(repeatedStringField, local);
       list.clear();
-      expect(local).toStrictEqual([]);
+      assert.deepStrictEqual(local, []);
     });
   });
-  describe("values()", () => {
+  void suite("values()", () => {
     test("returns iterable items", () => {
       const local: unknown[] = ["a", "b"];
       const values = reflectList(repeatedStringField, local).values();
-      expect(Array.from(values)).toStrictEqual(["a", "b"]);
+      assert.deepStrictEqual(Array.from(values), ["a", "b"]);
     });
   });
-  describe("iterator", () => {
+  void suite("iterator", () => {
     test("returns iterable items", () => {
       const local: unknown[] = ["a", "b"];
       const list = reflectList(repeatedStringField, local);
-      expect(Array.from(list)).toStrictEqual(["a", "b"]);
+      assert.deepStrictEqual(Array.from(list), ["a", "b"]);
     });
   });
-  describe("entries()", () => {
+  void suite("entries()", () => {
     test("returns iterable tuples", () => {
       const local: unknown[] = ["a", "b"];
       const entries = reflectList(repeatedStringField, local).entries();
-      expect(Array.from(entries)).toStrictEqual([
+      assert.deepStrictEqual(Array.from(entries), [
         [0, "a"],
         [1, "b"],
       ]);
     });
   });
-  describe("keys()", () => {
+  void suite("keys()", () => {
     test("returns iterable indices", () => {
       const local: unknown[] = ["a", "b"];
       const keys = reflectList(repeatedStringField, local).keys();
-      expect(Array.from(keys)).toStrictEqual([0, 1]);
+      assert.deepStrictEqual(Array.from(keys), [0, 1]);
     });
   });
 });

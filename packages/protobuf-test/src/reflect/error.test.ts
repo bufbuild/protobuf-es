@@ -12,60 +12,61 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { FieldError, isFieldError } from "@bufbuild/protobuf/reflect";
 import { UserSchema } from "../gen/ts/extra/example_pb.js";
 import type { DescField, DescOneof } from "@bufbuild/protobuf";
 
-describe("FieldError", () => {
+void suite("FieldError", () => {
   test("is JSON serializable", () => {
     const err = new FieldError(UserSchema.fields[0], "foo");
-    expect(JSON.stringify(err)).toBeDefined();
+    assert.ok(JSON.stringify(err) !== undefined);
   });
-  describe("field()", () => {
+  void suite("field()", () => {
     test("returns field", () => {
       const err = new FieldError(UserSchema.fields[0], "foo");
-      expect(err.field()).toBe(UserSchema.fields[0]);
+      assert.strictEqual(err.field(), UserSchema.fields[0]);
     });
   });
 });
 
-describe("isFieldError()", () => {
+void suite("isFieldError()", () => {
   test("returns true for FieldError instances", () => {
-    expect(isFieldError(new FieldError(UserSchema.fields[0], "foo"))).toBe(
+    assert.strictEqual(isFieldError(new FieldError(UserSchema.fields[0], "foo")),
       true,
     );
-    expect(
+    assert.strictEqual(
       isFieldError(
         new FieldError(UserSchema.fields[0], "foo", "FieldValueInvalidError"),
       ),
-    ).toBe(true);
-    expect(
+     true);
+    assert.strictEqual(
       isFieldError(
         new FieldError(UserSchema.fields[0], "foo", "FieldListRangeError"),
       ),
-    ).toBe(true);
-    expect(
+     true);
+    assert.strictEqual(
       isFieldError(
         new FieldError(UserSchema.fields[0], "foo", "ForeignFieldError"),
       ),
-    ).toBe(true);
+     true);
   });
   test("narrows down to FieldError", () => {
     const u: unknown = null;
     if (isFieldError(u)) {
-      expect(u.name).toBeDefined();
-      expect(u.message).toBeDefined();
+      assert.ok(u.name !== undefined);
+      assert.ok(u.message !== undefined);
       const field: DescField | DescOneof = u.field();
-      expect(field).toBeDefined();
+      assert.ok(field !== undefined);
     }
   });
   test("returns false for other errors", () => {
-    expect(isFieldError(null)).toBe(false);
-    expect(isFieldError(new Error("foo"))).toBe(false);
+    assert.strictEqual(isFieldError(null), false);
+    assert.strictEqual(isFieldError(new Error("foo")), false);
     const err = new Error();
     err.name = "FieldValueInvalidError";
-    expect(isFieldError(err)).toBe(false);
+    assert.strictEqual(isFieldError(err), false);
   });
   test("falsely returns true if the argument is close enough to a FieldError", () => {
     const err = new Error();
@@ -73,6 +74,6 @@ describe("isFieldError()", () => {
     (err as unknown as Record<"field", () => unknown>).field = () => {
       //
     };
-    expect(isFieldError(err)).toBe(true);
+    assert.strictEqual(isFieldError(err), true);
   });
 });

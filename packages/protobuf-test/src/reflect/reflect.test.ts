@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeEach, describe, expect, test } from "@jest/globals";
+import { suite, test, beforeEach } from "node:test";
+import * as assert from "node:assert";
 import type { DescMessage, Message } from "@bufbuild/protobuf";
 import { create, protoInt64 } from "@bufbuild/protobuf";
 import type { ReflectMessage } from "@bufbuild/protobuf/reflect";
@@ -25,36 +26,35 @@ import {
   reflectMap,
 } from "@bufbuild/protobuf/reflect";
 import { catchFieldError, compileMessage } from "../helpers.js";
-import assert from "node:assert";
 import { StructSchema, UInt32ValueSchema } from "@bufbuild/protobuf/wkt";
 import * as proto3_ts from "../gen/ts/extra/proto3_pb.js";
 import * as example_ts from "../gen/ts/extra/example_pb.js";
 
-describe("reflect()", () => {
+void suite("reflect()", () => {
   test("accepts generated message shape", () => {
     const msg = create(proto3_ts.Proto3MessageSchema);
     const r = reflect(proto3_ts.Proto3MessageSchema, msg);
-    expect(r).toBeDefined();
+    assert.ok(r !== undefined);
   });
   test("accepts anonymous message", () => {
     const desc: DescMessage = proto3_ts.Proto3MessageSchema;
     const msg: Message = create(desc);
     const r = reflect(desc, msg);
-    expect(r).toBeDefined();
+    assert.ok(r !== undefined);
   });
   test("accepts option to disable field check", () => {
     const msg = create(proto3_ts.Proto3MessageSchema);
     const r = reflect(proto3_ts.Proto3MessageSchema, msg, false);
     const field = r.findNumber(3);
-    expect(field?.name).toBe("singular_int32_field");
+    assert.strictEqual(field?.name, "singular_int32_field");
     if (field) {
       r.set(field, "not a int 32");
     }
   });
 });
 
-describe("ReflectMessage", () => {
-  describe("findNumber()", () => {
+void suite("ReflectMessage", () => {
+  void suite("findNumber()", () => {
     test("finds field by field number", async () => {
       const desc = await compileMessage(`
         syntax="proto3";
@@ -66,12 +66,12 @@ describe("ReflectMessage", () => {
       `);
       const r = reflect(desc);
       const f = r.findNumber(2);
-      expect(f).toBeDefined();
-      expect(f?.name).toBe("f2");
-      expect(f?.number).toBe(2);
+      assert.ok(f !== undefined);
+      assert.strictEqual(f?.name, "f2");
+      assert.strictEqual(f?.number, 2);
     });
   });
-  describe("sortedFields", () => {
+  void suite("sortedFields", () => {
     test("returns fields sorted by field number ascending", async () => {
       const desc = await compileMessage(`
         syntax="proto3";
@@ -83,10 +83,10 @@ describe("ReflectMessage", () => {
       `);
       const r = reflect(desc);
       const sortedNumbers = r.sortedFields.map((f) => f.number);
-      expect(sortedNumbers).toStrictEqual([1, 2, 3]);
+      assert.deepStrictEqual(sortedNumbers, [1, 2, 3]);
     });
   });
-  describe("oneofCase()", () => {
+  void suite("oneofCase()", () => {
     test("returns selected field", () => {
       const msg = create(proto3_ts.Proto3MessageSchema);
       msg.either = {
@@ -94,10 +94,10 @@ describe("ReflectMessage", () => {
         value: 123,
       };
       const r = reflect(proto3_ts.Proto3MessageSchema, msg);
-      expect(r.oneofs[0]).toBeDefined();
+      assert.ok(r.oneofs[0] !== undefined);
       const selectedField = r.oneofCase(r.oneofs[0]);
-      expect(selectedField).toBeDefined();
-      expect(selectedField?.name).toBe("oneof_int32_field");
+      assert.ok(selectedField !== undefined);
+      assert.strictEqual(selectedField?.name, "oneof_int32_field");
     });
     test("returns undefined for oneof w/o selected field", () => {
       const msg = create(proto3_ts.Proto3MessageSchema);
@@ -105,9 +105,9 @@ describe("ReflectMessage", () => {
         case: undefined,
       };
       const r = reflect(proto3_ts.Proto3MessageSchema, msg);
-      expect(r.oneofs[0]).toBeDefined();
+      assert.ok(r.oneofs[0] !== undefined);
       const selectedField = r.oneofCase(r.oneofs[0]);
-      expect(selectedField).toBeUndefined();
+      assert.strictEqual(selectedField, undefined);
     });
     test("throws error on foreign oneof", async () => {
       const foreignMessage = await compileMessage(`
@@ -116,12 +116,12 @@ describe("ReflectMessage", () => {
       `);
       const foreignOneof = foreignMessage.oneofs[0];
       const r = reflect(proto3_ts.Proto3MessageSchema);
-      expect(() => r.oneofCase(foreignOneof)).toThrow(
-        /^cannot use oneof Foreign.foo with message spec.Proto3Message$/,
-      );
+      assert.throws(() => r.oneofCase(foreignOneof), {
+        message: /^cannot use oneof Foreign.foo with message spec.Proto3Message$/,
+      });
     });
   });
-  describe("get()", () => {
+  void suite("get()", () => {
     const desc = proto3_ts.Proto3MessageSchema;
     let msg: proto3_ts.Proto3Message;
     let r: ReflectMessage;
@@ -131,44 +131,44 @@ describe("ReflectMessage", () => {
     });
     test("gets message", () => {
       const f = desc.field.singularMessageField;
-      assert(f.fieldKind == "message");
+      assert.strictEqual(f.fieldKind, "message");
       msg.singularMessageField = create(proto3_ts.Proto3MessageSchema);
       const v = r.get(f);
-      expect(isReflectMessage(v)).toBe(true);
+      assert.strictEqual(isReflectMessage(v), true);
       if (isReflectMessage(v)) {
-        expect(v.message).toBe(msg.singularMessageField);
+        assert.strictEqual(v.message, msg.singularMessageField);
       }
     });
     test("gets enum", () => {
       const f = desc.field.singularEnumField;
       msg.singularEnumField = proto3_ts.Proto3Enum.YES;
-      expect(r.get(f)).toBe(proto3_ts.Proto3Enum.YES);
+      assert.strictEqual(r.get(f), proto3_ts.Proto3Enum.YES);
     });
     test("gets string", () => {
       const f = desc.field.singularStringField;
       msg.singularStringField = "abc";
-      expect(r.get(f)).toBe("abc");
+      assert.strictEqual(r.get(f), "abc");
     });
     test("gets list", () => {
       const f = desc.field.repeatedStringField;
-      assert(f.fieldKind == "list");
+      assert.strictEqual(f.fieldKind, "list");
       const list = r.get(f);
-      expect(isReflectList(list)).toBe(true);
+      assert.strictEqual(isReflectList(list), true);
     });
     test("gets map", () => {
       const f = desc.field.mapStringStringField;
-      assert(f.fieldKind == "map");
+      assert.strictEqual(f.fieldKind, "map");
       const map = r.get(f);
-      expect(isReflectMap(map)).toBe(true);
+      assert.strictEqual(isReflectMap(map), true);
     });
     test("gets wrapped wrapper field", () => {
       const f = desc.field.singularWrappedUint32Field;
       msg.singularWrappedUint32Field = 123;
       const wrapper = r.get(f);
-      expect(isReflectMessage(wrapper, UInt32ValueSchema)).toBe(true);
+      assert.strictEqual(isReflectMessage(wrapper, UInt32ValueSchema), true);
       if (isReflectMessage(wrapper, UInt32ValueSchema)) {
         const value = wrapper.get(wrapper.fields[0]);
-        expect(value).toBe(123);
+        assert.strictEqual(value, 123);
       }
     });
     test("gets google.protobuf.Struct field", () => {
@@ -192,13 +192,13 @@ describe("ReflectMessage", () => {
         // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
         switch (f.fieldKind) {
           case "message":
-            expect(isReflectMessage(r.get(f), StructSchema)).toBe(true);
+            assert.strictEqual(isReflectMessage(r.get(f), StructSchema), true);
             break;
           case "list":
-            expect(isReflectMessage(r.get(f).get(0), StructSchema)).toBe(true);
+            assert.strictEqual(isReflectMessage(r.get(f).get(0), StructSchema), true);
             break;
           case "map":
-            expect(isReflectMessage(r.get(f).get(123), StructSchema)).toBe(
+            assert.strictEqual(isReflectMessage(r.get(f).get(123), StructSchema),
               true,
             );
             break;
@@ -211,49 +211,49 @@ describe("ReflectMessage", () => {
         case: "oneofBoolField",
         value: false,
       };
-      expect(r.get(f)).toBe(false);
+      assert.strictEqual(r.get(f), false);
     });
-    describe("returns zero value for unset", () => {
+    void suite("returns zero value for unset", () => {
       test("scalar oneof field", () => {
         const f = desc.field.oneofBoolField;
-        expect(r.get(f)).toBe(false);
+        assert.strictEqual(r.get(f), false);
       });
       test("optional string field", () => {
         const f = desc.field.optionalStringField;
-        expect(r.get(f)).toBe("");
+        assert.strictEqual(r.get(f), "");
       });
       test("optional enum field", () => {
         const f = desc.field.optionalEnumField;
-        expect(r.get(f)).toBe(proto3_ts.Proto3Enum.UNSPECIFIED);
+        assert.strictEqual(r.get(f), proto3_ts.Proto3Enum.UNSPECIFIED);
       });
       test("message field", () => {
         const f = desc.field.singularMessageField;
-        assert(f.fieldKind == "message");
+        assert.strictEqual(f.fieldKind, "message");
         const v = r.get(f);
-        expect(isReflectMessage(v)).toBe(true);
+        assert.strictEqual(isReflectMessage(v), true);
         if (isReflectMessage(v)) {
           for (const f of v.fields) {
-            expect(v.isSet(f)).toBe(false);
+            assert.strictEqual(v.isSet(f), false);
           }
         }
-        expect(r.isSet(f)).toBe(false);
+        assert.strictEqual(r.isSet(f), false);
       });
     });
     test("returns ReflectMessage with zero message for unset message field", () => {
       const f = desc.field.singularMessageField;
-      assert(f.fieldKind == "message");
+      assert.strictEqual(f.fieldKind, "message");
       const v = r.get(f);
-      expect(isReflectMessage(v)).toBe(true);
+      assert.strictEqual(isReflectMessage(v), true);
       if (isReflectMessage(v)) {
         for (const f of v.fields) {
-          expect(v.isSet(f)).toBe(false);
+          assert.strictEqual(v.isSet(f), false);
         }
       }
     });
     test("returns bigint for jstype=JS_STRING", () => {
       const f = desc.field.singularInt64JsStringField;
       msg.singularInt64JsStringField = "123";
-      expect(r.get(f)).toBe(protoInt64.parse(123));
+      assert.strictEqual(r.get(f), protoInt64.parse(123));
     });
     test("throws error on foreign field", async () => {
       const foreignMessage = await compileMessage(`
@@ -261,13 +261,13 @@ describe("ReflectMessage", () => {
         message Foreign { string foreign = 1;}
       `);
       const foreignField = foreignMessage.fields[0];
-      assert(foreignField.fieldKind == "scalar");
-      expect(() => r.get(foreignField)).toThrow(
-        /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
-      );
+      assert.ok(foreignField.fieldKind == "scalar");
+      assert.throws(() => r.get(foreignField), {
+        message: /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
+      });
     });
   });
-  describe("set()", () => {
+  void suite("set()", () => {
     const desc = proto3_ts.Proto3MessageSchema;
     let msg: proto3_ts.Proto3Message;
     let r: ReflectMessage;
@@ -278,58 +278,58 @@ describe("ReflectMessage", () => {
     test("sets enum", () => {
       const f = desc.field.singularEnumField;
       r.set(f, proto3_ts.Proto3Enum.YES);
-      expect(msg.singularEnumField).toBe(proto3_ts.Proto3Enum.YES);
+      assert.strictEqual(msg.singularEnumField, proto3_ts.Proto3Enum.YES);
     });
     test("sets string", () => {
       const f = desc.field.singularStringField;
       r.set(f, "abc");
-      expect(msg.singularStringField).toBe("abc");
+      assert.strictEqual(msg.singularStringField, "abc");
     });
     test("sets ReflectMap", () => {
       const f = desc.field.mapStringStringField;
-      assert(f.fieldKind == "map");
+      assert.strictEqual(f.fieldKind, "map");
       const map = reflectMap(f);
       map.set("foo", "bar");
       r.set(f, map);
-      expect(msg.mapStringStringField).toStrictEqual({ foo: "bar" });
+      assert.deepStrictEqual(msg.mapStringStringField, { foo: "bar" });
     });
     test("sets ReflectList", () => {
       const f = desc.field.repeatedStringField;
-      assert(f.fieldKind == "list");
+      assert.strictEqual(f.fieldKind, "list");
       const list = reflectList(f);
       list.add("foo");
       r.set(f, list);
-      expect(msg.repeatedStringField).toStrictEqual(["foo"]);
+      assert.deepStrictEqual(msg.repeatedStringField, ["foo"]);
     });
     test("sets ReflectMessage", () => {
       const f = desc.field.singularMessageField;
       const testMessage = create(proto3_ts.Proto3MessageSchema);
       r.set(f, reflect(proto3_ts.Proto3MessageSchema, testMessage));
-      expect(msg.singularMessageField).toBe(testMessage);
+      assert.strictEqual(msg.singularMessageField, testMessage);
     });
     test("sets number, string, bigint as bigint for 64-bit integer field", () => {
       const f = desc.field.singularInt64Field;
       r.set(f, protoInt64.parse(123));
-      expect(msg.singularInt64Field === protoInt64.parse(123)).toBe(true);
+      assert.strictEqual(msg.singularInt64Field === protoInt64.parse(123), true);
       r.set(f, 123);
-      expect(msg.singularInt64Field === protoInt64.parse(123)).toBe(true);
+      assert.strictEqual(msg.singularInt64Field === protoInt64.parse(123), true);
       r.set(f, "123");
-      expect(msg.singularInt64Field === protoInt64.parse(123)).toBe(true);
+      assert.strictEqual(msg.singularInt64Field === protoInt64.parse(123), true);
     });
     test("sets number, string, bigint as string for 64-bit integer field with jstype=JS_STRING", () => {
       const f = desc.field.singularInt64JsStringField;
       r.set(f, protoInt64.parse(123));
-      expect(msg.singularInt64JsStringField).toBe("123");
+      assert.strictEqual(msg.singularInt64JsStringField, "123");
       r.set(f, 123);
-      expect(msg.singularInt64JsStringField).toBe("123");
+      assert.strictEqual(msg.singularInt64JsStringField, "123");
       r.set(f, "123");
-      expect(msg.singularInt64JsStringField).toBe("123");
+      assert.strictEqual(msg.singularInt64JsStringField, "123");
     });
     test("sets unwrapped value for wrapper field", () => {
       const f = desc.field.singularWrappedUint32Field;
       const wrapper = create(UInt32ValueSchema, { value: 123 });
       r.set(f, reflect(UInt32ValueSchema, wrapper));
-      expect(msg.singularWrappedUint32Field).toBe(123);
+      assert.strictEqual(msg.singularWrappedUint32Field, 123);
     });
     test("sets google.protobuf.Struct field as JsonObject", () => {
       const structMessage = create(StructSchema, {
@@ -344,11 +344,11 @@ describe("ReflectMessage", () => {
       });
       const structReflect = reflect(StructSchema, structMessage);
       r.set(desc.field.singularStructField, structReflect);
-      expect(msg.singularStructField).toStrictEqual({
+      assert.deepStrictEqual(msg.singularStructField, {
         shouldBeJson: true,
       });
       r.set(desc.field.oneofStructField, structReflect);
-      expect(msg.either).toStrictEqual({
+      assert.deepStrictEqual(msg.either, {
         case: "oneofStructField",
         value: { shouldBeJson: true },
       });
@@ -356,7 +356,7 @@ describe("ReflectMessage", () => {
     test("sets unknown value for open enum", () => {
       const f = desc.field.singularEnumField;
       r.set(f, 99);
-      expect(msg.singularEnumField).toBe(99);
+      assert.strictEqual(msg.singularEnumField, 99);
     });
     test("selects oneof field", () => {
       const f = desc.field.oneofInt32Field;
@@ -365,7 +365,7 @@ describe("ReflectMessage", () => {
         value: 123,
       };
       r.set(f, 123);
-      expect(msg.either).toStrictEqual({
+      assert.deepStrictEqual(msg.either, {
         case: "oneofInt32Field",
         value: 123,
       });
@@ -377,11 +377,11 @@ describe("ReflectMessage", () => {
         value: 123,
       };
       r.set(oneofBoolField, false);
-      expect(msg.either).toStrictEqual({
+      assert.deepStrictEqual(msg.either, {
         case: "oneofBoolField",
         value: false,
       });
-      expect(r.isSet(oneofInt32Field)).toBe(false);
+      assert.strictEqual(r.isSet(oneofInt32Field), false);
     });
     test("throws error on foreign field", async () => {
       const foreignMessage = await compileMessage(`
@@ -389,135 +389,169 @@ describe("ReflectMessage", () => {
         message Foreign { string foreign = 1;}
       `);
       const foreignField = foreignMessage.fields[0];
-      expect(() => r.set(foreignField, "value")).toThrow(
-        /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
-      );
+      assert.throws(() => r.set(foreignField, "value"), {
+        message: /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
+      });
     });
     test("returns error setting number out of range", () => {
       const f = desc.field.singularInt32Field;
       const err = catchFieldError(() => r.set(f, Number.MAX_SAFE_INTEGER));
-      expect(err?.message).toMatch(
-        /^expected number \(int32\): 9007199254740991 out of range$/,
-      );
-      expect(err?.name).toMatch("FieldValueInvalidError");
+      assert.ok(err !== undefined);
+      assert.match(err.message, /^expected number \(int32\): 9007199254740991 out of range$/);
+      assert.equal(err.name, "FieldValueInvalidError");
     });
     test("returns error setting float for int", () => {
       const f = desc.field.singularInt32Field;
       const err = catchFieldError(() => r.set(f, 3.14));
-      expect(err?.message).toMatch(/^expected number \(int32\), got 3.14$/);
-      expect(err?.name).toMatch("FieldValueInvalidError");
+      assert.ok(err !== undefined);
+      assert.match(err.message, /^expected number \(int32\), got 3.14$/);
+      assert.equal(err.name, "FieldValueInvalidError");
     });
-    describe("returns error setting undefined", () => {
-      test.each(desc.fields)("for proto3 field $name", (f) => {
-        const err = catchFieldError(() => r.set(f, undefined));
-        expect(err).toBeDefined();
-        expect(err?.message).toMatch(/^expected .*, got undefined/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
+    void suite("returns error setting undefined", () => {
+      for (const f of desc.fields) {
+        void test(`for proto3 field ${f.name}`, () => {
+          const err = catchFieldError(() => r.set(f, undefined));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected .*, got undefined/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
     });
-    describe("returns error setting null", () => {
-      test.each(desc.fields)("for proto3 field $name", (f) => {
-        const err = catchFieldError(() => r.set(f, null));
-        expect(err).toBeDefined();
-        expect(err?.message).toMatch(/^expected .*, got null/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
+    void suite("returns error setting null", () => {
+      for (const f of desc.fields) {
+        void test(`for proto3 field ${f.name}`, () => {
+          const err = catchFieldError(() => r.set(f, null));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected .*, got null/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
     });
-    describe("throws error setting array", () => {
-      test.each(desc.fields)("$name", (f) => {
-        const err = catchFieldError(() => r.set(f, [1, 2]));
-        expect(err?.message).toMatch(/^expected .*, got Array\(2\)$/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
+    void suite("throws error setting array", () => {
+      for (const f of desc.fields) {
+        void test(`${f.name}`, () => {
+          const err = catchFieldError(() => r.set(f, [1, 2]));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected .*, got Array\(2\)$/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
     });
-    describe("throws error setting object", () => {
-      test.each(desc.fields)("$name", (f) => {
-        const err = catchFieldError(() => r.set(f, new Date()));
-        expect(err?.message).toMatch(/^expected .*, got object$/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
+    void suite("throws error setting object", () => {
+      for (const f of desc.fields) {
+        void test(`${f.name}`, () => {
+          const err = catchFieldError(() => r.set(f, new Date()));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected .*, got object$/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
     });
-    describe("throws error setting message", () => {
-      test.each(desc.fields)("$name", (f) => {
-        const err = catchFieldError(() =>
-          r.set(f, create(proto3_ts.Proto3MessageSchema)),
-        );
-        expect(err?.message).toMatch(
-          /^expected .*, got message spec.Proto3Message$/,
-        );
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
+    void suite("throws error setting message", () => {
+      for (const f of desc.fields) {
+        void test(`${f.name}`, () => {
+          const err = catchFieldError(() =>
+            r.set(f, create(proto3_ts.Proto3MessageSchema)),
+          );
+          assert.ok(err !== undefined);
+          assert.match(err.message,
+            /^expected .*, got message spec.Proto3Message$/,
+          );
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
     });
-    describe("throws error setting scalar value for message field", () => {
+    void suite("throws error setting scalar value for message field", () => {
       const fields = desc.fields.filter((f) => f.fieldKind == "message");
-      test.each(fields)("set $name true", (f) => {
-        const err = catchFieldError(() => r.set(f, true));
-        expect(err?.message).toMatch(/^expected .*, got true$/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
-      test.each(fields)("set $name 'abc'", (f) => {
-        const err = catchFieldError(() => r.set(f, "abc"));
-        expect(err?.message).toMatch(/^expected .*, got "abc"$/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
-      test.each(fields)("set $name 123", (f) => {
-        const err = catchFieldError(() => r.set(f, 123));
-        expect(err?.message).toMatch(/^expected .*, got 123$/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
+      for (const f of fields) {
+        void test(`set ${f.name} true`, () => {
+          const err = catchFieldError(() => r.set(f, true));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected .*, got true$/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
+      for (const f of fields) {
+        void test(`set ${f.name} 'abc'`, () => {
+          const err = catchFieldError(() => r.set(f, "abc"));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected .*, got "abc"$/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
+      for (const f of fields) {
+        void test(`set ${f.name} 123`, () => {
+          const err = catchFieldError(() => r.set(f, 123));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected .*, got 123$/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
     });
-    describe("throws error setting non-integer value for enum field", () => {
+    void suite("throws error setting non-integer value for enum field", () => {
       const fields = desc.fields.filter((f) => f.fieldKind == "enum");
-      test.each(fields)("set $name true", (f) => {
-        const err = catchFieldError(() => r.set(f, true));
-        expect(err?.message).toMatch(/^expected enum .*, got true$/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
-      test.each(fields)("set $name 'abc'", (f) => {
-        const err = catchFieldError(() => r.set(f, "abc"));
-        expect(err?.message).toMatch(/^expected enum .*, got "abc"$/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
-      test.each(fields)("set $name 3.14", (f) => {
-        const err = catchFieldError(() => r.set(f, 3.14));
-        expect(err?.message).toMatch(/^expected enum .*, got 3.14$/);
-        expect(err?.name).toMatch("FieldValueInvalidError");
-      });
+      for (const f of fields) {
+        void test(`set ${f.name} true`, () => {
+          const err = catchFieldError(() => r.set(f, true));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected enum .*, got true$/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
+      for (const f of fields) {
+        void test(`set ${f.name} 'abc'`, () => {
+          const err = catchFieldError(() => r.set(f, "abc"));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected enum .*, got "abc"$/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
+      for (const f of fields) {
+        void test(`set ${f.name} 3.14`, () => {
+          const err = catchFieldError(() => r.set(f, 3.14));
+          assert.ok(err !== undefined);
+          assert.match(err.message, /^expected enum .*, got 3.14$/);
+          assert.equal(err.name, "FieldValueInvalidError");
+        });
+      }
     });
     test("throws error setting incompatible ReflectMessage", () => {
       const f = desc.field.singularMessageField;
       const err = catchFieldError(() =>
         r.set(f, reflect(example_ts.UserSchema)),
       );
-      expect(err?.message).toMatch(
+      assert.ok(err !== undefined);
+      assert.match(err.message,
         /^expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
       );
-      expect(err?.name).toMatch("FieldValueInvalidError");
+      assert.equal(err.name, "FieldValueInvalidError");
     });
     test("throws error setting incompatible ReflectMap", () => {
       const { mapStringStringField, mapInt32Int32Field } = desc.field;
-      assert(mapStringStringField.fieldKind == "map");
-      assert(mapInt32Int32Field.fieldKind == "map");
+      assert.strictEqual(mapStringStringField.fieldKind, "map");
+      assert.strictEqual(mapInt32Int32Field.fieldKind, "map");
       const map = reflectMap(mapStringStringField);
       const err = catchFieldError(() => r.set(mapInt32Int32Field, map));
-      expect(err?.message).toMatch(
+      assert.ok(err !== undefined);
+      assert.match(err.message,
         /^expected ReflectMap \(INT32, INT32\), got ReflectMap \(STRING, STRING\)$/,
       );
-      expect(err?.name).toMatch("FieldValueInvalidError");
+      assert.equal(err.name, "FieldValueInvalidError");
     });
     test("throws error setting incompatible ReflectList", () => {
       const { repeatedStringField, repeatedInt32Field } = desc.field;
-      assert(repeatedStringField.fieldKind == "list");
-      assert(repeatedInt32Field.fieldKind == "list");
+      assert.strictEqual(repeatedStringField.fieldKind, "list");
+      assert.strictEqual(repeatedInt32Field.fieldKind, "list");
       const list = reflectList(repeatedStringField);
       const err = catchFieldError(() => r.set(repeatedInt32Field, list));
-      expect(err?.message).toMatch(
+      assert.ok(err !== undefined);
+      assert.match(err.message,
         /^expected ReflectList \(INT32\), got ReflectList \(STRING\)$/,
       );
-      expect(err?.name).toMatch("FieldValueInvalidError");
+      assert.equal(err.name, "FieldValueInvalidError");
     });
   });
-  describe("isSet()", () => {
+  void suite("isSet()", () => {
     test("returns true for set fields", () => {
       const desc = proto3_ts.Proto3MessageSchema;
       const msg = create(desc);
@@ -555,27 +589,27 @@ describe("ReflectMessage", () => {
         a: "A",
       };
       const r = reflect(desc, msg);
-      expect(r.isSet(desc.field.singularStringField)).toBe(true);
-      expect(r.isSet(desc.field.singularBytesField)).toBe(true);
-      expect(r.isSet(desc.field.singularInt32Field)).toBe(true);
-      expect(r.isSet(desc.field.singularInt64Field)).toBe(true);
-      expect(r.isSet(desc.field.singularInt64JsStringField)).toBe(true);
-      expect(r.isSet(desc.field.singularEnumField)).toBe(true);
-      expect(r.isSet(desc.field.singularMessageField)).toBe(true);
-      expect(r.isSet(desc.field.singularWrappedUint32Field)).toBe(true);
-      expect(r.isSet(desc.field.optionalStringField)).toBe(true);
-      expect(r.isSet(desc.field.optionalInt64Field)).toBe(true);
-      expect(r.isSet(desc.field.optionalInt64JsStringField)).toBe(true);
-      expect(r.isSet(desc.field.optionalMessageField)).toBe(true);
-      expect(r.isSet(desc.field.optionalWrappedUint32Field)).toBe(true);
-      expect(r.isSet(desc.field.repeatedStringField)).toBe(true);
-      expect(r.isSet(desc.field.repeatedWrappedUint32Field)).toBe(true);
-      expect(r.isSet(desc.field.repeatedInt64Field)).toBe(true);
-      expect(r.isSet(desc.field.repeatedInt64JsStringField)).toBe(true);
-      expect(r.isSet(desc.field.repeatedMessageField)).toBe(true);
-      expect(r.isSet(desc.field.repeatedEnumField)).toBe(true);
-      expect(r.isSet(desc.field.oneofBoolField)).toBe(true);
-      expect(r.isSet(desc.field.mapStringStringField)).toBe(true);
+      assert.strictEqual(r.isSet(desc.field.singularStringField), true);
+      assert.strictEqual(r.isSet(desc.field.singularBytesField), true);
+      assert.strictEqual(r.isSet(desc.field.singularInt32Field), true);
+      assert.strictEqual(r.isSet(desc.field.singularInt64Field), true);
+      assert.strictEqual(r.isSet(desc.field.singularInt64JsStringField), true);
+      assert.strictEqual(r.isSet(desc.field.singularEnumField), true);
+      assert.strictEqual(r.isSet(desc.field.singularMessageField), true);
+      assert.strictEqual(r.isSet(desc.field.singularWrappedUint32Field), true);
+      assert.strictEqual(r.isSet(desc.field.optionalStringField), true);
+      assert.strictEqual(r.isSet(desc.field.optionalInt64Field), true);
+      assert.strictEqual(r.isSet(desc.field.optionalInt64JsStringField), true);
+      assert.strictEqual(r.isSet(desc.field.optionalMessageField), true);
+      assert.strictEqual(r.isSet(desc.field.optionalWrappedUint32Field), true);
+      assert.strictEqual(r.isSet(desc.field.repeatedStringField), true);
+      assert.strictEqual(r.isSet(desc.field.repeatedWrappedUint32Field), true);
+      assert.strictEqual(r.isSet(desc.field.repeatedInt64Field), true);
+      assert.strictEqual(r.isSet(desc.field.repeatedInt64JsStringField), true);
+      assert.strictEqual(r.isSet(desc.field.repeatedMessageField), true);
+      assert.strictEqual(r.isSet(desc.field.repeatedEnumField), true);
+      assert.strictEqual(r.isSet(desc.field.oneofBoolField), true);
+      assert.strictEqual(r.isSet(desc.field.mapStringStringField), true);
     });
     test("throws error on foreign field", async () => {
       const foreignMessage = await compileMessage(`
@@ -584,12 +618,12 @@ describe("ReflectMessage", () => {
       `);
       const foreignField = foreignMessage.fields[0];
       const r = reflect(proto3_ts.Proto3MessageSchema);
-      expect(() => r.isSet(foreignField)).toThrow(
-        /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
-      );
+      assert.throws(() => r.isSet(foreignField), {
+        message: /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
+      });
     });
   });
-  describe("clear()", () => {
+  void suite("clear()", () => {
     let msg: proto3_ts.Proto3Message;
     let r: ReflectMessage;
     beforeEach(() => {
@@ -632,23 +666,22 @@ describe("ReflectMessage", () => {
       };
       r = reflect(proto3_ts.Proto3MessageSchema, msg);
     });
-    test.each(proto3_ts.Proto3MessageSchema.fields)(
-      "clears proto3 field $name",
-      (f) => {
+    for (const f of proto3_ts.Proto3MessageSchema.fields) {
+      void test(`clears proto3 field ${f.name}`, () => {
         r.clear(f);
-        expect(r.isSet(f)).toBe(false);
-      },
-    );
+        assert.strictEqual(r.isSet(f), false);
+      });
+    }
     test("throws error on foreign field", async () => {
       const foreignMessage = await compileMessage(`
         syntax="proto3";
         message Foreign { repeated string foreign = 1;}
       `);
       const foreignField = foreignMessage.fields[0];
-      assert(foreignField.fieldKind == "list");
-      expect(() => r.clear(foreignField)).toThrow(
-        /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
-      );
+      assert.ok(foreignField.fieldKind == "list");
+      assert.throws(() => r.clear(foreignField), {
+        message: /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
+      });
     });
   });
 });

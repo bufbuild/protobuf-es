@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { compileMessage } from "../helpers.js";
 import { embedFileDesc, fileDesc } from "@bufbuild/protobuf/codegenv1";
 
-describe("fileDesc()", () => {
+void suite("fileDesc()", () => {
   test("hydrates default jsonName and proto.jsonName", async () => {
     const { file } = await compileMessage(`
       syntax="proto3";
@@ -26,8 +27,8 @@ describe("fileDesc()", () => {
     `);
     const hydrated = fileDesc(embedFileDesc(file.proto).base64());
     const field = hydrated.messages[0].fields[0];
-    expect(field.jsonName).toBe("int32Field");
-    expect(field.proto.jsonName).toBe("int32Field");
+    assert.strictEqual(field.jsonName, "int32Field");
+    assert.strictEqual(field.proto.jsonName, "int32Field");
   });
 
   test("hydrates custom jsonName and proto.jsonName", async () => {
@@ -39,7 +40,7 @@ describe("fileDesc()", () => {
     `);
     const hydrated = fileDesc(embedFileDesc(file.proto).base64());
     const field = hydrated.messages[0].fields[0];
-    expect(field.jsonName).toBe("foo");
-    expect(field.proto.jsonName).toBe("foo");
+    assert.strictEqual(field.jsonName, "foo");
+    assert.strictEqual(field.proto.jsonName, "foo");
   });
 });

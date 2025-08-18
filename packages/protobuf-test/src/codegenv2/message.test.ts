@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { compileFile } from "../helpers.js";
 import { messageDesc } from "@bufbuild/protobuf/codegenv2";
 
-describe("messageDesc()", () => {
+void suite("messageDesc()", () => {
   test("resolves message", async () => {
     const descFile = await compileFile(`
       syntax="proto3";
@@ -25,6 +26,6 @@ describe("messageDesc()", () => {
       }
     `);
     const descMessage = messageDesc(descFile, 0);
-    expect(descMessage.typeName).toBe("M");
+    assert.strictEqual(descMessage.typeName, "M");
   });
 });

@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeEach, describe, expect, jest, test } from "@jest/globals";
+import { suite, test, beforeEach } from "node:test";
+import * as assert from "node:assert";
 import { createTestPluginAndRun } from "./helpers.js";
 import type {
   createEcmaScriptPlugin,
@@ -21,7 +22,7 @@ import type {
 } from "@bufbuild/protoplugin";
 import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
 
-describe("target", () => {
+void suite("target", (context) => {
   type PluginInit = Parameters<
     typeof createEcmaScriptPlugin<Record<string, never>>
   >[0];
@@ -30,7 +31,7 @@ describe("target", () => {
   let generateDts: jest.Mock<Required<PluginInit>["generateDts"]>;
   let transpile: jest.Mock<Required<PluginInit>["transpile"]>;
 
-  beforeEach(() => {
+  beforeEach((context) => {
     generateTs = jest.fn((schema: Schema) =>
       schema.generateFile("test.ts").print(`const foo = "ts";`),
     );
@@ -71,8 +72,8 @@ describe("target", () => {
     );
   });
 
-  describe("unset", () => {
-    test("should generate .js and .d.ts files", async () => {
+  void suite("unset", () => {
+    void test("should generate .js and .d.ts files", async () => {
       const res = await createTestPluginAndRun({
         proto: `syntax="proto3";`,
         parameter: "",
@@ -82,9 +83,9 @@ describe("target", () => {
         transpile,
       });
       const gotFiles = res.file.map((f) => f.name).sort();
-      expect(gotFiles).toStrictEqual(["test.js", "test.d.ts"].sort());
+      assert.deepStrictEqual(gotFiles).toStrictEqual(["test.js", "test.d.ts"].sort());
     });
-    test("should call generateJs and generateDts", async () => {
+    void test("should call generateJs and generateDts", async () => {
       await createTestPluginAndRun({
         proto: `syntax="proto3";`,
         parameter: "",
@@ -111,7 +112,7 @@ describe("target", () => {
   ];
   describe.each(targetCases)("targets %s", (targetsJoined) => {
     const targets = targetsJoined.split("+");
-    test("should generate expected files", async () => {
+    void test("should generate expected files", async () => {
       const res = await createTestPluginAndRun({
         proto: `syntax="proto3";`,
         parameter: `target=${targetsJoined}`,
@@ -124,9 +125,9 @@ describe("target", () => {
       const wantFiles = targets
         .map((t) => (t == "dts" ? "test.d.ts" : `test.${t}`))
         .sort();
-      expect(gotFiles).toStrictEqual(wantFiles);
+      assert.deepStrictEqual(gotFiles).toStrictEqual(wantFiles);
     });
-    test("should call expected generator functions", async () => {
+    void test("should call expected generator functions", async () => {
       await createTestPluginAndRun({
         proto: `syntax="proto3";`,
         parameter: `target=${targetsJoined}`,
@@ -209,7 +210,7 @@ describe("target", () => {
           })),
       );
 
-      test("should call expected generator functions", () => {
+      void test("should call expected generator functions", () => {
         expect(generateTs).toHaveBeenCalledTimes(
           calledGenerators.includes("ts") ? 1 : 0,
         );
@@ -217,7 +218,7 @@ describe("target", () => {
         expect(generateDts).toHaveBeenCalledTimes(calledGenerators.includes("dts") ? 1 : 0); // biome-ignore format: want this to read well
       });
 
-      test("should call transpile function", () => {
+      void test("should call transpile function", () => {
         expect(transpile).toHaveBeenCalledTimes(1);
         expect(transpile).toHaveBeenCalledWith(
           [
@@ -233,9 +234,9 @@ describe("target", () => {
         );
       });
 
-      test("should generate expected files", () => {
+      void test("should generate expected files", () => {
         const gotFiles = res.file.map((f) => f.name).sort();
-        expect(gotFiles).toStrictEqual(expectedFiles);
+        assert.deepStrictEqual(gotFiles, expectedFiles);
       });
     },
   );

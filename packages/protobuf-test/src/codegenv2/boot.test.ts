@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type { CompileToDescriptorSetOptions } from "upstream-protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { join as joinPath } from "node:path";
@@ -29,7 +30,6 @@ import {
   FieldOptionsSchema,
   EnumDescriptorProtoSchema,
 } from "@bufbuild/protobuf/wkt";
-import assert from "node:assert";
 import {
   boot,
   bootFileDescriptorProto,
@@ -37,18 +37,18 @@ import {
   embedFileDesc,
 } from "@bufbuild/protobuf/codegenv2";
 
-describe("boot()", () => {
+void suite("boot()", () => {
   test("hydrates google/protobuf/descriptor.proto", async () => {
     const fileDescriptorProto = await compileGoogleProtobufDescriptorProto();
     const embedded = embedFileDesc(fileDescriptorProto);
-    assert(embedded.bootable);
+    assert.ok(embedded.bootable);
 
     const bootedFileDesc = boot(embedded.boot());
-    expect(bootedFileDesc).toBeDefined();
+    assert.ok(bootedFileDesc !== undefined);
   });
 });
 
-describe("createFileDescriptorProtoBoot()", () => {
+void suite("createFileDescriptorProtoBoot()", () => {
   test("only accepts google/protobuf/descriptor.proto", async () => {
     const upstreamProtobuf = new UpstreamProtobuf();
     const bytes = await upstreamProtobuf.compileToDescriptorSet(
@@ -62,20 +62,20 @@ describe("createFileDescriptorProtoBoot()", () => {
     );
     const fileDescriptorProto = fromBinary(FileDescriptorSetSchema, bytes)
       .file[0];
-    expect(() => createFileDescriptorProtoBoot(fileDescriptorProto)).toThrow();
+    assert.throws(() => createFileDescriptorProtoBoot(fileDescriptorProto));
   });
   test("requires unset source_code_info", async () => {
     const fileDescriptorProto = await compileGoogleProtobufDescriptorProto({
       includeSourceInfo: true,
     });
-    expect(() => createFileDescriptorProtoBoot(fileDescriptorProto)).toThrow();
+    assert.throws(() => createFileDescriptorProtoBoot(fileDescriptorProto));
   });
 });
 
-describe("bootFileDescriptorProto()", () => {
+void suite("bootFileDescriptorProto()", () => {
   test("keeps all important bits of google/protobuf/descriptor.proto", async () => {
     const compiled = await compileGoogleProtobufDescriptorProto();
-    expect(compiled).toBeDefined();
+    assert.ok(compiled !== undefined);
 
     const booted = bootFileDescriptorProto(
       createFileDescriptorProtoBoot(compiled),
@@ -83,11 +83,11 @@ describe("bootFileDescriptorProto()", () => {
     stripLikeBoot(compiled);
 
     const eq = equals(FileDescriptorProtoSchema, compiled, booted);
-    expect(eq).toBe(true);
+    assert.strictEqual(eq, true);
 
     const compiledBytes = toBinary(FileDescriptorProtoSchema, compiled);
     const bootedBytes = toBinary(FileDescriptorProtoSchema, booted);
-    expect(bootedBytes).toStrictEqual(compiledBytes);
+    assert.deepStrictEqual(bootedBytes, compiledBytes);
   });
   function stripLikeBoot(
     d: FileDescriptorProto | DescriptorProto | EnumDescriptorProto,
@@ -138,8 +138,8 @@ async function compileGoogleProtobufDescriptorProto(
     opt,
   );
   const fds = fromBinary(FileDescriptorSetSchema, fdsBytes);
-  assert(fds.file.length == 1);
+  assert.equal(fds.file.length, 1);
   const file = fds.file[0];
-  assert(file.name == path);
+  assert.equal(file.name, path);
   return file;
 }

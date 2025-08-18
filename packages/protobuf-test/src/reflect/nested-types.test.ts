@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { compileFile, compileMessage, compileMethod } from "../helpers.js";
 import {
   nestedTypes,
@@ -20,7 +21,7 @@ import {
   parentTypes,
 } from "@bufbuild/protobuf/reflect";
 
-describe("nestedTypes()", () => {
+void suite("nestedTypes()", () => {
   test("lists nested types", async () => {
     const file = await compileFile(`
       syntax="proto2";
@@ -47,7 +48,7 @@ describe("nestedTypes()", () => {
       }
     `);
     const nested = Array.from(nestedTypes(file));
-    expect(nested.map((d) => d.toString())).toStrictEqual([
+    assert.deepStrictEqual(nested.map((d) => d.toString()), [
       "message A",
       "message A.B",
       "enum A.E",
@@ -59,7 +60,7 @@ describe("nestedTypes()", () => {
   });
 });
 
-describe("usedTypes()", () => {
+void suite("usedTypes()", () => {
   test("example", async () => {
     const file = await compileFile(`
       syntax="proto3";
@@ -74,7 +75,7 @@ describe("usedTypes()", () => {
     `);
     const message = file.messages[0];
     const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
-    expect(used).toStrictEqual(["message Msg", "enum Level"]);
+    assert.deepStrictEqual(used, ["message Msg", "enum Level"]);
   });
   test("supports message singular, list, map", async () => {
     const file = await compileFile(`
@@ -90,7 +91,7 @@ describe("usedTypes()", () => {
     `);
     const message = file.messages[0];
     const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
-    expect(used).toStrictEqual([
+    assert.deepStrictEqual(used, [
       "message Singular",
       "message List",
       "message Map",
@@ -116,7 +117,7 @@ describe("usedTypes()", () => {
     `);
     const message = file.messages[0];
     const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
-    expect(used).toStrictEqual(["enum Singular", "enum List", "enum Map"]);
+    assert.deepStrictEqual(used, ["enum Singular", "enum List", "enum Map"]);
   });
   test("supports singular, list, map", async () => {
     const file = await compileFile(`
@@ -132,7 +133,7 @@ describe("usedTypes()", () => {
     `);
     const message = file.messages[0];
     const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
-    expect(used).toStrictEqual([
+    assert.deepStrictEqual(used, [
       "message MsgSingular",
       "message MsgList",
       "message MsgMap",
@@ -149,7 +150,7 @@ describe("usedTypes()", () => {
     `);
     const message = file.messages[0];
     const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
-    expect(used).toStrictEqual(["message Msg"]);
+    assert.deepStrictEqual(used, ["message Msg"]);
   });
   test("recurses into messages", async () => {
     const file = await compileFile(`
@@ -169,7 +170,7 @@ describe("usedTypes()", () => {
     `);
     const message = file.messages[0];
     const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
-    expect(used).toStrictEqual(["message A", "message B", "enum C"]);
+    assert.deepStrictEqual(used, ["message A", "message B", "enum C"]);
   });
   test("yields itself", async () => {
     const file = await compileFile(`
@@ -180,11 +181,11 @@ describe("usedTypes()", () => {
     `);
     const message = file.messages[0];
     const used = Array.from(usedTypes(message)).map((desc) => desc.toString());
-    expect(used).toStrictEqual(["message Example"]);
+    assert.deepStrictEqual(used, ["message Example"]);
   });
 });
 
-describe("parentTypes()", () => {
+void suite("parentTypes()", () => {
   test("lists parents of field", async () => {
     const message = await compileMessage(`
       syntax="proto3";
@@ -196,7 +197,7 @@ describe("parentTypes()", () => {
     `);
     const field = message.nestedMessages[0].fields[0];
     const parents = parentTypes(field).map((desc) => desc.toString());
-    expect(parents).toStrictEqual([
+    assert.deepStrictEqual(parents, [
       "message A.B",
       "message A",
       "file input.proto",
@@ -213,7 +214,7 @@ describe("parentTypes()", () => {
     `);
     const enumValue = message.nestedEnums[0].values[0];
     const parents = parentTypes(enumValue).map((desc) => desc.toString());
-    expect(parents).toStrictEqual([
+    assert.deepStrictEqual(parents, [
       "enum A.B",
       "message A",
       "file input.proto",
@@ -228,7 +229,7 @@ describe("parentTypes()", () => {
       message M {}
     `);
     const parents = parentTypes(method).map((desc) => desc.toString());
-    expect(parents).toStrictEqual(["service A", "file input.proto"]);
+    assert.deepStrictEqual(parents, ["service A", "file input.proto"]);
   });
   test("lists parents of extension", async () => {
     const message = await compileMessage(`
@@ -246,7 +247,7 @@ describe("parentTypes()", () => {
     `);
     const ext = message.nestedMessages[0].nestedExtensions[0];
     const parents = parentTypes(ext).map((desc) => desc.toString());
-    expect(parents).toStrictEqual([
+    assert.deepStrictEqual(parents, [
       "message A.B",
       "message A",
       "file input.proto",
