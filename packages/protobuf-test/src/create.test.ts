@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   create,
   isFieldSet,
@@ -20,7 +22,6 @@ import {
   type MessageInitShape,
   type DescMessage,
 } from "@bufbuild/protobuf";
-import { describe, expect, test } from "@jest/globals";
 import { reflect } from "@bufbuild/protobuf/reflect";
 import * as example_ts from "./gen/ts/extra/example_pb.js";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
@@ -37,630 +38,644 @@ import { fillProto2Message, fillProto2MessageNames } from "./helpers-proto2.js";
 
 /* eslint-disable @typescript-eslint/ban-ts-comment -- to support older TS versions in the TS compat tests, we cannot use ts-expect-error */
 
-describe("create()", () => {
-  describe("with a generated descriptor", () => {
-    test("creates a typed message", () => {
+void suite("create()", () => {
+  void suite("with a generated descriptor", () => {
+    void test("creates a typed message", () => {
       const user: example_ts.User = create(example_ts.UserSchema);
-      expect(user).toBeDefined();
-      expect(user.$typeName).toBe("example.User");
-      expect(user.firstName).toBeDefined();
+      assert.ok(user !== undefined);
+      assert.strictEqual(user.$typeName, "example.User");
+      assert.ok(user.firstName !== undefined);
     });
   });
 
-  describe("with an anonymous descriptor", () => {
-    test("creates an anonymous message", () => {
+  void suite("with an anonymous descriptor", () => {
+    void test("creates an anonymous message", () => {
       const user = create(example_ts.UserSchema as DescMessage);
-      expect(user).toBeDefined();
-      expect(user.$typeName).toBe("example.User");
+      assert.ok(user !== undefined);
+      assert.strictEqual(user.$typeName, "example.User");
       // @ts-expect-error property is unknown to the type system, but still there
-      expect(user.firstName).toBeDefined();
+      assert.ok(user.firstName !== undefined);
     });
   });
 
-  describe("creates a zero message", () => {
-    describe("from proto3", () => {
+  void suite("creates a zero message", () => {
+    void suite("from proto3", () => {
       const desc = proto3_ts.Proto3MessageSchema;
-      test("with expected properties", () => {
+      void test("with expected properties", () => {
         const msg = create(desc);
         function hasOwn(prop: keyof typeof msg) {
           return Object.prototype.hasOwnProperty.call(msg, prop);
         }
         // singular
-        expect(msg.singularStringField).toBe("");
-        expect(hasOwn("singularStringField")).toBe(true);
-        expect(msg.singularBytesField).toBeInstanceOf(Uint8Array);
-        expect(msg.singularBytesField.length).toBe(0);
-        expect(hasOwn("singularBytesField")).toBe(true);
-        expect(msg.singularInt32Field).toBe(0);
-        expect(hasOwn("singularInt32Field")).toBe(true);
-        expect(msg.singularInt64Field).toBe(protoInt64.zero);
-        expect(hasOwn("singularInt64Field")).toBe(true);
-        expect(msg.singularInt64JsNumberField).toBe(protoInt64.zero);
-        expect(hasOwn("singularInt64JsNumberField")).toBe(true);
-        expect(typeof msg.singularInt64JsStringField).toBe("string");
-        expect(msg.singularInt64JsStringField).toBe("0");
-        expect(hasOwn("singularInt64JsStringField")).toBe(true);
-        expect(msg.singularFloatField).toBe(0);
-        expect(hasOwn("singularFloatField")).toBe(true);
-        expect(msg.singularBoolField).toBe(false);
-        expect(hasOwn("singularBoolField")).toBe(true);
-        expect(msg.singularEnumField).toBe(proto3_ts.Proto3Enum.UNSPECIFIED);
-        expect(hasOwn("singularEnumField")).toBe(true);
-        expect(msg.singularMessageField).toBeUndefined();
-        expect(hasOwn("singularMessageField")).toBe(false);
-        expect(msg.singularWrappedUint32Field).toBeUndefined();
-        expect(hasOwn("singularWrappedUint32Field")).toBe(false);
+        assert.strictEqual(msg.singularStringField, "");
+        assert.strictEqual(hasOwn("singularStringField"), true);
+        assert.ok(msg.singularBytesField instanceof Uint8Array);
+        assert.strictEqual(msg.singularBytesField.length, 0);
+        assert.strictEqual(hasOwn("singularBytesField"), true);
+        assert.strictEqual(msg.singularInt32Field, 0);
+        assert.strictEqual(hasOwn("singularInt32Field"), true);
+        assert.strictEqual(msg.singularInt64Field, protoInt64.zero);
+        assert.strictEqual(hasOwn("singularInt64Field"), true);
+        assert.strictEqual(msg.singularInt64JsNumberField, protoInt64.zero);
+        assert.strictEqual(hasOwn("singularInt64JsNumberField"), true);
+        assert.strictEqual(typeof msg.singularInt64JsStringField, "string");
+        assert.strictEqual(msg.singularInt64JsStringField, "0");
+        assert.strictEqual(hasOwn("singularInt64JsStringField"), true);
+        assert.strictEqual(msg.singularFloatField, 0);
+        assert.strictEqual(hasOwn("singularFloatField"), true);
+        assert.strictEqual(msg.singularBoolField, false);
+        assert.strictEqual(hasOwn("singularBoolField"), true);
+        assert.strictEqual(msg.singularEnumField, proto3_ts.Proto3Enum.UNSPECIFIED);
+        assert.strictEqual(hasOwn("singularEnumField"), true);
+        assert.strictEqual(msg.singularMessageField, undefined);
+        assert.strictEqual(hasOwn("singularMessageField"), false);
+        assert.strictEqual(msg.singularWrappedUint32Field, undefined);
+        assert.strictEqual(hasOwn("singularWrappedUint32Field"), false);
 
         // repeated
-        expect(msg.repeatedStringField).toStrictEqual([]);
-        expect(hasOwn("repeatedStringField")).toBe(true);
-        expect(msg.repeatedBytesField).toStrictEqual([]);
-        expect(hasOwn("repeatedBytesField")).toBe(true);
-        expect(msg.repeatedInt32Field).toStrictEqual([]);
-        expect(hasOwn("repeatedInt32Field")).toBe(true);
-        expect(msg.repeatedInt64Field).toStrictEqual([]);
-        expect(hasOwn("repeatedInt64Field")).toBe(true);
-        expect(msg.repeatedInt64JsNumberField).toStrictEqual([]);
-        expect(hasOwn("repeatedInt64JsNumberField")).toBe(true);
-        expect(msg.repeatedInt64JsStringField).toStrictEqual([]);
-        expect(hasOwn("repeatedInt64JsStringField")).toBe(true);
-        expect(msg.repeatedFloatField).toStrictEqual([]);
-        expect(hasOwn("repeatedFloatField")).toBe(true);
-        expect(msg.repeatedBoolField).toStrictEqual([]);
-        expect(hasOwn("repeatedBoolField")).toBe(true);
-        expect(msg.repeatedEnumField).toStrictEqual([]);
-        expect(hasOwn("repeatedEnumField")).toBe(true);
-        expect(msg.repeatedMessageField).toStrictEqual([]);
-        expect(hasOwn("repeatedMessageField")).toBe(true);
-        expect(msg.repeatedWrappedUint32Field).toStrictEqual([]);
-        expect(hasOwn("repeatedWrappedUint32Field")).toBe(true);
+        assert.deepStrictEqual(msg.repeatedStringField, []);
+        assert.strictEqual(hasOwn("repeatedStringField"), true);
+        assert.deepStrictEqual(msg.repeatedBytesField, []);
+        assert.strictEqual(hasOwn("repeatedBytesField"), true);
+        assert.deepStrictEqual(msg.repeatedInt32Field, []);
+        assert.strictEqual(hasOwn("repeatedInt32Field"), true);
+        assert.deepStrictEqual(msg.repeatedInt64Field, []);
+        assert.strictEqual(hasOwn("repeatedInt64Field"), true);
+        assert.deepStrictEqual(msg.repeatedInt64JsNumberField, []);
+        assert.strictEqual(hasOwn("repeatedInt64JsNumberField"), true);
+        assert.deepStrictEqual(msg.repeatedInt64JsStringField, []);
+        assert.strictEqual(hasOwn("repeatedInt64JsStringField"), true);
+        assert.deepStrictEqual(msg.repeatedFloatField, []);
+        assert.strictEqual(hasOwn("repeatedFloatField"), true);
+        assert.deepStrictEqual(msg.repeatedBoolField, []);
+        assert.strictEqual(hasOwn("repeatedBoolField"), true);
+        assert.deepStrictEqual(msg.repeatedEnumField, []);
+        assert.strictEqual(hasOwn("repeatedEnumField"), true);
+        assert.deepStrictEqual(msg.repeatedMessageField, []);
+        assert.strictEqual(hasOwn("repeatedMessageField"), true);
+        assert.deepStrictEqual(msg.repeatedWrappedUint32Field, []);
+        assert.strictEqual(hasOwn("repeatedWrappedUint32Field"), true);
 
         // optional
-        expect(msg.optionalStringField).toBeUndefined();
-        expect(hasOwn("optionalStringField")).toBe(false);
-        expect(msg.optionalBytesField).toBeUndefined();
-        expect(hasOwn("optionalBytesField")).toBe(false);
-        expect(msg.optionalInt32Field).toBeUndefined();
-        expect(hasOwn("optionalInt32Field")).toBe(false);
-        expect(msg.optionalInt64Field).toBeUndefined();
-        expect(hasOwn("optionalInt64Field")).toBe(false);
-        expect(msg.optionalInt64JsNumberField).toBeUndefined();
-        expect(hasOwn("optionalInt64JsNumberField")).toBe(false);
-        expect(msg.optionalInt64JsStringField).toBeUndefined();
-        expect(hasOwn("optionalInt64JsStringField")).toBe(false);
-        expect(msg.optionalFloatField).toBeUndefined();
-        expect(hasOwn("optionalFloatField")).toBe(false);
-        expect(msg.optionalBoolField).toBeUndefined();
-        expect(hasOwn("optionalBoolField")).toBe(false);
-        expect(msg.optionalEnumField).toBeUndefined();
-        expect(hasOwn("optionalEnumField")).toBe(false);
-        expect(msg.optionalMessageField).toBeUndefined();
-        expect(hasOwn("optionalMessageField")).toBe(false);
-        expect(msg.optionalWrappedUint32Field).toBeUndefined();
-        expect(hasOwn("optionalWrappedUint32Field")).toBe(false);
+        assert.strictEqual(msg.optionalStringField, undefined);
+        assert.strictEqual(hasOwn("optionalStringField"), false);
+        assert.strictEqual(msg.optionalBytesField, undefined);
+        assert.strictEqual(hasOwn("optionalBytesField"), false);
+        assert.strictEqual(msg.optionalInt32Field, undefined);
+        assert.strictEqual(hasOwn("optionalInt32Field"), false);
+        assert.strictEqual(msg.optionalInt64Field, undefined);
+        assert.strictEqual(hasOwn("optionalInt64Field"), false);
+        assert.strictEqual(msg.optionalInt64JsNumberField, undefined);
+        assert.strictEqual(hasOwn("optionalInt64JsNumberField"), false);
+        assert.strictEqual(msg.optionalInt64JsStringField, undefined);
+        assert.strictEqual(hasOwn("optionalInt64JsStringField"), false);
+        assert.strictEqual(msg.optionalFloatField, undefined);
+        assert.strictEqual(hasOwn("optionalFloatField"), false);
+        assert.strictEqual(msg.optionalBoolField, undefined);
+        assert.strictEqual(hasOwn("optionalBoolField"), false);
+        assert.strictEqual(msg.optionalEnumField, undefined);
+        assert.strictEqual(hasOwn("optionalEnumField"), false);
+        assert.strictEqual(msg.optionalMessageField, undefined);
+        assert.strictEqual(hasOwn("optionalMessageField"), false);
+        assert.strictEqual(msg.optionalWrappedUint32Field, undefined);
+        assert.strictEqual(hasOwn("optionalWrappedUint32Field"), false);
 
         // oneof
-        expect(msg.either).toStrictEqual({ case: undefined });
-        expect(hasOwn("either")).toBe(true);
+        assert.deepStrictEqual(msg.either, { case: undefined });
+        assert.strictEqual(hasOwn("either"), true);
 
         // map
-        expect(msg.mapStringStringField).toStrictEqual({});
-        expect(hasOwn("mapStringStringField")).toBe(true);
-        expect(msg.mapInt32Int32Field).toStrictEqual({});
-        expect(hasOwn("mapInt32Int32Field")).toBe(true);
-        expect(msg.mapBoolBoolField).toStrictEqual({});
-        expect(hasOwn("mapBoolBoolField")).toBe(true);
-        expect(msg.mapInt64Int64Field).toStrictEqual({});
-        expect(hasOwn("mapInt64Int64Field")).toBe(true);
-        expect(msg.mapInt32EnumField).toStrictEqual({});
-        expect(hasOwn("mapInt32EnumField")).toBe(true);
-        expect(msg.mapInt32MessageField).toStrictEqual({});
-        expect(hasOwn("mapInt32MessageField")).toBe(true);
-        expect(msg.mapInt32WrappedUint32Field).toStrictEqual({});
-        expect(hasOwn("mapInt32WrappedUint32Field")).toBe(true);
+        assert.deepStrictEqual(msg.mapStringStringField, {});
+        assert.strictEqual(hasOwn("mapStringStringField"), true);
+        assert.deepStrictEqual(msg.mapInt32Int32Field, {});
+        assert.strictEqual(hasOwn("mapInt32Int32Field"), true);
+        assert.deepStrictEqual(msg.mapBoolBoolField, {});
+        assert.strictEqual(hasOwn("mapBoolBoolField"), true);
+        assert.deepStrictEqual(msg.mapInt64Int64Field, {});
+        assert.strictEqual(hasOwn("mapInt64Int64Field"), true);
+        assert.deepStrictEqual(msg.mapInt32EnumField, {});
+        assert.strictEqual(hasOwn("mapInt32EnumField"), true);
+        assert.deepStrictEqual(msg.mapInt32MessageField, {});
+        assert.strictEqual(hasOwn("mapInt32MessageField"), true);
+        assert.deepStrictEqual(msg.mapInt32WrappedUint32Field, {});
+        assert.strictEqual(hasOwn("mapInt32WrappedUint32Field"), true);
       });
-      test("without custom prototype", () => {
+      void test("without custom prototype", () => {
         const msg = create(desc);
         const hasCustomPrototype =
           Object.getPrototypeOf(msg) !== Object.prototype;
-        expect(hasCustomPrototype).toBe(false);
+        assert.strictEqual(hasCustomPrototype, false);
       });
     });
-    describe("from proto2", () => {
+    void suite("from proto2", () => {
       const desc = proto2_ts.Proto2MessageSchema;
-      test("with expected properties", () => {
+      void test("with expected properties", () => {
         const msg = create(desc);
         function hasOwn(prop: keyof typeof msg) {
           return Object.prototype.hasOwnProperty.call(msg, prop);
         }
         // required
-        expect(msg.requiredStringField).toBe("");
-        expect(hasOwn("requiredStringField")).toBe(false);
-        expect(msg.requiredBytesField).toBeInstanceOf(Uint8Array);
-        expect(msg.requiredBytesField.length).toBe(0);
-        expect(hasOwn("requiredBytesField")).toBe(false);
-        expect(msg.requiredInt32Field).toBe(0);
-        expect(hasOwn("requiredInt32Field")).toBe(false);
-        expect(msg.requiredInt64Field).toBe(protoInt64.zero);
-        expect(hasOwn("requiredInt64Field")).toBe(false);
-        expect(msg.requiredInt64JsNumberField).toBe(protoInt64.zero);
-        expect(hasOwn("requiredInt64JsNumberField")).toBe(false);
-        expect(typeof msg.requiredInt64JsStringField).toBe("string");
-        expect(msg.requiredInt64JsStringField).toBe("0");
-        expect(hasOwn("requiredInt64JsStringField")).toBe(false);
-        expect(msg.requiredFloatField).toBe(0);
-        expect(hasOwn("requiredFloatField")).toBe(false);
-        expect(msg.requiredBoolField).toBe(false);
-        expect(hasOwn("requiredBoolField")).toBe(false);
-        expect(msg.requiredEnumField).toBe(proto2_ts.Proto2Enum.YES);
-        expect(hasOwn("requiredEnumField")).toBe(false);
-        expect(msg.requiredMessageField).toBeUndefined();
-        expect(hasOwn("requiredMessageField")).toBe(false);
-        expect(msg.requireddefaultgroup).toBeUndefined();
-        expect(hasOwn("requireddefaultgroup")).toBe(false);
-        expect(msg.requiredWrappedUint32Field).toBeUndefined();
-        expect(hasOwn("requiredWrappedUint32Field")).toBe(false);
+        assert.strictEqual(msg.requiredStringField, "");
+        assert.strictEqual(hasOwn("requiredStringField"), false);
+        assert.ok(msg.requiredBytesField instanceof Uint8Array);
+        assert.strictEqual(msg.requiredBytesField.length, 0);
+        assert.strictEqual(hasOwn("requiredBytesField"), false);
+        assert.strictEqual(msg.requiredInt32Field, 0);
+        assert.strictEqual(hasOwn("requiredInt32Field"), false);
+        assert.strictEqual(msg.requiredInt64Field, protoInt64.zero);
+        assert.strictEqual(hasOwn("requiredInt64Field"), false);
+        assert.strictEqual(msg.requiredInt64JsNumberField, protoInt64.zero);
+        assert.strictEqual(hasOwn("requiredInt64JsNumberField"), false);
+        assert.strictEqual(typeof msg.requiredInt64JsStringField, "string");
+        assert.strictEqual(msg.requiredInt64JsStringField, "0");
+        assert.strictEqual(hasOwn("requiredInt64JsStringField"), false);
+        assert.strictEqual(msg.requiredFloatField, 0);
+        assert.strictEqual(hasOwn("requiredFloatField"), false);
+        assert.strictEqual(msg.requiredBoolField, false);
+        assert.strictEqual(hasOwn("requiredBoolField"), false);
+        assert.strictEqual(msg.requiredEnumField, proto2_ts.Proto2Enum.YES);
+        assert.strictEqual(hasOwn("requiredEnumField"), false);
+        assert.strictEqual(msg.requiredMessageField, undefined);
+        assert.strictEqual(hasOwn("requiredMessageField"), false);
+        assert.strictEqual(msg.requireddefaultgroup, undefined);
+        assert.strictEqual(hasOwn("requireddefaultgroup"), false);
+        assert.strictEqual(msg.requiredWrappedUint32Field, undefined);
+        assert.strictEqual(hasOwn("requiredWrappedUint32Field"), false);
 
         // required with default
-        expect(msg.requiredDefaultStringField).toBe('hello " */ ');
-        expect(hasOwn("requiredStringField")).toBe(false);
-        expect(msg.requiredDefaultBytesField).toBeInstanceOf(Uint8Array);
-        expect(hasOwn("requiredBytesField")).toBe(false);
-        expect(msg.requiredDefaultBytesField.length).toBe(17);
-        expect(hasOwn("requiredInt32Field")).toBe(false);
-        expect(msg.requiredDefaultInt32Field).toBe(128);
-        expect(hasOwn("requiredInt64Field")).toBe(false);
-        expect(msg.requiredDefaultInt64Field).toBe(protoInt64.parse(-256));
-        expect(hasOwn("requiredInt64Field")).toBe(false);
-        expect(msg.requiredDefaultInt64JsNumberField).toBe(
+        assert.strictEqual(msg.requiredDefaultStringField, 'hello " */ ');
+        assert.strictEqual(hasOwn("requiredStringField"), false);
+        assert.ok(msg.requiredDefaultBytesField instanceof Uint8Array);
+        assert.strictEqual(hasOwn("requiredBytesField"), false);
+        assert.strictEqual(msg.requiredDefaultBytesField.length, 17);
+        assert.strictEqual(hasOwn("requiredInt32Field"), false);
+        assert.strictEqual(msg.requiredDefaultInt32Field, 128);
+        assert.strictEqual(hasOwn("requiredInt64Field"), false);
+        assert.strictEqual(msg.requiredDefaultInt64Field, protoInt64.parse(-256));
+        assert.strictEqual(hasOwn("requiredInt64Field"), false);
+        assert.strictEqual(msg.requiredDefaultInt64JsNumberField,
           protoInt64.parse(-256),
         );
-        expect(hasOwn("requiredDefaultInt64JsNumberField")).toBe(false);
-        expect(typeof msg.requiredDefaultInt64JsStringField).toBe("string");
-        expect(msg.requiredDefaultInt64JsStringField).toBe("-256");
-        expect(hasOwn("requiredDefaultInt64JsStringField")).toBe(false);
-        expect(hasOwn("requiredFloatField")).toBe(false);
-        expect(msg.requiredDefaultFloatField).toBe(-512.13);
-        expect(hasOwn("requiredBoolField")).toBe(false);
-        expect(msg.requiredDefaultBoolField).toBe(true);
-        expect(hasOwn("requiredEnumField")).toBe(false);
-        expect(msg.requiredDefaultEnumField).toBe(proto2_ts.Proto2Enum.YES);
-        expect(hasOwn("requiredDefaultEnumField")).toBe(false);
-        expect(msg.requiredDefaultMessageField).toBeUndefined();
-        expect(hasOwn("requiredDefaultMessageField")).toBe(false);
-        expect(msg.requireddefaultgroup).toBeUndefined();
-        expect(hasOwn("requireddefaultgroup")).toBe(false);
-        expect(msg.requiredDefaultWrappedUint32Field).toBeUndefined();
-        expect(hasOwn("requiredDefaultWrappedUint32Field")).toBe(false);
+        assert.strictEqual(hasOwn("requiredDefaultInt64JsNumberField"), false);
+        assert.strictEqual(typeof msg.requiredDefaultInt64JsStringField, "string");
+        assert.strictEqual(msg.requiredDefaultInt64JsStringField, "-256");
+        assert.strictEqual(hasOwn("requiredDefaultInt64JsStringField"), false);
+        assert.strictEqual(hasOwn("requiredFloatField"), false);
+        assert.strictEqual(msg.requiredDefaultFloatField, -512.13);
+        assert.strictEqual(hasOwn("requiredBoolField"), false);
+        assert.strictEqual(msg.requiredDefaultBoolField, true);
+        assert.strictEqual(hasOwn("requiredEnumField"), false);
+        assert.strictEqual(msg.requiredDefaultEnumField, proto2_ts.Proto2Enum.YES);
+        assert.strictEqual(hasOwn("requiredDefaultEnumField"), false);
+        assert.strictEqual(msg.requiredDefaultMessageField, undefined);
+        assert.strictEqual(hasOwn("requiredDefaultMessageField"), false);
+        assert.strictEqual(msg.requireddefaultgroup, undefined);
+        assert.strictEqual(hasOwn("requireddefaultgroup"), false);
+        assert.strictEqual(msg.requiredDefaultWrappedUint32Field, undefined);
+        assert.strictEqual(hasOwn("requiredDefaultWrappedUint32Field"), false);
 
         // repeated
-        expect(msg.repeatedStringField).toStrictEqual([]);
-        expect(hasOwn("repeatedStringField")).toBe(true);
-        expect(msg.repeatedBytesField).toStrictEqual([]);
-        expect(hasOwn("repeatedBytesField")).toBe(true);
-        expect(msg.repeatedInt32Field).toStrictEqual([]);
-        expect(hasOwn("repeatedInt32Field")).toBe(true);
-        expect(msg.repeatedInt64Field).toStrictEqual([]);
-        expect(hasOwn("repeatedInt64Field")).toBe(true);
-        expect(msg.repeatedInt64JsNumberField).toStrictEqual([]);
-        expect(hasOwn("repeatedInt64JsNumberField")).toBe(true);
-        expect(msg.repeatedInt64JsStringField).toStrictEqual([]);
-        expect(hasOwn("repeatedInt64JsStringField")).toBe(true);
-        expect(msg.repeatedFloatField).toStrictEqual([]);
-        expect(hasOwn("repeatedFloatField")).toBe(true);
-        expect(msg.repeatedBoolField).toStrictEqual([]);
-        expect(hasOwn("repeatedBoolField")).toBe(true);
-        expect(msg.repeatedEnumField).toStrictEqual([]);
-        expect(hasOwn("repeatedEnumField")).toBe(true);
-        expect(msg.repeatedMessageField).toStrictEqual([]);
-        expect(hasOwn("repeatedMessageField")).toBe(true);
-        expect(msg.repeatedWrappedUint32Field).toStrictEqual([]);
-        expect(hasOwn("repeatedWrappedUint32Field")).toBe(true);
+        assert.deepStrictEqual(msg.repeatedStringField, []);
+        assert.strictEqual(hasOwn("repeatedStringField"), true);
+        assert.deepStrictEqual(msg.repeatedBytesField, []);
+        assert.strictEqual(hasOwn("repeatedBytesField"), true);
+        assert.deepStrictEqual(msg.repeatedInt32Field, []);
+        assert.strictEqual(hasOwn("repeatedInt32Field"), true);
+        assert.deepStrictEqual(msg.repeatedInt64Field, []);
+        assert.strictEqual(hasOwn("repeatedInt64Field"), true);
+        assert.deepStrictEqual(msg.repeatedInt64JsNumberField, []);
+        assert.strictEqual(hasOwn("repeatedInt64JsNumberField"), true);
+        assert.deepStrictEqual(msg.repeatedInt64JsStringField, []);
+        assert.strictEqual(hasOwn("repeatedInt64JsStringField"), true);
+        assert.deepStrictEqual(msg.repeatedFloatField, []);
+        assert.strictEqual(hasOwn("repeatedFloatField"), true);
+        assert.deepStrictEqual(msg.repeatedBoolField, []);
+        assert.strictEqual(hasOwn("repeatedBoolField"), true);
+        assert.deepStrictEqual(msg.repeatedEnumField, []);
+        assert.strictEqual(hasOwn("repeatedEnumField"), true);
+        assert.deepStrictEqual(msg.repeatedMessageField, []);
+        assert.strictEqual(hasOwn("repeatedMessageField"), true);
+        assert.deepStrictEqual(msg.repeatedWrappedUint32Field, []);
+        assert.strictEqual(hasOwn("repeatedWrappedUint32Field"), true);
 
         // optional
-        expect(msg.optionalStringField).toBe("");
-        expect(hasOwn("optionalStringField")).toBe(false);
-        expect(msg.optionalBytesField).toBeInstanceOf(Uint8Array);
-        expect(msg.optionalBytesField.length).toBe(0);
-        expect(hasOwn("optionalBytesField")).toBe(false);
-        expect(msg.optionalInt32Field).toBe(0);
-        expect(hasOwn("optionalInt32Field")).toBe(false);
-        expect(msg.optionalInt64Field).toBe(protoInt64.zero);
-        expect(hasOwn("optionalInt64Field")).toBe(false);
-        expect(msg.optionalInt64JsNumberField).toBe(protoInt64.zero);
-        expect(hasOwn("optionalInt64JsNumberField")).toBe(false);
-        expect(typeof msg.optionalInt64JsStringField).toBe("string");
-        expect(msg.optionalInt64JsStringField).toBe("0");
-        expect(hasOwn("optionalInt64JsStringField")).toBe(false);
-        expect(msg.optionalFloatField).toBe(0);
-        expect(hasOwn("optionalFloatField")).toBe(false);
-        expect(msg.optionalBoolField).toBe(false);
-        expect(hasOwn("optionalBoolField")).toBe(false);
-        expect(msg.optionalEnumField).toBe(1);
-        expect(hasOwn("optionalEnumField")).toBe(false);
-        expect(msg.optionalMessageField).toBeUndefined();
-        expect(hasOwn("optionalMessageField")).toBe(false);
-        expect(msg.optionalgroup).toBeUndefined();
-        expect(hasOwn("optionalgroup")).toBe(false);
-        expect(msg.optionalWrappedUint32Field).toBeUndefined();
-        expect(hasOwn("optionalWrappedUint32Field")).toBe(false);
+        assert.strictEqual(msg.optionalStringField, "");
+        assert.strictEqual(hasOwn("optionalStringField"), false);
+        assert.ok(msg.optionalBytesField instanceof Uint8Array);
+        assert.strictEqual(msg.optionalBytesField.length, 0);
+        assert.strictEqual(hasOwn("optionalBytesField"), false);
+        assert.strictEqual(msg.optionalInt32Field, 0);
+        assert.strictEqual(hasOwn("optionalInt32Field"), false);
+        assert.strictEqual(msg.optionalInt64Field, protoInt64.zero);
+        assert.strictEqual(hasOwn("optionalInt64Field"), false);
+        assert.strictEqual(msg.optionalInt64JsNumberField, protoInt64.zero);
+        assert.strictEqual(hasOwn("optionalInt64JsNumberField"), false);
+        assert.strictEqual(typeof msg.optionalInt64JsStringField, "string");
+        assert.strictEqual(msg.optionalInt64JsStringField, "0");
+        assert.strictEqual(hasOwn("optionalInt64JsStringField"), false);
+        assert.strictEqual(msg.optionalFloatField, 0);
+        assert.strictEqual(hasOwn("optionalFloatField"), false);
+        assert.strictEqual(msg.optionalBoolField, false);
+        assert.strictEqual(hasOwn("optionalBoolField"), false);
+        assert.strictEqual(msg.optionalEnumField, 1);
+        assert.strictEqual(hasOwn("optionalEnumField"), false);
+        assert.strictEqual(msg.optionalMessageField, undefined);
+        assert.strictEqual(hasOwn("optionalMessageField"), false);
+        assert.strictEqual(msg.optionalgroup, undefined);
+        assert.strictEqual(hasOwn("optionalgroup"), false);
+        assert.strictEqual(msg.optionalWrappedUint32Field, undefined);
+        assert.strictEqual(hasOwn("optionalWrappedUint32Field"), false);
 
         // optional with default
-        expect(msg.optionalDefaultStringField).toBe('hello " */ ');
-        expect(hasOwn("optionalDefaultStringField")).toBe(false);
-        expect(msg.optionalDefaultBytesField).toBeInstanceOf(Uint8Array);
-        expect(hasOwn("optionalDefaultBytesField")).toBe(false);
-        expect(msg.optionalDefaultBytesField.length).toBe(17);
-        expect(hasOwn("optionalDefaultBytesField")).toBe(false);
-        expect(msg.optionalDefaultInt32Field).toBe(128);
-        expect(hasOwn("optionalDefaultInt32Field")).toBe(false);
-        expect(msg.optionalDefaultInt64Field).toBe(protoInt64.parse(-256));
-        expect(hasOwn("optionalDefaultInt64Field")).toBe(false);
-        expect(msg.optionalDefaultInt64JsNumberField).toBe(
+        assert.strictEqual(msg.optionalDefaultStringField, 'hello " */ ');
+        assert.strictEqual(hasOwn("optionalDefaultStringField"), false);
+        assert.ok(msg.optionalDefaultBytesField instanceof Uint8Array);
+        assert.strictEqual(hasOwn("optionalDefaultBytesField"), false);
+        assert.strictEqual(msg.optionalDefaultBytesField.length, 17);
+        assert.strictEqual(hasOwn("optionalDefaultBytesField"), false);
+        assert.strictEqual(msg.optionalDefaultInt32Field, 128);
+        assert.strictEqual(hasOwn("optionalDefaultInt32Field"), false);
+        assert.strictEqual(msg.optionalDefaultInt64Field, protoInt64.parse(-256));
+        assert.strictEqual(hasOwn("optionalDefaultInt64Field"), false);
+        assert.strictEqual(msg.optionalDefaultInt64JsNumberField,
           protoInt64.parse(-256),
         );
-        expect(hasOwn("optionalDefaultInt64JsNumberField")).toBe(false);
-        expect(msg.optionalDefaultInt64JsStringField).toBe("-256");
-        expect(hasOwn("optionalDefaultInt64JsStringField")).toBe(false);
-        expect(msg.optionalDefaultFloatField).toBe(-512.13);
-        expect(hasOwn("optionalDefaultFloatField")).toBe(false);
-        expect(msg.optionalDefaultBoolField).toBe(true);
-        expect(hasOwn("optionalDefaultBoolField")).toBe(false);
-        expect(msg.optionalDefaultEnumField).toBe(proto2_ts.Proto2Enum.YES);
-        expect(hasOwn("optionalDefaultEnumField")).toBe(false);
-        expect(msg.optionalDefaultMessageField).toBeUndefined();
-        expect(hasOwn("optionalDefaultMessageField")).toBe(false);
-        expect(msg.optionaldefaultgroup).toBeUndefined();
-        expect(hasOwn("optionaldefaultgroup")).toBe(false);
-        expect(msg.optionalWrappedUint32Field).toBeUndefined();
-        expect(hasOwn("optionalWrappedUint32Field")).toBe(false);
+        assert.strictEqual(hasOwn("optionalDefaultInt64JsNumberField"), false);
+        assert.strictEqual(msg.optionalDefaultInt64JsStringField, "-256");
+        assert.strictEqual(hasOwn("optionalDefaultInt64JsStringField"), false);
+        assert.strictEqual(msg.optionalDefaultFloatField, -512.13);
+        assert.strictEqual(hasOwn("optionalDefaultFloatField"), false);
+        assert.strictEqual(msg.optionalDefaultBoolField, true);
+        assert.strictEqual(hasOwn("optionalDefaultBoolField"), false);
+        assert.strictEqual(msg.optionalDefaultEnumField, proto2_ts.Proto2Enum.YES);
+        assert.strictEqual(hasOwn("optionalDefaultEnumField"), false);
+        assert.strictEqual(msg.optionalDefaultMessageField, undefined);
+        assert.strictEqual(hasOwn("optionalDefaultMessageField"), false);
+        assert.strictEqual(msg.optionaldefaultgroup, undefined);
+        assert.strictEqual(hasOwn("optionaldefaultgroup"), false);
+        assert.strictEqual(msg.optionalWrappedUint32Field, undefined);
+        assert.strictEqual(hasOwn("optionalWrappedUint32Field"), false);
 
         // oneof
-        expect(msg.either).toStrictEqual({ case: undefined });
-        expect(hasOwn("either")).toBe(true);
+        assert.deepStrictEqual(msg.either, { case: undefined });
+        assert.strictEqual(hasOwn("either"), true);
 
         // map
-        expect(msg.mapStringStringField).toStrictEqual({});
-        expect(hasOwn("mapStringStringField")).toBe(true);
-        expect(msg.mapInt32Int32Field).toStrictEqual({});
-        expect(hasOwn("mapInt32Int32Field")).toBe(true);
-        expect(msg.mapBoolBoolField).toStrictEqual({});
-        expect(hasOwn("mapBoolBoolField")).toBe(true);
-        expect(msg.mapInt64Int64Field).toStrictEqual({});
-        expect(hasOwn("mapInt64Int64Field")).toBe(true);
-        expect(msg.mapInt32EnumField).toStrictEqual({});
-        expect(hasOwn("mapInt32EnumField")).toBe(true);
-        expect(msg.mapInt32MessageField).toStrictEqual({});
-        expect(hasOwn("mapInt32MessageField")).toBe(true);
-        expect(msg.mapInt32WrappedUint32Field).toStrictEqual({});
-        expect(hasOwn("mapInt32WrappedUint32Field")).toBe(true);
+        assert.deepStrictEqual(msg.mapStringStringField, {});
+        assert.strictEqual(hasOwn("mapStringStringField"), true);
+        assert.deepStrictEqual(msg.mapInt32Int32Field, {});
+        assert.strictEqual(hasOwn("mapInt32Int32Field"), true);
+        assert.deepStrictEqual(msg.mapBoolBoolField, {});
+        assert.strictEqual(hasOwn("mapBoolBoolField"), true);
+        assert.deepStrictEqual(msg.mapInt64Int64Field, {});
+        assert.strictEqual(hasOwn("mapInt64Int64Field"), true);
+        assert.deepStrictEqual(msg.mapInt32EnumField, {});
+        assert.strictEqual(hasOwn("mapInt32EnumField"), true);
+        assert.deepStrictEqual(msg.mapInt32MessageField, {});
+        assert.strictEqual(hasOwn("mapInt32MessageField"), true);
+        assert.deepStrictEqual(msg.mapInt32WrappedUint32Field, {});
+        assert.strictEqual(hasOwn("mapInt32WrappedUint32Field"), true);
       });
-      test("with custom prototype", () => {
+      void test("with custom prototype", () => {
         const msg = create(desc);
         const hasCustomPrototype =
           Object.getPrototypeOf(msg) !== Object.prototype;
-        expect(hasCustomPrototype).toBe(true);
+        assert.strictEqual(hasCustomPrototype, true);
       });
     });
-    describe("from edition2023", () => {
+    void suite("from edition2023", () => {
       const desc = edition2023_ts.Edition2023MessageSchema;
-      test("with expected properties", () => {
+      void test("with expected properties", () => {
         const msg = create(desc);
         function hasOwn(prop: keyof typeof msg) {
           return Object.prototype.hasOwnProperty.call(msg, prop);
         }
 
         // explicit
-        expect(msg.explicitStringField).toBe("");
-        expect(hasOwn("explicitStringField")).toBe(false);
-        expect(msg.explicitBytesField).toBeInstanceOf(Uint8Array);
-        expect(msg.explicitBytesField.length).toBe(0);
-        expect(hasOwn("explicitBytesField")).toBe(false);
-        expect(msg.explicitInt32Field).toBe(0);
-        expect(hasOwn("explicitInt32Field")).toBe(false);
-        expect(msg.explicitInt64Field).toBe(protoInt64.zero);
-        expect(hasOwn("explicitInt64Field")).toBe(false);
-        expect(msg.explicitInt64JsNumberField).toBe(protoInt64.zero);
-        expect(hasOwn("explicitInt64JsNumberField")).toBe(false);
-        expect(typeof msg.explicitInt64JsStringField).toBe("string");
-        expect(msg.explicitInt64JsStringField).toBe("0");
-        expect(hasOwn("explicitInt64JsStringField")).toBe(false);
-        expect(msg.explicitFloatField).toBe(0);
-        expect(hasOwn("explicitFloatField")).toBe(false);
-        expect(msg.explicitBoolField).toBe(false);
-        expect(hasOwn("explicitBoolField")).toBe(false);
-        expect(msg.explicitEnumOpenField).toBe(
+        assert.strictEqual(msg.explicitStringField, "");
+        assert.strictEqual(hasOwn("explicitStringField"), false);
+        assert.ok(msg.explicitBytesField instanceof Uint8Array);
+        assert.strictEqual(msg.explicitBytesField.length, 0);
+        assert.strictEqual(hasOwn("explicitBytesField"), false);
+        assert.strictEqual(msg.explicitInt32Field, 0);
+        assert.strictEqual(hasOwn("explicitInt32Field"), false);
+        assert.strictEqual(msg.explicitInt64Field, protoInt64.zero);
+        assert.strictEqual(hasOwn("explicitInt64Field"), false);
+        assert.strictEqual(msg.explicitInt64JsNumberField, protoInt64.zero);
+        assert.strictEqual(hasOwn("explicitInt64JsNumberField"), false);
+        assert.strictEqual(typeof msg.explicitInt64JsStringField, "string");
+        assert.strictEqual(msg.explicitInt64JsStringField, "0");
+        assert.strictEqual(hasOwn("explicitInt64JsStringField"), false);
+        assert.strictEqual(msg.explicitFloatField, 0);
+        assert.strictEqual(hasOwn("explicitFloatField"), false);
+        assert.strictEqual(msg.explicitBoolField, false);
+        assert.strictEqual(hasOwn("explicitBoolField"), false);
+        assert.strictEqual(msg.explicitEnumOpenField,
           edition2023_ts.Edition2023EnumOpen.UNSPECIFIED,
         );
-        expect(hasOwn("explicitEnumOpenField")).toBe(false);
-        expect(msg.explicitEnumClosedField).toBe(
+        assert.strictEqual(hasOwn("explicitEnumOpenField"), false);
+        assert.strictEqual(msg.explicitEnumClosedField,
           edition2023_ts.Edition2023EnumClosed.A,
         );
-        expect(hasOwn("explicitEnumClosedField")).toBe(false);
-        expect(msg.explicitMessageField).toBeUndefined();
-        expect(hasOwn("explicitMessageField")).toBe(false);
-        expect(msg.explicitMessageDelimitedField).toBeUndefined();
-        expect(hasOwn("explicitMessageDelimitedField")).toBe(false);
-        expect(msg.explicitWrappedUint32Field).toBeUndefined();
-        expect(hasOwn("explicitWrappedUint32Field")).toBe(false);
+        assert.strictEqual(hasOwn("explicitEnumClosedField"), false);
+        assert.strictEqual(msg.explicitMessageField, undefined);
+        assert.strictEqual(hasOwn("explicitMessageField"), false);
+        assert.strictEqual(msg.explicitMessageDelimitedField, undefined);
+        assert.strictEqual(hasOwn("explicitMessageDelimitedField"), false);
+        assert.strictEqual(msg.explicitWrappedUint32Field, undefined);
+        assert.strictEqual(hasOwn("explicitWrappedUint32Field"), false);
 
         // implicit
-        expect(msg.implicitStringField).toBe("");
-        expect(hasOwn("implicitStringField")).toBe(true);
-        expect(msg.implicitBytesField).toBeInstanceOf(Uint8Array);
-        expect(msg.implicitBytesField.length).toBe(0);
-        expect(hasOwn("implicitBytesField")).toBe(true);
-        expect(msg.implicitInt32Field).toBe(0);
-        expect(hasOwn("implicitInt32Field")).toBe(true);
-        expect(msg.implicitInt64Field).toBe(protoInt64.zero);
-        expect(hasOwn("implicitInt64Field")).toBe(true);
-        expect(msg.implicitInt64JsNumberField).toBe(protoInt64.zero);
-        expect(hasOwn("implicitInt64JsNumberField")).toBe(true);
-        expect(typeof msg.implicitInt64JsStringField).toBe("string");
-        expect(msg.implicitInt64JsStringField).toBe("0");
-        expect(hasOwn("implicitInt64JsStringField")).toBe(true);
-        expect(msg.implicitFloatField).toBe(0);
-        expect(hasOwn("implicitFloatField")).toBe(true);
-        expect(msg.implicitBoolField).toBe(false);
-        expect(hasOwn("implicitBoolField")).toBe(true);
-        expect(msg.implicitEnumOpenField).toBe(
+        assert.strictEqual(msg.implicitStringField, "");
+        assert.strictEqual(hasOwn("implicitStringField"), true);
+        assert.ok(msg.implicitBytesField instanceof Uint8Array);
+        assert.strictEqual(msg.implicitBytesField.length, 0);
+        assert.strictEqual(hasOwn("implicitBytesField"), true);
+        assert.strictEqual(msg.implicitInt32Field, 0);
+        assert.strictEqual(hasOwn("implicitInt32Field"), true);
+        assert.strictEqual(msg.implicitInt64Field, protoInt64.zero);
+        assert.strictEqual(hasOwn("implicitInt64Field"), true);
+        assert.strictEqual(msg.implicitInt64JsNumberField, protoInt64.zero);
+        assert.strictEqual(hasOwn("implicitInt64JsNumberField"), true);
+        assert.strictEqual(typeof msg.implicitInt64JsStringField, "string");
+        assert.strictEqual(msg.implicitInt64JsStringField, "0");
+        assert.strictEqual(hasOwn("implicitInt64JsStringField"), true);
+        assert.strictEqual(msg.implicitFloatField, 0);
+        assert.strictEqual(hasOwn("implicitFloatField"), true);
+        assert.strictEqual(msg.implicitBoolField, false);
+        assert.strictEqual(hasOwn("implicitBoolField"), true);
+        assert.strictEqual(msg.implicitEnumOpenField,
           edition2023_ts.Edition2023EnumOpen.UNSPECIFIED,
         );
-        expect(hasOwn("implicitEnumOpenField")).toBe(true);
+        assert.strictEqual(hasOwn("implicitEnumOpenField"), true);
 
         // required
-        expect(msg.requiredStringField).toBe("");
-        expect(hasOwn("requiredStringField")).toBe(false);
-        expect(msg.requiredBytesField).toBeInstanceOf(Uint8Array);
-        expect(msg.requiredBytesField.length).toBe(0);
-        expect(hasOwn("requiredBytesField")).toBe(false);
-        expect(msg.requiredInt32Field).toBe(0);
-        expect(hasOwn("requiredInt32Field")).toBe(false);
-        expect(msg.requiredInt64Field).toBe(protoInt64.zero);
-        expect(hasOwn("requiredInt64Field")).toBe(false);
-        expect(msg.requiredInt64JsNumberField).toBe(protoInt64.zero);
-        expect(hasOwn("requiredInt64JsNumberField")).toBe(false);
-        expect(typeof msg.requiredInt64JsStringField).toBe("string");
-        expect(msg.requiredInt64JsStringField).toBe("0");
-        expect(hasOwn("requiredInt64JsStringField")).toBe(false);
-        expect(msg.requiredFloatField).toBe(0);
-        expect(hasOwn("requiredFloatField")).toBe(false);
-        expect(msg.requiredBoolField).toBe(false);
-        expect(hasOwn("requiredBoolField")).toBe(false);
-        expect(msg.requiredEnumOpenField).toBe(
+        assert.strictEqual(msg.requiredStringField, "");
+        assert.strictEqual(hasOwn("requiredStringField"), false);
+        assert.ok(msg.requiredBytesField instanceof Uint8Array);
+        assert.strictEqual(msg.requiredBytesField.length, 0);
+        assert.strictEqual(hasOwn("requiredBytesField"), false);
+        assert.strictEqual(msg.requiredInt32Field, 0);
+        assert.strictEqual(hasOwn("requiredInt32Field"), false);
+        assert.strictEqual(msg.requiredInt64Field, protoInt64.zero);
+        assert.strictEqual(hasOwn("requiredInt64Field"), false);
+        assert.strictEqual(msg.requiredInt64JsNumberField, protoInt64.zero);
+        assert.strictEqual(hasOwn("requiredInt64JsNumberField"), false);
+        assert.strictEqual(typeof msg.requiredInt64JsStringField, "string");
+        assert.strictEqual(msg.requiredInt64JsStringField, "0");
+        assert.strictEqual(hasOwn("requiredInt64JsStringField"), false);
+        assert.strictEqual(msg.requiredFloatField, 0);
+        assert.strictEqual(hasOwn("requiredFloatField"), false);
+        assert.strictEqual(msg.requiredBoolField, false);
+        assert.strictEqual(hasOwn("requiredBoolField"), false);
+        assert.strictEqual(msg.requiredEnumOpenField,
           edition2023_ts.Edition2023EnumOpen.UNSPECIFIED,
         );
-        expect(hasOwn("requiredEnumOpenField")).toBe(false);
-        expect(msg.requiredEnumClosedField).toBe(
+        assert.strictEqual(hasOwn("requiredEnumOpenField"), false);
+        assert.strictEqual(msg.requiredEnumClosedField,
           edition2023_ts.Edition2023EnumClosed.A,
         );
-        expect(hasOwn("requiredEnumClosedField")).toBe(false);
-        expect(msg.requiredMessageField).toBeUndefined();
-        expect(hasOwn("requiredMessageField")).toBe(false);
-        expect(msg.requiredMessageDelimitedField).toBeUndefined();
-        expect(hasOwn("requiredMessageDelimitedField")).toBe(false);
-        expect(msg.requiredWrappedUint32Field).toBeUndefined();
-        expect(hasOwn("requiredWrappedUint32Field")).toBe(false);
+        assert.strictEqual(hasOwn("requiredEnumClosedField"), false);
+        assert.strictEqual(msg.requiredMessageField, undefined);
+        assert.strictEqual(hasOwn("requiredMessageField"), false);
+        assert.strictEqual(msg.requiredMessageDelimitedField, undefined);
+        assert.strictEqual(hasOwn("requiredMessageDelimitedField"), false);
+        assert.strictEqual(msg.requiredWrappedUint32Field, undefined);
+        assert.strictEqual(hasOwn("requiredWrappedUint32Field"), false);
 
         // required with default
-        expect(msg.requiredDefaultStringField).toBe('hello " */ ');
-        expect(hasOwn("requiredStringField")).toBe(false);
-        expect(msg.requiredDefaultBytesField).toBeInstanceOf(Uint8Array);
-        expect(hasOwn("requiredBytesField")).toBe(false);
-        expect(msg.requiredDefaultBytesField.length).toBe(17);
-        expect(hasOwn("requiredInt32Field")).toBe(false);
-        expect(msg.requiredDefaultInt32Field).toBe(128);
-        expect(hasOwn("requiredInt64Field")).toBe(false);
-        expect(msg.requiredDefaultInt64Field).toBe(protoInt64.parse(-256));
-        expect(hasOwn("requiredInt64Field")).toBe(false);
-        expect(msg.requiredDefaultInt64JsNumberField).toBe(
+        assert.strictEqual(msg.requiredDefaultStringField, 'hello " */ ');
+        assert.strictEqual(hasOwn("requiredStringField"), false);
+        assert.ok(msg.requiredDefaultBytesField instanceof Uint8Array);
+        assert.strictEqual(hasOwn("requiredBytesField"), false);
+        assert.strictEqual(msg.requiredDefaultBytesField.length, 17);
+        assert.strictEqual(hasOwn("requiredInt32Field"), false);
+        assert.strictEqual(msg.requiredDefaultInt32Field, 128);
+        assert.strictEqual(hasOwn("requiredInt64Field"), false);
+        assert.strictEqual(msg.requiredDefaultInt64Field, protoInt64.parse(-256));
+        assert.strictEqual(hasOwn("requiredInt64Field"), false);
+        assert.strictEqual(msg.requiredDefaultInt64JsNumberField,
           protoInt64.parse(-256),
         );
-        expect(hasOwn("requiredDefaultInt64JsNumberField")).toBe(false);
-        expect(typeof msg.requiredDefaultInt64JsStringField).toBe("string");
-        expect(msg.requiredDefaultInt64JsStringField).toBe("-256");
-        expect(hasOwn("requiredDefaultInt64JsStringField")).toBe(false);
-        expect(msg.requiredDefaultFloatField).toBe(-512.13);
-        expect(hasOwn("requiredDefaultFloatField")).toBe(false);
-        expect(msg.requiredDefaultFloatField).toBe(-512.13);
-        expect(hasOwn("requiredDefaultFloatField")).toBe(false);
-        expect(msg.requiredDefaultBoolField).toBe(true);
-        expect(hasOwn("requiredDefaultBoolField")).toBe(false);
-        expect(msg.requiredDefaultEnumOpenField).toBe(
+        assert.strictEqual(hasOwn("requiredDefaultInt64JsNumberField"), false);
+        assert.strictEqual(typeof msg.requiredDefaultInt64JsStringField, "string");
+        assert.strictEqual(msg.requiredDefaultInt64JsStringField, "-256");
+        assert.strictEqual(hasOwn("requiredDefaultInt64JsStringField"), false);
+        assert.strictEqual(msg.requiredDefaultFloatField, -512.13);
+        assert.strictEqual(hasOwn("requiredDefaultFloatField"), false);
+        assert.strictEqual(msg.requiredDefaultFloatField, -512.13);
+        assert.strictEqual(hasOwn("requiredDefaultFloatField"), false);
+        assert.strictEqual(msg.requiredDefaultBoolField, true);
+        assert.strictEqual(hasOwn("requiredDefaultBoolField"), false);
+        assert.strictEqual(msg.requiredDefaultEnumOpenField,
           edition2023_ts.Edition2023EnumOpen.A,
         );
-        expect(hasOwn("requiredDefaultEnumOpenField")).toBe(false);
-        expect(msg.requiredDefaultEnumClosedField).toBe(
+        assert.strictEqual(hasOwn("requiredDefaultEnumOpenField"), false);
+        assert.strictEqual(msg.requiredDefaultEnumClosedField,
           edition2023_ts.Edition2023EnumClosed.A,
         );
 
         // repeated
-        expect(msg.repeatedStringField).toStrictEqual([]);
-        expect(hasOwn("repeatedStringField")).toBe(true);
-        expect(msg.repeatedBytesField).toStrictEqual([]);
-        expect(hasOwn("repeatedBytesField")).toBe(true);
-        expect(msg.repeatedInt32Field).toStrictEqual([]);
-        expect(hasOwn("repeatedInt32Field")).toBe(true);
-        expect(msg.repeatedInt64Field).toStrictEqual([]);
-        expect(hasOwn("repeatedInt64Field")).toBe(true);
-        expect(msg.repeatedInt64JsNumberField).toStrictEqual([]);
-        expect(hasOwn("repeatedInt64JsNumberField")).toBe(true);
-        expect(msg.repeatedInt64JsStringField).toStrictEqual([]);
-        expect(hasOwn("repeatedInt64JsStringField")).toBe(true);
-        expect(msg.repeatedFloatField).toStrictEqual([]);
-        expect(hasOwn("repeatedFloatField")).toBe(true);
-        expect(msg.repeatedBoolField).toStrictEqual([]);
-        expect(hasOwn("repeatedBoolField")).toBe(true);
-        expect(msg.repeatedEnumOpenField).toStrictEqual([]);
-        expect(hasOwn("repeatedEnumOpenField")).toBe(true);
-        expect(msg.repeatedEnumClosedField).toStrictEqual([]);
-        expect(hasOwn("repeatedEnumClosedField")).toBe(true);
-        expect(msg.repeatedMessageField).toStrictEqual([]);
-        expect(hasOwn("repeatedMessageField")).toBe(true);
-        expect(msg.repeatedWrappedUint32Field).toStrictEqual([]);
-        expect(hasOwn("repeatedWrappedUint32Field")).toBe(true);
+        assert.deepStrictEqual(msg.repeatedStringField, []);
+        assert.strictEqual(hasOwn("repeatedStringField"), true);
+        assert.deepStrictEqual(msg.repeatedBytesField, []);
+        assert.strictEqual(hasOwn("repeatedBytesField"), true);
+        assert.deepStrictEqual(msg.repeatedInt32Field, []);
+        assert.strictEqual(hasOwn("repeatedInt32Field"), true);
+        assert.deepStrictEqual(msg.repeatedInt64Field, []);
+        assert.strictEqual(hasOwn("repeatedInt64Field"), true);
+        assert.deepStrictEqual(msg.repeatedInt64JsNumberField, []);
+        assert.strictEqual(hasOwn("repeatedInt64JsNumberField"), true);
+        assert.deepStrictEqual(msg.repeatedInt64JsStringField, []);
+        assert.strictEqual(hasOwn("repeatedInt64JsStringField"), true);
+        assert.deepStrictEqual(msg.repeatedFloatField, []);
+        assert.strictEqual(hasOwn("repeatedFloatField"), true);
+        assert.deepStrictEqual(msg.repeatedBoolField, []);
+        assert.strictEqual(hasOwn("repeatedBoolField"), true);
+        assert.deepStrictEqual(msg.repeatedEnumOpenField, []);
+        assert.strictEqual(hasOwn("repeatedEnumOpenField"), true);
+        assert.deepStrictEqual(msg.repeatedEnumClosedField, []);
+        assert.strictEqual(hasOwn("repeatedEnumClosedField"), true);
+        assert.deepStrictEqual(msg.repeatedMessageField, []);
+        assert.strictEqual(hasOwn("repeatedMessageField"), true);
+        assert.deepStrictEqual(msg.repeatedWrappedUint32Field, []);
+        assert.strictEqual(hasOwn("repeatedWrappedUint32Field"), true);
 
         // oneof
-        expect(msg.either).toStrictEqual({ case: undefined });
-        expect(hasOwn("either")).toBe(true);
+        assert.deepStrictEqual(msg.either, { case: undefined });
+        assert.strictEqual(hasOwn("either"), true);
 
         // map
-        expect(msg.mapStringStringField).toStrictEqual({});
-        expect(hasOwn("mapStringStringField")).toBe(true);
-        expect(msg.mapInt32Int32Field).toStrictEqual({});
-        expect(hasOwn("mapInt32Int32Field")).toBe(true);
-        expect(msg.mapBoolBoolField).toStrictEqual({});
-        expect(hasOwn("mapBoolBoolField")).toBe(true);
-        expect(msg.mapInt64Int64Field).toStrictEqual({});
-        expect(hasOwn("mapInt64Int64Field")).toBe(true);
-        expect(msg.mapInt32EnumOpenField).toStrictEqual({});
-        expect(hasOwn("mapInt32EnumOpenField")).toBe(true);
-        expect(msg.mapInt32MessageField).toStrictEqual({});
-        expect(hasOwn("mapInt32MessageField")).toBe(true);
-        expect(msg.mapInt32WrappedUint32Field).toStrictEqual({});
-        expect(hasOwn("mapInt32WrappedUint32Field")).toBe(true);
+        assert.deepStrictEqual(msg.mapStringStringField, {});
+        assert.strictEqual(hasOwn("mapStringStringField"), true);
+        assert.deepStrictEqual(msg.mapInt32Int32Field, {});
+        assert.strictEqual(hasOwn("mapInt32Int32Field"), true);
+        assert.deepStrictEqual(msg.mapBoolBoolField, {});
+        assert.strictEqual(hasOwn("mapBoolBoolField"), true);
+        assert.deepStrictEqual(msg.mapInt64Int64Field, {});
+        assert.strictEqual(hasOwn("mapInt64Int64Field"), true);
+        assert.deepStrictEqual(msg.mapInt32EnumOpenField, {});
+        assert.strictEqual(hasOwn("mapInt32EnumOpenField"), true);
+        assert.deepStrictEqual(msg.mapInt32MessageField, {});
+        assert.strictEqual(hasOwn("mapInt32MessageField"), true);
+        assert.deepStrictEqual(msg.mapInt32WrappedUint32Field, {});
+        assert.strictEqual(hasOwn("mapInt32WrappedUint32Field"), true);
       });
-      test("with custom prototype", () => {
+      void test("with custom prototype", () => {
         const msg = create(desc);
         const hasCustomPrototype =
           Object.getPrototypeOf(msg) !== Object.prototype;
-        expect(hasCustomPrototype).toBe(true);
+        assert.strictEqual(hasCustomPrototype, true);
       });
     });
-    describe("from edition2023 with proto3 features", () => {
+    void suite("from edition2023 with proto3 features", () => {
       const desc = test_messages_proto3_editions_ts.TestAllTypesProto3Schema;
       test("without custom prototype", () => {
         const msg = create(desc);
         const hasCustomPrototype =
           Object.getPrototypeOf(msg) !== Object.prototype;
-        expect(hasCustomPrototype).toBe(false);
+        assert.strictEqual(hasCustomPrototype, false);
       });
     });
   });
 
-  describe("with init argument", () => {
+  void suite("with init argument", () => {
     test("typed message returns same instance of typed message", () => {
       const user1 = create(example_ts.UserSchema);
       const user2 = create(example_ts.UserSchema, user1);
-      expect(user2).toBe(user1);
+      assert.strictEqual(user2, user1);
     });
     test("rejects foreign typed message as a type error", () => {
       const user = create(example_ts.UserSchema);
       // @ts-expect-error TS2345
       const notAUser = create(proto3_ts.Proto3MessageSchema, user);
-      expect(notAUser).toBeDefined();
+      assert.ok(notAUser !== undefined);
     });
     test("rejects foreign typed message with assignable properties as a type error", () => {
       const a = create(ts_types.TsTypeASchema);
       // @ts-expect-error TS2345: Argument of type TsTypeA is not assignable to parameter of type MessageInit<TsTypeB> | undefined
       const b = create(ts_types.TsTypeBSchema, a);
-      expect(b).toBeDefined();
+      assert.ok(b !== undefined);
     });
     test("rejects extra properties in the object literal as a type error", () => {
       const msg = create(proto3_ts.Proto3MessageSchema, {
         // @ts-expect-error TS2353
         extraProperty: true,
       });
-      expect(msg).toBeDefined();
+      assert.ok(msg !== undefined);
     });
-    describe("inits proto2", () => {
-      test.each(fillProto2MessageNames())("field %s", (name) => {
-        const desc = proto2_ts.Proto2MessageSchema;
-        const filled = fillProto2Message(create(desc));
-        const init: MessageInitShape<typeof desc> = {};
-        for (const k in filled) {
-          (init as Record<string, unknown>)[k] = (
-            filled as Record<string, unknown>
-          )[k];
-        }
-        const created = create(desc, init);
-        switch (name) {
-          case "oneofBoolField":
-            expect(created.either).toStrictEqual(filled.either);
-            break;
-          default:
-            expect(isFieldSet(created, desc.field[name])).toBe(true);
-            expect(created[name]).toStrictEqual(filled[name]);
-        }
-      });
+    void suite("inits proto2", () => {
+      for (const name of fillProto2MessageNames()) {
+        void test(`field ${name}`, () => {
+          const desc = proto2_ts.Proto2MessageSchema;
+          const filled = fillProto2Message(create(desc));
+          const init: MessageInitShape<typeof desc> = {};
+          for (const k in filled) {
+            (init as Record<string, unknown>)[k] = (
+              filled as Record<string, unknown>
+            )[k];
+          }
+          const created = create(desc, init);
+          switch (name) {
+            case "oneofBoolField":
+              assert.deepStrictEqual(created.either, filled.either);
+              break;
+            default:
+              assert.strictEqual(isFieldSet(created, desc.field[name]), true);
+              assert.deepStrictEqual(created[name], filled[name]);
+          }
+        });
+      }
     });
-    describe("inits proto3", () => {
-      test.each(fillProto3MessageNames())("field %s", (name) => {
-        const desc = proto3_ts.Proto3MessageSchema;
-        const filled = fillProto3Message(create(desc));
-        const init: MessageInitShape<typeof desc> = {};
-        for (const k in filled) {
-          (init as Record<string, unknown>)[k] = (
-            filled as Record<string, unknown>
-          )[k];
-        }
-        const created = create(desc, init);
-        switch (name) {
-          case "oneofBoolField":
-            expect(created.either).toStrictEqual(filled.either);
-            break;
-          default:
-            expect(isFieldSet(created, desc.field[name])).toBe(true);
-            expect(created[name]).toStrictEqual(filled[name]);
-        }
-      });
+    void suite("inits proto3", () => {
+      for (const name of fillProto3MessageNames()) {
+        void test(`field ${name}`, () => {
+          const desc = proto3_ts.Proto3MessageSchema;
+          const filled = fillProto3Message(create(desc));
+          const init: MessageInitShape<typeof desc> = {};
+          for (const k in filled) {
+            (init as Record<string, unknown>)[k] = (
+              filled as Record<string, unknown>
+            )[k];
+          }
+          const created = create(desc, init);
+          switch (name) {
+            case "oneofBoolField":
+              assert.deepStrictEqual(created.either, filled.either);
+              break;
+            default:
+              assert.strictEqual(isFieldSet(created, desc.field[name]), true);
+              assert.deepStrictEqual(created[name], filled[name]);
+          }
+        });
+      }
     });
-    describe("inits edition2023", () => {
-      test.each(fillEdition2023MessageNames())("field %s", (name) => {
-        const desc = edition2023_ts.Edition2023MessageSchema;
-        const filled = fillEdition2023Message(create(desc));
-        const init: MessageInitShape<typeof desc> = {};
-        for (const k in filled) {
-          (init as Record<string, unknown>)[k] = (
-            filled as Record<string, unknown>
-          )[k];
-        }
-        const created = create(desc, init);
-        switch (name) {
-          case "oneofBoolField":
-            expect(created.either).toStrictEqual(filled.either);
-            break;
-          default:
-            expect(isFieldSet(created, desc.field[name])).toBe(true);
-            expect(created[name]).toStrictEqual(filled[name]);
-        }
-      });
+    void suite("inits edition2023", () => {
+      for (const name of fillEdition2023MessageNames()) {
+        void test(`field ${name}`, () => {
+          const desc = edition2023_ts.Edition2023MessageSchema;
+          const filled = fillEdition2023Message(create(desc));
+          const init: MessageInitShape<typeof desc> = {};
+          for (const k in filled) {
+            (init as Record<string, unknown>)[k] = (
+              filled as Record<string, unknown>
+            )[k];
+          }
+          const created = create(desc, init);
+          switch (name) {
+            case "oneofBoolField":
+              assert.deepStrictEqual(created.either, filled.either);
+              break;
+            default:
+              assert.strictEqual(isFieldSet(created, desc.field[name]), true);
+              assert.deepStrictEqual(created[name], filled[name]);
+          }
+        });
+      }
     });
-    describe("skips null values", () => {
-      describe.each([
+    void suite("skips null values", () => {
+      for (const desc of [
         proto2_ts.Proto2MessageSchema,
         proto3_ts.Proto3MessageSchema,
         edition2023_ts.Edition2023MessageSchema,
-      ])("$typeName", (desc) => {
-        test.each(desc.fields)("$name", (f) => {
-          const init: Record<string, unknown> = {};
-          for (const f of desc.members) {
-            init[f.localName] = null;
+      ]) {
+        void suite(`${desc.typeName}`, () => {
+          for (const field of desc.fields) {
+            void test(`${field.name}`, () => {
+              const init: Record<string, unknown> = {};
+              for (const f of desc.members) {
+                init[f.localName] = null;
+              }
+              const msg = create(desc, init);
+              const r = reflect(desc, msg);
+              assert.strictEqual(r.isSet(field), false);
+            })
           }
-          const msg = create(desc, init);
-          const r = reflect(desc, msg);
-          expect(r.isSet(f)).toBe(false);
         });
-      });
+      }
     });
-    describe("skips undefined values", () => {
-      describe.each([
+    void suite("skips undefined values", () => {
+      for (const desc of [
         proto2_ts.Proto2MessageSchema,
         proto3_ts.Proto3MessageSchema,
         edition2023_ts.Edition2023MessageSchema,
-      ])("$typeName", (desc) => {
-        test.each(desc.fields)("$name", (f) => {
-          const init: Record<string, unknown> = {};
-          for (const f of desc.members) {
-            init[f.localName] = undefined;
+      ]) {
+        void suite(`${desc.typeName}`, () => {
+          for (const field of desc.fields) {
+            void test(`${field.name}`, () => {
+              const init: Record<string, unknown> = {};
+              for (const f of desc.members) {
+                init[f.localName] = undefined;
+              }
+              const msg = create(desc, init);
+              const r = reflect(desc, msg);
+              assert.strictEqual(r.isSet(field), false);
+            })
           }
-          const msg = create(desc, init);
-          const r = reflect(desc, msg);
-          expect(r.isSet(f)).toBe(false);
         });
-      });
+      }
     });
-    describe("64-bit integer field", () => {
+    void suite("64-bit integer field", () => {
       test("accepts generated types", () => {
         const msg = create(proto3_ts.Proto3MessageSchema, {
           singularInt64Field: protoInt64.parse(1),
@@ -678,19 +693,19 @@ describe("create()", () => {
             "2": protoInt64.parse(9),
           },
         });
-        expect(msg.singularInt64Field).toBe(protoInt64.parse(1));
-        expect(msg.singularInt64JsNumberField).toBe(protoInt64.parse(2));
-        expect(msg.singularInt64JsStringField).toBe("3");
-        expect(msg.repeatedInt64Field).toStrictEqual([protoInt64.parse(4)]);
-        expect(msg.repeatedInt64JsNumberField).toStrictEqual([
+        assert.strictEqual(msg.singularInt64Field, protoInt64.parse(1));
+        assert.strictEqual(msg.singularInt64JsNumberField, protoInt64.parse(2));
+        assert.strictEqual(msg.singularInt64JsStringField, "3");
+        assert.deepStrictEqual(msg.repeatedInt64Field, [protoInt64.parse(4)]);
+        assert.deepStrictEqual(msg.repeatedInt64JsNumberField, [
           protoInt64.parse(5),
         ]);
-        expect(msg.repeatedInt64JsStringField).toStrictEqual(["6"]);
-        expect(msg.either).toStrictEqual({
+        assert.deepStrictEqual(msg.repeatedInt64JsStringField, ["6"]);
+        assert.deepStrictEqual(msg.either, {
           case: "oneofInt64Field",
           value: protoInt64.parse(7),
         });
-        expect(msg.mapInt64Int64Field).toStrictEqual({
+        assert.deepStrictEqual(msg.mapInt64Int64Field, {
           "1": protoInt64.parse(8),
           "2": protoInt64.parse(9),
         });
@@ -721,26 +736,26 @@ describe("create()", () => {
             "2": 9,
           },
         });
-        expect(msg).toBeDefined();
-        expect(msg.singularInt64Field).toBe("1");
-        expect(msg.singularInt64JsNumberField).toBe("2");
-        expect(msg.singularInt64JsStringField).toBe(protoInt64.parse(3));
-        expect(msg.repeatedInt64Field).toStrictEqual([4]);
-        expect(msg.repeatedInt64JsNumberField).toStrictEqual([5]);
-        expect(msg.repeatedInt64JsStringField).toStrictEqual([
+        assert.ok(msg !== undefined);
+        assert.strictEqual(msg.singularInt64Field, "1");
+        assert.strictEqual(msg.singularInt64JsNumberField, "2");
+        assert.strictEqual(msg.singularInt64JsStringField, protoInt64.parse(3));
+        assert.deepStrictEqual(msg.repeatedInt64Field, [4]);
+        assert.deepStrictEqual(msg.repeatedInt64JsNumberField, [5]);
+        assert.deepStrictEqual(msg.repeatedInt64JsStringField, [
           protoInt64.parse(6),
         ]);
-        expect(msg.either).toStrictEqual({
+        assert.deepStrictEqual(msg.either, {
           case: "oneofInt64Field",
           value: 7,
         });
-        expect(msg.mapInt64Int64Field).toStrictEqual({
+        assert.deepStrictEqual(msg.mapInt64Int64Field, {
           "1": 8,
           "2": 9,
         });
       });
     });
-    describe("bytes", () => {
+    void suite("bytes", () => {
       test("converts number array to Uint8Array", () => {
         const msg = create(proto3_ts.Proto3MessageSchema, {
           // @ts-expect-error number array is still a type error
@@ -757,15 +772,15 @@ describe("create()", () => {
             value: [0xde, 0xad, 0xbe, 0xef],
           },
         });
-        expect(msg.singularBytesField instanceof Uint8Array).toBe(true);
-        expect(msg.repeatedBytesField.length).toBe(2);
-        expect(msg.repeatedBytesField[0] instanceof Uint8Array).toBe(true);
-        expect(msg.repeatedBytesField[1] instanceof Uint8Array).toBe(true);
-        expect(msg.either.case).toBe("oneofBytesField");
-        expect(msg.either.value instanceof Uint8Array).toBe(true);
+        assert.strictEqual(msg.singularBytesField instanceof Uint8Array, true);
+        assert.strictEqual(msg.repeatedBytesField.length, 2);
+        assert.strictEqual(msg.repeatedBytesField[0] instanceof Uint8Array, true);
+        assert.strictEqual(msg.repeatedBytesField[1] instanceof Uint8Array, true);
+        assert.strictEqual(msg.either.case, "oneofBytesField");
+        assert.strictEqual(msg.either.value instanceof Uint8Array, true);
       });
     });
-    describe("message field", () => {
+    void suite("message field", () => {
       test("accepts partial message", () => {
         const msg = create(proto3_ts.Proto3MessageSchema, {
           singularMessageField: {
@@ -786,32 +801,29 @@ describe("create()", () => {
             123: { singularStringField: "str" },
           },
         });
-        expect(msg.singularMessageField).toBeDefined();
-        expect(msg.singularMessageField?.singularStringField).toBe("str");
-        expect(
+        assert.ok(msg.singularMessageField !== undefined);
+        assert.strictEqual(msg.singularMessageField?.singularStringField, "str");
+        assert.ok(
           isMessage(msg.singularMessageField, proto3_ts.Proto3MessageSchema),
-        ).toBe(true);
-
-        expect(msg.repeatedMessageField.length).toBe(1);
-        expect(msg.repeatedMessageField[0].singularStringField).toBe("str");
-        expect(
-          isMessage(msg.repeatedMessageField[0], proto3_ts.Proto3MessageSchema),
-        ).toBe(true);
-
-        expect(msg.either.case).toBe("oneofMessageField");
-        expect(msg.either.value).toBeDefined();
-        expect(isMessage(msg.either.value, proto3_ts.Proto3MessageSchema)).toBe(
-          true,
         );
 
-        expect(Object.keys(msg.mapInt32MessageField)).toStrictEqual(["123"]);
-        expect(msg.mapInt32MessageField[123]).toBeDefined();
-        expect(
+        assert.strictEqual(msg.repeatedMessageField.length, 1);
+        assert.strictEqual(msg.repeatedMessageField[0].singularStringField, "str");
+        assert.ok(
+          isMessage(msg.repeatedMessageField[0], proto3_ts.Proto3MessageSchema),
+        );
+
+        assert.strictEqual(msg.either.case, "oneofMessageField");
+        assert.ok(msg.either.value !== undefined);
+        assert.ok(isMessage(msg.either.value, proto3_ts.Proto3MessageSchema));
+
+        assert.deepStrictEqual(Object.keys(msg.mapInt32MessageField), ["123"]);
+        assert.ok(msg.mapInt32MessageField[123] !== undefined);
+        assert.ok(
           isMessage(
             msg.mapInt32MessageField[123],
             proto3_ts.Proto3MessageSchema,
-          ),
-        ).toBe(true);
+          ));
       });
       test("accepts full message", () => {
         const testMessageSingular = create(proto3_ts.Proto3MessageSchema);
@@ -829,31 +841,31 @@ describe("create()", () => {
             123: testMessageMap,
           },
         });
-        expect(msg.singularMessageField === testMessageSingular).toBe(true);
-        expect(msg.repeatedMessageField[0] === testMessageList).toBe(true);
-        expect(msg.either.value === testMessageOneof).toBe(true);
-        expect(msg.mapInt32MessageField[123] === testMessageMap).toBe(true);
+        assert.strictEqual(msg.singularMessageField === testMessageSingular, true);
+        assert.strictEqual(msg.repeatedMessageField[0] === testMessageList, true);
+        assert.strictEqual(msg.either.value === testMessageOneof, true);
+        assert.strictEqual(msg.mapInt32MessageField[123] === testMessageMap, true);
       });
     });
-    describe("enum field", () => {
+    void suite("enum field", () => {
       test("accepts proto3 enum value out of range", () => {
         const msg = create(proto3_ts.Proto3MessageSchema, {
           // @ts-ignore -- required for older TS
           singularEnumField: 99,
         });
-        expect(msg.singularEnumField).toBe(99);
+        assert.strictEqual(msg.singularEnumField, 99);
       });
     });
-    describe("list field", () => {
+    void suite("list field", () => {
       test("accepts array", () => {
         const arr = ["a", "b", "c"];
         const msg = create(proto3_ts.Proto3MessageSchema, {
           repeatedStringField: arr,
         });
-        expect(msg.repeatedStringField).toBe(arr);
+        assert.strictEqual(msg.repeatedStringField, arr);
       });
     });
-    describe("map field", () => {
+    void suite("map field", () => {
       test("accepts record object", () => {
         const recordObj = {
           a: "A",
@@ -863,10 +875,10 @@ describe("create()", () => {
         const msg = create(proto3_ts.Proto3MessageSchema, {
           mapStringStringField: recordObj,
         });
-        expect(msg.mapStringStringField).toBe(recordObj);
+        assert.strictEqual(msg.mapStringStringField, recordObj);
       });
     });
-    describe("oneof field", () => {
+    void suite("oneof field", () => {
       test("accepts selected field", () => {
         const msg = create(proto3_ts.Proto3MessageSchema, {
           either: {
@@ -874,11 +886,11 @@ describe("create()", () => {
             value: false,
           },
         });
-        expect(msg.either.case).toBe("oneofBoolField");
-        expect(msg.either.value).toBe(false);
+        assert.strictEqual(msg.either.case, "oneofBoolField");
+        assert.strictEqual(msg.either.value, false);
       });
     });
-    describe("wkt wrapper field", () => {
+    void suite("wkt wrapper field", () => {
       test("accepts unwrapped value only for singular field", () => {
         const msg = create(proto3_ts.Proto3MessageSchema, {
           singularWrappedUint32Field: 123,
@@ -895,26 +907,26 @@ describe("create()", () => {
             },
           },
         });
-        expect(msg.singularWrappedUint32Field).toBe(123);
-        expect(msg.either.case).toBe("oneofWrappedUint32Field");
+        assert.strictEqual(msg.singularWrappedUint32Field, 123);
+        assert.strictEqual(msg.either.case, "oneofWrappedUint32Field");
         if (msg.either.case == "oneofWrappedUint32Field") {
-          expect(msg.either.value.$typeName).toBe(
+          assert.strictEqual(msg.either.value.$typeName,
             "google.protobuf.UInt32Value",
           );
-          expect(msg.either.value.value).toBe(123);
+          assert.strictEqual(msg.either.value.value, 123);
         }
-        expect(msg.repeatedWrappedUint32Field.length).toBe(1);
-        expect(msg.repeatedWrappedUint32Field[0].$typeName).toBe(
+        assert.strictEqual(msg.repeatedWrappedUint32Field.length, 1);
+        assert.strictEqual(msg.repeatedWrappedUint32Field[0].$typeName,
           "google.protobuf.UInt32Value",
         );
-        expect(msg.repeatedWrappedUint32Field[0].value).toBe(123);
-        expect(msg.mapInt32WrappedUint32Field[123].$typeName).toBe(
+        assert.strictEqual(msg.repeatedWrappedUint32Field[0].value, 123);
+        assert.strictEqual(msg.mapInt32WrappedUint32Field[123].$typeName,
           "google.protobuf.UInt32Value",
         );
-        expect(msg.mapInt32WrappedUint32Field[123].value).toBe(123);
+        assert.strictEqual(msg.mapInt32WrappedUint32Field[123].value, 123);
       });
     });
-    describe("wkt struct field", () => {
+    void suite("wkt struct field", () => {
       test("accepts JsonObject", () => {
         const msg = create(proto3_ts.Proto3MessageSchema, {
           singularStructField: {
@@ -941,8 +953,8 @@ describe("create()", () => {
           },
         });
 
-        expect(msg.singularStructField).toStrictEqual({ shouldBeJson: true });
-        expect(msg.repeatedStructField).toStrictEqual([
+        assert.deepStrictEqual(msg.singularStructField, { shouldBeJson: true });
+        assert.deepStrictEqual(msg.repeatedStructField, [
           {
             shouldBeJson: 1,
           },
@@ -950,13 +962,13 @@ describe("create()", () => {
             shouldBeJson: 2,
           },
         ]);
-        expect(msg.either.case).toBe("oneofStructField");
+        assert.strictEqual(msg.either.case, "oneofStructField");
         if (msg.either.case == "oneofStructField") {
-          expect(msg.either.value).toStrictEqual({
+          assert.deepStrictEqual(msg.either.value, {
             shouldBeJson: true,
           });
         }
-        expect(msg.mapInt32StructField[123]).toStrictEqual({
+        assert.deepStrictEqual(msg.mapInt32StructField[123], {
           shouldBeJson: true,
         });
       });

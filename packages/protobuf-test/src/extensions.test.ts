@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { suite, test, beforeEach } from "node:test";
+import * as assert from "node:assert";
 import {
   create,
   getExtension,
@@ -26,7 +28,6 @@ import {
   type DescExtension,
   type DescMessage,
 } from "@bufbuild/protobuf";
-import { describe, expect, it, beforeEach } from "@jest/globals";
 import { UserSchema } from "./gen/ts/extra/example_pb.js";
 import type { Proto2Extendee } from "./gen/ts/extra/extensions-proto2_pb.js";
 import {
@@ -147,17 +148,18 @@ const goldenValuesZero: extensionWithValueCollection = [
   { ext: Proto2ExtContainer_Child_uint32_ext, val: 0 },
 ];
 
-describe("getExtension()", () => {
-  it("should throw error if extendee does not match", () => {
+void suite("getExtension()", () => {
+  void test("should throw error if extendee does not match", () => {
     const msg = create(UserSchema);
-    expect(() =>
+    assert.throws(() =>
       getExtension(msg as unknown as Proto2Extendee, uint32_ext),
-    ).toThrow(
-      /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+      {
+        message: /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+      }
     );
   });
-  describe("for scalar", () => {
-    it("should parse from unknown fields", () => {
+  void suite("for scalar", () => {
+    void test("should parse from unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
@@ -166,9 +168,9 @@ describe("getExtension()", () => {
           data: new BinaryWriter().uint32(123).finish(),
         },
       ];
-      expect(getExtension(msg, uint32_ext)).toBe(123);
+      assert.strictEqual(getExtension(msg, uint32_ext), 123);
     });
-    it("should parse last value from unknown fields", () => {
+    void test("should parse last value from unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
@@ -182,23 +184,23 @@ describe("getExtension()", () => {
           data: new BinaryWriter().uint32(456).finish(),
         },
       ];
-      expect(getExtension(msg, uint32_ext)).toBe(456);
+      assert.strictEqual(getExtension(msg, uint32_ext), 456);
     });
-    it("should return zero value if unset", () => {
-      expect(getExtension(create(Proto2ExtendeeSchema), string_ext)).toBe("");
-      expect(getExtension(create(Proto2ExtendeeSchema), uint32_ext)).toBe(0);
+    void test("should return zero value if unset", () => {
+      assert.strictEqual(getExtension(create(Proto2ExtendeeSchema), string_ext), "");
+      assert.strictEqual(getExtension(create(Proto2ExtendeeSchema), uint32_ext), 0);
     });
-    it("should return default value if unset", () => {
-      expect(
+    void test("should return default value if unset", () => {
+      assert.strictEqual(
         getExtension(create(Proto2ExtendeeSchema), string_ext_with_default),
-      ).toBe(`hello " */ `);
-      expect(
+      `hello " */ `);
+      assert.strictEqual(
         getExtension(create(Proto2ExtendeeSchema), uint32_ext_with_default),
-      ).toBe(999);
+      999);
     });
   });
-  describe("for repeated scalar", () => {
-    it("should parse from unpacked unknown fields", () => {
+  void suite("for repeated scalar", () => {
+    void test("should parse from unpacked unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
@@ -212,9 +214,9 @@ describe("getExtension()", () => {
           data: new BinaryWriter().uint32(456).finish(),
         },
       ];
-      expect(getExtension(msg, unpacked_uint32_ext)).toStrictEqual([123, 456]);
+      assert.deepStrictEqual(getExtension(msg, unpacked_uint32_ext), [123, 456]);
     });
-    it("should parse from packed unknown field", () => {
+    void test("should parse from packed unknown field", () => {
       const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
@@ -228,9 +230,9 @@ describe("getExtension()", () => {
             .finish(),
         },
       ];
-      expect(getExtension(msg, packed_uint32_ext)).toStrictEqual([123, 456]);
+      assert.deepStrictEqual(getExtension(msg, packed_uint32_ext), [123, 456]);
     });
-    it("should parse from string unknown fields", () => {
+    void test("should parse from string unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       msg.$unknown = [
         {
@@ -244,16 +246,16 @@ describe("getExtension()", () => {
           data: new BinaryWriter().string("b").finish(),
         },
       ];
-      expect(getExtension(msg, repeated_string_ext)).toStrictEqual(["a", "b"]);
+      assert.deepStrictEqual(getExtension(msg, repeated_string_ext), ["a", "b"]);
     });
-    it("should return zero value if unset", () => {
-      expect(
-        getExtension(create(Proto2ExtendeeSchema), unpacked_uint32_ext),
-      ).toStrictEqual([]);
+    void test("should return zero value if unset", () => {
+      assert.deepStrictEqual(
+        getExtension(create(Proto2ExtendeeSchema), unpacked_uint32_ext)
+      , []);
     });
   });
-  describe("for enum", () => {
-    it("should parse from unknown fields", () => {
+  void suite("for enum", () => {
+    void test("should parse from unknown fields", () => {
       const message = create(Proto2ExtendeeSchema);
       message.$unknown = [
         {
@@ -262,9 +264,9 @@ describe("getExtension()", () => {
           data: new BinaryWriter().uint32(Proto2ExtEnum.NO).finish(),
         },
       ];
-      expect(getExtension(message, enum_ext)).toBe(Proto2ExtEnum.NO);
+      assert.strictEqual(getExtension(message, enum_ext), Proto2ExtEnum.NO);
     });
-    it("should parse last value from unknown fields", () => {
+    void test("should parse last value from unknown fields", () => {
       const message = create(Proto2ExtendeeSchema);
       message.$unknown = [
         {
@@ -278,21 +280,21 @@ describe("getExtension()", () => {
           data: new BinaryWriter().uint32(Proto2ExtEnum.NO).finish(),
         },
       ];
-      expect(getExtension(message, enum_ext)).toBe(Proto2ExtEnum.NO);
+      assert.strictEqual(getExtension(message, enum_ext), Proto2ExtEnum.NO);
     });
-    it("should return zero value if unset", () => {
-      expect(getExtension(create(Proto2ExtendeeSchema), enum_ext)).toBe(
+    void test("should return zero value if unset", () => {
+      assert.strictEqual(getExtension(create(Proto2ExtendeeSchema), enum_ext),
         Proto2ExtEnum.YES,
       );
     });
-    it("should return default value if unset", () => {
-      expect(
-        getExtension(create(Proto2ExtendeeSchema), enum_ext_with_default),
-      ).toBe(Proto2ExtEnum.NO);
+    void test("should return default value if unset", () => {
+      assert.strictEqual(
+        getExtension(create(Proto2ExtendeeSchema), enum_ext_with_default)
+      , Proto2ExtEnum.NO);
     });
   });
-  describe("for repeated enum", () => {
-    it("should parse from unknown fields", () => {
+  void suite("for repeated enum", () => {
+    void test("should parse from unknown fields", () => {
       const message = create(Proto2ExtendeeSchema);
       message.$unknown = [
         {
@@ -306,9 +308,9 @@ describe("getExtension()", () => {
           data: new BinaryWriter().uint32(2).finish(),
         },
       ];
-      expect(getExtension(message, repeated_enum_ext)).toStrictEqual([1, 2]);
+      assert.deepStrictEqual(getExtension(message, repeated_enum_ext), [1, 2]);
     });
-    it("should parse from packed unknown field", () => {
+    void test("should parse from packed unknown field", () => {
       const message = create(Proto2ExtendeeSchema);
       message.$unknown = [
         {
@@ -317,15 +319,15 @@ describe("getExtension()", () => {
           data: new BinaryWriter().fork().uint32(1).uint32(2).join().finish(),
         },
       ];
-      expect(getExtension(message, repeated_enum_ext)).toStrictEqual([1, 2]);
+      assert.deepStrictEqual(getExtension(message, repeated_enum_ext), [1, 2]);
     });
-    it("should return zero value if unset", () => {
-      expect(
-        getExtension(create(Proto2ExtendeeSchema), repeated_enum_ext),
-      ).toStrictEqual([]);
+    void test("should return zero value if unset", () => {
+      assert.deepStrictEqual(
+        getExtension(create(Proto2ExtendeeSchema), repeated_enum_ext)
+      , []);
     });
   });
-  describe("for message", () => {
+  void suite("for message", () => {
     function addUnknownMessageField(
       message: Proto2Extendee,
       fieldNo: number,
@@ -341,7 +343,7 @@ describe("getExtension()", () => {
         },
       ];
     }
-    it("should read unknown fields", () => {
+    void test("should read unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       const wantValue = create(Proto2ExtMessageSchema, {
         stringField: "John",
@@ -360,10 +362,10 @@ describe("getExtension()", () => {
         wantValue,
       );
       const gotValue = getExtension(msg, message_ext);
-      expect(gotValue.stringField).toBe("John");
-      expect(gotValue.$unknown).toStrictEqual(wantValue.$unknown);
+      assert.strictEqual(gotValue.stringField, "John");
+      assert.deepStrictEqual(gotValue.$unknown, wantValue.$unknown);
     });
-    it("should return value parsed from unknown fields", () => {
+    void test("should return value parsed from unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       addUnknownMessageField(
         msg,
@@ -374,10 +376,10 @@ describe("getExtension()", () => {
         }),
       );
       const value = getExtension(msg, message_ext_proto3);
-      expect(isMessage(value, UserSchema)).toBeTruthy();
-      expect(value.firstName).toBe("John");
+      assert.ok(isMessage(value, UserSchema));
+      assert.strictEqual(value.firstName, "John");
     });
-    it("should return merged value parsed from multiple unknown fields", () => {
+    void test("should return merged value parsed from multiple unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       addUnknownMessageField(
         msg,
@@ -396,31 +398,31 @@ describe("getExtension()", () => {
         }),
       );
       const value = getExtension(msg, message_ext_proto3);
-      expect(isMessage(value, UserSchema)).toBeTruthy();
-      expect(value.firstName).toBe("John");
-      expect(value.lastName).toBe("Doe");
+      assert.ok(isMessage(value, UserSchema));
+      assert.strictEqual(value.firstName, "John");
+      assert.strictEqual(value.lastName, "Doe");
     });
-    it("should return empty proto3 message if unset", () => {
+    void test("should return empty proto3 message if unset", () => {
       const msg = create(Proto2ExtendeeSchema);
       const value = getExtension(msg, message_ext_proto3);
-      expect(isMessage(value, UserSchema)).toBeTruthy();
-      expect(equals(UserSchema, value, create(UserSchema))).toBeTruthy();
+      assert.ok(isMessage(value, UserSchema));
+      assert.ok(equals(UserSchema, value, create(UserSchema)));
     });
-    it("should return empty proto2 message if unset", () => {
+    void test("should return empty proto2 message if unset", () => {
       const msg = create(Proto2ExtendeeSchema);
       const value = getExtension(msg, message_ext);
-      expect(isMessage(value, Proto2ExtMessageSchema)).toBeTruthy();
-      expect(
+      assert.ok(isMessage(value, Proto2ExtMessageSchema));
+      assert.ok(
         equals(Proto2ExtMessageSchema, value, create(Proto2ExtMessageSchema)),
-      ).toBeTruthy();
+      );
     });
-    describe("with WKT wrapper", () => {
-      it("should return unwrapped default value if unset", () => {
+    void suite("with WKT wrapper", () => {
+      void test("should return unwrapped default value if unset", () => {
         const msg = create(Proto2ExtendeeSchema);
         const value = getExtension(msg, wrapper_ext);
-        expect(value).toBe(0);
+        assert.strictEqual(value, 0);
       });
-      it("should return unwrapped value if set", () => {
+      void test("should return unwrapped value if set", () => {
         const msg = create(Proto2ExtendeeSchema);
         addUnknownMessageField(
           msg,
@@ -431,12 +433,12 @@ describe("getExtension()", () => {
           }),
         );
         const value = getExtension(msg, wrapper_ext);
-        expect(typeof value).toBe("number");
-        expect(value).toBe(123);
+        assert.strictEqual(typeof value, "number");
+        assert.strictEqual(value, 123);
       });
     });
   });
-  describe("for repeated message", () => {
+  void suite("for repeated message", () => {
     function addUnknownMessageField(
       message: Proto2Extendee,
       fieldNo: number,
@@ -453,7 +455,7 @@ describe("getExtension()", () => {
       ];
     }
 
-    it("should parse from unknown fields", () => {
+    void test("should parse from unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       addUnknownMessageField(
         msg,
@@ -472,16 +474,16 @@ describe("getExtension()", () => {
         }),
       );
       const arr = getExtension(msg, repeated_message_ext);
-      expect(arr.length).toBe(2);
-      expect(arr[0].stringField).toBe("a");
-      expect(arr[1].stringField).toBe("b");
+      assert.strictEqual(arr.length, 2);
+      assert.strictEqual(arr[0].stringField, "a");
+      assert.strictEqual(arr[1].stringField, "b");
     });
-    it("should return zero value if unset", () => {
+    void test("should return zero value if unset", () => {
       const msg = create(Proto2ExtendeeSchema);
-      expect(getExtension(msg, repeated_message_ext)).toStrictEqual([]);
+      assert.deepStrictEqual(getExtension(msg, repeated_message_ext), []);
     });
   });
-  describe("for group", () => {
+  void suite("for group", () => {
     function addUnknownGroupField(
       message: Proto2Extendee,
       fieldNo: number,
@@ -501,7 +503,7 @@ describe("getExtension()", () => {
       ];
     }
 
-    it("should return value parsed from unknown fields", () => {
+    void test("should return value parsed from unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       addUnknownGroupField(
         msg,
@@ -512,10 +514,10 @@ describe("getExtension()", () => {
         }),
       );
       const value = getExtension(msg, groupext);
-      expect(isMessage(value, GroupExtSchema)).toBeTruthy();
-      expect(value.a).toBe(123);
+      assert.ok(isMessage(value, GroupExtSchema));
+      assert.strictEqual(value.a, 123);
     });
-    it("should return merged value parsed from multiple unknown fields", () => {
+    void test("should return merged value parsed from multiple unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       addUnknownGroupField(
         msg,
@@ -534,20 +536,20 @@ describe("getExtension()", () => {
         }),
       );
       const value = getExtension(msg, groupext);
-      expect(isMessage(value, GroupExtSchema)).toBeTruthy();
-      expect(value.a).toBe(123);
-      expect(value.b).toBe(456);
+      assert.ok(isMessage(value, GroupExtSchema));
+      assert.strictEqual(value.a, 123);
+      assert.strictEqual(value.b, 456);
     });
-    it("should return empty group if unset", () => {
+    void test("should return empty group if unset", () => {
       const msg = create(Proto2ExtendeeSchema);
       const value = getExtension(msg, groupext);
-      expect(isMessage(value, GroupExtSchema)).toBeTruthy();
-      expect(
+      assert.ok(isMessage(value, GroupExtSchema));
+      assert.ok(
         equals(GroupExtSchema, value, create(GroupExtSchema)),
-      ).toBeTruthy();
+      );
     });
   });
-  describe("for repeated group", () => {
+  void suite("for repeated group", () => {
     function addUnknownGroupField(
       message: Proto2Extendee,
       fieldNo: number,
@@ -567,7 +569,7 @@ describe("getExtension()", () => {
       ];
     }
 
-    it("should parse from unknown fields", () => {
+    void test("should parse from unknown fields", () => {
       const msg = create(Proto2ExtendeeSchema);
       addUnknownGroupField(
         msg,
@@ -586,18 +588,18 @@ describe("getExtension()", () => {
         }),
       );
       const arr = getExtension(msg, repeatedgroupext);
-      expect(arr.length).toBe(2);
-      expect(arr[0].a).toBe(123);
-      expect(arr[1].a).toBe(456);
+      assert.strictEqual(arr.length, 2);
+      assert.strictEqual(arr[0].a, 123);
+      assert.strictEqual(arr[1].a, 456);
     });
-    it("should return zero value if unset", () => {
+    void test("should return zero value if unset", () => {
       const msg = create(Proto2ExtendeeSchema);
-      expect(getExtension(msg, repeatedgroupext)).toStrictEqual([]);
+      assert.deepStrictEqual(getExtension(msg, repeatedgroupext), []);
     });
   });
 });
 
-describe("hasExtension()", () => {
+void suite("hasExtension()", () => {
   let msg: Proto2Extendee;
   let ext: DescExtension;
   beforeEach(() => {
@@ -611,18 +613,18 @@ describe("hasExtension()", () => {
     ];
     ext = { ...uint32_ext, number: 1001 };
   });
-  it("should return true if extendee and field number match", () => {
-    expect(hasExtension(msg, ext)).toBeTruthy();
+  void test("should return true if extendee and field number match", () => {
+    assert.ok(hasExtension(msg, ext));
   });
-  it("should return false if field number does not match", () => {
+  void test("should return false if field number does not match", () => {
     ext = { ...ext, number: ext.number + 1 };
-    expect(hasExtension(msg, ext)).toBeFalsy();
+    assert.strictEqual(hasExtension(msg, ext), false);
   });
-  it("should return false if extendee does not match", () => {
+  void test("should return false if extendee does not match", () => {
     ext = { ...ext, extendee: UserSchema };
-    expect(hasExtension(msg, ext)).toBeFalsy();
+    assert.strictEqual(hasExtension(msg, ext), false);
   });
-  it("does not honor extension range", () => {
+  void test("does not honor extension range", () => {
     const extensionNumberOutOfRange = 77; // extensions-proto2.proto: 1000 to 9999
     ext = { ...ext, number: extensionNumberOutOfRange };
     msg.$unknown = [
@@ -632,11 +634,11 @@ describe("hasExtension()", () => {
         data: new Uint8Array(),
       },
     ];
-    expect(hasExtension(msg, ext)).toBeTruthy();
+    assert.ok(hasExtension(msg, ext));
   });
 });
 
-describe("clearExtension()", () => {
+void suite("clearExtension()", () => {
   const listUnknownFieldNumbers = (message: Message) =>
     (message.$unknown ?? []).map((uf) => uf.no);
   let msg: Proto2Extendee;
@@ -651,57 +653,53 @@ describe("clearExtension()", () => {
       });
     }
   });
-  it("should clear unknown fields with extension number and leave others untouched", () => {
-    expect(listUnknownFieldNumbers(msg)).toStrictEqual([500, 1001, 1001, 1500]);
+  void test("should clear unknown fields with extension number and leave others untouched", () => {
+    assert.deepStrictEqual(listUnknownFieldNumbers(msg), [500, 1001, 1001, 1500]);
     clearExtension(msg, uint32_ext);
-    expect(listUnknownFieldNumbers(msg)).toStrictEqual([500, 1500]);
+    assert.deepStrictEqual(listUnknownFieldNumbers(msg), [500, 1500]);
     clearExtension(msg, uint32_ext);
-    expect(listUnknownFieldNumbers(msg)).toStrictEqual([500, 1500]);
+    assert.deepStrictEqual(listUnknownFieldNumbers(msg), [500, 1500]);
   });
-  it("should throw error if extendee does not match", () => {
+  void test("should throw error if extendee does not match", () => {
     const msg = create(UserSchema);
-    expect(() =>
-      clearExtension(msg as unknown as Proto2Extendee, uint32_ext),
-    ).toThrow(
-      /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
-    );
+    assert.throws(() =>
+      clearExtension(msg as unknown as Proto2Extendee, uint32_ext), {
+      message: /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+    });
   });
 });
 
-describe("setExtension()", () => {
-  it("should throw error if extendee does not match", () => {
+void suite("setExtension()", () => {
+  void test("should throw error if extendee does not match", () => {
     const msg = create(UserSchema);
-    expect(() =>
-      setExtension(msg as unknown as Proto2Extendee, uint32_ext, 123),
-    ).toThrow(
-      /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
-    );
+    assert.throws(() =>
+      setExtension(msg as unknown as Proto2Extendee, uint32_ext, 123), {
+      message: /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+    });
   });
-  it.each(goldenValues)(
-    "should set $ext.typeName as expected",
-    ({ ext, val }) => {
+  for (const {ext, val} of goldenValues) {
+    void test(`should set ${ext.typeName} as expected`, () => {
       const msg = create(Proto2ExtendeeSchema);
-      expect(hasExtension(msg, ext)).toBeFalsy();
+      assert.strictEqual(hasExtension(msg, ext), false);
       setExtension(msg, ext, val);
-      expect(hasExtension(msg, ext)).toBeTruthy();
-      expect(getExtension(msg, ext)).toStrictEqual(val);
-    },
-  );
-  it.each(goldenValuesZero)(
-    "should set zero $ext.typeName as expected",
-    ({ ext, val }) => {
+      assert.ok(hasExtension(msg, ext));
+      assert.deepStrictEqual(getExtension(msg, ext), val);
+    });
+  }
+  for (const {ext, val} of goldenValuesZero) {
+    void test(`should set zero ${ext.typeName} as expected`, () => {
       const msg = create(Proto2ExtendeeSchema);
-      expect(hasExtension(msg, ext)).toBeFalsy();
+      assert.strictEqual(hasExtension(msg, ext), false);
       setExtension(msg, ext, val);
       if (ext.fieldKind === "list") {
-        expect(hasExtension(msg, ext)).toBeFalsy();
+        assert.strictEqual(hasExtension(msg, ext), false);
       } else {
-        expect(hasExtension(msg, ext)).toBeTruthy();
+        assert.ok(hasExtension(msg, ext));
       }
-      expect(getExtension(msg, ext)).toStrictEqual(val);
-    },
-  );
-  it("should write unknown fields", () => {
+      assert.deepStrictEqual(getExtension(msg, ext), val);
+    });
+  }
+  void test("should write unknown fields", () => {
     const msg = create(Proto2ExtendeeSchema);
     const wantValue = create(Proto2ExtMessageSchema, {
       stringField: "John",
@@ -715,75 +713,75 @@ describe("setExtension()", () => {
     ];
     setExtension(msg, message_ext, wantValue);
     const gotValue = getExtension(msg, message_ext);
-    expect(gotValue.stringField).toBe("John");
-    expect(gotValue.$unknown).toStrictEqual(wantValue.$unknown);
+    assert.strictEqual(gotValue.stringField, "John");
+    assert.deepStrictEqual(gotValue.$unknown, wantValue.$unknown);
   });
-  describe("setting repeated extension twice", () => {
-    it("should not merge", () => {
+  void suite("setting repeated extension twice", () => {
+    void test("should not merge", () => {
       const msg = create(Proto2ExtendeeSchema);
       setExtension(msg, repeated_string_ext, ["a"]);
       setExtension(msg, repeated_string_ext, ["b"]);
-      expect(getExtension(msg, repeated_string_ext)).toStrictEqual(["b"]);
+      assert.deepStrictEqual(getExtension(msg, repeated_string_ext), ["b"]);
     });
   });
-  describe("proto3", () => {
-    describe("singular scalar", () => {
+  void suite("proto3", () => {
+    void suite("singular scalar", () => {
       const ext = proto3_uint32_ext;
-      it("should set non-zero value as expected", () => {
+      void test("should set non-zero value as expected", () => {
         const msg = create(FileOptionsSchema);
         setExtension(msg, ext, 123);
-        expect(hasExtension(msg, ext)).toBeTruthy();
-        expect(getExtension(msg, ext)).toStrictEqual(123);
+        assert.ok(hasExtension(msg, ext));
+        assert.deepStrictEqual(getExtension(msg, ext), 123);
       });
-      it("should set zero value, even without optional keyword", () => {
+      void test("should set zero value, even without optional keyword", () => {
         // Implicit presence does not apply to extensions, see https://github.com/protocolbuffers/protobuf/issues/8234
         const msg = create(FileOptionsSchema);
         setExtension(msg, ext, 0);
-        expect(hasExtension(msg, ext)).toBeTruthy();
-        expect(getExtension(msg, ext)).toStrictEqual(0);
+        assert.ok(hasExtension(msg, ext));
+        assert.deepStrictEqual(getExtension(msg, ext), 0);
       });
     });
-    describe("optional scalar", () => {
+    void suite("optional scalar", () => {
       const ext = proto3_optional_uint32_ext;
-      it("should set non-zero value as expected", () => {
+      void test("should set non-zero value as expected", () => {
         const msg = create(FileOptionsSchema);
         setExtension(msg, ext, 123);
-        expect(hasExtension(msg, ext)).toBeTruthy();
-        expect(getExtension(msg, ext)).toStrictEqual(123);
+        assert.ok(hasExtension(msg, ext));
+        assert.deepStrictEqual(getExtension(msg, ext), 123);
       });
-      it("should set zero value", () => {
+      void test("should set zero value", () => {
         const msg = create(FileOptionsSchema);
         setExtension(msg, ext, 0);
-        expect(hasExtension(msg, ext)).toBeTruthy();
-        expect(getExtension(msg, ext)).toStrictEqual(0);
+        assert.ok(hasExtension(msg, ext));
+        assert.deepStrictEqual(getExtension(msg, ext), 0);
       });
     });
-    describe("packed repeated extension", () => {
-      it("should set expected unknown fields", () => {
+    void suite("packed repeated extension", () => {
+      void test("should set expected unknown fields", () => {
         const msg = create(FileOptionsSchema);
         setExtension(msg, proto3_packed_uint32_ext, [1, 2, 3]);
         const unknownFields = (msg.$unknown ?? []).filter(
           (uf) => uf.no === packed_uint32_ext.number,
         );
-        expect(unknownFields.length).toBe(1);
+        assert.strictEqual(unknownFields.length, 1);
         const allLengthDelimited = unknownFields.every(
           (uf) => uf.wireType === WireType.LengthDelimited,
         );
-        expect(allLengthDelimited).toBeTruthy();
+        assert.ok(allLengthDelimited);
       });
     });
-    describe("unpacked repeated extension", () => {
-      it("should set expected unknown fields", () => {
+    void suite("unpacked repeated extension", () => {
+      void test("should set expected unknown fields", () => {
         const msg = create(FileOptionsSchema);
         setExtension(msg, proto3_unpacked_uint32_ext, [1, 2, 3]);
         const unknownFields = (msg.$unknown ?? []).filter(
           (uf) => uf.no === unpacked_uint32_ext.number,
         );
-        expect(unknownFields.length).toBe(3);
+        assert.strictEqual(unknownFields.length, 3);
         const noneLengthDelimited = unknownFields.every(
           (uf) => uf.wireType !== WireType.LengthDelimited,
         );
-        expect(noneLengthDelimited).toBeTruthy();
+        assert.ok(noneLengthDelimited);
       });
     });
   });
