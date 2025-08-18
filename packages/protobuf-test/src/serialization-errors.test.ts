@@ -12,131 +12,132 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { create, toBinary, toJson } from "@bufbuild/protobuf";
 import { FieldMaskSchema, ValueSchema } from "@bufbuild/protobuf/wkt";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 import * as scalar_ts from "./gen/ts/extra/msg-scalar_pb.js";
 
-describe("serialization errors", () => {
-  describe("google.protobuf.FieldMask ", () => {
-    describe("lowerCamelCase path name irreversible", () => {
+void suite("serialization errors", () => {
+  void suite("google.protobuf.FieldMask ", () => {
+    void suite("lowerCamelCase path name irreversible", () => {
       const fieldMask = create(FieldMaskSchema, {
         paths: ["user.displayName", "photo"],
       });
-      test("toJson", () => {
-        expect(() => {
+      void test("toJson", () => {
+        assert.throws(() => {
           toJson(FieldMaskSchema, fieldMask);
-        }).toThrow(
-          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
-        );
+        }, {
+          message: 'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
+        });
       });
-      test("toBinary", () => {
-        expect(() => {
+      void test("toBinary", () => {
+        assert.doesNotThrow(() => {
           toBinary(FieldMaskSchema, fieldMask);
-        }).not.toThrow();
+        });
       });
     });
   });
-  describe("google.protobuf.Value", () => {
-    describe("unset value", () => {
+  void suite("google.protobuf.Value", () => {
+    void suite("unset value", () => {
       // Absence of any variant indicates an error.
       // See struct.proto
       const value = create(ValueSchema);
-      test("toJson", () => {
-        expect(() => toJson(ValueSchema, value)).toThrow(
-          "google.protobuf.Value must have a value",
-        );
+      void test("toJson", () => {
+        assert.throws(() => toJson(ValueSchema, value), {
+          message: "google.protobuf.Value must have a value",
+        });
       });
-      test("toBinary", () => {
-        expect(() => toBinary(ValueSchema, value)).not.toThrow();
+      void test("toBinary", () => {
+        assert.doesNotThrow(() => toBinary(ValueSchema, value));
       });
     });
-    describe("numberValue NaN", () => {
+    void suite("numberValue NaN", () => {
       const value = create(ValueSchema, {
         kind: { case: "numberValue", value: NaN },
       });
-      test("toJson", () => {
-        expect(() => toJson(ValueSchema, value)).toThrow(
-          "google.protobuf.Value cannot be NaN or Infinity",
-        );
+      void test("toJson", () => {
+        assert.throws(() => toJson(ValueSchema, value), {
+          message: "google.protobuf.Value cannot be NaN or Infinity",
+        });
       });
-      test("toBinary", () => {
-        expect(() => toBinary(ValueSchema, value)).not.toThrow();
+      void test("toBinary", () => {
+        assert.doesNotThrow(() => toBinary(ValueSchema, value));
       });
     });
-    describe("numberValue Infinity", () => {
+    void suite("numberValue Infinity", () => {
       const value = create(ValueSchema, {
         kind: { case: "numberValue", value: Infinity },
       });
-      test("toJson", () => {
-        expect(() => toJson(ValueSchema, value)).toThrow(
-          "google.protobuf.Value cannot be NaN or Infinity",
-        );
+      void test("toJson", () => {
+        assert.throws(() => toJson(ValueSchema, value), {
+          message: "google.protobuf.Value cannot be NaN or Infinity",
+        });
       });
-      test("toBinary", () => {
-        expect(() => toBinary(ValueSchema, value)).not.toThrow();
+      void test("toBinary", () => {
+        assert.doesNotThrow(() => toBinary(ValueSchema, value));
       });
     });
-    describe("numberValue -Infinity", () => {
+    void suite("numberValue -Infinity", () => {
       const value = create(ValueSchema, {
         kind: { case: "numberValue", value: -Infinity },
       });
-      test("toJson", () => {
-        expect(() => toJson(ValueSchema, value)).toThrow(
-          "google.protobuf.Value cannot be NaN or Infinity",
-        );
+      void test("toJson", () => {
+        assert.throws(() => toJson(ValueSchema, value), {
+          message: "google.protobuf.Value cannot be NaN or Infinity",
+        });
       });
-      test("toBinary", () => {
-        expect(() => toBinary(ValueSchema, value)).not.toThrow();
+      void test("toBinary", () => {
+        assert.doesNotThrow(() => toBinary(ValueSchema, value));
       });
     });
   });
-  describe("enum field", () => {
+  void suite("enum field", () => {
     const desc = proto3_ts.Proto3MessageSchema;
     const msg = create(desc);
     // @ts-expect-error TS2322
     msg.singularEnumField = "abc";
-    test("toJson", () => {
-      expect(() => toJson(desc, msg)).toThrow(
-        /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
-      );
+    void test("toJson", () => {
+      assert.throws(() => toJson(desc, msg), {
+        message: /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
+      });
     });
     test("toBinary", () => {
-      expect(() => toBinary(desc, msg)).toThrow(
-        /^cannot encode field spec.Proto3Message.singular_enum_field to binary: invalid int32: NaN$/,
-      );
+      assert.throws(() => toBinary(desc, msg), {
+        message: /^cannot encode field spec.Proto3Message.singular_enum_field to binary: invalid int32: NaN$/,
+      });
     });
   });
-  describe("repeated enum field", () => {
+  void suite("repeated enum field", () => {
     const desc = proto3_ts.Proto3MessageSchema;
     const msg = create(desc);
     // @ts-expect-error TS2322
     msg.repeatedEnumField = ["abc"];
     test("toJson", () => {
-      expect(() => toJson(desc, msg)).toThrow(
-        /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
-      );
+      assert.throws(() => toJson(desc, msg), {
+        message: /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
+      });
     });
     test("toBinary", () => {
-      expect(() => toBinary(desc, msg)).toThrow(
-        /^cannot encode field spec.Proto3Message.repeated_enum_field to binary: invalid int32: NaN$/,
-      );
+      assert.throws(() => toBinary(desc, msg), {
+        message: /^cannot encode field spec.Proto3Message.repeated_enum_field to binary: invalid int32: NaN$/,
+      });
     });
   });
-  describe("required field", () => {
+  void suite("required field", () => {
     const desc = proto2_ts.Proto2MessageSchema;
     const msg = create(desc);
     test("toJson", () => {
-      expect(() => toJson(desc, msg)).toThrow(
-        /^cannot encode field spec.Proto2Message.required_string_field to JSON: required field not set$/,
-      );
+      assert.throws(() => toJson(desc, msg), {
+        message: /^cannot encode field spec.Proto2Message.required_string_field to JSON: required field not set$/,
+      });
     });
     test("toBinary", () => {
-      expect(() => toBinary(desc, msg)).toThrow(
-        /^cannot encode field spec.Proto2Message.required_string_field to binary: required field not set$/,
-      );
+      assert.throws(() => toBinary(desc, msg), {
+        message: /^cannot encode field spec.Proto2Message.required_string_field to binary: required field not set$/,
+      });
     });
   });
   type ScalarCase = {
@@ -145,7 +146,7 @@ describe("serialization errors", () => {
     jsonErr: RegExp | null;
     binaryErr: RegExp | null;
   };
-  describe.each([
+  for (const kase of [
     {
       name: "int32 field string",
       val(m) {
@@ -216,32 +217,34 @@ describe("serialization errors", () => {
       binaryErr:
         /^cannot encode field spec.ScalarValuesMessage.bytes_field to binary: invalid uint32: undefined$/,
     },
-  ] as ScalarCase[])("$name", (kase) => {
-    const desc = scalar_ts.ScalarValuesMessageSchema;
-    const msg = create(desc);
-    kase.val(msg);
-    test("toJson", () => {
-      if (kase.jsonErr === null) {
-        expect(() => toJson(desc, msg)).not.toThrow();
-      } else {
-        expect(() => toJson(desc, msg)).toThrow(kase.jsonErr);
-      }
+  ] satisfies ScalarCase[]) {
+    void suite(`${kase.name}`, () => {
+      const desc = scalar_ts.ScalarValuesMessageSchema;
+      const msg = create(desc);
+      kase.val(msg);
+      void test("toJson", () => {
+        if (kase.jsonErr === null) {
+          assert.doesNotThrow(() => toJson(desc, msg));
+        } else {
+          assert.throws(() => toJson(desc, msg), {message: kase.jsonErr});
+        }
+      });
+      void test("toBinary", () => {
+        if (kase.binaryErr === null) {
+          assert.doesNotThrow(() => toBinary(desc, msg));
+        } else {
+          assert.throws(() => toBinary(desc, msg), {message: kase.binaryErr});
+        }
+      });
     });
-    test("toBinary", () => {
-      if (kase.binaryErr === null) {
-        expect(() => toBinary(desc, msg)).not.toThrow();
-      } else {
-        expect(() => toBinary(desc, msg)).toThrow(kase.binaryErr);
-      }
-    });
-  });
+  }
   type RepeatedScalarCase = {
     name: string;
     val(m: scalar_ts.RepeatedScalarValuesMessage): void;
     jsonErr: RegExp | null;
     binaryErr: RegExp | null;
   };
-  describe.each([
+  for (const kase of [
     {
       name: "repeated uint32 field [-1]",
       val(m) {
@@ -262,23 +265,25 @@ describe("serialization errors", () => {
       binaryErr:
         /^cannot encode field spec.RepeatedScalarValuesMessage.int32_field to binary: invalid int32: NaN$/,
     },
-  ] as RepeatedScalarCase[])("$name", (kase) => {
-    const desc = scalar_ts.RepeatedScalarValuesMessageSchema;
-    const msg = create(desc);
-    kase.val(msg);
-    test("toJson", () => {
-      if (kase.jsonErr === null) {
-        expect(() => toJson(desc, msg)).not.toThrow();
-      } else {
-        expect(() => toJson(desc, msg)).toThrow(kase.jsonErr);
-      }
+  ] satisfies RepeatedScalarCase[]) {
+    void suite(`${kase.name}`, () => {
+      const desc = scalar_ts.RepeatedScalarValuesMessageSchema;
+      const msg = create(desc);
+      kase.val(msg);
+      void test("toJson", () => {
+        if (kase.jsonErr === null) {
+          assert.doesNotThrow(() => toJson(desc, msg));
+        } else {
+          assert.throws(() => toJson(desc, msg), {message: kase.jsonErr});
+        }
+      });
+      void test("toBinary", () => {
+        if (kase.binaryErr === null) {
+          assert.doesNotThrow(() => toBinary(desc, msg));
+        } else {
+          assert.throws(() => toBinary(desc, msg), { message: kase.binaryErr });
+        }
+      });
     });
-    test("toBinary", () => {
-      if (kase.binaryErr === null) {
-        expect(() => toBinary(desc, msg)).not.toThrow();
-      } else {
-        expect(() => toBinary(desc, msg)).toThrow(kase.binaryErr);
-      }
-    });
-  });
+  }
 });

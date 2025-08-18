@@ -12,19 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type {
   VTypes,
   VTypesValid,
 } from "./gen/ts,valid_types/extra/valid_types_pb.js";
 
-describe("Valid types", () => {
+void suite("Valid types", () => {
   test("Valid type is assignable to regular type", () => {
     function f(vtypes: VTypes, vtypesValid: VTypesValid) {
       vtypes = vtypesValid;
       return vtypes;
     }
-    expect(f).toBeDefined();
+    assert.ok(f);
   });
   test("regular type is not assignable to Valid type", () => {
     function f(vtypes: VTypes, vtypesValid: VTypesValid) {
@@ -32,13 +33,13 @@ describe("Valid types", () => {
       vtypesValid = vtypes;
       return vtypesValid;
     }
-    expect(f).toBeDefined();
+    assert.ok(f);
   });
   test("regular type is not assignable to Valid type", () => {
     function f(vtypesValid: VTypesValid) {
       const str: string = vtypesValid.requiredMsg.$typeName;
       return str;
     }
-    expect(f).toBeDefined();
+    assert.ok(f);
   });
 });
