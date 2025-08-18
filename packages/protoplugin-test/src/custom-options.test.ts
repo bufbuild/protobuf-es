@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeEach, describe, expect, test } from "@jest/globals";
+import { suite, test, beforeEach } from "node:test";
+import * as assert from "node:assert";
 import {
   type DescExtension,
   fromBinary,
@@ -28,9 +29,8 @@ import {
 import type { Schema } from "@bufbuild/protoplugin";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { compileFile, createTestPluginAndRun } from "./helpers.js";
-import assert from "node:assert";
 
-describe("custom options", () => {
+void suite("custom options", () => {
   const proto = `
     syntax = "proto3";
     import "google/protobuf/descriptor.proto";
@@ -39,7 +39,7 @@ describe("custom options", () => {
       optional uint32 opt = 60123;
     }
   `;
-  test("can be read via extension", async () => {
+  void test("can be read via extension", async () => {
     const opt = (await compileFile(proto)).extensions[0];
     let value: unknown;
     await createTestPluginAndRun({
@@ -53,9 +53,9 @@ describe("custom options", () => {
         }
       },
     });
-    expect(value).toBe(123);
+    assert.strictEqual(value, 123);
   });
-  test("can be read via getOptions", async () => {
+  void test("can be read via getOptions", async () => {
     const opt = (await compileFile(proto)).extensions[0];
     let has = false;
     let value: unknown;
@@ -71,12 +71,12 @@ describe("custom options", () => {
         }
       },
     });
-    expect(has).toBe(true);
-    expect(value).toBe(123);
+    assert.strictEqual(has, true);
+    assert.strictEqual(value, 123);
   });
 });
 
-describe("option retention", () => {
+void suite("option retention", () => {
   const proto = {
     "a.proto": `
       syntax = "proto3";
@@ -103,7 +103,7 @@ describe("option retention", () => {
       }
     `,
   };
-  describe("CodeGeneratorRequest", () => {
+  void suite("CodeGeneratorRequest", () => {
     let req: CodeGeneratorRequest;
     let opt_unknown: DescExtension,
       opt_source: DescExtension,
@@ -120,41 +120,41 @@ describe("option retention", () => {
         await compileFile(proto["options.proto"])
       ).extensions;
     });
-    test("includes expected files", () => {
-      expect(req.fileToGenerate).toStrictEqual(["a.proto"]);
-      expect(req.protoFile.map((f) => f.name)).toStrictEqual([
+    void test("includes expected files", () => {
+      assert.deepStrictEqual(req.fileToGenerate, ["a.proto"]);
+      assert.deepStrictEqual(req.protoFile.map((f) => f.name), [
         "google/protobuf/descriptor.proto",
         "options.proto",
         "b.proto",
         "a.proto",
       ]);
-      expect(req.sourceFileDescriptors.map((f) => f.name)).toStrictEqual([
+      assert.deepStrictEqual(req.sourceFileDescriptors.map((f) => f.name), [
         "a.proto",
       ]);
     });
-    test("proto_file elides source retention options for file_to_generate", () => {
+    void test("proto_file elides source retention options for file_to_generate", () => {
       const fileA = req.protoFile.find((f) => f.name == "a.proto");
-      assert(fileA?.options);
-      expect(hasExtension(fileA.options, opt_unknown)).toBe(true);
-      expect(hasExtension(fileA.options, opt_source)).toBe(true);
-      expect(hasExtension(fileA.options, opt_runtime)).toBe(false);
+      assert.ok(fileA?.options);
+      assert.strictEqual(hasExtension(fileA.options, opt_unknown), true);
+      assert.strictEqual(hasExtension(fileA.options, opt_source), true);
+      assert.strictEqual(hasExtension(fileA.options, opt_runtime), false);
     });
-    test("proto_file includes source retention options for files not in file_to_generate", () => {
+    void test("proto_file includes source retention options for files not in file_to_generate", () => {
       const fileB = req.protoFile.find((f) => f.name == "b.proto");
-      assert(fileB?.options);
-      expect(hasExtension(fileB.options, opt_unknown)).toBe(true);
-      expect(hasExtension(fileB.options, opt_source)).toBe(true);
-      expect(hasExtension(fileB.options, opt_runtime)).toBe(true);
+      assert.ok(fileB?.options);
+      assert.strictEqual(hasExtension(fileB.options, opt_unknown), true);
+      assert.strictEqual(hasExtension(fileB.options, opt_source), true);
+      assert.strictEqual(hasExtension(fileB.options, opt_runtime), true);
     });
-    test("source_file_descriptors include source retention options for file_to_generate", () => {
+    void test("source_file_descriptors include source retention options for file_to_generate", () => {
       const fileA = req.sourceFileDescriptors.find((f) => f.name == "a.proto");
-      assert(fileA?.options);
-      expect(hasExtension(fileA.options, opt_unknown)).toBe(true);
-      expect(hasExtension(fileA.options, opt_source)).toBe(true);
-      expect(hasExtension(fileA.options, opt_runtime)).toBe(true);
+      assert.ok(fileA?.options);
+      assert.strictEqual(hasExtension(fileA.options, opt_unknown), true);
+      assert.strictEqual(hasExtension(fileA.options, opt_source), true);
+      assert.strictEqual(hasExtension(fileA.options, opt_runtime), true);
     });
   });
-  describe("protoplugin's Schema", () => {
+  void suite("protoplugin's Schema", () => {
     let schema: Schema;
     let opt_unknown: DescExtension,
       opt_runtime: DescExtension,
@@ -171,28 +171,28 @@ describe("option retention", () => {
         await compileFile(proto["options.proto"])
       ).extensions;
     });
-    test("includes expected files", () => {
-      expect(schema.files.map((f) => f.proto.name)).toStrictEqual(["a.proto"]);
-      expect(schema.allFiles.map((f) => f.proto.name)).toStrictEqual([
+    void test("includes expected files", () => {
+      assert.deepStrictEqual(schema.files.map((f) => f.proto.name), ["a.proto"]);
+      assert.deepStrictEqual(schema.allFiles.map((f) => f.proto.name), [
         "google/protobuf/descriptor.proto",
         "options.proto",
         "b.proto",
         "a.proto",
       ]);
     });
-    test("files include source retention options", () => {
+    void test("files include source retention options", () => {
       const file = schema.files.find((f) => f.proto.name == "a.proto");
-      assert(file?.proto.options);
-      expect(hasExtension(file.proto.options, opt_unknown)).toBe(true);
-      expect(hasExtension(file.proto.options, opt_runtime)).toBe(true);
-      expect(hasExtension(file.proto.options, opt_source)).toBe(true);
+      assert.ok(file?.proto.options);
+      assert.strictEqual(hasExtension(file.proto.options, opt_unknown), true);
+      assert.strictEqual(hasExtension(file.proto.options, opt_runtime), true);
+      assert.strictEqual(hasExtension(file.proto.options, opt_source), true);
     });
-    test("allFiles include source retention options", () => {
+    void test("allFiles include source retention options", () => {
       const file = schema.allFiles.find((f) => f.proto.name == "b.proto");
-      assert(file?.proto.options);
-      expect(hasExtension(file.proto.options, opt_unknown)).toBe(true);
-      expect(hasExtension(file.proto.options, opt_runtime)).toBe(true);
-      expect(hasExtension(file.proto.options, opt_source)).toBe(true);
+      assert.ok(file?.proto.options);
+      assert.strictEqual(hasExtension(file.proto.options, opt_unknown), true);
+      assert.strictEqual(hasExtension(file.proto.options, opt_runtime), true);
+      assert.strictEqual(hasExtension(file.proto.options, opt_source), true);
     });
   });
 });

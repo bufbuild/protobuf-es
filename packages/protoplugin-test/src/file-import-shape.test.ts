@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.importShape", () => {
-  test("should create import symbol for enum descriptor", async () => {
+void suite("GeneratedFile.importShape", () => {
+  void test("should create import symbol for enum descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto3";
@@ -28,13 +29,13 @@ describe("GeneratedFile.importShape", () => {
       parameter: "target=ts",
       generateAny(f, schema) {
         const imp = f.importShape(schema.files[0].enums[0]);
-        expect(imp.name).toBe("Foo");
-        expect(imp.from).toBe("./x_pb.js");
-        expect(imp.typeOnly).toBe(true);
+        assert.strictEqual(imp.name, "Foo");
+        assert.strictEqual(imp.from, "./x_pb.js");
+        assert.strictEqual(imp.typeOnly, true);
       },
     });
   });
-  test("should create import symbol for message descriptor", async () => {
+  void test("should create import symbol for message descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto3";
@@ -43,9 +44,9 @@ describe("GeneratedFile.importShape", () => {
       parameter: "target=ts",
       generateAny(f, schema) {
         const imp = f.importShape(schema.files[0].messages[0]);
-        expect(imp.name).toBe("Person");
-        expect(imp.from).toBe("./x_pb.js");
-        expect(imp.typeOnly).toBe(true);
+        assert.strictEqual(imp.name, "Person");
+        assert.strictEqual(imp.from, "./x_pb.js");
+        assert.strictEqual(imp.typeOnly, true);
       },
     });
   });

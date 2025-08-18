@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.importSchema", () => {
-  test("should create import symbol for enum descriptor", async () => {
+void suite("GeneratedFile.importSchema", () => {
+  void test("should create import symbol for enum descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto3";
@@ -28,13 +29,13 @@ describe("GeneratedFile.importSchema", () => {
       parameter: "target=ts",
       generateAny(f, schema) {
         const imp = f.importSchema(schema.files[0].enums[0]);
-        expect(imp.name).toBe("FooSchema");
-        expect(imp.from).toBe("./x_pb.js");
-        expect(imp.typeOnly).toBe(false);
+        assert.strictEqual(imp.name, "FooSchema");
+        assert.strictEqual(imp.from, "./x_pb.js");
+        assert.strictEqual(imp.typeOnly, false);
       },
     });
   });
-  test("should create import symbol for message descriptor", async () => {
+  void test("should create import symbol for message descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto3";
@@ -43,13 +44,13 @@ describe("GeneratedFile.importSchema", () => {
       parameter: "target=ts",
       generateAny(f, schema) {
         const imp = f.importSchema(schema.files[0].messages[0]);
-        expect(imp.name).toBe("PersonSchema");
-        expect(imp.from).toBe("./x_pb.js");
-        expect(imp.typeOnly).toBe(false);
+        assert.strictEqual(imp.name, "PersonSchema");
+        assert.strictEqual(imp.from, "./x_pb.js");
+        assert.strictEqual(imp.typeOnly, false);
       },
     });
   });
-  test("should create import symbol for service descriptor", async () => {
+  void test("should create import symbol for service descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto3";
@@ -61,13 +62,13 @@ describe("GeneratedFile.importSchema", () => {
       parameter: "target=ts",
       generateAny(f, schema) {
         const imp = f.importSchema(schema.files[0].services[0]);
-        expect(imp.name).toBe("Serv");
-        expect(imp.from).toBe("./x_pb.js");
-        expect(imp.typeOnly).toBe(false);
+        assert.strictEqual(imp.name, "Serv");
+        assert.strictEqual(imp.from, "./x_pb.js");
+        assert.strictEqual(imp.typeOnly, false);
       },
     });
   });
-  test("should create import symbol for extension descriptor", async () => {
+  void test("should create import symbol for extension descriptor", async () => {
     await createTestPluginAndRun({
       proto: `
       syntax="proto2";
@@ -81,13 +82,13 @@ describe("GeneratedFile.importSchema", () => {
       parameter: "target=ts",
       generateAny(f, schema) {
         const imp = f.importSchema(schema.files[0].extensions[0]);
-        expect(imp.name).toBe("ext");
-        expect(imp.from).toBe("./x_pb.js");
-        expect(imp.typeOnly).toBe(false);
+        assert.strictEqual(imp.name, "ext");
+        assert.strictEqual(imp.from, "./x_pb.js");
+        assert.strictEqual(imp.typeOnly, false);
       },
     });
   });
-  test("should create import symbol for file descriptor", async () => {
+  void test("should create import symbol for file descriptor", async () => {
     await createTestPluginAndRun({
       proto: {
         "my-proto-files/23/dir:/joe's files/x.proto": `syntax="proto3";`,
@@ -95,9 +96,9 @@ describe("GeneratedFile.importSchema", () => {
       parameter: "target=ts",
       generateAny(f, schema) {
         const imp = f.importSchema(schema.files[0]);
-        expect(imp.name).toBe("file_my_proto_files_23_dir_joe_s_files_x");
-        expect(imp.from).toBe("./my-proto-files/23/dir:/joe's files/x_pb.js");
-        expect(imp.typeOnly).toBe(false);
+        assert.strictEqual(imp.name, "file_my_proto_files_23_dir_joe_s_files_x");
+        assert.strictEqual(imp.from, "./my-proto-files/23/dir:/joe's files/x_pb.js");
+        assert.strictEqual(imp.typeOnly, false);
       },
     });
   });

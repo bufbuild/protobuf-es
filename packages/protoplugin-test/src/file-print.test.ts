@@ -12,35 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { protoInt64, ScalarType } from "@bufbuild/protobuf";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin";
 import { createImportSymbol } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.print", () => {
-  test("should print bigint literals", async () => {
+void suite("GeneratedFile.print", () => {
+  void test("should print bigint literals", async () => {
     const lines = await testGenerate((f) => {
       f.print(0n);
       f.print(-9223372036854775808n); // min signed
       f.print(18446744073709551615n); // max unsigned
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       `import { protoInt64 } from "@bufbuild/protobuf";`,
       "",
       "protoInt64.zero",
       `protoInt64.parse("-9223372036854775808")`,
       `protoInt64.uParse("18446744073709551615")`,
     ]);
-    expect(
+    assert.ok(
       protoInt64.parse("-9223372036854775808") === -9223372036854775808n,
-    ).toBeTruthy();
-    expect(
+    );
+    assert.ok(
       protoInt64.uParse("18446744073709551615") === 18446744073709551615n,
-    ).toBeTruthy();
+    );
   });
 
-  test("should print number literals", async () => {
+  void test("should print number literals", async () => {
     const lines = await testGenerate((f) => {
       f.print(
         123,
@@ -54,25 +55,25 @@ describe("GeneratedFile.print", () => {
         Number.NEGATIVE_INFINITY,
       );
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       "123 3.145 globalThis.NaN globalThis.Infinity -globalThis.Infinity",
     ]);
   });
 
-  test("should print boolean literals", async () => {
+  void test("should print boolean literals", async () => {
     const lines = await testGenerate((f) => {
       f.print(true);
       f.print(false);
     });
-    expect(lines).toStrictEqual(["true", "false"]);
+    assert.deepStrictEqual(lines, ["true", "false"]);
   });
 
-  test("should print Uint8Array literals", async () => {
+  void test("should print Uint8Array literals", async () => {
     const lines = await testGenerate((f) => {
       f.print(new Uint8Array());
       f.print(new Uint8Array([0xde, 0xad, 0xbe, 0xef]));
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       "new Uint8Array(0)",
       "new Uint8Array([0xDE, 0xAD, 0xBE, 0xEF])",
     ]);
@@ -85,11 +86,11 @@ describe("GeneratedFile.print", () => {
         value: `ab"c`,
       });
     });
-    expect(lines).toStrictEqual([`"ab\\"c"`]);
+    assert.deepStrictEqual(lines, [`"ab\\"c"`]);
   });
 
-  describe(`should print "es_proto_int64" Printable`, () => {
-    test("should honor longAsString", async () => {
+  void suite (`should print "es_proto_int64" Printable`, () => {
+    void test("should honor longAsString", async () => {
       const lines = await testGenerate((f) => {
         f.print({
           kind: "es_proto_int64",
@@ -98,10 +99,10 @@ describe("GeneratedFile.print", () => {
           value: 123n,
         });
       });
-      expect(lines).toStrictEqual([`"123"`]);
+      assert.deepStrictEqual(lines, [`"123"`]);
     });
 
-    test("should honor longAsString for 0", async () => {
+    void test("should honor longAsString for 0", async () => {
       const lines = await testGenerate((f) => {
         f.print({
           kind: "es_proto_int64",
@@ -110,10 +111,10 @@ describe("GeneratedFile.print", () => {
           value: 0n,
         });
       });
-      expect(lines).toStrictEqual([`"0"`]);
+      assert.deepStrictEqual(lines, [`"0"`]);
     });
 
-    test("should honor longAsString for string value", async () => {
+    void test("should honor longAsString for string value", async () => {
       const lines = await testGenerate((f) => {
         f.print({
           kind: "es_proto_int64",
@@ -122,7 +123,7 @@ describe("GeneratedFile.print", () => {
           value: "123",
         });
       });
-      expect(lines).toStrictEqual([`"123"`]);
+      assert.deepStrictEqual(lines, [`"123"`]);
     });
 
     const signedTypes = [
@@ -140,7 +141,7 @@ describe("GeneratedFile.print", () => {
             value: 0n,
           });
         });
-        expect(lines).toStrictEqual([
+        assert.deepStrictEqual(lines, [
           `import { protoInt64 } from "@bufbuild/protobuf";`,
           "",
           "protoInt64.zero",
@@ -155,7 +156,7 @@ describe("GeneratedFile.print", () => {
             value: 123n,
           });
         });
-        expect(lines).toStrictEqual([
+        assert.deepStrictEqual(lines, [
           `import { protoInt64 } from "@bufbuild/protobuf";`,
           "",
           `protoInt64.parse("123")`,
@@ -174,7 +175,7 @@ describe("GeneratedFile.print", () => {
             value: 0n,
           });
         });
-        expect(lines).toStrictEqual([
+        assert.deepStrictEqual(lines, [
           `import { protoInt64 } from "@bufbuild/protobuf";`,
           "",
           "protoInt64.zero",
@@ -189,7 +190,7 @@ describe("GeneratedFile.print", () => {
             value: 123n,
           });
         });
-        expect(lines).toStrictEqual([
+        assert.deepStrictEqual(lines, [
           `import { protoInt64 } from "@bufbuild/protobuf";`,
           "",
           `protoInt64.uParse("123")`,
@@ -198,29 +199,29 @@ describe("GeneratedFile.print", () => {
     }
   });
 
-  test("should print import symbol", async () => {
+  void test("should print import symbol", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "bar");
       f.print(imp);
     });
-    expect(lines).toStrictEqual(['import { Foo } from "bar";', "", "Foo"]);
+    assert.deepStrictEqual(lines, ['import { Foo } from "bar";', "", "Foo"]);
   });
 
-  test("should print type-only import symbol", async () => {
+  void test("should print type-only import symbol", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "bar");
       f.print(imp.toTypeOnly());
     });
-    expect(lines).toStrictEqual(['import type { Foo } from "bar";', "", "Foo"]);
+    assert.deepStrictEqual(lines, ['import type { Foo } from "bar";', "", "Foo"]);
   });
 
-  test("should print import symbol used as type and value", async () => {
+  void test("should print import symbol used as type and value", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "bar");
       f.print(imp);
       f.print(imp.toTypeOnly());
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       'import { Foo } from "bar";',
       "",
       "Foo",
@@ -228,14 +229,14 @@ describe("GeneratedFile.print", () => {
     ]);
   });
 
-  test("should print only one import for the same symbol", async () => {
+  void test("should print only one import for the same symbol", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "bar");
       const imp2 = createImportSymbol("Foo", "bar");
       f.print(imp);
       f.print(imp2);
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       'import { Foo } from "bar";',
       "",
       "Foo",
@@ -243,14 +244,14 @@ describe("GeneratedFile.print", () => {
     ]);
   });
 
-  test("should escape clashing import symbols", async () => {
+  void test("should escape clashing import symbols", async () => {
     const lines = await testGenerate((f) => {
       const imp = createImportSymbol("Foo", "a");
       const imp2 = createImportSymbol("Foo", "b");
       f.print(imp);
       f.print(imp2);
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       `import { Foo } from "a";`,
       `import { Foo as Foo$1 } from "b";`,
       "",
@@ -259,7 +260,7 @@ describe("GeneratedFile.print", () => {
     ]);
   });
 
-  test("should escape clashing import symbols with commonjs", async () => {
+  void test("should escape clashing import symbols with commonjs", async () => {
     const lines = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=js,js_import_style=legacy_commonjs",
@@ -271,7 +272,7 @@ describe("GeneratedFile.print", () => {
       },
       returnLinesOfFirstFile: true,
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       `"use strict";`,
       `Object.defineProperty(exports, "__esModule", { value: true });`,
       "",
@@ -283,68 +284,68 @@ describe("GeneratedFile.print", () => {
     ]);
   });
 
-  test("should print runtime imports", async () => {
+  void test("should print runtime imports", async () => {
     const lines = await testGenerate((f) => {
       f.print(f.runtime.create, "(FooDesc);");
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       'import { create } from "@bufbuild/protobuf";',
       "",
       "create(FooDesc);",
     ]);
   });
 
-  test("should print empty lines", async () => {
+  void test("should print empty lines", async () => {
     const lines = await testGenerate((f) => {
       f.print(" ");
       f.print("");
       f.print();
     });
-    expect(lines).toStrictEqual([" ", "", ""]);
+    assert.deepStrictEqual(lines, [" ", "", ""]);
   });
 
-  test("should print multiple printables", async () => {
+  void test("should print multiple printables", async () => {
     const lines = await testGenerate((f) => {
       f.print("a", "b", "c", 1, " ", createImportSymbol("Foo", "bar"));
     });
-    expect(lines).toStrictEqual([`import { Foo } from "bar";`, "", "abc1 Foo"]);
+    assert.deepStrictEqual(lines, [`import { Foo } from "bar";`, "", "abc1 Foo"]);
   });
 
-  test("should print nested printables", async () => {
+  void test("should print nested printables", async () => {
     const lines = await testGenerate((f) => {
       // biome-ignore format: want this to read well
       f.print("a", ["b", ["c", "d", [1, " ", createImportSymbol("Foo", "bar")]]]);
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       `import { Foo } from "bar";`,
       "",
       "abcd1 Foo",
     ]);
   });
 
-  describe("with tagged template literals", () => {
-    test("should print empty lines", async () => {
+  void suite("with tagged template literals", () => {
+    void test("should print empty lines", async () => {
       const lines = await testGenerate((f) => {
         f.print` `;
         f.print``;
       });
-      expect(lines).toStrictEqual([" ", ""]);
+      assert.deepStrictEqual(lines, [" ", ""]);
     });
-    test("should print import symbol", async () => {
+    void test("should print import symbol", async () => {
       const lines = await testGenerate((f) => {
         const imp = createImportSymbol("Foo", "bar");
         f.print`${imp}`;
       });
-      expect(lines).toStrictEqual(['import { Foo } from "bar";', "", "Foo"]);
+      assert.deepStrictEqual(lines, ['import { Foo } from "bar";', "", "Foo"]);
     });
-    test("should print real-world import use case", async () => {
+    void test("should print real-world import use case", async () => {
       const lines = await testGenerate((f) => {
         const Foo = createImportSymbol("Foo", "bar");
         f.print`export function foo(): ${Foo.toTypeOnly()} {
   return new ${Foo}();
 };`;
       });
-      expect(lines).toStrictEqual([
+      assert.deepStrictEqual(lines, [
         'import { Foo } from "bar";',
         "",
         "export function foo(): Foo {",
@@ -352,22 +353,22 @@ describe("GeneratedFile.print", () => {
         "};",
       ]);
     });
-    test("should print multiple printables", async () => {
+    void test("should print multiple printables", async () => {
       const lines = await testGenerate((f) => {
         f.print`${"a"}${"b"}${"c"}${1} ${createImportSymbol("Foo", "bar")}`;
       });
-      expect(lines).toStrictEqual([
+      assert.deepStrictEqual(lines, [
         `import { Foo } from "bar";`,
         "",
         "abc1 Foo",
       ]);
     });
-    test("should print nested printables", async () => {
+    void test("should print nested printables", async () => {
       const lines = await testGenerate((f) => {
         // biome-ignore format: want this to read well
         f.print`${"a"}${["b", ["c", "d", [1, " ", createImportSymbol("Foo", "bar")]]]}`;
       });
-      expect(lines).toStrictEqual([
+      assert.deepStrictEqual(lines, [
         `import { Foo } from "bar";`,
         "",
         "abcd1 Foo",

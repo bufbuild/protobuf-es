@@ -29,8 +29,7 @@ import type {
   Plugin,
 } from "@bufbuild/protoplugin";
 import { UpstreamProtobuf } from "upstream-protobuf";
-import { expect } from "@jest/globals";
-import assert from "node:assert";
+import * as assert from "node:assert";
 
 let upstreamProtobuf: UpstreamProtobuf | undefined;
 
@@ -113,7 +112,7 @@ export async function createTestPluginAndRun(
   }
   const res = plugin.run(req);
   if (opt.returnLinesOfFirstFile === true) {
-    expect(res.file.length).toBeGreaterThanOrEqual(1);
+    assert.ok(res.file.length >= 1);
     let content = res.file[0]?.content ?? "";
     if (content.endsWith("\n")) {
       content = content.slice(0, -1); // trim final newline so we don't return an extra line
@@ -148,7 +147,7 @@ export async function compileFile(proto: string) {
   const fds = fromBinary(FileDescriptorSetSchema, bytes);
   const reg = createFileRegistry(fds);
   const file = reg.getFile("input.proto");
-  assert(file);
+  assert.ok(file !== undefined);
   return file;
 }
 
