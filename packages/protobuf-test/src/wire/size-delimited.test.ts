@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, it } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   BinaryReader,
   BinaryWriter,
@@ -27,32 +28,32 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { createReadStream, createWriteStream } from "node:fs";
 
-describe("sizeDelimitedEncode()", () => {
+void suite("sizeDelimitedEncode()", () => {
   const desc = TestAllTypesProto3Schema;
   const msg = create(desc, {
     optionalBool: true,
   });
-  it("should store length as varint", () => {
+  void test("should store length as varint", () => {
     const bytes = sizeDelimitedEncode(desc, msg);
     const reader = new BinaryReader(bytes);
     const storedLength = reader.uint32();
-    expect(storedLength).toBe(toBinary(desc, msg).byteLength);
+    assert.strictEqual(storedLength, toBinary(desc, msg).byteLength);
   });
-  it("should store serialized message", () => {
+  void test("should store serialized message", () => {
     const bytes = sizeDelimitedEncode(desc, msg);
     const storeMessageBytes = new BinaryReader(bytes).bytes();
-    expect(storeMessageBytes).toStrictEqual(toBinary(desc, msg));
+    assert.deepStrictEqual(storeMessageBytes, toBinary(desc, msg));
   });
-  it("should not store extra bytes", () => {
+  void test("should not store extra bytes", () => {
     const bytes = sizeDelimitedEncode(desc, msg);
     const reader = new BinaryReader(bytes);
     reader.skip(WireType.LengthDelimited);
-    expect(reader.pos).toBe(reader.len);
+    assert.strictEqual(reader.pos, reader.len);
   });
 });
 
-describe("sizeDelimitedDecodeStream()", () => {
-  describe("with async generator", () => {
+void suite("sizeDelimitedDecodeStream()", () => {
+  void suite("with async generator", () => {
     const desc = TestAllTypesProto3Schema;
     const testMessages = [
       create(desc, {
@@ -78,7 +79,7 @@ describe("sizeDelimitedDecodeStream()", () => {
         }
       }
     }
-    it("should decode stream", async () => {
+    void test("should decode stream", async () => {
       const stream = createAsyncIterableBytes(
         new BinaryWriter()
           .bytes(toBinary(desc, testMessages[0]))
@@ -87,14 +88,14 @@ describe("sizeDelimitedDecodeStream()", () => {
       );
       let i = 0;
       for await (const dec of sizeDelimitedDecodeStream(desc, stream)) {
-        expect(dec).toStrictEqual(testMessages[i]);
+        assert.deepStrictEqual(dec, testMessages[i]);
         i++;
       }
-      expect(i).toBe(2);
+      assert.strictEqual(i, 2);
     });
   });
-  describe("with Node.js APIS", () => {
-    it("should decode stream", async () => {
+  void suite("with Node.js APIS", () => {
+    void test("should decode stream", async () => {
       const desc = TestAllTypesProto3Schema;
       const testMessages = [
         create(desc, {
@@ -116,48 +117,49 @@ describe("sizeDelimitedDecodeStream()", () => {
       const readStream = createReadStream(path);
       let i = 0;
       for await (const m of sizeDelimitedDecodeStream(desc, readStream)) {
-        expect(m).toStrictEqual(testMessages[i]);
+        assert.deepStrictEqual(m, testMessages[i]);
         i++;
       }
     });
   });
 });
 
-describe("sizeDelimitedPeek()", () => {
-  describe.each([0, 1, 2, 4, 8, 16, 32, 64, 0xffffffff])(
-    "with just a size",
-    (size: number) => {
+void suite("sizeDelimitedPeek()", () => {
+  for (const size of [0, 1, 2, 4, 8, 16, 32, 64, 0xffffffff]) {
+    void suite(`with just a size ${size}`, () => {
       const bytes = new BinaryWriter().uint32(size).finish();
-      it("should return EOF", () => {
+      void test("should return EOF", () => {
         const got = sizeDelimitedPeek(bytes);
-        expect(got.size).toBe(size);
+        assert.strictEqual(got.size, size);
       });
-      it("should return expected offset", () => {
+      void test("should return expected offset", () => {
         const got = sizeDelimitedPeek(bytes);
-        expect(got.offset).toBe(bytes.byteLength);
+        assert.strictEqual(got.offset, bytes.byteLength);
       });
-    },
-  );
-  describe("with incomplete varint", () => {
-    const complete = new BinaryWriter().uint32(0xffffffff).finish(); // uint32 max is 5 bytes as varint
-    it.each([0, 1, 2, 3, 4])("should return EOF for %s", (x) => {
-      const bytes = complete.slice(0, x);
-      const got = sizeDelimitedPeek(bytes);
-      expect(got.eof).toBeTruthy();
     });
+  }
+  void suite("with incomplete varint", () => {
+    const complete = new BinaryWriter().uint32(0xffffffff).finish(); // uint32 max is 5 bytes as varint
+    for (const x of [0, 1, 2, 3, 4]) {
+      void test(`should return EOF for ${x}`, () => {
+        const bytes = complete.slice(0, x);
+        const got = sizeDelimitedPeek(bytes);
+        assert.strictEqual(got.eof, true);
+      })
+    }
   });
-  describe("with invalid varint", () => {
+  void suite("with invalid varint", () => {
     const invalid = new Uint8Array([
       0xde, 0xad, 0xbe, 0xef, 0xde, 0xad, 0xbe, 0xef, 0xde, 0xad,
     ]);
-    it("should raise error", () => {
-      expect(() => sizeDelimitedPeek(invalid)).toThrow({
+    void test("should raise error", () => {
+      assert.throws(() => sizeDelimitedPeek(invalid), {
         name: "Error",
         message: "invalid varint",
       });
     });
   });
-  describe("with size and message", () => {
+  void suite("with size and message", () => {
     const desc = TestAllTypesProto3Schema;
     const msg = create(desc, {
       optionalBool: true,
@@ -167,13 +169,13 @@ describe("sizeDelimitedPeek()", () => {
       .uint32(msgBytes.byteLength)
       .raw(msgBytes)
       .finish();
-    it("should return size", () => {
+    void test("should return size", () => {
       const got = sizeDelimitedPeek(bytes);
-      expect(got.size).toBe(msgBytes.byteLength);
+      assert.strictEqual(got.size, msgBytes.byteLength);
     });
-    it("should return expected offset", () => {
+    void test("should return expected offset", () => {
       const got = sizeDelimitedPeek(bytes);
-      expect(got.offset).toBe(bytes.byteLength - msgBytes.byteLength);
+      assert.strictEqual(got.offset, bytes.byteLength - msgBytes.byteLength);
     });
   });
 });

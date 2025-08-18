@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, it } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { fromBinary } from "@bufbuild/protobuf";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import { UserSchema } from "../gen/ts/extra/example_pb.js";
 
-describe("BinaryWriter", () => {
-  it("example should work as expected", () => {
+void suite("BinaryWriter", () => {
+  void test("example should work as expected", () => {
     const bytes = new BinaryWriter()
       // string first_name = 1
       .tag(1, WireType.LengthDelimited)
@@ -28,11 +29,11 @@ describe("BinaryWriter", () => {
       .bool(true)
       .finish();
     const user = fromBinary(UserSchema, bytes);
-    expect(user.firstName).toBe("Homer");
-    expect(user.active).toBe(true);
+    assert.strictEqual(user.firstName, "Homer");
+    assert.strictEqual(user.active, true);
   });
-  describe("float32()", () => {
-    it.each([
+  void suite("float32()", () => {
+    for (const val of [
       1024,
       3.14,
       -3.14,
@@ -40,101 +41,118 @@ describe("BinaryWriter", () => {
       Number.POSITIVE_INFINITY,
       Number.NEGATIVE_INFINITY,
       Number.NaN,
-    ])("should encode %s", (val) => {
-      const bytes = new BinaryWriter().float(val).finish();
-      expect(bytes.length).toBeGreaterThan(0);
-      // @ts-expect-error test string
-      const bytesStr = new BinaryWriter().float(val.toString()).finish();
-      expect(bytesStr.length).toBeGreaterThan(0);
-      expect(bytesStr).toStrictEqual(bytes);
-    });
-    it.each([
+    ]) {
+      void test(`should encode ${val}`, () => {
+        const bytes = new BinaryWriter().float(val).finish();
+        assert.ok(bytes.length >= 0);
+        // @ts-expect-error test string
+        const bytesStr = new BinaryWriter().float(val.toString()).finish();
+        assert.ok(bytesStr.length > 0);
+        assert.deepStrictEqual(bytesStr, bytes);
+      });
+    }
+    for (const {val, err} of [
       { val: null, err: "invalid float32: object" },
       { val: new Date(), err: "invalid float32: object" },
       { val: undefined, err: "invalid float32: undefined" },
-      { val: true, err: "invalid float32: bool" },
-    ])("should error for wrong type $val", ({ val, err }) => {
-      // @ts-expect-error test wrong type
-      expect(() => new BinaryWriter().float(val)).toThrow(err);
-    });
-    it.each([Number.MAX_VALUE, -Number.MAX_VALUE])(
-      "should error for value out of range %s",
-      (val) => {
-        expect(() => new BinaryWriter().float(val)).toThrow(
-          /^invalid float32: .*/,
-        );
+      { val: true, err: "invalid float32: boolean" },
+    ]) {
+      void test(`should error for value out of range ${val}`, () => {
+        // @ts-expect-error test wrong type
+        assert.throws(() => new BinaryWriter().float(val), {
+          message: err,
+        })
+      });
+    }
+    for (const val of [
+      Number.MAX_VALUE, -Number.MAX_VALUE,
+    ]) {
+      void test(`should error for value out of range ${val}`, () => {
+        assert.throws(() => new BinaryWriter().float(val), {
+          message: /^invalid float32: .*/,
+        });
         // @ts-expect-error test string
-        expect(() => new BinaryWriter().float(val.toString())).toThrow(
-          /^invalid float32: .*/,
-        );
-      },
-    );
+        assert.throws(() => new BinaryWriter().float(val.toString()), {
+          message: /^invalid float32: .*/,
+        });
+      });
+    }
   });
   // sfixed32, sint32, and int32 are signed 32-bit integers, just with different encoding
-  describe.each(["sfixed32", "sint32", "int32"] as const)("%s()", (type) => {
-    it.each([-0x80000000, 1024, 0x7fffffff])("should encode %s", (val) => {
-      const bytes = new BinaryWriter()[type](val).finish();
-      expect(bytes.length).toBeGreaterThan(0);
-      // @ts-expect-error test string
-      const bytesStr = new BinaryWriter()[type](val.toString()).finish();
-      expect(bytesStr.length).toBeGreaterThan(0);
-      expect(bytesStr).toStrictEqual(bytes);
-    });
-    it.each([
-      { val: null, err: "invalid int32: object" },
-      { val: new Date(), err: "invalid int32: object" },
-      { val: undefined, err: "invalid int32: undefined" },
-      { val: true, err: "invalid int32: bool" },
-    ])("should error for wrong type $val", ({ val, err }) => {
-      // @ts-expect-error TS2345
-      expect(() => new BinaryWriter()[type](val)).toThrow(err);
-    });
-    it.each([0x7fffffff + 1, -0x80000000 - 1, 3.14])(
-      "should error for value out of range %s",
-      (val) => {
-        expect(() => new BinaryWriter()[type](val)).toThrow(
-          /^invalid int32: .*/,
-        );
-        // @ts-expect-error test string
-        expect(() => new BinaryWriter()[type](val.toString())).toThrow(
-          /^invalid int32: .*/,
-        );
-      },
-    );
-  });
+    for (const type of ["sfixed32", "sint32", "int32"] as const) {
+      void suite(`${type}()`, () => {
+        for (const val of [-0x80000000, 1024, 0x7fffffff]) {
+          void test(`should encode ${val}`, () => {
+            const bytes = new BinaryWriter()[type](val).finish();
+            assert.ok(bytes.length > 0);
+            // @ts-expect-error test string
+            const bytesStr = new BinaryWriter()[type](val.toString()).finish();
+            assert.ok(bytesStr.length > 0);
+            assert.deepStrictEqual(bytesStr, bytes);
+          });
+        }
+        for (const {val, err} of [
+          { val: null, err: "invalid int32: object" },
+          { val: new Date(), err: "invalid int32: object" },
+          { val: undefined, err: "invalid int32: undefined" },
+          { val: true, err: "invalid int32: boolean" },
+        ]) {
+          void test(`should error for wrong type ${val}`, () => {
+            // @ts-expect-error TS2345
+            assert.throws(() => new BinaryWriter()[type](val), {message: err});
+          });
+        }
+        for (const val of [
+          0x7fffffff + 1, -0x80000000 - 1, 3.14
+        ]) {
+          void test(`should error for value out of range ${val}`, () => {
+            assert.throws(() => new BinaryWriter()[type](val), {message: /^invalid int32: .*/,});
+            // @ts-expect-error test string
+            assert.throws(() => new BinaryWriter()[type](val.toString()), {message: /^invalid int32: .*/,});
+          });
+        }
+      });
+    }
   // fixed32 and uint32 are unsigned 32-bit integers, just with different encoding
-  describe.each(["fixed32", "uint32"] as const)("%s()", (type) => {
-    it.each([0, 1024, 0xffffffff])("should encode %s", (val) => {
-      const bytes = new BinaryWriter()[type](val).finish();
-      expect(bytes.length).toBeGreaterThan(0);
-      // @ts-expect-error test string
-      const bytesStr = new BinaryWriter()[type](val.toString()).finish();
-      expect(bytesStr.length).toBeGreaterThan(0);
-      expect(bytesStr).toStrictEqual(bytes);
+    for (const type of ["fixed32", "uint32"] as const) {
+    void suite(`${type}()`, () => {
+      for (const val of [0, 1024, 0xffffffff]) {
+        void test(`should encode ${val}`, () => {
+          const bytes = new BinaryWriter()[type](val).finish();
+          assert.ok(bytes.length > 0);
+          // @ts-expect-error test string
+          const bytesStr = new BinaryWriter()[type](val.toString()).finish();
+          assert.ok(bytesStr.length > 0);
+          assert.deepStrictEqual(bytesStr, bytes);
+        });
+      }
+      for (const {val, err} of [
+        { val: null, err: `invalid uint32: object` },
+        { val: new Date(), err: `invalid uint32: object` },
+        { val: undefined, err: `invalid uint32: undefined` },
+        { val: true, err: `invalid uint32: boolean` },
+      ]) {
+        void test(`should error for wrong type ${val}`, () => {
+          // @ts-expect-error TS2345
+          assert.throws(() => new BinaryWriter()[type](val), {
+            message: err,
+          });
+        });
+      }
+      for (const val of [0xffffffff + 1, -1, 3.14]) {
+        void test(`should error for value out of range ${val}`, () => {
+          assert.throws(() => new BinaryWriter()[type](val),
+            {message: /^invalid uint32: .*/}
+          );
+          // @ts-expect-error test string
+          assert.throws(() => new BinaryWriter()[type](val.toString()),
+            {message: /^invalid uint32: .*/}
+          );
+        });
+      }
     });
-    it.each([
-      { val: null, err: `invalid uint32: object` },
-      { val: new Date(), err: `invalid uint32: object` },
-      { val: undefined, err: `invalid uint32: undefined` },
-      { val: true, err: `invalid uint32: bool` },
-    ])("should error for wrong type $val", ({ val, err }) => {
-      // @ts-expect-error TS2345
-      expect(() => new BinaryWriter()[type](val)).toThrow(err);
-    });
-    it.each([0xffffffff + 1, -1, 3.14])(
-      "should error for value out of range %s",
-      (val) => {
-        expect(() => new BinaryWriter()[type](val)).toThrow(
-          /^invalid uint32: .*/,
-        );
-        // @ts-expect-error test string
-        expect(() => new BinaryWriter()[type](val.toString())).toThrow(
-          /^invalid uint32: .*/,
-        );
-      },
-    );
-  });
-  it("should be completely reset after finish", () => {
+  }
+  void test("should be completely reset after finish", () => {
     const writer = new BinaryWriter();
     // Make sure we have both a chunk and a buffer
     writer.raw(new Uint8Array([1, 2, 3])).int32(1);
@@ -142,13 +160,13 @@ describe("BinaryWriter", () => {
     // Reuse the same writer to write the same data
     writer.raw(new Uint8Array([1, 2, 3])).int32(1);
     const bytes2 = writer.finish();
-    expect(bytes2).toStrictEqual(bytes);
+    assert.deepStrictEqual(bytes2, bytes);
   });
 });
 
-describe("BinaryReader", () => {
-  describe("skip", () => {
-    it("should skip group", () => {
+void suite("BinaryReader", () => {
+  void suite("skip", () => {
+    void test("should skip group", () => {
       const reader = new BinaryReader(
         new BinaryWriter()
           .tag(1, WireType.StartGroup)
@@ -158,12 +176,12 @@ describe("BinaryReader", () => {
           .finish(),
       );
       const [fieldNo, wireType] = reader.tag();
-      expect(fieldNo).toBe(1);
-      expect(wireType).toBe(WireType.StartGroup);
+      assert.strictEqual(fieldNo, 1);
+      assert.strictEqual(wireType, WireType.StartGroup);
       reader.skip(WireType.StartGroup, 1);
-      expect(reader.pos).toBe(reader.len);
+      assert.strictEqual(reader.pos, reader.len);
     });
-    it("should skip nested group", () => {
+    void test("should skip nested group", () => {
       const reader = new BinaryReader(
         new BinaryWriter()
           .tag(1, WireType.StartGroup)
@@ -173,12 +191,12 @@ describe("BinaryReader", () => {
           .finish(),
       );
       const [fieldNo, wireType] = reader.tag();
-      expect(fieldNo).toBe(1);
-      expect(wireType).toBe(WireType.StartGroup);
+      assert.strictEqual(fieldNo, 1);
+      assert.strictEqual(wireType, WireType.StartGroup);
       reader.skip(WireType.StartGroup, 1);
-      expect(reader.pos).toBe(reader.len);
+      assert.strictEqual(reader.pos, reader.len);
     });
-    it("should error on unexpected end group field number", () => {
+    void test("should error on unexpected end group field number", () => {
       const reader = new BinaryReader(
         new BinaryWriter()
           .tag(1, WireType.StartGroup)
@@ -186,13 +204,13 @@ describe("BinaryReader", () => {
           .finish(),
       );
       const [fieldNo, wireType] = reader.tag();
-      expect(fieldNo).toBe(1);
-      expect(wireType).toBe(WireType.StartGroup);
-      expect(() => {
+      assert.strictEqual(fieldNo, 1);
+      assert.strictEqual(wireType, WireType.StartGroup);
+      assert.throws(() => {
         reader.skip(WireType.StartGroup, 1);
-      }).toThrow(/^invalid end group tag$/);
+      }, {message: /^invalid end group tag$/});
     });
-    it("should return skipped group data", () => {
+    void test("should return skipped group data", () => {
       const reader = new BinaryReader(
         new BinaryWriter()
           .tag(1, WireType.StartGroup)
@@ -206,16 +224,16 @@ describe("BinaryReader", () => {
       const sr = new BinaryReader(skipped);
       {
         const [fieldNo, wireType] = sr.tag();
-        expect(fieldNo).toBe(33);
-        expect(wireType).toBe(WireType.Varint);
+        assert.strictEqual(fieldNo, 33);
+        assert.strictEqual(wireType, WireType.Varint);
         const bool = sr.bool();
-        expect(bool).toBe(true);
+        assert.strictEqual(bool, true);
       }
       {
         const [fieldNo, wireType] = sr.tag();
-        expect(fieldNo).toBe(1);
-        expect(wireType).toBe(WireType.EndGroup);
-        expect(sr.pos).toBe(sr.len);
+        assert.strictEqual(fieldNo, 1);
+        assert.strictEqual(wireType, WireType.EndGroup);
+        assert.strictEqual(sr.pos, sr.len);
       }
     });
   });
