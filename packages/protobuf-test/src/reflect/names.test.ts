@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { suite, test, beforeEach } from "node:test";
+import { suite, test, before } from "node:test";
 import * as assert from "node:assert";
 import {
   safeObjectProperty,
@@ -24,7 +24,7 @@ import { compileField, compileFile } from "../helpers.js";
 
 void suite("qualifiedName", () => {
   let testFile: DescFile;
-  beforeEach(async () => {
+  before(async () => {
     testFile = await compileFile(`
 syntax = "proto3";                            // Fully-qualified name
                                               //----------------------
