@@ -58,7 +58,7 @@ void suite("keep_empty_files", () => {
           },
         });
         assert.deepStrictEqual(lines, [""]);
-      })
+      });
     }
   });
   void suite("set", () => {
@@ -73,7 +73,7 @@ void suite("keep_empty_files", () => {
           },
         });
         assert.strictEqual(res.file.length, 1);
-      })
+      });
     }
   });
 });

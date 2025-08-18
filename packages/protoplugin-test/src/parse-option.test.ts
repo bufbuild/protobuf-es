@@ -73,7 +73,7 @@ void suite("parse custom plugin option", () => {
       (options) => {
         assert.strictEqual(options.foo, 123);
         assert.strictEqual(options.bar, true);
-        assert.deepStrictEqual(options.baz,["a", "b"]);
+        assert.deepStrictEqual(options.baz, ["a", "b"]);
       },
       create(CodeGeneratorRequestSchema, {
         parameter: "foo=123,bar,baz=a,baz=b",
@@ -93,45 +93,55 @@ void suite("parse custom plugin option", () => {
     );
   });
   void test("error from parseOption is wrapped", () => {
-    assert.throws(() =>
-      runPlugin(
-        () => {
-          //
-        },
-        {
-          parameter: "foo=abc",
-        },
-      ), {
-      name: "PluginOptionError",
-      message: /^invalid option "foo=abc": please provide an integer for foo$/
-    });
+    assert.throws(
+      () =>
+        runPlugin(
+          () => {
+            //
+          },
+          {
+            parameter: "foo=abc",
+          },
+        ),
+      {
+        name: "PluginOptionError",
+        message:
+          /^invalid option "foo=abc": please provide an integer for foo$/,
+      },
+    );
   });
   void test("unknown option raises an error", () => {
-    assert.throws(() =>
-      runPlugin(
-        () => {
-          //
-        },
-        {
-          parameter: "unknown",
-        },
-      ), {
-      name: "PluginOptionError",
-      message: /^invalid option "unknown"$/
-    });
+    assert.throws(
+      () =>
+        runPlugin(
+          () => {
+            //
+          },
+          {
+            parameter: "unknown",
+          },
+        ),
+      {
+        name: "PluginOptionError",
+        message: /^invalid option "unknown"$/,
+      },
+    );
   });
   void test("unknown option with value raises an error", () => {
-    assert.throws(() =>
-      runPlugin(
-        () => {
-          //
-        },
-        {
-          parameter: "unknown=bar",
-        },
-      ), {
-      name: "PluginOptionError",
-      message: /^invalid option "unknown=bar"$/
-    });
+    assert.throws(
+      () =>
+        runPlugin(
+          () => {
+            //
+          },
+          {
+            parameter: "unknown=bar",
+          },
+        ),
+      {
+        name: "PluginOptionError",
+        message: /^invalid option "unknown=bar"$/,
+      },
+    );
   });
 });

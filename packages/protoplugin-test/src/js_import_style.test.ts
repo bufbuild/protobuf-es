@@ -29,20 +29,20 @@ void suite("js_import_style", () => {
   void suite("unset", () => {
     for (const target of ["js", "ts", "dts"]) {
       void test(`uses module with target ${target}`, async () => {
-          const lines = await testGenerate(`target=${target}`);
-          assert.deepStrictEqual(lines, linesEsm);
-        },
-      );
+        const lines = await testGenerate(`target=${target}`);
+        assert.deepStrictEqual(lines, linesEsm);
+      });
     }
   });
 
   void suite("module", () => {
     for (const target of ["js", "ts", "dts"]) {
       void test(`uses module with target ${target}`, async () => {
-          const lines = await testGenerate(`js_import_style=module,target=${target}`);
-          assert.deepStrictEqual(lines, linesEsm);
-        },
-      );
+        const lines = await testGenerate(
+          `js_import_style=module,target=${target}`,
+        );
+        assert.deepStrictEqual(lines, linesEsm);
+      });
     }
   });
 

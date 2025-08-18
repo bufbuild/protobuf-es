@@ -96,8 +96,14 @@ void suite("GeneratedFile.importSchema", () => {
       parameter: "target=ts",
       generateAny(f, schema) {
         const imp = f.importSchema(schema.files[0]);
-        assert.strictEqual(imp.name, "file_my_proto_files_23_dir_joe_s_files_x");
-        assert.strictEqual(imp.from, "./my-proto-files/23/dir:/joe's files/x_pb.js");
+        assert.strictEqual(
+          imp.name,
+          "file_my_proto_files_23_dir_joe_s_files_x",
+        );
+        assert.strictEqual(
+          imp.from,
+          "./my-proto-files/23/dir:/joe's files/x_pb.js",
+        );
         assert.strictEqual(imp.typeOnly, false);
       },
     });

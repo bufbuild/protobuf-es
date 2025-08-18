@@ -58,9 +58,7 @@ void suite("built-in transpile", () => {
       const linesDts = await testTranspileToDts([
         "export const h = new Headers();",
       ]);
-      assert.deepStrictEqual(linesDts, [
-        "export declare const h: Headers;",
-      ]);
+      assert.deepStrictEqual(linesDts, ["export declare const h: Headers;"]);
     });
   });
 
@@ -86,9 +84,7 @@ void suite("built-in transpile", () => {
       ]);
       // The return type is inferred as `any` instead of the expected
       // `Foo`. This is a limitation of the TypeScript compiler.
-      assert.deepStrictEqual(linesDts, [
-        "export declare function foo(): any;",
-      ]);
+      assert.deepStrictEqual(linesDts, ["export declare function foo(): any;"]);
     });
     void test("can be typed explicitly", async () => {
       const linesDts = await testTranspileToDts([
@@ -116,8 +112,9 @@ void suite("built-in transpile", () => {
           ]),
         {
           name: "Error",
-          message: /^A problem occurred during transpilation and files were not generated\. {2}Contact the plugin author for support\.\n/,
-        }
+          message:
+            /^A problem occurred during transpilation and files were not generated\. {2}Contact the plugin author for support\.\n/,
+        },
       );
     });
     void test("raises error with diagnostics", async () => {

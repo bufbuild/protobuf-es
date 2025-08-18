@@ -88,49 +88,60 @@ void suite("editions support in plugins", () => {
     assert.strictEqual(res.maximumEdition, Edition.EDITION_PROTO3);
   });
   void test("raises error for minimumEdition > maximumEdition", async () => {
-    await assert.rejects(async () =>
-      runPlugin(
-        Edition.EDITION_PROTO3,
-        Edition.EDITION_PROTO3,
-        Edition.EDITION_PROTO2,
-      ), {
-      message: /^configured minimumEdition PROTO3 > maximumEdition PROTO2 - please contact plugin author$/,
-    });
+    await assert.rejects(
+      async () =>
+        runPlugin(
+          Edition.EDITION_PROTO3,
+          Edition.EDITION_PROTO3,
+          Edition.EDITION_PROTO2,
+        ),
+      {
+        message:
+          /^configured minimumEdition PROTO3 > maximumEdition PROTO2 - please contact plugin author$/,
+      },
+    );
   });
   void test("raises error on unsupported edition from the past with default range", async () => {
-    await assert.rejects(async () =>
-      runPlugin(
-        Edition.EDITION_1_TEST_ONLY,
-      ), {
-      message: /^test.proto: unsupported edition 1_TEST_ONLY - the earliest supported edition is PROTO2$/,
+    await assert.rejects(async () => runPlugin(Edition.EDITION_1_TEST_ONLY), {
+      message:
+        /^test.proto: unsupported edition 1_TEST_ONLY - the earliest supported edition is PROTO2$/,
     });
   });
   void test("raises error on unsupported edition from the future with default range", async () => {
-    await assert.rejects(async () =>
-      runPlugin(
-        Edition.EDITION_99999_TEST_ONLY,
-      ), {
-      message: /^test.proto: unsupported edition 99999_TEST_ONLY - the latest supported edition is 2023$/,
-    });
+    await assert.rejects(
+      async () => runPlugin(Edition.EDITION_99999_TEST_ONLY),
+      {
+        message:
+          /^test.proto: unsupported edition 99999_TEST_ONLY - the latest supported edition is 2023$/,
+      },
+    );
   });
   void test("raises error on unsupported edition from the past with custom range", async () => {
-    await assert.rejects(async () =>
-      runPlugin(
-        Edition.EDITION_PROTO2,
-        Edition.EDITION_PROTO3,
-        Edition.EDITION_PROTO3,
-      ), {
-      message: /^test.proto: unsupported edition PROTO2 - the earliest supported edition is PROTO3$/,
-    });
+    await assert.rejects(
+      async () =>
+        runPlugin(
+          Edition.EDITION_PROTO2,
+          Edition.EDITION_PROTO3,
+          Edition.EDITION_PROTO3,
+        ),
+      {
+        message:
+          /^test.proto: unsupported edition PROTO2 - the earliest supported edition is PROTO3$/,
+      },
+    );
   });
   void test("raises error on unsupported edition from the future with custom range", async () => {
-    await assert.rejects(async () =>
-      runPlugin(
-        Edition.EDITION_2023,
-        Edition.EDITION_PROTO3,
-        Edition.EDITION_PROTO3,
-      ), {
-      message: /^test.proto: unsupported edition 2023 - the latest supported edition is PROTO3$/,
-    });
+    await assert.rejects(
+      async () =>
+        runPlugin(
+          Edition.EDITION_2023,
+          Edition.EDITION_PROTO3,
+          Edition.EDITION_PROTO3,
+        ),
+      {
+        message:
+          /^test.proto: unsupported edition 2023 - the latest supported edition is PROTO3$/,
+      },
+    );
   });
 });

@@ -122,10 +122,11 @@ void suite("target", () => {
           transpile,
         });
         const gotFiles = res.file.map((f) => f.name).sort();
-        const wantFiles = targetsJoined.split("+")
+        const wantFiles = targetsJoined
+          .split("+")
           .map((t) => (t == "dts" ? "test.d.ts" : `test.${t}`))
           .sort();
-        assert.deepStrictEqual(gotFiles,wantFiles);
+        assert.deepStrictEqual(gotFiles, wantFiles);
       });
       void test("should call expected generator functions", async () => {
         await createTestPluginAndRun({
@@ -137,9 +138,16 @@ void suite("target", () => {
           transpile,
         });
         const targets = targetsJoined.split("+");
-        assert.strictEqual(generateTs.mock.callCount(), targets.includes("ts") ? 1 : 0);
-        assert.strictEqual(generateJs.mock.callCount(), targets.includes("js") ? 1 : 0);
-        assert.strictEqual(generateDts.mock.callCount(),
+        assert.strictEqual(
+          generateTs.mock.callCount(),
+          targets.includes("ts") ? 1 : 0,
+        );
+        assert.strictEqual(
+          generateJs.mock.callCount(),
+          targets.includes("js") ? 1 : 0,
+        );
+        assert.strictEqual(
+          generateDts.mock.callCount(),
           targets.includes("dts") ? 1 : 0,
         );
         assert.strictEqual(transpile.mock.callCount(), 0);
@@ -205,7 +213,8 @@ void suite("target", () => {
           })),
       );
       void test("should call expected generator functions", () => {
-        assert.strictEqual(generateTs.mock.callCount(),
+        assert.strictEqual(
+          generateTs.mock.callCount(),
           transpileCase.calledGenerators.includes("ts") ? 1 : 0,
         );
         assert.strictEqual(generateJs.mock.callCount(), transpileCase.calledGenerators.includes("js") ? 1 : 0); // biome-ignore format: want this to read well
@@ -234,5 +243,4 @@ void suite("target", () => {
       });
     });
   }
-
 });

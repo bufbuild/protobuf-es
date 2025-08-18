@@ -122,15 +122,19 @@ void suite("option retention", () => {
     });
     void test("includes expected files", () => {
       assert.deepStrictEqual(req.fileToGenerate, ["a.proto"]);
-      assert.deepStrictEqual(req.protoFile.map((f) => f.name), [
-        "google/protobuf/descriptor.proto",
-        "options.proto",
-        "b.proto",
-        "a.proto",
-      ]);
-      assert.deepStrictEqual(req.sourceFileDescriptors.map((f) => f.name), [
-        "a.proto",
-      ]);
+      assert.deepStrictEqual(
+        req.protoFile.map((f) => f.name),
+        [
+          "google/protobuf/descriptor.proto",
+          "options.proto",
+          "b.proto",
+          "a.proto",
+        ],
+      );
+      assert.deepStrictEqual(
+        req.sourceFileDescriptors.map((f) => f.name),
+        ["a.proto"],
+      );
     });
     void test("proto_file elides source retention options for file_to_generate", () => {
       const fileA = req.protoFile.find((f) => f.name == "a.proto");
@@ -172,13 +176,19 @@ void suite("option retention", () => {
       ).extensions;
     });
     void test("includes expected files", () => {
-      assert.deepStrictEqual(schema.files.map((f) => f.proto.name), ["a.proto"]);
-      assert.deepStrictEqual(schema.allFiles.map((f) => f.proto.name), [
-        "google/protobuf/descriptor.proto",
-        "options.proto",
-        "b.proto",
-        "a.proto",
-      ]);
+      assert.deepStrictEqual(
+        schema.files.map((f) => f.proto.name),
+        ["a.proto"],
+      );
+      assert.deepStrictEqual(
+        schema.allFiles.map((f) => f.proto.name),
+        [
+          "google/protobuf/descriptor.proto",
+          "options.proto",
+          "b.proto",
+          "a.proto",
+        ],
+      );
     });
     void test("files include source retention options", () => {
       const file = schema.files.find((f) => f.proto.name == "a.proto");

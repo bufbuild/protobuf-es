@@ -29,7 +29,7 @@ void suite("import_extension", () => {
       "Bar",
     ]);
   });
-  for (const {option, ext} of [
+  for (const { option, ext } of [
     { option: "js", ext: ".js" },
     { option: ".js", ext: ".js" },
     { option: "ts", ext: ".ts" },
@@ -50,7 +50,7 @@ void suite("import_extension", () => {
       ]);
     });
   }
-  for (const {option, ext} of [
+  for (const { option, ext } of [
     { option: "none", ext: "" },
     { option: "", ext: "" },
   ]) {
@@ -70,15 +70,18 @@ void suite("import_extension", () => {
     });
   }
   void test("throws error for unknown extension", async () => {
-    await assert.rejects(async () => {
-      await testGenerate("target=mjs", (f) => {
-        const Bar = f.import("Bar", "./foo/bar_pb.js");
-        f.print(Bar);
-      });
-    }, {
-      name: "PluginOptionError",
-      message: `invalid option "target=mjs"`,
-    });
+    await assert.rejects(
+      async () => {
+        await testGenerate("target=mjs", (f) => {
+          const Bar = f.import("Bar", "./foo/bar_pb.js");
+          f.print(Bar);
+        });
+      },
+      {
+        name: "PluginOptionError",
+        message: `invalid option "target=mjs"`,
+      },
+    );
   });
   void test("should only touch .js import paths", async () => {
     const lines = await testGenerate("target=ts,import_extension=ts", (f) => {

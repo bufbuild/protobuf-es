@@ -89,7 +89,7 @@ void suite("GeneratedFile.print", () => {
     assert.deepStrictEqual(lines, [`"ab\\"c"`]);
   });
 
-  void suite (`should print "es_proto_int64" Printable`, () => {
+  void suite(`should print "es_proto_int64" Printable`, () => {
     void test("should honor longAsString", async () => {
       const lines = await testGenerate((f) => {
         f.print({
@@ -212,7 +212,11 @@ void suite("GeneratedFile.print", () => {
       const imp = createImportSymbol("Foo", "bar");
       f.print(imp.toTypeOnly());
     });
-    assert.deepStrictEqual(lines, ['import type { Foo } from "bar";', "", "Foo"]);
+    assert.deepStrictEqual(lines, [
+      'import type { Foo } from "bar";',
+      "",
+      "Foo",
+    ]);
   });
 
   void test("should print import symbol used as type and value", async () => {
@@ -308,7 +312,11 @@ void suite("GeneratedFile.print", () => {
     const lines = await testGenerate((f) => {
       f.print("a", "b", "c", 1, " ", createImportSymbol("Foo", "bar"));
     });
-    assert.deepStrictEqual(lines, [`import { Foo } from "bar";`, "", "abc1 Foo"]);
+    assert.deepStrictEqual(lines, [
+      `import { Foo } from "bar";`,
+      "",
+      "abc1 Foo",
+    ]);
   });
 
   void test("should print nested printables", async () => {

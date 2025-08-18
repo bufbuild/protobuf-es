@@ -120,7 +120,8 @@ void suite("getComments()", () => {
     assert.deepStrictEqual(comments.leadingDetached, [
       "\n Comment after start of message,\n with funny indentation,\n and empty lines on start and end.\n\n",
     ]);
-    assert.equal(comments.leading,
+    assert.equal(
+      comments.leading,
       " Comment before field with 5 lines:\n line 2, next is empty\n\n line 4, next is empty\n\n",
     );
     assert.equal(comments.trailing, " Comment next to field.\n");
@@ -135,7 +136,8 @@ void suite("getDeclarationString()", () => {
         string scalar_field = 1 [json_name = "scalarFieldJsonName"];
       }
     `);
-    assert.equal(getDeclarationString(field),
+    assert.equal(
+      getDeclarationString(field),
       'string scalar_field = 1 [json_name = "scalarFieldJsonName"]',
     );
   });
@@ -146,7 +148,8 @@ void suite("getDeclarationString()", () => {
         string scalar_field = 1 [jstype = JS_NORMAL];
       }
     `);
-    assert.equal(getDeclarationString(field),
+    assert.equal(
+      getDeclarationString(field),
       "string scalar_field = 1 [jstype = JS_NORMAL]",
     );
   });
@@ -157,7 +160,8 @@ void suite("getDeclarationString()", () => {
         string scalar_field = 1 [features.field_presence = EXPLICIT];
       }
     `);
-    assert.equal(getDeclarationString(field),
+    assert.equal(
+      getDeclarationString(field),
       "string scalar_field = 1 [features.field_presence = EXPLICIT]",
     );
   });
@@ -168,7 +172,8 @@ void suite("getDeclarationString()", () => {
         repeated double double_field = 1;
       }
     `);
-    assert.equal(getDeclarationString(field),
+    assert.equal(
+      getDeclarationString(field),
       "repeated double double_field = 1",
     );
   });
@@ -179,7 +184,8 @@ void suite("getDeclarationString()", () => {
         optional double double_field = 1;
       }
     `);
-    assert.equal(getDeclarationString(field),
+    assert.equal(
+      getDeclarationString(field),
       "optional double double_field = 1",
     );
   });
@@ -190,7 +196,8 @@ void suite("getDeclarationString()", () => {
         required double double_field = 1;
       }
     `);
-    assert.equal(getDeclarationString(field),
+    assert.equal(
+      getDeclarationString(field),
       "required double double_field = 1",
     );
   });
@@ -202,7 +209,8 @@ void suite("getDeclarationString()", () => {
         map<int32, M> int32_msg_field = 10;
       }
     `);
-    assert.equal(getDeclarationString(field),
+    assert.equal(
+      getDeclarationString(field),
       "map<int32, foo.M> int32_msg_field = 10",
     );
   });
