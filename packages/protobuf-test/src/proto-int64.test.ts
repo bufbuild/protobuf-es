@@ -94,7 +94,10 @@ void suite("npm package 'long'", () => {
       message.int64Field = protoInt64.dec(longResult.low, longResult.high);
 
       // Assuming int64Field contains 9223372036854775807:
-      assert.strictEqual(message.int64Field, protoInt64.parse("9223372036854775806"));
+      assert.strictEqual(
+        message.int64Field,
+        protoInt64.parse("9223372036854775806"),
+      );
     });
   });
 });
@@ -219,21 +222,23 @@ void suite("protoInt64", () => {
       if (protoInt64.supported) {
         assert.throws(() => protoInt64.uEnc(BigInt(-127)), {
           message: "invalid uint64: -127",
-      });
+        });
         assert.throws(() => protoInt64.uEnc(BigInt("-9007199254740991")), {
           message: "invalid uint64: -9007199254740991",
-    });
+        });
         assert.throws(() => protoInt64.uEnc(BigInt("-9223372036854775808")), {
           message: "invalid uint64: -9223372036854775808",
-  });
+        });
       }
-      assert.throws(() => protoInt64.uEnc(-127), {message: "invalid uint64: -127"});
+      assert.throws(() => protoInt64.uEnc(-127), {
+        message: "invalid uint64: -127",
+      });
       assert.throws(() => protoInt64.uEnc("-9007199254740991"), {
         message: "invalid uint64: -9007199254740991",
-});
+      });
       assert.throws(() => protoInt64.uEnc("-9223372036854775808"), {
         message: "invalid uint64: -9223372036854775808",
-});
+      });
     });
   });
 

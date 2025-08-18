@@ -48,15 +48,18 @@ void suite("nestedTypes()", () => {
       }
     `);
     const nested = Array.from(nestedTypes(file));
-    assert.deepStrictEqual(nested.map((d) => d.toString()), [
-      "message A",
-      "message A.B",
-      "enum A.E",
-      "extension A.ext",
-      "enum E",
-      "service S",
-      "extension ext",
-    ]);
+    assert.deepStrictEqual(
+      nested.map((d) => d.toString()),
+      [
+        "message A",
+        "message A.B",
+        "enum A.E",
+        "extension A.ext",
+        "enum E",
+        "service S",
+        "extension ext",
+      ],
+    );
   });
 });
 

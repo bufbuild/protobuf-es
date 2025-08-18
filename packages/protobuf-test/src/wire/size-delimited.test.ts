@@ -145,7 +145,7 @@ void suite("sizeDelimitedPeek()", () => {
         const bytes = complete.slice(0, x);
         const got = sizeDelimitedPeek(bytes);
         assert.strictEqual(got.eof, true);
-      })
+      });
     }
   });
   void suite("with invalid varint", () => {

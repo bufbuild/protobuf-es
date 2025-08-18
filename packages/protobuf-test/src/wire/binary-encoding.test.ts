@@ -51,7 +51,7 @@ void suite("BinaryWriter", () => {
         assert.deepStrictEqual(bytesStr, bytes);
       });
     }
-    for (const {val, err} of [
+    for (const { val, err } of [
       { val: null, err: "invalid float32: object" },
       { val: new Date(), err: "invalid float32: object" },
       { val: undefined, err: "invalid float32: undefined" },
@@ -61,12 +61,10 @@ void suite("BinaryWriter", () => {
         // @ts-expect-error test wrong type
         assert.throws(() => new BinaryWriter().float(val), {
           message: err,
-        })
+        });
       });
     }
-    for (const val of [
-      Number.MAX_VALUE, -Number.MAX_VALUE,
-    ]) {
+    for (const val of [Number.MAX_VALUE, -Number.MAX_VALUE]) {
       void test(`should error for value out of range ${val}`, () => {
         assert.throws(() => new BinaryWriter().float(val), {
           message: /^invalid float32: .*/,
@@ -79,42 +77,44 @@ void suite("BinaryWriter", () => {
     }
   });
   // sfixed32, sint32, and int32 are signed 32-bit integers, just with different encoding
-    for (const type of ["sfixed32", "sint32", "int32"] as const) {
-      void suite(`${type}()`, () => {
-        for (const val of [-0x80000000, 1024, 0x7fffffff]) {
-          void test(`should encode ${val}`, () => {
-            const bytes = new BinaryWriter()[type](val).finish();
-            assert.ok(bytes.length > 0);
-            // @ts-expect-error test string
-            const bytesStr = new BinaryWriter()[type](val.toString()).finish();
-            assert.ok(bytesStr.length > 0);
-            assert.deepStrictEqual(bytesStr, bytes);
+  for (const type of ["sfixed32", "sint32", "int32"] as const) {
+    void suite(`${type}()`, () => {
+      for (const val of [-0x80000000, 1024, 0x7fffffff]) {
+        void test(`should encode ${val}`, () => {
+          const bytes = new BinaryWriter()[type](val).finish();
+          assert.ok(bytes.length > 0);
+          // @ts-expect-error test string
+          const bytesStr = new BinaryWriter()[type](val.toString()).finish();
+          assert.ok(bytesStr.length > 0);
+          assert.deepStrictEqual(bytesStr, bytes);
+        });
+      }
+      for (const { val, err } of [
+        { val: null, err: "invalid int32: object" },
+        { val: new Date(), err: "invalid int32: object" },
+        { val: undefined, err: "invalid int32: undefined" },
+        { val: true, err: "invalid int32: boolean" },
+      ]) {
+        void test(`should error for wrong type ${val}`, () => {
+          // @ts-expect-error TS2345
+          assert.throws(() => new BinaryWriter()[type](val), { message: err });
+        });
+      }
+      for (const val of [0x7fffffff + 1, -0x80000000 - 1, 3.14]) {
+        void test(`should error for value out of range ${val}`, () => {
+          assert.throws(() => new BinaryWriter()[type](val), {
+            message: /^invalid int32: .*/,
           });
-        }
-        for (const {val, err} of [
-          { val: null, err: "invalid int32: object" },
-          { val: new Date(), err: "invalid int32: object" },
-          { val: undefined, err: "invalid int32: undefined" },
-          { val: true, err: "invalid int32: boolean" },
-        ]) {
-          void test(`should error for wrong type ${val}`, () => {
-            // @ts-expect-error TS2345
-            assert.throws(() => new BinaryWriter()[type](val), {message: err});
+          // @ts-expect-error test string
+          assert.throws(() => new BinaryWriter()[type](val.toString()), {
+            message: /^invalid int32: .*/,
           });
-        }
-        for (const val of [
-          0x7fffffff + 1, -0x80000000 - 1, 3.14
-        ]) {
-          void test(`should error for value out of range ${val}`, () => {
-            assert.throws(() => new BinaryWriter()[type](val), {message: /^invalid int32: .*/,});
-            // @ts-expect-error test string
-            assert.throws(() => new BinaryWriter()[type](val.toString()), {message: /^invalid int32: .*/,});
-          });
-        }
-      });
-    }
+        });
+      }
+    });
+  }
   // fixed32 and uint32 are unsigned 32-bit integers, just with different encoding
-    for (const type of ["fixed32", "uint32"] as const) {
+  for (const type of ["fixed32", "uint32"] as const) {
     void suite(`${type}()`, () => {
       for (const val of [0, 1024, 0xffffffff]) {
         void test(`should encode ${val}`, () => {
@@ -126,7 +126,7 @@ void suite("BinaryWriter", () => {
           assert.deepStrictEqual(bytesStr, bytes);
         });
       }
-      for (const {val, err} of [
+      for (const { val, err } of [
         { val: null, err: `invalid uint32: object` },
         { val: new Date(), err: `invalid uint32: object` },
         { val: undefined, err: `invalid uint32: undefined` },
@@ -141,13 +141,13 @@ void suite("BinaryWriter", () => {
       }
       for (const val of [0xffffffff + 1, -1, 3.14]) {
         void test(`should error for value out of range ${val}`, () => {
-          assert.throws(() => new BinaryWriter()[type](val),
-            {message: /^invalid uint32: .*/}
-          );
+          assert.throws(() => new BinaryWriter()[type](val), {
+            message: /^invalid uint32: .*/,
+          });
           // @ts-expect-error test string
-          assert.throws(() => new BinaryWriter()[type](val.toString()),
-            {message: /^invalid uint32: .*/}
-          );
+          assert.throws(() => new BinaryWriter()[type](val.toString()), {
+            message: /^invalid uint32: .*/,
+          });
         });
       }
     });
@@ -206,9 +206,12 @@ void suite("BinaryReader", () => {
       const [fieldNo, wireType] = reader.tag();
       assert.strictEqual(fieldNo, 1);
       assert.strictEqual(wireType, WireType.StartGroup);
-      assert.throws(() => {
-        reader.skip(WireType.StartGroup, 1);
-      }, {message: /^invalid end group tag$/});
+      assert.throws(
+        () => {
+          reader.skip(WireType.StartGroup, 1);
+        },
+        { message: /^invalid end group tag$/ },
+      );
     });
     void test("should return skipped group data", () => {
       const reader = new BinaryReader(

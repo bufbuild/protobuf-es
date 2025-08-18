@@ -33,24 +33,28 @@ void suite("FieldError", () => {
 
 void suite("isFieldError()", () => {
   test("returns true for FieldError instances", () => {
-    assert.strictEqual(isFieldError(new FieldError(UserSchema.fields[0], "foo")),
+    assert.strictEqual(
+      isFieldError(new FieldError(UserSchema.fields[0], "foo")),
       true,
     );
     assert.strictEqual(
       isFieldError(
         new FieldError(UserSchema.fields[0], "foo", "FieldValueInvalidError"),
       ),
-     true);
+      true,
+    );
     assert.strictEqual(
       isFieldError(
         new FieldError(UserSchema.fields[0], "foo", "FieldListRangeError"),
       ),
-     true);
+      true,
+    );
     assert.strictEqual(
       isFieldError(
         new FieldError(UserSchema.fields[0], "foo", "ForeignFieldError"),
       ),
-     true);
+      true,
+    );
   });
   test("narrows down to FieldError", () => {
     const u: unknown = null;

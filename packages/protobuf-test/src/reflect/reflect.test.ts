@@ -117,7 +117,8 @@ void suite("ReflectMessage", () => {
       const foreignOneof = foreignMessage.oneofs[0];
       const r = reflect(proto3_ts.Proto3MessageSchema);
       assert.throws(() => r.oneofCase(foreignOneof), {
-        message: /^cannot use oneof Foreign.foo with message spec.Proto3Message$/,
+        message:
+          /^cannot use oneof Foreign.foo with message spec.Proto3Message$/,
       });
     });
   });
@@ -195,10 +196,14 @@ void suite("ReflectMessage", () => {
             assert.strictEqual(isReflectMessage(r.get(f), StructSchema), true);
             break;
           case "list":
-            assert.strictEqual(isReflectMessage(r.get(f).get(0), StructSchema), true);
+            assert.strictEqual(
+              isReflectMessage(r.get(f).get(0), StructSchema),
+              true,
+            );
             break;
           case "map":
-            assert.strictEqual(isReflectMessage(r.get(f).get(123), StructSchema),
+            assert.strictEqual(
+              isReflectMessage(r.get(f).get(123), StructSchema),
               true,
             );
             break;
@@ -263,7 +268,8 @@ void suite("ReflectMessage", () => {
       const foreignField = foreignMessage.fields[0];
       assert.ok(foreignField.fieldKind == "scalar");
       assert.throws(() => r.get(foreignField), {
-        message: /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
+        message:
+          /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
       });
     });
   });
@@ -310,11 +316,20 @@ void suite("ReflectMessage", () => {
     test("sets number, string, bigint as bigint for 64-bit integer field", () => {
       const f = desc.field.singularInt64Field;
       r.set(f, protoInt64.parse(123));
-      assert.strictEqual(msg.singularInt64Field === protoInt64.parse(123), true);
+      assert.strictEqual(
+        msg.singularInt64Field === protoInt64.parse(123),
+        true,
+      );
       r.set(f, 123);
-      assert.strictEqual(msg.singularInt64Field === protoInt64.parse(123), true);
+      assert.strictEqual(
+        msg.singularInt64Field === protoInt64.parse(123),
+        true,
+      );
       r.set(f, "123");
-      assert.strictEqual(msg.singularInt64Field === protoInt64.parse(123), true);
+      assert.strictEqual(
+        msg.singularInt64Field === protoInt64.parse(123),
+        true,
+      );
     });
     test("sets number, string, bigint as string for 64-bit integer field with jstype=JS_STRING", () => {
       const f = desc.field.singularInt64JsStringField;
@@ -390,14 +405,18 @@ void suite("ReflectMessage", () => {
       `);
       const foreignField = foreignMessage.fields[0];
       assert.throws(() => r.set(foreignField, "value"), {
-        message: /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
+        message:
+          /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
       });
     });
     test("returns error setting number out of range", () => {
       const f = desc.field.singularInt32Field;
       const err = catchFieldError(() => r.set(f, Number.MAX_SAFE_INTEGER));
       assert.ok(err !== undefined);
-      assert.match(err.message, /^expected number \(int32\): 9007199254740991 out of range$/);
+      assert.match(
+        err.message,
+        /^expected number \(int32\): 9007199254740991 out of range$/,
+      );
       assert.equal(err.name, "FieldValueInvalidError");
     });
     test("returns error setting float for int", () => {
@@ -454,7 +473,8 @@ void suite("ReflectMessage", () => {
             r.set(f, create(proto3_ts.Proto3MessageSchema)),
           );
           assert.ok(err !== undefined);
-          assert.match(err.message,
+          assert.match(
+            err.message,
             /^expected .*, got message spec.Proto3Message$/,
           );
           assert.equal(err.name, "FieldValueInvalidError");
@@ -521,7 +541,8 @@ void suite("ReflectMessage", () => {
         r.set(f, reflect(example_ts.UserSchema)),
       );
       assert.ok(err !== undefined);
-      assert.match(err.message,
+      assert.match(
+        err.message,
         /^expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
       );
       assert.equal(err.name, "FieldValueInvalidError");
@@ -533,7 +554,8 @@ void suite("ReflectMessage", () => {
       const map = reflectMap(mapStringStringField);
       const err = catchFieldError(() => r.set(mapInt32Int32Field, map));
       assert.ok(err !== undefined);
-      assert.match(err.message,
+      assert.match(
+        err.message,
         /^expected ReflectMap \(INT32, INT32\), got ReflectMap \(STRING, STRING\)$/,
       );
       assert.equal(err.name, "FieldValueInvalidError");
@@ -545,7 +567,8 @@ void suite("ReflectMessage", () => {
       const list = reflectList(repeatedStringField);
       const err = catchFieldError(() => r.set(repeatedInt32Field, list));
       assert.ok(err !== undefined);
-      assert.match(err.message,
+      assert.match(
+        err.message,
         /^expected ReflectList \(INT32\), got ReflectList \(STRING\)$/,
       );
       assert.equal(err.name, "FieldValueInvalidError");
@@ -619,7 +642,8 @@ void suite("ReflectMessage", () => {
       const foreignField = foreignMessage.fields[0];
       const r = reflect(proto3_ts.Proto3MessageSchema);
       assert.throws(() => r.isSet(foreignField), {
-        message: /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
+        message:
+          /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
       });
     });
   });
@@ -680,7 +704,8 @@ void suite("ReflectMessage", () => {
       const foreignField = foreignMessage.fields[0];
       assert.ok(foreignField.fieldKind == "list");
       assert.throws(() => r.clear(foreignField), {
-        message: /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
+        message:
+          /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
       });
     });
   });

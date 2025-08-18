@@ -356,10 +356,13 @@ void suite("JSON types", () => {
       assert.strictEqual(e, NullValue.NULL_VALUE);
     });
     test("raises error on unknown string", () => {
-      assert.throws(() => {
-        // @ts-expect-error TS2345
-        enumFromJson(json_types_ts_json.JsonTypeEnumSchema, "FOO");
-      }, {message: /cannot decode enum spec.JsonTypeEnum from JSON: "FOO"/});
+      assert.throws(
+        () => {
+          // @ts-expect-error TS2345
+          enumFromJson(json_types_ts_json.JsonTypeEnumSchema, "FOO");
+        },
+        { message: /cannot decode enum spec.JsonTypeEnum from JSON: "FOO"/ },
+      );
     });
   });
   void suite("isEnumJson()", () => {

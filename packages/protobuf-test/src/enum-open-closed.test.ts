@@ -63,11 +63,13 @@ void suite("closed enum", () => {
     assert.strictEqual(msg.optionalEnumField, proto2_ts.Proto2Enum.YES);
     assert.ok(msg.$unknown !== undefined);
     assert.strictEqual(msg.$unknown?.length, 1);
-    assert.strictEqual(msg.$unknown?.[0].no,
+    assert.strictEqual(
+      msg.$unknown?.[0].no,
       proto2_ts.Proto2MessageSchema.field.optionalEnumField.number,
     );
     assert.strictEqual(msg.$unknown?.[0].wireType, WireType.Varint);
-    assert.deepStrictEqual(msg.$unknown?.[0].data,
+    assert.deepStrictEqual(
+      msg.$unknown?.[0].data,
       new BinaryWriter().int32(foreignValue).finish(),
     );
   });

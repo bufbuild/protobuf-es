@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {beforeEach, suite, test } from "node:test";
+import { beforeEach, suite, test } from "node:test";
 import * as assert from "node:assert";
 import { clearField, create, isFieldSet } from "@bufbuild/protobuf";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
@@ -85,7 +85,6 @@ void suite("isFieldSet()", () => {
         fillProto2Message(msg);
         const set = isFieldSet(msg, desc.field[name]);
         assert.strictEqual(set, true);
-
       });
     }
   });

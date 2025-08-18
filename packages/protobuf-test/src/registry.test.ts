@@ -274,7 +274,8 @@ void suite("createRegistry()", () => {
       const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      assert.deepStrictEqual(regTypeNames,
+      assert.deepStrictEqual(
+        regTypeNames,
         ["Msg", "Enu", "Srv", "ext", "Msg2", "Enu2", "Srv2", "ext2"].sort(),
       );
     });
@@ -292,7 +293,8 @@ void suite("createRegistry()", () => {
       const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      assert.deepStrictEqual(regTypeNames,
+      assert.deepStrictEqual(
+        regTypeNames,
         ["Msg", "Enu", "Srv", "ext", "Msg3"].sort(),
       );
       assert.strictEqual(reg.get("Msg"), secondReg.get("Msg"));
@@ -380,12 +382,10 @@ void suite("createFileRegistry()", () => {
     });
     test("provides files through file iterable", () => {
       const fileReg = createFileRegistry(testFileDescriptorSet);
-      assert.deepStrictEqual(Array.from(fileReg.files).map((f) => f.name), [
-        "d",
-        "b",
-        "c",
-        "a",
-      ]);
+      assert.deepStrictEqual(
+        Array.from(fileReg.files).map((f) => f.name),
+        ["d", "b", "c", "a"],
+      );
     });
   });
   void suite("from FileDescriptorProto", () => {
@@ -432,7 +432,9 @@ void suite("createFileRegistry()", () => {
           return testFileReg.getFile(protoFileName);
         });
       }
-      assert.throws(t, {message: /^Unable to resolve c.proto, imported by a.proto$/});
+      assert.throws(t, {
+        message: /^Unable to resolve c.proto, imported by a.proto$/,
+      });
     });
   });
   test("accepts empty arguments", () => {
@@ -448,7 +450,7 @@ void suite("createFileRegistry()", () => {
     function t() {
       createFileRegistry(testFileDescriptorSet);
     }
-    assert.throws(t, {message: /^d.proto: unsupported edition$/});
+    assert.throws(t, { message: /^d.proto: unsupported edition$/ });
   });
   test("raises error on unsupported edition from the future", () => {
     testFileDescriptorSet.file[0].syntax = "editions";
@@ -456,7 +458,7 @@ void suite("createFileRegistry()", () => {
     function t() {
       createFileRegistry(testFileDescriptorSet);
     }
-    assert.throws(t, {message: /^d.proto: unsupported edition$/});
+    assert.throws(t, { message: /^d.proto: unsupported edition$/ });
   });
   void suite("from FileRegistry", () => {
     test("creates a copy of the given FileRegistry", () => {
@@ -513,7 +515,8 @@ void suite("createFileRegistry()", () => {
         Array.from(reg.files)
           .map((f) => f.name)
           .sort(),
-        ["a", "b"].sort());
+        ["a", "b"].sort(),
+      );
     });
     test("later duplicate file overwrites former file", async () => {
       const regA = createFileRegistry(
@@ -533,12 +536,16 @@ void suite("createFileRegistry()", () => {
         }),
       );
       const reg = createFileRegistry(regA, regB);
-      assert.deepStrictEqual(Array.from(reg.files).map((f) => f.name), ["a"]);
+      assert.deepStrictEqual(
+        Array.from(reg.files).map((f) => f.name),
+        ["a"],
+      );
       assert.deepStrictEqual(
         Array.from(reg)
           .map((t) => t.typeName)
           .sort(),
-      ["MsgA", "MsgB"].sort());
+        ["MsgA", "MsgB"].sort(),
+      );
     });
   });
 });
@@ -580,7 +587,10 @@ void suite("DescFile", () => {
     const a = reg.getFile("a.proto");
     assert.strictEqual(a?.name, "a");
     assert.strictEqual(a?.dependencies.length, 2);
-    assert.deepStrictEqual(a?.dependencies.map((f) => f.name), ["b", "c"]);
+    assert.deepStrictEqual(
+      a?.dependencies.map((f) => f.name),
+      ["b", "c"],
+    );
   });
   void suite("name", () => {
     test("is proto file name without .proto suffix", async () => {
@@ -899,7 +909,10 @@ void suite("DescField", () => {
           required int32 f = 1;
         }
       `);
-      assert.strictEqual(field.presence, FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      assert.strictEqual(
+        field.presence,
+        FeatureSet_FieldPresence.LEGACY_REQUIRED,
+      );
     });
     test("proto2 required message is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
@@ -908,7 +921,10 @@ void suite("DescField", () => {
           required M f = 1;
         }
       `);
-      assert.strictEqual(field.presence, FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      assert.strictEqual(
+        field.presence,
+        FeatureSet_FieldPresence.LEGACY_REQUIRED,
+      );
     });
     test("proto2 scalar list is IMPLICIT", async () => {
       const field = await compileField(`
@@ -1104,7 +1120,10 @@ void suite("DescField", () => {
           int32 f = 1 [features.field_presence = LEGACY_REQUIRED];
         }
       `);
-      assert.strictEqual(field.presence, FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      assert.strictEqual(
+        field.presence,
+        FeatureSet_FieldPresence.LEGACY_REQUIRED,
+      );
     });
     test("edition2023 message with LEGACY_REQUIRED is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
@@ -1113,7 +1132,10 @@ void suite("DescField", () => {
           M f = 1 [features.field_presence = LEGACY_REQUIRED];
         }
       `);
-      assert.strictEqual(field.presence, FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      assert.strictEqual(
+        field.presence,
+        FeatureSet_FieldPresence.LEGACY_REQUIRED,
+      );
     });
   });
   void suite("delimitedEncoding", () => {
@@ -1126,7 +1148,8 @@ void suite("DescField", () => {
       `);
       assert.strictEqual(
         field.fieldKind == "message" ? field.delimitedEncoding : undefined,
-      true);
+        true,
+      );
     });
     test("true for field with features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
@@ -1137,7 +1160,8 @@ void suite("DescField", () => {
       `);
       assert.strictEqual(
         field.fieldKind == "message" ? field.delimitedEncoding : undefined,
-      true);
+        true,
+      );
     });
     test("true for list field with features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
@@ -1150,7 +1174,8 @@ void suite("DescField", () => {
         field.fieldKind == "list" && field.listKind == "message"
           ? field.delimitedEncoding
           : undefined,
-      true);
+        true,
+      );
     });
     test("true for file with features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
@@ -1162,7 +1187,8 @@ void suite("DescField", () => {
       `);
       assert.strictEqual(
         field.fieldKind == "message" ? field.delimitedEncoding : undefined,
-      true);
+        true,
+      );
     });
     test("false for map field with inherited features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
@@ -1174,7 +1200,8 @@ void suite("DescField", () => {
       `);
       assert.strictEqual(
         field.fieldKind == "map" ? field.delimitedEncoding : undefined,
-      false);
+        false,
+      );
     });
   });
   void suite("longAsString", () => {
@@ -1208,7 +1235,7 @@ void suite("DescField", () => {
         }
       }
     });
-    for (const {jstype, longAsString} of [
+    for (const { jstype, longAsString } of [
       { jstype: "JS_NORMAL", longAsString: false },
       { jstype: "JS_NUMBER", longAsString: false },
       { jstype: "JS_STRING", longAsString: true },
@@ -1233,7 +1260,7 @@ void suite("DescField", () => {
         for (const field of fields) {
           assert.ok(
             field.fieldKind == "scalar" ||
-            (field.fieldKind == "list" && field.listKind == "scalar"),
+              (field.fieldKind == "list" && field.listKind == "scalar"),
           );
           if (
             field.fieldKind == "scalar" ||
@@ -1862,7 +1889,8 @@ void suite("DescExtension", () => {
       `);
       assert.strictEqual(
         ext.fieldKind == "message" ? ext.delimitedEncoding : undefined,
-      true);
+        true,
+      );
     });
     test("true for field with features.message_encoding = DELIMITED", async () => {
       const ext = await compileExtension(`
@@ -1874,7 +1902,8 @@ void suite("DescExtension", () => {
       `);
       assert.strictEqual(
         ext.fieldKind == "message" ? ext.delimitedEncoding : undefined,
-      true);
+        true,
+      );
     });
   });
 });
@@ -1978,7 +2007,8 @@ void suite("DescMethod", () => {
         message I {}
         message O {}
       `);
-      assert.strictEqual(method.idempotency,
+      assert.strictEqual(
+        method.idempotency,
         MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN,
       );
     });
@@ -1993,7 +2023,8 @@ void suite("DescMethod", () => {
         message I {}
         message O {}
       `);
-      assert.strictEqual(method.idempotency,
+      assert.strictEqual(
+        method.idempotency,
         MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN,
       );
     });
@@ -2008,7 +2039,8 @@ void suite("DescMethod", () => {
         message I {}
         message O {}
       `);
-      assert.strictEqual(method.idempotency,
+      assert.strictEqual(
+        method.idempotency,
         MethodOptions_IdempotencyLevel.NO_SIDE_EFFECTS,
       );
     });
@@ -2023,7 +2055,8 @@ void suite("DescMethod", () => {
         message I {}
         message O {}
       `);
-      assert.strictEqual(method.idempotency,
+      assert.strictEqual(
+        method.idempotency,
         MethodOptions_IdempotencyLevel.IDEMPOTENT,
       );
     });

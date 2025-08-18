@@ -46,33 +46,38 @@ test("source retention options are unavailable in generated code", () => {
   assert.strictEqual(
     !!fileOptions &&
       hasExtension(fileOptions, options_ts.file_option_retention_source),
-   false);
+    false,
+  );
 
   const messageOptions = option_usage_ts.MessageWithOptionsSchema.proto.options;
   assert.strictEqual(
     !!messageOptions &&
       hasExtension(messageOptions, options_ts.message_option_retention_source),
-   false);
+    false,
+  );
 
   const fieldOptions =
     option_usage_ts.MessageWithOptionsSchema.fields[0].proto.options;
   assert.strictEqual(
     !!fieldOptions &&
       hasExtension(fieldOptions, options_ts.field_option_retention_source),
-   false);
+    false,
+  );
 
   const oneofOptions =
     option_usage_ts.MessageWithOptionsSchema.oneofs[0].proto.options;
   assert.strictEqual(
     !!oneofOptions &&
       hasExtension(oneofOptions, options_ts.oneof_option_retention_source),
-   false);
+    false,
+  );
 
   const enumOptions = option_usage_ts.EnumWithOptionsSchema.proto.options;
   assert.strictEqual(
     !!enumOptions &&
       hasExtension(enumOptions, options_ts.enum_option_retention_source),
-   false);
+    false,
+  );
 
   const enumValueOptions =
     option_usage_ts.EnumWithOptionsSchema.values[0].proto.options;
@@ -82,20 +87,23 @@ test("source retention options are unavailable in generated code", () => {
         enumValueOptions,
         options_ts.enum_value_option_retention_source,
       ),
-   false);
+    false,
+  );
 
   const serviceOptions = option_usage_ts.ServiceWithOptions.proto.options;
   assert.strictEqual(
     !!serviceOptions &&
       hasExtension(serviceOptions, options_ts.service_option_retention_source),
-   false);
+    false,
+  );
 
   const methodOptions =
     option_usage_ts.ServiceWithOptions.methods[0].proto.options;
   assert.strictEqual(
     !!methodOptions &&
       hasExtension(methodOptions, options_ts.method_option_retention_source),
-   false);
+    false,
+  );
 });
 
 void suite("JSON types", () => {
@@ -258,24 +266,25 @@ test("service generates as expected", () => {
 
 void suite("ts generated code is equal to js generated code", () => {
   void test("proto2", () => {
-    assert.deepStrictEqual(toPlain(proto2_ts),toPlain(proto2_js));
+    assert.deepStrictEqual(toPlain(proto2_ts), toPlain(proto2_js));
   });
   test("proto3", () => {
-    assert.deepStrictEqual(toPlain(proto3_ts),toPlain(proto3_js));
+    assert.deepStrictEqual(toPlain(proto3_ts), toPlain(proto3_js));
   });
   test("edition2023", () => {
-    assert.deepStrictEqual(toPlain(edition2023_ts),toPlain(edition2023_js));
+    assert.deepStrictEqual(toPlain(edition2023_ts), toPlain(edition2023_js));
   });
   test("nameclash", () => {
-    assert.deepStrictEqual(toPlain(nameclash_ts),toPlain(nameclash_js));
+    assert.deepStrictEqual(toPlain(nameclash_ts), toPlain(nameclash_js));
   });
   test("test_messages_proto3", () => {
-    assert.deepStrictEqual(toPlain(test_messages_proto3_ts),
+    assert.deepStrictEqual(
+      toPlain(test_messages_proto3_ts),
       toPlain(test_messages_proto3_js),
     );
   });
   test("service", () => {
-    assert.deepStrictEqual(toPlain(service_ts),toPlain(service_js));
+    assert.deepStrictEqual(toPlain(service_ts), toPlain(service_js));
   });
 
   /**

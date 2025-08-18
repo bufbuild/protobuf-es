@@ -43,9 +43,11 @@ void suite("equals()", () => {
     const b = a;
     assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), true);
   });
-  for (const desc of [proto3_ts.Proto3MessageSchema,
+  for (const desc of [
+    proto3_ts.Proto3MessageSchema,
     proto2_ts.Proto2MessageSchema,
-    edition2023_ts.Edition2023MessageSchema,]) {
+    edition2023_ts.Edition2023MessageSchema,
+  ]) {
     void test(`equal zero messages are equal ${desc.typeName}`, () => {
       const a = create(desc);
       const b = create(desc);
@@ -74,10 +76,12 @@ void suite("equals()", () => {
   test("different message types are not equal", () => {
     const a = create(proto3_ts.Proto3MessageSchema);
     const b = create(UserSchema);
-    assert.strictEqual(equals(proto3_ts.Proto3MessageSchema as DescMessage, a, b),
+    assert.strictEqual(
+      equals(proto3_ts.Proto3MessageSchema as DescMessage, a, b),
       false,
     );
-    assert.strictEqual(equals(proto3_ts.Proto3MessageSchema as DescMessage, b, b),
+    assert.strictEqual(
+      equals(proto3_ts.Proto3MessageSchema as DescMessage, b, b),
       false,
     );
   });
@@ -115,7 +119,7 @@ void suite("equals()", () => {
     beforeEach(() => {
       b = fillProto3Message(create(desc));
     });
-    for (const f of desc.fields.filter(f => reflect(desc, a).isSet(f))) {
+    for (const f of desc.fields.filter((f) => reflect(desc, a).isSet(f))) {
       void test(`${f.name}`, () => {
         reflect(desc, b).clear(f);
         assert.strictEqual(reflect(desc, b).isSet(f), false);
@@ -131,7 +135,7 @@ void suite("equals()", () => {
     beforeEach(() => {
       b = fillEdition2023Message(create(desc));
     });
-    for (const f of desc.fields.filter(f => reflect(desc, a).isSet(f))) {
+    for (const f of desc.fields.filter((f) => reflect(desc, a).isSet(f))) {
       void test(`${f.name}`, () => {
         reflect(desc, b).clear(f);
         assert.strictEqual(reflect(desc, b).isSet(f), false);

@@ -85,66 +85,82 @@ void suite("getOption()", () => {
   });
   void test("returns option", () => {
     const file = file_extra_option_usage;
-    assert.strictEqual(getOption(file, file_option_retention_unknown),
+    assert.strictEqual(
+      getOption(file, file_option_retention_unknown),
       "file option retention unknown",
     );
-    assert.strictEqual(getOption(file, file_option_retention_runtime),
+    assert.strictEqual(
+      getOption(file, file_option_retention_runtime),
       "file option retention runtime",
     );
 
     const message = MessageWithOptionsSchema;
-    assert.strictEqual(getOption(message, message_option_retention_unknown),
+    assert.strictEqual(
+      getOption(message, message_option_retention_unknown),
       "message option retention unknown",
     );
-    assert.strictEqual(getOption(message, message_option_retention_runtime),
+    assert.strictEqual(
+      getOption(message, message_option_retention_runtime),
       "message option retention runtime",
     );
 
     const field = MessageWithOptionsSchema.fields[0];
-    assert.strictEqual(getOption(field, field_option_retention_unknown),
+    assert.strictEqual(
+      getOption(field, field_option_retention_unknown),
       "field option retention unknown",
     );
-    assert.strictEqual(getOption(field, field_option_retention_runtime),
+    assert.strictEqual(
+      getOption(field, field_option_retention_runtime),
       "field option retention runtime",
     );
 
     const oneof = MessageWithOptionsSchema.oneofs[0];
-    assert.strictEqual(getOption(oneof, oneof_option_retention_unknown),
+    assert.strictEqual(
+      getOption(oneof, oneof_option_retention_unknown),
       "oneof option retention unknown",
     );
-    assert.strictEqual(getOption(oneof, oneof_option_retention_runtime),
+    assert.strictEqual(
+      getOption(oneof, oneof_option_retention_runtime),
       "oneof option retention runtime",
     );
 
     const enumeration = EnumWithOptionsSchema;
-    assert.strictEqual(getOption(enumeration, enum_option_retention_unknown),
+    assert.strictEqual(
+      getOption(enumeration, enum_option_retention_unknown),
       "enum option retention unknown",
     );
-    assert.strictEqual(getOption(enumeration, enum_option_retention_runtime),
+    assert.strictEqual(
+      getOption(enumeration, enum_option_retention_runtime),
       "enum option retention runtime",
     );
 
     const enumValue = EnumWithOptionsSchema.values[0];
-    assert.strictEqual(getOption(enumValue, enum_value_option_retention_unknown),
+    assert.strictEqual(
+      getOption(enumValue, enum_value_option_retention_unknown),
       "enum value option retention unknown",
     );
-    assert.strictEqual(getOption(enumValue, enum_value_option_retention_runtime),
+    assert.strictEqual(
+      getOption(enumValue, enum_value_option_retention_runtime),
       "enum value option retention runtime",
     );
 
     const service = ServiceWithOptions;
-    assert.strictEqual(getOption(service, service_option_retention_unknown),
+    assert.strictEqual(
+      getOption(service, service_option_retention_unknown),
       "service option retention unknown",
     );
-    assert.strictEqual(getOption(service, service_option_retention_runtime),
+    assert.strictEqual(
+      getOption(service, service_option_retention_runtime),
       "service option retention runtime",
     );
 
     const method = ServiceWithOptions.methods[0];
-    assert.strictEqual(getOption(method, method_option_retention_unknown),
+    assert.strictEqual(
+      getOption(method, method_option_retention_unknown),
       "method option retention unknown",
     );
-    assert.strictEqual(getOption(method, method_option_retention_runtime),
+    assert.strictEqual(
+      getOption(method, method_option_retention_runtime),
       "method option retention runtime",
     );
   });

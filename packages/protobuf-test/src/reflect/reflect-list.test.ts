@@ -134,7 +134,10 @@ void suite("ReflectList", () => {
       const list = reflectList(repeatedMessageField, []);
       const err = catchFieldError(() => list.add(reflect(UserSchema)));
       assert.ok(err !== undefined);
-      assert.match(err.message, /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/);
+      assert.match(
+        err.message,
+        /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
+      );
     });
     test("throws error for invalid scalar", () => {
       const list = reflectList(repeatedStringField, []);
@@ -182,7 +185,10 @@ void suite("ReflectList", () => {
       const list = reflectList(repeatedMessageField, [null]);
       const err = catchFieldError(() => list.set(0, reflect(UserSchema)));
       assert.ok(err !== undefined);
-      assert.match(err.message, /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/);
+      assert.match(
+        err.message,
+        /^list item #1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
+      );
     });
   });
   void suite("clear()", () => {

@@ -215,7 +215,10 @@ void suite("ReflectMap", () => {
       const map = reflectMap(mapInt32Int32Field, {});
       const err = catchFieldError(() => map.set(true, "A"));
       assert.ok(err !== undefined);
-      assert.match(err.message, /^invalid map key: expected number \(int32\), got true$/);
+      assert.match(
+        err.message,
+        /^invalid map key: expected number \(int32\), got true$/,
+      );
     });
     test("throws error for invalid scalar value", () => {
       const map = reflectMap(mapStringStringField, {});
@@ -227,7 +230,10 @@ void suite("ReflectMap", () => {
       const map = reflectMap(mapInt32MessageField, {});
       const err = catchFieldError(() => map.set(1, reflect(UserSchema)));
       assert.ok(err !== undefined);
-      assert.match(err.message, /^map entry 1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/);
+      assert.match(
+        err.message,
+        /^map entry 1: expected ReflectMessage \(spec.Proto3Message\), got ReflectMessage \(example.User\)$/,
+      );
     });
   });
   void suite("delete()", () => {

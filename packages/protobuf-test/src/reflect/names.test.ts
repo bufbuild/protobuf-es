@@ -67,22 +67,28 @@ service FooService {                          // foo.bar.FooService
     assert.strictEqual(qualifiedName(m0.oneofs[0]), "foo.bar.Message.id");
     assert.strictEqual(qualifiedName(m0.fields[0]), "foo.bar.Message.name");
     assert.strictEqual(qualifiedName(m0.fields[1]), "foo.bar.Message.num");
-    assert.strictEqual(qualifiedName(m0.nestedMessages[0]),
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0]),
       "foo.bar.Message.NestedMessage",
     );
-    assert.strictEqual(qualifiedName(m0.nestedMessages[0].nestedExtensions[0]),
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedExtensions[0]),
       "foo.bar.Message.NestedMessage.fizz",
     );
-    assert.strictEqual(qualifiedName(m0.nestedMessages[0].nestedEnums[0]),
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedEnums[0]),
       "foo.bar.Message.NestedMessage.Kind",
     );
-    assert.strictEqual(qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[0]),
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[0]),
       "foo.bar.Message.NestedMessage.NULL",
     );
-    assert.strictEqual(qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[1]),
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[1]),
       "foo.bar.Message.NestedMessage.PRIMARY",
     );
-    assert.strictEqual(qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[2]),
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[2]),
       "foo.bar.Message.NestedMessage.SECONDARY",
     );
     assert.strictEqual(qualifiedName(m0.fields[2]), "foo.bar.Message.extra");
@@ -116,7 +122,8 @@ void suite("safeObjectProperty", () => {
 });
 
 void suite("protoCamelCase", () => {
-  for (const name of [    "foo_bar",
+  for (const name of [
+    "foo_bar",
     "__proto__",
     "fieldname1",
     "field_name2",

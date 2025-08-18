@@ -49,10 +49,12 @@ void suite("merge()", () => {
     // replaces existing fields
     assert.strictEqual(target.singularMessageField?.singularStringField, "abc");
     assert.strictEqual(target.singularMessageField?.optionalStringField, "abc");
-    assert.strictEqual(target.singularMessageField?.singularBytesField,
+    assert.strictEqual(
+      target.singularMessageField?.singularBytesField,
       source.singularMessageField?.singularBytesField,
     ); // bytes field is copied by reference
-    assert.strictEqual(target.singularMessageField?.singularEnumField,
+    assert.strictEqual(
+      target.singularMessageField?.singularEnumField,
       proto3_ts.Proto3Enum.YES,
     );
   });
@@ -106,13 +108,20 @@ void suite("merge()", () => {
     });
     const targetSingularMessageField = target.singularMessageField;
     merge(proto3_ts.Proto3MessageSchema, target, source);
-    assert.strictEqual(target.optionalMessageField, source.optionalMessageField); // message field is copied by reference
-    assert.notStrictEqual(target.singularMessageField, source.singularMessageField);
+    assert.strictEqual(
+      target.optionalMessageField,
+      source.optionalMessageField,
+    ); // message field is copied by reference
+    assert.notStrictEqual(
+      target.singularMessageField,
+      source.singularMessageField,
+    );
     assert.strictEqual(target.singularMessageField, targetSingularMessageField); // target message field reference is maintained
     assert.strictEqual(target.singularMessageField?.singularStringField, "DEF");
-    assert.deepStrictEqual(target.singularMessageField?.repeatedInt32Field, [
-      1, 2,
-    ]);
+    assert.deepStrictEqual(
+      target.singularMessageField?.repeatedInt32Field,
+      [1, 2],
+    );
   });
   test("adds unknown fields to target", () => {
     const target = create(proto3_ts.Proto3MessageSchema);

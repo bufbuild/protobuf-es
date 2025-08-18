@@ -151,11 +151,12 @@ const goldenValuesZero: extensionWithValueCollection = [
 void suite("getExtension()", () => {
   void test("should throw error if extendee does not match", () => {
     const msg = create(UserSchema);
-    assert.throws(() =>
-      getExtension(msg as unknown as Proto2Extendee, uint32_ext),
+    assert.throws(
+      () => getExtension(msg as unknown as Proto2Extendee, uint32_ext),
       {
-        message: /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
-      }
+        message:
+          /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+      },
     );
   });
   void suite("for scalar", () => {
@@ -187,16 +188,24 @@ void suite("getExtension()", () => {
       assert.strictEqual(getExtension(msg, uint32_ext), 456);
     });
     void test("should return zero value if unset", () => {
-      assert.strictEqual(getExtension(create(Proto2ExtendeeSchema), string_ext), "");
-      assert.strictEqual(getExtension(create(Proto2ExtendeeSchema), uint32_ext), 0);
+      assert.strictEqual(
+        getExtension(create(Proto2ExtendeeSchema), string_ext),
+        "",
+      );
+      assert.strictEqual(
+        getExtension(create(Proto2ExtendeeSchema), uint32_ext),
+        0,
+      );
     });
     void test("should return default value if unset", () => {
       assert.strictEqual(
         getExtension(create(Proto2ExtendeeSchema), string_ext_with_default),
-      `hello " */ `);
+        `hello " */ `,
+      );
       assert.strictEqual(
         getExtension(create(Proto2ExtendeeSchema), uint32_ext_with_default),
-      999);
+        999,
+      );
     });
   });
   void suite("for repeated scalar", () => {
@@ -214,7 +223,10 @@ void suite("getExtension()", () => {
           data: new BinaryWriter().uint32(456).finish(),
         },
       ];
-      assert.deepStrictEqual(getExtension(msg, unpacked_uint32_ext), [123, 456]);
+      assert.deepStrictEqual(
+        getExtension(msg, unpacked_uint32_ext),
+        [123, 456],
+      );
     });
     void test("should parse from packed unknown field", () => {
       const msg = create(Proto2ExtendeeSchema);
@@ -246,12 +258,16 @@ void suite("getExtension()", () => {
           data: new BinaryWriter().string("b").finish(),
         },
       ];
-      assert.deepStrictEqual(getExtension(msg, repeated_string_ext), ["a", "b"]);
+      assert.deepStrictEqual(getExtension(msg, repeated_string_ext), [
+        "a",
+        "b",
+      ]);
     });
     void test("should return zero value if unset", () => {
       assert.deepStrictEqual(
-        getExtension(create(Proto2ExtendeeSchema), unpacked_uint32_ext)
-      , []);
+        getExtension(create(Proto2ExtendeeSchema), unpacked_uint32_ext),
+        [],
+      );
     });
   });
   void suite("for enum", () => {
@@ -283,14 +299,16 @@ void suite("getExtension()", () => {
       assert.strictEqual(getExtension(message, enum_ext), Proto2ExtEnum.NO);
     });
     void test("should return zero value if unset", () => {
-      assert.strictEqual(getExtension(create(Proto2ExtendeeSchema), enum_ext),
+      assert.strictEqual(
+        getExtension(create(Proto2ExtendeeSchema), enum_ext),
         Proto2ExtEnum.YES,
       );
     });
     void test("should return default value if unset", () => {
       assert.strictEqual(
-        getExtension(create(Proto2ExtendeeSchema), enum_ext_with_default)
-      , Proto2ExtEnum.NO);
+        getExtension(create(Proto2ExtendeeSchema), enum_ext_with_default),
+        Proto2ExtEnum.NO,
+      );
     });
   });
   void suite("for repeated enum", () => {
@@ -323,8 +341,9 @@ void suite("getExtension()", () => {
     });
     void test("should return zero value if unset", () => {
       assert.deepStrictEqual(
-        getExtension(create(Proto2ExtendeeSchema), repeated_enum_ext)
-      , []);
+        getExtension(create(Proto2ExtendeeSchema), repeated_enum_ext),
+        [],
+      );
     });
   });
   void suite("for message", () => {
@@ -544,9 +563,7 @@ void suite("getExtension()", () => {
       const msg = create(Proto2ExtendeeSchema);
       const value = getExtension(msg, groupext);
       assert.ok(isMessage(value, GroupExtSchema));
-      assert.ok(
-        equals(GroupExtSchema, value, create(GroupExtSchema)),
-      );
+      assert.ok(equals(GroupExtSchema, value, create(GroupExtSchema)));
     });
   });
   void suite("for repeated group", () => {
@@ -654,7 +671,10 @@ void suite("clearExtension()", () => {
     }
   });
   void test("should clear unknown fields with extension number and leave others untouched", () => {
-    assert.deepStrictEqual(listUnknownFieldNumbers(msg), [500, 1001, 1001, 1500]);
+    assert.deepStrictEqual(
+      listUnknownFieldNumbers(msg),
+      [500, 1001, 1001, 1500],
+    );
     clearExtension(msg, uint32_ext);
     assert.deepStrictEqual(listUnknownFieldNumbers(msg), [500, 1500]);
     clearExtension(msg, uint32_ext);
@@ -662,22 +682,28 @@ void suite("clearExtension()", () => {
   });
   void test("should throw error if extendee does not match", () => {
     const msg = create(UserSchema);
-    assert.throws(() =>
-      clearExtension(msg as unknown as Proto2Extendee, uint32_ext), {
-      message: /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
-    });
+    assert.throws(
+      () => clearExtension(msg as unknown as Proto2Extendee, uint32_ext),
+      {
+        message:
+          /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+      },
+    );
   });
 });
 
 void suite("setExtension()", () => {
   void test("should throw error if extendee does not match", () => {
     const msg = create(UserSchema);
-    assert.throws(() =>
-      setExtension(msg as unknown as Proto2Extendee, uint32_ext, 123), {
-      message: /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
-    });
+    assert.throws(
+      () => setExtension(msg as unknown as Proto2Extendee, uint32_ext, 123),
+      {
+        message:
+          /^extension proto2ext.uint32_ext can only be applied to message proto2ext.Proto2Extendee$/,
+      },
+    );
   });
-  for (const {ext, val} of goldenValues) {
+  for (const { ext, val } of goldenValues) {
     void test(`should set ${ext.typeName} as expected`, () => {
       const msg = create(Proto2ExtendeeSchema);
       assert.strictEqual(hasExtension(msg, ext), false);
@@ -686,7 +712,7 @@ void suite("setExtension()", () => {
       assert.deepStrictEqual(getExtension(msg, ext), val);
     });
   }
-  for (const {ext, val} of goldenValuesZero) {
+  for (const { ext, val } of goldenValuesZero) {
     void test(`should set zero ${ext.typeName} as expected`, () => {
       const msg = create(Proto2ExtendeeSchema);
       assert.strictEqual(hasExtension(msg, ext), false);

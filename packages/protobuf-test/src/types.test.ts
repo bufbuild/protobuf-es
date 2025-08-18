@@ -49,18 +49,21 @@ import type * as valid_types_ts_novalid from "./gen/ts/extra/valid_types_pb.js";
 import type * as codegenv1 from "@bufbuild/protobuf/codegenv1";
 
 void suite("type Message", () => {
-  void suite("assigning different messages with same shape to each other", () => {
-    void test("is a type error", () => {
-      const duration = "fake" as unknown as Duration;
-      const timestamp = "fake" as unknown as Timestamp;
-      // @ts-expect-error TS2322
-      const duration2: Duration = timestamp;
-      // @ts-expect-error TS2322
-      const timestamp2: Timestamp = duration;
-      assert.ok(duration2);
-      assert.ok(timestamp2);
-    });
-  });
+  void suite(
+    "assigning different messages with same shape to each other",
+    () => {
+      void test("is a type error", () => {
+        const duration = "fake" as unknown as Duration;
+        const timestamp = "fake" as unknown as Timestamp;
+        // @ts-expect-error TS2322
+        const duration2: Duration = timestamp;
+        // @ts-expect-error TS2322
+        const timestamp2: Timestamp = duration;
+        assert.ok(duration2);
+        assert.ok(timestamp2);
+      });
+    },
+  );
   void suite("narrow down from message shape union", () => {
     const msg = create(UserSchema) as unknown as Proto3Message | User;
     void test("can switch on Message.$typeName against literal string type", () => {

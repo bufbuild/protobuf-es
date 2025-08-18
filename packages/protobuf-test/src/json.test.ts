@@ -323,12 +323,13 @@ void suite("JSON serialization", () => {
           toJson(AnySchema, any, {
             registry: createRegistry(ValueSchema, StructSchema),
           }),
-         {
-          "@type": "type.googleapis.com/google.protobuf.Value",
-          value: {
-            foo: 1,
+          {
+            "@type": "type.googleapis.com/google.protobuf.Value",
+            value: {
+              foo: 1,
+            },
           },
-        });
+        );
       });
       test(`encodes ${StructSchema.typeName} to JSON`, () => {
         const str = anyPack(
@@ -488,19 +489,27 @@ void suite("JSON serialization", () => {
         const fieldMask = create(FieldMaskSchema, {
           paths: ["user.displayName", "photo"],
         });
-        assert.throws(() => {
-          toJson(FieldMaskSchema, fieldMask);
-        }, {
-          message: 'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
-        });
+        assert.throws(
+          () => {
+            toJson(FieldMaskSchema, fieldMask);
+          },
+          {
+            message:
+              'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
+          },
+        );
       });
       void test("fromJson fails on invalid json", () => {
         const json = "user.display_name,photo";
-        assert.throws(() => {
-          fromJson(FieldMaskSchema, json);
-        }, {
-          message: "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
-        });
+        assert.throws(
+          () => {
+            fromJson(FieldMaskSchema, json);
+          },
+          {
+            message:
+              "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
+          },
+        );
       });
     });
     testJson(
@@ -526,45 +535,57 @@ void suite("JSON serialization", () => {
         // See struct.proto
         const value = create(ValueSchema);
         assert.throws(() => toJson(ValueSchema, value), {
-         message: "google.protobuf.Value must have a value",
+          message: "google.protobuf.Value must have a value",
         });
       });
       void test("numberValue must be finite", () => {
-        assert.throws(() => {
-          toJson(
-            ValueSchema,
-            create(ValueSchema, {
-              kind: { case: "numberValue", value: NaN },
-            }),
-          );
-        }, {message: "google.protobuf.Value cannot be NaN or Infinity"});
+        assert.throws(
+          () => {
+            toJson(
+              ValueSchema,
+              create(ValueSchema, {
+                kind: { case: "numberValue", value: NaN },
+              }),
+            );
+          },
+          { message: "google.protobuf.Value cannot be NaN or Infinity" },
+        );
 
-        assert.throws(() => {
-          toJson(
-            ValueSchema,
-            create(ValueSchema, {
-              kind: { case: "numberValue", value: Infinity },
-            }),
-          );
-        }, {message: "google.protobuf.Value cannot be NaN or Infinity"});
+        assert.throws(
+          () => {
+            toJson(
+              ValueSchema,
+              create(ValueSchema, {
+                kind: { case: "numberValue", value: Infinity },
+              }),
+            );
+          },
+          { message: "google.protobuf.Value cannot be NaN or Infinity" },
+        );
 
-        assert.throws(() => {
-          toJson(
-            ValueSchema,
-            create(ValueSchema, {
-              kind: { case: "numberValue", value: Number.POSITIVE_INFINITY },
-            }),
-          );
-        }, {message: "google.protobuf.Value cannot be NaN or Infinity"});
+        assert.throws(
+          () => {
+            toJson(
+              ValueSchema,
+              create(ValueSchema, {
+                kind: { case: "numberValue", value: Number.POSITIVE_INFINITY },
+              }),
+            );
+          },
+          { message: "google.protobuf.Value cannot be NaN or Infinity" },
+        );
 
-        assert.throws(() => {
-          toJson(
-            ValueSchema,
-            create(ValueSchema, {
-              kind: { case: "numberValue", value: Number.NEGATIVE_INFINITY },
-            }),
-          );
-        }, {message: "google.protobuf.Value cannot be NaN or Infinity"});
+        assert.throws(
+          () => {
+            toJson(
+              ValueSchema,
+              create(ValueSchema, {
+                kind: { case: "numberValue", value: Number.NEGATIVE_INFINITY },
+              }),
+            );
+          },
+          { message: "google.protobuf.Value cannot be NaN or Infinity" },
+        );
       });
       void suite("Value with Struct field", () => {
         testJson(
@@ -841,17 +862,20 @@ void suite("JsonWriteOptions", () => {
 void suite("JSON parse errors", () => {
   test("fromJsonString() with invalid JSON", () => {
     assert.throws(() => fromJsonString(TestAllTypesProto3Schema, "}"), {
-      message: /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
-    })
+      message:
+        /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
+    });
   });
 
   test("mergeFromJsonString() with invalid JSON", () => {
     const target = create(TestAllTypesProto3Schema);
-    assert.throws(() =>
-      mergeFromJsonString(TestAllTypesProto3Schema, target, "}"),
-     {
-      message: /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
-    });
+    assert.throws(
+      () => mergeFromJsonString(TestAllTypesProto3Schema, target, "}"),
+      {
+        message:
+          /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
+      },
+    );
   });
 
   test("unknown field", () => {
@@ -863,31 +887,40 @@ void suite("JSON parse errors", () => {
 
   void suite("Any", () => {
     test("without @type", () => {
-      assert.throws(() =>
-        fromJson(AnySchema, {
-          value: 123,
-        }),
+      assert.throws(
+        () =>
+          fromJson(AnySchema, {
+            value: 123,
+          }),
         {
-     message: /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
-    });
+          message:
+            /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
+        },
+      );
     });
     test("with blank @type", () => {
-      assert.throws(() =>
-        fromJson(AnySchema, {
-          "@type": "",
-        }),
+      assert.throws(
+        () =>
+          fromJson(AnySchema, {
+            "@type": "",
+          }),
         {
-          message: /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
-        });
+          message:
+            /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
+        },
+      );
     });
     test("with invalid type url in @type", () => {
-      assert.throws(() =>
-        fromJson(AnySchema, {
-          "@type": "/",
-        }),
-       {
-          message: /^cannot decode message google.protobuf.Any from JSON: "@type" is invalid/,
-        });
+      assert.throws(
+        () =>
+          fromJson(AnySchema, {
+            "@type": "/",
+          }),
+        {
+          message:
+            /^cannot decode message google.protobuf.Any from JSON: "@type" is invalid/,
+        },
+      );
     });
   });
 

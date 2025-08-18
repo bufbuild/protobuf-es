@@ -27,11 +27,15 @@ void suite("serialization errors", () => {
         paths: ["user.displayName", "photo"],
       });
       void test("toJson", () => {
-        assert.throws(() => {
-          toJson(FieldMaskSchema, fieldMask);
-        }, {
-          message: 'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
-        });
+        assert.throws(
+          () => {
+            toJson(FieldMaskSchema, fieldMask);
+          },
+          {
+            message:
+              'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
+          },
+        );
       });
       void test("toBinary", () => {
         assert.doesNotThrow(() => {
@@ -101,12 +105,14 @@ void suite("serialization errors", () => {
     msg.singularEnumField = "abc";
     void test("toJson", () => {
       assert.throws(() => toJson(desc, msg), {
-        message: /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
+        message:
+          /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
       });
     });
     test("toBinary", () => {
       assert.throws(() => toBinary(desc, msg), {
-        message: /^cannot encode field spec.Proto3Message.singular_enum_field to binary: invalid int32: NaN$/,
+        message:
+          /^cannot encode field spec.Proto3Message.singular_enum_field to binary: invalid int32: NaN$/,
       });
     });
   });
@@ -117,12 +123,14 @@ void suite("serialization errors", () => {
     msg.repeatedEnumField = ["abc"];
     test("toJson", () => {
       assert.throws(() => toJson(desc, msg), {
-        message: /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
+        message:
+          /^cannot encode enum spec.Proto3Enum to JSON: expected number, got "abc"$/,
       });
     });
     test("toBinary", () => {
       assert.throws(() => toBinary(desc, msg), {
-        message: /^cannot encode field spec.Proto3Message.repeated_enum_field to binary: invalid int32: NaN$/,
+        message:
+          /^cannot encode field spec.Proto3Message.repeated_enum_field to binary: invalid int32: NaN$/,
       });
     });
   });
@@ -131,12 +139,14 @@ void suite("serialization errors", () => {
     const msg = create(desc);
     test("toJson", () => {
       assert.throws(() => toJson(desc, msg), {
-        message: /^cannot encode field spec.Proto2Message.required_string_field to JSON: required field not set$/,
+        message:
+          /^cannot encode field spec.Proto2Message.required_string_field to JSON: required field not set$/,
       });
     });
     test("toBinary", () => {
       assert.throws(() => toBinary(desc, msg), {
-        message: /^cannot encode field spec.Proto2Message.required_string_field to binary: required field not set$/,
+        message:
+          /^cannot encode field spec.Proto2Message.required_string_field to binary: required field not set$/,
       });
     });
   });
@@ -226,14 +236,14 @@ void suite("serialization errors", () => {
         if (kase.jsonErr === null) {
           assert.doesNotThrow(() => toJson(desc, msg));
         } else {
-          assert.throws(() => toJson(desc, msg), {message: kase.jsonErr});
+          assert.throws(() => toJson(desc, msg), { message: kase.jsonErr });
         }
       });
       void test("toBinary", () => {
         if (kase.binaryErr === null) {
           assert.doesNotThrow(() => toBinary(desc, msg));
         } else {
-          assert.throws(() => toBinary(desc, msg), {message: kase.binaryErr});
+          assert.throws(() => toBinary(desc, msg), { message: kase.binaryErr });
         }
       });
     });
@@ -274,7 +284,7 @@ void suite("serialization errors", () => {
         if (kase.jsonErr === null) {
           assert.doesNotThrow(() => toJson(desc, msg));
         } else {
-          assert.throws(() => toJson(desc, msg), {message: kase.jsonErr});
+          assert.throws(() => toJson(desc, msg), { message: kase.jsonErr });
         }
       });
       void test("toBinary", () => {

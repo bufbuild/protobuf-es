@@ -36,11 +36,13 @@ void suite("clone()", () => {
       { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
     ];
     const copy = clone(proto3_ts.Proto3MessageSchema, msg);
-    assert.deepStrictEqual(copy.singularMessageField?.$unknown,
+    assert.deepStrictEqual(
+      copy.singularMessageField?.$unknown,
       msg.singularMessageField.$unknown,
     );
     // Make sure it is copy
-    assert.notStrictEqual(copy.singularMessageField?.$unknown,
+    assert.notStrictEqual(
+      copy.singularMessageField?.$unknown,
       msg.singularMessageField.$unknown,
     );
   });
@@ -94,15 +96,23 @@ void suite("clone()", () => {
     });
     void test("singularMessageField", () => {
       const copy = clone(desc, msg);
-      assert.notStrictEqual(copy.singularMessageField, msg.singularMessageField);
-      assert.deepStrictEqual(copy.singularMessageField, msg.singularMessageField);
+      assert.notStrictEqual(
+        copy.singularMessageField,
+        msg.singularMessageField,
+      );
+      assert.deepStrictEqual(
+        copy.singularMessageField,
+        msg.singularMessageField,
+      );
     });
     void test("optionalWrappedUint32Field", () => {
       const copy = clone(desc, msg);
-      assert.strictEqual(copy.optionalWrappedUint32Field,
+      assert.strictEqual(
+        copy.optionalWrappedUint32Field,
         msg.optionalWrappedUint32Field,
       );
-      assert.deepStrictEqual(copy.optionalWrappedUint32Field,
+      assert.deepStrictEqual(
+        copy.optionalWrappedUint32Field,
         msg.optionalWrappedUint32Field,
       );
     });
@@ -113,34 +123,52 @@ void suite("clone()", () => {
     });
     void test("repeatedMessageField", () => {
       const copy = clone(desc, msg);
-      assert.notStrictEqual(copy.repeatedMessageField, msg.repeatedMessageField);
+      assert.notStrictEqual(
+        copy.repeatedMessageField,
+        msg.repeatedMessageField,
+      );
       assert.strictEqual(copy.repeatedMessageField.length, 2);
-      assert.notStrictEqual(copy.repeatedMessageField[0],
+      assert.notStrictEqual(
+        copy.repeatedMessageField[0],
         msg.repeatedMessageField[0],
       );
-      assert.deepStrictEqual(copy.repeatedMessageField[0],
+      assert.deepStrictEqual(
+        copy.repeatedMessageField[0],
         msg.repeatedMessageField[0],
       );
-      assert.notStrictEqual(copy.repeatedMessageField[1],
+      assert.notStrictEqual(
+        copy.repeatedMessageField[1],
         msg.repeatedMessageField[1],
       );
-      assert.deepStrictEqual(copy.repeatedMessageField[1],
+      assert.deepStrictEqual(
+        copy.repeatedMessageField[1],
         msg.repeatedMessageField[1],
       );
     });
     void test("mapStringStringField", () => {
       const copy = clone(desc, msg);
-      assert.notStrictEqual(copy.mapStringStringField, msg.mapStringStringField);
-      assert.deepStrictEqual(copy.mapStringStringField, msg.mapStringStringField);
+      assert.notStrictEqual(
+        copy.mapStringStringField,
+        msg.mapStringStringField,
+      );
+      assert.deepStrictEqual(
+        copy.mapStringStringField,
+        msg.mapStringStringField,
+      );
     });
     void test("mapInt32MessageField", () => {
       const copy = clone(desc, msg);
-      assert.notStrictEqual(copy.mapInt32MessageField, msg.mapInt32MessageField);
+      assert.notStrictEqual(
+        copy.mapInt32MessageField,
+        msg.mapInt32MessageField,
+      );
       assert.deepStrictEqual(Object.keys(copy), Object.keys(msg));
-      assert.notStrictEqual(copy.mapInt32MessageField[123],
+      assert.notStrictEqual(
+        copy.mapInt32MessageField[123],
         msg.mapInt32MessageField[123],
       );
-      assert.deepStrictEqual(copy.mapInt32MessageField[123],
+      assert.deepStrictEqual(
+        copy.mapInt32MessageField[123],
         msg.mapInt32MessageField[123],
       );
     });
@@ -236,15 +264,23 @@ void suite("clone()", () => {
     });
     void test("requiredMessageField", () => {
       const copy = clone(desc, msg);
-      assert.notStrictEqual(copy.requiredMessageField, msg.requiredMessageField);
-      assert.deepStrictEqual(copy.requiredMessageField, msg.requiredMessageField);
+      assert.notStrictEqual(
+        copy.requiredMessageField,
+        msg.requiredMessageField,
+      );
+      assert.deepStrictEqual(
+        copy.requiredMessageField,
+        msg.requiredMessageField,
+      );
     });
     void test("optionalWrappedUint32Field", () => {
       const copy = clone(desc, msg);
-      assert.strictEqual(copy.optionalWrappedUint32Field,
+      assert.strictEqual(
+        copy.optionalWrappedUint32Field,
         msg.optionalWrappedUint32Field,
       );
-      assert.deepStrictEqual(copy.optionalWrappedUint32Field,
+      assert.deepStrictEqual(
+        copy.optionalWrappedUint32Field,
         msg.optionalWrappedUint32Field,
       );
     });
@@ -255,34 +291,52 @@ void suite("clone()", () => {
     });
     void test("repeatedMessageField", () => {
       const copy = clone(desc, msg);
-      assert.notStrictEqual(copy.repeatedMessageField, msg.repeatedMessageField);
+      assert.notStrictEqual(
+        copy.repeatedMessageField,
+        msg.repeatedMessageField,
+      );
       assert.strictEqual(copy.repeatedMessageField.length, 2);
-      assert.notStrictEqual(copy.repeatedMessageField[0],
+      assert.notStrictEqual(
+        copy.repeatedMessageField[0],
         msg.repeatedMessageField[0],
       );
-      assert.deepStrictEqual(copy.repeatedMessageField[0],
+      assert.deepStrictEqual(
+        copy.repeatedMessageField[0],
         msg.repeatedMessageField[0],
       );
-      assert.notStrictEqual(copy.repeatedMessageField[1],
+      assert.notStrictEqual(
+        copy.repeatedMessageField[1],
         msg.repeatedMessageField[1],
       );
-      assert.deepStrictEqual(copy.repeatedMessageField[1],
+      assert.deepStrictEqual(
+        copy.repeatedMessageField[1],
         msg.repeatedMessageField[1],
       );
     });
     void test("mapStringStringField", () => {
       const copy = clone(desc, msg);
-      assert.notStrictEqual(copy.mapStringStringField, msg.mapStringStringField);
-      assert.deepStrictEqual(copy.mapStringStringField, msg.mapStringStringField);
+      assert.notStrictEqual(
+        copy.mapStringStringField,
+        msg.mapStringStringField,
+      );
+      assert.deepStrictEqual(
+        copy.mapStringStringField,
+        msg.mapStringStringField,
+      );
     });
     void test("mapInt32MessageField", () => {
       const copy = clone(desc, msg);
-      assert.notStrictEqual(copy.mapInt32MessageField, msg.mapInt32MessageField);
+      assert.notStrictEqual(
+        copy.mapInt32MessageField,
+        msg.mapInt32MessageField,
+      );
       assert.deepStrictEqual(Object.keys(copy).sort(), Object.keys(msg).sort());
-      assert.notStrictEqual(copy.mapInt32MessageField[123],
+      assert.notStrictEqual(
+        copy.mapInt32MessageField[123],
         msg.mapInt32MessageField[123],
       );
-      assert.deepStrictEqual(copy.mapInt32MessageField[123],
+      assert.deepStrictEqual(
+        copy.mapInt32MessageField[123],
         msg.mapInt32MessageField[123],
       );
     });

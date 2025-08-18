@@ -53,7 +53,8 @@ void suite("edition2023 serialization", () => {
       const msgProto2 = fillProto2Message(create(descProto2));
       const descEdition = edition2023_ts.Edition2023FromProto2MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      assert.deepStrictEqual(toBinary(descEdition, msgEdition),
+      assert.deepStrictEqual(
+        toBinary(descEdition, msgEdition),
         toBinary(descProto2, msgProto2),
       );
     });
@@ -154,7 +155,8 @@ void suite("edition2023 serialization", () => {
       const msgProto3 = fillProto3Message(create(descProto3));
       const descEdition = edition2023_ts.Edition2023FromProto3MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      assert.deepStrictEqual(toBinary(descEdition, msgEdition),
+      assert.deepStrictEqual(
+        toBinary(descEdition, msgEdition),
         toBinary(descProto3, msgProto3),
       );
     });

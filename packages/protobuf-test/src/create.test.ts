@@ -85,7 +85,10 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("singularFloatField"), true);
         assert.strictEqual(msg.singularBoolField, false);
         assert.strictEqual(hasOwn("singularBoolField"), true);
-        assert.strictEqual(msg.singularEnumField, proto3_ts.Proto3Enum.UNSPECIFIED);
+        assert.strictEqual(
+          msg.singularEnumField,
+          proto3_ts.Proto3Enum.UNSPECIFIED,
+        );
         assert.strictEqual(hasOwn("singularEnumField"), true);
         assert.strictEqual(msg.singularMessageField, undefined);
         assert.strictEqual(hasOwn("singularMessageField"), false);
@@ -211,13 +214,20 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("requiredInt32Field"), false);
         assert.strictEqual(msg.requiredDefaultInt32Field, 128);
         assert.strictEqual(hasOwn("requiredInt64Field"), false);
-        assert.strictEqual(msg.requiredDefaultInt64Field, protoInt64.parse(-256));
+        assert.strictEqual(
+          msg.requiredDefaultInt64Field,
+          protoInt64.parse(-256),
+        );
         assert.strictEqual(hasOwn("requiredInt64Field"), false);
-        assert.strictEqual(msg.requiredDefaultInt64JsNumberField,
+        assert.strictEqual(
+          msg.requiredDefaultInt64JsNumberField,
           protoInt64.parse(-256),
         );
         assert.strictEqual(hasOwn("requiredDefaultInt64JsNumberField"), false);
-        assert.strictEqual(typeof msg.requiredDefaultInt64JsStringField, "string");
+        assert.strictEqual(
+          typeof msg.requiredDefaultInt64JsStringField,
+          "string",
+        );
         assert.strictEqual(msg.requiredDefaultInt64JsStringField, "-256");
         assert.strictEqual(hasOwn("requiredDefaultInt64JsStringField"), false);
         assert.strictEqual(hasOwn("requiredFloatField"), false);
@@ -225,7 +235,10 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("requiredBoolField"), false);
         assert.strictEqual(msg.requiredDefaultBoolField, true);
         assert.strictEqual(hasOwn("requiredEnumField"), false);
-        assert.strictEqual(msg.requiredDefaultEnumField, proto2_ts.Proto2Enum.YES);
+        assert.strictEqual(
+          msg.requiredDefaultEnumField,
+          proto2_ts.Proto2Enum.YES,
+        );
         assert.strictEqual(hasOwn("requiredDefaultEnumField"), false);
         assert.strictEqual(msg.requiredDefaultMessageField, undefined);
         assert.strictEqual(hasOwn("requiredDefaultMessageField"), false);
@@ -295,9 +308,13 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("optionalDefaultBytesField"), false);
         assert.strictEqual(msg.optionalDefaultInt32Field, 128);
         assert.strictEqual(hasOwn("optionalDefaultInt32Field"), false);
-        assert.strictEqual(msg.optionalDefaultInt64Field, protoInt64.parse(-256));
+        assert.strictEqual(
+          msg.optionalDefaultInt64Field,
+          protoInt64.parse(-256),
+        );
         assert.strictEqual(hasOwn("optionalDefaultInt64Field"), false);
-        assert.strictEqual(msg.optionalDefaultInt64JsNumberField,
+        assert.strictEqual(
+          msg.optionalDefaultInt64JsNumberField,
           protoInt64.parse(-256),
         );
         assert.strictEqual(hasOwn("optionalDefaultInt64JsNumberField"), false);
@@ -307,7 +324,10 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("optionalDefaultFloatField"), false);
         assert.strictEqual(msg.optionalDefaultBoolField, true);
         assert.strictEqual(hasOwn("optionalDefaultBoolField"), false);
-        assert.strictEqual(msg.optionalDefaultEnumField, proto2_ts.Proto2Enum.YES);
+        assert.strictEqual(
+          msg.optionalDefaultEnumField,
+          proto2_ts.Proto2Enum.YES,
+        );
         assert.strictEqual(hasOwn("optionalDefaultEnumField"), false);
         assert.strictEqual(msg.optionalDefaultMessageField, undefined);
         assert.strictEqual(hasOwn("optionalDefaultMessageField"), false);
@@ -370,11 +390,13 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("explicitFloatField"), false);
         assert.strictEqual(msg.explicitBoolField, false);
         assert.strictEqual(hasOwn("explicitBoolField"), false);
-        assert.strictEqual(msg.explicitEnumOpenField,
+        assert.strictEqual(
+          msg.explicitEnumOpenField,
           edition2023_ts.Edition2023EnumOpen.UNSPECIFIED,
         );
         assert.strictEqual(hasOwn("explicitEnumOpenField"), false);
-        assert.strictEqual(msg.explicitEnumClosedField,
+        assert.strictEqual(
+          msg.explicitEnumClosedField,
           edition2023_ts.Edition2023EnumClosed.A,
         );
         assert.strictEqual(hasOwn("explicitEnumClosedField"), false);
@@ -404,7 +426,8 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("implicitFloatField"), true);
         assert.strictEqual(msg.implicitBoolField, false);
         assert.strictEqual(hasOwn("implicitBoolField"), true);
-        assert.strictEqual(msg.implicitEnumOpenField,
+        assert.strictEqual(
+          msg.implicitEnumOpenField,
           edition2023_ts.Edition2023EnumOpen.UNSPECIFIED,
         );
         assert.strictEqual(hasOwn("implicitEnumOpenField"), true);
@@ -428,11 +451,13 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("requiredFloatField"), false);
         assert.strictEqual(msg.requiredBoolField, false);
         assert.strictEqual(hasOwn("requiredBoolField"), false);
-        assert.strictEqual(msg.requiredEnumOpenField,
+        assert.strictEqual(
+          msg.requiredEnumOpenField,
           edition2023_ts.Edition2023EnumOpen.UNSPECIFIED,
         );
         assert.strictEqual(hasOwn("requiredEnumOpenField"), false);
-        assert.strictEqual(msg.requiredEnumClosedField,
+        assert.strictEqual(
+          msg.requiredEnumClosedField,
           edition2023_ts.Edition2023EnumClosed.A,
         );
         assert.strictEqual(hasOwn("requiredEnumClosedField"), false);
@@ -452,13 +477,20 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("requiredInt32Field"), false);
         assert.strictEqual(msg.requiredDefaultInt32Field, 128);
         assert.strictEqual(hasOwn("requiredInt64Field"), false);
-        assert.strictEqual(msg.requiredDefaultInt64Field, protoInt64.parse(-256));
+        assert.strictEqual(
+          msg.requiredDefaultInt64Field,
+          protoInt64.parse(-256),
+        );
         assert.strictEqual(hasOwn("requiredInt64Field"), false);
-        assert.strictEqual(msg.requiredDefaultInt64JsNumberField,
+        assert.strictEqual(
+          msg.requiredDefaultInt64JsNumberField,
           protoInt64.parse(-256),
         );
         assert.strictEqual(hasOwn("requiredDefaultInt64JsNumberField"), false);
-        assert.strictEqual(typeof msg.requiredDefaultInt64JsStringField, "string");
+        assert.strictEqual(
+          typeof msg.requiredDefaultInt64JsStringField,
+          "string",
+        );
         assert.strictEqual(msg.requiredDefaultInt64JsStringField, "-256");
         assert.strictEqual(hasOwn("requiredDefaultInt64JsStringField"), false);
         assert.strictEqual(msg.requiredDefaultFloatField, -512.13);
@@ -467,11 +499,13 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("requiredDefaultFloatField"), false);
         assert.strictEqual(msg.requiredDefaultBoolField, true);
         assert.strictEqual(hasOwn("requiredDefaultBoolField"), false);
-        assert.strictEqual(msg.requiredDefaultEnumOpenField,
+        assert.strictEqual(
+          msg.requiredDefaultEnumOpenField,
           edition2023_ts.Edition2023EnumOpen.A,
         );
         assert.strictEqual(hasOwn("requiredDefaultEnumOpenField"), false);
-        assert.strictEqual(msg.requiredDefaultEnumClosedField,
+        assert.strictEqual(
+          msg.requiredDefaultEnumClosedField,
           edition2023_ts.Edition2023EnumClosed.A,
         );
 
@@ -649,7 +683,7 @@ void suite("create()", () => {
               const msg = create(desc, init);
               const r = reflect(desc, msg);
               assert.strictEqual(r.isSet(field), false);
-            })
+            });
           }
         });
       }
@@ -670,7 +704,7 @@ void suite("create()", () => {
               const msg = create(desc, init);
               const r = reflect(desc, msg);
               assert.strictEqual(r.isSet(field), false);
-            })
+            });
           }
         });
       }
@@ -774,8 +808,14 @@ void suite("create()", () => {
         });
         assert.strictEqual(msg.singularBytesField instanceof Uint8Array, true);
         assert.strictEqual(msg.repeatedBytesField.length, 2);
-        assert.strictEqual(msg.repeatedBytesField[0] instanceof Uint8Array, true);
-        assert.strictEqual(msg.repeatedBytesField[1] instanceof Uint8Array, true);
+        assert.strictEqual(
+          msg.repeatedBytesField[0] instanceof Uint8Array,
+          true,
+        );
+        assert.strictEqual(
+          msg.repeatedBytesField[1] instanceof Uint8Array,
+          true,
+        );
         assert.strictEqual(msg.either.case, "oneofBytesField");
         assert.strictEqual(msg.either.value instanceof Uint8Array, true);
       });
@@ -802,13 +842,19 @@ void suite("create()", () => {
           },
         });
         assert.ok(msg.singularMessageField !== undefined);
-        assert.strictEqual(msg.singularMessageField?.singularStringField, "str");
+        assert.strictEqual(
+          msg.singularMessageField?.singularStringField,
+          "str",
+        );
         assert.ok(
           isMessage(msg.singularMessageField, proto3_ts.Proto3MessageSchema),
         );
 
         assert.strictEqual(msg.repeatedMessageField.length, 1);
-        assert.strictEqual(msg.repeatedMessageField[0].singularStringField, "str");
+        assert.strictEqual(
+          msg.repeatedMessageField[0].singularStringField,
+          "str",
+        );
         assert.ok(
           isMessage(msg.repeatedMessageField[0], proto3_ts.Proto3MessageSchema),
         );
@@ -823,7 +869,8 @@ void suite("create()", () => {
           isMessage(
             msg.mapInt32MessageField[123],
             proto3_ts.Proto3MessageSchema,
-          ));
+          ),
+        );
       });
       test("accepts full message", () => {
         const testMessageSingular = create(proto3_ts.Proto3MessageSchema);
@@ -841,10 +888,19 @@ void suite("create()", () => {
             123: testMessageMap,
           },
         });
-        assert.strictEqual(msg.singularMessageField === testMessageSingular, true);
-        assert.strictEqual(msg.repeatedMessageField[0] === testMessageList, true);
+        assert.strictEqual(
+          msg.singularMessageField === testMessageSingular,
+          true,
+        );
+        assert.strictEqual(
+          msg.repeatedMessageField[0] === testMessageList,
+          true,
+        );
         assert.strictEqual(msg.either.value === testMessageOneof, true);
-        assert.strictEqual(msg.mapInt32MessageField[123] === testMessageMap, true);
+        assert.strictEqual(
+          msg.mapInt32MessageField[123] === testMessageMap,
+          true,
+        );
       });
     });
     void suite("enum field", () => {
@@ -910,17 +966,20 @@ void suite("create()", () => {
         assert.strictEqual(msg.singularWrappedUint32Field, 123);
         assert.strictEqual(msg.either.case, "oneofWrappedUint32Field");
         if (msg.either.case == "oneofWrappedUint32Field") {
-          assert.strictEqual(msg.either.value.$typeName,
+          assert.strictEqual(
+            msg.either.value.$typeName,
             "google.protobuf.UInt32Value",
           );
           assert.strictEqual(msg.either.value.value, 123);
         }
         assert.strictEqual(msg.repeatedWrappedUint32Field.length, 1);
-        assert.strictEqual(msg.repeatedWrappedUint32Field[0].$typeName,
+        assert.strictEqual(
+          msg.repeatedWrappedUint32Field[0].$typeName,
           "google.protobuf.UInt32Value",
         );
         assert.strictEqual(msg.repeatedWrappedUint32Field[0].value, 123);
-        assert.strictEqual(msg.mapInt32WrappedUint32Field[123].$typeName,
+        assert.strictEqual(
+          msg.mapInt32WrappedUint32Field[123].$typeName,
           "google.protobuf.UInt32Value",
         );
         assert.strictEqual(msg.mapInt32WrappedUint32Field[123].value, 123);

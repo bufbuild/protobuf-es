@@ -40,13 +40,11 @@ void suite("parsePath()", () => {
   }
   for (const { schema, input, error } of invalid) {
     test(`fails to parse invalid "${input}"`, () => {
-      assert.throws(() => parsePath(schema, input),
-        {
-          name: "InvalidPathError",
-          message: error,
-          path: input,
-        },
-      );
+      assert.throws(() => parsePath(schema, input), {
+        name: "InvalidPathError",
+        message: error,
+        path: input,
+      });
     });
   }
 });

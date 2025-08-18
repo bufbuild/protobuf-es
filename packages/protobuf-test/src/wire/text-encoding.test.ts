@@ -32,7 +32,8 @@ void suite("getTextEncoding()", () => {
   void suite("encodeUtf8()", () => {
     void test("encodes", () => {
       const bytes = getTextEncoding().encodeUtf8("hello 🌍");
-      assert.deepStrictEqual(bytes,
+      assert.deepStrictEqual(
+        bytes,
         new Uint8Array([104, 101, 108, 108, 111, 32, 240, 159, 140, 141]),
       );
     });
@@ -106,7 +107,8 @@ void suite("configureTextEncoding()", () => {
         return new Uint8Array(10);
       },
     });
-    assert.deepStrictEqual(getTextEncoding().encodeUtf8("test"),
+    assert.deepStrictEqual(
+      getTextEncoding().encodeUtf8("test"),
       new Uint8Array(10),
     );
     assert.strictEqual(arg, "test");

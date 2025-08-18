@@ -44,7 +44,6 @@ import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
 
-
 void suite(`binary serialization`, () => {
   testBinary(ScalarValuesMessageSchema, {
     doubleField: 0.75,
@@ -207,7 +206,8 @@ void suite(`binary serialization`, () => {
     });
     assert.throws(() => toBinary(ScalarValuesMessageSchema, msg), {
       name: "Error",
-      message: "cannot encode field spec.ScalarValuesMessage.uint32_field to binary: invalid uint32: -1",
+      message:
+        "cannot encode field spec.ScalarValuesMessage.uint32_field to binary: invalid uint32: -1",
     });
   });
 });

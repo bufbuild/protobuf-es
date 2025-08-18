@@ -30,8 +30,8 @@ void suite("timestampNow()", () => {
     const wantMs = Date.now();
     const gotMs = timestampMs(timestamp);
     const leewayMs = 50;
-    assert.ok(gotMs >= (wantMs - leewayMs));
-    assert.ok(gotMs <= (wantMs + leewayMs));
+    assert.ok(gotMs >= wantMs - leewayMs);
+    assert.ok(gotMs <= wantMs + leewayMs);
   });
 });
 
@@ -43,14 +43,18 @@ void suite("timestampMs()", () => {
           seconds: protoInt64.zero,
           nanos: 0,
         }),
-      ), 0);
+      ),
+      0,
+    );
     assert.strictEqual(
       timestampMs(
         create(TimestampSchema, {
           seconds: protoInt64.parse(818035920),
           nanos: 123456789,
         }),
-      ), 818035920123);
+      ),
+      818035920123,
+    );
   });
 });
 
