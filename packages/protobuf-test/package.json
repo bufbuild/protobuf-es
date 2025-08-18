@@ -17,7 +17,7 @@
     "perf": "tsx src/perf.ts benchmark '.*'",
     "profile": "dexnode dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
     "flamegraph": "npx 0x -- node dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
-    "test": "tsx --test src/**/*.test.ts",
+    "test": "tsx --test $(find src -type f -path '*.test.ts')",
     "format": "biome format --write",
     "license-header": "license-header",
     "lint": "biome lint --error-on-warnings"
