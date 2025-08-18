@@ -1369,6 +1369,16 @@ if (isEnumJson(FormatSchema, someString)) {
 }
 ```
 
+> [!NOTE]
+>
+> JSON cannot represent a Protobuf message as well as the generated message types.
+> For example, a 64-bit integer must be represented as a String in JSON, while it
+> can be represented as a BigInt in the message type. 
+> 
+> Prefer the generated message type over JSON types if you can. Use JSON types in
+> situations where you need the message to be represented by plain JSON, for example
+> for a 3rd party library that only supports JSON.
+
 > [!TIP]
 >
 > - `MessageJsonType` extracts the JSON type from a message descriptor.
