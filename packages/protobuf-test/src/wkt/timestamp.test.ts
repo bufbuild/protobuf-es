@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   timestampNow,
   timestampFromDate,
@@ -23,91 +24,89 @@ import {
 } from "@bufbuild/protobuf/wkt";
 import { create, protoInt64 } from "@bufbuild/protobuf";
 
-describe("timestampNow()", () => {
-  test("uses current time", () => {
+void suite("timestampNow()", () => {
+  void test("uses current time", () => {
     const timestamp = timestampNow();
     const wantMs = Date.now();
     const gotMs = timestampMs(timestamp);
     const leewayMs = 50;
-    expect(gotMs).toBeGreaterThanOrEqual(wantMs - leewayMs);
-    expect(gotMs).toBeLessThanOrEqual(wantMs + leewayMs);
+    assert.ok(gotMs >= (wantMs - leewayMs));
+    assert.ok(gotMs <= (wantMs + leewayMs));
   });
 });
 
-describe("timestampMs()", () => {
-  test("converts Timestamp to unix timestamp with milliseconds", () => {
-    expect(
+void suite("timestampMs()", () => {
+  void test("converts Timestamp to unix timestamp with milliseconds", () => {
+    assert.strictEqual(
       timestampMs(
         create(TimestampSchema, {
           seconds: protoInt64.zero,
           nanos: 0,
         }),
-      ),
-    ).toBe(0);
-    expect(
+      ), 0);
+    assert.strictEqual(
       timestampMs(
         create(TimestampSchema, {
           seconds: protoInt64.parse(818035920),
           nanos: 123456789,
         }),
-      ),
-    ).toBe(818035920123);
+      ), 818035920123);
   });
 });
 
-describe("timestampFromMs()", () => {
-  test("converts unix timestamp with milliseconds to Timestamp", () => {
+void suite("timestampFromMs()", () => {
+  void test("converts unix timestamp with milliseconds to Timestamp", () => {
     const timestampZero = timestampFromMs(0);
-    expect(Number(timestampZero.seconds)).toBe(0);
-    expect(timestampZero.nanos).toBe(0);
+    assert.strictEqual(Number(timestampZero.seconds), 0);
+    assert.strictEqual(timestampZero.nanos, 0);
     const timestampWithMs = timestampFromMs(818035920123);
-    expect(Number(timestampWithMs.seconds)).toBe(818035920);
-    expect(timestampWithMs.nanos).toBe(123000000);
+    assert.strictEqual(Number(timestampWithMs.seconds), 818035920);
+    assert.strictEqual(timestampWithMs.nanos, 123000000);
   });
-  test("1000 ms", () => {
+  void test("1000 ms", () => {
     const ts = timestampFromMs(1000);
-    expect(Number(ts.seconds)).toBe(1);
-    expect(ts.nanos).toBe(0);
+    assert.strictEqual(Number(ts.seconds), 1);
+    assert.strictEqual(ts.nanos, 0);
   });
-  test("1020 ms", () => {
+  void test("1020 ms", () => {
     const ts = timestampFromMs(1020);
-    expect(Number(ts.seconds)).toBe(1);
-    expect(ts.nanos).toBe(20 * 1000000);
+    assert.strictEqual(Number(ts.seconds), 1);
+    assert.strictEqual(ts.nanos, 20 * 1000000);
   });
-  test("-1070 ms", () => {
+  void test("-1070 ms", () => {
     const ts = timestampFromMs(-1070);
-    expect(Number(ts.seconds)).toBe(-2);
-    expect(ts.nanos).toBe(930 * 1000000);
+    assert.strictEqual(Number(ts.seconds), -2);
+    assert.strictEqual(ts.nanos, 930 * 1000000);
   });
-  test("-1000 ms", () => {
+  void test("-1000 ms", () => {
     const ts = timestampFromMs(-1000);
-    expect(Number(ts.seconds)).toBe(-1);
-    expect(ts.nanos).toBe(0);
+    assert.strictEqual(Number(ts.seconds), -1);
+    assert.strictEqual(ts.nanos, 0);
   });
 });
 
-describe("timestampFromDate()", () => {
-  test("converts Date to Timestamp", () => {
+void suite("timestampFromDate()", () => {
+  void test("converts Date to Timestamp", () => {
     const timestampZero = timestampFromDate(new Date(0));
-    expect(Number(timestampZero.seconds)).toBe(0);
-    expect(timestampZero.nanos).toBe(0);
+    assert.strictEqual(Number(timestampZero.seconds), 0);
+    assert.strictEqual(timestampZero.nanos, 0);
     const timestampWithMs = timestampFromDate(new Date(818035920123));
-    expect(Number(timestampWithMs.seconds)).toBe(818035920);
-    expect(timestampWithMs.nanos).toBe(123000000);
+    assert.strictEqual(Number(timestampWithMs.seconds), 818035920);
+    assert.strictEqual(timestampWithMs.nanos, 123000000);
   });
 });
 
-describe("timestampDate()", () => {
-  test("converts Timestamp to Date", () => {
+void suite("timestampDate()", () => {
+  void test("converts Timestamp to Date", () => {
     const timestampZero = create(TimestampSchema, {
       seconds: protoInt64.zero,
       nanos: 0,
     });
-    expect(timestampDate(timestampZero).getTime()).toBe(0);
+    assert.strictEqual(timestampDate(timestampZero).getTime(), 0);
     const timestampWithMs = create(TimestampSchema, {
       seconds: protoInt64.parse(818035920),
       nanos: 123000000,
     });
-    expect(timestampDate(timestampWithMs).getTime()).toBe(818035920123);
+    assert.strictEqual(timestampDate(timestampWithMs).getTime(), 818035920123);
   });
 });
