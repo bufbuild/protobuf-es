@@ -1559,7 +1559,7 @@ void suite("DescField", () => {
 
         const oneof: DescOneof | undefined = field.oneof;
 
-        assert([def, oneof].length > 0);
+        assert.ok([def, oneof].length > 0);
         break;
       }
       case "scalar": {
@@ -1577,7 +1577,7 @@ void suite("DescField", () => {
         switch (field.scalar) {
           case ScalarType.BOOL: {
             const defBool: boolean | undefined = field.getDefaultValue();
-            assert([defBool].length > 0);
+            assert.ok([defBool].length > 0);
             break;
           }
           default:
@@ -1615,7 +1615,7 @@ void suite("DescField", () => {
 
         const oneof: DescOneof | undefined = field.oneof;
 
-        assert([def, oneof].length > 0);
+        assert.ok([def, oneof].length > 0);
         break;
       }
       case "list": {
@@ -1632,7 +1632,7 @@ void suite("DescField", () => {
             const scalar: ScalarType = field.scalar;
             const message: undefined = field.message;
             const enumeration: undefined = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
           case "enum": {
@@ -1641,7 +1641,7 @@ void suite("DescField", () => {
             const scalar: undefined = field.scalar;
             const message: undefined = field.message;
             const enumeration: DescEnum = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
           case "message": {
@@ -1650,7 +1650,7 @@ void suite("DescField", () => {
             const scalar: undefined = field.scalar;
             const message: DescMessage = field.message;
             const enumeration: undefined = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
         }
@@ -1669,7 +1669,7 @@ void suite("DescField", () => {
 
         const oneof: undefined = field.oneof;
 
-        assert([oneof].length > 0);
+        assert.ok([oneof].length > 0);
         break;
       }
       case "map": {
@@ -1702,28 +1702,28 @@ void suite("DescField", () => {
             const scalar: ScalarType = field.scalar;
             const message: undefined = field.message;
             const enumeration: undefined = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
           case "enum": {
             const scalar: undefined = field.scalar;
             const message: undefined = field.message;
             const enumeration: DescEnum = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
           case "message": {
             const scalar: undefined = field.scalar;
             const message: DescMessage = field.message;
             const enumeration: undefined = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
         }
 
         const oneof: undefined = field.oneof;
 
-        assert(
+        assert.ok(
           [mapKeyFloat, mapKeyDouble, mapKeyBytes, mapKeyOk, oneof].length > 0,
         );
         break;
