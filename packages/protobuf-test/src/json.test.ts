@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   type MessageInitShape,
   type DescMessage,
@@ -54,7 +55,7 @@ import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb
 import { TestAllTypesProto3Schema } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { compileMessage } from "./helpers.js";
 
-describe("JSON serialization", () => {
+void suite("JSON serialization", () => {
   testJson(
     ScalarValuesMessageSchema,
     {
@@ -262,8 +263,8 @@ describe("JSON serialization", () => {
       repeatedUint64Field: ["123"],
     },
   );
-  describe("wkt", () => {
-    describe("wrappers", () => {
+  void suite("wkt", () => {
+    void suite("wrappers", () => {
       testJson(
         WrappersMessageSchema,
         {
@@ -292,17 +293,17 @@ describe("JSON serialization", () => {
         },
       );
     });
-    describe("Any", () => {
-      test("without value encodes to JSON {}", () => {
+    void suite("Any", () => {
+      void test("without value encodes to JSON {}", () => {
         const any = create(AnySchema);
-        expect(toJson(AnySchema, any)).toStrictEqual({});
+        assert.deepStrictEqual(toJson(AnySchema, any), {});
       });
-      test("decodes from JSON {}", () => {
+      void test("decodes from JSON {}", () => {
         const jsonString = "{}";
         const a = fromJsonString(AnySchema, jsonString);
-        expect(a).toBeDefined();
-        expect(a.typeUrl).toBe("");
-        expect(a.value.length).toBe(0);
+        assert.ok(a !== undefined);
+        assert.strictEqual(a.typeUrl, "");
+        assert.strictEqual(a.value.length, 0);
       });
       test(`encodes ${ValueSchema.typeName} with ${StructSchema.typeName} to JSON`, () => {
         const any = anyPack(
@@ -318,11 +319,11 @@ describe("JSON serialization", () => {
             },
           }),
         );
-        expect(
+        assert.deepStrictEqual(
           toJson(AnySchema, any, {
             registry: createRegistry(ValueSchema, StructSchema),
           }),
-        ).toStrictEqual({
+         {
           "@type": "type.googleapis.com/google.protobuf.Value",
           value: {
             foo: 1,
@@ -343,7 +344,7 @@ describe("JSON serialization", () => {
         const got = toJson(AnySchema, str, {
           registry: createRegistry(StructSchema, ValueSchema),
         });
-        expect(got).toStrictEqual({
+        assert.deepStrictEqual(got, {
           "@type": "type.googleapis.com/google.protobuf.Struct",
           value: { foo: 1 },
         });
@@ -358,7 +359,7 @@ describe("JSON serialization", () => {
         const got = toJson(AnySchema, str, {
           registry: createRegistry(StructSchema, ValueSchema),
         });
-        expect(got).toStrictEqual({
+        assert.deepStrictEqual(got, {
           "@type": "type.googleapis.com/google.protobuf.Value",
           value: 1,
         });
@@ -375,9 +376,9 @@ describe("JSON serialization", () => {
           },
           { registry: createRegistry(StructSchema, ValueSchema) },
         );
-        expect(anyUnpack(any, ValueSchema)).toStrictEqual(want);
+        assert.deepStrictEqual(anyUnpack(any, ValueSchema), want);
       });
-      test("json_name clash with Any.@type is not prevented", () => {
+      void test("json_name clash with Any.@type is not prevented", () => {
         const any = anyPack(
           JsonNamesMessageSchema,
           create(JsonNamesMessageSchema, { a: "a", b: "b", c: "c" }),
@@ -385,21 +386,21 @@ describe("JSON serialization", () => {
         const got = toJson(AnySchema, any, {
           registry: createRegistry(JsonNamesMessageSchema),
         });
-        expect(got).toStrictEqual({
+        assert.deepStrictEqual(got, {
           "@type": "type.googleapis.com/spec.JsonNamesMessage",
           "": "b",
           a: "a",
         });
       });
     });
-    describe("Duration", () => {
+    void suite("Duration", () => {
       const testDurationJson = (
         init: MessageInitShape<typeof DurationSchema>,
         json: string,
       ) => {
         testJson(DurationSchema, init, json);
       };
-      describe("3s", () => {
+      void suite("3s", () => {
         testDurationJson(
           {
             seconds: protoInt64.parse(3),
@@ -408,7 +409,7 @@ describe("JSON serialization", () => {
           "3s",
         );
       });
-      describe("3s 1ms", () => {
+      void suite("3s 1ms", () => {
         testDurationJson(
           {
             seconds: protoInt64.parse(3),
@@ -417,7 +418,7 @@ describe("JSON serialization", () => {
           "3.000001s",
         );
       });
-      describe("3s 1ns", () => {
+      void suite("3s 1ns", () => {
         testDurationJson(
           {
             seconds: protoInt64.parse(3),
@@ -426,7 +427,7 @@ describe("JSON serialization", () => {
           "3.000000001s",
         );
       });
-      describe("-3s 1ns", () => {
+      void suite("-3s 1ns", () => {
         testDurationJson(
           {
             seconds: protoInt64.parse(-3),
@@ -435,7 +436,7 @@ describe("JSON serialization", () => {
           "-3.000000001s",
         );
       });
-      describe("0s 5ns", () => {
+      void suite("0s 5ns", () => {
         testDurationJson(
           {
             seconds: protoInt64.parse(0),
@@ -444,7 +445,7 @@ describe("JSON serialization", () => {
           "0.000000005s",
         );
       });
-      describe("0s -5ns", () => {
+      void suite("0s -5ns", () => {
         testDurationJson(
           {
             seconds: protoInt64.parse(0),
@@ -457,7 +458,7 @@ describe("JSON serialization", () => {
     testJson(TimestampSchema, {}, "1970-01-01T00:00:00Z");
     test(`fromJson decodes ${TimestampSchema.typeName}`, () => {
       const decode = (str: string, seconds: number, nanos: number) =>
-        expect(fromJson(TimestampSchema, str)).toStrictEqual({
+        assert.deepStrictEqual(fromJson(TimestampSchema, str), {
           $typeName: "google.protobuf.Timestamp",
           seconds: protoInt64.parse(seconds),
           nanos,
@@ -475,7 +476,7 @@ describe("JSON serialization", () => {
       decode("2025-01-27T11:42:15.0Z", 1737978135, 0);
       decode("2025-01-27T11:42:15Z", 1737978135, 0);
     });
-    describe("FieldMask", () => {
+    void suite("FieldMask", () => {
       testJson(
         FieldMaskSchema,
         {
@@ -483,23 +484,23 @@ describe("JSON serialization", () => {
         },
         "user.displayName,photo",
       );
-      test("toJson fails on invalid fieldmask paths", () => {
+      void test("toJson fails on invalid fieldmask paths", () => {
         const fieldMask = create(FieldMaskSchema, {
           paths: ["user.displayName", "photo"],
         });
-        expect(() => {
+        assert.throws(() => {
           toJson(FieldMaskSchema, fieldMask);
-        }).toThrow(
-          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
-        );
+        }, {
+          message: 'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
+        });
       });
-      test("fromJson fails on invalid json", () => {
+      void test("fromJson fails on invalid json", () => {
         const json = "user.display_name,photo";
-        expect(() => {
+        assert.throws(() => {
           fromJson(FieldMaskSchema, json);
-        }).toThrow(
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
-        );
+        }, {
+          message: "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
+        });
       });
     });
     testJson(
@@ -512,7 +513,7 @@ describe("JSON serialization", () => {
       },
       { a: 123, b: "abc" },
     );
-    describe("Value", () => {
+    void suite("Value", () => {
       testJson(
         ValueSchema,
         {
@@ -520,52 +521,52 @@ describe("JSON serialization", () => {
         },
         true,
       );
-      test("encoding unset value to JSON raises error", () => {
+      void test("encoding unset value to JSON raises error", () => {
         // Absence of any variant indicates an error.
         // See struct.proto
         const value = create(ValueSchema);
-        expect(() => toJson(ValueSchema, value)).toThrow(
-          "google.protobuf.Value must have a value",
-        );
+        assert.throws(() => toJson(ValueSchema, value), {
+         message: "google.protobuf.Value must have a value",
+        });
       });
-      test("numberValue must be finite", () => {
-        expect(() => {
+      void test("numberValue must be finite", () => {
+        assert.throws(() => {
           toJson(
             ValueSchema,
             create(ValueSchema, {
               kind: { case: "numberValue", value: NaN },
             }),
           );
-        }).toThrow("google.protobuf.Value cannot be NaN or Infinity");
+        }, {message: "google.protobuf.Value cannot be NaN or Infinity"});
 
-        expect(() => {
+        assert.throws(() => {
           toJson(
             ValueSchema,
             create(ValueSchema, {
               kind: { case: "numberValue", value: Infinity },
             }),
           );
-        }).toThrow("google.protobuf.Value cannot be NaN or Infinity");
+        }, {message: "google.protobuf.Value cannot be NaN or Infinity"});
 
-        expect(() => {
+        assert.throws(() => {
           toJson(
             ValueSchema,
             create(ValueSchema, {
               kind: { case: "numberValue", value: Number.POSITIVE_INFINITY },
             }),
           );
-        }).toThrow("google.protobuf.Value cannot be NaN or Infinity");
+        }, {message: "google.protobuf.Value cannot be NaN or Infinity"});
 
-        expect(() => {
+        assert.throws(() => {
           toJson(
             ValueSchema,
             create(ValueSchema, {
               kind: { case: "numberValue", value: Number.NEGATIVE_INFINITY },
             }),
           );
-        }).toThrow("google.protobuf.Value cannot be NaN or Infinity");
+        }, {message: "google.protobuf.Value cannot be NaN or Infinity"});
       });
-      describe("Value with Struct field", () => {
+      void suite("Value with Struct field", () => {
         testJson(
           ValueSchema,
           {
@@ -585,47 +586,47 @@ describe("JSON serialization", () => {
   });
 });
 
-describe("extensions in JSON", () => {
-  describe("proto2", () => {
+void suite("extensions in JSON", () => {
+  void suite("proto2", () => {
     const extendeeDesc = ext_proto2.Proto2ExtendeeSchema;
     const jsonOpts = {
       registry: createRegistry(ext_proto2.file_extra_extensions_proto2),
     };
-    describe("string_ext", () => {
+    void suite("string_ext", () => {
       const ext = ext_proto2.string_ext;
       const goldenJson = {
         "[proto2ext.string_ext]": "foo",
       };
       const goldenValue = "foo";
-      test("encode", () => {
+      void test("encode", () => {
         const extendee = create(extendeeDesc);
         setExtension(extendee, ext, goldenValue);
         const json = toJson(extendeeDesc, extendee, jsonOpts);
-        expect(json).toStrictEqual(goldenJson);
+        assert.deepStrictEqual(json, goldenJson);
       });
-      test("decode", () => {
+      void test("decode", () => {
         const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
-        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+        assert.deepStrictEqual(getExtension(extendee, ext), goldenValue);
       });
     });
-    describe("uint64_ext", () => {
+    void suite("uint64_ext", () => {
       const ext = ext_proto2.uint64_ext;
       const goldenJson = {
         "[proto2ext.uint64_ext]": "123",
       };
       const goldenValue = protoInt64.parse(123);
-      test("encode", () => {
+      void test("encode", () => {
         const extendee = create(extendeeDesc);
         setExtension(extendee, ext, goldenValue);
         const json = toJson(extendeeDesc, extendee, jsonOpts);
-        expect(json).toStrictEqual(goldenJson);
+        assert.deepStrictEqual(json, goldenJson);
       });
-      test("decode", () => {
+      void test("decode", () => {
         const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
-        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+        assert.deepStrictEqual(getExtension(extendee, ext), goldenValue);
       });
     });
-    describe("uint64_ext_js_string", () => {
+    void suite("uint64_ext_js_string", () => {
       const ext = ext_proto2.uint64_ext_js_string;
       const goldenJson = {
         "[proto2ext.uint64_ext_js_string]": "456",
@@ -635,14 +636,14 @@ describe("extensions in JSON", () => {
         const extendee = create(extendeeDesc);
         setExtension(extendee, ext, goldenValue);
         const json = toJson(extendeeDesc, extendee, jsonOpts);
-        expect(json).toStrictEqual(goldenJson);
+        assert.deepStrictEqual(json, goldenJson);
       });
       test("decode", () => {
         const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
-        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+        assert.deepStrictEqual(getExtension(extendee, ext), goldenValue);
       });
     });
-    describe("wrapper_ext", () => {
+    void suite("wrapper_ext", () => {
       const ext = ext_proto2.wrapper_ext;
       const goldenJson = {
         "[proto2ext.wrapper_ext]": 789,
@@ -652,14 +653,14 @@ describe("extensions in JSON", () => {
         const extendee = create(extendeeDesc);
         setExtension(extendee, ext, goldenValue);
         const json = toJson(extendeeDesc, extendee, jsonOpts);
-        expect(json).toStrictEqual(goldenJson);
+        assert.deepStrictEqual(json, goldenJson);
       });
       test("decode", () => {
         const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
-        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+        assert.deepStrictEqual(getExtension(extendee, ext), goldenValue);
       });
     });
-    describe("message_ext", () => {
+    void suite("message_ext", () => {
       const ext = ext_proto2.message_ext;
       const goldenJson = {
         "[proto2ext.message_ext]": { stringField: "abc" },
@@ -671,20 +672,20 @@ describe("extensions in JSON", () => {
         const extendee = create(extendeeDesc);
         setExtension(extendee, ext, goldenValue);
         const json = toJson(extendeeDesc, extendee, jsonOpts);
-        expect(json).toStrictEqual(goldenJson);
+        assert.deepStrictEqual(json, goldenJson);
       });
       test("decode", () => {
         const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
-        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+        assert.deepStrictEqual(getExtension(extendee, ext), goldenValue);
       });
     });
   });
-  describe("proto3", () => {
+  void suite("proto3", () => {
     const extendeeDesc = FileOptionsSchema;
     const jsonOpts = {
       registry: createRegistry(ext_proto3.file_extra_extensions_proto3),
     };
-    describe("uint32_ext", () => {
+    void suite("uint32_ext", () => {
       const ext = ext_proto3.uint32_ext;
       const goldenJson = {
         "[proto3ext.uint32_ext]": 0,
@@ -694,14 +695,14 @@ describe("extensions in JSON", () => {
         const extendee = create(extendeeDesc);
         setExtension(extendee, ext, goldenValue);
         const json = toJson(extendeeDesc, extendee, jsonOpts);
-        expect(json).toStrictEqual(goldenJson);
+        assert.deepStrictEqual(json, goldenJson);
       });
       test("decode", () => {
         const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
-        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+        assert.deepStrictEqual(getExtension(extendee, ext), goldenValue);
       });
     });
-    describe("message_ext", () => {
+    void suite("message_ext", () => {
       const ext = ext_proto3.message_ext;
       const goldenJson = {
         "[proto3ext.message_ext]": { stringField: "abc" },
@@ -713,18 +714,18 @@ describe("extensions in JSON", () => {
         const extendee = create(extendeeDesc);
         setExtension(extendee, ext, goldenValue);
         const json = toJson(extendeeDesc, extendee, jsonOpts);
-        expect(json).toStrictEqual(goldenJson);
+        assert.deepStrictEqual(json, goldenJson);
       });
       test("decode", () => {
         const extendee = fromJson(extendeeDesc, goldenJson, jsonOpts);
-        expect(getExtension(extendee, ext)).toStrictEqual(goldenValue);
+        assert.deepStrictEqual(getExtension(extendee, ext), goldenValue);
       });
     });
   });
 });
 
-describe("JsonWriteOptions", () => {
-  describe("alwaysEmitImplicit", () => {
+void suite("JsonWriteOptions", () => {
+  void suite("alwaysEmitImplicit", () => {
     test("emits proto3 implicit fields", async () => {
       const descMessage = await compileMessage(`
         syntax="proto3";
@@ -738,7 +739,7 @@ describe("JsonWriteOptions", () => {
       const json = toJson(descMessage, create(descMessage), {
         alwaysEmitImplicit: true,
       });
-      expect(json).toStrictEqual({
+      assert.deepStrictEqual(json, {
         int32Field: 0,
         boolField: false,
         listField: [],
@@ -758,7 +759,7 @@ describe("JsonWriteOptions", () => {
       const json = toJson(descMessage, create(descMessage), {
         alwaysEmitImplicit: true,
       });
-      expect(json).toStrictEqual({});
+      assert.deepStrictEqual(json, {});
     });
     test("emits proto2 implicit fields", async () => {
       const descMessage = await compileMessage(`
@@ -772,7 +773,7 @@ describe("JsonWriteOptions", () => {
       const json = toJson(descMessage, create(descMessage), {
         alwaysEmitImplicit: true,
       });
-      expect(json).toStrictEqual({
+      assert.deepStrictEqual(json, {
         listField: [],
         mapField: {},
       });
@@ -794,7 +795,7 @@ describe("JsonWriteOptions", () => {
     const json = toJson(proto3_ts.Proto3MessageSchema, msg, {
       enumAsInteger: true,
     });
-    expect(json).toStrictEqual({
+    assert.deepStrictEqual(json, {
       singularEnumField: 1,
       optionalEnumField: 0,
       repeatedEnumField: [1, 2],
@@ -807,7 +808,7 @@ describe("JsonWriteOptions", () => {
       },
     });
   });
-  describe("useProtoFieldName", () => {
+  void suite("useProtoFieldName", () => {
     test("prefers proto field name", () => {
       const msg = create(proto3_ts.Proto3MessageSchema, {
         singularStringField: "a",
@@ -815,7 +816,7 @@ describe("JsonWriteOptions", () => {
       const json = toJson(proto3_ts.Proto3MessageSchema, msg, {
         useProtoFieldName: true,
       });
-      expect(json).toStrictEqual({
+      assert.deepStrictEqual(json, {
         singular_string_field: "a",
       });
     });
@@ -826,7 +827,7 @@ describe("JsonWriteOptions", () => {
       const json = toJson(JsonNamesMessageSchema, msg, {
         useProtoFieldName: true,
       });
-      expect(json).toStrictEqual({
+      assert.deepStrictEqual(json, {
         scalar_field: "a",
       });
     });
@@ -837,20 +838,20 @@ describe("JsonWriteOptions", () => {
 // We do not cover all cases here. Map fields and oneofs are incomplete,
 // and bytes, string, and other scalar types are not tested.
 // For serialization errors, see serialization-errors.test.ts
-describe("JSON parse errors", () => {
+void suite("JSON parse errors", () => {
   test("fromJsonString() with invalid JSON", () => {
-    expect(() => fromJsonString(TestAllTypesProto3Schema, "}")).toThrow(
-      /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
-    );
+    assert.throws(() => fromJsonString(TestAllTypesProto3Schema, "}"), {
+      message: /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
+    })
   });
 
   test("mergeFromJsonString() with invalid JSON", () => {
     const target = create(TestAllTypesProto3Schema);
-    expect(() =>
+    assert.throws(() =>
       mergeFromJsonString(TestAllTypesProto3Schema, target, "}"),
-    ).toThrow(
-      /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
-    );
+     {
+      message: /^cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: Unexpected token .*/,
+    });
   });
 
   test("unknown field", () => {
@@ -860,33 +861,33 @@ describe("JSON parse errors", () => {
     );
   });
 
-  describe("Any", () => {
+  void suite("Any", () => {
     test("without @type", () => {
-      expect(() =>
+      assert.throws(() =>
         fromJson(AnySchema, {
           value: 123,
         }),
-      ).toThrow(
-        /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
-      );
+        {
+     message: /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
+    });
     });
     test("with blank @type", () => {
-      expect(() =>
+      assert.throws(() =>
         fromJson(AnySchema, {
           "@type": "",
         }),
-      ).toThrow(
-        /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
-      );
+        {
+          message: /^cannot decode message google.protobuf.Any from JSON: "@type" is empty/,
+        });
     });
     test("with invalid type url in @type", () => {
-      expect(() =>
+      assert.throws(() =>
         fromJson(AnySchema, {
           "@type": "/",
         }),
-      ).toThrow(
-        /^cannot decode message google.protobuf.Any from JSON: "@type" is invalid/,
-      );
+       {
+          message: /^cannot decode message google.protobuf.Any from JSON: "@type" is invalid/,
+        });
     });
   });
 
@@ -1117,7 +1118,7 @@ describe("JSON parse errors", () => {
     } catch (e) {
       gotErrorMessage = e instanceof Error ? e.message : e;
     }
-    expect(gotErrorMessage).toBe(errorMessage);
+    assert.strictEqual(gotErrorMessage, errorMessage);
   }
 });
 
@@ -1128,7 +1129,7 @@ function testJson<Desc extends DescMessage>(
 ) {
   test(desc.typeName, () => {
     const msg = create(desc, init);
-    expect(toJson(desc, msg)).toStrictEqual(json);
-    expect(fromJson(desc, json)).toStrictEqual(msg);
+    assert.deepStrictEqual(toJson(desc, msg), json);
+    assert.deepStrictEqual(fromJson(desc, json), msg);
   });
 }

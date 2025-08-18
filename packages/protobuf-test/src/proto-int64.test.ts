@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { protoInt64 } from "@bufbuild/protobuf";
 import Long from "long";
 
@@ -63,23 +64,23 @@ const UNSIGNED = {
   },
 } as const;
 
-describe("npm package 'long'", () => {
+void suite("npm package 'long'", () => {
   for (const [k, v] of Object.entries(SIGNED)) {
     test(`should parse the same bits from string ${k}`, () => {
       const got = Long.fromString(k, false);
-      expect({ lo: got.low, hi: got.high }).toStrictEqual(v);
-      expect(got.toString()).toBe(k);
+      assert.deepStrictEqual({ lo: got.low, hi: got.high }, v);
+      assert.strictEqual(got.toString(), k);
     });
   }
   for (const [k, v] of Object.entries(UNSIGNED)) {
     test(`should parse the same bits from string ${k}`, () => {
       const got = Long.fromString(k, true);
-      expect({ lo: got.low, hi: got.high }).toStrictEqual(v);
-      expect(got.toString()).toBe(k);
+      assert.deepStrictEqual({ lo: got.low, hi: got.high }, v);
+      assert.strictEqual(got.toString(), k);
     });
   }
-  describe("integration example", () => {
-    test("should work", () => {
+  void suite("integration example", () => {
+    void test("should work", () => {
       const message = { int64Field: protoInt64.parse("9223372036854775807") };
 
       // convert the field value to a Long
@@ -93,19 +94,19 @@ describe("npm package 'long'", () => {
       message.int64Field = protoInt64.dec(longResult.low, longResult.high);
 
       // Assuming int64Field contains 9223372036854775807:
-      expect(message.int64Field).toBe(protoInt64.parse("9223372036854775806"));
+      assert.strictEqual(message.int64Field, protoInt64.parse("9223372036854775806"));
     });
   });
 });
 
-describe("protoInt64", () => {
-  describe("parse()", () => {
+void suite("protoInt64", () => {
+  void suite("parse()", () => {
     for (const [k] of Object.entries(SIGNED)) {
       test(`should parse string ${k}`, () => {
         const val = protoInt64.parse(k);
-        expect(val.toString()).toBe(k);
-        expect(typeof val === "bigint").toBe(protoInt64.supported);
-        expect(typeof val === "string").toBe(!protoInt64.supported);
+        assert.strictEqual(val.toString(), k);
+        assert.strictEqual(typeof val === "bigint", protoInt64.supported);
+        assert.strictEqual(typeof val === "string", !protoInt64.supported);
       });
       test(`should parse number ${k}`, () => {
         const number = Number(k);
@@ -114,29 +115,29 @@ describe("protoInt64", () => {
           number >= Number.MIN_SAFE_INTEGER
         ) {
           const val = protoInt64.parse(k);
-          expect(val.toString()).toBe(k);
-          expect(typeof val === "bigint").toBe(protoInt64.supported);
-          expect(typeof val === "string").toBe(!protoInt64.supported);
+          assert.strictEqual(val.toString(), k);
+          assert.strictEqual(typeof val === "bigint", protoInt64.supported);
+          assert.strictEqual(typeof val === "string", !protoInt64.supported);
         }
       });
       if (protoInt64.supported) {
         test(`should parse bigint ${k}`, () => {
           const bigint = BigInt(k);
           const val = protoInt64.parse(bigint);
-          expect(val.toString()).toBe(k);
-          expect(typeof val).toBe("bigint");
+          assert.strictEqual(val.toString(), k);
+          assert.strictEqual(typeof val, "bigint");
         });
       }
     }
   });
 
-  describe("uParse()", () => {
+  void suite("uParse()", () => {
     for (const [k] of Object.entries(UNSIGNED)) {
       test(`should parse string ${k}`, () => {
         const val = protoInt64.uParse(k);
-        expect(val.toString()).toBe(k);
-        expect(typeof val === "bigint").toBe(protoInt64.supported);
-        expect(typeof val === "string").toBe(!protoInt64.supported);
+        assert.strictEqual(val.toString(), k);
+        assert.strictEqual(typeof val === "bigint", protoInt64.supported);
+        assert.strictEqual(typeof val === "string", !protoInt64.supported);
       });
       test(`should parse number ${k}`, () => {
         const number = Number(k);
@@ -145,26 +146,26 @@ describe("protoInt64", () => {
           number >= Number.MIN_SAFE_INTEGER
         ) {
           const val = protoInt64.uParse(k);
-          expect(val.toString()).toBe(k);
-          expect(typeof val === "bigint").toBe(protoInt64.supported);
-          expect(typeof val === "string").toBe(!protoInt64.supported);
+          assert.strictEqual(val.toString(), k);
+          assert.strictEqual(typeof val === "bigint", protoInt64.supported);
+          assert.strictEqual(typeof val === "string", !protoInt64.supported);
         }
       });
       if (protoInt64.supported) {
         test(`should parse bigint ${k}`, () => {
           const bigint = BigInt(k);
           const val = protoInt64.uParse(bigint);
-          expect(val.toString()).toBe(k);
-          expect(typeof val).toBe("bigint");
+          assert.strictEqual(val.toString(), k);
+          assert.strictEqual(typeof val, "bigint");
         });
       }
     }
   });
 
-  describe("enc()", () => {
+  void suite("enc()", () => {
     for (const [k, v] of Object.entries(SIGNED)) {
       test(`should encode string ${k}`, () => {
-        expect(protoInt64.enc(k)).toStrictEqual(v);
+        assert.deepStrictEqual(protoInt64.enc(k), v);
       });
       test(`should encode number ${k}`, () => {
         const number = Number(k);
@@ -172,31 +173,31 @@ describe("protoInt64", () => {
           number <= Number.MAX_SAFE_INTEGER &&
           number >= Number.MIN_SAFE_INTEGER
         ) {
-          expect(protoInt64.enc(number)).toStrictEqual(v);
+          assert.deepStrictEqual(protoInt64.enc(number), v);
         }
       });
       if (protoInt64.supported) {
         test(`should encode bigint ${k}`, () => {
           for (const [k, v] of Object.entries(SIGNED)) {
             const bigint = BigInt(k);
-            expect(protoInt64.enc(bigint)).toStrictEqual(v);
+            assert.deepStrictEqual(protoInt64.enc(bigint), v);
           }
         });
       }
     }
-    test("should fail to encode invalid", () => {
+    void test("should fail to encode invalid", () => {
       if (protoInt64.supported) {
-        expect(() => protoInt64.enc(BigInt("18446744073709551615"))).toThrow(
-          "invalid int64: 18446744073709551615",
-        );
+        assert.throws(() => protoInt64.enc(BigInt("18446744073709551615")), {
+          message: "invalid int64: 18446744073709551615",
+        });
       }
     });
   });
 
-  describe("uEnc()", () => {
+  void suite("uEnc()", () => {
     for (const [k, v] of Object.entries(UNSIGNED)) {
       test(`should encode string ${k}`, () => {
-        expect(protoInt64.uEnc(k)).toStrictEqual(v);
+        assert.deepStrictEqual(protoInt64.uEnc(k), v);
       });
       test(`should encode number ${k}`, () => {
         const number = Number(k);
@@ -204,68 +205,68 @@ describe("protoInt64", () => {
           number <= Number.MAX_SAFE_INTEGER &&
           number >= Number.MIN_SAFE_INTEGER
         ) {
-          expect(protoInt64.uEnc(number)).toStrictEqual(v);
+          assert.deepStrictEqual(protoInt64.uEnc(number), v);
         }
       });
       if (protoInt64.supported) {
         test(`should encode bigint ${k}`, () => {
           const bigint = BigInt(k);
-          expect(protoInt64.uEnc(bigint)).toStrictEqual(v);
+          assert.deepStrictEqual(protoInt64.uEnc(bigint), v);
         });
       }
     }
-    test("should fail to encode invalid", () => {
+    void test("should fail to encode invalid", () => {
       if (protoInt64.supported) {
-        expect(() => protoInt64.uEnc(BigInt(-127))).toThrow(
-          "invalid uint64: -127",
-        );
-        expect(() => protoInt64.uEnc(BigInt("-9007199254740991"))).toThrow(
-          "invalid uint64: -9007199254740991",
-        );
-        expect(() => protoInt64.uEnc(BigInt("-9223372036854775808"))).toThrow(
-          "invalid uint64: -9223372036854775808",
-        );
+        assert.throws(() => protoInt64.uEnc(BigInt(-127)), {
+          message: "invalid uint64: -127",
+      });
+        assert.throws(() => protoInt64.uEnc(BigInt("-9007199254740991")), {
+          message: "invalid uint64: -9007199254740991",
+    });
+        assert.throws(() => protoInt64.uEnc(BigInt("-9223372036854775808")), {
+          message: "invalid uint64: -9223372036854775808",
+  });
       }
-      expect(() => protoInt64.uEnc(-127)).toThrow("invalid uint64: -127");
-      expect(() => protoInt64.uEnc("-9007199254740991")).toThrow(
-        "invalid uint64: -9007199254740991",
-      );
-      expect(() => protoInt64.uEnc("-9223372036854775808")).toThrow(
-        "invalid uint64: -9223372036854775808",
-      );
+      assert.throws(() => protoInt64.uEnc(-127), {message: "invalid uint64: -127"});
+      assert.throws(() => protoInt64.uEnc("-9007199254740991"), {
+        message: "invalid uint64: -9007199254740991",
+});
+      assert.throws(() => protoInt64.uEnc("-9223372036854775808"), {
+        message: "invalid uint64: -9223372036854775808",
+});
     });
   });
 
-  describe("dec()", () => {
+  void suite("dec()", () => {
     for (const [k, v] of Object.entries(SIGNED)) {
       test(`should decode ${k}`, () => {
         const val = protoInt64.dec(v.lo, v.hi);
-        expect(val.toString()).toBe(k);
-        expect(typeof val === "bigint").toBe(protoInt64.supported);
-        expect(typeof val === "string").toBe(!protoInt64.supported);
+        assert.strictEqual(val.toString(), k);
+        assert.strictEqual(typeof val === "bigint", protoInt64.supported);
+        assert.strictEqual(typeof val === "string", !protoInt64.supported);
       });
     }
   });
 
-  describe("uDec()", () => {
+  void suite("uDec()", () => {
     for (const [k, v] of Object.entries(UNSIGNED)) {
       test(`should decode ${k}`, () => {
         const val = protoInt64.uDec(v.lo, v.hi);
-        expect(val.toString()).toBe(k);
-        expect(typeof val === "bigint").toBe(protoInt64.supported);
-        expect(typeof val === "string").toBe(!protoInt64.supported);
+        assert.strictEqual(val.toString(), k);
+        assert.strictEqual(typeof val === "bigint", protoInt64.supported);
+        assert.strictEqual(typeof val === "string", !protoInt64.supported);
       });
     }
   });
 
-  describe("zero", () => {
+  void suite("zero", () => {
     if (protoInt64.supported) {
-      test("zero is a string ", () => {
-        expect(protoInt64.zero).toBe(BigInt(0));
+      void test("zero is a string ", () => {
+        assert.strictEqual(protoInt64.zero, BigInt(0));
       });
     } else {
-      test("zero is a string ", () => {
-        expect(protoInt64.zero).toBe("0");
+      void test("zero is a string ", () => {
+        assert.strictEqual(protoInt64.zero, "0");
       });
     }
   });

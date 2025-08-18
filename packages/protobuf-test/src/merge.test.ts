@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { create, merge } from "@bufbuild/protobuf";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import { WireType } from "@bufbuild/protobuf/wire";
 
-describe("merge()", () => {
-  test("sets scalar field in target, replacing existing fields", () => {
+void suite("merge()", () => {
+  void test("sets scalar field in target, replacing existing fields", () => {
     const target = create(proto3_ts.Proto3MessageSchema, {
       singularMessageField: {
         singularStringField: "old",
@@ -41,21 +42,21 @@ describe("merge()", () => {
     });
     merge(proto3_ts.Proto3MessageSchema, target, source);
     // sets scalar field in target
-    expect(target.singularStringField).toBe("abc");
-    expect(target.optionalStringField).toBe("abc");
-    expect(target.singularBytesField).toBe(source.singularBytesField); // bytes field is copied by reference
-    expect(target.singularEnumField).toBe(proto3_ts.Proto3Enum.YES);
+    assert.strictEqual(target.singularStringField, "abc");
+    assert.strictEqual(target.optionalStringField, "abc");
+    assert.strictEqual(target.singularBytesField, source.singularBytesField); // bytes field is copied by reference
+    assert.strictEqual(target.singularEnumField, proto3_ts.Proto3Enum.YES);
     // replaces existing fields
-    expect(target.singularMessageField?.singularStringField).toBe("abc");
-    expect(target.singularMessageField?.optionalStringField).toBe("abc");
-    expect(target.singularMessageField?.singularBytesField).toBe(
+    assert.strictEqual(target.singularMessageField?.singularStringField, "abc");
+    assert.strictEqual(target.singularMessageField?.optionalStringField, "abc");
+    assert.strictEqual(target.singularMessageField?.singularBytesField,
       source.singularMessageField?.singularBytesField,
     ); // bytes field is copied by reference
-    expect(target.singularMessageField?.singularEnumField).toBe(
+    assert.strictEqual(target.singularMessageField?.singularEnumField,
       proto3_ts.Proto3Enum.YES,
     );
   });
-  test("sets map values in target", () => {
+  void test("sets map values in target", () => {
     const target = create(proto3_ts.Proto3MessageSchema, {
       mapStringStringField: {
         a: "A",
@@ -69,7 +70,7 @@ describe("merge()", () => {
       },
     });
     merge(proto3_ts.Proto3MessageSchema, target, source);
-    expect(target.mapStringStringField).toStrictEqual({
+    assert.deepStrictEqual(target.mapStringStringField, {
       a: "A",
       b: "beta",
       c: "C",
@@ -84,8 +85,8 @@ describe("merge()", () => {
       repeatedInt32Field: [1, 2],
     });
     merge(proto3_ts.Proto3MessageSchema, target, source);
-    expect(target.repeatedStringField).toStrictEqual(["a", "b", "c"]);
-    expect(target.repeatedInt32Field).toStrictEqual([1, 2]);
+    assert.deepStrictEqual(target.repeatedStringField, ["a", "b", "c"]);
+    assert.deepStrictEqual(target.repeatedInt32Field, [1, 2]);
   });
   test("merges message field with field in target", () => {
     const target = create(proto3_ts.Proto3MessageSchema, {
@@ -105,11 +106,11 @@ describe("merge()", () => {
     });
     const targetSingularMessageField = target.singularMessageField;
     merge(proto3_ts.Proto3MessageSchema, target, source);
-    expect(target.optionalMessageField).toBe(source.optionalMessageField); // message field is copied by reference
-    expect(target.singularMessageField).not.toBe(source.singularMessageField);
-    expect(target.singularMessageField).toBe(targetSingularMessageField); // target message field reference is maintained
-    expect(target.singularMessageField?.singularStringField).toBe("DEF");
-    expect(target.singularMessageField?.repeatedInt32Field).toStrictEqual([
+    assert.strictEqual(target.optionalMessageField, source.optionalMessageField); // message field is copied by reference
+    assert.notStrictEqual(target.singularMessageField, source.singularMessageField);
+    assert.strictEqual(target.singularMessageField, targetSingularMessageField); // target message field reference is maintained
+    assert.strictEqual(target.singularMessageField?.singularStringField, "DEF");
+    assert.deepStrictEqual(target.singularMessageField?.repeatedInt32Field, [
       1, 2,
     ]);
   });
@@ -131,7 +132,7 @@ describe("merge()", () => {
       },
     ];
     merge(proto3_ts.Proto3MessageSchema, target, source);
-    expect(target.$unknown).toStrictEqual([
+    assert.deepStrictEqual(target.$unknown, [
       {
         no: 98,
         wireType: WireType.Varint,

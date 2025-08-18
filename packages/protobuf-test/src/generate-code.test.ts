@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, test, expect } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type {
   Int32ValueSchema,
   StringValueSchema,
@@ -42,62 +43,62 @@ import type * as valid_types_js from "./gen/js,valid_types/extra/valid_types_pb.
 
 test("source retention options are unavailable in generated code", () => {
   const fileOptions = option_usage_ts.file_extra_option_usage.proto.options;
-  expect(
+  assert.strictEqual(
     !!fileOptions &&
       hasExtension(fileOptions, options_ts.file_option_retention_source),
-  ).toBe(false);
+   false);
 
   const messageOptions = option_usage_ts.MessageWithOptionsSchema.proto.options;
-  expect(
+  assert.strictEqual(
     !!messageOptions &&
       hasExtension(messageOptions, options_ts.message_option_retention_source),
-  ).toBe(false);
+   false);
 
   const fieldOptions =
     option_usage_ts.MessageWithOptionsSchema.fields[0].proto.options;
-  expect(
+  assert.strictEqual(
     !!fieldOptions &&
       hasExtension(fieldOptions, options_ts.field_option_retention_source),
-  ).toBe(false);
+   false);
 
   const oneofOptions =
     option_usage_ts.MessageWithOptionsSchema.oneofs[0].proto.options;
-  expect(
+  assert.strictEqual(
     !!oneofOptions &&
       hasExtension(oneofOptions, options_ts.oneof_option_retention_source),
-  ).toBe(false);
+   false);
 
   const enumOptions = option_usage_ts.EnumWithOptionsSchema.proto.options;
-  expect(
+  assert.strictEqual(
     !!enumOptions &&
       hasExtension(enumOptions, options_ts.enum_option_retention_source),
-  ).toBe(false);
+   false);
 
   const enumValueOptions =
     option_usage_ts.EnumWithOptionsSchema.values[0].proto.options;
-  expect(
+  assert.strictEqual(
     !!enumValueOptions &&
       hasExtension(
         enumValueOptions,
         options_ts.enum_value_option_retention_source,
       ),
-  ).toBe(false);
+   false);
 
   const serviceOptions = option_usage_ts.ServiceWithOptions.proto.options;
-  expect(
+  assert.strictEqual(
     !!serviceOptions &&
       hasExtension(serviceOptions, options_ts.service_option_retention_source),
-  ).toBe(false);
+   false);
 
   const methodOptions =
     option_usage_ts.ServiceWithOptions.methods[0].proto.options;
-  expect(
+  assert.strictEqual(
     !!methodOptions &&
       hasExtension(methodOptions, options_ts.method_option_retention_source),
-  ).toBe(false);
+   false);
 });
 
-describe("JSON types", () => {
+void suite("JSON types", () => {
   const ok_ts: json_types_ts_json.JsonTypesMessageJson = {
     booleanFieldWithCustomName: true,
     Foo123_bar$: true,
@@ -117,7 +118,7 @@ describe("JSON types", () => {
       true: "JSON_TYPE_ENUM_YES",
     },
   };
-  expect(ok_ts).toBeDefined();
+  assert.ok(ok_ts !== undefined);
   const ok_js: json_types_js_json.JsonTypesMessageJson = {
     booleanFieldWithCustomName: true,
     Foo123_bar$: true,
@@ -137,11 +138,11 @@ describe("JSON types", () => {
       true: "JSON_TYPE_ENUM_YES",
     },
   };
-  expect(ok_js).toBeDefined();
+  assert.ok(ok_js !== undefined);
 });
 
 test("ts generated code is assignable to js", () => {
-  expect([
+  assert.ok([
     function f(ts: valid_types_ts.VTypes, js: valid_types_js.VTypes) {
       ts = js;
       js = ts;
@@ -220,7 +221,7 @@ test("ts generated code is assignable to js", () => {
       js = ts;
       return [ts, js];
     },
-  ]).toBeDefined();
+  ]);
 });
 
 test("service generates as expected", () => {
@@ -252,29 +253,29 @@ test("service generates as expected", () => {
     actual = expected;
     return [expected, actual];
   }
-  expect(f).toBeDefined();
+  assert.ok(f !== undefined);
 });
 
-describe("ts generated code is equal to js generated code", () => {
-  test("proto2", () => {
-    expect(toPlain(proto2_ts)).toStrictEqual(toPlain(proto2_js));
+void suite("ts generated code is equal to js generated code", () => {
+  void test("proto2", () => {
+    assert.deepStrictEqual(toPlain(proto2_ts),toPlain(proto2_js));
   });
   test("proto3", () => {
-    expect(toPlain(proto3_ts)).toStrictEqual(toPlain(proto3_js));
+    assert.deepStrictEqual(toPlain(proto3_ts),toPlain(proto3_js));
   });
   test("edition2023", () => {
-    expect(toPlain(edition2023_ts)).toStrictEqual(toPlain(edition2023_js));
+    assert.deepStrictEqual(toPlain(edition2023_ts),toPlain(edition2023_js));
   });
   test("nameclash", () => {
-    expect(toPlain(nameclash_ts)).toStrictEqual(toPlain(nameclash_js));
+    assert.deepStrictEqual(toPlain(nameclash_ts),toPlain(nameclash_js));
   });
   test("test_messages_proto3", () => {
-    expect(toPlain(test_messages_proto3_ts)).toStrictEqual(
+    assert.deepStrictEqual(toPlain(test_messages_proto3_ts),
       toPlain(test_messages_proto3_js),
     );
   });
   test("service", () => {
-    expect(toPlain(service_ts)).toStrictEqual(toPlain(service_js));
+    assert.deepStrictEqual(toPlain(service_ts),toPlain(service_js));
   });
 
   /**
@@ -311,7 +312,7 @@ describe("ts generated code is equal to js generated code", () => {
   }
 });
 
-describe("GenMessage.field", () => {
+void suite("GenMessage.field", () => {
   test("is type safe", () => {
     proto3_ts.Proto3MessageSchema.field.optionalStringField;
     // @ts-expect-error TS2339: Property foo does not exist on type
@@ -319,12 +320,12 @@ describe("GenMessage.field", () => {
   });
 });
 
-describe("GenDescEnum.value", () => {
+void suite("GenDescEnum.value", () => {
   test("is type safe", () => {
     const val = proto3_ts.Proto3EnumSchema.value[proto3_ts.Proto3Enum.YES];
-    expect(val.number).toBe(1);
-    expect(val.name).toBe("PROTO3_ENUM_YES");
-    expect(val.localName).toBe("YES");
+    assert.strictEqual(val.number, 1);
+    assert.strictEqual(val.name, "PROTO3_ENUM_YES");
+    assert.strictEqual(val.localName, "YES");
     // @ts-expect-error TS7053: Element implicitly has an any type because expression of type 77 can't be used to index type Record<Proto3Enum, DescEnumValue>
     proto3_ts.Proto3EnumSchema.value[77];
   });
