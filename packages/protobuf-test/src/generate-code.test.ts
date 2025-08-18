@@ -288,7 +288,7 @@ void suite("ts generated code is equal to js generated code", () => {
   });
 
   /**
-   * Convert to plain object for comparison with Jest.
+   * Convert to plain object for comparison.
    * Replaces cyclic references.
    */
   function toPlain(obj: unknown): unknown {
