@@ -12,44 +12,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type { GeneratedFile } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.string", () => {
-  test("surrounds string in quotes", async () => {
+void suite("GeneratedFile.string", () => {
+  void test("surrounds string in quotes", async () => {
     const lines = await testGenerate((f) => {
       f.print("const s = ", f.string("abc"), ";");
     });
-    expect(lines).toStrictEqual([`const s = "abc";`]);
+    assert.deepStrictEqual(lines, [`const s = "abc";`]);
   });
 
-  test("surrounds string in quotes", async () => {
+  void test("surrounds string in quotes", async () => {
     const lines = await testGenerate((f) => {
       f.print(f.string("abc"));
     });
-    expect(lines).toStrictEqual([`"abc"`]);
+    assert.deepStrictEqual(lines, [`"abc"`]);
   });
 
-  test("escapes quote", async () => {
+  void test("escapes quote", async () => {
     const lines = await testGenerate((f) => {
       f.print(f.string(`ab"c`));
     });
-    expect(lines).toStrictEqual([`"ab\\"c"`]);
+    assert.deepStrictEqual(lines, [`"ab\\"c"`]);
   });
 
-  test("escapes backslash", async () => {
+  void test("escapes backslash", async () => {
     const lines = await testGenerate((f) => {
       f.print(f.string("ab\\c"));
     });
-    expect(lines).toStrictEqual([`"ab\\\\c"`]);
+    assert.deepStrictEqual(lines, [`"ab\\\\c"`]);
   });
 
-  test("escapes line breaks", async () => {
+  void test("escapes line breaks", async () => {
     const lines = await testGenerate((f) => {
       f.print(f.string("ab\r\nc"));
     });
-    expect(lines).toStrictEqual([`"ab\\r\\nc"`]);
+    assert.deepStrictEqual(lines, [`"ab\\r\\nc"`]);
   });
 
   async function testGenerate(gen: (f: GeneratedFile) => void) {

@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   create,
   createRegistry,
@@ -31,59 +32,59 @@ import {
   DurationSchema,
 } from "@bufbuild/protobuf/wkt";
 
-describe("anyIs", () => {
-  test(`matches standard type URL`, () => {
+void suite("anyIs", () => {
+  void test(`matches standard type URL`, () => {
     const any = create(AnySchema, {
       typeUrl: "type.googleapis.com/google.protobuf.Value",
     });
-    expect(anyIs(any, ValueSchema)).toBe(true);
+    assert.strictEqual(anyIs(any, ValueSchema), true);
   });
-  test(`matches short type URL`, () => {
+  void test(`matches short type URL`, () => {
     const any = create(AnySchema, { typeUrl: "/google.protobuf.Value" });
-    expect(anyIs(any, ValueSchema)).toBe(true);
+    assert.strictEqual(anyIs(any, ValueSchema), true);
   });
-  test(`matches custom type URL`, () => {
+  void test(`matches custom type URL`, () => {
     const any = create(AnySchema, {
       typeUrl: "example.com/google.protobuf.Value",
     });
-    expect(anyIs(any, ValueSchema)).toBe(true);
+    assert.strictEqual(anyIs(any, ValueSchema), true);
   });
-  test("accepts type name string", () => {
+  void test("accepts type name string", () => {
     const any = create(AnySchema, { typeUrl: "/google.protobuf.Value" });
-    expect(anyIs(any, "google.protobuf.Value")).toBe(true);
-    expect(anyIs(any, "google.protobuf.Duration")).toBe(false);
+    assert.strictEqual(anyIs(any, "google.protobuf.Value"), true);
+    assert.strictEqual(anyIs(any, "google.protobuf.Duration"), false);
   });
-  test("accepts empty type name string", () => {
+  void test("accepts empty type name string", () => {
     const any = create(AnySchema, { typeUrl: "/google.protobuf.Value" });
-    expect(anyIs(any, "")).toBe(false);
-    expect(anyIs(create(AnySchema), "")).toBe(false);
+    assert.strictEqual(anyIs(any, ""), false);
+    assert.strictEqual(anyIs(create(AnySchema), ""), false);
   });
-  test("returns false for an empty Any", () => {
+  void test("returns false for an empty Any", () => {
     const any = create(AnySchema);
-    expect(anyIs(any, ValueSchema)).toBe(false);
-    expect(anyIs(any, "google.protobuf.Value")).toBe(false);
-    expect(anyIs(any, "")).toBe(false);
+    assert.strictEqual(anyIs(any, ValueSchema), false);
+    assert.strictEqual(anyIs(any, "google.protobuf.Value"), false);
+    assert.strictEqual(anyIs(any, ""), false);
   });
-  test("returns false for different type", () => {
+  void test("returns false for different type", () => {
     const any = create(AnySchema, {
       typeUrl: "type.googleapis.com/google.protobuf.Value",
     });
-    expect(anyIs(any, DurationSchema)).toBe(false);
-    expect(anyIs(any, "google.protobuf.Duration")).toBe(false);
+    assert.strictEqual(anyIs(any, DurationSchema), false);
+    assert.strictEqual(anyIs(any, "google.protobuf.Duration"), false);
   });
 });
 
-describe("anyUnpack()", () => {
-  describe("with a schema", () => {
-    test("returns undefined if the Any is empty", () => {
+void suite("anyUnpack()", () => {
+  void suite("with a schema", () => {
+    void test("returns undefined if the Any is empty", () => {
       const any = create(AnySchema, {
         typeUrl: "",
         value: new Uint8Array(),
       });
       const unpacked: FieldMask | undefined = anyUnpack(any, FieldMaskSchema);
-      expect(unpacked).toBeUndefined();
+      assert.strictEqual(unpacked, undefined);
     });
-    test("returns undefined if the Any contains a different type", () => {
+    void test("returns undefined if the Any contains a different type", () => {
       const any = create(AnySchema, {
         typeUrl: "type.googleapis.com/google.protobuf.Duration",
         value: toBinary(
@@ -94,9 +95,9 @@ describe("anyUnpack()", () => {
         ),
       });
       const unpacked: FieldMask | undefined = anyUnpack(any, FieldMaskSchema);
-      expect(unpacked).toBeUndefined();
+      assert.strictEqual(unpacked, undefined);
     });
-    test("returns unpacked", () => {
+    void test("returns unpacked", () => {
       const val = create(FieldMaskSchema, {
         paths: ["foo"],
       });
@@ -105,48 +106,48 @@ describe("anyUnpack()", () => {
         value: toBinary(FieldMaskSchema, val),
       });
       const unpacked: FieldMask | undefined = anyUnpack(any, FieldMaskSchema);
-      expect(unpacked).toBeDefined();
-      expect(unpacked?.paths).toStrictEqual(["foo"]);
+      assert.ok(unpacked !== undefined);
+      assert.deepStrictEqual(unpacked?.paths, ["foo"]);
     });
   });
-  describe("with a registry", () => {
-    test("returns undefined if the Any is empty", () => {
+  void suite("with a registry", () => {
+    void test("returns undefined if the Any is empty", () => {
       const any = create(AnySchema);
       const unpacked: Message | undefined = anyUnpack(any, createRegistry());
-      expect(unpacked).toBeUndefined();
+      assert.strictEqual(unpacked, undefined);
     });
-    test(`returns undefined if message not in the registry`, () => {
+    void test(`returns undefined if message not in the registry`, () => {
       const registry = createRegistry();
       const val = create(ValueSchema, {
         kind: { case: "numberValue", value: 1 },
       });
       const any = anyPack(ValueSchema, val);
       const unpacked = anyUnpack(any, registry);
-      expect(unpacked).toBeUndefined();
+      assert.strictEqual(unpacked, undefined);
     });
-    test(`returns unpacked`, () => {
+    void test(`returns unpacked`, () => {
       const typeRegistry = createRegistry(ValueSchema);
       const val = create(ValueSchema, {
         kind: { case: "numberValue", value: 1 },
       });
       const any = anyPack(ValueSchema, val);
       const unpacked: Message | undefined = anyUnpack(any, typeRegistry);
-      expect(unpacked).toStrictEqual(val);
+      assert.deepStrictEqual(unpacked, val);
     });
   });
 });
 
-describe("anyUnpackTo()", () => {
-  test("returns undefined if the Any is empty", () => {
+void suite("anyUnpackTo()", () => {
+  void test("returns undefined if the Any is empty", () => {
     const any = create(AnySchema);
     const unpacked: FieldMask | undefined = anyUnpackTo(
       any,
       FieldMaskSchema,
       create(FieldMaskSchema),
     );
-    expect(unpacked).toBeUndefined();
+    assert.strictEqual(unpacked, undefined);
   });
-  test("returns undefined if the Any contains a different type", () => {
+  void test("returns undefined if the Any contains a different type", () => {
     const any = create(AnySchema, {
       typeUrl: "type.googleapis.com/google.protobuf.Duration",
       value: toBinary(
@@ -161,9 +162,9 @@ describe("anyUnpackTo()", () => {
       FieldMaskSchema,
       create(FieldMaskSchema),
     );
-    expect(unpacked).toBeUndefined();
+    assert.strictEqual(unpacked, undefined);
   });
-  test("returns unpacked", () => {
+  void test("returns unpacked", () => {
     const val = create(FieldMaskSchema, {
       paths: ["foo"],
     });
@@ -176,10 +177,10 @@ describe("anyUnpackTo()", () => {
       FieldMaskSchema,
       create(FieldMaskSchema),
     );
-    expect(unpacked).toBeDefined();
-    expect(unpacked?.paths).toStrictEqual(["foo"]);
+    assert.ok(unpacked !== undefined);
+    assert.deepStrictEqual(unpacked?.paths, ["foo"]);
   });
-  test("merges into target", () => {
+  void test("merges into target", () => {
     const val = create(FieldMaskSchema, {
       paths: ["foo"],
     });
@@ -195,8 +196,8 @@ describe("anyUnpackTo()", () => {
       FieldMaskSchema,
       target,
     );
-    expect(unpacked).toBeDefined();
-    expect(unpacked?.paths).toStrictEqual(["bar", "foo"]);
-    expect(target.paths).toStrictEqual(["bar", "foo"]);
+    assert.ok(unpacked !== undefined);
+    assert.deepStrictEqual(unpacked?.paths, ["bar", "foo"]);
+    assert.deepStrictEqual(target.paths, ["bar", "foo"]);
   });
 });

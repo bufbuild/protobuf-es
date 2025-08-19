@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type {
   DescField,
   DescFile,
@@ -38,30 +39,30 @@ import type {
   GenService,
 } from "@bufbuild/protobuf/codegenv1";
 
-describe("GenFile", () => {
+void suite("GenFile", () => {
   test("is DescFile", async () => {
     function f(genFile: GenFile, descFile: DescFile) {
       genFile = descFile;
       descFile = genFile;
       return descFile;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
 });
 
-describe("GenMessage", () => {
+void suite("GenMessage", () => {
   type FakeMessage = Message<"fake"> & { foo: boolean };
   test("is DescMessage", () => {
     function f(genMessage: GenMessage<FakeMessage>): DescMessage {
       return genMessage;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("single type parameter is message shape", () => {
     function f(message: FakeMessage): MessageShape<GenMessage<FakeMessage>> {
       return message;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("json type defaults to JsonValue", () => {
     function f(
@@ -72,14 +73,14 @@ describe("GenMessage", () => {
       messageJson = jsonValue;
       return [jsonValue, messageJson];
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("json type parameter", () => {
     type FakeMessageJson = "fake-json";
     function f(): MessageJsonType<GenMessage<FakeMessage, FakeMessageJson>> {
       return "fake-json";
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("has typed field names", () => {
     function f(genMessage: GenMessage<FakeMessage>): DescField {
@@ -87,11 +88,11 @@ describe("GenMessage", () => {
       genMessage.field.bar;
       return genMessage.field.foo;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
 });
 
-describe("GenEnum", () => {
+void suite("GenEnum", () => {
   enum FakeEnum {
     FOO = 0,
     BAR = 1,
@@ -100,13 +101,13 @@ describe("GenEnum", () => {
     function f(genEnum: GenEnum<FakeEnum>): DescEnum {
       return genEnum;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("single type parameter is enum shape", () => {
     function f(fakeEnum: FakeEnum): EnumShape<GenEnum<FakeEnum>> {
       return fakeEnum;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("json type defaults to JsonValue", () => {
     function f(
@@ -117,25 +118,25 @@ describe("GenEnum", () => {
       enumJson = jsonValue;
       return [jsonValue, enumJson];
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("json type parameter", async () => {
     type FakeEnumJson = "fake-json";
     function f(): EnumJsonType<GenEnum<FakeEnum, FakeEnumJson>> {
       return "fake-json";
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
 });
 
-describe("GenExtension", () => {
+void suite("GenExtension", () => {
   type FakeExtendee = Message<"fake-extendee"> & { foo: boolean };
   type FakeExtensionVal = "fake-ext-val";
   test("is DescExtension", () => {
     function f(genExt: GenExtension): DescExtension {
       return genExt;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("without type parameters", () => {
     function f(
@@ -150,14 +151,14 @@ describe("GenExtension", () => {
       extensionValueShape = unknownValue;
       return [extendee, extensionValueShape];
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
 
   test("single type parameter is extendee", () => {
     function f(extendee: Extendee<GenExtension<FakeExtendee>>): FakeExtendee {
       return extendee;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("second type parameter is extension value", () => {
     function f(
@@ -166,11 +167,11 @@ describe("GenExtension", () => {
     ): [FakeExtendee, "fake-ext-val"] {
       return [extendee, val];
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
 });
 
-describe("GenService", () => {
+void suite("GenService", () => {
   type FakeGenServiceMethods = {
     foo: DescMethod;
   };
@@ -178,7 +179,7 @@ describe("GenService", () => {
     function f(genService: GenService<FakeGenServiceMethods>): DescService {
       return genService;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
   test("has typed method names", () => {
     function f(genService: GenService<FakeGenServiceMethods>): DescMethod {
@@ -186,6 +187,6 @@ describe("GenService", () => {
       genService.method.bar;
       return genService.method.foo;
     }
-    expect(f).toBeDefined();
+    assert.ok(f !== undefined);
   });
 });

@@ -12,19 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.runtime", () => {
-  test("should provide import symbols", async () => {
+void suite("GeneratedFile.runtime", () => {
+  void test("should provide import symbols", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
       generateAny(f) {
         const imp = f.runtime.Message;
-        expect(imp.name).toBe("Message");
-        expect(imp.from).toBe("@bufbuild/protobuf");
-        expect(imp.typeOnly).toBe(true);
+        assert.equal(imp.name, "Message");
+        assert.equal(imp.from, "@bufbuild/protobuf");
+        assert.equal(imp.typeOnly, true);
       },
     });
   });

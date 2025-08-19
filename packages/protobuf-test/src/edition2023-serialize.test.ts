@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { fillEdition2023Message } from "./helpers-edition2023.js";
-import { describe, expect, test } from "@jest/globals";
 import {
   create,
   fromBinary,
@@ -30,29 +31,30 @@ import {
 } from "./gen/ts/extra/edition2023-map-encoding_pb.js";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 
-describe("edition2023 serialization", () => {
+void suite("edition2023 serialization", () => {
   test("should round-trip for binary", () => {
     const desc = edition2023_ts.Edition2023MessageSchema;
     const a = fillEdition2023Message(create(desc));
     const bytes = toBinary(desc, a);
     const b = fromBinary(desc, bytes);
-    expect(a).toStrictEqual(b);
+    assert.deepStrictEqual(a, b);
   });
   test("should round-trip for json", () => {
     const desc = edition2023_ts.Edition2023MessageSchema;
     const a = fillEdition2023Message(create(desc));
     const json = toJson(desc, a);
     const b = fromJson(desc, json);
-    expect(a).toStrictEqual(b);
+    assert.deepStrictEqual(a, b);
   });
-  describe("proto2 / edition2023 interop", () => {
+  void suite("proto2 / edition2023 interop", () => {
     test("to binary", () => {
       const descProto2 =
         edition2023_proto2_ts.Proto2MessageForEdition2023Schema;
       const msgProto2 = fillProto2Message(create(descProto2));
       const descEdition = edition2023_ts.Edition2023FromProto2MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      expect(toBinary(descEdition, msgEdition)).toStrictEqual(
+      assert.deepStrictEqual(
+        toBinary(descEdition, msgEdition),
         toBinary(descProto2, msgProto2),
       );
     });
@@ -62,11 +64,10 @@ describe("edition2023 serialization", () => {
       const msgProto2 = fillProto2Message(create(descProto2));
       const descEdition = edition2023_ts.Edition2023FromProto2MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      expect(
+      assert.deepStrictEqual(
         toJson(descEdition, msgEdition, {
           enumAsInteger: true,
         }),
-      ).toStrictEqual(
         toJson(descProto2, msgProto2, {
           enumAsInteger: true,
         }),
@@ -79,7 +80,7 @@ describe("edition2023 serialization", () => {
       const bytesProto2 = toBinary(descProto2, msgProto2);
       const descEdition = edition2023_ts.Edition2023FromProto2MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      expect(fromBinary(descEdition, bytesProto2)).toStrictEqual(msgEdition);
+      assert.deepStrictEqual(fromBinary(descEdition, bytesProto2), msgEdition);
     });
     test("from json", () => {
       const descProto2 =
@@ -90,7 +91,7 @@ describe("edition2023 serialization", () => {
       });
       const descEdition = edition2023_ts.Edition2023FromProto2MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      expect(fromJson(descEdition, jsonProto2)).toStrictEqual(msgEdition);
+      assert.deepStrictEqual(fromJson(descEdition, jsonProto2), msgEdition);
     });
 
     function fillEditionMessage(
@@ -147,14 +148,15 @@ describe("edition2023 serialization", () => {
       return msg;
     }
   });
-  describe("proto3 / edition2023 interop", () => {
+  void suite("proto3 / edition2023 interop", () => {
     test("to binary", () => {
       const descProto3 =
         edition2023_proto3_ts.Proto3MessageForEdition2023Schema;
       const msgProto3 = fillProto3Message(create(descProto3));
       const descEdition = edition2023_ts.Edition2023FromProto3MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      expect(toBinary(descEdition, msgEdition)).toStrictEqual(
+      assert.deepStrictEqual(
+        toBinary(descEdition, msgEdition),
         toBinary(descProto3, msgProto3),
       );
     });
@@ -164,11 +166,10 @@ describe("edition2023 serialization", () => {
       const msgProto3 = fillProto3Message(create(descProto3));
       const descEdition = edition2023_ts.Edition2023FromProto3MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      expect(
+      assert.deepStrictEqual(
         toJson(descEdition, msgEdition, {
           enumAsInteger: true,
         }),
-      ).toStrictEqual(
         toJson(descProto3, msgProto3, {
           enumAsInteger: true,
         }),
@@ -181,7 +182,7 @@ describe("edition2023 serialization", () => {
       const bytesProto3 = toBinary(descProto3, msgProto3);
       const descEdition = edition2023_ts.Edition2023FromProto3MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      expect(fromBinary(descEdition, bytesProto3)).toStrictEqual(msgEdition);
+      assert.deepStrictEqual(fromBinary(descEdition, bytesProto3), msgEdition);
     });
     test("from json", () => {
       const descProto3 =
@@ -192,7 +193,7 @@ describe("edition2023 serialization", () => {
       });
       const descEdition = edition2023_ts.Edition2023FromProto3MessageSchema;
       const msgEdition = fillEditionMessage(create(descEdition));
-      expect(fromJson(descEdition, jsonProto3)).toStrictEqual(msgEdition);
+      assert.deepStrictEqual(fromJson(descEdition, jsonProto3), msgEdition);
     });
 
     function fillEditionMessage(
@@ -221,13 +222,13 @@ describe("edition2023 serialization", () => {
       return msg;
     }
   });
-  describe("message_encoding DELIMITED with maps", () => {
+  void suite("message_encoding DELIMITED with maps", () => {
     test("should round-trip", () => {
       const a = create(Edition2023MapEncodingMessageSchema);
       a.stringMap[123] = "abc";
       const bytes = toBinary(Edition2023MapEncodingMessageSchema, a);
       const b = fromBinary(Edition2023MapEncodingMessageSchema, bytes);
-      expect(b).toStrictEqual(a);
+      assert.deepStrictEqual(b, a);
     });
     test("should expect LENGTH_PREFIXED map entry", () => {
       const w = new BinaryWriter();
@@ -238,7 +239,7 @@ describe("edition2023 serialization", () => {
       w.join();
       const bytes = w.finish();
       const msg = fromBinary(Edition2023MapEncodingMessageSchema, bytes);
-      expect(msg.stringMap).toStrictEqual({
+      assert.deepStrictEqual(msg.stringMap, {
         123: "abc",
       });
     });
@@ -251,7 +252,7 @@ describe("edition2023 serialization", () => {
       w.join();
       const bytes = w.finish();
       const msg = fromBinary(Edition2023MapEncodingMessageSchema, bytes);
-      expect(msg.messageMap).toStrictEqual({
+      assert.deepStrictEqual(msg.messageMap, {
         123: create(Edition2023MapEncodingMessage_ChildSchema),
       });
     });
@@ -262,22 +263,22 @@ describe("edition2023 serialization", () => {
       const r = new BinaryReader(bytes);
       {
         const [number, wireType] = r.tag();
-        expect(number).toBe(77);
-        expect(wireType).toBe(WireType.LengthDelimited);
+        assert.strictEqual(number, 77);
+        assert.strictEqual(wireType, WireType.LengthDelimited);
         const length = r.uint32();
-        expect(length).toBe(r.len - r.pos);
+        assert.strictEqual(length, r.len - r.pos);
       }
       {
         const [number] = r.tag();
-        expect(number).toBe(1);
-        expect(r.int32()).toBe(123);
+        assert.strictEqual(number, 1);
+        assert.strictEqual(r.int32(), 123);
       }
       {
         const [number] = r.tag();
-        expect(number).toBe(2);
-        expect(r.string()).toBe("abc");
+        assert.strictEqual(number, 2);
+        assert.strictEqual(r.string(), "abc");
       }
-      expect(r.pos).toBe(r.len);
+      assert.strictEqual(r.pos, r.len);
     });
     test("should serialize map value message LENGTH_PREFIXED", () => {
       const msg = create(Edition2023MapEncodingMessageSchema);
@@ -286,24 +287,24 @@ describe("edition2023 serialization", () => {
       const r = new BinaryReader(bytes);
       {
         const [number, wireType] = r.tag();
-        expect(number).toBe(88);
-        expect(wireType).toBe(WireType.LengthDelimited);
+        assert.strictEqual(number, 88);
+        assert.strictEqual(wireType, WireType.LengthDelimited);
         const length = r.uint32();
-        expect(length).toBe(r.len - r.pos);
+        assert.strictEqual(length, r.len - r.pos);
       }
       {
         const [number] = r.tag();
-        expect(number).toBe(1);
-        expect(r.int32()).toBe(123);
+        assert.strictEqual(number, 1);
+        assert.strictEqual(r.int32(), 123);
       }
       {
         const [number, wireType] = r.tag();
-        expect(number).toBe(2);
-        expect(wireType).toBe(WireType.LengthDelimited);
+        assert.strictEqual(number, 2);
+        assert.strictEqual(wireType, WireType.LengthDelimited);
         const length = r.uint32();
-        expect(length).toBe(0);
+        assert.strictEqual(length, 0);
       }
-      expect(r.pos).toBe(r.len);
+      assert.strictEqual(r.pos, r.len);
     });
   });
 });

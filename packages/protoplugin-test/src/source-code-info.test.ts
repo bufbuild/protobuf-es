@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   getComments,
   getDeclarationString,
   getPackageComments,
   getSyntaxComments,
 } from "@bufbuild/protoplugin";
-import { describe, expect, test } from "@jest/globals";
 import {
   compileEnum,
   compileField,
@@ -26,8 +27,8 @@ import {
   compileMessage,
 } from "./helpers.js";
 
-describe("getComments()", () => {
-  test("for syntax", async () => {
+void suite("getComments()", () => {
+  void test("for syntax", async () => {
     const file = await compileFile(`
       // Copyright ACME, Inc.
       //
@@ -43,7 +44,7 @@ describe("getComments()", () => {
       package testcomments;
     `);
     const comments = getSyntaxComments(file);
-    expect(comments.leadingDetached).toStrictEqual([
+    assert.deepStrictEqual(comments.leadingDetached, [
       [
         " Copyright ACME, Inc.",
         "",
@@ -53,10 +54,10 @@ describe("getComments()", () => {
         "",
       ].join("\n"),
     ]);
-    expect(comments.leading).toBe(" Comment before syntax.\n");
-    expect(comments.trailing).toBe(" Comment next to syntax.\n");
+    assert.equal(comments.leading, " Comment before syntax.\n");
+    assert.equal(comments.trailing, " Comment next to syntax.\n");
   });
-  test("for package", async () => {
+  void test("for package", async () => {
     const file = await compileFile(`
       // Comment before syntax.
       syntax = "proto3"; // Comment next to syntax.
@@ -72,11 +73,11 @@ describe("getComments()", () => {
       message MessageWithComments {}
     `);
     const comments = getPackageComments(file);
-    expect(comments.leadingDetached[0]).toBe(" Comment after syntax.\n");
-    expect(comments.leading).toBe(" Comment before package.\n");
-    expect(comments.trailing).toBe(" Comment next to package.\n");
+    assert.equal(comments.leadingDetached[0], " Comment after syntax.\n");
+    assert.equal(comments.leading, " Comment before package.\n");
+    assert.equal(comments.trailing, " Comment next to package.\n");
   });
-  test("for messages", async () => {
+  void test("for messages", async () => {
     const message = await compileMessage(`
       syntax="proto3";
       package testcomments; // Comment next to package.
@@ -88,14 +89,14 @@ describe("getComments()", () => {
       message MessageWithComments {}
     `);
     const comments = getComments(message);
-    expect(comments.leadingDetached).toStrictEqual([
+    assert.deepStrictEqual(comments.leadingDetached, [
       " Comment after package.\n",
       " Comment between package and message.\n",
     ]);
-    expect(comments.leading).toBe(" Comment before message.\n");
-    expect(comments.trailing).toBeUndefined();
+    assert.equal(comments.leading, " Comment before message.\n");
+    assert.strictEqual(comments.trailing, undefined);
   });
-  test("for fields", async () => {
+  void test("for fields", async () => {
     const field = await compileField(`
       syntax="proto3";
       message MessageWithComments {
@@ -116,84 +117,91 @@ describe("getComments()", () => {
       }
     `);
     const comments = getComments(field);
-    expect(comments.leadingDetached).toStrictEqual([
+    assert.deepStrictEqual(comments.leadingDetached, [
       "\n Comment after start of message,\n with funny indentation,\n and empty lines on start and end.\n\n",
     ]);
-    expect(comments.leading).toBe(
+    assert.equal(
+      comments.leading,
       " Comment before field with 5 lines:\n line 2, next is empty\n\n line 4, next is empty\n\n",
     );
-    expect(comments.trailing).toBe(" Comment next to field.\n");
+    assert.equal(comments.trailing, " Comment next to field.\n");
   });
 });
 
-describe("getDeclarationString()", () => {
-  test("for field with json_name option", async () => {
+void suite("getDeclarationString()", () => {
+  void test("for field with json_name option", async () => {
     const field = await compileField(`
       syntax="proto3";
       message M {
         string scalar_field = 1 [json_name = "scalarFieldJsonName"];
       }
     `);
-    expect(getDeclarationString(field)).toBe(
+    assert.equal(
+      getDeclarationString(field),
       'string scalar_field = 1 [json_name = "scalarFieldJsonName"]',
     );
   });
-  test("for field with jstype option", async () => {
+  void test("for field with jstype option", async () => {
     const field = await compileField(`
       syntax="proto3";
       message M {
         string scalar_field = 1 [jstype = JS_NORMAL];
       }
     `);
-    expect(getDeclarationString(field)).toBe(
+    assert.equal(
+      getDeclarationString(field),
       "string scalar_field = 1 [jstype = JS_NORMAL]",
     );
   });
-  test("for field with edition feature", async () => {
+  void test("for field with edition feature", async () => {
     const field = await compileField(`
       edition="2023";
       message M {
         string scalar_field = 1 [features.field_presence = EXPLICIT];
       }
     `);
-    expect(getDeclarationString(field)).toBe(
+    assert.equal(
+      getDeclarationString(field),
       "string scalar_field = 1 [features.field_presence = EXPLICIT]",
     );
   });
-  test("for repeated field", async () => {
+  void test("for repeated field", async () => {
     const field = await compileField(`
       syntax="proto3";
       message M {
         repeated double double_field = 1;
       }
     `);
-    expect(getDeclarationString(field)).toBe(
+    assert.equal(
+      getDeclarationString(field),
       "repeated double double_field = 1",
     );
   });
-  test("for proto2 optional field", async () => {
+  void test("for proto2 optional field", async () => {
     const field = await compileField(`
       syntax="proto3";
       message M {
         optional double double_field = 1;
       }
     `);
-    expect(getDeclarationString(field)).toBe(
+    assert.equal(
+      getDeclarationString(field),
       "optional double double_field = 1",
     );
   });
-  test("for proto2 required field", async () => {
+  void test("for proto2 required field", async () => {
     const field = await compileField(`
       syntax="proto2";
       message M {
         required double double_field = 1;
       }
     `);
-    expect(getDeclarationString(field)).toBe(
+    assert.equal(
+      getDeclarationString(field),
       "required double double_field = 1",
     );
   });
-  test("for map field", async () => {
+  void test("for map field", async () => {
     const field = await compileField(`
       syntax="proto3";
       package foo;
@@ -201,11 +209,12 @@ describe("getDeclarationString()", () => {
         map<int32, M> int32_msg_field = 10;
       }
     `);
-    expect(getDeclarationString(field)).toBe(
+    assert.equal(
+      getDeclarationString(field),
       "map<int32, foo.M> int32_msg_field = 10",
     );
   });
-  test("for enum value", async () => {
+  void test("for enum value", async () => {
     const e = await compileEnum(`
       syntax="proto3";
       enum SimpleEnum {
@@ -213,6 +222,6 @@ describe("getDeclarationString()", () => {
         SIMPLE_ONE = 1;
       }
     `);
-    expect(getDeclarationString(e.values[0])).toBe("SIMPLE_ZERO = 0");
+    assert.equal(getDeclarationString(e.values[0]), "SIMPLE_ZERO = 0");
   });
 });

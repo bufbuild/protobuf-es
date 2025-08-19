@@ -4,7 +4,7 @@
   "scripts": {
     "prebuild": "rm -rf ./dist/*",
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test": "tsx --test $(find src -type f -path '*.test.ts')",
     "format": "biome format --write",
     "license-header": "license-header",
     "lint": "biome lint --error-on-warnings"

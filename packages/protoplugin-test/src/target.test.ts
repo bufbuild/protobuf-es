@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeEach, describe, expect, jest, test } from "@jest/globals";
+import { suite, test, beforeEach, mock, type Mock } from "node:test";
+import * as assert from "node:assert";
 import { createTestPluginAndRun } from "./helpers.js";
 import type {
   createEcmaScriptPlugin,
@@ -21,26 +22,26 @@ import type {
 } from "@bufbuild/protoplugin";
 import type { CodeGeneratorResponse } from "@bufbuild/protobuf/wkt";
 
-describe("target", () => {
+void suite("target", () => {
   type PluginInit = Parameters<
     typeof createEcmaScriptPlugin<Record<string, never>>
   >[0];
-  let generateTs: jest.Mock<PluginInit["generateTs"]>;
-  let generateJs: jest.Mock<Required<PluginInit>["generateJs"]>;
-  let generateDts: jest.Mock<Required<PluginInit>["generateDts"]>;
-  let transpile: jest.Mock<Required<PluginInit>["transpile"]>;
+  let generateTs: Mock<PluginInit["generateTs"]>;
+  let generateJs: Mock<Required<PluginInit>["generateJs"]>;
+  let generateDts: Mock<Required<PluginInit>["generateDts"]>;
+  let transpile: Mock<Required<PluginInit>["transpile"]>;
 
   beforeEach(() => {
-    generateTs = jest.fn((schema: Schema) =>
+    generateTs = mock.fn((schema: Schema) =>
       schema.generateFile("test.ts").print(`const foo = "ts";`),
     );
-    generateJs = jest.fn((schema: Schema) =>
+    generateJs = mock.fn((schema: Schema) =>
       schema.generateFile("test.js").print(`const foo = "js";`),
     );
-    generateDts = jest.fn((schema: Schema) =>
+    generateDts = mock.fn((schema: Schema) =>
       schema.generateFile("test.d.ts").print(`declare const foo = "dts";`),
     );
-    transpile = jest.fn(
+    transpile = mock.fn(
       (
         files: FileInfo[],
         transpileJs: boolean,
@@ -49,8 +50,8 @@ describe("target", () => {
       ) => {
         const out: FileInfo[] = [];
         for (const f of files) {
-          expect(f.name.endsWith(".ts")).toBeTruthy();
-          expect(f.name.endsWith(".d.ts")).toBeFalsy();
+          assert.ok(f.name.endsWith(".ts"));
+          assert.ok(!f.name.endsWith(".d.ts"));
           if (transpileJs) {
             out.push({
               name: "test.js",
@@ -71,8 +72,8 @@ describe("target", () => {
     );
   });
 
-  describe("unset", () => {
-    test("should generate .js and .d.ts files", async () => {
+  void suite("unset", () => {
+    void test("should generate .js and .d.ts files", async () => {
       const res = await createTestPluginAndRun({
         proto: `syntax="proto3";`,
         parameter: "",
@@ -82,9 +83,9 @@ describe("target", () => {
         transpile,
       });
       const gotFiles = res.file.map((f) => f.name).sort();
-      expect(gotFiles).toStrictEqual(["test.js", "test.d.ts"].sort());
+      assert.deepStrictEqual(gotFiles, ["test.js", "test.d.ts"].sort());
     });
-    test("should call generateJs and generateDts", async () => {
+    void test("should call generateJs and generateDts", async () => {
       await createTestPluginAndRun({
         proto: `syntax="proto3";`,
         parameter: "",
@@ -93,10 +94,10 @@ describe("target", () => {
         generateDts,
         transpile,
       });
-      expect(generateTs).toHaveBeenCalledTimes(0);
-      expect(generateJs).toHaveBeenCalledTimes(1);
-      expect(generateDts).toHaveBeenCalledTimes(1);
-      expect(transpile).toHaveBeenCalledTimes(0);
+      assert.strictEqual(generateTs.mock.callCount(), 0);
+      assert.strictEqual(generateJs.mock.callCount(), 1);
+      assert.strictEqual(generateDts.mock.callCount(), 1);
+      assert.strictEqual(transpile.mock.callCount(), 0);
     });
   });
 
@@ -109,40 +110,50 @@ describe("target", () => {
     "js+dts",
     "ts+dts",
   ];
-  describe.each(targetCases)("targets %s", (targetsJoined) => {
-    const targets = targetsJoined.split("+");
-    test("should generate expected files", async () => {
-      const res = await createTestPluginAndRun({
-        proto: `syntax="proto3";`,
-        parameter: `target=${targetsJoined}`,
-        generateTs,
-        generateJs,
-        generateDts,
-        transpile,
+  for (const targetsJoined of targetCases) {
+    void suite(`targets ${targetsJoined}`, () => {
+      void test("should generate expected files", async () => {
+        const res = await createTestPluginAndRun({
+          proto: `syntax="proto3";`,
+          parameter: `target=${targetsJoined}`,
+          generateTs,
+          generateJs,
+          generateDts,
+          transpile,
+        });
+        const gotFiles = res.file.map((f) => f.name).sort();
+        const wantFiles = targetsJoined
+          .split("+")
+          .map((t) => (t == "dts" ? "test.d.ts" : `test.${t}`))
+          .sort();
+        assert.deepStrictEqual(gotFiles, wantFiles);
       });
-      const gotFiles = res.file.map((f) => f.name).sort();
-      const wantFiles = targets
-        .map((t) => (t == "dts" ? "test.d.ts" : `test.${t}`))
-        .sort();
-      expect(gotFiles).toStrictEqual(wantFiles);
-    });
-    test("should call expected generator functions", async () => {
-      await createTestPluginAndRun({
-        proto: `syntax="proto3";`,
-        parameter: `target=${targetsJoined}`,
-        generateTs,
-        generateJs,
-        generateDts,
-        transpile,
+      void test("should call expected generator functions", async () => {
+        await createTestPluginAndRun({
+          proto: `syntax="proto3";`,
+          parameter: `target=${targetsJoined}`,
+          generateTs,
+          generateJs,
+          generateDts,
+          transpile,
+        });
+        const targets = targetsJoined.split("+");
+        assert.strictEqual(
+          generateTs.mock.callCount(),
+          targets.includes("ts") ? 1 : 0,
+        );
+        assert.strictEqual(
+          generateJs.mock.callCount(),
+          targets.includes("js") ? 1 : 0,
+        );
+        assert.strictEqual(
+          generateDts.mock.callCount(),
+          targets.includes("dts") ? 1 : 0,
+        );
+        assert.strictEqual(transpile.mock.callCount(), 0);
       });
-      expect(generateTs).toHaveBeenCalledTimes(targets.includes("ts") ? 1 : 0);
-      expect(generateJs).toHaveBeenCalledTimes(targets.includes("js") ? 1 : 0);
-      expect(generateDts).toHaveBeenCalledTimes(
-        targets.includes("dts") ? 1 : 0,
-      );
-      expect(transpile).toHaveBeenCalledTimes(0);
     });
-  });
+  }
 
   const transpileCases = [
     {
@@ -186,40 +197,33 @@ describe("target", () => {
       expectedFiles: ["test.d.ts", "test.js"],
     },
   ];
-  describe.each(transpileCases)(
-    "$name",
-    ({
-      parameter,
-      definedGenerators,
-      calledGenerators,
-      transpileTo,
-      expectedFiles,
-    }) => {
+  for (const transpileCase of transpileCases) {
+    void suite(`${transpileCase.name}`, () => {
       let res: CodeGeneratorResponse;
       beforeEach(
         async () =>
           // biome-ignore lint/suspicious/noAssignInExpressions: no
           (res = await createTestPluginAndRun({
             proto: `syntax="proto3";`,
-            parameter,
+            parameter: transpileCase.parameter,
             generateTs,
-            generateJs: definedGenerators.includes("js") ? generateJs : undefined, // biome-ignore format: want this to read well
-            generateDts: definedGenerators.includes("dts") ? generateDts : undefined, // biome-ignore format: want this to read well
+            generateJs: transpileCase.definedGenerators.includes("js") ? generateJs : undefined, // biome-ignore format: want this to read well
+            generateDts: transpileCase.definedGenerators.includes("dts") ? generateDts : undefined, // biome-ignore format: want this to read well
             transpile,
           })),
       );
-
-      test("should call expected generator functions", () => {
-        expect(generateTs).toHaveBeenCalledTimes(
-          calledGenerators.includes("ts") ? 1 : 0,
+      void test("should call expected generator functions", () => {
+        assert.strictEqual(
+          generateTs.mock.callCount(),
+          transpileCase.calledGenerators.includes("ts") ? 1 : 0,
         );
-        expect(generateJs).toHaveBeenCalledTimes(calledGenerators.includes("js") ? 1 : 0); // biome-ignore format: want this to read well
-        expect(generateDts).toHaveBeenCalledTimes(calledGenerators.includes("dts") ? 1 : 0); // biome-ignore format: want this to read well
+        assert.strictEqual(generateJs.mock.callCount(), transpileCase.calledGenerators.includes("js") ? 1 : 0); // biome-ignore format: want this to read well
+        assert.strictEqual(generateDts.mock.callCount(), transpileCase.calledGenerators.includes("dts") ? 1 : 0); // biome-ignore format: want this to read well
       });
 
-      test("should call transpile function", () => {
-        expect(transpile).toHaveBeenCalledTimes(1);
-        expect(transpile).toHaveBeenCalledWith(
+      void test("should call transpile function", () => {
+        assert.strictEqual(transpile.mock.callCount(), 1);
+        assert.deepStrictEqual(transpile.mock.calls[0].arguments, [
           [
             {
               name: "test.ts",
@@ -227,16 +231,16 @@ describe("target", () => {
               preamble: undefined,
             },
           ],
-          transpileTo.includes("js"), // transpileJs
-          transpileTo.includes("dts"), // transpileDts
+          transpileCase.transpileTo.includes("js"), // transpileJs
+          transpileCase.transpileTo.includes("dts"), // transpileDts
           "module", // jsImportStyle
-        );
+        ]);
       });
 
-      test("should generate expected files", () => {
+      void test("should generate expected files", () => {
         const gotFiles = res.file.map((f) => f.name).sort();
-        expect(gotFiles).toStrictEqual(expectedFiles);
+        assert.deepStrictEqual(gotFiles, transpileCase.expectedFiles);
       });
-    },
-  );
+    });
+  }
 });

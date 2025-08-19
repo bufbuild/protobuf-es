@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("built-in transpile", () => {
+void suite("built-in transpile", () => {
   async function testTranspileToDts(linesTs: string[]) {
     return await createTestPluginAndRun({
       proto: `syntax="proto3";`,
@@ -30,52 +31,52 @@ describe("built-in transpile", () => {
     });
   }
 
-  describe("ECMAScript types", () => {
-    test("global Promise type transpiles", async () => {
+  void suite("ECMAScript types", () => {
+    void test("global Promise type transpiles", async () => {
       const linesDts = await testTranspileToDts([
         "export const p = Promise.resolve(true);",
       ]);
-      expect(linesDts).toStrictEqual([
+      assert.deepStrictEqual(linesDts, [
         "export declare const p: Promise<boolean>;",
       ]);
     });
   });
 
-  describe("TypeScript built-in types", () => {
-    test("global ReturnType transpiles", async () => {
+  void suite("TypeScript built-in types", () => {
+    void test("global ReturnType transpiles", async () => {
       const linesDts = await testTranspileToDts([
         "export const n: ReturnType<typeof parseInt> = 1;",
       ]);
-      expect(linesDts).toStrictEqual([
+      assert.deepStrictEqual(linesDts, [
         "export declare const n: ReturnType<typeof parseInt>;",
       ]);
     });
   });
 
-  describe("DOM types", () => {
-    test("global Headers transpiles", async () => {
+  void suite("DOM types", () => {
+    void test("global Headers transpiles", async () => {
       const linesDts = await testTranspileToDts([
         "export const h = new Headers();",
       ]);
-      expect(linesDts).toStrictEqual(["export declare const h: Headers;"]);
+      assert.deepStrictEqual(linesDts, ["export declare const h: Headers;"]);
     });
   });
 
-  describe("runtime types", () => {
-    test("JsonValue transpiles", async () => {
+  void suite("runtime types", () => {
+    void test("JsonValue transpiles", async () => {
       const linesDts = await testTranspileToDts([
         `import type { JsonValue } from "@bufbuild/protobuf";`,
         "export const j: JsonValue = 1;",
       ]);
-      expect(linesDts).toStrictEqual([
+      assert.deepStrictEqual(linesDts, [
         `import type { JsonValue } from "@bufbuild/protobuf";`,
         "export declare const j: JsonValue;",
       ]);
     });
   });
 
-  describe("unknown type", () => {
-    test("is not inferred correctly", async () => {
+  void suite("unknown type", () => {
+    void test("is not inferred correctly", async () => {
       const linesDts = await testTranspileToDts([
         `import { Foo } from "foo";`,
         "",
@@ -83,78 +84,82 @@ describe("built-in transpile", () => {
       ]);
       // The return type is inferred as `any` instead of the expected
       // `Foo`. This is a limitation of the TypeScript compiler.
-      expect(linesDts).toStrictEqual(["export declare function foo(): any;"]);
+      assert.deepStrictEqual(linesDts, ["export declare function foo(): any;"]);
     });
-    test("can be typed explicitly", async () => {
+    void test("can be typed explicitly", async () => {
       const linesDts = await testTranspileToDts([
         `import { Foo } from "foo";`,
         "",
         "export function foo(): Foo { return new Foo(); };",
       ]);
-      expect(linesDts).toStrictEqual([
+      assert.deepStrictEqual(linesDts, [
         `import { Foo } from "foo";`,
         "export declare function foo(): Foo;",
       ]);
     });
   });
 
-  describe("failing to emit", () => {
-    test("raises error with helpful message", async () => {
-      await expect(async () =>
-        testTranspileToDts([
-          "export interface Foo {",
-          "  p: {",
-          "    [K in keyof P]: string;",
-          "  },",
-          "}",
-        ]),
-      ).rejects.toThrow(
-        /^A problem occurred during transpilation and files were not generated\. {2}Contact the plugin author for support\.\n/,
+  void suite("failing to emit", () => {
+    void test("raises error with helpful message", async () => {
+      await assert.rejects(
+        async () =>
+          testTranspileToDts([
+            "export interface Foo {",
+            "  p: {",
+            "    [K in keyof P]: string;",
+            "  },",
+            "}",
+          ]),
+        {
+          name: "Error",
+          message:
+            /^A problem occurred during transpilation and files were not generated\. {2}Contact the plugin author for support\.\n/,
+        },
       );
     });
-    test("raises error with diagnostics", async () => {
-      await expect(async () =>
-        testTranspileToDts([
-          "export interface Foo {",
-          "  p: {",
-          "    [K in keyof P]: string;",
-          "  },",
-          "}",
-        ]),
-      ).rejects.toThrow(
+    void test("raises error with diagnostics", async () => {
+      await assert.rejects(
+        async () =>
+          testTranspileToDts([
+            "export interface Foo {",
+            "  p: {",
+            "    [K in keyof P]: string;",
+            "  },",
+            "}",
+          ]),
         /test\.ts\(3,17\): error TS4033: Property 'p' of exported interface has or is using private name 'P'\.$/,
       );
     });
-    test("raises error with 3 diagnostics, and elides the rest", async () => {
-      await expect(async () =>
-        testTranspileToDts([
-          "export interface Foo1 {",
-          "  p: {",
-          "    [K in keyof P]: string;",
-          "  },",
-          "}",
-          "export interface Foo2 {",
-          "  p: {",
-          "    [K in keyof P]: string;",
-          "  },",
-          "}",
-          "export interface Foo3 {",
-          "  p: {",
-          "    [K in keyof P]: string;",
-          "  },",
-          "}",
-          "export interface Foo4 {",
-          "  p: {",
-          "    [K in keyof P]: string;",
-          "  },",
-          "}",
-          "export interface Foo5 {",
-          "  p: {",
-          "    [K in keyof P]: string;",
-          "  },",
-          "}",
-        ]),
-      ).rejects.toThrow(
+    void test("raises error with 3 diagnostics, and elides the rest", async () => {
+      await assert.rejects(
+        async () =>
+          testTranspileToDts([
+            "export interface Foo1 {",
+            "  p: {",
+            "    [K in keyof P]: string;",
+            "  },",
+            "}",
+            "export interface Foo2 {",
+            "  p: {",
+            "    [K in keyof P]: string;",
+            "  },",
+            "}",
+            "export interface Foo3 {",
+            "  p: {",
+            "    [K in keyof P]: string;",
+            "  },",
+            "}",
+            "export interface Foo4 {",
+            "  p: {",
+            "    [K in keyof P]: string;",
+            "  },",
+            "}",
+            "export interface Foo5 {",
+            "  p: {",
+            "    [K in keyof P]: string;",
+            "  },",
+            "}",
+          ]),
         /(?:test\.ts\(\d+,\d+\): .+\n){3}2 more diagnostics elided/,
       );
     });

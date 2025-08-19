@@ -1,6 +1,7 @@
 # Tests for @bufbuild/protobuf
 
-This package provides test coverage for `@bufbuild/protobuf` with Jest.
+This package provides test coverage for `@bufbuild/protobuf` with the Node.js 
+built-in test runner.
 
 We also generate code for many of the unit test Protobuf files that are part of
 `github.com/protocolbuffers/protobuf`. They cover many edge cases for both code

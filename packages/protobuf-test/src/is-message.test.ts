@@ -12,53 +12,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { UserSchema } from "./gen/ts/extra/example_pb.js";
 import { create, isMessage } from "@bufbuild/protobuf";
 import { MessageFieldMessageSchema } from "./gen/ts/extra/msg-message_pb.js";
 
-describe("isMessage", () => {
-  test("narrows down to anonymous message", () => {
+void suite("isMessage", () => {
+  void test("narrows down to anonymous message", () => {
     const unknown = create(UserSchema) as unknown;
-    expect(isMessage(unknown)).toBe(true);
+    assert.ok(isMessage(unknown));
     if (isMessage(unknown)) {
-      expect(unknown.$typeName).toBe("example.User");
+      assert.strictEqual(unknown.$typeName, "example.User");
     }
   });
-  test("narrows down to specific message", () => {
+  void test("narrows down to specific message", () => {
     const unknown = create(UserSchema) as unknown;
-    expect(isMessage(unknown, UserSchema)).toBe(true);
+    assert.ok(isMessage(unknown, UserSchema));
     if (isMessage(unknown, UserSchema)) {
-      expect(unknown.$typeName).toBe("example.User");
+      assert.strictEqual(unknown.$typeName, "example.User");
       unknown.firstName = "Homer"; // proves that the type is known
     }
-    expect(isMessage(unknown, UserSchema)).toBe(true);
-    expect(isMessage(unknown, UserSchema)).toBe(true);
+    assert.ok(isMessage(unknown, UserSchema));
+    assert.ok(isMessage(unknown, UserSchema));
   });
 });
 test("rejects foreign message", () => {
   const user = create(UserSchema);
-  expect(isMessage(user, MessageFieldMessageSchema)).toBe(false);
+  assert.strictEqual(isMessage(user, MessageFieldMessageSchema), false);
 });
 test("rejects non-message values", () => {
-  expect(isMessage(null)).toBe(false);
-  expect(isMessage(undefined)).toBe(false);
-  expect(isMessage(123)).toBe(false);
-  expect(isMessage("str")).toBe(false);
-  expect(isMessage({})).toBe(false);
+  assert.strictEqual(isMessage(null), false);
+  assert.strictEqual(isMessage(undefined), false);
+  assert.strictEqual(isMessage(123), false);
+  assert.strictEqual(isMessage("str"), false);
+  assert.strictEqual(isMessage({}), false);
 });
 test("falsely returns true if the argument is close enough to a Message", () => {
-  expect(
+  assert.ok(
     isMessage({
       $typeName: "",
     }),
-  ).toBe(true);
-  expect(
+  );
+  assert.ok(
     isMessage(
       {
         $typeName: "example.User",
       },
       UserSchema,
     ),
-  ).toBe(true);
+  );
 });

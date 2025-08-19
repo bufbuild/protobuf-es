@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.jsDoc", () => {
-  test("creates JSDoc block", async () => {
+void suite("GeneratedFile.jsDoc", () => {
+  void test("creates JSDoc block", async () => {
     const lines = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
@@ -25,10 +26,10 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-    expect(lines).toStrictEqual(["/**", " * hello world", " */"]);
+    assert.deepStrictEqual(lines, ["/**", " * hello world", " */"]);
   });
 
-  test("creates JSDoc block for message", async () => {
+  void test("creates JSDoc block for message", async () => {
     const lines = await createTestPluginAndRun({
       proto: `
         syntax="proto3";
@@ -40,14 +41,14 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       "/**",
       " * @generated from message SomeMessage",
       " */",
     ]);
   });
 
-  test("creates JSDoc block for message with comments", async () => {
+  void test("creates JSDoc block for message with comments", async () => {
     const lines = await createTestPluginAndRun({
       proto: `
         syntax="proto3";
@@ -63,7 +64,7 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       "/**",
       " * comment on message",
       " *",
@@ -72,7 +73,7 @@ describe("GeneratedFile.jsDoc", () => {
     ]);
   });
 
-  test("creates JSDoc block for message with feature options", async () => {
+  void test("creates JSDoc block for message with feature options", async () => {
     const lines = await createTestPluginAndRun({
       proto: `
         edition="2023";
@@ -86,7 +87,7 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       "/**",
       " * @generated from message SomeMessage",
       " * @generated with option features.json_format = ALLOW",
@@ -94,7 +95,7 @@ describe("GeneratedFile.jsDoc", () => {
     ]);
   });
 
-  test("creates JSDoc block for enum with feature options", async () => {
+  void test("creates JSDoc block for enum with feature options", async () => {
     const lines = await createTestPluginAndRun({
       proto: `
         edition="2023";
@@ -109,7 +110,7 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       "/**",
       " * @generated from enum SomeEnum",
       " * @generated with option features.enum_type = OPEN",
@@ -117,7 +118,7 @@ describe("GeneratedFile.jsDoc", () => {
     ]);
   });
 
-  test("indents", async () => {
+  void test("indents", async () => {
     const lines = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
@@ -126,7 +127,7 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       "  /**",
       "   * multi-line",
       "   * comment",
@@ -134,7 +135,7 @@ describe("GeneratedFile.jsDoc", () => {
     ]);
   });
 
-  test("escapes */", async () => {
+  void test("escapes */", async () => {
     const lines = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
@@ -143,10 +144,10 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-    expect(lines).toStrictEqual(["/**", " * *\\/", " */"]);
+    assert.deepStrictEqual(lines, ["/**", " * *\\/", " */"]);
   });
 
-  test("whitespace is unmodified", async () => {
+  void test("whitespace is unmodified", async () => {
     const lines = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
@@ -155,7 +156,7 @@ describe("GeneratedFile.jsDoc", () => {
       },
       returnLinesOfFirstFile: true,
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       "/**",
       " *",
       " * a",

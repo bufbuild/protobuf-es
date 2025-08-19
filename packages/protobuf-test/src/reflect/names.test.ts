@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeAll, describe, expect, test } from "@jest/globals";
+import { suite, test, before } from "node:test";
+import * as assert from "node:assert";
 import {
   safeObjectProperty,
   protoCamelCase,
@@ -21,9 +22,9 @@ import {
 import type { DescFile } from "@bufbuild/protobuf";
 import { compileField, compileFile } from "../helpers.js";
 
-describe("qualifiedName", () => {
+void suite("qualifiedName", () => {
   let testFile: DescFile;
-  beforeAll(async () => {
+  before(async () => {
     testFile = await compileFile(`
 syntax = "proto3";                            // Fully-qualified name
                                               //----------------------
@@ -60,62 +61,68 @@ service FooService {                          // foo.bar.FooService
 }                                             //
 `);
   });
-  test("https://protobuf.com/docs/language-spec#fully-qualified-names", () => {
+  void test("https://protobuf.com/docs/language-spec#fully-qualified-names", () => {
     const m0 = testFile.messages[0];
-    expect(qualifiedName(m0)).toBe("foo.bar.Message");
-    expect(qualifiedName(m0.oneofs[0])).toBe("foo.bar.Message.id");
-    expect(qualifiedName(m0.fields[0])).toBe("foo.bar.Message.name");
-    expect(qualifiedName(m0.fields[1])).toBe("foo.bar.Message.num");
-    expect(qualifiedName(m0.nestedMessages[0])).toBe(
+    assert.strictEqual(qualifiedName(m0), "foo.bar.Message");
+    assert.strictEqual(qualifiedName(m0.oneofs[0]), "foo.bar.Message.id");
+    assert.strictEqual(qualifiedName(m0.fields[0]), "foo.bar.Message.name");
+    assert.strictEqual(qualifiedName(m0.fields[1]), "foo.bar.Message.num");
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0]),
       "foo.bar.Message.NestedMessage",
     );
-    expect(qualifiedName(m0.nestedMessages[0].nestedExtensions[0])).toBe(
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedExtensions[0]),
       "foo.bar.Message.NestedMessage.fizz",
     );
-    expect(qualifiedName(m0.nestedMessages[0].nestedEnums[0])).toBe(
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedEnums[0]),
       "foo.bar.Message.NestedMessage.Kind",
     );
-    expect(qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[0])).toBe(
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[0]),
       "foo.bar.Message.NestedMessage.NULL",
     );
-    expect(qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[1])).toBe(
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[1]),
       "foo.bar.Message.NestedMessage.PRIMARY",
     );
-    expect(qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[2])).toBe(
+    assert.strictEqual(
+      qualifiedName(m0.nestedMessages[0].nestedEnums[0].values[2]),
       "foo.bar.Message.NestedMessage.SECONDARY",
     );
-    expect(qualifiedName(m0.fields[2])).toBe("foo.bar.Message.extra");
+    assert.strictEqual(qualifiedName(m0.fields[2]), "foo.bar.Message.extra");
     const e0 = testFile.enums[0];
-    expect(qualifiedName(e0)).toBe("foo.bar.Unit");
-    expect(qualifiedName(e0.values[0])).toBe("foo.bar.VOID");
+    assert.strictEqual(qualifiedName(e0), "foo.bar.Unit");
+    assert.strictEqual(qualifiedName(e0.values[0]), "foo.bar.VOID");
     const s0 = testFile.services[0];
-    expect(qualifiedName(s0)).toBe("foo.bar.FooService");
-    expect(qualifiedName(s0.methods[0])).toBe("foo.bar.FooService.Bar");
+    assert.strictEqual(qualifiedName(s0), "foo.bar.FooService");
+    assert.strictEqual(qualifiedName(s0.methods[0]), "foo.bar.FooService.Bar");
   });
 });
 
-describe("safeObjectProperty", () => {
-  test("escapes reserved object property names", () => {
-    expect(safeObjectProperty("constructor")).toBe("constructor$");
-    expect(safeObjectProperty("toString")).toBe("toString$");
-    expect(safeObjectProperty("toJSON")).toBe("toJSON$");
-    expect(safeObjectProperty("valueOf")).toBe("valueOf$");
+void suite("safeObjectProperty", () => {
+  void test("escapes reserved object property names", () => {
+    assert.strictEqual(safeObjectProperty("constructor"), "constructor$");
+    assert.strictEqual(safeObjectProperty("toString"), "toString$");
+    assert.strictEqual(safeObjectProperty("toJSON"), "toJSON$");
+    assert.strictEqual(safeObjectProperty("valueOf"), "valueOf$");
   });
-  test("does not modify other inputs which are not reserved object properties", () => {
-    expect(safeObjectProperty("break")).toBe("break");
-    expect(safeObjectProperty("case")).toBe("case");
-    expect(safeObjectProperty("catch")).toBe("catch");
-    expect(safeObjectProperty("class")).toBe("class");
-    expect(safeObjectProperty("const")).toBe("const");
-    expect(safeObjectProperty("continue")).toBe("continue");
-    expect(safeObjectProperty("debugger")).toBe("debugger");
-    expect(safeObjectProperty("default")).toBe("default");
-    expect(safeObjectProperty("delete")).toBe("delete");
+  void test("does not modify other inputs which are not reserved object properties", () => {
+    assert.strictEqual(safeObjectProperty("break"), "break");
+    assert.strictEqual(safeObjectProperty("case"), "case");
+    assert.strictEqual(safeObjectProperty("catch"), "catch");
+    assert.strictEqual(safeObjectProperty("class"), "class");
+    assert.strictEqual(safeObjectProperty("const"), "const");
+    assert.strictEqual(safeObjectProperty("continue"), "continue");
+    assert.strictEqual(safeObjectProperty("debugger"), "debugger");
+    assert.strictEqual(safeObjectProperty("default"), "default");
+    assert.strictEqual(safeObjectProperty("delete"), "delete");
   });
 });
 
-describe("protoCamelCase", () => {
-  test.each([
+void suite("protoCamelCase", () => {
+  for (const name of [
     "foo_bar",
     "__proto__",
     "fieldname1",
@@ -136,14 +143,16 @@ describe("protoCamelCase", () => {
     "field__Name16",
     "field_name17__",
     "Field_name18__",
-  ])("returns same name as protoc for %s", async (name) => {
-    const field = await compileField(`
+  ]) {
+    void test(`returns same name as protoc for ${name}`, async () => {
+      const field = await compileField(`
       syntax="proto3";
       message M { 
         int32 ${name} = 1;
       }
     `);
-    const protocJsonName = field.proto.jsonName;
-    expect(protoCamelCase(name)).toBe(protocJsonName);
-  });
+      const protocJsonName = field.proto.jsonName;
+      assert.strictEqual(protoCamelCase(name), protocJsonName);
+    });
+  }
 });

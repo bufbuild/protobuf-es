@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("rewrite_imports", () => {
-  test("example works as documented", async () => {
+void suite("rewrite_imports", () => {
+  void test("example works as documented", async () => {
     const lines = await testGenerate(
       "target=ts,rewrite_imports=./foo/**/*_pb.js:@scope/pkg",
       (f) => {
@@ -26,14 +27,14 @@ describe("rewrite_imports", () => {
         f.print("console.log(", Bar, ", ", Baz, ");");
       },
     );
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       'import { Bar } from "@scope/pkg/foo/bar_pb";',
       'import { Baz } from "@scope/pkg/foo/bar/baz_pb";',
       "",
       "console.log(Bar, Baz);",
     ]);
   });
-  test("should rewrite npm import to other package", async () => {
+  void test("should rewrite npm import to other package", async () => {
     const lines = await testGenerate(
       "target=ts,rewrite_imports=@scope/pkg:@other-scope/other-pkg",
       (f) => {
@@ -41,13 +42,13 @@ describe("rewrite_imports", () => {
         f.print(Foo);
       },
     );
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       'import { Foo } from "@other-scope/other-pkg";',
       "",
       "Foo",
     ]);
   });
-  test("should rewrite to target with package prefix", async () => {
+  void test("should rewrite to target with package prefix", async () => {
     const lines = await testGenerate(
       "target=ts,rewrite_imports=@scope/pkg:npm:@scope/pkg",
       (f) => {
@@ -55,13 +56,13 @@ describe("rewrite_imports", () => {
         f.print(Foo);
       },
     );
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       'import { Foo } from "npm:@scope/pkg";',
       "",
       "Foo",
     ]);
   });
-  test("should rewrite to target with package prefix and subpath", async () => {
+  void test("should rewrite to target with package prefix and subpath", async () => {
     const lines = await testGenerate(
       "target=ts,rewrite_imports=@scope/pkg/subpath:npm:@scope/pkg/subpath",
       (f) => {
@@ -69,7 +70,7 @@ describe("rewrite_imports", () => {
         f.print(Foo);
       },
     );
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       'import { Foo } from "npm:@scope/pkg/subpath";',
       "",
       "Foo",

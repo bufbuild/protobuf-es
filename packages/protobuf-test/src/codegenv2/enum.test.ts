@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { compileEnum, compileFile } from "../helpers.js";
 import { enumDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
 
-describe("enumDesc()", () => {
+void suite("enumDesc()", () => {
   test("resolves enum", async () => {
     const descFile = await compileFile(`
       syntax="proto3";
@@ -26,11 +27,11 @@ describe("enumDesc()", () => {
       }
     `);
     const descEnum = enumDesc(descFile, 0);
-    expect(descEnum.name).toBe("E");
+    assert.strictEqual(descEnum.name, "E");
   });
 });
 
-describe("tsEnum()", () => {
+void suite("tsEnum()", () => {
   test("creates TS enum", async () => {
     const descEnum = await compileEnum(`
       syntax="proto3";
@@ -40,11 +41,11 @@ describe("tsEnum()", () => {
       }
     `);
     const e = tsEnum(descEnum);
-    expect(e[0]).toBe("A");
-    expect(e[1]).toBe("B");
-    expect(e.A).toBe(0);
-    expect(e.B).toBe(1);
-    expect(e).toStrictEqual({
+    assert.strictEqual(e[0], "A");
+    assert.strictEqual(e[1], "B");
+    assert.strictEqual(e.A, 0);
+    assert.strictEqual(e.B, 1);
+    assert.deepStrictEqual(e, {
       0: "A",
       1: "B",
       A: 0,
@@ -60,7 +61,7 @@ describe("tsEnum()", () => {
       }
     `);
     const e = tsEnum(descEnum);
-    expect(e).toStrictEqual({
+    assert.deepStrictEqual(e, {
       0: "ZERO",
       1: "ONE",
       ZERO: 0,
@@ -78,7 +79,7 @@ describe("tsEnum()", () => {
       }
     `);
     const e = tsEnum(descEnum);
-    expect(e).toStrictEqual({
+    assert.deepStrictEqual(e, {
       0: "constructor$",
       1: "toString$",
       2: "toJSON$",
@@ -100,7 +101,7 @@ describe("tsEnum()", () => {
       }
     `);
     const e = tsEnum(descEnum);
-    expect(e).toStrictEqual({
+    assert.deepStrictEqual(e, {
       0: "constructor$",
       1: "toString$",
       2: "toJSON$",

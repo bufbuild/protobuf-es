@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { CodeGeneratorRequestSchema } from "@bufbuild/protobuf/wkt";
 import { create, type MessageInitShape } from "@bufbuild/protobuf";
 import type { Schema } from "@bufbuild/protoplugin";
 import { createEcmaScriptPlugin } from "@bufbuild/protoplugin";
 
-describe("parse custom plugin option", () => {
+void suite("parse custom plugin option", () => {
   interface Options {
     foo?: number;
     bar: boolean;
@@ -67,64 +68,80 @@ describe("parse custom plugin option", () => {
       generateDts: generate,
     }).run(create(CodeGeneratorRequestSchema, req));
   };
-  test("parse as expected on the happy path", () => {
+  void test("parse as expected on the happy path", () => {
     runPlugin(
       (options) => {
-        expect(options.foo).toBe(123);
-        expect(options.bar).toBe(true);
-        expect(options.baz).toStrictEqual(["a", "b"]);
+        assert.strictEqual(options.foo, 123);
+        assert.strictEqual(options.bar, true);
+        assert.deepStrictEqual(options.baz, ["a", "b"]);
       },
       create(CodeGeneratorRequestSchema, {
         parameter: "foo=123,bar,baz=a,baz=b",
       }),
     );
   });
-  test("custom option is initialized to default if no plugin option is provided", () => {
+  void test("custom option is initialized to default if no plugin option is provided", () => {
     runPlugin(
       (options) => {
-        expect(options.foo).toBeUndefined();
-        expect(options.bar).toBe(false);
-        expect(options.baz).toStrictEqual([]);
+        assert.strictEqual(options.foo, undefined);
+        assert.strictEqual(options.bar, false);
+        assert.deepStrictEqual(options.baz, []);
       },
       create(CodeGeneratorRequestSchema, {
         parameter: "",
       }),
     );
   });
-  test("error from parseOption is wrapped", () => {
-    expect(() =>
-      runPlugin(
-        () => {
-          //
-        },
-        {
-          parameter: "foo=abc",
-        },
-      ),
-    ).toThrow(/^invalid option "foo=abc": please provide an integer for foo$/);
+  void test("error from parseOption is wrapped", () => {
+    assert.throws(
+      () =>
+        runPlugin(
+          () => {
+            //
+          },
+          {
+            parameter: "foo=abc",
+          },
+        ),
+      {
+        name: "PluginOptionError",
+        message:
+          /^invalid option "foo=abc": please provide an integer for foo$/,
+      },
+    );
   });
-  test("unknown option raises an error", () => {
-    expect(() =>
-      runPlugin(
-        () => {
-          //
-        },
-        {
-          parameter: "unknown",
-        },
-      ),
-    ).toThrow(/^invalid option "unknown"$/);
+  void test("unknown option raises an error", () => {
+    assert.throws(
+      () =>
+        runPlugin(
+          () => {
+            //
+          },
+          {
+            parameter: "unknown",
+          },
+        ),
+      {
+        name: "PluginOptionError",
+        message: /^invalid option "unknown"$/,
+      },
+    );
   });
-  test("unknown option with value raises an error", () => {
-    expect(() =>
-      runPlugin(
-        () => {
-          //
-        },
-        {
-          parameter: "unknown=bar",
-        },
-      ),
-    ).toThrow(/^invalid option "unknown=bar"$/);
+  void test("unknown option with value raises an error", () => {
+    assert.throws(
+      () =>
+        runPlugin(
+          () => {
+            //
+          },
+          {
+            parameter: "unknown=bar",
+          },
+        ),
+      {
+        name: "PluginOptionError",
+        message: /^invalid option "unknown=bar"$/,
+      },
+    );
   });
 });

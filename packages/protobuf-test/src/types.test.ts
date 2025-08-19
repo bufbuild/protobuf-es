@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   create,
   type MessageShape,
@@ -47,34 +48,37 @@ import type * as valid_types_ts from "./gen/ts,valid_types/extra/valid_types_pb.
 import type * as valid_types_ts_novalid from "./gen/ts/extra/valid_types_pb.js";
 import type * as codegenv1 from "@bufbuild/protobuf/codegenv1";
 
-describe("type Message", () => {
-  describe("assigning different messages with same shape to each other", () => {
-    test("is a type error", () => {
-      const duration = "fake" as unknown as Duration;
-      const timestamp = "fake" as unknown as Timestamp;
-      // @ts-expect-error TS2322
-      const duration2: Duration = timestamp;
-      // @ts-expect-error TS2322
-      const timestamp2: Timestamp = duration;
-      expect(duration2).toBeDefined();
-      expect(timestamp2).toBeDefined();
-    });
-  });
-  describe("narrow down from message shape union", () => {
+void suite("type Message", () => {
+  void suite(
+    "assigning different messages with same shape to each other",
+    () => {
+      void test("is a type error", () => {
+        const duration = "fake" as unknown as Duration;
+        const timestamp = "fake" as unknown as Timestamp;
+        // @ts-expect-error TS2322
+        const duration2: Duration = timestamp;
+        // @ts-expect-error TS2322
+        const timestamp2: Timestamp = duration;
+        assert.ok(duration2);
+        assert.ok(timestamp2);
+      });
+    },
+  );
+  void suite("narrow down from message shape union", () => {
     const msg = create(UserSchema) as unknown as Proto3Message | User;
-    test("can switch on Message.$typeName against literal string type", () => {
+    void test("can switch on Message.$typeName against literal string type", () => {
       switch (msg.$typeName) {
         case "example.User":
-          expect(msg.firstName).toBeDefined();
+          assert.ok(msg.firstName !== undefined);
           break;
         default:
           throw new Error();
       }
     });
-    test("can switch on Message.$typeName against embedded desc's typeName", () => {
+    void test("can switch on Message.$typeName against embedded desc's typeName", () => {
       switch (msg.$typeName) {
         case UserSchema.typeName:
-          expect(msg.firstName).toBeDefined();
+          assert.ok(msg.firstName !== undefined);
           break;
         default:
           throw new Error();
@@ -83,33 +87,33 @@ describe("type Message", () => {
   });
 });
 
-describe("type MessageShape", () => {
-  test("derives generated shape", () => {
+void suite("type MessageShape", () => {
+  void test("derives generated shape", () => {
     function t(derived: MessageShape<typeof UserSchema>, direct: User) {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
-  test("supports codegenv1", () => {
+  void test("supports codegenv1", () => {
     type M = Message<"M"> & { v1: true };
     function t(derived: MessageShape<codegenv1.GenMessage<M>>, direct: M) {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
-  test("derives anonymous shape", () => {
+  void test("derives anonymous shape", () => {
     function t(derived: MessageShape<DescMessage>, anon: Message) {
       derived = anon;
       anon = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
 });
 
-describe("type EnumShape", () => {
-  test("derives generated shape", () => {
+void suite("type EnumShape", () => {
+  void test("derives generated shape", () => {
     function t(
       derived: EnumShape<typeof Proto3EnumSchema>,
       direct: Proto3Enum,
@@ -117,52 +121,52 @@ describe("type EnumShape", () => {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
-  test("supports codegenv1", () => {
+  void test("supports codegenv1", () => {
     type E = 1;
     function t(derived: EnumShape<codegenv1.GenEnum<E>>, direct: E) {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
-  test("derives anonymous shape", () => {
+  void test("derives anonymous shape", () => {
     function t(derived: EnumShape<DescEnum>, anon: number) {
       derived = anon;
       anon = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
 });
 
-describe("type Extendee", () => {
-  test("derives generated type info", () => {
+void suite("type Extendee", () => {
+  void test("derives generated type info", () => {
     function t(derived: Extendee<typeof uint32_ext>, direct: Proto2Extendee) {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
-  test("supports codegenv1", () => {
+  void test("supports codegenv1", () => {
     type E = Message<"E"> & { v1: true };
     function t(derived: Extendee<codegenv1.GenExtension<E>>, direct: E) {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
-  test("derives anonymous type info", () => {
+  void test("derives anonymous type info", () => {
     function t(derived: Extendee<DescExtension>, anon: Message) {
       derived = anon;
       anon = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
 });
 
-describe("type ExtensionValueShape", () => {
-  test("derives generated type info for singular scalar", () => {
+void suite("type ExtensionValueShape", () => {
+  void test("derives generated type info for singular scalar", () => {
     function t(
       derived: ExtensionValueShape<typeof uint32_ext>,
       direct: number,
@@ -170,17 +174,17 @@ describe("type ExtensionValueShape", () => {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
-  test("supports codegenv1", () => {
+  void test("supports codegenv1", () => {
     type E = Message<"E"> & { v1: true };
     function t(derived: Extendee<codegenv1.GenExtension<E>>, direct: E) {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
-  test("derives generated type info for repeated scalar", () => {
+  void test("derives generated type info for repeated scalar", () => {
     function t(
       derived: ExtensionValueShape<typeof repeated_string_ext>,
       direct: string[],
@@ -188,7 +192,7 @@ describe("type ExtensionValueShape", () => {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
   test("derives generated type info for singular message", () => {
     function t(
@@ -198,7 +202,7 @@ describe("type ExtensionValueShape", () => {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
   test("derives generated type info for repeated message", () => {
     function t(
@@ -208,18 +212,18 @@ describe("type ExtensionValueShape", () => {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
   test("derives anonymous as unknown", () => {
     function t(derived: ExtensionValueShape<DescExtension>, anon: unknown) {
       derived = anon;
       anon = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
 });
 
-describe("type MessageJsonType", () => {
+void suite("type MessageJsonType", () => {
   test("should resolve generated type", () => {
     function f(
       derived: MessageJsonType<
@@ -230,7 +234,7 @@ describe("type MessageJsonType", () => {
       direct = derived;
       return direct;
     }
-    expect(f).toBeDefined();
+    assert.ok(f);
   });
   test("supports codegenv1", () => {
     function t(
@@ -247,7 +251,7 @@ describe("type MessageJsonType", () => {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
   test("should resolve JsonValue without generated type", () => {
     function f(
@@ -260,11 +264,11 @@ describe("type MessageJsonType", () => {
       derived = direct;
       return derived;
     }
-    expect(f).toBeDefined();
+    assert.ok(f);
   });
 });
 
-describe("type EnumJsonType", () => {
+void suite("type EnumJsonType", () => {
   test("should resolve generated type", () => {
     function f(
       derived: EnumJsonType<typeof json_types_ts_json.JsonTypeEnumSchema>,
@@ -274,7 +278,7 @@ describe("type EnumJsonType", () => {
       derived = direct;
       return direct;
     }
-    expect(f).toBeDefined();
+    assert.ok(f);
   });
   test("supports codegenv1", () => {
     function t(
@@ -291,7 +295,7 @@ describe("type EnumJsonType", () => {
       derived = direct;
       direct = derived;
     }
-    expect(t).toBeDefined();
+    assert.ok(t);
   });
   test("should resolve string without generated type", () => {
     function f(
@@ -302,11 +306,11 @@ describe("type EnumJsonType", () => {
       direct = derived;
       return derived;
     }
-    expect(f).toBeDefined();
+    assert.ok(f);
   });
 });
 
-describe("type MessageValidType", () => {
+void suite("type MessageValidType", () => {
   test("should resolve generated type", () => {
     function f(
       derived: MessageValidType<typeof valid_types_ts.VTypesSchema>,
@@ -317,7 +321,7 @@ describe("type MessageValidType", () => {
       direct = derived;
       return [direct, str];
     }
-    expect(f).toBeDefined();
+    assert.ok(f);
   });
   test("should resolve regular type as fallback", () => {
     function f(
@@ -328,6 +332,6 @@ describe("type MessageValidType", () => {
       direct = derived;
       return direct;
     }
-    expect(f).toBeDefined();
+    assert.ok(f);
   });
 });

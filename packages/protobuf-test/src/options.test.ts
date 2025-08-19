@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, test, expect } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   type AnyDesc,
   type DescExtension,
@@ -45,105 +46,121 @@ import {
 } from "./gen/ts/extra/option-usage_pb.js";
 import { Proto3MessageSchema } from "./gen/ts/extra/proto3_pb.js";
 
-describe("hasOption()", () => {
-  test("supports anonymous descriptor and extension", () => {
+void suite("hasOption()", () => {
+  void test("supports anonymous descriptor and extension", () => {
     const file: AnyDesc = file_extra_option_usage;
     const ext: DescExtension = file_option_retention_runtime;
     const has = hasOption(file, ext);
-    expect(has).toBe(true);
+    assert.ok(has);
   });
-  test("returns false if extendee does not match", () => {
+  void test("returns false if extendee does not match", () => {
     const file = file_extra_option_usage;
     const ext = oneof_option_retention_runtime;
     // @ts-expect-error TS2345
     const has = hasOption(file, ext);
-    expect(has).toBe(false);
+    assert.strictEqual(has, false);
   });
-  test("returns false if descriptor has no options", () => {
-    expect(Proto3MessageSchema.proto.options).toBeUndefined();
+  void test("returns false if descriptor has no options", () => {
+    assert.strictEqual(Proto3MessageSchema.proto.options, undefined);
     const has = hasOption(
       Proto3MessageSchema,
       message_option_retention_runtime,
     );
-    expect(has).toBe(false);
+    assert.strictEqual(has, false);
   });
 });
 
-describe("getOption()", () => {
-  test("supports anonymous descriptor and extension", () => {
+void suite("getOption()", () => {
+  void test("supports anonymous descriptor and extension", () => {
     const file: AnyDesc = file_extra_option_usage;
     const ext: DescExtension = file_option_retention_runtime;
     const val = getOption(file, ext);
-    expect(val).toBe("file option retention runtime");
+    assert.strictEqual(val, "file option retention runtime");
   });
-  test("returns zero value if descriptor has no options", () => {
+  void test("returns zero value if descriptor has no options", () => {
     const field = Proto3MessageSchema.fields[0];
-    expect(field.proto.options).toBeUndefined();
+    assert.strictEqual(field.proto.options, undefined);
     const val = getOption(field, field_option_retention_runtime);
-    expect(val).toBe("");
+    assert.strictEqual(val, "");
   });
-  test("returns option", () => {
+  void test("returns option", () => {
     const file = file_extra_option_usage;
-    expect(getOption(file, file_option_retention_unknown)).toBe(
+    assert.strictEqual(
+      getOption(file, file_option_retention_unknown),
       "file option retention unknown",
     );
-    expect(getOption(file, file_option_retention_runtime)).toBe(
+    assert.strictEqual(
+      getOption(file, file_option_retention_runtime),
       "file option retention runtime",
     );
 
     const message = MessageWithOptionsSchema;
-    expect(getOption(message, message_option_retention_unknown)).toBe(
+    assert.strictEqual(
+      getOption(message, message_option_retention_unknown),
       "message option retention unknown",
     );
-    expect(getOption(message, message_option_retention_runtime)).toBe(
+    assert.strictEqual(
+      getOption(message, message_option_retention_runtime),
       "message option retention runtime",
     );
 
     const field = MessageWithOptionsSchema.fields[0];
-    expect(getOption(field, field_option_retention_unknown)).toBe(
+    assert.strictEqual(
+      getOption(field, field_option_retention_unknown),
       "field option retention unknown",
     );
-    expect(getOption(field, field_option_retention_runtime)).toBe(
+    assert.strictEqual(
+      getOption(field, field_option_retention_runtime),
       "field option retention runtime",
     );
 
     const oneof = MessageWithOptionsSchema.oneofs[0];
-    expect(getOption(oneof, oneof_option_retention_unknown)).toBe(
+    assert.strictEqual(
+      getOption(oneof, oneof_option_retention_unknown),
       "oneof option retention unknown",
     );
-    expect(getOption(oneof, oneof_option_retention_runtime)).toBe(
+    assert.strictEqual(
+      getOption(oneof, oneof_option_retention_runtime),
       "oneof option retention runtime",
     );
 
     const enumeration = EnumWithOptionsSchema;
-    expect(getOption(enumeration, enum_option_retention_unknown)).toBe(
+    assert.strictEqual(
+      getOption(enumeration, enum_option_retention_unknown),
       "enum option retention unknown",
     );
-    expect(getOption(enumeration, enum_option_retention_runtime)).toBe(
+    assert.strictEqual(
+      getOption(enumeration, enum_option_retention_runtime),
       "enum option retention runtime",
     );
 
     const enumValue = EnumWithOptionsSchema.values[0];
-    expect(getOption(enumValue, enum_value_option_retention_unknown)).toBe(
+    assert.strictEqual(
+      getOption(enumValue, enum_value_option_retention_unknown),
       "enum value option retention unknown",
     );
-    expect(getOption(enumValue, enum_value_option_retention_runtime)).toBe(
+    assert.strictEqual(
+      getOption(enumValue, enum_value_option_retention_runtime),
       "enum value option retention runtime",
     );
 
     const service = ServiceWithOptions;
-    expect(getOption(service, service_option_retention_unknown)).toBe(
+    assert.strictEqual(
+      getOption(service, service_option_retention_unknown),
       "service option retention unknown",
     );
-    expect(getOption(service, service_option_retention_runtime)).toBe(
+    assert.strictEqual(
+      getOption(service, service_option_retention_runtime),
       "service option retention runtime",
     );
 
     const method = ServiceWithOptions.methods[0];
-    expect(getOption(method, method_option_retention_unknown)).toBe(
+    assert.strictEqual(
+      getOption(method, method_option_retention_unknown),
       "method option retention unknown",
     );
-    expect(getOption(method, method_option_retention_runtime)).toBe(
+    assert.strictEqual(
+      getOption(method, method_option_retention_runtime),
       "method option retention runtime",
     );
   });

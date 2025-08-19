@@ -12,60 +12,61 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import * as ts_name_clash from "./gen/ts/extra/name-clash_pb.js";
 import * as js_name_clash from "./gen/js/extra/name-clash_pb.js";
 import { create } from "@bufbuild/protobuf";
 
-describe("message looking like a oneof ADT", () => {
-  test("takes all fields in constructor", () => {
+void suite("message looking like a oneof ADT", () => {
+  void test("takes all fields in constructor", () => {
     const m = create(ts_name_clash.NoClashOneofADTSchema, {
       m: {
         case: "value",
         value: "xxx",
       },
     });
-    expect(m.m?.case).toBe("value");
-    expect(m.m?.value).toBe("xxx");
+    assert.strictEqual(m.m?.case, "value");
+    assert.strictEqual(m.m?.value, "xxx");
   });
-  test("takes partial input in constructor", () => {
+  void test("takes partial input in constructor", () => {
     const m = create(ts_name_clash.NoClashOneofADTSchema, {
       m: {
         case: "value",
       },
     });
-    expect(m.m?.case).toBe("value");
-    expect(m.m?.value).toBeUndefined();
+    assert.strictEqual(m.m?.case, "value");
+    assert.strictEqual(m.m?.value, undefined);
   });
 });
 
-describe("enum values", () => {
-  test("reserved property names (generated ts)", () => {
+void suite("enum values", () => {
+  void test("reserved property names (generated ts)", () => {
     const e = ts_name_clash.ReservedPropertyNames_EnumBuiltIn;
-    expect(e.constructor$).toBe(0);
-    expect(e.toString$).toBe(1);
-    expect(e.toJSON$).toBe(2);
-    expect(e.valueOf$).toBe(3);
+    assert.strictEqual(e.constructor$, 0);
+    assert.strictEqual(e.toString$, 1);
+    assert.strictEqual(e.toJSON$, 2);
+    assert.strictEqual(e.valueOf$, 3);
   });
-  test("reserved property names with prefix (generated ts)", () => {
+  void test("reserved property names with prefix (generated ts)", () => {
     const e = ts_name_clash.ReservedPropertyNames_EnumBuiltInPrefixed;
-    expect(e.constructor$).toBe(0);
-    expect(e.toString$).toBe(1);
-    expect(e.toJSON$).toBe(2);
-    expect(e.valueOf$).toBe(3);
+    assert.strictEqual(e.constructor$, 0);
+    assert.strictEqual(e.toString$, 1);
+    assert.strictEqual(e.toJSON$, 2);
+    assert.strictEqual(e.valueOf$, 3);
   });
-  test("reserved property names (generated js)", () => {
+  void test("reserved property names (generated js)", () => {
     const e = js_name_clash.ReservedPropertyNames_EnumBuiltIn;
-    expect(e.constructor$).toBe(0);
-    expect(e.toString$).toBe(1);
-    expect(e.toJSON$).toBe(2);
-    expect(e.valueOf$).toBe(3);
+    assert.strictEqual(e.constructor$, 0);
+    assert.strictEqual(e.toString$, 1);
+    assert.strictEqual(e.toJSON$, 2);
+    assert.strictEqual(e.valueOf$, 3);
   });
-  test("reserved property names with prefix (generated js)", () => {
+  void test("reserved property names with prefix (generated js)", () => {
     const e = js_name_clash.ReservedPropertyNames_EnumBuiltInPrefixed;
-    expect(e.constructor$).toBe(0);
-    expect(e.toString$).toBe(1);
-    expect(e.toJSON$).toBe(2);
-    expect(e.valueOf$).toBe(3);
+    assert.strictEqual(e.constructor$, 0);
+    assert.strictEqual(e.toString$, 1);
+    assert.strictEqual(e.toJSON$, 2);
+    assert.strictEqual(e.valueOf$, 3);
   });
 });

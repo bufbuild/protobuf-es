@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("keep_empty_files", () => {
-  describe("unset", () => {
-    test.each(["js", "ts", "dts"])(
-      "does not generate empty file with target %p",
-      async (target) => {
+void suite("keep_empty_files", () => {
+  void suite("unset", () => {
+    for (const target of ["js", "ts", "dts"]) {
+      void test(`does not generate empty file with target ${target}`, async () => {
         const res = await createTestPluginAndRun({
           proto: `
             // detached syntax comment
@@ -44,12 +44,11 @@ describe("keep_empty_files", () => {
             f.export("foo", "bar");
           },
         });
-        expect(res.file.length).toBe(0);
-      },
-    );
-    test.each(["js", "ts", "dts"])(
-      "printing empty line generates a file with target %p",
-      async (target) => {
+        assert.strictEqual(res.file.length, 0);
+      });
+    }
+    for (const target of ["js", "ts", "dts"]) {
+      void test(`printing empty line generates a file with target ${target}`, async () => {
         const lines = await createTestPluginAndRun({
           returnLinesOfFirstFile: true,
           proto: `syntax="proto3"; message M {}`,
@@ -58,15 +57,13 @@ describe("keep_empty_files", () => {
             f.print();
           },
         });
-        expect(lines).toStrictEqual([""]);
-      },
-    );
+        assert.deepStrictEqual(lines, [""]);
+      });
+    }
   });
-
-  describe("set", () => {
-    test.each(["js", "ts", "dts"])(
-      "generates empty file with target %p",
-      async (target) => {
+  void suite("set", () => {
+    for (const target of ["js", "ts", "dts"]) {
+      void test(`generates empty file with target ${target}`, async () => {
         const res = await createTestPluginAndRun({
           proto: `syntax="proto3"; message M {}`,
           parameter: `target=${target},keep_empty_files=true`,
@@ -75,8 +72,8 @@ describe("keep_empty_files", () => {
             f.preamble(schema.files[0]);
           },
         });
-        expect(res.file.length).toBe(1);
-      },
-    );
+        assert.strictEqual(res.file.length, 1);
+      });
+    }
   });
 });

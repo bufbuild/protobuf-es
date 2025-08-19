@@ -12,38 +12,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeEach, describe, expect, test } from "@jest/globals";
+import { suite, test, beforeEach } from "node:test";
+import * as assert from "node:assert";
 import { clone, create, protoInt64 } from "@bufbuild/protobuf";
 import { WireType } from "@bufbuild/protobuf/wire";
 import { reflect } from "@bufbuild/protobuf/reflect";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 
-describe("clone()", () => {
-  test("clones unknown fields", () => {
+void suite("clone()", () => {
+  void test("clones unknown fields", () => {
     const msg = create(proto3_ts.Proto3MessageSchema);
     msg.$unknown = [
       { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
     ];
     const copy = clone(proto3_ts.Proto3MessageSchema, msg);
-    expect(copy.$unknown).toStrictEqual(msg.$unknown);
+    assert.deepStrictEqual(copy.$unknown, msg.$unknown);
   });
-  test("clones unknown fields in message field", () => {
+  void test("clones unknown fields in message field", () => {
     const msg = create(proto3_ts.Proto3MessageSchema);
     msg.singularMessageField = create(proto3_ts.Proto3MessageSchema);
     msg.singularMessageField.$unknown = [
       { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
     ];
     const copy = clone(proto3_ts.Proto3MessageSchema, msg);
-    expect(copy.singularMessageField?.$unknown).toStrictEqual(
+    assert.deepStrictEqual(
+      copy.singularMessageField?.$unknown,
       msg.singularMessageField.$unknown,
     );
     // Make sure it is copy
-    expect(copy.singularMessageField?.$unknown).not.toBe(
+    assert.notStrictEqual(
+      copy.singularMessageField?.$unknown,
       msg.singularMessageField.$unknown,
     );
   });
-  describe("clones proto3 message", () => {
+  void suite("clones proto3 message", () => {
     const desc = proto3_ts.Proto3MessageSchema;
     let msg: proto3_ts.Proto3Message;
     beforeEach(() => {
@@ -74,85 +77,113 @@ describe("clone()", () => {
       // oneof
       msg.either = { case: "oneofBoolField", value: false };
     });
-    test.each(desc.fields)("$name presence", (field) => {
+    for (const field of desc.fields) {
+      void test(`${field.toString()} presence`, () => {
+        const copy = clone(desc, msg);
+        const reflectMsg = reflect(desc, msg);
+        const reflectCopy = reflect(desc, copy);
+        assert.strictEqual(reflectCopy.isSet(field), reflectMsg.isSet(field));
+      });
+    }
+    void test("singularStringField", () => {
       const copy = clone(desc, msg);
-      const reflectMsg = reflect(desc, msg);
-      const reflectCopy = reflect(desc, copy);
-      expect(reflectCopy.isSet(field)).toBe(reflectMsg.isSet(field));
+      assert.strictEqual(copy.singularStringField, msg.singularStringField);
     });
-    test("singularStringField", () => {
+    void test("singularBytesField", () => {
       const copy = clone(desc, msg);
-      expect(copy.singularStringField).toBe(msg.singularStringField);
+      assert.notStrictEqual(copy.singularBytesField, msg.singularBytesField);
+      assert.deepStrictEqual(copy.singularBytesField, msg.singularBytesField);
     });
-    test("singularBytesField", () => {
+    void test("singularMessageField", () => {
       const copy = clone(desc, msg);
-      expect(copy.singularBytesField).not.toBe(msg.singularBytesField);
-      expect(copy.singularBytesField).toStrictEqual(msg.singularBytesField);
+      assert.notStrictEqual(
+        copy.singularMessageField,
+        msg.singularMessageField,
+      );
+      assert.deepStrictEqual(
+        copy.singularMessageField,
+        msg.singularMessageField,
+      );
     });
-    test("singularMessageField", () => {
+    void test("optionalWrappedUint32Field", () => {
       const copy = clone(desc, msg);
-      expect(copy.singularMessageField).not.toBe(msg.singularMessageField);
-      expect(copy.singularMessageField).toStrictEqual(msg.singularMessageField);
-    });
-    test("optionalWrappedUint32Field", () => {
-      const copy = clone(desc, msg);
-      expect(copy.optionalWrappedUint32Field).toBe(
+      assert.strictEqual(
+        copy.optionalWrappedUint32Field,
         msg.optionalWrappedUint32Field,
       );
-      expect(copy.optionalWrappedUint32Field).toStrictEqual(
+      assert.deepStrictEqual(
+        copy.optionalWrappedUint32Field,
         msg.optionalWrappedUint32Field,
       );
     });
-    test("repeatedStringField", () => {
+    void test("repeatedStringField", () => {
       const copy = clone(desc, msg);
-      expect(copy.repeatedStringField).not.toBe(msg.repeatedStringField);
-      expect(copy.repeatedStringField).toStrictEqual(msg.repeatedStringField);
+      assert.notStrictEqual(copy.repeatedStringField, msg.repeatedStringField);
+      assert.deepStrictEqual(copy.repeatedStringField, msg.repeatedStringField);
     });
-    test("repeatedMessageField", () => {
+    void test("repeatedMessageField", () => {
       const copy = clone(desc, msg);
-      expect(copy.repeatedMessageField).not.toBe(msg.repeatedMessageField);
-      expect(copy.repeatedMessageField.length).toBe(2);
-      expect(copy.repeatedMessageField[0]).not.toBe(
+      assert.notStrictEqual(
+        copy.repeatedMessageField,
+        msg.repeatedMessageField,
+      );
+      assert.strictEqual(copy.repeatedMessageField.length, 2);
+      assert.notStrictEqual(
+        copy.repeatedMessageField[0],
         msg.repeatedMessageField[0],
       );
-      expect(copy.repeatedMessageField[0]).toStrictEqual(
+      assert.deepStrictEqual(
+        copy.repeatedMessageField[0],
         msg.repeatedMessageField[0],
       );
-      expect(copy.repeatedMessageField[1]).not.toBe(
+      assert.notStrictEqual(
+        copy.repeatedMessageField[1],
         msg.repeatedMessageField[1],
       );
-      expect(copy.repeatedMessageField[1]).toStrictEqual(
+      assert.deepStrictEqual(
+        copy.repeatedMessageField[1],
         msg.repeatedMessageField[1],
       );
     });
-    test("mapStringStringField", () => {
+    void test("mapStringStringField", () => {
       const copy = clone(desc, msg);
-      expect(copy.mapStringStringField).not.toBe(msg.mapStringStringField);
-      expect(copy.mapStringStringField).toStrictEqual(msg.mapStringStringField);
-    });
-    test("mapInt32MessageField", () => {
-      const copy = clone(desc, msg);
-      expect(copy.mapInt32MessageField).not.toBe(msg.mapInt32MessageField);
-      expect(Object.keys(copy)).toStrictEqual(Object.keys(msg));
-      expect(copy.mapInt32MessageField[123]).not.toBe(
-        msg.mapInt32MessageField[123],
+      assert.notStrictEqual(
+        copy.mapStringStringField,
+        msg.mapStringStringField,
       );
-      expect(copy.mapInt32MessageField[123]).toStrictEqual(
-        msg.mapInt32MessageField[123],
+      assert.deepStrictEqual(
+        copy.mapStringStringField,
+        msg.mapStringStringField,
       );
     });
-    test("oneofBoolField", () => {
+    void test("mapInt32MessageField", () => {
       const copy = clone(desc, msg);
-      expect(copy.either).toStrictEqual(msg.either);
+      assert.notStrictEqual(
+        copy.mapInt32MessageField,
+        msg.mapInt32MessageField,
+      );
+      assert.deepStrictEqual(Object.keys(copy), Object.keys(msg));
+      assert.notStrictEqual(
+        copy.mapInt32MessageField[123],
+        msg.mapInt32MessageField[123],
+      );
+      assert.deepStrictEqual(
+        copy.mapInt32MessageField[123],
+        msg.mapInt32MessageField[123],
+      );
     });
-    test("oneofMessageField", () => {
+    void test("oneofBoolField", () => {
+      const copy = clone(desc, msg);
+      assert.deepStrictEqual(copy.either, msg.either);
+    });
+    void test("oneofMessageField", () => {
       msg.either = { case: "oneofMessageField", value: create(desc) };
       const copy = clone(desc, msg);
-      expect(copy.either.case).toBe(msg.either.case);
-      expect(copy.either.value).not.toBe(msg.either.value);
+      assert.strictEqual(copy.either.case, msg.either.case);
+      assert.notStrictEqual(copy.either.value, msg.either.value);
     });
   });
-  describe("clones proto2 message", () => {
+  void suite("clones proto2 message", () => {
     const desc = proto2_ts.Proto2MessageSchema;
     let msg: proto2_ts.Proto2Message;
     beforeEach(() => {
@@ -214,82 +245,110 @@ describe("clone()", () => {
       // oneof
       msg.either = { case: "oneofBoolField", value: false };
     });
-    test.each(desc.fields)("$name presence", (field) => {
+    for (const field of desc.fields) {
+      void test(`${field.toString()} presence`, () => {
+        const copy = clone(desc, msg);
+        const reflectMsg = reflect(desc, msg);
+        const reflectCopy = reflect(desc, copy);
+        assert.strictEqual(reflectCopy.isSet(field), reflectMsg.isSet(field));
+      });
+    }
+    void test("requiredStringField", () => {
       const copy = clone(desc, msg);
-      const reflectMsg = reflect(desc, msg);
-      const reflectCopy = reflect(desc, copy);
-      expect(reflectCopy.isSet(field)).toBe(reflectMsg.isSet(field));
+      assert.strictEqual(copy.requiredStringField, msg.requiredStringField);
     });
-    test("requiredStringField", () => {
+    void test("requiredBytesField", () => {
       const copy = clone(desc, msg);
-      expect(copy.requiredStringField).toBe(msg.requiredStringField);
+      assert.notStrictEqual(copy.requiredBytesField, msg.requiredBytesField);
+      assert.deepStrictEqual(copy.requiredBytesField, msg.requiredBytesField);
     });
-    test("requiredBytesField", () => {
+    void test("requiredMessageField", () => {
       const copy = clone(desc, msg);
-      expect(copy.requiredBytesField).not.toBe(msg.requiredBytesField);
-      expect(copy.requiredBytesField).toStrictEqual(msg.requiredBytesField);
+      assert.notStrictEqual(
+        copy.requiredMessageField,
+        msg.requiredMessageField,
+      );
+      assert.deepStrictEqual(
+        copy.requiredMessageField,
+        msg.requiredMessageField,
+      );
     });
-    test("requiredMessageField", () => {
+    void test("optionalWrappedUint32Field", () => {
       const copy = clone(desc, msg);
-      expect(copy.requiredMessageField).not.toBe(msg.requiredMessageField);
-      expect(copy.requiredMessageField).toStrictEqual(msg.requiredMessageField);
-    });
-    test("optionalWrappedUint32Field", () => {
-      const copy = clone(desc, msg);
-      expect(copy.optionalWrappedUint32Field).toBe(
+      assert.strictEqual(
+        copy.optionalWrappedUint32Field,
         msg.optionalWrappedUint32Field,
       );
-      expect(copy.optionalWrappedUint32Field).toStrictEqual(
+      assert.deepStrictEqual(
+        copy.optionalWrappedUint32Field,
         msg.optionalWrappedUint32Field,
       );
     });
-    test("repeatedStringField", () => {
+    void test("repeatedStringField", () => {
       const copy = clone(desc, msg);
-      expect(copy.repeatedStringField).not.toBe(msg.repeatedStringField);
-      expect(copy.repeatedStringField).toStrictEqual(msg.repeatedStringField);
+      assert.notStrictEqual(copy.repeatedStringField, msg.repeatedStringField);
+      assert.deepStrictEqual(copy.repeatedStringField, msg.repeatedStringField);
     });
-    test("repeatedMessageField", () => {
+    void test("repeatedMessageField", () => {
       const copy = clone(desc, msg);
-      expect(copy.repeatedMessageField).not.toBe(msg.repeatedMessageField);
-      expect(copy.repeatedMessageField.length).toBe(2);
-      expect(copy.repeatedMessageField[0]).not.toBe(
+      assert.notStrictEqual(
+        copy.repeatedMessageField,
+        msg.repeatedMessageField,
+      );
+      assert.strictEqual(copy.repeatedMessageField.length, 2);
+      assert.notStrictEqual(
+        copy.repeatedMessageField[0],
         msg.repeatedMessageField[0],
       );
-      expect(copy.repeatedMessageField[0]).toStrictEqual(
+      assert.deepStrictEqual(
+        copy.repeatedMessageField[0],
         msg.repeatedMessageField[0],
       );
-      expect(copy.repeatedMessageField[1]).not.toBe(
+      assert.notStrictEqual(
+        copy.repeatedMessageField[1],
         msg.repeatedMessageField[1],
       );
-      expect(copy.repeatedMessageField[1]).toStrictEqual(
+      assert.deepStrictEqual(
+        copy.repeatedMessageField[1],
         msg.repeatedMessageField[1],
       );
     });
-    test("mapStringStringField", () => {
+    void test("mapStringStringField", () => {
       const copy = clone(desc, msg);
-      expect(copy.mapStringStringField).not.toBe(msg.mapStringStringField);
-      expect(copy.mapStringStringField).toStrictEqual(msg.mapStringStringField);
-    });
-    test("mapInt32MessageField", () => {
-      const copy = clone(desc, msg);
-      expect(copy.mapInt32MessageField).not.toBe(msg.mapInt32MessageField);
-      expect(Object.keys(copy).sort()).toStrictEqual(Object.keys(msg).sort());
-      expect(copy.mapInt32MessageField[123]).not.toBe(
-        msg.mapInt32MessageField[123],
+      assert.notStrictEqual(
+        copy.mapStringStringField,
+        msg.mapStringStringField,
       );
-      expect(copy.mapInt32MessageField[123]).toStrictEqual(
-        msg.mapInt32MessageField[123],
+      assert.deepStrictEqual(
+        copy.mapStringStringField,
+        msg.mapStringStringField,
       );
     });
-    test("oneofBoolField", () => {
+    void test("mapInt32MessageField", () => {
       const copy = clone(desc, msg);
-      expect(copy.either).toStrictEqual(msg.either);
+      assert.notStrictEqual(
+        copy.mapInt32MessageField,
+        msg.mapInt32MessageField,
+      );
+      assert.deepStrictEqual(Object.keys(copy).sort(), Object.keys(msg).sort());
+      assert.notStrictEqual(
+        copy.mapInt32MessageField[123],
+        msg.mapInt32MessageField[123],
+      );
+      assert.deepStrictEqual(
+        copy.mapInt32MessageField[123],
+        msg.mapInt32MessageField[123],
+      );
     });
-    test("oneofMessageField", () => {
+    void test("oneofBoolField", () => {
+      const copy = clone(desc, msg);
+      assert.deepStrictEqual(copy.either, msg.either);
+    });
+    void test("oneofMessageField", () => {
       msg.either = { case: "oneofMessageField", value: create(desc) };
       const copy = clone(desc, msg);
-      expect(copy.either.case).toBe(msg.either.case);
-      expect(copy.either.value).not.toBe(msg.either.value);
+      assert.strictEqual(copy.either.case, msg.either.case);
+      assert.notStrictEqual(copy.either.value, msg.either.value);
     });
   });
 });
