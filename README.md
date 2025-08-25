@@ -132,9 +132,16 @@ From here, you can begin to work with your schema.
   A repository running the Protobuf conformance tests against various libraries.
 - [Buf Studio](https://buf.build/studio): Web UI for ad-hoc RPCs
 
-## TypeScript compatibility
+## Compatibility
 
-The generated code is compatible with TypeScript **v4.9.5** or later, with the default compiler settings.
+All maintained releases of Node.js ([Current, Active LTS, and the Maintenance LTS release](https://nodejs.org/en/about/previous-releases))
+are supported.
+
+[Same as Definitely Typed](https://github.com/DefinitelyTyped/DefinitelyTyped#support-window),
+we support versions of TypeScript that are less than 2 years old, with default compiler
+settings. Note that for some changes in TypeScript, it is impossible to support both
+new and old versions in the support window. We break the tie by supporting the newer
+version.
 
 ## Copyright
 
