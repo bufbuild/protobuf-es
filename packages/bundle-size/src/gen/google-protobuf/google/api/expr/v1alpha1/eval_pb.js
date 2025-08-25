@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 var google_api_expr_v1alpha1_value_pb = require('../../../../google/api/expr/v1alpha1/value_pb.js');
 goog.object.extend(proto, google_api_expr_v1alpha1_value_pb);
@@ -1040,10 +1034,7 @@ proto.google.api.expr.v1alpha1.UnknownSet.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt64() : [reader.readInt64()]);
-      for (var i = 0; i < values.length; i++) {
-        msg.addExprs(values[i]);
-      }
+      reader.readPackableInt64Into(msg.getExprsList());
       break;
     default:
       reader.skipField();

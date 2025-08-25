@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 var google_api_expr_v1beta1_source_pb = require('../../../../google/api/expr/v1beta1/source_pb.js');
 goog.object.extend(proto, google_api_expr_v1beta1_source_pb);
@@ -344,7 +338,7 @@ proto.google.api.expr.v1beta1.ParsedExpr.deserializeBinaryFromReader = function(
       msg.setSourceInfo(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setSyntaxVersion(value);
       break;
     default:
@@ -805,7 +799,7 @@ proto.google.api.expr.v1beta1.Expr.Ident.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setName(value);
       break;
     default:
@@ -942,7 +936,7 @@ proto.google.api.expr.v1beta1.Expr.Select.deserializeBinaryFromReader = function
       msg.setOperand(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setField(value);
       break;
     case 3:
@@ -1161,7 +1155,7 @@ proto.google.api.expr.v1beta1.Expr.Call.deserializeBinaryFromReader = function(m
       msg.setTarget(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setFunction(value);
       break;
     case 3:
@@ -1556,7 +1550,7 @@ proto.google.api.expr.v1beta1.Expr.CreateStruct.deserializeBinaryFromReader = fu
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setType(value);
       break;
     case 2:
@@ -1714,7 +1708,7 @@ proto.google.api.expr.v1beta1.Expr.CreateStruct.Entry.deserializeBinaryFromReade
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setFieldKey(value);
       break;
     case 3:
@@ -2049,7 +2043,7 @@ proto.google.api.expr.v1beta1.Expr.Comprehension.deserializeBinaryFromReader = f
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setIterVar(value);
       break;
     case 2:
@@ -2058,7 +2052,7 @@ proto.google.api.expr.v1beta1.Expr.Comprehension.deserializeBinaryFromReader = f
       msg.setIterRange(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setAccuVar(value);
       break;
     case 4:
@@ -2792,7 +2786,7 @@ proto.google.api.expr.v1beta1.Literal.deserializeBinaryFromReader = function(msg
       msg.setDoubleValue(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setStringValue(value);
       break;
     case 7:

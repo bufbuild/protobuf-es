@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 var google_protobuf_duration_pb = require('google-protobuf/google/protobuf/duration_pb.js');
 goog.object.extend(proto, google_protobuf_duration_pb);
@@ -866,7 +860,7 @@ proto.google.api.expr.v1alpha1.Expr.Ident.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setName(value);
       break;
     default:
@@ -1003,7 +997,7 @@ proto.google.api.expr.v1alpha1.Expr.Select.deserializeBinaryFromReader = functio
       msg.setOperand(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setField(value);
       break;
     case 3:
@@ -1222,7 +1216,7 @@ proto.google.api.expr.v1alpha1.Expr.Call.deserializeBinaryFromReader = function(
       msg.setTarget(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setFunction(value);
       break;
     case 3:
@@ -1462,10 +1456,7 @@ proto.google.api.expr.v1alpha1.Expr.CreateList.deserializeBinaryFromReader = fun
       msg.addElements(value);
       break;
     case 2:
-      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
-      for (var i = 0; i < values.length; i++) {
-        msg.addOptionalIndices(values[i]);
-      }
+      reader.readPackableInt32Into(msg.getOptionalIndicesList());
       break;
     default:
       reader.skipField();
@@ -1668,7 +1659,7 @@ proto.google.api.expr.v1alpha1.Expr.CreateStruct.deserializeBinaryFromReader = f
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setMessageName(value);
       break;
     case 2:
@@ -1827,7 +1818,7 @@ proto.google.api.expr.v1alpha1.Expr.CreateStruct.Entry.deserializeBinaryFromRead
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setFieldKey(value);
       break;
     case 3:
@@ -2191,7 +2182,7 @@ proto.google.api.expr.v1alpha1.Expr.Comprehension.deserializeBinaryFromReader = 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setIterVar(value);
       break;
     case 2:
@@ -2200,7 +2191,7 @@ proto.google.api.expr.v1alpha1.Expr.Comprehension.deserializeBinaryFromReader = 
       msg.setIterRange(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setAccuVar(value);
       break;
     case 4:
@@ -2938,7 +2929,7 @@ proto.google.api.expr.v1alpha1.Constant.deserializeBinaryFromReader = function(m
       msg.setDoubleValue(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setStringValue(value);
       break;
     case 7:
@@ -3485,18 +3476,15 @@ proto.google.api.expr.v1alpha1.SourceInfo.deserializeBinaryFromReader = function
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setSyntaxVersion(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setLocation(value);
       break;
     case 3:
-      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
-      for (var i = 0; i < values.length; i++) {
-        msg.addLineOffsets(values[i]);
-      }
+      reader.readPackableInt32Into(msg.getLineOffsetsList());
       break;
     case 4:
       var value = msg.getPositionsMap();
@@ -3567,11 +3555,22 @@ proto.google.api.expr.v1alpha1.SourceInfo.serializeBinaryToWriter = function(mes
   }
   f = message.getPositionsMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeInt64, jspb.BinaryWriter.prototype.writeInt32);
+jspb.internal.public_for_gencode.serializeMapToBinary(
+    message.getPositionsMap(true),
+    4,
+    writer,
+    jspb.BinaryWriter.prototype.writeInt64,
+    jspb.BinaryWriter.prototype.writeInt32);
   }
   f = message.getMacroCallsMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(5, writer, jspb.BinaryWriter.prototype.writeInt64, jspb.BinaryWriter.prototype.writeMessage, proto.google.api.expr.v1alpha1.Expr.serializeBinaryToWriter);
+jspb.internal.public_for_gencode.serializeMapToBinary(
+    message.getMacroCallsMap(true),
+    5,
+    writer,
+    jspb.BinaryWriter.prototype.writeInt64,
+    jspb.BinaryWriter.prototype.writeMessage,
+    proto.google.api.expr.v1alpha1.Expr.serializeBinaryToWriter);
   }
   f = message.getExtensionsList();
   if (f.length > 0) {
@@ -3663,14 +3662,11 @@ proto.google.api.expr.v1alpha1.SourceInfo.Extension.deserializeBinaryFromReader 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setId(value);
       break;
     case 2:
-      var values = /** @type {!Array<!proto.google.api.expr.v1alpha1.SourceInfo.Extension.Component>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
-      for (var i = 0; i < values.length; i++) {
-        msg.addAffectedComponents(values[i]);
-      }
+      reader.readPackableEnumInto(msg.getAffectedComponentsList());
       break;
     case 3:
       var value = new proto.google.api.expr.v1alpha1.SourceInfo.Extension.Version;
@@ -4223,7 +4219,7 @@ proto.google.api.expr.v1alpha1.SourcePosition.deserializeBinaryFromReader = func
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setLocation(value);
       break;
     case 2:
