@@ -17,7 +17,8 @@ import * as assert from "node:assert";
 import type { CompileToDescriptorSetOptions } from "upstream-protobuf";
 import { UpstreamProtobuf } from "upstream-protobuf";
 import { join as joinPath } from "node:path";
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { clearField, equals, fromBinary, toBinary } from "@bufbuild/protobuf";
 import {
   type DescriptorProto,
@@ -126,20 +127,29 @@ void suite("bootFileDescriptorProto()", () => {
 });
 
 async function compileGoogleProtobufDescriptorProto(
-  opt?: CompileToDescriptorSetOptions,
-): Promise<FileDescriptorProto> {
-  const path = "google/protobuf/descriptor.proto";
-  const upstream = new UpstreamProtobuf();
-  const wktInclude = await upstream.getWktProtoInclude();
-  const fdsBytes = await upstream.compileToDescriptorSet(
-    {
-      [path]: readFileSync(joinPath(wktInclude.dir, path), "utf-8"),
-    },
-    opt,
-  );
-  const fds = fromBinary(FileDescriptorSetSchema, fdsBytes);
-  assert.equal(fds.file.length, 1);
-  const file = fds.file[0];
-  assert.equal(file.name, path);
-  return file;
+  opt?: Pick<CompileToDescriptorSetOptions, "includeSourceInfo">,
+) {
+  const tempDir = mkdtempSync(".compile-descriptor-set-");
+  try {
+    const outPath = joinPath(tempDir, "desc.binpb");
+    const args = [
+      "--descriptor_set_out",
+      outPath,
+      "--proto_path",
+      tempDir,
+      "google/protobuf/descriptor.proto",
+    ];
+    if (opt?.includeSourceInfo) {
+      args.unshift("--include_source_info");
+    }
+    execFileSync("protoc", args, {
+      shell: false,
+    });
+    const fdsBytes = readFileSync(outPath);
+    const fds = fromBinary(FileDescriptorSetSchema, fdsBytes);
+    assert.ok(fds.file.length == 1);
+    return fds.file[0];
+  } finally {
+    rmSync(tempDir, { recursive: true });
+  }
 }
