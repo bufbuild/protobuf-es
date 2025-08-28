@@ -17,8 +17,6 @@ export declare class UpstreamProtobuf {
 
   version(): string;
 
-  getProtocPath(): Promise<string>;
-
   getFeatureSetDefaults(
     minimumEdition?: string,
     maximumEdition?: string,
