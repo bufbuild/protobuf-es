@@ -26,6 +26,6 @@
     "@bufbuild/buf": "^1.56.0",
     "@bufbuild/protobuf": "2.7.0",
     "@bufbuild/protoc-gen-es": "2.7.0",
-    "protobuf-conformance": "31.1.0"
+    "protobuf-conformance": "32.0.0"
   }
 }
