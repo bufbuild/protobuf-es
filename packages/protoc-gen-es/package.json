@@ -24,6 +24,10 @@
   "scripts": {
     "prebuild": "rm -rf ./dist/cjs/*",
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/cjs",
+    "build:binary": "npm run build && npx pkg dist/cjs/src/entry.js --targets node20-win-x64,node20-linux-x64,node20-macos-x64 --out-path . && mv entry-win.exe bin/protoc-gen-es-win.exe && mv entry-linux bin/protoc-gen-es-linux && mv entry-macos bin/protoc-gen-es-macos",
+    "build:binary:win": "npm run build && npx pkg dist/cjs/src/entry.js --targets node20-win-x64 --out-path . && mv entry-win.exe bin/protoc-gen-es-win.exe",
+    "build:binary:linux": "npm run build && npx pkg dist/cjs/src/entry.js --targets node20-linux-x64 --out-path . && mv entry-linux bin/protoc-gen-es-linux",
+    "build:binary:macos": "npm run build && npx pkg dist/cjs/src/entry.js --targets node20-macos-x64 --out-path . && mv entry-macos bin/protoc-gen-es-macos",
     "bootstrap": "protoc --es_out=src/gen --es_opt=target=ts,import_extension=js --proto_path proto proto/minimal-validate.proto",
     "postbootstrap": "license-header src/gen",
     "format": "biome format --write",
@@ -36,7 +40,8 @@
     "@bufbuild/protoplugin": "2.7.0"
   },
   "devDependencies": {
-    "upstream-protobuf": "*"
+    "upstream-protobuf": "*",
+    "@yao-pkg/pkg": "^6.6.0"
   },
   "peerDependencies": {
     "@bufbuild/protobuf": "2.7.0"
@@ -46,5 +51,16 @@
       "optional": true
     }
   },
-  "files": ["dist/**", "bin/**"]
+  "files": ["dist/**", "bin/**", "protoc-gen-es-*"],
+  "pkg": {
+    "assets": [],
+    "scripts": [
+      "dist/cjs/**/*.js"
+    ],
+    "targets": [
+      "node20-win-x64",
+      "node20-linux-x64", 
+      "node20-macos-x64"
+    ]
+  }
 }

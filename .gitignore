@@ -5,3 +5,5 @@ node_modules
 /packages/protobuf-test/*.0x
 /packages/protobuf-test/*-v8.log
 /packages/protobuf-example/users.binpb
+
+packages/protoc-gen-es/bin/protoc-gen-es-*
