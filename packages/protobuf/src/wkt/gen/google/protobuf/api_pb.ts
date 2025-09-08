@@ -29,7 +29,7 @@ import { messageDesc } from "../../../../codegenv2/message.js";
  * Describes the file google/protobuf/api.proto.
  */
 export const file_google_protobuf_api: GenFile = /*@__PURE__*/
-  fileDesc("Chlnb29nbGUvcHJvdG9idWYvYXBpLnByb3RvEg9nb29nbGUucHJvdG9idWYigQIKA0FwaRIMCgRuYW1lGAEgASgJEigKB21ldGhvZHMYAiADKAsyFy5nb29nbGUucHJvdG9idWYuTWV0aG9kEigKB29wdGlvbnMYAyADKAsyFy5nb29nbGUucHJvdG9idWYuT3B0aW9uEg8KB3ZlcnNpb24YBCABKAkSNgoOc291cmNlX2NvbnRleHQYBSABKAsyHi5nb29nbGUucHJvdG9idWYuU291cmNlQ29udGV4dBImCgZtaXhpbnMYBiADKAsyFi5nb29nbGUucHJvdG9idWYuTWl4aW4SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCLVAQoGTWV0aG9kEgwKBG5hbWUYASABKAkSGAoQcmVxdWVzdF90eXBlX3VybBgCIAEoCRIZChFyZXF1ZXN0X3N0cmVhbWluZxgDIAEoCBIZChFyZXNwb25zZV90eXBlX3VybBgEIAEoCRIaChJyZXNwb25zZV9zdHJlYW1pbmcYBSABKAgSKAoHb3B0aW9ucxgGIAMoCzIXLmdvb2dsZS5wcm90b2J1Zi5PcHRpb24SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheCIjCgVNaXhpbhIMCgRuYW1lGAEgASgJEgwKBHJvb3QYAiABKAlCdgoTY29tLmdvb2dsZS5wcm90b2J1ZkIIQXBpUHJvdG9QAVosZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vYXBpcGKiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw", [file_google_protobuf_source_context, file_google_protobuf_type]);
+  fileDesc("Chlnb29nbGUvcHJvdG9idWYvYXBpLnByb3RvEg9nb29nbGUucHJvdG9idWYikgIKA0FwaRIMCgRuYW1lGAEgASgJEigKB21ldGhvZHMYAiADKAsyFy5nb29nbGUucHJvdG9idWYuTWV0aG9kEigKB29wdGlvbnMYAyADKAsyFy5nb29nbGUucHJvdG9idWYuT3B0aW9uEg8KB3ZlcnNpb24YBCABKAkSNgoOc291cmNlX2NvbnRleHQYBSABKAsyHi5nb29nbGUucHJvdG9idWYuU291cmNlQ29udGV4dBImCgZtaXhpbnMYBiADKAsyFi5nb29nbGUucHJvdG9idWYuTWl4aW4SJwoGc3ludGF4GAcgASgOMhcuZ29vZ2xlLnByb3RvYnVmLlN5bnRheBIPCgdlZGl0aW9uGAggASgJIu4BCgZNZXRob2QSDAoEbmFtZRgBIAEoCRIYChByZXF1ZXN0X3R5cGVfdXJsGAIgASgJEhkKEXJlcXVlc3Rfc3RyZWFtaW5nGAMgASgIEhkKEXJlc3BvbnNlX3R5cGVfdXJsGAQgASgJEhoKEnJlc3BvbnNlX3N0cmVhbWluZxgFIAEoCBIoCgdvcHRpb25zGAYgAygLMhcuZ29vZ2xlLnByb3RvYnVmLk9wdGlvbhIrCgZzeW50YXgYByABKA4yFy5nb29nbGUucHJvdG9idWYuU3ludGF4QgIYARITCgdlZGl0aW9uGAggASgJQgIYASIjCgVNaXhpbhIMCgRuYW1lGAEgASgJEgwKBHJvb3QYAiABKAlCdgoTY29tLmdvb2dsZS5wcm90b2J1ZkIIQXBpUHJvdG9QAVosZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMva25vd24vYXBpcGKiAgNHUEKqAh5Hb29nbGUuUHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw", [file_google_protobuf_source_context, file_google_protobuf_type]);
 
 /**
  * Api is a light-weight descriptor for an API Interface.
@@ -41,6 +41,11 @@ export const file_google_protobuf_api: GenFile = /*@__PURE__*/
  * sometimes simply referred to as "APIs" in other contexts, such as the name of
  * this message itself. See https://cloud.google.com/apis/design/glossary for
  * detailed terminology.
+ *
+ * New usages of this message as an alternative to ServiceDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.Api
  */
@@ -114,6 +119,13 @@ export type Api = Message<"google.protobuf.Api"> & {
    * @generated from field: google.protobuf.Syntax syntax = 7;
    */
   syntax: Syntax;
+
+  /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
+   * @generated from field: string edition = 8;
+   */
+  edition: string;
 };
 
 /**
@@ -126,6 +138,11 @@ export type Api = Message<"google.protobuf.Api"> & {
  * sometimes simply referred to as "APIs" in other contexts, such as the name of
  * this message itself. See https://cloud.google.com/apis/design/glossary for
  * detailed terminology.
+ *
+ * New usages of this message as an alternative to ServiceDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.Api
  */
@@ -199,6 +216,13 @@ export type ApiJson = {
    * @generated from field: google.protobuf.Syntax syntax = 7;
    */
   syntax?: SyntaxJson;
+
+  /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
+   * @generated from field: string edition = 8;
+   */
+  edition?: string;
 };
 
 /**
@@ -210,6 +234,11 @@ export const ApiSchema: GenMessage<Api, {jsonType: ApiJson}> = /*@__PURE__*/
 
 /**
  * Method represents a method of an API interface.
+ *
+ * New usages of this message as an alternative to MethodDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.Method
  */
@@ -259,13 +288,33 @@ export type Method = Message<"google.protobuf.Method"> & {
   /**
    * The source syntax of this method.
    *
-   * @generated from field: google.protobuf.Syntax syntax = 7;
+   * This field should be ignored, instead the syntax should be inherited from
+   * Api. This is similar to Field and EnumValue.
+   *
+   * @generated from field: google.protobuf.Syntax syntax = 7 [deprecated = true];
+   * @deprecated
    */
   syntax: Syntax;
+
+  /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
+   * This field should be ignored, instead the edition should be inherited from
+   * Api. This is similar to Field and EnumValue.
+   *
+   * @generated from field: string edition = 8 [deprecated = true];
+   * @deprecated
+   */
+  edition: string;
 };
 
 /**
  * Method represents a method of an API interface.
+ *
+ * New usages of this message as an alternative to MethodDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.Method
  */
@@ -315,9 +364,24 @@ export type MethodJson = {
   /**
    * The source syntax of this method.
    *
-   * @generated from field: google.protobuf.Syntax syntax = 7;
+   * This field should be ignored, instead the syntax should be inherited from
+   * Api. This is similar to Field and EnumValue.
+   *
+   * @generated from field: google.protobuf.Syntax syntax = 7 [deprecated = true];
+   * @deprecated
    */
   syntax?: SyntaxJson;
+
+  /**
+   * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+   *
+   * This field should be ignored, instead the edition should be inherited from
+   * Api. This is similar to Field and EnumValue.
+   *
+   * @generated from field: string edition = 8 [deprecated = true];
+   * @deprecated
+   */
+  edition?: string;
 };
 
 /**

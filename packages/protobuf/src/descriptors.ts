@@ -29,7 +29,10 @@ import type { ScalarValue } from "./reflect/scalar.js";
 
 export type SupportedEdition = Extract<
   Edition,
-  Edition.EDITION_PROTO2 | Edition.EDITION_PROTO3 | Edition.EDITION_2023
+  | Edition.EDITION_PROTO2
+  | Edition.EDITION_PROTO3
+  | Edition.EDITION_2023
+  | Edition.EDITION_2024
 >;
 
 type SupportedFieldPresence = Extract<

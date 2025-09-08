@@ -424,9 +424,9 @@ const DELIMITED: FeatureSet_MessageEncoding.DELIMITED = 2;
 const OPEN: FeatureSet_EnumType.OPEN = 1;
 
 // biome-ignore format: want this to read well
-// bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2023: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
-// generated from protoc v31.1
-export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1000;
+// bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2024: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
+// generated from protoc v32.0
+export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1001;
 const featureDefaults = {
   // EDITION_PROTO2
   998: {
@@ -460,6 +460,17 @@ const featureDefaults = {
     jsonFormat: 1, // ALLOW,
     enforceNamingStyle: 2, // STYLE_LEGACY,
     defaultSymbolVisibility: 1, // EXPORT_ALL,
+  },
+  // EDITION_2024
+  1001: {
+    fieldPresence: 1, // EXPLICIT,
+    enumType: 1, // OPEN,
+    repeatedFieldEncoding: 1, // PACKED,
+    utf8Validation: 2, // VERIFY,
+    messageEncoding: 1, // LENGTH_PREFIXED,
+    jsonFormat: 1, // ALLOW,
+    enforceNamingStyle: 1, // STYLE2024,
+    defaultSymbolVisibility: 2, // EXPORT_TOP_LEVEL,
   },
 } as const;
 

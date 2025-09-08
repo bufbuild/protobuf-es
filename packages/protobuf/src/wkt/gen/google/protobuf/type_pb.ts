@@ -35,6 +35,11 @@ export const file_google_protobuf_type: GenFile = /*@__PURE__*/
 /**
  * A protocol buffer message type.
  *
+ * New usages of this message as an alternative to DescriptorProto are strongly
+ * discouraged. This message does not reliability preserve all information
+ * necessary to model the schema and preserve semantics. Instead make use of
+ * FileDescriptorSet which preserves the necessary information.
+ *
  * @generated from message google.protobuf.Type
  */
 export type Type = Message<"google.protobuf.Type"> & {
@@ -90,6 +95,11 @@ export type Type = Message<"google.protobuf.Type"> & {
 
 /**
  * A protocol buffer message type.
+ *
+ * New usages of this message as an alternative to DescriptorProto are strongly
+ * discouraged. This message does not reliability preserve all information
+ * necessary to model the schema and preserve semantics. Instead make use of
+ * FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.Type
  */
@@ -153,6 +163,11 @@ export const TypeSchema: GenMessage<Type, {jsonType: TypeJson}> = /*@__PURE__*/
 
 /**
  * A single field of a message type.
+ *
+ * New usages of this message as an alternative to FieldDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.Field
  */
@@ -232,6 +247,11 @@ export type Field = Message<"google.protobuf.Field"> & {
 
 /**
  * A single field of a message type.
+ *
+ * New usages of this message as an alternative to FieldDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.Field
  */
@@ -520,6 +540,11 @@ export const Field_CardinalitySchema: GenEnum<Field_Cardinality, Field_Cardinali
 /**
  * Enum type definition.
  *
+ * New usages of this message as an alternative to EnumDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
+ *
  * @generated from message google.protobuf.Enum
  */
 export type Enum = Message<"google.protobuf.Enum"> & {
@@ -568,6 +593,11 @@ export type Enum = Message<"google.protobuf.Enum"> & {
 
 /**
  * Enum type definition.
+ *
+ * New usages of this message as an alternative to EnumDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.Enum
  */
@@ -625,6 +655,11 @@ export const EnumSchema: GenMessage<Enum, {jsonType: EnumJson}> = /*@__PURE__*/
 /**
  * Enum value definition.
  *
+ * New usages of this message as an alternative to EnumValueDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
+ *
  * @generated from message google.protobuf.EnumValue
  */
 export type EnumValue = Message<"google.protobuf.EnumValue"> & {
@@ -652,6 +687,11 @@ export type EnumValue = Message<"google.protobuf.EnumValue"> & {
 
 /**
  * Enum value definition.
+ *
+ * New usages of this message as an alternative to EnumValueDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.EnumValue
  */
@@ -689,6 +729,10 @@ export const EnumValueSchema: GenMessage<EnumValue, {jsonType: EnumValueJson}> =
  * A protocol buffer option, which can be attached to a message, field,
  * enumeration, etc.
  *
+ * New usages of this message as an alternative to FileOptions, MessageOptions,
+ * FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions
+ * are strongly discouraged.
+ *
  * @generated from message google.protobuf.Option
  */
 export type Option = Message<"google.protobuf.Option"> & {
@@ -716,6 +760,10 @@ export type Option = Message<"google.protobuf.Option"> & {
 /**
  * A protocol buffer option, which can be attached to a message, field,
  * enumeration, etc.
+ *
+ * New usages of this message as an alternative to FileOptions, MessageOptions,
+ * FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions
+ * are strongly discouraged.
  *
  * @generated from message google.protobuf.Option
  */
