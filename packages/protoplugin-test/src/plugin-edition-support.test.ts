@@ -112,7 +112,7 @@ void suite("editions support in plugins", () => {
       async () => runPlugin(Edition.EDITION_99999_TEST_ONLY),
       {
         message:
-          /^test.proto: unsupported edition 99999_TEST_ONLY - the latest supported edition is 2023$/,
+          /^test.proto: unsupported edition 99999_TEST_ONLY - the latest supported edition is 2024$/,
       },
     );
   });

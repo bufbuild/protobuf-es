@@ -28,6 +28,11 @@ export declare const file_google_protobuf_type: GenFile;
 /**
  * A protocol buffer message type.
  *
+ * New usages of this message as an alternative to DescriptorProto are strongly
+ * discouraged. This message does not reliability preserve all information
+ * necessary to model the schema and preserve semantics. Instead make use of
+ * FileDescriptorSet which preserves the necessary information.
+ *
  * @generated from message google.protobuf.Type
  */
 export declare type Type = Message<"google.protobuf.Type"> & {
@@ -89,6 +94,11 @@ export declare const TypeSchema: GenMessage<Type>;
 
 /**
  * A single field of a message type.
+ *
+ * New usages of this message as an alternative to FieldDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
  *
  * @generated from message google.protobuf.Field
  */
@@ -360,6 +370,11 @@ export declare const Field_CardinalitySchema: GenEnum<Field_Cardinality>;
 /**
  * Enum type definition.
  *
+ * New usages of this message as an alternative to EnumDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
+ *
  * @generated from message google.protobuf.Enum
  */
 export declare type Enum = Message<"google.protobuf.Enum"> & {
@@ -415,6 +430,11 @@ export declare const EnumSchema: GenMessage<Enum>;
 /**
  * Enum value definition.
  *
+ * New usages of this message as an alternative to EnumValueDescriptorProto are
+ * strongly discouraged. This message does not reliability preserve all
+ * information necessary to model the schema and preserve semantics. Instead
+ * make use of FileDescriptorSet which preserves the necessary information.
+ *
  * @generated from message google.protobuf.EnumValue
  */
 export declare type EnumValue = Message<"google.protobuf.EnumValue"> & {
@@ -449,6 +469,10 @@ export declare const EnumValueSchema: GenMessage<EnumValue>;
 /**
  * A protocol buffer option, which can be attached to a message, field,
  * enumeration, etc.
+ *
+ * New usages of this message as an alternative to FileOptions, MessageOptions,
+ * FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions
+ * are strongly discouraged.
  *
  * @generated from message google.protobuf.Option
  */
