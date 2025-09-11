@@ -1451,6 +1451,11 @@ export declare type TestRequired = Message<"proto2_unittest.TestRequired"> & {
    * @generated from field: proto2_unittest.ForeignMessage optional_foreign = 34;
    */
   optionalForeign?: ForeignMessage;
+
+  /**
+   * @generated from field: map<string, proto2_unittest.TestRequired> map_field = 35;
+   */
+  mapField: { [key: string]: TestRequired };
 };
 
 /**
@@ -4085,6 +4090,41 @@ export declare type TestHugeFieldNumbers = Message<"proto2_unittest.TestHugeFiel
     value: Uint8Array;
     case: "oneofBytes";
   } | { case: undefined; value?: undefined };
+
+  /**
+   * @generated from field: bool optional_bool = 536870015;
+   */
+  optionalBool: boolean;
+
+  /**
+   * @generated from field: int64 optional_int64 = 536870016;
+   */
+  optionalInt64: bigint;
+
+  /**
+   * @generated from field: float optional_float = 536870017;
+   */
+  optionalFloat: number;
+
+  /**
+   * @generated from field: double optional_double = 536870018;
+   */
+  optionalDouble: number;
+
+  /**
+   * @generated from field: string optional_utf8_string = 536870019 [features.utf8_validation = VERIFY];
+   */
+  optionalUtf8String: string;
+
+  /**
+   * @generated from field: string optional_cord = 536870020 [features.utf8_validation = VERIFY];
+   */
+  optionalCord: string;
+
+  /**
+   * @generated from field: string optional_string_piece = 536870021 [features.utf8_validation = VERIFY];
+   */
+  optionalStringPiece: string;
 };
 
 /**
@@ -6403,6 +6443,279 @@ export declare type MessageCreatorFunc = Message<"proto2_unittest.MessageCreator
  * Use `create(MessageCreatorFuncSchema)` to create a new message.
  */
 export declare const MessageCreatorFuncSchema: GenMessage<MessageCreatorFunc>;
+
+/**
+ * @generated from message proto2_unittest.FastParseTableCompression
+ */
+export declare type FastParseTableCompression = Message<"proto2_unittest.FastParseTableCompression"> & {
+  /**
+   * @generated from field: int32 important_field_1 = 1;
+   */
+  importantField1: number;
+
+  /**
+   * @generated from field: int32 important_field_2 = 2;
+   */
+  importantField2: number;
+
+  /**
+   * @generated from field: int32 unimportant_field_3 = 3;
+   */
+  unimportantField3: number;
+
+  /**
+   * @generated from field: int32 unimportant_field_4 = 4;
+   */
+  unimportantField4: number;
+
+  /**
+   * @generated from field: int32 unimportant_field_5 = 5;
+   */
+  unimportantField5: number;
+
+  /**
+   * @generated from field: int32 unimportant_field_9 = 9;
+   */
+  unimportantField9: number;
+
+  /**
+   * @generated from field: int32 important_field_11 = 11;
+   */
+  importantField11: number;
+
+  /**
+   * @generated from field: int32 unimportant_field_12 = 12;
+   */
+  unimportantField12: number;
+
+  /**
+   * @generated from field: int32 important_field_14 = 14;
+   */
+  importantField14: number;
+
+  /**
+   * @generated from field: int32 unimportant_field_15 = 15;
+   */
+  unimportantField15: number;
+};
+
+/**
+ * Describes the message proto2_unittest.FastParseTableCompression.
+ * Use `create(FastParseTableCompressionSchema)` to create a new message.
+ */
+export declare const FastParseTableCompressionSchema: GenMessage<FastParseTableCompression>;
+
+/**
+ * @generated from message proto2_unittest.TestMessageForMove_Small
+ */
+export declare type TestMessageForMove_Small = Message<"proto2_unittest.TestMessageForMove_Small"> & {
+  /**
+   * @generated from field: int32 a = 1;
+   */
+  a: number;
+
+  /**
+   * @generated from field: int32 b = 2;
+   */
+  b: number;
+};
+
+/**
+ * Describes the message proto2_unittest.TestMessageForMove_Small.
+ * Use `create(TestMessageForMove_SmallSchema)` to create a new message.
+ */
+export declare const TestMessageForMove_SmallSchema: GenMessage<TestMessageForMove_Small>;
+
+/**
+ * @generated from message proto2_unittest.TestMessageForMove_Large
+ */
+export declare type TestMessageForMove_Large = Message<"proto2_unittest.TestMessageForMove_Large"> & {
+  /**
+   * @generated from field: int32 a1 = 1;
+   */
+  a1: number;
+
+  /**
+   * @generated from field: int32 a2 = 2;
+   */
+  a2: number;
+
+  /**
+   * @generated from field: int32 a3 = 3;
+   */
+  a3: number;
+
+  /**
+   * @generated from field: int32 a4 = 4;
+   */
+  a4: number;
+
+  /**
+   * @generated from field: int32 a5 = 5;
+   */
+  a5: number;
+
+  /**
+   * @generated from field: int32 a6 = 6;
+   */
+  a6: number;
+
+  /**
+   * @generated from field: int32 a7 = 7;
+   */
+  a7: number;
+
+  /**
+   * @generated from field: int32 a8 = 8;
+   */
+  a8: number;
+
+  /**
+   * @generated from field: int32 a9 = 9;
+   */
+  a9: number;
+
+  /**
+   * @generated from field: repeated int32 a11 = 11;
+   */
+  a11: number[];
+
+  /**
+   * @generated from field: repeated int32 a12 = 12;
+   */
+  a12: number[];
+
+  /**
+   * @generated from field: repeated int32 a13 = 13;
+   */
+  a13: number[];
+
+  /**
+   * @generated from field: repeated int32 a14 = 14;
+   */
+  a14: number[];
+
+  /**
+   * @generated from field: repeated int32 a15 = 15;
+   */
+  a15: number[];
+
+  /**
+   * @generated from field: repeated int32 a16 = 16;
+   */
+  a16: number[];
+
+  /**
+   * @generated from field: repeated int32 a17 = 17;
+   */
+  a17: number[];
+
+  /**
+   * @generated from field: repeated int32 a18 = 18;
+   */
+  a18: number[];
+
+  /**
+   * @generated from field: repeated int32 a19 = 19;
+   */
+  a19: number[];
+
+  /**
+   * @generated from field: string s101 = 101;
+   */
+  s101: string;
+
+  /**
+   * @generated from field: string s102 = 102;
+   */
+  s102: string;
+
+  /**
+   * @generated from field: string s103 = 103;
+   */
+  s103: string;
+
+  /**
+   * @generated from field: string s104 = 104;
+   */
+  s104: string;
+
+  /**
+   * @generated from field: string s105 = 105;
+   */
+  s105: string;
+
+  /**
+   * @generated from field: string s106 = 106;
+   */
+  s106: string;
+
+  /**
+   * @generated from field: string s107 = 107;
+   */
+  s107: string;
+
+  /**
+   * @generated from field: string s108 = 108;
+   */
+  s108: string;
+
+  /**
+   * @generated from field: string s109 = 109;
+   */
+  s109: string;
+
+  /**
+   * @generated from field: repeated string s111 = 111;
+   */
+  s111: string[];
+
+  /**
+   * @generated from field: repeated string s112 = 112;
+   */
+  s112: string[];
+
+  /**
+   * @generated from field: repeated string s113 = 113;
+   */
+  s113: string[];
+
+  /**
+   * @generated from field: repeated string s114 = 114;
+   */
+  s114: string[];
+
+  /**
+   * @generated from field: repeated string s115 = 115;
+   */
+  s115: string[];
+
+  /**
+   * @generated from field: repeated string s116 = 116;
+   */
+  s116: string[];
+
+  /**
+   * @generated from field: repeated string s117 = 117;
+   */
+  s117: string[];
+
+  /**
+   * @generated from field: repeated string s118 = 118;
+   */
+  s118: string[];
+
+  /**
+   * @generated from field: repeated string s119 = 119;
+   */
+  s119: string[];
+};
+
+/**
+ * Describes the message proto2_unittest.TestMessageForMove_Large.
+ * Use `create(TestMessageForMove_LargeSchema)` to create a new message.
+ */
+export declare const TestMessageForMove_LargeSchema: GenMessage<TestMessageForMove_Large>;
 
 /**
  * @generated from enum proto2_unittest.ForeignEnum
