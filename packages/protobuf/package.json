@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protobuf",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "license": "(Apache-2.0 AND BSD-3-Clause)",
   "description": "A complete implementation of Protocol Buffers in TypeScript, suitable for web browsers and Node.js.",
   "keywords": ["protobuf", "schema", "typescript", "ecmascript"],
