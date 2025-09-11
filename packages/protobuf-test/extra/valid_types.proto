@@ -135,3 +135,9 @@ message VTypes {
 
 }
 
+// This message does not have required fields, but still needs a valid type
+// because it has a message field that uses required fields.
+message VTypes2 {
+  // In the generated valid type, this property should point to a valid type.
+  VTypes msg = 1;
+}
