@@ -41,6 +41,7 @@ import {
   isLegacyRequired,
   isProtovalidateDisabled,
   isProtovalidateRequired,
+  messageNeedsCustomValidType,
 } from "./valid-types.js";
 
 export const protocGenEs = createEcmaScriptPlugin({
@@ -443,8 +444,7 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
 // biome-ignore format: want this to read well
 function generateMessageValidShape(f: GeneratedFile, message: DescMessage, validTypes: Options["validTypes"], target: Extract<Target, "ts" | "dts">) {
   const declaration = target == "ts" ? "type" : "declare type";
-  const needsCustomValidType = (validTypes.legacyRequired && message.fields.some(isLegacyRequired)) || (validTypes.protovalidateRequired && message.fields.some(isProtovalidateRequired));
-  if (!needsCustomValidType) {
+  if (!messageNeedsCustomValidType(message, validTypes)) {
     f.print(f.export(declaration, f.importValid(message).name), " = ", f.importShape(message), ";");
     f.print();
     return;

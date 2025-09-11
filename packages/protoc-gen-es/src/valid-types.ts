@@ -12,13 +12,76 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { type DescField, getOption, hasOption } from "@bufbuild/protobuf";
+import {
+  type DescField,
+  type DescMessage,
+  getOption,
+  hasOption,
+} from "@bufbuild/protobuf";
 import { FeatureSet_FieldPresence } from "@bufbuild/protobuf/wkt";
 import {
   field as ext_field,
   type FieldRules,
   Ignore,
 } from "./gen/minimal-validate_pb.js";
+
+/**
+ * Returns true if the given message needs a ValidType. A message needs a ValidType
+ * if one or more of the following conditions are true:
+ * - A proto2 field has the `required` label
+ * - A edition field has the feature `field_presence = LEGACY_REQUIRED`
+ * - A field has the protovalidate `required` rule and not `ignore = IGNORE_ALWAYS`
+ * - A message field (repeated, singular, or map value) needs a ValidType
+ */
+export function messageNeedsCustomValidType(
+  message: DescMessage,
+  options: {
+    legacyRequired: boolean;
+    protovalidateRequired: boolean;
+  },
+): boolean {
+  function usesProtovalidateRequired(
+    message: DescMessage,
+    seen = new Set<string>(),
+  ): boolean {
+    seen.add(message.typeName);
+    for (const field of message.fields) {
+      if (isProtovalidateDisabled(field)) {
+        continue;
+      }
+      if (isProtovalidateRequired(field)) {
+        return true;
+      }
+      if (field.message && !seen.has(field.message.typeName)) {
+        if (usesProtovalidateRequired(field.message, seen)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  function usesLegacyRequired(
+    message: DescMessage,
+    seen = new Set<string>(),
+  ): boolean {
+    seen.add(message.typeName);
+    for (const field of message.fields) {
+      if (isLegacyRequired(field)) {
+        return true;
+      }
+      if (field.message && !seen.has(field.message.typeName)) {
+        if (usesLegacyRequired(field.message, seen)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  return (
+    (options.protovalidateRequired && usesProtovalidateRequired(message)) ||
+    (options.legacyRequired && usesLegacyRequired(message))
+  );
+}
 
 /**
  * Returns true if the field's protovalidate rules are (conditionally) disabled.
