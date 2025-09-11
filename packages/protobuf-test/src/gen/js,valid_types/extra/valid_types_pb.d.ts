@@ -380,7 +380,20 @@ export declare type VTypes2 = Message<"spec.VTypes2"> & {
   msg?: VTypes;
 };
 
-export declare type VTypes2Valid = VTypes2;
+/**
+ * This message does not have required fields, but still needs a valid type
+ * because it has a message field that uses required fields.
+ *
+ * @generated from message spec.VTypes2
+ */
+export declare type VTypes2Valid = Message<"spec.VTypes2"> & {
+  /**
+   * In the generated valid type, this property should point to a valid type.
+   *
+   * @generated from field: spec.VTypes msg = 1;
+   */
+  msg?: VTypesValid;
+};
 
 /**
  * Describes the message spec.VTypes2.
