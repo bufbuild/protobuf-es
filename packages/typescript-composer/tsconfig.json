@@ -1,0 +1,15 @@
+{
+  "files": ["src/porcelain.ts"],
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": false,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "types": ["node"],
+    "jsx": "react",
+    "jsxFactory": "node"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "@bufbuild/typescript-composer",
+  "license": "Apache-2.0",
+  "keywords": ["typescript", "ecmascript"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bufbuild/protobuf-es.git",
+    "directory": "packages/typescript-composer"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "prebuild": "rm -rf ./dist/cjs/*",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/cjs",
+    "postbootstrap": "license-header src/gen",
+    "format": "biome format --write",
+    "license-header": "license-header",
+    "lint": "biome lint --error-on-warnings",
+    "test": "tsx --test src/**.test.ts src/*/*.test.ts src/*/*/*.test.ts",
+    "new-node": "tsx template/use.ts",
+    "check": "biome check && npm run build -- --noEmit && npm test",
+    "fix": "biome check --write",
+    "fix-unsafe": "biome check --write --unsafe"
+  },
+  "type": "module",
+  "files": ["dist/**"]
+}
