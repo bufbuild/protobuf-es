@@ -43,9 +43,7 @@ const file = code`
           inline`console.log("  ".repeat(${d}) + file + (isDir ? "/" : ""))`,
           ifThen(
             id("isDir"),
-            code`
-              ${listDirName}(newPath, ${binary(d, "+", 1)}, ${m});
-            `,
+            listDirName.$(id("newPath"), binary(d, "+", 1), m),
           ),
         ),
       )}

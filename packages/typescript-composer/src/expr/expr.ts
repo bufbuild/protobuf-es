@@ -5,6 +5,7 @@ import {
   isNode,
 } from "../plumbing.js";
 import { type Access, access } from "./access.js";
+import { type Call, call } from "./call.js";
 import {
   type Literal,
   type RawLiteralInput,
@@ -12,7 +13,7 @@ import {
   literal,
 } from "./literal/literal.js";
 
-export type Expr<E extends WrappedExpr = WrappedExpr> = E;
+export type Expr<E extends UnknownExpr = UnknownExpr> = E;
 
 function capitalize<S extends string>(s: S): Capitalize<S> {
   return (s.slice(0, 1).toUpperCase() + s.slice(1)) as Capitalize<S>;
@@ -24,6 +25,7 @@ export function exprProxy<N extends Node<string>>(base: N) {
   return new Proxy(base, {
     get(target: N, name, receiver: N & ExprNode<N>) {
       if (typeof name === "string" && name.startsWith("$")) {
+        if (name === "$") return exprCallingProxy(receiver);
         return access(receiver, name.slice(1));
       }
       if (typeof name === "symbol" && name === isExprProxyKey) {
@@ -32,18 +34,33 @@ export function exprProxy<N extends Node<string>>(base: N) {
 
       return Reflect.get(target, name, receiver);
     },
-    // apply(target, _, args: ExprInput[]) {
-    //
-    // },
   }) as ExprNode<N>;
 }
 
+type Caller = (...args: ExprInput[]) => Call;
+type CallableExpr = Expr & Caller;
+
+function exprCallingProxy(base: Expr): CallableExpr {
+  const func: Caller = (...args: ExprInput[]) => call(base, ...args);
+
+  return new Proxy(func, {
+    get() {
+      throw new Error(
+        "Property access is not supported for expression calling proxy.",
+      );
+    },
+  }) as CallableExpr;
+}
+
 export type ExprNode<N extends Node<string>> = N &
-  WrappedExpr & {
-    [Key in `$${string}`]: // This looks a little silly, but it avoids a circular dependency,
+  UnknownExpr & {
+    // This looks a little silly, but it avoids a circular dependency,
     // while preserving the correct type if N is AccessNode.
-    N extends ExprNode<Node<"access">> ? N : Access;
-  } & ((...args: ExprInput[]) => ExprNode<Node<"call">>);
+    [Key in `$${string}`]: N extends ExprNode<Node<"access">> ? N : Access;
+  } & {
+    // As above...
+    $: (...args: ExprInput[]) => N extends ExprNode<Node<"call">> ? N : Call;
+  };
 
 export function exprProvider<
   P extends ExprNodeImplementation<Node<string>, UnknownNodeInput>,
@@ -76,12 +93,12 @@ export type ExprNodeImplementation<
 };
 
 type ExprNodeBase = Node<string, Node.Family.EXPR>;
-type WrappedExpr = ExprNodeBase & {
-  [K in `$${string}`]: WrappedExpr;
-} & (() => WrappedExpr);
-export type ExprInput = WrappedExpr | RawLiteralInput;
+type UnknownExpr = ExprNodeBase & {
+  [K in `$${string}`]: UnknownExpr;
+} & (() => UnknownExpr);
+export type ExprInput = UnknownExpr | RawLiteralInput;
 
-export function expr<E extends WrappedExpr>(input: E): E;
+export function expr<E extends UnknownExpr>(input: E): E;
 export function expr(input: RawLiteralInput): Literal;
 export function expr(input: ExprInput): Expr;
 export function expr(input: ExprInput): Expr {
@@ -93,7 +110,7 @@ function isExprNodeBase(input: UnknownNodeInput): input is ExprNodeBase {
   return isNode(input) && input.family === Node.Family.EXPR;
 }
 
-export function isExpr<E extends WrappedExpr>(input: E): input is E;
+export function isExpr<E extends UnknownExpr>(input: E): input is E;
 export function isExpr(input: UnknownNodeInput): input is Expr;
 export function isExpr(input: UnknownNodeInput): input is Expr {
   return isExprNodeBase(input) && hasNodeInputProperty(input, isExprProxyKey);
