@@ -15,34 +15,33 @@ export function generate(kebabNodeName: string, wrappedType: string) {
   return code`
     import assert from "node:assert";
     import { suite, test } from "node:test";
+    import { ${lowerNodeName} } from "./${kebabNodeName}.js";
 
-    import { ${upperNodeName} } from "./${kebabNodeName}.js";
-
-    void suite("${upperNodeName}.is()", () => {
+    void suite("is${upperNodeName}()", () => {
       void test("true", () => {
         const value = ${lowerNodeName}(__${inputType}__);
 
         assert(
-          ${upperNodeName}.is(value),
-          "${upperNodeName}.is() must return true for ${upperNodeName} instance",
+          is${upperNodeName}(value),
+          "is${upperNodeName}() must return true for ${upperNodeName} instance",
         );
       });
       void test("false", () => {
         assert(
-          !${upperNodeName}.is({}),
-          "${upperNodeName}.is() must return false for empty object"
+          !is${upperNodeName}.({}),
+          "is${upperNodeName}() must return false for empty object"
         );
       });
     });
 
-    void suite("${upperNodeName}.marshal()", () => {
+    void suite("${lowerNodeName}()", () => {
       void test("idempotency", () => {
         const value = ${lowerNodeName}(__${inputType}__);
 
         assert.equal(
-          ${upperNodeName}.marshal(value),
+          ${lowerNodeName}(value),
           value,
-          "${upperNodeName}.marshal() must be idempotent",
+          "${lowerNodeName}() must be idempotent",
         );
       });
     });

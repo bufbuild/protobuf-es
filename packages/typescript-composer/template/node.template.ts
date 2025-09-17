@@ -62,8 +62,9 @@ export function generate(
     }
 
     export type ${upperNodeName}Input = Parameters<typeof ${upperNodeName}Node.marshal>;
-    export type ${upperNodeName} = ExprNode<${upperNodeName}Node>;
-    export const ${upperNodeName} = exprProvider(${upperNodeName}Node);
+    export type ${upperNodeName} = ${upperNodeName}Node;
+    // export type ${upperNodeName} = ExprNode<${upperNodeName}Node>;
+    // export const ${upperNodeName} = exprProvider(${upperNodeName}Node);
     export const { ${lowerNodeName}, is${upperNodeName}, is${upperNodeName}Input } = ${upperNodeName};
   `.toString();
 }
