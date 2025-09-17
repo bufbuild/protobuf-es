@@ -27,10 +27,11 @@ async function main() {
   });
   for (;;) {
     const location = prompt("Enter a location (or leave blank to finish):");
-    if (location === null) {
+    if (location?.length) {
+      user.locations.push(location);
+    } else {
       break;
     }
-    user.locations.push(location);
   }
 
   // We're writing multiple users to a single file, prefixing each message with
