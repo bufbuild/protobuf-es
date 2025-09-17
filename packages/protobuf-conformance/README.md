@@ -1,4 +1,4 @@
-# Conformance tests
+# Conformance tests on Node.js
 
 This package implements a testee for the Protocol Buffers [conformance test
 suite](https://github.com/protocolbuffers/protobuf/tree/main/conformance) to
