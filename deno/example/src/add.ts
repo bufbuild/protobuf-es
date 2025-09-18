@@ -21,8 +21,8 @@ async function main() {
 
   // Create a new user, prompting the user for details:
   const user = create(UserSchema, {
-    firstName: (await prompt("Enter first name:")) ?? undefined,
-    lastName: (await prompt("Enter last name:")) ?? undefined,
+    firstName: prompt("Enter first name:") ?? undefined,
+    lastName: prompt("Enter last name:") ?? undefined,
     active: true,
   });
   for (;;) {
