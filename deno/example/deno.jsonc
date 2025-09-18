@@ -9,8 +9,7 @@
       "command": "deno run --allow-read --allow-env --allow-run --allow-scripts npm:@bufbuild/buf/buf generate"
     }
   },
-  // for "postinstall" script of @bufbuild/buf
-  "nodeModulesDir": "auto",
+  "nodeModulesDir": "auto", // for "postinstall" script of @bufbuild/buf
   "fmt": {
     "exclude": ["src/gen/"]
   }
