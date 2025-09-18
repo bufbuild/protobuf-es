@@ -48,5 +48,6 @@ jobs:
           deno lint
           deno fmt
           deno test
+          deno task generate
         working-directory: deno/example
       - run: node scripts/gh-diffcheck.js
