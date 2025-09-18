@@ -11,5 +11,8 @@
     }
   },
   // for "postinstall" script of @bufbuild/buf
-  "nodeModulesDir": "auto"
+  "nodeModulesDir": "auto",
+  "fmt": {
+    "exclude": ["src/gen/"]
+  }
 }
