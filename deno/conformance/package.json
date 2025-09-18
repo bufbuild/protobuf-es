@@ -13,8 +13,8 @@
   "type": "module",
   "devDependencies": {
     "@bufbuild/buf": "^1.56.0",
-    "@bufbuild/protobuf": "2.8.0",
-    "@bufbuild/protoc-gen-es": "2.8.0",
+    "@bufbuild/protobuf": "2.9.0",
+    "@bufbuild/protoc-gen-es": "2.9.0",
     "protobuf-conformance": "32.0.0"
   }
 }
