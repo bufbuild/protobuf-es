@@ -9,7 +9,7 @@ plugins:
       "run",
       "--allow-read",
       "--allow-env",
-      "npm:@bufbuild/protoc-gen-es/",
+      "npm:@bufbuild/protoc-gen-es@2.8.0/",
     ]
     opt:
       - target=ts

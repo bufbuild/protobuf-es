@@ -1,21 +1,21 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@std/assert@*": "1.0.12",
-    "jsr:@std/internal@^1.0.6": "1.0.6",
-    "npm:@bufbuild/buf@^1.57.2": "1.57.2",
-    "npm:@bufbuild/protobuf@^2.8.0": "2.8.0",
-    "npm:@bufbuild/protoc-gen-es@^2.8.0": "2.8.0_@bufbuild+protobuf@2.8.0"
+    "jsr:@std/assert@*": "1.0.14",
+    "jsr:@std/internal@^1.0.10": "1.0.10",
+    "npm:@bufbuild/buf@*": "1.57.2",
+    "npm:@bufbuild/protobuf@2.8.0": "2.8.0",
+    "npm:@bufbuild/protoc-gen-es@2.8.0": "2.8.0_@bufbuild+protobuf@2.8.0"
   },
   "jsr": {
-    "@std/assert@1.0.12": {
-      "integrity": "08009f0926dda9cbd8bef3a35d3b6a4b964b0ab5c3e140a4e0351fbf34af5b9a",
+    "@std/assert@1.0.14": {
+      "integrity": "68d0d4a43b365abc927f45a9b85c639ea18a9fab96ad92281e493e4ed84abaa4",
       "dependencies": [
         "jsr:@std/internal"
       ]
     },
-    "@std/internal@1.0.6": {
-      "integrity": "9533b128f230f73bd209408bb07a4b12f8d4255ab2a4d22a1fd6d87304aca9a4"
+    "@std/internal@1.0.10": {
+      "integrity": "e3be62ce42cab0e177c27698e5d9800122f67b766a0bea6ca4867886cbde8cf7"
     }
   },
   "npm": {
@@ -93,9 +93,8 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/io@~0.225.2",
-      "npm:@bufbuild/buf@^1.57.2",
-      "npm:@bufbuild/protobuf@^2.8.0",
-      "npm:@bufbuild/protoc-gen-es@^2.8.0"
+      "npm:@bufbuild/protobuf@2.8.0",
+      "npm:@bufbuild/protoc-gen-es@2.8.0"
     ]
   }
 }
