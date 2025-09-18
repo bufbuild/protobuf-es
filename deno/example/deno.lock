@@ -4,8 +4,8 @@
     "jsr:@std/assert@*": "1.0.14",
     "jsr:@std/internal@^1.0.10": "1.0.10",
     "npm:@bufbuild/buf@*": "1.57.2",
-    "npm:@bufbuild/protobuf@2.8.0": "2.8.0",
-    "npm:@bufbuild/protoc-gen-es@2.8.0": "2.8.0_@bufbuild+protobuf@2.8.0"
+    "npm:@bufbuild/protobuf@2.9.0": "2.9.0",
+    "npm:@bufbuild/protoc-gen-es@2.9.0": "2.9.0_@bufbuild+protobuf@2.9.0"
   },
   "jsr": {
     "@std/assert@1.0.14": {
@@ -52,18 +52,18 @@
         "@bufbuild/buf-win32-x64"
       ]
     },
-    "@bufbuild/protobuf@2.8.0": {
-      "integrity": "sha512-r1/0w5C9dkbcdjyxY8ZHsC5AOWg4Pnzhm2zu7LO4UHSounp2tMm6Y+oioV9zlGbLveE7YaWRDUk48WLxRDgoqg=="
+    "@bufbuild/protobuf@2.9.0": {
+      "integrity": "sha512-rnJenoStJ8nvmt9Gzye8nkYd6V22xUAnu4086ER7h1zJ508vStko4pMvDeQ446ilDTFpV5wnoc5YS7XvMwwMqA=="
     },
-    "@bufbuild/protoc-gen-es@2.8.0_@bufbuild+protobuf@2.8.0": {
-      "integrity": "sha512-wyCXK7/FOgcHdqP6dWnGNZBJyXcYYUcvZBMBQVgeYjbF5u0OgVsInEYnr2Gu4E2HC7HoxcQZcVlVbwyxeiebDA==",
+    "@bufbuild/protoc-gen-es@2.9.0_@bufbuild+protobuf@2.9.0": {
+      "integrity": "sha512-g54rrHLKc7fnxN25ikynstRxR19M5G5l/hyqut2JoypJ9iU9QgUE63zEm8PNvVfBd4r5PEzWPfbWy5MNOeuMKQ==",
       "dependencies": [
         "@bufbuild/protobuf",
         "@bufbuild/protoplugin"
       ]
     },
-    "@bufbuild/protoplugin@2.8.0_typescript@5.4.5": {
-      "integrity": "sha512-kwZeZAz6jmDC571Wf/f5cDX02IjvPmtdspdxW/hbLS+bnZHkXMW4StaW+irGd4TkykvHD4fFgBnPG/O1x8OgXw==",
+    "@bufbuild/protoplugin@2.9.0_typescript@5.4.5": {
+      "integrity": "sha512-uoiwNVYoTq+AyqaV1L6pBazGx5fXOO89L0NSR9/7hEfo0Y8n9T1jsKGu4mkitLmP3z+8gJREaule1mMuKBPyYw==",
       "dependencies": [
         "@bufbuild/protobuf",
         "@typescript/vfs",
@@ -93,8 +93,8 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/io@~0.225.2",
-      "npm:@bufbuild/protobuf@2.8.0",
-      "npm:@bufbuild/protoc-gen-es@2.8.0"
+      "npm:@bufbuild/protobuf@2.9.0",
+      "npm:@bufbuild/protoc-gen-es@2.9.0"
     ]
   }
 }
