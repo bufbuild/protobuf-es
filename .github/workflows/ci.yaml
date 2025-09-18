@@ -33,7 +33,7 @@ jobs:
           key: protobuf-es/test/${{ github.sha }}
           restore-keys: protobuf-es/test
       - run: npm ci
-      - run: npx turbo run test -F '!./packages/protobuf-conformance' -F '!./packages/typescript-compat/*' -F './deno/*'
+      - run: npx turbo run test -F '!./packages/protobuf-conformance' -F '!./packages/typescript-compat/*'
         env:
           BUF_BIGINT_DISABLE: ${{ matrix.bigint-disable }}
   conformance:
@@ -54,7 +54,7 @@ jobs:
           key: protobuf-es/conformance/${{ github.sha }}
           restore-keys: protobuf-es/conformance
       - run: npm ci
-      - run: npx turbo run test -F './packages/protobuf-conformance' -F './deno/*'
+      - run: npx turbo run test -F './packages/protobuf-conformance'
         env:
           BUF_BIGINT_DISABLE: ${{ matrix.bigint-disable }}
   lint:

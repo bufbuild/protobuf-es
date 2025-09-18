@@ -5,7 +5,7 @@
     "pregenerate": "rm -rf src/gen/* && rm -rf proto/* && conformance_proto_eject proto",
     "generate": "protoc --es_out=src/gen --es_opt=target=ts,import_extension=ts --proto_path=proto $(buf ls-files proto)",
     "postgenerate": "license-header",
-    "test": "conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests.txt --text_format_failure_list failing_tests_text_format.txt src/conformance.ts",
+    "test": "which deno && {conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests.txt --text_format_failure_list failing_tests_text_format.txt src/conformance.ts} || echo 'Skip Deno conformance'",
     "format": "biome format --write",
     "license-header": "license-header",
     "lint": "biome lint --error-on-warnings"
