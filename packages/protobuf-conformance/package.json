@@ -6,7 +6,7 @@
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
     "pregenerate": "rm -rf src/gen/* && rm -rf proto/* && conformance_proto_eject proto",
     "generate": "protoc --es_out=src/gen --es_opt=target=ts --proto_path=proto $(buf ls-files proto)",
-    "postgenerate": "license-header src/gen",
+    "postgenerate": "license-header",
     "test": "test '1' == \"$BUF_BIGINT_DISABLE\" && npm run test:string || npm run test:bigint",
     "test:bigint": "conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_with_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",
     "test:string": "conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests_without_bigint.txt --text_format_failure_list failing_tests_text_format.txt bin/conformance.js",

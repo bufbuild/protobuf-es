@@ -1,0 +1,20 @@
+{
+  "name": "@bufbuild/deno-conformance",
+  "private": true,
+  "scripts": {
+    "pregenerate": "rm -rf src/gen/* && rm -rf proto/* && conformance_proto_eject proto",
+    "generate": "protoc --es_out=src/gen --es_opt=target=ts,import_extension=ts --proto_path=proto $(buf ls-files proto)",
+    "postgenerate": "license-header",
+    "test": "conformance_test_runner --maximum_edition MAX --enforce_recommended --failure_list failing_tests.txt --text_format_failure_list failing_tests_text_format.txt src/conformance.ts",
+    "format": "biome format --write",
+    "license-header": "license-header",
+    "lint": "biome lint --error-on-warnings"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@bufbuild/buf": "^1.56.0",
+    "@bufbuild/protobuf": "2.8.0",
+    "@bufbuild/protoc-gen-es": "2.8.0",
+    "protobuf-conformance": "32.0.0"
+  }
+}
