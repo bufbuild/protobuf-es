@@ -42,8 +42,11 @@ jobs:
           path: .turbo
           key: protobuf-es/deno/example/${{ github.sha }}
           restore-keys: protobuf-es/deno/example
-      - run: deno check --frozen
-      - run: deno lint
-      - run: deno fmt
-      - run: deno test
+      - name: Deno check, lint, fmt, test
+        run: |
+          deno check --frozen
+          deno lint
+          deno fmt
+          deno test
+        working-directory: deno/example
       - run: node scripts/gh-diffcheck.js
