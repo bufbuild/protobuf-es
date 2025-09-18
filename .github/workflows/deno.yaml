@@ -44,7 +44,7 @@ jobs:
           restore-keys: protobuf-es/deno/example
       - name: Deno check, lint, fmt, test
         run: |
-          deno check --frozen
+          deno check --frozen src/**
           deno lint
           deno fmt
           deno test
