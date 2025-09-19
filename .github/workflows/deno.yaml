@@ -30,3 +30,24 @@ jobs:
       - run: npm ci
       - run: npx turbo run test -F './deno/conformance'
       - run: node scripts/gh-diffcheck.js
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: lts
+      - uses: actions/checkout@v5
+      - uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: protobuf-es/deno/example/${{ github.sha }}
+          restore-keys: protobuf-es/deno/example
+      - name: Deno check, lint, fmt, test
+        run: |
+          deno check --frozen src/**
+          deno lint
+          deno fmt
+          deno test
+          deno task generate
+        working-directory: deno/example
+      - run: node scripts/gh-diffcheck.js

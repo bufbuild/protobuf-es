@@ -1,0 +1,16 @@
+{
+  "imports": {
+    "@std/io": "jsr:@std/io@^0.225.2",
+    "@bufbuild/protobuf": "npm:@bufbuild/protobuf@2.9.0",
+    "@bufbuild/protoc-gen-es": "npm:@bufbuild/protoc-gen-es@2.9.0"
+  },
+  "tasks": {
+    "generate": {
+      "command": "deno run --allow-read --allow-env --allow-run --allow-scripts npm:@bufbuild/buf/buf generate"
+    }
+  },
+  "nodeModulesDir": "auto", // for "postinstall" script of @bufbuild/buf
+  "fmt": {
+    "exclude": ["src/gen/"]
+  }
+}
