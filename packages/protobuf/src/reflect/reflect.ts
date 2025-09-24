@@ -71,17 +71,21 @@ export function reflect<Desc extends DescMessage>(
   return new ReflectMessageImpl(messageDesc, message, check);
 }
 
+const messageSortedFields = new WeakMap<DescMessage, DescField[]>();
+
 class ReflectMessageImpl implements ReflectMessage {
   readonly desc: DescMessage;
   readonly fields: readonly DescField[];
   get sortedFields() {
-    return (
-      this._sortedFields ??
-      // biome-ignore lint/suspicious/noAssignInExpressions: no
-      (this._sortedFields = this.desc.fields
-        .concat()
-        .sort((a, b) => a.number - b.number))
-    );
+    const cached = messageSortedFields.get(this.desc);
+    if (cached) {
+      return cached;
+    }
+    const sortedFields = this.desc.fields
+      .concat()
+      .sort((a, b) => a.number - b.number);
+    messageSortedFields.set(this.desc, sortedFields);
+    return sortedFields;
   }
   readonly members: readonly (DescField | DescOneof)[];
   readonly message: Message;
@@ -89,7 +93,6 @@ class ReflectMessageImpl implements ReflectMessage {
   readonly [unsafeLocal]: Message;
   private readonly check: boolean;
   private _fieldsByNumber: Map<number, DescField> | undefined;
-  private _sortedFields: DescField[] | undefined;
   private lists = new Map<DescField, ReflectList>();
   private maps = new Map<DescField, ReflectMap>();
 
