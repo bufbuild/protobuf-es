@@ -627,9 +627,8 @@ const funcDef = func(
         then: [
           {
             if: parens(
-              lines
-                .get(lines.$length.minus(1))
-                .$length.plus(id("word").$length)
+              lines.get(lines.$length.minus(1)).$length
+                .plus(id("word").$length)
                 .plus(1),
             ).isGreaterThan(width),
             then: lines._push(""),

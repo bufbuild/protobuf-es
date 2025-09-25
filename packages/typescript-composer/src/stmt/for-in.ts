@@ -27,18 +27,19 @@ class ForInNode implements Node<"forIn", Node.Family.STMT> {
     return `for (const ${this.for} in ${this.in}) ${this.then}`;
   }
 
-  static marshal(forId: IdInput, inExpr: ExprInput, then: BlockInput): ForIn;
+  static marshal(
+    forId: IdInput,
+    inExpr: ExprInput,
+    then: FofInThenInput,
+  ): ForIn;
   static marshal(input: ForInInput): ForIn;
-  static marshal(...input: ForInTuple | [ForInInput]): ForIn {
-    if (input.length === 1) {
-      return new ForInNode(
-        id(input[0].for),
-        expr(input[0].in),
-        blockish(input[0].then),
-      );
-    }
+  static marshal(...i: ForInTuple | [ForInInput]): ForIn {
+    const [itemId, inExpr, thenStmt] =
+      i.length === 1 ? [i[0].for, i[0].in, i[0].then] : i;
+    const item = id(itemId);
+    const then = typeof thenStmt === "function" ? thenStmt(item) : thenStmt;
 
-    return new ForInNode(id(input[0]), expr(input[1]), blockish(input[2]));
+    return new ForInNode(item, expr(inExpr), blockish(then));
   }
 
   static is(input: UnknownNodeInput): input is ForIn {
@@ -52,13 +53,15 @@ class ForInNode implements Node<"forIn", Node.Family.STMT> {
       hasNodeInputProperty(input, "in") &&
       isExprInput(input.for) &&
       hasNodeInputProperty(input, "then") &&
-      isBlockInput(Array.isArray(input.then) ? input.then : [input.then])
+      (isBlockInput(Array.isArray(input.then) ? input.then : [input.then]) ||
+        typeof input.then === "function")
     );
   }
 }
 
-type ForInTuple = [IdInput, ExprInput, BlockInput];
-export type ForInInput = { for: IdInput; in: ExprInput; then: BlockInput };
+type FofInThenInput = BlockInput | ((item: Id) => BlockInput);
+type ForInTuple = [IdInput, ExprInput, FofInThenInput];
+export type ForInInput = { for: IdInput; in: ExprInput; then: FofInThenInput };
 export type ForIn = ForInNode;
 export const ForIn = provider(ForInNode);
 export const { forIn, isForIn, isForInInput } = ForIn;

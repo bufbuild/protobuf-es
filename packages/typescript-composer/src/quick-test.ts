@@ -80,17 +80,17 @@ const funcDef = func(
       {
         for: "word",
         of: text._split(" "),
-        then: [
+        then: (word) => [
           {
             if: parens(
               lines
                 .get(lines.$length.minus(1))
-                .$length.plus(id("word").$length)
+                .$length.plus(word.$length)
                 .plus(1),
             ).isGreaterThan(width),
             then: lines._push(""),
           },
-          lines.get(lines.$length.minus(1)).add(literal(" ").plus(id("word"))),
+          lines.get(lines.$length.minus(1)).add(literal(" ").plus(word)),
         ],
       },
       { return: lines._join("\n") },
