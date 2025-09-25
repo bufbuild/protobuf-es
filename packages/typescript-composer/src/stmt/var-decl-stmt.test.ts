@@ -30,7 +30,7 @@ void suite("print", () => {
 
     assert.equal(
       statement.toString(),
-      "const foo, bar",
+      "const foo, bar;",
       "A barebones `VarDeclStmt` instance must print correctly",
     );
   });

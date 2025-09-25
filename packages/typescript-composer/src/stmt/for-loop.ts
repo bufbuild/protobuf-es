@@ -30,7 +30,7 @@ export class ForLoopNode implements Node<"forLoop", Node.Family.STMT> {
   }
 
   toString() {
-    return `for (${this.for}; ${this.cond}; ${this.each}) ${this.then}`;
+    return `for (${this.for} ${this.cond}; ${this.each}) ${this.then}`;
   }
 
   static marshal(

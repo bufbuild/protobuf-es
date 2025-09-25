@@ -35,10 +35,6 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
     return `function ${this.id}(${this.args.join(", ")})${returnTypeAnnotation} ${this.body}`;
   }
 
-  asRef() {
-    return ref(this);
-  }
-
   static marshal<
     I extends RawArgInputTuple,
     A extends I & ArgInputTuple<I>,

@@ -17,7 +17,6 @@ import {
 } from "./expr.js";
 import { type Id, id, isIdInput } from "./id.js";
 import type { IdInput } from "./id.js";
-import { ref } from "./ref.js";
 
 export class VarDeclNode implements NamedNode<"varDecl"> {
   static readonly kind = "varDecl";
@@ -37,10 +36,6 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
     if (this.value) declaration += ` = ${this.value}`;
 
     return declaration;
-  }
-
-  asRef() {
-    return ref(this);
   }
 
   static marshal(name: IdInput): VarDecl;

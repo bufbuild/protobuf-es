@@ -1,7 +1,16 @@
 import { type IdInput, isIdInput } from "../expr/id.js";
-import { type VarDeclList, isVarDeclList } from "../expr/var-decl-list.js";
+import {
+  type VarDeclList,
+  isVarDeclList,
+  isVarDeclListInput,
+} from "../expr/var-decl-list.js";
 import { type VarDeclListInput, varDeclList } from "../expr/var-decl-list.js";
-import { isVarDecl, isVarDeclInput } from "../expr/var-decl.js";
+import {
+  type VarDecl,
+  type VarDeclInput,
+  isVarDecl,
+  isVarDeclInput,
+} from "../expr/var-decl.js";
 import {
   Node,
   type UnknownNodeInput,
@@ -20,15 +29,19 @@ export class VarDeclStmtNode implements Node<"varDeclStmt", Node.Family.STMT> {
   ) {}
 
   toString() {
-    return `${this.keyword} ${this.list}`;
+    return `${this.keyword} ${this.list};`;
   }
 
-  static marshal(input: ConstVarDeclList): VarDeclStmt;
   static marshal(input: ConstIdInput): VarDeclStmt;
+  static marshal(input: ConstVarDeclInput): VarDeclStmt;
+  static marshal(input: ConstVarDecl): VarDeclStmt;
   static marshal(input: ConstVarDeclListInput): VarDeclStmt;
-  static marshal(input: LetVarDeclList): VarDeclStmt;
+  static marshal(input: ConstVarDeclList): VarDeclStmt;
   static marshal(input: LetIdInput): VarDeclStmt;
+  static marshal(input: LetVarDeclInput): VarDeclStmt;
+  static marshal(input: LetVarDecl): VarDeclStmt;
   static marshal(input: LetVarDeclListInput): VarDeclStmt;
+  static marshal(input: LetVarDeclList): VarDeclStmt;
   static marshal(input: VarDeclStmt): VarDeclStmt;
   static marshal(input: VarDeclStmtInput): VarDeclStmt;
   static marshal(input: ConstInput): VarDeclStmt;
@@ -40,11 +53,19 @@ export class VarDeclStmtNode implements Node<"varDeclStmt", Node.Family.STMT> {
       ? "const"
       : "let";
     const list = (
-      input as { [keyword]: VarDeclList | IdInput | VarDeclListInput }
+      input as {
+        [keyword]:
+          | IdInput
+          | VarDeclList
+          | VarDecl
+          | VarDeclInput
+          | VarDeclListInput;
+      }
     )[keyword];
 
     if (isVarDeclList(list)) return new VarDeclStmtNode(keyword, list);
-    if (isIdInput(list)) return new VarDeclStmtNode(keyword, varDeclList(list));
+    if (isVarDeclInput(list) || isVarDecl(list) || isIdInput(list))
+      return new VarDeclStmtNode(keyword, varDeclList(list));
     return new VarDeclStmtNode(keyword, varDeclList(...list));
   }
 
@@ -83,8 +104,11 @@ export class VarDeclStmtNode implements Node<"varDeclStmt", Node.Family.STMT> {
       ? input.const
       : (input as { let: UnknownNodeInput }).let;
 
-    if (isVarDeclList(value)) return true;
     if (isIdInput(value)) return true;
+    if (isVarDeclInput(value)) return true;
+    if (isVarDecl(value)) return true;
+    if (isVarDeclListInput(value)) return true;
+    if (isVarDeclList(value)) return true;
     if (
       Array.isArray(value) &&
       value.length < 1 &&
@@ -99,23 +123,35 @@ export class VarDeclStmtNode implements Node<"varDeclStmt", Node.Family.STMT> {
 type VarDeclStmtNodeKeyword = "const" | "let";
 export type FlexibleVarDeclListInput = VarDeclList | IdInput | VarDeclListInput;
 
-type ConstVarDeclList = { const: VarDeclList };
 type ConstIdInput = { const: IdInput };
+type ConstVarDeclInput = { const: VarDeclInput };
+type ConstVarDecl = { const: VarDecl };
 type ConstVarDeclListInput = { const: VarDeclListInput };
-type LetVarDeclList = { let: VarDeclList };
+type ConstVarDeclList = { const: VarDeclList };
 type LetIdInput = { let: IdInput };
+type LetVarDeclInput = { let: VarDeclInput };
+type LetVarDecl = { let: VarDecl };
+type LetVarDeclList = { let: VarDeclList };
 type LetVarDeclListInput = { let: VarDeclListInput };
 
-type ConstInput = { const: VarDeclList | IdInput | VarDeclListInput };
-type LetInput = { let: VarDeclList | IdInput | VarDeclListInput };
+type ConstInput = {
+  const: IdInput | VarDeclInput | VarDecl | VarDeclListInput | VarDeclList;
+};
+type LetInput = {
+  let: IdInput | VarDeclInput | VarDecl | VarDeclListInput | VarDeclList;
+};
 
 export type VarDeclStmtInput =
-  | ConstVarDeclList
   | ConstIdInput
+  | ConstVarDeclInput
+  | ConstVarDecl
   | ConstVarDeclListInput
-  | LetVarDeclList
+  | ConstVarDeclList
   | LetIdInput
+  | LetVarDeclInput
+  | LetVarDecl
   | LetVarDeclListInput
+  | LetVarDeclList
   | VarDeclStmt
   | ConstInput
   | LetInput;

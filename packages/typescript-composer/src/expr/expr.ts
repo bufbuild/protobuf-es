@@ -5,6 +5,7 @@ import {
   isNode,
 } from "../plumbing.js";
 import { type Access, access } from "./access.js";
+import { type Binary, binary } from "./binary.js";
 import { type Call, call } from "./call.js";
 import {
   type Literal,
@@ -12,6 +13,7 @@ import {
   isLiteralInput,
   literal,
 } from "./literal/literal.js";
+import { isRefInput, ref } from "./ref.js";
 
 export type Expr<E extends UnknownExpr = UnknownExpr> = E;
 
@@ -21,13 +23,45 @@ function capitalize<S extends string>(s: S): Capitalize<S> {
 
 const isExprProxyKey = Symbol("isExprProxyKey");
 
+const binaryExprMap = {
+  isEqualTo: "==",
+  isStrictlyEqualTo: "===",
+  isNotEqualTo: "!=",
+  isNotStrictlyEqualTo: "!==",
+  isGreaterThan: ">",
+  isAtLeast: ">=",
+  isLessThan: "<",
+  isAtMost: "<=",
+  plus: "+",
+  minus: "-",
+  add: "+=",
+  subtract: "-=",
+  assign: "=",
+} as const;
+
 export function exprProxy<N extends Node<string>>(base: N) {
   return new Proxy(base, {
     get(target: N, name, receiver: N & ExprNode<N>) {
-      if (typeof name === "string" && name.startsWith("$")) {
-        if (name === "$") return exprCallingProxy(receiver);
-        return access(receiver, name.slice(1));
+      if (typeof name === "string") {
+        if (name.startsWith("$") || name == "get") {
+          const r = isRefInput(receiver) ? ref(receiver) : receiver;
+          if (name === "$" || name == "get") return exprAccessProxy(r);
+          return access(r, name.slice(1));
+        }
+        if (name.startsWith("_") || name == "call") {
+          const r = isRefInput(receiver) ? ref(receiver) : receiver;
+          if (name === "_" || name == "call") return exprCallingProxy(r);
+          return exprCallingProxy(access(r, name.slice(1)));
+        }
       }
+      if (Object.hasOwn(binaryExprMap, name)) {
+        const r = isRefInput(receiver) ? ref(receiver) : receiver;
+        return exprBinaryProxy(
+          r,
+          binaryExprMap[name as keyof typeof binaryExprMap],
+        );
+      }
+
       if (typeof name === "symbol" && name === isExprProxyKey) {
         return true;
       }
@@ -38,18 +72,22 @@ export function exprProxy<N extends Node<string>>(base: N) {
 }
 
 type Caller = (...args: ExprInput[]) => Call;
-type CallableExpr = Expr & Caller;
+type Accessor = (index: ExprInput) => Access;
+type Binator = (index: ExprInput) => Binary;
 
-function exprCallingProxy(base: Expr): CallableExpr {
-  const func: Caller = (...args: ExprInput[]) => call(base, ...args);
+function exprCallingProxy(base: Expr): Caller {
+  return (...args: ExprInput[]) => call(base, ...args);
+}
 
-  return new Proxy(func, {
-    get() {
-      throw new Error(
-        "Property access is not supported for expression calling proxy.",
-      );
-    },
-  }) as CallableExpr;
+function exprAccessProxy(base: Expr): Accessor {
+  return (index: ExprInput) => access(base, index);
+}
+
+function exprBinaryProxy(
+  base: Expr,
+  operator: (typeof binaryExprMap)[keyof typeof binaryExprMap],
+): Binator {
+  return (left: ExprInput) => binary(base, operator, left);
 }
 
 export type ExprNode<N extends Node<string>> = N &
@@ -59,7 +97,17 @@ export type ExprNode<N extends Node<string>> = N &
     [Key in `$${string}`]: N extends ExprNode<Node<"access">> ? N : Access;
   } & {
     // As above...
-    $: (...args: ExprInput[]) => N extends ExprNode<Node<"call">> ? N : Call;
+    $: (index: ExprInput) => N extends ExprNode<Node<"access">> ? N : Access;
+    get: (index: ExprInput) => N extends ExprNode<Node<"access">> ? N : Access;
+    call: (...args: ExprInput[]) => N extends ExprNode<Node<"call">> ? N : Call;
+  } & {
+    [Key in `_${string}`]: (
+      ...args: ExprInput[]
+    ) => N extends ExprNode<Node<"call">> ? N : Call;
+  } & {
+    [Key in keyof typeof binaryExprMap]: (
+      right: ExprInput,
+    ) => N extends ExprNode<Node<"binary">> ? N : Binary;
   };
 
 export function exprProvider<
@@ -102,6 +150,7 @@ export function expr<E extends UnknownExpr>(input: E): E;
 export function expr(input: RawLiteralInput): Literal;
 export function expr(input: ExprInput): Expr;
 export function expr(input: ExprInput): Expr {
+  if (isRefInput(input)) return ref(input);
   if (isExpr(input)) return input;
   return literal(input);
 }
@@ -122,9 +171,11 @@ export function isExprInput(input: UnknownNodeInput): input is ExprInput {
 
 export * from "./access.js";
 export * from "./binary.js";
+export * from "./call.js";
 export * from "./id.js";
 export * from "./inline.js";
 export * from "./literal/literal.js";
+export * from "./parens.js";
 export * from "./ref.js";
 export * from "./var-decl.js";
 export * from "./var-decl-list.js";

@@ -20,9 +20,9 @@ void suite("dynamic expression access", () => {
     const expect = call(base, "bar");
 
     assert.deepEqual(
-      base.$("bar"),
+      base.call("bar"),
       expect,
-      "`x(y)` must be equivalent to `call(x, y)`",
+      "`x.call(y)` must be equivalent to `call(x, y)`",
     );
   });
 });

@@ -1,6 +1,5 @@
 import { type Expr, type ExprInput, expr, isExprInput } from "../expr/expr.js";
 import { type Id, type IdInput, id, isIdInput } from "../expr/id.js";
-import { ref } from "../expr/ref.js";
 import {
   type NamedNode,
   Node,
@@ -35,9 +34,6 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
     return declaration;
   }
 
-  asRef() {
-    return ref(this);
-  }
   static marshal(name: IdInput): Arg;
   static marshal(name: IdInput, defaultValue: ExprInput): Arg;
   static marshal(name: IdInput, type: TypeExpr): Arg;

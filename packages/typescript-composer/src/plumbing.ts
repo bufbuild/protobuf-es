@@ -1,5 +1,4 @@
 import type { Id } from "./expr/id.js";
-import type { Ref } from "./expr/ref.js";
 
 export function isNode(
   input: UnknownNodeInput,
@@ -30,7 +29,6 @@ export interface NamedNode<
   F extends Node.Family = Node.Family.EXPR,
 > extends Node<K, F> {
   readonly id: Id;
-  asRef(): Ref<this>;
 }
 
 export namespace Node {

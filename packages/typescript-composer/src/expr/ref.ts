@@ -1,6 +1,7 @@
 import { type NamedNode, Node, type UnknownNodeInput } from "../plumbing.js";
 import { hasNodeInputProperty } from "../plumbing.js";
-import { type ExprNode, exprProvider, exprProxy } from "./expr.js";
+import { type ExprNode, exprProvider, exprProxy, isExpr } from "./expr.js";
+import { isId } from "./id.js";
 
 export class RefNode<T extends NamedNode<string, Node.Family>>
   implements Node<"ref">
@@ -17,12 +18,10 @@ export class RefNode<T extends NamedNode<string, Node.Family>>
   }
 
   static marshal<T extends NamedNode<string, Node.Family>>(
-    input: RefInput<T> | T,
+    input: RefInput<T>,
   ): Ref<T> {
     if (RefNode.is(input)) return input;
-    if (RefNode.#isObjectInput(input)) {
-      return RefNode.marshal(input.ref);
-    }
+    if (RefNode.#isObjectInput(input)) return RefNode.marshal(input.ref);
 
     const found = RefNode.#registry.find((t) => t.ref === input);
     if (found) return found as Ref<T>;
@@ -42,7 +41,15 @@ export class RefNode<T extends NamedNode<string, Node.Family>>
   static isInput(
     input: UnknownNodeInput,
   ): input is RefInput<NamedNode<string, Node.Family>> {
-    return isRef(input) || RefNode.#isObjectInput(input);
+    return (
+      isRef(input) || RefNode.#isObjectInput(input) || RefNode.#isRefable(input)
+    );
+  }
+
+  static #isRefable(
+    input: UnknownNodeInput,
+  ): input is NamedNode<string, Node.Family> {
+    return isExpr(input) && hasNodeInputProperty(input, "id") && isId(input.id);
   }
 
   static #isObjectInput(
