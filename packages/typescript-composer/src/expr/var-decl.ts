@@ -1,11 +1,6 @@
 import { type NamedNode, Node, type UnknownNodeInput } from "../plumbing.js";
-import {
-  type TypeExpr,
-  isTypeExpr,
-  isTypeExprInput,
-  typeExpr,
-} from "../type/type-expr.js";
-import type { TypeExprInput } from "../type/type-expr.js";
+import { type Type, isType, isTypeInput, type } from "../type/type.js";
+import type { TypeInput } from "../type/type.js";
 import type { ExprNode } from "./expr.js";
 import {
   type Expr,
@@ -25,7 +20,7 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
 
   private constructor(
     readonly id: Id,
-    readonly type?: TypeExpr,
+    readonly type?: Type,
     readonly value?: Expr,
   ) {}
 
@@ -40,8 +35,8 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
 
   static marshal(name: IdInput): VarDecl;
   static marshal(name: IdInput, value: ExprInput): VarDecl;
-  static marshal(name: IdInput, type: TypeExpr): VarDecl;
-  static marshal(name: IdInput, type: TypeExpr, value: ExprInput): VarDecl;
+  static marshal(name: IdInput, type: Type): VarDecl;
+  static marshal(name: IdInput, type: Type, value: ExprInput): VarDecl;
   static marshal(...input: VarDeclInput): VarDecl;
   static marshal(varDecl: IdInput | VarDecl): VarDecl;
   static marshal(...input: VarDeclInput | [IdInput | VarDecl]): VarDecl {
@@ -54,10 +49,10 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
         new VarDeclNode(id(input[0]), undefined, expr(input[1])),
       );
     if (VarDeclNode.#isIdTypeTupleInput(input))
-      return exprProxy(new VarDeclNode(id(input[0]), typeExpr(input[1])));
+      return exprProxy(new VarDeclNode(id(input[0]), type(input[1])));
 
     return exprProxy(
-      new VarDeclNode(id(input[0]), typeExpr(input[1]), expr(input[2])),
+      new VarDeclNode(id(input[0]), type(input[1]), expr(input[2])),
     );
   }
 
@@ -98,7 +93,7 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
       Array.isArray(input) &&
       input.length === 2 &&
       isIdInput(input[0]) &&
-      isTypeExpr(input[1])
+      isType(input[1])
     );
   }
 
@@ -110,15 +105,15 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
       input.length === 3 &&
       isIdInput(input[0]) &&
       isExprInput(input[1]) &&
-      isTypeExprInput(input[2])
+      isTypeInput(input[2])
     );
   }
 }
 
 type IdTupleVarDeclInput = [IdInput];
 type IdValueTupleVarDeclInput = [IdInput, ExprInput];
-type IdTypeTupleVarDeclInput = [IdInput, TypeExpr];
-type IdTypeValueTupleVarDeclInput = [IdInput, TypeExprInput, ExprInput];
+type IdTypeTupleVarDeclInput = [IdInput, Type];
+type IdTypeValueTupleVarDeclInput = [IdInput, TypeInput, ExprInput];
 
 export type VarDeclInput =
   | IdTupleVarDeclInput

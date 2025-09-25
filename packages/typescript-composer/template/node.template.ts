@@ -1,5 +1,5 @@
 import { Node } from "../src/plumbing.js";
-import { code, literal, typeExpr } from "../src/porcelain.js";
+import { code, literal, type } from "../src/porcelain.js";
 
 const familyMap = {
   [Node.Family.CODE]: "CODE",
@@ -23,10 +23,10 @@ export function generate(
     .join("");
 
   const familyName = `Node.Family.${familyMap[family]}`;
-  const nodeType = typeExpr(
+  const nodeType = type(
     `Node<${literal(lowerNodeName)}${family !== Node.Family.EXPR ? `, ${familyName}` : ""}>`,
   );
-  const inputType = typeExpr(wrappedType);
+  const inputType = type(wrappedType);
 
   return code`
     import { Node, type UnknownNodeInput } from "../plumbing.js";

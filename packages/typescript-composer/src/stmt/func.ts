@@ -7,7 +7,7 @@ import {
   type UnknownNodeInput,
   provider,
 } from "../plumbing.js";
-import { type TypeExpr, isTypeExprInput, typeExpr } from "../type/type-expr.js";
+import { type Type, isTypeInput, type } from "../type/type.js";
 import { type Arg, type ArgInput, arg, isArgInput } from "./arg.js";
 import {
   type AtomicBlockInput,
@@ -27,7 +27,7 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
     readonly id: Id,
     readonly args: Arg[],
     readonly body: Block,
-    readonly returnType?: TypeExpr,
+    readonly returnType?: Type,
   ) {}
 
   toString() {
@@ -39,7 +39,7 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
     I extends RawArgInputTuple,
     A extends I & ArgInputTuple<I>,
     B extends ArgFunc<I, A>,
-  >(name: IdInput, args: I, body: B, returnType?: TypeExpr): Func;
+  >(name: IdInput, args: I, body: B, returnType?: Type): Func;
   static marshal<
     I extends RawArgInputTuple,
     A extends I & ArgInputTuple<I>,
@@ -49,7 +49,7 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
     I extends RawArgInputTuple,
     A extends I & ArgInputTuple<I>,
     B extends ArgFunc<I, A>,
-  >(name: IdInput, args: A, body: B, returnType?: TypeExpr): Func {
+  >(name: IdInput, args: A, body: B, returnType?: Type): Func {
     const argInstances = args.map((a) =>
       arg(...(Array.isArray(a) ? a : [a])),
     ) as Arg[];
@@ -61,7 +61,7 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
       id(name),
       argInstances,
       block(...(Array.isArray(bodyResult) ? bodyResult : [bodyResult])),
-      returnType ? typeExpr(returnType) : undefined,
+      returnType ? type(returnType) : undefined,
     );
   }
 
@@ -73,7 +73,7 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
     I extends RawArgInputTuple,
     A extends I & ArgInputTuple<I>,
     B extends ArgFunc<I, A>,
-  >(input: [IdInput, A, B, TypeExpr?]): input is FuncInput<I, A, B> {
+  >(input: [IdInput, A, B, Type?]): input is FuncInput<I, A, B> {
     return (
       Array.isArray(input) &&
       (input.length === 3 || input.length === 4) &&
@@ -81,7 +81,7 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
       Array.isArray(input[1]) &&
       input[1].every((a) => isArgInput(a)) &&
       typeof input[2] === "function" &&
-      (input[3] === undefined || isTypeExprInput(input[3]))
+      (input[3] === undefined || isTypeInput(input[3]))
     );
   }
 }
@@ -94,7 +94,7 @@ export type FuncInput<
   I extends RawArgInputTuple,
   A extends ArgInputTuple<I>,
   B extends ArgFunc<I, A>,
-> = [IdInput, A, B, TypeExpr?];
+> = [IdInput, A, B, Type?];
 
 type ArgFunc<I extends RawArgInputTuple, A extends ArgInputTuple<I>> = (
   ...args: ArgRefTuple<I, A>

@@ -4,7 +4,7 @@ import {
   isTemplateStringsArray,
 } from "../plumbing.js";
 import { hasNodeInputProperty } from "../plumbing.js";
-import type { TypeExpr } from "../type/type-expr.js";
+import type { Type } from "../type/type.js";
 import {
   type Expr,
   type ExprInput,
@@ -20,7 +20,7 @@ export class InlineNode implements Node<"inline"> {
   readonly kind = "inline" as const;
   readonly family = Node.Family.EXPR;
 
-  private constructor(readonly parts: (string | Expr | TypeExpr)[]) {}
+  private constructor(readonly parts: (string | Expr | Type)[]) {}
 
   toString() {
     return this.parts.join("");
@@ -111,11 +111,7 @@ export class InlineNode implements Node<"inline"> {
   }
 }
 
-type AtomicInlineInput =
-  | string
-  | Expr
-  | TypeExpr
-  | { inline: AtomicInlineInput[] };
+type AtomicInlineInput = string | Expr | Type | { inline: AtomicInlineInput[] };
 export type InlineInput = AtomicInlineInput[];
 export type Inline = ExprNode<InlineNode>;
 export const Inline = exprProvider(InlineNode);

@@ -7,12 +7,12 @@ import {
   provider,
 } from "../plumbing.js";
 import {
-  type TypeExpr,
-  type TypeExprInput,
-  isTypeExpr,
-  isTypeExprInput,
-  typeExpr,
-} from "../type/type-expr.js";
+  type Type,
+  type TypeInput,
+  isType,
+  isTypeInput,
+  type,
+} from "../type/type.js";
 
 class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
   static readonly kind = "arg";
@@ -21,7 +21,7 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
 
   private constructor(
     readonly id: Id,
-    readonly type?: TypeExpr,
+    readonly type?: Type,
     readonly value?: Expr,
   ) {}
 
@@ -36,12 +36,8 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
 
   static marshal(name: IdInput): Arg;
   static marshal(name: IdInput, defaultValue: ExprInput): Arg;
-  static marshal(name: IdInput, type: TypeExpr): Arg;
-  static marshal(
-    name: IdInput,
-    type: TypeExprInput,
-    defaultValue: ExprInput,
-  ): Arg;
+  static marshal(name: IdInput, type: Type): Arg;
+  static marshal(name: IdInput, type: TypeInput, defaultValue: ExprInput): Arg;
   static marshal(...input: TupleArgInput | [Arg | IdInput]): Arg;
   static marshal(...input: TupleArgInput | [Arg | IdInput]): Arg {
     if (input.length === 1) {
@@ -54,9 +50,9 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
     if (ArgNode.#isIdValueTupleInput(input))
       return new ArgNode(id(input[0]), undefined, expr(input[1]));
     if (ArgNode.#isIdTypeTupleInput(input))
-      return new ArgNode(id(input[0]), typeExpr(input[1]));
+      return new ArgNode(id(input[0]), type(input[1]));
 
-    return new ArgNode(id(input[0]), typeExpr(input[1]), expr(input[2]));
+    return new ArgNode(id(input[0]), type(input[1]), expr(input[2]));
   }
 
   static is(input: UnknownNodeInput): input is Arg {
@@ -100,7 +96,7 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
       Array.isArray(input) &&
       input.length === 2 &&
       isIdInput(input[0]) &&
-      isTypeExpr(input[1])
+      isType(input[1])
     );
   }
 
@@ -112,15 +108,15 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
       input.length === 3 &&
       isIdInput(input[0]) &&
       isExprInput(input[1]) &&
-      isTypeExprInput(input[2])
+      isTypeInput(input[2])
     );
   }
 }
 
 type IdTupleArgInput = [IdInput];
 type IdValueTupleArgInput = [IdInput, ExprInput];
-type IdTypeTupleArgInput = [IdInput, TypeExpr];
-type IdTypeValueTupleArgInput = [IdInput, TypeExprInput, ExprInput];
+type IdTypeTupleArgInput = [IdInput, Type];
+type IdTypeValueTupleArgInput = [IdInput, TypeInput, ExprInput];
 type TupleArgInput =
   | IdTupleArgInput
   | IdValueTupleArgInput

@@ -8,7 +8,7 @@ import {
 } from "../plumbing.js";
 import { stmt } from "../stmt/stmt.js";
 import type { StmtInput } from "../stmt/stmt.js";
-import { type TypeExpr, isTypeExpr } from "../type/type-expr.js";
+import { type Type, isType } from "../type/type.js";
 import { type CodeSequence, codeSequence, isCodeSequence } from "./sequence.js";
 
 class CodeNode implements Node<"code", Node.Family.CODE> {
@@ -42,12 +42,12 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
   static marshal(...input: [CodeInput, number]): Code;
   static marshal(
     segs: TemplateStringsArray,
-    ...params: (ExprInput | StmtInput | TypeExpr)[]
+    ...params: (ExprInput | StmtInput | Type)[]
   ): Code;
   static marshal(
     input: CodeInput | TemplateStringsArray,
-    param?: number | ExprInput | StmtInput | TypeExpr,
-    ...additionalParams: (ExprInput | StmtInput | TypeExpr)[]
+    param?: number | ExprInput | StmtInput | Type,
+    ...additionalParams: (ExprInput | StmtInput | Type)[]
   ): Code {
     if (isTemplateStringsArray(input)) {
       const params = param !== undefined ? [param, ...additionalParams] : [];
@@ -73,7 +73,7 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
 
   static tag(
     segs: TemplateStringsArray,
-    ...params: (ExprInput | StmtInput | TypeExpr)[]
+    ...params: (ExprInput | StmtInput | Type)[]
   ): Code {
     // Require a leading new line. It looks nicer for a multiline template and it
     // helps us ensure the caller is on the same page that this is meant to expand
@@ -191,7 +191,7 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
         currentLine = currentLine.with(
           typeof param === "string"
             ? param
-            : isTypeExpr(param)
+            : isType(param)
               ? param
               : isExprInput(param)
                 ? expr(param)

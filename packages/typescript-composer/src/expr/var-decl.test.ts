@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { suite, test } from "node:test";
-import { typeExpr } from "../type/type-expr.js";
+import { type } from "../type/type.js";
 import { id } from "./id.js";
 import { stringLiteral } from "./literal/string.js";
 import { isVarDecl, varDecl } from "./var-decl.js";
@@ -33,7 +33,7 @@ void suite("print", () => {
     );
   });
   void test("with type", () => {
-    const decl = varDecl(id("foo"), typeExpr(id("Foo")));
+    const decl = varDecl(id("foo"), type(id("Foo")));
 
     assert.equal(
       decl.toString(),
@@ -51,7 +51,7 @@ void suite("print", () => {
     );
   });
   void test("with type and value", () => {
-    const decl = varDecl(id("foo"), typeExpr(id("Foo")), stringLiteral("bar"));
+    const decl = varDecl(id("foo"), type(id("Foo")), stringLiteral("bar"));
 
     assert.equal(
       decl.toString(),

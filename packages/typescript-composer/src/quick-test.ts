@@ -16,7 +16,7 @@ import {
   parens,
   ret,
   stringLiteral,
-  typeExpr,
+  type,
   varConst,
   varDecl,
   varDeclList,
@@ -58,7 +58,7 @@ const file = code`
         ),
       )}
     `,
-    typeExpr("void"),
+    type("void"),
   )}
 
   console.log("Listing current directory...");
@@ -70,7 +70,7 @@ console.log(file.toString());
 const funcDef = func(
   "wrap",
   [
-    ["text", typeExpr("string")],
+    ["text", type("string")],
     ["width", 100],
   ],
   (text, width) => {

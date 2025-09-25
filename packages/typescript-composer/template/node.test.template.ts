@@ -1,4 +1,4 @@
-import { code, typeExpr } from "../src/porcelain.js";
+import { code, type } from "../src/porcelain.js";
 
 export function generate(kebabNodeName: string, wrappedType: string) {
   const upperNodeName = kebabNodeName
@@ -10,7 +10,7 @@ export function generate(kebabNodeName: string, wrappedType: string) {
     .map((s, i) => (i > 0 ? s.slice(0, 1).toUpperCase() + s.slice(1) : s))
     .join("");
 
-  const inputType = typeExpr(wrappedType);
+  const inputType = type(wrappedType);
 
   return code`
     import assert from "node:assert";

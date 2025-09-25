@@ -1,6 +1,6 @@
 import { id, isIdInput } from "../expr/id.js";
 import { Node, type UnknownNodeInput, provider } from "../plumbing.js";
-import { isTypeExprInput, typeExpr } from "../type/type-expr.js";
+import { isTypeInput, type } from "../type/type.js";
 
 export class CodeSequenceNode
   implements Node<"codeSequence", Node.Family.CODE>
@@ -36,7 +36,7 @@ export class CodeSequenceNode
             | (string | Node<string, Node.Family>)[] => {
             if (CodeSequenceNode.is(p)) return p.parts;
             if (isIdInput(p)) return id(p);
-            if (isTypeExprInput(p)) return typeExpr(p);
+            if (isTypeInput(p)) return type(p);
             return p;
           },
         ),

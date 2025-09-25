@@ -10,13 +10,13 @@ provided functions:
 const funcDef = func(
   "wrap",
   [
-    arg(id("text"), typeExpr("string")),
+    arg(id("text"), type("string")),
     arg(id("width"), numberLiteral(100)),
   ],
   (text, width) => {
     const lines = varDecl(
       id("lines"),
-      typeExpr("string[]"),
+      type("string[]"),
       arrayLiteral(stringLiteral("")),
     );
     return block(
@@ -101,7 +101,7 @@ args:
       kind: id
       id: text
     type:
-      kind: typeExpr
+      kind: type
       family: type
       id:
         family: expression
@@ -114,7 +114,7 @@ args:
       kind: id
       id: width
     type:
-      kind: typeExpr
+      kind: type
       family: type
       id:
         family: expression
@@ -142,7 +142,7 @@ body:
               kind: id
               id: lines
             type:
-              kind: typeExpr
+              kind: type
               family: type
               id:
                 family: expression
@@ -178,7 +178,7 @@ body:
                 kind: id
                 id: text
               type:
-                kind: typeExpr
+                kind: type
                 family: type
                 id:
                   family: expression
@@ -227,7 +227,7 @@ body:
                               kind: id
                               id: lines
                             type:
-                              kind: typeExpr
+                              kind: type
                               family: type
                               id:
                                 family: expression
@@ -257,7 +257,7 @@ body:
                                   kind: id
                                   id: lines
                                 type:
-                                  kind: typeExpr
+                                  kind: type
                                   family: type
                                   id:
                                     family: expression
@@ -312,7 +312,7 @@ body:
                     kind: id
                     id: width
                   type:
-                    kind: typeExpr
+                    kind: type
                     family: type
                     id:
                       family: expression
@@ -345,7 +345,7 @@ body:
                             kind: id
                             id: lines
                           type:
-                            kind: typeExpr
+                            kind: type
                             family: type
                             id:
                               family: expression
@@ -385,7 +385,7 @@ body:
                       kind: id
                       id: lines
                     type:
-                      kind: typeExpr
+                      kind: type
                       family: type
                       id:
                         family: expression
@@ -415,7 +415,7 @@ body:
                           kind: id
                           id: lines
                         type:
-                          kind: typeExpr
+                          kind: type
                           family: type
                           id:
                             family: expression
@@ -469,7 +469,7 @@ body:
                 kind: id
                 id: lines
               type:
-                kind: typeExpr
+                kind: type
                 family: type
                 id:
                   family: expression
@@ -501,7 +501,7 @@ Let's start with this (constant) variable declaration:
 ```typescript
 const lines = varDecl(
   id("lines"),
-  typeExpr("string[]"),
+  type("string[]"),
   arrayLiteral(stringLiteral("")),
 );
 ```
@@ -515,7 +515,7 @@ expression, we can assume that an array is meant to be an array literal, and fur
 within it is meant to be a string literal. So we can use:
 
 ```typescript
-const lines = varDecl("lines", typeExpr("string[]"), [""]);
+const lines = varDecl("lines", type("string[]"), [""]);
 ```
 
 The definition of arguments for the function can be similarly optimized, and can even accept an
@@ -523,7 +523,7 @@ array of tuples in lieu of `arg()` calls which will generally save you having to
 all.
 
 ```typescript
-[["text", typeExpr("string")], ["width", 100]]
+[["text", type("string")], ["width", 100]]
 ```
 
 Now let's look at this phrase:
@@ -582,11 +582,11 @@ All these optimizations result in:
 const funcDef = func(
   "wrap",
   [
-    ["text", typeExpr("string")],
+    ["text", type("string")],
     ["width", 100],
   ],
   (text, width) => {
-    const lines = varDecl("lines", typeExpr("string[]"), [""]);
+    const lines = varDecl("lines", type("string[]"), [""]);
     return [
       varConst(lines),
       forOf("word", text._split(" "), [
@@ -614,7 +614,7 @@ imports, and it's also more readable:
 const funcDef = func(
   "wrap",
   [
-    ["text", typeExpr("string")],
+    ["text", type("string")],
     ["width", 100],
   ],
   (text, width) => {

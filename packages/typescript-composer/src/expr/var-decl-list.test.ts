@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { suite, test } from "node:test";
-import { typeExpr } from "../type/type-expr.js";
+import { type } from "../type/type.js";
 import { id } from "./id.js";
 import { numberLiteral } from "./literal/number.js";
 import { isVarDeclList, varDeclList } from "./var-decl-list.js";
@@ -27,7 +27,7 @@ void suite("print", () => {
   void test("barebones", () => {
     const list = varDeclList(
       varDecl(id("foo")),
-      varDecl(id("bar"), typeExpr(id("Bar")), numberLiteral(5)),
+      varDecl(id("bar"), type(id("Bar")), numberLiteral(5)),
     );
 
     assert.equal(

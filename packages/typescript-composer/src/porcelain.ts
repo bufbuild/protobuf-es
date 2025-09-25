@@ -4,12 +4,12 @@ import { type StmtInput, stmt } from "./stmt/stmt.js";
 export * from "./code/code.js";
 export * from "./expr/expr.js";
 export * from "./stmt/stmt.js";
-export * from "./type/type-expr.js";
+export * from "./type/type.js";
 
 import * as CodeSpace from "./code/code.js";
 import * as ExprSpace from "./expr/expr.js";
 import * as StmtSpace from "./stmt/stmt.js";
-import * as TypeSpace from "./type/type-expr.js";
+import * as TypeSpace from "./type/type.js";
 
 export type NodeInput = ExprInput | StmtInput;
 

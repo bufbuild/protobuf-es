@@ -2,7 +2,7 @@ import assert from "node:assert";
 import { suite, test } from "node:test";
 import { id } from "../expr/id.js";
 import { stringLiteral } from "../expr/literal/string.js";
-import { typeExpr } from "../type/type-expr.js";
+import { type } from "../type/type.js";
 import { arg, isArg } from "./arg.js";
 
 void suite("isArg()", () => {
@@ -27,7 +27,7 @@ void suite("print", () => {
     );
   });
   void test("with type", () => {
-    const statement = arg(id("foo"), typeExpr(id("Foo")));
+    const statement = arg(id("foo"), type(id("Foo")));
 
     assert.equal(
       statement.toString(),
@@ -45,7 +45,7 @@ void suite("print", () => {
     );
   });
   void test("with type and value", () => {
-    const statement = arg(id("foo"), typeExpr(id("Foo")), stringLiteral("bar"));
+    const statement = arg(id("foo"), type(id("Foo")), stringLiteral("bar"));
 
     assert.equal(
       statement.toString(),
