@@ -98,6 +98,15 @@ const funcDef = func(
   },
 );
 
+// Argument of type '(text: never, width: never) => [{ const: VarDecl; }, { for: string; of: any; then: (word: Id) => [{ if: Binary; then: Call; }, Binary]; }, { return: Call; }]'
+// is not assignable to parameter of type 'BodyFunc<([string, number] | [string, TypeNode])[], [] & readonly Ref<ArgNode>[]>'.
+//  Types of parameters 'text' and 'args' are incompatible.
+//    Type '[] & readonly Ref<ArgNode>[]' is not assignable to type '[text: never, width: never]'.
+
+// Argument of type '(text: any, width: any) => ({ const: VarDecl; for?: undefined; of?: undefined; then?: undefined; return?: undefined; } | { for: string; of: any; then: (word: any) => (Binary | { if: Binary; then: Call; })[]; const?: undefined; return?: undefined; } | { ...; })[]'
+// is not assignable to parameter of type 'BodyFunc<([string, number] | [string, TypeNode])[], []>'.
+// Target signature provides too few arguments. Expected 2 or more, but got 0.
+
 console.log(JSON.stringify(funcDef, null, 2));
 console.log(funcDef.toString());
 
