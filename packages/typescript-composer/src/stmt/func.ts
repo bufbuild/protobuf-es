@@ -4,6 +4,7 @@ import { type Ref, ref } from "../expr/ref.js";
 import {
   type NamedNode,
   Node,
+  type Transformer,
   type UnknownNodeInput,
   provider,
 } from "../plumbing.js";
@@ -38,7 +39,7 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
   static marshal<const I extends ArgInput[]>(
     name: IdInput,
     args: I,
-    body: BodyFunc<I>,
+    body: BodyFunc<I> | Block,
     returnType?: Type,
   ): Func;
   static marshal<const I extends ArgInput[]>(func: FuncObjectInput<I>): Func;
@@ -53,13 +54,26 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
     ) as Arg[];
 
     const argRefs = argInstances.map((a) => ref(a)) as ArgRefTuple<I>;
-    const bodyResult = body(...argRefs);
+    const bodyResult = typeof body === "function" ? body(...argRefs) : body;
 
     return new FuncNode(
       id(name),
       argInstances,
       block(...(Array.isArray(bodyResult) ? bodyResult : [bodyResult])),
       returnType ? type(returnType) : undefined,
+    );
+  }
+
+  transform(t: Transformer) {
+    return t.replace(
+      this,
+      () =>
+        new FuncNode(
+          this.id.transform(t),
+          this.args.map((a) => a.transform(t)),
+          this.body.transform(t),
+          this.returnType ? this.returnType.transform(t) : undefined,
+        ),
     );
   }
 
@@ -86,14 +100,14 @@ export const { func, isFunc, isFuncInput } = Func;
 export type FuncInput<I extends readonly ArgInput[]> = readonly [
   IdInput,
   I,
-  BodyFunc<I>,
+  BodyFunc<I> | Block,
   Type?,
 ];
 
 interface FuncObjectInput<I extends readonly ArgInput[]> {
   id: IdInput;
   args: I;
-  body: BodyFunc<I>;
+  body: BodyFunc<I> | Block;
   returnType?: Type;
 }
 

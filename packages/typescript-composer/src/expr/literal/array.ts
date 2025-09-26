@@ -7,6 +7,7 @@ import {
   isExpr,
 } from "../../expr/expr.js";
 import { Node, type UnknownNodeInput } from "../../plumbing.js";
+import type { Transformer } from "../../plumbing.js";
 import { type RawLiteralInput, isLiteralInput, literal } from "./literal.js";
 
 export class ArrayLiteralNode implements Node<"arrayLiteral"> {
@@ -18,6 +19,12 @@ export class ArrayLiteralNode implements Node<"arrayLiteral"> {
 
   toString() {
     return `[${this.values.join(", ")}]`;
+  }
+
+  transform(t: Transformer): ArrayLiteral {
+    return t.replace(exprProxy(this), () =>
+      ArrayLiteralNode.marshal(this.values.map((v) => v.transform(t))),
+    );
   }
 
   static marshal(...input: ArrayLiteralInput): ArrayLiteral {

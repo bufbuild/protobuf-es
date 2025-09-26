@@ -5,6 +5,7 @@ import {
   hasNodeInputProperty,
   provider,
 } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { type BlockInput, blockish, isBlockInput } from "./block.js";
 import type { Stmt } from "./stmt.js";
 import {
@@ -31,6 +32,19 @@ export class ForLoopNode implements Node<"forLoop", Node.Family.STMT> {
 
   toString() {
     return `for (${this.for} ${this.cond}; ${this.each}) ${this.then}`;
+  }
+
+  transform(t: Transformer) {
+    return t.replace(
+      this,
+      () =>
+        new ForLoopNode(
+          this.for.transform(t),
+          this.cond.transform(t),
+          this.each.transform(t),
+          this.then.transform(t),
+        ),
+    );
   }
 
   static marshal(

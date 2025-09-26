@@ -1,4 +1,5 @@
 import { Node, type UnknownNodeInput } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import {
   type Expr,
   type ExprInput,
@@ -77,6 +78,10 @@ class BinaryNode implements Node<"binary"> {
 
   toString() {
     return `${this.left} ${this.op} ${this.right}`;
+  }
+
+  transform(_: Transformer): Binary {
+    return exprProxy(this);
   }
 
   static marshal(

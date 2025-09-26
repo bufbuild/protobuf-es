@@ -1,4 +1,5 @@
 import { Node, type UnknownNodeInput } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import {
   type ExprNode,
   expr,
@@ -23,6 +24,10 @@ class AccessNode implements Node<"access"> {
     if (isId(this.key)) return `${this.base}.${this.key}`;
 
     return `${this.base}[${this.key}]`;
+  }
+
+  transform(_: Transformer): Access {
+    return exprProxy(this);
   }
 
   static marshal(

@@ -5,6 +5,7 @@ import {
   hasNodeInputProperty,
   provider,
 } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 
 class RetNode implements Node<"ret", Node.Family.STMT> {
   static readonly kind = "ret" as const;
@@ -18,6 +19,10 @@ class RetNode implements Node<"ret", Node.Family.STMT> {
 
   toString(): string {
     return `return ${this.return};`;
+  }
+
+  transform(_: Transformer) {
+    return this;
   }
 
   static marshal(input: ExprInput | RetInput): Ret {

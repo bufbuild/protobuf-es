@@ -1,4 +1,5 @@
 import { Node, type UnknownNodeInput } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import {
   type Expr,
   type ExprInput,
@@ -18,6 +19,10 @@ class ParensNode implements Node<"parens"> {
 
   toString(): string {
     return `(${this.value})`;
+  }
+
+  transform(_: Transformer): Parens {
+    return exprProxy(this);
   }
 
   static marshal(input: ExprInput): Parens {

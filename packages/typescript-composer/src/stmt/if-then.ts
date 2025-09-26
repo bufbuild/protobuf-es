@@ -5,6 +5,7 @@ import {
   hasNodeInputProperty,
   provider,
 } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { blockish, isBlockInput } from "./block.js";
 import type { BlockInput, Stmt } from "./stmt.js";
 
@@ -24,6 +25,10 @@ export class IfThenNode implements Node<"ifThen", Node.Family.STMT> {
 
   toString(): string {
     return `if (${this.if}) ${this.then}${this.else ? ` else ${this.else}` : ""}`;
+  }
+
+  transform(_: Transformer) {
+    return this;
   }
 
   static marshal(...input: [IfThenInput] | IfThenTuple): IfThen {

@@ -1,4 +1,5 @@
 import { type NamedNode, Node, type UnknownNodeInput } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { type Type, isType, isTypeInput, type } from "../type/type.js";
 import type { TypeInput } from "../type/type.js";
 import type { ExprNode } from "./expr.js";
@@ -33,17 +34,33 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
     return declaration;
   }
 
+  transform(t: Transformer): VarDecl {
+    return exprProxy(
+      t.replace(
+        this,
+        () =>
+          new VarDeclNode(
+            this.id.transform(t),
+            this.type?.transform(t),
+            this.value?.transform(t),
+          ),
+      ),
+    );
+  }
+
   static marshal(name: IdInput): VarDecl;
-  static marshal(name: IdInput, value: ExprInput): VarDecl;
+  static marshal(name: IdInput, value: ExprInput | undefined): VarDecl;
   static marshal(name: IdInput, type: Type): VarDecl;
   static marshal(name: IdInput, type: Type, value: ExprInput): VarDecl;
   static marshal(...input: VarDeclInput): VarDecl;
-  static marshal(varDecl: IdInput | VarDecl): VarDecl;
-  static marshal(...input: VarDeclInput | [IdInput | VarDecl]): VarDecl {
+  static marshal(varDecl: VarDecl): VarDecl;
+  static marshal(...input: VarDeclInput | [VarDecl]): VarDecl {
     if (input.length === 1) {
       if (VarDeclNode.is(input[0])) return input[0];
       return exprProxy(new VarDeclNode(id(input[0])));
     }
+    if (VarDeclNode.#isIdTupleInput(input))
+      return exprProxy(new VarDeclNode(id(input[0])));
     if (VarDeclNode.#isIdValueTupleInput(input))
       return exprProxy(
         new VarDeclNode(id(input[0]), undefined, expr(input[1])),
@@ -72,7 +89,10 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
   static #isIdTupleInput(
     input: UnknownNodeInput,
   ): input is IdTupleVarDeclInput {
-    return Array.isArray(input) && input.length === 1 && isIdInput(input[0]);
+    if (!Array.isArray(input)) return false;
+    return (
+      input.filter((i) => i !== undefined).length === 1 && isIdInput(input[0])
+    );
   }
 
   static #isIdValueTupleInput(
@@ -110,7 +130,10 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
   }
 }
 
-type IdTupleVarDeclInput = [IdInput];
+type IdTupleVarDeclInput =
+  | [IdInput]
+  | [IdInput, undefined]
+  | [IdInput, undefined, undefined];
 type IdValueTupleVarDeclInput = [IdInput, ExprInput];
 type IdTypeTupleVarDeclInput = [IdInput, Type];
 type IdTypeValueTupleVarDeclInput = [IdInput, TypeInput, ExprInput];

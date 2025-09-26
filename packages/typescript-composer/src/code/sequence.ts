@@ -1,5 +1,6 @@
 import { id, isIdInput } from "../expr/id.js";
 import { Node, type UnknownNodeInput, provider } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { isTypeInput, type } from "../type/type.js";
 
 export class CodeSequenceNode
@@ -13,6 +14,10 @@ export class CodeSequenceNode
 
   toString() {
     return this.parts.join("");
+  }
+
+  transform(_: Transformer) {
+    return this;
   }
 
   with(...input: CodeSequenceInput[]) {

@@ -1,5 +1,10 @@
 import { type Expr, type ExprInput, expr, isExprInput } from "../expr/expr.js";
-import { Node, type UnknownNodeInput, provider } from "../plumbing.js";
+import {
+  Node,
+  type Transformer,
+  type UnknownNodeInput,
+  provider,
+} from "../plumbing.js";
 
 class ExprStmtNode implements Node<"exprStmt", Node.Family.STMT> {
   static readonly kind = "exprStmt";
@@ -10,6 +15,10 @@ class ExprStmtNode implements Node<"exprStmt", Node.Family.STMT> {
 
   toString() {
     return `${this.expr};`;
+  }
+
+  transform(t: Transformer) {
+    return t.replace(this, () => new ExprStmtNode(this.expr.transform(t)));
   }
 
   static marshal(input: ExprStmtInput): ExprStmt {

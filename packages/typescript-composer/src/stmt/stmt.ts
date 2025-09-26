@@ -27,7 +27,6 @@ export function stmt(input: StmtInput): Stmt {
   if (isRetInput(input)) return ret(input);
   if (isVarDeclStmtInput(input)) return varDeclStmt(input);
   if (isWhileLoopInput(input)) return whileLoop(input);
-  console.log(input);
   throw new Error("Invalid statement input.");
 }
 

@@ -1,16 +1,21 @@
 import { Node, type UnknownNodeInput } from "../../plumbing.js";
+import type { Transformer } from "../../plumbing.js";
 import { type ExprNode, exprProvider, exprProxy } from "../expr.js";
 
 export class BigIntLiteralNode implements Node<"bigIntLiteral"> {
   static readonly kind = "bigIntLiteral";
+  static readonly #registry: BigIntLiteral[] = [];
   readonly kind = "bigIntLiteral";
   readonly family = Node.Family.EXPR;
-  static #registry: BigIntLiteral[] = [];
 
   private constructor(readonly value: bigint) {}
 
   toString() {
     return `${this.value}n`;
+  }
+
+  transform(_: Transformer): BigIntLiteral {
+    return exprProxy(this);
   }
 
   static marshal(input: BigIntLiteralInput): BigIntLiteral {

@@ -22,6 +22,13 @@ function capitalize<S extends string>(s: S): Capitalize<S> {
 }
 
 const isExprProxyKey = Symbol("isExprProxyKey");
+function isExprProxy<N extends Node<string>>(node: N): node is ExprNode<N> {
+  return (
+    (node as unknown as { [isExprProxyKey]: true | undefined })[
+      isExprProxyKey
+    ] === true
+  );
+}
 
 const binaryExprMap = {
   isEqualTo: "==",
@@ -40,26 +47,27 @@ const binaryExprMap = {
 } as const;
 
 export function exprProxy<N extends Node<string>>(base: N) {
+  if (isExprProxy(base)) return base;
   return new Proxy(base, {
     get(target: N, name, receiver: N & ExprNode<N>) {
       if (typeof name === "string") {
-        if (name.startsWith("$") || name == "get") {
+        if (name.startsWith("$") || name === "get") {
           const r = isRefInput(receiver) ? ref(receiver) : receiver;
-          if (name === "$" || name == "get") return exprAccessProxy(r);
+          if (name === "$" || name === "get") return exprAccessProxy(r);
           return access(r, name.slice(1));
         }
-        if (name.startsWith("_") || name == "call") {
+        if (name.startsWith("_") || name === "call") {
           const r = isRefInput(receiver) ? ref(receiver) : receiver;
-          if (name === "_" || name == "call") return exprCallingProxy(r);
+          if (name === "_" || name === "call") return exprCallingProxy(r);
           return exprCallingProxy(access(r, name.slice(1)));
         }
-      }
-      if (Object.hasOwn(binaryExprMap, name)) {
-        const r = isRefInput(receiver) ? ref(receiver) : receiver;
-        return exprBinaryProxy(
-          r,
-          binaryExprMap[name as keyof typeof binaryExprMap],
-        );
+        if (Object.hasOwn(binaryExprMap, name)) {
+          const r = isRefInput(receiver) ? ref(receiver) : receiver;
+          return exprBinaryProxy(
+            r,
+            binaryExprMap[name as keyof typeof binaryExprMap],
+          );
+        }
       }
 
       if (typeof name === "symbol" && name === isExprProxyKey) {
@@ -80,7 +88,7 @@ function exprCallingProxy(base: Expr): Caller {
 }
 
 function exprAccessProxy(base: Expr): Accessor {
-  return (index: ExprInput) => access(base, index);
+  return (index: ExprInput) => access(base, index) as Access;
 }
 
 function exprBinaryProxy(
@@ -143,7 +151,7 @@ export type ExprNodeImplementation<
 type ExprNodeBase = Node<string, Node.Family.EXPR>;
 type UnknownExpr = ExprNodeBase & {
   [K in `$${string}`]: UnknownExpr;
-} & (() => UnknownExpr);
+};
 export type ExprInput = UnknownExpr | RawLiteralInput;
 
 export function expr<E extends UnknownExpr>(input: E): E;

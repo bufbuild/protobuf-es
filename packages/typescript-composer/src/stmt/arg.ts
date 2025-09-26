@@ -3,6 +3,7 @@ import { type Id, type IdInput, id, isIdInput } from "../expr/id.js";
 import {
   type NamedNode,
   Node,
+  type Transformer,
   type UnknownNodeInput,
   provider,
 } from "../plumbing.js";
@@ -32,6 +33,10 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
     if (this.value) declaration += ` = ${this.value}`;
 
     return declaration;
+  }
+
+  transform(_: Transformer) {
+    return this;
   }
 
   static marshal(name: IdInput): Arg;

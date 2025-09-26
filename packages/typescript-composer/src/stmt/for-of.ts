@@ -6,6 +6,7 @@ import {
   hasNodeInputProperty,
   provider,
 } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { type BlockInput, blockish, isBlockInput } from "./block.js";
 import type { Stmt } from "./stmt.js";
 
@@ -25,6 +26,10 @@ class ForOfNode implements Node<"forOf", Node.Family.STMT> {
 
   toString() {
     return `for (const ${this.for} of ${this.of}) ${this.then}`;
+  }
+
+  transform(_: Transformer) {
+    return this;
   }
 
   static marshal(

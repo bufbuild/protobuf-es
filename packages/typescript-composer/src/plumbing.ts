@@ -1,4 +1,7 @@
 import type { Id } from "./expr/id.js";
+import type { ExprNode } from "./porcelain.js";
+import type { Transformer } from "./transformer.js";
+export { Transformer } from "./transformer.js";
 
 export function isNode(
   input: UnknownNodeInput,
@@ -29,6 +32,11 @@ export interface NamedNode<
   F extends Node.Family = Node.Family.EXPR,
 > extends Node<K, F> {
   readonly id: Id;
+  transform(
+    t: Transformer,
+  ): F extends Node.Family.EXPR
+    ? ExprNode<NamedNode<string, F>>
+    : NamedNode<string, F>;
 }
 
 export namespace Node {
@@ -40,11 +48,19 @@ export namespace Node {
   }
 }
 
-export type Node<K extends string, F extends Node.Family = Node.Family.EXPR> = {
+export interface Node<
+  K extends string,
+  F extends Node.Family = Node.Family.EXPR,
+> {
   readonly kind: K;
   readonly family: F;
   readonly toString: () => string;
-};
+  transform(
+    t: Transformer,
+  ): F extends Node.Family.EXPR ? ExprNode<Node<string, F>> : Node<string, F>;
+}
+
+export type UnknownNode = Node<string, Node.Family>;
 
 export type UnknownNodeInput =
   | [...NonNullable<unknown>[]]

@@ -6,6 +6,7 @@ import {
   isTemplateStringsArray,
   provider,
 } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { stmt } from "../stmt/stmt.js";
 import type { StmtInput } from "../stmt/stmt.js";
 import { type Type, isType } from "../type/type.js";
@@ -27,6 +28,10 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
       .split("\n")
       .map((l) => `${" ".repeat(this.indention)}${l}`)
       .join("\n");
+  }
+
+  transform(_: Transformer) {
+    return this;
   }
 
   with(...input: CodeNodePart[]) {
@@ -158,7 +163,6 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
             const previousCodeNode = stack.pop();
 
             if (previousCodeNode === undefined) {
-              console.log(currentCodeNode.toString());
               throw new Error(
                 "The first line of a block template literal must not " +
                   "be indented more than any subsequent lines.",

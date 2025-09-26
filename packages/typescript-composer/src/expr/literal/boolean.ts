@@ -1,16 +1,21 @@
 import { Node, type UnknownNodeInput } from "../../plumbing.js";
+import type { Transformer } from "../../plumbing.js";
 import { type ExprNode, exprProvider, exprProxy } from "../expr.js";
 
 export class BooleanLiteralNode implements Node<"booleanLiteral"> {
   static readonly kind = "booleanLiteral";
+  static readonly #registry: BooleanLiteral[] = [];
   readonly kind = "booleanLiteral";
   readonly family = Node.Family.EXPR;
-  static #registry: BooleanLiteral[] = [];
 
   private constructor(readonly value: boolean) {}
 
   toString() {
     return this.value ? "true" : "false";
+  }
+
+  transform(_: Transformer): BooleanLiteral {
+    return exprProxy(this);
   }
 
   static marshal(input: BooleanLiteralInput): BooleanLiteral {

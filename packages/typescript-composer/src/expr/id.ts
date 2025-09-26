@@ -1,5 +1,6 @@
 import { Node, type UnknownNodeInput } from "../plumbing.js";
 import { hasNodeInputProperty } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { type ExprNode, exprProvider, exprProxy } from "./expr.js";
 
 class IdNode implements Node<"id"> {
@@ -11,6 +12,10 @@ class IdNode implements Node<"id"> {
 
   toString() {
     return this.id;
+  }
+
+  transform(_: Transformer): Id {
+    return exprProxy(this);
   }
 
   static marshal(input: IdInput): Id {

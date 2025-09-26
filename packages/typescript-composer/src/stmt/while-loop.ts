@@ -5,6 +5,7 @@ import {
   hasNodeInputProperty,
   provider,
 } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { blockish } from "./block.js";
 import { type Stmt, type StmtInput, isStmtInput } from "./stmt.js";
 
@@ -23,6 +24,10 @@ export class WhileLoopNode implements Node<"whileLoop", Node.Family.STMT> {
 
   toString() {
     return `while (${this.while}) ${this.then}`;
+  }
+
+  transform(_: Transformer) {
+    return this;
   }
 
   static marshal(whileCond: ExprInput, then: StmtInput): WhileLoop;

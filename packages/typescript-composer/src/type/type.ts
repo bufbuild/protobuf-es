@@ -1,6 +1,7 @@
 import { type Id, type IdInput, id, isIdInput } from "../expr/id.js";
 import { Node, type UnknownNodeInput, provider } from "../plumbing.js";
 import { hasNodeInputProperty } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 
 export class TypeNode implements Node<"type", Node.Family.TYPE> {
   static readonly kind = "type";
@@ -22,6 +23,10 @@ export class TypeNode implements Node<"type", Node.Family.TYPE> {
 
   static is(input: UnknownNodeInput): input is Type {
     return input instanceof TypeNode;
+  }
+
+  transform(_: Transformer) {
+    return this;
   }
 
   static isInput(input: UnknownNodeInput): input is TypeInput {

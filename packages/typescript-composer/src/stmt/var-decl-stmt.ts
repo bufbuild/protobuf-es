@@ -17,6 +17,7 @@ import {
   hasNodeInputProperty,
   provider,
 } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 
 export class VarDeclStmtNode implements Node<"varDeclStmt", Node.Family.STMT> {
   static readonly kind = "varDeclStmt";
@@ -30,6 +31,13 @@ export class VarDeclStmtNode implements Node<"varDeclStmt", Node.Family.STMT> {
 
   toString() {
     return `${this.keyword} ${this.list};`;
+  }
+
+  transform(t: Transformer) {
+    return t.replace(
+      this,
+      () => new VarDeclStmtNode(this.keyword, this.list.transform(t)),
+    );
   }
 
   static marshal(input: ConstIdInput): VarDeclStmt;

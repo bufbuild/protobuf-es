@@ -1,5 +1,6 @@
 import { type NamedNode, Node, type UnknownNodeInput } from "../plumbing.js";
 import { hasNodeInputProperty } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { type ExprNode, exprProvider, exprProxy, isExpr } from "./expr.js";
 import { isId } from "./id.js";
 
@@ -15,6 +16,10 @@ export class RefNode<T extends NamedNode<string, Node.Family>>
 
   toString() {
     return this.ref.id.toString();
+  }
+
+  transform(_: Transformer): Ref<T> {
+    return exprProxy(this);
   }
 
   static marshal<T extends NamedNode<string, Node.Family>>(

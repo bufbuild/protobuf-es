@@ -3,6 +3,7 @@ import { isExpr } from "../expr/expr.js";
 import { isInline } from "../expr/inline.js";
 import {
   Node,
+  type Transformer,
   type UnknownNodeInput,
   hasNodeInputProperty,
   indent,
@@ -20,6 +21,13 @@ class BlockNode implements Node<"block", Node.Family.STMT> {
 
   toString() {
     return `{\n${indent(this.parts.join("\n"))}\n}`;
+  }
+
+  transform(t: Transformer): Block {
+    return t.replace(
+      this,
+      () => new BlockNode(this.parts.map((p) => p.transform(t))),
+    );
   }
 
   static marshal(...input: StmtInput[]): Block;

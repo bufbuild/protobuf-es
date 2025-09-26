@@ -1,16 +1,21 @@
 import { Node, type UnknownNodeInput } from "../../plumbing.js";
+import type { Transformer } from "../../plumbing.js";
 import { type ExprNode, exprProvider, exprProxy } from "../expr.js";
 
 export class NumberLiteralNode implements Node<"numberLiteral"> {
   static readonly kind = "numberLiteral";
+  static readonly #registry: NumberLiteral[] = [];
   readonly kind = "numberLiteral";
   readonly family = Node.Family.EXPR;
-  static #registry: NumberLiteral[] = [];
 
   constructor(readonly value: number) {}
 
   toString() {
     return String(this.value);
+  }
+
+  transform(_: Transformer): NumberLiteral {
+    return exprProxy(this);
   }
 
   static marshal(input: NumberLiteralInput): NumberLiteral {

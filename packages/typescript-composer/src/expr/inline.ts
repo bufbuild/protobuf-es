@@ -4,6 +4,7 @@ import {
   isTemplateStringsArray,
 } from "../plumbing.js";
 import { hasNodeInputProperty } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import type { Type } from "../type/type.js";
 import {
   type Expr,
@@ -26,8 +27,12 @@ export class InlineNode implements Node<"inline"> {
     return this.parts.join("");
   }
 
-  with(...input: InlineInput) {
-    if (input.every((i) => i === "")) return this;
+  transform(_: Transformer) {
+    return exprProxy(this);
+  }
+
+  with(...input: InlineInput): Inline {
+    if (input.every((i) => i === "")) return exprProxy(this);
     return InlineNode.marshal(...this.parts, ...input);
   }
 

@@ -1,16 +1,21 @@
 import { Node, type UnknownNodeInput } from "../../plumbing.js";
+import type { Transformer } from "../../plumbing.js";
 import { type ExprNode, exprProvider, exprProxy } from "../expr.js";
 
 export class StringLiteralNode implements Node<"stringLiteral"> {
   static readonly kind = "stringLiteral";
+  static readonly #registry: StringLiteral[] = [];
   readonly kind = "stringLiteral";
   readonly family = Node.Family.EXPR;
-  static #registry: StringLiteral[] = [];
 
   constructor(readonly value: string) {}
 
   toString() {
     return JSON.stringify(this.value);
+  }
+
+  transform(_: Transformer): StringLiteral {
+    return exprProxy(this);
   }
 
   static marshal(input: StringLiteralInput): StringLiteral {

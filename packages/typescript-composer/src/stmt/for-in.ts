@@ -6,6 +6,7 @@ import {
   hasNodeInputProperty,
   provider,
 } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { type BlockInput, blockish, isBlockInput } from "./block.js";
 import type { Stmt } from "./stmt.js";
 
@@ -25,6 +26,18 @@ class ForInNode implements Node<"forIn", Node.Family.STMT> {
 
   toString() {
     return `for (const ${this.for} in ${this.in}) ${this.then}`;
+  }
+
+  transform(t: Transformer) {
+    return t.replace(
+      this,
+      () =>
+        new ForInNode(
+          this.for.transform(t),
+          this.in.transform(t),
+          this.then.transform(t),
+        ),
+    );
   }
 
   static marshal(

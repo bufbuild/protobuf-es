@@ -1,4 +1,5 @@
 import { Node, type UnknownNodeInput } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import { type ExprNode, exprProvider, exprProxy } from "./expr.js";
 import type { IdInput } from "./id.js";
 import {
@@ -18,6 +19,15 @@ export class VarDeclListNode implements Node<"varDeclList"> {
 
   toString() {
     return this.declarations.join(", ");
+  }
+
+  transform(t: Transformer): VarDeclList {
+    return exprProxy(
+      t.replace(
+        this,
+        () => new VarDeclListNode(this.declarations.map((d) => d.transform(t))),
+      ),
+    );
   }
 
   static marshal(

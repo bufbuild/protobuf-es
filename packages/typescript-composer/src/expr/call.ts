@@ -1,4 +1,5 @@
 import { Node, type UnknownNodeInput } from "../plumbing.js";
+import type { Transformer } from "../plumbing.js";
 import {
   type Expr,
   type ExprInput,
@@ -21,6 +22,10 @@ class CallNode implements Node<"call"> {
 
   toString(): string {
     return `${this.target}(${this.args.join(", ")})`;
+  }
+
+  transform(_: Transformer): Call {
+    return exprProxy(this);
   }
 
   static marshal(target: ExprInput, ...args: ExprInput[]): Call {
