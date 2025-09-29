@@ -12,6 +12,10 @@ import type { StmtInput } from "../stmt/stmt.js";
 import { type Type, isType } from "../type/type.js";
 import { type CodeSequence, codeSequence, isCodeSequence } from "./sequence.js";
 
+const entropy =
+  "f39ed95947bc" +
+  Math.floor(Math.random() * Number.MAX_SAFE_INTEGER).toString(16);
+
 class CodeNode implements Node<"code", Node.Family.CODE> {
   static readonly kind = "code";
   readonly kind = "code";
@@ -33,10 +37,11 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
   transform(t: Transformer): Code {
     return t.replace(
       this,
-      () => new CodeNode(
-        this.lines.map((p) => p.transform(t)),
-        this.indention
-      ),
+      () =>
+        new CodeNode(
+          this.lines.map((p) => p.transform(t)),
+          this.indention,
+        ),
     );
   }
 
@@ -83,9 +88,20 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
   }
 
   static tag(
-    segs: TemplateStringsArray,
+    segments: TemplateStringsArray,
     ...params: (ExprInput | StmtInput | Type)[]
   ): Code {
+    // In general, we don't want to require that escape sequences are double-escaped, but we still
+    // have to allow for escaped backticks, _and_ for escaped backslashes preceding escaped
+    // backticks — otherwise there'd be no way to express those sequences.
+    const segs = segments.raw.map(
+      (s) =>
+        s
+          .replace(/\\\\\\`/g, entropy) //              Replace \\\` with <entropy>
+          .replace(/\\`/g, "`") //                      Replace \` with `
+          .replace(new RegExp(entropy, "g"), "\\`"), // Replace <entropy> with \`
+    );
+
     // Require a leading new line. It looks nicer for a multiline template and it
     // helps us ensure the caller is on the same page that this is meant to expand
     // over multiple lines and have inferred indention.

@@ -23,7 +23,7 @@ export class ArrayLiteralNode implements Node<"arrayLiteral"> {
 
   transform(t: Transformer): ArrayLiteral {
     return t.replace(exprProxy(this), () =>
-      ArrayLiteralNode.marshal(this.values.map((v) => v.transform(t))),
+      ArrayLiteralNode.marshal(...this.values.map((v) => v.transform(t))),
     );
   }
 

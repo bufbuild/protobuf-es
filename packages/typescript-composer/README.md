@@ -654,7 +654,7 @@ const funcDef = func(
 );
 ```
 
-### Code and Inline Template Functions
+## Code and Inline Template Functions
 
 In many cases, however, we may not need a full abstract syntax tree, because we may only be
 concerned with having enough of the tree structure to emit TypeScript, JavaScript, or type
@@ -678,6 +678,7 @@ const funcDef = func(
       }
       lines[lines.length - 1] += " " + word;
     }
-    return lines.join("\\n");`,
+    return lines.join("\\n");
+  `,
 );
 ```

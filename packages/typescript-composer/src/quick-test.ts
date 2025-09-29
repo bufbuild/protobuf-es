@@ -89,7 +89,7 @@ const funcDef = func(
       }
       lines[lines.length - 1] += " " + word;
     }
-    return lines.join("\\n");`,
+    return lines.join("\n");`,
 );
 
 console.log(funcDef.toString());
@@ -99,7 +99,9 @@ class TypeStripper extends Transformer {
     if (isArg(original)) return arg(original.id, original.value);
     if (isFunc(original))
       return func(original.id, original.args, original.body);
-    if (isVarDecl(original)) return varDecl(original.id, original.value);
+    if (isVarDecl(original)) {
+      return varDecl(original.id, original.value);
+    }
     return original;
   }
 }
