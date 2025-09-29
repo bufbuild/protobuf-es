@@ -120,12 +120,13 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
   static #isIdTypeValueTupleInput(
     input: UnknownNodeInput,
   ): input is IdTypeValueTupleVarDeclInput {
+    console.error("here", input);
     return (
       Array.isArray(input) &&
       input.length === 3 &&
       isIdInput(input[0]) &&
-      isExprInput(input[1]) &&
-      isTypeInput(input[2])
+      isTypeInput(input[1]) &&
+      isExprInput(input[2])
     );
   }
 }

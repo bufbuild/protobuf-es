@@ -15,11 +15,13 @@ import {
   id,
   ifThen,
   inline,
+  isArg,
   isFunc,
   isVarDecl,
   literal,
   numberLiteral,
   parens,
+  ref,
   ret,
   stringLiteral,
   type,
@@ -79,46 +81,22 @@ const funcDef = func(
     ["text", type("string")],
     ["width", 100],
   ],
-  (text, width) => {
-    const lines = varDecl("lines", { type: "string[]" }, [""]);
-    return [
-      { const: lines },
-      {
-        for: "word",
-        of: text._split(" "),
-        then: (word) => [
-          {
-            if: parens(
-              lines
-                .get(lines.$length.minus(1))
-                .$length.plus(word.$length)
-                .plus(1),
-            ).isGreaterThan(width),
-            then: lines._push(""),
-          },
-          lines.get(lines.$length.minus(1)).add(literal(" ").plus(word)),
-        ],
-      },
-      { return: lines._join("\n") },
-    ];
-  },
-  type("string"),
+  () => code`
+    ${{ const: ["lines", { type: "string[]" }, [""]] }}
+    for (const word of text.split(" ")) {
+      if ((lines[lines.length - 1].length + word.length + 1) > width) {
+        lines.push("");
+      }
+      lines[lines.length - 1] += " " + word;
+    }
+    return lines.join("\\n");`,
 );
 
-// Argument of type '(text: never, width: never) => [{ const: VarDecl; }, { for: string; of: any; then: (word: Id) => [{ if: Binary; then: Call; }, Binary]; }, { return: Call; }]'
-// is not assignable to parameter of type 'BodyFunc<([string, number] | [string, TypeNode])[], [] & readonly Ref<ArgNode>[]>'.
-//  Types of parameters 'text' and 'args' are incompatible.
-//    Type '[] & readonly Ref<ArgNode>[]' is not assignable to type '[text: never, width: never]'.
-
-// Argument of type '(text: any, width: any) => ({ const: VarDecl; for?: undefined; of?: undefined; then?: undefined; return?: undefined; } | { for: string; of: any; then: (word: any) => (Binary | { if: Binary; then: Call; })[]; const?: undefined; return?: undefined; } | { ...; })[]'
-// is not assignable to parameter of type 'BodyFunc<([string, number] | [string, TypeNode])[], []>'.
-// Target signature provides too few arguments. Expected 2 or more, but got 0.
-
-console.log(JSON.stringify(funcDef, null, 2));
 console.log(funcDef.toString());
 
 class TypeStripper extends Transformer {
   mutate(original: UnknownNode) {
+    if (isArg(original)) return arg(original.id, original.value);
     if (isFunc(original))
       return func(original.id, original.args, original.body);
     if (isVarDecl(original)) return varDecl(original.id, original.value);

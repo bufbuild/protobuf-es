@@ -16,8 +16,14 @@ export class CodeSequenceNode
     return this.parts.join("");
   }
 
-  transform(_: Transformer) {
-    return this;
+  transform(t: Transformer): CodeSequence {
+    return t.replace(
+      this,
+      () =>
+        new CodeSequenceNode(
+          this.parts.map((p) => (typeof p === "string" ? p : p.transform(t))),
+        ),
+    );
   }
 
   with(...input: CodeSequenceInput[]) {

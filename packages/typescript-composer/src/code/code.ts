@@ -30,8 +30,14 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
       .join("\n");
   }
 
-  transform(_: Transformer) {
-    return this;
+  transform(t: Transformer): Code {
+    return t.replace(
+      this,
+      () => new CodeNode(
+        this.lines.map((p) => p.transform(t)),
+        this.indention
+      ),
+    );
   }
 
   with(...input: CodeNodePart[]) {
@@ -164,7 +170,7 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
 
             if (previousCodeNode === undefined) {
               throw new Error(
-                "The first line of a block template literal must not " +
+                "The first line of a code template literal must not " +
                   "be indented more than any subsequent lines.",
               );
             }

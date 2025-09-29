@@ -3,6 +3,8 @@
 TypeScript Composer is a library for constructing, transforming, and emitting abstract and
 partially-abstract TypeScript syntax trees.
 
+## Explicit Tree Construction
+
 On one end of the spectrum, you can construct entirely explicit abstract syntax trees using the
 provided functions:
 
@@ -24,28 +26,28 @@ const funcDef = func(
       forOf(
         id("word"),
         call(access(text, "split"), stringLiteral(" ")),
-        block(
+        (word) => block(
           ifThen(
             binary(
               parens(
                 binary(
-                  binary(
-                    access(
-                      access(
-                        ref(lines),
-                        binary(
-                          access(ref(lines), id("length")),
-                          "-",
-                          numberLiteral(1),
-                        ),
-                      ),
-                      id("length"),
-                    ),
-                    "+",
-                    access(id("word"), id("length")),
-                  ),
-                  "+",
-                  numberLiteral(1),
+                 binary(
+                   access(
+                     access(
+                       ref(lines),
+                       binary(
+                         access(ref(lines), id("length")),
+                         "-",
+                         numberLiteral(1),
+                       ),
+                     ),
+                     id("length"),
+                   ),
+                   "+",
+                   access(word, id("length")),
+                 ),
+                 "+",
+                 numberLiteral(1),
                 ),
               ),
               ">",
@@ -493,6 +495,8 @@ body:
 ```
 </details>
 
+## Basic Node Type Inferences
+
 But there are many inferences that can be made from the context in which you're constructing nodes
 in the syntax tree.
 
@@ -541,11 +545,15 @@ from context we only want to refer to the variable declaration. We can also drop
 binary(lines.get(id("length")), "-", 1)
 ```
 
+## Node Helper Methods
+
 Finally, we can replace the binary wrapper with `.minus()`:
 
 ```typescript
 lines.get(id("length")).minus(1)
 ```
+
+## Dynamic Node Access
 
 We do still need the `id()` wrapper here since a string literal would be perfectly reasonable in
 this context. But there's one more shortcut. We can replace `.get(id("length"))` like so:
@@ -589,11 +597,12 @@ const funcDef = func(
     const lines = varDecl("lines", type("string[]"), [""]);
     return [
       varConst(lines),
-      forOf("word", text._split(" "), [
+      forOf("word", text._split(" "), (word) => [
         ifThen(
           parens(
-            lines.get(lines.$length.minus(1)).$length
-              .plus(id("word").$length)
+            lines
+              .get(lines.$length.minus(1)).$length
+              .plus(word.$length)
               .plus(1),
           ).isGreaterThan(width),
           lines._push(""),
@@ -605,6 +614,8 @@ const funcDef = func(
   },
 );
 ```
+
+## Object-Style Node Definitions
 
 But there's actually more we can do to avoid having to import as many specialized functions. For
 example, `varConst(lines)` can become simply `{ const: lines }`. The end result requires fewer
@@ -624,10 +635,11 @@ const funcDef = func(
       {
         for: "word",
         of: text._split(" "),
-        then: [
+        then: (word) => [
           {
             if: parens(
-              lines.get(lines.$length.minus(1)).$length
+              lines
+                .get(lines.$length.minus(1)).$length
                 .plus(id("word").$length)
                 .plus(1),
             ).isGreaterThan(width),
@@ -639,5 +651,33 @@ const funcDef = func(
       { return: lines._join("\n") },
     ];
   },
+);
+```
+
+### Code and Inline Template Functions
+
+In many cases, however, we may not need a full abstract syntax tree, because we may only be
+concerned with having enough of the tree structure to emit TypeScript, JavaScript, or type
+declarations.
+
+In these cases, we can use `code` templates to construct a partially-solidified syntax tree. Note
+that nodes defined within the template are preserved in the tree.
+
+```TypeScript
+const funcDef = func(
+  "wrap",
+  [
+    ["text", type("string")],
+    ["width", 100],
+  ],
+  () => code`
+    ${{ const: ["lines", { type: "string[]" }, [""]] }}
+    for (const word of text.split(" ")) {
+      if ((lines[lines.length - 1].length + word.length + 1) > width) {
+        lines.push("");
+      }
+      lines[lines.length - 1] += " " + word;
+    }
+    return lines.join("\\n");`,
 );
 ```

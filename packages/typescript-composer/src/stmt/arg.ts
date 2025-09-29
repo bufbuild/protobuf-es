@@ -35,16 +35,24 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
     return declaration;
   }
 
-  transform(_: Transformer) {
-    return this;
+  transform(t: Transformer) {
+    return t.replace(
+      this,
+      () =>
+        new ArgNode(
+          this.id.transform(t),
+          this.type ? this.type.transform(t) : undefined,
+          this.value ? this.value.transform(t) : undefined,
+        ),
+    );
   }
 
   static marshal(name: IdInput): Arg;
-  static marshal(name: IdInput, defaultValue: ExprInput): Arg;
+  static marshal(name: IdInput, defaultValue: ExprInput | undefined): Arg;
   static marshal(name: IdInput, type: Type): Arg;
   static marshal(name: IdInput, type: TypeInput, defaultValue: ExprInput): Arg;
   static marshal(...input: TupleArgInput | [Arg | IdInput]): Arg;
-  static marshal(...input: TupleArgInput | [Arg | IdInput]): Arg {
+  static marshal(...input: TupleArgInput | [Arg]): Arg {
     if (input.length === 1) {
       const i = input[0];
       if (ArgNode.is(i)) return i;
@@ -80,7 +88,10 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
   }
 
   static #isIdTupleInput(input: UnknownNodeInput): input is IdTupleArgInput {
-    return Array.isArray(input) && input.length === 1 && isIdInput(input[0]);
+    if (!Array.isArray(input)) return false;
+    return (
+      input.filter((i) => i !== undefined).length === 1 && isIdInput(input[0])
+    );
   }
 
   static #isIdValueTupleInput(
@@ -112,13 +123,16 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
       Array.isArray(input) &&
       input.length === 3 &&
       isIdInput(input[0]) &&
-      isExprInput(input[1]) &&
-      isTypeInput(input[2])
+      isTypeInput(input[1]) &&
+      isExprInput(input[2])
     );
   }
 }
 
-type IdTupleArgInput = [IdInput];
+type IdTupleArgInput =
+  | [IdInput]
+  | [IdInput, undefined]
+  | [IdInput, undefined, undefined];
 type IdValueTupleArgInput = [IdInput, ExprInput];
 type IdTypeTupleArgInput = [IdInput, Type];
 type IdTypeValueTupleArgInput = [IdInput, TypeInput, ExprInput];

@@ -36,6 +36,19 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
     return `function ${this.id}(${this.args.join(", ")})${returnTypeAnnotation} ${this.body}`;
   }
 
+  transform(t: Transformer) {
+    return t.replace(
+      this,
+      () =>
+        new FuncNode(
+          this.id.transform(t),
+          this.args.map((a) => a.transform(t)),
+          this.body.transform(t),
+          this.returnType ? this.returnType.transform(t) : undefined,
+        ),
+    );
+  }
+
   static marshal<const I extends ArgInput[]>(
     name: IdInput,
     args: I,
@@ -61,19 +74,6 @@ export class FuncNode implements NamedNode<"func", Node.Family.STMT> {
       argInstances,
       block(...(Array.isArray(bodyResult) ? bodyResult : [bodyResult])),
       returnType ? type(returnType) : undefined,
-    );
-  }
-
-  transform(t: Transformer) {
-    return t.replace(
-      this,
-      () =>
-        new FuncNode(
-          this.id.transform(t),
-          this.args.map((a) => a.transform(t)),
-          this.body.transform(t),
-          this.returnType ? this.returnType.transform(t) : undefined,
-        ),
     );
   }
 
