@@ -678,7 +678,17 @@ const funcDef = func(
       }
       lines[lines.length - 1] += " " + word;
     }
-    return lines.join("\\n");
+    return lines.join("\n");
   `,
 );
 ```
+
+There are a few important behaviors for these `code` blocks:
+
+1. They must start with a newline character.
+2. The whitespace following that first newline character is stripped from all lines; consequently,
+   all lines are required to be prefixed with at least that amount of whitespace. (Except for a last
+   line that consists only of whitespace, which will be stripped entirely.)
+3. Parameters are assumed to be expressions unless they are alone on a line, in which case they are
+   assumed to be statements. This is very important for a named statement like a function
+   declaration where, when assumed to be an expression, it will be wrapped in a reference.

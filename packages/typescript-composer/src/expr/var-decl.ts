@@ -61,12 +61,12 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
     }
     if (VarDeclNode.#isIdTupleInput(input))
       return exprProxy(new VarDeclNode(id(input[0])));
+    if (VarDeclNode.#isIdTypeTupleInput(input))
+      return exprProxy(new VarDeclNode(id(input[0]), type(input[1])));
     if (VarDeclNode.#isIdValueTupleInput(input))
       return exprProxy(
         new VarDeclNode(id(input[0]), undefined, expr(input[1])),
       );
-    if (VarDeclNode.#isIdTypeTupleInput(input))
-      return exprProxy(new VarDeclNode(id(input[0]), type(input[1])));
 
     return exprProxy(
       new VarDeclNode(id(input[0]), type(input[1]), expr(input[2])),
@@ -80,8 +80,8 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
   static isInput(input: UnknownNodeInput): input is VarDeclInput {
     return (
       VarDeclNode.#isIdTupleInput(input) ||
-      VarDeclNode.#isIdValueTupleInput(input) ||
       VarDeclNode.#isIdTypeTupleInput(input) ||
+      VarDeclNode.#isIdValueTupleInput(input) ||
       VarDeclNode.#isIdTypeValueTupleInput(input)
     );
   }
@@ -90,20 +90,8 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
     input: UnknownNodeInput,
   ): input is IdTupleVarDeclInput {
     if (!Array.isArray(input)) return false;
-    return (
-      input.filter((i) => i !== undefined).length === 1 && isIdInput(input[0])
-    );
-  }
-
-  static #isIdValueTupleInput(
-    input: UnknownNodeInput,
-  ): input is IdValueTupleVarDeclInput {
-    return (
-      Array.isArray(input) &&
-      input.length === 2 &&
-      isIdInput(input[0]) &&
-      isExprInput(input[1])
-    );
+    const filtered = input.filter((i) => i !== undefined);
+    return filtered.length === 1 && isIdInput(input[0]);
   }
 
   static #isIdTypeTupleInput(
@@ -114,6 +102,16 @@ export class VarDeclNode implements NamedNode<"varDecl"> {
       input.length === 2 &&
       isIdInput(input[0]) &&
       isType(input[1])
+    );
+  }
+
+  static #isIdValueTupleInput(
+    input: UnknownNodeInput,
+  ): input is IdValueTupleVarDeclInput {
+    if (!Array.isArray(input)) return false;
+    const filtered = input.filter((i) => i !== undefined);
+    return (
+      filtered.length === 2 && isIdInput(input[0]) && isExprInput(input[1])
     );
   }
 

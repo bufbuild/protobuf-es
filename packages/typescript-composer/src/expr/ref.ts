@@ -1,7 +1,7 @@
 import { type NamedNode, Node, type UnknownNodeInput } from "../plumbing.js";
 import { hasNodeInputProperty } from "../plumbing.js";
 import type { Transformer } from "../plumbing.js";
-import { type ExprNode, exprProvider, exprProxy, isExpr } from "./expr.js";
+import { type ExprNode, exprProvider, exprProxy } from "./expr.js";
 import { isId } from "./id.js";
 
 export class RefNode<T extends NamedNode<string, Node.Family>>
@@ -54,7 +54,7 @@ export class RefNode<T extends NamedNode<string, Node.Family>>
   static #isRefable(
     input: UnknownNodeInput,
   ): input is NamedNode<string, Node.Family> {
-    return isExpr(input) && hasNodeInputProperty(input, "id") && isId(input.id);
+    return hasNodeInputProperty(input, "id") && isId(input.id);
   }
 
   static #isObjectInput(

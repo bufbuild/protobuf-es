@@ -174,7 +174,7 @@ export function isExpr(input: UnknownNodeInput): input is Expr {
 }
 
 export function isExprInput(input: UnknownNodeInput): input is ExprInput {
-  return isExpr(input) || isLiteralInput(input);
+  return isRefInput(input) || isExpr(input) || isLiteralInput(input);
 }
 
 export * from "./access.js";

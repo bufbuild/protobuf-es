@@ -1,7 +1,5 @@
-import { id, isIdInput } from "../expr/id.js";
 import { Node, type UnknownNodeInput, provider } from "../plumbing.js";
 import type { Transformer } from "../plumbing.js";
-import { isTypeInput, type } from "../type/type.js";
 
 export class CodeSequenceNode
   implements Node<"codeSequence", Node.Family.CODE>
@@ -46,8 +44,6 @@ export class CodeSequenceNode
             | Node<string, Node.Family>
             | (string | Node<string, Node.Family>)[] => {
             if (CodeSequenceNode.is(p)) return p.parts;
-            if (isIdInput(p)) return id(p);
-            if (isTypeInput(p)) return type(p);
             return p;
           },
         ),

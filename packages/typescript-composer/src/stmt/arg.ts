@@ -60,10 +60,10 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
     }
 
     if (ArgNode.#isIdTupleInput(input)) return new ArgNode(id(input[0]));
-    if (ArgNode.#isIdValueTupleInput(input))
-      return new ArgNode(id(input[0]), undefined, expr(input[1]));
     if (ArgNode.#isIdTypeTupleInput(input))
       return new ArgNode(id(input[0]), type(input[1]));
+    if (ArgNode.#isIdValueTupleInput(input))
+      return new ArgNode(id(input[0]), undefined, expr(input[1]));
 
     return new ArgNode(id(input[0]), type(input[1]), expr(input[2]));
   }
@@ -81,28 +81,16 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
   static #isTupleInput(input: UnknownNodeInput): input is TupleArgInput {
     return (
       ArgNode.#isIdTupleInput(input) ||
-      ArgNode.#isIdValueTupleInput(input) ||
       ArgNode.#isIdTypeTupleInput(input) ||
+      ArgNode.#isIdValueTupleInput(input) ||
       ArgNode.#isIdTypeValueTupleInput(input)
     );
   }
 
   static #isIdTupleInput(input: UnknownNodeInput): input is IdTupleArgInput {
     if (!Array.isArray(input)) return false;
-    return (
-      input.filter((i) => i !== undefined).length === 1 && isIdInput(input[0])
-    );
-  }
-
-  static #isIdValueTupleInput(
-    input: UnknownNodeInput,
-  ): input is IdValueTupleArgInput {
-    return (
-      Array.isArray(input) &&
-      input.length === 2 &&
-      isIdInput(input[0]) &&
-      isExprInput(input[1])
-    );
+    const filtered = input.filter((i) => i !== undefined);
+    return filtered.length === 1 && isIdInput(input[0]);
   }
 
   static #isIdTypeTupleInput(
@@ -113,6 +101,16 @@ class ArgNode implements NamedNode<"arg", Node.Family.STMT> {
       input.length === 2 &&
       isIdInput(input[0]) &&
       isType(input[1])
+    );
+  }
+
+  static #isIdValueTupleInput(
+    input: UnknownNodeInput,
+  ): input is IdValueTupleArgInput {
+    if (!Array.isArray(input)) return false;
+    const filtered = input.filter((i) => i !== undefined);
+    return (
+      filtered.length === 2 && isIdInput(input[0]) && isExprInput(input[1])
     );
   }
 

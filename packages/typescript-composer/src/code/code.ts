@@ -7,7 +7,7 @@ import {
   provider,
 } from "../plumbing.js";
 import type { Transformer } from "../plumbing.js";
-import { stmt } from "../stmt/stmt.js";
+import { isStmt, isStmtInput, stmt } from "../stmt/stmt.js";
 import type { StmtInput } from "../stmt/stmt.js";
 import { type Type, isType } from "../type/type.js";
 import { type CodeSequence, codeSequence, isCodeSequence } from "./sequence.js";
@@ -140,6 +140,8 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
     // append new segments or parameters.
     let currentLine = codeSequence([]);
 
+    let swallowNextSemicolon = false;
+
     for (let i = 0; i < segs.length; ++i) {
       // ForLoop the first iteration of this loop, continuationOfLastLine will be an empty
       // string, owing to the leading new line. This is good because it means we process the
@@ -150,7 +152,17 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
 
       // Append the continuation to the current line. Note that this may be all we have to do
       // in this loop iteration because the current segment may be internal to a line.
-      currentLine = currentLine.with(continuationOfLastLine);
+      currentLine = currentLine.with(
+        // If a preceding parameter was a complete statement, we want to swallow the next
+        // semicolon (either the statement will include a semicolon, or it won't need one).
+        swallowNextSemicolon && continuationOfLastLine[0] === ";"
+          ? continuationOfLastLine.slice(1)
+          : continuationOfLastLine,
+      );
+
+      // Whether or not we did swallow one, the directive only applies to the first segment
+      // following a complete statement.
+      swallowNextSemicolon = false;
 
       // If the current segment spans lines, for each additional line, create a new one and
       // add the previous one to the current line set. If indention changes, use the
@@ -213,16 +225,48 @@ class CodeNode implements Node<"code", Node.Family.CODE> {
       // The length of segs is always (params.length + 1), so for the last iteration,
       // we won't have a parameter to add.
       if (i < params.length) {
+        // We need to check whether we're expecting a statement or an expression. We only expect a
+        // Statement if the parameter is alone on its line or is followed only by a semicolon (in
+        // which case we will strip a redundant semicolon).
+        let expectStatement = false;
+        const lastPart = currentLine.parts.length
+          ? currentLine.parts.slice(-1)[0]
+          : undefined;
+
+        if (
+          // Check if non-whitespace precedes this parameter. (Note that whitespace will always be
+          // handled via additional `Code` instances with an indention value.)
+          (!lastPart ||
+            // Alternatively, check if this parameter follows another statement or a verbatim string
+            // ending in a semicolon.
+            isStmt(lastPart) ||
+            (typeof lastPart === "string" &&
+              lastPart.length > 0 &&
+              lastPart.trim().slice(-1)[0] === ";")) &&
+          // Check if a semicolon or newline follows this parameter. Accessing segs[i+1] is safe
+          // within this block since there's always a following segment.
+          (/^ *(;|\n)/.test(segs[i + 1]) ||
+            // Alternatively, check if this is the end of the whole sequence.
+            (i === params.length - 1 && ["", ";"].includes(segs[i + 1].trim())))
+        )
+          expectStatement = true;
+
         const param = params[i];
-        currentLine = currentLine.with(
-          typeof param === "string"
-            ? param
-            : isType(param)
-              ? param
-              : isExprInput(param)
-                ? expr(param)
-                : stmt(param),
-        );
+
+        // In this context, strings are always treated as additional raw input; string literals must
+        // be pre-wrapped as nodes. Additionally, we never want a type node to be mistaken for an
+        // object literal.
+        if (typeof param === "string" || isType(param)) {
+          currentLine = currentLine.with(param);
+        } else if (
+          (expectStatement && isStmtInput(param)) ||
+          !isExprInput(param)
+        ) {
+          currentLine = currentLine.with(stmt(param));
+          swallowNextSemicolon = true;
+        } else {
+          currentLine = currentLine.with(expr(param));
+        }
       }
     }
 
