@@ -3,7 +3,8 @@
   "extends": ["//"],
   "tasks": {
     "bootstrap": {
-      "dependsOn": ["build", "@bufbuild/protoc-gen-es#build"]
+      "dependsOn": ["build", "@bufbuild/protoc-gen-es#build"],
+      "outputLogs": "new-only"
     }
   }
 }

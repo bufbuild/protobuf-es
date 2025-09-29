@@ -3,7 +3,8 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      "outputs": [".tmp/**"]
+      "outputs": [".tmp/**"],
+      "outputLogs": "new-only"
     }
   }
 }

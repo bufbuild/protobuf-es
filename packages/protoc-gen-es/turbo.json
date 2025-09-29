@@ -3,7 +3,8 @@
   "extends": ["//"],
   "tasks": {
     "bootstrap": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "outputLogs": "new-only"
     }
   }
 }
