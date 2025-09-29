@@ -3,7 +3,8 @@
   "extends": ["//"],
   "tasks": {
     "bundle-size": {
-      "dependsOn": ["^build", "generate"]
+      "dependsOn": ["^build", "generate"],
+      "outputLogs": "new-only"
     }
   }
 }

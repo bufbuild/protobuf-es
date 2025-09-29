@@ -4,15 +4,18 @@
   "tasks": {
     "perf": {
       "dependsOn": ["^build", "generate"],
-      "cache": false
+      "cache": false,
+      "outputLogs": "new-only"
     },
     "profile": {
       "dependsOn": ["^build", "generate"],
-      "cache": false
+      "cache": false,
+      "outputLogs": "new-only"
     },
     "flamegraph": {
       "dependsOn": ["^build", "generate"],
-      "cache": false
+      "cache": false,
+      "outputLogs": "new-only"
     }
   }
 }
