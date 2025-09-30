@@ -22,7 +22,7 @@ import {
 import { create, protoInt64 } from "@bufbuild/protobuf";
 
 void suite("durationMs()", () => {
-  void test("converts Duration to unix duration with milliseconds", () => {
+  void test("converts Duration to milliseconds", () => {
     assert.strictEqual(
       durationMs(
         create(DurationSchema, {
@@ -45,7 +45,7 @@ void suite("durationMs()", () => {
 });
 
 void suite("durationFromMs()", () => {
-  void test("converts unix duration with milliseconds to Duration", () => {
+  void test("creates Duration from milliseconds", () => {
     const durationZero = durationFromMs(0);
     assert.strictEqual(Number(durationZero.seconds), 0);
     assert.strictEqual(durationZero.nanos, 0);
