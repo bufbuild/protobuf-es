@@ -892,6 +892,20 @@ let date: Date = timestampDate(ts);
 let ms: number = timestampMs(ts);
 ```
 
+### google.protobuf.Duration
+
+A `Duration` represents a fixed span of time with nanosecond precision. For convenience, we provide functions for conversion to milliseconds:
+
+```typescript
+import { type Duration, durationFromMs, durationMs } from "@bufbuild/protobuf/wkt";
+
+// Create a Duration from milliseconds.
+let duration: Duration = durationFromMs(1012);
+
+// Convert a Duration to milliseconds.
+let ms: number = timestampMs(duration);
+```
+
 ### google.protobuf.Any
 
 `Any` stores an arbitrary message as binary data. For convenience, we provide function to pack and unpack messages:
