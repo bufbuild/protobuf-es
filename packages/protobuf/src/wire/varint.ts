@@ -119,6 +119,39 @@ export function varint64write(lo: number, hi: number, bytes: number[]): void {
   bytes.push((hi >>> 31) & 0x01);
 }
 
+// TODO
+export function varint64writeCCC(lo: number, hi: number, barr: Uint8Array, pos: number): number {
+  for (let i = 0; i < 28; i = i + 7) {
+    const shift = lo >>> i;
+    const hasNext = !(shift >>> 7 == 0 && hi == 0);
+    barr[pos++] = (hasNext ? shift | 0x80 : shift) & 0xff;
+    if (!hasNext) {
+      return pos;
+    }
+  }
+
+  const splitBits = ((lo >>> 28) & 0x0f) | ((hi & 0x07) << 4);
+  const hasMoreBits = !(hi >> 3 == 0);
+  barr[pos++] = (hasMoreBits ? splitBits | 0x80 : splitBits) & 0xff;
+
+  if (!hasMoreBits) {
+    return pos;
+  }
+
+  for (let i = 3; i < 31; i = i + 7) {
+    const shift = hi >>> i;
+    const hasNext = !(shift >>> 7 == 0);
+    barr[pos++] = (hasNext ? shift | 0x80 : shift) & 0xff;
+    if (!hasNext) {
+      return pos;
+    }
+  }
+
+  barr[pos++] = (hi >>> 31) & 0x01;
+  return pos;
+}
+
+
 // constants for binary math
 const TWO_PWR_32_DBL = 0x100000000;
 
@@ -301,6 +334,25 @@ export function varint32write(value: number, bytes: number[]): void {
     }
     bytes.push(1);
   }
+}
+
+// TODO
+export function varint32writeCCC(value: number, barr: Uint8Array, pos: number): number {
+  if (value >= 0) {
+    // write value as varint 32
+    while (value > 0x7f) {
+      barr[pos++] = (value & 0x7f) | 0x80;
+      value = value >>> 7;
+    }
+    barr[pos++] = value;
+  } else {
+    for (let i = 0; i < 9; i++) {
+      barr[pos++] = (value & 127) | 128;
+      value = value >> 7;
+    }
+    barr[pos++] = 1;
+  }
+  return pos;
 }
 
 /**

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 export * from "./binary-encoding.js";
+export * from "./growable-writer.js";
 export * from "./base64-encoding.js";
 export * from "./text-encoding.js";
 export * from "./text-format.js";
