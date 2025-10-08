@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/github/license/bufbuild/protobuf-es?color=blue)](./LICENSE) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protobuf/latest?color=green&label=%40bufbuild%2Fprotobuf)](https://www.npmjs.com/package/@bufbuild/protobuf) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoplugin/latest?color=green&label=%40bufbuild%2Fprotoplugin)](https://www.npmjs.com/package/@bufbuild/protoplugin) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoc-gen-es/latest?color=green&label=%40bufbuild%2Fprotoc-gen-es)](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
 
 A complete implementation of [Protocol Buffers](https://protobuf.dev/) in TypeScript,
-suitable for web browsers, Node.js and Deno, created by [Buf](https://buf.build).
+suitable for web browsers, Node.js, and Deno, created by [Buf](https://buf.build).
 
 Protobuf-ES is the only fully-compliant JavaScript Protobuf library that passes the
 Protobuf conformance tests—[read more on our blog][blog-post].
