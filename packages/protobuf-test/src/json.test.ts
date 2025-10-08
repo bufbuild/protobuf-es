@@ -455,7 +455,7 @@ void suite("JSON serialization", () => {
           "-0.000000005s",
         );
       });
-      void test("toJson errors", () => {
+      void suite("toJson errors", () => {
         void test("seconds too large", () => {
           const duration = create(DurationSchema, {
             seconds: protoInt64.parse(315576000000 + 1),
