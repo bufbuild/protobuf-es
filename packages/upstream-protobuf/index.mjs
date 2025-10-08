@@ -90,16 +90,15 @@ export class UpstreamProtobuf {
 
   constructor() {
     // find upstream version by shelling out to protoc
-    const match = execFileSync("protoc", ["--version"], {
+    const rawVersion = execFileSync("protoc", ["--version"], {
       shell: false,
       stdio: "pipe",
       encoding: "utf8",
-    })
-      .trim()
-      .match(/^libprotoc (\d\d\.\d)$/);
+    }).trim();
+    const match = rawVersion.match(/^libprotoc (\d\d\.\d(?:-.+)?)$/);
     if (!match) {
       throw new Error(
-        `Unable to determine upstream version from protoc --version output "${match[1]}"`,
+        `Unable to determine upstream version from protoc --version output "${rawVersion}"`,
       );
     }
     this.#version = match[1];
