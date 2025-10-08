@@ -455,6 +455,68 @@ void suite("JSON serialization", () => {
           "-0.000000005s",
         );
       });
+      void suite("toJson errors", () => {
+        void test("seconds too large", () => {
+          const duration = create(DurationSchema, {
+            seconds: protoInt64.parse(315576000000 + 1),
+            nanos: 0,
+          });
+          assert.throws(() => toJson(DurationSchema, duration), {
+            message:
+              "cannot encode message google.protobuf.Duration to JSON: value out of range",
+          });
+        });
+        void test("seconds too small", () => {
+          const duration = create(DurationSchema, {
+            seconds: protoInt64.parse(-315576000000 - 1),
+            nanos: 0,
+          });
+          assert.throws(() => toJson(DurationSchema, duration), {
+            message:
+              "cannot encode message google.protobuf.Duration to JSON: value out of range",
+          });
+        });
+        void test("seconds wrong sign", () => {
+          const duration = create(DurationSchema, {
+            seconds: protoInt64.parse(-1),
+            nanos: 1,
+          });
+          assert.throws(() => toJson(DurationSchema, duration), {
+            message:
+              "cannot encode message google.protobuf.Duration to JSON: nanos sign must match seconds sign",
+          });
+        });
+        void test("nanos wrong sign", () => {
+          const duration = create(DurationSchema, {
+            seconds: protoInt64.parse(1),
+            nanos: -1,
+          });
+          assert.throws(() => toJson(DurationSchema, duration), {
+            message:
+              "cannot encode message google.protobuf.Duration to JSON: nanos sign must match seconds sign",
+          });
+        });
+        void test("signed zero is disregarded", () => {
+          assert.doesNotThrow(() =>
+            toJson(
+              DurationSchema,
+              create(DurationSchema, {
+                seconds: protoInt64.parse(-1),
+                nanos: 0,
+              }),
+            ),
+          );
+          assert.doesNotThrow(() =>
+            toJson(
+              DurationSchema,
+              create(DurationSchema, {
+                seconds: protoInt64.parse(-1),
+                nanos: -0,
+              }),
+            ),
+          );
+        });
+      });
     });
     testJson(TimestampSchema, {}, "1970-01-01T00:00:00Z");
     test(`fromJson decodes ${TimestampSchema.typeName}`, () => {
@@ -476,6 +538,20 @@ void suite("JSON serialization", () => {
       decode("2025-01-27T11:42:15.6Z", 1737978135, 600000000);
       decode("2025-01-27T11:42:15.0Z", 1737978135, 0);
       decode("2025-01-27T11:42:15Z", 1737978135, 0);
+    });
+    void suite("Timestamp", () => {
+      void test("toJson errors", () => {
+        void test("nanos too large", () => {
+          const timestamp = create(TimestampSchema, {
+            seconds: protoInt64.parse(5000),
+            nanos: 1000000000,
+          });
+          assert.throws(() => toJson(TimestampSchema, timestamp), {
+            message:
+              "cannot encode message google.protobuf.Timestamp to JSON: nanos must not be greater than 99999999",
+          });
+        });
+      });
     });
     void suite("FieldMask", () => {
       testJson(
