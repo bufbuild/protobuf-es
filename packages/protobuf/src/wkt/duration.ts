@@ -21,13 +21,10 @@ import { protoInt64 } from "../proto-int64.js";
  * Create a google.protobuf.Duration message from a Unix timestamp in milliseconds.
  */
 export function durationFromMs(durationMs: number): Duration {
-  const sign = durationMs < 0 ? -1 : 1;
-  const absDurationMs = Math.abs(durationMs);
-  const absSeconds = Math.floor(absDurationMs / 1000);
-  const absNanos = (absDurationMs - absSeconds * 1000) * 1000000;
+  const seconds = Math.floor(durationMs / 1000);
   return create(DurationSchema, {
-    seconds: protoInt64.parse(absSeconds * sign),
-    nanos: absNanos === 0 ? 0 : absNanos * sign, // deliberately avoid signed 0 - it does not serialize
+    seconds: protoInt64.parse(seconds),
+    nanos: (durationMs - seconds * 1000) * 1000000,
   });
 }
 
