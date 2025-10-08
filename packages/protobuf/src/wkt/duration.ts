@@ -27,7 +27,7 @@ export function durationFromMs(durationMs: number): Duration {
   const absNanos = (absDurationMs - absSeconds * 1000) * 1000000;
   return create(DurationSchema, {
     seconds: protoInt64.parse(absSeconds * sign),
-    nanos: absNanos === 0 ? 0 : (absNanos * sign), // deliberately avoid signed 0 - it does not serialize
+    nanos: absNanos === 0 ? 0 : absNanos * sign, // deliberately avoid signed 0 - it does not serialize
   });
 }
 
