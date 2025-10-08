@@ -53,6 +53,11 @@ void suite("durationFromMs()", () => {
     assert.strictEqual(Number(durationWithMs.seconds), 818035920);
     assert.strictEqual(durationWithMs.nanos, 123000000);
   });
+  void test("70 ms", () => {
+    const ts = durationFromMs(70);
+    assert.strictEqual(Number(ts.seconds), 0);
+    assert.strictEqual(ts.nanos, 70_000_000);
+  });
   void test("1000 ms", () => {
     const ts = durationFromMs(1000);
     assert.strictEqual(Number(ts.seconds), 1);
@@ -61,16 +66,36 @@ void suite("durationFromMs()", () => {
   void test("1020 ms", () => {
     const ts = durationFromMs(1020);
     assert.strictEqual(Number(ts.seconds), 1);
-    assert.strictEqual(ts.nanos, 20 * 1000000);
+    assert.strictEqual(ts.nanos, 20_000_000);
   });
-  void test("-1070 ms", () => {
-    const ts = durationFromMs(-1070);
-    assert.strictEqual(Number(ts.seconds), -2);
-    assert.strictEqual(ts.nanos, 930 * 1000000);
+  void test("1800 ms", () => {
+    const ts = durationFromMs(1800);
+    assert.strictEqual(Number(ts.seconds), 1);
+    assert.strictEqual(ts.nanos, 800_000_000);
+  });
+  void test("-0 ms", () => {
+    const ts = durationFromMs(-0);
+    assert.strictEqual(Number(ts.seconds), 0);
+    assert.strictEqual(ts.nanos, 0);
+  });
+  void test("-70 ms", () => {
+    const ts = durationFromMs(-70);
+    assert.strictEqual(Number(ts.seconds), 0);
+    assert.strictEqual(ts.nanos, -70_000_000);
   });
   void test("-1000 ms", () => {
     const ts = durationFromMs(-1000);
     assert.strictEqual(Number(ts.seconds), -1);
     assert.strictEqual(ts.nanos, 0);
+  });
+  void test("-1070 ms", () => {
+    const ts = durationFromMs(-1070);
+    assert.strictEqual(Number(ts.seconds), -1);
+    assert.strictEqual(ts.nanos, -70_000_000);
+  });
+  void test("-1800 ms", () => {
+    const ts = durationFromMs(-1800);
+    assert.strictEqual(Number(ts.seconds), -1);
+    assert.strictEqual(ts.nanos, -800_000_000);
   });
 });
