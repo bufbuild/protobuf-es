@@ -1534,6 +1534,27 @@ export declare type TestRequiredMessage = Message<"proto2_unittest.TestRequiredM
 export declare const TestRequiredMessageSchema: GenMessage<TestRequiredMessage>;
 
 /**
+ * @generated from message proto2_unittest.TestRequiredLazyMessage
+ */
+export declare type TestRequiredLazyMessage = Message<"proto2_unittest.TestRequiredLazyMessage"> & {
+  /**
+   * @generated from field: proto2_unittest.TestRequired child = 1;
+   */
+  child?: TestRequired;
+
+  /**
+   * @generated from field: proto2_unittest.TestRequiredLazyMessage recurse = 2;
+   */
+  recurse?: TestRequiredLazyMessage;
+};
+
+/**
+ * Describes the message proto2_unittest.TestRequiredLazyMessage.
+ * Use `create(TestRequiredLazyMessageSchema)` to create a new message.
+ */
+export declare const TestRequiredLazyMessageSchema: GenMessage<TestRequiredLazyMessage>;
+
+/**
  * @generated from message proto2_unittest.TestNestedRequiredForeign
  */
 export declare type TestNestedRequiredForeign = Message<"proto2_unittest.TestNestedRequiredForeign"> & {
@@ -1997,6 +2018,42 @@ export declare type TestLazyMessage = Message<"proto2_unittest.TestLazyMessage">
  * Use `create(TestLazyMessageSchema)` to create a new message.
  */
 export declare const TestLazyMessageSchema: GenMessage<TestLazyMessage>;
+
+/**
+ * @generated from message proto2_unittest.TestLazyRequiredEnum
+ */
+export declare type TestLazyRequiredEnum = Message<"proto2_unittest.TestLazyRequiredEnum"> & {
+  /**
+   * @generated from field: proto2_unittest.TestRequiredOpenEnum optional_required_open_enum = 1;
+   */
+  optionalRequiredOpenEnum?: TestRequiredOpenEnum;
+
+  /**
+   * @generated from field: proto2_unittest.TestRequiredEnum optional_required_enum = 2;
+   */
+  optionalRequiredEnum?: TestRequiredEnum;
+
+  /**
+   * @generated from field: proto2_unittest.TestRequiredEnumNoMask optional_required_enum_no_mask = 3;
+   */
+  optionalRequiredEnumNoMask?: TestRequiredEnumNoMask;
+
+  /**
+   * @generated from field: proto2_unittest.TestRequiredEnumMulti optional_required_enum_multi = 4;
+   */
+  optionalRequiredEnumMulti?: TestRequiredEnumMulti;
+
+  /**
+   * @generated from field: proto2_unittest.TestRequiredNoMaskMulti optional_required_no_mask = 5;
+   */
+  optionalRequiredNoMask?: TestRequiredNoMaskMulti;
+};
+
+/**
+ * Describes the message proto2_unittest.TestLazyRequiredEnum.
+ * Use `create(TestLazyRequiredEnumSchema)` to create a new message.
+ */
+export declare const TestLazyRequiredEnumSchema: GenMessage<TestLazyRequiredEnum>;
 
 /**
  * @generated from message proto2_unittest.TestLazyMessageRepeated
