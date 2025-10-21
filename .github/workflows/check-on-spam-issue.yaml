@@ -1,0 +1,70 @@
+# .github/workflows/check-spam-on-issue.yml
+name: Check Spam on Issue
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check account age and history
+        id: check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const username = context.payload.issue.user.login;
+            const user = await github.rest.users.getByUsername({ username });
+            
+            const createdAt = new Date(user.data.created_at);
+            const now = new Date();
+            const ageInDays = (now - createdAt) / (1000 * 60 * 60 * 24);
+            
+            const isNewAccount = ageInDays < 30;
+            const hasNoHistory = user.data.public_repos === 0 && 
+                                 user.data.followers === 0 && 
+                                 user.data.following === 0;
+            
+            const isSuspect = isNewAccount || hasNoHistory;
+            
+            core.setOutput('is_suspect', isSuspect);
+            core.setOutput('age_days', ageInDays.toFixed(1));
+            
+            if (isSuspect) {
+              console.log(`Flagged: ${username} (age: ${ageInDays.toFixed(1)}d, repos: ${user.data.public_repos}, followers: ${user.data.followers})`);
+            }
+      
+      - name: Add needs-reply label and challenge
+        if: steps.check.outputs.is_suspect == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.issue.number;
+            
+            // Random challenge
+            const challenges = [
+              { text: 'security infrastructure automation', position: 2, answer: 'infrastructure' },
+              { text: 'reliability engineering platform observability', position: 1, answer: 'engineering' },
+              { text: 'kubernetes containers deployment', position: 0, answer: 'kubernetes' },
+              { text: 'incident response playbook runbook', position: 2, answer: 'playbook' },
+            ];
+            
+            const challenge = challenges[Math.floor(Math.random() * challenges.length)];
+            const words = challenge.text.split(' ');
+            const correctAnswer = words[challenge.position];
+            
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: ['needs-reply']
+            });
+            
+            const commentBody = `Thanks for reporting! We need to verify you're human before we process this.\n\nReply with the word at position ${challenge.position + 1} in this list: **${challenge.text}**\n\n(This helps us filter out automated spam. Real contributors, no worries - just copy and paste the word!)\n\n<!-- EXPECTED_ANSWER: ${correctAnswer} -->`;
+            
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: commentBody
+            });

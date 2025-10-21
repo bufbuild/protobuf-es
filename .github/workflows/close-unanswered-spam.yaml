@@ -1,0 +1,86 @@
+# .github/workflows/close-unanswered-spam.yml
+name: Close Unanswered Spam
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Daily at 9 AM UTC
+  workflow_dispatch:
+
+jobs:
+  close_stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find and close stale needs-reply issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const GRACE_PERIOD_DAYS = 7;
+            const cutoffDate = new Date();
+            cutoffDate.setDate(cutoffDate.getDate() - GRACE_PERIOD_DAYS);
+            
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'needs-reply',
+              state: 'open',
+              per_page: 100
+            });
+            
+            for (const issue of issues.data) {
+              const comments = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                per_page: 100
+              });
+              
+              // Find bot's challenge comment
+              let expectedAnswer = null;
+              let botCommentId = null;
+              for (const comment of comments.data) {
+                if (comment.body.includes('EXPECTED_ANSWER')) {
+                  const match = comment.body.match(/EXPECTED_ANSWER: (\w+)/);
+                  if (match) {
+                    expectedAnswer = match[1].toLowerCase();
+                    botCommentId = comment.id;
+                  }
+                }
+              }
+              
+              if (!expectedAnswer) continue;
+              
+              // Check if any reply after bot comment contains correct answer
+              let hasCorrectReply = false;
+              const botCommentTime = new Date(
+                comments.data.find(c => c.id === botCommentId)?.created_at
+              );
+              
+              for (const comment of comments.data) {
+                const commentTime = new Date(comment.created_at);
+                if (commentTime > botCommentTime && 
+                    comment.user.login !== 'github-actions[bot]' &&
+                    comment.body.toLowerCase().includes(expectedAnswer)) {
+                  hasCorrectReply = true;
+                  break;
+                }
+              }
+              
+              // Close if no correct reply and grace period passed
+              if (!hasCorrectReply && issue.created_at < cutoffDate.toISOString()) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: 'Closing due to no verification. Feel free to reopen if this is a legitimate issue.'
+                });
+                
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: 'closed',
+                  state_reason: 'not_planned'
+                });
+                
+                console.log(`Closed issue #${issue.number}`);
+              }
+            }
