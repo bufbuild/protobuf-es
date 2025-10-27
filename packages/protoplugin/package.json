@@ -39,7 +39,5 @@
     "@typescript/vfs": "^1.6.2",
     "typescript": "5.4.5"
   },
-  "files": [
-    "dist/**"
-  ]
+  "files": ["dist/**"]
 }
