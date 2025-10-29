@@ -12,7 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export * from "./binary-encoding.js";
+// export * from "./binary-encoding.js";
+// export * from "./binary-encoding2.js";
+
+export {WireType, FLOAT32_MAX, FLOAT32_MIN, INT32_MAX, INT32_MIN, UINT32_MAX, BinaryReader} from "./binary-encoding.js";
+export {BinaryWriter2 as BinaryWriter} from "./binary-encoding2.js";
+
 export * from "./base64-encoding.js";
 export * from "./text-encoding.js";
 export * from "./text-format.js";
