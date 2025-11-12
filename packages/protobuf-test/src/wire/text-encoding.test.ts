@@ -45,6 +45,25 @@ void suite("getTextEncoding()", () => {
       );
       assert.strictEqual(text, "hello 🌍");
     });
+    void test("decodes errors as U+FFFD", () => {
+      const text = getTextEncoding().decodeUtf8(
+        new Uint8Array([104, 101, 108, 108, 111, 32, 240]),
+      );
+      assert.strictEqual(text, "hello \uFFFD");
+    });
+    void test("throws TypeError for errors, if strict is true", () => {
+      assert.throws(
+        () => {
+          getTextEncoding().decodeUtf8(
+            new Uint8Array([104, 101, 108, 108, 111, 32, 240]),
+            true,
+          );
+        },
+        {
+          name: "TypeError",
+        },
+      );
+    });
   });
   void suite("checkUtf8()", () => {
     void test("returns true for valid", () => {

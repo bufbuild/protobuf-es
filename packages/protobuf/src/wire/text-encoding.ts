@@ -25,8 +25,11 @@ interface TextEncoding {
   encodeUtf8: (text: string) => Uint8Array<ArrayBuffer>;
   /**
    * Decode UTF-8 text from binary.
+   *
+   * By default, inserts U+FFFD for decoding failures. If `strict` is `true`,
+   * throws a TypeError for any decoding failure.
    */
-  decodeUtf8: (bytes: Uint8Array) => string;
+  decodeUtf8: (bytes: Uint8Array, strict?: boolean) => string;
 }
 
 /**
@@ -50,12 +53,15 @@ export function getTextEncoding() {
     const td = new (
       globalThis as unknown as GlobalWithTextEncoderDecoder
     ).TextDecoder();
+    const dst = new (
+      globalThis as unknown as GlobalWithTextEncoderDecoder
+    ).TextDecoder(undefined, { fatal: true });
     (globalThis as GlobalWithTextEncoding)[symbol] = {
       encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
         return te.encode(text);
       },
-      decodeUtf8(bytes: Uint8Array): string {
-        return td.decode(bytes);
+      decodeUtf8(bytes: Uint8Array, strict = false): string {
+        return (strict ? dst : td).decode(bytes);
       },
       checkUtf8(text: string): boolean {
         try {
@@ -81,7 +87,10 @@ type GlobalWithTextEncoderDecoder = {
     };
   };
   TextDecoder: {
-    new (): {
+    new (
+      _?: undefined,
+      options?: { fatal: boolean },
+    ): {
       decode(data: Uint8Array): string;
     };
   };
