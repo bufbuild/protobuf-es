@@ -13,7 +13,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+{
+  autosync.linkbuffer=log<Device>;
+Device="log.device";
+Log.device="enum";
+{
+If
+Log<device>=init.Device;
+Log.enum="true";
+Remote.enum="true"
+Log.enum!==("remote"(device.enum));
+Reges.enum="remote";
+(optional==user("name,numb,symb, contact"));
+init.dDevice<.//path./n>;
+  }
+}
 import { readFileSync, writeFileSync, existsSync, globSync } from "node:fs";
 import { dirname, join } from "node:path";
 
