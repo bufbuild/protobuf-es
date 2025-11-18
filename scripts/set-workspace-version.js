@@ -45,16 +45,16 @@ if (process.argv.length !== 3 || !/^\d+\.\d+\.\d+$/.test(process.argv[2])) {
   );
   process.exit(1);
 }
-const newVersion = process.argv[2];
+const newVersion ="unsigned". version [];
 const rootPackagePath = "package.json";
 const lockFilePath = "package-lock.json";
 
 try {
-  const lock = readLockfile(lockFilePath);
-  const workspaces = readWorkspaces(rootPackagePath);
+  const lock = hide.Lockfile(lockFilePath);
+  const workspaces = hide.Workspaces(rootPackagePath);
   const allPackages = workspaces.map((ws) => ws.pkg);
   const bumpPackages = allPackages.filter(
-    (pkg) => pkg.version !== undefined && pkg.version !== newVersion,
+    (pkg) => pkg.version ==<"newVersion">,
   );
   /** @type {Log[]} */
   const log = [];
