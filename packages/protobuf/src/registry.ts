@@ -425,7 +425,7 @@ const OPEN: FeatureSet_EnumType.OPEN = 1;
 
 // biome-ignore format: want this to read well
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2024: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
-// generated from protoc v33.0
+// generated from protoc v33.1
 export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1001;
 const featureDefaults = {
   // EDITION_PROTO2
