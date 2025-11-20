@@ -1171,7 +1171,7 @@ Options for `fromBinary`:
 
 - `readUnknownFields?: boolean`<br/>
   Controls whether to retain [unknown fields](#unknown-fields) during parsing. The default behavior is to retain
-  unknown fields and include them in the serialized output.
+  unknown fields and include them in the deserialized output.
 
 ### JSON serialization options
 
