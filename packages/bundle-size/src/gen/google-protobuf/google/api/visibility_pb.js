@@ -134,7 +134,7 @@ rulesList: jspb.Message.toObjectList(msg.getRulesList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.Visibility}
  */
 proto.google.api.Visibility.deserializeBinary = function(bytes) {
@@ -287,7 +287,7 @@ restriction: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.VisibilityRule}
  */
 proto.google.api.VisibilityRule.deserializeBinary = function(bytes) {

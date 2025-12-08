@@ -127,7 +127,7 @@ positionsMap: (f = msg.getPositionsMap()) ? f.toObject(includeInstance, undefine
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.SourceInfo}
  */
 proto.google.api.expr.v1beta1.SourceInfo.deserializeBinary = function(bytes) {
@@ -345,7 +345,7 @@ column: jspb.Message.getFieldWithDefault(msg, 4, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.SourcePosition}
  */
 proto.google.api.expr.v1beta1.SourcePosition.deserializeBinary = function(bytes) {

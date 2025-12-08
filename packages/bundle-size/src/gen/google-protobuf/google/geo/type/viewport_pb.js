@@ -99,7 +99,7 @@ high: (f = msg.getHigh()) && google_type_latlng_pb.LatLng.toObject(includeInstan
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.geo.type.Viewport}
  */
 proto.google.geo.type.Viewport.deserializeBinary = function(bytes) {

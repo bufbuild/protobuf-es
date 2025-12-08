@@ -380,7 +380,7 @@ destinationsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefine
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.CommonLanguageSettings}
  */
 proto.google.api.CommonLanguageSettings.deserializeBinary = function(bytes) {
@@ -567,7 +567,7 @@ goSettings: (f = msg.getGoSettings()) && proto.google.api.GoSettings.toObject(in
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.ClientLibrarySettings}
  */
 proto.google.api.ClientLibrarySettings.deserializeBinary = function(bytes) {
@@ -1174,7 +1174,7 @@ restReferenceDocumentationUri: jspb.Message.getFieldWithDefault(msg, 111, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.Publishing}
  */
 proto.google.api.Publishing.deserializeBinary = function(bytes) {
@@ -1659,7 +1659,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.JavaSettings}
  */
 proto.google.api.JavaSettings.deserializeBinary = function(bytes) {
@@ -1877,7 +1877,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.CppSettings}
  */
 proto.google.api.CppSettings.deserializeBinary = function(bytes) {
@@ -2028,7 +2028,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.PhpSettings}
  */
 proto.google.api.PhpSettings.deserializeBinary = function(bytes) {
@@ -2179,7 +2179,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.PythonSettings}
  */
 proto.google.api.PythonSettings.deserializeBinary = function(bytes) {
@@ -2330,7 +2330,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.NodeSettings}
  */
 proto.google.api.NodeSettings.deserializeBinary = function(bytes) {
@@ -2493,7 +2493,7 @@ handwrittenSignaturesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ?
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.DotnetSettings}
  */
 proto.google.api.DotnetSettings.deserializeBinary = function(bytes) {
@@ -2864,7 +2864,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.RubySettings}
  */
 proto.google.api.RubySettings.deserializeBinary = function(bytes) {
@@ -3015,7 +3015,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.GoSettings}
  */
 proto.google.api.GoSettings.deserializeBinary = function(bytes) {
@@ -3175,7 +3175,7 @@ autoPopulatedFieldsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? u
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.MethodSettings}
  */
 proto.google.api.MethodSettings.deserializeBinary = function(bytes) {
@@ -3314,7 +3314,7 @@ totalPollTimeout: (f = msg.getTotalPollTimeout()) && google_protobuf_duration_pb
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.MethodSettings.LongRunning}
  */
 proto.google.api.MethodSettings.LongRunning.deserializeBinary = function(bytes) {

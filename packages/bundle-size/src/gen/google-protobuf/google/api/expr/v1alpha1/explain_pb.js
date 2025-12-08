@@ -130,7 +130,7 @@ exprStepsList: jspb.Message.toObjectList(msg.getExprStepsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1alpha1.Explain}
  */
 proto.google.api.expr.v1alpha1.Explain.deserializeBinary = function(bytes) {
@@ -258,7 +258,7 @@ valueIndex: jspb.Message.getFieldWithDefault(msg, 2, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1alpha1.Explain.ExprStep}
  */
 proto.google.api.expr.v1alpha1.Explain.ExprStep.deserializeBinary = function(bytes) {

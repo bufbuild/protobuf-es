@@ -155,7 +155,7 @@ timeZone: (f = msg.getTimeZone()) && proto.google.type.TimeZone.toObject(include
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.DateTime}
  */
 proto.google.type.DateTime.deserializeBinary = function(bytes) {
@@ -560,7 +560,7 @@ version: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.TimeZone}
  */
 proto.google.type.TimeZone.deserializeBinary = function(bytes) {

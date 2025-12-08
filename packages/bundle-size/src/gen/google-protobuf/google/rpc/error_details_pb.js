@@ -386,7 +386,7 @@ metadataMap: (f = msg.getMetadataMap()) ? f.toObject(includeInstance, undefined)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.ErrorInfo}
  */
 proto.google.rpc.ErrorInfo.deserializeBinary = function(bytes) {
@@ -583,7 +583,7 @@ retryDelay: (f = msg.getRetryDelay()) && google_protobuf_duration_pb.Duration.to
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.RetryInfo}
  */
 proto.google.rpc.RetryInfo.deserializeBinary = function(bytes) {
@@ -742,7 +742,7 @@ detail: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.DebugInfo}
  */
 proto.google.rpc.DebugInfo.deserializeBinary = function(bytes) {
@@ -928,7 +928,7 @@ violationsList: jspb.Message.toObjectList(msg.getViolationsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.QuotaFailure}
  */
 proto.google.rpc.QuotaFailure.deserializeBinary = function(bytes) {
@@ -1043,7 +1043,7 @@ description: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.QuotaFailure.Violation}
  */
 proto.google.rpc.QuotaFailure.Violation.deserializeBinary = function(bytes) {
@@ -1248,7 +1248,7 @@ violationsList: jspb.Message.toObjectList(msg.getViolationsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.PreconditionFailure}
  */
 proto.google.rpc.PreconditionFailure.deserializeBinary = function(bytes) {
@@ -1364,7 +1364,7 @@ description: jspb.Message.getFieldWithDefault(msg, 3, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.PreconditionFailure.Violation}
  */
 proto.google.rpc.PreconditionFailure.Violation.deserializeBinary = function(bytes) {
@@ -1598,7 +1598,7 @@ fieldViolationsList: jspb.Message.toObjectList(msg.getFieldViolationsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.BadRequest}
  */
 proto.google.rpc.BadRequest.deserializeBinary = function(bytes) {
@@ -1713,7 +1713,7 @@ description: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.BadRequest.FieldViolation}
  */
 proto.google.rpc.BadRequest.FieldViolation.deserializeBinary = function(bytes) {
@@ -1911,7 +1911,7 @@ servingData: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.RequestInfo}
  */
 proto.google.rpc.RequestInfo.deserializeBinary = function(bytes) {
@@ -2073,7 +2073,7 @@ description: jspb.Message.getFieldWithDefault(msg, 4, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.ResourceInfo}
  */
 proto.google.rpc.ResourceInfo.deserializeBinary = function(bytes) {
@@ -2298,7 +2298,7 @@ linksList: jspb.Message.toObjectList(msg.getLinksList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.Help}
  */
 proto.google.rpc.Help.deserializeBinary = function(bytes) {
@@ -2413,7 +2413,7 @@ url: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.Help.Link}
  */
 proto.google.rpc.Help.Link.deserializeBinary = function(bytes) {
@@ -2611,7 +2611,7 @@ message: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.LocalizedMessage}
  */
 proto.google.rpc.LocalizedMessage.deserializeBinary = function(bytes) {
