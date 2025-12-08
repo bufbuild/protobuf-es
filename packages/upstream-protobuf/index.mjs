@@ -56,6 +56,7 @@ export class UpstreamProtobuf {
     "src/google/protobuf/test_messages_*.proto",
     "src/google/protobuf/*unittest*.proto",
     "editions/golden/test_messages_proto3_editions.proto",
+    "!src/google/protobuf/unittest_custom_features.proto",
     "!src/google/protobuf/unittest_lite_edition_2024.proto",
     "!src/google/protobuf/unittest_string_type.proto",
     "!src/google/protobuf/map_proto3_unittest.proto",

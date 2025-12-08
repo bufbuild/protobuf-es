@@ -50,14 +50,46 @@ export declare type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
 export declare const TestMessage_NestedSchema: GenMessage<TestMessage_Nested>;
 
 /**
- * @generated from extension: pb.TestFeatures test_nested = 9997;
+ * @generated from extension: pb.TestNestedFeatures test_nested = 9997;
  */
-export declare const TestMessage_Nested_test_nested: GenExtension<FeatureSet, TestFeatures>;
+export declare const TestMessage_Nested_test_nested: GenExtension<FeatureSet, TestNestedFeatures>;
 
 /**
- * @generated from extension: pb.TestFeatures test_message = 9998;
+ * @generated from extension: pb.TestMessageFeatures test_message = 9998;
  */
-export declare const TestMessage_test_message: GenExtension<FeatureSet, TestFeatures>;
+export declare const TestMessage_test_message: GenExtension<FeatureSet, TestMessageFeatures>;
+
+/**
+ * @generated from message pb.TestMessageFeatures
+ */
+export declare type TestMessageFeatures = Message<"pb.TestMessageFeatures"> & {
+  /**
+   * @generated from field: pb.EnumFeature file_feature = 1;
+   */
+  fileFeature: EnumFeature;
+};
+
+/**
+ * Describes the message pb.TestMessageFeatures.
+ * Use `create(TestMessageFeaturesSchema)` to create a new message.
+ */
+export declare const TestMessageFeaturesSchema: GenMessage<TestMessageFeatures>;
+
+/**
+ * @generated from message pb.TestNestedFeatures
+ */
+export declare type TestNestedFeatures = Message<"pb.TestNestedFeatures"> & {
+  /**
+   * @generated from field: pb.EnumFeature file_feature = 1;
+   */
+  fileFeature: EnumFeature;
+};
+
+/**
+ * Describes the message pb.TestNestedFeatures.
+ * Use `create(TestNestedFeaturesSchema)` to create a new message.
+ */
+export declare const TestNestedFeaturesSchema: GenMessage<TestNestedFeatures>;
 
 /**
  * @generated from message pb.TestFeatures
