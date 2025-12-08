@@ -26,7 +26,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -47,7 +47,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -60,7 +60,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -71,7 +71,7 @@ jobs:
   attw:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -82,7 +82,7 @@ jobs:
   typescript-compat:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -93,7 +93,7 @@ jobs:
   license-header:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -105,7 +105,7 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -117,7 +117,7 @@ jobs:
   bundle-size:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -129,7 +129,7 @@ jobs:
   bootstrap:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
