@@ -108,7 +108,7 @@ extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.HttpBody}
  */
 proto.google.api.HttpBody.deserializeBinary = function(bytes) {

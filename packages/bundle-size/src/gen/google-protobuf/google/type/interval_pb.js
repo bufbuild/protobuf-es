@@ -99,7 +99,7 @@ endTime: (f = msg.getEndTime()) && google_protobuf_timestamp_pb.Timestamp.toObje
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.Interval}
  */
 proto.google.type.Interval.deserializeBinary = function(bytes) {

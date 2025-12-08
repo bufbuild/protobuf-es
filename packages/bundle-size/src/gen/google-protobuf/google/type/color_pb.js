@@ -101,7 +101,7 @@ alpha: (f = msg.getAlpha()) && google_protobuf_wrappers_pb.FloatValue.toObject(i
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.Color}
  */
 proto.google.type.Color.deserializeBinary = function(bytes) {

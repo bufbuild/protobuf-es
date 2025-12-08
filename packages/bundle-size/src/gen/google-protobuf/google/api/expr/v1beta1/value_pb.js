@@ -236,7 +236,7 @@ typeValue: (f = jspb.Message.getField(msg, 15)) == null ? undefined : f
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Value}
  */
 proto.google.api.expr.v1beta1.Value.deserializeBinary = function(bytes) {
@@ -938,7 +938,7 @@ value: jspb.Message.getFieldWithDefault(msg, 2, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.EnumValue}
  */
 proto.google.api.expr.v1beta1.EnumValue.deserializeBinary = function(bytes) {
@@ -1105,7 +1105,7 @@ valuesList: jspb.Message.toObjectList(msg.getValuesList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.ListValue}
  */
 proto.google.api.expr.v1beta1.ListValue.deserializeBinary = function(bytes) {
@@ -1265,7 +1265,7 @@ entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.MapValue}
  */
 proto.google.api.expr.v1beta1.MapValue.deserializeBinary = function(bytes) {
@@ -1380,7 +1380,7 @@ value: (f = msg.getValue()) && proto.google.api.expr.v1beta1.Value.toObject(incl
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.MapValue.Entry}
  */
 proto.google.api.expr.v1beta1.MapValue.Entry.deserializeBinary = function(bytes) {

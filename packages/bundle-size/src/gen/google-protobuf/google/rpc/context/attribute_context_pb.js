@@ -251,7 +251,7 @@ extensionsList: jspb.Message.toObjectList(msg.getExtensionsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.context.AttributeContext}
  */
 proto.google.rpc.context.AttributeContext.deserializeBinary = function(bytes) {
@@ -460,7 +460,7 @@ regionCode: jspb.Message.getFieldWithDefault(msg, 8, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.context.AttributeContext.Peer}
  */
 proto.google.rpc.context.AttributeContext.Peer.deserializeBinary = function(bytes) {
@@ -718,7 +718,7 @@ version: jspb.Message.getFieldWithDefault(msg, 4, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.context.AttributeContext.Api}
  */
 proto.google.rpc.context.AttributeContext.Api.deserializeBinary = function(bytes) {
@@ -946,7 +946,7 @@ accessLevelsList: (f = jspb.Message.getRepeatedField(msg, 5)) == null ? undefine
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.context.AttributeContext.Auth}
  */
 proto.google.rpc.context.AttributeContext.Auth.deserializeBinary = function(bytes) {
@@ -1262,7 +1262,7 @@ auth: (f = msg.getAuth()) && proto.google.rpc.context.AttributeContext.Auth.toOb
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.context.AttributeContext.Request}
  */
 proto.google.rpc.context.AttributeContext.Request.deserializeBinary = function(bytes) {
@@ -1766,7 +1766,7 @@ backendLatency: (f = msg.getBackendLatency()) && google_protobuf_duration_pb.Dur
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.context.AttributeContext.Response}
  */
 proto.google.rpc.context.AttributeContext.Response.deserializeBinary = function(bytes) {
@@ -2074,7 +2074,7 @@ location: jspb.Message.getFieldWithDefault(msg, 12, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.context.AttributeContext.Resource}
  */
 proto.google.rpc.context.AttributeContext.Resource.deserializeBinary = function(bytes) {

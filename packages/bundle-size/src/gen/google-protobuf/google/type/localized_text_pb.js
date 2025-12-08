@@ -97,7 +97,7 @@ languageCode: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.LocalizedText}
  */
 proto.google.type.LocalizedText.deserializeBinary = function(bytes) {

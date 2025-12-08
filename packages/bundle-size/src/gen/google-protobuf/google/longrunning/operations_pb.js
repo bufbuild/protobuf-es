@@ -296,7 +296,7 @@ response: (f = msg.getResponse()) && google_protobuf_any_pb.Any.toObject(include
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.longrunning.Operation}
  */
 proto.google.longrunning.Operation.deserializeBinary = function(bytes) {
@@ -605,7 +605,7 @@ name: jspb.Message.getFieldWithDefault(msg, 1, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.longrunning.GetOperationRequest}
  */
 proto.google.longrunning.GetOperationRequest.deserializeBinary = function(bytes) {
@@ -738,7 +738,7 @@ pageToken: jspb.Message.getFieldWithDefault(msg, 3, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.longrunning.ListOperationsRequest}
  */
 proto.google.longrunning.ListOperationsRequest.deserializeBinary = function(bytes) {
@@ -964,7 +964,7 @@ nextPageToken: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.longrunning.ListOperationsResponse}
  */
 proto.google.longrunning.ListOperationsResponse.deserializeBinary = function(bytes) {
@@ -1145,7 +1145,7 @@ name: jspb.Message.getFieldWithDefault(msg, 1, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.longrunning.CancelOperationRequest}
  */
 proto.google.longrunning.CancelOperationRequest.deserializeBinary = function(bytes) {
@@ -1275,7 +1275,7 @@ name: jspb.Message.getFieldWithDefault(msg, 1, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.longrunning.DeleteOperationRequest}
  */
 proto.google.longrunning.DeleteOperationRequest.deserializeBinary = function(bytes) {
@@ -1406,7 +1406,7 @@ timeout: (f = msg.getTimeout()) && google_protobuf_duration_pb.Duration.toObject
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.longrunning.WaitOperationRequest}
  */
 proto.google.longrunning.WaitOperationRequest.deserializeBinary = function(bytes) {
@@ -1587,7 +1587,7 @@ metadataType: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.longrunning.OperationInfo}
  */
 proto.google.longrunning.OperationInfo.deserializeBinary = function(bytes) {

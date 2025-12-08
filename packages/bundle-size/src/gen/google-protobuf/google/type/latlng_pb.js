@@ -97,7 +97,7 @@ longitude: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.LatLng}
  */
 proto.google.type.LatLng.deserializeBinary = function(bytes) {

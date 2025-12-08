@@ -303,7 +303,7 @@ syntaxVersion: jspb.Message.getFieldWithDefault(msg, 4, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.ParsedExpr}
  */
 proto.google.api.expr.v1beta1.ParsedExpr.deserializeBinary = function(bytes) {
@@ -571,7 +571,7 @@ comprehensionExpr: (f = msg.getComprehensionExpr()) && proto.google.api.expr.v1b
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr}
  */
 proto.google.api.expr.v1beta1.Expr.deserializeBinary = function(bytes) {
@@ -774,7 +774,7 @@ name: jspb.Message.getFieldWithDefault(msg, 1, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.Ident}
  */
 proto.google.api.expr.v1beta1.Expr.Ident.deserializeBinary = function(bytes) {
@@ -906,7 +906,7 @@ testOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.Select}
  */
 proto.google.api.expr.v1beta1.Expr.Select.deserializeBinary = function(bytes) {
@@ -1125,7 +1125,7 @@ argsList: jspb.Message.toObjectList(msg.getArgsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.Call}
  */
 proto.google.api.expr.v1beta1.Expr.Call.deserializeBinary = function(bytes) {
@@ -1364,7 +1364,7 @@ elementsList: jspb.Message.toObjectList(msg.getElementsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.CreateList}
  */
 proto.google.api.expr.v1beta1.Expr.CreateList.deserializeBinary = function(bytes) {
@@ -1525,7 +1525,7 @@ entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.CreateStruct}
  */
 proto.google.api.expr.v1beta1.Expr.CreateStruct.deserializeBinary = function(bytes) {
@@ -1679,7 +1679,7 @@ value: (f = msg.getValue()) && proto.google.api.expr.v1beta1.Expr.toObject(inclu
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.CreateStruct.Entry}
  */
 proto.google.api.expr.v1beta1.Expr.CreateStruct.Entry.deserializeBinary = function(bytes) {
@@ -2018,7 +2018,7 @@ result: (f = msg.getResult()) && proto.google.api.expr.v1beta1.Expr.toObject(inc
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.Comprehension}
  */
 proto.google.api.expr.v1beta1.Expr.Comprehension.deserializeBinary = function(bytes) {
@@ -2741,7 +2741,7 @@ bytesValue: msg.getBytesValue_asB64()
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Literal}
  */
 proto.google.api.expr.v1beta1.Literal.deserializeBinary = function(bytes) {

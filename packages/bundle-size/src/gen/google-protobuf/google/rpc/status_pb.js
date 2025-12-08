@@ -108,7 +108,7 @@ detailsList: jspb.Message.toObjectList(msg.getDetailsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.rpc.Status}
  */
 proto.google.rpc.Status.deserializeBinary = function(bytes) {

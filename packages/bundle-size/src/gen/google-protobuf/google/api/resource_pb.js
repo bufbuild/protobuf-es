@@ -138,7 +138,7 @@ styleList: (f = jspb.Message.getRepeatedField(msg, 10)) == null ? undefined : f
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.ResourceDescriptor}
  */
 proto.google.api.ResourceDescriptor.deserializeBinary = function(bytes) {
@@ -497,7 +497,7 @@ childType: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.ResourceReference}
  */
 proto.google.api.ResourceReference.deserializeBinary = function(bytes) {

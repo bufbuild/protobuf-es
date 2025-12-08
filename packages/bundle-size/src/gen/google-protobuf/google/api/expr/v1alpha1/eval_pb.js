@@ -199,7 +199,7 @@ resultsList: jspb.Message.toObjectList(msg.getResultsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1alpha1.EvalState}
  */
 proto.google.api.expr.v1alpha1.EvalState.deserializeBinary = function(bytes) {
@@ -327,7 +327,7 @@ value: jspb.Message.getFieldWithDefault(msg, 2, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1alpha1.EvalState.Result}
  */
 proto.google.api.expr.v1alpha1.EvalState.Result.deserializeBinary = function(bytes) {
@@ -591,7 +591,7 @@ unknown: (f = msg.getUnknown()) && proto.google.api.expr.v1alpha1.UnknownSet.toO
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1alpha1.ExprValue}
  */
 proto.google.api.expr.v1alpha1.ExprValue.deserializeBinary = function(bytes) {
@@ -850,7 +850,7 @@ errorsList: jspb.Message.toObjectList(msg.getErrorsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1alpha1.ErrorSet}
  */
 proto.google.api.expr.v1alpha1.ErrorSet.deserializeBinary = function(bytes) {
@@ -1009,7 +1009,7 @@ exprsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1alpha1.UnknownSet}
  */
 proto.google.api.expr.v1alpha1.UnknownSet.deserializeBinary = function(bytes) {

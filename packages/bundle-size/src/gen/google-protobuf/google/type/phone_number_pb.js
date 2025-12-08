@@ -147,7 +147,7 @@ extension: jspb.Message.getFieldWithDefault(msg, 3, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.PhoneNumber}
  */
 proto.google.type.PhoneNumber.deserializeBinary = function(bytes) {
@@ -284,7 +284,7 @@ number: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.PhoneNumber.ShortCode}
  */
 proto.google.type.PhoneNumber.ShortCode.deserializeBinary = function(bytes) {

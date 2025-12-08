@@ -208,7 +208,7 @@ readLimit: jspb.Message.getFieldWithDefault(msg, 3, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.ReadRequest}
  */
 proto.google.bytestream.ReadRequest.deserializeBinary = function(bytes) {
@@ -396,7 +396,7 @@ data: msg.getData_asB64()
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.ReadResponse}
  */
 proto.google.bytestream.ReadResponse.deserializeBinary = function(bytes) {
@@ -553,7 +553,7 @@ data: msg.getData_asB64()
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.WriteRequest}
  */
 proto.google.bytestream.WriteRequest.deserializeBinary = function(bytes) {
@@ -794,7 +794,7 @@ committedSize: jspb.Message.getFieldWithDefault(msg, 1, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.WriteResponse}
  */
 proto.google.bytestream.WriteResponse.deserializeBinary = function(bytes) {
@@ -924,7 +924,7 @@ resourceName: jspb.Message.getFieldWithDefault(msg, 1, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.QueryWriteStatusRequest}
  */
 proto.google.bytestream.QueryWriteStatusRequest.deserializeBinary = function(bytes) {
@@ -1055,7 +1055,7 @@ complete: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.QueryWriteStatusResponse}
  */
 proto.google.bytestream.QueryWriteStatusResponse.deserializeBinary = function(bytes) {

@@ -195,7 +195,7 @@ pb_function: (f = msg.getFunction()) && proto.google.api.expr.v1beta1.FunctionDe
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Decl}
  */
 proto.google.api.expr.v1beta1.Decl.deserializeBinary = function(bytes) {
@@ -493,7 +493,7 @@ typeParamsList: jspb.Message.toObjectList(msg.getTypeParamsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.DeclType}
  */
 proto.google.api.expr.v1beta1.DeclType.deserializeBinary = function(bytes) {
@@ -704,7 +704,7 @@ value: (f = msg.getValue()) && google_api_expr_v1beta1_expr_pb.Expr.toObject(inc
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.IdentDecl}
  */
 proto.google.api.expr.v1beta1.IdentDecl.deserializeBinary = function(bytes) {
@@ -915,7 +915,7 @@ receiverFunction: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.FunctionDecl}
  */
 proto.google.api.expr.v1beta1.FunctionDecl.deserializeBinary = function(bytes) {
