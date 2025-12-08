@@ -23,7 +23,7 @@
     "conformance": "bin/conformance.js"
   },
   "devDependencies": {
-    "@bufbuild/buf": "^1.59.0",
+    "@bufbuild/buf": "^1.61.0",
     "@bufbuild/protobuf": "2.10.1",
     "@bufbuild/protoc-gen-es": "2.10.1",
     "protobuf-conformance": "33.1.0"
