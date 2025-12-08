@@ -6,7 +6,7 @@ plugins:
   - local: protoc-gen-es
     opt: target=ts
     out: src/gen/protobuf-es
-  - remote: buf.build/protocolbuffers/js:v4.0.0
+  - remote: buf.build/protocolbuffers/js:v4.0.1
     out: src/gen/google-protobuf
     opt: import_style=commonjs
   - local: ["tsx", "./src/protoc-gen-entrypoints.ts"]
