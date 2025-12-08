@@ -21,6 +21,6 @@
   },
   "dependencies": {
     "fflate": "^0.8.1",
-    "protoc": "33.1.0"
+    "protoc": "33.2.0"
   }
 }
