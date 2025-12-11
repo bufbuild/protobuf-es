@@ -285,7 +285,7 @@ function readMapField(map: ReflectMap, json: JsonValue, opts: JsonReadOptions) {
     throw new FieldError(field, "expected object, got " + formatVal(json));
   }
   for (const [jsonMapKey, jsonMapValue] of Object.entries(json)) {
-    if (jsonMapValue === null) {
+    if (jsonMapValue === null && !isSafeNullValueInListOrMap(field)) {
       throw new FieldError(field, "map value must not be null");
     }
     let value: unknown;
@@ -328,7 +328,7 @@ function readListField(
     throw new FieldError(field, "expected Array, got " + formatVal(json));
   }
   for (const jsonItem of json) {
-    if (jsonItem === null) {
+    if (jsonItem === null && !isSafeNullValueInListOrMap(field)) {
       throw new FieldError(field, "list item must not be null");
     }
     switch (field.listKind) {
@@ -353,6 +353,15 @@ function readListField(
         break;
     }
   }
+}
+
+function isSafeNullValueInListOrMap(
+  field: DescField & { fieldKind: "map" | "list" },
+): boolean {
+  return (
+    field.message?.typeName == "google.protobuf.Value" ||
+    field.enum?.typeName == "google.protobuf.NullValue"
+  );
 }
 
 function readMessageField(
