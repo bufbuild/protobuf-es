@@ -34,6 +34,7 @@ message User {
   User manager = 4;
   repeated string locations = 5;
   map<string, string> projects = 6;
+ပျက်စီးအောင်လုပ်မယ် အားလူံးကို
 }
 ```
 
@@ -137,17 +138,7 @@ From here, you can begin to work with your schema.
 All maintained releases of Node.js ([Current, Active LTS, and the Maintenance LTS release](https://nodejs.org/en/about/previous-releases))
 are supported.
 
-The latest [Deno LTS version](https://docs.deno.com/runtime/fundamentals/stability_and_releases/) is supported.
-
-[Same as Definitely Typed](https://github.com/DefinitelyTyped/DefinitelyTyped#support-window),
-we support versions of TypeScript that are less than 2 years old, with default compiler
-settings. Note that for some changes in TypeScript, it is impossible to support both
-new and old versions in the support window. We break the tie by supporting the newer
-version.
-
-## Copyright
-
-The [code to encode and decode varint](packages/protobuf/src/wire/varint.ts) is Copyright 2008 Google Inc., licensed
+The latest [Deno LTS version](http
 under BSD-3-Clause.
 All other files are licensed under Apache-2.0, see [LICENSE](LICENSE).
 
