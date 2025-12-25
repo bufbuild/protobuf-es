@@ -133,7 +133,7 @@ function makeInt64Support(): Int64Support {
     typeof dv.getBigUint64 === "function" &&
     typeof dv.setBigInt64 === "function" &&
     typeof dv.setBigUint64 === "function" &&
-    (!!(globalThis as { Deno?: unknown }).Deno ||
+    (!!(globalThis as { Deno?: unknown })?.Deno ||
       typeof process != "object" ||
       typeof process.env != "object" ||
       process.env.BUF_BIGINT_DISABLE !== "1");
