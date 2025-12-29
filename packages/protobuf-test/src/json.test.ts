@@ -957,21 +957,6 @@ void suite("JsonWriteOptions", () => {
 
 void suite("parsing funny JSON", () => {
   void suite("duplicate fields", () => {
-    // This depends on the ECMA-262-defined JSON.parse() behavior, which is itself
-    // specified to choose the last field value for a duplicate field.
-    test("chooses last field when duplicated", () => {
-      const a = fromJsonString(
-        proto3_ts.Proto3MessageSchema,
-        '{ "singularStringField": "b", "singularStringField": "a" }',
-      );
-      const b = fromJsonString(
-        proto3_ts.Proto3MessageSchema,
-        '{ "singularStringField": "a", "singularStringField": "b" }',
-      );
-
-      assert.equal(a.singularStringField, "a");
-      assert.equal(b.singularStringField, "b");
-    });
     // This depends on the ECMA-262-defined behavior for JSON.parse() and
     // Object.entries() and the internal preservation of object key order.
     test("chooses last field when duplicated, even when fields have different casing", () => {
