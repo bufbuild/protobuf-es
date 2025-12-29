@@ -485,14 +485,22 @@ function durationToJson(val: Duration) {
   return text + "s";
 }
 
+const validPath = /^[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)*$/;
+const reversiblePath =
+  /^_?[a-z][a-z0-9]*(_[a-z][a-z0-9]*)*(\._?[a-z][a-z0-9]*(_[a-z][a-z0-9]*)*)*$/;
+
 function fieldMaskToJson(val: FieldMask) {
   return val.paths
     .map((p) => {
-      if (p.match(/_[0-9]?_/g) || p.match(/[A-Z]/g)) {
+      const errorPrefix = `cannot encode message google.protobuf.FieldMask to JSON`;
+      if (!validPath.test(p)) {
         throw new Error(
-          `cannot encode message ${val.$typeName} to JSON: lowerCamelCase of path name "` +
-            p +
-            '" is irreversible',
+          `${errorPrefix}: path "${p}" contains invalid field name`,
+        );
+      }
+      if (!reversiblePath.test(p)) {
+        throw new Error(
+          `${errorPrefix}: camel case of path name "${p}" is irreversible`,
         );
       }
       return protoCamelCase(p);
