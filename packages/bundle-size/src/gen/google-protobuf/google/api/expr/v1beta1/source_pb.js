@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 goog.exportSymbol('proto.google.api.expr.v1beta1.SourceInfo', null, global);
 goog.exportSymbol('proto.google.api.expr.v1beta1.SourcePosition', null, global);
@@ -133,7 +127,7 @@ positionsMap: (f = msg.getPositionsMap()) ? f.toObject(includeInstance, undefine
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.SourceInfo}
  */
 proto.google.api.expr.v1beta1.SourceInfo.deserializeBinary = function(bytes) {
@@ -158,14 +152,11 @@ proto.google.api.expr.v1beta1.SourceInfo.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setLocation(value);
       break;
     case 3:
-      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedInt32() : [reader.readInt32()]);
-      for (var i = 0; i < values.length; i++) {
-        msg.addLineOffsets(values[i]);
-      }
+      reader.readPackableInt32Into(msg.getLineOffsetsList());
       break;
     case 4:
       var value = msg.getPositionsMap();
@@ -218,7 +209,12 @@ proto.google.api.expr.v1beta1.SourceInfo.serializeBinaryToWriter = function(mess
   }
   f = message.getPositionsMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(4, writer, jspb.BinaryWriter.prototype.writeInt32, jspb.BinaryWriter.prototype.writeInt32);
+jspb.internal.public_for_gencode.serializeMapToBinary(
+    message.getPositionsMap(true),
+    4,
+    writer,
+    jspb.BinaryWriter.prototype.writeInt32,
+    jspb.BinaryWriter.prototype.writeInt32);
   }
 };
 
@@ -349,7 +345,7 @@ column: jspb.Message.getFieldWithDefault(msg, 4, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.SourcePosition}
  */
 proto.google.api.expr.v1beta1.SourcePosition.deserializeBinary = function(bytes) {
@@ -374,7 +370,7 @@ proto.google.api.expr.v1beta1.SourcePosition.deserializeBinaryFromReader = funct
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setLocation(value);
       break;
     case 2:

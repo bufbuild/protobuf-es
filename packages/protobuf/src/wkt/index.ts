@@ -13,6 +13,7 @@
 // limitations under the License.
 
 export * from "./timestamp.js";
+export * from "./duration.js";
 export * from "./any.js";
 export * from "./wrappers.js";
 export * from "./gen/google/protobuf/any_pb.js";

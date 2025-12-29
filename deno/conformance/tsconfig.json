@@ -1,0 +1,13 @@
+{
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": [
+      "deno.ns",
+      "dom" // for TextEncoder
+    ],
+    "moduleResolution": "node16",
+    "allowImportingTsExtensions": true,
+    "strict": true
+  }
+}

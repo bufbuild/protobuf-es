@@ -33,9 +33,6 @@ async function main(args) {
     case "wkt":
       protoInclude = await upstream.getWktProtoInclude();
       break;
-    case "conformance":
-      protoInclude = await upstream.getConformanceProtoInclude();
-      break;
     case "test":
       protoInclude = await upstream.getTestProtoInclude();
       break;

@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type { Printable } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.array", () => {
-  test("creates an array literal", async () => {
+void suite("GeneratedFile.array", () => {
+  void test("creates an array literal", async () => {
     const lines = await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
@@ -27,6 +28,6 @@ describe("GeneratedFile.array", () => {
         f.print(arr);
       },
     });
-    expect(lines).toStrictEqual(["[foo, 1, true]"]);
+    assert.deepStrictEqual(lines, ["[foo, 1, true]"]);
   });
 });

@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 var google_api_expr_v1alpha1_value_pb = require('../../../../google/api/expr/v1alpha1/value_pb.js');
 goog.object.extend(proto, google_api_expr_v1alpha1_value_pb);
@@ -136,7 +130,7 @@ exprStepsList: jspb.Message.toObjectList(msg.getExprStepsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1alpha1.Explain}
  */
 proto.google.api.expr.v1alpha1.Explain.deserializeBinary = function(bytes) {
@@ -264,7 +258,7 @@ valueIndex: jspb.Message.getFieldWithDefault(msg, 2, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1alpha1.Explain.ExprStep}
  */
 proto.google.api.expr.v1alpha1.Explain.ExprStep.deserializeBinary = function(bytes) {

@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 var google_type_latlng_pb = require('../../../google/type/latlng_pb.js');
 goog.object.extend(proto, google_type_latlng_pb);
@@ -105,7 +99,7 @@ high: (f = msg.getHigh()) && google_type_latlng_pb.LatLng.toObject(includeInstan
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.geo.type.Viewport}
  */
 proto.google.geo.type.Viewport.deserializeBinary = function(bytes) {

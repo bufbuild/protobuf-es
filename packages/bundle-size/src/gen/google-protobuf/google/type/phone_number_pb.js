@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 goog.exportSymbol('proto.google.type.PhoneNumber', null, global);
 goog.exportSymbol('proto.google.type.PhoneNumber.KindCase', null, global);
@@ -153,7 +147,7 @@ extension: jspb.Message.getFieldWithDefault(msg, 3, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.PhoneNumber}
  */
 proto.google.type.PhoneNumber.deserializeBinary = function(bytes) {
@@ -178,7 +172,7 @@ proto.google.type.PhoneNumber.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setE164Number(value);
       break;
     case 2:
@@ -187,7 +181,7 @@ proto.google.type.PhoneNumber.deserializeBinaryFromReader = function(msg, reader
       msg.setShortCode(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setExtension$(value);
       break;
     default:
@@ -290,7 +284,7 @@ number: jspb.Message.getFieldWithDefault(msg, 2, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.type.PhoneNumber.ShortCode}
  */
 proto.google.type.PhoneNumber.ShortCode.deserializeBinary = function(bytes) {
@@ -315,11 +309,11 @@ proto.google.type.PhoneNumber.ShortCode.deserializeBinaryFromReader = function(m
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setRegionCode(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setNumber(value);
       break;
     default:

@@ -12,19 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/*
- * For a detailed explanation regarding each configuration property and type check, visit:
- * https://jestjs.io/docs/configuration
+import type { Message } from "../types.js";
+import type { DescFile } from "../descriptors.js";
+import type { GenMessage } from "./types.js";
+
+/**
+ * Hydrate a message descriptor.
+ *
+ * @private
  */
-/** @type {import('@jest/types').Config.InitialOptions} */
-const config = {
-  // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
-
-  // The root directory that Jest should scan for tests and modules within
-  rootDir: "dist",
-
-  transform: {},
-};
-
-export default config;
+export function messageDesc<
+  Shape extends Message,
+  Opt extends { jsonType?: unknown; validType?: unknown } = {
+    jsonType: undefined;
+    validType: undefined;
+  },
+>(file: DescFile, path: number, ...paths: number[]): GenMessage<Shape, Opt> {
+  return paths.reduce(
+    (acc, cur) => acc.nestedMessages[cur],
+    file.messages[path],
+  ) as GenMessage<Shape, Opt>;
+}

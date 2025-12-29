@@ -23,7 +23,7 @@
  *   "_" instead of "/",
  *   no padding
  */
-export function base64Decode(base64Str: string) {
+export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
   const table = getDecodeTable();
   // estimate byte size, not accounting for inner padding and whitespace
   let es = (base64Str.length * 3) / 4;
@@ -39,7 +39,7 @@ export function base64Decode(base64Str: string) {
     b = table[base64Str.charCodeAt(i)];
     if (b === undefined) {
       switch (base64Str[i]) {
-        // @ts-expect-error TS7029: Fallthrough case in switch
+        // @ts-ignore TS7029: Fallthrough case in switch -- ignore instead of expect-error for compiler settings without noFallthroughCasesInSwitch: true
         case "=":
           groupPos = 0; // reset state when padding found
         case "\n":

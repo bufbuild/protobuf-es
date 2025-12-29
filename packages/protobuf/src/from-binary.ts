@@ -23,6 +23,7 @@ import { scalarZeroValue } from "./reflect/scalar.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import { reflect } from "./reflect/reflect.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";
+import { varint32write } from "./wire/varint.js";
 
 /**
  * Options for parsing binary data.
@@ -151,7 +152,25 @@ export function readField(
       message.set(field, readScalar(reader, field.scalar));
       break;
     case "enum":
-      message.set(field, readScalar(reader, ScalarType.INT32) as number);
+      const val = readScalar(reader, ScalarType.INT32);
+      if (field.enum.open) {
+        message.set(field, val);
+      } else {
+        const ok = field.enum.values.some((v) => v.number === val);
+        if (ok) {
+          message.set(field, val);
+        } else if (options.readUnknownFields) {
+          const bytes: number[] = [];
+          varint32write(val as number, bytes);
+          const unknownFields = message.getUnknown() ?? [];
+          unknownFields.push({
+            no: field.number,
+            wireType,
+            data: new Uint8Array(bytes),
+          });
+          message.setUnknown(unknownFields);
+        }
+      }
       break;
     case "message":
       message.set(
@@ -177,7 +196,11 @@ function readMapEntry(
   const field = map.field();
   let key: ScalarValue | undefined;
   let val: ScalarValue | ReflectMessage | undefined;
-  const end = reader.pos + reader.uint32();
+  // Read the length of the map entry, which is a varint.
+  const len = reader.uint32();
+  // WARNING: Calculate end AFTER advancing reader.pos (above), so that
+  //          reader.pos is at the start of the map entry.
+  const end = reader.pos + len;
   while (reader.pos < end) {
     const [fieldNo] = reader.tag();
     switch (fieldNo) {

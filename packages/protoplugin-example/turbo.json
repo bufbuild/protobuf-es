@@ -4,7 +4,8 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build", "generate"],
-      "outputs": []
+      "outputs": [],
+      "outputLogs": "new-only"
     }
   }
 }

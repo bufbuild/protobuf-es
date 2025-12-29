@@ -23,7 +23,6 @@ updates:
     groups:
       test:
         patterns:
-          - "jest"
           - "benchmark"
           - "@types/benchmark"
           - "long"

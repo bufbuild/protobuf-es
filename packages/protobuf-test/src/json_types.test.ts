@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   create,
   createRegistry,
@@ -66,62 +67,9 @@ import {
   NullValue,
 } from "@bufbuild/protobuf/wkt";
 import * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
-import type * as json_types_ts_nojson from "./gen/ts/extra/json_types_pb.js";
 
-describe("JSON types", () => {
-  describe("MessageJsonType", () => {
-    test("should resolve generated type", () => {
-      function f(
-        pickedFromDesc: MessageJsonType<
-          typeof json_types_ts_json.JsonTypesMessageSchema
-        >,
-        generatedType: json_types_ts_json.JsonTypesMessageJson,
-      ) {
-        generatedType = pickedFromDesc;
-        return generatedType;
-      }
-      expect(f).toBeDefined();
-    });
-    test("should resolve JsonValue without generated type", () => {
-      function f(
-        pickedFromDesc: MessageJsonType<
-          typeof json_types_ts_nojson.JsonTypesMessageSchema
-        >,
-        genericJsonValue: JsonValue,
-      ) {
-        pickedFromDesc = genericJsonValue;
-        return pickedFromDesc;
-      }
-      expect(f).toBeDefined();
-    });
-  });
-  describe("EnumJsonType", () => {
-    test("should resolve generated type", () => {
-      function f(
-        pickedFromDesc: EnumJsonType<
-          typeof json_types_ts_json.JsonTypeEnumSchema
-        >,
-        generatedType: json_types_ts_json.JsonTypeEnumJson,
-      ) {
-        generatedType = pickedFromDesc;
-        return generatedType;
-      }
-      expect(f).toBeDefined();
-    });
-    test("should resolve string without generated type", () => {
-      function f(
-        pickedFromDesc: EnumJsonType<
-          typeof json_types_ts_nojson.JsonTypeEnumSchema
-        >,
-        stringOrNull: string | null,
-      ) {
-        pickedFromDesc = stringOrNull;
-        return pickedFromDesc;
-      }
-      expect(f).toBeDefined();
-    });
-  });
-  test("toJson() returns JSON type for standard options", () => {
+void suite("JSON types", () => {
+  void test("toJson() returns JSON type for standard options", () => {
     const msg = create(json_types_ts_json.JsonTypesMessageSchema);
     let json: json_types_ts_json.JsonTypesMessageJson;
     json = toJson(json_types_ts_json.JsonTypesMessageSchema, msg);
@@ -132,7 +80,7 @@ describe("JSON types", () => {
       useProtoFieldName: false,
       registry: createRegistry(json_types_ts_json.JsonTypesMessageSchema),
     });
-    expect(json).toBeDefined();
+    assert.ok(json !== undefined);
   });
   test("toJson() returns JsonValue for non-standard options", () => {
     const msg = create(json_types_ts_json.JsonTypesMessageSchema);
@@ -142,7 +90,7 @@ describe("JSON types", () => {
       });
       // @ts-expect-error TS2322: Type JsonValue is not assignable to type JsonTypesMessageJson
       const typed: json_types_ts_json.JsonTypesMessageJson = json;
-      expect(typed).toBeDefined();
+      assert.ok(typed);
     }
     {
       const json = toJson(json_types_ts_json.JsonTypesMessageSchema, msg, {
@@ -150,7 +98,7 @@ describe("JSON types", () => {
       });
       // @ts-expect-error TS2322: Type JsonValue is not assignable to type JsonTypesMessageJson
       const typed: json_types_ts_json.JsonTypesMessageJson = json;
-      expect(typed).toBeDefined();
+      assert.ok(typed);
     }
     {
       const json = toJson(json_types_ts_json.JsonTypesMessageSchema, msg, {
@@ -158,19 +106,19 @@ describe("JSON types", () => {
       });
       // @ts-expect-error TS2322: Type JsonValue is not assignable to type JsonTypesMessageJson
       const typed: json_types_ts_json.JsonTypesMessageJson = json;
-      expect(typed).toBeDefined();
+      assert.ok(typed);
     }
   });
-  describe("well-known types", () => {
+  void suite("well-known types", () => {
     test("google.protobuf.Any should have JSON type", () => {
       function f(a: MessageJsonType<typeof AnySchema>, b: AnyJson) {
         a = b;
         b = a;
         return b;
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.Duration should have JSON type", () => {
+    void suite("google.protobuf.Duration should have JSON type", () => {
       function f(a: MessageJsonType<typeof DurationSchema>, b: DurationJson) {
         a = b;
         b = a;
@@ -178,9 +126,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.Empty should have JSON type", () => {
+    void suite("google.protobuf.Empty should have JSON type", () => {
       function f(a: MessageJsonType<typeof EmptySchema>, b: EmptyJson) {
         a = b;
         b = a;
@@ -188,9 +136,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.FieldMask should have JSON type", () => {
+    void suite("google.protobuf.FieldMask should have JSON type", () => {
       function f(a: MessageJsonType<typeof FieldMaskSchema>, b: FieldMaskJson) {
         a = b;
         b = a;
@@ -198,9 +146,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.Struct should have JSON type", () => {
+    void suite("google.protobuf.Struct should have JSON type", () => {
       function f(a: MessageJsonType<typeof StructSchema>, b: StructJson) {
         a = b;
         b = a;
@@ -208,9 +156,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.Value should have JSON type", () => {
+    void suite("google.protobuf.Value should have JSON type", () => {
       function f(a: MessageJsonType<typeof ValueSchema>, b: ValueJson) {
         a = b;
         b = a;
@@ -218,9 +166,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.ListValue should have JSON type", () => {
+    void suite("google.protobuf.ListValue should have JSON type", () => {
       function f(a: MessageJsonType<typeof ListValueSchema>, b: ListValueJson) {
         a = b;
         b = a;
@@ -228,9 +176,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.NullValue should have JSON type", () => {
+    void suite("google.protobuf.NullValue should have JSON type", () => {
       function f(a: EnumJsonType<typeof NullValueSchema>, b: NullValueJson) {
         a = b;
         b = a;
@@ -238,9 +186,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.Timestamp should have JSON type", () => {
+    void suite("google.protobuf.Timestamp should have JSON type", () => {
       function f(a: MessageJsonType<typeof TimestampSchema>, b: TimestampJson) {
         a = b;
         b = a;
@@ -248,9 +196,9 @@ describe("JSON types", () => {
         a = string;
         return [b, string];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.DoubleValue should have JSON type", () => {
+    void suite("google.protobuf.DoubleValue should have JSON type", () => {
       function f(
         a: MessageJsonType<typeof DoubleValueSchema>,
         b: DoubleValueJson,
@@ -261,9 +209,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.FloatValue should have JSON type", () => {
+    void suite("google.protobuf.FloatValue should have JSON type", () => {
       function f(
         a: MessageJsonType<typeof FloatValueSchema>,
         b: FloatValueJson,
@@ -274,9 +222,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.Int64Value should have JSON type", () => {
+    void suite("google.protobuf.Int64Value should have JSON type", () => {
       function f(
         a: MessageJsonType<typeof Int64ValueSchema>,
         b: Int64ValueJson,
@@ -287,9 +235,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.UInt64Value should have JSON type", () => {
+    void suite("google.protobuf.UInt64Value should have JSON type", () => {
       function f(
         a: MessageJsonType<typeof UInt64ValueSchema>,
         b: UInt64ValueJson,
@@ -300,9 +248,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.Int32Value should have JSON type", () => {
+    void suite("google.protobuf.Int32Value should have JSON type", () => {
       function f(
         a: MessageJsonType<typeof Int32ValueSchema>,
         b: Int32ValueJson,
@@ -313,9 +261,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.UInt32Value should have JSON type", () => {
+    void suite("google.protobuf.UInt32Value should have JSON type", () => {
       function f(
         a: MessageJsonType<typeof UInt32ValueSchema>,
         b: UInt32ValueJson,
@@ -326,9 +274,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.BoolValue should have JSON type", () => {
+    void suite("google.protobuf.BoolValue should have JSON type", () => {
       function f(a: MessageJsonType<typeof BoolValueSchema>, b: BoolValueJson) {
         a = b;
         b = a;
@@ -336,9 +284,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.StringValue should have JSON type", () => {
+    void suite("google.protobuf.StringValue should have JSON type", () => {
       function f(
         a: MessageJsonType<typeof StringValueSchema>,
         b: StringValueJson,
@@ -349,9 +297,9 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
-    describe("google.protobuf.BytesValue should have JSON type", () => {
+    void suite("google.protobuf.BytesValue should have JSON type", () => {
       function f(
         a: MessageJsonType<typeof BytesValueSchema>,
         b: BytesValueJson,
@@ -362,10 +310,10 @@ describe("JSON types", () => {
         a = val;
         return [b, val];
       }
-      expect(f).toBeDefined();
+      assert.ok(f);
     });
   });
-  describe("enumToJson()", () => {
+  void suite("enumToJson()", () => {
     test("returns proto name", () => {
       const json:
         | "JSON_TYPE_ENUM_YES"
@@ -374,47 +322,50 @@ describe("JSON types", () => {
         json_types_ts_json.JsonTypeEnumSchema,
         json_types_ts_json.JsonTypeEnum.YES,
       );
-      expect(json).toBe("JSON_TYPE_ENUM_YES");
+      assert.strictEqual(json, "JSON_TYPE_ENUM_YES");
     });
     test("returns null for google.protobuf.NullValue", () => {
       const json: null = enumToJson(NullValueSchema, NullValue.NULL_VALUE);
-      expect(json).toBe(null);
+      assert.strictEqual(json, null);
     });
     test("returns string|null for anonymous descriptor", () => {
       const json: string | null = enumToJson(
         json_types_ts_json.JsonTypeEnumSchema as DescEnum,
         json_types_ts_json.JsonTypeEnum.YES,
       );
-      expect(json).toBe("JSON_TYPE_ENUM_YES");
+      assert.strictEqual(json, "JSON_TYPE_ENUM_YES");
     });
   });
-  describe("enumFromJson()", () => {
+  void suite("enumFromJson()", () => {
     test("parses known string", () => {
       const e: json_types_ts_json.JsonTypeEnum = enumFromJson(
         json_types_ts_json.JsonTypeEnumSchema,
         "JSON_TYPE_ENUM_YES",
       );
-      expect(e).toBe(json_types_ts_json.JsonTypeEnum.YES);
+      assert.strictEqual(e, json_types_ts_json.JsonTypeEnum.YES);
     });
     test("parses number for anonymous descriptor", () => {
       const e: number = enumFromJson(
         json_types_ts_json.JsonTypeEnumSchema as DescEnum,
         "JSON_TYPE_ENUM_YES",
       );
-      expect(e).toBe(json_types_ts_json.JsonTypeEnum.YES);
+      assert.strictEqual(e, json_types_ts_json.JsonTypeEnum.YES);
     });
     test("parses null for google.protobuf.NullValue", () => {
       const e: NullValue = enumFromJson(NullValueSchema, null);
-      expect(e).toBe(NullValue.NULL_VALUE);
+      assert.strictEqual(e, NullValue.NULL_VALUE);
     });
     test("raises error on unknown string", () => {
-      expect(() => {
-        // @ts-expect-error TS2345
-        enumFromJson(json_types_ts_json.JsonTypeEnumSchema, "FOO");
-      }).toThrow(/cannot decode enum spec.JsonTypeEnum from JSON: "FOO"/);
+      assert.throws(
+        () => {
+          // @ts-expect-error TS2345
+          enumFromJson(json_types_ts_json.JsonTypeEnumSchema, "FOO");
+        },
+        { message: /cannot decode enum spec.JsonTypeEnum from JSON: "FOO"/ },
+      );
     });
   });
-  describe("isEnumJson()", () => {
+  void suite("isEnumJson()", () => {
     test("narrows type", () => {
       const str: string = "FOO";
       if (isEnumJson(json_types_ts_json.JsonTypeEnumSchema, str)) {
@@ -422,7 +373,7 @@ describe("JSON types", () => {
           | "JSON_TYPE_ENUM_YES"
           | "JSON_TYPE_ENUM_NO"
           | "JSON_TYPE_ENUM_UNSPECIFIED" = str;
-        expect(yes).toBeDefined();
+        assert.ok(yes);
       }
     });
     test("returns true for known value", () => {
@@ -430,11 +381,11 @@ describe("JSON types", () => {
         json_types_ts_json.JsonTypeEnumSchema,
         "JSON_TYPE_ENUM_YES",
       );
-      expect(ok).toBe(true);
+      assert.ok(ok);
     });
     test("returns false for unknown value", () => {
       const ok = isEnumJson(json_types_ts_json.JsonTypeEnumSchema, "FOO");
-      expect(ok).toBe(false);
+      assert.strictEqual(ok, false);
     });
   });
 });

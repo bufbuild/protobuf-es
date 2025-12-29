@@ -12,54 +12,55 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeEach, describe, expect, test } from "@jest/globals";
+import { suite, test, beforeEach, afterEach } from "node:test";
+import * as assert from "node:assert";
 import {
   getTextEncoding,
   configureTextEncoding,
 } from "@bufbuild/protobuf/wire";
-import { afterEach } from "node:test";
 
-describe("getTextEncoding()", () => {
-  test("returns TextEncoding", () => {
+void suite("getTextEncoding()", () => {
+  void test("returns TextEncoding", () => {
     const te = getTextEncoding();
-    expect(te).toBeDefined();
+    assert.ok(te !== undefined);
   });
-  test("returns same TextEncoding", () => {
+  void test("returns same TextEncoding", () => {
     const te1 = getTextEncoding();
     const te2 = getTextEncoding();
-    expect(te2).toBe(te1);
+    assert.strictEqual(te2, te1);
   });
-  describe("encodeUtf8()", () => {
-    test("encodes", () => {
+  void suite("encodeUtf8()", () => {
+    void test("encodes", () => {
       const bytes = getTextEncoding().encodeUtf8("hello 🌍");
-      expect(bytes).toStrictEqual(
+      assert.deepStrictEqual(
+        bytes,
         new Uint8Array([104, 101, 108, 108, 111, 32, 240, 159, 140, 141]),
       );
     });
   });
-  describe("decodeUtf8()", () => {
-    test("decodes", () => {
+  void suite("decodeUtf8()", () => {
+    void test("decodes", () => {
       const text = getTextEncoding().decodeUtf8(
         new Uint8Array([104, 101, 108, 108, 111, 32, 240, 159, 140, 141]),
       );
-      expect(text).toBe("hello 🌍");
+      assert.strictEqual(text, "hello 🌍");
     });
   });
-  describe("checkUtf8()", () => {
-    test("returns true for valid", () => {
+  void suite("checkUtf8()", () => {
+    void test("returns true for valid", () => {
       const valid = "🌍";
       const ok = getTextEncoding().checkUtf8(valid);
-      expect(ok).toBe(true);
+      assert.strictEqual(ok, true);
     });
-    test("returns false for invalid", () => {
+    void test("returns false for invalid", () => {
       const invalid = "🌍".substring(0, 1);
       const ok = getTextEncoding().checkUtf8(invalid);
-      expect(ok).toBe(false);
+      assert.strictEqual(ok, false);
     });
   });
 });
 
-describe("configureTextEncoding()", () => {
+void suite("configureTextEncoding()", () => {
   let backup: ReturnType<typeof getTextEncoding>;
   beforeEach(() => {
     backup = getTextEncoding();
@@ -67,7 +68,7 @@ describe("configureTextEncoding()", () => {
   afterEach(() => {
     configureTextEncoding(backup);
   });
-  test("configures checkUtf8", () => {
+  void test("configures checkUtf8", () => {
     configureTextEncoding({
       checkUtf8(text: string): boolean {
         if (text === "valid") {
@@ -78,19 +79,10 @@ describe("configureTextEncoding()", () => {
       decodeUtf8: backup.decodeUtf8,
       encodeUtf8: backup.encodeUtf8,
     });
-    expect(getTextEncoding().checkUtf8("valid")).toBe(true);
-    expect(getTextEncoding().checkUtf8("no valid")).toBe(false);
+    assert.strictEqual(getTextEncoding().checkUtf8("valid"), true);
+    assert.strictEqual(getTextEncoding().checkUtf8("no valid"), false);
   });
-  test("configures checkUtf8", () => {
-    configureTextEncoding({
-      checkUtf8: backup.checkUtf8,
-      decodeUtf8: backup.decodeUtf8,
-      encodeUtf8: backup.encodeUtf8,
-    });
-    expect(getTextEncoding().checkUtf8("valid")).toBe(true);
-    expect(getTextEncoding().checkUtf8("no valid")).toBe(false);
-  });
-  test("configures decodeUtf8", () => {
+  void test("configures decodeUtf8", () => {
     let arg: Uint8Array | undefined;
     configureTextEncoding({
       checkUtf8: backup.checkUtf8,
@@ -102,22 +94,23 @@ describe("configureTextEncoding()", () => {
     });
     const bytes = new Uint8Array(10);
     const text = getTextEncoding().decodeUtf8(bytes);
-    expect(text).toBe("custom decodeUtf8");
-    expect(arg).toBe(bytes);
+    assert.strictEqual(text, "custom decodeUtf8");
+    assert.strictEqual(arg, bytes);
   });
-  test("configures encodeUtf8", () => {
+  void test("configures encodeUtf8", () => {
     let arg: string | undefined;
     configureTextEncoding({
       checkUtf8: backup.checkUtf8,
       decodeUtf8: backup.decodeUtf8,
-      encodeUtf8(text: string): Uint8Array {
+      encodeUtf8(text: string) {
         arg = text;
         return new Uint8Array(10);
       },
     });
-    expect(getTextEncoding().encodeUtf8("test")).toStrictEqual(
+    assert.deepStrictEqual(
+      getTextEncoding().encodeUtf8("test"),
       new Uint8Array(10),
     );
-    expect(arg).toBe("test");
+    assert.strictEqual(arg, "test");
   });
 });

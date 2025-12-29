@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 goog.exportSymbol('proto.google.bytestream.QueryWriteStatusRequest', null, global);
 goog.exportSymbol('proto.google.bytestream.QueryWriteStatusResponse', null, global);
@@ -214,7 +208,7 @@ readLimit: jspb.Message.getFieldWithDefault(msg, 3, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.ReadRequest}
  */
 proto.google.bytestream.ReadRequest.deserializeBinary = function(bytes) {
@@ -239,7 +233,7 @@ proto.google.bytestream.ReadRequest.deserializeBinaryFromReader = function(msg, 
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setResourceName(value);
       break;
     case 2:
@@ -402,7 +396,7 @@ data: msg.getData_asB64()
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.ReadResponse}
  */
 proto.google.bytestream.ReadResponse.deserializeBinary = function(bytes) {
@@ -559,7 +553,7 @@ data: msg.getData_asB64()
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.WriteRequest}
  */
 proto.google.bytestream.WriteRequest.deserializeBinary = function(bytes) {
@@ -584,7 +578,7 @@ proto.google.bytestream.WriteRequest.deserializeBinaryFromReader = function(msg,
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setResourceName(value);
       break;
     case 2:
@@ -800,7 +794,7 @@ committedSize: jspb.Message.getFieldWithDefault(msg, 1, 0)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.WriteResponse}
  */
 proto.google.bytestream.WriteResponse.deserializeBinary = function(bytes) {
@@ -930,7 +924,7 @@ resourceName: jspb.Message.getFieldWithDefault(msg, 1, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.QueryWriteStatusRequest}
  */
 proto.google.bytestream.QueryWriteStatusRequest.deserializeBinary = function(bytes) {
@@ -955,7 +949,7 @@ proto.google.bytestream.QueryWriteStatusRequest.deserializeBinaryFromReader = fu
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setResourceName(value);
       break;
     default:
@@ -1061,7 +1055,7 @@ complete: jspb.Message.getBooleanFieldWithDefault(msg, 2, false)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.bytestream.QueryWriteStatusResponse}
  */
 proto.google.bytestream.QueryWriteStatusResponse.deserializeBinary = function(bytes) {

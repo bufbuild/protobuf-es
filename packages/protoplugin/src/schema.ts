@@ -29,7 +29,9 @@ import type {
   GeneratedFile,
   GeneratedFileController,
   ResolveDescImportFn,
+  ResolveJsonImportFn,
   ResolveShapeImportFn,
+  ResolveValidImportFn,
   RewriteImportFn,
 } from "./generated-file.js";
 import { createGeneratedFile } from "./generated-file.js";
@@ -46,6 +48,7 @@ import {
   generatedShapeName,
   generateFilePath,
   generatedJsonTypeName,
+  generatedValidTypeName,
 } from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";
 
@@ -135,9 +138,19 @@ export function createSchema<T extends object>(
       ),
       true,
     );
-  const resolveJsonImport: ResolveShapeImportFn = (desc) =>
+  const resolveJsonImport: ResolveJsonImportFn = (desc) =>
     createImportSymbol(
       generatedJsonTypeName(desc),
+      generateFilePath(
+        desc.file,
+        parameter.parsed.bootstrapWkt,
+        filesToGenerate,
+      ),
+      true,
+    );
+  const resolveValidImport: ResolveValidImportFn = (desc) =>
+    createImportSymbol(
+      generatedValidTypeName(desc),
       generateFilePath(
         desc.file,
         parameter.parsed.bootstrapWkt,
@@ -180,6 +193,7 @@ export function createSchema<T extends object>(
         resolveDescImport,
         resolveShapeImport,
         resolveJsonImport,
+        resolveValidImport,
         createPreamble,
         runtime,
       );

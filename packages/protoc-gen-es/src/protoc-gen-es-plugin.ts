@@ -14,12 +14,14 @@
 
 import type {
   DescEnum,
+  DescField,
   DescFile,
   DescMessage,
+  DescOneof,
   DescService,
 } from "@bufbuild/protobuf";
 import { parentTypes } from "@bufbuild/protobuf/reflect";
-import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv1";
+import { embedFileDesc, pathInFileDesc } from "@bufbuild/protobuf/codegenv2";
 import { isWrapperDesc } from "@bufbuild/protobuf/wkt";
 import {
   createEcmaScriptPlugin,
@@ -28,8 +30,19 @@ import {
   type Schema,
   type Target,
 } from "@bufbuild/protoplugin";
-import { fieldJsonType, fieldTypeScriptType, functionCall } from "./util";
+import {
+  fieldJsonType,
+  fieldTypeScriptType,
+  functionCall,
+  messageGenType,
+} from "./util.js";
 import { version } from "../package.json";
+import {
+  isLegacyRequired,
+  isProtovalidateDisabled,
+  isProtovalidateRequired,
+  messageNeedsCustomValidType,
+} from "./valid-types.js";
 
 export const protocGenEs = createEcmaScriptPlugin({
   name: "protoc-gen-es",
@@ -42,6 +55,10 @@ export const protocGenEs = createEcmaScriptPlugin({
 
 type Options = {
   jsonTypes: boolean;
+  validTypes: {
+    legacyRequired: boolean;
+    protovalidateRequired: boolean;
+  };
 };
 
 function parseOptions(
@@ -51,6 +68,10 @@ function parseOptions(
   }[],
 ): Options {
   let jsonTypes = false;
+  let validTypes = {
+    legacyRequired: false,
+    protovalidateRequired: false,
+  };
   for (const { key, value } of options) {
     switch (key) {
       case "json_types":
@@ -59,11 +80,25 @@ function parseOptions(
         }
         jsonTypes = ["true", "1"].includes(value);
         break;
+      case "valid_types":
+        for (const part of value.split("+")) {
+          switch (part) {
+            case "protovalidate_required":
+              validTypes.protovalidateRequired = true;
+              break;
+            case "legacy_required":
+              validTypes.legacyRequired = true;
+              break;
+            default:
+              throw new Error();
+          }
+        }
+        break;
       default:
         throw new Error();
     }
   }
-  return { jsonTypes };
+  return { jsonTypes, validTypes };
 }
 
 // This annotation informs bundlers that the succeeding function call is free of
@@ -90,17 +125,13 @@ function generateTs(schema: Schema<Options>) {
           if (schema.options.jsonTypes) {
             generateMessageJsonShape(f, desc, "ts");
           }
+          if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidateRequired) {
+            generateMessageValidShape(f, desc, schema.options.validTypes, "ts");
+          }
           generateDescDoc(f, desc);
           const name = f.importSchema(desc).name;
-          const Shape = f.importShape(desc);
-          const { GenMessage, messageDesc } = f.runtime.codegen;
-          if (schema.options.jsonTypes) {
-            const JsonType = f.importJson(desc);
-            f.print(f.export("const", name), ": ", GenMessage, "<", Shape, ", ", JsonType, ">", " = ", pure);
-          } else {
-            f.print(f.export("const", name), ": ", GenMessage, "<", Shape, ">", " = ", pure);
-          }
-          const call = functionCall(messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
+          f.print(f.export("const", name), ": ", messageGenType(desc, f, schema.options), " = ", pure);
+          const call = functionCall(f.runtime.codegen.messageDesc, [fileDesc, ...pathInFileDesc(desc)]);
           f.print("  ", call, ";");
           f.print();
           break;
@@ -238,16 +269,12 @@ function generateDts(schema: Schema<Options>) {
           if (schema.options.jsonTypes) {
             generateMessageJsonShape(f, desc, "dts");
           }
-          const name = f.importSchema(desc).name;
-          const Shape = f.importShape(desc);
-          const { GenMessage } = f.runtime.codegen;
-          generateDescDoc(f, desc);
-          if (schema.options.jsonTypes) {
-            const JsonType = f.importJson(desc);
-            f.print(f.export("declare const", name), ": ", GenMessage, "<", Shape, ", ", JsonType, ">", ";");
-          } else {
-            f.print(f.export("declare const", name), ": ", GenMessage, "<", Shape, ">", ";");
+          if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidateRequired) {
+            generateMessageValidShape(f, desc, schema.options.validTypes, "dts");
           }
+          const name = f.importSchema(desc).name;
+          generateDescDoc(f, desc);
+          f.print(f.export("declare const", name), ": ", messageGenType(desc, f, schema.options), ";");
           f.print();
           break;
         }
@@ -405,38 +432,69 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
   f.print(f.jsDoc(message));
   f.print(f.export(declaration, f.importShape(message).name), " = ", Message, "<", f.string(message.typeName), "> & {");
   for (const member of message.members) {
-    switch (member.kind) {
-      case "oneof":
-        f.print(f.jsDoc(member, "  "));
-        f.print("  ", member.localName, ": {");
-        for (const field of member.fields) {
-          if (member.fields.indexOf(field) > 0) {
-            f.print(`  } | {`);
-          }
-          f.print(f.jsDoc(field, "    "));
-          const { typing } = fieldTypeScriptType(field, f.runtime);
-          f.print(`    value: `, typing, `;`);
-          f.print(`    case: "`, field.localName, `";`);
-        }
-        f.print(`  } | { case: undefined; value?: undefined };`);
-        break;
-      default: {
-        f.print(f.jsDoc(member, "  "));
-        const { typing, optional } = fieldTypeScriptType(member, f.runtime);
-        if (optional) {
-          f.print("  ", member.localName, "?: ", typing, ";");
-        } else {
-          f.print("  ", member.localName, ": ", typing, ";");
-        }
-        break;
-      }
-    }
+    generateMessageShapeMember(f, member);
     if (message.members.indexOf(member) < message.members.length - 1) {
       f.print();
     }
   }
   f.print("};");
   f.print();
+}
+
+// biome-ignore format: want this to read well
+function generateMessageValidShape(f: GeneratedFile, message: DescMessage, validTypes: Options["validTypes"], target: Extract<Target, "ts" | "dts">) {
+  const declaration = target == "ts" ? "type" : "declare type";
+  if (!messageNeedsCustomValidType(message, validTypes)) {
+    f.print(f.export(declaration, f.importValid(message).name), " = ", f.importShape(message), ";");
+    f.print();
+    return;
+  }
+  f.print(f.jsDoc(message));
+  const { Message } = f.runtime;
+  f.print(f.export(declaration, f.importValid(message).name), " = ", Message, "<", f.string(message.typeName), "> & {");
+  for (const member of message.members) {
+    generateMessageShapeMember(f, member, validTypes);
+    if (message.members.indexOf(member) < message.members.length - 1) {
+      f.print();
+    }
+  }
+  f.print("};");
+  f.print();
+}
+
+// biome-ignore format: want this to read well
+function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOneof, validTypes?: Options["validTypes"]) {
+  switch (member.kind) {
+    case "oneof":
+      f.print(f.jsDoc(member, "  "));
+      f.print("  ", member.localName, ": {");
+      for (const field of member.fields) {
+        if (member.fields.indexOf(field) > 0) {
+          f.print(`  } | {`);
+        }
+        f.print(f.jsDoc(field, "    "));
+        const { typing } = fieldTypeScriptType(field, f.runtime, validTypes && !isProtovalidateDisabled(field));
+        f.print(`    value: `, typing, `;`);
+        f.print(`    case: "`, field.localName, `";`);
+      }
+      f.print(`  } | { case: undefined; value?: undefined };`);
+      break;
+    case "field":
+      f.print(f.jsDoc(member, "  "));
+      let { typing, optional } = fieldTypeScriptType(member, f.runtime, validTypes && !isProtovalidateDisabled(member));
+      if (optional && validTypes) {
+        const isRequired = (validTypes.legacyRequired && isLegacyRequired(member)) || (validTypes.protovalidateRequired && isProtovalidateRequired(member));
+        if (isRequired) {
+          optional = false;
+        }
+      }
+      if (optional) {
+        f.print("  ", member.localName, "?: ", typing, ";");
+      } else {
+        f.print("  ", member.localName, ": ", typing, ";");
+      }
+      break;
+  }
 }
 
 // biome-ignore format: want this to read well

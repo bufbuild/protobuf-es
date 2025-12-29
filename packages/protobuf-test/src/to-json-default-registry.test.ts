@@ -12,15 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   create,
   createRegistry,
   toJson as toJsonOriginal,
 } from "@bufbuild/protobuf";
 import { anyPack, AnySchema, DurationSchema } from "@bufbuild/protobuf/wkt";
-import { describe, expect, test } from "@jest/globals";
 
-describe("default registry with custom toJson()", () => {
+void suite("default registry with custom toJson()", () => {
   // Define you own default registry
   const registry = createRegistry(
     // You can register as many types as you need. In this example, we only
@@ -34,7 +35,7 @@ describe("default registry with custom toJson()", () => {
     return toJsonOriginal(schema, message, options ?? { registry }) as any;
   };
 
-  test("works as expected", () => {
+  void test("works as expected", () => {
     // Create a google.protobuf.Any that holds a google.protobuf.Duration
     const duration = create(DurationSchema, { nanos: 123 });
     const any = anyPack(DurationSchema, duration);
@@ -42,7 +43,7 @@ describe("default registry with custom toJson()", () => {
     // Serializing to JSON requires a registry that contains google.protobuf.Duration
     const json = toJson(AnySchema, any);
 
-    expect(json).toStrictEqual({
+    assert.deepStrictEqual(json, {
       "@type": "type.googleapis.com/google.protobuf.Duration",
       value: "0.000000123s",
     });

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeAll, beforeEach, describe, expect, test } from "@jest/globals";
-import assert from "node:assert";
+import { suite, test, beforeEach, before } from "node:test";
+import * as assert from "node:assert";
 import {
   type FileRegistry,
   createFileRegistry,
@@ -45,7 +45,7 @@ import {
   compileService,
 } from "./helpers.js";
 
-describe("createRegistry()", () => {
+void suite("createRegistry()", () => {
   let testReg: FileRegistry;
   let testDescs: {
     message: DescMessage;
@@ -53,7 +53,7 @@ describe("createRegistry()", () => {
     service: DescService;
     extension: DescExtension;
   };
-  beforeAll(async () => {
+  before(async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
       "a.proto": `
         syntax="proto2";
@@ -65,17 +65,17 @@ describe("createRegistry()", () => {
     });
     testReg = createFileRegistry(fileDescriptorSet);
     const descMsg = testReg.get("Msg");
-    assert(descMsg);
-    assert(descMsg.kind == "message");
+    assert.ok(descMsg);
+    assert.ok(descMsg.kind == "message");
     const descEnu = testReg.get("Enu");
-    assert(descEnu);
-    assert(descEnu.kind == "enum");
+    assert.ok(descEnu);
+    assert.ok(descEnu.kind == "enum");
     const descSrv = testReg.get("Srv");
-    assert(descSrv);
-    assert(descSrv.kind == "service");
+    assert.ok(descSrv);
+    assert.ok(descSrv.kind == "service");
     const descExt = testReg.get("ext");
-    assert(descExt);
-    assert(descExt.kind == "extension");
+    assert.ok(descExt);
+    assert.ok(descExt.kind == "extension");
     testDescs = {
       message: descMsg,
       enum: descEnu,
@@ -83,70 +83,70 @@ describe("createRegistry()", () => {
       extension: descExt,
     };
   });
-  describe("get()", () => {
-    test("gets message", () => {
+  void suite("get()", () => {
+    void test("gets message", () => {
       const reg = createRegistry(testDescs.message);
-      expect(reg.get("Msg")).toBe(testDescs.message);
+      assert.strictEqual(reg.get("Msg"), testDescs.message);
     });
-    test("gets enum", () => {
+    void test("gets enum", () => {
       const reg = createRegistry(testDescs.enum);
-      expect(reg.get("Enu")).toBe(testDescs.enum);
+      assert.strictEqual(reg.get("Enu"), testDescs.enum);
     });
-    test("gets service", () => {
+    void test("gets service", () => {
       const reg = createRegistry(testDescs.service);
-      expect(reg.get("Srv")).toBe(testDescs.service);
+      assert.strictEqual(reg.get("Srv"), testDescs.service);
     });
-    test("gets extension", () => {
+    void test("gets extension", () => {
       const reg = createRegistry(testDescs.extension);
-      expect(reg.get("ext")).toBe(testDescs.extension);
+      assert.strictEqual(reg.get("ext"), testDescs.extension);
     });
   });
-  describe("getMessage()", () => {
-    test("gets message", () => {
+  void suite("getMessage()", () => {
+    void test("gets message", () => {
       const reg = createRegistry(testDescs.message);
       const msg: DescMessage | undefined = reg.getMessage("Msg");
-      expect(msg).toBe(testDescs.message);
+      assert.strictEqual(msg, testDescs.message);
     });
   });
-  describe("getEnum()", () => {
-    test("gets enum", () => {
+  void suite("getEnum()", () => {
+    void test("gets enum", () => {
       const reg = createRegistry(testDescs.enum);
       const msg: DescEnum | undefined = reg.getEnum("Enu");
-      expect(msg).toBe(testDescs.enum);
+      assert.strictEqual(msg, testDescs.enum);
     });
   });
-  describe("getService()", () => {
-    test("gets service", () => {
+  void suite("getService()", () => {
+    void test("gets service", () => {
       const reg = createRegistry(testDescs.service);
       const msg: DescService | undefined = reg.getService("Srv");
-      expect(msg).toBe(testDescs.service);
+      assert.strictEqual(msg, testDescs.service);
     });
   });
-  describe("getExtension()", () => {
-    test("gets extension", () => {
+  void suite("getExtension()", () => {
+    void test("gets extension", () => {
       const reg = createRegistry(testDescs.extension);
       const ext: DescExtension | undefined = reg.getExtension("ext");
-      expect(ext).toBe(testDescs.extension);
+      assert.strictEqual(ext, testDescs.extension);
     });
   });
-  describe("getExtensionFor()", () => {
-    test("gets extension", () => {
+  void suite("getExtensionFor()", () => {
+    void test("gets extension", () => {
       const reg = createRegistry(testDescs.extension);
       const ext: DescExtension | undefined = reg.getExtensionFor(
         testDescs.message,
         1,
       );
-      expect(ext).toBe(testDescs.extension);
+      assert.strictEqual(ext, testDescs.extension);
     });
-    test("returns undefined on unknown extension field number", () => {
+    void test("returns undefined on unknown extension field number", () => {
       const reg = createRegistry(testDescs.extension);
       const msg: DescExtension | undefined = reg.getExtensionFor(
         testDescs.message,
         2,
       );
-      expect(msg).toBeUndefined();
+      assert.strictEqual(msg, undefined);
     });
-    test("returns undefined on unknown extendee", async () => {
+    void test("returns undefined on unknown extendee", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
         "b.proto": `
         syntax="proto3";
@@ -155,17 +155,17 @@ describe("createRegistry()", () => {
       });
       const otherMessageDesc =
         createFileRegistry(fileDescriptorSet).getMessage("OtherMsg");
-      assert(otherMessageDesc);
+      assert.ok(otherMessageDesc);
       const reg = createRegistry(testDescs.extension);
       const msg: DescExtension | undefined = reg.getExtensionFor(
         otherMessageDesc,
         2,
       );
-      expect(msg).toBeUndefined();
+      assert.strictEqual(msg, undefined);
     });
   });
-  describe("iterator", () => {
-    test("gets registered types", () => {
+  void suite("iterator", () => {
+    void test("gets registered types", () => {
       const reg = createRegistry(
         testDescs.message,
         testDescs.enum,
@@ -176,15 +176,15 @@ describe("createRegistry()", () => {
         .map((t) => t.typeName)
         .sort();
       const want = ["Msg", "Enu", "Srv", "ext"].sort();
-      expect(actual).toStrictEqual(want);
+      assert.deepStrictEqual(actual, want);
     });
   });
-  describe("from DescMessage", () => {
-    test("provides message", () => {
+  void suite("from DescMessage", () => {
+    void test("provides message", () => {
       const reg = createRegistry(testDescs.message);
-      expect(reg.get("Msg")).toBeDefined();
+      assert.ok(reg.get("Msg") !== undefined);
     });
-    test("does not make message fields available", async () => {
+    void test("does not make message fields available", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
         "b.proto": `
         syntax="proto3";
@@ -196,12 +196,12 @@ describe("createRegistry()", () => {
       });
       const testMessage =
         createFileRegistry(fileDescriptorSet).getMessage("Msg");
-      assert(testMessage);
+      assert.ok(testMessage);
       const reg = createRegistry(testMessage);
-      expect(reg.get("Msg")).toBeDefined();
-      expect(reg.get("FieldMsg")).toBeUndefined();
+      assert.ok(reg.get("Msg") !== undefined);
+      assert.strictEqual(reg.get("FieldMsg"), undefined);
     });
-    test("does not make nested messages available", async () => {
+    void test("does not make nested messages available", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
         "b.proto": `
         syntax="proto3";
@@ -212,15 +212,15 @@ describe("createRegistry()", () => {
       });
       const testReg = createFileRegistry(fileDescriptorSet);
       const testMessage = testReg.getMessage("Msg");
-      assert(testMessage);
+      assert.ok(testMessage);
       const nestedTestMessage = testReg.getMessage("Msg.Nested");
-      assert(nestedTestMessage);
+      assert.ok(nestedTestMessage);
       const reg = createRegistry(testMessage);
-      expect(reg.get("Msg")).toBeDefined();
-      expect(reg.get("Msg.Nested")).toBeUndefined();
-      expect(Array.from(reg).length).toBe(1);
+      assert.ok(reg.get("Msg") !== undefined);
+      assert.strictEqual(reg.get("Msg.Nested"), undefined);
+      assert.strictEqual(Array.from(reg).length, 1);
     });
-    test("later duplicate type overwrites former type", async () => {
+    void test("later duplicate type overwrites former type", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
         "b.proto": `
         syntax="proto3";
@@ -229,36 +229,36 @@ describe("createRegistry()", () => {
       });
       const duplicateMessage =
         createFileRegistry(fileDescriptorSet).getMessage("Msg");
-      assert(duplicateMessage);
-      assert(duplicateMessage.typeName === testDescs.message.typeName);
+      assert.ok(duplicateMessage);
+      assert.ok(duplicateMessage.typeName === testDescs.message.typeName);
       const reg = createRegistry(duplicateMessage, testDescs.message);
-      expect(reg.getMessage("Msg")).toBe(testDescs.message);
+      assert.strictEqual(reg.getMessage("Msg"), testDescs.message);
     });
   });
-  describe("from DescFile", () => {
-    test("provides all types from the file", () => {
+  void suite("from DescFile", () => {
+    void test("provides all types from the file", () => {
       const testFile = testReg.getFile("a.proto");
-      assert(testFile);
+      assert.ok(testFile);
       const reg = createRegistry(testFile);
       const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(regTypeNames).toStrictEqual(["Msg", "Enu", "Srv", "ext"].sort());
+      assert.deepStrictEqual(regTypeNames, ["Msg", "Enu", "Srv", "ext"].sort());
     });
   });
-  describe("from Registry", () => {
-    test("creates a copy of the given Registry", () => {
+  void suite("from Registry", () => {
+    void test("creates a copy of the given Registry", () => {
       const testSetTypeNames = Array.from(testReg)
         .map((t) => t.typeName)
         .sort();
-      assert(testSetTypeNames.length > 0);
+      assert.ok(testSetTypeNames.length > 0);
       const reg = createRegistry(testReg);
       const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(regTypeNames).toStrictEqual(testSetTypeNames);
+      assert.deepStrictEqual(regTypeNames, testSetTypeNames);
     });
-    test("merges two Registries", async () => {
+    void test("merges two Registries", async () => {
       const secondReg = createFileRegistry(
         await compileFileDescriptorSet({
           "a.proto": `
@@ -274,11 +274,12 @@ describe("createRegistry()", () => {
       const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(regTypeNames).toStrictEqual(
+      assert.deepStrictEqual(
+        regTypeNames,
         ["Msg", "Enu", "Srv", "ext", "Msg2", "Enu2", "Srv2", "ext2"].sort(),
       );
     });
-    test("later duplicate type overwrites former type", async () => {
+    void test("later duplicate type overwrites former type", async () => {
       const secondReg = createFileRegistry(
         await compileFileDescriptorSet({
           "a.proto": `
@@ -292,45 +293,46 @@ describe("createRegistry()", () => {
       const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(regTypeNames).toStrictEqual(
+      assert.deepStrictEqual(
+        regTypeNames,
         ["Msg", "Enu", "Srv", "ext", "Msg3"].sort(),
       );
-      expect(reg.get("Msg")).toBe(secondReg.get("Msg"));
-      expect(reg.get("Msg")).not.toBe(testReg.get("Msg"));
+      assert.strictEqual(reg.get("Msg"), secondReg.get("Msg"));
+      assert.notStrictEqual(reg.get("Msg"), testReg.get("Msg"));
     });
   });
 });
 
-describe("createMutableRegistry()", () => {
-  test("from DescMessage", async () => {
+void suite("createMutableRegistry()", () => {
+  void test("from DescMessage", async () => {
     const desc = await compileMessage(`
       syntax = "proto3";
       message A {}
     `);
     const reg = createMutableRegistry(desc);
-    expect(reg.getMessage("A")).toBeDefined();
+    assert.ok(reg.getMessage("A") !== undefined);
   });
-  test("add() adds DescMessage", async () => {
+  void test("add() adds DescMessage", async () => {
     const desc = await compileMessage(`
       syntax = "proto3";
       message A {}
     `);
     const reg = createMutableRegistry();
     reg.add(desc);
-    expect(reg.getMessage("A")).toBeDefined();
+    assert.ok(reg.getMessage("A") !== undefined);
   });
-  test("remove() removes DescMessage", async () => {
+  void test("remove() removes DescMessage", async () => {
     const desc = await compileMessage(`
       syntax = "proto3";
       message A {}
     `);
     const reg = createMutableRegistry(desc);
     reg.remove(desc);
-    expect(reg.getMessage("A")).toBeUndefined();
+    assert.strictEqual(reg.getMessage("A"), undefined);
   });
 });
 
-describe("createFileRegistry()", () => {
+void suite("createFileRegistry()", () => {
   let testFileDescriptorSet: FileDescriptorSet;
   beforeEach(async () => {
     testFileDescriptorSet = await compileFileDescriptorSet({
@@ -363,66 +365,63 @@ describe("createFileRegistry()", () => {
       `,
     });
   });
-  describe("from FileDescriptorSet", () => {
-    test("provides files through getFile()", () => {
+  void suite("from FileDescriptorSet", () => {
+    void test("provides files through getFile()", () => {
       const fileReg = createFileRegistry(testFileDescriptorSet);
       const a = fileReg.getFile("a.proto");
       const b = fileReg.getFile("b.proto");
       const c = fileReg.getFile("c.proto");
       const d = fileReg.getFile("d.proto");
-      expect(a).toBeDefined();
-      expect(b).toBeDefined();
-      expect(c).toBeDefined();
-      expect(d).toBeDefined();
-      expect(a?.dependencies).toStrictEqual([b, c]);
-      expect(b?.dependencies).toStrictEqual([d]);
-      expect(c?.dependencies).toStrictEqual([d]);
-      expect(d?.dependencies).toStrictEqual([]);
+      assert.ok(a !== undefined);
+      assert.ok(b !== undefined);
+      assert.ok(c !== undefined);
+      assert.deepStrictEqual(a?.dependencies, [b, c]);
+      assert.deepStrictEqual(b?.dependencies, [d]);
+      assert.deepStrictEqual(c?.dependencies, [d]);
+      assert.deepStrictEqual(d?.dependencies, []);
     });
     test("provides files through file iterable", () => {
       const fileReg = createFileRegistry(testFileDescriptorSet);
-      expect(Array.from(fileReg.files).map((f) => f.name)).toStrictEqual([
-        "d",
-        "b",
-        "c",
-        "a",
-      ]);
+      assert.deepStrictEqual(
+        Array.from(fileReg.files).map((f) => f.name),
+        ["d", "b", "c", "a"],
+      );
     });
   });
-  describe("from FileDescriptorProto", () => {
+  void suite("from FileDescriptorProto", () => {
     let descFileA: DescFile;
     let testFileReg: FileRegistry;
-    beforeAll(() => {
+    before(() => {
       testFileReg = createFileRegistry(testFileDescriptorSet);
       const a = testFileReg.getFile("a.proto");
-      assert(a !== undefined);
+      assert.ok(a !== undefined);
       descFileA = a;
     });
     test("resolves all dependencies as FileDescriptorProto", () => {
       const reg = createFileRegistry(descFileA.proto, (protoFileName) =>
         testFileReg.getFile(protoFileName),
       );
-      expect(reg.getFile("a.proto")).toBeDefined();
-      expect(reg.getFile("b.proto")).toBeDefined();
-      expect(reg.getFile("c.proto")).toBeDefined();
-      expect(reg.getFile("d.proto")).toBeDefined();
-      expect(reg.getMessage("A")).toBeDefined();
-      expect(reg.getMessage("B")).toBeDefined();
-      expect(reg.getMessage("C")).toBeDefined();
-      expect(reg.getMessage("D")).toBeDefined();
+      assert.ok(reg.getFile("a.proto") !== undefined);
+      assert.ok(reg.getFile("b.proto") !== undefined);
+      assert.ok(reg.getFile("c.proto") !== undefined);
+      assert.ok(reg.getFile("d.proto") !== undefined);
+      assert.ok(reg.getMessage("A") !== undefined);
+      assert.ok(reg.getMessage("B") !== undefined);
+      assert.ok(reg.getMessage("C") !== undefined);
+      assert.ok(reg.getMessage("D") !== undefined);
     });
     test("resolves all dependencies as DescFile", () => {
       const reg = createFileRegistry(descFileA.proto, (protoFileName) =>
         testFileReg.getFile(protoFileName),
       );
-      expect(reg.getFile("a.proto")).toBeDefined();
-      expect(reg.getFile("b.proto")).toBeDefined();
-      expect(reg.getFile("c.proto")).toBeDefined();
-      expect(reg.getFile("d.proto")).toBeDefined();
-      expect(reg.getMessage("A")).toBeDefined();
-      expect(reg.getMessage("B")).toBeDefined();
-      expect(reg.getMessage("C")).toBeDefined();
-      expect(reg.getMessage("D")).toBeDefined();
+      assert.ok(reg.getFile("a.proto") !== undefined);
+      assert.ok(reg.getFile("b.proto") !== undefined);
+      assert.ok(reg.getFile("c.proto") !== undefined);
+      assert.ok(reg.getFile("d.proto") !== undefined);
+      assert.ok(reg.getMessage("A") !== undefined);
+      assert.ok(reg.getMessage("B") !== undefined);
+      assert.ok(reg.getMessage("C") !== undefined);
+      assert.ok(reg.getMessage("D") !== undefined);
     });
     test("raises error on unresolvable dependency", () => {
       function t() {
@@ -433,15 +432,17 @@ describe("createFileRegistry()", () => {
           return testFileReg.getFile(protoFileName);
         });
       }
-      expect(t).toThrow(/^Unable to resolve c.proto, imported by a.proto$/);
+      assert.throws(t, {
+        message: /^Unable to resolve c.proto, imported by a.proto$/,
+      });
     });
   });
   test("accepts empty arguments", () => {
     const registry = createFileRegistry();
     const types = Array.from(registry);
     const files = Array.from(registry.files);
-    expect(types.length).toBe(0);
-    expect(files.length).toBe(0);
+    assert.strictEqual(types.length, 0);
+    assert.strictEqual(files.length, 0);
   });
   test("raises error on unsupported edition from the past", () => {
     testFileDescriptorSet.file[0].syntax = "editions";
@@ -449,7 +450,7 @@ describe("createFileRegistry()", () => {
     function t() {
       createFileRegistry(testFileDescriptorSet);
     }
-    expect(t).toThrow(/^d.proto: unsupported edition$/);
+    assert.throws(t, { message: /^d.proto: unsupported edition$/ });
   });
   test("raises error on unsupported edition from the future", () => {
     testFileDescriptorSet.file[0].syntax = "editions";
@@ -457,9 +458,9 @@ describe("createFileRegistry()", () => {
     function t() {
       createFileRegistry(testFileDescriptorSet);
     }
-    expect(t).toThrow(/^d.proto: unsupported edition$/);
+    assert.throws(t, { message: /^d.proto: unsupported edition$/ });
   });
-  describe("from FileRegistry", () => {
+  void suite("from FileRegistry", () => {
     test("creates a copy of the given FileRegistry", () => {
       const testReg = createFileRegistry(testFileDescriptorSet);
       const testRegFileNames = Array.from(testReg.files)
@@ -468,17 +469,17 @@ describe("createFileRegistry()", () => {
       const testRegTypeNames = Array.from(testReg)
         .map((t) => t.typeName)
         .sort();
-      assert(testRegTypeNames.length > 0);
+      assert.ok(testRegTypeNames.length > 0);
 
       const reg = createFileRegistry(testReg);
       const regFileNames = Array.from(reg.files)
         .map((f) => f.name)
         .sort();
-      expect(regFileNames).toStrictEqual(testRegFileNames);
+      assert.deepStrictEqual(regFileNames, testRegFileNames);
       const regTypeNames = Array.from(reg)
         .map((t) => t.typeName)
         .sort();
-      expect(regTypeNames).toStrictEqual(testRegTypeNames);
+      assert.deepStrictEqual(regTypeNames, testRegTypeNames);
     });
     test("merges two FileRegistries", async () => {
       const regA = createFileRegistry(
@@ -504,18 +505,18 @@ describe("createFileRegistry()", () => {
         }),
       );
       const reg = createFileRegistry(regA, regB);
-      expect(
+      assert.deepStrictEqual(
         Array.from(reg)
           .map((t) => t.typeName)
           .sort(),
-      ).toStrictEqual(
         ["Msg", "Enu", "Srv", "ext", "Msg2", "Enu2", "Srv2", "ext2"].sort(),
       );
-      expect(
+      assert.deepStrictEqual(
         Array.from(reg.files)
           .map((f) => f.name)
           .sort(),
-      ).toStrictEqual(["a", "b"].sort());
+        ["a", "b"].sort(),
+      );
     });
     test("later duplicate file overwrites former file", async () => {
       const regA = createFileRegistry(
@@ -535,28 +536,32 @@ describe("createFileRegistry()", () => {
         }),
       );
       const reg = createFileRegistry(regA, regB);
-      expect(Array.from(reg.files).map((f) => f.name)).toStrictEqual(["a"]);
-      expect(
+      assert.deepStrictEqual(
+        Array.from(reg.files).map((f) => f.name),
+        ["a"],
+      );
+      assert.deepStrictEqual(
         Array.from(reg)
           .map((t) => t.typeName)
           .sort(),
-      ).toStrictEqual(["MsgA", "MsgB"].sort());
+        ["MsgA", "MsgB"].sort(),
+      );
     });
   });
 });
 
-describe("DescFile", () => {
+void suite("DescFile", () => {
   test("proto2 syntax", async () => {
     const file = await compileFile(`syntax="proto2";`);
-    expect(file.edition).toBe(Edition.EDITION_PROTO2);
+    assert.strictEqual(file.edition, Edition.EDITION_PROTO2);
   });
   test("proto3 syntax", async () => {
     const file = await compileFile(`syntax="proto3";`);
-    expect(file.edition).toBe(Edition.EDITION_PROTO3);
+    assert.strictEqual(file.edition, Edition.EDITION_PROTO3);
   });
   test("edition 2023", async () => {
     const file = await compileFile(`edition = "2023";`);
-    expect(file.edition).toBe(Edition.EDITION_2023);
+    assert.strictEqual(file.edition, Edition.EDITION_2023);
   });
   test("dependencies", async () => {
     const fileDescriptorSet = await compileFileDescriptorSet({
@@ -580,34 +585,37 @@ describe("DescFile", () => {
     });
     const reg = createFileRegistry(fileDescriptorSet);
     const a = reg.getFile("a.proto");
-    expect(a?.name).toBe("a");
-    expect(a?.dependencies.length).toBe(2);
-    expect(a?.dependencies.map((f) => f.name)).toStrictEqual(["b", "c"]);
+    assert.strictEqual(a?.name, "a");
+    assert.strictEqual(a?.dependencies.length, 2);
+    assert.deepStrictEqual(
+      a?.dependencies.map((f) => f.name),
+      ["b", "c"],
+    );
   });
-  describe("name", () => {
+  void suite("name", () => {
     test("is proto file name without .proto suffix", async () => {
       const file = await compileFile(`syntax="proto3";`, "foo/bar/baz.proto");
-      expect(file.name).toBe("foo/bar/baz");
+      assert.strictEqual(file.name, "foo/bar/baz");
     });
     test("strips only last .proto", async () => {
       const file = await compileFile(
         `syntax="proto3";`,
         "foo.proto/baz.proto.proto",
       );
-      expect(file.name).toBe("foo.proto/baz.proto");
+      assert.strictEqual(file.name, "foo.proto/baz.proto");
     });
   });
 });
 
-describe("DescMessage", () => {
-  describe("deprecated", () => {
+void suite("DescMessage", () => {
+  void suite("deprecated", () => {
     test("is false by default", async () => {
       const descMessage = await compileMessage(`
         syntax="proto3";
         option deprecated = true;
         message Foo {}
       `);
-      expect(descMessage.deprecated).toBe(false);
+      assert.strictEqual(descMessage.deprecated, false);
     });
     test("is true with option", async () => {
       const descMessage = await compileMessage(`
@@ -616,10 +624,10 @@ describe("DescMessage", () => {
           option deprecated = true;
         }
       `);
-      expect(descMessage.deprecated).toBe(true);
+      assert.strictEqual(descMessage.deprecated, true);
     });
   });
-  describe("field", () => {
+  void suite("field", () => {
     test("contains field by localName", async () => {
       const descMessage = await compileMessage(`
         syntax="proto3";
@@ -630,7 +638,7 @@ describe("DescMessage", () => {
           }
         }
       `);
-      expect(Object.keys(descMessage.field).sort()).toStrictEqual([
+      assert.deepStrictEqual(Object.keys(descMessage.field).sort(), [
         "fooBar",
         "oneofField",
       ]);
@@ -638,8 +646,8 @@ describe("DescMessage", () => {
   });
 });
 
-describe("DescEnum", () => {
-  describe("open", () => {
+void suite("DescEnum", () => {
+  void suite("open", () => {
     test("proto3 enum is open", async () => {
       const descEnum = await compileEnum(`
         syntax="proto3";
@@ -647,7 +655,7 @@ describe("DescEnum", () => {
           A = 0;
         }
       `);
-      expect(descEnum.open).toBe(true);
+      assert.strictEqual(descEnum.open, true);
     });
     test("proto2 enum is closed", async () => {
       const descEnum = await compileEnum(`
@@ -656,7 +664,7 @@ describe("DescEnum", () => {
           A = 1;
         }
       `);
-      expect(descEnum.open).toBe(false);
+      assert.strictEqual(descEnum.open, false);
     });
     test("edition 2023 enum is open by default", async () => {
       const descEnum = await compileEnum(`
@@ -665,7 +673,7 @@ describe("DescEnum", () => {
           A = 0;
         }
       `);
-      expect(descEnum.open).toBe(true);
+      assert.strictEqual(descEnum.open, true);
     });
     test("edition 2023 enum is closed by file feature", async () => {
       const descEnum = await compileEnum(`
@@ -675,7 +683,7 @@ describe("DescEnum", () => {
           A = 1;
         }
       `);
-      expect(descEnum.open).toBe(false);
+      assert.strictEqual(descEnum.open, false);
     });
     test("edition 2023 enum is closed by enum feature", async () => {
       const descEnum = await compileEnum(`
@@ -685,10 +693,10 @@ describe("DescEnum", () => {
           A = 1;
         }
       `);
-      expect(descEnum.open).toBe(false);
+      assert.strictEqual(descEnum.open, false);
     });
   });
-  describe("sharedPrefix", () => {
+  void suite("sharedPrefix", () => {
     test("is shared prefix", async () => {
       const descEnum = await compileEnum(`
         syntax="proto3";
@@ -697,7 +705,7 @@ describe("DescEnum", () => {
           MY_ENUM_B = 1;
         }
       `);
-      expect(descEnum.sharedPrefix).toBe("my_enum_");
+      assert.strictEqual(descEnum.sharedPrefix, "my_enum_");
     });
     test("is shared prefix regardless of casing", async () => {
       const descEnum = await compileEnum(`
@@ -707,7 +715,7 @@ describe("DescEnum", () => {
           my_enum_B = 1;
         }
       `);
-      expect(descEnum.sharedPrefix).toBe("my_enum_");
+      assert.strictEqual(descEnum.sharedPrefix, "my_enum_");
     });
     test("is undefined without shared prefix", async () => {
       const descEnum = await compileEnum(`
@@ -717,7 +725,7 @@ describe("DescEnum", () => {
           B = 1;
         }
       `);
-      expect(descEnum.sharedPrefix).toBeUndefined();
+      assert.strictEqual(descEnum.sharedPrefix, undefined);
     });
     test("is undefined if any short name starts with a number", async () => {
       const descEnum = await compileEnum(`
@@ -727,10 +735,10 @@ describe("DescEnum", () => {
           MY_ENUM_23_B = 1; 
         }
       `);
-      expect(descEnum.sharedPrefix).toBeUndefined();
+      assert.strictEqual(descEnum.sharedPrefix, undefined);
     });
   });
-  describe("deprecated", () => {
+  void suite("deprecated", () => {
     test("not deprecated by default", async () => {
       const descEnum = await compileEnum(`
         syntax="proto3";
@@ -738,7 +746,7 @@ describe("DescEnum", () => {
           A = 0;
         }
       `);
-      expect(descEnum.deprecated).toBe(false);
+      assert.strictEqual(descEnum.deprecated, false);
     });
     test("deprecated is deprecated", async () => {
       const descEnum = await compileEnum(`
@@ -748,7 +756,7 @@ describe("DescEnum", () => {
           A = 0;
         }
       `);
-      expect(descEnum.deprecated).toBe(true);
+      assert.strictEqual(descEnum.deprecated, true);
     });
     test("deprecated file is not deprecated", async () => {
       const descEnum = await compileEnum(`
@@ -758,27 +766,26 @@ describe("DescEnum", () => {
           A = 0;
         }
       `);
-      expect(descEnum.deprecated).toBe(false);
+      assert.strictEqual(descEnum.deprecated, false);
     });
   });
 });
 
-describe("DescEnumValue", () => {
-  describe("name", () => {
-    test.each(["MY_ENUM_A", "foo", "__proto__"])(
-      "is proto name %s",
-      async (name) => {
+void suite("DescEnumValue", () => {
+  void suite("name", () => {
+    for (const name of ["MY_ENUM_A", "foo", "__proto__"]) {
+      void test(`is proto name ${name}`, async () => {
         const descEnum = await compileEnum(`
-        syntax="proto3";
-        enum MyEnum {
-          ${name} = 0; 
-        }
-      `);
-        expect(descEnum.values[0].name).toBe(name);
-      },
-    );
+          syntax="proto3";
+          enum MyEnum {
+            ${name} = 0; 
+          }
+        `);
+        assert.strictEqual(descEnum.values[0].name, name);
+      });
+    }
   });
-  describe("localName", () => {
+  void suite("localName", () => {
     test("does not change case", async () => {
       const value = (
         await compileEnum(`
@@ -788,7 +795,7 @@ describe("DescEnumValue", () => {
         }
       `)
       ).values[0];
-      expect(value.localName).toBe("FooBAR_baz_1");
+      assert.strictEqual(value.localName, "FooBAR_baz_1");
     });
     test("drops shared prefix", async () => {
       const value = (
@@ -800,7 +807,7 @@ describe("DescEnumValue", () => {
         }
       `)
       ).values[0];
-      expect(value.localName).toBe("ZERO");
+      assert.strictEqual(value.localName, "ZERO");
     });
     test("escapes reserved property name", async () => {
       const value = (
@@ -811,7 +818,7 @@ describe("DescEnumValue", () => {
         }
       `)
       ).values[0];
-      expect(value.localName).toBe("constructor$");
+      assert.strictEqual(value.localName, "constructor$");
     });
     test("escapes reserved property name with dropped prefix", async () => {
       const value = (
@@ -822,10 +829,10 @@ describe("DescEnumValue", () => {
         }
       `)
       ).values[0];
-      expect(value.localName).toBe("constructor$");
+      assert.strictEqual(value.localName, "constructor$");
     });
   });
-  describe("deprecated", () => {
+  void suite("deprecated", () => {
     test("not deprecated by default", async () => {
       const value = (
         await compileEnum(`
@@ -835,7 +842,7 @@ describe("DescEnumValue", () => {
         }
       `)
       ).values[0];
-      expect(value.deprecated).toBe(false);
+      assert.strictEqual(value.deprecated, false);
     });
     test("deprecated is deprecated", async () => {
       const value = (
@@ -846,7 +853,7 @@ describe("DescEnumValue", () => {
         }
       `)
       ).values[0];
-      expect(value.deprecated).toBe(true);
+      assert.strictEqual(value.deprecated, true);
     });
     test("deprecated enum is not deprecated", async () => {
       const value = (
@@ -858,7 +865,7 @@ describe("DescEnumValue", () => {
         }
       `)
       ).values[0];
-      expect(value.deprecated).toBe(false);
+      assert.strictEqual(value.deprecated, false);
     });
     test("deprecated file is not deprecated", async () => {
       const value = (
@@ -870,13 +877,13 @@ describe("DescEnumValue", () => {
         }
       `)
       ).values[0];
-      expect(value.deprecated).toBe(false);
+      assert.strictEqual(value.deprecated, false);
     });
   });
 });
 
-describe("DescField", () => {
-  describe("presence", () => {
+void suite("DescField", () => {
+  void suite("presence", () => {
     test("proto2 optional scalar is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
@@ -884,7 +891,7 @@ describe("DescField", () => {
           optional int32 f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto2 optional message is EXPLICIT", async () => {
       const field = await compileField(`
@@ -893,7 +900,7 @@ describe("DescField", () => {
           optional M f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto2 required scalar is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
@@ -902,7 +909,10 @@ describe("DescField", () => {
           required int32 f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      assert.strictEqual(
+        field.presence,
+        FeatureSet_FieldPresence.LEGACY_REQUIRED,
+      );
     });
     test("proto2 required message is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
@@ -911,7 +921,10 @@ describe("DescField", () => {
           required M f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      assert.strictEqual(
+        field.presence,
+        FeatureSet_FieldPresence.LEGACY_REQUIRED,
+      );
     });
     test("proto2 scalar list is IMPLICIT", async () => {
       const field = await compileField(`
@@ -920,7 +933,7 @@ describe("DescField", () => {
           repeated int32 f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto2 message list is IMPLICIT", async () => {
       const field = await compileField(`
@@ -929,7 +942,7 @@ describe("DescField", () => {
           repeated M f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto2 scalar map is IMPLICIT", async () => {
       const field = await compileField(`
@@ -938,7 +951,7 @@ describe("DescField", () => {
           map <int32, int32> f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto2 message map is IMPLICIT", async () => {
       const field = await compileField(`
@@ -947,7 +960,7 @@ describe("DescField", () => {
           map <int32, M> f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto2 oneof is EXPLICIT", async () => {
       const field = await compileField(`
@@ -958,7 +971,7 @@ describe("DescField", () => {
           }
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto3 scalar is IMPLICIT", async () => {
       const field = await compileField(`
@@ -967,7 +980,7 @@ describe("DescField", () => {
           int32 f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto3 optional scalar is EXPLICIT", async () => {
       const field = await compileField(`
@@ -976,7 +989,7 @@ describe("DescField", () => {
           optional int32 f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto3 scalar list is IMPLICIT", async () => {
       const field = await compileField(`
@@ -985,7 +998,7 @@ describe("DescField", () => {
           repeated int32 f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto3 message list is IMPLICIT", async () => {
       const field = await compileField(`
@@ -994,7 +1007,7 @@ describe("DescField", () => {
           repeated M f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto3 scalar map is IMPLICIT", async () => {
       const field = await compileField(`
@@ -1003,7 +1016,7 @@ describe("DescField", () => {
           map <int32, int32> f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto3 message map is IMPLICIT", async () => {
       const field = await compileField(`
@@ -1012,7 +1025,7 @@ describe("DescField", () => {
           map <int32, M> f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("proto3 oneof is EXPLICIT", async () => {
       const field = await compileField(`
@@ -1023,7 +1036,7 @@ describe("DescField", () => {
           }
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto3 message is EXPLICIT", async () => {
       const field = await compileField(`
@@ -1032,7 +1045,7 @@ describe("DescField", () => {
           M f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto3 optional message is EXPLICIT", async () => {
       const field = await compileField(`
@@ -1041,7 +1054,7 @@ describe("DescField", () => {
           optional M f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("edition2023 scalar is EXPLICIT", async () => {
       const field = await compileField(`
@@ -1050,7 +1063,7 @@ describe("DescField", () => {
           int32 f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("edition2023 scalar inherits IMPLICIT", async () => {
       const field = await compileField(`
@@ -1060,7 +1073,7 @@ describe("DescField", () => {
           int32 f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("edition2023 message is EXPLICIT", async () => {
       const field = await compileField(`
@@ -1070,7 +1083,7 @@ describe("DescField", () => {
           M f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("edition2023 message does not inherit IMPLICIT", async () => {
       const field = await compileField(`
@@ -1080,7 +1093,7 @@ describe("DescField", () => {
           M f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("edition2023 scalar list is IMPLICIT", async () => {
       const field = await compileField(`
@@ -1089,7 +1102,7 @@ describe("DescField", () => {
           repeated int32 f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("edition2023 message list is IMPLICIT", async () => {
       const field = await compileField(`
@@ -1098,7 +1111,7 @@ describe("DescField", () => {
           repeated M f = 1;
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(field.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
     test("edition2023 scalar with LEGACY_REQUIRED is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
@@ -1107,7 +1120,10 @@ describe("DescField", () => {
           int32 f = 1 [features.field_presence = LEGACY_REQUIRED];
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      assert.strictEqual(
+        field.presence,
+        FeatureSet_FieldPresence.LEGACY_REQUIRED,
+      );
     });
     test("edition2023 message with LEGACY_REQUIRED is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
@@ -1116,10 +1132,13 @@ describe("DescField", () => {
           M f = 1 [features.field_presence = LEGACY_REQUIRED];
         }
       `);
-      expect(field.presence).toBe(FeatureSet_FieldPresence.LEGACY_REQUIRED);
+      assert.strictEqual(
+        field.presence,
+        FeatureSet_FieldPresence.LEGACY_REQUIRED,
+      );
     });
   });
-  describe("delimitedEncoding", () => {
+  void suite("delimitedEncoding", () => {
     test("true for proto2 group", async () => {
       const field = await compileField(`
         syntax="proto2";
@@ -1127,9 +1146,10 @@ describe("DescField", () => {
           optional group GroupField = 2 {}
         }
       `);
-      expect(
+      assert.strictEqual(
         field.fieldKind == "message" ? field.delimitedEncoding : undefined,
-      ).toBe(true);
+        true,
+      );
     });
     test("true for field with features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
@@ -1138,9 +1158,10 @@ describe("DescField", () => {
           M f = 1 [features.message_encoding = DELIMITED];
         }
       `);
-      expect(
+      assert.strictEqual(
         field.fieldKind == "message" ? field.delimitedEncoding : undefined,
-      ).toBe(true);
+        true,
+      );
     });
     test("true for list field with features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
@@ -1149,11 +1170,12 @@ describe("DescField", () => {
           repeated M f = 1 [features.message_encoding = DELIMITED];
         }
       `);
-      expect(
+      assert.strictEqual(
         field.fieldKind == "list" && field.listKind == "message"
           ? field.delimitedEncoding
           : undefined,
-      ).toBe(true);
+        true,
+      );
     });
     test("true for file with features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
@@ -1163,9 +1185,10 @@ describe("DescField", () => {
           M f = 1;
         }
       `);
-      expect(
+      assert.strictEqual(
         field.fieldKind == "message" ? field.delimitedEncoding : undefined,
-      ).toBe(true);
+        true,
+      );
     });
     test("false for map field with inherited features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
@@ -1175,12 +1198,13 @@ describe("DescField", () => {
           map <int32, string> f = 1;
         }
       `);
-      expect(
+      assert.strictEqual(
         field.fieldKind == "map" ? field.delimitedEncoding : undefined,
-      ).toBe(false);
+        false,
+      );
     });
   });
-  describe("longAsString", () => {
+  void suite("longAsString", () => {
     test("returns default false for option omitted", async () => {
       const { fields } = await compileMessage(`
         syntax="proto3";
@@ -1197,59 +1221,58 @@ describe("DescField", () => {
           repeated uint64 repeated_uint64_field = 15;
         }
       `);
-      expect(fields.length > 0).toBeTruthy();
+      assert.ok(fields.length > 0);
       for (const field of fields) {
-        expect(
+        assert.ok(
           field.fieldKind == "scalar" ||
             (field.fieldKind == "list" && field.listKind == "scalar"),
-        ).toBeTruthy();
+        );
         if (
           field.fieldKind == "scalar" ||
           (field.fieldKind == "list" && field.listKind == "scalar")
         ) {
-          expect(field.longAsString).toBe(false);
+          assert.strictEqual(field.longAsString, false);
         }
       }
     });
-    test.each([
+    for (const { jstype, longAsString } of [
       { jstype: "JS_NORMAL", longAsString: false },
       { jstype: "JS_NUMBER", longAsString: false },
       { jstype: "JS_STRING", longAsString: true },
-    ] as const)(
-      "returns default LongType.$longType for jstype=$jstype",
-      async ({ jstype, longAsString }) => {
+    ] as const) {
+      void test(`returns longAsString=${longAsString} for jstype=${jstype}`, async () => {
         const { fields } = await compileMessage(`
-        syntax="proto3";
-        message M {
-          fixed64 fixed64_field = 1 [jstype = ${jstype}];
-          int64 int64_field = 3 [jstype = ${jstype}];
-          sfixed64 sfixed64_field = 4 [jstype = ${jstype}];
-          sint64 sint64_field = 5 [jstype = ${jstype}];
-          uint64 uint64_field = 6 [jstype = ${jstype}];
-          repeated fixed64 repeated_fixed64_field = 11 [jstype = ${jstype}];
-          repeated int64 repeated_int64_field = 12 [jstype = ${jstype}];
-          repeated sfixed64 repeated_sfixed64_field = 13 [jstype = ${jstype}];
-          repeated sint64 repeated_sint64_field = 14 [jstype = ${jstype}];
-          repeated uint64 repeated_uint64_field = 15 [jstype = ${jstype}];
-        }
-      `);
-        expect(fields.length > 0).toBeTruthy();
+          syntax="proto3";
+          message M {
+            fixed64 fixed64_field = 1 [jstype = ${jstype}];
+            int64 int64_field = 3 [jstype = ${jstype}];
+            sfixed64 sfixed64_field = 4 [jstype = ${jstype}];
+            sint64 sint64_field = 5 [jstype = ${jstype}];
+            uint64 uint64_field = 6 [jstype = ${jstype}];
+            repeated fixed64 repeated_fixed64_field = 11 [jstype = ${jstype}];
+            repeated int64 repeated_int64_field = 12 [jstype = ${jstype}];
+            repeated sfixed64 repeated_sfixed64_field = 13 [jstype = ${jstype}];
+            repeated sint64 repeated_sint64_field = 14 [jstype = ${jstype}];
+            repeated uint64 repeated_uint64_field = 15 [jstype = ${jstype}];
+          }
+        `);
+        assert.ok(fields.length > 0);
         for (const field of fields) {
-          expect(
+          assert.ok(
             field.fieldKind == "scalar" ||
               (field.fieldKind == "list" && field.listKind == "scalar"),
-          ).toBeTruthy();
+          );
           if (
             field.fieldKind == "scalar" ||
             (field.fieldKind == "list" && field.listKind == "scalar")
           ) {
-            expect(field.longAsString).toBe(longAsString);
+            assert.strictEqual(field.longAsString, longAsString);
           }
         }
-      },
-    );
+      });
+    }
   });
-  describe("localName", () => {
+  void suite("localName", () => {
     test("applies protoCamelCase", async () => {
       const field = await compileField(`
         syntax="proto3";
@@ -1257,7 +1280,7 @@ describe("DescField", () => {
           int32 __proto__ = 1;
         }
       `);
-      expect(field.localName).toBe("Proto");
+      assert.strictEqual(field.localName, "Proto");
     });
     test("escapes reserved property name", async () => {
       const field = await compileField(`
@@ -1266,9 +1289,9 @@ describe("DescField", () => {
           int32 constructor = 1;
         }
       `);
-      expect(field.localName).toBe("constructor$");
+      assert.strictEqual(field.localName, "constructor$");
     });
-    describe("with field in oneof", () => {
+    void suite("with field in oneof", () => {
       test("applies protoCamelCase", async () => {
         const field = await compileField(`
         syntax="proto3";
@@ -1278,8 +1301,8 @@ describe("DescField", () => {
           }
         }
       `);
-        expect(field.oneof).toBeDefined();
-        expect(field.localName).toBe("Proto");
+        assert.ok(field.oneof !== undefined);
+        assert.strictEqual(field.localName, "Proto");
       });
       test("does not escape reserved property name", async () => {
         const field = await compileField(`
@@ -1290,39 +1313,37 @@ describe("DescField", () => {
           }
         }
       `);
-        expect(field.oneof).toBeDefined();
-        expect(field.localName).toBe("constructor");
+        assert.ok(field.oneof !== undefined);
+        assert.strictEqual(field.localName, "constructor");
       });
     });
   });
-  describe("jsonName", () => {
-    test.each(["field", "foo_bar", "__proto__", "constructor"])(
-      "returns compiler-provided json_name for %s",
-      async (name) => {
+  void suite("jsonName", () => {
+    for (const name of ["field", "foo_bar", "__proto__", "constructor"]) {
+      void test(`returns compiler-provided json_name for ${name}`, async () => {
         const field = await compileField(`
-        syntax="proto3";
-        message M {
-          int32 ${name} = 1;
-        }
-      `);
-        expect(field.jsonName).toBe(protoCamelCase(name));
-        expect(field.jsonName).toBe(field.proto.jsonName);
-      },
-    );
-    test.each(["foo", "foo_bar", "", "@type"])(
-      "returns custom json_name for %s",
-      async (name) => {
+          syntax="proto3";
+          message M {
+            int32 ${name} = 1;
+          }
+        `);
+        assert.strictEqual(field.jsonName, protoCamelCase(name));
+        assert.strictEqual(field.jsonName, field.proto.jsonName);
+      });
+    }
+    for (const name of ["foo", "foo_bar", "", "@type"]) {
+      void test(`returns custom json_name for ${name}`, async () => {
         const field = await compileField(`
-        syntax="proto3";
-        message M {
-          int32 f = 1 [json_name = "${name}"];
-        }
-      `);
-        expect(field.jsonName).toBe(name);
-      },
-    );
+          syntax="proto3";
+          message M {
+            int32 f = 1 [json_name = "${name}"];
+          }
+        `);
+        assert.strictEqual(field.jsonName, name);
+      });
+    }
   });
-  describe("repeated field packing", () => {
+  void suite("repeated field packing", () => {
     test("proto2 is unpacked by default", async () => {
       const fileDescriptorSet = await compileFileDescriptorSet({
         "a.proto": `
@@ -1336,30 +1357,30 @@ describe("DescField", () => {
       });
       const fields =
         createFileRegistry(fileDescriptorSet).getMessage("M")?.fields;
-      assert(fields);
+      assert.ok(fields);
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(false);
+        assert.strictEqual(f.packed, false);
       }
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(true);
+        assert.strictEqual(f.packed, true);
       }
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(false);
+        assert.strictEqual(f.packed, false);
       }
     });
     test("proto3 is packed by default", async () => {
@@ -1375,30 +1396,30 @@ describe("DescField", () => {
       });
       const fields =
         createFileRegistry(fileDescriptorSet).getMessage("M")?.fields;
-      assert(fields);
+      assert.ok(fields);
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(true);
+        assert.strictEqual(f.packed, true);
       }
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(true);
+        assert.strictEqual(f.packed, true);
       }
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(false);
+        assert.strictEqual(f.packed, false);
       }
     });
     test("edition2023 is packed by default", async () => {
@@ -1414,30 +1435,30 @@ describe("DescField", () => {
       });
       const fields =
         createFileRegistry(fileDescriptorSet).getMessage("M")?.fields;
-      assert(fields);
+      assert.ok(fields);
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(true);
+        assert.strictEqual(f.packed, true);
       }
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(true);
+        assert.strictEqual(f.packed, true);
       }
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(false);
+        assert.strictEqual(f.packed, false);
       }
     });
     test("edition2023 with repeated_field_encoding file option", async () => {
@@ -1453,22 +1474,22 @@ describe("DescField", () => {
       });
       const fields =
         createFileRegistry(fileDescriptorSet).getMessage("M")?.fields;
-      assert(fields);
+      assert.ok(fields);
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(false);
+        assert.strictEqual(f.packed, false);
       }
       {
         const f = fields.shift();
-        assert(
+        assert.ok(
           f?.fieldKind == "list" &&
             (f.listKind == "scalar" || f.listKind == "enum"),
         );
-        expect(f.packed).toBe(true);
+        assert.strictEqual(f.packed, true);
       }
     });
   });
@@ -1483,7 +1504,7 @@ describe("DescField", () => {
     });
     const field =
       createFileRegistry(fileDescriptorSet).getMessage("M")?.fields[0];
-    assert(field);
+    assert.ok(field);
 
     // always available
     field.kind;
@@ -1538,7 +1559,7 @@ describe("DescField", () => {
 
         const oneof: DescOneof | undefined = field.oneof;
 
-        assert([def, oneof].length > 0);
+        assert.ok([def, oneof].length > 0);
         break;
       }
       case "scalar": {
@@ -1556,7 +1577,7 @@ describe("DescField", () => {
         switch (field.scalar) {
           case ScalarType.BOOL: {
             const defBool: boolean | undefined = field.getDefaultValue();
-            assert([defBool].length > 0);
+            assert.ok([defBool].length > 0);
             break;
           }
           default:
@@ -1571,7 +1592,7 @@ describe("DescField", () => {
 
         const oneof: DescOneof | undefined = field.oneof;
 
-        assert([def, oneof].length > 0);
+        assert.ok([def, oneof].length > 0);
         break;
       }
       case "enum": {
@@ -1594,7 +1615,7 @@ describe("DescField", () => {
 
         const oneof: DescOneof | undefined = field.oneof;
 
-        assert([def, oneof].length > 0);
+        assert.ok([def, oneof].length > 0);
         break;
       }
       case "list": {
@@ -1611,7 +1632,7 @@ describe("DescField", () => {
             const scalar: ScalarType = field.scalar;
             const message: undefined = field.message;
             const enumeration: undefined = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
           case "enum": {
@@ -1620,7 +1641,7 @@ describe("DescField", () => {
             const scalar: undefined = field.scalar;
             const message: undefined = field.message;
             const enumeration: DescEnum = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
           case "message": {
@@ -1629,7 +1650,7 @@ describe("DescField", () => {
             const scalar: undefined = field.scalar;
             const message: DescMessage = field.message;
             const enumeration: undefined = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
         }
@@ -1648,7 +1669,7 @@ describe("DescField", () => {
 
         const oneof: undefined = field.oneof;
 
-        assert([oneof].length > 0);
+        assert.ok([oneof].length > 0);
         break;
       }
       case "map": {
@@ -1681,28 +1702,28 @@ describe("DescField", () => {
             const scalar: ScalarType = field.scalar;
             const message: undefined = field.message;
             const enumeration: undefined = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
           case "enum": {
             const scalar: undefined = field.scalar;
             const message: undefined = field.message;
             const enumeration: DescEnum = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
           case "message": {
             const scalar: undefined = field.scalar;
             const message: DescMessage = field.message;
             const enumeration: undefined = field.enum;
-            assert([scalar, message, enumeration].length > 0);
+            assert.ok([scalar, message, enumeration].length > 0);
             break;
           }
         }
 
         const oneof: undefined = field.oneof;
 
-        assert(
+        assert.ok(
           [mapKeyFloat, mapKeyDouble, mapKeyBytes, mapKeyOk, oneof].length > 0,
         );
         break;
@@ -1711,8 +1732,8 @@ describe("DescField", () => {
   });
 });
 
-describe("DescOneof", () => {
-  describe("localName", () => {
+void suite("DescOneof", () => {
+  void suite("localName", () => {
     test("applies protoCamelCase", async () => {
       const oneof = (
         await compileMessage(`
@@ -1724,7 +1745,7 @@ describe("DescOneof", () => {
         }
       `)
       ).oneofs[0];
-      expect(oneof.localName).toBe("Proto");
+      assert.strictEqual(oneof.localName, "Proto");
     });
     test("escapes reserved property name", async () => {
       const oneof = (
@@ -1737,10 +1758,10 @@ describe("DescOneof", () => {
         }
       `)
       ).oneofs[0];
-      expect(oneof.localName).toBe("constructor$");
+      assert.strictEqual(oneof.localName, "constructor$");
     });
   });
-  describe("fields", () => {
+  void suite("fields", () => {
     test("has member fields", async () => {
       const oneof = (
         await compileMessage(`
@@ -1753,12 +1774,12 @@ describe("DescOneof", () => {
         }
       `)
       ).oneofs[0];
-      expect(oneof.fields.length).toBe(2);
+      assert.strictEqual(oneof.fields.length, 2);
     });
   });
 });
 
-describe("DescExtension", () => {
+void suite("DescExtension", () => {
   test("typeName", async () => {
     const ext = await compileExtension(`
       syntax="proto2";
@@ -1767,7 +1788,7 @@ describe("DescExtension", () => {
       }
       message M { extensions 1; }
     `);
-    expect(ext.typeName).toBe("ext");
+    assert.strictEqual(ext.typeName, "ext");
   });
   test("typeName with package", async () => {
     const ext = await compileExtension(`
@@ -1778,7 +1799,7 @@ describe("DescExtension", () => {
       }
       message M { extensions 1; }
     `);
-    expect(ext.typeName).toBe("test.ext");
+    assert.strictEqual(ext.typeName, "test.ext");
   });
   test("typeName for nested package", async () => {
     const message = await compileMessage(`
@@ -1792,7 +1813,7 @@ describe("DescExtension", () => {
       message M { extensions 1; }
     `);
     const ext = message.nestedExtensions[0];
-    expect(ext.typeName).toBe("test.C.ext");
+    assert.strictEqual(ext.typeName, "test.C.ext");
   });
   test("jsonName", async () => {
     const message = await compileMessage(`
@@ -1806,7 +1827,7 @@ describe("DescExtension", () => {
       message M { extensions 1; }
     `);
     const ext = message.nestedExtensions[0];
-    expect(ext.jsonName).toBe("[test.C.ext]");
+    assert.strictEqual(ext.jsonName, "[test.C.ext]");
   });
   test("extendee", async () => {
     const file = await compileFile(`
@@ -1819,7 +1840,7 @@ describe("DescExtension", () => {
     `);
     const ext = file.extensions[0];
     const M = file.messages[0];
-    expect(ext.extendee).toBe(M);
+    assert.strictEqual(ext.extendee, M);
   });
   test("parent", async () => {
     const message = await compileMessage(`
@@ -1833,9 +1854,9 @@ describe("DescExtension", () => {
       message M { extensions 1; }
     `);
     const ext = message.nestedExtensions[0];
-    expect(ext.parent).toBe(message);
+    assert.strictEqual(ext.parent, message);
   });
-  describe("presence", () => {
+  void suite("presence", () => {
     test("proto3 implicit field is EXPLICIT", async () => {
       const ext = await compileExtension(`
         syntax="proto3";
@@ -1844,7 +1865,7 @@ describe("DescExtension", () => {
           int32 ext = 1001;
         }
       `);
-      expect(ext.presence).toBe(FeatureSet_FieldPresence.EXPLICIT);
+      assert.strictEqual(ext.presence, FeatureSet_FieldPresence.EXPLICIT);
     });
     test("proto3 list is IMPLICIT", async () => {
       const ext = await compileExtension(`
@@ -1854,10 +1875,10 @@ describe("DescExtension", () => {
           repeated int32 ext = 1001;
         }
       `);
-      expect(ext.presence).toBe(FeatureSet_FieldPresence.IMPLICIT);
+      assert.strictEqual(ext.presence, FeatureSet_FieldPresence.IMPLICIT);
     });
   });
-  describe("delimitedEncoding", () => {
+  void suite("delimitedEncoding", () => {
     test("true for proto2 group", async () => {
       const ext = await compileExtension(`
         syntax="proto2";
@@ -1866,9 +1887,10 @@ describe("DescExtension", () => {
         }
         message M { extensions 1; }
       `);
-      expect(
+      assert.strictEqual(
         ext.fieldKind == "message" ? ext.delimitedEncoding : undefined,
-      ).toBe(true);
+        true,
+      );
     });
     test("true for field with features.message_encoding = DELIMITED", async () => {
       const ext = await compileExtension(`
@@ -1878,21 +1900,22 @@ describe("DescExtension", () => {
         }
         message M { extensions 1; }
       `);
-      expect(
+      assert.strictEqual(
         ext.fieldKind == "message" ? ext.delimitedEncoding : undefined,
-      ).toBe(true);
+        true,
+      );
     });
   });
 });
 
-describe("DescService", () => {
+void suite("DescService", () => {
   test("typeName", async () => {
     const service = await compileService(`
       syntax="proto3";
       package test;
       service Foo {}
     `);
-    expect(service.typeName).toBe("test.Foo");
+    assert.strictEqual(service.typeName, "test.Foo");
   });
   test("methods", async () => {
     const service = await compileService(`
@@ -1904,16 +1927,16 @@ describe("DescService", () => {
       message I {}
       message O {}
     `);
-    expect(service.methods.length).toBe(2);
-    expect(service.deprecated).toBe(false);
+    assert.strictEqual(service.methods.length, 2);
+    assert.strictEqual(service.deprecated, false);
   });
-  describe("deprecated", () => {
+  void suite("deprecated", () => {
     test("is false by default", async () => {
       const service = await compileService(`
         syntax="proto3";
         service Foo {}
       `);
-      expect(service.deprecated).toBe(false);
+      assert.strictEqual(service.deprecated, false);
     });
     test("is true with option", async () => {
       const service = await compileService(`
@@ -1922,13 +1945,13 @@ describe("DescService", () => {
           option deprecated = true;
         }
       `);
-      expect(service.deprecated).toBe(true);
+      assert.strictEqual(service.deprecated, true);
     });
   });
 });
 
-describe("DescMethod", () => {
-  describe("methodKind", () => {
+void suite("DescMethod", () => {
+  void suite("methodKind", () => {
     test("unary", async () => {
       const method = await compileMethod(`
         syntax="proto3";
@@ -1938,7 +1961,7 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.methodKind).toBe("unary");
+      assert.strictEqual(method.methodKind, "unary");
     });
     test("server-streaming", async () => {
       const method = await compileMethod(`
@@ -1949,7 +1972,7 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.methodKind).toBe("server_streaming");
+      assert.strictEqual(method.methodKind, "server_streaming");
     });
     test("client-streaming", async () => {
       const method = await compileMethod(`
@@ -1960,7 +1983,7 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.methodKind).toBe("client_streaming");
+      assert.strictEqual(method.methodKind, "client_streaming");
     });
     test("bidi-streaming", async () => {
       const method = await compileMethod(`
@@ -1971,10 +1994,10 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.methodKind).toBe("bidi_streaming");
+      assert.strictEqual(method.methodKind, "bidi_streaming");
     });
   });
-  describe("idempotency", () => {
+  void suite("idempotency", () => {
     test("is IDEMPOTENCY_UNKNOWN if unset", async () => {
       const method = await compileMethod(`
         syntax="proto3";
@@ -1984,7 +2007,8 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.idempotency).toBe(
+      assert.strictEqual(
+        method.idempotency,
         MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN,
       );
     });
@@ -1999,7 +2023,8 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.idempotency).toBe(
+      assert.strictEqual(
+        method.idempotency,
         MethodOptions_IdempotencyLevel.IDEMPOTENCY_UNKNOWN,
       );
     });
@@ -2014,7 +2039,8 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.idempotency).toBe(
+      assert.strictEqual(
+        method.idempotency,
         MethodOptions_IdempotencyLevel.NO_SIDE_EFFECTS,
       );
     });
@@ -2029,12 +2055,13 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.idempotency).toBe(
+      assert.strictEqual(
+        method.idempotency,
         MethodOptions_IdempotencyLevel.IDEMPOTENT,
       );
     });
   });
-  describe("deprecated", () => {
+  void suite("deprecated", () => {
     test("is false by default", async () => {
       const method = await compileMethod(`
         syntax="proto3";
@@ -2044,7 +2071,7 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.deprecated).toBe(false);
+      assert.strictEqual(method.deprecated, false);
     });
     test("is true with option", async () => {
       const method = await compileMethod(`
@@ -2057,10 +2084,10 @@ describe("DescMethod", () => {
         message I {}
         message O {}
       `);
-      expect(method.deprecated).toBe(true);
+      assert.strictEqual(method.deprecated, true);
     });
   });
-  describe("localName", () => {
+  void suite("localName", () => {
     test("makes first letter lowerCase", async () => {
       const rpc = (
         await compileService(`
@@ -2071,7 +2098,7 @@ describe("DescMethod", () => {
         message E {}
       `)
       ).methods[0];
-      expect(rpc.localName).toBe("foo_bar_BAZ");
+      assert.strictEqual(rpc.localName, "foo_bar_BAZ");
     });
     test("escapes reserved property name", async () => {
       const rpc = (
@@ -2083,7 +2110,7 @@ describe("DescMethod", () => {
         message E {}
       `)
       ).methods[0];
-      expect(rpc.localName).toBe("constructor$");
+      assert.strictEqual(rpc.localName, "constructor$");
     });
   });
 });

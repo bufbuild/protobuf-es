@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { beforeEach, describe, expect, test } from "@jest/globals";
-import assert from "node:assert";
+import { suite, test, beforeEach } from "node:test";
+import * as assert from "node:assert";
 import {
   create,
   equals,
@@ -37,47 +37,51 @@ import { fillProto3Message } from "./helpers-proto3.js";
 import { fillProto2Message } from "./helpers-proto2.js";
 import { fillEdition2023Message } from "./helpers-edition2023.js";
 
-describe("equals()", () => {
-  test("same messages are equal", () => {
+void suite("equals()", () => {
+  void test("same messages are equal", () => {
     const a = create(proto3_ts.Proto3MessageSchema);
     const b = a;
-    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(true);
+    assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), true);
   });
-  test.each([
+  for (const desc of [
     proto3_ts.Proto3MessageSchema,
     proto2_ts.Proto2MessageSchema,
     edition2023_ts.Edition2023MessageSchema,
-  ])("equal zero messages are equal $typeName", (desc) => {
-    const a = create(desc);
-    const b = create(desc);
-    expect(equals(desc, a, b)).toBe(true);
-  });
-  test("equal proto3 messages are equal", () => {
+  ]) {
+    void test(`equal zero messages are equal ${desc.typeName}`, () => {
+      const a = create(desc);
+      const b = create(desc);
+      assert.ok(equals(desc, a, b));
+    });
+  }
+  void test("equal proto3 messages are equal", () => {
     const a = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
     const b = fillProto3Message(create(proto3_ts.Proto3MessageSchema));
-    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(true);
+    assert.ok(equals(proto3_ts.Proto3MessageSchema, a, b));
   });
-  test("equal proto2 messages are equal", () => {
+  void test("equal proto2 messages are equal", () => {
     const a = fillProto2Message(create(proto2_ts.Proto2MessageSchema));
     const b = fillProto2Message(create(proto2_ts.Proto2MessageSchema));
-    expect(equals(proto2_ts.Proto2MessageSchema, a, b)).toBe(true);
+    assert.ok(equals(proto2_ts.Proto2MessageSchema, a, b));
   });
-  test("equal edition2023 messages are equal", () => {
+  void test("equal edition2023 messages are equal", () => {
     const a = fillEdition2023Message(
       create(edition2023_ts.Edition2023MessageSchema),
     );
     const b = fillEdition2023Message(
       create(edition2023_ts.Edition2023MessageSchema),
     );
-    expect(equals(edition2023_ts.Edition2023MessageSchema, a, b)).toBe(true);
+    assert.ok(equals(edition2023_ts.Edition2023MessageSchema, a, b));
   });
   test("different message types are not equal", () => {
     const a = create(proto3_ts.Proto3MessageSchema);
     const b = create(UserSchema);
-    expect(equals(proto3_ts.Proto3MessageSchema as DescMessage, a, b)).toBe(
+    assert.strictEqual(
+      equals(proto3_ts.Proto3MessageSchema as DescMessage, a, b),
       false,
     );
-    expect(equals(proto3_ts.Proto3MessageSchema as DescMessage, b, b)).toBe(
+    assert.strictEqual(
+      equals(proto3_ts.Proto3MessageSchema as DescMessage, b, b),
       false,
     );
   });
@@ -85,14 +89,14 @@ describe("equals()", () => {
     const desc: DescMessage = proto3_ts.Proto3MessageSchema;
     const a: Message = create(proto3_ts.Proto3MessageSchema);
     const b: Message = create(proto3_ts.Proto3MessageSchema);
-    expect(equals(desc, a, b)).toBe(true);
+    assert.ok(equals(desc, a, b));
   });
   test("NaN does not equal NaN", () => {
     const a = create(proto3_ts.Proto3MessageSchema);
     a.singularFloatField = Number.NaN;
     const b = create(proto3_ts.Proto3MessageSchema);
     b.singularFloatField = Number.NaN;
-    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+    assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), false);
   });
   test("extensions and unknown fields are disregarded", () => {
     const a = create(proto3_ts.Proto3MessageSchema);
@@ -100,49 +104,47 @@ describe("equals()", () => {
       { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
     ];
     const b = create(proto3_ts.Proto3MessageSchema);
-    expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(true);
+    assert.ok(equals(proto3_ts.Proto3MessageSchema, a, b));
   });
   test("set proto2 field is not equal unset field", () => {
     const a = create(proto2_ts.Proto2MessageSchema);
     const b = create(proto2_ts.Proto2MessageSchema);
     b.optionalStringField = "";
-    expect(equals(proto2_ts.Proto2MessageSchema, a, b)).toBe(false);
+    assert.strictEqual(equals(proto2_ts.Proto2MessageSchema, a, b), false);
   });
-  describe("set proto3 field is not equal unset field", () => {
+  void suite("set proto3 field is not equal unset field", () => {
     const desc = proto3_ts.Proto3MessageSchema;
     const a = fillProto3Message(create(desc));
     let b: proto3_ts.Proto3Message;
     beforeEach(() => {
       b = fillProto3Message(create(desc));
     });
-    test.each(desc.fields.filter((f) => reflect(desc, a).isSet(f)))(
-      "$name",
-      (f) => {
+    for (const f of desc.fields.filter((f) => reflect(desc, a).isSet(f))) {
+      void test(`${f.name}`, () => {
         reflect(desc, b).clear(f);
-        expect(reflect(desc, b).isSet(f)).toBe(false);
-        expect(reflect(desc, a).isSet(f)).toBe(true);
-        expect(equals(desc, a, b)).toBe(false);
-      },
-    );
+        assert.strictEqual(reflect(desc, b).isSet(f), false);
+        assert.strictEqual(reflect(desc, a).isSet(f), true);
+        assert.strictEqual(equals(desc, a, b), false);
+      });
+    }
   });
-  describe("set edition2023 field is not equal unset field", () => {
+  void suite("set edition2023 field is not equal unset field", () => {
     const desc = edition2023_ts.Edition2023MessageSchema;
     const a = fillEdition2023Message(create(desc));
     let b: edition2023_ts.Edition2023Message;
     beforeEach(() => {
       b = fillEdition2023Message(create(desc));
     });
-    test.each(desc.fields.filter((f) => reflect(desc, a).isSet(f)))(
-      "$name",
-      (f) => {
+    for (const f of desc.fields.filter((f) => reflect(desc, a).isSet(f))) {
+      void test(`${f.name}`, () => {
         reflect(desc, b).clear(f);
-        expect(reflect(desc, b).isSet(f)).toBe(false);
-        expect(reflect(desc, a).isSet(f)).toBe(true);
-        expect(equals(desc, a, b)).toBe(false);
-      },
-    );
+        assert.strictEqual(reflect(desc, b).isSet(f), false);
+        assert.strictEqual(reflect(desc, a).isSet(f), true);
+        assert.strictEqual(equals(desc, a, b), false);
+      });
+    }
   });
-  describe("modified", () => {
+  void suite("modified", () => {
     let a: proto3_ts.Proto3Message;
     let b: proto3_ts.Proto3Message;
     beforeEach(() => {
@@ -151,40 +153,40 @@ describe("equals()", () => {
     });
     test("singularStringField is not equal", () => {
       b.singularStringField = "modified";
-      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+      assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), false);
     });
     test("singularBytesField is not equal", () => {
       b.singularBytesField[0] = 0x01;
-      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+      assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), false);
     });
     test("optionalStringField is not equal", () => {
       b.optionalStringField = "modified";
-      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+      assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), false);
     });
     test("repeatedStringField is not equal", () => {
       b.repeatedStringField.push("modified");
-      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+      assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), false);
     });
     test("oneof is not equal", () => {
       b.either = { case: "oneofInt32Field", value: 123 };
-      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+      assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), false);
     });
     test("singularMessageField is not equal", () => {
-      assert(b.singularMessageField);
+      assert.ok(b.singularMessageField);
       b.singularMessageField.singularStringField = "modified";
-      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+      assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), false);
     });
     test("mapStringStringField is not equal", () => {
       b.mapStringStringField.modified = "modified";
-      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+      assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), false);
     });
     test("mapInt32MessageField is not equal", () => {
       b.mapInt32MessageField[123].singularStringField = "modified";
-      expect(equals(proto3_ts.Proto3MessageSchema, a, b)).toBe(false);
+      assert.strictEqual(equals(proto3_ts.Proto3MessageSchema, a, b), false);
     });
   });
 
-  describe("with extensions enabled", () => {
+  void suite("with extensions enabled", () => {
     const schema = extensions_proto2.Proto2ExtendeeSchema;
     const ext = extensions_proto2.uint32_ext;
     function unknownEq(
@@ -203,7 +205,7 @@ describe("equals()", () => {
       const b = create(schema, {});
       setExtension(b, ext, 123);
       const reg = createRegistry(ext);
-      expect(unknownEq(a, b, reg)).toBe(true);
+      assert.strictEqual(unknownEq(a, b, reg), true);
     });
     test("different extension values are equal", () => {
       const a = create(schema, {});
@@ -211,14 +213,14 @@ describe("equals()", () => {
       const b = create(schema, {});
       setExtension(b, ext, 456);
       const reg = createRegistry(ext);
-      expect(unknownEq(a, b, reg)).toBe(false);
+      assert.strictEqual(unknownEq(a, b, reg), false);
     });
     test("unset extension value is not equal set extension value", () => {
       const a = create(schema, {});
       setExtension(a, ext, 123);
       const b = create(schema, {});
       const reg = createRegistry(ext);
-      expect(unknownEq(a, b, reg)).toBe(false);
+      assert.strictEqual(unknownEq(a, b, reg), false);
     });
     test("compares extension value instead of unknown field", () => {
       const a = create(schema, {});
@@ -226,11 +228,11 @@ describe("equals()", () => {
       const b = create(schema, {});
       b.$unknown = [...(a.$unknown ?? []), ...(a.$unknown ?? [])];
       const reg = createRegistry(ext);
-      expect(unknownEq(a, b, reg)).toBe(true);
+      assert.strictEqual(unknownEq(a, b, reg), true);
     });
   });
 
-  describe("with unknown enabled", () => {
+  void suite("with unknown enabled", () => {
     function unknownEq(
       unknownA: UnknownField[] | undefined,
       unknownB: UnknownField[] | undefined,
@@ -252,7 +254,7 @@ describe("equals()", () => {
       const b = [
         { no: 10100, wireType: WireType.Varint, data: new Uint8Array([0]) },
       ];
-      expect(unknownEq(a, b)).toBe(true);
+      assert.strictEqual(unknownEq(a, b), true);
     });
     test("different unknown fields are not equal", () => {
       const a = [
@@ -265,11 +267,11 @@ describe("equals()", () => {
           data: new Uint8Array([0]),
         },
       ];
-      expect(unknownEq(a, b)).toBe(false);
+      assert.strictEqual(unknownEq(a, b), false);
     });
   });
 
-  describe("with unpackAny enabled", () => {
+  void suite("with unpackAny enabled", () => {
     function anyEq(anyA: Any, anyB: Any, registry: Registry) {
       const hostSchema = test_messages_proto3.TestAllTypesProto3Schema;
       const hostA = create(hostSchema, {
@@ -287,13 +289,13 @@ describe("equals()", () => {
       const reg = createRegistry(UserSchema);
       const a = anyPack(UserSchema, create(UserSchema, { active: true }));
       const b = anyPack(UserSchema, create(UserSchema, { active: true }));
-      expect(anyEq(a, b, reg)).toBe(true);
+      assert.strictEqual(anyEq(a, b, reg), true);
     });
     test("different packed Any are not equal", () => {
       const reg = createRegistry(UserSchema);
       const a = anyPack(UserSchema, create(UserSchema, { active: true }));
       const b = anyPack(UserSchema, create(UserSchema, { active: false }));
-      expect(anyEq(a, b, reg)).toBe(false);
+      assert.strictEqual(anyEq(a, b, reg), false);
     });
     test("requires Any.typeUrl to be exactly the same", () => {
       const reg = createRegistry(UserSchema);
@@ -301,7 +303,7 @@ describe("equals()", () => {
       a.typeUrl = `type.googleapis.com/${UserSchema.typeName}`;
       const b = anyPack(UserSchema, create(UserSchema, { active: true }));
       b.typeUrl = `example.com/${UserSchema.typeName}`;
-      expect(anyEq(a, b, reg)).toBe(false);
+      assert.strictEqual(anyEq(a, b, reg), false);
     });
     test("compares unpacked instead of Any.value bytes", () => {
       const reg = createRegistry(UserSchema);
@@ -320,8 +322,8 @@ describe("equals()", () => {
       b.value = new Uint8Array(a.value.byteLength * 2);
       b.value.set(a.value, 0);
       b.value.set(a.value, a.value.byteLength);
-      expect(a.value).not.toStrictEqual(b.value);
-      expect(anyEq(a, b, reg)).toBe(true);
+      assert.notDeepStrictEqual(a.value, b.value);
+      assert.strictEqual(anyEq(a, b, reg), true);
     });
     test("compares Any.value bytes if message not in registry", () => {
       const reg = createRegistry();
@@ -340,8 +342,8 @@ describe("equals()", () => {
       b.value = new Uint8Array(a.value.byteLength * 2);
       b.value.set(a.value, 0);
       b.value.set(a.value, a.value.byteLength);
-      expect(a.value).not.toStrictEqual(b.value);
-      expect(anyEq(a, b, reg)).toBe(false);
+      assert.notDeepStrictEqual(a.value, b.value);
+      assert.strictEqual(anyEq(a, b, reg), false);
     });
     test("Any in Any", () => {
       const reg = createRegistry(UserSchema, AnySchema);
@@ -356,7 +358,7 @@ describe("equals()", () => {
       b.value = new Uint8Array(a.value.byteLength * 2);
       b.value.set(a.value, 0);
       b.value.set(a.value, a.value.byteLength);
-      expect(anyEq(a, b, reg)).toBe(true);
+      assert.strictEqual(anyEq(a, b, reg), true);
     });
   });
 });

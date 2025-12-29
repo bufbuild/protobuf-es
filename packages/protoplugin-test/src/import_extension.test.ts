@@ -12,47 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type { GeneratedFile, Schema } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("import_extension", () => {
-  test("should default to 'none'", async () => {
+void suite("import_extension", () => {
+  void test("should default to 'none'", async () => {
     const lines = await testGenerate("target=ts", (f) => {
       const Bar = f.import("Bar", "./foo/bar_pb.js");
       f.print(Bar);
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       'import { Bar } from "./foo/bar_pb";',
       "",
       "Bar",
     ]);
   });
-  test.each([
+  for (const { option, ext } of [
     { option: "js", ext: ".js" },
     { option: ".js", ext: ".js" },
     { option: "ts", ext: ".ts" },
     { option: ".ts", ext: ".ts" },
-  ])("should be replaced with option '$option'", async ({ option, ext }) => {
-    const lines = await testGenerate(
-      `target=ts,import_extension=${option}`,
-      (f) => {
-        const Bar = f.import("Bar", "./foo/bar_pb.js");
-        f.print(Bar);
-      },
-    );
-    expect(lines).toStrictEqual([
-      `import { Bar } from "./foo/bar_pb${ext}";`,
-      "",
-      "Bar",
-    ]);
-  });
-  test.each([
-    { option: "none", ext: "" },
-    { option: "", ext: "" },
-  ])(
-    "should be removed with with option '$option'",
-    async ({ option, ext }) => {
+  ]) {
+    void test(`should be replaced with option ${option}`, async () => {
       const lines = await testGenerate(
         `target=ts,import_extension=${option}`,
         (f) => {
@@ -60,27 +43,52 @@ describe("import_extension", () => {
           f.print(Bar);
         },
       );
-      expect(lines).toStrictEqual([
+      assert.deepStrictEqual(lines, [
         `import { Bar } from "./foo/bar_pb${ext}";`,
         "",
         "Bar",
       ]);
-    },
-  );
-  test("throws error for unknown extension", async () => {
-    await expect(async () => {
-      await testGenerate("target=mjs", (f) => {
-        const Bar = f.import("Bar", "./foo/bar_pb.js");
-        f.print(Bar);
-      });
-    }).rejects.toThrow(`invalid option "target=mjs"`);
+    });
+  }
+  for (const { option, ext } of [
+    { option: "none", ext: "" },
+    { option: "", ext: "" },
+  ]) {
+    void test(`should be removed with with option ${option}`, async () => {
+      const lines = await testGenerate(
+        `target=ts,import_extension=${option}`,
+        (f) => {
+          const Bar = f.import("Bar", "./foo/bar_pb.js");
+          f.print(Bar);
+        },
+      );
+      assert.deepStrictEqual(lines, [
+        `import { Bar } from "./foo/bar_pb${ext}";`,
+        "",
+        "Bar",
+      ]);
+    });
+  }
+  void test("throws error for unknown extension", async () => {
+    await assert.rejects(
+      async () => {
+        await testGenerate("target=mjs", (f) => {
+          const Bar = f.import("Bar", "./foo/bar_pb.js");
+          f.print(Bar);
+        });
+      },
+      {
+        name: "PluginOptionError",
+        message: `invalid option "target=mjs"`,
+      },
+    );
   });
-  test("should only touch .js import paths", async () => {
+  void test("should only touch .js import paths", async () => {
     const lines = await testGenerate("target=ts,import_extension=ts", (f) => {
       const json = f.import("json", "./foo/bar_pb.json");
       f.print(json);
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       'import { json } from "./foo/bar_pb.json";',
       "",
       "json",

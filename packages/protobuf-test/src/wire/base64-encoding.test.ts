@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { base64Decode, base64Encode } from "@bufbuild/protobuf/wire";
 
 // The following test cases match https://cs.opensource.google/go/go/+/master:src/encoding/base64/base64_test.go;l=25
@@ -157,23 +158,32 @@ const exampleCases: {
   },
 ];
 
-describe("base64Decode()", () => {
-  test.each(exampleCases)("decodes $name", ({ bytes, std }) => {
-    expect(base64Decode(std)).toStrictEqual(
-      bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes),
-    );
-  });
-  test.each(exampleCases)("decodes std_raw $name", ({ bytes, std_raw }) => {
-    expect(base64Decode(std_raw)).toStrictEqual(
-      bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes),
-    );
-  });
-  test.each(exampleCases)("decodes url $name", ({ bytes, url }) => {
-    expect(base64Decode(url)).toStrictEqual(
-      bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes),
-    );
-  });
-  test.each([
+void suite("base64Decode()", () => {
+  for (const { name, bytes, std } of exampleCases) {
+    void test(`decodes ${name}`, () => {
+      assert.deepStrictEqual(
+        base64Decode(std),
+        bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes),
+      );
+    });
+  }
+  for (const { name, bytes, std_raw } of exampleCases) {
+    void test(`decodes std_raw ${name}`, () => {
+      assert.deepStrictEqual(
+        base64Decode(std_raw),
+        bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes),
+      );
+    });
+  }
+  for (const { name, bytes, url } of exampleCases) {
+    void test(`decodes url ${name}`, () => {
+      assert.deepStrictEqual(
+        base64Decode(url),
+        bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes),
+      );
+    });
+  }
+  for (const b64 of [
     "c3VyZQ==",
     "c3VyZQ==  ",
     "c3VyZQ==\t",
@@ -187,26 +197,35 @@ describe("base64Decode()", () => {
     "c3VyZQ\n==",
     "c3VyZQ=\n=",
     "c3VyZQ=\r\n\r\n=",
-  ])("ignores white-space, including line breaks and tabs in %s", (b64) => {
-    expect(base64Decode(b64)).toStrictEqual(new TextEncoder().encode("sure"));
-  });
-  test.each([
+  ]) {
+    void test(`ignores white-space, including line breaks and tabs in ${b64}`, () => {
+      assert.deepStrictEqual(
+        base64Decode(b64),
+        new TextEncoder().encode("sure"),
+      );
+    });
+  }
+  for (const b64 of [
     "c3VyZQ==c3VyZQ==",
     "c3VyZQ==\nc3VyZQ==",
     "c3VyZQ==\tc3VyZQ==",
     "c3VyZQ==\rc3VyZQ==",
     "c3VyZQ== c3VyZQ==",
-  ])("allows inner padding in %s", (b64) => {
-    expect(base64Decode(b64)).toStrictEqual(
-      new TextEncoder().encode("suresure"),
-    );
-  });
-  test("does not require padding", () => {
-    expect(base64Decode("c3VyZQ")).toStrictEqual(
+  ]) {
+    void test(`allows inner padding in ${b64}`, () => {
+      assert.deepStrictEqual(
+        base64Decode(b64),
+        new TextEncoder().encode("suresure"),
+      );
+    });
+  }
+  void test("does not require padding", () => {
+    assert.deepStrictEqual(
+      base64Decode("c3VyZQ"),
       new TextEncoder().encode("sure"),
     );
   });
-  test.each([
+  for (const b64 of [
     "c3VyZQ==",
     "c3VyZQ==\r",
     "c3VyZQ==\n",
@@ -218,30 +237,41 @@ describe("base64Decode()", () => {
     "c3VyZQ\n==",
     "c3VyZQ=\n=",
     "c3VyZQ=\r\n\r\n=",
-  ])("ignores whitespace in %s", (b64) => {
-    expect(base64Decode(b64)).toStrictEqual(new TextEncoder().encode("sure"));
-  });
+  ]) {
+    void test(`ignores whitespace in ${b64}`, () => {
+      assert.deepStrictEqual(
+        base64Decode(b64),
+        new TextEncoder().encode("sure"),
+      );
+    });
+  }
   test("understands URL encoding", () => {
     const b64 = "PDw_Pz8-Pg";
     const bytes = base64Decode(b64);
-    expect(bytes).toStrictEqual(new TextEncoder().encode("<<???>>"));
+    assert.deepStrictEqual(bytes, new TextEncoder().encode("<<???>>"));
   });
 });
 
-describe("base64Encode()", () => {
-  test.each(exampleCases)("std encodes $name", ({ bytes, std }) => {
-    const input =
-      bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes);
-    expect(base64Encode(input)).toBe(std);
-  });
-  test.each(exampleCases)("std_raw encodes $name", ({ bytes, std_raw }) => {
-    const input =
-      bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes);
-    expect(base64Encode(input, "std_raw")).toBe(std_raw);
-  });
-  test.each(exampleCases)("url encodes $name", ({ bytes, url }) => {
-    const input =
-      bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes);
-    expect(base64Encode(input, "url")).toBe(url);
-  });
+void suite("base64Encode()", () => {
+  for (const { name, bytes, std } of exampleCases) {
+    void test(`std encodes ${name}`, () => {
+      const input =
+        bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes);
+      assert.strictEqual(base64Encode(input), std);
+    });
+  }
+  for (const { name, bytes, std_raw } of exampleCases) {
+    void test(`std_raw encodes ${name}`, () => {
+      const input =
+        bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes);
+      assert.strictEqual(base64Encode(input, "std_raw"), std_raw);
+    });
+  }
+  for (const { name, bytes, url } of exampleCases) {
+    void test(`url encodes ${name}`, () => {
+      const input =
+        bytes instanceof Uint8Array ? bytes : new TextEncoder().encode(bytes);
+      assert.strictEqual(base64Encode(input, "url"), url);
+    });
+  }
 });

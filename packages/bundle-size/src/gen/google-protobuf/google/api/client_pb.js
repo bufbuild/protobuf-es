@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 var google_api_launch_stage_pb = require('../../google/api/launch_stage_pb.js');
 goog.object.extend(proto, google_api_launch_stage_pb);
@@ -386,7 +380,7 @@ destinationsList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefine
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.CommonLanguageSettings}
  */
 proto.google.api.CommonLanguageSettings.deserializeBinary = function(bytes) {
@@ -411,14 +405,11 @@ proto.google.api.CommonLanguageSettings.deserializeBinaryFromReader = function(m
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setReferenceDocsUri(value);
       break;
     case 2:
-      var values = /** @type {!Array<!proto.google.api.ClientLibraryDestination>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
-      for (var i = 0; i < values.length; i++) {
-        msg.addDestinations(values[i]);
-      }
+      reader.readPackableEnumInto(msg.getDestinationsList());
       break;
     default:
       reader.skipField();
@@ -576,7 +567,7 @@ goSettings: (f = msg.getGoSettings()) && proto.google.api.GoSettings.toObject(in
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.ClientLibrarySettings}
  */
 proto.google.api.ClientLibrarySettings.deserializeBinary = function(bytes) {
@@ -601,7 +592,7 @@ proto.google.api.ClientLibrarySettings.deserializeBinaryFromReader = function(ms
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setVersion(value);
       break;
     case 2:
@@ -1183,7 +1174,7 @@ restReferenceDocumentationUri: jspb.Message.getFieldWithDefault(msg, 111, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.Publishing}
  */
 proto.google.api.Publishing.deserializeBinary = function(bytes) {
@@ -1213,27 +1204,27 @@ proto.google.api.Publishing.deserializeBinaryFromReader = function(msg, reader) 
       msg.addMethodSettings(value);
       break;
     case 101:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setNewIssueUri(value);
       break;
     case 102:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setDocumentationUri(value);
       break;
     case 103:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setApiShortName(value);
       break;
     case 104:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setGithubLabel(value);
       break;
     case 105:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.addCodeownerGithubTeams(value);
       break;
     case 106:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setDocTagPrefix(value);
       break;
     case 107:
@@ -1246,11 +1237,11 @@ proto.google.api.Publishing.deserializeBinaryFromReader = function(msg, reader) 
       msg.addLibrarySettings(value);
       break;
     case 110:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setProtoReferenceDocumentationUri(value);
       break;
     case 111:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setRestReferenceDocumentationUri(value);
       break;
     default:
@@ -1668,7 +1659,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.JavaSettings}
  */
 proto.google.api.JavaSettings.deserializeBinary = function(bytes) {
@@ -1693,13 +1684,13 @@ proto.google.api.JavaSettings.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setLibraryPackage(value);
       break;
     case 2:
       var value = msg.getServiceClassNamesMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readStringRequireUtf8, jspb.BinaryReader.prototype.readStringRequireUtf8, null, "", "");
          });
       break;
     case 3:
@@ -1745,7 +1736,12 @@ proto.google.api.JavaSettings.serializeBinaryToWriter = function(message, writer
   }
   f = message.getServiceClassNamesMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+jspb.internal.public_for_gencode.serializeMapToBinary(
+    message.getServiceClassNamesMap(true),
+    2,
+    writer,
+    jspb.BinaryWriter.prototype.writeString,
+    jspb.BinaryWriter.prototype.writeString);
   }
   f = message.getCommon();
   if (f != null) {
@@ -1881,7 +1877,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.CppSettings}
  */
 proto.google.api.CppSettings.deserializeBinary = function(bytes) {
@@ -2032,7 +2028,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.PhpSettings}
  */
 proto.google.api.PhpSettings.deserializeBinary = function(bytes) {
@@ -2183,7 +2179,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.PythonSettings}
  */
 proto.google.api.PythonSettings.deserializeBinary = function(bytes) {
@@ -2334,7 +2330,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.NodeSettings}
  */
 proto.google.api.NodeSettings.deserializeBinary = function(bytes) {
@@ -2497,7 +2493,7 @@ handwrittenSignaturesList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ?
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.DotnetSettings}
  */
 proto.google.api.DotnetSettings.deserializeBinary = function(bytes) {
@@ -2529,25 +2525,25 @@ proto.google.api.DotnetSettings.deserializeBinaryFromReader = function(msg, read
     case 2:
       var value = msg.getRenamedServicesMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readStringRequireUtf8, jspb.BinaryReader.prototype.readStringRequireUtf8, null, "", "");
          });
       break;
     case 3:
       var value = msg.getRenamedResourcesMap();
       reader.readMessage(value, function(message, reader) {
-        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readString, null, "", "");
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readStringRequireUtf8, jspb.BinaryReader.prototype.readStringRequireUtf8, null, "", "");
          });
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.addIgnoredResources(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.addForcedNamespaceAliases(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.addHandwrittenSignatures(value);
       break;
     default:
@@ -2589,11 +2585,21 @@ proto.google.api.DotnetSettings.serializeBinaryToWriter = function(message, writ
   }
   f = message.getRenamedServicesMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(2, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+jspb.internal.public_for_gencode.serializeMapToBinary(
+    message.getRenamedServicesMap(true),
+    2,
+    writer,
+    jspb.BinaryWriter.prototype.writeString,
+    jspb.BinaryWriter.prototype.writeString);
   }
   f = message.getRenamedResourcesMap(true);
   if (f && f.getLength() > 0) {
-    f.serializeBinary(3, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeString);
+jspb.internal.public_for_gencode.serializeMapToBinary(
+    message.getRenamedResourcesMap(true),
+    3,
+    writer,
+    jspb.BinaryWriter.prototype.writeString,
+    jspb.BinaryWriter.prototype.writeString);
   }
   f = message.getIgnoredResourcesList();
   if (f.length > 0) {
@@ -2858,7 +2864,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.RubySettings}
  */
 proto.google.api.RubySettings.deserializeBinary = function(bytes) {
@@ -3009,7 +3015,7 @@ common: (f = msg.getCommon()) && proto.google.api.CommonLanguageSettings.toObjec
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.GoSettings}
  */
 proto.google.api.GoSettings.deserializeBinary = function(bytes) {
@@ -3169,7 +3175,7 @@ autoPopulatedFieldsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? u
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.MethodSettings}
  */
 proto.google.api.MethodSettings.deserializeBinary = function(bytes) {
@@ -3194,7 +3200,7 @@ proto.google.api.MethodSettings.deserializeBinaryFromReader = function(msg, read
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setSelector(value);
       break;
     case 2:
@@ -3203,7 +3209,7 @@ proto.google.api.MethodSettings.deserializeBinaryFromReader = function(msg, read
       msg.setLongRunning(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.addAutoPopulatedFields(value);
       break;
     default:
@@ -3308,7 +3314,7 @@ totalPollTimeout: (f = msg.getTotalPollTimeout()) && google_protobuf_duration_pb
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.MethodSettings.LongRunning}
  */
 proto.google.api.MethodSettings.LongRunning.deserializeBinary = function(bytes) {
@@ -3674,7 +3680,7 @@ proto.google.api.methodSignatureList = new jspb.ExtensionFieldInfo(
 
 google_protobuf_descriptor_pb.MethodOptions.extensionsBinary[1051] = new jspb.ExtensionFieldBinaryInfo(
     proto.google.api.methodSignatureList,
-    jspb.BinaryReader.prototype.readString,
+    jspb.BinaryReader.prototype.readStringRequireUtf8,
     jspb.BinaryWriter.prototype.writeRepeatedString,
     undefined,
     undefined,
@@ -3699,7 +3705,7 @@ proto.google.api.defaultHost = new jspb.ExtensionFieldInfo(
 
 google_protobuf_descriptor_pb.ServiceOptions.extensionsBinary[1049] = new jspb.ExtensionFieldBinaryInfo(
     proto.google.api.defaultHost,
-    jspb.BinaryReader.prototype.readString,
+    jspb.BinaryReader.prototype.readStringRequireUtf8,
     jspb.BinaryWriter.prototype.writeString,
     undefined,
     undefined,
@@ -3724,7 +3730,7 @@ proto.google.api.oauthScopes = new jspb.ExtensionFieldInfo(
 
 google_protobuf_descriptor_pb.ServiceOptions.extensionsBinary[1050] = new jspb.ExtensionFieldBinaryInfo(
     proto.google.api.oauthScopes,
-    jspb.BinaryReader.prototype.readString,
+    jspb.BinaryReader.prototype.readStringRequireUtf8,
     jspb.BinaryWriter.prototype.writeString,
     undefined,
     undefined,
@@ -3749,7 +3755,7 @@ proto.google.api.apiVersion = new jspb.ExtensionFieldInfo(
 
 google_protobuf_descriptor_pb.ServiceOptions.extensionsBinary[525000001] = new jspb.ExtensionFieldBinaryInfo(
     proto.google.api.apiVersion,
-    jspb.BinaryReader.prototype.readString,
+    jspb.BinaryReader.prototype.readStringRequireUtf8,
     jspb.BinaryWriter.prototype.writeString,
     undefined,
     undefined,

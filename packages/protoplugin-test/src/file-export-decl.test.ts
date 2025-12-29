@@ -12,34 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type { DescEnum, DescMessage } from "@bufbuild/protobuf";
 import type { GeneratedFile } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.export", () => {
-  test("works as documented", async () => {
+void suite("GeneratedFile.export", () => {
+  void test("works as documented", async () => {
     const lines = await testGenerate((f) => {
       const name = "foo";
       f.print(f.export("const", name), " = 123;");
     });
-    expect(lines).toStrictEqual(["export const foo = 123;"]);
+    assert.deepStrictEqual(lines, ["export const foo = 123;"]);
   });
 
-  test("declaration can be empty string", async () => {
+  void test("declaration can be empty string", async () => {
     const lines = await testGenerate((f) => {
       f.print("const foo = 123;");
       f.print(f.export("", "foo"), ";");
     });
-    expect(lines).toStrictEqual(["const foo = 123;", "export foo;"]);
+    assert.deepStrictEqual(lines, ["const foo = 123;", "export foo;"]);
   });
 
-  test("forces import with same name to be aliased", async () => {
+  void test("forces import with same name to be aliased", async () => {
     const lines = await testGenerate((f) => {
       f.print(f.import("Foo", "pkg"));
       f.print(f.export("const", "Foo"), " = 123;");
     });
-    expect(lines).toStrictEqual([
+    assert.deepStrictEqual(lines, [
       `import { Foo as Foo$1 } from "pkg";`,
       "",
       "Foo$1",

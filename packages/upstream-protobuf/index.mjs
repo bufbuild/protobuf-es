@@ -21,20 +21,17 @@ import {
   writeFileSync,
   rmSync,
 } from "node:fs";
+import { matchesGlob } from "node:path";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { dirname, join as joinPath, relative as relativePath } from "node:path";
-import os from "node:os";
 import { unzipSync } from "fflate";
-import micromatch from "micromatch";
 
 /**
- * Provides release of `protoc`, `conformance_test_runner`, and related proto
- * files from the following repositories:
- * - https://github.com/bufbuild/protobuf-conformance
- * - https://github.com/protocolbuffers/protobuf
+ * Provides auxiliary Protobuf files and functions from the
+ * upstream repository https://github.com/protocolbuffers/protobuf.
  *
- * The upstream version is picked up from version.txt
+ * The upstream version is picked up from shelling out to `protoc --version`.
  */
 export class UpstreamProtobuf {
   /**
@@ -51,13 +48,6 @@ export class UpstreamProtobuf {
   #version;
 
   /**
-   * Proto files for the "well-known types".
-   *
-   * @type {string[]}
-   */
-  #wktprotos = ["google/protobuf/**/*.proto"];
-
-  /**
    * Relevant proto files for testing in upstream protobuf.
    *
    * @type {string[]}
@@ -66,6 +56,7 @@ export class UpstreamProtobuf {
     "src/google/protobuf/test_messages_*.proto",
     "src/google/protobuf/*unittest*.proto",
     "editions/golden/test_messages_proto3_editions.proto",
+    "!src/google/protobuf/unittest_custom_features.proto",
     "!src/google/protobuf/unittest_lite_edition_2024.proto",
     "!src/google/protobuf/unittest_string_type.proto",
     "!src/google/protobuf/map_proto3_unittest.proto",
@@ -98,40 +89,45 @@ export class UpstreamProtobuf {
    */
   #temp;
 
-  /**
-   * @param {string} [temp]
-   * @param {string} [version]
-   */
-  constructor(temp, version) {
-    if (typeof version !== "string") {
-      version = readFileSync(
-        new URL("version.txt", import.meta.url).pathname,
-        "utf-8",
-      ).trim();
+  constructor() {
+    // find upstream version by shelling out to protoc
+    const rawVersion = execFileSync("protoc", ["--version"], {
+      shell: false,
+      stdio: "pipe",
+      encoding: "utf8",
+    }).trim();
+    const match = rawVersion.match(/^libprotoc (\d\d\.\d(?:-.+)?)$/);
+    if (!match) {
+      throw new Error(
+        `Unable to determine upstream version from protoc --version output "${rawVersion}"`,
+      );
     }
-    this.#version = version;
-    if (typeof temp !== "string") {
-      const thisFilePath = new URL(import.meta.url).pathname;
-      const thisFileContent = readFileSync(new URL(import.meta.url).pathname);
-      const digest = createHash("sha256").update(thisFileContent).digest("hex");
-      temp = joinPath(thisFilePath, "..", ".tmp", this.#version + "-" + digest);
-    }
-    this.#temp = temp;
+    this.#version = match[1];
+    // set up temp dir based on version and this script's hash
+    const thisFilePath = new URL(import.meta.url).pathname;
+    const thisFileContent = readFileSync(new URL(import.meta.url).pathname);
+    const digest = createHash("sha256").update(thisFileContent).digest("hex");
+    this.#temp = joinPath(
+      thisFilePath,
+      "..",
+      ".tmp",
+      this.#version + "-" + digest,
+    );
   }
 
   version() {
     return this.#version;
   }
 
+  temp() {
+    return this.#temp;
+  }
+
   /**
    * @return {Promise<void>}
    */
   async warmup() {
-    await Promise.all([
-      this.#extractProtocRelease(),
-      this.#extractConformanceRelease(),
-      this.#extractProtobufSourceTestProtos(),
-    ]);
+    await this.getTestProtoInclude();
   }
 
   /**
@@ -147,9 +143,8 @@ export class UpstreamProtobuf {
    * @return {Promise<Buffer>}
    */
   async compileToDescriptorSet(filesOrFileContent, opt) {
-    const protocPath = await this.getProtocPath();
     const tempDir = mkdtempSync(
-      joinPath(this.#temp, "compile-descriptor-set-"),
+      joinPath(this.temp(), "compile-descriptor-set-"),
     );
     const files =
       typeof filesOrFileContent == "string"
@@ -177,7 +172,7 @@ export class UpstreamProtobuf {
       if (opt?.experimentalEditions) {
         args.unshift("--experimental_editions");
       }
-      execFileSync(protocPath, args, {
+      execFileSync("protoc", args, {
         shell: false,
       });
       return readFileSync(outPath);
@@ -197,8 +192,7 @@ export class UpstreamProtobuf {
    * @return {Promise<Buffer>}
    */
   async createCodeGeneratorRequest(filesOrFileContent, opt) {
-    const protocPath = await this.getProtocPath();
-    const tempDir = mkdtempSync(joinPath(this.#temp, "create-codegenreq-"));
+    const tempDir = mkdtempSync(joinPath(this.temp(), "create-codegenreq-"));
     const files =
       typeof filesOrFileContent == "string"
         ? { "input.proto": filesOrFileContent }
@@ -215,7 +209,7 @@ export class UpstreamProtobuf {
       if (opt?.parameter !== undefined && opt.parameter.length > 0) {
         args.unshift("--dumpcodegenreq_opt", opt.parameter);
       }
-      execFileSync(protocPath, args, {
+      execFileSync("protoc", args, {
         shell: false,
         cwd: tempDir,
       });
@@ -238,8 +232,7 @@ export class UpstreamProtobuf {
     maximumEdition,
     filesOrFileContent,
   ) {
-    const protocPath = await this.getProtocPath();
-    const tempDir = mkdtempSync(joinPath(this.#temp, "feature-set-defaults-"));
+    const tempDir = mkdtempSync(joinPath(this.temp(), "feature-set-defaults-"));
     const files =
       typeof filesOrFileContent == "string"
         ? { "input.proto": filesOrFileContent }
@@ -260,7 +253,7 @@ export class UpstreamProtobuf {
       if (maximumEdition !== undefined) {
         args.push("--edition_defaults_maximum", maximumEdition);
       }
-      execFileSync(protocPath, args, {
+      execFileSync("protoc", args, {
         shell: false,
         cwd: tempDir,
       });
@@ -271,253 +264,51 @@ export class UpstreamProtobuf {
   }
 
   /**
-   * @return {Promise<string>}
-   */
-  async getProtocPath() {
-    const release = await this.#extractProtocRelease();
-    return release.protocPath;
-  }
-
-  /**
-   * @return {Promise<string>}
-   */
-  async getConformanceTestRunnerPath() {
-    const release = await this.#extractConformanceRelease();
-    return release.runnerPath;
-  }
-
-  /**
-   * @return {Promise<ProtoInclude>}
-   */
-  async getConformanceProtoInclude() {
-    const release = await this.#extractConformanceRelease();
-    return release.protoInclude;
-  }
-
-  /**
    * @return {Promise<ProtoInclude>}
    */
   async getWktProtoInclude() {
-    const release = await this.#extractProtocRelease();
-    return release.protoInclude;
+    const wktUrl = import.meta.resolve("protoc/include");
+    const wktDir = new URL(wktUrl).pathname;
+    return {
+      dir: wktDir,
+      files: lsfiles(wktDir),
+    };
   }
 
   /**
    * @return {Promise<ProtoInclude>}
    */
   async getTestProtoInclude() {
-    return await this.#extractProtobufSourceTestProtos();
-  }
-
-  /**
-   * @param {...string[]} paths
-   */
-  #getTempPath(...paths) {
-    const p = joinPath(this.#temp, ...paths);
-    if (!existsSync(dirname(p))) {
-      mkdirSync(dirname(p), { recursive: true });
-    }
-    return p;
-  }
-
-  /**
-   * @typedef ProtocRelease
-   * @property {string} protocPath
-   * @property {ProtoInclude} protoInclude
-   */
-  /**
-   * @return {Promise<ProtocRelease>}
-   */
-  async #extractProtocRelease() {
-    const path = this.#getTempPath("protoc");
-    const protocPath = joinPath(path, "bin/protoc");
-    const wktDir = joinPath(path, "include");
+    const path = this.#getTempPath("test-proto-include/");
     if (!existsSync(path)) {
-      const zipPath = await this.#downloadProtocRelease();
-      const zip = await readFileSync(zipPath);
-      const entries = Object.entries(
-        unzipSync(zip, {
-          filter: (file) =>
-            file.name === "bin/protoc" || file.name.endsWith(".proto"),
-        }),
+      const zipPath = await this.#download(
+        `https://github.com/protocolbuffers/protobuf/releases/download/v${this.version()}/protobuf-${this.version()}.zip`,
+        "protobuf.zip",
       );
-      if (!entries.some(([name]) => name === "bin/protoc")) {
-        throw new Error(`Missing bin/protoc in protoc release`);
-      }
-      if (
-        !entries.some(
-          ([name]) =>
-            name.startsWith("include/google/protobuf/") &&
-            name.endsWith(".proto"),
-        )
-      ) {
-        throw new Error(`Missing protos in protoc release`);
-      }
-      writeTree(entries, path);
-    }
-    return {
-      protocPath,
-      protoInclude: {
-        dir: wktDir,
-        files: micromatch(lsfiles(wktDir), this.#wktprotos, {}),
-      },
-    };
-  }
-
-  /**
-   * @return {Promise<string>}
-   */
-  async #downloadProtocRelease() {
-    let build = `${os.platform()}-${os.arch()}`;
-    switch (os.platform()) {
-      case "darwin":
-        switch (os.arch()) {
-          case "arm64":
-            build = "osx-aarch_64";
-            break;
-          case "x64":
-            build = "osx-x86_64";
-            break;
-          default:
-            build = "osx-universal_binary";
-        }
-        break;
-      case "linux":
-        switch (os.arch()) {
-          case "x64":
-            build = "linux-x86_64";
-            break;
-          case "x32":
-            build = "linux-x86_32";
-            break;
-          case "arm64":
-            build = "linux-aarch_64";
-            break;
-        }
-        break;
-      case "win32":
-        switch (os.arch()) {
-          case "x64":
-            build = "win64";
-            break;
-          case "x32":
-          case "ia32":
-            build = "win32";
-            break;
-        }
-        break;
-    }
-    let archiveVersion = this.#version;
-    const rcMatch = /^(\d+\.\d+-rc)(\d)$/.exec(archiveVersion);
-    if (rcMatch != null) {
-      archiveVersion = rcMatch[1] + "-" + rcMatch[2];
-    }
-    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protoc-${archiveVersion}-${build}.zip`;
-    return this.#download(url, "protoc.zip");
-  }
-
-  /**
-   * @typedef ConformanceRelease
-   * @property {string} runnerPath
-   * @property {ProtoInclude} protoInclude
-   */
-  /**
-   * @return {Promise<ConformanceRelease>}
-   */
-  async #extractConformanceRelease() {
-    const path = this.#getTempPath("conformance");
-    const runnerPath = joinPath(path, "bin/conformance_test_runner");
-    const wktDir = joinPath(path, "include");
-    if (!existsSync(path)) {
-      const zipPath = await this.#downloadConformanceRelease();
       const zip = await readFileSync(zipPath);
-      const entries = Object.entries(
-        unzipSync(zip, {
-          filter: (file) =>
-            file.name === "bin/conformance_test_runner" ||
-            file.name.endsWith(".proto"),
-        }),
+      const includePatterns = this.#testprotos.filter(
+        (p) => !p.startsWith("!"),
       );
-      if (!entries.some(([name]) => name === "bin/conformance_test_runner")) {
-        throw new Error(
-          `Missing bin/conformance_test_runner in conformance release`,
-        );
-      }
-      if (
-        !entries.some(
-          ([name]) =>
-            name.startsWith("include/google/protobuf/") &&
-            name.endsWith(".proto"),
-        )
-      ) {
-        throw new Error(`Missing protos in conformance release`);
-      }
-      writeTree(entries, path);
-    }
-    return {
-      runnerPath,
-      protoInclude: {
-        dir: wktDir,
-        files: lsfiles(wktDir).filter((n) => n.endsWith(".proto")),
-      },
-    };
-  }
-
-  /**
-   * @return {Promise<string>}
-   */
-  async #downloadConformanceRelease() {
-    let build;
-    switch (os.platform()) {
-      case "darwin":
-        switch (os.arch()) {
-          case "arm64":
-          case "x64":
-            build = "osx-x86_64";
-            break;
-        }
-        break;
-      case "linux":
-        switch (os.arch()) {
-          case "x64":
-            build = "linux-x86_64";
-            break;
-        }
-        break;
-    }
-    if (typeof build !== "string") {
-      throw new Error(
-        `Unable to find conformance runner binary release for ${os.platform()} / ${os.arch()}`,
-      );
-    }
-    const url = `https://github.com/bufbuild/protobuf-conformance/releases/download/v${this.#version}/conformance_test_runner-${this.#version}-${build}.zip`;
-    return this.#download(url, "conformance_test_runner.zip");
-  }
-
-  /**
-   * @return {Promise<string>}
-   */
-  async #downloadProtobufSource() {
-    const url = `https://github.com/protocolbuffers/protobuf/releases/download/v${this.#version}/protobuf-${this.#version}.zip`;
-    return this.#download(url, "protobuf.zip");
-  }
-
-  /**
-   * @return {Promise<ProtoInclude>}
-   */
-  async #extractProtobufSource() {
-    const path = this.#getTempPath("protobuf/");
-    if (!existsSync(path)) {
-      const zipPath = await this.#downloadProtobufSource();
-      const zip = await readFileSync(zipPath);
-      const allEntries = Object.entries(
-        unzipSync(zip, {
-          filter: (file) =>
-            file.originalSize !== 0 /* assuming a directory entry */,
-        }),
-      ).map(([name, content]) => {
+      const excludePatterns = this.#testprotos
+        .filter((p) => p.startsWith("!"))
+        .map((p) => p.slice(1));
+      const unzipped = unzipSync(zip, {
+        filter: (file) => {
+          // drop top directory, e.g. "protobuf-24.4"
+          const name = file.name.split("/").slice(1).join("/");
+          return (
+            includePatterns.some((p) => matchesGlob(name, p)) &&
+            !excludePatterns.some((p) => matchesGlob(name, p))
+          );
+        },
+      });
+      const allEntries = Object.entries(unzipped).map(([name, content]) => {
         // drop top directory, e.g. "protobuf-24.4"
-        return [name.split("/").slice(1).join("/"), content];
+        name = name.split("/").slice(1).join("/");
+        if (name.startsWith("src/")) {
+          name = name.substring("src/".length);
+        }
+        return [name, content];
       });
       writeTree(allEntries, path);
     }
@@ -528,26 +319,14 @@ export class UpstreamProtobuf {
   }
 
   /**
-   * @return {Promise<ProtoInclude>}
+   * @param {...string[]} paths
    */
-  async #extractProtobufSourceTestProtos() {
-    const path = this.#getTempPath("protobuf-test/");
-    if (!existsSync(path)) {
-      const source = await this.#extractProtobufSource();
-      const files = micromatch(source.files, this.#testprotos, {});
-      const entries = files.map((file) => {
-        const from = joinPath(source.dir, file);
-        if (file.startsWith("src/")) {
-          file = file.substring("src/".length);
-        }
-        return [file, readFileSync(from)];
-      });
-      writeTree(entries, path);
+  #getTempPath(...paths) {
+    const p = joinPath(this.temp(), ...paths);
+    if (!existsSync(dirname(p))) {
+      mkdirSync(dirname(p), { recursive: true });
     }
-    return {
-      dir: path,
-      files: lsfiles(path),
-    };
+    return p;
   }
 
   /**

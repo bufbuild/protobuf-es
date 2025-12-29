@@ -12,24 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import type { FileInfo } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("bring your own transpile", () => {
-  test("does not transpile target=ts", async () => {
+void suite("bring your own transpile", () => {
+  void test("does not transpile target=ts", async () => {
     const lines = await testGenerate("target=ts");
-    expect(lines).toStrictEqual(["fake typescript source"]);
+    assert.deepStrictEqual(lines, ["fake typescript source"]);
   });
 
-  test("transpiles to target js", async () => {
+  void test("transpiles to target js", async () => {
     const lines = await testGenerate("target=js");
-    expect(lines).toStrictEqual(["fake transpiled to js"]);
+    assert.deepStrictEqual(lines, ["fake transpiled to js"]);
   });
 
-  test("transpiles to target dts", async () => {
+  void test("transpiles to target dts", async () => {
     const lines = await testGenerate("target=dts");
-    expect(lines).toStrictEqual(["fake transpiled to dts"]);
+    assert.deepStrictEqual(lines, ["fake transpiled to dts"]);
   });
 
   async function testGenerate(parameter: string) {

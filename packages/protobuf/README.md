@@ -6,7 +6,7 @@ code generator plugin.
 ## Protocol Buffers for ECMAScript
 
 A complete implementation of [Protocol Buffers](https://protobuf.dev/) in TypeScript,
-suitable for web browsers and Node.js, created by [Buf](https://buf.build).
+suitable for web browsers, Node.js, and Deno, created by [Buf](https://buf.build).
 
 **Protobuf-ES** is a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem. It's
 the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC

@@ -456,17 +456,21 @@ function anyToJson(val: Any, opts: JsonWriteOptions): JsonValue {
 }
 
 function durationToJson(val: Duration) {
-  if (
-    Number(val.seconds) > 315576000000 ||
-    Number(val.seconds) < -315576000000
-  ) {
+  const seconds = Number(val.seconds);
+  const nanos = val.nanos;
+  if (seconds > 315576000000 || seconds < -315576000000) {
     throw new Error(
       `cannot encode message ${val.$typeName} to JSON: value out of range`,
     );
   }
+  if ((seconds > 0 && nanos < 0) || (seconds < 0 && nanos > 0)) {
+    throw new Error(
+      `cannot encode message ${val.$typeName} to JSON: nanos sign must match seconds sign`,
+    );
+  }
   let text = val.seconds.toString();
-  if (val.nanos !== 0) {
-    let nanosStr = Math.abs(val.nanos).toString();
+  if (nanos !== 0) {
+    let nanosStr = Math.abs(nanos).toString();
     nanosStr = "0".repeat(9 - nanosStr.length) + nanosStr;
     if (nanosStr.substring(3) === "000000") {
       nanosStr = nanosStr.substring(0, 3);
@@ -474,7 +478,7 @@ function durationToJson(val: Duration) {
       nanosStr = nanosStr.substring(0, 6);
     }
     text += "." + nanosStr;
-    if (val.nanos < 0 && Number(val.seconds) == 0) {
+    if (nanos < 0 && seconds == 0) {
       text = "-" + text;
     }
   }
@@ -543,6 +547,11 @@ function timestampToJson(val: Timestamp) {
   if (val.nanos < 0) {
     throw new Error(
       `cannot encode message ${val.$typeName} to JSON: nanos must not be negative`,
+    );
+  }
+  if (val.nanos > 999999999) {
+    throw new Error(
+      `cannot encode message ${val.$typeName} to JSON: nanos must not be greater than 99999999`,
     );
   }
   let z = "Z";

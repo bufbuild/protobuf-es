@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import {
   create,
   setExtension,
@@ -30,9 +31,11 @@ import {
   RepeatedScalarValuesMessageSchema,
   ScalarValuesMessageSchema,
 } from "./gen/ts/extra/msg-scalar_pb.js";
-import { MapsMessageSchema } from "./gen/ts/extra/msg-maps_pb.js";
+import {
+  MapsMessageBug1183Schema,
+  MapsMessageSchema,
+} from "./gen/ts/extra/msg-maps_pb.js";
 import { MessageFieldMessageSchema } from "./gen/ts/extra/msg-message_pb.js";
-
 import {
   Proto2ExtendeeSchema,
   string_ext,
@@ -41,7 +44,7 @@ import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
 
-describe(`binary serialization`, () => {
+void suite(`binary serialization`, () => {
   testBinary(ScalarValuesMessageSchema, {
     doubleField: 0.75,
     floatField: -0.75,
@@ -116,6 +119,20 @@ describe(`binary serialization`, () => {
     int32EnuField: { 1: 0, 2: 1, 0: 2 },
     int64EnuField: { "-1": 0, "2": 1, "0": 2 },
   });
+  void test(MapsMessageBug1183Schema.typeName, () => {
+    const str128bytes = "x".repeat(128);
+    const msg = create(MapsMessageBug1183Schema, {
+      map: {
+        [str128bytes]: 1,
+      },
+    });
+    const bytes = toBinary(MapsMessageBug1183Schema, msg);
+    const msg2 = fromBinary(MapsMessageBug1183Schema, bytes);
+    assert.deepStrictEqual(msg2.map, {
+      [str128bytes]: 1,
+    });
+    assert.strictEqual(msg2.$unknown, undefined);
+  });
   testBinary(OneofMessageSchema, {
     message: {
       case: "foo",
@@ -150,11 +167,11 @@ describe(`binary serialization`, () => {
       b: { kind: { case: "stringValue", value: "abc" } },
     },
   });
-  describe("Value", () => {
+  void suite("Value", () => {
     testBinary(ValueSchema, {
       kind: { case: "boolValue", value: true },
     });
-    describe("Value with Struct field", () => {
+    void suite("Value with Struct field", () => {
       testBinary(ValueSchema, {
         kind: {
           case: "structValue",
@@ -167,11 +184,11 @@ describe(`binary serialization`, () => {
       });
     });
   });
-  describe("extensions", () => {
-    test("encode and decode an extension", () => {
+  void suite("extensions", () => {
+    void test("encode and decode an extension", () => {
       const extendee = create(Proto2ExtendeeSchema);
       setExtension(extendee, string_ext, "foo");
-      expect(
+      assert.strictEqual(
         getExtension(
           fromBinary(
             Proto2ExtendeeSchema,
@@ -179,18 +196,19 @@ describe(`binary serialization`, () => {
           ),
           string_ext,
         ),
-      ).toEqual("foo");
+        "foo",
+      );
     });
   });
-  test("error for invalid data", () => {
+  void test("error for invalid data", () => {
     const msg = create(ScalarValuesMessageSchema, {
       uint32Field: -1, // -1 is invalid for a uint
     });
-    expect(() => toBinary(ScalarValuesMessageSchema, msg)).toThrow(
-      new Error(
+    assert.throws(() => toBinary(ScalarValuesMessageSchema, msg), {
+      name: "Error",
+      message:
         "cannot encode field spec.ScalarValuesMessage.uint32_field to binary: invalid uint32: -1",
-      ),
-    );
+    });
   });
 });
 
@@ -198,8 +216,8 @@ function testBinary<Desc extends DescMessage>(
   desc: Desc,
   init: MessageInitShape<Desc>,
 ) {
-  test(desc.typeName, () => {
+  void test(desc.typeName, () => {
     const msg = create(desc, init);
-    expect(fromBinary(desc, toBinary(desc, msg))).toStrictEqual(msg);
+    assert.deepStrictEqual(fromBinary(desc, toBinary(desc, msg)), msg);
   });
 }

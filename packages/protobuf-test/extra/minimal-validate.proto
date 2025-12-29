@@ -1,0 +1,69 @@
+// Copyright 2021-2025 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+
+// This file is a reduced copy of https://github.com/bufbuild/protovalidate/blob/main/proto/protovalidate/buf/validate/validate.proto
+// It only contains the definitions necessary to resolve `required` rule, ignores,
+// and disabled.
+package buf.validate;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MessageOptions {
+  optional MessageRules message = 1159;
+}
+
+extend google.protobuf.OneofOptions {
+  optional OneofRules oneof = 1159;
+}
+
+extend google.protobuf.FieldOptions {
+  optional FieldRules field = 1159;
+}
+
+message MessageRules {
+  // removed in https://github.com/bufbuild/protovalidate/pull/394
+  optional bool disabled = 1 [deprecated = true];
+}
+
+message OneofRules {
+  optional bool required = 1;
+}
+
+message FieldRules {
+  optional bool required = 25;
+  optional Ignore ignore = 27;
+  oneof type {
+    RepeatedRules repeated = 18;
+    MapRules map = 19;
+  }
+}
+
+enum Ignore {
+  IGNORE_UNSPECIFIED = 0;
+  // renamed in https://github.com/bufbuild/protovalidate/pull/397
+  IGNORE_IF_ZERO_VALUE = 1;
+  // removed in https://github.com/bufbuild/protovalidate/pull/396
+  IGNORE_IF_DEFAULT_VALUE = 2 [deprecated = true];
+  IGNORE_ALWAYS = 3;
+}
+
+message RepeatedRules {
+  optional FieldRules items = 4;
+}
+
+message MapRules {
+  optional FieldRules values = 5;
+}

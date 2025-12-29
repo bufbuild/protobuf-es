@@ -23,18 +23,18 @@ import { isFieldSet, clearField } from "../fields.js";
 import { base64Encode } from "../wire/base64-encoding.js";
 import { toBinary } from "../to-binary.js";
 import { clone } from "../clone.js";
-import type {
-  DescriptorProto,
-  EnumDescriptorProto,
-  FileDescriptorProto,
-  FieldDescriptorProto,
-  FieldOptions,
-} from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import {
+  type DescriptorProto,
+  type EnumDescriptorProto,
+  type FileDescriptorProto,
+  type FieldDescriptorProto,
+  type FieldOptions,
   Edition,
   FieldDescriptorProtoSchema,
   FieldOptionsSchema,
   FileDescriptorProtoSchema,
+  DescriptorProtoSchema,
+  EnumDescriptorProtoSchema,
 } from "../wkt/gen/google/protobuf/descriptor_pb.js";
 import type {
   DescriptorProtoBoot,
@@ -170,6 +170,7 @@ export function createFileDescriptorProtoBoot(
   assert(!proto.dependency.length);
   assert(!proto.publicDependency.length);
   assert(!proto.weakDependency.length);
+  assert(!proto.optionDependency.length);
   assert(!proto.service.length);
   assert(!proto.extension.length);
   assert(proto.sourceCodeInfo === undefined);
@@ -188,6 +189,7 @@ function createDescriptorBoot(proto: DescriptorProto) {
   assert(proto.extension.length == 0);
   assert(!proto.oneofDecl.length);
   assert(!proto.options);
+  assert(!isFieldSet(proto, DescriptorProtoSchema.field.visibility));
   const b: DescriptorProtoBoot = {
     name: proto.name,
   };
@@ -280,6 +282,7 @@ function createEnumDescriptorBoot(
   proto: EnumDescriptorProto,
 ): EnumDescriptorProtoBoot {
   assert(!proto.options);
+  assert(!isFieldSet(proto, EnumDescriptorProtoSchema.field.visibility));
   return {
     name: proto.name,
     value: proto.value.map((v): EnumValueDescriptorProtoBoot => {

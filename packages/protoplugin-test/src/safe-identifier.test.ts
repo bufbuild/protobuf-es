@@ -12,26 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { suite, test } from "node:test";
 import { safeIdentifier } from "@bufbuild/protoplugin";
-import { describe, expect, test } from "@jest/globals";
+import assert from "node:assert";
 
-describe("safeIdentifier", () => {
-  test("sanitized reserved identifiers", () => {
-    expect(safeIdentifier("break")).toBe("break$");
-    expect(safeIdentifier("case")).toBe("case$");
-    expect(safeIdentifier("catch")).toBe("catch$");
-    expect(safeIdentifier("class")).toBe("class$");
-    expect(safeIdentifier("const")).toBe("const$");
-    expect(safeIdentifier("continue")).toBe("continue$");
-    expect(safeIdentifier("debugger")).toBe("debugger$");
-    expect(safeIdentifier("default")).toBe("default$");
-    expect(safeIdentifier("delete")).toBe("delete$");
+void suite("safeIdentifier", () => {
+  void test("sanitized reserved identifiers", () => {
+    assert.equal(safeIdentifier("break"), "break$");
+    assert.equal(safeIdentifier("case"), "case$");
+    assert.equal(safeIdentifier("catch"), "catch$");
+    assert.equal(safeIdentifier("class"), "class$");
+    assert.equal(safeIdentifier("const"), "const$");
+    assert.equal(safeIdentifier("continue"), "continue$");
+    assert.equal(safeIdentifier("debugger"), "debugger$");
+    assert.equal(safeIdentifier("default"), "default$");
+    assert.equal(safeIdentifier("delete"), "delete$");
   });
 
-  test("does not modify other inputs which are not reserved identifiers", () => {
-    expect(safeIdentifier("constructor")).toBe("constructor");
-    expect(safeIdentifier("toString")).toBe("toString");
-    expect(safeIdentifier("toJSON")).toBe("toJSON");
-    expect(safeIdentifier("valueOf")).toBe("valueOf");
+  void test("does not modify other inputs which are not reserved identifiers", () => {
+    assert.equal(safeIdentifier("constructor"), "constructor");
+    assert.equal(safeIdentifier("toString"), "toString");
+    assert.equal(safeIdentifier("toJSON"), "toJSON");
+    assert.equal(safeIdentifier("valueOf"), "valueOf");
   });
 });

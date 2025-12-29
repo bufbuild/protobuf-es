@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { create } from "@bufbuild/protobuf";
 import {
   isWrapper,
@@ -28,30 +29,30 @@ import {
   UInt64ValueSchema,
 } from "@bufbuild/protobuf/wkt";
 
-describe("isWrapper()", () => {
-  test("returns true for any of the wrapper messages from wrappers.proto", () => {
-    expect(isWrapper(create(DoubleValueSchema))).toBe(true);
-    expect(isWrapper(create(FloatValueSchema))).toBe(true);
-    expect(isWrapper(create(Int64ValueSchema))).toBe(true);
-    expect(isWrapper(create(UInt64ValueSchema))).toBe(true);
-    expect(isWrapper(create(Int32ValueSchema))).toBe(true);
-    expect(isWrapper(create(UInt32ValueSchema))).toBe(true);
-    expect(isWrapper(create(BoolValueSchema))).toBe(true);
-    expect(isWrapper(create(StringValueSchema))).toBe(true);
-    expect(isWrapper(create(BytesValueSchema))).toBe(true);
+void suite("isWrapper()", () => {
+  void test("returns true for any of the wrapper messages from wrappers.proto", () => {
+    assert.strictEqual(isWrapper(create(DoubleValueSchema)), true);
+    assert.strictEqual(isWrapper(create(FloatValueSchema)), true);
+    assert.strictEqual(isWrapper(create(Int64ValueSchema)), true);
+    assert.strictEqual(isWrapper(create(UInt64ValueSchema)), true);
+    assert.strictEqual(isWrapper(create(Int32ValueSchema)), true);
+    assert.strictEqual(isWrapper(create(UInt32ValueSchema)), true);
+    assert.strictEqual(isWrapper(create(BoolValueSchema)), true);
+    assert.strictEqual(isWrapper(create(StringValueSchema)), true);
+    assert.strictEqual(isWrapper(create(BytesValueSchema)), true);
   });
 });
 
-describe("isWrapperDesc()", () => {
-  test("returns true for any of the wrapper messages from wrappers.proto", () => {
-    expect(isWrapperDesc(DoubleValueSchema)).toBe(true);
-    expect(isWrapperDesc(FloatValueSchema)).toBe(true);
-    expect(isWrapperDesc(Int64ValueSchema)).toBe(true);
-    expect(isWrapperDesc(UInt64ValueSchema)).toBe(true);
-    expect(isWrapperDesc(Int32ValueSchema)).toBe(true);
-    expect(isWrapperDesc(UInt32ValueSchema)).toBe(true);
-    expect(isWrapperDesc(BoolValueSchema)).toBe(true);
-    expect(isWrapperDesc(StringValueSchema)).toBe(true);
-    expect(isWrapperDesc(BytesValueSchema)).toBe(true);
+void suite("isWrapperDesc()", () => {
+  void test("returns true for any of the wrapper messages from wrappers.proto", () => {
+    assert.strictEqual(isWrapperDesc(DoubleValueSchema), true);
+    assert.strictEqual(isWrapperDesc(FloatValueSchema), true);
+    assert.strictEqual(isWrapperDesc(Int64ValueSchema), true);
+    assert.strictEqual(isWrapperDesc(UInt64ValueSchema), true);
+    assert.strictEqual(isWrapperDesc(Int32ValueSchema), true);
+    assert.strictEqual(isWrapperDesc(UInt32ValueSchema), true);
+    assert.strictEqual(isWrapperDesc(BoolValueSchema), true);
+    assert.strictEqual(isWrapperDesc(StringValueSchema), true);
+    assert.strictEqual(isWrapperDesc(BytesValueSchema), true);
   });
 });

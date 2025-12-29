@@ -27,13 +27,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global =
-    (typeof globalThis !== 'undefined' && globalThis) ||
-    (typeof window !== 'undefined' && window) ||
-    (typeof global !== 'undefined' && global) ||
-    (typeof self !== 'undefined' && self) ||
-    (function () { return this; }).call(null) ||
-    Function('return this')();
+var global = globalThis;
 
 var google_api_expr_v1beta1_source_pb = require('../../../../google/api/expr/v1beta1/source_pb.js');
 goog.object.extend(proto, google_api_expr_v1beta1_source_pb);
@@ -309,7 +303,7 @@ syntaxVersion: jspb.Message.getFieldWithDefault(msg, 4, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.ParsedExpr}
  */
 proto.google.api.expr.v1beta1.ParsedExpr.deserializeBinary = function(bytes) {
@@ -344,7 +338,7 @@ proto.google.api.expr.v1beta1.ParsedExpr.deserializeBinaryFromReader = function(
       msg.setSourceInfo(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setSyntaxVersion(value);
       break;
     default:
@@ -577,7 +571,7 @@ comprehensionExpr: (f = msg.getComprehensionExpr()) && proto.google.api.expr.v1b
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr}
  */
 proto.google.api.expr.v1beta1.Expr.deserializeBinary = function(bytes) {
@@ -780,7 +774,7 @@ name: jspb.Message.getFieldWithDefault(msg, 1, "")
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.Ident}
  */
 proto.google.api.expr.v1beta1.Expr.Ident.deserializeBinary = function(bytes) {
@@ -805,7 +799,7 @@ proto.google.api.expr.v1beta1.Expr.Ident.deserializeBinaryFromReader = function(
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setName(value);
       break;
     default:
@@ -912,7 +906,7 @@ testOnly: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.Select}
  */
 proto.google.api.expr.v1beta1.Expr.Select.deserializeBinary = function(bytes) {
@@ -942,7 +936,7 @@ proto.google.api.expr.v1beta1.Expr.Select.deserializeBinaryFromReader = function
       msg.setOperand(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setField(value);
       break;
     case 3:
@@ -1131,7 +1125,7 @@ argsList: jspb.Message.toObjectList(msg.getArgsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.Call}
  */
 proto.google.api.expr.v1beta1.Expr.Call.deserializeBinary = function(bytes) {
@@ -1161,7 +1155,7 @@ proto.google.api.expr.v1beta1.Expr.Call.deserializeBinaryFromReader = function(m
       msg.setTarget(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setFunction(value);
       break;
     case 3:
@@ -1370,7 +1364,7 @@ elementsList: jspb.Message.toObjectList(msg.getElementsList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.CreateList}
  */
 proto.google.api.expr.v1beta1.Expr.CreateList.deserializeBinary = function(bytes) {
@@ -1531,7 +1525,7 @@ entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.CreateStruct}
  */
 proto.google.api.expr.v1beta1.Expr.CreateStruct.deserializeBinary = function(bytes) {
@@ -1556,7 +1550,7 @@ proto.google.api.expr.v1beta1.Expr.CreateStruct.deserializeBinaryFromReader = fu
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setType(value);
       break;
     case 2:
@@ -1685,7 +1679,7 @@ value: (f = msg.getValue()) && proto.google.api.expr.v1beta1.Expr.toObject(inclu
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.CreateStruct.Entry}
  */
 proto.google.api.expr.v1beta1.Expr.CreateStruct.Entry.deserializeBinary = function(bytes) {
@@ -1714,7 +1708,7 @@ proto.google.api.expr.v1beta1.Expr.CreateStruct.Entry.deserializeBinaryFromReade
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setFieldKey(value);
       break;
     case 3:
@@ -2024,7 +2018,7 @@ result: (f = msg.getResult()) && proto.google.api.expr.v1beta1.Expr.toObject(inc
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Expr.Comprehension}
  */
 proto.google.api.expr.v1beta1.Expr.Comprehension.deserializeBinary = function(bytes) {
@@ -2049,7 +2043,7 @@ proto.google.api.expr.v1beta1.Expr.Comprehension.deserializeBinaryFromReader = f
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setIterVar(value);
       break;
     case 2:
@@ -2058,7 +2052,7 @@ proto.google.api.expr.v1beta1.Expr.Comprehension.deserializeBinaryFromReader = f
       msg.setIterRange(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setAccuVar(value);
       break;
     case 4:
@@ -2747,7 +2741,7 @@ bytesValue: msg.getBytesValue_asB64()
 
 /**
  * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @param {jspb.binary.bytesource.ByteSource} bytes The bytes to deserialize.
  * @return {!proto.google.api.expr.v1beta1.Literal}
  */
 proto.google.api.expr.v1beta1.Literal.deserializeBinary = function(bytes) {
@@ -2792,7 +2786,7 @@ proto.google.api.expr.v1beta1.Literal.deserializeBinaryFromReader = function(msg
       msg.setDoubleValue(value);
       break;
     case 6:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {string} */ (reader.readStringRequireUtf8());
       msg.setStringValue(value);
       break;
     case 7:

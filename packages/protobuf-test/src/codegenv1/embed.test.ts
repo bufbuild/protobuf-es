@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { compileFile, compileFileDescriptorSet } from "../helpers.js";
 import { embedFileDesc } from "@bufbuild/protobuf/codegenv1";
-import assert from "node:assert";
 import { createFileRegistry } from "@bufbuild/protobuf";
 
-describe("embedFileDesc()", () => {
+void suite("embedFileDesc()", () => {
   test("embeds file descriptor", async () => {
     const file = await compileFile(`
       syntax="proto3";
@@ -27,8 +27,8 @@ describe("embedFileDesc()", () => {
       }
     `);
     const embedded = embedFileDesc(file.proto);
-    expect(embedded.bootable).toBe(false);
-    expect(typeof embedded.base64()).toBe("string");
+    assert.strictEqual(embedded.bootable, false);
+    assert.strictEqual(typeof embedded.base64(), "string");
   });
   test("embeds google/protobuf.descriptor.proto", async () => {
     const file = createFileRegistry(
@@ -39,15 +39,15 @@ describe("embedFileDesc()", () => {
       `,
       }),
     ).getFile("google/protobuf/descriptor.proto");
-    assert(file);
+    assert.ok(file !== undefined);
 
     const embedded = embedFileDesc(file.proto);
-    expect(embedded).toBeDefined();
-    expect(embedded.bootable).toBe(true);
+    assert.ok(embedded !== undefined);
+    assert.strictEqual(embedded.bootable, true);
     if (embedded.bootable) {
       const b = embedded.boot();
-      expect(b).toBeDefined();
+      assert.ok(b !== undefined);
     }
-    expect(typeof embedded.base64()).toBe("string");
+    assert.strictEqual(typeof embedded.base64(), "string");
   });
 });

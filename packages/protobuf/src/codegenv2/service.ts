@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Copyright 2021-2025 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,21 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { execFileSync } from "node:child_process";
-import { argv, exit, stderr } from "node:process";
-import { UpstreamProtobuf } from "../index.mjs";
+import type { GenService, GenServiceMethods } from "./types.js";
+import type { DescFile } from "../descriptors.js";
 
-const upstream = new UpstreamProtobuf();
-
-upstream
-  .getProtocPath()
-  .then((path) => {
-    execFileSync(path, argv.slice(2), {
-      shell: false,
-      stdio: "inherit",
-      maxBuffer: 1024 * 1024 * 100,
-    });
-  })
-  .catch((reason) => {
-    stderr.write(String(reason) + "\n", () => exit(1));
-  });
+/**
+ * Hydrate a service descriptor.
+ *
+ * @private
+ */
+export function serviceDesc<T extends GenServiceMethods>(
+  file: DescFile,
+  path: number,
+  ...paths: number[]
+): GenService<T> {
+  if (paths.length > 0) {
+    throw new Error();
+  }
+  return file.services[path] as GenService<T>;
+}

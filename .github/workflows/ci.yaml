@@ -19,14 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x, 22.x, v24.x]
         bigint-disable: [0, 1]
     name: test ${{ matrix.node-version }} (${{ matrix.bigint-disable && 'fallback' || 'bigint' }})
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -40,14 +40,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x, 22.x, v24.x]
         bigint-disable: [0, 1]
     name: conformance ${{ matrix.node-version }} (${{ matrix.bigint-disable && 'fallback' || 'bigint' }})
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -60,7 +60,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -71,7 +71,7 @@ jobs:
   attw:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -82,7 +82,7 @@ jobs:
   typescript-compat:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -93,7 +93,7 @@ jobs:
   license-header:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -105,7 +105,7 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -117,7 +117,7 @@ jobs:
   bundle-size:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
@@ -129,13 +129,13 @@ jobs:
   bootstrap:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: .turbo
           key: protobuf-es/bootstrap/${{ github.sha }}
           restore-keys: protobuf-es/bootstrap
       - run: npm ci
-      - name: Bootstrap well-known types
-        run: npx turbo run bootstrap:inject bootstrap:wkt
+      - name: Bootstrap
+        run: npx turbo run bootstrap
       - run: node scripts/gh-diffcheck.js

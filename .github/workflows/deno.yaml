@@ -1,0 +1,53 @@
+name: deno
+on:
+  push:
+    branches: [main, "v*"]
+    tags: ["v*"]
+  pull_request:
+    branches: [main, "v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # https://consoledonottrack.com/
+  DO_NOT_TRACK: 1
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: lts
+      - uses: actions/checkout@v6
+      - uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: protobuf-es/deno/conformance/${{ github.sha }}
+          restore-keys: protobuf-es/deno/conformance
+      - run: npm ci
+      - run: npx turbo run test -F './deno/conformance'
+      - run: node scripts/gh-diffcheck.js
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: lts
+      - uses: actions/checkout@v6
+      - uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: protobuf-es/deno/example/${{ github.sha }}
+          restore-keys: protobuf-es/deno/example
+      - name: Deno check, lint, fmt, test
+        run: |
+          deno check --frozen src/**
+          deno lint
+          deno fmt
+          deno test
+          deno task generate
+        working-directory: deno/example
+      - run: node scripts/gh-diffcheck.js

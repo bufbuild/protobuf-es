@@ -34,7 +34,7 @@ To learn more about Protobuf's capabilities, read the [official language guide][
 
 ## What is Protobuf-ES?
 
-Protobuf-ES is a complete implementation of Protocol Buffers in TypeScript, suitable for web browsers and Node.js,
+Protobuf-ES is a complete implementation of Protocol Buffers in TypeScript, suitable for web browsers, Node.js, and Deno,
 created by [Buf]. It's the only fully-compliant JavaScript Protobuf library that passes the Protobuf conformance
 tests—[read more on our blog][blog-post].
 
@@ -193,6 +193,19 @@ the top of each file to skip type checks: `// @ts-nocheck`.
 
 Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
 if available. Learn more about [JSON types](#json-types).
+
+### `valid_types` (experimental)
+
+Generates a Valid type for every Protobuf message. Possible values:
+
+- `valid_types=legacy_required`: Message fields with the `required` label, or the Edition feature
+  `features.field_presence=LEGACY_REQUIRED`, are generated as non-optional properties.
+- `valid_types=protovalidate_required`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required)
+  are generated as non-optional properties.
+
+You can combine both options with `+`—for example, `valid_types=legacy_required+protovalidate_required`.
+
+Learn more about [Valid types](#valid-types).
 
 ## Generated code
 
@@ -365,6 +378,25 @@ Message fields don't have default values in Protobuf. They are always optional i
 > [google.protobuf.Struct](#googleprotobufstruct) and the messages from [wrappers.proto](#wrapper-messages-from-googleprotobufwrappersproto)
 > have a special representation in generated code.
 
+### Enum fields
+
+For the following Protobuf field declaration that uses an enum type:
+
+```protobuf
+PhoneType phone_type = 3;
+```
+
+Protobuf-ES generates the following property:
+
+```typescript
+/**
+ * @generated from field: example.PhoneType phone_type = 3;
+ */
+phoneType: PhoneType;
+```
+
+Enum fields use the first value of the enum as the default. 
+
 ### Repeated fields
 
 Repeated fields are represented with an ECMAScript Array. For example, the following Protobuf field declaration:
@@ -516,8 +548,9 @@ proto2 `required` is unchanged between v1 and v2.
 
 ### Proto3 optional fields
 
-In proto3, zero values like `0`, `false`, or `""` aren't serialized. The `optional` keyword enables presence tracking
-for a field, allowing you to distinguish between an absent value and an explicitly set zero value.
+In proto3, zero values like `0`, `false`, or `""` aren't serialized by default. 
+When the `optional` keyword is added to a field, zero values are serialized. 
+The keyword enables presence tracking for a field, allowing you to distinguish between an absent value, and an explicitly set zero value. 
 
 ```protobuf
 optional bool active = 3;
@@ -828,7 +861,7 @@ them as pre-compiled exports. If you import a well-known type in a Protobuf file
 
 For some of the well-known types, we provide additional features for convenience:
 
-### google.protobuf.TimeStamp
+### google.protobuf.Timestamp
 
 A `Timestamp` represents a point in time with nanosecond precision. It's independent of any time zone or local
 calendar. For convenience, we provide a few functions for conversion:
@@ -844,7 +877,7 @@ import {
 } from "@bufbuild/protobuf/wkt";
 
 // Create a Timestamp for the current time.
-let ts: TimeStamp = timestampNow();
+let ts: Timestamp = timestampNow();
 
 // Create a Timestamp message from an ECMAScript Date.
 ts = timestampFromDate(new Date(1938, 0, 10));
@@ -857,6 +890,20 @@ let date: Date = timestampDate(ts);
 
 // Convert a Timestamp to a Unix timestamp in milliseconds.
 let ms: number = timestampMs(ts);
+```
+
+### google.protobuf.Duration
+
+A `Duration` represents a fixed span of time with nanosecond precision. For convenience, we provide functions for conversion to milliseconds:
+
+```typescript
+import { type Duration, durationFromMs, durationMs } from "@bufbuild/protobuf/wkt";
+
+// Create a Duration from milliseconds.
+let duration: Duration = durationFromMs(1012);
+
+// Convert a Duration to milliseconds.
+let ms: number = timestampMs(duration);
 ```
 
 ### google.protobuf.Any
@@ -970,16 +1017,16 @@ const bytes: Uint8Array = toBinary(UserSchema, user);
 user = fromBinary(UserSchema, bytes);
 ```
 
-JSON serialization uses the functions `toJson` and `fromJson`:
+JSON serialization follows the [ProtoJSON][protobuf.dev/protojson] format. Use it with the functions `toJson` and `fromJson`:
 
 ```typescript
-import { toJson, fromjson, type JsonValue } from "@bufbuild/protobuf";
+import { toJson, fromJson, type JsonValue } from "@bufbuild/protobuf";
 import { type User, UserSchema } from "./gen/example_pb";
 
 declare let user: User;
 
 const json: JsonValue = toJson(UserSchema, user);
-user = fromjson(UserSchema, json);
+user = fromJson(UserSchema, json);
 ```
 
 `JsonValue` can be serialized to a `string` with `JSON.stringify`. For convenience, we also provide the functions
@@ -1110,7 +1157,7 @@ const b = clone(UserSchema, a);
 
 As a general guide when deciding between the binary format and JSON, the JSON format is great for debugging, but the binary
 format is more resilient to changes. For example, you can rename a field and still parse binary data serialized with
-the previous version. In general, the binary format is also more performant than JSON.
+the previous version. In general, the binary format is also more performant than JSON. JSON serialization follows the [ProtoJSON][protobuf.dev/protojson] format.
 
 ### Binary serialization options
 
@@ -1124,7 +1171,7 @@ Options for `fromBinary`:
 
 - `readUnknownFields?: boolean`<br/>
   Controls whether to retain [unknown fields](#unknown-fields) during parsing. The default behavior is to retain
-  unknown fields and include them in the serialized output.
+  unknown fields and include them in the deserialized output.
 
 ### JSON serialization options
 
@@ -1176,7 +1223,7 @@ Both classes are part of the public API and can be used on their own. The follow
 serialize data for our example message:
 
 ```ts
-import { BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import { UserSchema } from "./gen/example_pb";
 
 const bytes = new BinaryWriter()
@@ -1259,7 +1306,10 @@ syntax = "proto3";
 
 message Example {
   int32 amount = 1;
-  bytes data = 2;
+  oneof either {
+    bytes data = 2;
+    string error_message = 3;
+  }
 }
 ```
 
@@ -1279,6 +1329,11 @@ export type ExampleJson = {
    * @generated from field: bytes data = 2;
    */
   data?: string;
+
+  /**
+   * @generated from field: string error_message = 3;
+   */
+  errorMessage?: string;
 };
 ```
 
@@ -1327,6 +1382,92 @@ if (isEnumJson(FormatSchema, someString)) {
   someString; // FormatJson
 }
 ```
+
+> [!NOTE]
+>
+> JSON cannot represent a Protobuf message as well as the generated message types.
+> For example, a 64-bit integer must be represented as a String in JSON, while it
+> can be represented as a BigInt in the message type. 
+> 
+> Prefer the generated message type over JSON types if you can. Use JSON types in
+> situations where you need the message to be represented by plain JSON, for example
+> for a 3rd party library that only supports JSON.
+
+> [!TIP]
+>
+> - `MessageJsonType` extracts the JSON type from a message descriptor.
+> - `EnumJsonType` extracts the JSON type from an enum descriptor.
+> - When [writing a plugin](#writing-plugins), the method `importJson` of `GeneratedFile` imports a JSON type.
+
+
+## Valid types
+
+This is an advanced feature that's set with the plugin option [`valid_types`](#valid_types-experimental).
+If it's enabled, [@bufbuild/protoc-gen-es] generates an additional type for every Protobuf message. The Valid
+type is a modified type for the message that respects certain Protobuf options.
+
+> [!NOTE]
+>
+> Valid types is an experimental feature. At this point, Protobuf-ES only generates a type with modified optional message
+> fields.
+
+With `valid_types=legacy_required`, message fields with the proto2 `required` label are generated as non-optional
+properties:
+
+```protobuf
+syntax = "proto2";
+
+message Example {
+  // A proto required field.
+  // A field with the Edition feature field_presence=LEGACY_REQUIRED works as well.
+  required User user = 2;
+}
+
+message User {
+  optional string first_name = 1;
+}
+```
+
+The following additional export is generated:
+
+```ts
+/**
+ * @generated from message Example
+ */
+export type ExampleValid = Message<"Example"> & {
+  /**
+   * A proto required field.
+   * A field with the Edition feature field_presence=LEGACY_REQUIRED works as well.
+   * 
+   * @generated from field: required User = 1;
+   */
+  user: UserValid;
+}
+```
+
+With `valid_types=protovalidate_required`, message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required)
+are generated as non-optional properties:
+
+```protobuf
+syntax = "proto3";
+
+import "buf/validate/validate.proto";
+
+message Example {
+  // Enabling this rule has the same effect on the 
+  // generated property as the proto2 `required` label.
+  User user = 2 [(buf.validate.field).required = true];
+}
+```
+
+To see integration with protovalidate in action, see the [Valid types example][protovalidate-es-example] 
+in the protovalidate-es repository.
+
+> [!TIP]
+>
+> - `MessageValidType` extracts the Valid type from a message descriptor.
+> - When [writing a plugin](#writing-plugins), the method `importValid` of `GeneratedFile` imports a Valid type.
+
 
 ## Reflection
 
@@ -1834,6 +1975,9 @@ export function redact<Desc extends DescMessage>(
 > - `EnumShape` extracts the enum type from an enum descriptor.
 > - `MessageShape` extracts the type from a message descriptor.
 > - `MessageInitShape` extracts the init type from a message descriptor - the initializer object for `create()`.
+> - `MessageJsonType` extracts the [JSON type](#json-types) from a message descriptor.
+> - `EnumJsonType` extracts the [JSON type](#json-types) from an enum descriptor.
+> - `MessageValidType` extracts the [Valid type](#valid-types) from a message descriptor.
 
 ### ReflectMessage
 
@@ -2392,7 +2536,7 @@ Some additional features that set it apart from the others:
 - First-class TypeScript support
 - Generation of idiomatic JavaScript and TypeScript code
 - Generation of [much smaller bundles][bundle-size]
-- Implementation of all proto3 features, including the [canonical JSON format][canonical-json]
+- Implementation of all proto3 features, including [ProtoJSON][protobuf.dev/protojson]
 - Implementation of all proto2 features except for the text format
 - Support for Editions
 - Usage of standard JavaScript APIs instead of the [Closure Library][closure]
@@ -2477,14 +2621,14 @@ For example:
 
 - It doesn't support ECMAScript modules
 - It can't generate TypeScript (third-party plugins are necessary)
-- It doesn't support the [canonical JSON format][canonical-json]
+- It doesn't support [ProtoJSON][protobuf.dev/protojson]
 - It doesn't carry over comments from your `.proto` files
 
 Because of this, we want to provide a solid, modern alternative with Protobuf-ES. The main differences of the
 generated code are:
 
 - We use plain properties for fields, whereas `protoc` uses getter and setter methods
-- We implement the canonical JSON format
+- We implement [ProtoJSON][protobuf.dev/protojson]
 - We generate [much smaller bundles](./packages/bundle-size)
 - We rely on standard APIs instead of the [Closure Library][closure]
 
@@ -2569,10 +2713,11 @@ Serialization to JSON and binary is deterministic within a version of protobuf-e
 [Buf]: https://buf.build
 [bundle-size]: https://github.com/bufbuild/protobuf-es/blob/main/packages/bundle-size
 [protobuf.dev/editions]: https://protobuf.dev/editions/overview/
-[canonical-json]: https://protobuf.dev/programming-guides/proto3/#json
+[protobuf.dev/protojson]: https://protobuf.dev/programming-guides/json/
 [closure]: http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html
 [conformance]: https://github.com/bufbuild/protobuf-es/blob/main/packages/protobuf-conformance
 [Connect-ES]: https://github.com/connectrpc/connect-es
+[protovalidate-es-example]: https://github.com/bufbuild/protovalidate-es/tree/main/packages/example#valid-types
 [custom-options]: https://protobuf.dev/programming-guides/proto3/#customoptions
 [ecmascript-modules]: https://www.typescriptlang.org/docs/handbook/esm-node.html
 [example.proto]: ./packages/protobuf-example/proto/example.proto

@@ -12,53 +12,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { createTestPluginAndRun } from "./helpers.js";
 
-describe("GeneratedFile.import", () => {
-  test("should create import symbol for package", async () => {
+void suite("GeneratedFile.import", () => {
+  void test("should create import symbol for package", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
       generateAny(f) {
         const imp = f.import("Foo", "@scope/pkg");
-        expect(imp.name).toBe("Foo");
-        expect(imp.from).toBe("@scope/pkg");
-        expect(imp.typeOnly).toBe(false);
+        assert.strictEqual(imp.name, "Foo");
+        assert.strictEqual(imp.from, "@scope/pkg");
+        assert.strictEqual(imp.typeOnly, false);
       },
     });
   });
-  test("should create import symbol for relative import", async () => {
+  void test("should create import symbol for relative import", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
       generateAny(f) {
         const imp = f.import("Foo", "./foo_zz.js");
-        expect(imp.name).toBe("Foo");
-        expect(imp.from).toBe("./foo_zz.js");
-        expect(imp.typeOnly).toBe(false);
+        assert.strictEqual(imp.name, "Foo");
+        assert.strictEqual(imp.from, "./foo_zz.js");
+        assert.strictEqual(imp.typeOnly, false);
       },
     });
   });
-  test("should create import symbol for https import", async () => {
+  void test("should create import symbol for https import", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
       generateAny(f) {
         const imp = f.import("Foo", "https://example.com/foo.js");
-        expect(imp.name).toBe("Foo");
-        expect(imp.from).toBe("https://example.com/foo.js");
-        expect(imp.typeOnly).toBe(false);
+        assert.strictEqual(imp.name, "Foo");
+        assert.strictEqual(imp.from, "https://example.com/foo.js");
+        assert.strictEqual(imp.typeOnly, false);
       },
     });
   });
-  test("should honor typeOnly argument", async () => {
+  void test("should honor typeOnly argument", async () => {
     await createTestPluginAndRun({
       proto: `syntax="proto3";`,
       parameter: "target=ts",
       generateAny(f) {
         const imp = f.import("Foo", "@scope/pkg", true);
-        expect(imp.typeOnly).toBe(true);
+        assert.strictEqual(imp.typeOnly, true);
       },
     });
   });

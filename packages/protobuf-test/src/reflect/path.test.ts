@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { describe, expect, test } from "@jest/globals";
+import { suite, test } from "node:test";
+import * as assert from "node:assert";
 import { createRegistry } from "@bufbuild/protobuf";
 import { buildPath, parsePath, pathToString } from "@bufbuild/protobuf/reflect";
-import assert from "node:assert/strict";
 import { compileExtension, compileMessage } from "../helpers.js";
 import { assertPathsEqual, getTestDataForPaths } from "./path.testdata.js";
 
 const { cases, invalid, schema } = await getTestDataForPaths();
 
-describe("buildPath()", () => {
+void suite("buildPath()", () => {
   test("returns PathBuilder", () => {
     const builder = buildPath(schema);
-    expect(builder.schema).toBe(schema);
+    assert.strictEqual(builder.schema, schema);
   });
 });
 
-describe("parsePath()", () => {
+void suite("parsePath()", () => {
   for (const { schema, string, golden, usesExtension } of cases) {
     test(`parses "${string}"`, () => {
       const registry = usesExtension
@@ -40,8 +40,8 @@ describe("parsePath()", () => {
   }
   for (const { schema, input, error } of invalid) {
     test(`fails to parse invalid "${input}"`, () => {
-      expect(() => parsePath(schema, input)).toThrow({
-        name: "InvalidXPathError",
+      assert.throws(() => parsePath(schema, input), {
+        name: "InvalidPathError",
         message: error,
         path: input,
       });
@@ -49,19 +49,19 @@ describe("parsePath()", () => {
   }
 });
 
-describe("pathToString()", () => {
+void suite("pathToString()", () => {
   for (const { string, golden, goldenString } of cases) {
     test(string, () => {
-      expect(pathToString(golden)).toBe(goldenString);
+      assert.strictEqual(pathToString(golden), goldenString);
     });
   }
 });
 
-describe("PathBuilder", () => {
-  describe("toPath()", () => {
+void suite("PathBuilder", () => {
+  void suite("toPath()", () => {
     test("returns empty path", () => {
       const path = buildPath(schema).toPath();
-      assert.equal(path.length, 0);
+      assert.strictEqual(path.length, 0);
     });
     test("returns path", () => {
       const path = buildPath(schema).add(cases[0].golden).toPath();
@@ -74,7 +74,7 @@ describe("PathBuilder", () => {
       assert.notStrictEqual(a, b);
     });
   });
-  describe("clone()", () => {
+  void suite("clone()", () => {
     test("returns copy", () => {
       const builder = buildPath(schema);
       const clone = builder.clone();
@@ -83,7 +83,7 @@ describe("PathBuilder", () => {
     test("copies path", () => {
       const builder = buildPath(schema);
       const clone = builder.clone().add(cases[0].golden);
-      assert.notEqual(clone.toPath().length, builder.toPath().length);
+      assert.notStrictEqual(clone.toPath().length, builder.toPath().length);
     });
     test("clones", () => {
       const builder = buildPath(schema).add(cases[0].golden);
@@ -110,7 +110,7 @@ describe("PathBuilder", () => {
     assert.throws(() =>
       builder.add([schema.field.manager, { kind: "list_sub", index: 0 }]),
     );
-    assert.equal(builder.toPath().length, 0);
+    assert.strictEqual(builder.toPath().length, 0);
   });
   for (const { string, schema, golden } of cases) {
     test(`build "${string}" via api`, () => {
@@ -139,7 +139,7 @@ describe("PathBuilder", () => {
     });
   }
 
-  describe("build errors", () => {
+  void suite("build errors", () => {
     test("field() on non-message", () => {
       const builder = buildPath(schema).field(schema.field.firstName);
       assert.throws(() => builder.field(schema.field.firstName), {

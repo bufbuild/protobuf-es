@@ -2,7 +2,9 @@
   "include": ["src/**/*.ts"],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    // we require this setting for the npm package "long"
-    "allowSyntheticDefaultImports": true
+    // We require this setting for the npm package "long"
+    "allowSyntheticDefaultImports": true,
+    // We use Node.js modules in tests
+    "types": ["node"]
   }
 }
