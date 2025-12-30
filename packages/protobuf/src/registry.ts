@@ -474,6 +474,8 @@ const featureDefaults = {
   },
 } as const;
 
+const DOT_PROTO_REGEXP = /\.proto$/;
+
 /**
  * Create a descriptor for a file, add it to the registry.
  */
@@ -483,7 +485,7 @@ function addFile(proto: FileDescriptorProto, reg: BaseRegistry): void {
     proto,
     deprecated: proto.options?.deprecated ?? false,
     edition: getFileEdition(proto),
-    name: proto.name.replace(/\.proto$/, ""),
+    name: proto.name.replace(DOT_PROTO_REGEXP, ""),
     dependencies: findFileDependencies(proto, reg),
     enums: [],
     messages: [],
@@ -1005,6 +1007,8 @@ function findFileDependencies(
   });
 }
 
+const STARTS_WITH_DIGIT_REGEXP = /^\d/;
+
 /**
  * Finds a prefix shared by enum values, for example `my_enum_` for
  * `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`.
@@ -1022,7 +1026,7 @@ function findEnumSharedPrefix(
     if (shortName.length == 0) {
       return undefined;
     }
-    if (/^\d/.test(shortName)) {
+    if (STARTS_WITH_DIGIT_REGEXP.test(shortName)) {
       // identifiers must not start with numbers
       return undefined;
     }

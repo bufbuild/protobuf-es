@@ -715,15 +715,16 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
   anyPack(msg.desc, msg.message, any);
 }
 
+const TIMESTAMP_REGEXP =
+  /^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})(?:\.([0-9]{1,9}))?(?:Z|([+-][0-9][0-9]:[0-9][0-9]))$/;
+
 function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
       `cannot decode message ${timestamp.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
-  const matches = json.match(
-    /^([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})(?:\.([0-9]{1,9}))?(?:Z|([+-][0-9][0-9]:[0-9][0-9]))$/,
-  );
+  const matches = json.match(TIMESTAMP_REGEXP);
   if (!matches) {
     throw new Error(
       `cannot decode message ${timestamp.$typeName} from JSON: invalid RFC 3339 string`,
@@ -755,13 +756,15 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
   }
 }
 
+const DURATION_REGEXP = /^(-?[0-9]+)(?:\.([0-9]+))?s/;
+
 function durationFromJson(duration: Duration, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
       `cannot decode message ${duration.$typeName} from JSON: ${formatVal(json)}`,
     );
   }
-  const match = json.match(/^(-?[0-9]+)(?:\.([0-9]+))?s/);
+  const match = json.match(DURATION_REGEXP);
   if (match === null) {
     throw new Error(
       `cannot decode message ${duration.$typeName} from JSON: ${formatVal(json)}`,

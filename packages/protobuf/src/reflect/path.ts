@@ -396,6 +396,11 @@ function checkKeyType(
   }
 }
 
+const DIGIT_REGEXP = /\d/;
+const EXTENSION_REGEXP =
+  /^[A-Za-z_][A-Za-z_0-9]*(?:\.[A-Za-z_][A-Za-z_0-9]*)*$/;
+const FIELD_REGEXP = /^[A-Za-z_][A-Za-z_0-9]*$/;
+
 function nextToken(
   i: number,
   path: string,
@@ -404,8 +409,6 @@ function nextToken(
   | { val: string | bigint | boolean; i: number }
   | { field: string; i: number }
   | { ext: string; i: number } {
-  const re_extension = /^[A-Za-z_][A-Za-z_0-9]*(?:\.[A-Za-z_][A-Za-z_0-9]*)*$/;
-  const re_field = /^[A-Za-z_][A-Za-z_0-9]*$/;
   if (path[i] == "[") {
     i++;
     while (path[i] == " ") {
@@ -451,10 +454,10 @@ function nextToken(
         i++;
       }
       token = { val };
-    } else if (path[i].match(/\d/)) {
+    } else if (path[i].match(DIGIT_REGEXP)) {
       // integer literal
       const start = i;
-      while (i < path.length && /\d/.test(path[i])) {
+      while (i < path.length && DIGIT_REGEXP.test(path[i])) {
         i++;
       }
       token = { val: BigInt(path.substring(start, i)) };
@@ -471,7 +474,7 @@ function nextToken(
         token = { val: true };
       } else if (name === "false") {
         token = { val: false };
-      } else if (re_extension.test(name)) {
+      } else if (EXTENSION_REGEXP.test(name)) {
         token = { ext: name };
       } else {
         return { err: "Invalid ident", i: start };
@@ -499,7 +502,7 @@ function nextToken(
     i++;
   }
   const field = path.substring(start, i);
-  return re_field.test(field)
+  return FIELD_REGEXP.test(field)
     ? { field, i }
     : { err: "Invalid ident", i: start };
 }

@@ -3,5 +3,24 @@
   "extends": ["../../biome.base.json"],
   "files": {
     "ignore": ["dist", "src/wkt/gen"]
-  }
+  },
+  "linter": {
+    "rules": {
+      "performance": {
+        "useTopLevelRegex": "error"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "include": ["scripts"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "useTopLevelRegex": "off"
+          }
+        }
+      }
+    }
+  ]
 }

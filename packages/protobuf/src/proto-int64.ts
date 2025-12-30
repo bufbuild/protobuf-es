@@ -225,14 +225,18 @@ function makeInt64Support(): Int64Support {
   };
 }
 
+const INT64_REGEXP = /^-?[0-9]+$/;
+
 function assertInt64String(value: string) {
-  if (!/^-?[0-9]+$/.test(value)) {
+  if (!INT64_REGEXP.test(value)) {
     throw new Error("invalid int64: " + value);
   }
 }
 
+const UINT64_REGEXP = /^[0-9]+$/;
+
 function assertUInt64String(value: string) {
-  if (!/^[0-9]+$/.test(value)) {
+  if (!UINT64_REGEXP.test(value)) {
     throw new Error("invalid uint64: " + value);
   }
 }
