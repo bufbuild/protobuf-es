@@ -41,7 +41,7 @@
     "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "^1.9.4",
     "@bufbuild/license-header": "^0.0.4",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.3",
     "turbo": "^2.6.1",
     "typescript": "^5.9.2"
   },
