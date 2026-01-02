@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@bufbuild/protobuf-test": "*",
-    "@types/node": "22.9.3",
+    "@types/node": "25.0.3",
     "typescript": "4.9.x"
   }
 }
