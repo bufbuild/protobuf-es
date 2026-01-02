@@ -955,11 +955,11 @@ void suite("JsonWriteOptions", () => {
   });
 });
 
-void suite("parsing funny JSON", () => {
-  void suite("duplicate fields", () => {
+void suite("parsing duplicate fields", () => {
+  void suite("proto field name and JSON field name", () => {
     // This depends on the ECMA-262-defined behavior for JSON.parse() and
     // Object.entries() and the internal preservation of object key order.
-    test("chooses last field when duplicated, even when fields have different casing", () => {
+    test("last entry wins", () => {
       const a = fromJsonString(
         proto3_ts.Proto3MessageSchema,
         '{ "singular_string_field": "b", "singularStringField": "a" }',
