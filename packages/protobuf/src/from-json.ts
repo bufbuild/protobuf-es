@@ -193,6 +193,20 @@ export function isEnumJson<Desc extends DescEnum>(
   return undefined !== descEnum.values.find((v) => v.name === value);
 }
 
+const descFieldMapCache = new WeakMap<DescMessage, Map<string, DescField>>();
+function getField(desc: DescMessage, key: string) {
+  if (!descFieldMapCache.has(desc)) {
+    const jsonNames = new Map<string, DescField>();
+    for (const field of desc.fields) {
+      jsonNames.set(field.name, field).set(field.jsonName, field);
+    }
+
+    descFieldMapCache.set(desc, jsonNames);
+  }
+
+  return descFieldMapCache.get(desc)?.get(key);
+}
+
 function readMessage(
   msg: ReflectMessage,
   json: JsonValue,
@@ -205,12 +219,8 @@ function readMessage(
     throw new Error(`cannot decode ${msg.desc} from JSON: ${formatVal(json)}`);
   }
   const oneofSeen = new Map<DescOneof, DescField>();
-  const jsonNames = new Map<string, DescField>();
-  for (const field of msg.desc.fields) {
-    jsonNames.set(field.name, field).set(field.jsonName, field);
-  }
   for (const [jsonKey, jsonValue] of Object.entries(json)) {
-    const field = jsonNames.get(jsonKey);
+    const field = getField(msg.desc, jsonKey);
     if (field) {
       if (field.oneof) {
         if (jsonValue === null && field.fieldKind == "scalar") {
