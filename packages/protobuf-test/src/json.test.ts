@@ -571,7 +571,7 @@ void suite("JSON serialization", () => {
           },
           {
             message:
-              'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
+              'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "user.displayName" is irreversible',
           },
         );
       });
@@ -583,7 +583,7 @@ void suite("JSON serialization", () => {
           },
           {
             message:
-              "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
+              "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
           },
         );
       });

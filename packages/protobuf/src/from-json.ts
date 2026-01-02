@@ -784,6 +784,8 @@ function durationFromJson(duration: Duration, json: JsonValue) {
   }
 }
 
+const camelCasePath = /^[a-zA-Z][a-zA-Z0-9]*(\.[a-zA-Z][a-zA-Z0-9]*)*$/;
+
 function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
@@ -794,13 +796,12 @@ function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
     return;
   }
   function camelToSnake(str: string) {
-    if (str.includes("_")) {
+    if (!camelCasePath.test(str)) {
       throw new Error(
-        `cannot decode message ${fieldMask.$typeName} from JSON: path names must be lowerCamelCase`,
+        `cannot decode message ${fieldMask.$typeName} from JSON: path names must be camel case`,
       );
     }
-    const sc = str.replace(/[A-Z]/g, (letter) => "_" + letter.toLowerCase());
-    return sc[0] === "_" ? sc.substring(1) : sc;
+    return str.replace(/[A-Z]/g, (letter) => "_" + letter.toLowerCase());
   }
   fieldMask.paths = json.split(",").map(camelToSnake);
 }
