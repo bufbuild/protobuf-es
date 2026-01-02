@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    // We target ES2017, but require the Text Encoding API, and optionally
-    // BigInt and AsyncIterable, see below.
+    // We target ES2017, but require the Text Encoding API, globalThis, and
+    // optionally BigInt and AsyncIterable, see below.
     "target": "es2017",
     "lib": [
       "ES2017",
