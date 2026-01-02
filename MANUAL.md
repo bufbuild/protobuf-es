@@ -580,7 +580,8 @@ Property names are always `lowerCamelCase`, even if the corresponding Protobuf f
 > [!TIP]
 > 
 > Protobuf-ES relies on Protobuf's logic for `lowerCamelCase`, and escapes [reserved names](#reserved-names).
-> In some rare cases, Protobuf's logic leads to a name that isn't actually `lowerCamelCase`, see the specification [here](https://protobuf.com/docs/language-spec#default-json-names).
+> In some rare cases, Protobuf's logic leads to a name that isn't actually `lowerCamelCase`.
+> See [the specification](https://protobuf.com/docs/language-spec#default-json-names) for more details.
 
 
 ### Enumerations
