@@ -447,8 +447,6 @@ function readEnum(
  *
  * Returns the input if the JSON value cannot be converted. Raises a FieldError
  * if conversion would be ambiguous.
- *
- * JSON null returns the scalar type's default value.
  */
 function scalarFromJson(
   field: DescField & { scalar: ScalarType },
