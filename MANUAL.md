@@ -577,6 +577,13 @@ Property names are always `lowerCamelCase`, even if the corresponding Protobuf f
 [MDN][js-style-guide-mdn], [Google][js-style-guide-google]) as well as [Node.js APIs][js-style-node] and
 [browser APIs][js-style-fetch] use `lowerCamelCase`, and so do we.
 
+> [!TIP]
+> 
+> Protobuf-ES relies on Protobuf's logic for `lowerCamelCase`, and escapes [reserved names](#reserved-names).
+> In some rare cases, Protobuf's logic leads to a name that isn't actually `lowerCamelCase`.
+> See [the specification](https://protobuf.com/docs/language-spec#default-json-names) for more details.
+
+
 ### Enumerations
 
 For the following Protobuf definition:
@@ -1195,7 +1202,7 @@ Options for `toJson` and `toJsonString`:
   The name of an enum value is used by default in JSON output. This option
   overrides the behavior to use the numeric value of the enum value instead.
 - `useProtoFieldName?: boolean`<br/>
-  Field names are converted to lowerCamelCase by default in JSON output. This
+  Field names are converted to `lowerCamelCase` by default in JSON output. This
   option overrides the behavior to use the proto field name instead.
 - `registry?: Registry`<br/>
   A [registry](#registries) to use for converting [extensions](#extensions) and

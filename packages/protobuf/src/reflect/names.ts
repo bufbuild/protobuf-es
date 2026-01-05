@@ -45,6 +45,8 @@ export function qualifiedName(desc: AnyDesc) {
 /**
  * Converts snake_case to protoCamelCase according to the convention
  * used by protoc to convert a field name to a JSON name.
+ *
+ * See https://protobuf.com/docs/language-spec#default-json-names
  */
 export function protoCamelCase(snakeCase: string): string {
   let capNext = false;

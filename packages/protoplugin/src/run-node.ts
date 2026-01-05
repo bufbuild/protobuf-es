@@ -71,7 +71,12 @@ export function runNodeJs(plugin: Plugin): void {
 function readBytes(stream: ReadStream): Promise<Uint8Array> {
   return new Promise<Uint8Array>((resolve, reject) => {
     const chunks: Uint8Array[] = [];
-    stream.on("data", (chunk) => chunks.push(chunk));
+    stream.on("data", (chunk) => {
+      if (typeof chunk === "string") {
+        throw new Error("unexpected chunk type string");
+      }
+      chunks.push(chunk);
+    });
     stream.on("end", () => {
       resolve(Buffer.concat(chunks));
     });
