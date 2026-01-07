@@ -32,6 +32,7 @@ import type {
 import { reflect } from "./reflect/reflect.js";
 import { FieldError, isFieldError } from "./reflect/error.js";
 import { formatVal } from "./reflect/reflect-check.js";
+import { protoSnakeCase } from "./reflect/names.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import type { EnumJsonType, EnumShape, MessageShape } from "./types.js";
 import { base64Decode } from "./wire/base64-encoding.js";
@@ -757,15 +758,14 @@ function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
   if (json === "") {
     return;
   }
-  function camelToSnake(str: string) {
-    if (!camelCasePath.test(str)) {
+  fieldMask.paths = json.split(",").map((path) => {
+    if (!camelCasePath.test(path)) {
       throw new Error(
         `cannot decode message ${fieldMask.$typeName} from JSON: path names must be lowerCamelCase`,
       );
     }
-    return str.replace(/[A-Z]/g, (letter) => "_" + letter.toLowerCase());
-  }
-  fieldMask.paths = json.split(",").map(camelToSnake);
+    return protoSnakeCase(path);
+  });
 }
 
 function structFromJson(struct: Struct, json: JsonValue) {
