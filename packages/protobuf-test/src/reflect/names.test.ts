@@ -17,6 +17,7 @@ import * as assert from "node:assert";
 import {
   safeObjectProperty,
   protoCamelCase,
+  protoSnakeCase,
   qualifiedName,
 } from "@bufbuild/protobuf/reflect";
 import type { DescFile } from "@bufbuild/protobuf";
@@ -155,4 +156,21 @@ void suite("protoCamelCase", () => {
       assert.strictEqual(protoCamelCase(name), protocJsonName);
     });
   }
+  void suite("irreversible", () => {
+    testIrreversible("foo_", "foo");
+    testIrreversible("foo__", "foo");
+    testIrreversible("foo__bar", "fooBar");
+    testIrreversible("foo_1", "foo1");
+    function testIrreversible(snakeCase: string, expectedCamelCase: string) {
+      void test(`"${snakeCase}" is irreversible`, () => {
+        assert.strictEqual(protoCamelCase(snakeCase), expectedCamelCase);
+        assert.notStrictEqual(protoSnakeCase(expectedCamelCase), snakeCase);
+      });
+    }
+  });
+});
+
+void test("protoSnakeCase", () => {
+  assert.strictEqual(protoSnakeCase("fooBar"), "foo_bar");
+  assert.strictEqual(protoSnakeCase("fooUTF8"), "foo_u_t_f8");
 });

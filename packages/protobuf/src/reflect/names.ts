@@ -47,6 +47,8 @@ export function qualifiedName(desc: AnyDesc) {
  * used by protoc to convert a field name to a JSON name.
  *
  * See https://protobuf.com/docs/language-spec#default-json-names
+ *
+ * The function protoSnakeCase provides the reverse.
  */
 export function protoCamelCase(snakeCase: string): string {
   let capNext = false;
@@ -80,6 +82,19 @@ export function protoCamelCase(snakeCase: string): string {
     }
   }
   return b.join("");
+}
+
+/**
+ * Converts protoCamelCase to snake_case.
+ *
+ * This function is the reverse of function protoCamelCase. Note that some names
+ * are not reversible - for example, "foo__bar" -> "fooBar" -> "foo_bar".
+ */
+export function protoSnakeCase(lowerCamelCase: string): string {
+  return lowerCamelCase.replace(
+    /[A-Z]/g,
+    (letter) => "_" + letter.toLowerCase(),
+  );
 }
 
 /**

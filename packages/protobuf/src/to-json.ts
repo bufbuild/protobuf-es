@@ -20,7 +20,7 @@ import {
   ScalarType,
 } from "./descriptors.js";
 import type { JsonObject, JsonValue } from "./json-value.js";
-import { protoCamelCase } from "./reflect/names.js";
+import { protoCamelCase, protoSnakeCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
 import type { Registry } from "./registry.js";
 import type {
@@ -488,11 +488,9 @@ function durationToJson(val: Duration) {
 function fieldMaskToJson(val: FieldMask) {
   return val.paths
     .map((p) => {
-      if (p.match(/_[0-9]?_/g) || p.match(/[A-Z]/g)) {
+      if (protoSnakeCase(protoCamelCase(p)) !== p) {
         throw new Error(
-          `cannot encode message ${val.$typeName} to JSON: lowerCamelCase of path name "` +
-            p +
-            '" is irreversible',
+          `cannot encode message ${val.$typeName} to JSON: lowerCamelCase of path name "${p}" is irreversible`,
         );
       }
       return protoCamelCase(p);
