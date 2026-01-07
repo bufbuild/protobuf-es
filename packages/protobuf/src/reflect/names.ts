@@ -87,7 +87,7 @@ export function protoCamelCase(snakeCase: string): string {
 /**
  * Converts protoCamelCase to snake_case.
  *
- * This function is the reverse of function protoCamelCase. Not that some names
+ * This function is the reverse of function protoCamelCase. Note that some names
  * are not reversible - for example, "foo__bar" -> "fooBar" -> "foo_bar".
  */
 export function protoSnakeCase(lowerCamelCase: string): string {
