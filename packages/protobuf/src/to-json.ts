@@ -20,7 +20,7 @@ import {
   ScalarType,
 } from "./descriptors.js";
 import type { JsonObject, JsonValue } from "./json-value.js";
-import { protoCamelCase } from "./reflect/names.js";
+import { protoCamelCase, protoSnakeCase } from "./reflect/names.js";
 import { reflect } from "./reflect/reflect.js";
 import type { Registry } from "./registry.js";
 import type {
@@ -486,8 +486,6 @@ function durationToJson(val: Duration) {
 }
 
 const validPath = /^[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)*$/;
-const reversiblePath =
-  /^_?[a-z][a-z0-9]*(_[a-z][a-z0-9]*)*(\._?[a-z][a-z0-9]*(_[a-z][a-z0-9]*)*)*$/;
 
 function fieldMaskToJson(val: FieldMask) {
   return val.paths
@@ -498,7 +496,7 @@ function fieldMaskToJson(val: FieldMask) {
           `${errorPrefix}: path "${p}" contains invalid field name`,
         );
       }
-      if (!reversiblePath.test(p)) {
+      if (protoSnakeCase(protoCamelCase(p)) !== p) {
         throw new Error(
           `${errorPrefix}: lowerCamelCase of path name "${p}" is irreversible`,
         );
