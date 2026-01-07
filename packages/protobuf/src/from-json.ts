@@ -1,4 +1,4 @@
-// Copyright 2021-2025 Buf Technologies, Inc.
+// Copyright 2021-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import type {
 import { reflect } from "./reflect/reflect.js";
 import { FieldError, isFieldError } from "./reflect/error.js";
 import { formatVal } from "./reflect/reflect-check.js";
-import { type ScalarValue, scalarZeroValue } from "./reflect/scalar.js";
+import type { ScalarValue } from "./reflect/scalar.js";
 import type { EnumJsonType, EnumShape, MessageShape } from "./types.js";
 import { base64Decode } from "./wire/base64-encoding.js";
 import type {
@@ -176,11 +176,7 @@ export function enumFromJson<Desc extends DescEnum>(
   descEnum: Desc,
   json: EnumJsonType<Desc>,
 ): EnumShape<Desc> {
-  const val = readEnum(descEnum, json, false, false);
-  if (val === tokenIgnoredUnknownEnum) {
-    throw new Error(`cannot decode ${descEnum} from JSON: ${formatVal(json)}`);
-  }
-  return val as EnumShape<Desc>;
+  return readEnum(descEnum, json, false) as EnumShape<Desc>;
 }
 
 /**
@@ -276,6 +272,30 @@ function readField(
   }
 }
 
+function readListOrMapItem(
+  field: DescField & { fieldKind: "map" | "list" },
+  json: JsonValue,
+  opts: JsonReadOptions,
+) {
+  if (field.scalar && json !== null) {
+    return scalarFromJson(field, json);
+  }
+  if (field.message && !isResetSentinelNullValue(field, json)) {
+    const msgValue = reflect(field.message);
+    readMessage(msgValue, json, opts);
+
+    return msgValue;
+  }
+  if (field.enum && !isResetSentinelNullValue(field, json)) {
+    return readEnum(field.enum, json, opts.ignoreUnknownFields);
+  }
+
+  throw new FieldError(
+    field,
+    `${field.fieldKind === "list" ? "list item" : "map value"} must not be null`,
+  );
+}
+
 function readMapField(map: ReflectMap, json: JsonValue, opts: JsonReadOptions) {
   if (json === null) {
     return;
@@ -285,33 +305,11 @@ function readMapField(map: ReflectMap, json: JsonValue, opts: JsonReadOptions) {
     throw new FieldError(field, "expected object, got " + formatVal(json));
   }
   for (const [jsonMapKey, jsonMapValue] of Object.entries(json)) {
-    if (jsonMapValue === null && !isSafeNullValueInListOrMap(field)) {
-      throw new FieldError(field, "map value must not be null");
-    }
-    let value: unknown;
-    switch (field.mapKind) {
-      case "message":
-        const msgValue = reflect(field.message);
-        readMessage(msgValue, jsonMapValue, opts);
-        value = msgValue;
-        break;
-      case "enum":
-        value = readEnum(
-          field.enum,
-          jsonMapValue,
-          opts.ignoreUnknownFields,
-          true,
-        );
-        if (value === tokenIgnoredUnknownEnum) {
-          return;
-        }
-        break;
-      case "scalar":
-        value = scalarFromJson(field, jsonMapValue, true);
-        break;
-    }
     const key = mapKeyFromJson(field.mapKey, jsonMapKey);
-    map.set(key, value);
+    const value = readListOrMapItem(field, jsonMapValue, opts);
+    if (value !== tokenIgnoredUnknownEnum) {
+      map.set(key, value);
+    }
   }
 }
 
@@ -328,40 +326,11 @@ function readListField(
     throw new FieldError(field, "expected Array, got " + formatVal(json));
   }
   for (const jsonItem of json) {
-    if (jsonItem === null && !isSafeNullValueInListOrMap(field)) {
-      throw new FieldError(field, "list item must not be null");
-    }
-    switch (field.listKind) {
-      case "message":
-        const msgValue = reflect(field.message);
-        readMessage(msgValue, jsonItem, opts);
-        list.add(msgValue);
-        break;
-      case "enum":
-        const enumValue = readEnum(
-          field.enum,
-          jsonItem,
-          opts.ignoreUnknownFields,
-          true,
-        );
-        if (enumValue !== tokenIgnoredUnknownEnum) {
-          list.add(enumValue);
-        }
-        break;
-      case "scalar":
-        list.add(scalarFromJson(field, jsonItem, true));
-        break;
+    const value = readListOrMapItem(field, jsonItem, opts);
+    if (value !== tokenIgnoredUnknownEnum) {
+      list.add(value);
     }
   }
-}
-
-function isSafeNullValueInListOrMap(
-  field: DescField & { fieldKind: "map" | "list" },
-): boolean {
-  return (
-    field.message?.typeName == "google.protobuf.Value" ||
-    field.enum?.typeName == "google.protobuf.NullValue"
-  );
 }
 
 function readMessageField(
@@ -370,7 +339,7 @@ function readMessageField(
   json: JsonValue,
   opts: JsonReadOptions,
 ) {
-  if (json === null && field.message.typeName != "google.protobuf.Value") {
+  if (isResetSentinelNullValue(field, json)) {
     msg.clear(field);
     return;
   }
@@ -385,10 +354,12 @@ function readEnumField(
   json: JsonValue,
   opts: JsonReadOptions,
 ) {
-  const enumValue = readEnum(field.enum, json, opts.ignoreUnknownFields, false);
-  if (enumValue === tokenNull) {
+  if (isResetSentinelNullValue(field, json)) {
     msg.clear(field);
-  } else if (enumValue !== tokenIgnoredUnknownEnum) {
+    return;
+  }
+  const enumValue = readEnum(field.enum, json, opts.ignoreUnknownFields);
+  if (enumValue !== tokenIgnoredUnknownEnum) {
     msg.set(field, enumValue);
   }
 }
@@ -398,39 +369,59 @@ function readScalarField(
   field: DescField & { fieldKind: "scalar" },
   json: JsonValue,
 ) {
-  const scalarValue = scalarFromJson(field, json, false);
-  if (scalarValue === tokenNull) {
+  if (json === null) {
     msg.clear(field);
   } else {
-    msg.set(field, scalarValue);
+    msg.set(field, scalarFromJson(field, json));
   }
+}
+
+/**
+ * Indicates whether a value is a sentinel for reseting a field.
+ *
+ * For this to be true, the value must be a JSON null and the field must not
+ * permit a present, Protobuf-serializable null.
+ *
+ * Only message google.protobuf.Value and enum google.protobuf.NullValue fields
+ * permit Protobuf-serializable nulls.
+ *
+ * Note that field-resetting sentinel nulls are not permitted in lists and maps.
+ */
+function isResetSentinelNullValue(
+  field: DescField & ({ message: DescMessage } | { enum: DescEnum }),
+  json: JsonValue,
+): boolean {
+  return (
+    json === null &&
+    field.message?.typeName != "google.protobuf.Value" &&
+    field.enum?.typeName != "google.protobuf.NullValue"
+  );
 }
 
 const tokenIgnoredUnknownEnum = Symbol();
 
+/**
+ * Try to parse a JSON value to an enum value. JSON null returns the enum's first value.
+ * With ignoreUnknownFields false, unknown values raise a FieldError
+ * With ignoreUnknownFields true, unknown values return tokenIgnoredUnknownEnum.
+ */
+function readEnum(
+  desc: DescEnum,
+  json: JsonValue,
+  ignoreUnknownFields: false,
+): number;
 function readEnum(
   desc: DescEnum,
   json: JsonValue,
   ignoreUnknownFields: boolean,
-  nullAsZeroValue: false,
-): number | typeof tokenIgnoredUnknownEnum | typeof tokenNull;
-function readEnum(
-  desc: DescEnum,
-  json: JsonValue,
-  ignoreUnknownFields: boolean,
-  nullAsZeroValue: true,
 ): number | typeof tokenIgnoredUnknownEnum;
 function readEnum(
   desc: DescEnum,
   json: JsonValue,
   ignoreUnknownFields: boolean,
-  nullAsZeroValue: boolean,
-): number | typeof tokenNull | typeof tokenIgnoredUnknownEnum {
+): number | typeof tokenIgnoredUnknownEnum {
   if (json === null) {
-    if (desc.typeName == "google.protobuf.NullValue") {
-      return 0; // google.protobuf.NullValue.NULL_VALUE = 0
-    }
-    return nullAsZeroValue ? desc.values[0].number : tokenNull;
+    return desc.values[0].number;
   }
   switch (typeof json) {
     case "number":
@@ -451,45 +442,16 @@ function readEnum(
   throw new Error(`cannot decode ${desc} from JSON: ${formatVal(json)}`);
 }
 
-const tokenNull = Symbol();
-
 /**
  * Try to parse a JSON value to a scalar value for the reflect API.
  *
  * Returns the input if the JSON value cannot be converted. Raises a FieldError
  * if conversion would be ambiguous.
- *
- * JSON null returns the scalar zero value.
  */
 function scalarFromJson(
   field: DescField & { scalar: ScalarType },
-  json: JsonValue,
-  nullAsZeroValue: true,
-): ScalarValue;
-/**
- * Try to parse a JSON value to a scalar value for the reflect API.
- *
- * Returns the input if the JSON value cannot be converted. Raises a FieldError
- * if conversion would be ambiguous.
- *
- * JSON null returns the symbol `tokenNull`.
- */
-function scalarFromJson(
-  field: DescField & { scalar: ScalarType },
-  json: JsonValue,
-  nullAsZeroValue: false,
-): ScalarValue | typeof tokenNull | JsonValue;
-function scalarFromJson(
-  field: DescField & { scalar: ScalarType },
-  json: JsonValue,
-  nullAsZeroValue: boolean,
-): ScalarValue | typeof tokenNull | JsonValue {
-  if (json === null) {
-    if (nullAsZeroValue) {
-      return scalarZeroValue(field.scalar, false);
-    }
-    return tokenNull;
-  }
+  json: NonNullable<JsonValue>,
+): ScalarValue | NonNullable<JsonValue> {
   // int64, sfixed64, sint64, fixed64, uint64: Reflect supports string and number.
   // string, bool: Supported by reflect.
   switch (field.scalar) {
@@ -566,25 +528,25 @@ function mapKeyFromJson(
     ScalarType,
     ScalarType.BYTES | ScalarType.DOUBLE | ScalarType.FLOAT
   >,
-  json: JsonValue,
+  jsonString: string,
 ) {
   switch (type) {
     case ScalarType.BOOL:
-      switch (json) {
+      switch (jsonString) {
         case "true":
           return true;
         case "false":
           return false;
       }
-      return json;
+      return jsonString;
     case ScalarType.INT32:
     case ScalarType.FIXED32:
     case ScalarType.UINT32:
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
-      return int32FromJson(json);
+      return int32FromJson(jsonString);
     default:
-      return json;
+      return jsonString;
   }
 }
 
@@ -593,7 +555,7 @@ function mapKeyFromJson(
  *
  * Returns the input if the JSON value cannot be converted.
  */
-function int32FromJson(json: JsonValue) {
+function int32FromJson(json: NonNullable<JsonValue>) {
   if (typeof json == "string") {
     if (json === "") {
       // empty string is not a number
@@ -662,7 +624,7 @@ function tryWktFromJson(
         if (jsonValue === null) {
           msg.clear(valueField);
         } else {
-          msg.set(valueField, scalarFromJson(valueField, jsonValue, true));
+          msg.set(valueField, scalarFromJson(valueField, jsonValue));
         }
         return true;
       }

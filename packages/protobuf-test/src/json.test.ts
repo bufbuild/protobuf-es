@@ -1,4 +1,4 @@
-// Copyright 2021-2025 Buf Technologies, Inc.
+// Copyright 2021-2026 Buf Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -821,6 +821,30 @@ void suite("extensions in JSON", () => {
   });
 });
 
+void suite("JsonReadOptions", () => {
+  void suite("ignoreUnknownFields", () => {
+    test("throws error when false", () => {
+      assert.throws(() =>
+        fromJsonString(proto3_ts.Proto3MessageSchema, '{ "unknown": 1 }', {
+          ignoreUnknownFields: false,
+        }),
+      );
+    });
+    test("does not throw error when true", () => {
+      assert.doesNotThrow(() =>
+        fromJsonString(proto3_ts.Proto3MessageSchema, '{ "unknown": 1 }', {
+          ignoreUnknownFields: true,
+        }),
+      );
+    });
+    test("defaults to false", () => {
+      assert.throws(() =>
+        fromJsonString(proto3_ts.Proto3MessageSchema, '{ "unknown": 1 }'),
+      );
+    });
+  });
+});
+
 void suite("JsonWriteOptions", () => {
   void suite("alwaysEmitImplicit", () => {
     test("emits proto3 implicit fields", async () => {
@@ -927,6 +951,26 @@ void suite("JsonWriteOptions", () => {
       assert.deepStrictEqual(json, {
         scalar_field: "a",
       });
+    });
+  });
+});
+
+void suite("parsing duplicate fields", () => {
+  void suite("proto field name and JSON field name", () => {
+    // This depends on the ECMA-262-defined behavior for JSON.parse() and
+    // Object.entries() and the internal preservation of object key order.
+    test("last entry wins", () => {
+      const a = fromJsonString(
+        proto3_ts.Proto3MessageSchema,
+        '{ "singular_string_field": "b", "singularStringField": "a" }',
+      );
+      const b = fromJsonString(
+        proto3_ts.Proto3MessageSchema,
+        '{ "singularStringField": "a", "singular_string_field": "b" }',
+      );
+
+      assert.equal(a.singularStringField, "a");
+      assert.equal(b.singularStringField, "b");
     });
   });
 });
