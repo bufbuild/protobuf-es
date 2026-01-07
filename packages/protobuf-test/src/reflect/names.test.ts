@@ -156,13 +156,13 @@ void suite("protoCamelCase", () => {
       assert.strictEqual(protoCamelCase(name), protocJsonName);
     });
   }
-  void test("irreversible", () => {
+  void suite("irreversible", () => {
     testIrreversible("foo_", "foo");
     testIrreversible("foo__", "foo");
     testIrreversible("foo__bar", "fooBar");
     testIrreversible("foo_1", "foo1");
     function testIrreversible(snakeCase: string, expectedCamelCase: string) {
-      test(`"${snakeCase}" is irreversible`, () => {
+      void test(`"${snakeCase}" is irreversible`, () => {
         assert.strictEqual(protoCamelCase(snakeCase), expectedCamelCase);
         assert.notStrictEqual(protoSnakeCase(expectedCamelCase), snakeCase);
       });
