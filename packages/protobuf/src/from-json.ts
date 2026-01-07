@@ -747,8 +747,6 @@ function durationFromJson(duration: Duration, json: JsonValue) {
   }
 }
 
-const camelCasePath = /^[a-zA-Z][a-zA-Z0-9]*(\.[a-zA-Z][a-zA-Z0-9]*)*$/;
-
 function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
   if (typeof json !== "string") {
     throw new Error(
@@ -759,7 +757,7 @@ function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
     return;
   }
   fieldMask.paths = json.split(",").map((path) => {
-    if (!camelCasePath.test(path)) {
+    if (path.includes("_")) {
       throw new Error(
         `cannot decode message ${fieldMask.$typeName} from JSON: path names must be lowerCamelCase`,
       );

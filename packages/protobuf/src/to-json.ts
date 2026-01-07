@@ -485,20 +485,12 @@ function durationToJson(val: Duration) {
   return text + "s";
 }
 
-const validPath = /^[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)*$/;
-
 function fieldMaskToJson(val: FieldMask) {
   return val.paths
     .map((p) => {
-      const errorPrefix = `cannot encode message google.protobuf.FieldMask to JSON`;
-      if (!validPath.test(p)) {
-        throw new Error(
-          `${errorPrefix}: path "${p}" contains invalid field name`,
-        );
-      }
       if (protoSnakeCase(protoCamelCase(p)) !== p) {
         throw new Error(
-          `${errorPrefix}: lowerCamelCase of path name "${p}" is irreversible`,
+          `cannot encode message ${val.$typeName} to JSON: lowerCamelCase of path name "${p}" is irreversible`,
         );
       }
       return protoCamelCase(p);
