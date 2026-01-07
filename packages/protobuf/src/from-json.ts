@@ -798,7 +798,7 @@ function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
   function camelToSnake(str: string) {
     if (!camelCasePath.test(str)) {
       throw new Error(
-        `cannot decode message ${fieldMask.$typeName} from JSON: path names must be camel case`,
+        `cannot decode message ${fieldMask.$typeName} from JSON: path names must be lowerCamelCase`,
       );
     }
     return str.replace(/[A-Z]/g, (letter) => "_" + letter.toLowerCase());

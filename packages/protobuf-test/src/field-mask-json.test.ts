@@ -135,21 +135,21 @@ void suite("FieldMask JSON compatibility", () => {
       const message = create(FieldMaskSchema, { paths: ["warBird"] });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "warBird" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "warBird" is irreversible',
       });
     });
     void test("compound path name with uppercase", () => {
       const message = create(FieldMaskSchema, { paths: ["romulan.warBird"] });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "romulan.warBird" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "romulan.warBird" is irreversible',
       });
     });
     void test("path name underscore suffix", () => {
       const message = create(FieldMaskSchema, { paths: ["bird_of_prey_"] });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "bird_of_prey_" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "bird_of_prey_" is irreversible',
       });
     });
     void test("compound path name underscore suffix", () => {
@@ -158,14 +158,14 @@ void suite("FieldMask JSON compatibility", () => {
       });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "klingon_.bird_of_prey" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "klingon_.bird_of_prey" is irreversible',
       });
     });
     void test("path name double underscore prefix", () => {
       const message = create(FieldMaskSchema, { paths: ["__bird_of_prey"] });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "__bird_of_prey" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "__bird_of_prey" is irreversible',
       });
     });
     void test("compound path name double underscore prefix", () => {
@@ -174,14 +174,14 @@ void suite("FieldMask JSON compatibility", () => {
       });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "klingon.__bird_of_prey" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "klingon.__bird_of_prey" is irreversible',
       });
     });
     void test("path name double underscore suffix", () => {
       const message = create(FieldMaskSchema, { paths: ["bird_of_prey__"] });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "bird_of_prey__" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "bird_of_prey__" is irreversible',
       });
     });
     void test("compound path name double underscore suffix", () => {
@@ -190,28 +190,28 @@ void suite("FieldMask JSON compatibility", () => {
       });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "klingon.bird_of_prey__" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "klingon.bird_of_prey__" is irreversible',
       });
     });
     void test("path name double underscore infix", () => {
       const message = create(FieldMaskSchema, { paths: ["war__bird"] });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "war__bird" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "war__bird" is irreversible',
       });
     });
     void test("compound path name double underscore infix", () => {
       const message = create(FieldMaskSchema, { paths: ["romulan.war__bird"] });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "romulan.war__bird" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "romulan.war__bird" is irreversible',
       });
     });
     void test("path name segment digits only infix", () => {
       const message = create(FieldMaskSchema, { paths: ["ncc_1701_c"] });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "ncc_1701_c" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "ncc_1701_c" is irreversible',
       });
     });
     void test("compound path name segment digits only infix", () => {
@@ -220,14 +220,14 @@ void suite("FieldMask JSON compatibility", () => {
       });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "federation.ncc_1701_c" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "federation.ncc_1701_c" is irreversible',
       });
     });
     void test("path name segment digit prefix", () => {
       const message = create(FieldMaskSchema, { paths: ["ncc_1701d"] });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "ncc_1701d" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "ncc_1701d" is irreversible',
       });
     });
     void test("compound path name segment digit prefix", () => {
@@ -236,7 +236,7 @@ void suite("FieldMask JSON compatibility", () => {
       });
       assert.throws(() => toJson(FieldMaskSchema, message), {
         message:
-          'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "federation.ncc_1701d" is irreversible',
+          'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "federation.ncc_1701d" is irreversible',
       });
     });
   });
@@ -246,70 +246,70 @@ void suite("FieldMask JSON compatibility", () => {
       const json = '"1701"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
     void test("compound path name digits only", () => {
       const json = '"ncc.1701"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
     void test("path name segment digits only prefix", () => {
       const json = '"1701C"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
     void test("compound path name segment digits only prefix", () => {
       const json = '"ncc.1701C"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
     void test("path name underscore_infix", () => {
       const json = '"war_bird"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
     void test("compound path name underscore_infix", () => {
       const json = '"romulan.war_bird"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
     void test("path name underscore prefix", () => {
       const json = '"_birdOfPrey"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
     void test("compound path name underscore prefix", () => {
       const json = '"klingon._birdOfPrey"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
     void test("path name underscore suffix", () => {
       const json = '"birdOfPrey_"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
     void test("compound path name underscore suffix", () => {
       const json = '"klingon_.birdOfPrey"';
       assert.throws(() => fromJson(FieldMaskSchema, json), {
         message:
-          "cannot decode message google.protobuf.FieldMask from JSON: path names must be camel case",
+          "cannot decode message google.protobuf.FieldMask from JSON: path names must be lowerCamelCase",
       });
     });
   });

@@ -500,7 +500,7 @@ function fieldMaskToJson(val: FieldMask) {
       }
       if (!reversiblePath.test(p)) {
         throw new Error(
-          `${errorPrefix}: camel case of path name "${p}" is irreversible`,
+          `${errorPrefix}: lowerCamelCase of path name "${p}" is irreversible`,
         );
       }
       return protoCamelCase(p);

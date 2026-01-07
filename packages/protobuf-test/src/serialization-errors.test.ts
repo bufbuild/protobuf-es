@@ -22,7 +22,7 @@ import * as scalar_ts from "./gen/ts/extra/msg-scalar_pb.js";
 
 void suite("serialization errors", () => {
   void suite("google.protobuf.FieldMask ", () => {
-    void suite("camel case path name irreversible", () => {
+    void suite("lowerCamelCase path name irreversible", () => {
       const fieldMask = create(FieldMaskSchema, {
         paths: ["user.displayName", "photo"],
       });
@@ -33,7 +33,7 @@ void suite("serialization errors", () => {
           },
           {
             message:
-              'cannot encode message google.protobuf.FieldMask to JSON: camel case of path name "user.displayName" is irreversible',
+              'cannot encode message google.protobuf.FieldMask to JSON: lowerCamelCase of path name "user.displayName" is irreversible',
           },
         );
       });
