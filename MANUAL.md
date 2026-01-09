@@ -194,6 +194,10 @@ the top of each file to skip type checks: `// @ts-nocheck`.
 Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
 if available. Learn more about [JSON types](#json-types).
 
+### `json_types_numeric_enums=true`
+
+Generates numeric JSON types for every Protobuf enumeration.
+
 ### `valid_types` (experimental)
 
 Generates a Valid type for every Protobuf message. Possible values:
@@ -1373,6 +1377,15 @@ enum Format {
  * @generated from enum Format
  */
 export type FormatJson = "FORMAT_UNSPECIFIED" | "FORMAT_BINARY" | "FORMAT_JSON";
+```
+
+Alternatively the plugin option `json_types_numeric_enums=true` exists. If it's enabled, we generate a union type with all JSON numeric values for the enum:
+
+```ts
+/**
+ * @generated from enum Format
+ */
+export type FormatJson = 1 | 2 | 3;
 ```
 
 With the `enumToJson()` and `enumFromJson()` functions, values can be converted between both representations. With

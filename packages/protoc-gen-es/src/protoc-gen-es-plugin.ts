@@ -55,6 +55,7 @@ export const protocGenEs = createEcmaScriptPlugin({
 
 type Options = {
   jsonTypes: boolean;
+  jsonTypesNumericEnums: boolean;
   validTypes: {
     legacyRequired: boolean;
     protovalidateRequired: boolean;
@@ -68,6 +69,7 @@ function parseOptions(
   }[],
 ): Options {
   let jsonTypes = false;
+  let jsonTypesNumericEnums = false;
   let validTypes = {
     legacyRequired: false,
     protovalidateRequired: false,
@@ -79,6 +81,12 @@ function parseOptions(
           throw "please provide true or false";
         }
         jsonTypes = ["true", "1"].includes(value);
+        break;
+      case "json_types_numeric_enums":
+        if (!["true", "1", "false", "0"].includes(value)) {
+          throw "please provide true or false";
+        }
+        jsonTypesNumericEnums = ["true", "1"].includes(value);
         break;
       case "valid_types":
         for (const part of value.split("+")) {
@@ -98,7 +106,7 @@ function parseOptions(
         throw new Error();
     }
   }
-  return { jsonTypes, validTypes };
+  return { jsonTypes, jsonTypesNumericEnums, validTypes };
 }
 
 // This annotation informs bundlers that the succeeding function call is free of
@@ -139,7 +147,7 @@ function generateTs(schema: Schema<Options>) {
         case "enum": {
           generateEnumShape(f, desc);
           if (schema.options.jsonTypes) {
-            generateEnumJsonShape(f, desc, "ts");
+            generateEnumJsonShape(f, desc, "ts", schema.options.jsonTypesNumericEnums);
           }
           generateDescDoc(f, desc);
           const name = f.importSchema(desc).name;
@@ -281,7 +289,7 @@ function generateDts(schema: Schema<Options>) {
         case "enum": {
           generateEnumShape(f, desc);
           if (schema.options.jsonTypes) {
-            generateEnumJsonShape(f, desc, "dts");
+            generateEnumJsonShape(f, desc, "dts", schema.options.jsonTypesNumericEnums);
           }
           generateDescDoc(f, desc);
           const name = f.importSchema(desc).name;
@@ -407,7 +415,7 @@ function generateEnumShape(f: GeneratedFile, enumeration: DescEnum) {
 }
 
 // biome-ignore format: want this to read well
-function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: Extract<Target, "ts" | "dts">) {
+function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: Extract<Target, "ts" | "dts">, numeric: boolean) {
   f.print(f.jsDoc(enumeration));
   const declaration = target == "ts" ? "type" : "declare type";
   const values: Printable[] = [];
@@ -418,7 +426,11 @@ function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: 
       if (enumeration.values.indexOf(v) > 0) {
         values.push(" | ");
       }
-      values.push(f.string(v.name));
+      if (numeric) {
+        values.push(v.number);
+      } else {
+        values.push(f.string(v.name));
+      }
     }
   }
   f.print(f.export(declaration, f.importJson(enumeration).name), " = ", values, ";");
