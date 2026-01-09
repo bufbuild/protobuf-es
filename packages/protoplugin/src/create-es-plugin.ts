@@ -153,7 +153,7 @@ export function createEcmaScriptPlugin<Options extends object = object>(
         req,
         parameter,
         init.name,
-        init.version,
+        parameter.parsed.elidePluginVersion ? undefined : init.version,
         minimumEdition,
         maximumEdition,
       );

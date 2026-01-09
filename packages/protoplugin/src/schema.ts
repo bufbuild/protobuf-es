@@ -106,7 +106,7 @@ export function createSchema<T extends object>(
   request: CodeGeneratorRequest,
   parameter: ParsedParameter<T>,
   pluginName: string,
-  pluginVersion: string,
+  pluginVersion: string | undefined,
   minimumEdition: Edition,
   maximumEdition: Edition,
 ): SchemaController<T> {
