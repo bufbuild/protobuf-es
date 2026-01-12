@@ -56,6 +56,12 @@ export interface EcmaScriptPluginOptions {
    */
   tsNocheck: boolean;
   /**
+   * Elide the plugin's version at the top of each file.
+   *
+   * The default is false.
+   */
+  elidePluginVersion: boolean;
+  /**
    * Prune empty files from the output.
    *
    * The default is false.
@@ -89,6 +95,7 @@ export function parseParameter<T extends object>(
 ): ParsedParameter<T> {
   let targets: Target[] = ["js", "dts"];
   let tsNocheck = false;
+  let elidePluginVersion = false;
   let bootstrapWkt = false;
   let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
@@ -131,6 +138,20 @@ export function parseParameter<T extends object>(
           case "false":
           case "0":
             tsNocheck = false;
+            break;
+          default:
+            throw new PluginOptionError(raw);
+        }
+        break;
+      case "elide_plugin_version":
+        switch (value) {
+          case "true":
+          case "1":
+            elidePluginVersion = true;
+            break;
+          case "false":
+          case "0":
+            elidePluginVersion = false;
             break;
           default:
             throw new PluginOptionError(raw);
@@ -229,6 +250,7 @@ export function parseParameter<T extends object>(
   const ecmaScriptPluginOptions = {
     targets,
     tsNocheck,
+    elidePluginVersion,
     bootstrapWkt,
     rewriteImports,
     importExtension,

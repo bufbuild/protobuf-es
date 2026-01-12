@@ -189,6 +189,12 @@ time. Unless you use Bazel, you probably don't need this option.
 If you use compiler settings that yield an error for generated code, setting this option generates an annotation at
 the top of each file to skip type checks: `// @ts-nocheck`.
 
+### `elide_plugin_version=true`
+
+By default, [protoc-gen-es] inserts its version number at the top of each generated file. To remove the version number,
+set `elide_plugin_version=true`. Be aware that we recommend to keep plugin and runtime versions in sync, and that this
+option can make it more difficult to spot a mismatch.
+
 ### `json_types=true`
 
 Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
