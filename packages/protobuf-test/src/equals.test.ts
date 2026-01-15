@@ -360,5 +360,11 @@ void suite("equals()", () => {
       b.value.set(a.value, a.value.byteLength);
       assert.strictEqual(anyEq(a, b, reg), true);
     });
+    test("empty Any equals empty Any", () => {
+      const reg = createRegistry();
+      const a = create(AnySchema);
+      const b = create(AnySchema);
+      assert.strictEqual(anyEq(a, b, reg), true);
+    });
   });
 });
