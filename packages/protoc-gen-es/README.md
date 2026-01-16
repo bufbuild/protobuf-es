@@ -29,6 +29,8 @@ Add a new `buf.gen.yaml` configuration file:
 ```yaml
 # Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
 version: v2
+inputs:
+  - directory: proto
 plugins:
   # This will invoke protoc-gen-es and write output to src/gen
   - local: protoc-gen-es
@@ -51,14 +53,14 @@ not just local Protobuf files.
 
 ```bash
 PATH=$PATH:$(pwd)/node_modules/.bin \
-  protoc -I . \
+  protoc --proto_path proto \
   --es_out src/gen \
   --es_opt target=ts \
-  a.proto b.proto c.proto
+  proto/a.proto proto/b.proto proto/c.proto
 ```
 
 Note that `node_modules/.bin` needs to be added to the `$PATH` so that the Protobuf compiler can find the plugin. This
-happens automatically with npm scripts.
+happens automatically with npm scripts and with `npx`.
 
 If you use Yarn, versions v2 and above don't use a `node_modules` directory, so you need to change the variable a
 bit:
