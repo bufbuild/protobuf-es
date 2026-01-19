@@ -34,8 +34,7 @@ To learn more about Protobuf's capabilities, read the [official language guide][
 
 ## What is Protobuf-ES?
 
-Protobuf-ES is a complete implementation of Protocol Buffers in TypeScript, suitable for web browsers, Node.js, and Deno,
-created by [Buf]. It's the only fully-compliant JavaScript Protobuf library that passes the Protobuf conformance
+Protobuf-ES is a complete implementation of Protocol Buffers in TypeScript, suitable for web browsers, Node.js, Deno, and Bun, created by [Buf]. It's the only fully-compliant JavaScript Protobuf library that passes the Protobuf conformance
 tests—[read more on our blog][blog-post].
 
 Protobuf-ES consists of three npm packages:
