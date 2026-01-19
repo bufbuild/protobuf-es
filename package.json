@@ -23,7 +23,8 @@
     "release": "npm run all && node scripts/release.js",
     "format": "biome format --write --config-path biome.json",
     "license-header": "license-header --ignore 'packages/**'",
-    "lint": "biome lint --error-on-warnings --config-path biome.json"
+    "lint": "biome lint --error-on-warnings --config-path biome.json",
+    "postinstall": "node scripts/nohoist.js --check"
   },
   "type": "module",
   "engineStrict": true,
@@ -44,9 +45,5 @@
     "@types/node": "^25.0.3",
     "turbo": "^2.7.2",
     "typescript": "^5.9.2"
-  },
-  "//": "avoid hoisting of @typescript/vfs, see packages/protoplugin/src/transpile.ts",
-  "dependencies": {
-    "@typescript/vfs": "1.0.0"
   }
 }
