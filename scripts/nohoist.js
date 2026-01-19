@@ -110,7 +110,7 @@ function moveFiles(sourceDir, targetDir) {
     const targetPath = path.join(targetDir, ent.name);
     if (ent.isDirectory()) {
       moveFiles(sourcePath, targetPath);
-      rmSync(sourcePath, {recursive: true});
+      rmSync(sourcePath, { recursive: true });
     } else {
       if (!existsSync(targetDir)) {
         mkdirSync(targetDir, { recursive: true });
