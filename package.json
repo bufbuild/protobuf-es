@@ -23,7 +23,8 @@
     "release": "npm run all && node scripts/release.js",
     "format": "biome format --write --config-path biome.json",
     "license-header": "license-header --ignore 'packages/**'",
-    "lint": "biome lint --error-on-warnings --config-path biome.json"
+    "lint": "biome lint --error-on-warnings --config-path biome.json",
+    "postinstall": "node scripts/nohoist.js --check"
   },
   "type": "module",
   "engineStrict": true,
