@@ -20,6 +20,7 @@ import {
   getExtension,
   toBinary,
   fromBinary,
+  fromJsonString,
 } from "@bufbuild/protobuf";
 import {
   type MessageInitShape,
@@ -43,6 +44,8 @@ import {
 import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
+import { compileMessage } from "./helpers.js";
+import { BinaryReader, WireType } from "@bufbuild/protobuf/wire";
 
 void suite(`binary serialization`, () => {
   testBinary(ScalarValuesMessageSchema, {
@@ -209,6 +212,118 @@ void suite(`binary serialization`, () => {
       message:
         "cannot encode field spec.ScalarValuesMessage.uint32_field to binary: invalid uint32: -1",
     });
+  });
+  void test("map fields with message_encoding DELIMITED", async () => {
+    const descMessage = await compileMessage(`
+      edition = "2023";
+      option features.message_encoding = DELIMITED;
+      package example;
+      message User {
+        string username = 1;
+        Project singular = 2;
+        map<string, Project> map = 3;
+      }
+      message Project {
+        string name = 4;
+        User user = 5;
+      }
+    `);
+    const message = fromJsonString(
+      descMessage,
+      `
+      {
+        "username":  "a",
+        "singular":  {
+          "name":  "b",
+          "user":  {
+            "username":  "c"
+          }
+        },
+        "map":  {
+          "d":  {
+            "name":  "e",
+            "user":  {
+              "username":  "f"
+            }
+          }
+        }
+      }
+    `,
+    );
+    const bytes = toBinary(descMessage, message);
+    const r = new BinaryReader(bytes);
+
+    // username
+    let [fieldNo] = r.tag();
+    assert.strictEqual(fieldNo, 1);
+    assert.strictEqual(r.string(), "a");
+    {
+      // singular
+      let [fieldNo, wireType] = r.tag();
+      assert.strictEqual(fieldNo, 2);
+      assert.strictEqual(wireType, WireType.StartGroup);
+      // singular.name
+      [fieldNo] = r.tag();
+      assert.strictEqual(fieldNo, 4);
+      assert.strictEqual(r.string(), "b");
+      {
+        // singular.user
+        let [fieldNo, wireType] = r.tag();
+        assert.strictEqual(fieldNo, 5);
+        assert.strictEqual(wireType, WireType.StartGroup);
+        // singular.user.username
+        [fieldNo] = r.tag();
+        assert.strictEqual(fieldNo, 1);
+        assert.strictEqual(r.string(), "c");
+        // singular.user end group
+        [fieldNo, wireType] = r.tag();
+        assert.strictEqual(fieldNo, 5);
+        assert.strictEqual(wireType, WireType.EndGroup);
+      }
+      // singular end group
+      [fieldNo, wireType] = r.tag();
+      assert.strictEqual(fieldNo, 2);
+      assert.strictEqual(wireType, WireType.EndGroup);
+    }
+    {
+      // map
+      let [fieldNo, wireType] = r.tag();
+      assert.strictEqual(fieldNo, 3);
+      assert.strictEqual(wireType, WireType.LengthDelimited);
+      assert.ok(r.uint32() > 0);
+      {
+        // map["d"] (map key)
+        let [fieldNo] = r.tag();
+        assert.strictEqual(fieldNo, 1);
+        assert.strictEqual(r.string(), "d");
+      }
+      {
+        // map["d"] (map value)
+        let [fieldNo, wireType] = r.tag();
+        assert.strictEqual(fieldNo, 2);
+        assert.strictEqual(wireType, WireType.LengthDelimited);
+        assert.ok(r.uint32() > 0);
+        // map["d"].name
+        [fieldNo] = r.tag();
+        assert.strictEqual(fieldNo, 4);
+        assert.strictEqual(r.string(), "e");
+        {
+          // map["d"].user
+          let [fieldNo, wireType] = r.tag();
+          assert.strictEqual(fieldNo, 5);
+          assert.strictEqual(wireType, WireType.StartGroup);
+          // map["d"].user.username
+          [fieldNo] = r.tag();
+          assert.strictEqual(fieldNo, 1);
+          assert.strictEqual(r.string(), "f");
+          // map["d"].user end group
+          [fieldNo, wireType] = r.tag();
+          assert.strictEqual(fieldNo, 5);
+          assert.strictEqual(wireType, WireType.EndGroup);
+        }
+      }
+    }
+    assert.strictEqual(r.pos, r.len);
   });
 });
 
