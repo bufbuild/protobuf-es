@@ -1,5 +1,6 @@
 {
   "name": "@bufbuild/bun-conformance",
+  "private": true,
   "scripts": {
     "pregenerate": "rm -rf src/gen/* && rm -rf .tmp/proto/* && conformance_proto_eject .tmp/proto",
     "generate": "protoc --es_out=src/gen --es_opt=target=ts,import_extension=ts --proto_path=.tmp/proto $(buf ls-files .tmp/proto)",
@@ -13,8 +14,8 @@
   "devDependencies": {
     "@types/bun": "^1.3.6",
     "@bufbuild/buf": "^1.62.1",
-    "@bufbuild/protobuf": "2.10.2",
-    "@bufbuild/protoc-gen-es": "2.10.2",
+    "@bufbuild/protobuf": "2.11.0",
+    "@bufbuild/protoc-gen-es": "2.11.0",
     "protobuf-conformance": "33.2.0"
   }
 }
