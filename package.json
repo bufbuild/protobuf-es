@@ -13,7 +13,8 @@
     "packages/protobuf-example",
     "packages/upstream-protobuf",
     "packages/typescript-compat/*",
-    "deno/conformance"
+    "deno/conformance",
+    "bun/conformance"
   ],
   "scripts": {
     "clean": "git clean -Xdf",

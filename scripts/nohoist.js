@@ -43,6 +43,8 @@ const doNotHoist = {
   // see packages/protoplugin/src/transpile.ts
   "node_modules/@typescript/vfs":
     "packages/protoplugin/node_modules/@typescript/vfs",
+  // Isolate @types/bun
+  "node_modules/@types/bun": "bun/conformance/node_modules/@types/bun",
 };
 const lockFilePath = "package-lock.json";
 const lockFile = readLockfile(lockFilePath);

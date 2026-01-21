@@ -1,0 +1,49 @@
+name: bun
+on:
+  push:
+    branches: [main, "v*"]
+    tags: ["v*"]
+  pull_request:
+    branches: [main, "v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # https://consoledonottrack.com/
+  DO_NOT_TRACK: 1
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.x.x
+      - uses: actions/checkout@v6
+      - uses: actions/cache@v5
+        with:
+          path: .turbo
+          key: protobuf-es/bun/conformance/${{ github.sha }}
+          restore-keys: protobuf-es/bun/conformance
+      - run: npm ci
+      - run: npx turbo run test -F './bun/conformance'
+      - run: node scripts/gh-diffcheck.js
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.x.x
+      - uses: actions/checkout@v6
+      - uses: actions/cache@v5
+        with:
+          path: .turbo
+          key: protobuf-es/bun/example/${{ github.sha }}
+          restore-keys: protobuf-es/bun/example
+      - name: bun test
+        run: |
+          bun install
+          bun test
+        working-directory: bun/example
