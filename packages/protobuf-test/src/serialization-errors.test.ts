@@ -217,6 +217,17 @@ void suite("serialization errors", () => {
         /^cannot encode field spec.ScalarValuesMessage.uint64_field to binary: invalid uint64: -1$/,
     },
     {
+      name: "uint64 field Infinity",
+      val(m) {
+        // @ts-expect-error TS2322: Type number is not assignable to type bigint
+        m.uint64Field = Number.POSITIVE_INFINITY;
+      },
+      jsonErr:
+        /^cannot encode field spec.ScalarValuesMessage.uint64_field to JSON: expected bigint \(uint64\): Infinity out of range/,
+      binaryErr:
+        /^cannot encode field spec.ScalarValuesMessage.uint64_field to binary: The number Infinity cannot be converted to a BigInt because it is not an integer$/,
+    },
+    {
       name: "bytes field true",
       val(m) {
         // @ts-expect-error TS2322

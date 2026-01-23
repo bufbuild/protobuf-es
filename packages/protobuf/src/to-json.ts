@@ -369,12 +369,16 @@ function scalarToJson(
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
-      if (typeof value != "bigint" && typeof value != "string") {
-        throw new Error(
-          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
-        );
+      if (
+        typeof value == "bigint" ||
+        typeof value == "string" ||
+        (typeof value == "number" && Number.isInteger(value))
+      ) {
+        return value.toString();
       }
-      return value.toString();
+      throw new Error(
+        `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
+      );
 
     // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
