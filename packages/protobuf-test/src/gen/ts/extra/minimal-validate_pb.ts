@@ -115,7 +115,7 @@ export type RepeatedRules = Message<"buf.validate.RepeatedRules"> & {
   /**
    * @generated from field: optional buf.validate.FieldRules items = 4;
    */
-  items?: FieldRules;
+  items?: FieldRules | undefined;
 };
 
 /**
@@ -132,7 +132,7 @@ export type MapRules = Message<"buf.validate.MapRules"> & {
   /**
    * @generated from field: optional buf.validate.FieldRules values = 5;
    */
-  values?: FieldRules;
+  values?: FieldRules | undefined;
 };
 
 /**

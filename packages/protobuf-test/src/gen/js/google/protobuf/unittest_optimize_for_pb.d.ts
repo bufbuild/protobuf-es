@@ -43,7 +43,7 @@ export declare type TestOptimizedForSize = Message<"proto2_unittest.TestOptimize
   /**
    * @generated from field: optional proto2_unittest.ForeignMessage msg = 19;
    */
-  msg?: ForeignMessage;
+  msg?: ForeignMessage | undefined;
 
   /**
    * @generated from oneof proto2_unittest.TestOptimizedForSize.foo
@@ -102,7 +102,7 @@ export declare type TestOptionalOptimizedForSize = Message<"proto2_unittest.Test
   /**
    * @generated from field: optional proto2_unittest.TestRequiredOptimizedForSize o = 1;
    */
-  o?: TestRequiredOptimizedForSize;
+  o?: TestRequiredOptimizedForSize | undefined;
 };
 
 /**

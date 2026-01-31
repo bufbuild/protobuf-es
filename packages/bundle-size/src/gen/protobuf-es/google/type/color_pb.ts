@@ -192,7 +192,7 @@ export type Color = Message<"google.type.Color"> & {
    *
    * @generated from field: google.protobuf.FloatValue alpha = 4;
    */
-  alpha?: number;
+  alpha?: number | undefined;
 };
 
 /**

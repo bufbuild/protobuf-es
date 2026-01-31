@@ -47,7 +47,7 @@ export type Interval = Message<"google.type.Interval"> & {
    *
    * @generated from field: google.protobuf.Timestamp start_time = 1;
    */
-  startTime?: Timestamp;
+  startTime?: Timestamp | undefined;
 
   /**
    * Optional. Exclusive end of the interval.
@@ -57,7 +57,7 @@ export type Interval = Message<"google.type.Interval"> & {
    *
    * @generated from field: google.protobuf.Timestamp end_time = 2;
    */
-  endTime?: Timestamp;
+  endTime?: Timestamp | undefined;
 };
 
 /**

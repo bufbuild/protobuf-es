@@ -39,7 +39,7 @@ export type User = Message$1<"spec.User"> & {
    *
    * @generated from field: example.User u = 1;
    */
-  u?: User$1;
+  u?: User$1 | undefined;
 };
 
 /**
@@ -958,7 +958,7 @@ export type NoClashOneofADT = Message$1<"spec.NoClashOneofADT"> & {
   /**
    * @generated from field: spec.NoClashOneofADT.M m = 1;
    */
-  m?: NoClashOneofADT_M;
+  m?: NoClashOneofADT_M | undefined;
 };
 
 /**
@@ -980,7 +980,7 @@ export type NoClashOneofADT_M = Message$1<"spec.NoClashOneofADT.M"> & {
   /**
    * @generated from field: optional string value = 2;
    */
-  value?: string;
+  value?: string | undefined;
 };
 
 /**
