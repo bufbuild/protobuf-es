@@ -252,7 +252,7 @@ export type Any = Message<"google.protobuf.Any"> & {
  * @generated from message google.protobuf.Any
  */
 export type AnyJson = {
-  "@type"?: string;
+  "@type": string;
 };
 
 /**

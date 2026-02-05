@@ -59,7 +59,7 @@ export type FileDescriptorSetJson = {
   /**
    * @generated from field: repeated google.protobuf.FileDescriptorProto file = 1;
    */
-  file?: FileDescriptorProtoJson[];
+  file: FileDescriptorProtoJson[];
 };
 
 /**
@@ -144,7 +144,7 @@ export type FileDescriptorProto = Message<"google.protobuf.FileDescriptorProto">
   /**
    * @generated from field: optional google.protobuf.FileOptions options = 8;
    */
-  options?: FileOptions;
+  options: FileOptions;
 
   /**
    * This field contains optional information about the original source code.
@@ -154,7 +154,7 @@ export type FileDescriptorProto = Message<"google.protobuf.FileDescriptorProto">
    *
    * @generated from field: optional google.protobuf.SourceCodeInfo source_code_info = 9;
    */
-  sourceCodeInfo?: SourceCodeInfo;
+  sourceCodeInfo: SourceCodeInfo;
 
   /**
    * The syntax of the proto file.
@@ -191,28 +191,28 @@ export type FileDescriptorProtoJson = {
    *
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * e.g. "foo", "foo.bar", etc.
    *
    * @generated from field: optional string package = 2;
    */
-  package?: string;
+  package: string;
 
   /**
    * Names of files imported by this file.
    *
    * @generated from field: repeated string dependency = 3;
    */
-  dependency?: string[];
+  dependency: string[];
 
   /**
    * Indexes of the public imported files in the dependency list above.
    *
    * @generated from field: repeated int32 public_dependency = 10;
    */
-  publicDependency?: number[];
+  publicDependency: number[];
 
   /**
    * Indexes of the weak imported files in the dependency list.
@@ -220,7 +220,7 @@ export type FileDescriptorProtoJson = {
    *
    * @generated from field: repeated int32 weak_dependency = 11;
    */
-  weakDependency?: number[];
+  weakDependency: number[];
 
   /**
    * Names of files imported by this file purely for the purpose of providing
@@ -228,34 +228,34 @@ export type FileDescriptorProtoJson = {
    *
    * @generated from field: repeated string option_dependency = 15;
    */
-  optionDependency?: string[];
+  optionDependency: string[];
 
   /**
    * All top-level definitions in this file.
    *
    * @generated from field: repeated google.protobuf.DescriptorProto message_type = 4;
    */
-  messageType?: DescriptorProtoJson[];
+  messageType: DescriptorProtoJson[];
 
   /**
    * @generated from field: repeated google.protobuf.EnumDescriptorProto enum_type = 5;
    */
-  enumType?: EnumDescriptorProtoJson[];
+  enumType: EnumDescriptorProtoJson[];
 
   /**
    * @generated from field: repeated google.protobuf.ServiceDescriptorProto service = 6;
    */
-  service?: ServiceDescriptorProtoJson[];
+  service: ServiceDescriptorProtoJson[];
 
   /**
    * @generated from field: repeated google.protobuf.FieldDescriptorProto extension = 7;
    */
-  extension?: FieldDescriptorProtoJson[];
+  extension: FieldDescriptorProtoJson[];
 
   /**
    * @generated from field: optional google.protobuf.FileOptions options = 8;
    */
-  options?: FileOptionsJson;
+  options: FileOptionsJson;
 
   /**
    * This field contains optional information about the original source code.
@@ -265,7 +265,7 @@ export type FileDescriptorProtoJson = {
    *
    * @generated from field: optional google.protobuf.SourceCodeInfo source_code_info = 9;
    */
-  sourceCodeInfo?: SourceCodeInfoJson;
+  sourceCodeInfo: SourceCodeInfoJson;
 
   /**
    * The syntax of the proto file.
@@ -278,7 +278,7 @@ export type FileDescriptorProtoJson = {
    *
    * @generated from field: optional string syntax = 12;
    */
-  syntax?: string;
+  syntax: string;
 
   /**
    * The edition of the proto file.
@@ -288,7 +288,7 @@ export type FileDescriptorProtoJson = {
    *
    * @generated from field: optional google.protobuf.Edition edition = 14;
    */
-  edition?: EditionJson;
+  edition: EditionJson;
 };
 
 /**
@@ -342,7 +342,7 @@ export type DescriptorProto = Message<"google.protobuf.DescriptorProto"> & {
   /**
    * @generated from field: optional google.protobuf.MessageOptions options = 7;
    */
-  options?: MessageOptions;
+  options: MessageOptions;
 
   /**
    * @generated from field: repeated google.protobuf.DescriptorProto.ReservedRange reserved_range = 9;
@@ -374,47 +374,47 @@ export type DescriptorProtoJson = {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * @generated from field: repeated google.protobuf.FieldDescriptorProto field = 2;
    */
-  field?: FieldDescriptorProtoJson[];
+  field: FieldDescriptorProtoJson[];
 
   /**
    * @generated from field: repeated google.protobuf.FieldDescriptorProto extension = 6;
    */
-  extension?: FieldDescriptorProtoJson[];
+  extension: FieldDescriptorProtoJson[];
 
   /**
    * @generated from field: repeated google.protobuf.DescriptorProto nested_type = 3;
    */
-  nestedType?: DescriptorProtoJson[];
+  nestedType: DescriptorProtoJson[];
 
   /**
    * @generated from field: repeated google.protobuf.EnumDescriptorProto enum_type = 4;
    */
-  enumType?: EnumDescriptorProtoJson[];
+  enumType: EnumDescriptorProtoJson[];
 
   /**
    * @generated from field: repeated google.protobuf.DescriptorProto.ExtensionRange extension_range = 5;
    */
-  extensionRange?: DescriptorProto_ExtensionRangeJson[];
+  extensionRange: DescriptorProto_ExtensionRangeJson[];
 
   /**
    * @generated from field: repeated google.protobuf.OneofDescriptorProto oneof_decl = 8;
    */
-  oneofDecl?: OneofDescriptorProtoJson[];
+  oneofDecl: OneofDescriptorProtoJson[];
 
   /**
    * @generated from field: optional google.protobuf.MessageOptions options = 7;
    */
-  options?: MessageOptionsJson;
+  options: MessageOptionsJson;
 
   /**
    * @generated from field: repeated google.protobuf.DescriptorProto.ReservedRange reserved_range = 9;
    */
-  reservedRange?: DescriptorProto_ReservedRangeJson[];
+  reservedRange: DescriptorProto_ReservedRangeJson[];
 
   /**
    * Reserved field names, which may not be used by fields in the same message.
@@ -422,14 +422,14 @@ export type DescriptorProtoJson = {
    *
    * @generated from field: repeated string reserved_name = 10;
    */
-  reservedName?: string[];
+  reservedName: string[];
 
   /**
    * Support for `export` and `local` keywords on enums.
    *
    * @generated from field: optional google.protobuf.SymbolVisibility visibility = 11;
    */
-  visibility?: SymbolVisibilityJson;
+  visibility: SymbolVisibilityJson;
 };
 
 /**
@@ -460,7 +460,7 @@ export type DescriptorProto_ExtensionRange = Message<"google.protobuf.Descriptor
   /**
    * @generated from field: optional google.protobuf.ExtensionRangeOptions options = 3;
    */
-  options?: ExtensionRangeOptions;
+  options: ExtensionRangeOptions;
 };
 
 /**
@@ -472,19 +472,19 @@ export type DescriptorProto_ExtensionRangeJson = {
    *
    * @generated from field: optional int32 start = 1;
    */
-  start?: number;
+  start: number;
 
   /**
    * Exclusive.
    *
    * @generated from field: optional int32 end = 2;
    */
-  end?: number;
+  end: number;
 
   /**
    * @generated from field: optional google.protobuf.ExtensionRangeOptions options = 3;
    */
-  options?: ExtensionRangeOptionsJson;
+  options: ExtensionRangeOptionsJson;
 };
 
 /**
@@ -530,14 +530,14 @@ export type DescriptorProto_ReservedRangeJson = {
    *
    * @generated from field: optional int32 start = 1;
    */
-  start?: number;
+  start: number;
 
   /**
    * Exclusive.
    *
    * @generated from field: optional int32 end = 2;
    */
-  end?: number;
+  end: number;
 };
 
 /**
@@ -572,7 +572,7 @@ export type ExtensionRangeOptions = Message<"google.protobuf.ExtensionRangeOptio
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 50;
    */
-  features?: FeatureSet;
+  features: FeatureSet;
 
   /**
    * The verification state of the range.
@@ -593,7 +593,7 @@ export type ExtensionRangeOptionsJson = {
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
    */
-  uninterpretedOption?: UninterpretedOptionJson[];
+  uninterpretedOption: UninterpretedOptionJson[];
 
   /**
    * For external users: DO NOT USE. We are in the process of open sourcing
@@ -602,14 +602,14 @@ export type ExtensionRangeOptionsJson = {
    *
    * @generated from field: repeated google.protobuf.ExtensionRangeOptions.Declaration declaration = 2;
    */
-  declaration?: ExtensionRangeOptions_DeclarationJson[];
+  declaration: ExtensionRangeOptions_DeclarationJson[];
 
   /**
    * Any features defined in the specific edition.
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 50;
    */
-  features?: FeatureSetJson;
+  features: FeatureSetJson;
 
   /**
    * The verification state of the range.
@@ -618,7 +618,7 @@ export type ExtensionRangeOptionsJson = {
    *
    * @generated from field: optional google.protobuf.ExtensionRangeOptions.VerificationState verification = 3 [default = UNVERIFIED];
    */
-  verification?: ExtensionRangeOptions_VerificationStateJson;
+  verification: ExtensionRangeOptions_VerificationStateJson;
 };
 
 /**
@@ -683,7 +683,7 @@ export type ExtensionRangeOptions_DeclarationJson = {
    *
    * @generated from field: optional int32 number = 1;
    */
-  number?: number;
+  number: number;
 
   /**
    * The fully-qualified name of the extension field. There must be a leading
@@ -691,7 +691,7 @@ export type ExtensionRangeOptions_DeclarationJson = {
    *
    * @generated from field: optional string full_name = 2;
    */
-  fullName?: string;
+  fullName: string;
 
   /**
    * The fully-qualified type name of the extension field. Unlike
@@ -700,7 +700,7 @@ export type ExtensionRangeOptions_DeclarationJson = {
    *
    * @generated from field: optional string type = 3;
    */
-  type?: string;
+  type: string;
 
   /**
    * If true, indicates that the number is reserved in the extension range,
@@ -709,7 +709,7 @@ export type ExtensionRangeOptions_DeclarationJson = {
    *
    * @generated from field: optional bool reserved = 5;
    */
-  reserved?: boolean;
+  reserved: boolean;
 
   /**
    * If true, indicates that the extension must be defined as repeated.
@@ -717,7 +717,7 @@ export type ExtensionRangeOptions_DeclarationJson = {
    *
    * @generated from field: optional bool repeated = 6;
    */
-  repeated?: boolean;
+  repeated: boolean;
 };
 
 /**
@@ -838,7 +838,7 @@ export type FieldDescriptorProto = Message<"google.protobuf.FieldDescriptorProto
   /**
    * @generated from field: optional google.protobuf.FieldOptions options = 8;
    */
-  options?: FieldOptions;
+  options: FieldOptions;
 
   /**
    * If true, this is a proto3 "optional". When a proto3 field is optional, it
@@ -877,17 +877,17 @@ export type FieldDescriptorProtoJson = {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * @generated from field: optional int32 number = 3;
    */
-  number?: number;
+  number: number;
 
   /**
    * @generated from field: optional google.protobuf.FieldDescriptorProto.Label label = 4;
    */
-  label?: FieldDescriptorProto_LabelJson;
+  label: FieldDescriptorProto_LabelJson;
 
   /**
    * If type_name is set, this need not be set.  If both this and type_name
@@ -895,7 +895,7 @@ export type FieldDescriptorProtoJson = {
    *
    * @generated from field: optional google.protobuf.FieldDescriptorProto.Type type = 5;
    */
-  type?: FieldDescriptorProto_TypeJson;
+  type: FieldDescriptorProto_TypeJson;
 
   /**
    * For message and enum types, this is the name of the type.  If the name
@@ -906,7 +906,7 @@ export type FieldDescriptorProtoJson = {
    *
    * @generated from field: optional string type_name = 6;
    */
-  typeName?: string;
+  typeName: string;
 
   /**
    * For extensions, this is the name of the type being extended.  It is
@@ -914,7 +914,7 @@ export type FieldDescriptorProtoJson = {
    *
    * @generated from field: optional string extendee = 2;
    */
-  extendee?: string;
+  extendee: string;
 
   /**
    * For numeric types, contains the original text representation of the value.
@@ -924,7 +924,7 @@ export type FieldDescriptorProtoJson = {
    *
    * @generated from field: optional string default_value = 7;
    */
-  defaultValue?: string;
+  defaultValue: string;
 
   /**
    * If set, gives the index of a oneof in the containing type's oneof_decl
@@ -932,7 +932,7 @@ export type FieldDescriptorProtoJson = {
    *
    * @generated from field: optional int32 oneof_index = 9;
    */
-  oneofIndex?: number;
+  oneofIndex: number;
 
   /**
    * JSON name of this field. The value is set by protocol compiler. If the
@@ -942,12 +942,12 @@ export type FieldDescriptorProtoJson = {
    *
    * @generated from field: optional string json_name = 10;
    */
-  jsonName?: string;
+  jsonName: string;
 
   /**
    * @generated from field: optional google.protobuf.FieldOptions options = 8;
    */
-  options?: FieldOptionsJson;
+  options: FieldOptionsJson;
 
   /**
    * If true, this is a proto3 "optional". When a proto3 field is optional, it
@@ -974,7 +974,7 @@ export type FieldDescriptorProtoJson = {
    *
    * @generated from field: optional bool proto3_optional = 17;
    */
-  proto3Optional?: boolean;
+  proto3Optional: boolean;
 };
 
 /**
@@ -1164,7 +1164,7 @@ export type OneofDescriptorProto = Message<"google.protobuf.OneofDescriptorProto
   /**
    * @generated from field: optional google.protobuf.OneofOptions options = 2;
    */
-  options?: OneofOptions;
+  options: OneofOptions;
 };
 
 /**
@@ -1176,12 +1176,12 @@ export type OneofDescriptorProtoJson = {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * @generated from field: optional google.protobuf.OneofOptions options = 2;
    */
-  options?: OneofOptionsJson;
+  options: OneofOptionsJson;
 };
 
 /**
@@ -1210,7 +1210,7 @@ export type EnumDescriptorProto = Message<"google.protobuf.EnumDescriptorProto">
   /**
    * @generated from field: optional google.protobuf.EnumOptions options = 3;
    */
-  options?: EnumOptions;
+  options: EnumOptions;
 
   /**
    * Range of reserved numeric values. Reserved numeric values may not be used
@@ -1246,17 +1246,17 @@ export type EnumDescriptorProtoJson = {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * @generated from field: repeated google.protobuf.EnumValueDescriptorProto value = 2;
    */
-  value?: EnumValueDescriptorProtoJson[];
+  value: EnumValueDescriptorProtoJson[];
 
   /**
    * @generated from field: optional google.protobuf.EnumOptions options = 3;
    */
-  options?: EnumOptionsJson;
+  options: EnumOptionsJson;
 
   /**
    * Range of reserved numeric values. Reserved numeric values may not be used
@@ -1265,7 +1265,7 @@ export type EnumDescriptorProtoJson = {
    *
    * @generated from field: repeated google.protobuf.EnumDescriptorProto.EnumReservedRange reserved_range = 4;
    */
-  reservedRange?: EnumDescriptorProto_EnumReservedRangeJson[];
+  reservedRange: EnumDescriptorProto_EnumReservedRangeJson[];
 
   /**
    * Reserved enum value names, which may not be reused. A given name may only
@@ -1273,14 +1273,14 @@ export type EnumDescriptorProtoJson = {
    *
    * @generated from field: repeated string reserved_name = 5;
    */
-  reservedName?: string[];
+  reservedName: string[];
 
   /**
    * Support for `export` and `local` keywords on enums.
    *
    * @generated from field: optional google.protobuf.SymbolVisibility visibility = 6;
    */
-  visibility?: SymbolVisibilityJson;
+  visibility: SymbolVisibilityJson;
 };
 
 /**
@@ -1332,14 +1332,14 @@ export type EnumDescriptorProto_EnumReservedRangeJson = {
    *
    * @generated from field: optional int32 start = 1;
    */
-  start?: number;
+  start: number;
 
   /**
    * Inclusive.
    *
    * @generated from field: optional int32 end = 2;
    */
-  end?: number;
+  end: number;
 };
 
 /**
@@ -1368,7 +1368,7 @@ export type EnumValueDescriptorProto = Message<"google.protobuf.EnumValueDescrip
   /**
    * @generated from field: optional google.protobuf.EnumValueOptions options = 3;
    */
-  options?: EnumValueOptions;
+  options: EnumValueOptions;
 };
 
 /**
@@ -1380,17 +1380,17 @@ export type EnumValueDescriptorProtoJson = {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * @generated from field: optional int32 number = 2;
    */
-  number?: number;
+  number: number;
 
   /**
    * @generated from field: optional google.protobuf.EnumValueOptions options = 3;
    */
-  options?: EnumValueOptionsJson;
+  options: EnumValueOptionsJson;
 };
 
 /**
@@ -1419,7 +1419,7 @@ export type ServiceDescriptorProto = Message<"google.protobuf.ServiceDescriptorP
   /**
    * @generated from field: optional google.protobuf.ServiceOptions options = 3;
    */
-  options?: ServiceOptions;
+  options: ServiceOptions;
 };
 
 /**
@@ -1431,17 +1431,17 @@ export type ServiceDescriptorProtoJson = {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * @generated from field: repeated google.protobuf.MethodDescriptorProto method = 2;
    */
-  method?: MethodDescriptorProtoJson[];
+  method: MethodDescriptorProtoJson[];
 
   /**
    * @generated from field: optional google.protobuf.ServiceOptions options = 3;
    */
-  options?: ServiceOptionsJson;
+  options: ServiceOptionsJson;
 };
 
 /**
@@ -1478,7 +1478,7 @@ export type MethodDescriptorProto = Message<"google.protobuf.MethodDescriptorPro
   /**
    * @generated from field: optional google.protobuf.MethodOptions options = 4;
    */
-  options?: MethodOptions;
+  options: MethodOptions;
 
   /**
    * Identifies if client streams multiple client messages
@@ -1504,7 +1504,7 @@ export type MethodDescriptorProtoJson = {
   /**
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * Input and output type names.  These are resolved in the same way as
@@ -1512,31 +1512,31 @@ export type MethodDescriptorProtoJson = {
    *
    * @generated from field: optional string input_type = 2;
    */
-  inputType?: string;
+  inputType: string;
 
   /**
    * @generated from field: optional string output_type = 3;
    */
-  outputType?: string;
+  outputType: string;
 
   /**
    * @generated from field: optional google.protobuf.MethodOptions options = 4;
    */
-  options?: MethodOptionsJson;
+  options: MethodOptionsJson;
 
   /**
    * Identifies if client streams multiple client messages
    *
    * @generated from field: optional bool client_streaming = 5 [default = false];
    */
-  clientStreaming?: boolean;
+  clientStreaming: boolean;
 
   /**
    * Identifies if server streams multiple server messages
    *
    * @generated from field: optional bool server_streaming = 6 [default = false];
    */
-  serverStreaming?: boolean;
+  serverStreaming: boolean;
 };
 
 /**
@@ -1735,7 +1735,7 @@ export type FileOptions = Message<"google.protobuf.FileOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 50;
    */
-  features?: FeatureSet;
+  features: FeatureSet;
 
   /**
    * The parser stores options it doesn't recognize here.
@@ -1758,7 +1758,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional string java_package = 1;
    */
-  javaPackage?: string;
+  javaPackage: string;
 
   /**
    * Controls the name of the wrapper Java class generated for the .proto file.
@@ -1769,7 +1769,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional string java_outer_classname = 8;
    */
-  javaOuterClassname?: string;
+  javaOuterClassname: string;
 
   /**
    * If enabled, then the Java code generator will generate a separate .java
@@ -1781,7 +1781,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional bool java_multiple_files = 10 [default = false];
    */
-  javaMultipleFiles?: boolean;
+  javaMultipleFiles: boolean;
 
   /**
    * This option does nothing.
@@ -1789,7 +1789,7 @@ export type FileOptionsJson = {
    * @generated from field: optional bool java_generate_equals_and_hash = 20 [deprecated = true];
    * @deprecated
    */
-  javaGenerateEqualsAndHash?: boolean;
+  javaGenerateEqualsAndHash: boolean;
 
   /**
    * A proto2 file can set this to true to opt in to UTF-8 checking for Java,
@@ -1805,12 +1805,12 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional bool java_string_check_utf8 = 27 [default = false];
    */
-  javaStringCheckUtf8?: boolean;
+  javaStringCheckUtf8: boolean;
 
   /**
    * @generated from field: optional google.protobuf.FileOptions.OptimizeMode optimize_for = 9 [default = SPEED];
    */
-  optimizeFor?: FileOptions_OptimizeModeJson;
+  optimizeFor: FileOptions_OptimizeModeJson;
 
   /**
    * Sets the Go package where structs generated from this .proto will be
@@ -1821,7 +1821,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional string go_package = 11;
    */
-  goPackage?: string;
+  goPackage: string;
 
   /**
    * Should generic services be generated in each language?  "Generic" services
@@ -1837,17 +1837,17 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional bool cc_generic_services = 16 [default = false];
    */
-  ccGenericServices?: boolean;
+  ccGenericServices: boolean;
 
   /**
    * @generated from field: optional bool java_generic_services = 17 [default = false];
    */
-  javaGenericServices?: boolean;
+  javaGenericServices: boolean;
 
   /**
    * @generated from field: optional bool py_generic_services = 18 [default = false];
    */
-  pyGenericServices?: boolean;
+  pyGenericServices: boolean;
 
   /**
    * Is this file deprecated?
@@ -1857,7 +1857,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional bool deprecated = 23 [default = false];
    */
-  deprecated?: boolean;
+  deprecated: boolean;
 
   /**
    * Enables the use of arenas for the proto messages in this file. This applies
@@ -1865,7 +1865,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional bool cc_enable_arenas = 31 [default = true];
    */
-  ccEnableArenas?: boolean;
+  ccEnableArenas: boolean;
 
   /**
    * Sets the objective c class prefix which is prepended to all objective c
@@ -1873,14 +1873,14 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional string objc_class_prefix = 36;
    */
-  objcClassPrefix?: string;
+  objcClassPrefix: string;
 
   /**
    * Namespace for generated classes; defaults to the package.
    *
    * @generated from field: optional string csharp_namespace = 37;
    */
-  csharpNamespace?: string;
+  csharpNamespace: string;
 
   /**
    * By default Swift generators will take the proto package and CamelCase it
@@ -1890,7 +1890,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional string swift_prefix = 39;
    */
-  swiftPrefix?: string;
+  swiftPrefix: string;
 
   /**
    * Sets the php class prefix which is prepended to all php generated classes
@@ -1898,7 +1898,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional string php_class_prefix = 40;
    */
-  phpClassPrefix?: string;
+  phpClassPrefix: string;
 
   /**
    * Use this option to change the namespace of php generated classes. Default
@@ -1907,7 +1907,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional string php_namespace = 41;
    */
-  phpNamespace?: string;
+  phpNamespace: string;
 
   /**
    * Use this option to change the namespace of php generated metadata classes.
@@ -1916,7 +1916,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional string php_metadata_namespace = 44;
    */
-  phpMetadataNamespace?: string;
+  phpMetadataNamespace: string;
 
   /**
    * Use this option to change the package of ruby generated classes. Default
@@ -1925,7 +1925,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional string ruby_package = 45;
    */
-  rubyPackage?: string;
+  rubyPackage: string;
 
   /**
    * Any features defined in the specific edition.
@@ -1935,7 +1935,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 50;
    */
-  features?: FeatureSetJson;
+  features: FeatureSetJson;
 
   /**
    * The parser stores options it doesn't recognize here.
@@ -1943,7 +1943,7 @@ export type FileOptionsJson = {
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
    */
-  uninterpretedOption?: UninterpretedOptionJson[];
+  uninterpretedOption: UninterpretedOptionJson[];
 };
 
 /**
@@ -2095,7 +2095,7 @@ export type MessageOptions = Message<"google.protobuf.MessageOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 12;
    */
-  features?: FeatureSet;
+  features: FeatureSet;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -2131,7 +2131,7 @@ export type MessageOptionsJson = {
    *
    * @generated from field: optional bool message_set_wire_format = 1 [default = false];
    */
-  messageSetWireFormat?: boolean;
+  messageSetWireFormat: boolean;
 
   /**
    * Disables the generation of the standard "descriptor()" accessor, which can
@@ -2140,7 +2140,7 @@ export type MessageOptionsJson = {
    *
    * @generated from field: optional bool no_standard_descriptor_accessor = 2 [default = false];
    */
-  noStandardDescriptorAccessor?: boolean;
+  noStandardDescriptorAccessor: boolean;
 
   /**
    * Is this message deprecated?
@@ -2150,7 +2150,7 @@ export type MessageOptionsJson = {
    *
    * @generated from field: optional bool deprecated = 3 [default = false];
    */
-  deprecated?: boolean;
+  deprecated: boolean;
 
   /**
    * Whether the message is an automatically generated map entry type for the
@@ -2177,7 +2177,7 @@ export type MessageOptionsJson = {
    *
    * @generated from field: optional bool map_entry = 7;
    */
-  mapEntry?: boolean;
+  mapEntry: boolean;
 
   /**
    * Enable the legacy handling of JSON field name conflicts.  This lowercases
@@ -2194,7 +2194,7 @@ export type MessageOptionsJson = {
    * @generated from field: optional bool deprecated_legacy_json_field_conflicts = 11 [deprecated = true];
    * @deprecated
    */
-  deprecatedLegacyJsonFieldConflicts?: boolean;
+  deprecatedLegacyJsonFieldConflicts: boolean;
 
   /**
    * Any features defined in the specific edition.
@@ -2204,14 +2204,14 @@ export type MessageOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 12;
    */
-  features?: FeatureSetJson;
+  features: FeatureSetJson;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
    */
-  uninterpretedOption?: UninterpretedOptionJson[];
+  uninterpretedOption: UninterpretedOptionJson[];
 };
 
 /**
@@ -2355,12 +2355,12 @@ export type FieldOptions = Message<"google.protobuf.FieldOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 21;
    */
-  features?: FeatureSet;
+  features: FeatureSet;
 
   /**
    * @generated from field: optional google.protobuf.FieldOptions.FeatureSupport feature_support = 22;
    */
-  featureSupport?: FieldOptions_FeatureSupport;
+  featureSupport: FieldOptions_FeatureSupport;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -2385,7 +2385,7 @@ export type FieldOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FieldOptions.CType ctype = 1 [default = STRING];
    */
-  ctype?: FieldOptions_CTypeJson;
+  ctype: FieldOptions_CTypeJson;
 
   /**
    * The packed option can be enabled for repeated primitive fields to enable
@@ -2398,7 +2398,7 @@ export type FieldOptionsJson = {
    *
    * @generated from field: optional bool packed = 2;
    */
-  packed?: boolean;
+  packed: boolean;
 
   /**
    * The jstype option determines the JavaScript type used for values of the
@@ -2415,7 +2415,7 @@ export type FieldOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FieldOptions.JSType jstype = 6 [default = JS_NORMAL];
    */
-  jstype?: FieldOptions_JSTypeJson;
+  jstype: FieldOptions_JSTypeJson;
 
   /**
    * Should this field be parsed lazily?  Lazy applies only to message-type
@@ -2443,7 +2443,7 @@ export type FieldOptionsJson = {
    *
    * @generated from field: optional bool lazy = 5 [default = false];
    */
-  lazy?: boolean;
+  lazy: boolean;
 
   /**
    * unverified_lazy does no correctness checks on the byte stream. This should
@@ -2452,7 +2452,7 @@ export type FieldOptionsJson = {
    *
    * @generated from field: optional bool unverified_lazy = 15 [default = false];
    */
-  unverifiedLazy?: boolean;
+  unverifiedLazy: boolean;
 
   /**
    * Is this field deprecated?
@@ -2462,7 +2462,7 @@ export type FieldOptionsJson = {
    *
    * @generated from field: optional bool deprecated = 3 [default = false];
    */
-  deprecated?: boolean;
+  deprecated: boolean;
 
   /**
    * DEPRECATED. DO NOT USE!
@@ -2471,7 +2471,7 @@ export type FieldOptionsJson = {
    * @generated from field: optional bool weak = 10 [default = false, deprecated = true];
    * @deprecated
    */
-  weak?: boolean;
+  weak: boolean;
 
   /**
    * Indicate that the field value should not be printed out when using debug
@@ -2479,22 +2479,22 @@ export type FieldOptionsJson = {
    *
    * @generated from field: optional bool debug_redact = 16 [default = false];
    */
-  debugRedact?: boolean;
+  debugRedact: boolean;
 
   /**
    * @generated from field: optional google.protobuf.FieldOptions.OptionRetention retention = 17;
    */
-  retention?: FieldOptions_OptionRetentionJson;
+  retention: FieldOptions_OptionRetentionJson;
 
   /**
    * @generated from field: repeated google.protobuf.FieldOptions.OptionTargetType targets = 19;
    */
-  targets?: FieldOptions_OptionTargetTypeJson[];
+  targets: FieldOptions_OptionTargetTypeJson[];
 
   /**
    * @generated from field: repeated google.protobuf.FieldOptions.EditionDefault edition_defaults = 20;
    */
-  editionDefaults?: FieldOptions_EditionDefaultJson[];
+  editionDefaults: FieldOptions_EditionDefaultJson[];
 
   /**
    * Any features defined in the specific edition.
@@ -2504,19 +2504,19 @@ export type FieldOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 21;
    */
-  features?: FeatureSetJson;
+  features: FeatureSetJson;
 
   /**
    * @generated from field: optional google.protobuf.FieldOptions.FeatureSupport feature_support = 22;
    */
-  featureSupport?: FieldOptions_FeatureSupportJson;
+  featureSupport: FieldOptions_FeatureSupportJson;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
    */
-  uninterpretedOption?: UninterpretedOptionJson[];
+  uninterpretedOption: UninterpretedOptionJson[];
 };
 
 /**
@@ -2550,14 +2550,14 @@ export type FieldOptions_EditionDefaultJson = {
   /**
    * @generated from field: optional google.protobuf.Edition edition = 3;
    */
-  edition?: EditionJson;
+  edition: EditionJson;
 
   /**
    * Textproto value.
    *
    * @generated from field: optional string value = 2;
    */
-  value?: string;
+  value: string;
 };
 
 /**
@@ -2621,7 +2621,7 @@ export type FieldOptions_FeatureSupportJson = {
    *
    * @generated from field: optional google.protobuf.Edition edition_introduced = 1;
    */
-  editionIntroduced?: EditionJson;
+  editionIntroduced: EditionJson;
 
   /**
    * The edition this feature becomes deprecated in.  Using this after this
@@ -2629,7 +2629,7 @@ export type FieldOptions_FeatureSupportJson = {
    *
    * @generated from field: optional google.protobuf.Edition edition_deprecated = 2;
    */
-  editionDeprecated?: EditionJson;
+  editionDeprecated: EditionJson;
 
   /**
    * The deprecation warning text if this feature is used after the edition it
@@ -2637,7 +2637,7 @@ export type FieldOptions_FeatureSupportJson = {
    *
    * @generated from field: optional string deprecation_warning = 3;
    */
-  deprecationWarning?: string;
+  deprecationWarning: string;
 
   /**
    * The edition this feature is no longer available in.  In editions after
@@ -2646,7 +2646,7 @@ export type FieldOptions_FeatureSupportJson = {
    *
    * @generated from field: optional google.protobuf.Edition edition_removed = 4;
    */
-  editionRemoved?: EditionJson;
+  editionRemoved: EditionJson;
 };
 
 /**
@@ -2854,7 +2854,7 @@ export type OneofOptions = Message<"google.protobuf.OneofOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 1;
    */
-  features?: FeatureSet;
+  features: FeatureSet;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -2876,14 +2876,14 @@ export type OneofOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 1;
    */
-  features?: FeatureSetJson;
+  features: FeatureSetJson;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
    */
-  uninterpretedOption?: UninterpretedOptionJson[];
+  uninterpretedOption: UninterpretedOptionJson[];
 };
 
 /**
@@ -2936,7 +2936,7 @@ export type EnumOptions = Message<"google.protobuf.EnumOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 7;
    */
-  features?: FeatureSet;
+  features: FeatureSet;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -2956,7 +2956,7 @@ export type EnumOptionsJson = {
    *
    * @generated from field: optional bool allow_alias = 2;
    */
-  allowAlias?: boolean;
+  allowAlias: boolean;
 
   /**
    * Is this enum deprecated?
@@ -2966,7 +2966,7 @@ export type EnumOptionsJson = {
    *
    * @generated from field: optional bool deprecated = 3 [default = false];
    */
-  deprecated?: boolean;
+  deprecated: boolean;
 
   /**
    * Enable the legacy handling of JSON field name conflicts.  This lowercases
@@ -2979,7 +2979,7 @@ export type EnumOptionsJson = {
    * @generated from field: optional bool deprecated_legacy_json_field_conflicts = 6 [deprecated = true];
    * @deprecated
    */
-  deprecatedLegacyJsonFieldConflicts?: boolean;
+  deprecatedLegacyJsonFieldConflicts: boolean;
 
   /**
    * Any features defined in the specific edition.
@@ -2989,14 +2989,14 @@ export type EnumOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 7;
    */
-  features?: FeatureSetJson;
+  features: FeatureSetJson;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
    */
-  uninterpretedOption?: UninterpretedOptionJson[];
+  uninterpretedOption: UninterpretedOptionJson[];
 };
 
 /**
@@ -3028,7 +3028,7 @@ export type EnumValueOptions = Message<"google.protobuf.EnumValueOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 2;
    */
-  features?: FeatureSet;
+  features: FeatureSet;
 
   /**
    * Indicate that fields annotated with this enum value should not be printed
@@ -3044,7 +3044,7 @@ export type EnumValueOptions = Message<"google.protobuf.EnumValueOptions"> & {
    *
    * @generated from field: optional google.protobuf.FieldOptions.FeatureSupport feature_support = 4;
    */
-  featureSupport?: FieldOptions_FeatureSupport;
+  featureSupport: FieldOptions_FeatureSupport;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -3066,7 +3066,7 @@ export type EnumValueOptionsJson = {
    *
    * @generated from field: optional bool deprecated = 1 [default = false];
    */
-  deprecated?: boolean;
+  deprecated: boolean;
 
   /**
    * Any features defined in the specific edition.
@@ -3076,7 +3076,7 @@ export type EnumValueOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 2;
    */
-  features?: FeatureSetJson;
+  features: FeatureSetJson;
 
   /**
    * Indicate that fields annotated with this enum value should not be printed
@@ -3085,21 +3085,21 @@ export type EnumValueOptionsJson = {
    *
    * @generated from field: optional bool debug_redact = 3 [default = false];
    */
-  debugRedact?: boolean;
+  debugRedact: boolean;
 
   /**
    * Information about the support window of a feature value.
    *
    * @generated from field: optional google.protobuf.FieldOptions.FeatureSupport feature_support = 4;
    */
-  featureSupport?: FieldOptions_FeatureSupportJson;
+  featureSupport: FieldOptions_FeatureSupportJson;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
    */
-  uninterpretedOption?: UninterpretedOptionJson[];
+  uninterpretedOption: UninterpretedOptionJson[];
 };
 
 /**
@@ -3121,7 +3121,7 @@ export type ServiceOptions = Message<"google.protobuf.ServiceOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 34;
    */
-  features?: FeatureSet;
+  features: FeatureSet;
 
   /**
    * Is this service deprecated?
@@ -3153,7 +3153,7 @@ export type ServiceOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 34;
    */
-  features?: FeatureSetJson;
+  features: FeatureSetJson;
 
   /**
    * Is this service deprecated?
@@ -3163,14 +3163,14 @@ export type ServiceOptionsJson = {
    *
    * @generated from field: optional bool deprecated = 33 [default = false];
    */
-  deprecated?: boolean;
+  deprecated: boolean;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
    */
-  uninterpretedOption?: UninterpretedOptionJson[];
+  uninterpretedOption: UninterpretedOptionJson[];
 };
 
 /**
@@ -3207,7 +3207,7 @@ export type MethodOptions = Message<"google.protobuf.MethodOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 35;
    */
-  features?: FeatureSet;
+  features: FeatureSet;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -3229,12 +3229,12 @@ export type MethodOptionsJson = {
    *
    * @generated from field: optional bool deprecated = 33 [default = false];
    */
-  deprecated?: boolean;
+  deprecated: boolean;
 
   /**
    * @generated from field: optional google.protobuf.MethodOptions.IdempotencyLevel idempotency_level = 34 [default = IDEMPOTENCY_UNKNOWN];
    */
-  idempotencyLevel?: MethodOptions_IdempotencyLevelJson;
+  idempotencyLevel: MethodOptions_IdempotencyLevelJson;
 
   /**
    * Any features defined in the specific edition.
@@ -3244,14 +3244,14 @@ export type MethodOptionsJson = {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 35;
    */
-  features?: FeatureSetJson;
+  features: FeatureSetJson;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
    *
    * @generated from field: repeated google.protobuf.UninterpretedOption uninterpreted_option = 999;
    */
-  uninterpretedOption?: UninterpretedOptionJson[];
+  uninterpretedOption: UninterpretedOptionJson[];
 };
 
 /**
@@ -3368,7 +3368,7 @@ export type UninterpretedOptionJson = {
   /**
    * @generated from field: repeated google.protobuf.UninterpretedOption.NamePart name = 2;
    */
-  name?: UninterpretedOption_NamePartJson[];
+  name: UninterpretedOption_NamePartJson[];
 
   /**
    * The value of the uninterpreted option, in whatever type the tokenizer
@@ -3376,32 +3376,32 @@ export type UninterpretedOptionJson = {
    *
    * @generated from field: optional string identifier_value = 3;
    */
-  identifierValue?: string;
+  identifierValue: string;
 
   /**
    * @generated from field: optional uint64 positive_int_value = 4;
    */
-  positiveIntValue?: string;
+  positiveIntValue: string;
 
   /**
    * @generated from field: optional int64 negative_int_value = 5;
    */
-  negativeIntValue?: string;
+  negativeIntValue: string;
 
   /**
    * @generated from field: optional double double_value = 6;
    */
-  doubleValue?: number | "NaN" | "Infinity" | "-Infinity";
+  doubleValue: number | "NaN" | "Infinity" | "-Infinity";
 
   /**
    * @generated from field: optional bytes string_value = 7;
    */
-  stringValue?: string;
+  stringValue: string;
 
   /**
    * @generated from field: optional string aggregate_value = 8;
    */
-  aggregateValue?: string;
+  aggregateValue: string;
 };
 
 /**
@@ -3445,12 +3445,12 @@ export type UninterpretedOption_NamePartJson = {
   /**
    * @generated from field: required string name_part = 1;
    */
-  namePart?: string;
+  namePart: string;
 
   /**
    * @generated from field: required bool is_extension = 2;
    */
-  isExtension?: boolean;
+  isExtension: boolean;
 };
 
 /**
@@ -3526,42 +3526,42 @@ export type FeatureSetJson = {
   /**
    * @generated from field: optional google.protobuf.FeatureSet.FieldPresence field_presence = 1;
    */
-  fieldPresence?: FeatureSet_FieldPresenceJson;
+  fieldPresence: FeatureSet_FieldPresenceJson;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.EnumType enum_type = 2;
    */
-  enumType?: FeatureSet_EnumTypeJson;
+  enumType: FeatureSet_EnumTypeJson;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.RepeatedFieldEncoding repeated_field_encoding = 3;
    */
-  repeatedFieldEncoding?: FeatureSet_RepeatedFieldEncodingJson;
+  repeatedFieldEncoding: FeatureSet_RepeatedFieldEncodingJson;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.Utf8Validation utf8_validation = 4;
    */
-  utf8Validation?: FeatureSet_Utf8ValidationJson;
+  utf8Validation: FeatureSet_Utf8ValidationJson;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.MessageEncoding message_encoding = 5;
    */
-  messageEncoding?: FeatureSet_MessageEncodingJson;
+  messageEncoding: FeatureSet_MessageEncodingJson;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.JsonFormat json_format = 6;
    */
-  jsonFormat?: FeatureSet_JsonFormatJson;
+  jsonFormat: FeatureSet_JsonFormatJson;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.EnforceNamingStyle enforce_naming_style = 7;
    */
-  enforceNamingStyle?: FeatureSet_EnforceNamingStyleJson;
+  enforceNamingStyle: FeatureSet_EnforceNamingStyleJson;
 
   /**
    * @generated from field: optional google.protobuf.FeatureSet.VisibilityFeature.DefaultSymbolVisibility default_symbol_visibility = 8;
    */
-  defaultSymbolVisibility?: FeatureSet_VisibilityFeature_DefaultSymbolVisibilityJson;
+  defaultSymbolVisibility: FeatureSet_VisibilityFeature_DefaultSymbolVisibilityJson;
 };
 
 /**
@@ -3906,7 +3906,7 @@ export type FeatureSetDefaultsJson = {
   /**
    * @generated from field: repeated google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault defaults = 1;
    */
-  defaults?: FeatureSetDefaults_FeatureSetEditionDefaultJson[];
+  defaults: FeatureSetDefaults_FeatureSetEditionDefaultJson[];
 
   /**
    * The minimum supported edition (inclusive) when this was constructed.
@@ -3914,7 +3914,7 @@ export type FeatureSetDefaultsJson = {
    *
    * @generated from field: optional google.protobuf.Edition minimum_edition = 4;
    */
-  minimumEdition?: EditionJson;
+  minimumEdition: EditionJson;
 
   /**
    * The maximum known edition (inclusive) when this was constructed. Editions
@@ -3922,7 +3922,7 @@ export type FeatureSetDefaultsJson = {
    *
    * @generated from field: optional google.protobuf.Edition maximum_edition = 5;
    */
-  maximumEdition?: EditionJson;
+  maximumEdition: EditionJson;
 };
 
 /**
@@ -3951,14 +3951,14 @@ export type FeatureSetDefaults_FeatureSetEditionDefault = Message<"google.protob
    *
    * @generated from field: optional google.protobuf.FeatureSet overridable_features = 4;
    */
-  overridableFeatures?: FeatureSet;
+  overridableFeatures: FeatureSet;
 
   /**
    * Defaults of features that can't be overridden in this edition.
    *
    * @generated from field: optional google.protobuf.FeatureSet fixed_features = 5;
    */
-  fixedFeatures?: FeatureSet;
+  fixedFeatures: FeatureSet;
 };
 
 /**
@@ -3973,21 +3973,21 @@ export type FeatureSetDefaults_FeatureSetEditionDefaultJson = {
   /**
    * @generated from field: optional google.protobuf.Edition edition = 3;
    */
-  edition?: EditionJson;
+  edition: EditionJson;
 
   /**
    * Defaults of features that can be overridden in this edition.
    *
    * @generated from field: optional google.protobuf.FeatureSet overridable_features = 4;
    */
-  overridableFeatures?: FeatureSetJson;
+  overridableFeatures: FeatureSetJson;
 
   /**
    * Defaults of features that can't be overridden in this edition.
    *
    * @generated from field: optional google.protobuf.FeatureSet fixed_features = 5;
    */
-  fixedFeatures?: FeatureSetJson;
+  fixedFeatures: FeatureSetJson;
 };
 
 /**
@@ -4108,7 +4108,7 @@ export type SourceCodeInfoJson = {
    *
    * @generated from field: repeated google.protobuf.SourceCodeInfo.Location location = 1;
    */
-  location?: SourceCodeInfo_LocationJson[];
+  location: SourceCodeInfo_LocationJson[];
 };
 
 /**
@@ -4257,7 +4257,7 @@ export type SourceCodeInfo_LocationJson = {
    *
    * @generated from field: repeated int32 path = 1 [packed = true];
    */
-  path?: number[];
+  path: number[];
 
   /**
    * Always has exactly three or four elements: start line, start column,
@@ -4268,7 +4268,7 @@ export type SourceCodeInfo_LocationJson = {
    *
    * @generated from field: repeated int32 span = 2 [packed = true];
    */
-  span?: number[];
+  span: number[];
 
   /**
    * If this SourceCodeInfo represents a complete declaration, these are any
@@ -4321,17 +4321,17 @@ export type SourceCodeInfo_LocationJson = {
    *
    * @generated from field: optional string leading_comments = 3;
    */
-  leadingComments?: string;
+  leadingComments: string;
 
   /**
    * @generated from field: optional string trailing_comments = 4;
    */
-  trailingComments?: string;
+  trailingComments: string;
 
   /**
    * @generated from field: repeated string leading_detached_comments = 6;
    */
-  leadingDetachedComments?: string[];
+  leadingDetachedComments: string[];
 };
 
 /**
@@ -4372,7 +4372,7 @@ export type GeneratedCodeInfoJson = {
    *
    * @generated from field: repeated google.protobuf.GeneratedCodeInfo.Annotation annotation = 1;
    */
-  annotation?: GeneratedCodeInfo_AnnotationJson[];
+  annotation: GeneratedCodeInfo_AnnotationJson[];
 };
 
 /**
@@ -4434,14 +4434,14 @@ export type GeneratedCodeInfo_AnnotationJson = {
    *
    * @generated from field: repeated int32 path = 1 [packed = true];
    */
-  path?: number[];
+  path: number[];
 
   /**
    * Identifies the filesystem path to the original source .proto.
    *
    * @generated from field: optional string source_file = 2;
    */
-  sourceFile?: string;
+  sourceFile: string;
 
   /**
    * Identifies the starting offset in bytes in the generated code
@@ -4449,7 +4449,7 @@ export type GeneratedCodeInfo_AnnotationJson = {
    *
    * @generated from field: optional int32 begin = 3;
    */
-  begin?: number;
+  begin: number;
 
   /**
    * Identifies the ending offset in bytes in the generated code that
@@ -4458,12 +4458,12 @@ export type GeneratedCodeInfo_AnnotationJson = {
    *
    * @generated from field: optional int32 end = 4;
    */
-  end?: number;
+  end: number;
 
   /**
    * @generated from field: optional google.protobuf.GeneratedCodeInfo.Annotation.Semantic semantic = 5;
    */
-  semantic?: GeneratedCodeInfo_Annotation_SemanticJson;
+  semantic: GeneratedCodeInfo_Annotation_SemanticJson;
 };
 
 /**

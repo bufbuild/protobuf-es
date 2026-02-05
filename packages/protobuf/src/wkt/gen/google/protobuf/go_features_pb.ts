@@ -66,19 +66,19 @@ export type GoFeaturesJson = {
    *
    * @generated from field: optional bool legacy_unmarshal_json_enum = 1;
    */
-  legacyUnmarshalJsonEnum?: boolean;
+  legacyUnmarshalJsonEnum: boolean;
 
   /**
    * One of OPEN, HYBRID or OPAQUE.
    *
    * @generated from field: optional pb.GoFeatures.APILevel api_level = 2;
    */
-  apiLevel?: GoFeatures_APILevelJson;
+  apiLevel: GoFeatures_APILevelJson;
 
   /**
    * @generated from field: optional pb.GoFeatures.StripEnumPrefix strip_enum_prefix = 3;
    */
-  stripEnumPrefix?: GoFeatures_StripEnumPrefixJson;
+  stripEnumPrefix: GoFeatures_StripEnumPrefixJson;
 };
 
 /**

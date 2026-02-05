@@ -297,7 +297,7 @@ function createZeroField(
   | object
   | typeof tokenZeroMessageField {
   if (field.kind == "oneof") {
-    return { case: undefined };
+    return { case: "" };
   }
   if (field.fieldKind == "list") {
     return [];

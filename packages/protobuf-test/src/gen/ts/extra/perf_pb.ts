@@ -48,12 +48,12 @@ export type PerfMessage = Message<"perf.v1.PerfMessage"> & {
   /**
    * @generated from field: optional int64 int64_field = 3;
    */
-  int64Field?: bigint;
+  int64Field: bigint;
 
   /**
    * @generated from field: optional bool bool_field = 4;
    */
-  boolField?: boolean;
+  boolField: boolean;
 
   /**
    * @generated from field: string string_field = 5;
@@ -73,7 +73,7 @@ export type PerfMessage = Message<"perf.v1.PerfMessage"> & {
   /**
    * @generated from field: perf.v1.PerfMessage small_message_field = 8;
    */
-  smallMessageField?: PerfMessage;
+  smallMessageField: PerfMessage;
 
   /**
    * @generated from field: int32 unused_field_1 = 9;
@@ -210,7 +210,7 @@ export type PerfMessage = Message<"perf.v1.PerfMessage"> & {
      */
     value: PerfEnum;
     case: "oneofEnumCromulent";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from oneof perf.v1.PerfMessage.oneof_message
@@ -227,7 +227,7 @@ export type PerfMessage = Message<"perf.v1.PerfMessage"> & {
      */
     value: PerfMessage;
     case: "oneofSmallMessageField";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from oneof perf.v1.PerfMessage.oneof_scalar
@@ -244,7 +244,7 @@ export type PerfMessage = Message<"perf.v1.PerfMessage"> & {
      */
     value: boolean;
     case: "oneofBoolField";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: uint32 id = 40;

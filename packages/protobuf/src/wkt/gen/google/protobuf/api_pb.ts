@@ -104,7 +104,7 @@ export type Api = Message<"google.protobuf.Api"> & {
    *
    * @generated from field: google.protobuf.SourceContext source_context = 5;
    */
-  sourceContext?: SourceContext;
+  sourceContext: SourceContext;
 
   /**
    * Included interfaces. See [Mixin][].
@@ -153,21 +153,21 @@ export type ApiJson = {
    *
    * @generated from field: string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * The methods of this interface, in unspecified order.
    *
    * @generated from field: repeated google.protobuf.Method methods = 2;
    */
-  methods?: MethodJson[];
+  methods: MethodJson[];
 
   /**
    * Any metadata attached to the interface.
    *
    * @generated from field: repeated google.protobuf.Option options = 3;
    */
-  options?: OptionJson[];
+  options: OptionJson[];
 
   /**
    * A version string for this interface. If specified, must have the form
@@ -193,7 +193,7 @@ export type ApiJson = {
    *
    * @generated from field: string version = 4;
    */
-  version?: string;
+  version: string;
 
   /**
    * Source context for the protocol buffer service represented by this
@@ -201,28 +201,28 @@ export type ApiJson = {
    *
    * @generated from field: google.protobuf.SourceContext source_context = 5;
    */
-  sourceContext?: SourceContextJson;
+  sourceContext: SourceContextJson;
 
   /**
    * Included interfaces. See [Mixin][].
    *
    * @generated from field: repeated google.protobuf.Mixin mixins = 6;
    */
-  mixins?: MixinJson[];
+  mixins: MixinJson[];
 
   /**
    * The source syntax of the service.
    *
    * @generated from field: google.protobuf.Syntax syntax = 7;
    */
-  syntax?: SyntaxJson;
+  syntax: SyntaxJson;
 
   /**
    * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
    *
    * @generated from field: string edition = 8;
    */
-  edition?: string;
+  edition: string;
 };
 
 /**
@@ -324,42 +324,42 @@ export type MethodJson = {
    *
    * @generated from field: string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * A URL of the input message type.
    *
    * @generated from field: string request_type_url = 2;
    */
-  requestTypeUrl?: string;
+  requestTypeUrl: string;
 
   /**
    * If true, the request is streamed.
    *
    * @generated from field: bool request_streaming = 3;
    */
-  requestStreaming?: boolean;
+  requestStreaming: boolean;
 
   /**
    * The URL of the output message type.
    *
    * @generated from field: string response_type_url = 4;
    */
-  responseTypeUrl?: string;
+  responseTypeUrl: string;
 
   /**
    * If true, the response is streamed.
    *
    * @generated from field: bool response_streaming = 5;
    */
-  responseStreaming?: boolean;
+  responseStreaming: boolean;
 
   /**
    * Any metadata attached to the method.
    *
    * @generated from field: repeated google.protobuf.Option options = 6;
    */
-  options?: OptionJson[];
+  options: OptionJson[];
 
   /**
    * The source syntax of this method.
@@ -370,7 +370,7 @@ export type MethodJson = {
    * @generated from field: google.protobuf.Syntax syntax = 7 [deprecated = true];
    * @deprecated
    */
-  syntax?: SyntaxJson;
+  syntax: SyntaxJson;
 
   /**
    * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
@@ -381,7 +381,7 @@ export type MethodJson = {
    * @generated from field: string edition = 8 [deprecated = true];
    * @deprecated
    */
-  edition?: string;
+  edition: string;
 };
 
 /**
@@ -578,7 +578,7 @@ export type MixinJson = {
    *
    * @generated from field: string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * If non-empty specifies a path under which inherited HTTP paths
@@ -586,7 +586,7 @@ export type MixinJson = {
    *
    * @generated from field: string root = 2;
    */
-  root?: string;
+  root: string;
 };
 
 /**

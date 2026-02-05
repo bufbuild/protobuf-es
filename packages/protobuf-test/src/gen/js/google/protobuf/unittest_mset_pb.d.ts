@@ -39,7 +39,7 @@ export declare type TestMessageSetContainer = Message<"proto2_unittest.TestMessa
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
    */
-  messageSet?: TestMessageSet;
+  messageSet: TestMessageSet;
 };
 
 /**
@@ -55,17 +55,17 @@ export declare type NestedTestMessageSetContainer = Message<"proto2_unittest.Nes
   /**
    * @generated from field: optional proto2_unittest.TestMessageSetContainer container = 1;
    */
-  container?: TestMessageSetContainer;
+  container: TestMessageSetContainer;
 
   /**
    * @generated from field: optional proto2_unittest.NestedTestMessageSetContainer child = 2;
    */
-  child?: NestedTestMessageSetContainer;
+  child: NestedTestMessageSetContainer;
 
   /**
    * @generated from field: optional proto2_unittest.NestedTestMessageSetContainer lazy_child = 3;
    */
-  lazyChild?: NestedTestMessageSetContainer;
+  lazyChild: NestedTestMessageSetContainer;
 };
 
 /**
@@ -91,7 +91,7 @@ export declare type NestedTestInt = Message<"proto2_unittest.NestedTestInt"> & {
   /**
    * @generated from field: optional proto2_unittest.NestedTestInt child = 2;
    */
-  child?: NestedTestInt;
+  child: NestedTestInt;
 };
 
 /**
@@ -112,7 +112,7 @@ export declare type TestMessageSetExtension1 = Message<"proto2_unittest.TestMess
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet recursive = 16;
    */
-  recursive?: TestMessageSet;
+  recursive: TestMessageSet;
 
   /**
    * @generated from field: optional string test_aliasing = 17;
@@ -159,7 +159,7 @@ export declare type TestMessageSetExtension3 = Message<"proto2_unittest.TestMess
   /**
    * @generated from field: optional proto2_unittest.NestedTestInt msg = 35;
    */
-  msg?: NestedTestInt;
+  msg: NestedTestInt;
 
   /**
    * @generated from field: required int32 required_int = 36;

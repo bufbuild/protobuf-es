@@ -135,7 +135,7 @@ export type Value = Message<"google.protobuf.Value"> & {
      */
     value: ListValue;
     case: "listValue";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -214,7 +214,7 @@ export enum NullValue {
  *
  * @generated from enum google.protobuf.NullValue
  */
-export type NullValueJson = null;
+export type NullValueJson = "NULL_VALUE";
 
 /**
  * Describes the enum google.protobuf.NullValue.

@@ -36,7 +36,7 @@ export declare type User = Message$1<"spec.User"> & {
    *
    * @generated from field: example.User u = 1;
    */
-  u?: User$1;
+  u: User$1;
 };
 
 /**
@@ -201,7 +201,7 @@ export declare type ReservedPropertyNames_OneofBultIn = Message$1<"spec.Reserved
      */
     value: string;
     case: "valueOf";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -271,7 +271,7 @@ export declare type ReservedPropertyNames_OneofRuntime = Message$1<"spec.Reserve
      */
     value: string;
     case: "toJsonString";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -900,7 +900,7 @@ export declare type NoClashOneof = Message$1<"spec.NoClashOneof"> & {
      */
     value: string;
     case: "return";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -916,7 +916,7 @@ export declare type NoClashOneofADT = Message$1<"spec.NoClashOneofADT"> & {
   /**
    * @generated from field: spec.NoClashOneofADT.M m = 1;
    */
-  m?: NoClashOneofADT_M;
+  m: NoClashOneofADT_M;
 };
 
 /**
@@ -937,7 +937,7 @@ export declare type NoClashOneofADT_M = Message$1<"spec.NoClashOneofADT.M"> & {
   /**
    * @generated from field: optional string value = 2;
    */
-  value?: string;
+  value: string;
 };
 
 /**

@@ -74,7 +74,7 @@ export type EvalState_Result = Message<"google.api.expr.v1beta1.EvalState.Result
    *
    * @generated from field: google.api.expr.v1beta1.IdRef expr = 1;
    */
-  expr?: IdRef;
+  expr: IdRef;
 
   /**
    * The index in `values` of the resulting value.
@@ -164,7 +164,7 @@ export type ExprValue = Message<"google.api.expr.v1beta1.ExprValue"> & {
      */
     value: UnknownSet;
     case: "unknown";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**

@@ -98,7 +98,7 @@ export function unsafeGet(
 ): unknown {
   if (field.oneof) {
     const oneof = target[field.oneof.localName] as OneofADT;
-    if (oneof.case === field.localName) {
+    if (oneof.case === field.localName && "value" in oneof) {
       return oneof.value;
     }
     return undefined;
@@ -140,7 +140,7 @@ export function unsafeClear(
   if (field.oneof) {
     const oneofLocalName = field.oneof.localName;
     if ((target[oneofLocalName] as OneofADT).case === name) {
-      target[oneofLocalName] = { case: undefined };
+      target[oneofLocalName] = { case: "" };
     }
   } else if (field.presence != IMPLICIT) {
     // Fields with explicit presence have properties on the prototype chain

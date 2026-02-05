@@ -54,7 +54,7 @@ export type TestExtensionSetContainer = Message<"proto2_unittest.TestExtensionSe
   /**
    * @generated from field: optional proto2_unittest.TestExtensionSet extension = 1;
    */
-  extension?: TestExtensionSet;
+  extension: TestExtensionSet;
 };
 
 /**

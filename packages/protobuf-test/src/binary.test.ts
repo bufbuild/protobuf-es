@@ -144,8 +144,8 @@ void suite(`binary serialization`, () => {
         toggle: false,
       },
     },
-    scalar: { case: undefined },
-    enum: { case: undefined },
+    scalar: { case: "" },
+    enum: { case: "" },
   });
   testBinary(JsonNamesMessageSchema, {
     a: "a",

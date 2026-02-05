@@ -37,47 +37,47 @@ export type WrappersMessage = Message<"spec.WrappersMessage"> & {
   /**
    * @generated from field: google.protobuf.DoubleValue double_value_field = 1;
    */
-  doubleValueField?: number;
+  doubleValueField: number;
 
   /**
    * @generated from field: google.protobuf.BoolValue bool_value_field = 2;
    */
-  boolValueField?: boolean;
+  boolValueField: boolean;
 
   /**
    * @generated from field: google.protobuf.FloatValue float_value_field = 3;
    */
-  floatValueField?: number;
+  floatValueField: number;
 
   /**
    * @generated from field: google.protobuf.Int64Value int64_value_field = 4;
    */
-  int64ValueField?: bigint;
+  int64ValueField: bigint;
 
   /**
    * @generated from field: google.protobuf.UInt64Value uint64_value_field = 5;
    */
-  uint64ValueField?: bigint;
+  uint64ValueField: bigint;
 
   /**
    * @generated from field: google.protobuf.Int32Value int32_value_field = 6;
    */
-  int32ValueField?: number;
+  int32ValueField: number;
 
   /**
    * @generated from field: google.protobuf.UInt32Value uint32_value_field = 7;
    */
-  uint32ValueField?: number;
+  uint32ValueField: number;
 
   /**
    * @generated from field: google.protobuf.StringValue string_value_field = 8;
    */
-  stringValueField?: string;
+  stringValueField: string;
 
   /**
    * @generated from field: google.protobuf.BytesValue bytes_value_field = 9;
    */
-  bytesValueField?: Uint8Array;
+  bytesValueField: Uint8Array;
 
   /**
    * @generated from oneof spec.WrappersMessage.oneof_fields
@@ -137,7 +137,7 @@ export type WrappersMessage = Message<"spec.WrappersMessage"> & {
      */
     value: BytesValue;
     case: "oneofBytesValueField";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: repeated google.protobuf.DoubleValue repeated_double_value_field = 21;

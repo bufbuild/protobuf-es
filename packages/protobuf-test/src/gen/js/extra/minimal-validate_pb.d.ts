@@ -93,7 +93,7 @@ export declare type FieldRules = Message<"buf.validate.FieldRules"> & {
      */
     value: MapRules;
     case: "map";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -109,7 +109,7 @@ export declare type RepeatedRules = Message<"buf.validate.RepeatedRules"> & {
   /**
    * @generated from field: optional buf.validate.FieldRules items = 4;
    */
-  items?: FieldRules;
+  items: FieldRules;
 };
 
 /**
@@ -125,7 +125,7 @@ export declare type MapRules = Message<"buf.validate.MapRules"> & {
   /**
    * @generated from field: optional buf.validate.FieldRules values = 5;
    */
-  values?: FieldRules;
+  values: FieldRules;
 };
 
 /**

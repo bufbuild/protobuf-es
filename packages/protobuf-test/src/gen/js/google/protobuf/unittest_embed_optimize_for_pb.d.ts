@@ -41,7 +41,7 @@ export declare type TestEmbedOptimizedForSize = Message<"proto2_unittest.TestEmb
    *
    * @generated from field: optional proto2_unittest.TestOptimizedForSize optional_message = 1;
    */
-  optionalMessage?: TestOptimizedForSize;
+  optionalMessage: TestOptimizedForSize;
 
   /**
    * @generated from field: repeated proto2_unittest.TestOptimizedForSize repeated_message = 2;

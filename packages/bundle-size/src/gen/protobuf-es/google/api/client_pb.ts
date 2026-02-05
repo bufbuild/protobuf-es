@@ -95,56 +95,56 @@ export type ClientLibrarySettings = Message<"google.api.ClientLibrarySettings"> 
    *
    * @generated from field: google.api.JavaSettings java_settings = 21;
    */
-  javaSettings?: JavaSettings;
+  javaSettings: JavaSettings;
 
   /**
    * Settings for C++ client libraries.
    *
    * @generated from field: google.api.CppSettings cpp_settings = 22;
    */
-  cppSettings?: CppSettings;
+  cppSettings: CppSettings;
 
   /**
    * Settings for PHP client libraries.
    *
    * @generated from field: google.api.PhpSettings php_settings = 23;
    */
-  phpSettings?: PhpSettings;
+  phpSettings: PhpSettings;
 
   /**
    * Settings for Python client libraries.
    *
    * @generated from field: google.api.PythonSettings python_settings = 24;
    */
-  pythonSettings?: PythonSettings;
+  pythonSettings: PythonSettings;
 
   /**
    * Settings for Node client libraries.
    *
    * @generated from field: google.api.NodeSettings node_settings = 25;
    */
-  nodeSettings?: NodeSettings;
+  nodeSettings: NodeSettings;
 
   /**
    * Settings for .NET client libraries.
    *
    * @generated from field: google.api.DotnetSettings dotnet_settings = 26;
    */
-  dotnetSettings?: DotnetSettings;
+  dotnetSettings: DotnetSettings;
 
   /**
    * Settings for Ruby client libraries.
    *
    * @generated from field: google.api.RubySettings ruby_settings = 27;
    */
-  rubySettings?: RubySettings;
+  rubySettings: RubySettings;
 
   /**
    * Settings for Go client libraries.
    *
    * @generated from field: google.api.GoSettings go_settings = 28;
    */
-  goSettings?: GoSettings;
+  goSettings: GoSettings;
 };
 
 /**
@@ -306,7 +306,7 @@ export type JavaSettings = Message<"google.api.JavaSettings"> & {
    *
    * @generated from field: google.api.CommonLanguageSettings common = 3;
    */
-  common?: CommonLanguageSettings;
+  common: CommonLanguageSettings;
 };
 
 /**
@@ -327,7 +327,7 @@ export type CppSettings = Message<"google.api.CppSettings"> & {
    *
    * @generated from field: google.api.CommonLanguageSettings common = 1;
    */
-  common?: CommonLanguageSettings;
+  common: CommonLanguageSettings;
 };
 
 /**
@@ -348,7 +348,7 @@ export type PhpSettings = Message<"google.api.PhpSettings"> & {
    *
    * @generated from field: google.api.CommonLanguageSettings common = 1;
    */
-  common?: CommonLanguageSettings;
+  common: CommonLanguageSettings;
 };
 
 /**
@@ -369,7 +369,7 @@ export type PythonSettings = Message<"google.api.PythonSettings"> & {
    *
    * @generated from field: google.api.CommonLanguageSettings common = 1;
    */
-  common?: CommonLanguageSettings;
+  common: CommonLanguageSettings;
 };
 
 /**
@@ -390,7 +390,7 @@ export type NodeSettings = Message<"google.api.NodeSettings"> & {
    *
    * @generated from field: google.api.CommonLanguageSettings common = 1;
    */
-  common?: CommonLanguageSettings;
+  common: CommonLanguageSettings;
 };
 
 /**
@@ -411,7 +411,7 @@ export type DotnetSettings = Message<"google.api.DotnetSettings"> & {
    *
    * @generated from field: google.api.CommonLanguageSettings common = 1;
    */
-  common?: CommonLanguageSettings;
+  common: CommonLanguageSettings;
 
   /**
    * Map from original service names to renamed versions.
@@ -482,7 +482,7 @@ export type RubySettings = Message<"google.api.RubySettings"> & {
    *
    * @generated from field: google.api.CommonLanguageSettings common = 1;
    */
-  common?: CommonLanguageSettings;
+  common: CommonLanguageSettings;
 };
 
 /**
@@ -503,7 +503,7 @@ export type GoSettings = Message<"google.api.GoSettings"> & {
    *
    * @generated from field: google.api.CommonLanguageSettings common = 1;
    */
-  common?: CommonLanguageSettings;
+  common: CommonLanguageSettings;
 };
 
 /**
@@ -548,7 +548,7 @@ export type MethodSettings = Message<"google.api.MethodSettings"> & {
    *
    * @generated from field: google.api.MethodSettings.LongRunning long_running = 2;
    */
-  longRunning?: MethodSettings_LongRunning;
+  longRunning: MethodSettings_LongRunning;
 
   /**
    * List of top-level fields of the request message, that should be
@@ -591,7 +591,7 @@ export type MethodSettings_LongRunning = Message<"google.api.MethodSettings.Long
    *
    * @generated from field: google.protobuf.Duration initial_poll_delay = 1;
    */
-  initialPollDelay?: Duration;
+  initialPollDelay: Duration;
 
   /**
    * Multiplier to gradually increase delay between subsequent polls until it
@@ -608,7 +608,7 @@ export type MethodSettings_LongRunning = Message<"google.api.MethodSettings.Long
    *
    * @generated from field: google.protobuf.Duration max_poll_delay = 3;
    */
-  maxPollDelay?: Duration;
+  maxPollDelay: Duration;
 
   /**
    * Total polling timeout.
@@ -616,7 +616,7 @@ export type MethodSettings_LongRunning = Message<"google.api.MethodSettings.Long
    *
    * @generated from field: google.protobuf.Duration total_poll_timeout = 4;
    */
-  totalPollTimeout?: Duration;
+  totalPollTimeout: Duration;
 };
 
 /**

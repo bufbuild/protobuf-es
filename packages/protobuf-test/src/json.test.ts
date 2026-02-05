@@ -220,8 +220,8 @@ void suite("JSON serialization", () => {
           toggle: false,
         },
       },
-      scalar: { case: undefined },
-      enum: { case: undefined },
+      scalar: { case: "" },
+      enum: { case: "" },
     },
     {
       foo: { name: "max" },

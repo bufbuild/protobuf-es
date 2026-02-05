@@ -74,7 +74,7 @@ export declare type MessageWithComments = Message<"spec.MessageWithComments"> & 
      */
     value: string;
     case: "error";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: string this_field_has_an_empty_comment = 4;

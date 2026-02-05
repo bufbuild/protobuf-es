@@ -97,7 +97,7 @@ export type PhoneNumber = Message<"google.type.PhoneNumber"> & {
      */
     value: PhoneNumber_ShortCode;
     case: "shortCode";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * The phone number's extension. The extension is not standardized in ITU

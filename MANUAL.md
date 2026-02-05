@@ -464,7 +464,7 @@ Protobuf-ES generates the following property:
 result:
   | { case: "number";  value: number }
   | { case: "error";   value: string }
-  | { case: undefined; value?: undefined } = { case: undefined };
+  | { case: "" };
 ```
 
 The entire `oneof` group is turned into an object `result` with two properties:
@@ -472,10 +472,9 @@ The entire `oneof` group is turned into an object `result` with two properties:
 - `case`: The name of the selected field
 - `value`: The value of the selected field
 
-This property is always defined on the message—similar to the way map or repeated fields are always defined. By default,
-it's `{case: undefined}`.
+This property is always defined on the message—similar to the way map or repeated fields are always defined.
 
-In our example, `result.case` can be either `"number"`, `"error"`, or `undefined`. If a field is selected, the
+In our example, `result.case` can be either `"number"`, `"error"`, or `""`. If a field is selected, the
 property `result.value` contains the value of the
 selected field.
 
@@ -483,7 +482,7 @@ To select a field, simply replace the `result` object:
 
 ```typescript
 user.result = { case: "number", value: 123 };
-user.result = { case: undefined };
+user.result = { case: "" };
 ```
 
 To query a `oneof` group, you can use if blocks:
@@ -512,8 +511,7 @@ switch statements above tell the compiler the type of the `value` property.
 
 > [!TIP]
 >
-> This feature requires the TypeScript compiler option `strictNullChecks` to be enabled.
-> This option is automatically enabled with the option `strict`. See the [documentation][strictNullChecks] for details.
+> Oneof types use an empty-string discriminator for the unset case, and are intended for projects using non-strict null checking.
 
 ### Proto2 group fields
 
@@ -2865,7 +2863,6 @@ Serialization to JSON and binary is deterministic within a version of protobuf-e
 [src/wkt/UninterpretedOption_NamePart]: ./packages/protobuf/src/wkt/gen/google/protobuf/descriptor_pb.ts
 [src/wkt/Value]: ./packages/protobuf/src/wkt/gen/google/protobuf/struct_pb.ts
 [src/wkt/Version]: ./packages/protobuf/src/wkt/gen/google/protobuf/compiler/plugin_pb.ts
-[strictNullChecks]: https://www.typescriptlang.org/tsconfig#strictNullChecks
 [Text Encoding API]: https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API
 [ts-enums]: https://www.typescriptlang.org/docs/handbook/enums.html
 [ts-5.0-enum-overhaul]: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html#enum-overhaul

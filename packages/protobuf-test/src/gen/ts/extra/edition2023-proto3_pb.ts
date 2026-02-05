@@ -45,12 +45,12 @@ export type Proto3MessageForEdition2023 = Message<"spec.Proto3MessageForEdition2
   /**
    * @generated from field: optional bool explicit_bool_field = 5;
    */
-  explicitBoolField?: boolean;
+  explicitBoolField: boolean;
 
   /**
    * @generated from field: optional spec.Proto3EnumForEdition2023 explicit_open_enum_field = 6;
    */
-  explicitOpenEnumField?: Proto3EnumForEdition2023;
+  explicitOpenEnumField: Proto3EnumForEdition2023;
 
   /**
    * @generated from field: repeated double packed_double_field = 9 [packed = true];

@@ -76,7 +76,7 @@ export type Decl = Message<"google.api.expr.v1beta1.Decl"> & {
      */
     value: FunctionDecl;
     case: "function";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -136,14 +136,14 @@ export type IdentDecl = Message<"google.api.expr.v1beta1.IdentDecl"> & {
    *
    * @generated from field: google.api.expr.v1beta1.DeclType type = 3;
    */
-  type?: DeclType;
+  type: DeclType;
 
   /**
    * Optional value of the identifier.
    *
    * @generated from field: google.api.expr.v1beta1.Expr value = 4;
    */
-  value?: Expr;
+  value: Expr;
 };
 
 /**
@@ -171,7 +171,7 @@ export type FunctionDecl = Message<"google.api.expr.v1beta1.FunctionDecl"> & {
    *
    * @generated from field: google.api.expr.v1beta1.DeclType return_type = 2;
    */
-  returnType?: DeclType;
+  returnType: DeclType;
 
   /**
    * If the first argument of the function is the receiver.

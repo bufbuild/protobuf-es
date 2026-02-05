@@ -56,7 +56,7 @@ export type SourceContextJson = {
    *
    * @generated from field: string file_name = 1;
    */
-  fileName?: string;
+  fileName: string;
 };
 
 /**

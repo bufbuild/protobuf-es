@@ -38,7 +38,7 @@ export type TsTypeA = Message<"spec.TsTypeA"> & {
   /**
    * @generated from field: optional spec.TsTypeA child = 2;
    */
-  child?: TsTypeA;
+  child: TsTypeA;
 };
 
 /**
@@ -60,7 +60,7 @@ export type TsTypeB = Message<"spec.TsTypeB"> & {
   /**
    * @generated from field: optional spec.TsTypeB child = 2;
    */
-  child?: TsTypeB;
+  child: TsTypeB;
 };
 
 /**

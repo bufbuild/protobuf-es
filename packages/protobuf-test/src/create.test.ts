@@ -144,7 +144,7 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("optionalWrappedUint32Field"), false);
 
         // oneof
-        assert.deepStrictEqual(msg.either, { case: undefined });
+        assert.deepStrictEqual(msg.either, { case: "" });
         assert.strictEqual(hasOwn("either"), true);
 
         // map
@@ -337,7 +337,7 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("optionalWrappedUint32Field"), false);
 
         // oneof
-        assert.deepStrictEqual(msg.either, { case: undefined });
+        assert.deepStrictEqual(msg.either, { case: "" });
         assert.strictEqual(hasOwn("either"), true);
 
         // map
@@ -536,7 +536,7 @@ void suite("create()", () => {
         assert.strictEqual(hasOwn("repeatedWrappedUint32Field"), true);
 
         // oneof
-        assert.deepStrictEqual(msg.either, { case: undefined });
+        assert.deepStrictEqual(msg.either, { case: "" });
         assert.strictEqual(hasOwn("either"), true);
 
         // map

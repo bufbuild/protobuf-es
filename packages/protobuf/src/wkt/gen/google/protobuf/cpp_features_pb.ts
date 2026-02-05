@@ -68,17 +68,17 @@ export type CppFeaturesJson = {
    *
    * @generated from field: optional bool legacy_closed_enum = 1;
    */
-  legacyClosedEnum?: boolean;
+  legacyClosedEnum: boolean;
 
   /**
    * @generated from field: optional pb.CppFeatures.StringType string_type = 2;
    */
-  stringType?: CppFeatures_StringTypeJson;
+  stringType: CppFeatures_StringTypeJson;
 
   /**
    * @generated from field: optional bool enum_name_uses_string_view = 3;
    */
-  enumNameUsesStringView?: boolean;
+  enumNameUsesStringView: boolean;
 };
 
 /**

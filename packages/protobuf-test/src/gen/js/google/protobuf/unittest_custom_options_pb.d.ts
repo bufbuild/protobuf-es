@@ -55,7 +55,7 @@ export declare type TestMessageWithCustomOptions = Message<"proto2_unittest.Test
      */
     value: number;
     case: "oneofField";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: map<string, string> map_field = 3;
@@ -330,7 +330,7 @@ export declare type ComplexOptionType2 = Message<"proto2_unittest.ComplexOptionT
   /**
    * @generated from field: optional proto2_unittest.ComplexOptionType1 bar = 1;
    */
-  bar?: ComplexOptionType1;
+  bar: ComplexOptionType1;
 
   /**
    * @generated from field: optional int32 baz = 2;
@@ -340,7 +340,7 @@ export declare type ComplexOptionType2 = Message<"proto2_unittest.ComplexOptionT
   /**
    * @generated from field: optional proto2_unittest.ComplexOptionType2.ComplexOptionType4 fred = 3;
    */
-  fred?: ComplexOptionType2_ComplexOptionType4;
+  fred: ComplexOptionType2_ComplexOptionType4;
 
   /**
    * @generated from field: repeated proto2_unittest.ComplexOptionType2.ComplexOptionType4 barney = 4;
@@ -387,7 +387,7 @@ export declare type ComplexOptionType3 = Message<"proto2_unittest.ComplexOptionT
   /**
    * @generated from field: optional proto2_unittest.ComplexOptionType3.ComplexOptionType5 complexoptiontype5 = 2;
    */
-  complexoptiontype5?: ComplexOptionType3_ComplexOptionType5;
+  complexoptiontype5: ComplexOptionType3_ComplexOptionType5;
 };
 
 /**
@@ -496,28 +496,28 @@ export declare type Aggregate = Message<"proto2_unittest.Aggregate"> & {
    *
    * @generated from field: optional proto2_unittest.Aggregate sub = 3;
    */
-  sub?: Aggregate;
+  sub: Aggregate;
 
   /**
    * To test the parsing of extensions inside aggregate values
    *
    * @generated from field: optional google.protobuf.FileOptions file = 4;
    */
-  file?: FileOptions;
+  file: FileOptions;
 
   /**
    * An embedded message set
    *
    * @generated from field: optional proto2_unittest.AggregateMessageSet mset = 5;
    */
-  mset?: AggregateMessageSet;
+  mset: AggregateMessageSet;
 
   /**
    * An any
    *
    * @generated from field: optional google.protobuf.Any any = 6;
    */
-  any?: Any;
+  any: Any;
 };
 
 /**

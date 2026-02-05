@@ -139,7 +139,7 @@ export type DateTime = Message<"google.type.DateTime"> & {
      */
     value: TimeZone;
     case: "timeZone";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**

@@ -38,9 +38,7 @@ import {
 } from "./util.js";
 import { version } from "../package.json";
 import {
-  isLegacyRequired,
   isProtovalidateDisabled,
-  isProtovalidateRequired,
   messageNeedsCustomValidType,
 } from "./valid-types.js";
 
@@ -411,15 +409,11 @@ function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: 
   f.print(f.jsDoc(enumeration));
   const declaration = target == "ts" ? "type" : "declare type";
   const values: Printable[] = [];
-  if (enumeration.typeName == "google.protobuf.NullValue") {
-    values.push("null");
-  } else {
-    for (const v of enumeration.values) {
-      if (enumeration.values.indexOf(v) > 0) {
-        values.push(" | ");
-      }
-      values.push(f.string(v.name));
+  for (const v of enumeration.values) {
+    if (enumeration.values.indexOf(v) > 0) {
+      values.push(" | ");
     }
+    values.push(f.string(v.name));
   }
   f.print(f.export(declaration, f.importJson(enumeration).name), " = ", values, ";");
   f.print();
@@ -477,22 +471,12 @@ function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOn
         f.print(`    value: `, typing, `;`);
         f.print(`    case: "`, field.localName, `";`);
       }
-      f.print(`  } | { case: undefined; value?: undefined };`);
+      f.print(`  } | { case: ""; };`);
       break;
     case "field":
       f.print(f.jsDoc(member, "  "));
-      let { typing, optional } = fieldTypeScriptType(member, f.runtime, validTypes && !isProtovalidateDisabled(member));
-      if (optional && validTypes) {
-        const isRequired = (validTypes.legacyRequired && isLegacyRequired(member)) || (validTypes.protovalidateRequired && isProtovalidateRequired(member));
-        if (isRequired) {
-          optional = false;
-        }
-      }
-      if (optional) {
-        f.print("  ", member.localName, "?: ", typing, ";");
-      } else {
-        f.print("  ", member.localName, ": ", typing, ";");
-      }
+      const { typing } = fieldTypeScriptType(member, f.runtime, validTypes && !isProtovalidateDisabled(member));
+      f.print("  ", member.localName, ": ", typing, ";");
       break;
   }
 }
@@ -504,7 +488,7 @@ function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target
   switch (message.typeName) {
     case "google.protobuf.Any":
       f.print(exp, " = {");
-      f.print(`  "@type"?: string;`);
+      f.print(`  "@type": string;`);
       f.print("};");
       break;
     case "google.protobuf.Timestamp":
@@ -543,7 +527,7 @@ function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target
             || containsSpecialChar.test(jsonName)) {
             jsonName = f.string(jsonName);
           }
-          f.print("  ", jsonName, "?: ", fieldJsonType(field), ";");
+          f.print("  ", jsonName, ": ", fieldJsonType(field), ";");
           if (message.fields.indexOf(field) < message.fields.length - 1) {
             f.print();
           }

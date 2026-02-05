@@ -91,12 +91,12 @@ export type JavaFeaturesJson = {
    *
    * @generated from field: optional bool legacy_closed_enum = 1;
    */
-  legacyClosedEnum?: boolean;
+  legacyClosedEnum: boolean;
 
   /**
    * @generated from field: optional pb.JavaFeatures.Utf8Validation utf8_validation = 2;
    */
-  utf8Validation?: JavaFeatures_Utf8ValidationJson;
+  utf8Validation: JavaFeatures_Utf8ValidationJson;
 
   /**
    * Allows creation of large Java enums, extending beyond the standard
@@ -104,7 +104,7 @@ export type JavaFeaturesJson = {
    *
    * @generated from field: optional bool large_enum = 3;
    */
-  largeEnum?: boolean;
+  largeEnum: boolean;
 
   /**
    * Whether to use the old default outer class name scheme, or the new feature
@@ -116,7 +116,7 @@ export type JavaFeaturesJson = {
    *
    * @generated from field: optional bool use_old_outer_classname_default = 4;
    */
-  useOldOuterClassnameDefault?: boolean;
+  useOldOuterClassnameDefault: boolean;
 
   /**
    * Whether to nest the generated class in the generated file class. This is
@@ -124,7 +124,7 @@ export type JavaFeaturesJson = {
    *
    * @generated from field: optional pb.JavaFeatures.NestInFileClassFeature.NestInFileClass nest_in_file_class = 5;
    */
-  nestInFileClass?: JavaFeatures_NestInFileClassFeature_NestInFileClassJson;
+  nestInFileClass: JavaFeatures_NestInFileClassFeature_NestInFileClassJson;
 };
 
 /**

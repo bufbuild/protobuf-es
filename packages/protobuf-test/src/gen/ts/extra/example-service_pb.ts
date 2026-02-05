@@ -57,7 +57,7 @@ export type CreateUserResponse = Message<"example.CreateUserResponse"> & {
   /**
    * @generated from field: example.User user = 1;
    */
-  user?: User;
+  user: User;
 };
 
 /**

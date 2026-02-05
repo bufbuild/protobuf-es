@@ -113,17 +113,17 @@ export declare type TestAllTypes = Message<"proto3_unittest.TestAllTypes"> & {
   /**
    * @generated from field: optional proto3_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestAllTypes_NestedMessage;
+  optionalNestedMessage: TestAllTypes_NestedMessage;
 
   /**
    * @generated from field: proto3_unittest.ForeignMessage optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessage;
+  optionalForeignMessage: ForeignMessage;
 
   /**
    * @generated from field: proto2_unittest_import.ImportMessage optional_import_message = 20;
    */
-  optionalImportMessage?: ImportMessage;
+  optionalImportMessage: ImportMessage;
 
   /**
    * @generated from field: proto3_unittest.TestAllTypes.NestedEnum optional_nested_enum = 21;
@@ -150,22 +150,22 @@ export declare type TestAllTypes = Message<"proto3_unittest.TestAllTypes"> & {
    *
    * @generated from field: proto2_unittest_import.PublicImportMessage optional_public_import_message = 26;
    */
-  optionalPublicImportMessage?: PublicImportMessage;
+  optionalPublicImportMessage: PublicImportMessage;
 
   /**
    * @generated from field: proto3_unittest.TestAllTypes.NestedMessage optional_lazy_message = 27;
    */
-  optionalLazyMessage?: TestAllTypes_NestedMessage;
+  optionalLazyMessage: TestAllTypes_NestedMessage;
 
   /**
    * @generated from field: proto3_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message = 28;
    */
-  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage;
+  optionalUnverifiedLazyMessage: TestAllTypes_NestedMessage;
 
   /**
    * @generated from field: proto2_unittest_import.ImportMessage optional_lazy_import_message = 115;
    */
-  optionalLazyImportMessage?: ImportMessage;
+  optionalLazyImportMessage: ImportMessage;
 
   /**
    * Repeated
@@ -311,7 +311,7 @@ export declare type TestAllTypes = Message<"proto3_unittest.TestAllTypes"> & {
      */
     value: Uint8Array;
     case: "oneofBytes";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -550,12 +550,12 @@ export declare type NestedTestAllTypes = Message<"proto3_unittest.NestedTestAllT
   /**
    * @generated from field: proto3_unittest.NestedTestAllTypes child = 1;
    */
-  child?: NestedTestAllTypes;
+  child: NestedTestAllTypes;
 
   /**
    * @generated from field: proto3_unittest.TestAllTypes payload = 2;
    */
-  payload?: TestAllTypes;
+  payload: TestAllTypes;
 };
 
 /**
@@ -634,7 +634,7 @@ export declare type TestOneof2 = Message<"proto3_unittest.TestOneof2"> & {
      */
     value: TestOneof2_NestedEnum;
     case: "fooEnum";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -1029,7 +1029,7 @@ export declare type TestHasbits = Message<"proto3_unittest.TestHasbits"> & {
   /**
    * @generated from field: proto3_unittest.TestAllTypes child = 100;
    */
-  child?: TestAllTypes;
+  child: TestAllTypes;
 };
 
 /**

@@ -46,7 +46,7 @@ export declare type User = Message<"example.User"> & {
   /**
    * @generated from field: example.User manager = 4;
    */
-  manager?: User;
+  manager: User;
 
   /**
    * @generated from field: repeated string locations = 5;

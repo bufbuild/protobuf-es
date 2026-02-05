@@ -82,17 +82,17 @@ export type VersionJson = {
   /**
    * @generated from field: optional int32 major = 1;
    */
-  major?: number;
+  major: number;
 
   /**
    * @generated from field: optional int32 minor = 2;
    */
-  minor?: number;
+  minor: number;
 
   /**
    * @generated from field: optional int32 patch = 3;
    */
-  patch?: number;
+  patch: number;
 
   /**
    * A suffix for alpha, beta or rc release, e.g., "alpha-1", "rc2". It should
@@ -100,7 +100,7 @@ export type VersionJson = {
    *
    * @generated from field: optional string suffix = 4;
    */
-  suffix?: string;
+  suffix: string;
 };
 
 /**
@@ -171,7 +171,7 @@ export type CodeGeneratorRequest = Message<"google.protobuf.compiler.CodeGenerat
    *
    * @generated from field: optional google.protobuf.compiler.Version compiler_version = 3;
    */
-  compilerVersion?: Version;
+  compilerVersion: Version;
 };
 
 /**
@@ -187,14 +187,14 @@ export type CodeGeneratorRequestJson = {
    *
    * @generated from field: repeated string file_to_generate = 1;
    */
-  fileToGenerate?: string[];
+  fileToGenerate: string[];
 
   /**
    * The generator parameter passed on the command-line.
    *
    * @generated from field: optional string parameter = 2;
    */
-  parameter?: string;
+  parameter: string;
 
   /**
    * FileDescriptorProtos for all files in files_to_generate and everything
@@ -219,7 +219,7 @@ export type CodeGeneratorRequestJson = {
    *
    * @generated from field: repeated google.protobuf.FileDescriptorProto proto_file = 15;
    */
-  protoFile?: FileDescriptorProtoJson[];
+  protoFile: FileDescriptorProtoJson[];
 
   /**
    * File descriptors with all options, including source-retention options.
@@ -228,14 +228,14 @@ export type CodeGeneratorRequestJson = {
    *
    * @generated from field: repeated google.protobuf.FileDescriptorProto source_file_descriptors = 17;
    */
-  sourceFileDescriptors?: FileDescriptorProtoJson[];
+  sourceFileDescriptors: FileDescriptorProtoJson[];
 
   /**
    * The version number of protocol compiler.
    *
    * @generated from field: optional google.protobuf.compiler.Version compiler_version = 3;
    */
-  compilerVersion?: VersionJson;
+  compilerVersion: VersionJson;
 };
 
 /**
@@ -317,7 +317,7 @@ export type CodeGeneratorResponseJson = {
    *
    * @generated from field: optional string error = 1;
    */
-  error?: string;
+  error: string;
 
   /**
    * A bitmask of supported features that the code generator supports.
@@ -325,7 +325,7 @@ export type CodeGeneratorResponseJson = {
    *
    * @generated from field: optional uint64 supported_features = 2;
    */
-  supportedFeatures?: string;
+  supportedFeatures: string;
 
   /**
    * The minimum edition this plugin supports.  This will be treated as an
@@ -335,7 +335,7 @@ export type CodeGeneratorResponseJson = {
    *
    * @generated from field: optional int32 minimum_edition = 3;
    */
-  minimumEdition?: number;
+  minimumEdition: number;
 
   /**
    * The maximum edition this plugin supports.  This will be treated as an
@@ -345,12 +345,12 @@ export type CodeGeneratorResponseJson = {
    *
    * @generated from field: optional int32 maximum_edition = 4;
    */
-  maximumEdition?: number;
+  maximumEdition: number;
 
   /**
    * @generated from field: repeated google.protobuf.compiler.CodeGeneratorResponse.File file = 15;
    */
-  file?: CodeGeneratorResponse_FileJson[];
+  file: CodeGeneratorResponse_FileJson[];
 };
 
 /**
@@ -440,7 +440,7 @@ export type CodeGeneratorResponse_File = Message<"google.protobuf.compiler.CodeG
    *
    * @generated from field: optional google.protobuf.GeneratedCodeInfo generated_code_info = 16;
    */
-  generatedCodeInfo?: GeneratedCodeInfo;
+  generatedCodeInfo: GeneratedCodeInfo;
 };
 
 /**
@@ -464,7 +464,7 @@ export type CodeGeneratorResponse_FileJson = {
    *
    * @generated from field: optional string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * If non-empty, indicates that the named file should already exist, and the
@@ -507,14 +507,14 @@ export type CodeGeneratorResponse_FileJson = {
    *
    * @generated from field: optional string insertion_point = 2;
    */
-  insertionPoint?: string;
+  insertionPoint: string;
 
   /**
    * The file contents.
    *
    * @generated from field: optional string content = 15;
    */
-  content?: string;
+  content: string;
 
   /**
    * Information describing the file content being inserted. If an insertion
@@ -523,7 +523,7 @@ export type CodeGeneratorResponse_FileJson = {
    *
    * @generated from field: optional google.protobuf.GeneratedCodeInfo generated_code_info = 16;
    */
-  generatedCodeInfo?: GeneratedCodeInfoJson;
+  generatedCodeInfo: GeneratedCodeInfoJson;
 };
 
 /**

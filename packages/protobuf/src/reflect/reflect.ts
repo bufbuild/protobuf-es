@@ -648,7 +648,7 @@ function wktValueToLocal(val: Value): JsonValue {
     case "listValue":
       return val.kind.value.values.map(wktValueToLocal);
     case "nullValue":
-    case undefined:
+    case "":
       return null;
     default:
       return val.kind.value;
@@ -658,7 +658,7 @@ function wktValueToLocal(val: Value): JsonValue {
 function wktValueToReflect(json: JsonValue): Value {
   const value: Value = {
     $typeName: "google.protobuf.Value",
-    kind: { case: undefined },
+    kind: { case: "" },
   };
   switch (typeof json) {
     case "number":

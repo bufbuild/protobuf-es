@@ -32,13 +32,12 @@ export function isOneofADT(arg: unknown): arg is OneofADT {
     typeof arg == "object" &&
     "case" in arg &&
     ((typeof arg.case == "string" && "value" in arg && arg.value != null) ||
-      (arg.case === undefined &&
-        (!("value" in arg) || arg.value === undefined)))
+      (arg.case === "" && !("value" in arg)))
   );
 }
 
 export type OneofADT =
-  | { case: undefined; value?: undefined }
+  | { case: "" }
   | { case: string; value: Message | ScalarValue };
 
 export function isReflectList(

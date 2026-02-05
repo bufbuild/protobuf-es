@@ -409,7 +409,7 @@ export type HttpRule = Message<"google.api.HttpRule"> & {
      */
     value: CustomHttpPattern;
     case: "custom";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * The name of the request field whose value is mapped to the HTTP request

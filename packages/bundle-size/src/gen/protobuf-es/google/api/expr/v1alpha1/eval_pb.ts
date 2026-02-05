@@ -164,7 +164,7 @@ export type ExprValue = Message<"google.api.expr.v1alpha1.ExprValue"> & {
      */
     value: UnknownSet;
     case: "unknown";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**

@@ -118,12 +118,12 @@ export declare type TestAllTypesProto2 = Message<"protobuf_test_messages.proto2.
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestAllTypesProto2_NestedMessage;
+  optionalNestedMessage: TestAllTypesProto2_NestedMessage;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.ForeignMessageProto2 optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessageProto2;
+  optionalForeignMessage: ForeignMessageProto2;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.NestedEnum optional_nested_enum = 21;
@@ -148,7 +148,7 @@ export declare type TestAllTypesProto2 = Message<"protobuf_test_messages.proto2.
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2 recursive_message = 27;
    */
-  recursiveMessage?: TestAllTypesProto2;
+  recursiveMessage: TestAllTypesProto2;
 
   /**
    * Repeated
@@ -565,17 +565,17 @@ export declare type TestAllTypesProto2 = Message<"protobuf_test_messages.proto2.
      */
     value: TestAllTypesProto2_NestedEnum;
     case: "oneofEnum";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.Data data = 201;
    */
-  data?: TestAllTypesProto2_Data;
+  data: TestAllTypesProto2_Data;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField multiwordgroupfield = 204;
    */
-  multiwordgroupfield?: TestAllTypesProto2_MultiWordGroupField;
+  multiwordgroupfield: TestAllTypesProto2_MultiWordGroupField;
 
   /**
    * default values
@@ -750,7 +750,7 @@ export declare type TestAllTypesProto2 = Message<"protobuf_test_messages.proto2.
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect message_set_correct = 500;
    */
-  messageSetCorrect?: TestAllTypesProto2_MessageSetCorrect;
+  messageSetCorrect: TestAllTypesProto2_MessageSetCorrect;
 };
 
 /**
@@ -771,7 +771,7 @@ export declare type TestAllTypesProto2_NestedMessage = Message<"protobuf_test_me
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2 corecursive = 2;
    */
-  corecursive?: TestAllTypesProto2;
+  corecursive: TestAllTypesProto2;
 };
 
 /**
@@ -899,7 +899,7 @@ export declare type TestAllTypesProto2_ExtensionWithOneof = Message<"protobuf_te
      */
     value: number;
     case: "b";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -999,12 +999,12 @@ export declare type UnknownToTestAllTypes = Message<"protobuf_test_messages.prot
   /**
    * @generated from field: optional protobuf_test_messages.proto2.ForeignMessageProto2 nested_message = 1003;
    */
-  nestedMessage?: ForeignMessageProto2;
+  nestedMessage: ForeignMessageProto2;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.UnknownToTestAllTypes.OptionalGroup optionalgroup = 1004;
    */
-  optionalgroup?: UnknownToTestAllTypes_OptionalGroup;
+  optionalgroup: UnknownToTestAllTypes_OptionalGroup;
 
   /**
    * @generated from field: optional bool optional_bool = 1006;
@@ -1209,12 +1209,12 @@ export declare type TestAllRequiredTypesProto2 = Message<"protobuf_test_messages
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage required_nested_message = 18;
    */
-  requiredNestedMessage?: TestAllRequiredTypesProto2_NestedMessage;
+  requiredNestedMessage: TestAllRequiredTypesProto2_NestedMessage;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.ForeignMessageProto2 required_foreign_message = 19;
    */
-  requiredForeignMessage?: ForeignMessageProto2;
+  requiredForeignMessage: ForeignMessageProto2;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedEnum required_nested_enum = 21;
@@ -1239,17 +1239,17 @@ export declare type TestAllRequiredTypesProto2 = Message<"protobuf_test_messages
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2 recursive_message = 27;
    */
-  recursiveMessage?: TestAllRequiredTypesProto2;
+  recursiveMessage: TestAllRequiredTypesProto2;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2 optional_recursive_message = 28;
    */
-  optionalRecursiveMessage?: TestAllRequiredTypesProto2;
+  optionalRecursiveMessage: TestAllRequiredTypesProto2;
 
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data data = 201;
    */
-  data?: TestAllRequiredTypesProto2_Data;
+  data: TestAllRequiredTypesProto2_Data;
 
   /**
    * default values
@@ -1347,12 +1347,12 @@ export declare type TestAllRequiredTypesProto2_NestedMessage = Message<"protobuf
   /**
    * @generated from field: required protobuf_test_messages.proto2.TestAllRequiredTypesProto2 corecursive = 2;
    */
-  corecursive?: TestAllRequiredTypesProto2;
+  corecursive: TestAllRequiredTypesProto2;
 
   /**
    * @generated from field: optional protobuf_test_messages.proto2.TestAllRequiredTypesProto2 optional_corecursive = 3;
    */
-  optionalCorecursive?: TestAllRequiredTypesProto2;
+  optionalCorecursive: TestAllRequiredTypesProto2;
 };
 
 /**
@@ -1509,7 +1509,7 @@ export declare type TestLargeOneof = Message<"protobuf_test_messages.proto2.Test
      */
     value: TestLargeOneof_A5;
     case: "a5";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**

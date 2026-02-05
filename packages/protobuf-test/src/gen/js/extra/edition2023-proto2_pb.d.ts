@@ -48,7 +48,7 @@ export declare type Proto2MessageForEdition2023 = Message<"spec.Proto2MessageFor
   /**
    * @generated from field: optional spec.Proto2MessageForEdition2023.OptionalGroup optionalgroup = 4;
    */
-  optionalgroup?: Proto2MessageForEdition2023_OptionalGroup;
+  optionalgroup: Proto2MessageForEdition2023_OptionalGroup;
 
   /**
    * @generated from field: required bool required_bool_field = 5;
@@ -68,7 +68,7 @@ export declare type Proto2MessageForEdition2023 = Message<"spec.Proto2MessageFor
   /**
    * @generated from field: required spec.Proto2MessageForEdition2023.RequiredGroup requiredgroup = 8;
    */
-  requiredgroup?: Proto2MessageForEdition2023_RequiredGroup;
+  requiredgroup: Proto2MessageForEdition2023_RequiredGroup;
 
   /**
    * @generated from field: repeated double packed_double_field = 9 [packed = true];

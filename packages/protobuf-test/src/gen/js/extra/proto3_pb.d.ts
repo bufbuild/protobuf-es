@@ -79,77 +79,77 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
   /**
    * @generated from field: spec.Proto3Message singular_message_field = 8;
    */
-  singularMessageField?: Proto3Message;
+  singularMessageField: Proto3Message;
 
   /**
    * @generated from field: google.protobuf.UInt32Value singular_wrapped_uint32_field = 211;
    */
-  singularWrappedUint32Field?: number;
+  singularWrappedUint32Field: number;
 
   /**
    * @generated from field: google.protobuf.Struct singular_struct_field = 214;
    */
-  singularStructField?: JsonObject;
+  singularStructField: JsonObject;
 
   /**
    * @generated from field: optional string optional_string_field = 9;
    */
-  optionalStringField?: string;
+  optionalStringField: string;
 
   /**
    * @generated from field: optional bytes optional_bytes_field = 10;
    */
-  optionalBytesField?: Uint8Array;
+  optionalBytesField: Uint8Array;
 
   /**
    * @generated from field: optional int32 optional_int32_field = 11;
    */
-  optionalInt32Field?: number;
+  optionalInt32Field: number;
 
   /**
    * @generated from field: optional int64 optional_int64_field = 12;
    */
-  optionalInt64Field?: bigint;
+  optionalInt64Field: bigint;
 
   /**
    * @generated from field: optional int64 optional_int64_js_number_field = 106 [jstype = JS_NUMBER];
    */
-  optionalInt64JsNumberField?: bigint;
+  optionalInt64JsNumberField: bigint;
 
   /**
    * @generated from field: optional int64 optional_int64_js_string_field = 105 [jstype = JS_STRING];
    */
-  optionalInt64JsStringField?: string;
+  optionalInt64JsStringField: string;
 
   /**
    * @generated from field: optional float optional_float_field = 13;
    */
-  optionalFloatField?: number;
+  optionalFloatField: number;
 
   /**
    * @generated from field: optional bool optional_bool_field = 14;
    */
-  optionalBoolField?: boolean;
+  optionalBoolField: boolean;
 
   /**
    * @generated from field: optional spec.Proto3Enum optional_enum_field = 15;
    */
-  optionalEnumField?: Proto3Enum;
+  optionalEnumField: Proto3Enum;
 
   /**
    * @generated from field: optional spec.Proto3Message optional_message_field = 16;
    */
-  optionalMessageField?: Proto3Message;
+  optionalMessageField: Proto3Message;
 
   /**
    * @generated from field: optional google.protobuf.UInt32Value optional_wrapped_uint32_field = 212;
    */
-  optionalWrappedUint32Field?: number;
+  optionalWrappedUint32Field: number;
 
   /**
    * @generated from field: optional google.protobuf.Struct optional_struct_field = 215;
    */
-  optionalStructField?: JsonObject;
+  optionalStructField: JsonObject;
 
   /**
    * @generated from field: repeated string repeated_string_field = 17;
@@ -316,7 +316,7 @@ export declare type Proto3Message = Message<"spec.Proto3Message"> & {
      */
     value: JsonObject;
     case: "oneofStructField";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: map<string, string> map_string_string_field = 39;

@@ -122,12 +122,12 @@ export type TestAllTypesProto3 = Message<"protobuf_test_messages.editions.proto3
   /**
    * @generated from field: protobuf_test_messages.editions.proto3.TestAllTypesProto3.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestAllTypesProto3_NestedMessage;
+  optionalNestedMessage: TestAllTypesProto3_NestedMessage;
 
   /**
    * @generated from field: protobuf_test_messages.editions.proto3.ForeignMessage optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessage;
+  optionalForeignMessage: ForeignMessage;
 
   /**
    * @generated from field: protobuf_test_messages.editions.proto3.TestAllTypesProto3.NestedEnum optional_nested_enum = 21;
@@ -157,7 +157,7 @@ export type TestAllTypesProto3 = Message<"protobuf_test_messages.editions.proto3
   /**
    * @generated from field: protobuf_test_messages.editions.proto3.TestAllTypesProto3 recursive_message = 27;
    */
-  recursiveMessage?: TestAllTypesProto3;
+  recursiveMessage: TestAllTypesProto3;
 
   /**
    * Repeated
@@ -570,54 +570,54 @@ export type TestAllTypesProto3 = Message<"protobuf_test_messages.editions.proto3
      */
     value: NullValue;
     case: "oneofNullValue";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * Well-known types
    *
    * @generated from field: google.protobuf.BoolValue optional_bool_wrapper = 201;
    */
-  optionalBoolWrapper?: boolean;
+  optionalBoolWrapper: boolean;
 
   /**
    * @generated from field: google.protobuf.Int32Value optional_int32_wrapper = 202;
    */
-  optionalInt32Wrapper?: number;
+  optionalInt32Wrapper: number;
 
   /**
    * @generated from field: google.protobuf.Int64Value optional_int64_wrapper = 203;
    */
-  optionalInt64Wrapper?: bigint;
+  optionalInt64Wrapper: bigint;
 
   /**
    * @generated from field: google.protobuf.UInt32Value optional_uint32_wrapper = 204;
    */
-  optionalUint32Wrapper?: number;
+  optionalUint32Wrapper: number;
 
   /**
    * @generated from field: google.protobuf.UInt64Value optional_uint64_wrapper = 205;
    */
-  optionalUint64Wrapper?: bigint;
+  optionalUint64Wrapper: bigint;
 
   /**
    * @generated from field: google.protobuf.FloatValue optional_float_wrapper = 206;
    */
-  optionalFloatWrapper?: number;
+  optionalFloatWrapper: number;
 
   /**
    * @generated from field: google.protobuf.DoubleValue optional_double_wrapper = 207;
    */
-  optionalDoubleWrapper?: number;
+  optionalDoubleWrapper: number;
 
   /**
    * @generated from field: google.protobuf.StringValue optional_string_wrapper = 208;
    */
-  optionalStringWrapper?: string;
+  optionalStringWrapper: string;
 
   /**
    * @generated from field: google.protobuf.BytesValue optional_bytes_wrapper = 209;
    */
-  optionalBytesWrapper?: Uint8Array;
+  optionalBytesWrapper: Uint8Array;
 
   /**
    * @generated from field: repeated google.protobuf.BoolValue repeated_bool_wrapper = 211;
@@ -667,32 +667,32 @@ export type TestAllTypesProto3 = Message<"protobuf_test_messages.editions.proto3
   /**
    * @generated from field: google.protobuf.Duration optional_duration = 301;
    */
-  optionalDuration?: Duration;
+  optionalDuration: Duration;
 
   /**
    * @generated from field: google.protobuf.Timestamp optional_timestamp = 302;
    */
-  optionalTimestamp?: Timestamp;
+  optionalTimestamp: Timestamp;
 
   /**
    * @generated from field: google.protobuf.FieldMask optional_field_mask = 303;
    */
-  optionalFieldMask?: FieldMask;
+  optionalFieldMask: FieldMask;
 
   /**
    * @generated from field: google.protobuf.Struct optional_struct = 304;
    */
-  optionalStruct?: JsonObject;
+  optionalStruct: JsonObject;
 
   /**
    * @generated from field: google.protobuf.Any optional_any = 305;
    */
-  optionalAny?: Any;
+  optionalAny: Any;
 
   /**
    * @generated from field: google.protobuf.Value optional_value = 306;
    */
-  optionalValue?: Value;
+  optionalValue: Value;
 
   /**
    * @generated from field: google.protobuf.NullValue optional_null_value = 307;
@@ -847,7 +847,7 @@ export type TestAllTypesProto3_NestedMessage = Message<"protobuf_test_messages.e
   /**
    * @generated from field: protobuf_test_messages.editions.proto3.TestAllTypesProto3 corecursive = 2;
    */
-  corecursive?: TestAllTypesProto3;
+  corecursive: TestAllTypesProto3;
 };
 
 /**

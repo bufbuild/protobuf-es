@@ -89,7 +89,7 @@ export declare type TestNestedMessageEnum = Message<"proto2_unittest.TestNestedM
   /**
    * @generated from field: proto2_unittest.TestMessageEnum nested_enum = 2;
    */
-  nestedEnum?: TestMessageEnum;
+  nestedEnum: TestMessageEnum;
 
   /**
    * @generated from field: string redacted_string = 3;
@@ -136,7 +136,7 @@ export declare type TestRedactedMessage = Message<"proto2_unittest.TestRedactedM
   /**
    * @generated from field: google.protobuf.Any any_field = 18;
    */
-  anyField?: Any;
+  anyField: Any;
 
   /**
    * @generated from field: string redactable_false = 19;

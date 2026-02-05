@@ -49,7 +49,7 @@ export declare type OneofMessage = Message<"spec.OneofMessage"> & {
      */
     value: Uint8Array;
     case: "bytes";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from oneof spec.OneofMessage.message
@@ -72,7 +72,7 @@ export declare type OneofMessage = Message<"spec.OneofMessage"> & {
      */
     value: OneofMessageBar;
     case: "baz";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from oneof spec.OneofMessage.enum
@@ -83,7 +83,7 @@ export declare type OneofMessage = Message<"spec.OneofMessage"> & {
      */
     value: OneofEnum;
     case: "e";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**

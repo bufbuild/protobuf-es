@@ -102,7 +102,7 @@ void suite("ReflectMessage", () => {
     test("returns undefined for oneof w/o selected field", () => {
       const msg = create(proto3_ts.Proto3MessageSchema);
       msg.either = {
-        case: undefined,
+        case: "",
       };
       const r = reflect(proto3_ts.Proto3MessageSchema, msg);
       assert.ok(r.oneofs[0] !== undefined);

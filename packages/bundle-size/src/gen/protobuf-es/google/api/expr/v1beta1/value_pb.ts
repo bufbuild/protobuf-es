@@ -138,7 +138,7 @@ export type Value = Message<"google.api.expr.v1beta1.Value"> & {
      */
     value: string;
     case: "typeValue";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -241,14 +241,14 @@ export type MapValue_Entry = Message<"google.api.expr.v1beta1.MapValue.Entry"> &
    *
    * @generated from field: google.api.expr.v1beta1.Value key = 1;
    */
-  key?: Value;
+  key: Value;
 
   /**
    * The value.
    *
    * @generated from field: google.api.expr.v1beta1.Value value = 2;
    */
-  value?: Value;
+  value: Value;
 };
 
 /**

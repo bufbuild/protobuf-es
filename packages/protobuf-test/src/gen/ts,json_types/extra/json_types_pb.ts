@@ -60,42 +60,42 @@ export type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   /**
    * @generated from field: spec.JsonTypesMessage message_field = 6;
    */
-  messageField?: JsonTypesMessage;
+  messageField: JsonTypesMessage;
 
   /**
    * @generated from field: google.protobuf.Any any_field = 7;
    */
-  anyField?: Any;
+  anyField: Any;
 
   /**
    * @generated from field: google.protobuf.Duration duration_field = 8;
    */
-  durationField?: Duration;
+  durationField: Duration;
 
   /**
    * @generated from field: google.protobuf.Empty empty_field = 9;
    */
-  emptyField?: Empty;
+  emptyField: Empty;
 
   /**
    * @generated from field: google.protobuf.FieldMask field_mask_field = 10;
    */
-  fieldMaskField?: FieldMask;
+  fieldMaskField: FieldMask;
 
   /**
    * @generated from field: google.protobuf.Struct struct_field = 11;
    */
-  structField?: JsonObject;
+  structField: JsonObject;
 
   /**
    * @generated from field: google.protobuf.Value value_field = 12;
    */
-  valueField?: Value;
+  valueField: Value;
 
   /**
    * @generated from field: google.protobuf.ListValue list_value_field = 13;
    */
-  listValueField?: ListValue;
+  listValueField: ListValue;
 
   /**
    * @generated from field: google.protobuf.NullValue null_value_field = 14;
@@ -105,52 +105,52 @@ export type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   /**
    * @generated from field: google.protobuf.Timestamp timestamp_field = 15;
    */
-  timestampField?: Timestamp;
+  timestampField: Timestamp;
 
   /**
    * @generated from field: google.protobuf.DoubleValue wrapped_double_field = 16;
    */
-  wrappedDoubleField?: number;
+  wrappedDoubleField: number;
 
   /**
    * @generated from field: google.protobuf.FloatValue wrapped_float_field = 17;
    */
-  wrappedFloatField?: number;
+  wrappedFloatField: number;
 
   /**
    * @generated from field: google.protobuf.Int64Value wrapped_int64_field = 18;
    */
-  wrappedInt64Field?: bigint;
+  wrappedInt64Field: bigint;
 
   /**
    * @generated from field: google.protobuf.UInt64Value wrapped_uint64_field = 19;
    */
-  wrappedUint64Field?: bigint;
+  wrappedUint64Field: bigint;
 
   /**
    * @generated from field: google.protobuf.Int32Value wrapped_int32_field = 20;
    */
-  wrappedInt32Field?: number;
+  wrappedInt32Field: number;
 
   /**
    * @generated from field: google.protobuf.UInt32Value wrapped_uint32_field = 21;
    */
-  wrappedUint32Field?: number;
+  wrappedUint32Field: number;
 
   /**
    * @generated from field: google.protobuf.BoolValue wrapped_bool_field = 22;
    */
-  wrappedBoolField?: boolean;
+  wrappedBoolField: boolean;
 
   /**
    * @generated from field: google.protobuf.StringValue wrapped_string_field = 23;
    */
-  wrappedStringField?: string;
+  wrappedStringField: string;
 
   /**
    * @generated from field: google.protobuf.BytesValue wrapped_bytes_field = 24;
    */
-  wrappedBytesField?: Uint8Array;
+  wrappedBytesField: Uint8Array;
 
   /**
    * @generated from field: repeated spec.JsonTypeEnum repeated_enum_field = 25;
@@ -177,7 +177,7 @@ export type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
      */
     value: string;
     case: "oneofBoolField";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: bool json_name_ok = 29 [json_name = "Foo123_bar$"];
@@ -228,183 +228,183 @@ export type JsonTypesMessageJson = {
   /**
    * @generated from field: bool bool_field = 1 [json_name = "booleanFieldWithCustomName"];
    */
-  booleanFieldWithCustomName?: boolean;
+  booleanFieldWithCustomName: boolean;
 
   /**
    * @generated from field: double double_field = 2;
    */
-  doubleField?: number | "NaN" | "Infinity" | "-Infinity";
+  doubleField: number | "NaN" | "Infinity" | "-Infinity";
 
   /**
    * @generated from field: bytes bytes_field = 3;
    */
-  bytesField?: string;
+  bytesField: string;
 
   /**
    * @generated from field: int64 int64_field = 4;
    */
-  int64Field?: string;
+  int64Field: string;
 
   /**
    * @generated from field: spec.JsonTypeEnum enum_field = 5;
    */
-  enumField?: JsonTypeEnumJson;
+  enumField: JsonTypeEnumJson;
 
   /**
    * @generated from field: spec.JsonTypesMessage message_field = 6;
    */
-  messageField?: JsonTypesMessageJson;
+  messageField: JsonTypesMessageJson;
 
   /**
    * @generated from field: google.protobuf.Any any_field = 7;
    */
-  anyField?: AnyJson;
+  anyField: AnyJson;
 
   /**
    * @generated from field: google.protobuf.Duration duration_field = 8;
    */
-  durationField?: DurationJson;
+  durationField: DurationJson;
 
   /**
    * @generated from field: google.protobuf.Empty empty_field = 9;
    */
-  emptyField?: EmptyJson;
+  emptyField: EmptyJson;
 
   /**
    * @generated from field: google.protobuf.FieldMask field_mask_field = 10;
    */
-  fieldMaskField?: FieldMaskJson;
+  fieldMaskField: FieldMaskJson;
 
   /**
    * @generated from field: google.protobuf.Struct struct_field = 11;
    */
-  structField?: StructJson;
+  structField: StructJson;
 
   /**
    * @generated from field: google.protobuf.Value value_field = 12;
    */
-  valueField?: ValueJson;
+  valueField: ValueJson;
 
   /**
    * @generated from field: google.protobuf.ListValue list_value_field = 13;
    */
-  listValueField?: ListValueJson;
+  listValueField: ListValueJson;
 
   /**
    * @generated from field: google.protobuf.NullValue null_value_field = 14;
    */
-  nullValueField?: NullValueJson;
+  nullValueField: NullValueJson;
 
   /**
    * @generated from field: google.protobuf.Timestamp timestamp_field = 15;
    */
-  timestampField?: TimestampJson;
+  timestampField: TimestampJson;
 
   /**
    * @generated from field: google.protobuf.DoubleValue wrapped_double_field = 16;
    */
-  wrappedDoubleField?: DoubleValueJson;
+  wrappedDoubleField: DoubleValueJson;
 
   /**
    * @generated from field: google.protobuf.FloatValue wrapped_float_field = 17;
    */
-  wrappedFloatField?: FloatValueJson;
+  wrappedFloatField: FloatValueJson;
 
   /**
    * @generated from field: google.protobuf.Int64Value wrapped_int64_field = 18;
    */
-  wrappedInt64Field?: Int64ValueJson;
+  wrappedInt64Field: Int64ValueJson;
 
   /**
    * @generated from field: google.protobuf.UInt64Value wrapped_uint64_field = 19;
    */
-  wrappedUint64Field?: UInt64ValueJson;
+  wrappedUint64Field: UInt64ValueJson;
 
   /**
    * @generated from field: google.protobuf.Int32Value wrapped_int32_field = 20;
    */
-  wrappedInt32Field?: Int32ValueJson;
+  wrappedInt32Field: Int32ValueJson;
 
   /**
    * @generated from field: google.protobuf.UInt32Value wrapped_uint32_field = 21;
    */
-  wrappedUint32Field?: UInt32ValueJson;
+  wrappedUint32Field: UInt32ValueJson;
 
   /**
    * @generated from field: google.protobuf.BoolValue wrapped_bool_field = 22;
    */
-  wrappedBoolField?: BoolValueJson;
+  wrappedBoolField: BoolValueJson;
 
   /**
    * @generated from field: google.protobuf.StringValue wrapped_string_field = 23;
    */
-  wrappedStringField?: StringValueJson;
+  wrappedStringField: StringValueJson;
 
   /**
    * @generated from field: google.protobuf.BytesValue wrapped_bytes_field = 24;
    */
-  wrappedBytesField?: BytesValueJson;
+  wrappedBytesField: BytesValueJson;
 
   /**
    * @generated from field: repeated spec.JsonTypeEnum repeated_enum_field = 25;
    */
-  repeatedEnumField?: JsonTypeEnumJson[];
+  repeatedEnumField: JsonTypeEnumJson[];
 
   /**
    * @generated from field: map<bool, spec.JsonTypeEnum> map_bool_enum_field = 26;
    */
-  mapBoolEnumField?: { [key: string]: JsonTypeEnumJson };
+  mapBoolEnumField: { [key: string]: JsonTypeEnumJson };
 
   /**
    * @generated from field: string oneof_string_field = 27;
    */
-  oneofStringField?: string;
+  oneofStringField: string;
 
   /**
    * @generated from field: string oneof_bool_field = 28;
    */
-  oneofBoolField?: string;
+  oneofBoolField: string;
 
   /**
    * @generated from field: bool json_name_ok = 29 [json_name = "Foo123_bar$"];
    */
-  Foo123_bar$?: boolean;
+  Foo123_bar$: boolean;
 
   /**
    * @generated from field: bool json_name_at = 30 [json_name = "foo@"];
    */
-  "foo@"?: boolean;
+  "foo@": boolean;
 
   /**
    * @generated from field: bool json_name_hyphen = 31 [json_name = "foo-bar"];
    */
-  "foo-bar"?: boolean;
+  "foo-bar": boolean;
 
   /**
    * @generated from field: bool json_name_start_with_digit = 32 [json_name = "1foo"];
    */
-  "1foo"?: boolean;
+  "1foo": boolean;
 
   /**
    * @generated from field: bool json_name_space = 33 [json_name = "foo bar"];
    */
-  "foo bar"?: boolean;
+  "foo bar": boolean;
 
   /**
    * @generated from field: bool json_name_tab = 34 [json_name = "foo	bar"];
    */
-  "foo	bar"?: boolean;
+  "foo	bar": boolean;
 
   /**
    * @generated from field: bool json_name_non_ascii = 35 [json_name = "你好"];
    */
-  "你好"?: boolean;
+  "你好": boolean;
 
   /**
    * @generated from field: bool json_name_escape = 36 [json_name = "foo
    * bar\n"];
    */
-  "foo\nbar\\n"?: boolean;
+  "foo\nbar\\n": boolean;
 };
 
 /**

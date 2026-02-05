@@ -76,7 +76,7 @@ export type Type = Message<"google.protobuf.Type"> & {
    *
    * @generated from field: google.protobuf.SourceContext source_context = 5;
    */
-  sourceContext?: SourceContext;
+  sourceContext: SourceContext;
 
   /**
    * The source syntax.
@@ -109,49 +109,49 @@ export type TypeJson = {
    *
    * @generated from field: string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * The list of fields.
    *
    * @generated from field: repeated google.protobuf.Field fields = 2;
    */
-  fields?: FieldJson[];
+  fields: FieldJson[];
 
   /**
    * The list of types appearing in `oneof` definitions in this type.
    *
    * @generated from field: repeated string oneofs = 3;
    */
-  oneofs?: string[];
+  oneofs: string[];
 
   /**
    * The protocol buffer options.
    *
    * @generated from field: repeated google.protobuf.Option options = 4;
    */
-  options?: OptionJson[];
+  options: OptionJson[];
 
   /**
    * The source context.
    *
    * @generated from field: google.protobuf.SourceContext source_context = 5;
    */
-  sourceContext?: SourceContextJson;
+  sourceContext: SourceContextJson;
 
   /**
    * The source syntax.
    *
    * @generated from field: google.protobuf.Syntax syntax = 6;
    */
-  syntax?: SyntaxJson;
+  syntax: SyntaxJson;
 
   /**
    * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
    *
    * @generated from field: string edition = 7;
    */
-  edition?: string;
+  edition: string;
 };
 
 /**
@@ -261,28 +261,28 @@ export type FieldJson = {
    *
    * @generated from field: google.protobuf.Field.Kind kind = 1;
    */
-  kind?: Field_KindJson;
+  kind: Field_KindJson;
 
   /**
    * The field cardinality.
    *
    * @generated from field: google.protobuf.Field.Cardinality cardinality = 2;
    */
-  cardinality?: Field_CardinalityJson;
+  cardinality: Field_CardinalityJson;
 
   /**
    * The field number.
    *
    * @generated from field: int32 number = 3;
    */
-  number?: number;
+  number: number;
 
   /**
    * The field name.
    *
    * @generated from field: string name = 4;
    */
-  name?: string;
+  name: string;
 
   /**
    * The field type URL, without the scheme, for message or enumeration
@@ -290,7 +290,7 @@ export type FieldJson = {
    *
    * @generated from field: string type_url = 6;
    */
-  typeUrl?: string;
+  typeUrl: string;
 
   /**
    * The index of the field type in `Type.oneofs`, for message or enumeration
@@ -298,35 +298,35 @@ export type FieldJson = {
    *
    * @generated from field: int32 oneof_index = 7;
    */
-  oneofIndex?: number;
+  oneofIndex: number;
 
   /**
    * Whether to use alternative packed wire representation.
    *
    * @generated from field: bool packed = 8;
    */
-  packed?: boolean;
+  packed: boolean;
 
   /**
    * The protocol buffer options.
    *
    * @generated from field: repeated google.protobuf.Option options = 9;
    */
-  options?: OptionJson[];
+  options: OptionJson[];
 
   /**
    * The field JSON name.
    *
    * @generated from field: string json_name = 10;
    */
-  jsonName?: string;
+  jsonName: string;
 
   /**
    * The string value of the default value of this field. Proto2 syntax only.
    *
    * @generated from field: string default_value = 11;
    */
-  defaultValue?: string;
+  defaultValue: string;
 };
 
 /**
@@ -574,7 +574,7 @@ export type Enum = Message<"google.protobuf.Enum"> & {
    *
    * @generated from field: google.protobuf.SourceContext source_context = 4;
    */
-  sourceContext?: SourceContext;
+  sourceContext: SourceContext;
 
   /**
    * The source syntax.
@@ -607,42 +607,42 @@ export type EnumJson = {
    *
    * @generated from field: string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * Enum value definitions.
    *
    * @generated from field: repeated google.protobuf.EnumValue enumvalue = 2;
    */
-  enumvalue?: EnumValueJson[];
+  enumvalue: EnumValueJson[];
 
   /**
    * Protocol buffer options.
    *
    * @generated from field: repeated google.protobuf.Option options = 3;
    */
-  options?: OptionJson[];
+  options: OptionJson[];
 
   /**
    * The source context.
    *
    * @generated from field: google.protobuf.SourceContext source_context = 4;
    */
-  sourceContext?: SourceContextJson;
+  sourceContext: SourceContextJson;
 
   /**
    * The source syntax.
    *
    * @generated from field: google.protobuf.Syntax syntax = 5;
    */
-  syntax?: SyntaxJson;
+  syntax: SyntaxJson;
 
   /**
    * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
    *
    * @generated from field: string edition = 6;
    */
-  edition?: string;
+  edition: string;
 };
 
 /**
@@ -701,21 +701,21 @@ export type EnumValueJson = {
    *
    * @generated from field: string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * Enum value number.
    *
    * @generated from field: int32 number = 2;
    */
-  number?: number;
+  number: number;
 
   /**
    * Protocol buffer options.
    *
    * @generated from field: repeated google.protobuf.Option options = 3;
    */
-  options?: OptionJson[];
+  options: OptionJson[];
 };
 
 /**
@@ -754,7 +754,7 @@ export type Option = Message<"google.protobuf.Option"> & {
    *
    * @generated from field: google.protobuf.Any value = 2;
    */
-  value?: Any;
+  value: Any;
 };
 
 /**
@@ -776,7 +776,7 @@ export type OptionJson = {
    *
    * @generated from field: string name = 1;
    */
-  name?: string;
+  name: string;
 
   /**
    * The option's value packed in an Any message. If the value is a primitive,
@@ -786,7 +786,7 @@ export type OptionJson = {
    *
    * @generated from field: google.protobuf.Any value = 2;
    */
-  value?: AnyJson;
+  value: AnyJson;
 };
 
 /**

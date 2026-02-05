@@ -128,22 +128,22 @@ export declare type TestAllTypes = Message<"proto2_unittest.TestAllTypes"> & {
   /**
    * @generated from field: proto2_unittest.TestAllTypes.OptionalGroup optionalgroup = 16 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: TestAllTypes_OptionalGroup;
+  optionalgroup: TestAllTypes_OptionalGroup;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestAllTypes_NestedMessage;
+  optionalNestedMessage: TestAllTypes_NestedMessage;
 
   /**
    * @generated from field: proto2_unittest.ForeignMessage optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessage;
+  optionalForeignMessage: ForeignMessage;
 
   /**
    * @generated from field: proto2_unittest_import.ImportMessage optional_import_message = 20;
    */
-  optionalImportMessage?: ImportMessage;
+  optionalImportMessage: ImportMessage;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedEnum optional_nested_enum = 21;
@@ -180,17 +180,17 @@ export declare type TestAllTypes = Message<"proto2_unittest.TestAllTypes"> & {
    *
    * @generated from field: proto2_unittest_import.PublicImportMessage optional_public_import_message = 26;
    */
-  optionalPublicImportMessage?: PublicImportMessage;
+  optionalPublicImportMessage: PublicImportMessage;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage optional_lazy_message = 27;
    */
-  optionalLazyMessage?: TestAllTypes_NestedMessage;
+  optionalLazyMessage: TestAllTypes_NestedMessage;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message = 28;
    */
-  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage;
+  optionalUnverifiedLazyMessage: TestAllTypes_NestedMessage;
 
   /**
    * Repeated
@@ -468,7 +468,7 @@ export declare type TestAllTypes = Message<"proto2_unittest.TestAllTypes"> & {
      */
     value: TestAllTypes_NestedMessage;
     case: "oneofLazyNestedMessage";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -570,12 +570,12 @@ export declare type NestedTestAllTypes = Message<"proto2_unittest.NestedTestAllT
   /**
    * @generated from field: proto2_unittest.NestedTestAllTypes child = 1;
    */
-  child?: NestedTestAllTypes;
+  child: NestedTestAllTypes;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes payload = 2;
    */
-  payload?: TestAllTypes;
+  payload: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.NestedTestAllTypes repeated_child = 3;
@@ -585,12 +585,12 @@ export declare type NestedTestAllTypes = Message<"proto2_unittest.NestedTestAllT
   /**
    * @generated from field: proto2_unittest.NestedTestAllTypes lazy_child = 4;
    */
-  lazyChild?: NestedTestAllTypes;
+  lazyChild: NestedTestAllTypes;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes eager_child = 5;
    */
-  eagerChild?: TestAllTypes;
+  eagerChild: TestAllTypes;
 };
 
 /**
@@ -619,7 +619,7 @@ export declare type TestDeprecatedFields = Message<"proto2_unittest.TestDeprecat
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage deprecated_message = 3 [deprecated = true];
    * @deprecated
    */
-  deprecatedMessage?: TestAllTypes_NestedMessage;
+  deprecatedMessage: TestAllTypes_NestedMessage;
 
   /**
    * @generated from oneof proto2_unittest.TestDeprecatedFields.oneof_fields
@@ -631,12 +631,12 @@ export declare type TestDeprecatedFields = Message<"proto2_unittest.TestDeprecat
      */
     value: number;
     case: "deprecatedInt32InOneof";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: proto2_unittest.TestDeprecatedFields nested = 5;
    */
-  nested?: TestDeprecatedFields;
+  nested: TestDeprecatedFields;
 };
 
 /**
@@ -777,7 +777,7 @@ export declare type TestGroup = Message<"proto2_unittest.TestGroup"> & {
   /**
    * @generated from field: proto2_unittest.TestGroup.OptionalGroup optionalgroup = 16 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: TestGroup_OptionalGroup;
+  optionalgroup: TestGroup_OptionalGroup;
 
   /**
    * @generated from field: proto2_unittest.ForeignEnum optional_foreign_enum = 22;
@@ -897,7 +897,7 @@ export declare type TestChildExtension = Message<"proto2_unittest.TestChildExten
   /**
    * @generated from field: proto2_unittest.TestAllExtensions optional_extension = 3;
    */
-  optionalExtension?: TestAllExtensions;
+  optionalExtension: TestAllExtensions;
 };
 
 /**
@@ -926,7 +926,7 @@ export declare type TestChildExtensionData = Message<"proto2_unittest.TestChildE
   /**
    * @generated from field: proto2_unittest.TestChildExtensionData.NestedTestAllExtensionsData optional_extension = 3;
    */
-  optionalExtension?: TestChildExtensionData_NestedTestAllExtensionsData;
+  optionalExtension: TestChildExtensionData_NestedTestAllExtensionsData;
 };
 
 /**
@@ -942,7 +942,7 @@ export declare type TestChildExtensionData_NestedTestAllExtensionsData = Message
   /**
    * @generated from field: proto2_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions dynamic = 409707008;
    */
-  dynamic?: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions;
+  dynamic: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions;
 };
 
 /**
@@ -984,7 +984,7 @@ export declare type TestNestedChildExtension = Message<"proto2_unittest.TestNest
   /**
    * @generated from field: proto2_unittest.TestChildExtension child = 2;
    */
-  child?: TestChildExtension;
+  child: TestChildExtension;
 };
 
 /**
@@ -1008,7 +1008,7 @@ export declare type TestNestedChildExtensionData = Message<"proto2_unittest.Test
   /**
    * @generated from field: proto2_unittest.TestChildExtensionData child = 2;
    */
-  child?: TestChildExtensionData;
+  child: TestChildExtensionData;
 };
 
 /**
@@ -1450,7 +1450,7 @@ export declare type TestRequired = Message<"proto2_unittest.TestRequired"> & {
    *
    * @generated from field: proto2_unittest.ForeignMessage optional_foreign = 34;
    */
-  optionalForeign?: ForeignMessage;
+  optionalForeign: ForeignMessage;
 
   /**
    * @generated from field: map<string, proto2_unittest.TestRequired> map_field = 35;
@@ -1481,7 +1481,7 @@ export declare type TestRequiredForeign = Message<"proto2_unittest.TestRequiredF
   /**
    * @generated from field: proto2_unittest.TestRequired optional_message = 1;
    */
-  optionalMessage?: TestRequired;
+  optionalMessage: TestRequired;
 
   /**
    * @generated from field: repeated proto2_unittest.TestRequired repeated_message = 2;
@@ -1498,7 +1498,7 @@ export declare type TestRequiredForeign = Message<"proto2_unittest.TestRequiredF
    *
    * @generated from field: proto2_unittest.NestedTestAllTypes optional_lazy_message = 4;
    */
-  optionalLazyMessage?: NestedTestAllTypes;
+  optionalLazyMessage: NestedTestAllTypes;
 };
 
 /**
@@ -1514,7 +1514,7 @@ export declare type TestRequiredMessage = Message<"proto2_unittest.TestRequiredM
   /**
    * @generated from field: proto2_unittest.TestRequired optional_message = 1;
    */
-  optionalMessage?: TestRequired;
+  optionalMessage: TestRequired;
 
   /**
    * @generated from field: repeated proto2_unittest.TestRequired repeated_message = 2;
@@ -1524,7 +1524,7 @@ export declare type TestRequiredMessage = Message<"proto2_unittest.TestRequiredM
   /**
    * @generated from field: proto2_unittest.TestRequired required_message = 3 [features.field_presence = LEGACY_REQUIRED];
    */
-  requiredMessage?: TestRequired;
+  requiredMessage: TestRequired;
 };
 
 /**
@@ -1540,12 +1540,12 @@ export declare type TestRequiredLazyMessage = Message<"proto2_unittest.TestRequi
   /**
    * @generated from field: proto2_unittest.TestRequired child = 1;
    */
-  child?: TestRequired;
+  child: TestRequired;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredLazyMessage recurse = 2;
    */
-  recurse?: TestRequiredLazyMessage;
+  recurse: TestRequiredLazyMessage;
 };
 
 /**
@@ -1561,12 +1561,12 @@ export declare type TestNestedRequiredForeign = Message<"proto2_unittest.TestNes
   /**
    * @generated from field: proto2_unittest.TestNestedRequiredForeign child = 1;
    */
-  child?: TestNestedRequiredForeign;
+  child: TestNestedRequiredForeign;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredForeign payload = 2;
    */
-  payload?: TestRequiredForeign;
+  payload: TestRequiredForeign;
 
   /**
    * @generated from field: int32 dummy = 3;
@@ -1578,22 +1578,22 @@ export declare type TestNestedRequiredForeign = Message<"proto2_unittest.TestNes
    *
    * @generated from field: proto2_unittest.TestRequiredEnum required_enum = 5;
    */
-  requiredEnum?: TestRequiredEnum;
+  requiredEnum: TestRequiredEnum;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnumNoMask required_enum_no_mask = 6;
    */
-  requiredEnumNoMask?: TestRequiredEnumNoMask;
+  requiredEnumNoMask: TestRequiredEnumNoMask;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnumMulti required_enum_multi = 7;
    */
-  requiredEnumMulti?: TestRequiredEnumMulti;
+  requiredEnumMulti: TestRequiredEnumMulti;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredNoMaskMulti required_no_mask = 9;
    */
-  requiredNoMask?: TestRequiredNoMaskMulti;
+  requiredNoMask: TestRequiredNoMaskMulti;
 };
 
 /**
@@ -1611,7 +1611,7 @@ export declare type TestForeignNested = Message<"proto2_unittest.TestForeignNest
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage foreign_nested = 1;
    */
-  foreignNested?: TestAllTypes_NestedMessage;
+  foreignNested: TestAllTypes_NestedMessage;
 };
 
 /**
@@ -1740,7 +1740,7 @@ export declare type TestRecursiveMessage = Message<"proto2_unittest.TestRecursiv
   /**
    * @generated from field: proto2_unittest.TestRecursiveMessage a = 1;
    */
-  a?: TestRecursiveMessage;
+  a: TestRecursiveMessage;
 
   /**
    * @generated from field: int32 i = 2;
@@ -1763,12 +1763,12 @@ export declare type TestMutualRecursionA = Message<"proto2_unittest.TestMutualRe
   /**
    * @generated from field: proto2_unittest.TestMutualRecursionB bb = 1;
    */
-  bb?: TestMutualRecursionB;
+  bb: TestMutualRecursionB;
 
   /**
    * @generated from field: proto2_unittest.TestMutualRecursionA.SubGroup subgroup = 2 [features.message_encoding = DELIMITED];
    */
-  subgroup?: TestMutualRecursionA_SubGroup;
+  subgroup: TestMutualRecursionA_SubGroup;
 
   /**
    * @generated from field: repeated proto2_unittest.TestMutualRecursionA.SubGroupR subgroupr = 5 [features.message_encoding = DELIMITED];
@@ -1789,7 +1789,7 @@ export declare type TestMutualRecursionA_SubMessage = Message<"proto2_unittest.T
   /**
    * @generated from field: proto2_unittest.TestMutualRecursionB b = 1;
    */
-  b?: TestMutualRecursionB;
+  b: TestMutualRecursionB;
 };
 
 /**
@@ -1807,12 +1807,12 @@ export declare type TestMutualRecursionA_SubGroup = Message<"proto2_unittest.Tes
    *
    * @generated from field: proto2_unittest.TestMutualRecursionA.SubMessage sub_message = 3;
    */
-  subMessage?: TestMutualRecursionA_SubMessage;
+  subMessage: TestMutualRecursionA_SubMessage;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes not_in_this_scc = 4;
    */
-  notInThisScc?: TestAllTypes;
+  notInThisScc: TestAllTypes;
 };
 
 /**
@@ -1828,7 +1828,7 @@ export declare type TestMutualRecursionA_SubGroupR = Message<"proto2_unittest.Te
   /**
    * @generated from field: proto2_unittest.TestAllTypes payload = 6;
    */
-  payload?: TestAllTypes;
+  payload: TestAllTypes;
 };
 
 /**
@@ -1844,7 +1844,7 @@ export declare type TestMutualRecursionB = Message<"proto2_unittest.TestMutualRe
   /**
    * @generated from field: proto2_unittest.TestMutualRecursionA a = 1;
    */
-  a?: TestMutualRecursionA;
+  a: TestMutualRecursionA;
 
   /**
    * @generated from field: int32 optional_int32 = 2;
@@ -1865,7 +1865,7 @@ export declare type TestIsInitialized = Message<"proto2_unittest.TestIsInitializ
   /**
    * @generated from field: proto2_unittest.TestIsInitialized.SubMessage sub_message = 1;
    */
-  subMessage?: TestIsInitialized_SubMessage;
+  subMessage: TestIsInitialized_SubMessage;
 };
 
 /**
@@ -1881,7 +1881,7 @@ export declare type TestIsInitialized_SubMessage = Message<"proto2_unittest.Test
   /**
    * @generated from field: proto2_unittest.TestIsInitialized.SubMessage.SubGroup subgroup = 1 [features.message_encoding = DELIMITED];
    */
-  subgroup?: TestIsInitialized_SubMessage_SubGroup;
+  subgroup: TestIsInitialized_SubMessage_SubGroup;
 };
 
 /**
@@ -1929,14 +1929,14 @@ export declare type TestDupFieldNumber = Message<"proto2_unittest.TestDupFieldNu
    *
    * @generated from field: proto2_unittest.TestDupFieldNumber.Foo foo = 2 [features.message_encoding = DELIMITED];
    */
-  foo?: TestDupFieldNumber_Foo;
+  foo: TestDupFieldNumber_Foo;
 
   /**
    * NO_PROTO1
    *
    * @generated from field: proto2_unittest.TestDupFieldNumber.Bar bar = 3 [features.message_encoding = DELIMITED];
    */
-  bar?: TestDupFieldNumber_Bar;
+  bar: TestDupFieldNumber_Bar;
 };
 
 /**
@@ -1994,7 +1994,7 @@ export declare type TestEagerMessage = Message<"proto2_unittest.TestEagerMessage
   /**
    * @generated from field: proto2_unittest.TestAllTypes sub_message = 1;
    */
-  subMessage?: TestAllTypes;
+  subMessage: TestAllTypes;
 };
 
 /**
@@ -2010,7 +2010,7 @@ export declare type TestLazyMessage = Message<"proto2_unittest.TestLazyMessage">
   /**
    * @generated from field: proto2_unittest.TestAllTypes sub_message = 1;
    */
-  subMessage?: TestAllTypes;
+  subMessage: TestAllTypes;
 };
 
 /**
@@ -2026,27 +2026,27 @@ export declare type TestLazyRequiredEnum = Message<"proto2_unittest.TestLazyRequ
   /**
    * @generated from field: proto2_unittest.TestRequiredOpenEnum optional_required_open_enum = 1;
    */
-  optionalRequiredOpenEnum?: TestRequiredOpenEnum;
+  optionalRequiredOpenEnum: TestRequiredOpenEnum;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnum optional_required_enum = 2;
    */
-  optionalRequiredEnum?: TestRequiredEnum;
+  optionalRequiredEnum: TestRequiredEnum;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnumNoMask optional_required_enum_no_mask = 3;
    */
-  optionalRequiredEnumNoMask?: TestRequiredEnumNoMask;
+  optionalRequiredEnumNoMask: TestRequiredEnumNoMask;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnumMulti optional_required_enum_multi = 4;
    */
-  optionalRequiredEnumMulti?: TestRequiredEnumMulti;
+  optionalRequiredEnumMulti: TestRequiredEnumMulti;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredNoMaskMulti optional_required_no_mask = 5;
    */
-  optionalRequiredNoMask?: TestRequiredNoMaskMulti;
+  optionalRequiredNoMask: TestRequiredNoMaskMulti;
 };
 
 /**
@@ -2078,17 +2078,17 @@ export declare type TestEagerMaybeLazy = Message<"proto2_unittest.TestEagerMaybe
   /**
    * @generated from field: proto2_unittest.TestAllTypes message_foo = 1;
    */
-  messageFoo?: TestAllTypes;
+  messageFoo: TestAllTypes;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes message_bar = 2;
    */
-  messageBar?: TestAllTypes;
+  messageBar: TestAllTypes;
 
   /**
    * @generated from field: proto2_unittest.TestEagerMaybeLazy.NestedMessage message_baz = 3;
    */
-  messageBaz?: TestEagerMaybeLazy_NestedMessage;
+  messageBaz: TestEagerMaybeLazy_NestedMessage;
 };
 
 /**
@@ -2104,7 +2104,7 @@ export declare type TestEagerMaybeLazy_NestedMessage = Message<"proto2_unittest.
   /**
    * @generated from field: proto2_unittest.TestPackedTypes packed = 1;
    */
-  packed?: TestPackedTypes;
+  packed: TestPackedTypes;
 };
 
 /**
@@ -2122,7 +2122,7 @@ export declare type TestNestedMessageHasBits = Message<"proto2_unittest.TestNest
   /**
    * @generated from field: proto2_unittest.TestNestedMessageHasBits.NestedMessage optional_nested_message = 1;
    */
-  optionalNestedMessage?: TestNestedMessageHasBits_NestedMessage;
+  optionalNestedMessage: TestNestedMessageHasBits_NestedMessage;
 };
 
 /**
@@ -2177,7 +2177,7 @@ export declare type TestCamelCaseFieldNames = Message<"proto2_unittest.TestCamel
   /**
    * @generated from field: proto2_unittest.ForeignMessage MessageField = 4;
    */
-  MessageField?: ForeignMessage;
+  MessageField: ForeignMessage;
 
   /**
    * @generated from field: string StringPieceField = 5;
@@ -2251,7 +2251,7 @@ export declare type TestFieldOrderings = Message<"proto2_unittest.TestFieldOrder
   /**
    * @generated from field: proto2_unittest.TestFieldOrderings.NestedMessage optional_nested_message = 200;
    */
-  optionalNestedMessage?: TestFieldOrderings_NestedMessage;
+  optionalNestedMessage: TestFieldOrderings_NestedMessage;
 };
 
 /**
@@ -2880,7 +2880,7 @@ export declare type TestOneof = Message<"proto2_unittest.TestOneof"> & {
      */
     value: TestOneof_FooGroup;
     case: "foogroup";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -2927,12 +2927,12 @@ export declare type TestOneofBackwardsCompatible = Message<"proto2_unittest.Test
   /**
    * @generated from field: proto2_unittest.TestAllTypes foo_message = 3;
    */
-  fooMessage?: TestAllTypes;
+  fooMessage: TestAllTypes;
 
   /**
    * @generated from field: proto2_unittest.TestOneofBackwardsCompatible.FooGroup foogroup = 4 [features.message_encoding = DELIMITED];
    */
-  foogroup?: TestOneofBackwardsCompatible_FooGroup;
+  foogroup: TestOneofBackwardsCompatible_FooGroup;
 };
 
 /**
@@ -3029,7 +3029,7 @@ export declare type TestOneof2 = Message<"proto2_unittest.TestOneof2"> & {
      */
     value: Uint8Array;
     case: "fooBytesCord";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from oneof proto2_unittest.TestOneof2.bar
@@ -3094,7 +3094,7 @@ export declare type TestOneof2 = Message<"proto2_unittest.TestOneof2"> & {
      */
     value: Uint8Array;
     case: "barBytesWithEmptyDefault";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: int32 baz_int = 18;
@@ -3151,7 +3151,7 @@ export declare type TestOneof2_NestedMessage = Message<"proto2_unittest.TestOneo
   /**
    * @generated from field: proto2_unittest.TestOneof2.NestedMessage child = 3;
    */
-  child?: TestOneof2_NestedMessage;
+  child: TestOneof2_NestedMessage;
 };
 
 /**
@@ -3216,7 +3216,7 @@ export declare type TestRequiredOneof = Message<"proto2_unittest.TestRequiredOne
      */
     value: TestRequiredOneof_NestedMessage;
     case: "fooLazyMessage";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -3456,12 +3456,12 @@ export declare type TestDynamicExtensions = Message<"proto2_unittest.TestDynamic
   /**
    * @generated from field: proto2_unittest.ForeignMessage message_extension = 2003;
    */
-  messageExtension?: ForeignMessage;
+  messageExtension: ForeignMessage;
 
   /**
    * @generated from field: proto2_unittest.TestDynamicExtensions.DynamicMessageType dynamic_message_extension = 2004;
    */
-  dynamicMessageExtension?: TestDynamicExtensions_DynamicMessageType;
+  dynamicMessageExtension: TestDynamicExtensions_DynamicMessageType;
 
   /**
    * @generated from field: repeated string repeated_extension = 2005;
@@ -3613,12 +3613,12 @@ export declare type TestParsingMerge = Message<"proto2_unittest.TestParsingMerge
   /**
    * @generated from field: proto2_unittest.TestAllTypes required_all_types = 1 [features.field_presence = LEGACY_REQUIRED];
    */
-  requiredAllTypes?: TestAllTypes;
+  requiredAllTypes: TestAllTypes;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 2;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 3;
@@ -3628,7 +3628,7 @@ export declare type TestParsingMerge = Message<"proto2_unittest.TestParsingMerge
   /**
    * @generated from field: proto2_unittest.TestParsingMerge.OptionalGroup optionalgroup = 10 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: TestParsingMerge_OptionalGroup;
+  optionalgroup: TestParsingMerge_OptionalGroup;
 
   /**
    * @generated from field: repeated proto2_unittest.TestParsingMerge.RepeatedGroup repeatedgroup = 20 [features.message_encoding = DELIMITED];
@@ -3701,7 +3701,7 @@ export declare type TestParsingMerge_RepeatedFieldsGenerator_Group1 = Message<"p
   /**
    * @generated from field: proto2_unittest.TestAllTypes field1 = 11;
    */
-  field1?: TestAllTypes;
+  field1: TestAllTypes;
 };
 
 /**
@@ -3717,7 +3717,7 @@ export declare type TestParsingMerge_RepeatedFieldsGenerator_Group2 = Message<"p
   /**
    * @generated from field: proto2_unittest.TestAllTypes field1 = 21;
    */
-  field1?: TestAllTypes;
+  field1: TestAllTypes;
 };
 
 /**
@@ -3733,7 +3733,7 @@ export declare type TestParsingMerge_OptionalGroup = Message<"proto2_unittest.Te
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_group_all_types = 11;
    */
-  optionalGroupAllTypes?: TestAllTypes;
+  optionalGroupAllTypes: TestAllTypes;
 };
 
 /**
@@ -3749,7 +3749,7 @@ export declare type TestParsingMerge_RepeatedGroup = Message<"proto2_unittest.Te
   /**
    * @generated from field: proto2_unittest.TestAllTypes repeated_group_all_types = 21;
    */
-  repeatedGroupAllTypes?: TestAllTypes;
+  repeatedGroupAllTypes: TestAllTypes;
 };
 
 /**
@@ -3778,7 +3778,7 @@ export declare type TestMergeException = Message<"proto2_unittest.TestMergeExcep
   /**
    * @generated from field: proto2_unittest.TestAllExtensions all_extensions = 1;
    */
-  allExtensions?: TestAllExtensions;
+  allExtensions: TestAllExtensions;
 };
 
 /**
@@ -3920,7 +3920,7 @@ export declare type TestEagerlyVerifiedLazyMessage = Message<"proto2_unittest.Te
   /**
    * @generated from field: proto2_unittest.TestEagerlyVerifiedLazyMessage.LazyMessage lazy_message = 1;
    */
-  lazyMessage?: TestEagerlyVerifiedLazyMessage_LazyMessage;
+  lazyMessage: TestEagerlyVerifiedLazyMessage_LazyMessage;
 };
 
 /**
@@ -4107,12 +4107,12 @@ export declare type TestHugeFieldNumbers = Message<"proto2_unittest.TestHugeFiel
   /**
    * @generated from field: proto2_unittest.ForeignMessage optional_message = 536870007;
    */
-  optionalMessage?: ForeignMessage;
+  optionalMessage: ForeignMessage;
 
   /**
    * @generated from field: proto2_unittest.TestHugeFieldNumbers.OptionalGroup optionalgroup = 536870008 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: TestHugeFieldNumbers_OptionalGroup;
+  optionalgroup: TestHugeFieldNumbers_OptionalGroup;
 
   /**
    * @generated from field: map<string, string> string_string_map = 536870010;
@@ -4146,7 +4146,7 @@ export declare type TestHugeFieldNumbers = Message<"proto2_unittest.TestHugeFiel
      */
     value: Uint8Array;
     case: "oneofBytes";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 
   /**
    * @generated from field: bool optional_bool = 536870015;
@@ -4271,7 +4271,7 @@ export declare type TestNestedGroupExtensionOuter = Message<"proto2_unittest.Tes
   /**
    * @generated from field: proto2_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup layer1optionalgroup = 1 [features.message_encoding = DELIMITED];
    */
-  layer1optionalgroup?: TestNestedGroupExtensionOuter_Layer1OptionalGroup;
+  layer1optionalgroup: TestNestedGroupExtensionOuter_Layer1OptionalGroup;
 };
 
 /**
@@ -4463,7 +4463,7 @@ export declare type TestVerifyInt32 = Message<"proto2_unittest.TestVerifyInt32">
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4519,7 +4519,7 @@ export declare type TestVerifyMostlyInt32 = Message<"proto2_unittest.TestVerifyM
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4580,7 +4580,7 @@ export declare type TestVerifyMostlyInt32BigFieldNumber = Message<"proto2_unitte
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4652,7 +4652,7 @@ export declare type TestVerifyUint32 = Message<"proto2_unittest.TestVerifyUint32
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4693,7 +4693,7 @@ export declare type TestVerifyOneUint32 = Message<"proto2_unittest.TestVerifyOne
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4739,7 +4739,7 @@ export declare type TestVerifyOneInt32BigFieldNumber = Message<"proto2_unittest.
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4790,7 +4790,7 @@ export declare type TestVerifyInt32BigFieldNumber = Message<"proto2_unittest.Tes
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4841,7 +4841,7 @@ export declare type TestVerifyUint32BigFieldNumber = Message<"proto2_unittest.Te
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes: TestAllTypes;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4862,7 +4862,7 @@ export declare type TestVerifyBigFieldNumberUint32 = Message<"proto2_unittest.Te
   /**
    * @generated from field: proto2_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 1;
    */
-  optionalNested?: TestVerifyBigFieldNumberUint32_Nested;
+  optionalNested: TestVerifyBigFieldNumberUint32_Nested;
 };
 
 /**
@@ -4918,7 +4918,7 @@ export declare type TestVerifyBigFieldNumberUint32_Nested = Message<"proto2_unit
   /**
    * @generated from field: proto2_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 9;
    */
-  optionalNested?: TestVerifyBigFieldNumberUint32_Nested;
+  optionalNested: TestVerifyBigFieldNumberUint32_Nested;
 
   /**
    * @generated from field: repeated proto2_unittest.TestVerifyBigFieldNumberUint32.Nested repeated_nested = 10;
@@ -5677,7 +5677,7 @@ export declare type InlinedStringIdxRegressionProto = Message<"proto2_unittest.I
    *
    * @generated from field: proto2_unittest.InlinedStringIdxRegressionProto sub = 2;
    */
-  sub?: InlinedStringIdxRegressionProto;
+  sub: InlinedStringIdxRegressionProto;
 
   /**
    * aux_idx == 3, inlined_string_idx == 2
@@ -5820,12 +5820,12 @@ export declare type RedactedFields = Message<"proto2_unittest.RedactedFields"> &
   /**
    * @generated from field: proto2_unittest.TestNestedMessageRedaction optional_redacted_message = 5;
    */
-  optionalRedactedMessage?: TestNestedMessageRedaction;
+  optionalRedactedMessage: TestNestedMessageRedaction;
 
   /**
    * @generated from field: proto2_unittest.TestNestedMessageRedaction optional_unredacted_message = 6;
    */
-  optionalUnredactedMessage?: TestNestedMessageRedaction;
+  optionalUnredactedMessage: TestNestedMessageRedaction;
 
   /**
    * @generated from field: repeated proto2_unittest.TestNestedMessageRedaction repeated_redacted_message = 7;
@@ -6414,7 +6414,7 @@ export declare type MessageCreatorZeroInit = Message<"proto2_unittest.MessageCre
   /**
    * @generated from field: proto2_unittest.MessageCreatorZeroInit m = 3;
    */
-  m?: MessageCreatorZeroInit;
+  m: MessageCreatorZeroInit;
 
   /**
    * @generated from oneof proto2_unittest.MessageCreatorZeroInit.one
@@ -6443,7 +6443,7 @@ export declare type MessageCreatorZeroInit = Message<"proto2_unittest.MessageCre
      */
     value: MessageCreatorZeroInit;
     case: "ol";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**
@@ -6469,7 +6469,7 @@ export declare type MessageCreatorMemcpy = Message<"proto2_unittest.MessageCreat
   /**
    * @generated from field: proto2_unittest.MessageCreatorMemcpy m = 3;
    */
-  m?: MessageCreatorMemcpy;
+  m: MessageCreatorMemcpy;
 
   /**
    * @generated from field: map<int32, int32> m2 = 4;

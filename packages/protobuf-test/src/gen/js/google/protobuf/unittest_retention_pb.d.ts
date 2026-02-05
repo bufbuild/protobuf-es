@@ -83,7 +83,7 @@ export declare type TopLevelMessage = Message<"proto2_unittest.TopLevelMessage">
      */
     value: bigint;
     case: "i";
-  } | { case: undefined; value?: undefined };
+  } | { case: ""; };
 };
 
 /**

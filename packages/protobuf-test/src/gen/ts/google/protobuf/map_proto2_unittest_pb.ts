@@ -317,7 +317,7 @@ export type TestSubmessageMaps = Message<"proto2_unittest.TestSubmessageMaps"> &
   /**
    * @generated from field: optional proto2_unittest.TestMaps m = 1;
    */
-  m?: TestMaps;
+  m: TestMaps;
 };
 
 /**
