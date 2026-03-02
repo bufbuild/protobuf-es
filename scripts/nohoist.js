@@ -65,7 +65,7 @@ if (updates.length > 0) {
     for (const k of updates) {
       console.error(`- ${k}`);
     }
-    console.error(`Run node src/nohoist.js to fix`);
+    console.error(`Run node scripts/nohoist.js to fix`);
     process.exit(1);
   } else {
     console.error(`Moved hoisted packages:`);
