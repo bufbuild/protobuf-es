@@ -1,5 +1,6 @@
 {
   "imports": {
+    "@std/assert": "jsr:@std/assert@^1.0.11",
     "@std/io": "jsr:@std/io@^0.225.2",
     "@bufbuild/protobuf": "npm:@bufbuild/protobuf@2.9.0",
     "@bufbuild/protoc-gen-es": "npm:@bufbuild/protoc-gen-es@2.9.0"

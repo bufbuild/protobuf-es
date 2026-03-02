@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { assertEquals } from "jsr:@std/assert";
+import { assertEquals } from "@std/assert";
 import { create } from "@bufbuild/protobuf";
 import { UserSchema } from "./gen/example_pb.ts";
 
