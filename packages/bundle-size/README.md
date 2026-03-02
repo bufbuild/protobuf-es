@@ -21,11 +21,11 @@ usually do. We repeat this for an increasing number of files.
 | Protobuf-ES         |     8 |   137,961 b |  72,060 b |   16,996 b |
 | Protobuf-ES         |    16 |   148,411 b |  80,041 b |   19,349 b |
 | Protobuf-ES         |    32 |   176,202 b | 102,059 b |   24,783 b |
-| protobuf-javascript |     1 |   304,887 b | 234,842 b |   35,819 b |
-| protobuf-javascript |     4 |   330,904 b | 249,814 b |   37,197 b |
-| protobuf-javascript |     8 |   351,698 b | 261,391 b |   38,344 b |
-| protobuf-javascript |    16 |   509,673 b | 354,782 b |   45,656 b |
-| protobuf-javascript |    32 | 1,276,951 b | 845,191 b |   75,391 b |
+| protobuf-javascript |     1 |   314,120 b | 244,024 b |   35,999 b |
+| protobuf-javascript |     4 |   340,137 b | 258,996 b |   37,473 b |
+| protobuf-javascript |     8 |   360,931 b | 270,573 b |   38,585 b |
+| protobuf-javascript |    16 |   518,906 b | 363,964 b |   45,793 b |
+| protobuf-javascript |    32 | 1,286,214 b | 854,395 b |   75,520 b |
 
 <!-- TABLE-END -->
 
