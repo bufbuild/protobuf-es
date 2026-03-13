@@ -51,7 +51,7 @@ export declare type TestMessageSetWireFormatContainer = Message<"proto2_wireform
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
    */
-  messageSet?: TestMessageSet;
+  messageSet?: TestMessageSet | undefined;
 };
 
 /**

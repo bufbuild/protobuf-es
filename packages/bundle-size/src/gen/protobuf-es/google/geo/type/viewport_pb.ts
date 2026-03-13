@@ -73,14 +73,14 @@ export type Viewport = Message<"google.geo.type.Viewport"> & {
    *
    * @generated from field: google.type.LatLng low = 1;
    */
-  low?: LatLng;
+  low?: LatLng | undefined;
 
   /**
    * Required. The high point of the viewport.
    *
    * @generated from field: google.type.LatLng high = 2;
    */
-  high?: LatLng;
+  high?: LatLng | undefined;
 };
 
 /**

@@ -182,7 +182,7 @@ export interface DescEnum {
    * A prefix shared by all enum values.
    * For example, `my_enum_` for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`
    */
-  readonly sharedPrefix?: string;
+  readonly sharedPrefix?: string | undefined;
   /**
    * Marked as deprecated in the protobuf source.
    */
@@ -743,7 +743,7 @@ export interface DescMethod {
  */
 export interface DescComments {
   readonly leadingDetached: readonly string[];
-  readonly leading?: string;
-  readonly trailing?: string;
+  readonly leading?: string | undefined;
+  readonly trailing?: string | undefined;
   readonly sourcePath: readonly number[];
 }

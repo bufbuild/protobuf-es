@@ -74,7 +74,7 @@ export type EvalState_Result = Message<"google.api.expr.v1beta1.EvalState.Result
    *
    * @generated from field: google.api.expr.v1beta1.IdRef expr = 1;
    */
-  expr?: IdRef;
+  expr?: IdRef | undefined;
 
   /**
    * The index in `values` of the resulting value.

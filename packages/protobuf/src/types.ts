@@ -43,7 +43,7 @@ export type Message<TypeName extends string = string> = {
   /**
    * Unknown fields and extensions stored on the message.
    */
-  $unknown?: UnknownField[];
+  $unknown?: UnknownField[] | undefined;
 };
 
 /**
