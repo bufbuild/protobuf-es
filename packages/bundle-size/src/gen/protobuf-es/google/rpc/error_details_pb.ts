@@ -125,7 +125,7 @@ export type RetryInfo = Message<"google.rpc.RetryInfo"> & {
    *
    * @generated from field: google.protobuf.Duration retry_delay = 1;
    */
-  retryDelay?: Duration;
+  retryDelay?: Duration | undefined;
 };
 
 /**

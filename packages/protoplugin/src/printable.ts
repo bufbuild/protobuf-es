@@ -89,5 +89,5 @@ export type ValidTypeImport = {
 export type JSDocBlock = {
   readonly kind: "es_jsdoc";
   text: string;
-  indentation?: string;
+  indentation?: string | undefined;
 };

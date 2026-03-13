@@ -46,7 +46,7 @@ export type TestOptimizedForSize = Message<"proto2_unittest.TestOptimizedForSize
   /**
    * @generated from field: optional proto2_unittest.ForeignMessage msg = 19;
    */
-  msg?: ForeignMessage;
+  msg?: ForeignMessage | undefined;
 
   /**
    * @generated from oneof proto2_unittest.TestOptimizedForSize.foo
@@ -109,7 +109,7 @@ export type TestOptionalOptimizedForSize = Message<"proto2_unittest.TestOptional
   /**
    * @generated from field: optional proto2_unittest.TestRequiredOptimizedForSize o = 1;
    */
-  o?: TestRequiredOptimizedForSize;
+  o?: TestRequiredOptimizedForSize | undefined;
 };
 
 /**

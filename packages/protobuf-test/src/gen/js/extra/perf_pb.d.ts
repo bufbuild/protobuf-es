@@ -46,12 +46,12 @@ export declare type PerfMessage = Message<"perf.v1.PerfMessage"> & {
   /**
    * @generated from field: optional int64 int64_field = 3;
    */
-  int64Field?: bigint;
+  int64Field?: bigint | undefined;
 
   /**
    * @generated from field: optional bool bool_field = 4;
    */
-  boolField?: boolean;
+  boolField?: boolean | undefined;
 
   /**
    * @generated from field: string string_field = 5;
@@ -71,7 +71,7 @@ export declare type PerfMessage = Message<"perf.v1.PerfMessage"> & {
   /**
    * @generated from field: perf.v1.PerfMessage small_message_field = 8;
    */
-  smallMessageField?: PerfMessage;
+  smallMessageField?: PerfMessage | undefined;
 
   /**
    * @generated from field: int32 unused_field_1 = 9;

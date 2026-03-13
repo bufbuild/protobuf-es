@@ -43,9 +43,12 @@ import {
  * npm does not support that yet.
  */
 function createTranspiler(options: ts.CompilerOptions, files: FileInfo[]) {
-  const fsMap = createDefaultMapFromNodeModules({
-    target: options.target,
-  });
+  const fsMapOptions: ts.CompilerOptions = {};
+  if (options.target) {
+    fsMapOptions.target = options.target;
+  }
+
+  const fsMap = createDefaultMapFromNodeModules(fsMapOptions);
 
   for (const file of files) {
     fsMap.set(file.name, file.content);

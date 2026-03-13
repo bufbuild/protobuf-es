@@ -159,7 +159,7 @@ export type ConformanceRequest = Message<"conformance.ConformanceRequest"> & {
    *
    * @generated from field: conformance.JspbEncodingConfig jspb_encoding_options = 6;
    */
-  jspbEncodingOptions?: JspbEncodingConfig;
+  jspbEncodingOptions?: JspbEncodingConfig | undefined;
 
   /**
    * This can be used in json and text format. If true, testee should print
