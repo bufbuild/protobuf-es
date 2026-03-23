@@ -131,6 +131,21 @@ message VTypes {
   // type, since we currently do not generate Valid types for the WKT.
   google.protobuf.Timestamp wkt = 22;
 
+  // In the generated valid type, the oneof should not include the
+  // { case: undefined; value?: undefined } variant.
+  oneof required_oneof {
+    option (buf.validate.oneof).required = true;
+    string required_oneof_a = 23;
+    Other required_oneof_b = 24;
+  }
+
+  // In the generated valid type, the oneof should include the
+  // { case: undefined; value?: undefined } variant as usual.
+  oneof optional_oneof {
+    string optional_oneof_a = 25;
+    Other optional_oneof_b = 26;
+  }
+
   message Other {}
 
 }
@@ -140,4 +155,15 @@ message VTypes {
 message VTypes2 {
   // In the generated valid type, this property should point to a valid type.
   VTypes msg = 1;
+}
+
+// This message needs a valid type only because of oneof required.
+// In the generated valid type, the oneof should not include the
+// { case: undefined; value?: undefined } variant.
+message VTypes3 {
+  oneof variant {
+    option (buf.validate.oneof).required = true;
+    string value1 = 1;
+    string value2 = 2;
+  }
 }
