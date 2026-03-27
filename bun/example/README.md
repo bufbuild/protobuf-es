@@ -1,4 +1,4 @@
-# Protobuf Example on Deno
+# Protobuf Example on Bun
 
 This directory contains example code that uses Protocol Buffers to manage a list
 of users. The [add.ts](./src/add.ts) script adds a new user, prompting the user
