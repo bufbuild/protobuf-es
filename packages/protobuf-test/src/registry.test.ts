@@ -609,7 +609,11 @@ void suite("createFileRegistry()", () => {
       assert.strictEqual(nestedField.message?.typeName, "Inner");
       const itemsField = outer.fields.find((f) => f.name === "items");
       assert.ok(itemsField);
-      assert.strictEqual(itemsField.fieldKind, "list");
+      if (itemsField.fieldKind !== "list") {
+        assert.fail(
+          `expected items field to be a list, got ${itemsField.fieldKind}`,
+        );
+      }
       assert.strictEqual(itemsField.listKind, "message");
       assert.strictEqual(itemsField.message?.typeName, "Inner");
     });
@@ -647,7 +651,11 @@ void suite("createFileRegistry()", () => {
       assert.strictEqual(statusField.enum?.typeName, "Status");
       const historyField = desc.fields.find((f) => f.name === "history");
       assert.ok(historyField);
-      assert.strictEqual(historyField.fieldKind, "list");
+      if (historyField.fieldKind !== "list") {
+        assert.fail(
+          `expected history field to be a list, got ${historyField.fieldKind}`,
+        );
+      }
       assert.strictEqual(historyField.listKind, "enum");
       assert.strictEqual(historyField.enum?.typeName, "Status");
     });
