@@ -822,6 +822,23 @@ function newField(
   mapEntries?: FileMapEntries,
 ): DescField | DescExtension {
   const isExtension = mapEntries === undefined;
+  const label: FieldDescriptorProto_Label = proto.label;
+  let type: FieldDescriptorProto_Type = proto.type;
+  if (
+    !unsafeIsSetExplicit(proto, "type") &&
+    unsafeIsSetExplicit(proto, "typeName")
+  ) {
+    // Per descriptor.proto on FieldDescriptorProto.type: "If type_name is set, this need not be
+    // set." Some tools (e.g. Confluent Schema Registry) omit `type` from the wire data when
+    // `type_name` is present. Since descriptor.proto is proto2, the unset field inherits the
+    // prototype default (TYPE_DOUBLE = 1).  Resolve the actual type from the registry.
+    const resolvedTypeName = trimLeadingDot(proto.typeName);
+    if (reg.getMessage(resolvedTypeName)) {
+      type = TYPE_MESSAGE;
+    } else if (reg.getEnum(resolvedTypeName)) {
+      type = TYPE_ENUM;
+    }
+  }
   type AllKeys =
     | keyof DescField
     | keyof DescExtension
@@ -838,7 +855,7 @@ function newField(
     scalar: undefined,
     message: undefined,
     enum: undefined,
-    presence: getFieldPresence(proto, oneof, isExtension, parentOrFile),
+    presence: getFieldPresence(proto, oneof, isExtension, parentOrFile, type),
     listKind: undefined,
     mapKind: undefined,
     mapKey: undefined,
@@ -877,8 +894,6 @@ function newField(
     field.jsonName = proto.jsonName;
     field.toString = () => `field ${parent.typeName}.${proto.name}`;
   }
-  const label: FieldDescriptorProto_Label = proto.label;
-  const type: FieldDescriptorProto_Type = proto.type;
   const jstype: FieldOptions_JSType | undefined = proto.options?.jstype;
   if (label === LABEL_REPEATED) {
     // list or map field
@@ -906,7 +921,11 @@ function newField(
         field.listKind = "message";
         field.message = reg.getMessage(trimLeadingDot(proto.typeName));
         assert(field.message);
-        field.delimitedEncoding = isDelimitedEncoding(proto, parentOrFile);
+        field.delimitedEncoding = isDelimitedEncoding(
+          proto,
+          parentOrFile,
+          type,
+        );
         break;
       case TYPE_ENUM:
         field.listKind = "enum";
@@ -919,7 +938,7 @@ function newField(
         field.longAsString = jstype == JS_STRING;
         break;
     }
-    field.packed = isPackedField(proto, parentOrFile);
+    field.packed = isPackedField(proto, parentOrFile, type);
     return field as DescField | DescExtension;
   }
   // singular
@@ -932,7 +951,7 @@ function newField(
         field.message,
         `invalid FieldDescriptorProto: type_name ${proto.typeName} not found`,
       );
-      field.delimitedEncoding = isDelimitedEncoding(proto, parentOrFile);
+      field.delimitedEncoding = isDelimitedEncoding(proto, parentOrFile, type);
       field.getDefaultValue = () => undefined;
       break;
     case TYPE_ENUM: {
@@ -1114,6 +1133,7 @@ function getFieldPresence(
   oneof: DescOneof | undefined,
   isExtension: boolean,
   parent: DescMessage | DescFile,
+  resolvedType: FieldDescriptorProto_Type,
 ): FeatureSet_FieldPresence {
   if (proto.label == LABEL_REQUIRED) {
     // proto2 required is LEGACY_REQUIRED
@@ -1134,7 +1154,7 @@ function getFieldPresence(
   const resolved = resolveFeature("fieldPresence", { proto, parent });
   if (
     resolved == IMPLICIT &&
-    (proto.type == TYPE_MESSAGE || proto.type == TYPE_GROUP)
+    (resolvedType == TYPE_MESSAGE || resolvedType == TYPE_GROUP)
   ) {
     // singular message field cannot be implicit
     return EXPLICIT;
@@ -1148,11 +1168,12 @@ function getFieldPresence(
 function isPackedField(
   proto: FieldDescriptorProto,
   parent: DescMessage | DescFile,
+  resolvedType: FieldDescriptorProto_Type,
 ): boolean {
   if (proto.label != LABEL_REPEATED) {
     return false;
   }
-  switch (proto.type) {
+  switch (resolvedType) {
     case TYPE_STRING:
     case TYPE_BYTES:
     case TYPE_GROUP:
@@ -1217,8 +1238,9 @@ function isEnumOpen(desc: DescEnum): boolean {
 function isDelimitedEncoding(
   proto: FieldDescriptorProto,
   parent: DescMessage | DescFile,
+  resolvedType: FieldDescriptorProto_Type,
 ): boolean {
-  if (proto.type == TYPE_GROUP) {
+  if (resolvedType == TYPE_GROUP) {
     return true;
   }
   return (

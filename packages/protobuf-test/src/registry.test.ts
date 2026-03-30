@@ -548,6 +548,141 @@ void suite("createFileRegistry()", () => {
       );
     });
   });
+  void suite("FieldDescriptorProto with unset type", () => {
+    // Some protobuf tooling (e.g. Confluent Schema Registry) omits the FieldDescriptorProto `type`
+    // field from the wire data when `type_name` is set. This is valid per descriptor.proto: "If
+    // type_name is set, this need not be set." Since descriptor.proto is proto2, the unset field
+    // inherits the prototype default TYPE_DOUBLE = 1, causing message/enum fields to be
+    // misclassified as scalar.
+    test("infers message type from type_name", async () => {
+      const fds = await compileFileDescriptorSet({
+        "test.proto": `
+          syntax="proto3";
+          import "google/protobuf/timestamp.proto";
+          message Outer {
+            string name = 1;
+            google.protobuf.Timestamp created_at = 2;
+            Inner nested = 3;
+            repeated Inner items = 4;
+          }
+          message Inner {
+            string value = 1;
+          }
+        `,
+      });
+      const testProto = fds.file.find((f) => f.name === "test.proto");
+      assert.ok(testProto);
+      const outerMsg = testProto.messageType.find((m) => m.name === "Outer");
+      assert.ok(outerMsg);
+      // Strip the `type` own property from message-type fields to simulate wire data that omits it
+      for (const field of outerMsg.field) {
+        if (field.typeName) {
+          assert.ok(
+            Object.prototype.hasOwnProperty.call(field, "type"),
+            `expected "type" to be an own property before deletion`,
+          );
+          // biome-ignore lint/performance/noDelete: Could set to undefined, but this is more faithful to the actual scenario.
+          delete (field as Record<string, unknown>).type;
+          assert.ok(
+            !Object.prototype.hasOwnProperty.call(field, "type"),
+            `expected "type" to not be an own property after deletion`,
+          );
+        }
+      }
+      const reg = createFileRegistry(fds);
+      const outer = reg.getMessage("Outer");
+      assert.ok(outer);
+      const nameField = outer.fields.find((f) => f.name === "name");
+      assert.ok(nameField);
+      assert.strictEqual(nameField.fieldKind, "scalar");
+      assert.strictEqual(nameField.scalar, ScalarType.STRING);
+      const createdAtField = outer.fields.find((f) => f.name === "created_at");
+      assert.ok(createdAtField);
+      assert.strictEqual(createdAtField.fieldKind, "message");
+      assert.strictEqual(
+        createdAtField.message?.typeName,
+        "google.protobuf.Timestamp",
+      );
+      const nestedField = outer.fields.find((f) => f.name === "nested");
+      assert.ok(nestedField);
+      assert.strictEqual(nestedField.fieldKind, "message");
+      assert.strictEqual(nestedField.message?.typeName, "Inner");
+      const itemsField = outer.fields.find((f) => f.name === "items");
+      assert.ok(itemsField);
+      assert.strictEqual(itemsField.fieldKind, "list");
+      assert.strictEqual(itemsField.listKind, "message");
+      assert.strictEqual(itemsField.message?.typeName, "Inner");
+    });
+    test("infers enum type from type_name", async () => {
+      const fds = await compileFileDescriptorSet({
+        "test.proto": `
+          syntax="proto3";
+          message Msg {
+            string name = 1;
+            Status status = 2;
+            repeated Status history = 3;
+          }
+          enum Status {
+            STATUS_UNSPECIFIED = 0;
+            STATUS_ACTIVE = 1;
+          }
+        `,
+      });
+      const testProto = fds.file.find((f) => f.name === "test.proto");
+      assert.ok(testProto);
+      const msg = testProto.messageType.find((m) => m.name === "Msg");
+      assert.ok(msg);
+      for (const field of msg.field) {
+        if (field.typeName) {
+          // biome-ignore lint/performance/noDelete: Could set to undefined, but this is more faithful to the actual scenario.
+          delete (field as Record<string, unknown>).type;
+        }
+      }
+      const reg = createFileRegistry(fds);
+      const desc = reg.getMessage("Msg");
+      assert.ok(desc);
+      const statusField = desc.fields.find((f) => f.name === "status");
+      assert.ok(statusField);
+      assert.strictEqual(statusField.fieldKind, "enum");
+      assert.strictEqual(statusField.enum?.typeName, "Status");
+      const historyField = desc.fields.find((f) => f.name === "history");
+      assert.ok(historyField);
+      assert.strictEqual(historyField.fieldKind, "list");
+      assert.strictEqual(historyField.listKind, "enum");
+      assert.strictEqual(historyField.enum?.typeName, "Status");
+    });
+    test("singular message field has explicit presence", async () => {
+      const fds = await compileFileDescriptorSet({
+        "test.proto": `
+          syntax="proto3";
+          message Outer {
+            Inner nested = 1;
+          }
+          message Inner {}
+        `,
+      });
+      const testProto = fds.file.find((f) => f.name === "test.proto");
+      assert.ok(testProto);
+      const msg = testProto.messageType.find((m) => m.name === "Outer");
+      assert.ok(msg);
+      for (const field of msg.field) {
+        if (field.typeName) {
+          // biome-ignore lint/performance/noDelete: Could set to undefined, but this is more faithful to the actual scenario.
+          delete (field as Record<string, unknown>).type;
+        }
+      }
+      const reg = createFileRegistry(fds);
+      const desc = reg.getMessage("Outer");
+      assert.ok(desc);
+      const nestedField = desc.fields.find((f) => f.name === "nested");
+      assert.ok(nestedField);
+      assert.strictEqual(nestedField.fieldKind, "message");
+      assert.strictEqual(
+        nestedField.presence,
+        FeatureSet_FieldPresence.EXPLICIT,
+      );
+    });
+  });
 });
 
 void suite("DescFile", () => {
@@ -701,7 +836,7 @@ void suite("DescEnum", () => {
       const descEnum = await compileEnum(`
         syntax="proto3";
         enum MyEnum {
-          MY_ENUM_A = 0; 
+          MY_ENUM_A = 0;
           MY_ENUM_B = 1;
         }
       `);
@@ -711,7 +846,7 @@ void suite("DescEnum", () => {
       const descEnum = await compileEnum(`
         syntax="proto3";
         enum MyEnum {
-          MY_ENUM_A = 0; 
+          MY_ENUM_A = 0;
           my_enum_B = 1;
         }
       `);
@@ -721,7 +856,7 @@ void suite("DescEnum", () => {
       const descEnum = await compileEnum(`
         syntax="proto3";
         enum MyEnum {
-          MY_ENUM_UNSPECIFIED = 0; 
+          MY_ENUM_UNSPECIFIED = 0;
           B = 1;
         }
       `);
@@ -731,8 +866,8 @@ void suite("DescEnum", () => {
       const descEnum = await compileEnum(`
         syntax="proto3";
         enum MyEnum {
-          MY_ENUM_A = 0; 
-          MY_ENUM_23_B = 1; 
+          MY_ENUM_A = 0;
+          MY_ENUM_23_B = 1;
         }
       `);
       assert.strictEqual(descEnum.sharedPrefix, undefined);
@@ -778,7 +913,7 @@ void suite("DescEnumValue", () => {
         const descEnum = await compileEnum(`
           syntax="proto3";
           enum MyEnum {
-            ${name} = 0; 
+            ${name} = 0;
           }
         `);
         assert.strictEqual(descEnum.values[0].name, name);
@@ -887,7 +1022,7 @@ void suite("DescField", () => {
     test("proto2 optional scalar is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           optional int32 f = 1;
         }
       `);
@@ -896,7 +1031,7 @@ void suite("DescField", () => {
     test("proto2 optional message is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           optional M f = 1;
         }
       `);
@@ -905,7 +1040,7 @@ void suite("DescField", () => {
     test("proto2 required scalar is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           required int32 f = 1;
         }
       `);
@@ -917,7 +1052,7 @@ void suite("DescField", () => {
     test("proto2 required message is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           required M f = 1;
         }
       `);
@@ -929,7 +1064,7 @@ void suite("DescField", () => {
     test("proto2 scalar list is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           repeated int32 f = 1;
         }
       `);
@@ -938,7 +1073,7 @@ void suite("DescField", () => {
     test("proto2 message list is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           repeated M f = 1;
         }
       `);
@@ -947,7 +1082,7 @@ void suite("DescField", () => {
     test("proto2 scalar map is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           map <int32, int32> f = 1;
         }
       `);
@@ -956,7 +1091,7 @@ void suite("DescField", () => {
     test("proto2 message map is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           map <int32, M> f = 1;
         }
       `);
@@ -965,7 +1100,7 @@ void suite("DescField", () => {
     test("proto2 oneof is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           oneof kind {
             int32 f = 1;
           }
@@ -976,7 +1111,7 @@ void suite("DescField", () => {
     test("proto3 scalar is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
-        message M { 
+        message M {
           int32 f = 1;
         }
       `);
@@ -985,7 +1120,7 @@ void suite("DescField", () => {
     test("proto3 optional scalar is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
-        message M { 
+        message M {
           optional int32 f = 1;
         }
       `);
@@ -994,7 +1129,7 @@ void suite("DescField", () => {
     test("proto3 scalar list is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
-        message M { 
+        message M {
           repeated int32 f = 1;
         }
       `);
@@ -1003,7 +1138,7 @@ void suite("DescField", () => {
     test("proto3 message list is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
-        message M { 
+        message M {
           repeated M f = 1;
         }
       `);
@@ -1012,7 +1147,7 @@ void suite("DescField", () => {
     test("proto3 scalar map is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
-        message M { 
+        message M {
           map <int32, int32> f = 1;
         }
       `);
@@ -1021,7 +1156,7 @@ void suite("DescField", () => {
     test("proto3 message map is IMPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
-        message M { 
+        message M {
           map <int32, M> f = 1;
         }
       `);
@@ -1030,7 +1165,7 @@ void suite("DescField", () => {
     test("proto3 oneof is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
-        message M { 
+        message M {
           oneof kind {
             int32 f = 1;
           }
@@ -1041,7 +1176,7 @@ void suite("DescField", () => {
     test("proto3 message is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
-        message M { 
+        message M {
           M f = 1;
         }
       `);
@@ -1050,7 +1185,7 @@ void suite("DescField", () => {
     test("proto3 optional message is EXPLICIT", async () => {
       const field = await compileField(`
         syntax="proto3";
-        message M { 
+        message M {
           optional M f = 1;
         }
       `);
@@ -1059,7 +1194,7 @@ void suite("DescField", () => {
     test("edition2023 scalar is EXPLICIT", async () => {
       const field = await compileField(`
         edition="2023";
-        message M { 
+        message M {
           int32 f = 1;
         }
       `);
@@ -1069,7 +1204,7 @@ void suite("DescField", () => {
       const field = await compileField(`
         edition="2023";
         option features.field_presence = IMPLICIT;
-        message M { 
+        message M {
           int32 f = 1;
         }
       `);
@@ -1079,7 +1214,7 @@ void suite("DescField", () => {
       const field = await compileField(`
         edition="2023";
         option features.field_presence = IMPLICIT;
-        message M { 
+        message M {
           M f = 1;
         }
       `);
@@ -1089,7 +1224,7 @@ void suite("DescField", () => {
       const field = await compileField(`
         edition="2023";
         option features.field_presence = IMPLICIT;
-        message M { 
+        message M {
           M f = 1;
         }
       `);
@@ -1098,7 +1233,7 @@ void suite("DescField", () => {
     test("edition2023 scalar list is IMPLICIT", async () => {
       const field = await compileField(`
         edition="2023";
-        message M { 
+        message M {
           repeated int32 f = 1;
         }
       `);
@@ -1107,7 +1242,7 @@ void suite("DescField", () => {
     test("edition2023 message list is IMPLICIT", async () => {
       const field = await compileField(`
         edition="2023";
-        message M { 
+        message M {
           repeated M f = 1;
         }
       `);
@@ -1116,7 +1251,7 @@ void suite("DescField", () => {
     test("edition2023 scalar with LEGACY_REQUIRED is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
         edition="2023";
-        message M { 
+        message M {
           int32 f = 1 [features.field_presence = LEGACY_REQUIRED];
         }
       `);
@@ -1128,7 +1263,7 @@ void suite("DescField", () => {
     test("edition2023 message with LEGACY_REQUIRED is LEGACY_REQUIRED", async () => {
       const field = await compileField(`
         edition="2023";
-        message M { 
+        message M {
           M f = 1 [features.field_presence = LEGACY_REQUIRED];
         }
       `);
@@ -1142,7 +1277,7 @@ void suite("DescField", () => {
     test("true for proto2 group", async () => {
       const field = await compileField(`
         syntax="proto2";
-        message M { 
+        message M {
           optional group GroupField = 2 {}
         }
       `);
@@ -1154,7 +1289,7 @@ void suite("DescField", () => {
     test("true for field with features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
         edition="2023";
-        message M { 
+        message M {
           M f = 1 [features.message_encoding = DELIMITED];
         }
       `);
@@ -1166,7 +1301,7 @@ void suite("DescField", () => {
     test("true for list field with features.message_encoding = DELIMITED", async () => {
       const field = await compileField(`
         edition="2023";
-        message M { 
+        message M {
           repeated M f = 1 [features.message_encoding = DELIMITED];
         }
       `);
@@ -1181,7 +1316,7 @@ void suite("DescField", () => {
       const field = await compileField(`
         edition="2023";
         option features.message_encoding = DELIMITED;
-        message M { 
+        message M {
           M f = 1;
         }
       `);
@@ -1194,7 +1329,7 @@ void suite("DescField", () => {
       const field = await compileField(`
         edition="2023";
         option features.message_encoding = DELIMITED;
-        message M { 
+        message M {
           map <int32, string> f = 1;
         }
       `);
@@ -1920,7 +2055,7 @@ void suite("DescService", () => {
   test("methods", async () => {
     const service = await compileService(`
       syntax="proto3";
-      service Foo { 
+      service Foo {
         rpc Bar(I) returns(O);
         rpc Baz(I) returns(O);
       }
@@ -1955,7 +2090,7 @@ void suite("DescMethod", () => {
     test("unary", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(I) returns(O) {}
         }
         message I {}
@@ -1966,7 +2101,7 @@ void suite("DescMethod", () => {
     test("server-streaming", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(I) returns(stream O) {}
         }
         message I {}
@@ -1977,7 +2112,7 @@ void suite("DescMethod", () => {
     test("client-streaming", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(stream I) returns(O) {}
         }
         message I {}
@@ -1988,7 +2123,7 @@ void suite("DescMethod", () => {
     test("bidi-streaming", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(stream I) returns(stream O) {}
         }
         message I {}
@@ -2001,7 +2136,7 @@ void suite("DescMethod", () => {
     test("is IDEMPOTENCY_UNKNOWN if unset", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(I) returns(O) {}
         }
         message I {}
@@ -2015,7 +2150,7 @@ void suite("DescMethod", () => {
     test("is IDEMPOTENCY_UNKNOWN if set", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(I) returns(O) {
             option idempotency_level = IDEMPOTENCY_UNKNOWN;
           }
@@ -2031,7 +2166,7 @@ void suite("DescMethod", () => {
     test("is NO_SIDE_EFFECTS if set", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(I) returns(O) {
             option idempotency_level = NO_SIDE_EFFECTS;
           }
@@ -2047,7 +2182,7 @@ void suite("DescMethod", () => {
     test("is IDEMPOTENT if set", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(I) returns(O) {
             option idempotency_level = IDEMPOTENT;
           }
@@ -2065,7 +2200,7 @@ void suite("DescMethod", () => {
     test("is false by default", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(I) returns(O);
         }
         message I {}
@@ -2076,7 +2211,7 @@ void suite("DescMethod", () => {
     test("is true with option", async () => {
       const method = await compileMethod(`
         syntax="proto3";
-        service Foo { 
+        service Foo {
           rpc Bar(I) returns(O) {
             option deprecated = true;
           }
