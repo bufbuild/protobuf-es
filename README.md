@@ -212,7 +212,7 @@ This is the infrastructure you need for schema-driven tools, plugin development,
 
 `google-protobuf` still does not support ES6 imports. `protobuf-es` generates ESM by default, which gives modern bundlers a much better shot at removing dead code.
 
-In this repo's [bundle size comparison](packages/bundle-size/README.md) against Google's generator, importing one generated file comes out to `15,803 b` compressed with `protobuf-es` and `35,999 b` with Google's output. At 32 files, the gap is `24,783 b` versus `75,520 b`.
+The [bundle size comparison](packages/bundle-size) in this repo shows the payoff: `protobuf-es` compresses to less than half the size of Google's output, and tree-shaking keeps the gap growing as you import more files.
 
 ## Switching From Existing Code
 
