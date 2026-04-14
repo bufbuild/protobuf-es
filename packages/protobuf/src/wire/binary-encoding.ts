@@ -96,7 +96,7 @@ export const INT32_MIN = -0x80000000;
 export class BinaryWriter {
   /**
    * We cannot allocate a buffer for the entire output
-   * because we don't know it's size.
+   * because we don't know its size.
    *
    * So we collect smaller chunks of known size and
    * concat them later.
@@ -228,7 +228,7 @@ export class BinaryWriter {
   }
 
   /**
-   * Write a `bool` value, a variant.
+   * Write a `bool` value, a varint.
    */
   bool(value: boolean): this {
     this.buf.push(value ? 1 : 0);
@@ -303,7 +303,7 @@ export class BinaryWriter {
   }
 
   /**
-   * Write a `fixed64` value, a signed, fixed-length 64-bit integer.
+   * Write a `sfixed64` value, a signed, fixed-length 64-bit integer.
    */
   sfixed64(value: string | number | bigint): this {
     let chunk = new Uint8Array(8),
