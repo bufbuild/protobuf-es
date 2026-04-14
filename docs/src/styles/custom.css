@@ -1,0 +1,100 @@
+/* Custom CSS for Buf Engine documentation. */
+
+/* Widen the header search bar to align with the content area below. */
+site-search button {
+  max-width: var(--sl-content-width);
+}
+
+/* --- Centered page layout ---
+   Starlight defaults to position: fixed for the header and sidebar, which pins
+   them to the viewport and prevents centering on wide screens. This section
+   converts the layout from fixed to sticky using CSS Grid, so the entire page
+   centers within a max-width container.
+
+   Starlight's source uses @layer starlight.core, so unlayered CSS here takes
+   precedence. Only applies above 72rem where Starlight shows the sidebar. */
+
+@media (min-width: 72rem) {
+  /* Convert the page from a column flex to a two-column grid.
+     Row 1: header spanning both columns.
+     Row 2: sidebar + main content side by side. */
+  .page {
+    display: grid !important;
+    grid-template-columns: var(--sl-sidebar-width) 1fr;
+    grid-template-rows: auto 1fr;
+    max-width: 90rem;
+    margin-inline: auto;
+    min-height: 100vh;
+  }
+
+  /* Header: sticky (not fixed) so it stays in the document flow and respects
+     the centered grid. Spans both columns. Full-viewport-width background
+     achieved via the negative-margin breakout pattern. */
+  header.header {
+    position: sticky !important;
+    top: 0;
+    inset-inline-start: auto !important;
+    grid-column: 1 / -1;
+    width: 100vw !important;
+    margin-inline: calc(-50vw + 50%) !important;
+    padding-inline: calc(50vw - 50% + var(--sl-nav-pad-x)) !important;
+    z-index: var(--sl-z-index-navbar);
+  }
+
+  /* Sidebar nav: proper grid item that stretches the full content height. */
+  nav.sidebar {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  /* Sidebar pane: sticky instead of fixed. Sticks at the header height and
+     scrolls independently within the tall nav.sidebar parent. */
+  .sidebar-pane {
+    position: sticky !important;
+    top: var(--sl-nav-height) !important;
+    inset-inline-start: auto !important;
+    inset-block-end: auto !important;
+    width: 100% !important;
+    height: calc(100vh - var(--sl-nav-height)) !important;
+    z-index: auto !important;
+  }
+
+  /* Main frame: grid item that fills remaining space. No padding offsets
+     needed since the header and sidebar are now in the document flow. */
+  .main-frame {
+    grid-column: 2;
+    grid-row: 2;
+    padding-top: 0 !important;
+    padding-inline-start: 0 !important;
+  }
+
+  /* Right sidebar: sticky instead of fixed, so it stays within the centered
+     layout and scrolls independently. */
+  .right-sidebar {
+    position: sticky !important;
+    top: var(--sl-nav-height) !important;
+    width: 100% !important;
+    height: calc(100vh - var(--sl-nav-height)) !important;
+    padding-top: 0 !important;
+  }
+
+  /* --- Wider content area ---
+     Make the main content pane fill all available space rather than using
+     Starlight's --sl-content-width-based formulas. The .sl-container max-width
+     controls how wide the prose actually renders. These overrides live here
+     (not as a variable change) so they apply in the same CSS file as the grid
+     layout above, avoiding layout shift in dev mode. */
+  .main-pane {
+    /* Take all remaining space after the right sidebar. */
+    flex: 1 1 0% !important;
+  }
+  .right-sidebar-container {
+    /* Fixed-width TOC column instead of Starlight's formula. */
+    width: var(--sl-sidebar-width) !important;
+    flex: 0 0 auto !important;
+  }
+  .sl-container {
+    /* Widen prose from the default 45rem to 55rem on wide viewports. */
+    max-width: 55rem !important;
+  }
+}
