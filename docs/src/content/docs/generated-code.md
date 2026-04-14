@@ -2,7 +2,7 @@
 title: Generated code
 ---
 
-This page shows how Protobuf-ES represents Protobuf definitions in generated JavaScript and TypeScript.
+This is one of the clearest places Protobuf-ES separates itself from older JavaScript runtimes. Generated code looks like normal TypeScript, not like a Java-style API translated into JavaScript.
 
 Unless otherwise noted, the examples use this schema:
 
@@ -67,7 +67,7 @@ export declare type User = Message<"example.User"> & {
 export declare const UserSchema: GenMessage<User>;
 ```
 
-If you have used libraries like Zod, the shape is familiar. The schema is the typed description of the message, and you pass it to runtime helpers such as `create()`, `fromBinary()`, and `toBinary()`.
+If you have used libraries like Zod, the shape is familiar. The schema is the typed description of the message, and you pass it to runtime helpers such as `create()`, `fromBinary()`, and `toBinary()`. That is a much cleaner starting point than generated getter and setter classes or JavaScript-first output with a separate typing pass.
 
 ```typescript
 import { fromBinary } from "@bufbuild/protobuf";

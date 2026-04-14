@@ -4,7 +4,7 @@ title: Serialization
 
 Binary and JSON each have their place.
 
-Binary is usually the better choice for network traffic and storage. It preserves unknown fields, handles schema evolution well, and is generally faster. JSON is excellent for debugging, APIs that already speak JSON, and integrations that need plain JSON values.
+Binary is usually the better choice for network traffic and storage. It preserves unknown fields, handles schema evolution well, and is generally faster. JSON is excellent for debugging, APIs that already speak JSON, and integrations that need plain JSON values. Protobuf-ES implements both with the same conformance-first approach that drives the rest of the runtime.
 
 ## Binary serialization options
 

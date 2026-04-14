@@ -2,7 +2,7 @@
 title: Writing plugins
 ---
 
-Protobuf compilers can run plugins that generate files from schemas. Protobuf-ES includes `@bufbuild/protoplugin`, a framework for building those plugins in TypeScript.
+Protobuf compilers can run plugins that generate files from schemas. Protobuf-ES includes `@bufbuild/protoplugin`, a framework for building those plugins in TypeScript, so the same ecosystem that generates your application types can generate your custom tooling too.
 
 Plugins are executables named `protoc-gen-x`. They read schema data from standard input and write generated files to standard output.
 

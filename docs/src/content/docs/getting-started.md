@@ -2,7 +2,7 @@
 title: Getting started
 ---
 
-This guide walks through local code generation with Protobuf-ES. By the end, you will have generated TypeScript files and used them in application code.
+This is the fast path into the runtime JavaScript and TypeScript should have had from the start. In a few minutes, you will generate plain TypeScript, create a real typed message object, and serialize it with a standard Protobuf plugin.
 
 ## Prerequisites
 
@@ -96,7 +96,7 @@ const roundTrip = fromBinary(UserSchema, bytes);
 roundTrip.firstName; // "Homer"
 ```
 
-`create()` constructs a message value. `toBinary()` serializes it. `fromBinary()` parses it back.
+`create()` constructs a message value. `toBinary()` serializes it. `fromBinary()` parses it back. There is no generated class boilerplate, no getter and setter layer, and no second step to recover TypeScript types.
 
 ## Generate with `protoc`
 

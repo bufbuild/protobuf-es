@@ -4,7 +4,7 @@ title: JSON types
 
 JSON types are an advanced feature enabled with the plugin option `json_types=true`.
 
-When enabled, `@bufbuild/protoc-gen-es` generates a JSON type for every Protobuf message and enumeration. That type matches the exact JSON shape emitted by `toJson()` with standard options.
+When enabled, `@bufbuild/protoc-gen-es` generates a JSON type for every Protobuf message and enumeration. That type matches the exact JSON shape emitted by `toJson()` with standard options. This is a small feature until you need it, then it becomes very hard to give up.
 
 ## Message JSON types
 

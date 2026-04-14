@@ -39,7 +39,11 @@ export default defineConfig({
       sidebar: [
         {
           label: "Introduction",
-          items: [{ slug: "index" }, { slug: "getting-started" }],
+          items: [
+            { slug: "index" },
+            { slug: "how-it-compares" },
+            { slug: "getting-started" },
+          ],
         },
         {
           label: "Code Generation",

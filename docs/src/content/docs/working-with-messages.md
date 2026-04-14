@@ -2,7 +2,7 @@
 title: Working with messages
 ---
 
-This page covers the core runtime APIs for constructing, identifying, comparing, and cloning messages.
+This page covers the core runtime APIs for constructing, identifying, comparing, and cloning messages. The important thing to notice is that messages are plain objects, so the runtime API stays small and the generated code stays out of your way.
 
 ## Constructing a message
 

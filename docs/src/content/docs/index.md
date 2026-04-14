@@ -2,9 +2,56 @@
 title: Introduction
 ---
 
-Protobuf-ES is a fully conformant implementation of Protocol Buffers for JavaScript and TypeScript. It works in browsers, Node.js, Deno, and Bun, generates plain TypeScript that looks like normal application code, and supports proto2, proto3, and Editions 2024.
+The Protobuf runtime JavaScript and TypeScript should have had from the start.
 
-If you are already familiar with Protocol Buffers, this site shows how to generate code, work with messages, use reflection, and build your own plugins. If you are new to Protobuf, start with [Getting started](/getting-started/).
+`protobuf-es` supports proto2, proto3, and Editions 2024, including extensions and custom options, with `0` required conformance failures in the public [protobuf-conformance](https://github.com/bufbuild/protobuf-conformance) runner. It generates plain TypeScript that looks like normal TypeScript, uses ECMAScript modules by default, and works in browsers, Node.js, Deno, and Bun.
+
+If you want full Protobuf semantics with an API that feels at home in modern JavaScript, start here.
+
+```typescript
+import { create, fromBinary, toBinary, toJson } from "@bufbuild/protobuf";
+import { type User, UserSchema } from "./gen/user_pb";
+
+const user: User = create(UserSchema, {
+  firstName: "Alice",
+  lastName: "Smith",
+  active: true,
+  locations: ["NYC", "LDN"],
+  projects: { atlas: "infra" },
+});
+
+const wire = toBinary(UserSchema, user);
+const roundTrip = fromBinary(UserSchema, wire);
+const json = toJson(UserSchema, roundTrip);
+
+roundTrip.firstName;
+roundTrip.projects.atlas;
+json;
+```
+
+Generated messages are plain objects with real TypeScript types. `protoc-gen-es` is a standard plugin, so `buf generate` and `protoc` both work.
+
+## Conformance first
+
+Public conformance is the fastest way to understand the gap. The [protobuf-conformance](https://github.com/bufbuild/protobuf-conformance) runner tests proto2, proto3, and the highest Edition each implementation advertises.
+
+| Implementation | JavaScript and TypeScript | Standard Plugin | Supported Edition | Required tests | Recommended tests |
+|---|:---:|:---:|:---:|:---:|:---:|
+| [`protobuf-es`](https://github.com/bufbuild/protobuf-conformance/tree/main/impl/protobuf-es) | :heavy_check_mark: | :heavy_check_mark: | 2024 | <sub><img src="https://raw.githubusercontent.com/bufbuild/protobuf-conformance/main/.github/genimg/Protobuf-ES-required.svg" height="25" width="125" /></sub><br><sup>(0 failures)</sup> | <sub><img src="https://raw.githubusercontent.com/bufbuild/protobuf-conformance/main/.github/genimg/Protobuf-ES-recommended.svg" height="25" width="125" /></sub><br><sup>(12 failures)</sup> |
+| [`google-protobuf`](https://github.com/bufbuild/protobuf-conformance/tree/main/impl/google-protobuf) | :x: | :heavy_check_mark: | 2023 | <sub><img src="https://raw.githubusercontent.com/bufbuild/protobuf-conformance/main/.github/genimg/google-protobuf-required.svg" height="25" width="125" /></sub><br><sup>(1169 failures)</sup> | <sub><img src="https://raw.githubusercontent.com/bufbuild/protobuf-conformance/main/.github/genimg/google-protobuf-recommended.svg" height="25" width="125" /></sub><br><sup>(389 failures)</sup> |
+| [`protobuf.js`](https://github.com/bufbuild/protobuf-conformance/tree/main/impl/protobuf.js) | :heavy_check_mark: | :x: | 2023 | <sub><img src="https://raw.githubusercontent.com/bufbuild/protobuf-conformance/main/.github/genimg/protobuf.js-required.svg" height="25" width="125" /></sub><br><sup>(1847 failures)</sup> | <sub><img src="https://raw.githubusercontent.com/bufbuild/protobuf-conformance/main/.github/genimg/protobuf.js-recommended.svg" height="25" width="125" /></sub><br><sup>(579 failures)</sup> |
+
+Protobuf-ES is not a nice API wrapped around a partial implementation. It is the modern JavaScript and TypeScript API backed by the strongest conformance story in the ecosystem.
+
+## What feels different
+
+- Plain message objects and schema exports instead of generated getter and setter classes.
+- Standard plugin flow with the Buf CLI and `protoc`, not a separate wrapper toolchain.
+- First-class TypeScript output instead of recovering types after generating JavaScript.
+- Typed oneofs, reflection, registries, custom options, and well-known types in one ecosystem.
+- Smaller bundles and ECMAScript modules by default.
+
+For the detailed side-by-side, including capability differences against `google-protobuf` and `protobuf.js`, see [How it compares](/how-it-compares/).
 
 ## Packages
 
@@ -24,6 +71,7 @@ Protobuf-ES consists of three npm packages:
 
 ## Where to go next
 
+- [How it compares](/how-it-compares/): See the conformance and capability gap against the other main JavaScript runtimes.
 - [Getting started](/getting-started/): Generate your first files with `buf generate`.
 - [Plugin options](/plugin-options/): Control code generation for TypeScript, imports, JSON types, and more.
 - [Working with messages](/working-with-messages/): Create, inspect, compare, and clone messages.
@@ -49,4 +97,4 @@ message User {
 }
 ```
 
-To use a schema like this in JavaScript or TypeScript, generate code with `@bufbuild/protoc-gen-es`, then work with the generated types and schema exports in your application.
+To use a schema like this in JavaScript or TypeScript, generate code with `@bufbuild/protoc-gen-es`, then work with the generated types and schema exports directly in your application.

@@ -2,7 +2,7 @@
 title: Reflection
 ---
 
-Reflection is one of Protobuf-ES's most powerful features. It gives you typed access to descriptors, registries, custom options, and dynamic message manipulation.
+Reflection is one of the places where Protobuf-ES really pulls away from minimal runtimes. It gives you typed access to descriptors, registries, custom options, and dynamic message manipulation without dropping you into an untyped escape hatch.
 
 ## Descriptors
 
