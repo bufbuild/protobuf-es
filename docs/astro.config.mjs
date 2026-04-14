@@ -35,13 +35,42 @@ export default defineConfig({
       pagination: false,
       plugins: [starlightLinksValidator()],
       customCss: ["./src/styles/custom.css"],
+      // Organize the docs around the user journey from first generation to advanced reflection and plugins.
       sidebar: [
         {
           label: "Introduction",
+          items: [{ slug: "index" }, { slug: "getting-started" }],
+        },
+        {
+          label: "Code Generation",
           items: [
-            { slug: "index" },
+            { slug: "plugin-options" },
+            { slug: "generated-code" },
+            { slug: "json-types" },
+            { slug: "valid-types" },
           ],
-        }
+        },
+        {
+          label: "Runtime",
+          items: [
+            { slug: "working-with-messages" },
+            { slug: "serialization" },
+            { slug: "well-known-types" },
+            { slug: "reflection" },
+          ],
+        },
+        {
+          label: "Advanced",
+          items: [{ slug: "writing-plugins" }],
+        },
+        {
+          label: "More",
+          items: [
+            { slug: "examples" },
+            { slug: "migrating-from-v1" },
+            { slug: "faq" },
+          ],
+        },
       ],
     }),
   ],
