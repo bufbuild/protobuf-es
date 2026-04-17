@@ -36,6 +36,7 @@ import {
 import { file_google_protobuf_test_messages_proto3 } from "./gen/google/protobuf/test_messages_proto3_pb.js";
 import { file_google_protobuf_test_messages_proto2 } from "./gen/google/protobuf/test_messages_proto2_pb.js";
 import { file_google_protobuf_test_messages_edition2023 } from "./gen/google/protobuf/test_messages_edition2023_pb.js";
+import { file_google_protobuf_test_messages_edition_unstable } from "./gen/google/protobuf/test_messages_edition_unstable_pb.js";
 import { file_google_protobuf_test_messages_proto2_editions } from "./gen/google/protobuf/test_messages_proto2_editions_pb.js";
 import { file_google_protobuf_test_messages_proto3_editions } from "./gen/google/protobuf/test_messages_proto3_editions_pb.js";
 import {
@@ -51,6 +52,7 @@ const registry = createRegistry(
   file_google_protobuf_test_messages_proto2,
   file_google_protobuf_test_messages_proto3,
   file_google_protobuf_test_messages_edition2023,
+  file_google_protobuf_test_messages_edition_unstable,
   file_google_protobuf_test_messages_proto2_editions,
   file_google_protobuf_test_messages_proto3_editions,
   file_google_protobuf_any,

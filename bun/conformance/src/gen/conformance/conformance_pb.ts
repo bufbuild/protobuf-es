@@ -139,7 +139,8 @@ export type ConformanceRequest = Message<"conformance.ConformanceRequest"> & {
    * protobuf_test_messages.proto2.TestAllTypesProto2 or
    * protobuf_test_messages.editions.proto2.TestAllTypesProto2 or
    * protobuf_test_messages.editions.proto3.TestAllTypesProto3 or
-   * protobuf_test_messages.editions.TestAllTypesEdition2023.
+   * protobuf_test_messages.editions.TestAllTypesEdition2023 or
+   * protobuf_test_messages.edition_unstable.TestAllTypesEditionUnstable.
    *
    * @generated from field: string message_type = 4;
    */
