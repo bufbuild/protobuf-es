@@ -40,6 +40,7 @@ import { version } from "../package.json";
 import {
   isLegacyRequired,
   isProtovalidateDisabled,
+  isProtovalidateOneofRequired,
   isProtovalidateRequired,
   messageNeedsCustomValidType,
 } from "./valid-types.js";
@@ -477,7 +478,11 @@ function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOn
         f.print(`    value: `, typing, `;`);
         f.print(`    case: "`, field.localName, `";`);
       }
-      f.print(`  } | { case: undefined; value?: undefined };`);
+      if (validTypes?.protovalidateRequired && isProtovalidateOneofRequired(member)) {
+        f.print(`  };`);
+      } else {
+        f.print(`  } | { case: undefined; value?: undefined };`);
+      }
       break;
     case "field":
       f.print(f.jsDoc(member, "  "));

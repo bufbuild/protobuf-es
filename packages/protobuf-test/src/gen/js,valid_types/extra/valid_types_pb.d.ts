@@ -183,6 +183,46 @@ export declare type VTypes = Message<"spec.VTypes"> & {
    * @generated from field: google.protobuf.Timestamp wkt = 22;
    */
   wkt?: Timestamp;
+
+  /**
+   * In the generated valid type, the oneof should not include the
+   * { case: undefined; value?: undefined } variant.
+   *
+   * @generated from oneof spec.VTypes.required_oneof
+   */
+  requiredOneof: {
+    /**
+     * @generated from field: string required_oneof_a = 23;
+     */
+    value: string;
+    case: "requiredOneofA";
+  } | {
+    /**
+     * @generated from field: spec.VTypes.Other required_oneof_b = 24;
+     */
+    value: VTypes_Other;
+    case: "requiredOneofB";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * In the generated valid type, the oneof should include the
+   * { case: undefined; value?: undefined } variant as usual.
+   *
+   * @generated from oneof spec.VTypes.optional_oneof
+   */
+  optionalOneof: {
+    /**
+     * @generated from field: string optional_oneof_a = 25;
+     */
+    value: string;
+    case: "optionalOneofA";
+  } | {
+    /**
+     * @generated from field: spec.VTypes.Other optional_oneof_b = 26;
+     */
+    value: VTypes_Other;
+    case: "optionalOneofB";
+  } | { case: undefined; value?: undefined };
 };
 
 /**
@@ -343,6 +383,46 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
    * @generated from field: google.protobuf.Timestamp wkt = 22;
    */
   wkt?: Timestamp;
+
+  /**
+   * In the generated valid type, the oneof should not include the
+   * { case: undefined; value?: undefined } variant.
+   *
+   * @generated from oneof spec.VTypes.required_oneof
+   */
+  requiredOneof: {
+    /**
+     * @generated from field: string required_oneof_a = 23;
+     */
+    value: string;
+    case: "requiredOneofA";
+  } | {
+    /**
+     * @generated from field: spec.VTypes.Other required_oneof_b = 24;
+     */
+    value: VTypes_OtherValid;
+    case: "requiredOneofB";
+  };
+
+  /**
+   * In the generated valid type, the oneof should include the
+   * { case: undefined; value?: undefined } variant as usual.
+   *
+   * @generated from oneof spec.VTypes.optional_oneof
+   */
+  optionalOneof: {
+    /**
+     * @generated from field: string optional_oneof_a = 25;
+     */
+    value: string;
+    case: "optionalOneofA";
+  } | {
+    /**
+     * @generated from field: spec.VTypes.Other optional_oneof_b = 26;
+     */
+    value: VTypes_OtherValid;
+    case: "optionalOneofB";
+  } | { case: undefined; value?: undefined };
 };
 
 /**
@@ -400,4 +480,62 @@ export declare type VTypes2Valid = Message<"spec.VTypes2"> & {
  * Use `create(VTypes2Schema)` to create a new message.
  */
 export declare const VTypes2Schema: GenMessage<VTypes2, {validType: VTypes2Valid}>;
+
+/**
+ * This message needs a valid type only because of oneof required.
+ * In the generated valid type, the oneof should not include the
+ * { case: undefined; value?: undefined } variant.
+ *
+ * @generated from message spec.VTypes3
+ */
+export declare type VTypes3 = Message<"spec.VTypes3"> & {
+  /**
+   * @generated from oneof spec.VTypes3.variant
+   */
+  variant: {
+    /**
+     * @generated from field: string value1 = 1;
+     */
+    value: string;
+    case: "value1";
+  } | {
+    /**
+     * @generated from field: string value2 = 2;
+     */
+    value: string;
+    case: "value2";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * This message needs a valid type only because of oneof required.
+ * In the generated valid type, the oneof should not include the
+ * { case: undefined; value?: undefined } variant.
+ *
+ * @generated from message spec.VTypes3
+ */
+export declare type VTypes3Valid = Message<"spec.VTypes3"> & {
+  /**
+   * @generated from oneof spec.VTypes3.variant
+   */
+  variant: {
+    /**
+     * @generated from field: string value1 = 1;
+     */
+    value: string;
+    case: "value1";
+  } | {
+    /**
+     * @generated from field: string value2 = 2;
+     */
+    value: string;
+    case: "value2";
+  };
+};
+
+/**
+ * Describes the message spec.VTypes3.
+ * Use `create(VTypes3Schema)` to create a new message.
+ */
+export declare const VTypes3Schema: GenMessage<VTypes3, {validType: VTypes3Valid}>;
 

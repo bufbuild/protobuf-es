@@ -15,12 +15,14 @@
 import {
   type DescField,
   type DescMessage,
+  type DescOneof,
   getOption,
   hasOption,
 } from "@bufbuild/protobuf";
 import { FeatureSet_FieldPresence } from "@bufbuild/protobuf/wkt";
 import {
   field as ext_field,
+  oneof as ext_oneof,
   type FieldRules,
   Ignore,
 } from "./gen/minimal-validate_pb.js";
@@ -31,6 +33,7 @@ import {
  * - A proto2 field has the `required` label
  * - A edition field has the feature `field_presence = LEGACY_REQUIRED`
  * - A field has the protovalidate `required` rule and not `ignore = IGNORE_ALWAYS`
+ * - A oneof has the protovalidate `required` rule
  * - A message field (repeated, singular, or map value) needs a ValidType
  */
 export function messageNeedsCustomValidType(
@@ -45,6 +48,11 @@ export function messageNeedsCustomValidType(
     seen = new Set<string>(),
   ): boolean {
     seen.add(message.typeName);
+    for (const oneof of message.oneofs) {
+      if (isProtovalidateOneofRequired(oneof)) {
+        return true;
+      }
+    }
     for (const field of message.fields) {
       if (isProtovalidateDisabled(field)) {
         continue;
@@ -138,4 +146,15 @@ export function isLegacyRequired(descField: DescField): boolean {
     descField.fieldKind == "message" &&
     descField.presence == FeatureSet_FieldPresence.LEGACY_REQUIRED
   );
+}
+
+/**
+ * Returns true if the oneof is required by protovalidate.
+ */
+export function isProtovalidateOneofRequired(descOneof: DescOneof): boolean {
+  if (!hasOption(descOneof, ext_oneof)) {
+    return false;
+  }
+  const oneofRules = getOption(descOneof, ext_oneof);
+  return oneofRules.required;
 }
