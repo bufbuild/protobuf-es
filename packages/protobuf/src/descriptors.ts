@@ -33,7 +33,6 @@ export type SupportedEdition = Extract<
   | Edition.EDITION_PROTO3
   | Edition.EDITION_2023
   | Edition.EDITION_2024
-  | Edition.EDITION_UNSTABLE
 >;
 
 type SupportedFieldPresence = Extract<

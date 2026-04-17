@@ -982,12 +982,13 @@ function getFileEdition(proto: FileDescriptorProto): SupportedEdition {
     case "proto3":
       return EDITION_PROTO3;
     case "editions":
-      // EDITION_UNSTABLE is a sandbox for in-development features. Accept it
-      // as supported; resolveFeature substitutes maximumEdition defaults.
-      if (
-        proto.edition === EDITION_UNSTABLE ||
-        proto.edition in featureDefaults
-      ) {
+      // EDITION_UNSTABLE is a sandbox for in-development features. Collapse
+      // it to maximumEdition so SupportedEdition and feature resolution do
+      // not leak the test-only edition to users.
+      if (proto.edition === EDITION_UNSTABLE) {
+        return maximumEdition;
+      }
+      if (proto.edition in featureDefaults) {
         return proto.edition as SupportedEdition;
       }
       throw new Error(`${proto.name}: unsupported edition`);
@@ -1275,13 +1276,9 @@ function resolveFeature<Name extends keyof Features>(
     if (ref.kind == "message") {
       return resolveFeature(name, ref.parent ?? ref.file);
     }
-    // EDITION_UNSTABLE has no published feature defaults; fall back to the
-    // maximum edition's defaults.
-    const edition =
-      ref.edition === EDITION_UNSTABLE ? maximumEdition : ref.edition;
     const editionDefaults = (
       featureDefaults as Record<number, Features | undefined>
-    )[edition];
+    )[ref.edition];
     if (!editionDefaults) {
       throw new Error(`feature default for edition ${ref.edition} not found`);
     }
