@@ -701,7 +701,7 @@ export type TestAllTypesProto3 = Message<"protobuf_test_messages.proto3.TestAllT
   /**
    * @generated from field: google.protobuf.Empty optional_empty = 308;
    */
-  optionalEmpty?: Empty;
+  optionalEmpty?: Empty | undefined;
 
   /**
    * @generated from field: repeated google.protobuf.Duration repeated_duration = 311;
