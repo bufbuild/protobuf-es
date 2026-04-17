@@ -29,7 +29,7 @@ import { extDesc } from "../../../../codegenv2/extension.js";
  * Describes the file google/protobuf/go_features.proto.
  */
 export const file_google_protobuf_go_features: GenFile = /*@__PURE__*/
-  fileDesc("CiFnb29nbGUvcHJvdG9idWYvZ29fZmVhdHVyZXMucHJvdG8SAnBiIvcECgpHb0ZlYXR1cmVzEqUBChpsZWdhY3lfdW5tYXJzaGFsX2pzb25fZW51bRgBIAEoCEKAAYgBAZgBBpgBAaIBCRIEdHJ1ZRiEB6IBChIFZmFsc2UY5weyAVsI6AcQ6AcaU1RoZSBsZWdhY3kgVW5tYXJzaGFsSlNPTiBBUEkgaXMgZGVwcmVjYXRlZCBhbmQgd2lsbCBiZSByZW1vdmVkIGluIGEgZnV0dXJlIGVkaXRpb24uEmoKCWFwaV9sZXZlbBgCIAEoDjIXLnBiLkdvRmVhdHVyZXMuQVBJTGV2ZWxCPogBAZgBA5gBAaIBGhIVQVBJX0xFVkVMX1VOU1BFQ0lGSUVEGIQHogEPEgpBUElfT1BBUVVFGOkHsgEDCOgHEmsKEXN0cmlwX2VudW1fcHJlZml4GAMgASgOMh4ucGIuR29GZWF0dXJlcy5TdHJpcEVudW1QcmVmaXhCMIgBAZgBBpgBB5gBAaIBGxIWU1RSSVBfRU5VTV9QUkVGSVhfS0VFUBiEB7IBAwjpByJTCghBUElMZXZlbBIZChVBUElfTEVWRUxfVU5TUEVDSUZJRUQQABIMCghBUElfT1BFThABEg4KCkFQSV9IWUJSSUQQAhIOCgpBUElfT1BBUVVFEAMikgEKD1N0cmlwRW51bVByZWZpeBIhCh1TVFJJUF9FTlVNX1BSRUZJWF9VTlNQRUNJRklFRBAAEhoKFlNUUklQX0VOVU1fUFJFRklYX0tFRVAQARIjCh9TVFJJUF9FTlVNX1BSRUZJWF9HRU5FUkFURV9CT1RIEAISGwoXU1RSSVBfRU5VTV9QUkVGSVhfU1RSSVAQAzo8CgJnbxIbLmdvb2dsZS5wcm90b2J1Zi5GZWF0dXJlU2V0GOoHIAEoCzIOLnBiLkdvRmVhdHVyZXNSAmdvQi9aLWdvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2dvZmVhdHVyZXNwYg", [file_google_protobuf_descriptor]);
+  fileDesc("CiFnb29nbGUvcHJvdG9idWYvZ29fZmVhdHVyZXMucHJvdG8SAnBiItEGCgpHb0ZlYXR1cmVzEqUBChpsZWdhY3lfdW5tYXJzaGFsX2pzb25fZW51bRgBIAEoCEKAAYgBAZgBBpgBAaIBCRIEdHJ1ZRiEB6IBChIFZmFsc2UY5weyAVsI6AcQ6AcaU1RoZSBsZWdhY3kgVW5tYXJzaGFsSlNPTiBBUEkgaXMgZGVwcmVjYXRlZCBhbmQgd2lsbCBiZSByZW1vdmVkIGluIGEgZnV0dXJlIGVkaXRpb24uEmoKCWFwaV9sZXZlbBgCIAEoDjIXLnBiLkdvRmVhdHVyZXMuQVBJTGV2ZWxCPogBAZgBA5gBAaIBGhIVQVBJX0xFVkVMX1VOU1BFQ0lGSUVEGIQHogEPEgpBUElfT1BBUVVFGOkHsgEDCOgHEmsKEXN0cmlwX2VudW1fcHJlZml4GAMgASgOMh4ucGIuR29GZWF0dXJlcy5TdHJpcEVudW1QcmVmaXhCMIgBAZgBBpgBB5gBAaIBGxIWU1RSSVBfRU5VTV9QUkVGSVhfS0VFUBiEB7IBAwjpBxJ4Cg1vcHRpbWl6ZV9tb2RlGAQgASgOMi8ucGIuR29GZWF0dXJlcy5PcHRpbWl6ZU1vZGVGZWF0dXJlLk9wdGltaXplTW9kZUIwiAEBmAEDmAEBogEeEhlPUFRJTUlaRV9NT0RFX1VOU1BFQ0lGSUVEGIQHsgEDCOkHGl4KE09wdGltaXplTW9kZUZlYXR1cmUiRwoMT3B0aW1pemVNb2RlEh0KGU9QVElNSVpFX01PREVfVU5TUEVDSUZJRUQQABIJCgVTUEVFRBABEg0KCUNPREVfU0laRRACIlMKCEFQSUxldmVsEhkKFUFQSV9MRVZFTF9VTlNQRUNJRklFRBAAEgwKCEFQSV9PUEVOEAESDgoKQVBJX0hZQlJJRBACEg4KCkFQSV9PUEFRVUUQAyKSAQoPU3RyaXBFbnVtUHJlZml4EiEKHVNUUklQX0VOVU1fUFJFRklYX1VOU1BFQ0lGSUVEEAASGgoWU1RSSVBfRU5VTV9QUkVGSVhfS0VFUBABEiMKH1NUUklQX0VOVU1fUFJFRklYX0dFTkVSQVRFX0JPVEgQAhIbChdTVFJJUF9FTlVNX1BSRUZJWF9TVFJJUBADOjwKAmdvEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQY6gcgASgLMg4ucGIuR29GZWF0dXJlc1ICZ29CL1otZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMvZ29mZWF0dXJlc3Bi", [file_google_protobuf_descriptor]);
 
 /**
  * @generated from message pb.GoFeatures
@@ -54,6 +54,11 @@ export type GoFeatures = Message<"pb.GoFeatures"> & {
    * @generated from field: optional pb.GoFeatures.StripEnumPrefix strip_enum_prefix = 3;
    */
   stripEnumPrefix: GoFeatures_StripEnumPrefix;
+
+  /**
+   * @generated from field: optional pb.GoFeatures.OptimizeModeFeature.OptimizeMode optimize_mode = 4;
+   */
+  optimizeMode: GoFeatures_OptimizeModeFeature_OptimizeMode;
 };
 
 /**
@@ -79,6 +84,11 @@ export type GoFeaturesJson = {
    * @generated from field: optional pb.GoFeatures.StripEnumPrefix strip_enum_prefix = 3;
    */
   stripEnumPrefix?: GoFeatures_StripEnumPrefixJson;
+
+  /**
+   * @generated from field: optional pb.GoFeatures.OptimizeModeFeature.OptimizeMode optimize_mode = 4;
+   */
+  optimizeMode?: GoFeatures_OptimizeModeFeature_OptimizeModeJson;
 };
 
 /**
@@ -87,6 +97,73 @@ export type GoFeaturesJson = {
  */
 export const GoFeaturesSchema: GenMessage<GoFeatures, {jsonType: GoFeaturesJson}> = /*@__PURE__*/
   messageDesc(file_google_protobuf_go_features, 0);
+
+/**
+ * Wrap the OptimizeMode enum in a message for scoping:
+ * This way, users can type shorter names (SPEED, CODE_SIZE).
+ *
+ * @generated from message pb.GoFeatures.OptimizeModeFeature
+ */
+export type GoFeatures_OptimizeModeFeature = Message<"pb.GoFeatures.OptimizeModeFeature"> & {
+};
+
+/**
+ * Wrap the OptimizeMode enum in a message for scoping:
+ * This way, users can type shorter names (SPEED, CODE_SIZE).
+ *
+ * @generated from message pb.GoFeatures.OptimizeModeFeature
+ */
+export type GoFeatures_OptimizeModeFeatureJson = {
+};
+
+/**
+ * Describes the message pb.GoFeatures.OptimizeModeFeature.
+ * Use `create(GoFeatures_OptimizeModeFeatureSchema)` to create a new message.
+ */
+export const GoFeatures_OptimizeModeFeatureSchema: GenMessage<GoFeatures_OptimizeModeFeature, {jsonType: GoFeatures_OptimizeModeFeatureJson}> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_go_features, 0, 0);
+
+/**
+ * The name of this enum matches OptimizeMode in descriptor.proto.
+ *
+ * @generated from enum pb.GoFeatures.OptimizeModeFeature.OptimizeMode
+ */
+export enum GoFeatures_OptimizeModeFeature_OptimizeMode {
+  /**
+   * OPTIMIZE_MODE_UNSPECIFIED results in falling back to the default
+   * (optimize for code size), but needs to be a separate value to distinguish
+   * between an explicitly set optimize mode or a missing optimize mode.
+   *
+   * @generated from enum value: OPTIMIZE_MODE_UNSPECIFIED = 0;
+   */
+  OPTIMIZE_MODE_UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: SPEED = 1;
+   */
+  SPEED = 1,
+
+  /**
+   * There is no enum entry for LITE_RUNTIME (descriptor.proto),
+   * because Go Protobuf does not have the concept of a lite runtime.
+   *
+   * @generated from enum value: CODE_SIZE = 2;
+   */
+  CODE_SIZE = 2,
+}
+
+/**
+ * The name of this enum matches OptimizeMode in descriptor.proto.
+ *
+ * @generated from enum pb.GoFeatures.OptimizeModeFeature.OptimizeMode
+ */
+export type GoFeatures_OptimizeModeFeature_OptimizeModeJson = "OPTIMIZE_MODE_UNSPECIFIED" | "SPEED" | "CODE_SIZE";
+
+/**
+ * Describes the enum pb.GoFeatures.OptimizeModeFeature.OptimizeMode.
+ */
+export const GoFeatures_OptimizeModeFeature_OptimizeModeSchema: GenEnum<GoFeatures_OptimizeModeFeature_OptimizeMode, GoFeatures_OptimizeModeFeature_OptimizeModeJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_go_features, 0, 0, 0);
 
 /**
  * @generated from enum pb.GoFeatures.APILevel
