@@ -18,7 +18,7 @@
 
 import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, extDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { FeatureSet } from "@bufbuild/protobuf/wkt";
+import type { FeatureSet, MessageOptions } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_descriptor } from "@bufbuild/protobuf/wkt";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -26,7 +26,29 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file google/protobuf/unittest_features.proto.
  */
 export const file_google_protobuf_unittest_features: GenFile = /*@__PURE__*/
-  fileDesc("Cidnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZmVhdHVyZXMucHJvdG8SAnBiIsgBCgtUZXN0TWVzc2FnZRpfCgZOZXN0ZWQyVQoLdGVzdF9uZXN0ZWQSGy5nb29nbGUucHJvdG9idWYuRmVhdHVyZVNldBiNTiABKAsyFi5wYi5UZXN0TmVzdGVkRmVhdHVyZXNSCnRlc3ROZXN0ZWQyWAoMdGVzdF9tZXNzYWdlEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYjk4gASgLMhcucGIuVGVzdE1lc3NhZ2VGZWF0dXJlc1ILdGVzdE1lc3NhZ2UikgEKE1Rlc3RNZXNzYWdlRmVhdHVyZXMSewoMZmlsZV9mZWF0dXJlGAEgASgOMg8ucGIuRW51bUZlYXR1cmVCVIgBAZgBAaIBCxIGVkFMVUUxGIQHogELEgZWQUxVRTIY5weiAQsSBlZBTFVFMxjoB6IBDBIGVkFMVUU0GJ2NBqIBDBIGVkFMVUU1GJ6NBrIBAwjoByKRAQoSVGVzdE5lc3RlZEZlYXR1cmVzEnsKDGZpbGVfZmVhdHVyZRgBIAEoDjIPLnBiLkVudW1GZWF0dXJlQlSIAQGYAQGiAQsSBlZBTFVFMRiEB6IBCxIGVkFMVUUyGOcHogELEgZWQUxVRTMY6AeiAQwSBlZBTFVFNBidjQaiAQwSBlZBTFVFNRiejQayAQMI6AcirAwKDFRlc3RGZWF0dXJlcxJ7CgxmaWxlX2ZlYXR1cmUYASABKA4yDy5wYi5FbnVtRmVhdHVyZUJUiAEBmAEBogELEgZWQUxVRTEYhAeiAQsSBlZBTFVFMhjnB6IBCxIGVkFMVUUzGOgHogEMEgZWQUxVRTQYnY0GogEMEgZWQUxVRTUYno0GsgEDCOgHEkwKF2V4dGVuc2lvbl9yYW5nZV9mZWF0dXJlGAIgASgOMg8ucGIuRW51bUZlYXR1cmVCGogBAZgBAqIBCxIGVkFMVUUxGIQHsgEDCOgHEkQKD21lc3NhZ2VfZmVhdHVyZRgDIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQOiAQsSBlZBTFVFMRiEB7IBAwjoBxJCCg1maWVsZF9mZWF0dXJlGAQgASgOMg8ucGIuRW51bUZlYXR1cmVCGogBAZgBBKIBCxIGVkFMVUUxGIQHsgEDCOgHEkIKDW9uZW9mX2ZlYXR1cmUYBSABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAEFogELEgZWQUxVRTEYhAeyAQMI6AcSQQoMZW51bV9mZWF0dXJlGAYgASgOMg8ucGIuRW51bUZlYXR1cmVCGogBAZgBBqIBCxIGVkFMVUUxGIQHsgEDCOgHEkcKEmVudW1fZW50cnlfZmVhdHVyZRgHIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQeiAQsSBlZBTFVFMRiEB7IBAwjoBxJECg9zZXJ2aWNlX2ZlYXR1cmUYCCABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAEIogELEgZWQUxVRTEYhAeyAQMI6AcSQwoObWV0aG9kX2ZlYXR1cmUYCSABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAEJogELEgZWQUxVRTEYhAeyAQMI6AcSXQoQbXVsdGlwbGVfZmVhdHVyZRgKIAEoDjIPLnBiLkVudW1GZWF0dXJlQjKIAQGYAQGYAQSYAQOYAQaYAQeYAQiYAQmYAQWYAQKiAQsSBlZBTFVFMRiEB7IBAwjoBxJCChJib29sX2ZpZWxkX2ZlYXR1cmUYCyABKAhCJogBAZgBBKIBChIFZmFsc2UYhAeiAQoSBHRydWUYnY0GsgEDCOgHElsKDnNvdXJjZV9mZWF0dXJlGA8gASgOMg8ucGIuRW51bUZlYXR1cmVCMogBApgBAZgBBJgBA5gBBpgBB5gBCJgBCZgBBZgBAqIBCxIGVkFMVUUxGIQHsgEDCOgHElwKD3NvdXJjZV9mZWF0dXJlMhgQIAEoDjIPLnBiLkVudW1GZWF0dXJlQjKIAQKYAQGYAQSYAQOYAQaYAQeYAQiYAQmYAQWYAQKiAQsSBlZBTFVFMRiEB7IBAwjoBxKNAQoPcmVtb3ZlZF9mZWF0dXJlGBEgASgOMg8ucGIuRW51bUZlYXR1cmVCY4gBAZgBAZgBBKIBCxIGVkFMVUUxGIQHogELEgZWQUxVRTIY6AeiAQsSBlZBTFVFMxjpB7IBLQjoBxDoBxoiQ3VzdG9tIGZlYXR1cmUgZGVwcmVjYXRpb24gd2FybmluZyDpBxJUCg5mdXR1cmVfZmVhdHVyZRgSIAEoDjIPLnBiLkVudW1GZWF0dXJlQiuIAQGYAQGYAQSiAQsSBlZBTFVFMRiEB6IBCxIGVkFMVUUyGOkHsgEDCOkHElcKDmxlZ2FjeV9mZWF0dXJlGBMgASgOMg8ucGIuRW51bUZlYXR1cmVCLogBAZgBAZgBBKIBCxIGVkFMVUUxGIQHogELEgZWQUxVRTIY6AeyAQYI5wcg6AcSzgEKFnZhbHVlX2xpZmV0aW1lX2ZlYXR1cmUYFCABKA4yGC5wYi5WYWx1ZUxpZmV0aW1lRmVhdHVyZUKTAYgBAZgBAaIBHRIYVkFMVUVfTElGRVRJTUVfSU5IRVJJVEVEGIQHogEaEhVWQUxVRV9MSUZFVElNRV9GVVRVUkUY6AeiARsSFVZBTFVFX0xJRkVUSU1FX0ZVVFVSRRifjQayAS8I6AcQno0GGiJDdXN0b20gZmVhdHVyZSBkZXByZWNhdGlvbiB3YXJuaW5nIJ+NBirmAQoLRW51bUZlYXR1cmUSHQoZVEVTVF9FTlVNX0ZFQVRVUkVfVU5LTk9XThAAEgoKBlZBTFVFMRABEgoKBlZBTFVFMhACEgoKBlZBTFVFMxADEgoKBlZBTFVFNBAEEgoKBlZBTFVFNRAFEgoKBlZBTFVFNhAGEgoKBlZBTFVFNxAHEgoKBlZBTFVFOBAIEgoKBlZBTFVFORAJEgsKB1ZBTFVFMTAQChILCgdWQUxVRTExEAsSCwoHVkFMVUUxMhAMEgsKB1ZBTFVFMTMQDRILCgdWQUxVRTE0EA4SCwoHVkFMVUUxNRAPKuACChRWYWx1ZUxpZmV0aW1lRmVhdHVyZRIfChtURVNUX1ZBTFVFX0xJRkVUSU1FX1VOS05PV04QABIcChhWQUxVRV9MSUZFVElNRV9JTkhFUklURUQQARJOChZWQUxVRV9MSUZFVElNRV9TVVBQT1JUEAIaMiIwCJ2NBhCejQYaIkN1c3RvbSBmZWF0dXJlIGRlcHJlY2F0aW9uIHdhcm5pbmcgn40GEiQKHFZBTFVFX0xJRkVUSU1FX0VNUFRZX1NVUFBPUlQQAxoCIgASIQoVVkFMVUVfTElGRVRJTUVfRlVUVVJFEAQaBiIECJ2NBhJJChlWQUxVRV9MSUZFVElNRV9ERVBSRUNBVEVEEAUaKiIoEJ2NBhoiQ3VzdG9tIGZlYXR1cmUgZGVwcmVjYXRpb24gd2FybmluZxIlChZWQUxVRV9MSUZFVElNRV9SRU1PVkVEEAYaCSIHEOgHIJ2NBjpCCgR0ZXN0EhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYj04gASgLMhAucGIuVGVzdEZlYXR1cmVzUgR0ZXN0QhJCEFVuaXR0ZXN0RmVhdHVyZXNiCGVkaXRpb25zcOkH", [file_google_protobuf_descriptor]);
+  fileDesc("Cidnb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfZmVhdHVyZXMucHJvdG8SAnBiIo8BChxDdXN0b21PcHRpb25MaWZldGltZXNNZXNzYWdlEjIKC2N1c3RvbV9lbnVtGAEgASgOMh0ucGIuQ3VzdG9tT3B0aW9uTGlmZXRpbWVzRW51bRI7ChRyZXBlYXRlZF9jdXN0b21fZW51bRgCIAMoDjIdLnBiLkN1c3RvbU9wdGlvbkxpZmV0aW1lc0VudW0iyAEKC1Rlc3RNZXNzYWdlGl8KBk5lc3RlZDJVCgt0ZXN0X25lc3RlZBIbLmdvb2dsZS5wcm90b2J1Zi5GZWF0dXJlU2V0GI1OIAEoCzIWLnBiLlRlc3ROZXN0ZWRGZWF0dXJlc1IKdGVzdE5lc3RlZDJYCgx0ZXN0X21lc3NhZ2USGy5nb29nbGUucHJvdG9idWYuRmVhdHVyZVNldBiOTiABKAsyFy5wYi5UZXN0TWVzc2FnZUZlYXR1cmVzUgt0ZXN0TWVzc2FnZSKSAQoTVGVzdE1lc3NhZ2VGZWF0dXJlcxJ7CgxmaWxlX2ZlYXR1cmUYASABKA4yDy5wYi5FbnVtRmVhdHVyZUJUiAEBmAEBogELEgZWQUxVRTEYhAeiAQsSBlZBTFVFMhjnB6IBCxIGVkFMVUUzGOgHogEMEgZWQUxVRTQYnY0GogEMEgZWQUxVRTUYno0GsgEDCOgHIpEBChJUZXN0TmVzdGVkRmVhdHVyZXMSewoMZmlsZV9mZWF0dXJlGAEgASgOMg8ucGIuRW51bUZlYXR1cmVCVIgBAZgBAaIBCxIGVkFMVUUxGIQHogELEgZWQUxVRTIY5weiAQsSBlZBTFVFMxjoB6IBDBIGVkFMVUU0GJ2NBqIBDBIGVkFMVUU1GJ6NBrIBAwjoByLCEAoMVGVzdEZlYXR1cmVzEnsKDGZpbGVfZmVhdHVyZRgBIAEoDjIPLnBiLkVudW1GZWF0dXJlQlSIAQGYAQGiAQsSBlZBTFVFMRiEB6IBCxIGVkFMVUUyGOcHogELEgZWQUxVRTMY6AeiAQwSBlZBTFVFNBidjQaiAQwSBlZBTFVFNRiejQayAQMI6AcSTAoXZXh0ZW5zaW9uX3JhbmdlX2ZlYXR1cmUYAiABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAECogELEgZWQUxVRTEYhAeyAQMI6AcSRAoPbWVzc2FnZV9mZWF0dXJlGAMgASgOMg8ucGIuRW51bUZlYXR1cmVCGogBAZgBA6IBCxIGVkFMVUUxGIQHsgEDCOgHEkIKDWZpZWxkX2ZlYXR1cmUYBCABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAEEogELEgZWQUxVRTEYhAeyAQMI6AcSQgoNb25lb2ZfZmVhdHVyZRgFIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQWiAQsSBlZBTFVFMRiEB7IBAwjoBxJBCgxlbnVtX2ZlYXR1cmUYBiABKA4yDy5wYi5FbnVtRmVhdHVyZUIaiAEBmAEGogELEgZWQUxVRTEYhAeyAQMI6AcSRwoSZW51bV9lbnRyeV9mZWF0dXJlGAcgASgOMg8ucGIuRW51bUZlYXR1cmVCGogBAZgBB6IBCxIGVkFMVUUxGIQHsgEDCOgHEkQKD3NlcnZpY2VfZmVhdHVyZRgIIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQiiAQsSBlZBTFVFMRiEB7IBAwjoBxJDCg5tZXRob2RfZmVhdHVyZRgJIAEoDjIPLnBiLkVudW1GZWF0dXJlQhqIAQGYAQmiAQsSBlZBTFVFMRiEB7IBAwjoBxJdChBtdWx0aXBsZV9mZWF0dXJlGAogASgOMg8ucGIuRW51bUZlYXR1cmVCMogBAZgBAZgBBJgBA5gBBpgBB5gBCJgBCZgBBZgBAqIBCxIGVkFMVUUxGIQHsgEDCOgHEkIKEmJvb2xfZmllbGRfZmVhdHVyZRgLIAEoCEImiAEBmAEEogEKEgVmYWxzZRiEB6IBChIEdHJ1ZRidjQayAQMI6AcSWwoOc291cmNlX2ZlYXR1cmUYDyABKA4yDy5wYi5FbnVtRmVhdHVyZUIyiAECmAEBmAEEmAEDmAEGmAEHmAEImAEJmAEFmAECogELEgZWQUxVRTEYhAeyAQMI6AcSXAoPc291cmNlX2ZlYXR1cmUyGBAgASgOMg8ucGIuRW51bUZlYXR1cmVCMogBApgBAZgBBJgBA5gBBpgBB5gBCJgBCZgBBZgBAqIBCxIGVkFMVUUxGIQHsgEDCOgHEqwBCg9yZW1vdmVkX2ZlYXR1cmUYESABKA4yDy5wYi5FbnVtRmVhdHVyZUKBAYgBAZgBAZgBBKIBCxIGVkFMVUUxGIQHogELEgZWQUxVRTIY6AeiAQsSBlZBTFVFMxjpB7IBSwjoBxDoBxoiQ3VzdG9tIGZlYXR1cmUgZGVwcmVjYXRpb24gd2FybmluZyDpByocQ3VzdG9tIGZlYXR1cmUgcmVtb3ZhbCBlcnJvchJXChxzYW1lX2VkaXRpb25fcmVtb3ZlZF9mZWF0dXJlGBUgASgOMg8ucGIuRW51bUZlYXR1cmVCIIgBAZgBAZgBBKIBCxIGVkFMVUUxGIQHsgEGCOgHIOgHElQKDmZ1dHVyZV9mZWF0dXJlGBIgASgOMg8ucGIuRW51bUZlYXR1cmVCK4gBAZgBAZgBBKIBCxIGVkFMVUUxGIQHogELEgZWQUxVRTIY6QeyAQMI6QcSdQoObGVnYWN5X2ZlYXR1cmUYEyABKA4yDy5wYi5FbnVtRmVhdHVyZUJMiAEBmAEBmAEEogELEgZWQUxVRTEYhAeiAQsSBlZBTFVFMhjoB7IBJAjnByDoByocQ3VzdG9tIGZlYXR1cmUgcmVtb3ZhbCBlcnJvchLsAQoWdmFsdWVfbGlmZXRpbWVfZmVhdHVyZRgUIAEoDjIYLnBiLlZhbHVlTGlmZXRpbWVGZWF0dXJlQrEBiAEBmAEBogEdEhhWQUxVRV9MSUZFVElNRV9JTkhFUklURUQYhAeiARoSFVZBTFVFX0xJRkVUSU1FX0ZVVFVSRRjoB6IBGxIVVkFMVUVfTElGRVRJTUVfRlVUVVJFGJ+NBrIBTQjoBxCejQYaIkN1c3RvbSBmZWF0dXJlIGRlcHJlY2F0aW9uIHdhcm5pbmcgn40GKhxDdXN0b20gZmVhdHVyZSByZW1vdmFsIGVycm9yEmgKFG5ld191bnN0YWJsZV9mZWF0dXJlGBYgASgOMhcucGIuVW5zdGFibGVFbnVtRmVhdHVyZUIxiAEBmAEBmAEEogEOEglVTlNUQUJMRTEYhAeiAQ4SCVVOU1RBQkxFMhiPTrIBAwiPThJ7Chl1bnN0YWJsZV9leGlzdGluZ19mZWF0dXJlGBcgASgOMhcucGIuVW5zdGFibGVFbnVtRmVhdHVyZUI/iAEBmAEGogEOEglVTlNUQUJMRTEYhAeiAQ4SCVVOU1RBQkxFMhjoB6IBDhIJVU5TVEFCTEUzGI9OsgEDCOgHEnkKGHJlbW92ZWRfdW5zdGFibGVfZmVhdHVyZRgYIAEoDjIXLnBiLlVuc3RhYmxlRW51bUZlYXR1cmVCPogBAZgBCaIBDhIJVU5TVEFCTEUxGIQHsgEkCOgHII9OKhxDdXN0b20gZmVhdHVyZSByZW1vdmFsIGVycm9yKkcKGUN1c3RvbU9wdGlvbkxpZmV0aW1lc0VudW0SFgoSVEVTVF9DVVNUT01fT1BUSU9OEAASEgoOQ1VTVE9NX09QVElPTjEQASrmAQoLRW51bUZlYXR1cmUSHQoZVEVTVF9FTlVNX0ZFQVRVUkVfVU5LTk9XThAAEgoKBlZBTFVFMRABEgoKBlZBTFVFMhACEgoKBlZBTFVFMxADEgoKBlZBTFVFNBAEEgoKBlZBTFVFNRAFEgoKBlZBTFVFNhAGEgoKBlZBTFVFNxAHEgoKBlZBTFVFOBAIEgoKBlZBTFVFORAJEgsKB1ZBTFVFMTAQChILCgdWQUxVRTExEAsSCwoHVkFMVUUxMhAMEgsKB1ZBTFVFMTMQDRILCgdWQUxVRTE0EA4SCwoHVkFMVUUxNRAPKoABChNVbnN0YWJsZUVudW1GZWF0dXJlEiYKIlRFU1RfVU5TVEFCTEVfRU5VTV9GRUFUVVJFX1VOS05PV04QABINCglVTlNUQUJMRTEQARINCglVTlNUQUJMRTIQAhIUCglVTlNUQUJMRTMQAxoFIgMIj04SDQoJVU5TVEFCTEU0EAQqwAMKFFZhbHVlTGlmZXRpbWVGZWF0dXJlEh8KG1RFU1RfVkFMVUVfTElGRVRJTUVfVU5LTk9XThAAEhwKGFZBTFVFX0xJRkVUSU1FX0lOSEVSSVRFRBABEmwKFlZBTFVFX0xJRkVUSU1FX1NVUFBPUlQQAhpQIk4InY0GEJ6NBhoiQ3VzdG9tIGZlYXR1cmUgZGVwcmVjYXRpb24gd2FybmluZyCfjQYqHEN1c3RvbSBmZWF0dXJlIHJlbW92YWwgZXJyb3ISJAocVkFMVUVfTElGRVRJTUVfRU1QVFlfU1VQUE9SVBADGgIiABIhChVWQUxVRV9MSUZFVElNRV9GVVRVUkUQBBoGIgQInY0GEkkKGVZBTFVFX0xJRkVUSU1FX0RFUFJFQ0FURUQQBRoqIigQnY0GGiJDdXN0b20gZmVhdHVyZSBkZXByZWNhdGlvbiB3YXJuaW5nEmcKFlZBTFVFX0xJRkVUSU1FX1JFTU9WRUQQBhpLIkkQ6AcaIkN1c3RvbSBmZWF0dXJlIGRlcHJlY2F0aW9uIHdhcm5pbmcgnY0GKhxDdXN0b20gZmVhdHVyZSByZW1vdmFsIGVycm9yOosBCh9jdXN0b21fb3B0aW9uX2xpZmV0aW1lc19tZXNzYWdlEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGLSd2AMgASgLMiAucGIuQ3VzdG9tT3B0aW9uTGlmZXRpbWVzTWVzc2FnZVIcY3VzdG9tT3B0aW9uTGlmZXRpbWVzTWVzc2FnZTpCCgR0ZXN0EhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQYj04gASgLMhAucGIuVGVzdEZlYXR1cmVzUgR0ZXN0QhJCEFVuaXR0ZXN0RmVhdHVyZXNiCGVkaXRpb25zcOkH", [file_google_protobuf_descriptor]);
+
+/**
+ * @generated from message pb.CustomOptionLifetimesMessage
+ */
+export type CustomOptionLifetimesMessage = Message<"pb.CustomOptionLifetimesMessage"> & {
+  /**
+   * @generated from field: pb.CustomOptionLifetimesEnum custom_enum = 1;
+   */
+  customEnum: CustomOptionLifetimesEnum;
+
+  /**
+   * @generated from field: repeated pb.CustomOptionLifetimesEnum repeated_custom_enum = 2;
+   */
+  repeatedCustomEnum: CustomOptionLifetimesEnum[];
+};
+
+/**
+ * Describes the message pb.CustomOptionLifetimesMessage.
+ * Use `create(CustomOptionLifetimesMessageSchema)` to create a new message.
+ */
+export const CustomOptionLifetimesMessageSchema: GenMessage<CustomOptionLifetimesMessage> = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_features, 0);
 
 /**
  * @generated from message pb.TestMessage
@@ -39,7 +61,7 @@ export type TestMessage = Message<"pb.TestMessage"> & {
  * Use `create(TestMessageSchema)` to create a new message.
  */
 export const TestMessageSchema: GenMessage<TestMessage> = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_features, 0);
+  messageDesc(file_google_protobuf_unittest_features, 1);
 
 /**
  * @generated from message pb.TestMessage.Nested
@@ -52,19 +74,19 @@ export type TestMessage_Nested = Message<"pb.TestMessage.Nested"> & {
  * Use `create(TestMessage_NestedSchema)` to create a new message.
  */
 export const TestMessage_NestedSchema: GenMessage<TestMessage_Nested> = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_features, 0, 0);
+  messageDesc(file_google_protobuf_unittest_features, 1, 0);
 
 /**
  * @generated from extension: pb.TestNestedFeatures test_nested = 9997;
  */
 export const TestMessage_Nested_test_nested: GenExtension<FeatureSet, TestNestedFeatures> = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_features, 0, 0, 0);
+  extDesc(file_google_protobuf_unittest_features, 1, 0, 0);
 
 /**
  * @generated from extension: pb.TestMessageFeatures test_message = 9998;
  */
 export const TestMessage_test_message: GenExtension<FeatureSet, TestMessageFeatures> = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_features, 0, 0);
+  extDesc(file_google_protobuf_unittest_features, 1, 0);
 
 /**
  * @generated from message pb.TestMessageFeatures
@@ -81,7 +103,7 @@ export type TestMessageFeatures = Message<"pb.TestMessageFeatures"> & {
  * Use `create(TestMessageFeaturesSchema)` to create a new message.
  */
 export const TestMessageFeaturesSchema: GenMessage<TestMessageFeatures> = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_features, 1);
+  messageDesc(file_google_protobuf_unittest_features, 2);
 
 /**
  * @generated from message pb.TestNestedFeatures
@@ -98,7 +120,7 @@ export type TestNestedFeatures = Message<"pb.TestNestedFeatures"> & {
  * Use `create(TestNestedFeaturesSchema)` to create a new message.
  */
 export const TestNestedFeaturesSchema: GenMessage<TestNestedFeatures> = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_features, 2);
+  messageDesc(file_google_protobuf_unittest_features, 3);
 
 /**
  * @generated from message pb.TestFeatures
@@ -175,6 +197,11 @@ export type TestFeatures = Message<"pb.TestFeatures"> & {
   removedFeature: EnumFeature;
 
   /**
+   * @generated from field: pb.EnumFeature same_edition_removed_feature = 21;
+   */
+  sameEditionRemovedFeature: EnumFeature;
+
+  /**
    * @generated from field: pb.EnumFeature future_feature = 18;
    */
   futureFeature: EnumFeature;
@@ -188,6 +215,21 @@ export type TestFeatures = Message<"pb.TestFeatures"> & {
    * @generated from field: pb.ValueLifetimeFeature value_lifetime_feature = 20;
    */
   valueLifetimeFeature: ValueLifetimeFeature;
+
+  /**
+   * @generated from field: pb.UnstableEnumFeature new_unstable_feature = 22;
+   */
+  newUnstableFeature: UnstableEnumFeature;
+
+  /**
+   * @generated from field: pb.UnstableEnumFeature unstable_existing_feature = 23;
+   */
+  unstableExistingFeature: UnstableEnumFeature;
+
+  /**
+   * @generated from field: pb.UnstableEnumFeature removed_unstable_feature = 24;
+   */
+  removedUnstableFeature: UnstableEnumFeature;
 };
 
 /**
@@ -195,7 +237,28 @@ export type TestFeatures = Message<"pb.TestFeatures"> & {
  * Use `create(TestFeaturesSchema)` to create a new message.
  */
 export const TestFeaturesSchema: GenMessage<TestFeatures> = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_features, 3);
+  messageDesc(file_google_protobuf_unittest_features, 4);
+
+/**
+ * @generated from enum pb.CustomOptionLifetimesEnum
+ */
+export enum CustomOptionLifetimesEnum {
+  /**
+   * @generated from enum value: TEST_CUSTOM_OPTION = 0;
+   */
+  TEST_CUSTOM_OPTION = 0,
+
+  /**
+   * @generated from enum value: CUSTOM_OPTION1 = 1;
+   */
+  CUSTOM_OPTION1 = 1,
+}
+
+/**
+ * Describes the enum pb.CustomOptionLifetimesEnum.
+ */
+export const CustomOptionLifetimesEnumSchema: GenEnum<CustomOptionLifetimesEnum> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_features, 0);
 
 /**
  * @generated from enum pb.EnumFeature
@@ -286,7 +349,43 @@ export enum EnumFeature {
  * Describes the enum pb.EnumFeature.
  */
 export const EnumFeatureSchema: GenEnum<EnumFeature> = /*@__PURE__*/
-  enumDesc(file_google_protobuf_unittest_features, 0);
+  enumDesc(file_google_protobuf_unittest_features, 1);
+
+/**
+ * @generated from enum pb.UnstableEnumFeature
+ */
+export enum UnstableEnumFeature {
+  /**
+   * @generated from enum value: TEST_UNSTABLE_ENUM_FEATURE_UNKNOWN = 0;
+   */
+  TEST_UNSTABLE_ENUM_FEATURE_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: UNSTABLE1 = 1;
+   */
+  UNSTABLE1 = 1,
+
+  /**
+   * @generated from enum value: UNSTABLE2 = 2;
+   */
+  UNSTABLE2 = 2,
+
+  /**
+   * @generated from enum value: UNSTABLE3 = 3;
+   */
+  UNSTABLE3 = 3,
+
+  /**
+   * @generated from enum value: UNSTABLE4 = 4;
+   */
+  UNSTABLE4 = 4,
+}
+
+/**
+ * Describes the enum pb.UnstableEnumFeature.
+ */
+export const UnstableEnumFeatureSchema: GenEnum<UnstableEnumFeature> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_features, 2);
 
 /**
  * @generated from enum pb.ValueLifetimeFeature
@@ -332,11 +431,17 @@ export enum ValueLifetimeFeature {
  * Describes the enum pb.ValueLifetimeFeature.
  */
 export const ValueLifetimeFeatureSchema: GenEnum<ValueLifetimeFeature> = /*@__PURE__*/
-  enumDesc(file_google_protobuf_unittest_features, 1);
+  enumDesc(file_google_protobuf_unittest_features, 3);
+
+/**
+ * @generated from extension: pb.CustomOptionLifetimesMessage custom_option_lifetimes_message = 7737012;
+ */
+export const custom_option_lifetimes_message: GenExtension<MessageOptions, CustomOptionLifetimesMessage> = /*@__PURE__*/
+  extDesc(file_google_protobuf_unittest_features, 0);
 
 /**
  * @generated from extension: pb.TestFeatures test = 9999;
  */
 export const test: GenExtension<FeatureSet, TestFeatures> = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_features, 0);
+  extDesc(file_google_protobuf_unittest_features, 1);
 

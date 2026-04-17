@@ -44,6 +44,10 @@ export declare const file_google_protobuf_unittest: GenFile;
 /**
  * This proto includes every type of field in both singular and repeated
  * forms.
+ * Warning: Many tests make assume about the number of fields in TestAllTypes,
+ *          including assumptions about wire compatibility of overlay messages.
+ *          Take care when adding or modifying fields in this message to check
+ *          TGP results and fix any issues.
  *
  * @generated from message proto2_unittest.TestAllTypes
  */
@@ -2011,6 +2015,23 @@ export declare type TestLazyMessage = Message<"proto2_unittest.TestLazyMessage">
    * @generated from field: proto2_unittest.TestAllTypes sub_message = 1;
    */
   subMessage?: TestAllTypes;
+
+  /**
+   * @generated from oneof proto2_unittest.TestLazyMessage.one
+   */
+  one: {
+    /**
+     * @generated from field: proto2_unittest.TestAllTypes oneof1 = 10;
+     */
+    value: TestAllTypes;
+    case: "oneof1";
+  } | {
+    /**
+     * @generated from field: proto2_unittest.TestAllTypes oneof2 = 20;
+     */
+    value: TestAllTypes;
+    case: "oneof2";
+  } | { case: undefined; value?: undefined };
 };
 
 /**
@@ -4182,6 +4203,11 @@ export declare type TestHugeFieldNumbers = Message<"proto2_unittest.TestHugeFiel
    * @generated from field: string optional_string_piece = 536870021 [features.utf8_validation = VERIFY];
    */
   optionalStringPiece: string;
+
+  /**
+   * @generated from field: repeated string repeated_utf8_string = 536870022 [features.utf8_validation = VERIFY];
+   */
+  repeatedUtf8String: string[];
 };
 
 /**
@@ -6775,6 +6801,23 @@ export declare type TestMessageForMove_Large = Message<"proto2_unittest.TestMess
 export declare const TestMessageForMove_LargeSchema: GenMessage<TestMessageForMove_Large>;
 
 /**
+ * @generated from message proto2_unittest.TestAllTypesAsExtension
+ */
+export declare type TestAllTypesAsExtension = Message<"proto2_unittest.TestAllTypesAsExtension"> & {
+};
+
+/**
+ * Describes the message proto2_unittest.TestAllTypesAsExtension.
+ * Use `create(TestAllTypesAsExtensionSchema)` to create a new message.
+ */
+export declare const TestAllTypesAsExtensionSchema: GenMessage<TestAllTypesAsExtension>;
+
+/**
+ * @generated from extension: proto2_unittest.TestAllTypes ext = 10;
+ */
+export declare const TestAllTypesAsExtension_ext: GenExtension<TestAllTypesAsExtension, TestAllTypes>;
+
+/**
  * @generated from enum proto2_unittest.ForeignEnum
  */
 export enum ForeignEnum {
@@ -7630,6 +7673,9 @@ export declare const optional_public_import_message_extension: GenExtension<Test
 export declare const optional_lazy_message_extension: GenExtension<TestAllExtensions, TestAllTypes_NestedMessage>;
 
 /**
+ * "unverified_lazy" is copied from the counterpart field in TestAllTypes.
+ * An extension can't be labeled as "unverified_lazy".
+ *
  * @generated from extension: proto2_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message_extension = 28;
  */
 export declare const optional_unverified_lazy_message_extension: GenExtension<TestAllExtensions, TestAllTypes_NestedMessage>;
@@ -7890,16 +7936,6 @@ export declare const oneof_string_extension: GenExtension<TestAllExtensions, str
  * @generated from extension: bytes oneof_bytes_extension = 114;
  */
 export declare const oneof_bytes_extension: GenExtension<TestAllExtensions, Uint8Array>;
-
-/**
- * @generated from extension: string optional_utf8_string_extension = 115 [features.utf8_validation = VERIFY];
- */
-export declare const optional_utf8_string_extension: GenExtension<TestAllExtensions, string>;
-
-/**
- * @generated from extension: repeated string repeated_utf8_string_extension = 116 [features.utf8_validation = VERIFY];
- */
-export declare const repeated_utf8_string_extension: GenExtension<TestAllExtensions, string[]>;
 
 /**
  * Singular message containing required fields; used to test initialization.

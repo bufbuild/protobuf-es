@@ -384,6 +384,8 @@ function initBaseRegistry(
 const EDITION_PROTO2: Edition.EDITION_PROTO2 = 998;
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
 const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;
+// bootstrap-inject google.protobuf.Edition.EDITION_UNSTABLE: const $name: Edition.$localName = $number;
+const EDITION_UNSTABLE: Edition.EDITION_UNSTABLE = 9999;
 
 // bootstrap-inject google.protobuf.FieldDescriptorProto.Type.TYPE_STRING: const $name: FieldDescriptorProto_Type.$localName = $number;
 const TYPE_STRING: FieldDescriptorProto_Type.STRING = 9;
@@ -980,7 +982,12 @@ function getFileEdition(proto: FileDescriptorProto): SupportedEdition {
     case "proto3":
       return EDITION_PROTO3;
     case "editions":
-      if (proto.edition in featureDefaults) {
+      // EDITION_UNSTABLE is a sandbox for in-development features. Accept it
+      // as supported; resolveFeature substitutes maximumEdition defaults.
+      if (
+        proto.edition === EDITION_UNSTABLE ||
+        proto.edition in featureDefaults
+      ) {
         return proto.edition as SupportedEdition;
       }
       throw new Error(`${proto.name}: unsupported edition`);
@@ -1268,9 +1275,13 @@ function resolveFeature<Name extends keyof Features>(
     if (ref.kind == "message") {
       return resolveFeature(name, ref.parent ?? ref.file);
     }
+    // EDITION_UNSTABLE has no published feature defaults; fall back to the
+    // maximum edition's defaults.
+    const edition =
+      ref.edition === EDITION_UNSTABLE ? maximumEdition : ref.edition;
     const editionDefaults = (
       featureDefaults as Record<number, Features | undefined>
-    )[ref.edition];
+    )[edition];
     if (!editionDefaults) {
       throw new Error(`feature default for edition ${ref.edition} not found`);
     }

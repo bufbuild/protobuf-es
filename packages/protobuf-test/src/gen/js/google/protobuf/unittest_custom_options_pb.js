@@ -32,20 +32,34 @@ import { file_google_protobuf_any, file_google_protobuf_descriptor } from "@bufb
  * Describes the file google/protobuf/unittest_custom_options.proto.
  */
 export const file_google_protobuf_unittest_custom_options = /*@__PURE__*/
-  fileDesc("Ci1nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfY3VzdG9tX29wdGlvbnMucHJvdG8SD3Byb3RvMl91bml0dGVzdCLOAgocVGVzdE1lc3NhZ2VXaXRoQ3VzdG9tT3B0aW9ucxIeCgZmaWVsZDEYASABKAlCDggBweDDHS3hdQoCAAAAEhUKC29uZW9mX2ZpZWxkGAIgASgFSAASXAoJbWFwX2ZpZWxkGAMgAygLMjsucHJvdG8yX3VuaXR0ZXN0LlRlc3RNZXNzYWdlV2l0aEN1c3RvbU9wdGlvbnMuTWFwRmllbGRFbnRyeUIMweDDHTkwAAAAAAAAGi8KDU1hcEZpZWxkRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASI7CgZBbkVudW0SDwoLQU5FTlVNX1ZBTDEQARIWCgtBTkVOVU1fVkFMMhACGgWwhvoFexoIxfbJHev8//86EAgA4OnCHcj//////////wFCGQoHQW5PbmVvZhIO+KzDHZ3//////////wEiGAoWQ3VzdG9tT3B0aW9uRm9vUmVxdWVzdCIZChdDdXN0b21PcHRpb25Gb29SZXNwb25zZSIeChxDdXN0b21PcHRpb25Gb29DbGllbnRNZXNzYWdlIh4KHEN1c3RvbU9wdGlvbkZvb1NlcnZlck1lc3NhZ2UibQoaRHVtbXlNZXNzYWdlQ29udGFpbmluZ0VudW0iTwoMVGVzdEVudW1UeXBlEhoKFlRFU1RfT1BUSU9OX0VOVU1fVFlQRTEQFhIjChZURVNUX09QVElPTl9FTlVNX1RZUEUyEOn//////////wEiIQofRHVtbXlNZXNzYWdlSW52YWxpZEFzT3B0aW9uVHlwZSKKAQocQ3VzdG9tT3B0aW9uTWluSW50ZWdlclZhbHVlczpqmdaoHQAAAAAAAACArY2vHQAAAICR7q8dAAAAAAAAAACd9a8dAAAAAPiXsB3///////////8BgMSwHf////8P+PWwHQCAk7IdALC8sh2AgICAgICAgIAB6MayHYCAgID4/////wHQ3rIdACKRAQocQ3VzdG9tT3B0aW9uTWF4SW50ZWdlclZhbHVlczpxmdaoHf////////9/rY2vHf///3+R7q8d//////////+d9a8d//////iXsB3+//////////8BgMSwHf7///8P+PWwHf///////////wGAk7Id/////w+wvLId//////////9/6MayHf////8H0N6yHQEibgoXQ3VzdG9tT3B0aW9uT3RoZXJWYWx1ZXM6U4jZoh3p//////////8BstmiHQtIZWxsbwBXb3JsZKrcoh0OSGVsbG8sICJXb3JsZCLp3KId+1mMQsrA8z/136Md54dFQejGsh2c//////////8BIjQKHFNldHRpbmdSZWFsc0Zyb21Qb3NpdGl2ZUludHM6FOncoh0AAAAAAEBjQPXfox0AAEBBIjQKHFNldHRpbmdSZWFsc0Zyb21OZWdhdGl2ZUludHM6FOncoh0AAAAAAEBjwPXfox0AAEDBIisKE1NldHRpbmdSZWFsc0Zyb21JbmY6FOncoh0AAAAAAADwf/Xfox0AAIB/IjMKG1NldHRpbmdSZWFsc0Zyb21OZWdhdGl2ZUluZjoU6dyiHQAAAAAAAPD/9d+jHQAAgP8iKwoTU2V0dGluZ1JlYWxzRnJvbU5hbjoU6dyiHQAAAAAAAPh/9d+jHQAAwH8iMwobU2V0dGluZ1JlYWxzRnJvbU5lZ2F0aXZlTmFuOhTp3KIdAAAAAAAA+H/136MdAADAfyJVChJDb21wbGV4T3B0aW9uVHlwZTESCwoDZm9vGAEgASgFEgwKBGZvbzIYAiABKAUSDAoEZm9vMxgDIAEoBRIMCgRmb280GAQgAygFKggIZBCAgICAAiKQAwoSQ29tcGxleE9wdGlvblR5cGUyEjAKA2JhchgBIAEoCzIjLnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTESCwoDYmF6GAIgASgFEkQKBGZyZWQYAyABKAsyNi5wcm90bzJfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUyLkNvbXBsZXhPcHRpb25UeXBlNBJGCgZiYXJuZXkYBCADKAsyNi5wcm90bzJfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUyLkNvbXBsZXhPcHRpb25UeXBlNBqiAQoSQ29tcGxleE9wdGlvblR5cGU0Eg0KBXdhbGRvGAEgASgFMn0KDGNvbXBsZXhfb3B0NBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxiK9dEDIAEoCzI2LnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTIuQ29tcGxleE9wdGlvblR5cGU0Ugtjb21wbGV4T3B0NCoICGQQgICAgAIimgEKEkNvbXBsZXhPcHRpb25UeXBlMxILCgNtb28YASABKAUSUgoSY29tcGxleG9wdGlvbnR5cGU1GAIgASgKMjYucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMy5Db21wbGV4T3B0aW9uVHlwZTUaIwoSQ29tcGxleE9wdGlvblR5cGU1Eg0KBXBsdWdoGAMgASgFIh8KC0NvbXBsZXhPcHQ2EhAKBXh5enp5GN+/zwMgASgFIpcBChVWYXJpb3VzQ29tcGxleE9wdGlvbnM6fuPc/Bz4/fscGOTc/BzSqI8dAwizD/rekB0GCAkTGBYUqv2QHUAKEQjnBZL1nR0DCNgP2IWeHc8PENsHGgMIwQIiAghlIgMI1AHCrJcdEQjlBZL1nR0DCMkQ2IWeHc4P+OaXHY4FouKVHRQIKiBjIFiS9Z0dAwjsBtiFnh3EAiIjChNBZ2dyZWdhdGVNZXNzYWdlU2V0KggIBBD/////BzoCCAEisgEKGkFnZ3JlZ2F0ZU1lc3NhZ2VTZXRFbGVtZW50EgkKAXMYASABKAkyiAEKFW1lc3NhZ2Vfc2V0X2V4dGVuc2lvbhIkLnByb3RvMl91bml0dGVzdC5BZ2dyZWdhdGVNZXNzYWdlU2V0GPbrrgcgASgLMisucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZU1lc3NhZ2VTZXRFbGVtZW50UhNtZXNzYWdlU2V0RXh0ZW5zaW9uIqICCglBZ2dyZWdhdGUSCQoBaRgBIAEoBRIJCgFzGAIgASgJEicKA3N1YhgDIAEoCzIaLnByb3RvMl91bml0dGVzdC5BZ2dyZWdhdGUSKgoEZmlsZRgEIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxIyCgRtc2V0GAUgASgLMiQucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZU1lc3NhZ2VTZXQSIQoDYW55GAYgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueTJTCgZuZXN0ZWQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMYp9GwByABKAsyGi5wcm90bzJfdW5pdHRlc3QuQWdncmVnYXRlUgZuZXN0ZWQiWQoQQWdncmVnYXRlTWVzc2FnZRIpCglmaWVsZG5hbWUYASABKAVCFvKhhzsREg9GaWVsZEFubm90YXRpb246GsLRhjsVCGUSEU1lc3NhZ2VBbm5vdGF0aW9uItoBChBOZXN0ZWRPcHRpb25UeXBlGjsKDU5lc3RlZE1lc3NhZ2USIgoMbmVzdGVkX2ZpZWxkGAEgASgFQgzB4MMd6gMAAAAAAAA6BuDpwh3pByI1CgpOZXN0ZWRFbnVtEh0KEU5FU1RFRF9FTlVNX1ZBTFVFEAEaBrCG+gXsBxoIxfbJHesDAAAyUgoQbmVzdGVkX2V4dGVuc2lvbhIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxj9+OIDIAEoBUIGyIvKHe0HUg9uZXN0ZWRFeHRlbnNpb24iYgoNT2xkT3B0aW9uVHlwZRI2CgV2YWx1ZRgBIAIoDjInLnByb3RvMl91bml0dGVzdC5PbGRPcHRpb25UeXBlLlRlc3RFbnVtIhkKCFRlc3RFbnVtEg0KCU9MRF9WQUxVRRAAInEKDU5ld09wdGlvblR5cGUSNgoFdmFsdWUYASACKA4yJy5wcm90bzJfdW5pdHRlc3QuTmV3T3B0aW9uVHlwZS5UZXN0RW51bSIoCghUZXN0RW51bRINCglPTERfVkFMVUUQABINCglORVdfVkFMVUUQASItCiFUZXN0TWVzc2FnZVdpdGhSZXF1aXJlZEVudW1PcHRpb246CPro/JQDAggAKjYKCk1ldGhvZE9wdDESEwoPTUVUSE9ET1BUMV9WQUwxEAESEwoPTUVUSE9ET1BUMV9WQUwyEAIqTQoNQWdncmVnYXRlRW51bRIlCgVWQUxVRRABGhrK/Ik7FRITRW51bVZhbHVlQW5ub3RhdGlvbhoVkpWIOxASDkVudW1Bbm5vdGF0aW9uMooBChxUZXN0U2VydmljZVdpdGhDdXN0b21PcHRpb25zEl8KA0ZvbxInLnByb3RvMl91bml0dGVzdC5DdXN0b21PcHRpb25Gb29SZXF1ZXN0GigucHJvdG8yX3VuaXR0ZXN0LkN1c3RvbU9wdGlvbkZvb1Jlc3BvbnNlIgXg+oweAhoJkLKLHtPbgMtJMpUBChBBZ2dyZWdhdGVTZXJ2aWNlEmcKBk1ldGhvZBIhLnByb3RvMl91bml0dGVzdC5BZ2dyZWdhdGVNZXNzYWdlGiEucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZU1lc3NhZ2UiF8rIljsSEhBNZXRob2RBbm5vdGF0aW9uGhjK+447ExIRU2VydmljZUFubm90YXRpb246PAoJZmlsZV9vcHQxEhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGI6d2AMgASgEUghmaWxlT3B0MTpFCgxtZXNzYWdlX29wdDESHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYnK3YAyABKAVSC21lc3NhZ2VPcHQxOj8KCmZpZWxkX29wdDESHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGIi82AMgASgGUglmaWVsZE9wdDE6QwoKZmllbGRfb3B0MhIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMYuaHZAyABKAU6AjQyUglmaWVsZE9wdDI6PwoKb25lb2Zfb3B0MRIdLmdvb2dsZS5wcm90b2J1Zi5PbmVvZk9wdGlvbnMYz7XYAyABKAVSCW9uZW9mT3B0MTo8CgllbnVtX29wdDESHC5nb29nbGUucHJvdG9idWYuRW51bU9wdGlvbnMY6J7ZAyABKA9SCGVudW1PcHQxOksKD2VudW1fdmFsdWVfb3B0MRIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGOagXyABKAVSDWVudW1WYWx1ZU9wdDE6RQoMc2VydmljZV9vcHQxEh8uZ29vZ2xlLnByb3RvYnVmLlNlcnZpY2VPcHRpb25zGKK24QMgASgSUgtzZXJ2aWNlT3B0MTpfCgttZXRob2Rfb3B0MRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGKzP4QMgASgOMhsucHJvdG8yX3VuaXR0ZXN0Lk1ldGhvZE9wdDFSCm1ldGhvZE9wdDE6PQoIYm9vbF9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY6qvWAyABKAhSB2Jvb2xPcHQ6PwoJaW50MzJfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGO2o1gMgASgFUghpbnQzMk9wdDo/CglpbnQ2NF9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYxqfWAyABKANSCGludDY0T3B0OkEKCnVpbnQzMl9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYsKLWAyABKA1SCXVpbnQzMk9wdDpBCgp1aW50NjRfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGN+O1gMgASgEUgl1aW50NjRPcHQ6QQoKc2ludDMyX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjAiNYDIAEoEVIJc2ludDMyT3B0OkEKCnNpbnQ2NF9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY/4LWAyABKBJSCXNpbnQ2NE9wdDpDCgtmaXhlZDMyX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjT/tUDIAEoB1IKZml4ZWQzMk9wdDpDCgtmaXhlZDY0X29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxji/dUDIAEoBlIKZml4ZWQ2NE9wdDpFCgxzZml4ZWQzMl9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY1fHVAyABKA9SC3NmaXhlZDMyT3B0OkUKDHNmaXhlZDY0X29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjjitUDIAEoEFILc2ZpeGVkNjRPcHQ6PwoJZmxvYXRfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGP671AMgASgCUghmbG9hdE9wdDpBCgpkb3VibGVfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGM2r1AMgASgBUglkb3VibGVPcHQ6QQoKc3RyaW5nX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjFq9QDIAEoCVIJc3RyaW5nT3B0Oj8KCWJ5dGVzX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxiWq9QDIAEoDFIIYnl0ZXNPcHQ6dwoIZW51bV9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYkavUAyABKA4yOC5wcm90bzJfdW5pdHRlc3QuRHVtbXlNZXNzYWdlQ29udGFpbmluZ0VudW0uVGVzdEVudW1UeXBlUgdlbnVtT3B0On4KEG1lc3NhZ2VfdHlwZV9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYr/LTAyABKAsyMC5wcm90bzJfdW5pdHRlc3QuRHVtbXlNZXNzYWdlSW52YWxpZEFzT3B0aW9uVHlwZVIObWVzc2FnZVR5cGVPcHQ6OgoEbW9vbxIjLnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTEY2+DTAyABKAVSBG1vb286YQoFY29yZ2USIy5wcm90bzJfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUxGNLe0wMgASgLMiMucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlM1IFY29yZ2U6PgoGZ3JhdWx0EiMucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMhjv/NIDIAEoBVIGZ3JhdWx0OmMKBmdhcnBseRIjLnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTIYyPXSAyABKAsyIy5wcm90bzJfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUxUgZnYXJwbHk6agoMY29tcGxleF9vcHQxEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGKTc0gMgASgLMiMucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMVILY29tcGxleE9wdDE6agoMY29tcGxleF9vcHQyEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGNWP0gMgASgLMiMucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMlILY29tcGxleE9wdDI6agoMY29tcGxleF9vcHQzEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGO+L0gMgASgLMiMucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlM1ILY29tcGxleE9wdDM6YgoLY29tcGxleG9wdDYSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYzMvPAyABKAoyHC5wcm90bzJfdW5pdHRlc3QuQ29tcGxleE9wdDZSC2NvbXBsZXhvcHQ2OlUKB2ZpbGVvcHQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMYz92wByABKAsyGi5wcm90bzJfdW5pdHRlc3QuQWdncmVnYXRlUgdmaWxlb3B0OlYKBm1zZ29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxiY6rAHIAEoCzIaLnByb3RvMl91bml0dGVzdC5BZ2dyZWdhdGVSBm1zZ29wdDpYCghmaWVsZG9wdBIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMYnvSwByABKAsyGi5wcm90bzJfdW5pdHRlc3QuQWdncmVnYXRlUghmaWVsZG9wdDpVCgdlbnVtb3B0EhwuZ29vZ2xlLnByb3RvYnVmLkVudW1PcHRpb25zGNKCsQcgASgLMhoucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZVIHZW51bW9wdDpgCgplbnVtdmFsb3B0EiEuZ29vZ2xlLnByb3RvYnVmLkVudW1WYWx1ZU9wdGlvbnMYyZ+xByABKAsyGi5wcm90bzJfdW5pdHRlc3QuQWdncmVnYXRlUgplbnVtdmFsb3B0Ol4KCnNlcnZpY2VvcHQSHy5nb29nbGUucHJvdG9idWYuU2VydmljZU9wdGlvbnMYue+xByABKAsyGi5wcm90bzJfdW5pdHRlc3QuQWdncmVnYXRlUgpzZXJ2aWNlb3B0OlsKCW1ldGhvZG9wdBIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGInpsgcgASgLMhoucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZVIJbWV0aG9kb3B0Om4KEXJlcXVpcmVkX2VudW1fb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGI/NzzIgASgLMh4ucHJvdG8yX3VuaXR0ZXN0Lk9sZE9wdGlvblR5cGVSD3JlcXVpcmVkRW51bU9wdELnAYABAYgBAZABAfDowR3qrcDlJPrshTvPAQhkEg5GaWxlQW5ub3RhdGlvbhoWEhROZXN0ZWRGaWxlQW5ub3RhdGlvbiIe+uyFOxkSF0ZpbGVFeHRlbnNpb25Bbm5vdGF0aW9uKiQLEPbrrgcaGwoZRW1iZWRkZWRNZXNzYWdlU2V0RWxlbWVudAwyXQo+dHlwZS5nb29nbGVhcGlzLmNvbS9wcm90bzJfdW5pdHRlc3QuQWdncmVnYXRlTWVzc2FnZVNldEVsZW1lbnQSGwoZRW1iZWRkZWRNZXNzYWdlU2V0RWxlbWVudA", [file_google_protobuf_any, file_google_protobuf_descriptor]);
+  fileDesc("Ci1nb29nbGUvcHJvdG9idWYvdW5pdHRlc3RfY3VzdG9tX29wdGlvbnMucHJvdG8SD3Byb3RvMl91bml0dGVzdCLtAgocQ3VzdG9tT3B0aW9uTGlmZXRpbWVzTWVzc2FnZRI8Cg5yZW1vdmVkX29wdGlvbhgBIAEoCUIksgEhIOgHKhxyZW1vdmVkX29wdGlvbiByZW1vdmFsIGVycm9yEkgKEWRlcHJlY2F0ZWRfb3B0aW9uGAIgASgJQi2yASoQ6AcaJWRlcHJlY2F0ZWRfb3B0aW9uIGRlcHJlY2F0aW9uIHdhcm5pbmcSWQolcmVwZWF0ZWRfY3VzdG9tX29wdGlvbl9saWZldGltZXNfZW51bRgEIAMoDjIqLnByb3RvMl91bml0dGVzdC5DdXN0b21PcHRpb25MaWZldGltZXNFbnVtEmMKJm5lc3RlZF9jdXN0b21fb3B0aW9uX2xpZmV0aW1lc19tZXNzYWdlGAUgASgLMjMucHJvdG8yX3VuaXR0ZXN0Lk5lc3RlZEN1c3RvbU9wdGlvbkxpZmV0aW1lc01lc3NhZ2UqBQhkEMkBIm4KIk5lc3RlZEN1c3RvbU9wdGlvbkxpZmV0aW1lc01lc3NhZ2USSAoRZGVwcmVjYXRlZF9vcHRpb24YASABKAlCLbIBKhDoBxolZGVwcmVjYXRlZF9vcHRpb24gZGVwcmVjYXRpb24gd2FybmluZyLOAgocVGVzdE1lc3NhZ2VXaXRoQ3VzdG9tT3B0aW9ucxIeCgZmaWVsZDEYASABKAlCDggBweDDHS3hdQoCAAAAEhUKC29uZW9mX2ZpZWxkGAIgASgFSAASXAoJbWFwX2ZpZWxkGAMgAygLMjsucHJvdG8yX3VuaXR0ZXN0LlRlc3RNZXNzYWdlV2l0aEN1c3RvbU9wdGlvbnMuTWFwRmllbGRFbnRyeUIMweDDHTkwAAAAAAAAGi8KDU1hcEZpZWxkRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASI7CgZBbkVudW0SDwoLQU5FTlVNX1ZBTDEQARIWCgtBTkVOVU1fVkFMMhACGgWwhvoFexoIxfbJHev8//86EAgA4OnCHcj//////////wFCGQoHQW5PbmVvZhIO+KzDHZ3//////////wEiGAoWQ3VzdG9tT3B0aW9uRm9vUmVxdWVzdCIZChdDdXN0b21PcHRpb25Gb29SZXNwb25zZSIeChxDdXN0b21PcHRpb25Gb29DbGllbnRNZXNzYWdlIh4KHEN1c3RvbU9wdGlvbkZvb1NlcnZlck1lc3NhZ2UibQoaRHVtbXlNZXNzYWdlQ29udGFpbmluZ0VudW0iTwoMVGVzdEVudW1UeXBlEhoKFlRFU1RfT1BUSU9OX0VOVU1fVFlQRTEQFhIjChZURVNUX09QVElPTl9FTlVNX1RZUEUyEOn//////////wEiIQofRHVtbXlNZXNzYWdlSW52YWxpZEFzT3B0aW9uVHlwZSKKAQocQ3VzdG9tT3B0aW9uTWluSW50ZWdlclZhbHVlczpqmdaoHQAAAAAAAACArY2vHQAAAICR7q8dAAAAAAAAAACd9a8dAAAAAPiXsB3///////////8BgMSwHf////8P+PWwHQCAk7IdALC8sh2AgICAgICAgIAB6MayHYCAgID4/////wHQ3rIdACKRAQocQ3VzdG9tT3B0aW9uTWF4SW50ZWdlclZhbHVlczpxmdaoHf////////9/rY2vHf///3+R7q8d//////////+d9a8d//////iXsB3+//////////8BgMSwHf7///8P+PWwHf///////////wGAk7Id/////w+wvLId//////////9/6MayHf////8H0N6yHQEibgoXQ3VzdG9tT3B0aW9uT3RoZXJWYWx1ZXM6U4jZoh3p//////////8BstmiHQtIZWxsbwBXb3JsZKrcoh0OSGVsbG8sICJXb3JsZCLp3KId+1mMQsrA8z/136Md54dFQejGsh2c//////////8BIjQKHFNldHRpbmdSZWFsc0Zyb21Qb3NpdGl2ZUludHM6FOncoh0AAAAAAEBjQPXfox0AAEBBIjQKHFNldHRpbmdSZWFsc0Zyb21OZWdhdGl2ZUludHM6FOncoh0AAAAAAEBjwPXfox0AAEDBIisKE1NldHRpbmdSZWFsc0Zyb21JbmY6FOncoh0AAAAAAADwf/Xfox0AAIB/IjMKG1NldHRpbmdSZWFsc0Zyb21OZWdhdGl2ZUluZjoU6dyiHQAAAAAAAPD/9d+jHQAAgP8iKwoTU2V0dGluZ1JlYWxzRnJvbU5hbjoU6dyiHQAAAAAAAPh/9d+jHQAAwH8iMwobU2V0dGluZ1JlYWxzRnJvbU5lZ2F0aXZlTmFuOhTp3KIdAAAAAAAA+H/136MdAADAfyJVChJDb21wbGV4T3B0aW9uVHlwZTESCwoDZm9vGAEgASgFEgwKBGZvbzIYAiABKAUSDAoEZm9vMxgDIAEoBRIMCgRmb280GAQgAygFKggIZBCAgICAAiKQAwoSQ29tcGxleE9wdGlvblR5cGUyEjAKA2JhchgBIAEoCzIjLnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTESCwoDYmF6GAIgASgFEkQKBGZyZWQYAyABKAsyNi5wcm90bzJfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUyLkNvbXBsZXhPcHRpb25UeXBlNBJGCgZiYXJuZXkYBCADKAsyNi5wcm90bzJfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUyLkNvbXBsZXhPcHRpb25UeXBlNBqiAQoSQ29tcGxleE9wdGlvblR5cGU0Eg0KBXdhbGRvGAEgASgFMn0KDGNvbXBsZXhfb3B0NBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxiK9dEDIAEoCzI2LnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTIuQ29tcGxleE9wdGlvblR5cGU0Ugtjb21wbGV4T3B0NCoICGQQgICAgAIimgEKEkNvbXBsZXhPcHRpb25UeXBlMxILCgNtb28YASABKAUSUgoSY29tcGxleG9wdGlvbnR5cGU1GAIgASgKMjYucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMy5Db21wbGV4T3B0aW9uVHlwZTUaIwoSQ29tcGxleE9wdGlvblR5cGU1Eg0KBXBsdWdoGAMgASgFIh8KC0NvbXBsZXhPcHQ2EhAKBXh5enp5GN+/zwMgASgFIpcBChVWYXJpb3VzQ29tcGxleE9wdGlvbnM6fuPc/Bz4/fscGOTc/BzSqI8dAwizD/rekB0GCAkTGBYUqv2QHUAKEQjnBZL1nR0DCNgP2IWeHc8PENsHGgMIwQIiAghlIgMI1AHCrJcdEQjlBZL1nR0DCMkQ2IWeHc4P+OaXHY4FouKVHRQIKiBjIFiS9Z0dAwjsBtiFnh3EAiIjChNBZ2dyZWdhdGVNZXNzYWdlU2V0KggIBBD/////BzoCCAEisgEKGkFnZ3JlZ2F0ZU1lc3NhZ2VTZXRFbGVtZW50EgkKAXMYASABKAkyiAEKFW1lc3NhZ2Vfc2V0X2V4dGVuc2lvbhIkLnByb3RvMl91bml0dGVzdC5BZ2dyZWdhdGVNZXNzYWdlU2V0GPbrrgcgASgLMisucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZU1lc3NhZ2VTZXRFbGVtZW50UhNtZXNzYWdlU2V0RXh0ZW5zaW9uIqICCglBZ2dyZWdhdGUSCQoBaRgBIAEoBRIJCgFzGAIgASgJEicKA3N1YhgDIAEoCzIaLnByb3RvMl91bml0dGVzdC5BZ2dyZWdhdGUSKgoEZmlsZRgEIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxIyCgRtc2V0GAUgASgLMiQucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZU1lc3NhZ2VTZXQSIQoDYW55GAYgASgLMhQuZ29vZ2xlLnByb3RvYnVmLkFueTJTCgZuZXN0ZWQSHC5nb29nbGUucHJvdG9idWYuRmlsZU9wdGlvbnMYp9GwByABKAsyGi5wcm90bzJfdW5pdHRlc3QuQWdncmVnYXRlUgZuZXN0ZWQiWQoQQWdncmVnYXRlTWVzc2FnZRIpCglmaWVsZG5hbWUYASABKAVCFvKhhzsREg9GaWVsZEFubm90YXRpb246GsLRhjsVCGUSEU1lc3NhZ2VBbm5vdGF0aW9uItoBChBOZXN0ZWRPcHRpb25UeXBlGjsKDU5lc3RlZE1lc3NhZ2USIgoMbmVzdGVkX2ZpZWxkGAEgASgFQgzB4MMd6gMAAAAAAAA6BuDpwh3pByI1CgpOZXN0ZWRFbnVtEh0KEU5FU1RFRF9FTlVNX1ZBTFVFEAEaBrCG+gXsBxoIxfbJHesDAAAyUgoQbmVzdGVkX2V4dGVuc2lvbhIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucxj9+OIDIAEoBUIGyIvKHe0HUg9uZXN0ZWRFeHRlbnNpb24iYgoNT2xkT3B0aW9uVHlwZRI2CgV2YWx1ZRgBIAIoDjInLnByb3RvMl91bml0dGVzdC5PbGRPcHRpb25UeXBlLlRlc3RFbnVtIhkKCFRlc3RFbnVtEg0KCU9MRF9WQUxVRRAAInEKDU5ld09wdGlvblR5cGUSNgoFdmFsdWUYASACKA4yJy5wcm90bzJfdW5pdHRlc3QuTmV3T3B0aW9uVHlwZS5UZXN0RW51bSIoCghUZXN0RW51bRINCglPTERfVkFMVUUQABINCglORVdfVkFMVUUQASItCiFUZXN0TWVzc2FnZVdpdGhSZXF1aXJlZEVudW1PcHRpb246CPro/JQDAggAKjYKCk1ldGhvZE9wdDESEwoPTUVUSE9ET1BUMV9WQUwxEAESEwoPTUVUSE9ET1BUMV9WQUwyEAIqwQIKGUN1c3RvbU9wdGlvbkxpZmV0aW1lc0VudW0SHgoaQ1VTVE9NX09QVElPTl9FTlVNX0RFRkFVTFQQABJnCiZDVVNUT01fT1BUSU9OX0VOVU1fUkVNT1ZFRF9FRElUSU9OMjAyMxABGjsiOSDoByo0Q1VTVE9NX09QVElPTl9FTlVNX1JFTU9WRURfRURJVElPTjIwMjMgcmVtb3ZhbCBlcnJvchJdCiFDVVNUT01fT1BUSU9OX0VOVU1fUkVNT1ZFRF9QUk9UTzMQAho2IjQg5wcqL0NVU1RPTV9PUFRJT05fRU5VTV9SRU1PVkVEX1BST1RPMyByZW1vdmFsIGVycm9yEh0KGUNVU1RPTV9PUFRJT05fRU5VTV9WQUxVRTMQAxIdChlDVVNUT01fT1BUSU9OX0VOVU1fVkFMVUU0EAQqTQoNQWdncmVnYXRlRW51bRIlCgVWQUxVRRABGhrK/Ik7FRITRW51bVZhbHVlQW5ub3RhdGlvbhoVkpWIOxASDkVudW1Bbm5vdGF0aW9uMooBChxUZXN0U2VydmljZVdpdGhDdXN0b21PcHRpb25zEl8KA0ZvbxInLnByb3RvMl91bml0dGVzdC5DdXN0b21PcHRpb25Gb29SZXF1ZXN0GigucHJvdG8yX3VuaXR0ZXN0LkN1c3RvbU9wdGlvbkZvb1Jlc3BvbnNlIgXg+oweAhoJkLKLHtPbgMtJMpUBChBBZ2dyZWdhdGVTZXJ2aWNlEmcKBk1ldGhvZBIhLnByb3RvMl91bml0dGVzdC5BZ2dyZWdhdGVNZXNzYWdlGiEucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZU1lc3NhZ2UiF8rIljsSEhBNZXRob2RBbm5vdGF0aW9uGhjK+447ExIRU2VydmljZUFubm90YXRpb246PAoJZmlsZV9vcHQxEhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGI6d2AMgASgEUghmaWxlT3B0MTpFCgxtZXNzYWdlX29wdDESHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYnK3YAyABKAVSC21lc3NhZ2VPcHQxOj8KCmZpZWxkX29wdDESHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGIi82AMgASgGUglmaWVsZE9wdDE6QwoKZmllbGRfb3B0MhIdLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMYuaHZAyABKAU6AjQyUglmaWVsZE9wdDI6PwoKb25lb2Zfb3B0MRIdLmdvb2dsZS5wcm90b2J1Zi5PbmVvZk9wdGlvbnMYz7XYAyABKAVSCW9uZW9mT3B0MTo8CgllbnVtX29wdDESHC5nb29nbGUucHJvdG9idWYuRW51bU9wdGlvbnMY6J7ZAyABKA9SCGVudW1PcHQxOksKD2VudW1fdmFsdWVfb3B0MRIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGOagXyABKAVSDWVudW1WYWx1ZU9wdDE6RQoMc2VydmljZV9vcHQxEh8uZ29vZ2xlLnByb3RvYnVmLlNlcnZpY2VPcHRpb25zGKK24QMgASgSUgtzZXJ2aWNlT3B0MTpfCgttZXRob2Rfb3B0MRIeLmdvb2dsZS5wcm90b2J1Zi5NZXRob2RPcHRpb25zGKzP4QMgASgOMhsucHJvdG8yX3VuaXR0ZXN0Lk1ldGhvZE9wdDFSCm1ldGhvZE9wdDE6bwoOcmVtb3ZlZF9vcHRpb24SHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYov7XAyABKAhCJLIBISDoByoccmVtb3ZlZF9vcHRpb24gcmVtb3ZhbCBlcnJvclINcmVtb3ZlZE9wdGlvbjp+ChFkZXByZWNhdGVkX29wdGlvbhIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjMndgDIAEoCEItsgEqEOgHGiVkZXByZWNhdGVkX29wdGlvbiBkZXByZWNhdGlvbiB3YXJuaW5nUhBkZXByZWNhdGVkT3B0aW9uOpgBCh9jdXN0b21fb3B0aW9uX2xpZmV0aW1lc19tZXNzYWdlEh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGMKd2AMgASgLMi0ucHJvdG8yX3VuaXR0ZXN0LkN1c3RvbU9wdGlvbkxpZmV0aW1lc01lc3NhZ2VSHGN1c3RvbU9wdGlvbkxpZmV0aW1lc01lc3NhZ2U6jwEKHGN1c3RvbV9vcHRpb25fbGlmZXRpbWVzX2VudW0SHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYvp3YAyABKA4yKi5wcm90bzJfdW5pdHRlc3QuQ3VzdG9tT3B0aW9uTGlmZXRpbWVzRW51bVIZY3VzdG9tT3B0aW9uTGlmZXRpbWVzRW51bTqpAQoocmVwZWF0ZWRfY3VzdG9tX29wdGlvbl9saWZldGltZXNfbWVzc2FnZRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxi9ndgDIAMoCzItLnByb3RvMl91bml0dGVzdC5DdXN0b21PcHRpb25MaWZldGltZXNNZXNzYWdlUiRyZXBlYXRlZEN1c3RvbU9wdGlvbkxpZmV0aW1lc01lc3NhZ2U6iwEKFGN1c3RvbV9uZXN0ZWRfb3B0aW9uEi0ucHJvdG8yX3VuaXR0ZXN0LkN1c3RvbU9wdGlvbkxpZmV0aW1lc01lc3NhZ2UYZSABKAlCKrIBJyDoByoiY3VzdG9tX25lc3RlZF9vcHRpb24gcmVtb3ZhbCBlcnJvclISY3VzdG9tTmVzdGVkT3B0aW9uOj0KCGJvb2xfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGOqr1gMgASgIUgdib29sT3B0Oj8KCWludDMyX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjtqNYDIAEoBVIIaW50MzJPcHQ6PwoJaW50NjRfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGMan1gMgASgDUghpbnQ2NE9wdDpBCgp1aW50MzJfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGLCi1gMgASgNUgl1aW50MzJPcHQ6QQoKdWludDY0X29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjfjtYDIAEoBFIJdWludDY0T3B0OkEKCnNpbnQzMl9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYwIjWAyABKBFSCXNpbnQzMk9wdDpBCgpzaW50NjRfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGP+C1gMgASgSUglzaW50NjRPcHQ6QwoLZml4ZWQzMl9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY0/7VAyABKAdSCmZpeGVkMzJPcHQ6QwoLZml4ZWQ2NF9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY4v3VAyABKAZSCmZpeGVkNjRPcHQ6RQoMc2ZpeGVkMzJfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGNXx1QMgASgPUgtzZml4ZWQzMk9wdDpFCgxzZml4ZWQ2NF9vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMY44rVAyABKBBSC3NmaXhlZDY0T3B0Oj8KCWZsb2F0X29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxj+u9QDIAEoAlIIZmxvYXRPcHQ6QQoKZG91YmxlX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjNq9QDIAEoAVIJZG91YmxlT3B0OkEKCnN0cmluZ19vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYxavUAyABKAlSCXN0cmluZ09wdDo/CglieXRlc19vcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYlqvUAyABKAxSCGJ5dGVzT3B0OncKCGVudW1fb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGJGr1AMgASgOMjgucHJvdG8yX3VuaXR0ZXN0LkR1bW15TWVzc2FnZUNvbnRhaW5pbmdFbnVtLlRlc3RFbnVtVHlwZVIHZW51bU9wdDp+ChBtZXNzYWdlX3R5cGVfb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGK/y0wMgASgLMjAucHJvdG8yX3VuaXR0ZXN0LkR1bW15TWVzc2FnZUludmFsaWRBc09wdGlvblR5cGVSDm1lc3NhZ2VUeXBlT3B0OjoKBG1vb28SIy5wcm90bzJfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUxGNvg0wMgASgFUgRtb29vOmEKBWNvcmdlEiMucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMRjS3tMDIAEoCzIjLnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTNSBWNvcmdlOj4KBmdyYXVsdBIjLnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTIY7/zSAyABKAVSBmdyYXVsdDpjCgZnYXJwbHkSIy5wcm90bzJfdW5pdHRlc3QuQ29tcGxleE9wdGlvblR5cGUyGMj10gMgASgLMiMucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHRpb25UeXBlMVIGZ2FycGx5OmoKDGNvbXBsZXhfb3B0MRIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxik3NIDIAEoCzIjLnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTFSC2NvbXBsZXhPcHQxOmoKDGNvbXBsZXhfb3B0MhIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjVj9IDIAEoCzIjLnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTJSC2NvbXBsZXhPcHQyOmoKDGNvbXBsZXhfb3B0MxIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxjvi9IDIAEoCzIjLnByb3RvMl91bml0dGVzdC5Db21wbGV4T3B0aW9uVHlwZTNSC2NvbXBsZXhPcHQzOmIKC2NvbXBsZXhvcHQ2Eh8uZ29vZ2xlLnByb3RvYnVmLk1lc3NhZ2VPcHRpb25zGMzLzwMgASgKMhwucHJvdG8yX3VuaXR0ZXN0LkNvbXBsZXhPcHQ2Ugtjb21wbGV4b3B0NjpVCgdmaWxlb3B0EhwuZ29vZ2xlLnByb3RvYnVmLkZpbGVPcHRpb25zGM/dsAcgASgLMhoucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZVIHZmlsZW9wdDpWCgZtc2dvcHQSHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnMYmOqwByABKAsyGi5wcm90bzJfdW5pdHRlc3QuQWdncmVnYXRlUgZtc2dvcHQ6WAoIZmllbGRvcHQSHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zGJ70sAcgASgLMhoucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZVIIZmllbGRvcHQ6VQoHZW51bW9wdBIcLmdvb2dsZS5wcm90b2J1Zi5FbnVtT3B0aW9ucxjSgrEHIAEoCzIaLnByb3RvMl91bml0dGVzdC5BZ2dyZWdhdGVSB2VudW1vcHQ6YAoKZW51bXZhbG9wdBIhLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVPcHRpb25zGMmfsQcgASgLMhoucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZVIKZW51bXZhbG9wdDpeCgpzZXJ2aWNlb3B0Eh8uZ29vZ2xlLnByb3RvYnVmLlNlcnZpY2VPcHRpb25zGLnvsQcgASgLMhoucHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZVIKc2VydmljZW9wdDpbCgltZXRob2RvcHQSHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9ucxiJ6bIHIAEoCzIaLnByb3RvMl91bml0dGVzdC5BZ2dyZWdhdGVSCW1ldGhvZG9wdDpuChFyZXF1aXJlZF9lbnVtX29wdBIfLmdvb2dsZS5wcm90b2J1Zi5NZXNzYWdlT3B0aW9ucxiPzc8yIAEoCzIeLnByb3RvMl91bml0dGVzdC5PbGRPcHRpb25UeXBlUg9yZXF1aXJlZEVudW1PcHRC5wGAAQGIAQGQAQHw6MEd6q3A5ST67IU7zwEIZBIORmlsZUFubm90YXRpb24aFhIUTmVzdGVkRmlsZUFubm90YXRpb24iHvrshTsZEhdGaWxlRXh0ZW5zaW9uQW5ub3RhdGlvbiokCxD2664HGhsKGUVtYmVkZGVkTWVzc2FnZVNldEVsZW1lbnQMMl0KPnR5cGUuZ29vZ2xlYXBpcy5jb20vcHJvdG8yX3VuaXR0ZXN0LkFnZ3JlZ2F0ZU1lc3NhZ2VTZXRFbGVtZW50EhsKGUVtYmVkZGVkTWVzc2FnZVNldEVsZW1lbnQ", [file_google_protobuf_any, file_google_protobuf_descriptor]);
+
+/**
+ * Describes the message proto2_unittest.CustomOptionLifetimesMessage.
+ * Use `create(CustomOptionLifetimesMessageSchema)` to create a new message.
+ */
+export const CustomOptionLifetimesMessageSchema = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_custom_options, 0);
+
+/**
+ * Describes the message proto2_unittest.NestedCustomOptionLifetimesMessage.
+ * Use `create(NestedCustomOptionLifetimesMessageSchema)` to create a new message.
+ */
+export const NestedCustomOptionLifetimesMessageSchema = /*@__PURE__*/
+  messageDesc(file_google_protobuf_unittest_custom_options, 1);
 
 /**
  * Describes the message proto2_unittest.TestMessageWithCustomOptions.
  * Use `create(TestMessageWithCustomOptionsSchema)` to create a new message.
  */
 export const TestMessageWithCustomOptionsSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 0);
+  messageDesc(file_google_protobuf_unittest_custom_options, 2);
 
 /**
  * Describes the enum proto2_unittest.TestMessageWithCustomOptions.AnEnum.
  */
 export const TestMessageWithCustomOptions_AnEnumSchema = /*@__PURE__*/
-  enumDesc(file_google_protobuf_unittest_custom_options, 0, 0);
+  enumDesc(file_google_protobuf_unittest_custom_options, 2, 0);
 
 /**
  * @generated from enum proto2_unittest.TestMessageWithCustomOptions.AnEnum
@@ -58,41 +72,41 @@ export const TestMessageWithCustomOptions_AnEnum = /*@__PURE__*/
  * Use `create(CustomOptionFooRequestSchema)` to create a new message.
  */
 export const CustomOptionFooRequestSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 1);
+  messageDesc(file_google_protobuf_unittest_custom_options, 3);
 
 /**
  * Describes the message proto2_unittest.CustomOptionFooResponse.
  * Use `create(CustomOptionFooResponseSchema)` to create a new message.
  */
 export const CustomOptionFooResponseSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 2);
+  messageDesc(file_google_protobuf_unittest_custom_options, 4);
 
 /**
  * Describes the message proto2_unittest.CustomOptionFooClientMessage.
  * Use `create(CustomOptionFooClientMessageSchema)` to create a new message.
  */
 export const CustomOptionFooClientMessageSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 3);
+  messageDesc(file_google_protobuf_unittest_custom_options, 5);
 
 /**
  * Describes the message proto2_unittest.CustomOptionFooServerMessage.
  * Use `create(CustomOptionFooServerMessageSchema)` to create a new message.
  */
 export const CustomOptionFooServerMessageSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 4);
+  messageDesc(file_google_protobuf_unittest_custom_options, 6);
 
 /**
  * Describes the message proto2_unittest.DummyMessageContainingEnum.
  * Use `create(DummyMessageContainingEnumSchema)` to create a new message.
  */
 export const DummyMessageContainingEnumSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 5);
+  messageDesc(file_google_protobuf_unittest_custom_options, 7);
 
 /**
  * Describes the enum proto2_unittest.DummyMessageContainingEnum.TestEnumType.
  */
 export const DummyMessageContainingEnum_TestEnumTypeSchema = /*@__PURE__*/
-  enumDesc(file_google_protobuf_unittest_custom_options, 5, 0);
+  enumDesc(file_google_protobuf_unittest_custom_options, 7, 0);
 
 /**
  * @generated from enum proto2_unittest.DummyMessageContainingEnum.TestEnumType
@@ -105,185 +119,185 @@ export const DummyMessageContainingEnum_TestEnumType = /*@__PURE__*/
  * Use `create(DummyMessageInvalidAsOptionTypeSchema)` to create a new message.
  */
 export const DummyMessageInvalidAsOptionTypeSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 6);
+  messageDesc(file_google_protobuf_unittest_custom_options, 8);
 
 /**
  * Describes the message proto2_unittest.CustomOptionMinIntegerValues.
  * Use `create(CustomOptionMinIntegerValuesSchema)` to create a new message.
  */
 export const CustomOptionMinIntegerValuesSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 7);
+  messageDesc(file_google_protobuf_unittest_custom_options, 9);
 
 /**
  * Describes the message proto2_unittest.CustomOptionMaxIntegerValues.
  * Use `create(CustomOptionMaxIntegerValuesSchema)` to create a new message.
  */
 export const CustomOptionMaxIntegerValuesSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 8);
+  messageDesc(file_google_protobuf_unittest_custom_options, 10);
 
 /**
  * Describes the message proto2_unittest.CustomOptionOtherValues.
  * Use `create(CustomOptionOtherValuesSchema)` to create a new message.
  */
 export const CustomOptionOtherValuesSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 9);
+  messageDesc(file_google_protobuf_unittest_custom_options, 11);
 
 /**
  * Describes the message proto2_unittest.SettingRealsFromPositiveInts.
  * Use `create(SettingRealsFromPositiveIntsSchema)` to create a new message.
  */
 export const SettingRealsFromPositiveIntsSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 10);
+  messageDesc(file_google_protobuf_unittest_custom_options, 12);
 
 /**
  * Describes the message proto2_unittest.SettingRealsFromNegativeInts.
  * Use `create(SettingRealsFromNegativeIntsSchema)` to create a new message.
  */
 export const SettingRealsFromNegativeIntsSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 11);
+  messageDesc(file_google_protobuf_unittest_custom_options, 13);
 
 /**
  * Describes the message proto2_unittest.SettingRealsFromInf.
  * Use `create(SettingRealsFromInfSchema)` to create a new message.
  */
 export const SettingRealsFromInfSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 12);
+  messageDesc(file_google_protobuf_unittest_custom_options, 14);
 
 /**
  * Describes the message proto2_unittest.SettingRealsFromNegativeInf.
  * Use `create(SettingRealsFromNegativeInfSchema)` to create a new message.
  */
 export const SettingRealsFromNegativeInfSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 13);
+  messageDesc(file_google_protobuf_unittest_custom_options, 15);
 
 /**
  * Describes the message proto2_unittest.SettingRealsFromNan.
  * Use `create(SettingRealsFromNanSchema)` to create a new message.
  */
 export const SettingRealsFromNanSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 14);
+  messageDesc(file_google_protobuf_unittest_custom_options, 16);
 
 /**
  * Describes the message proto2_unittest.SettingRealsFromNegativeNan.
  * Use `create(SettingRealsFromNegativeNanSchema)` to create a new message.
  */
 export const SettingRealsFromNegativeNanSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 15);
+  messageDesc(file_google_protobuf_unittest_custom_options, 17);
 
 /**
  * Describes the message proto2_unittest.ComplexOptionType1.
  * Use `create(ComplexOptionType1Schema)` to create a new message.
  */
 export const ComplexOptionType1Schema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 16);
+  messageDesc(file_google_protobuf_unittest_custom_options, 18);
 
 /**
  * Describes the message proto2_unittest.ComplexOptionType2.
  * Use `create(ComplexOptionType2Schema)` to create a new message.
  */
 export const ComplexOptionType2Schema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 17);
+  messageDesc(file_google_protobuf_unittest_custom_options, 19);
 
 /**
  * Describes the message proto2_unittest.ComplexOptionType2.ComplexOptionType4.
  * Use `create(ComplexOptionType2_ComplexOptionType4Schema)` to create a new message.
  */
 export const ComplexOptionType2_ComplexOptionType4Schema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 17, 0);
+  messageDesc(file_google_protobuf_unittest_custom_options, 19, 0);
 
 /**
  * @generated from extension: optional proto2_unittest.ComplexOptionType2.ComplexOptionType4 complex_opt4 = 7633546;
  */
 export const ComplexOptionType2_ComplexOptionType4_complex_opt4 = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 17, 0, 0);
+  extDesc(file_google_protobuf_unittest_custom_options, 19, 0, 0);
 
 /**
  * Describes the message proto2_unittest.ComplexOptionType3.
  * Use `create(ComplexOptionType3Schema)` to create a new message.
  */
 export const ComplexOptionType3Schema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 18);
+  messageDesc(file_google_protobuf_unittest_custom_options, 20);
 
 /**
  * Describes the message proto2_unittest.ComplexOptionType3.ComplexOptionType5.
  * Use `create(ComplexOptionType3_ComplexOptionType5Schema)` to create a new message.
  */
 export const ComplexOptionType3_ComplexOptionType5Schema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 18, 0);
+  messageDesc(file_google_protobuf_unittest_custom_options, 20, 0);
 
 /**
  * Describes the message proto2_unittest.ComplexOpt6.
  * Use `create(ComplexOpt6Schema)` to create a new message.
  */
 export const ComplexOpt6Schema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 19);
+  messageDesc(file_google_protobuf_unittest_custom_options, 21);
 
 /**
  * Describes the message proto2_unittest.VariousComplexOptions.
  * Use `create(VariousComplexOptionsSchema)` to create a new message.
  */
 export const VariousComplexOptionsSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 20);
+  messageDesc(file_google_protobuf_unittest_custom_options, 22);
 
 /**
  * Describes the message proto2_unittest.AggregateMessageSet.
  * Use `create(AggregateMessageSetSchema)` to create a new message.
  */
 export const AggregateMessageSetSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 21);
+  messageDesc(file_google_protobuf_unittest_custom_options, 23);
 
 /**
  * Describes the message proto2_unittest.AggregateMessageSetElement.
  * Use `create(AggregateMessageSetElementSchema)` to create a new message.
  */
 export const AggregateMessageSetElementSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 22);
+  messageDesc(file_google_protobuf_unittest_custom_options, 24);
 
 /**
  * @generated from extension: optional proto2_unittest.AggregateMessageSetElement message_set_extension = 15447542;
  */
 export const AggregateMessageSetElement_message_set_extension = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 22, 0);
+  extDesc(file_google_protobuf_unittest_custom_options, 24, 0);
 
 /**
  * Describes the message proto2_unittest.Aggregate.
  * Use `create(AggregateSchema)` to create a new message.
  */
 export const AggregateSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 23);
+  messageDesc(file_google_protobuf_unittest_custom_options, 25);
 
 /**
  * @generated from extension: optional proto2_unittest.Aggregate nested = 15476903;
  */
 export const Aggregate_nested = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 23, 0);
+  extDesc(file_google_protobuf_unittest_custom_options, 25, 0);
 
 /**
  * Describes the message proto2_unittest.AggregateMessage.
  * Use `create(AggregateMessageSchema)` to create a new message.
  */
 export const AggregateMessageSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 24);
+  messageDesc(file_google_protobuf_unittest_custom_options, 26);
 
 /**
  * Describes the message proto2_unittest.NestedOptionType.
  * Use `create(NestedOptionTypeSchema)` to create a new message.
  */
 export const NestedOptionTypeSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 25);
+  messageDesc(file_google_protobuf_unittest_custom_options, 27);
 
 /**
  * Describes the message proto2_unittest.NestedOptionType.NestedMessage.
  * Use `create(NestedOptionType_NestedMessageSchema)` to create a new message.
  */
 export const NestedOptionType_NestedMessageSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 25, 0);
+  messageDesc(file_google_protobuf_unittest_custom_options, 27, 0);
 
 /**
  * Describes the enum proto2_unittest.NestedOptionType.NestedEnum.
  */
 export const NestedOptionType_NestedEnumSchema = /*@__PURE__*/
-  enumDesc(file_google_protobuf_unittest_custom_options, 25, 0);
+  enumDesc(file_google_protobuf_unittest_custom_options, 27, 0);
 
 /**
  * @generated from enum proto2_unittest.NestedOptionType.NestedEnum
@@ -295,20 +309,20 @@ export const NestedOptionType_NestedEnum = /*@__PURE__*/
  * @generated from extension: optional int32 nested_extension = 7912573;
  */
 export const NestedOptionType_nested_extension = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 25, 0);
+  extDesc(file_google_protobuf_unittest_custom_options, 27, 0);
 
 /**
  * Describes the message proto2_unittest.OldOptionType.
  * Use `create(OldOptionTypeSchema)` to create a new message.
  */
 export const OldOptionTypeSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 26);
+  messageDesc(file_google_protobuf_unittest_custom_options, 28);
 
 /**
  * Describes the enum proto2_unittest.OldOptionType.TestEnum.
  */
 export const OldOptionType_TestEnumSchema = /*@__PURE__*/
-  enumDesc(file_google_protobuf_unittest_custom_options, 26, 0);
+  enumDesc(file_google_protobuf_unittest_custom_options, 28, 0);
 
 /**
  * @generated from enum proto2_unittest.OldOptionType.TestEnum
@@ -321,13 +335,13 @@ export const OldOptionType_TestEnum = /*@__PURE__*/
  * Use `create(NewOptionTypeSchema)` to create a new message.
  */
 export const NewOptionTypeSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 27);
+  messageDesc(file_google_protobuf_unittest_custom_options, 29);
 
 /**
  * Describes the enum proto2_unittest.NewOptionType.TestEnum.
  */
 export const NewOptionType_TestEnumSchema = /*@__PURE__*/
-  enumDesc(file_google_protobuf_unittest_custom_options, 27, 0);
+  enumDesc(file_google_protobuf_unittest_custom_options, 29, 0);
 
 /**
  * @generated from enum proto2_unittest.NewOptionType.TestEnum
@@ -340,7 +354,7 @@ export const NewOptionType_TestEnum = /*@__PURE__*/
  * Use `create(TestMessageWithRequiredEnumOptionSchema)` to create a new message.
  */
 export const TestMessageWithRequiredEnumOptionSchema = /*@__PURE__*/
-  messageDesc(file_google_protobuf_unittest_custom_options, 28);
+  messageDesc(file_google_protobuf_unittest_custom_options, 30);
 
 /**
  * Describes the enum proto2_unittest.MethodOpt1.
@@ -355,10 +369,22 @@ export const MethodOpt1 = /*@__PURE__*/
   tsEnum(MethodOpt1Schema);
 
 /**
+ * Describes the enum proto2_unittest.CustomOptionLifetimesEnum.
+ */
+export const CustomOptionLifetimesEnumSchema = /*@__PURE__*/
+  enumDesc(file_google_protobuf_unittest_custom_options, 1);
+
+/**
+ * @generated from enum proto2_unittest.CustomOptionLifetimesEnum
+ */
+export const CustomOptionLifetimesEnum = /*@__PURE__*/
+  tsEnum(CustomOptionLifetimesEnumSchema);
+
+/**
  * Describes the enum proto2_unittest.AggregateEnum.
  */
 export const AggregateEnumSchema = /*@__PURE__*/
-  enumDesc(file_google_protobuf_unittest_custom_options, 1);
+  enumDesc(file_google_protobuf_unittest_custom_options, 2);
 
 /**
  * @generated from enum proto2_unittest.AggregateEnum
@@ -436,200 +462,236 @@ export const method_opt1 = /*@__PURE__*/
   extDesc(file_google_protobuf_unittest_custom_options, 8);
 
 /**
+ * @generated from extension: optional bool removed_option = 7733026;
+ */
+export const removed_option = /*@__PURE__*/
+  extDesc(file_google_protobuf_unittest_custom_options, 9);
+
+/**
+ * @generated from extension: optional bool deprecated_option = 7737036;
+ */
+export const deprecated_option = /*@__PURE__*/
+  extDesc(file_google_protobuf_unittest_custom_options, 10);
+
+/**
+ * @generated from extension: optional proto2_unittest.CustomOptionLifetimesMessage custom_option_lifetimes_message = 7737026;
+ */
+export const custom_option_lifetimes_message = /*@__PURE__*/
+  extDesc(file_google_protobuf_unittest_custom_options, 11);
+
+/**
+ * @generated from extension: optional proto2_unittest.CustomOptionLifetimesEnum custom_option_lifetimes_enum = 7737022;
+ */
+export const custom_option_lifetimes_enum = /*@__PURE__*/
+  extDesc(file_google_protobuf_unittest_custom_options, 12);
+
+/**
+ * @generated from extension: repeated proto2_unittest.CustomOptionLifetimesMessage repeated_custom_option_lifetimes_message = 7737021;
+ */
+export const repeated_custom_option_lifetimes_message = /*@__PURE__*/
+  extDesc(file_google_protobuf_unittest_custom_options, 13);
+
+/**
+ * @generated from extension: optional string custom_nested_option = 101;
+ */
+export const custom_nested_option = /*@__PURE__*/
+  extDesc(file_google_protobuf_unittest_custom_options, 14);
+
+/**
  * @generated from extension: optional bool bool_opt = 7706090;
  */
 export const bool_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 9);
+  extDesc(file_google_protobuf_unittest_custom_options, 15);
 
 /**
  * @generated from extension: optional int32 int32_opt = 7705709;
  */
 export const int32_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 10);
+  extDesc(file_google_protobuf_unittest_custom_options, 16);
 
 /**
  * @generated from extension: optional int64 int64_opt = 7705542;
  */
 export const int64_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 11);
+  extDesc(file_google_protobuf_unittest_custom_options, 17);
 
 /**
  * @generated from extension: optional uint32 uint32_opt = 7704880;
  */
 export const uint32_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 12);
+  extDesc(file_google_protobuf_unittest_custom_options, 18);
 
 /**
  * @generated from extension: optional uint64 uint64_opt = 7702367;
  */
 export const uint64_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 13);
+  extDesc(file_google_protobuf_unittest_custom_options, 19);
 
 /**
  * @generated from extension: optional sint32 sint32_opt = 7701568;
  */
 export const sint32_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 14);
+  extDesc(file_google_protobuf_unittest_custom_options, 20);
 
 /**
  * @generated from extension: optional sint64 sint64_opt = 7700863;
  */
 export const sint64_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 15);
+  extDesc(file_google_protobuf_unittest_custom_options, 21);
 
 /**
  * @generated from extension: optional fixed32 fixed32_opt = 7700307;
  */
 export const fixed32_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 16);
+  extDesc(file_google_protobuf_unittest_custom_options, 22);
 
 /**
  * @generated from extension: optional fixed64 fixed64_opt = 7700194;
  */
 export const fixed64_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 17);
+  extDesc(file_google_protobuf_unittest_custom_options, 23);
 
 /**
  * @generated from extension: optional sfixed32 sfixed32_opt = 7698645;
  */
 export const sfixed32_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 18);
+  extDesc(file_google_protobuf_unittest_custom_options, 24);
 
 /**
  * @generated from extension: optional sfixed64 sfixed64_opt = 7685475;
  */
 export const sfixed64_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 19);
+  extDesc(file_google_protobuf_unittest_custom_options, 25);
 
 /**
  * @generated from extension: optional float float_opt = 7675390;
  */
 export const float_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 20);
+  extDesc(file_google_protobuf_unittest_custom_options, 26);
 
 /**
  * @generated from extension: optional double double_opt = 7673293;
  */
 export const double_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 21);
+  extDesc(file_google_protobuf_unittest_custom_options, 27);
 
 /**
  * @generated from extension: optional string string_opt = 7673285;
  */
 export const string_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 22);
+  extDesc(file_google_protobuf_unittest_custom_options, 28);
 
 /**
  * @generated from extension: optional bytes bytes_opt = 7673238;
  */
 export const bytes_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 23);
+  extDesc(file_google_protobuf_unittest_custom_options, 29);
 
 /**
  * @generated from extension: optional proto2_unittest.DummyMessageContainingEnum.TestEnumType enum_opt = 7673233;
  */
 export const enum_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 24);
+  extDesc(file_google_protobuf_unittest_custom_options, 30);
 
 /**
  * @generated from extension: optional proto2_unittest.DummyMessageInvalidAsOptionType message_type_opt = 7665967;
  */
 export const message_type_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 25);
+  extDesc(file_google_protobuf_unittest_custom_options, 31);
 
 /**
  * @generated from extension: optional int32 mooo = 7663707;
  */
 export const mooo = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 26);
+  extDesc(file_google_protobuf_unittest_custom_options, 32);
 
 /**
  * @generated from extension: optional proto2_unittest.ComplexOptionType3 corge = 7663442;
  */
 export const corge = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 27);
+  extDesc(file_google_protobuf_unittest_custom_options, 33);
 
 /**
  * @generated from extension: optional int32 grault = 7650927;
  */
 export const grault = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 28);
+  extDesc(file_google_protobuf_unittest_custom_options, 34);
 
 /**
  * @generated from extension: optional proto2_unittest.ComplexOptionType1 garply = 7649992;
  */
 export const garply = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 29);
+  extDesc(file_google_protobuf_unittest_custom_options, 35);
 
 /**
  * @generated from extension: optional proto2_unittest.ComplexOptionType1 complex_opt1 = 7646756;
  */
 export const complex_opt1 = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 30);
+  extDesc(file_google_protobuf_unittest_custom_options, 36);
 
 /**
  * @generated from extension: optional proto2_unittest.ComplexOptionType2 complex_opt2 = 7636949;
  */
 export const complex_opt2 = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 31);
+  extDesc(file_google_protobuf_unittest_custom_options, 37);
 
 /**
  * @generated from extension: optional proto2_unittest.ComplexOptionType3 complex_opt3 = 7636463;
  */
 export const complex_opt3 = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 32);
+  extDesc(file_google_protobuf_unittest_custom_options, 38);
 
 /**
  * @generated from extension: optional proto2_unittest.ComplexOpt6 complexopt6 = 7595468;
  */
 export const complexopt6 = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 33);
+  extDesc(file_google_protobuf_unittest_custom_options, 39);
 
 /**
  * @generated from extension: optional proto2_unittest.Aggregate fileopt = 15478479;
  */
 export const fileopt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 34);
+  extDesc(file_google_protobuf_unittest_custom_options, 40);
 
 /**
  * @generated from extension: optional proto2_unittest.Aggregate msgopt = 15480088;
  */
 export const msgopt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 35);
+  extDesc(file_google_protobuf_unittest_custom_options, 41);
 
 /**
  * @generated from extension: optional proto2_unittest.Aggregate fieldopt = 15481374;
  */
 export const fieldopt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 36);
+  extDesc(file_google_protobuf_unittest_custom_options, 42);
 
 /**
  * @generated from extension: optional proto2_unittest.Aggregate enumopt = 15483218;
  */
 export const enumopt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 37);
+  extDesc(file_google_protobuf_unittest_custom_options, 43);
 
 /**
  * @generated from extension: optional proto2_unittest.Aggregate enumvalopt = 15486921;
  */
 export const enumvalopt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 38);
+  extDesc(file_google_protobuf_unittest_custom_options, 44);
 
 /**
  * @generated from extension: optional proto2_unittest.Aggregate serviceopt = 15497145;
  */
 export const serviceopt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 39);
+  extDesc(file_google_protobuf_unittest_custom_options, 45);
 
 /**
  * @generated from extension: optional proto2_unittest.Aggregate methodopt = 15512713;
  */
 export const methodopt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 40);
+  extDesc(file_google_protobuf_unittest_custom_options, 46);
 
 /**
  * @generated from extension: optional proto2_unittest.OldOptionType required_enum_opt = 106161807;
  */
 export const required_enum_opt = /*@__PURE__*/
-  extDesc(file_google_protobuf_unittest_custom_options, 41);
+  extDesc(file_google_protobuf_unittest_custom_options, 47);
 

@@ -35,6 +35,53 @@ import type { Any, EnumOptions, EnumValueOptions, FieldOptions, FileOptions, Mes
 export declare const file_google_protobuf_unittest_custom_options: GenFile;
 
 /**
+ * @generated from message proto2_unittest.CustomOptionLifetimesMessage
+ */
+export declare type CustomOptionLifetimesMessage = Message<"proto2_unittest.CustomOptionLifetimesMessage"> & {
+  /**
+   * @generated from field: optional string removed_option = 1;
+   */
+  removedOption: string;
+
+  /**
+   * @generated from field: optional string deprecated_option = 2;
+   */
+  deprecatedOption: string;
+
+  /**
+   * @generated from field: repeated proto2_unittest.CustomOptionLifetimesEnum repeated_custom_option_lifetimes_enum = 4;
+   */
+  repeatedCustomOptionLifetimesEnum: CustomOptionLifetimesEnum[];
+
+  /**
+   * @generated from field: optional proto2_unittest.NestedCustomOptionLifetimesMessage nested_custom_option_lifetimes_message = 5;
+   */
+  nestedCustomOptionLifetimesMessage?: NestedCustomOptionLifetimesMessage;
+};
+
+/**
+ * Describes the message proto2_unittest.CustomOptionLifetimesMessage.
+ * Use `create(CustomOptionLifetimesMessageSchema)` to create a new message.
+ */
+export declare const CustomOptionLifetimesMessageSchema: GenMessage<CustomOptionLifetimesMessage>;
+
+/**
+ * @generated from message proto2_unittest.NestedCustomOptionLifetimesMessage
+ */
+export declare type NestedCustomOptionLifetimesMessage = Message<"proto2_unittest.NestedCustomOptionLifetimesMessage"> & {
+  /**
+   * @generated from field: optional string deprecated_option = 1;
+   */
+  deprecatedOption: string;
+};
+
+/**
+ * Describes the message proto2_unittest.NestedCustomOptionLifetimesMessage.
+ * Use `create(NestedCustomOptionLifetimesMessageSchema)` to create a new message.
+ */
+export declare const NestedCustomOptionLifetimesMessageSchema: GenMessage<NestedCustomOptionLifetimesMessage>;
+
+/**
  * A test message with custom options at all possible locations (and also some
  * regular options, to make sure they interact nicely).
  *
@@ -704,6 +751,41 @@ export enum MethodOpt1 {
 export declare const MethodOpt1Schema: GenEnum<MethodOpt1>;
 
 /**
+ * @generated from enum proto2_unittest.CustomOptionLifetimesEnum
+ */
+export enum CustomOptionLifetimesEnum {
+  /**
+   * @generated from enum value: CUSTOM_OPTION_ENUM_DEFAULT = 0;
+   */
+  CUSTOM_OPTION_ENUM_DEFAULT = 0,
+
+  /**
+   * @generated from enum value: CUSTOM_OPTION_ENUM_REMOVED_EDITION2023 = 1;
+   */
+  CUSTOM_OPTION_ENUM_REMOVED_EDITION2023 = 1,
+
+  /**
+   * @generated from enum value: CUSTOM_OPTION_ENUM_REMOVED_PROTO3 = 2;
+   */
+  CUSTOM_OPTION_ENUM_REMOVED_PROTO3 = 2,
+
+  /**
+   * @generated from enum value: CUSTOM_OPTION_ENUM_VALUE3 = 3;
+   */
+  CUSTOM_OPTION_ENUM_VALUE3 = 3,
+
+  /**
+   * @generated from enum value: CUSTOM_OPTION_ENUM_VALUE4 = 4;
+   */
+  CUSTOM_OPTION_ENUM_VALUE4 = 4,
+}
+
+/**
+ * Describes the enum proto2_unittest.CustomOptionLifetimesEnum.
+ */
+export declare const CustomOptionLifetimesEnumSchema: GenEnum<CustomOptionLifetimesEnum>;
+
+/**
  * @generated from enum proto2_unittest.AggregateEnum
  */
 export enum AggregateEnum {
@@ -793,6 +875,36 @@ export declare const service_opt1: GenExtension<ServiceOptions, bigint>;
  * @generated from extension: optional proto2_unittest.MethodOpt1 method_opt1 = 7890860;
  */
 export declare const method_opt1: GenExtension<MethodOptions, MethodOpt1>;
+
+/**
+ * @generated from extension: optional bool removed_option = 7733026;
+ */
+export declare const removed_option: GenExtension<MessageOptions, boolean>;
+
+/**
+ * @generated from extension: optional bool deprecated_option = 7737036;
+ */
+export declare const deprecated_option: GenExtension<MessageOptions, boolean>;
+
+/**
+ * @generated from extension: optional proto2_unittest.CustomOptionLifetimesMessage custom_option_lifetimes_message = 7737026;
+ */
+export declare const custom_option_lifetimes_message: GenExtension<MessageOptions, CustomOptionLifetimesMessage>;
+
+/**
+ * @generated from extension: optional proto2_unittest.CustomOptionLifetimesEnum custom_option_lifetimes_enum = 7737022;
+ */
+export declare const custom_option_lifetimes_enum: GenExtension<MessageOptions, CustomOptionLifetimesEnum>;
+
+/**
+ * @generated from extension: repeated proto2_unittest.CustomOptionLifetimesMessage repeated_custom_option_lifetimes_message = 7737021;
+ */
+export declare const repeated_custom_option_lifetimes_message: GenExtension<MessageOptions, CustomOptionLifetimesMessage[]>;
+
+/**
+ * @generated from extension: optional string custom_nested_option = 101;
+ */
+export declare const custom_nested_option: GenExtension<CustomOptionLifetimesMessage, string>;
 
 /**
  * @generated from extension: optional bool bool_opt = 7706090;

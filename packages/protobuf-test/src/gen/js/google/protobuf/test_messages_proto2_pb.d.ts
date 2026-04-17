@@ -1609,6 +1609,16 @@ export declare const ForeignEnumProto2Schema: GenEnum<ForeignEnumProto2>;
 export declare const extension_int32: GenExtension<TestAllTypesProto2, number>;
 
 /**
+ * @generated from extension: optional string extension_string = 133;
+ */
+export declare const extension_string: GenExtension<TestAllTypesProto2, string>;
+
+/**
+ * @generated from extension: optional bytes extension_bytes = 134;
+ */
+export declare const extension_bytes: GenExtension<TestAllTypesProto2, Uint8Array>;
+
+/**
  * @generated from extension: optional protobuf_test_messages.proto2.GroupField groupfield = 121;
  */
 export declare const groupfield: GenExtension<TestAllTypesProto2, GroupField>;

@@ -18,12 +18,33 @@
 
 import type { GenEnum, GenExtension, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { FeatureSet } from "@bufbuild/protobuf/wkt";
+import type { FeatureSet, MessageOptions } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/protobuf/unittest_features.proto.
  */
 export declare const file_google_protobuf_unittest_features: GenFile;
+
+/**
+ * @generated from message pb.CustomOptionLifetimesMessage
+ */
+export declare type CustomOptionLifetimesMessage = Message<"pb.CustomOptionLifetimesMessage"> & {
+  /**
+   * @generated from field: pb.CustomOptionLifetimesEnum custom_enum = 1;
+   */
+  customEnum: CustomOptionLifetimesEnum;
+
+  /**
+   * @generated from field: repeated pb.CustomOptionLifetimesEnum repeated_custom_enum = 2;
+   */
+  repeatedCustomEnum: CustomOptionLifetimesEnum[];
+};
+
+/**
+ * Describes the message pb.CustomOptionLifetimesMessage.
+ * Use `create(CustomOptionLifetimesMessageSchema)` to create a new message.
+ */
+export declare const CustomOptionLifetimesMessageSchema: GenMessage<CustomOptionLifetimesMessage>;
 
 /**
  * @generated from message pb.TestMessage
@@ -166,6 +187,11 @@ export declare type TestFeatures = Message<"pb.TestFeatures"> & {
   removedFeature: EnumFeature;
 
   /**
+   * @generated from field: pb.EnumFeature same_edition_removed_feature = 21;
+   */
+  sameEditionRemovedFeature: EnumFeature;
+
+  /**
    * @generated from field: pb.EnumFeature future_feature = 18;
    */
   futureFeature: EnumFeature;
@@ -179,6 +205,21 @@ export declare type TestFeatures = Message<"pb.TestFeatures"> & {
    * @generated from field: pb.ValueLifetimeFeature value_lifetime_feature = 20;
    */
   valueLifetimeFeature: ValueLifetimeFeature;
+
+  /**
+   * @generated from field: pb.UnstableEnumFeature new_unstable_feature = 22;
+   */
+  newUnstableFeature: UnstableEnumFeature;
+
+  /**
+   * @generated from field: pb.UnstableEnumFeature unstable_existing_feature = 23;
+   */
+  unstableExistingFeature: UnstableEnumFeature;
+
+  /**
+   * @generated from field: pb.UnstableEnumFeature removed_unstable_feature = 24;
+   */
+  removedUnstableFeature: UnstableEnumFeature;
 };
 
 /**
@@ -186,6 +227,26 @@ export declare type TestFeatures = Message<"pb.TestFeatures"> & {
  * Use `create(TestFeaturesSchema)` to create a new message.
  */
 export declare const TestFeaturesSchema: GenMessage<TestFeatures>;
+
+/**
+ * @generated from enum pb.CustomOptionLifetimesEnum
+ */
+export enum CustomOptionLifetimesEnum {
+  /**
+   * @generated from enum value: TEST_CUSTOM_OPTION = 0;
+   */
+  TEST_CUSTOM_OPTION = 0,
+
+  /**
+   * @generated from enum value: CUSTOM_OPTION1 = 1;
+   */
+  CUSTOM_OPTION1 = 1,
+}
+
+/**
+ * Describes the enum pb.CustomOptionLifetimesEnum.
+ */
+export declare const CustomOptionLifetimesEnumSchema: GenEnum<CustomOptionLifetimesEnum>;
 
 /**
  * @generated from enum pb.EnumFeature
@@ -278,6 +339,41 @@ export enum EnumFeature {
 export declare const EnumFeatureSchema: GenEnum<EnumFeature>;
 
 /**
+ * @generated from enum pb.UnstableEnumFeature
+ */
+export enum UnstableEnumFeature {
+  /**
+   * @generated from enum value: TEST_UNSTABLE_ENUM_FEATURE_UNKNOWN = 0;
+   */
+  TEST_UNSTABLE_ENUM_FEATURE_UNKNOWN = 0,
+
+  /**
+   * @generated from enum value: UNSTABLE1 = 1;
+   */
+  UNSTABLE1 = 1,
+
+  /**
+   * @generated from enum value: UNSTABLE2 = 2;
+   */
+  UNSTABLE2 = 2,
+
+  /**
+   * @generated from enum value: UNSTABLE3 = 3;
+   */
+  UNSTABLE3 = 3,
+
+  /**
+   * @generated from enum value: UNSTABLE4 = 4;
+   */
+  UNSTABLE4 = 4,
+}
+
+/**
+ * Describes the enum pb.UnstableEnumFeature.
+ */
+export declare const UnstableEnumFeatureSchema: GenEnum<UnstableEnumFeature>;
+
+/**
  * @generated from enum pb.ValueLifetimeFeature
  */
 export enum ValueLifetimeFeature {
@@ -321,6 +417,11 @@ export enum ValueLifetimeFeature {
  * Describes the enum pb.ValueLifetimeFeature.
  */
 export declare const ValueLifetimeFeatureSchema: GenEnum<ValueLifetimeFeature>;
+
+/**
+ * @generated from extension: pb.CustomOptionLifetimesMessage custom_option_lifetimes_message = 7737012;
+ */
+export declare const custom_option_lifetimes_message: GenExtension<MessageOptions, CustomOptionLifetimesMessage>;
 
 /**
  * @generated from extension: pb.TestFeatures test = 9999;
