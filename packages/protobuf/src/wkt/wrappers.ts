@@ -65,6 +65,27 @@ export function isWrapperDesc(
   );
 }
 
+/**
+ * Returns true if the message type has a custom JSON representation per the
+ * protobuf JSON spec. When packed inside `google.protobuf.Any`, these types
+ * are serialized as `{"@type": ..., "value": <special form>}`; all other
+ * messages embed their fields directly.
+ */
+export function hasCustomJsonRepresentation(desc: DescMessage): boolean {
+  switch (desc.typeName) {
+    case "google.protobuf.Any":
+    case "google.protobuf.Timestamp":
+    case "google.protobuf.Duration":
+    case "google.protobuf.FieldMask":
+    case "google.protobuf.Struct":
+    case "google.protobuf.Value":
+    case "google.protobuf.ListValue":
+      return true;
+    default:
+      return isWrapperDesc(desc);
+  }
+}
+
 function isWrapperTypeName(name: string): boolean {
   return (
     name.startsWith("google.protobuf.") &&

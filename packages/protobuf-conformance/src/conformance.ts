@@ -42,6 +42,7 @@ import { file_google_protobuf_test_messages_proto3_editions } from "./gen/google
 import {
   file_google_protobuf_any,
   file_google_protobuf_duration,
+  file_google_protobuf_empty,
   file_google_protobuf_field_mask,
   file_google_protobuf_struct,
   file_google_protobuf_timestamp,
@@ -60,6 +61,7 @@ const registry = createRegistry(
   file_google_protobuf_field_mask,
   file_google_protobuf_timestamp,
   file_google_protobuf_duration,
+  file_google_protobuf_empty,
   file_google_protobuf_wrappers,
 );
 

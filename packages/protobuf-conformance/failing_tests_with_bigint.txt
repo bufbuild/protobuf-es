@@ -39,10 +39,3 @@ Required.Proto2.ProtobufInput.BadTag_OverlongVarint # Should have failed to pars
 Required.Proto3.ProtobufInput.BadTag_FieldNumberSlightlyTooHigh # Should have failed to parse, but didn't.
 Required.Proto3.ProtobufInput.BadTag_FieldNumberTooHigh # Should have failed to parse, but didn't.
 Required.Proto3.ProtobufInput.BadTag_OverlongVarint # Should have failed to parse, but didn't.
-
-# google.protobuf.Empty is not in the conformance binary's type registry, so
-# Any.unpack fails for "type.googleapis.com/google.protobuf.Empty".
-Required.Editions_Proto3.JsonInput.AnyEmpty.JsonOutput # Failed to parse input or produce output.
-Required.Editions_Proto3.JsonInput.AnyEmpty.ProtobufOutput # Failed to parse input or produce output.
-Required.Proto3.JsonInput.AnyEmpty.JsonOutput # Failed to parse input or produce output.
-Required.Proto3.JsonInput.AnyEmpty.ProtobufOutput # Failed to parse input or produce output.
