@@ -171,7 +171,7 @@ export type CodeGeneratorRequest = Message<"google.protobuf.compiler.CodeGenerat
    *
    * @generated from field: optional google.protobuf.compiler.Version compiler_version = 3;
    */
-  compilerVersion?: Version;
+  compilerVersion?: Version | undefined;
 };
 
 /**
@@ -440,7 +440,7 @@ export type CodeGeneratorResponse_File = Message<"google.protobuf.compiler.CodeG
    *
    * @generated from field: optional google.protobuf.GeneratedCodeInfo generated_code_info = 16;
    */
-  generatedCodeInfo?: GeneratedCodeInfo;
+  generatedCodeInfo?: GeneratedCodeInfo | undefined;
 };
 
 /**

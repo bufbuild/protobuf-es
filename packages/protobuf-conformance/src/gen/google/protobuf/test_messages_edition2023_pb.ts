@@ -128,12 +128,12 @@ export type TestAllTypesEdition2023 = Message<"protobuf_test_messages.editions.T
   /**
    * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.NestedMessage optional_nested_message = 18 [features.message_encoding = LENGTH_PREFIXED];
    */
-  optionalNestedMessage?: TestAllTypesEdition2023_NestedMessage;
+  optionalNestedMessage?: TestAllTypesEdition2023_NestedMessage | undefined;
 
   /**
    * @generated from field: protobuf_test_messages.editions.ForeignMessageEdition2023 optional_foreign_message = 19 [features.message_encoding = LENGTH_PREFIXED];
    */
-  optionalForeignMessage?: ForeignMessageEdition2023;
+  optionalForeignMessage?: ForeignMessageEdition2023 | undefined;
 
   /**
    * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.NestedEnum optional_nested_enum = 21;
@@ -158,7 +158,7 @@ export type TestAllTypesEdition2023 = Message<"protobuf_test_messages.editions.T
   /**
    * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023 recursive_message = 27 [features.message_encoding = LENGTH_PREFIXED];
    */
-  recursiveMessage?: TestAllTypesEdition2023;
+  recursiveMessage?: TestAllTypesEdition2023 | undefined;
 
   /**
    * Repeated
@@ -570,12 +570,12 @@ export type TestAllTypesEdition2023 = Message<"protobuf_test_messages.editions.T
   /**
    * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType groupliketype = 201;
    */
-  groupliketype?: TestAllTypesEdition2023_GroupLikeType;
+  groupliketype?: TestAllTypesEdition2023_GroupLikeType | undefined;
 
   /**
    * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023.GroupLikeType delimited_field = 202;
    */
-  delimitedField?: TestAllTypesEdition2023_GroupLikeType;
+  delimitedField?: TestAllTypesEdition2023_GroupLikeType | undefined;
 };
 
 /**
@@ -597,7 +597,7 @@ export type TestAllTypesEdition2023_NestedMessage = Message<"protobuf_test_messa
   /**
    * @generated from field: protobuf_test_messages.editions.TestAllTypesEdition2023 corecursive = 2 [features.message_encoding = LENGTH_PREFIXED];
    */
-  corecursive?: TestAllTypesEdition2023;
+  corecursive?: TestAllTypesEdition2023 | undefined;
 };
 
 /**

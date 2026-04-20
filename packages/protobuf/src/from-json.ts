@@ -70,7 +70,7 @@ export interface JsonReadOptions {
    * This option is required to read `google.protobuf.Any` and extensions
    * from JSON format.
    */
-  registry?: Registry;
+  registry?: Registry | undefined;
 }
 
 // Default options for parsing JSON.

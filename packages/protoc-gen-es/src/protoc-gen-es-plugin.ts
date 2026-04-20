@@ -489,7 +489,7 @@ function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOn
         }
       }
       if (optional) {
-        f.print("  ", member.localName, "?: ", typing, ";");
+        f.print("  ", member.localName, "?: ", typing, " | undefined;");
       } else {
         f.print("  ", member.localName, ": ", typing, ";");
       }

@@ -84,17 +84,17 @@ export declare type Edition2023Message = Message<"spec.Edition2023Message"> & {
   /**
    * @generated from field: spec.Edition2023Message explicit_message_field = 311;
    */
-  explicitMessageField?: Edition2023Message;
+  explicitMessageField?: Edition2023Message | undefined;
 
   /**
    * @generated from field: spec.Edition2023Message explicit_message_delimited_field = 312 [features.message_encoding = DELIMITED];
    */
-  explicitMessageDelimitedField?: Edition2023Message;
+  explicitMessageDelimitedField?: Edition2023Message | undefined;
 
   /**
    * @generated from field: google.protobuf.UInt32Value explicit_wrapped_uint32_field = 313;
    */
-  explicitWrappedUint32Field?: number;
+  explicitWrappedUint32Field?: number | undefined;
 
   /**
    * @generated from field: string implicit_string_field = 201 [features.field_presence = IMPLICIT];
@@ -194,17 +194,17 @@ export declare type Edition2023Message = Message<"spec.Edition2023Message"> & {
   /**
    * @generated from field: spec.Edition2023Message.Child required_message_field = 11 [features.field_presence = LEGACY_REQUIRED];
    */
-  requiredMessageField?: Edition2023Message_Child;
+  requiredMessageField?: Edition2023Message_Child | undefined;
 
   /**
    * @generated from field: spec.Edition2023Message.Child required_message_delimited_field = 12 [features.field_presence = LEGACY_REQUIRED, features.message_encoding = DELIMITED];
    */
-  requiredMessageDelimitedField?: Edition2023Message_Child;
+  requiredMessageDelimitedField?: Edition2023Message_Child | undefined;
 
   /**
    * @generated from field: google.protobuf.UInt32Value required_wrapped_uint32_field = 13 [features.field_presence = LEGACY_REQUIRED];
    */
-  requiredWrappedUint32Field?: number;
+  requiredWrappedUint32Field?: number | undefined;
 
   /**
    * @generated from field: string required_default_string_field = 101 [default = "hello \" *\/ ", features.field_presence = LEGACY_REQUIRED];
@@ -519,7 +519,7 @@ export declare type Edition2023FromProto2Message = Message<"spec.Edition2023From
   /**
    * @generated from field: spec.Edition2023FromProto2Message.OptionalGroup optionalgroup = 4 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: Edition2023FromProto2Message_OptionalGroup;
+  optionalgroup?: Edition2023FromProto2Message_OptionalGroup | undefined;
 
   /**
    * @generated from field: bool required_bool_field = 5 [features.field_presence = LEGACY_REQUIRED];
@@ -539,7 +539,7 @@ export declare type Edition2023FromProto2Message = Message<"spec.Edition2023From
   /**
    * @generated from field: spec.Edition2023FromProto2Message.RequiredGroup requiredgroup = 8 [features.message_encoding = DELIMITED];
    */
-  requiredgroup?: Edition2023FromProto2Message_RequiredGroup;
+  requiredgroup?: Edition2023FromProto2Message_RequiredGroup | undefined;
 
   /**
    * @generated from field: repeated double packed_double_field = 9 [features.repeated_field_encoding = PACKED];

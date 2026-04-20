@@ -36,7 +36,7 @@ export declare type VTypes = Message<"spec.VTypes"> & {
    *
    * @generated from field: spec.VTypes.Other msg = 1;
    */
-  msg?: VTypes_Other;
+  msg?: VTypes_Other | undefined;
 
   /**
    * In the generated valid type, this property should:
@@ -45,7 +45,7 @@ export declare type VTypes = Message<"spec.VTypes"> & {
    *
    * @generated from field: spec.VTypes.Other required_msg = 2;
    */
-  requiredMsg?: VTypes_Other;
+  requiredMsg?: VTypes_Other | undefined;
 
   /**
    * In the generated valid type, this property should:
@@ -54,7 +54,7 @@ export declare type VTypes = Message<"spec.VTypes"> & {
    *
    * @generated from field: spec.VTypes.Other required_msg_ignore_always = 3;
    */
-  requiredMsgIgnoreAlways?: VTypes_Other;
+  requiredMsgIgnoreAlways?: VTypes_Other | undefined;
 
   /**
    * In the generated valid type, this property should:
@@ -63,14 +63,14 @@ export declare type VTypes = Message<"spec.VTypes"> & {
    *
    * @generated from field: spec.VTypes.Other msg_ignore_unpopulated = 4;
    */
-  msgIgnoreUnpopulated?: VTypes_Other;
+  msgIgnoreUnpopulated?: VTypes_Other | undefined;
 
   /**
    * In the generated valid type, this property should be the same as the regular type
    *
    * @generated from field: spec.VTypes.Other msg_ignore_default = 5;
    */
-  msgIgnoreDefault?: VTypes_Other;
+  msgIgnoreDefault?: VTypes_Other | undefined;
 
   /**
    * In the generated valid type, this property should:
@@ -165,7 +165,7 @@ export declare type VTypes = Message<"spec.VTypes"> & {
    *
    * @generated from field: spec.VTypes.Other legacy_required_msg = 20 [features.field_presence = LEGACY_REQUIRED];
    */
-  legacyRequiredMsg?: VTypes_Other;
+  legacyRequiredMsg?: VTypes_Other | undefined;
 
   /**
    * In the generated valid type, this property should:
@@ -174,7 +174,7 @@ export declare type VTypes = Message<"spec.VTypes"> & {
    *
    * @generated from field: spec.VTypes.Other legacy_required_msg_ignore_always = 21 [features.field_presence = LEGACY_REQUIRED];
    */
-  legacyRequiredMsgIgnoreAlways?: VTypes_Other;
+  legacyRequiredMsgIgnoreAlways?: VTypes_Other | undefined;
 
   /**
    * In the generated valid type, this property should point to the regular
@@ -182,7 +182,7 @@ export declare type VTypes = Message<"spec.VTypes"> & {
    *
    * @generated from field: google.protobuf.Timestamp wkt = 22;
    */
-  wkt?: Timestamp;
+  wkt?: Timestamp | undefined;
 };
 
 /**
@@ -196,7 +196,7 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
    *
    * @generated from field: spec.VTypes.Other msg = 1;
    */
-  msg?: VTypes_OtherValid;
+  msg?: VTypes_OtherValid | undefined;
 
   /**
    * In the generated valid type, this property should:
@@ -214,7 +214,7 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
    *
    * @generated from field: spec.VTypes.Other required_msg_ignore_always = 3;
    */
-  requiredMsgIgnoreAlways?: VTypes_Other;
+  requiredMsgIgnoreAlways?: VTypes_Other | undefined;
 
   /**
    * In the generated valid type, this property should:
@@ -223,14 +223,14 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
    *
    * @generated from field: spec.VTypes.Other msg_ignore_unpopulated = 4;
    */
-  msgIgnoreUnpopulated?: VTypes_OtherValid;
+  msgIgnoreUnpopulated?: VTypes_OtherValid | undefined;
 
   /**
    * In the generated valid type, this property should be the same as the regular type
    *
    * @generated from field: spec.VTypes.Other msg_ignore_default = 5;
    */
-  msgIgnoreDefault?: VTypes_OtherValid;
+  msgIgnoreDefault?: VTypes_OtherValid | undefined;
 
   /**
    * In the generated valid type, this property should:
@@ -342,7 +342,7 @@ export declare type VTypesValid = Message<"spec.VTypes"> & {
    *
    * @generated from field: google.protobuf.Timestamp wkt = 22;
    */
-  wkt?: Timestamp;
+  wkt?: Timestamp | undefined;
 };
 
 /**
@@ -377,7 +377,7 @@ export declare type VTypes2 = Message<"spec.VTypes2"> & {
    *
    * @generated from field: spec.VTypes msg = 1;
    */
-  msg?: VTypes;
+  msg?: VTypes | undefined;
 };
 
 /**
@@ -392,7 +392,7 @@ export declare type VTypes2Valid = Message<"spec.VTypes2"> & {
    *
    * @generated from field: spec.VTypes msg = 1;
    */
-  msg?: VTypesValid;
+  msg?: VTypesValid | undefined;
 };
 
 /**

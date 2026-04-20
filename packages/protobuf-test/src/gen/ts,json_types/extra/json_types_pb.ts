@@ -60,42 +60,42 @@ export type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   /**
    * @generated from field: spec.JsonTypesMessage message_field = 6;
    */
-  messageField?: JsonTypesMessage;
+  messageField?: JsonTypesMessage | undefined;
 
   /**
    * @generated from field: google.protobuf.Any any_field = 7;
    */
-  anyField?: Any;
+  anyField?: Any | undefined;
 
   /**
    * @generated from field: google.protobuf.Duration duration_field = 8;
    */
-  durationField?: Duration;
+  durationField?: Duration | undefined;
 
   /**
    * @generated from field: google.protobuf.Empty empty_field = 9;
    */
-  emptyField?: Empty;
+  emptyField?: Empty | undefined;
 
   /**
    * @generated from field: google.protobuf.FieldMask field_mask_field = 10;
    */
-  fieldMaskField?: FieldMask;
+  fieldMaskField?: FieldMask | undefined;
 
   /**
    * @generated from field: google.protobuf.Struct struct_field = 11;
    */
-  structField?: JsonObject;
+  structField?: JsonObject | undefined;
 
   /**
    * @generated from field: google.protobuf.Value value_field = 12;
    */
-  valueField?: Value;
+  valueField?: Value | undefined;
 
   /**
    * @generated from field: google.protobuf.ListValue list_value_field = 13;
    */
-  listValueField?: ListValue;
+  listValueField?: ListValue | undefined;
 
   /**
    * @generated from field: google.protobuf.NullValue null_value_field = 14;
@@ -105,52 +105,52 @@ export type JsonTypesMessage = Message<"spec.JsonTypesMessage"> & {
   /**
    * @generated from field: google.protobuf.Timestamp timestamp_field = 15;
    */
-  timestampField?: Timestamp;
+  timestampField?: Timestamp | undefined;
 
   /**
    * @generated from field: google.protobuf.DoubleValue wrapped_double_field = 16;
    */
-  wrappedDoubleField?: number;
+  wrappedDoubleField?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.FloatValue wrapped_float_field = 17;
    */
-  wrappedFloatField?: number;
+  wrappedFloatField?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.Int64Value wrapped_int64_field = 18;
    */
-  wrappedInt64Field?: bigint;
+  wrappedInt64Field?: bigint | undefined;
 
   /**
    * @generated from field: google.protobuf.UInt64Value wrapped_uint64_field = 19;
    */
-  wrappedUint64Field?: bigint;
+  wrappedUint64Field?: bigint | undefined;
 
   /**
    * @generated from field: google.protobuf.Int32Value wrapped_int32_field = 20;
    */
-  wrappedInt32Field?: number;
+  wrappedInt32Field?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.UInt32Value wrapped_uint32_field = 21;
    */
-  wrappedUint32Field?: number;
+  wrappedUint32Field?: number | undefined;
 
   /**
    * @generated from field: google.protobuf.BoolValue wrapped_bool_field = 22;
    */
-  wrappedBoolField?: boolean;
+  wrappedBoolField?: boolean | undefined;
 
   /**
    * @generated from field: google.protobuf.StringValue wrapped_string_field = 23;
    */
-  wrappedStringField?: string;
+  wrappedStringField?: string | undefined;
 
   /**
    * @generated from field: google.protobuf.BytesValue wrapped_bytes_field = 24;
    */
-  wrappedBytesField?: Uint8Array;
+  wrappedBytesField?: Uint8Array | undefined;
 
   /**
    * @generated from field: repeated spec.JsonTypeEnum repeated_enum_field = 25;

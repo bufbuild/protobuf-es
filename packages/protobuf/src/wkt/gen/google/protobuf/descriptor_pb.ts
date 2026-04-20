@@ -144,7 +144,7 @@ export type FileDescriptorProto = Message<"google.protobuf.FileDescriptorProto">
   /**
    * @generated from field: optional google.protobuf.FileOptions options = 8;
    */
-  options?: FileOptions;
+  options?: FileOptions | undefined;
 
   /**
    * This field contains optional information about the original source code.
@@ -154,7 +154,7 @@ export type FileDescriptorProto = Message<"google.protobuf.FileDescriptorProto">
    *
    * @generated from field: optional google.protobuf.SourceCodeInfo source_code_info = 9;
    */
-  sourceCodeInfo?: SourceCodeInfo;
+  sourceCodeInfo?: SourceCodeInfo | undefined;
 
   /**
    * The syntax of the proto file.
@@ -342,7 +342,7 @@ export type DescriptorProto = Message<"google.protobuf.DescriptorProto"> & {
   /**
    * @generated from field: optional google.protobuf.MessageOptions options = 7;
    */
-  options?: MessageOptions;
+  options?: MessageOptions | undefined;
 
   /**
    * @generated from field: repeated google.protobuf.DescriptorProto.ReservedRange reserved_range = 9;
@@ -460,7 +460,7 @@ export type DescriptorProto_ExtensionRange = Message<"google.protobuf.Descriptor
   /**
    * @generated from field: optional google.protobuf.ExtensionRangeOptions options = 3;
    */
-  options?: ExtensionRangeOptions;
+  options?: ExtensionRangeOptions | undefined;
 };
 
 /**
@@ -572,7 +572,7 @@ export type ExtensionRangeOptions = Message<"google.protobuf.ExtensionRangeOptio
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 50;
    */
-  features?: FeatureSet;
+  features?: FeatureSet | undefined;
 
   /**
    * The verification state of the range.
@@ -838,7 +838,7 @@ export type FieldDescriptorProto = Message<"google.protobuf.FieldDescriptorProto
   /**
    * @generated from field: optional google.protobuf.FieldOptions options = 8;
    */
-  options?: FieldOptions;
+  options?: FieldOptions | undefined;
 
   /**
    * If true, this is a proto3 "optional". When a proto3 field is optional, it
@@ -1164,7 +1164,7 @@ export type OneofDescriptorProto = Message<"google.protobuf.OneofDescriptorProto
   /**
    * @generated from field: optional google.protobuf.OneofOptions options = 2;
    */
-  options?: OneofOptions;
+  options?: OneofOptions | undefined;
 };
 
 /**
@@ -1210,7 +1210,7 @@ export type EnumDescriptorProto = Message<"google.protobuf.EnumDescriptorProto">
   /**
    * @generated from field: optional google.protobuf.EnumOptions options = 3;
    */
-  options?: EnumOptions;
+  options?: EnumOptions | undefined;
 
   /**
    * Range of reserved numeric values. Reserved numeric values may not be used
@@ -1368,7 +1368,7 @@ export type EnumValueDescriptorProto = Message<"google.protobuf.EnumValueDescrip
   /**
    * @generated from field: optional google.protobuf.EnumValueOptions options = 3;
    */
-  options?: EnumValueOptions;
+  options?: EnumValueOptions | undefined;
 };
 
 /**
@@ -1419,7 +1419,7 @@ export type ServiceDescriptorProto = Message<"google.protobuf.ServiceDescriptorP
   /**
    * @generated from field: optional google.protobuf.ServiceOptions options = 3;
    */
-  options?: ServiceOptions;
+  options?: ServiceOptions | undefined;
 };
 
 /**
@@ -1478,7 +1478,7 @@ export type MethodDescriptorProto = Message<"google.protobuf.MethodDescriptorPro
   /**
    * @generated from field: optional google.protobuf.MethodOptions options = 4;
    */
-  options?: MethodOptions;
+  options?: MethodOptions | undefined;
 
   /**
    * Identifies if client streams multiple client messages
@@ -1735,7 +1735,7 @@ export type FileOptions = Message<"google.protobuf.FileOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 50;
    */
-  features?: FeatureSet;
+  features?: FeatureSet | undefined;
 
   /**
    * The parser stores options it doesn't recognize here.
@@ -2095,7 +2095,7 @@ export type MessageOptions = Message<"google.protobuf.MessageOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 12;
    */
-  features?: FeatureSet;
+  features?: FeatureSet | undefined;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -2355,12 +2355,12 @@ export type FieldOptions = Message<"google.protobuf.FieldOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 21;
    */
-  features?: FeatureSet;
+  features?: FeatureSet | undefined;
 
   /**
    * @generated from field: optional google.protobuf.FieldOptions.FeatureSupport feature_support = 22;
    */
-  featureSupport?: FieldOptions_FeatureSupport;
+  featureSupport?: FieldOptions_FeatureSupport | undefined;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -2870,7 +2870,7 @@ export type OneofOptions = Message<"google.protobuf.OneofOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 1;
    */
-  features?: FeatureSet;
+  features?: FeatureSet | undefined;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -2952,7 +2952,7 @@ export type EnumOptions = Message<"google.protobuf.EnumOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 7;
    */
-  features?: FeatureSet;
+  features?: FeatureSet | undefined;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -3044,7 +3044,7 @@ export type EnumValueOptions = Message<"google.protobuf.EnumValueOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 2;
    */
-  features?: FeatureSet;
+  features?: FeatureSet | undefined;
 
   /**
    * Indicate that fields annotated with this enum value should not be printed
@@ -3060,7 +3060,7 @@ export type EnumValueOptions = Message<"google.protobuf.EnumValueOptions"> & {
    *
    * @generated from field: optional google.protobuf.FieldOptions.FeatureSupport feature_support = 4;
    */
-  featureSupport?: FieldOptions_FeatureSupport;
+  featureSupport?: FieldOptions_FeatureSupport | undefined;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -3137,7 +3137,7 @@ export type ServiceOptions = Message<"google.protobuf.ServiceOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 34;
    */
-  features?: FeatureSet;
+  features?: FeatureSet | undefined;
 
   /**
    * Is this service deprecated?
@@ -3223,7 +3223,7 @@ export type MethodOptions = Message<"google.protobuf.MethodOptions"> & {
    *
    * @generated from field: optional google.protobuf.FeatureSet features = 35;
    */
-  features?: FeatureSet;
+  features?: FeatureSet | undefined;
 
   /**
    * The parser stores options it doesn't recognize here. See above.
@@ -3967,14 +3967,14 @@ export type FeatureSetDefaults_FeatureSetEditionDefault = Message<"google.protob
    *
    * @generated from field: optional google.protobuf.FeatureSet overridable_features = 4;
    */
-  overridableFeatures?: FeatureSet;
+  overridableFeatures?: FeatureSet | undefined;
 
   /**
    * Defaults of features that can't be overridden in this edition.
    *
    * @generated from field: optional google.protobuf.FeatureSet fixed_features = 5;
    */
-  fixedFeatures?: FeatureSet;
+  fixedFeatures?: FeatureSet | undefined;
 };
 
 /**

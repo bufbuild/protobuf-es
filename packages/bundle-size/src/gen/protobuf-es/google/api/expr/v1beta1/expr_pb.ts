@@ -41,14 +41,14 @@ export type ParsedExpr = Message<"google.api.expr.v1beta1.ParsedExpr"> & {
    *
    * @generated from field: google.api.expr.v1beta1.Expr expr = 2;
    */
-  expr?: Expr;
+  expr?: Expr | undefined;
 
   /**
    * The source info derived from input that generated the parsed `expr`.
    *
    * @generated from field: google.api.expr.v1beta1.SourceInfo source_info = 3;
    */
-  sourceInfo?: SourceInfo;
+  sourceInfo?: SourceInfo | undefined;
 
   /**
    * The syntax version of the source, e.g. `cel1`.
@@ -203,7 +203,7 @@ export type Expr_Select = Message<"google.api.expr.v1beta1.Expr.Select"> & {
    *
    * @generated from field: google.api.expr.v1beta1.Expr operand = 1;
    */
-  operand?: Expr;
+  operand?: Expr | undefined;
 
   /**
    * Required. The name of the field to select.
@@ -246,7 +246,7 @@ export type Expr_Call = Message<"google.api.expr.v1beta1.Expr.Call"> & {
    *
    * @generated from field: google.api.expr.v1beta1.Expr target = 1;
    */
-  target?: Expr;
+  target?: Expr | undefined;
 
   /**
    * Required. The name of the function or method being called.
@@ -370,7 +370,7 @@ export type Expr_CreateStruct_Entry = Message<"google.api.expr.v1beta1.Expr.Crea
    *
    * @generated from field: google.api.expr.v1beta1.Expr value = 4;
    */
-  value?: Expr;
+  value?: Expr | undefined;
 };
 
 /**
@@ -423,7 +423,7 @@ export type Expr_Comprehension = Message<"google.api.expr.v1beta1.Expr.Comprehen
    *
    * @generated from field: google.api.expr.v1beta1.Expr iter_range = 2;
    */
-  iterRange?: Expr;
+  iterRange?: Expr | undefined;
 
   /**
    * The name of the variable used for accumulation of the result.
@@ -437,7 +437,7 @@ export type Expr_Comprehension = Message<"google.api.expr.v1beta1.Expr.Comprehen
    *
    * @generated from field: google.api.expr.v1beta1.Expr accu_init = 4;
    */
-  accuInit?: Expr;
+  accuInit?: Expr | undefined;
 
   /**
    * An expression which can contain iter_var and accu_var.
@@ -447,7 +447,7 @@ export type Expr_Comprehension = Message<"google.api.expr.v1beta1.Expr.Comprehen
    *
    * @generated from field: google.api.expr.v1beta1.Expr loop_condition = 5;
    */
-  loopCondition?: Expr;
+  loopCondition?: Expr | undefined;
 
   /**
    * An expression which can contain iter_var and accu_var.
@@ -456,7 +456,7 @@ export type Expr_Comprehension = Message<"google.api.expr.v1beta1.Expr.Comprehen
    *
    * @generated from field: google.api.expr.v1beta1.Expr loop_step = 6;
    */
-  loopStep?: Expr;
+  loopStep?: Expr | undefined;
 
   /**
    * An expression which can contain accu_var.
@@ -465,7 +465,7 @@ export type Expr_Comprehension = Message<"google.api.expr.v1beta1.Expr.Comprehen
    *
    * @generated from field: google.api.expr.v1beta1.Expr result = 7;
    */
-  result?: Expr;
+  result?: Expr | undefined;
 };
 
 /**

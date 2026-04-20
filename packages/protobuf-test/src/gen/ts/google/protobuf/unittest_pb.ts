@@ -135,22 +135,22 @@ export type TestAllTypes = Message<"proto2_unittest.TestAllTypes"> & {
   /**
    * @generated from field: proto2_unittest.TestAllTypes.OptionalGroup optionalgroup = 16 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: TestAllTypes_OptionalGroup;
+  optionalgroup?: TestAllTypes_OptionalGroup | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: TestAllTypes_NestedMessage;
+  optionalNestedMessage?: TestAllTypes_NestedMessage | undefined;
 
   /**
    * @generated from field: proto2_unittest.ForeignMessage optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessage;
+  optionalForeignMessage?: ForeignMessage | undefined;
 
   /**
    * @generated from field: proto2_unittest_import.ImportMessage optional_import_message = 20;
    */
-  optionalImportMessage?: ImportMessage;
+  optionalImportMessage?: ImportMessage | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedEnum optional_nested_enum = 21;
@@ -187,17 +187,17 @@ export type TestAllTypes = Message<"proto2_unittest.TestAllTypes"> & {
    *
    * @generated from field: proto2_unittest_import.PublicImportMessage optional_public_import_message = 26;
    */
-  optionalPublicImportMessage?: PublicImportMessage;
+  optionalPublicImportMessage?: PublicImportMessage | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage optional_lazy_message = 27;
    */
-  optionalLazyMessage?: TestAllTypes_NestedMessage;
+  optionalLazyMessage?: TestAllTypes_NestedMessage | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage optional_unverified_lazy_message = 28;
    */
-  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage;
+  optionalUnverifiedLazyMessage?: TestAllTypes_NestedMessage | undefined;
 
   /**
    * Repeated
@@ -582,12 +582,12 @@ export type NestedTestAllTypes = Message<"proto2_unittest.NestedTestAllTypes"> &
   /**
    * @generated from field: proto2_unittest.NestedTestAllTypes child = 1;
    */
-  child?: NestedTestAllTypes;
+  child?: NestedTestAllTypes | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes payload = 2;
    */
-  payload?: TestAllTypes;
+  payload?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.NestedTestAllTypes repeated_child = 3;
@@ -597,12 +597,12 @@ export type NestedTestAllTypes = Message<"proto2_unittest.NestedTestAllTypes"> &
   /**
    * @generated from field: proto2_unittest.NestedTestAllTypes lazy_child = 4;
    */
-  lazyChild?: NestedTestAllTypes;
+  lazyChild?: NestedTestAllTypes | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes eager_child = 5;
    */
-  eagerChild?: TestAllTypes;
+  eagerChild?: TestAllTypes | undefined;
 };
 
 /**
@@ -632,7 +632,7 @@ export type TestDeprecatedFields = Message<"proto2_unittest.TestDeprecatedFields
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage deprecated_message = 3 [deprecated = true];
    * @deprecated
    */
-  deprecatedMessage?: TestAllTypes_NestedMessage;
+  deprecatedMessage?: TestAllTypes_NestedMessage | undefined;
 
   /**
    * @generated from oneof proto2_unittest.TestDeprecatedFields.oneof_fields
@@ -649,7 +649,7 @@ export type TestDeprecatedFields = Message<"proto2_unittest.TestDeprecatedFields
   /**
    * @generated from field: proto2_unittest.TestDeprecatedFields nested = 5;
    */
-  nested?: TestDeprecatedFields;
+  nested?: TestDeprecatedFields | undefined;
 };
 
 /**
@@ -800,7 +800,7 @@ export type TestGroup = Message<"proto2_unittest.TestGroup"> & {
   /**
    * @generated from field: proto2_unittest.TestGroup.OptionalGroup optionalgroup = 16 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: TestGroup_OptionalGroup;
+  optionalgroup?: TestGroup_OptionalGroup | undefined;
 
   /**
    * @generated from field: proto2_unittest.ForeignEnum optional_foreign_enum = 22;
@@ -929,7 +929,7 @@ export type TestChildExtension = Message<"proto2_unittest.TestChildExtension"> &
   /**
    * @generated from field: proto2_unittest.TestAllExtensions optional_extension = 3;
    */
-  optionalExtension?: TestAllExtensions;
+  optionalExtension?: TestAllExtensions | undefined;
 };
 
 /**
@@ -959,7 +959,7 @@ export type TestChildExtensionData = Message<"proto2_unittest.TestChildExtension
   /**
    * @generated from field: proto2_unittest.TestChildExtensionData.NestedTestAllExtensionsData optional_extension = 3;
    */
-  optionalExtension?: TestChildExtensionData_NestedTestAllExtensionsData;
+  optionalExtension?: TestChildExtensionData_NestedTestAllExtensionsData | undefined;
 };
 
 /**
@@ -976,7 +976,7 @@ export type TestChildExtensionData_NestedTestAllExtensionsData = Message<"proto2
   /**
    * @generated from field: proto2_unittest.TestChildExtensionData.NestedTestAllExtensionsData.NestedDynamicExtensions dynamic = 409707008;
    */
-  dynamic?: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions;
+  dynamic?: TestChildExtensionData_NestedTestAllExtensionsData_NestedDynamicExtensions | undefined;
 };
 
 /**
@@ -1020,7 +1020,7 @@ export type TestNestedChildExtension = Message<"proto2_unittest.TestNestedChildE
   /**
    * @generated from field: proto2_unittest.TestChildExtension child = 2;
    */
-  child?: TestChildExtension;
+  child?: TestChildExtension | undefined;
 };
 
 /**
@@ -1045,7 +1045,7 @@ export type TestNestedChildExtensionData = Message<"proto2_unittest.TestNestedCh
   /**
    * @generated from field: proto2_unittest.TestChildExtensionData child = 2;
    */
-  child?: TestChildExtensionData;
+  child?: TestChildExtensionData | undefined;
 };
 
 /**
@@ -1496,7 +1496,7 @@ export type TestRequired = Message<"proto2_unittest.TestRequired"> & {
    *
    * @generated from field: proto2_unittest.ForeignMessage optional_foreign = 34;
    */
-  optionalForeign?: ForeignMessage;
+  optionalForeign?: ForeignMessage | undefined;
 
   /**
    * @generated from field: map<string, proto2_unittest.TestRequired> map_field = 35;
@@ -1530,7 +1530,7 @@ export type TestRequiredForeign = Message<"proto2_unittest.TestRequiredForeign">
   /**
    * @generated from field: proto2_unittest.TestRequired optional_message = 1;
    */
-  optionalMessage?: TestRequired;
+  optionalMessage?: TestRequired | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestRequired repeated_message = 2;
@@ -1547,7 +1547,7 @@ export type TestRequiredForeign = Message<"proto2_unittest.TestRequiredForeign">
    *
    * @generated from field: proto2_unittest.NestedTestAllTypes optional_lazy_message = 4;
    */
-  optionalLazyMessage?: NestedTestAllTypes;
+  optionalLazyMessage?: NestedTestAllTypes | undefined;
 };
 
 /**
@@ -1564,7 +1564,7 @@ export type TestRequiredMessage = Message<"proto2_unittest.TestRequiredMessage">
   /**
    * @generated from field: proto2_unittest.TestRequired optional_message = 1;
    */
-  optionalMessage?: TestRequired;
+  optionalMessage?: TestRequired | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestRequired repeated_message = 2;
@@ -1574,7 +1574,7 @@ export type TestRequiredMessage = Message<"proto2_unittest.TestRequiredMessage">
   /**
    * @generated from field: proto2_unittest.TestRequired required_message = 3 [features.field_presence = LEGACY_REQUIRED];
    */
-  requiredMessage?: TestRequired;
+  requiredMessage?: TestRequired | undefined;
 };
 
 /**
@@ -1591,12 +1591,12 @@ export type TestRequiredLazyMessage = Message<"proto2_unittest.TestRequiredLazyM
   /**
    * @generated from field: proto2_unittest.TestRequired child = 1;
    */
-  child?: TestRequired;
+  child?: TestRequired | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredLazyMessage recurse = 2;
    */
-  recurse?: TestRequiredLazyMessage;
+  recurse?: TestRequiredLazyMessage | undefined;
 };
 
 /**
@@ -1613,12 +1613,12 @@ export type TestNestedRequiredForeign = Message<"proto2_unittest.TestNestedRequi
   /**
    * @generated from field: proto2_unittest.TestNestedRequiredForeign child = 1;
    */
-  child?: TestNestedRequiredForeign;
+  child?: TestNestedRequiredForeign | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredForeign payload = 2;
    */
-  payload?: TestRequiredForeign;
+  payload?: TestRequiredForeign | undefined;
 
   /**
    * @generated from field: int32 dummy = 3;
@@ -1630,22 +1630,22 @@ export type TestNestedRequiredForeign = Message<"proto2_unittest.TestNestedRequi
    *
    * @generated from field: proto2_unittest.TestRequiredEnum required_enum = 5;
    */
-  requiredEnum?: TestRequiredEnum;
+  requiredEnum?: TestRequiredEnum | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnumNoMask required_enum_no_mask = 6;
    */
-  requiredEnumNoMask?: TestRequiredEnumNoMask;
+  requiredEnumNoMask?: TestRequiredEnumNoMask | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnumMulti required_enum_multi = 7;
    */
-  requiredEnumMulti?: TestRequiredEnumMulti;
+  requiredEnumMulti?: TestRequiredEnumMulti | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredNoMaskMulti required_no_mask = 9;
    */
-  requiredNoMask?: TestRequiredNoMaskMulti;
+  requiredNoMask?: TestRequiredNoMaskMulti | undefined;
 };
 
 /**
@@ -1664,7 +1664,7 @@ export type TestForeignNested = Message<"proto2_unittest.TestForeignNested"> & {
   /**
    * @generated from field: proto2_unittest.TestAllTypes.NestedMessage foreign_nested = 1;
    */
-  foreignNested?: TestAllTypes_NestedMessage;
+  foreignNested?: TestAllTypes_NestedMessage | undefined;
 };
 
 /**
@@ -1801,7 +1801,7 @@ export type TestRecursiveMessage = Message<"proto2_unittest.TestRecursiveMessage
   /**
    * @generated from field: proto2_unittest.TestRecursiveMessage a = 1;
    */
-  a?: TestRecursiveMessage;
+  a?: TestRecursiveMessage | undefined;
 
   /**
    * @generated from field: int32 i = 2;
@@ -1825,12 +1825,12 @@ export type TestMutualRecursionA = Message<"proto2_unittest.TestMutualRecursionA
   /**
    * @generated from field: proto2_unittest.TestMutualRecursionB bb = 1;
    */
-  bb?: TestMutualRecursionB;
+  bb?: TestMutualRecursionB | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestMutualRecursionA.SubGroup subgroup = 2 [features.message_encoding = DELIMITED];
    */
-  subgroup?: TestMutualRecursionA_SubGroup;
+  subgroup?: TestMutualRecursionA_SubGroup | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestMutualRecursionA.SubGroupR subgroupr = 5 [features.message_encoding = DELIMITED];
@@ -1852,7 +1852,7 @@ export type TestMutualRecursionA_SubMessage = Message<"proto2_unittest.TestMutua
   /**
    * @generated from field: proto2_unittest.TestMutualRecursionB b = 1;
    */
-  b?: TestMutualRecursionB;
+  b?: TestMutualRecursionB | undefined;
 };
 
 /**
@@ -1871,12 +1871,12 @@ export type TestMutualRecursionA_SubGroup = Message<"proto2_unittest.TestMutualR
    *
    * @generated from field: proto2_unittest.TestMutualRecursionA.SubMessage sub_message = 3;
    */
-  subMessage?: TestMutualRecursionA_SubMessage;
+  subMessage?: TestMutualRecursionA_SubMessage | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes not_in_this_scc = 4;
    */
-  notInThisScc?: TestAllTypes;
+  notInThisScc?: TestAllTypes | undefined;
 };
 
 /**
@@ -1893,7 +1893,7 @@ export type TestMutualRecursionA_SubGroupR = Message<"proto2_unittest.TestMutual
   /**
    * @generated from field: proto2_unittest.TestAllTypes payload = 6;
    */
-  payload?: TestAllTypes;
+  payload?: TestAllTypes | undefined;
 };
 
 /**
@@ -1910,7 +1910,7 @@ export type TestMutualRecursionB = Message<"proto2_unittest.TestMutualRecursionB
   /**
    * @generated from field: proto2_unittest.TestMutualRecursionA a = 1;
    */
-  a?: TestMutualRecursionA;
+  a?: TestMutualRecursionA | undefined;
 
   /**
    * @generated from field: int32 optional_int32 = 2;
@@ -1932,7 +1932,7 @@ export type TestIsInitialized = Message<"proto2_unittest.TestIsInitialized"> & {
   /**
    * @generated from field: proto2_unittest.TestIsInitialized.SubMessage sub_message = 1;
    */
-  subMessage?: TestIsInitialized_SubMessage;
+  subMessage?: TestIsInitialized_SubMessage | undefined;
 };
 
 /**
@@ -1949,7 +1949,7 @@ export type TestIsInitialized_SubMessage = Message<"proto2_unittest.TestIsInitia
   /**
    * @generated from field: proto2_unittest.TestIsInitialized.SubMessage.SubGroup subgroup = 1 [features.message_encoding = DELIMITED];
    */
-  subgroup?: TestIsInitialized_SubMessage_SubGroup;
+  subgroup?: TestIsInitialized_SubMessage_SubGroup | undefined;
 };
 
 /**
@@ -1999,14 +1999,14 @@ export type TestDupFieldNumber = Message<"proto2_unittest.TestDupFieldNumber"> &
    *
    * @generated from field: proto2_unittest.TestDupFieldNumber.Foo foo = 2 [features.message_encoding = DELIMITED];
    */
-  foo?: TestDupFieldNumber_Foo;
+  foo?: TestDupFieldNumber_Foo | undefined;
 
   /**
    * NO_PROTO1
    *
    * @generated from field: proto2_unittest.TestDupFieldNumber.Bar bar = 3 [features.message_encoding = DELIMITED];
    */
-  bar?: TestDupFieldNumber_Bar;
+  bar?: TestDupFieldNumber_Bar | undefined;
 };
 
 /**
@@ -2067,7 +2067,7 @@ export type TestEagerMessage = Message<"proto2_unittest.TestEagerMessage"> & {
   /**
    * @generated from field: proto2_unittest.TestAllTypes sub_message = 1;
    */
-  subMessage?: TestAllTypes;
+  subMessage?: TestAllTypes | undefined;
 };
 
 /**
@@ -2084,7 +2084,7 @@ export type TestLazyMessage = Message<"proto2_unittest.TestLazyMessage"> & {
   /**
    * @generated from field: proto2_unittest.TestAllTypes sub_message = 1;
    */
-  subMessage?: TestAllTypes;
+  subMessage?: TestAllTypes | undefined;
 
   /**
    * @generated from oneof proto2_unittest.TestLazyMessage.one
@@ -2118,27 +2118,27 @@ export type TestLazyRequiredEnum = Message<"proto2_unittest.TestLazyRequiredEnum
   /**
    * @generated from field: proto2_unittest.TestRequiredOpenEnum optional_required_open_enum = 1;
    */
-  optionalRequiredOpenEnum?: TestRequiredOpenEnum;
+  optionalRequiredOpenEnum?: TestRequiredOpenEnum | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnum optional_required_enum = 2;
    */
-  optionalRequiredEnum?: TestRequiredEnum;
+  optionalRequiredEnum?: TestRequiredEnum | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnumNoMask optional_required_enum_no_mask = 3;
    */
-  optionalRequiredEnumNoMask?: TestRequiredEnumNoMask;
+  optionalRequiredEnumNoMask?: TestRequiredEnumNoMask | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredEnumMulti optional_required_enum_multi = 4;
    */
-  optionalRequiredEnumMulti?: TestRequiredEnumMulti;
+  optionalRequiredEnumMulti?: TestRequiredEnumMulti | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestRequiredNoMaskMulti optional_required_no_mask = 5;
    */
-  optionalRequiredNoMask?: TestRequiredNoMaskMulti;
+  optionalRequiredNoMask?: TestRequiredNoMaskMulti | undefined;
 };
 
 /**
@@ -2172,17 +2172,17 @@ export type TestEagerMaybeLazy = Message<"proto2_unittest.TestEagerMaybeLazy"> &
   /**
    * @generated from field: proto2_unittest.TestAllTypes message_foo = 1;
    */
-  messageFoo?: TestAllTypes;
+  messageFoo?: TestAllTypes | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes message_bar = 2;
    */
-  messageBar?: TestAllTypes;
+  messageBar?: TestAllTypes | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestEagerMaybeLazy.NestedMessage message_baz = 3;
    */
-  messageBaz?: TestEagerMaybeLazy_NestedMessage;
+  messageBaz?: TestEagerMaybeLazy_NestedMessage | undefined;
 };
 
 /**
@@ -2199,7 +2199,7 @@ export type TestEagerMaybeLazy_NestedMessage = Message<"proto2_unittest.TestEage
   /**
    * @generated from field: proto2_unittest.TestPackedTypes packed = 1;
    */
-  packed?: TestPackedTypes;
+  packed?: TestPackedTypes | undefined;
 };
 
 /**
@@ -2218,7 +2218,7 @@ export type TestNestedMessageHasBits = Message<"proto2_unittest.TestNestedMessag
   /**
    * @generated from field: proto2_unittest.TestNestedMessageHasBits.NestedMessage optional_nested_message = 1;
    */
-  optionalNestedMessage?: TestNestedMessageHasBits_NestedMessage;
+  optionalNestedMessage?: TestNestedMessageHasBits_NestedMessage | undefined;
 };
 
 /**
@@ -2275,7 +2275,7 @@ export type TestCamelCaseFieldNames = Message<"proto2_unittest.TestCamelCaseFiel
   /**
    * @generated from field: proto2_unittest.ForeignMessage MessageField = 4;
    */
-  MessageField?: ForeignMessage;
+  MessageField?: ForeignMessage | undefined;
 
   /**
    * @generated from field: string StringPieceField = 5;
@@ -2350,7 +2350,7 @@ export type TestFieldOrderings = Message<"proto2_unittest.TestFieldOrderings"> &
   /**
    * @generated from field: proto2_unittest.TestFieldOrderings.NestedMessage optional_nested_message = 200;
    */
-  optionalNestedMessage?: TestFieldOrderings_NestedMessage;
+  optionalNestedMessage?: TestFieldOrderings_NestedMessage | undefined;
 };
 
 /**
@@ -3048,12 +3048,12 @@ export type TestOneofBackwardsCompatible = Message<"proto2_unittest.TestOneofBac
   /**
    * @generated from field: proto2_unittest.TestAllTypes foo_message = 3;
    */
-  fooMessage?: TestAllTypes;
+  fooMessage?: TestAllTypes | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestOneofBackwardsCompatible.FooGroup foogroup = 4 [features.message_encoding = DELIMITED];
    */
-  foogroup?: TestOneofBackwardsCompatible_FooGroup;
+  foogroup?: TestOneofBackwardsCompatible_FooGroup | undefined;
 };
 
 /**
@@ -3276,7 +3276,7 @@ export type TestOneof2_NestedMessage = Message<"proto2_unittest.TestOneof2.Neste
   /**
    * @generated from field: proto2_unittest.TestOneof2.NestedMessage child = 3;
    */
-  child?: TestOneof2_NestedMessage;
+  child?: TestOneof2_NestedMessage | undefined;
 };
 
 /**
@@ -3589,12 +3589,12 @@ export type TestDynamicExtensions = Message<"proto2_unittest.TestDynamicExtensio
   /**
    * @generated from field: proto2_unittest.ForeignMessage message_extension = 2003;
    */
-  messageExtension?: ForeignMessage;
+  messageExtension?: ForeignMessage | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestDynamicExtensions.DynamicMessageType dynamic_message_extension = 2004;
    */
-  dynamicMessageExtension?: TestDynamicExtensions_DynamicMessageType;
+  dynamicMessageExtension?: TestDynamicExtensions_DynamicMessageType | undefined;
 
   /**
    * @generated from field: repeated string repeated_extension = 2005;
@@ -3751,12 +3751,12 @@ export type TestParsingMerge = Message<"proto2_unittest.TestParsingMerge"> & {
   /**
    * @generated from field: proto2_unittest.TestAllTypes required_all_types = 1 [features.field_presence = LEGACY_REQUIRED];
    */
-  requiredAllTypes?: TestAllTypes;
+  requiredAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 2;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 3;
@@ -3766,7 +3766,7 @@ export type TestParsingMerge = Message<"proto2_unittest.TestParsingMerge"> & {
   /**
    * @generated from field: proto2_unittest.TestParsingMerge.OptionalGroup optionalgroup = 10 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: TestParsingMerge_OptionalGroup;
+  optionalgroup?: TestParsingMerge_OptionalGroup | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestParsingMerge.RepeatedGroup repeatedgroup = 20 [features.message_encoding = DELIMITED];
@@ -3841,7 +3841,7 @@ export type TestParsingMerge_RepeatedFieldsGenerator_Group1 = Message<"proto2_un
   /**
    * @generated from field: proto2_unittest.TestAllTypes field1 = 11;
    */
-  field1?: TestAllTypes;
+  field1?: TestAllTypes | undefined;
 };
 
 /**
@@ -3858,7 +3858,7 @@ export type TestParsingMerge_RepeatedFieldsGenerator_Group2 = Message<"proto2_un
   /**
    * @generated from field: proto2_unittest.TestAllTypes field1 = 21;
    */
-  field1?: TestAllTypes;
+  field1?: TestAllTypes | undefined;
 };
 
 /**
@@ -3875,7 +3875,7 @@ export type TestParsingMerge_OptionalGroup = Message<"proto2_unittest.TestParsin
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_group_all_types = 11;
    */
-  optionalGroupAllTypes?: TestAllTypes;
+  optionalGroupAllTypes?: TestAllTypes | undefined;
 };
 
 /**
@@ -3892,7 +3892,7 @@ export type TestParsingMerge_RepeatedGroup = Message<"proto2_unittest.TestParsin
   /**
    * @generated from field: proto2_unittest.TestAllTypes repeated_group_all_types = 21;
    */
-  repeatedGroupAllTypes?: TestAllTypes;
+  repeatedGroupAllTypes?: TestAllTypes | undefined;
 };
 
 /**
@@ -3924,7 +3924,7 @@ export type TestMergeException = Message<"proto2_unittest.TestMergeException"> &
   /**
    * @generated from field: proto2_unittest.TestAllExtensions all_extensions = 1;
    */
-  allExtensions?: TestAllExtensions;
+  allExtensions?: TestAllExtensions | undefined;
 };
 
 /**
@@ -4071,7 +4071,7 @@ export type TestEagerlyVerifiedLazyMessage = Message<"proto2_unittest.TestEagerl
   /**
    * @generated from field: proto2_unittest.TestEagerlyVerifiedLazyMessage.LazyMessage lazy_message = 1;
    */
-  lazyMessage?: TestEagerlyVerifiedLazyMessage_LazyMessage;
+  lazyMessage?: TestEagerlyVerifiedLazyMessage_LazyMessage | undefined;
 };
 
 /**
@@ -4267,12 +4267,12 @@ export type TestHugeFieldNumbers = Message<"proto2_unittest.TestHugeFieldNumbers
   /**
    * @generated from field: proto2_unittest.ForeignMessage optional_message = 536870007;
    */
-  optionalMessage?: ForeignMessage;
+  optionalMessage?: ForeignMessage | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestHugeFieldNumbers.OptionalGroup optionalgroup = 536870008 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: TestHugeFieldNumbers_OptionalGroup;
+  optionalgroup?: TestHugeFieldNumbers_OptionalGroup | undefined;
 
   /**
    * @generated from field: map<string, string> string_string_map = 536870010;
@@ -4439,7 +4439,7 @@ export type TestNestedGroupExtensionOuter = Message<"proto2_unittest.TestNestedG
   /**
    * @generated from field: proto2_unittest.TestNestedGroupExtensionOuter.Layer1OptionalGroup layer1optionalgroup = 1 [features.message_encoding = DELIMITED];
    */
-  layer1optionalgroup?: TestNestedGroupExtensionOuter_Layer1OptionalGroup;
+  layer1optionalgroup?: TestNestedGroupExtensionOuter_Layer1OptionalGroup | undefined;
 };
 
 /**
@@ -4643,7 +4643,7 @@ export type TestVerifyInt32 = Message<"proto2_unittest.TestVerifyInt32"> & {
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4700,7 +4700,7 @@ export type TestVerifyMostlyInt32 = Message<"proto2_unittest.TestVerifyMostlyInt
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4762,7 +4762,7 @@ export type TestVerifyMostlyInt32BigFieldNumber = Message<"proto2_unittest.TestV
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4836,7 +4836,7 @@ export type TestVerifyUint32 = Message<"proto2_unittest.TestVerifyUint32"> & {
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4878,7 +4878,7 @@ export type TestVerifyOneUint32 = Message<"proto2_unittest.TestVerifyOneUint32">
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4925,7 +4925,7 @@ export type TestVerifyOneInt32BigFieldNumber = Message<"proto2_unittest.TestVeri
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -4977,7 +4977,7 @@ export type TestVerifyInt32BigFieldNumber = Message<"proto2_unittest.TestVerifyI
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -5029,7 +5029,7 @@ export type TestVerifyUint32BigFieldNumber = Message<"proto2_unittest.TestVerify
   /**
    * @generated from field: proto2_unittest.TestAllTypes optional_all_types = 9;
    */
-  optionalAllTypes?: TestAllTypes;
+  optionalAllTypes?: TestAllTypes | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestAllTypes repeated_all_types = 10;
@@ -5051,7 +5051,7 @@ export type TestVerifyBigFieldNumberUint32 = Message<"proto2_unittest.TestVerify
   /**
    * @generated from field: proto2_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 1;
    */
-  optionalNested?: TestVerifyBigFieldNumberUint32_Nested;
+  optionalNested?: TestVerifyBigFieldNumberUint32_Nested | undefined;
 };
 
 /**
@@ -5108,7 +5108,7 @@ export type TestVerifyBigFieldNumberUint32_Nested = Message<"proto2_unittest.Tes
   /**
    * @generated from field: proto2_unittest.TestVerifyBigFieldNumberUint32.Nested optional_nested = 9;
    */
-  optionalNested?: TestVerifyBigFieldNumberUint32_Nested;
+  optionalNested?: TestVerifyBigFieldNumberUint32_Nested | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestVerifyBigFieldNumberUint32.Nested repeated_nested = 10;
@@ -5888,7 +5888,7 @@ export type InlinedStringIdxRegressionProto = Message<"proto2_unittest.InlinedSt
    *
    * @generated from field: proto2_unittest.InlinedStringIdxRegressionProto sub = 2;
    */
-  sub?: InlinedStringIdxRegressionProto;
+  sub?: InlinedStringIdxRegressionProto | undefined;
 
   /**
    * aux_idx == 3, inlined_string_idx == 2
@@ -6037,12 +6037,12 @@ export type RedactedFields = Message<"proto2_unittest.RedactedFields"> & {
   /**
    * @generated from field: proto2_unittest.TestNestedMessageRedaction optional_redacted_message = 5;
    */
-  optionalRedactedMessage?: TestNestedMessageRedaction;
+  optionalRedactedMessage?: TestNestedMessageRedaction | undefined;
 
   /**
    * @generated from field: proto2_unittest.TestNestedMessageRedaction optional_unredacted_message = 6;
    */
-  optionalUnredactedMessage?: TestNestedMessageRedaction;
+  optionalUnredactedMessage?: TestNestedMessageRedaction | undefined;
 
   /**
    * @generated from field: repeated proto2_unittest.TestNestedMessageRedaction repeated_redacted_message = 7;
@@ -6641,7 +6641,7 @@ export type MessageCreatorZeroInit = Message<"proto2_unittest.MessageCreatorZero
   /**
    * @generated from field: proto2_unittest.MessageCreatorZeroInit m = 3;
    */
-  m?: MessageCreatorZeroInit;
+  m?: MessageCreatorZeroInit | undefined;
 
   /**
    * @generated from oneof proto2_unittest.MessageCreatorZeroInit.one
@@ -6697,7 +6697,7 @@ export type MessageCreatorMemcpy = Message<"proto2_unittest.MessageCreatorMemcpy
   /**
    * @generated from field: proto2_unittest.MessageCreatorMemcpy m = 3;
    */
-  m?: MessageCreatorMemcpy;
+  m?: MessageCreatorMemcpy | undefined;
 
   /**
    * @generated from field: map<int32, int32> m2 = 4;

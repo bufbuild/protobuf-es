@@ -126,22 +126,22 @@ export declare type FuzzMostTypes = Message<"fuzz_unittest.FuzzMostTypes"> & {
   /**
    * @generated from field: fuzz_unittest.FuzzMostTypes.OptionalGroup optionalgroup = 16 [features.message_encoding = DELIMITED];
    */
-  optionalgroup?: FuzzMostTypes_OptionalGroup;
+  optionalgroup?: FuzzMostTypes_OptionalGroup | undefined;
 
   /**
    * @generated from field: fuzz_unittest.FuzzMostTypes.NestedMessage optional_nested_message = 18;
    */
-  optionalNestedMessage?: FuzzMostTypes_NestedMessage;
+  optionalNestedMessage?: FuzzMostTypes_NestedMessage | undefined;
 
   /**
    * @generated from field: fuzz_unittest.ForeignMessage optional_foreign_message = 19;
    */
-  optionalForeignMessage?: ForeignMessage;
+  optionalForeignMessage?: ForeignMessage | undefined;
 
   /**
    * @generated from field: proto2_unittest_import.ImportMessage optional_import_message = 20;
    */
-  optionalImportMessage?: ImportMessage;
+  optionalImportMessage?: ImportMessage | undefined;
 
   /**
    * @generated from field: fuzz_unittest.FuzzMostTypes.NestedEnum optional_nested_enum = 21;
@@ -173,12 +173,12 @@ export declare type FuzzMostTypes = Message<"fuzz_unittest.FuzzMostTypes"> & {
    *
    * @generated from field: proto2_unittest_import.PublicImportMessage optional_public_import_message = 26;
    */
-  optionalPublicImportMessage?: PublicImportMessage;
+  optionalPublicImportMessage?: PublicImportMessage | undefined;
 
   /**
    * @generated from field: fuzz_unittest.FuzzMostTypes.NestedMessage optional_lazy_message = 27;
    */
-  optionalLazyMessage?: FuzzMostTypes_NestedMessage;
+  optionalLazyMessage?: FuzzMostTypes_NestedMessage | undefined;
 
   /**
    * Repeated
@@ -407,7 +407,7 @@ export declare type FuzzMostTypes = Message<"fuzz_unittest.FuzzMostTypes"> & {
   /**
    * @generated from field: fuzz_unittest.TestRequired single = 1000;
    */
-  single?: TestRequired;
+  single?: TestRequired | undefined;
 
   /**
    * @generated from field: repeated fuzz_unittest.TestRequired multi = 1001;
