@@ -264,8 +264,8 @@ export interface DescMessage {
    */
   readonly oneofs: DescOneof[];
   /**
-   * Fields and oneof groups for this message, ordered by their appearance in the
-   * protobuf source.
+   * Standalone fields and oneof groups for this message, ordered by
+   * their appearance in the protobuf source.
    */
   readonly members: (DescField | DescOneof)[];
   /**
