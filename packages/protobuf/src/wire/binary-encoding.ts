@@ -19,7 +19,10 @@ import {
   varint64write,
 } from "./varint.js";
 import { protoInt64 } from "../proto-int64.js";
-import { getTextEncoding } from "./text-encoding.js";
+import {
+  decodeUtf8Strict as decodeUtf8StrictFallback,
+  getTextEncoding,
+} from "./text-encoding.js";
 
 /**
  * Protobuf binary format wire types.
@@ -564,9 +567,19 @@ export class BinaryReader {
 
   /**
    * Read a `string` field, length-delimited data converted to UTF-8 text.
+   * Invalid UTF-8 sequences are silently replaced with U+FFFD.
    */
   string(): string {
     return this.decodeUtf8(this.bytes());
+  }
+
+  /**
+   * Read a `string` field, throwing on invalid UTF-8. Used for fields whose
+   * resolved `utf8_validation` feature is VERIFY (proto3 and editions 2023+
+   * by default).
+   */
+  stringStrict(): string {
+    return decodeUtf8StrictFallback(this.bytes());
   }
 }
 

@@ -149,7 +149,10 @@ export function readField(
 ) {
   switch (field.fieldKind) {
     case "scalar":
-      message.set(field, readScalar(reader, field.scalar));
+      message.set(
+        field,
+        readScalar(reader, field.scalar, field.utf8Validation),
+      );
       break;
     case "enum":
       const val = readScalar(reader, ScalarType.INT32);
@@ -205,12 +208,12 @@ function readMapEntry(
     const [fieldNo] = reader.tag();
     switch (fieldNo) {
       case 1:
-        key = readScalar(reader, field.mapKey);
+        key = readScalar(reader, field.mapKey, field.utf8Validation);
         break;
       case 2:
         switch (field.mapKind) {
           case "scalar":
-            val = readScalar(reader, field.scalar);
+            val = readScalar(reader, field.scalar, field.utf8Validation);
             break;
           case "enum":
             val = reader.int32();
@@ -253,17 +256,19 @@ function readListField(
     return;
   }
   const scalarType = field.scalar ?? ScalarType.INT32;
+  const validateUtf8 =
+    field.listKind === "scalar" ? field.utf8Validation : false;
   const packed =
     wireType == WireType.LengthDelimited &&
     scalarType != ScalarType.STRING &&
     scalarType != ScalarType.BYTES;
   if (!packed) {
-    list.add(readScalar(reader, scalarType));
+    list.add(readScalar(reader, scalarType, validateUtf8));
     return;
   }
   const e = reader.uint32() + reader.pos;
   while (reader.pos < e) {
-    list.add(readScalar(reader, scalarType));
+    list.add(readScalar(reader, scalarType, validateUtf8));
   }
 }
 
@@ -285,10 +290,14 @@ function readMessageField(
   return message;
 }
 
-function readScalar(reader: BinaryReader, type: ScalarType): ScalarValue {
+function readScalar(
+  reader: BinaryReader,
+  type: ScalarType,
+  validateUtf8 = false,
+): ScalarValue {
   switch (type) {
     case ScalarType.STRING:
-      return reader.string();
+      return validateUtf8 ? reader.stringStrict() : reader.string();
     case ScalarType.BOOL:
       return reader.bool();
     case ScalarType.DOUBLE:

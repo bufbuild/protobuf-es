@@ -24,9 +24,16 @@ interface TextEncoding {
    */
   encodeUtf8: (text: string) => Uint8Array<ArrayBuffer>;
   /**
-   * Decode UTF-8 text from binary.
+   * Decode UTF-8 text from binary, silently replacing invalid sequences with
+   * the Unicode replacement character U+FFFD.
    */
   decodeUtf8: (bytes: Uint8Array) => string;
+  /**
+   * Decode UTF-8 text from binary, throwing on invalid byte sequences. If not
+   * provided, a fallback re-encodes the result of decodeUtf8 and compares the
+   * bytes to detect invalid UTF-8.
+   */
+  decodeUtf8Strict?: (bytes: Uint8Array) => string;
 }
 
 /**
@@ -50,12 +57,18 @@ export function getTextEncoding() {
     const td = new (
       globalThis as unknown as GlobalWithTextEncoderDecoder
     ).TextDecoder();
+    const tdStrict = new (
+      globalThis as unknown as GlobalWithTextEncoderDecoder
+    ).TextDecoder("utf-8", { fatal: true });
     (globalThis as GlobalWithTextEncoding)[symbol] = {
       encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
         return te.encode(text);
       },
       decodeUtf8(bytes: Uint8Array): string {
         return td.decode(bytes);
+      },
+      decodeUtf8Strict(bytes: Uint8Array): string {
+        return tdStrict.decode(bytes);
       },
       checkUtf8(text: string): boolean {
         try {
@@ -70,6 +83,30 @@ export function getTextEncoding() {
   return (globalThis as GlobalWithTextEncoding)[symbol] as TextEncoding;
 }
 
+/**
+ * Decode UTF-8 bytes, throwing if the input contains invalid sequences.
+ *
+ * Uses TextEncoding.decodeUtf8Strict when available, otherwise falls back to
+ * lax decoding followed by a re-encode byte comparison.
+ */
+export function decodeUtf8Strict(bytes: Uint8Array): string {
+  const te = getTextEncoding();
+  if (te.decodeUtf8Strict) {
+    return te.decodeUtf8Strict(bytes);
+  }
+  const text = te.decodeUtf8(bytes);
+  const reencoded = te.encodeUtf8(text);
+  if (reencoded.byteLength !== bytes.byteLength) {
+    throw new Error("invalid UTF-8");
+  }
+  for (let i = 0; i < bytes.byteLength; i++) {
+    if (reencoded[i] !== bytes[i]) {
+      throw new Error("invalid UTF-8");
+    }
+  }
+  return text;
+}
+
 type GlobalWithTextEncoding = {
   [symbol]?: TextEncoding;
 };
@@ -81,7 +118,10 @@ type GlobalWithTextEncoderDecoder = {
     };
   };
   TextDecoder: {
-    new (): {
+    new (
+      label?: string,
+      options?: { fatal?: boolean; ignoreBOM?: boolean },
+    ): {
       decode(data: Uint8Array): string;
     };
   };

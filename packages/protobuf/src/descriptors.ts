@@ -405,6 +405,13 @@ type descFieldScalar<T extends ScalarType = ScalarType> = T extends T
        */
       readonly longAsString: boolean;
       /**
+       * Whether to reject invalid UTF-8 when reading string fields from the
+       * binary wire format. Reflects the resolved `utf8_validation` feature:
+       * true for VERIFY (proto3 / editions 2023+ default), false for NONE
+       * (proto2 default). Only meaningful when `scalar == STRING`.
+       */
+      readonly utf8Validation: boolean;
+      /**
        * The message type, if it is a message field.
        */
       readonly message: undefined;
@@ -505,6 +512,11 @@ type descFieldListScalar<T extends ScalarType = ScalarType> = T extends T
        * is true, and 64-bit integral types are represented with String.
        */
       readonly longAsString: boolean;
+      /**
+       * Whether to reject invalid UTF-8 when reading list elements from the
+       * binary wire format. Only meaningful when `scalar == STRING`.
+       */
+      readonly utf8Validation: boolean;
     }
   : never;
 
@@ -567,6 +579,12 @@ type descFieldMapCommon<T extends ScalarType = ScalarType> = T extends Exclude<S
    * and also applies to map values, if they are messages.
    */
   readonly delimitedEncoding: false;
+  /**
+   * Whether to reject invalid UTF-8 when reading string keys or string values
+   * from the binary wire format. Only meaningful when `mapKey == STRING` or
+   * the map value is a `STRING` scalar.
+   */
+  readonly utf8Validation: boolean;
 } : never;
 
 type descFieldMapScalar<T extends ScalarType = ScalarType> = T extends T

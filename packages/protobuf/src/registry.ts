@@ -21,6 +21,7 @@ import type {
   FeatureSet_RepeatedFieldEncoding,
   FeatureSet_MessageEncoding,
   FeatureSet_EnumType,
+  FeatureSet_Utf8Validation,
   FieldDescriptorProto,
   FieldDescriptorProto_Type,
   FieldDescriptorProto_Label,
@@ -424,6 +425,9 @@ const DELIMITED: FeatureSet_MessageEncoding.DELIMITED = 2;
 
 // bootstrap-inject google.protobuf.FeatureSet.EnumType.OPEN: const $name: FeatureSet_EnumType.$localName = $number;
 const OPEN: FeatureSet_EnumType.OPEN = 1;
+
+// bootstrap-inject google.protobuf.FeatureSet.Utf8Validation.VERIFY: const $name: FeatureSet_Utf8Validation.$localName = $number;
+const VERIFY: FeatureSet_Utf8Validation.VERIFY = 2;
 
 // biome-ignore format: want this to read well
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2024: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
@@ -847,6 +851,7 @@ function newField(
     delimitedEncoding: undefined,
     packed: undefined,
     longAsString: false,
+    utf8Validation: undefined,
     getDefaultValue: undefined,
   };
   if (isExtension) {
@@ -898,6 +903,7 @@ function newField(
       field.delimitedEncoding = false; // map fields are always LENGTH_PREFIXED
       field.enum = value.enum;
       field.scalar = value.scalar;
+      field.utf8Validation = isUtf8Validated(proto, parentOrFile);
       return field as DescField;
     }
     // list field
@@ -919,6 +925,7 @@ function newField(
         field.listKind = "scalar";
         field.scalar = type;
         field.longAsString = jstype == JS_STRING;
+        field.utf8Validation = isUtf8Validated(proto, parentOrFile);
         break;
     }
     field.packed = isPackedField(proto, parentOrFile);
@@ -956,6 +963,7 @@ function newField(
       field.fieldKind = "scalar";
       field.scalar = type;
       field.longAsString = jstype == JS_STRING;
+      field.utf8Validation = isUtf8Validated(proto, parentOrFile);
       field.getDefaultValue = () => {
         return unsafeIsSetExplicit(proto, "defaultValue")
           ? parseTextFormatScalarValue(
@@ -1232,6 +1240,24 @@ function isDelimitedEncoding(
   return (
     DELIMITED ==
     resolveFeature("messageEncoding", {
+      proto,
+      parent,
+    })
+  );
+}
+
+/**
+ * Reject invalid UTF-8 when reading string fields from the binary wire format?
+ * Driven by the resolved `utf8_validation` feature: VERIFY (proto3 / editions
+ * 2023+ default) enforces; NONE (proto2 default) does not.
+ */
+function isUtf8Validated(
+  proto: FieldDescriptorProto,
+  parent: DescMessage | DescFile,
+): boolean {
+  return (
+    VERIFY ==
+    resolveFeature("utf8Validation", {
       proto,
       parent,
     })
