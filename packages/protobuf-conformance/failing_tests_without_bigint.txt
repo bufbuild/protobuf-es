@@ -71,20 +71,6 @@ Recommended.Proto3.ProtobufInput.RejectInvalidUtf8.String.Oneof # Should have fa
 Recommended.Proto3.ProtobufInput.RejectInvalidUtf8.String.Repeated # Should have failed to parse, but didn't.
 Recommended.Proto3.ProtobufInput.RejectInvalidUtf8.String.Singular # Should have failed to parse, but didn't.
 
-# Protobuf-ES does not reject overlong varints or malformed wire-format tags.
-Required.Editions_Proto2.ProtobufInput.BadTag_FieldNumberSlightlyTooHigh # Should have failed to parse, but didn't.
-Required.Editions_Proto2.ProtobufInput.BadTag_FieldNumberTooHigh # Should have failed to parse, but didn't.
-Required.Editions_Proto2.ProtobufInput.BadTag_OverlongVarint # Should have failed to parse, but didn't.
-Required.Editions_Proto3.ProtobufInput.BadTag_FieldNumberSlightlyTooHigh # Should have failed to parse, but didn't.
-Required.Editions_Proto3.ProtobufInput.BadTag_FieldNumberTooHigh # Should have failed to parse, but didn't.
-Required.Editions_Proto3.ProtobufInput.BadTag_OverlongVarint # Should have failed to parse, but didn't.
-Required.Proto2.ProtobufInput.BadTag_FieldNumberSlightlyTooHigh # Should have failed to parse, but didn't.
-Required.Proto2.ProtobufInput.BadTag_FieldNumberTooHigh # Should have failed to parse, but didn't.
-Required.Proto2.ProtobufInput.BadTag_OverlongVarint # Should have failed to parse, but didn't.
-Required.Proto3.ProtobufInput.BadTag_FieldNumberSlightlyTooHigh # Should have failed to parse, but didn't.
-Required.Proto3.ProtobufInput.BadTag_FieldNumberTooHigh # Should have failed to parse, but didn't.
-Required.Proto3.ProtobufInput.BadTag_OverlongVarint # Should have failed to parse, but didn't.
-
 # google.protobuf.Empty is not in the conformance binary's type registry, so
 # Any.unpack fails for "type.googleapis.com/google.protobuf.Empty".
 Required.Editions_Proto3.JsonInput.AnyEmpty.JsonOutput # Failed to parse input or produce output.

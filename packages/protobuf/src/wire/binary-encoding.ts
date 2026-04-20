@@ -386,15 +386,26 @@ export class BinaryReader {
 
   /**
    * Reads a tag - field number and wire type.
+   *
+   * A tag is a uint32 varint of `(field_number << 3) | wire_type`. The low 3
+   * bits are the wire type; the remaining bits are the field number. Varints
+   * longer than 5 bytes, or 5-byte varints whose value does not fit in uint32,
+   * are rejected.
    */
   tag(): [number, WireType] {
-    let tag = this.uint32(),
-      fieldNo = tag >>> 3,
-      wireType = tag & 7;
-    if (fieldNo <= 0 || wireType < 0 || wireType > 5)
+    const start = this.pos;
+    const tag = this.uint32();
+    const bytesRead = this.pos - start;
+    if (bytesRead > 5 || (bytesRead == 5 && this.buf[this.pos - 1] > 0x0f)) {
+      throw new Error("illegal tag: varint overflows uint32");
+    }
+    const fieldNo = tag >>> 3;
+    const wireType = tag & 7;
+    if (fieldNo <= 0 || wireType > 5) {
       throw new Error(
         "illegal tag: field no " + fieldNo + " wire type " + wireType,
       );
+    }
     return [fieldNo, wireType];
   }
 
