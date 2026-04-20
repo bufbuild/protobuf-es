@@ -90,7 +90,7 @@ export interface JsonWriteOptions {
    * This option is required to write `google.protobuf.Any` and extensions
    * to JSON format.
    */
-  registry?: Registry;
+  registry?: Registry | undefined;
 }
 
 /**
