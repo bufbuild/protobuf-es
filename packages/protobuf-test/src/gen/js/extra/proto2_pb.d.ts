@@ -79,17 +79,17 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
   /**
    * @generated from field: required spec.Proto2Message required_message_field = 8;
    */
-  requiredMessageField?: Proto2Message;
+  requiredMessageField?: Proto2Message | undefined;
 
   /**
    * @generated from field: required spec.Proto2Message.RequiredGroup requiredgroup = 9;
    */
-  requiredgroup?: Proto2Message_RequiredGroup;
+  requiredgroup?: Proto2Message_RequiredGroup | undefined;
 
   /**
    * @generated from field: required google.protobuf.UInt32Value required_wrapped_uint32_field = 201;
    */
-  requiredWrappedUint32Field?: number;
+  requiredWrappedUint32Field?: number | undefined;
 
   /**
    * @generated from field: required string required_default_string_field = 10 [default = "hello \" *\/ "];
@@ -139,17 +139,17 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
   /**
    * @generated from field: required spec.Proto2Message required_default_message_field = 17;
    */
-  requiredDefaultMessageField?: Proto2Message;
+  requiredDefaultMessageField?: Proto2Message | undefined;
 
   /**
    * @generated from field: required spec.Proto2Message.RequiredDefaultGroup requireddefaultgroup = 18;
    */
-  requireddefaultgroup?: Proto2Message_RequiredDefaultGroup;
+  requireddefaultgroup?: Proto2Message_RequiredDefaultGroup | undefined;
 
   /**
    * @generated from field: required google.protobuf.UInt32Value required_default_wrapped_uint32_field = 202;
    */
-  requiredDefaultWrappedUint32Field?: number;
+  requiredDefaultWrappedUint32Field?: number | undefined;
 
   /**
    * @generated from field: optional string optional_string_field = 19;
@@ -199,17 +199,17 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
   /**
    * @generated from field: optional spec.Proto2Message optional_message_field = 26;
    */
-  optionalMessageField?: Proto2Message;
+  optionalMessageField?: Proto2Message | undefined;
 
   /**
    * @generated from field: optional spec.Proto2Message.OptionalGroup optionalgroup = 27;
    */
-  optionalgroup?: Proto2Message_OptionalGroup;
+  optionalgroup?: Proto2Message_OptionalGroup | undefined;
 
   /**
    * @generated from field: optional google.protobuf.UInt32Value optional_wrapped_uint32_field = 207;
    */
-  optionalWrappedUint32Field?: number;
+  optionalWrappedUint32Field?: number | undefined;
 
   /**
    * @generated from field: optional string optional_default_string_field = 28 [default = "hello \" *\/ "];
@@ -259,17 +259,17 @@ export declare type Proto2Message = Message<"spec.Proto2Message"> & {
   /**
    * @generated from field: optional spec.Proto2Message optional_default_message_field = 35;
    */
-  optionalDefaultMessageField?: Proto2Message;
+  optionalDefaultMessageField?: Proto2Message | undefined;
 
   /**
    * @generated from field: optional spec.Proto2Message.OptionalDefaultGroup optionaldefaultgroup = 36;
    */
-  optionaldefaultgroup?: Proto2Message_OptionalDefaultGroup;
+  optionaldefaultgroup?: Proto2Message_OptionalDefaultGroup | undefined;
 
   /**
    * @generated from field: optional google.protobuf.UInt32Value optional_default_wrapped_uint32_field = 203;
    */
-  optionalDefaultWrappedUint32Field?: number;
+  optionalDefaultWrappedUint32Field?: number | undefined;
 
   /**
    * @generated from field: repeated string repeated_string_field = 37;

@@ -74,7 +74,7 @@ export type CheckedExpr = Message<"google.api.expr.v1alpha1.CheckedExpr"> & {
    *
    * @generated from field: google.api.expr.v1alpha1.SourceInfo source_info = 5;
    */
-  sourceInfo?: SourceInfo;
+  sourceInfo?: SourceInfo | undefined;
 
   /**
    * The expr version indicates the major / minor version number of the `expr`
@@ -95,7 +95,7 @@ export type CheckedExpr = Message<"google.api.expr.v1alpha1.CheckedExpr"> & {
    *
    * @generated from field: google.api.expr.v1alpha1.Expr expr = 4;
    */
-  expr?: Expr;
+  expr?: Expr | undefined;
 };
 
 /**
@@ -255,7 +255,7 @@ export type Type_ListType = Message<"google.api.expr.v1alpha1.Type.ListType"> & 
    *
    * @generated from field: google.api.expr.v1alpha1.Type elem_type = 1;
    */
-  elemType?: Type;
+  elemType?: Type | undefined;
 };
 
 /**
@@ -276,14 +276,14 @@ export type Type_MapType = Message<"google.api.expr.v1alpha1.Type.MapType"> & {
    *
    * @generated from field: google.api.expr.v1alpha1.Type key_type = 1;
    */
-  keyType?: Type;
+  keyType?: Type | undefined;
 
   /**
    * The type of the value.
    *
    * @generated from field: google.api.expr.v1alpha1.Type value_type = 2;
    */
-  valueType?: Type;
+  valueType?: Type | undefined;
 };
 
 /**
@@ -304,7 +304,7 @@ export type Type_FunctionType = Message<"google.api.expr.v1alpha1.Type.FunctionT
    *
    * @generated from field: google.api.expr.v1alpha1.Type result_type = 1;
    */
-  resultType?: Type;
+  resultType?: Type | undefined;
 
   /**
    * Argument types of the function.
@@ -534,7 +534,7 @@ export type Decl_IdentDecl = Message<"google.api.expr.v1alpha1.Decl.IdentDecl"> 
    *
    * @generated from field: google.api.expr.v1alpha1.Type type = 1;
    */
-  type?: Type;
+  type?: Type | undefined;
 
   /**
    * The constant value of the identifier. If not specified, the identifier
@@ -542,7 +542,7 @@ export type Decl_IdentDecl = Message<"google.api.expr.v1alpha1.Decl.IdentDecl"> 
    *
    * @generated from field: google.api.expr.v1alpha1.Constant value = 2;
    */
-  value?: Constant;
+  value?: Constant | undefined;
 
   /**
    * Documentation string for the identifier.
@@ -644,7 +644,7 @@ export type Decl_FunctionDecl_Overload = Message<"google.api.expr.v1alpha1.Decl.
    *
    * @generated from field: google.api.expr.v1alpha1.Type result_type = 4;
    */
-  resultType?: Type;
+  resultType?: Type | undefined;
 
   /**
    * Whether the function is to be used in a method call-style `x.f(...)`
@@ -706,7 +706,7 @@ export type Reference = Message<"google.api.expr.v1alpha1.Reference"> & {
    *
    * @generated from field: google.api.expr.v1alpha1.Constant value = 4;
    */
-  value?: Constant;
+  value?: Constant | undefined;
 };
 
 /**

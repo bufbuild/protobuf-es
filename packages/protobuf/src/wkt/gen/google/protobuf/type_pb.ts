@@ -76,7 +76,7 @@ export type Type = Message<"google.protobuf.Type"> & {
    *
    * @generated from field: google.protobuf.SourceContext source_context = 5;
    */
-  sourceContext?: SourceContext;
+  sourceContext?: SourceContext | undefined;
 
   /**
    * The source syntax.
@@ -574,7 +574,7 @@ export type Enum = Message<"google.protobuf.Enum"> & {
    *
    * @generated from field: google.protobuf.SourceContext source_context = 4;
    */
-  sourceContext?: SourceContext;
+  sourceContext?: SourceContext | undefined;
 
   /**
    * The source syntax.
@@ -754,7 +754,7 @@ export type Option = Message<"google.protobuf.Option"> & {
    *
    * @generated from field: google.protobuf.Any value = 2;
    */
-  value?: Any;
+  value?: Any | undefined;
 };
 
 /**

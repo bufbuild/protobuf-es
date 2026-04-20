@@ -56,7 +56,7 @@ export type Operation = Message<"google.longrunning.Operation"> & {
    *
    * @generated from field: google.protobuf.Any metadata = 2;
    */
-  metadata?: Any;
+  metadata?: Any | undefined;
 
   /**
    * If the value is `false`, it means the operation is still in progress.
@@ -260,7 +260,7 @@ export type WaitOperationRequest = Message<"google.longrunning.WaitOperationRequ
    *
    * @generated from field: google.protobuf.Duration timeout = 2;
    */
-  timeout?: Duration;
+  timeout?: Duration | undefined;
 };
 
 /**

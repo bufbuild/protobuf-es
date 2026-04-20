@@ -122,7 +122,7 @@ export function parsePath(
   schema: DescMessage,
   path: string,
   options?: {
-    registry?: Registry;
+    registry?: Registry | undefined;
   },
 ): Path {
   const builder = new PathBuilderImpl(schema, schema, []);

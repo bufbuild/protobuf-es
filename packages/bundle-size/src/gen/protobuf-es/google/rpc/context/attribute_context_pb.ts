@@ -57,7 +57,7 @@ export type AttributeContext = Message<"google.rpc.context.AttributeContext"> & 
    *
    * @generated from field: google.rpc.context.AttributeContext.Peer origin = 7;
    */
-  origin?: AttributeContext_Peer;
+  origin?: AttributeContext_Peer | undefined;
 
   /**
    * The source of a network activity, such as starting a TCP connection.
@@ -66,7 +66,7 @@ export type AttributeContext = Message<"google.rpc.context.AttributeContext"> & 
    *
    * @generated from field: google.rpc.context.AttributeContext.Peer source = 1;
    */
-  source?: AttributeContext_Peer;
+  source?: AttributeContext_Peer | undefined;
 
   /**
    * The destination of a network activity, such as accepting a TCP connection.
@@ -75,21 +75,21 @@ export type AttributeContext = Message<"google.rpc.context.AttributeContext"> & 
    *
    * @generated from field: google.rpc.context.AttributeContext.Peer destination = 2;
    */
-  destination?: AttributeContext_Peer;
+  destination?: AttributeContext_Peer | undefined;
 
   /**
    * Represents a network request, such as an HTTP request.
    *
    * @generated from field: google.rpc.context.AttributeContext.Request request = 3;
    */
-  request?: AttributeContext_Request;
+  request?: AttributeContext_Request | undefined;
 
   /**
    * Represents a network response, such as an HTTP response.
    *
    * @generated from field: google.rpc.context.AttributeContext.Response response = 4;
    */
-  response?: AttributeContext_Response;
+  response?: AttributeContext_Response | undefined;
 
   /**
    * Represents a target resource that is involved with a network activity.
@@ -98,14 +98,14 @@ export type AttributeContext = Message<"google.rpc.context.AttributeContext"> & 
    *
    * @generated from field: google.rpc.context.AttributeContext.Resource resource = 5;
    */
-  resource?: AttributeContext_Resource;
+  resource?: AttributeContext_Resource | undefined;
 
   /**
    * Represents an API operation that is involved to a network activity.
    *
    * @generated from field: google.rpc.context.AttributeContext.Api api = 6;
    */
-  api?: AttributeContext_Api;
+  api?: AttributeContext_Api | undefined;
 
   /**
    * Supports extensions for advanced use cases, such as logs and metrics.
@@ -296,7 +296,7 @@ export type AttributeContext_Auth = Message<"google.rpc.context.AttributeContext
    *
    * @generated from field: google.protobuf.Struct claims = 4;
    */
-  claims?: JsonObject;
+  claims?: JsonObject | undefined;
 
   /**
    * A list of access level resource names that allow resources to be
@@ -387,7 +387,7 @@ export type AttributeContext_Request = Message<"google.rpc.context.AttributeCont
    *
    * @generated from field: google.protobuf.Timestamp time = 9;
    */
-  time?: Timestamp;
+  time?: Timestamp | undefined;
 
   /**
    * The HTTP request size in bytes. If unknown, it must be -1.
@@ -420,7 +420,7 @@ export type AttributeContext_Request = Message<"google.rpc.context.AttributeCont
    *
    * @generated from field: google.rpc.context.AttributeContext.Auth auth = 13;
    */
-  auth?: AttributeContext_Auth;
+  auth?: AttributeContext_Auth | undefined;
 };
 
 /**
@@ -466,7 +466,7 @@ export type AttributeContext_Response = Message<"google.rpc.context.AttributeCon
    *
    * @generated from field: google.protobuf.Timestamp time = 4;
    */
-  time?: Timestamp;
+  time?: Timestamp | undefined;
 
   /**
    * The amount of time it takes the backend service to fully respond to a
@@ -476,7 +476,7 @@ export type AttributeContext_Response = Message<"google.rpc.context.AttributeCon
    *
    * @generated from field: google.protobuf.Duration backend_latency = 5;
    */
-  backendLatency?: Duration;
+  backendLatency?: Duration | undefined;
 };
 
 /**
@@ -575,7 +575,7 @@ export type AttributeContext_Resource = Message<"google.rpc.context.AttributeCon
    *
    * @generated from field: google.protobuf.Timestamp create_time = 8;
    */
-  createTime?: Timestamp;
+  createTime?: Timestamp | undefined;
 
   /**
    * Output only. The timestamp when the resource was last updated. Any
@@ -584,7 +584,7 @@ export type AttributeContext_Resource = Message<"google.rpc.context.AttributeCon
    *
    * @generated from field: google.protobuf.Timestamp update_time = 9;
    */
-  updateTime?: Timestamp;
+  updateTime?: Timestamp | undefined;
 
   /**
    * Output only. The timestamp when the resource was deleted.
@@ -592,7 +592,7 @@ export type AttributeContext_Resource = Message<"google.rpc.context.AttributeCon
    *
    * @generated from field: google.protobuf.Timestamp delete_time = 10;
    */
-  deleteTime?: Timestamp;
+  deleteTime?: Timestamp | undefined;
 
   /**
    * Output only. An opaque value that uniquely identifies a version or

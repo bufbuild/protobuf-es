@@ -27,9 +27,9 @@ void suite("target", () => {
     typeof createEcmaScriptPlugin<Record<string, never>>
   >[0];
   let generateTs: Mock<PluginInit["generateTs"]>;
-  let generateJs: Mock<Required<PluginInit>["generateJs"]>;
-  let generateDts: Mock<Required<PluginInit>["generateDts"]>;
-  let transpile: Mock<Required<PluginInit>["transpile"]>;
+  let generateJs: Mock<Exclude<PluginInit["generateJs"], undefined>>;
+  let generateDts: Mock<Exclude<PluginInit["generateDts"], undefined>>;
+  let transpile: Mock<Exclude<PluginInit["transpile"], undefined>>;
 
   beforeEach(() => {
     generateTs = mock.fn((schema: Schema) =>

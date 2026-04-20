@@ -42,7 +42,7 @@ export type TestMessageSetContainer = Message<"proto2_unittest.TestMessageSetCon
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet message_set = 1;
    */
-  messageSet?: TestMessageSet;
+  messageSet?: TestMessageSet | undefined;
 };
 
 /**
@@ -59,17 +59,17 @@ export type NestedTestMessageSetContainer = Message<"proto2_unittest.NestedTestM
   /**
    * @generated from field: optional proto2_unittest.TestMessageSetContainer container = 1;
    */
-  container?: TestMessageSetContainer;
+  container?: TestMessageSetContainer | undefined;
 
   /**
    * @generated from field: optional proto2_unittest.NestedTestMessageSetContainer child = 2;
    */
-  child?: NestedTestMessageSetContainer;
+  child?: NestedTestMessageSetContainer | undefined;
 
   /**
    * @generated from field: optional proto2_unittest.NestedTestMessageSetContainer lazy_child = 3;
    */
-  lazyChild?: NestedTestMessageSetContainer;
+  lazyChild?: NestedTestMessageSetContainer | undefined;
 };
 
 /**
@@ -96,7 +96,7 @@ export type NestedTestInt = Message<"proto2_unittest.NestedTestInt"> & {
   /**
    * @generated from field: optional proto2_unittest.NestedTestInt child = 2;
    */
-  child?: NestedTestInt;
+  child?: NestedTestInt | undefined;
 };
 
 /**
@@ -118,7 +118,7 @@ export type TestMessageSetExtension1 = Message<"proto2_unittest.TestMessageSetEx
   /**
    * @generated from field: optional proto2_wireformat_unittest.TestMessageSet recursive = 16;
    */
-  recursive?: TestMessageSet;
+  recursive?: TestMessageSet | undefined;
 
   /**
    * @generated from field: optional string test_aliasing = 17;
@@ -169,7 +169,7 @@ export type TestMessageSetExtension3 = Message<"proto2_unittest.TestMessageSetEx
   /**
    * @generated from field: optional proto2_unittest.NestedTestInt msg = 35;
    */
-  msg?: NestedTestInt;
+  msg?: NestedTestInt | undefined;
 
   /**
    * @generated from field: required int32 required_int = 36;
