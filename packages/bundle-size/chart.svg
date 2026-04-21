@@ -43,14 +43,14 @@
 <text x="-10" y="294" text-anchor="end">0 KiB</text>
 </g>
 <g transform="translate(110, 20)">
-  <polyline fill="none" stroke="#ffa600" stroke-width="2" points="0,245.24541015625 140,243.46123046875 280,241.866796875 420,235.2568359375 560,219.81376953125">
+  <polyline fill="none" stroke="#ffa600" stroke-width="2" points="0,245.15478515625 140,243.226171875 280,241.72236328125 420,235.18037109375 560,219.5560546875">
     <title>Protobuf-ES</title>
   </polyline>
-<circle cx="0" cy="245.24541015625" r="4" fill="#ffa600"><title>Protobuf-ES 15.43 KiB for 1 files</title></circle>
-<circle cx="140" cy="243.46123046875" r="4" fill="#ffa600"><title>Protobuf-ES 16.05 KiB for 4 files</title></circle>
-<circle cx="280" cy="241.866796875" r="4" fill="#ffa600"><title>Protobuf-ES 16.6 KiB for 8 files</title></circle>
-<circle cx="420" cy="235.2568359375" r="4" fill="#ffa600"><title>Protobuf-ES 18.88 KiB for 16 files</title></circle>
-<circle cx="560" cy="219.81376953125" r="4" fill="#ffa600"><title>Protobuf-ES 24.2 KiB for 32 files</title></circle>
+<circle cx="0" cy="245.15478515625" r="4" fill="#ffa600"><title>Protobuf-ES 15.46 KiB for 1 files</title></circle>
+<circle cx="140" cy="243.226171875" r="4" fill="#ffa600"><title>Protobuf-ES 16.13 KiB for 4 files</title></circle>
+<circle cx="280" cy="241.72236328125" r="4" fill="#ffa600"><title>Protobuf-ES 16.65 KiB for 8 files</title></circle>
+<circle cx="420" cy="235.18037109375" r="4" fill="#ffa600"><title>Protobuf-ES 18.9 KiB for 16 files</title></circle>
+<circle cx="560" cy="219.5560546875" r="4" fill="#ffa600"><title>Protobuf-ES 24.29 KiB for 32 files</title></circle>
 </g>
 <g transform="translate(110, 20)">
   <polyline fill="none" stroke="#ff6361" stroke-width="2" points="0,188.04970703125 140,183.87529296875 280,180.72607421875 420,160.31279296875 560,76.125">
