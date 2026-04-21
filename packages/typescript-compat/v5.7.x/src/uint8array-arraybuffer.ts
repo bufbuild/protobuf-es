@@ -1,5 +1,9 @@
-import {BinaryWriter, base64Decode, getTextEncoding} from "@bufbuild/protobuf/wire";
-import {DescMessage, type Message, toBinary} from "@bufbuild/protobuf";
+import {
+  BinaryWriter,
+  base64Decode,
+  getTextEncoding,
+} from "@bufbuild/protobuf/wire";
+import { type DescMessage, type Message, toBinary } from "@bufbuild/protobuf";
 
 export function testBinaryWriterFinish() {
   const infer = new BinaryWriter().finish();
@@ -18,15 +22,23 @@ export function testBase64Decode() {
 export function testEncodeUtf8() {
   const infer = getTextEncoding().encodeUtf8("");
   const uint8Arr: Uint8Array = getTextEncoding().encodeUtf8("");
-  const uint8ArrBuff: Uint8Array<ArrayBuffer> = getTextEncoding().encodeUtf8("");
+  const uint8ArrBuff: Uint8Array<ArrayBuffer> =
+    getTextEncoding().encodeUtf8("");
   return [infer, uint8Arr, uint8ArrBuff] as const;
 }
 
 export function testToBinary() {
-  const infer = toBinary(null as unknown as DescMessage, null as unknown as Message);
-  const uint8Arr: Uint8Array = toBinary(null as unknown as DescMessage, null as unknown as Message);
-  const uint8ArrBuff: Uint8Array<ArrayBuffer> = toBinary(null as unknown as DescMessage, null as unknown as Message);
+  const infer = toBinary(
+    null as unknown as DescMessage,
+    null as unknown as Message,
+  );
+  const uint8Arr: Uint8Array = toBinary(
+    null as unknown as DescMessage,
+    null as unknown as Message,
+  );
+  const uint8ArrBuff: Uint8Array<ArrayBuffer> = toBinary(
+    null as unknown as DescMessage,
+    null as unknown as Message,
+  );
   return [infer, uint8Arr, uint8ArrBuff] as const;
 }
-
-

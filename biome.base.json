@@ -12,8 +12,7 @@
       "**",
       "!**/tsconfig*.json",
       "!**/src/gen/**",
-      "!**/packages/**/dist/**",
-      "!**/packages/typescript-compat/**"
+      "!**/packages/**/dist/**"
     ]
   },
   "formatter": {
