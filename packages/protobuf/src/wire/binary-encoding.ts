@@ -377,6 +377,9 @@ export class BinaryReader {
     private readonly decodeUtf8: (
       bytes: Uint8Array,
     ) => string = getTextEncoding().decodeUtf8,
+    private readonly decodeUtf8Strict: (
+      bytes: Uint8Array,
+    ) => string = defaultDecodeUtf8Strict,
   ) {
     this.buf = buf;
     this.len = buf.length;
@@ -564,10 +567,36 @@ export class BinaryReader {
 
   /**
    * Read a `string` field, length-delimited data converted to UTF-8 text.
+   * Invalid UTF-8 sequences are silently replaced with U+FFFD.
    */
   string(): string {
     return this.decodeUtf8(this.bytes());
   }
+
+  /**
+   * Read a `string` field, throwing on invalid UTF-8.
+   */
+  stringStrict(): string {
+    return this.decodeUtf8Strict(this.bytes());
+  }
+}
+
+// Lazily constructed fatal UTF-8 decoder used as the default for
+// BinaryReader.decodeUtf8Strict. Independent of configureTextEncoding.
+let strictDecoder: { decode(data: Uint8Array): string } | undefined;
+
+function defaultDecodeUtf8Strict(bytes: Uint8Array): string {
+  if (strictDecoder === undefined) {
+    strictDecoder = new (
+      globalThis as unknown as {
+        TextDecoder: new (
+          label?: string,
+          options?: { fatal?: boolean },
+        ) => { decode(data: Uint8Array): string };
+      }
+    ).TextDecoder("utf-8", { fatal: true });
+  }
+  return strictDecoder.decode(bytes);
 }
 
 /**
