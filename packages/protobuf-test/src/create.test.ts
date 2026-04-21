@@ -906,7 +906,7 @@ void suite("create()", () => {
     void suite("enum field", () => {
       test("accepts proto3 enum value out of range", () => {
         const msg = create(proto3_ts.Proto3MessageSchema, {
-          // @ts-expect-error -- required for older TS
+          // @ts-ignore -- required for older TS
           singularEnumField: 99,
         });
         assert.strictEqual(msg.singularEnumField, 99);

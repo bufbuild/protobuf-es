@@ -40,7 +40,8 @@
       "suspicious": {
         "noDoubleEquals": "off",
         "noFallthroughSwitchClause": "off",
-        "noPrototypeBuiltins": "off"
+        "noPrototypeBuiltins": "off",
+        "noTsIgnore": "off"
       }
     }
   }
