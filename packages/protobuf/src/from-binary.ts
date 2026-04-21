@@ -295,7 +295,7 @@ function readScalar(
 ): ScalarValue {
   switch (type) {
     case ScalarType.STRING:
-      return validateUtf8 ? reader.stringStrict() : reader.string();
+      return reader.string(validateUtf8);
     case ScalarType.BOOL:
       return reader.bool();
     case ScalarType.DOUBLE:
