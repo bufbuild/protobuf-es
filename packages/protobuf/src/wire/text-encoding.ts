@@ -47,9 +47,11 @@ export function getTextEncoding() {
     const te = new (
       globalThis as unknown as GlobalWithTextEncoderDecoder
     ).TextEncoder();
+    // Decode with fatal: true so binary parsing rejects invalid UTF-8 in
+    // string fields, matching proto3 / editions 2023+ conformance expectations.
     const td = new (
       globalThis as unknown as GlobalWithTextEncoderDecoder
-    ).TextDecoder();
+    ).TextDecoder("utf-8", { fatal: true });
     (globalThis as GlobalWithTextEncoding)[symbol] = {
       encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
         return te.encode(text);
@@ -81,7 +83,10 @@ type GlobalWithTextEncoderDecoder = {
     };
   };
   TextDecoder: {
-    new (): {
+    new (
+      label?: string,
+      options?: { fatal?: boolean },
+    ): {
       decode(data: Uint8Array): string;
     };
   };
