@@ -202,7 +202,6 @@ void suite("target", () => {
       let res: CodeGeneratorResponse;
       beforeEach(
         async () =>
-          // biome-ignore lint/suspicious/noAssignInExpressions: no
           (res = await createTestPluginAndRun({
             proto: `syntax="proto3";`,
             parameter: transpileCase.parameter,

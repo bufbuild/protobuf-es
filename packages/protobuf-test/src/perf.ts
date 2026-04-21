@@ -68,7 +68,7 @@ function main(args: string[]): void {
         break;
       }
       const tests = filterTests(args[0]);
-      const iterations = parseInt(args[1]);
+      const iterations = parseInt(args[1], 10);
       run(tests, iterations);
       break;
     }

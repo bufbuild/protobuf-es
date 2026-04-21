@@ -39,7 +39,7 @@ export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
     b = table[base64Str.charCodeAt(i)];
     if (b === undefined) {
       switch (base64Str[i]) {
-        // @ts-ignore TS7029: Fallthrough case in switch -- ignore instead of expect-error for compiler settings without noFallthroughCasesInSwitch: true
+        // @ts-expect-error TS7029: Fallthrough case in switch -- ignore instead of expect-error for compiler settings without noFallthroughCasesInSwitch: true
         case "=":
           groupPos = 0; // reset state when padding found
         case "\n":

@@ -87,7 +87,7 @@ function determinePublishTag(version) {
  * @returns {string}
  */
 function findWorkspaceVersion(packagesDir) {
-  let version = undefined;
+  let version;
   for (const entry of readdirSync(packagesDir, { withFileTypes: true })) {
     if (!entry.isDirectory()) {
       continue;

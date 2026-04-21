@@ -634,7 +634,9 @@ function processImports(
   const handledSource = new Set<string>();
   const buildNames = (map: Map<string, string | undefined>) => {
     const names: { name: string; alias?: string | undefined }[] = [];
-    map.forEach((value, key) => names.push({ name: key, alias: value }));
+    map.forEach((value, key) => {
+      names.push({ name: key, alias: value });
+    });
     names.sort((a, b) => a.name.localeCompare(b.name));
     return names;
   };

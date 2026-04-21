@@ -65,16 +65,19 @@ function generateTs(schema: Schema<PluginOptions>) {
         const outputDesc = f.importSchema(method.output);
         f.print("  async ", method.localName, "(request: ", inputType, "): Promise<", outputType, "> {");
         f.print('    const method = "POST";');
+        // biome-ignore lint/suspicious/noTemplateCurlyInString: literal template string emitted into generated code
         f.print('    const url = `${this.baseUrl}/', service.typeName, '/', method.name, '`;');
         f.print('    const headers = new Headers({');
         f.print('      "Content-Type": "application/json",');
         f.print('    });');
         f.print('    const body = ', f.runtime.toJsonString, '(', inputDesc, ', request);');
         if (schema.options.logRequests) {
+          // biome-ignore lint/suspicious/noTemplateCurlyInString: literal template string emitted into generated code
           f.print("    console.log(`${method} ${url}`, request);");
         }
         f.print("    const response = await fetch(url, { method, headers, body });");
         f.print("    if (response.status !== 200) {");
+        // biome-ignore lint/suspicious/noTemplateCurlyInString: literal template string emitted into generated code
         f.print("      throw Error(`HTTP ${response.status} ${response.statusText}`);");
         f.print("    }");
         f.print("    return ", f.runtime.fromJson, "(", outputDesc, ", await response.json());");

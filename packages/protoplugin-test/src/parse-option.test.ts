@@ -38,7 +38,7 @@ void suite("parse custom plugin option", () => {
         for (const { key, value } of options) {
           switch (key) {
             case "foo": {
-              const foo = parseInt(value);
+              const foo = parseInt(value, 10);
               if (Number.isNaN(foo)) {
                 throw "please provide an integer for foo";
               }

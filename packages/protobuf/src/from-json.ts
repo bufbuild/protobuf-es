@@ -234,7 +234,7 @@ function readMessage(
       }
       readField(msg, field, jsonValue, opts);
     } else {
-      let extension: DescExtension | undefined = undefined;
+      let extension: DescExtension | undefined;
       if (
         jsonKey.startsWith("[") &&
         jsonKey.endsWith("]") &&
@@ -680,7 +680,6 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
     readMessage(msg, value, opts);
   } else {
     const copy = Object.assign({}, json);
-    // biome-ignore lint/performance/noDelete: <explanation>
     delete copy["@type"];
     readMessage(msg, copy, opts);
   }
@@ -722,7 +721,7 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
   timestamp.nanos = 0;
   if (matches[7]) {
     timestamp.nanos =
-      parseInt("1" + matches[7] + "0".repeat(9 - matches[7].length)) -
+      parseInt("1" + matches[7] + "0".repeat(9 - matches[7].length), 10) -
       1000000000;
   }
 }
@@ -750,7 +749,7 @@ function durationFromJson(duration: Duration, json: JsonValue) {
     return;
   }
   const nanosStr = match[2] + "0".repeat(9 - match[2].length);
-  duration.nanos = parseInt(nanosStr);
+  duration.nanos = parseInt(nanosStr, 10);
   if (longSeconds < 0 || Object.is(longSeconds, -0)) {
     duration.nanos = -duration.nanos;
   }

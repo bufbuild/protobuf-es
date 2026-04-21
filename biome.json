@@ -2,6 +2,6 @@
   "$schema": "https://biomejs.dev/schemas/2.4.12/schema.json",
   "extends": ["./biome.base.json"],
   "files": {
-    "includes": ["**", "!**/packages/**", "!**/deno/example/**"]
+    "includes": ["!**/deno/example"]
   }
 }

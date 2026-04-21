@@ -1,5 +1,6 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "root": false,
+  "$schema": "https://biomejs.dev/schemas/2.4.12/schema.json",
   "vcs": {
     "enabled": false,
     "clientKind": "git",
@@ -7,10 +8,21 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["tsconfig.*.json", "src/gen/**", "packages/*/dist/**"]
+    "includes": [
+      "**",
+      "!**/tsconfig*.json",
+      "!**/src/gen/**",
+      "!**/packages/**/dist/**",
+      "!**/packages/typescript-compat/**"
+    ]
   },
   "formatter": {
     "indentStyle": "space"
+  },
+  "json": {
+    "formatter": {
+      "expand": "auto"
+    }
   },
   "linter": {
     "rules": {
@@ -28,7 +40,8 @@
       },
       "suspicious": {
         "noDoubleEquals": "off",
-        "noFallthroughSwitchClause": "off"
+        "noFallthroughSwitchClause": "off",
+        "noPrototypeBuiltins": "off"
       }
     }
   }

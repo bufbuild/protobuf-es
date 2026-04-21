@@ -337,7 +337,7 @@ function bestDefaults(featureSetDefaults, edition) {
       "Need field google.protobuf.FeatureSetDefaults.FeatureSetEditionDefault.edition",
     );
   }
-  let best = undefined;
+  let best;
   const editionDefaults = featureSetDefaults.get(f_defaults);
   for (const def of editionDefaults) {
     if (def.get(f_edition) <= edition) {

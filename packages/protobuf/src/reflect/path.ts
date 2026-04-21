@@ -131,7 +131,7 @@ export function parsePath(
   for (let i = 0; i < path.length; ) {
     const token = nextToken(i, path);
     const left = builder.getLeft();
-    let right: Path[number] | undefined = undefined;
+    let right: Path[number] | undefined;
     if ("field" in token) {
       right =
         left?.kind != "message"

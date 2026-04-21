@@ -536,7 +536,7 @@ function mapKeyToReflect(
     case ScalarType.UINT32:
     case ScalarType.SFIXED32:
     case ScalarType.SINT32: {
-      const n = Number.parseInt(key);
+      const n = Number.parseInt(key, 10);
       if (Number.isFinite(n)) {
         return n;
       }
