@@ -46,6 +46,7 @@ import type {
   Value,
 } from "./wkt/index.js";
 import {
+  hasCustomJsonRepresentation,
   isWrapperDesc,
   anyPack,
   ListValueSchema,
@@ -673,7 +674,7 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
   }
   const msg = reflect(desc);
   if (
-    typeName.startsWith("google.protobuf.") &&
+    hasCustomJsonRepresentation(desc) &&
     Object.prototype.hasOwnProperty.call(json, "value")
   ) {
     const value = json.value;
