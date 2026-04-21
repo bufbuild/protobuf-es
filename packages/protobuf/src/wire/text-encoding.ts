@@ -24,11 +24,11 @@ interface TextEncoding {
    */
   encodeUtf8: (text: string) => Uint8Array<ArrayBuffer>;
   /**
-   * Decode UTF-8 text from binary. If `fatal` is true, throw on invalid byte
+   * Decode UTF-8 text from binary. If `strict` is true, throw on invalid byte
    * sequences instead of silently substituting U+FFFD. Implementations that
    * do not support strict decoding may ignore the flag.
    */
-  decodeUtf8: (bytes: Uint8Array, fatal?: boolean) => string;
+  decodeUtf8: (bytes: Uint8Array, strict?: boolean) => string;
 }
 
 /**
@@ -52,19 +52,19 @@ export function getTextEncoding() {
     const td = new (
       globalThis as unknown as GlobalWithTextEncoderDecoder
     ).TextDecoder();
-    let tdFatal: { decode(data: Uint8Array): string } | undefined;
+    let tdStrict: { decode(data: Uint8Array): string } | undefined;
     (globalThis as GlobalWithTextEncoding)[symbol] = {
       encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
         return te.encode(text);
       },
-      decodeUtf8(bytes: Uint8Array, fatal?: boolean): string {
-        if (fatal) {
-          if (tdFatal === undefined) {
-            tdFatal = new (
+      decodeUtf8(bytes: Uint8Array, strict?: boolean): string {
+        if (strict) {
+          if (tdStrict === undefined) {
+            tdStrict = new (
               globalThis as unknown as GlobalWithTextEncoderDecoder
             ).TextDecoder("utf-8", { fatal: true });
           }
-          return tdFatal.decode(bytes);
+          return tdStrict.decode(bytes);
         }
         return td.decode(bytes);
       },

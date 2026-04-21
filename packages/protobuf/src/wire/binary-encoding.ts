@@ -376,7 +376,7 @@ export class BinaryReader {
     buf: Uint8Array,
     private readonly decodeUtf8: (
       bytes: Uint8Array,
-      fatal?: boolean,
+      strict?: boolean,
     ) => string = getTextEncoding().decodeUtf8,
   ) {
     this.buf = buf;
@@ -565,10 +565,10 @@ export class BinaryReader {
 
   /**
    * Read a `string` field, length-delimited data converted to UTF-8 text. If
-   * `fatal` is true, throw on invalid UTF-8 instead of substituting U+FFFD.
+   * `strict` is true, throw on invalid UTF-8 instead of substituting U+FFFD.
    */
-  string(fatal?: boolean): string {
-    return this.decodeUtf8(this.bytes(), fatal);
+  string(strict?: boolean): string {
+    return this.decodeUtf8(this.bytes(), strict);
   }
 }
 
