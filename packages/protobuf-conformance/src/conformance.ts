@@ -119,9 +119,7 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
         // fromBinary stores extensions as unknown fields. Realize any whose
         // descriptor is known to the registry so that per-field validation
         // (e.g. UTF-8 checks for string extensions) fires at parse time.
-        for (const no of new Set(
-          (payload.$unknown ?? []).map((uf) => uf.no),
-        )) {
+        for (const no of new Set((payload.$unknown ?? []).map((uf) => uf.no))) {
           const ext = registry.getExtensionFor(payloadType, no);
           if (ext) {
             getExtension(payload, ext);
