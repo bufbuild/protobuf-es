@@ -37,12 +37,7 @@
       "outputLogs": "new-only"
     },
     "//#license-header": {
-      "dependsOn": [
-        "@bufbuild/bun-conformance#generate",
-        "@bufbuild/deno-conformance#generate",
-        "@bufbuild/protobuf-conformance#generate"
-      ],
-      "inputs": ["$TURBO_DEFAULT$", "!packages/**"],
+      "inputs": ["$TURBO_DEFAULT$", "!packages/**", "!bun/**", "!deno/**"],
       "outputLogs": "new-only"
     },
     "//#lint": {
