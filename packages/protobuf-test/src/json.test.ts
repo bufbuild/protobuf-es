@@ -40,6 +40,7 @@ import {
   anyPack,
   anyUnpack,
   DurationSchema,
+  EmptySchema,
   FieldMaskSchema,
   StructSchema,
   TimestampSchema,
@@ -378,6 +379,24 @@ void suite("JSON serialization", () => {
           { registry: createRegistry(StructSchema, ValueSchema) },
         );
         assert.deepStrictEqual(anyUnpack(any, ValueSchema), want);
+      });
+      test(`encodes ${EmptySchema.typeName} to JSON without value wrapper`, () => {
+        const any = anyPack(EmptySchema, create(EmptySchema));
+        assert.deepStrictEqual(
+          toJson(AnySchema, any, { registry: createRegistry(EmptySchema) }),
+          { "@type": "type.googleapis.com/google.protobuf.Empty" },
+        );
+      });
+      test(`decodes ${EmptySchema.typeName} from JSON without value wrapper`, () => {
+        const any = fromJson(
+          AnySchema,
+          { "@type": "type.googleapis.com/google.protobuf.Empty" },
+          { registry: createRegistry(EmptySchema) },
+        );
+        assert.deepStrictEqual(
+          anyUnpack(any, EmptySchema),
+          create(EmptySchema),
+        );
       });
       void test("json_name clash with Any.@type is not prevented", () => {
         const any = anyPack(
