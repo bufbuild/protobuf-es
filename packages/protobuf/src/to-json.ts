@@ -46,7 +46,7 @@ import type {
   Value,
 } from "./wkt/index.js";
 import { anyUnpack } from "./wkt/index.js";
-import { isWrapperDesc } from "./wkt/wrappers.js";
+import { hasCustomJsonRepresentation, isWrapperDesc } from "./wkt/wrappers.js";
 import { base64Encode } from "./wire/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
 import { checkField, formatVal } from "./reflect/reflect-check.js";
@@ -446,15 +446,10 @@ function anyToJson(val: Any, opts: JsonWriteOptions): JsonValue {
       `cannot encode message ${val.$typeName} to JSON: "${val.typeUrl}" is not in the type registry`,
     );
   }
-  let json = reflectToJson(reflect(desc, message), opts);
-  if (
-    desc.typeName.startsWith("google.protobuf.") ||
-    json === null ||
-    Array.isArray(json) ||
-    typeof json !== "object"
-  ) {
-    json = { value: json };
-  }
+  const reflected = reflect(desc, message);
+  const json: JsonObject = hasCustomJsonRepresentation(desc)
+    ? { value: tryWktToJson(reflected, opts) as JsonValue }
+    : (reflectToJson(reflected, opts) as JsonObject);
   json["@type"] = val.typeUrl;
   return json;
 }
