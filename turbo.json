@@ -37,7 +37,7 @@
       "outputLogs": "new-only"
     },
     "//#license-header": {
-      "inputs": ["$TURBO_DEFAULT$", "!packages/**", "!bun/**", "!deno/**"],
+      "inputs": ["$TURBO_DEFAULT$", "!packages/**", "!bun/conformance/**", "!deno/conformance/**"],
       "outputLogs": "new-only"
     },
     "//#lint": {
