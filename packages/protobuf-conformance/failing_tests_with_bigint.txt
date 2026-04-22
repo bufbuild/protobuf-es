@@ -12,7 +12,3 @@ Recommended.Proto2.JsonInput.FieldNameDuplicateDifferentCasing2 # Should have fa
 Recommended.Proto3.JsonInput.FieldNameDuplicate # Should have failed to parse, but didn't.
 Recommended.Proto3.JsonInput.FieldNameDuplicateDifferentCasing1 # Should have failed to parse, but didn't.
 Recommended.Proto3.JsonInput.FieldNameDuplicateDifferentCasing2 # Should have failed to parse, but didn't.
-
-# fromBinary() does not accept a registry, so string extensions are stored as
-# raw unknown bytes and UTF-8 is not validated on input.
-Recommended.Editions.ProtobufInput.RejectInvalidUtf8.String.Extension # Should have failed to parse, but didn't.

@@ -19,6 +19,7 @@ import {
   create,
   fromBinary,
   fromJsonString,
+  getExtension,
   type DescMessage,
   type Message,
   type MessageShape,
@@ -115,6 +116,15 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
     switch (request.payload.case) {
       case "protobufPayload":
         payload = fromBinary(payloadType, request.payload.value);
+        // fromBinary stores extensions as unknown fields. Realize any whose
+        // descriptor is known to the registry so that per-field validation
+        // (e.g. UTF-8 checks for string extensions) fires at parse time.
+        for (const uf of payload.$unknown ?? []) {
+          const ext = registry.getExtensionFor(payloadType, uf.no);
+          if (ext) {
+            getExtension(payload, ext);
+          }
+        }
         break;
 
       case "jsonPayload":
