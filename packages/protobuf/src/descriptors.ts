@@ -371,6 +371,13 @@ interface descFieldAndExtensionShared {
    */
   readonly presence: SupportedFieldPresence;
   /**
+   * Whether to reject invalid UTF-8 when reading this field from the binary
+   * wire format. Reflects the resolved `utf8_validation` feature: true for
+   * VERIFY (proto3 and editions 2023+ default), false for NONE (proto2
+   * default).
+   */
+  readonly utf8Validation: boolean;
+  /**
    * The compiler-generated descriptor.
    */
   readonly proto: FieldDescriptorProto;

@@ -21,6 +21,7 @@ import type {
   FeatureSet_RepeatedFieldEncoding,
   FeatureSet_MessageEncoding,
   FeatureSet_EnumType,
+  FeatureSet_Utf8Validation,
   FieldDescriptorProto,
   FieldDescriptorProto_Type,
   FieldDescriptorProto_Label,
@@ -422,6 +423,9 @@ const DELIMITED: FeatureSet_MessageEncoding.DELIMITED = 2;
 
 // bootstrap-inject google.protobuf.FeatureSet.EnumType.OPEN: const $name: FeatureSet_EnumType.$localName = $number;
 const OPEN: FeatureSet_EnumType.OPEN = 1;
+
+// bootstrap-inject google.protobuf.FeatureSet.Utf8Validation.VERIFY: const $name: FeatureSet_Utf8Validation.$localName = $number;
+const VERIFY: FeatureSet_Utf8Validation.VERIFY = 2;
 
 // biome-ignore format: want this to read well
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2024: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
@@ -839,6 +843,7 @@ function newField(
     message: undefined,
     enum: undefined,
     presence: getFieldPresence(proto, oneof, isExtension, parentOrFile),
+    utf8Validation: isUtf8Validated(proto, parentOrFile),
     listKind: undefined,
     mapKind: undefined,
     mapKey: undefined,
@@ -1224,6 +1229,24 @@ function isDelimitedEncoding(
   return (
     DELIMITED ==
     resolveFeature("messageEncoding", {
+      proto,
+      parent,
+    })
+  );
+}
+
+/**
+ * Reject invalid UTF-8 when reading string fields from the binary wire format?
+ * Driven by the resolved `utf8_validation` feature: VERIFY (proto3 / editions
+ * 2023+ default) enforces; NONE (proto2 default) does not.
+ */
+function isUtf8Validated(
+  proto: FieldDescriptorProto,
+  parent: DescMessage | DescFile,
+): boolean {
+  return (
+    VERIFY ==
+    resolveFeature("utf8Validation", {
       proto,
       parent,
     })
