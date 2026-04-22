@@ -1252,6 +1252,12 @@ user.firstName; // "Homer"
 user.active; // true
 ```
 
+`BinaryReader.tag()` validates that the tag is a well-formed uint32 varint. Overlong varints (more than 5 bytes) and
+5-byte varints whose value overflows uint32 are rejected with an error. Earlier versions of Protobuf-ES silently decoded
+these cases by truncating the high bits, which caused malformed payloads to be stored as unknown fields instead of
+failing to parse. Producers generating tags via `BinaryWriter.tag()` are unaffected, since `BinaryWriter` only emits
+valid tags.
+
 ### Text encoding
 
 We require the WHATWG [Text Encoding API] to convert UTF-8 from and to binary. The API is widely available, but it is

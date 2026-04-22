@@ -386,24 +386,45 @@ export class BinaryReader {
   }
 
   /**
-   * Reads a tag - field number and wire type. Tags are uint32 varints; values
-   * that do not fit in uint32 are rejected.
+   * Reads a tag - field number and wire type.
+   *
+   * Inlined for the hot path. Tags are uint32 varints: at most 5 bytes, and
+   * the 5th byte can carry only 4 value bits (its upper 4 bits and the
+   * continuation bit must all be zero). Rejects overlong or overflowing
+   * varints.
    */
   tag(): [number, WireType] {
-    const start = this.pos;
-    const tag = this.uint32();
-    const bytesRead = this.pos - start;
-    if (bytesRead > 5 || (bytesRead == 5 && this.buf[this.pos - 1] > 0x0f)) {
+    let b = this.buf[this.pos++];
+    if ((b & 0x80) == 0) {
+      this.assertBounds();
+      return parseTag(b);
+    }
+    let tag = b & 0x7f;
+    b = this.buf[this.pos++];
+    tag |= (b & 0x7f) << 7;
+    if ((b & 0x80) == 0) {
+      this.assertBounds();
+      return parseTag(tag);
+    }
+    b = this.buf[this.pos++];
+    tag |= (b & 0x7f) << 14;
+    if ((b & 0x80) == 0) {
+      this.assertBounds();
+      return parseTag(tag);
+    }
+    b = this.buf[this.pos++];
+    tag |= (b & 0x7f) << 21;
+    if ((b & 0x80) == 0) {
+      this.assertBounds();
+      return parseTag(tag);
+    }
+    b = this.buf[this.pos++];
+    if (b > 0x0f) {
       throw new Error("illegal tag: varint overflows uint32");
     }
-    const fieldNo = tag >>> 3;
-    const wireType = tag & 7;
-    if (fieldNo <= 0 || wireType > 5) {
-      throw new Error(
-        "illegal tag: field no " + fieldNo + " wire type " + wireType,
-      );
-    }
-    return [fieldNo, wireType];
+    tag = (tag | (b << 28)) >>> 0;
+    this.assertBounds();
+    return parseTag(tag);
   }
 
   /**
@@ -577,6 +598,21 @@ export class BinaryReader {
   string(strict?: boolean): string {
     return this.decodeUtf8(this.bytes(), strict);
   }
+}
+
+/**
+ * Split a decoded tag varint into field number and wire type, rejecting
+ * field number 0 and wire types outside 0-5.
+ */
+function parseTag(tag: number): [number, WireType] {
+  const fieldNo = tag >>> 3;
+  const wireType = tag & 7;
+  if (fieldNo <= 0 || wireType > 5) {
+    throw new Error(
+      "illegal tag: field no " + fieldNo + " wire type " + wireType,
+    );
+  }
+  return [fieldNo, wireType];
 }
 
 /**
