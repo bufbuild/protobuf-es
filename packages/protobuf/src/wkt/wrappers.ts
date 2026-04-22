@@ -66,10 +66,13 @@ export function isWrapperDesc(
 }
 
 /**
- * Returns true if the message type has a custom JSON representation per the
- * protobuf JSON spec. When packed inside `google.protobuf.Any`, these types
- * are serialized as `{"@type": ..., "value": <special form>}`; all other
- * messages embed their fields directly.
+ * Returns true if the descriptor is a well-known type with a custom JSON
+ * representation per the protobuf JSON spec. Examples: Timestamp as an
+ * RFC 3339 string, Duration as "5s", wrappers as the unwrapped scalar.
+ *
+ * When packed inside `google.protobuf.Any`, these messages are serialized
+ * as `{"@type": ..., "value": <custom form>}`; all other messages embed
+ * their fields directly.
  */
 export function hasCustomJsonRepresentation(desc: DescMessage): boolean {
   switch (desc.typeName) {
