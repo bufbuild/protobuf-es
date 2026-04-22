@@ -250,6 +250,11 @@ function getFilesToGenerate(
           edition = Edition.EDITION_UNKNOWN;
           break;
       }
+      // EDITION_UNSTABLE is a sandbox for in-development features; accept
+      // it regardless of the plugin's min/max bounds.
+      if (edition === Edition.EDITION_UNSTABLE) {
+        continue;
+      }
       if (edition < minimumEdition) {
         throw new Error(
           `${file.name}: unsupported edition ${editionToString(edition)} - the earliest supported edition is ${editionToString(minimumEdition)}`,

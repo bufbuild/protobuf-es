@@ -18,7 +18,7 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { JsonObject, Message } from "@bufbuild/protobuf";
-import type { Any, BoolValue, BytesValue, DoubleValue, Duration, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, StringValue, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
+import type { Any, BoolValue, BytesValue, DoubleValue, Duration, Empty, FieldMask, FloatValue, Int32Value, Int64Value, ListValue, NullValue, StringValue, Timestamp, UInt32Value, UInt64Value, Value } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/protobuf/test_messages_proto3.proto.
@@ -696,6 +696,11 @@ export declare type TestAllTypesProto3 = Message<"protobuf_test_messages.proto3.
   optionalNullValue: NullValue;
 
   /**
+   * @generated from field: google.protobuf.Empty optional_empty = 308;
+   */
+  optionalEmpty?: Empty | undefined;
+
+  /**
    * @generated from field: repeated google.protobuf.Duration repeated_duration = 311;
    */
   repeatedDuration: Duration[];
@@ -729,6 +734,11 @@ export declare type TestAllTypesProto3 = Message<"protobuf_test_messages.proto3.
    * @generated from field: repeated google.protobuf.ListValue repeated_list_value = 317;
    */
   repeatedListValue: ListValue[];
+
+  /**
+   * @generated from field: repeated google.protobuf.Empty repeated_empty = 318;
+   */
+  repeatedEmpty: Empty[];
 
   /**
    * Test field-name-to-JSON-name convention.

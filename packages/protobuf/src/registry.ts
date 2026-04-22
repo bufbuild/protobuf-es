@@ -385,6 +385,8 @@ function initBaseRegistry(
 const EDITION_PROTO2: Edition.EDITION_PROTO2 = 998;
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
 const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;
+// bootstrap-inject google.protobuf.Edition.EDITION_UNSTABLE: const $name: Edition.$localName = $number;
+const EDITION_UNSTABLE: Edition.EDITION_UNSTABLE = 9999;
 
 // bootstrap-inject google.protobuf.FieldDescriptorProto.Type.TYPE_STRING: const $name: FieldDescriptorProto_Type.$localName = $number;
 const TYPE_STRING: FieldDescriptorProto_Type.STRING = 9;
@@ -429,7 +431,7 @@ const VERIFY: FeatureSet_Utf8Validation.VERIFY = 2;
 
 // biome-ignore format: want this to read well
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2024: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
-// generated from protoc v33.2
+// generated from protoc v34.0
 export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1001;
 const featureDefaults = {
   // EDITION_PROTO2
@@ -985,6 +987,12 @@ function getFileEdition(proto: FileDescriptorProto): SupportedEdition {
     case "proto3":
       return EDITION_PROTO3;
     case "editions":
+      // EDITION_UNSTABLE is a sandbox for in-development features. Collapse
+      // it to maximumEdition so SupportedEdition and feature resolution do
+      // not leak the test-only edition to users.
+      if (proto.edition === EDITION_UNSTABLE) {
+        return maximumEdition;
+      }
       if (proto.edition in featureDefaults) {
         return proto.edition as SupportedEdition;
       }
