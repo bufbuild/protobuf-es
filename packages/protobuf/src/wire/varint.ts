@@ -306,6 +306,10 @@ export function varint32write(value: number, bytes: number[]): void {
 /**
  * Read an unsigned 32 bit varint.
  *
+ * A uint32 value fits in 5 varint bytes, but this reader accepts up to 10
+ * bytes and discards the extra high bits. Negative `int32` values encode as
+ * 10-byte varints and must decode back to the original 32-bit value.
+ *
  * See https://github.com/protocolbuffers/protobuf/blob/8a71927d74a4ce34efe2d8769fda198f52d20d12/js/experimental/runtime/kernel/buffer_decoder.js#L220
  */
 export function varint32read<T extends ReaderLike>(this: T): number {
