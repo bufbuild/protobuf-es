@@ -39,6 +39,12 @@ interface TextEncoding {
  *
  * Note that the Text Encoding API does not provide a way to validate UTF-8.
  * Our implementation falls back to use encodeURIComponent().
+ *
+ * `decodeUtf8` receives an optional `strict` argument. When true, the
+ * implementation should throw on invalid UTF-8 byte sequences; when false or
+ * omitted, invalid bytes may be replaced with U+FFFD. Ignoring the flag is a
+ * valid escape hatch for consumers that need the pre-validation behavior of
+ * `fromBinary` on proto3 and editions messages.
  */
 export function configureTextEncoding(textEncoding: TextEncoding): void {
   (globalThis as GlobalWithTextEncoding)[symbol] = textEncoding;

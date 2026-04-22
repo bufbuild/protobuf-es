@@ -1260,6 +1260,31 @@ not part of the ECMAScript standard.
 If the API is unavailable in your runtime, use the function `configureTextEncoding` from `@bufbuild/protobuf/wire` to
 provide your own implementation. Note that the function must be called early in the initialization.
 
+#### UTF-8 validation
+
+Proto3 and editions 2023+ require string fields to contain valid UTF-8. `fromBinary` validates this and throws on
+invalid byte sequences. Proto2 string fields accept invalid UTF-8 unchanged. Earlier versions of Protobuf-ES silently
+replaced invalid bytes with the Unicode replacement character U+FFFD; producers that emit non-conforming data will now
+cause `fromBinary` to throw where it previously succeeded with corrupted strings.
+
+`BinaryReader` and `BinaryWriter` default behavior is unchanged. `BinaryReader.string(strict?)` accepts an optional
+boolean; `strict = false` (the default) preserves the lax behavior, and `strict = true` enables fatal UTF-8 decoding.
+`fromBinary` passes `true` for fields whose resolved `utf8_validation` feature is `VERIFY`.
+
+To restore the pre-validation behavior globally, configure a `decodeUtf8` that ignores the `strict` flag:
+
+```typescript
+import { configureTextEncoding, getTextEncoding } from "@bufbuild/protobuf/wire";
+
+const { encodeUtf8, checkUtf8, decodeUtf8 } = getTextEncoding();
+configureTextEncoding({
+  encodeUtf8,
+  checkUtf8,
+  // Ignore `strict`: invalid UTF-8 becomes U+FFFD instead of throwing.
+  decodeUtf8: (bytes) => decodeUtf8(bytes),
+});
+```
+
 ### Base64 encoding
 
 Base64 encoding can be very useful when transmitting binary data. There is no convenient standard API in ECMAScript, but

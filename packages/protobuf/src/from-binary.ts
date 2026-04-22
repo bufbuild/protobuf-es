@@ -51,6 +51,11 @@ function makeReadOptions(
 
 /**
  * Parse serialized binary data.
+ *
+ * Rejects invalid UTF-8 in string fields when the resolved `utf8_validation`
+ * feature is VERIFY (proto3 and editions 2023+ default). Use
+ * `configureTextEncoding` to install a custom `decodeUtf8` that ignores the
+ * `strict` flag if you need to accept invalid UTF-8.
  */
 export function fromBinary<Desc extends DescMessage>(
   schema: Desc,
