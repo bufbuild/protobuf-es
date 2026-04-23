@@ -116,9 +116,9 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
     switch (request.payload.case) {
       case "protobufPayload":
         payload = fromBinary(payloadType, request.payload.value);
-        // fromBinary stores extensions as unknown fields. Realize any whose
-        // descriptor is known to the registry so that per-field validation
-        // (e.g. UTF-8 checks for string extensions) fires at parse time.
+        // We parse extensions lazily. To exercise the conformance tests for
+        // UTF-8 validation, we have to take this extra step: In addition to parsing
+        // the message, we also parse all extensions.
         for (const no of new Set((payload.$unknown ?? []).map((uf) => uf.no))) {
           const ext = registry.getExtensionFor(payloadType, no);
           if (ext) {
