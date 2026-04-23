@@ -19,6 +19,7 @@ import {
   create,
   fromBinary,
   fromJsonString,
+  getExtension,
   type DescMessage,
   type Message,
   type MessageShape,
@@ -38,11 +39,13 @@ import {
 import { file_google_protobuf_test_messages_proto3 } from "./gen/google/protobuf/test_messages_proto3_pb.ts";
 import { file_google_protobuf_test_messages_proto2 } from "./gen/google/protobuf/test_messages_proto2_pb.ts";
 import { file_google_protobuf_test_messages_edition2023 } from "./gen/google/protobuf/test_messages_edition2023_pb.ts";
+import { file_google_protobuf_test_messages_edition_unstable } from "./gen/google/protobuf/test_messages_edition_unstable_pb.ts";
 import { file_google_protobuf_test_messages_proto2_editions } from "./gen/google/protobuf/test_messages_proto2_editions_pb.ts";
 import { file_google_protobuf_test_messages_proto3_editions } from "./gen/google/protobuf/test_messages_proto3_editions_pb.ts";
 import {
   file_google_protobuf_any,
   file_google_protobuf_duration,
+  file_google_protobuf_empty,
   file_google_protobuf_field_mask,
   file_google_protobuf_struct,
   file_google_protobuf_timestamp,
@@ -53,6 +56,7 @@ const registry = createRegistry(
   file_google_protobuf_test_messages_proto2,
   file_google_protobuf_test_messages_proto3,
   file_google_protobuf_test_messages_edition2023,
+  file_google_protobuf_test_messages_edition_unstable,
   file_google_protobuf_test_messages_proto2_editions,
   file_google_protobuf_test_messages_proto3_editions,
   file_google_protobuf_any,
@@ -60,6 +64,7 @@ const registry = createRegistry(
   file_google_protobuf_field_mask,
   file_google_protobuf_timestamp,
   file_google_protobuf_duration,
+  file_google_protobuf_empty,
   file_google_protobuf_wrappers,
 );
 
@@ -111,6 +116,15 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
     switch (request.payload.case) {
       case "protobufPayload":
         payload = fromBinary(payloadType, request.payload.value);
+        // We parse extensions lazily. To exercise the conformance tests for
+        // UTF-8 validation, we have to take this extra step: In addition to parsing
+        // the message, we also parse all extensions.
+        for (const no of new Set((payload.$unknown ?? []).map((uf) => uf.no))) {
+          const ext = registry.getExtensionFor(payloadType, no);
+          if (ext) {
+            getExtension(payload, ext);
+          }
+        }
         break;
 
       case "jsonPayload":
