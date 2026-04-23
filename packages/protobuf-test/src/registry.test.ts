@@ -644,6 +644,57 @@ void suite("DescMessage", () => {
       ]);
     });
   });
+  void suite("jsonFormat", () => {
+    test("false for proto2 message", async () => {
+      const descMessage = await compileMessage(`
+        syntax="proto2";
+        message Foo {}
+      `);
+      assert.strictEqual(descMessage.jsonFormat, false);
+    });
+    test("true for proto3 message", async () => {
+      const descMessage = await compileMessage(`
+        syntax="proto3";
+        message Foo {}
+      `);
+      assert.strictEqual(descMessage.jsonFormat, true);
+    });
+    test("true for edition 2023 message", async () => {
+      const descMessage = await compileMessage(`
+        edition="2023";
+        message Foo {}
+      `);
+      assert.strictEqual(descMessage.jsonFormat, true);
+    });
+    test("false for message with features.json_format = LEGACY_BEST_EFFORT", async () => {
+      const descMessage = await compileMessage(`
+        edition="2023";
+        message Foo {
+          option features.json_format = LEGACY_BEST_EFFORT;
+        }
+      `);
+      assert.strictEqual(descMessage.jsonFormat, false);
+    });
+    test("false for file with features.json_format = LEGACY_BEST_EFFORT", async () => {
+      const descMessage = await compileMessage(`
+        edition="2023";
+        option features.json_format = LEGACY_BEST_EFFORT;
+        message Foo {}
+      `);
+      assert.strictEqual(descMessage.jsonFormat, false);
+    });
+    test("inherits from parent message", async () => {
+      const descMessage = await compileMessage(`
+        edition="2023";
+        message Outer {
+          option features.json_format = LEGACY_BEST_EFFORT;
+          message Inner {}
+        }
+      `);
+      const inner = descMessage.nestedMessages[0];
+      assert.strictEqual(inner.jsonFormat, false);
+    });
+  });
 });
 
 void suite("DescEnum", () => {
@@ -767,6 +818,55 @@ void suite("DescEnum", () => {
         }
       `);
       assert.strictEqual(descEnum.deprecated, false);
+    });
+  });
+  void suite("jsonFormat", () => {
+    test("false for proto2 enum", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto2";
+        enum E {
+          A = 1;
+        }
+      `);
+      assert.strictEqual(descEnum.jsonFormat, false);
+    });
+    test("true for proto3 enum", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum E {
+          A = 0;
+        }
+      `);
+      assert.strictEqual(descEnum.jsonFormat, true);
+    });
+    test("true for edition 2023 enum", async () => {
+      const descEnum = await compileEnum(`
+        edition="2023";
+        enum E {
+          A = 0;
+        }
+      `);
+      assert.strictEqual(descEnum.jsonFormat, true);
+    });
+    test("false for enum with features.json_format = LEGACY_BEST_EFFORT", async () => {
+      const descEnum = await compileEnum(`
+        edition="2023";
+        enum E {
+          option features.json_format = LEGACY_BEST_EFFORT;
+          A = 0;
+        }
+      `);
+      assert.strictEqual(descEnum.jsonFormat, false);
+    });
+    test("false for file with features.json_format = LEGACY_BEST_EFFORT", async () => {
+      const descEnum = await compileEnum(`
+        edition="2023";
+        option features.json_format = LEGACY_BEST_EFFORT;
+        enum E {
+          A = 0;
+        }
+      `);
+      assert.strictEqual(descEnum.jsonFormat, false);
     });
   });
 });

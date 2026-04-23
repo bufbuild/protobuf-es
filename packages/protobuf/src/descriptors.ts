@@ -171,6 +171,14 @@ export interface DescEnum {
    */
   readonly open: boolean;
   /**
+   * Whether this enumeration is guaranteed to round-trip through canonical
+   * JSON. Reflects the resolved `json_format` feature: true for ALLOW (proto3
+   * and editions default), false for LEGACY_BEST_EFFORT (proto2 default).
+   *
+   * See https://protobuf.dev/editions/features/#json_format
+   */
+  readonly jsonFormat: boolean;
+  /**
    * Values declared for this enumeration.
    */
   readonly values: DescEnumValue[];
@@ -249,6 +257,14 @@ export interface DescMessage {
    * The parent message, if this message was declared inside a message declaration.
    */
   readonly parent: DescMessage | undefined;
+  /**
+   * Whether this message is guaranteed to round-trip through canonical JSON.
+   * Reflects the resolved `json_format` feature: true for ALLOW (proto3 and
+   * editions default), false for LEGACY_BEST_EFFORT (proto2 default).
+   *
+   * See https://protobuf.dev/editions/features/#json_format
+   */
+  readonly jsonFormat: boolean;
   /**
    * Fields declared for this message, including fields declared in a oneof
    * group.

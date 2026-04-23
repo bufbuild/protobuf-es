@@ -21,6 +21,7 @@ import type {
   FeatureSet_RepeatedFieldEncoding,
   FeatureSet_MessageEncoding,
   FeatureSet_EnumType,
+  FeatureSet_JsonFormat,
   FeatureSet_Utf8Validation,
   FieldDescriptorProto,
   FieldDescriptorProto_Type,
@@ -429,6 +430,9 @@ const OPEN: FeatureSet_EnumType.OPEN = 1;
 // bootstrap-inject google.protobuf.FeatureSet.Utf8Validation.VERIFY: const $name: FeatureSet_Utf8Validation.$localName = $number;
 const VERIFY: FeatureSet_Utf8Validation.VERIFY = 2;
 
+// bootstrap-inject google.protobuf.FeatureSet.JsonFormat.ALLOW: const $name: FeatureSet_JsonFormat.$localName = $number;
+const ALLOW: FeatureSet_JsonFormat.ALLOW = 1;
+
 // biome-ignore format: want this to read well
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2024: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
 // generated from protoc v34.0
@@ -621,6 +625,7 @@ function addEnum(
     file,
     parent,
     open: true,
+    jsonFormat: isJsonFormatAllow(proto, parent ?? file),
     name: proto.name,
     typeName: makeTypeName(proto, parent, file),
     value: {},
@@ -674,6 +679,7 @@ function addMessage(
     deprecated: proto.options?.deprecated ?? false,
     file,
     parent,
+    jsonFormat: isJsonFormatAllow(proto, parent ?? file),
     name: proto.name,
     typeName: makeTypeName(proto, parent, file),
     fields: [],
@@ -1255,6 +1261,24 @@ function isUtf8Validated(
   return (
     VERIFY ==
     resolveFeature("utf8Validation", {
+      proto,
+      parent,
+    })
+  );
+}
+
+/**
+ * Is this type guaranteed to round-trip through canonical JSON? Driven by the
+ * resolved `json_format` feature: ALLOW (proto3 / editions 2023+ default)
+ * requires canonical JSON; LEGACY_BEST_EFFORT (proto2 default) does not.
+ */
+function isJsonFormatAllow(
+  proto: DescriptorProto | EnumDescriptorProto,
+  parent: DescMessage | DescFile,
+): boolean {
+  return (
+    ALLOW ==
+    resolveFeature("jsonFormat", {
       proto,
       parent,
     })
