@@ -1,5 +1,5 @@
 import {BinaryWriter, base64Decode, getTextEncoding} from "@bufbuild/protobuf/wire";
-import {DescMessage, type Message, toBinary} from "@bufbuild/protobuf";
+import {type DescMessage, type Message, toBinary} from "@bufbuild/protobuf";
 
 export function testBinaryWriterFinish() {
   const infer = new BinaryWriter().finish();

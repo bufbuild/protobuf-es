@@ -1,6 +1,7 @@
 {
   "name": "ts5.9",
   "private": true,
+  "type": "module",
   "scripts": {
     "test": "tsc --outDir dist"
   },
