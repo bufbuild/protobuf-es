@@ -45,6 +45,6 @@
     "@bufbuild/license-header": "^0.0.4",
     "@types/node": "^25.6.0",
     "turbo": "^2.9.6",
-    "typescript": "^5.9.2"
+    "typescript": "^6.0.3"
   }
 }
