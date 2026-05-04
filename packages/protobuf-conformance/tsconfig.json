@@ -2,6 +2,7 @@
   "include": ["src/**/*.ts"],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "rootDir": "./src",
     "types": [
       // The conformance testee uses Node.js APIs
       "node"
