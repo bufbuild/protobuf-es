@@ -29,6 +29,8 @@ const packages = discoverPackages();
 validatePackages(packages);
 
 const version = packages[0].version;
+gitCheckReleaseTag(version);
+
 const pkgNames = packages.map((pkg) => pkg.name);
 npmPublish(pkgNames, version);
 
@@ -41,7 +43,7 @@ npmPublish(pkgNames, version);
 function npmPublish(pkgNames, version) {
   const tag = determinePublishTag(version);
   const workspaceArgs = pkgNames.map((name) => `--workspace=${name}`).join(" ");
-  execSync(`npm publish --dry-run --tag ${tag} ${workspaceArgs}`, {
+  execSync(`npm publish --tag ${tag} ${workspaceArgs}`, {
     stdio: "inherit",
   });
 }
