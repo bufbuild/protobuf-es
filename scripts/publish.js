@@ -29,14 +29,19 @@ const packages = discoverPackages();
 validatePackages(packages);
 
 const version = packages[0].version;
-npmPublish(version);
+const pkgNames = packages.map((pkg) => pkg.name);
+npmPublish(pkgNames, version);
 
 /**
+ * Publish each workspace package by name.
+ *
+ * @param {string[]} pkgNames
  * @param {string} version
  */
-function npmPublish(version) {
+function npmPublish(pkgNames, version) {
   const tag = determinePublishTag(version);
-  execSync(`npm publish --dry-run --tag ${tag} --workspaces`, {
+  const workspaceArgs = pkgNames.map((name) => `--workspace=${name}`).join(" ");
+  execSync(`npm publish --dry-run --tag ${tag} ${workspaceArgs}`, {
     stdio: "inherit",
   });
 }
