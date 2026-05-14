@@ -1,0 +1,44 @@
+// Copyright 2021-2026 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+package spec;
+
+import "extra/minimal-validate.proto";
+
+message JsonTypesFiniteMessage {
+  // In the generated JSON type, this field should be `number` (not
+  // `number | "NaN" | "Infinity" | "-Infinity"`) because finite is set.
+  double finite_double = 1 [(buf.validate.field).double.finite = true];
+
+  // In the generated JSON type, this field should be `number` (not
+  // `number | "NaN" | "Infinity" | "-Infinity"`) because finite is set.
+  float finite_float = 2 [(buf.validate.field).float.finite = true];
+
+  // In the generated JSON type, this field should remain
+  // `number | "NaN" | "Infinity" | "-Infinity"` because no constraint.
+  double regular_double = 3;
+
+  // In the generated JSON type, this field should remain
+  // `number | "NaN" | "Infinity" | "-Infinity"` because no constraint.
+  float regular_float = 4;
+
+  // In the generated JSON type, this should be `number[]` (not
+  // `(number | "NaN" | "Infinity" | "-Infinity")[]`) because finite is set.
+  repeated double repeated_finite_double = 5 [(buf.validate.field).double.finite = true];
+
+  // In the generated JSON type, this should remain
+  // `(number | "NaN" | "Infinity" | "-Infinity")[]`.
+  repeated double repeated_regular_double = 6;
+}

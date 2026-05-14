@@ -29,6 +29,7 @@ import {
   isWrapperDesc,
 } from "@bufbuild/protobuf/wkt";
 import type { GeneratedFile, Printable } from "@bufbuild/protoplugin";
+import { isProtovalidateFinite } from "./valid-types.js";
 
 /**
  * Returns a type expression for `GenMessage` from @bufbuild/protobuf/codegenv2,
@@ -45,7 +46,10 @@ export function messageGenType(
   desc: DescMessage,
   f: GeneratedFile,
   options: {
-    jsonTypes: boolean;
+    jsonTypes: {
+      enabled: boolean;
+      protovalidateFinite: boolean;
+    };
     validTypes: {
       legacyRequired: boolean;
       protovalidateRequired: boolean;
@@ -53,7 +57,7 @@ export function messageGenType(
   },
 ): Printable {
   let p2: Printable = [];
-  if (options.jsonTypes) {
+  if (options.jsonTypes.enabled) {
     p2.push(["jsonType: ", f.importJson(desc)]);
   }
   if (
@@ -190,9 +194,21 @@ function messageFieldTypeScriptType(
   };
 }
 
-export function fieldJsonType(field: DescField | DescExtension): Printable {
+export function fieldJsonType(
+  field: DescField | DescExtension,
+  jsonTypes?: { protovalidateFinite: boolean },
+): Printable {
   switch (field.fieldKind) {
     case "scalar":
+      if (
+        jsonTypes?.protovalidateFinite &&
+        field.kind === "field" &&
+        (field.scalar === ScalarType.FLOAT ||
+          field.scalar === ScalarType.DOUBLE) &&
+        isProtovalidateFinite(field)
+      ) {
+        return "number";
+      }
       return scalarJsonType(field.scalar);
     case "message":
       return {
@@ -215,6 +231,15 @@ export function fieldJsonType(field: DescField | DescExtension): Printable {
             "[]",
           ];
         case "scalar": {
+          if (
+            jsonTypes?.protovalidateFinite &&
+            field.kind === "field" &&
+            (field.scalar === ScalarType.FLOAT ||
+              field.scalar === ScalarType.DOUBLE) &&
+            isProtovalidateFinite(field)
+          ) {
+            return ["number", "[]"];
+          }
           const t = scalarJsonType(field.scalar);
           if (t.includes("|")) {
             return ["(", t, ")[]"];

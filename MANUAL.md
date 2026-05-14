@@ -194,10 +194,17 @@ By default, [protoc-gen-es] inserts its version number at the top of each genera
 set `elide_plugin_version=true`. Be aware that we recommend to keep plugin and runtime versions in sync, and that this
 option can make it more difficult to spot a mismatch.
 
-### `json_types=true`
+### `json_types`
 
 Generates JSON types for every Protobuf message and enumeration. Calling `toJson()` automatically returns the JSON type
 if available. Learn more about [JSON types](#json-types).
+
+Possible values:
+
+- `json_types=true`: Generates JSON types for all messages and enumerations.
+- `json_types=protovalidate_finite`: Additionally, `float` and `double` fields with protovalidate's
+  [`finite` rule](https://buf.build/docs/reference/protovalidate/rules/float_rules/#finite) are generated
+  as `number` instead of `number | "NaN" | "Infinity" | "-Infinity"`.
 
 ### `valid_types` (experimental)
 

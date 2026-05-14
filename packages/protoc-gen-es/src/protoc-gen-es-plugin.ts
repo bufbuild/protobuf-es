@@ -54,7 +54,10 @@ export const protocGenEs = createEcmaScriptPlugin({
 });
 
 type Options = {
-  jsonTypes: boolean;
+  jsonTypes: {
+    enabled: boolean;
+    protovalidateFinite: boolean;
+  };
   validTypes: {
     legacyRequired: boolean;
     protovalidateRequired: boolean;
@@ -67,7 +70,10 @@ function parseOptions(
     value: string;
   }[],
 ): Options {
-  let jsonTypes = false;
+  let jsonTypes = {
+    enabled: false,
+    protovalidateFinite: false,
+  };
   let validTypes = {
     legacyRequired: false,
     protovalidateRequired: false,
@@ -75,10 +81,26 @@ function parseOptions(
   for (const { key, value } of options) {
     switch (key) {
       case "json_types":
-        if (!["true", "1", "false", "0"].includes(value)) {
-          throw "please provide true or false";
+        switch (value) {
+          case "true":
+          case "1":
+            jsonTypes.enabled = true;
+            break;
+          case "false":
+          case "0":
+            break;
+          default:
+            for (const part of value.split("+")) {
+              switch (part) {
+                case "protovalidate_finite":
+                  jsonTypes.enabled = true;
+                  jsonTypes.protovalidateFinite = true;
+                  break;
+                default:
+                  throw new Error();
+              }
+            }
         }
-        jsonTypes = ["true", "1"].includes(value);
         break;
       case "valid_types":
         for (const part of value.split("+")) {
@@ -122,8 +144,8 @@ function generateTs(schema: Schema<Options>) {
       switch (desc.kind) {
         case "message": {
           generateMessageShape(f, desc, "ts");
-          if (schema.options.jsonTypes) {
-            generateMessageJsonShape(f, desc, "ts");
+          if (schema.options.jsonTypes.enabled) {
+            generateMessageJsonShape(f, desc, "ts", schema.options.jsonTypes);
           }
           if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidateRequired) {
             generateMessageValidShape(f, desc, schema.options.validTypes, "ts");
@@ -138,14 +160,14 @@ function generateTs(schema: Schema<Options>) {
         }
         case "enum": {
           generateEnumShape(f, desc);
-          if (schema.options.jsonTypes) {
+          if (schema.options.jsonTypes.enabled) {
             generateEnumJsonShape(f, desc, "ts");
           }
           generateDescDoc(f, desc);
           const name = f.importSchema(desc).name;
           const Shape = f.importShape(desc);
           const { GenEnum, enumDesc } = f.runtime.codegen;
-          if (schema.options.jsonTypes) {
+          if (schema.options.jsonTypes.enabled) {
             const JsonType = f.importJson(desc);
             f.print(f.export("const", name), ": ", GenEnum, "<", Shape, ", ", JsonType, ">", " = ", pure);
           } else {
@@ -266,8 +288,8 @@ function generateDts(schema: Schema<Options>) {
       switch (desc.kind) {
         case "message": {
           generateMessageShape(f, desc, "dts");
-          if (schema.options.jsonTypes) {
-            generateMessageJsonShape(f, desc, "dts");
+          if (schema.options.jsonTypes.enabled) {
+            generateMessageJsonShape(f, desc, "dts", schema.options.jsonTypes);
           }
           if (schema.options.validTypes.legacyRequired || schema.options.validTypes.protovalidateRequired) {
             generateMessageValidShape(f, desc, schema.options.validTypes, "dts");
@@ -280,14 +302,14 @@ function generateDts(schema: Schema<Options>) {
         }
         case "enum": {
           generateEnumShape(f, desc);
-          if (schema.options.jsonTypes) {
+          if (schema.options.jsonTypes.enabled) {
             generateEnumJsonShape(f, desc, "dts");
           }
           generateDescDoc(f, desc);
           const name = f.importSchema(desc).name;
           const Shape = f.importShape(desc);
           const { GenEnum } = f.runtime.codegen;
-          if (schema.options.jsonTypes) {
+          if (schema.options.jsonTypes.enabled) {
             const JsonType = f.importJson(desc);
             f.print(f.export("declare const", name), ": ", GenEnum, "<", Shape, ", ", JsonType, ">;");
           } else {
@@ -498,7 +520,7 @@ function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOn
 }
 
 // biome-ignore format: want this to read well
-function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target: Extract<Target, "ts" | "dts">) {
+function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target: Extract<Target, "ts" | "dts">, jsonTypes: Options["jsonTypes"]) {
   const exp = f.export(target == "ts" ? "type" : "declare type", f.importJson(message).name);
   f.print(f.jsDoc(message));
   switch (message.typeName) {
@@ -543,7 +565,7 @@ function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target
             || containsSpecialChar.test(jsonName)) {
             jsonName = f.string(jsonName);
           }
-          f.print("  ", jsonName, "?: ", fieldJsonType(field), ";");
+          f.print("  ", jsonName, "?: ", fieldJsonType(field, jsonTypes), ";");
           if (message.fields.indexOf(field) < message.fields.length - 1) {
             f.print();
           }

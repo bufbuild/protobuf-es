@@ -46,6 +46,8 @@ message FieldRules {
   optional bool required = 25;
   optional Ignore ignore = 27;
   oneof type {
+    FloatRules float = 1;
+    DoubleRules double = 2;
     RepeatedRules repeated = 18;
     MapRules map = 19;
   }
@@ -58,6 +60,14 @@ enum Ignore {
   // removed in https://github.com/bufbuild/protovalidate/pull/396
   IGNORE_IF_DEFAULT_VALUE = 2 [deprecated = true];
   IGNORE_ALWAYS = 3;
+}
+
+message FloatRules {
+  optional bool finite = 8;
+}
+
+message DoubleRules {
+  optional bool finite = 8;
 }
 
 message RepeatedRules {

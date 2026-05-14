@@ -15,6 +15,7 @@
 import {
   type DescField,
   type DescMessage,
+  ScalarType,
   getOption,
   hasOption,
 } from "@bufbuild/protobuf";
@@ -138,4 +139,54 @@ export function isLegacyRequired(descField: DescField): boolean {
     descField.fieldKind == "message" &&
     descField.presence == FeatureSet_FieldPresence.LEGACY_REQUIRED
   );
+}
+
+/**
+ * Returns true if the field has protovalidate's `finite` rule set to true.
+ *
+ * Only applies to float/double scalar fields and list/map fields with
+ * float/double scalars. Always returns false for other field types.
+ */
+export function isProtovalidateFinite(descField: DescField): boolean {
+  if (!hasOption(descField, ext_field)) {
+    return false;
+  }
+  const fieldRules = getOption(descField, ext_field);
+  switch (descField.fieldKind) {
+    case "scalar":
+      if (
+        descField.scalar !== ScalarType.FLOAT &&
+        descField.scalar !== ScalarType.DOUBLE
+      ) {
+        return false;
+      }
+      if (descField.scalar === ScalarType.FLOAT) {
+        return (
+          fieldRules.type.case === "float" && fieldRules.type.value.finite
+        );
+      }
+      return (
+        fieldRules.type.case === "double" && fieldRules.type.value.finite
+      );
+    case "list":
+      if (descField.listKind !== "scalar") {
+        return false;
+      }
+      if (
+        descField.scalar !== ScalarType.FLOAT &&
+        descField.scalar !== ScalarType.DOUBLE
+      ) {
+        return false;
+      }
+      if (descField.scalar === ScalarType.FLOAT) {
+        return (
+          fieldRules.type.case === "float" && fieldRules.type.value.finite
+        );
+      }
+      return (
+        fieldRules.type.case === "double" && fieldRules.type.value.finite
+      );
+    default:
+      return false;
+  }
 }
