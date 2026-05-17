@@ -182,7 +182,7 @@ export interface DescEnum {
    * A prefix shared by all enum values.
    * For example, `my_enum_` for `enum MyEnum {MY_ENUM_A=0; MY_ENUM_B=1;}`
    */
-  readonly sharedPrefix?: string;
+  readonly sharedPrefix?: string | undefined;
   /**
    * Marked as deprecated in the protobuf source.
    */
@@ -370,6 +370,13 @@ interface descFieldAndExtensionShared {
    * See https://protobuf.dev/programming-guides/field_presence/
    */
   readonly presence: SupportedFieldPresence;
+  /**
+   * Whether to reject invalid UTF-8 when reading this field from the binary
+   * wire format. Reflects the resolved `utf8_validation` feature: true for
+   * VERIFY (proto3 and editions 2023+ default), false for NONE (proto2
+   * default).
+   */
+  readonly utf8Validation: boolean;
   /**
    * The compiler-generated descriptor.
    */
@@ -743,7 +750,7 @@ export interface DescMethod {
  */
 export interface DescComments {
   readonly leadingDetached: readonly string[];
-  readonly leading?: string;
-  readonly trailing?: string;
+  readonly leading?: string | undefined;
+  readonly trailing?: string | undefined;
   readonly sourcePath: readonly number[];
 }

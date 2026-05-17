@@ -68,7 +68,10 @@ export function makeFilePreamble(
       builder.push("syntax proto3)\n");
       break;
     default: {
-      const editionString = Edition[file.edition] as string | undefined;
+      // Report the raw edition from the descriptor so files using
+      // EDITION_UNSTABLE (which we collapse to maximumEdition internally)
+      // still render as "edition unstable".
+      const editionString = Edition[file.proto.edition] as string | undefined;
       if (typeof editionString == "string") {
         const e = editionString.replace("EDITION_", "").toLowerCase();
         builder.push(`edition ${e})\n`);

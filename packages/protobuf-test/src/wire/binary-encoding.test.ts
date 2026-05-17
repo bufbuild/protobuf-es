@@ -240,4 +240,49 @@ void suite("BinaryReader", () => {
       }
     });
   });
+  void suite("tag", () => {
+    // Tag byte for (fieldNo=1, wireType=Varint) with the varint continuation
+    // bit set, so additional bytes can be appended to build malformed tags.
+    const field1TagContinued = 0x08 | 0x80;
+    void test("should reject varint longer than 5 bytes", () => {
+      const reader = new BinaryReader(
+        new Uint8Array([
+          field1TagContinued,
+          0x80,
+          0x80,
+          0x80,
+          0x80,
+          0x80,
+          0x00,
+        ]),
+      );
+      assert.throws(() => reader.tag(), {
+        message: "illegal tag: varint overflows uint32",
+      });
+    });
+    void test("should reject 5-byte varint whose value overflows uint32", () => {
+      const reader = new BinaryReader(
+        new Uint8Array([field1TagContinued, 0x80, 0x80, 0x80, 0x40]),
+      );
+      assert.throws(() => reader.tag(), {
+        message: "illegal tag: varint overflows uint32",
+      });
+    });
+    void test("should reject field number 0", () => {
+      const reader = new BinaryReader(new Uint8Array([0x00]));
+      assert.throws(() => reader.tag(), {
+        message: /^illegal tag: field no 0/,
+      });
+    });
+    void test("should accept the maximum valid tag", () => {
+      // fieldNo = 2^29 - 1 (the protobuf max), wireType = Varint.
+      // tag = (0x1FFFFFFF << 3) = 0xFFFFFFF8.
+      const reader = new BinaryReader(
+        new Uint8Array([0xf8, 0xff, 0xff, 0xff, 0x0f]),
+      );
+      const [fieldNo, wireType] = reader.tag();
+      assert.strictEqual(fieldNo, 0x1fffffff);
+      assert.strictEqual(wireType, WireType.Varint);
+    });
+  });
 });

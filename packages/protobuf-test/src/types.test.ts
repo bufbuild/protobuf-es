@@ -30,7 +30,11 @@ import {
   type MessageValidType,
 } from "@bufbuild/protobuf";
 import type { Timestamp, Duration } from "@bufbuild/protobuf/wkt";
-import type { Proto3Message, Proto3Enum } from "./gen/ts/extra/proto3_pb.js";
+import {
+  type Proto3Message,
+  type Proto3Enum,
+  Proto3MessageSchema,
+} from "./gen/ts/extra/proto3_pb.js";
 import type { Proto3EnumSchema } from "./gen/ts/extra/proto3_pb.js";
 import type { User } from "./gen/ts/extra/example_pb.js";
 import { UserSchema } from "./gen/ts/extra/example_pb.js";
@@ -84,6 +88,15 @@ void suite("type Message", () => {
           throw new Error();
       }
     });
+  });
+  void test("optional fields can be explicitly set to undefined", () => {
+    const message = create(Proto3MessageSchema);
+
+    assert.ok({
+      ...message,
+      optionalBoolField: undefined,
+      optionalMessageField: undefined,
+    } satisfies Proto3Message);
   });
 });
 

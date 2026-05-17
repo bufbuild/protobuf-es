@@ -45,7 +45,7 @@ import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
 import { compileMessage } from "./helpers.js";
-import { BinaryReader, WireType } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 
 void suite(`binary serialization`, () => {
   testBinary(ScalarValuesMessageSchema, {
@@ -324,6 +324,85 @@ void suite(`binary serialization`, () => {
       }
     }
     assert.strictEqual(r.pos, r.len);
+  });
+});
+
+void suite("UTF-8 validation on binary input", () => {
+  const invalid = new Uint8Array([0xa0, 0xb0, 0xc0, 0xd0]);
+  const fieldOneStringBytes = new BinaryWriter()
+    .tag(1, WireType.LengthDelimited)
+    .bytes(invalid)
+    .finish();
+  void test("rejects invalid UTF-8 on proto3 string", async () => {
+    const desc = await compileMessage(`
+      syntax="proto3";
+      message M { string f = 1; }
+    `);
+    assert.throws(() => fromBinary(desc, fieldOneStringBytes));
+  });
+  void test("rejects invalid UTF-8 on edition 2023 string", async () => {
+    const desc = await compileMessage(`
+      edition="2023";
+      message M { string f = 1; }
+    `);
+    assert.throws(() => fromBinary(desc, fieldOneStringBytes));
+  });
+  void test("accepts invalid UTF-8 on proto2 string", async () => {
+    const desc = await compileMessage(`
+      syntax="proto2";
+      message M { optional string f = 1; }
+    `);
+    fromBinary(desc, fieldOneStringBytes);
+  });
+  void test("accepts invalid UTF-8 when features.utf8_validation = NONE", async () => {
+    const desc = await compileMessage(`
+      edition="2023";
+      message M {
+        string f = 1 [features.utf8_validation = NONE];
+      }
+    `);
+    fromBinary(desc, fieldOneStringBytes);
+  });
+  void test("rejects invalid UTF-8 in map key", async () => {
+    const desc = await compileMessage(`
+      syntax="proto3";
+      message M { map<string, string> f = 1; }
+    `);
+    const entry = new BinaryWriter()
+      .tag(1, WireType.LengthDelimited)
+      .bytes(invalid)
+      .tag(2, WireType.LengthDelimited)
+      .bytes(new Uint8Array())
+      .finish();
+    const bytes = new BinaryWriter()
+      .tag(1, WireType.LengthDelimited)
+      .bytes(entry)
+      .finish();
+    assert.throws(() => fromBinary(desc, bytes));
+  });
+  void test("rejects invalid UTF-8 in map value", async () => {
+    const desc = await compileMessage(`
+      syntax="proto3";
+      message M { map<string, string> f = 1; }
+    `);
+    const entry = new BinaryWriter()
+      .tag(1, WireType.LengthDelimited)
+      .bytes(new Uint8Array())
+      .tag(2, WireType.LengthDelimited)
+      .bytes(invalid)
+      .finish();
+    const bytes = new BinaryWriter()
+      .tag(1, WireType.LengthDelimited)
+      .bytes(entry)
+      .finish();
+    assert.throws(() => fromBinary(desc, bytes));
+  });
+  void test("rejects invalid UTF-8 in repeated string", async () => {
+    const desc = await compileMessage(`
+      syntax="proto3";
+      message M { repeated string f = 1; }
+    `);
+    assert.throws(() => fromBinary(desc, fieldOneStringBytes));
   });
 });
 

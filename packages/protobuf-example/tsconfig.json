@@ -4,6 +4,7 @@
     "target": "es2017",
     "moduleResolution": "Node10",
     "strict": true,
+    "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true
   }
 }

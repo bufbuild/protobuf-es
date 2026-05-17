@@ -74,6 +74,19 @@ function show(user: User) {
 
 Messages no longer implement `toJSON`. Convert them with `toJson()` before passing them to `JSON.stringify()`.
 
+### Quick reference
+
+| v1 | v2 |
+|---|---|
+| `new User({ firstName: "Homer" })` | `create(UserSchema, { firstName: "Homer" })` |
+| `msg.toBinary()` | `toBinary(UserSchema, msg)` |
+| `User.fromBinary(bytes)` | `fromBinary(UserSchema, bytes)` |
+| `msg.toJsonString()` | `toJsonString(UserSchema, msg)` |
+| `User.fromJsonString(str)` | `fromJsonString(UserSchema, str)` |
+| `msg.toJson()` | `toJson(UserSchema, msg)` |
+| `msg.clone()` | `clone(UserSchema, msg)` |
+| `msg.equals(other)` | `equals(UserSchema, msg, other)` |
+
 ## Other notable changes
 
 - `google.protobuf.Struct` fields are now generated as `JsonObject`.

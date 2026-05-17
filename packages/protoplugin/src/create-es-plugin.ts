@@ -60,24 +60,26 @@ interface PluginInit<Options extends object> {
    * If your plugin does not recognize an option, it must throw an Error in
    * parseOptions.
    */
-  parseOptions?: (
-    rawOptions: {
-      key: string;
-      value: string;
-    }[],
-  ) => Options;
+  parseOptions?:
+    | ((
+        rawOptions: {
+          key: string;
+          value: string;
+        }[],
+      ) => Options)
+    | undefined;
 
   /**
    * The earliest edition supported by this plugin. Defaults to the minimum
    * edition supported by @bufbuild/protobuf.
    */
-  minimumEdition?: SupportedEdition;
+  minimumEdition?: SupportedEdition | undefined;
 
   /**
    * The latest edition supported by this plugin. Defaults to the maximum
    * edition supported by @bufbuild/protobuf.
    */
-  maximumEdition?: SupportedEdition;
+  maximumEdition?: SupportedEdition | undefined;
 
   /**
    * A function which will generate TypeScript files based on proto input.
@@ -97,7 +99,7 @@ interface PluginInit<Options extends object> {
    * JavaScript files.  If not, the plugin framework will transpile the files
    * itself.
    */
-  generateJs?: (schema: Schema<Options>, target: "js") => void;
+  generateJs?: ((schema: Schema<Options>, target: "js") => void) | undefined;
 
   /**
    * A optional function which will generate TypeScript declaration files
@@ -109,7 +111,7 @@ interface PluginInit<Options extends object> {
    * declaration files.  If not, the plugin framework will transpile the files
    * itself.
    */
-  generateDts?: (schema: Schema<Options>, target: "dts") => void;
+  generateDts?: ((schema: Schema<Options>, target: "dts") => void) | undefined;
 
   /**
    * An optional function which will transpile a given set of files.
@@ -124,12 +126,14 @@ interface PluginInit<Options extends object> {
    * transpiling to JS. If jsImportStyle is "legacy_commonjs", the function is
    * expected to use CommonJs require() and exports when transpiling to JS.
    */
-  transpile?: (
-    files: FileInfo[],
-    transpileJs: boolean,
-    transpileDts: boolean,
-    jsImportStyle: "module" | "legacy_commonjs",
-  ) => FileInfo[];
+  transpile?:
+    | ((
+        files: FileInfo[],
+        transpileJs: boolean,
+        transpileDts: boolean,
+        jsImportStyle: "module" | "legacy_commonjs",
+      ) => FileInfo[])
+    | undefined;
 }
 
 /**

@@ -21,6 +21,7 @@ import type {
   FeatureSet_RepeatedFieldEncoding,
   FeatureSet_MessageEncoding,
   FeatureSet_EnumType,
+  FeatureSet_Utf8Validation,
   FieldDescriptorProto,
   FieldDescriptorProto_Type,
   FieldDescriptorProto_Label,
@@ -384,6 +385,8 @@ function initBaseRegistry(
 const EDITION_PROTO2: Edition.EDITION_PROTO2 = 998;
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
 const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;
+// bootstrap-inject google.protobuf.Edition.EDITION_UNSTABLE: const $name: Edition.$localName = $number;
+const EDITION_UNSTABLE: Edition.EDITION_UNSTABLE = 9999;
 
 // bootstrap-inject google.protobuf.FieldDescriptorProto.Type.TYPE_STRING: const $name: FieldDescriptorProto_Type.$localName = $number;
 const TYPE_STRING: FieldDescriptorProto_Type.STRING = 9;
@@ -423,9 +426,12 @@ const DELIMITED: FeatureSet_MessageEncoding.DELIMITED = 2;
 // bootstrap-inject google.protobuf.FeatureSet.EnumType.OPEN: const $name: FeatureSet_EnumType.$localName = $number;
 const OPEN: FeatureSet_EnumType.OPEN = 1;
 
+// bootstrap-inject google.protobuf.FeatureSet.Utf8Validation.VERIFY: const $name: FeatureSet_Utf8Validation.$localName = $number;
+const VERIFY: FeatureSet_Utf8Validation.VERIFY = 2;
+
 // biome-ignore format: want this to read well
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2024: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
-// generated from protoc v33.2
+// generated from protoc v34.0
 export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1001;
 const featureDefaults = {
   // EDITION_PROTO2
@@ -839,6 +845,7 @@ function newField(
     message: undefined,
     enum: undefined,
     presence: getFieldPresence(proto, oneof, isExtension, parentOrFile),
+    utf8Validation: isUtf8Validated(proto, parentOrFile),
     listKind: undefined,
     mapKind: undefined,
     mapKey: undefined,
@@ -980,6 +987,12 @@ function getFileEdition(proto: FileDescriptorProto): SupportedEdition {
     case "proto3":
       return EDITION_PROTO3;
     case "editions":
+      // EDITION_UNSTABLE is a sandbox for in-development features. Collapse
+      // it to maximumEdition so SupportedEdition and feature resolution do
+      // not leak the test-only edition to users.
+      if (proto.edition === EDITION_UNSTABLE) {
+        return maximumEdition;
+      }
       if (proto.edition in featureDefaults) {
         return proto.edition as SupportedEdition;
       }
@@ -1224,6 +1237,24 @@ function isDelimitedEncoding(
   return (
     DELIMITED ==
     resolveFeature("messageEncoding", {
+      proto,
+      parent,
+    })
+  );
+}
+
+/**
+ * Reject invalid UTF-8 when reading string fields from the binary wire format?
+ * Driven by the resolved `utf8_validation` feature: VERIFY (proto3 / editions
+ * 2023+ default) enforces; NONE (proto2 default) does not.
+ */
+function isUtf8Validated(
+  proto: FieldDescriptorProto,
+  parent: DescMessage | DescFile,
+): boolean {
+  return (
+    VERIFY ==
+    resolveFeature("utf8Validation", {
       proto,
       parent,
     })

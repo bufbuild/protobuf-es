@@ -1194,7 +1194,7 @@ void suite("DescField", () => {
       const field = await compileField(`
         edition="2023";
         option features.message_encoding = DELIMITED;
-        message M { 
+        message M {
           map <int32, string> f = 1;
         }
       `);
@@ -1202,6 +1202,63 @@ void suite("DescField", () => {
         field.fieldKind == "map" ? field.delimitedEncoding : undefined,
         false,
       );
+    });
+  });
+  void suite("utf8Validation", () => {
+    test("false for proto2 string field", async () => {
+      const field = await compileField(`
+        syntax="proto2";
+        message M {
+          optional string f = 1;
+        }
+      `);
+      assert.strictEqual(field.utf8Validation, false);
+    });
+    test("true for proto3 string field", async () => {
+      const field = await compileField(`
+        syntax="proto3";
+        message M {
+          string f = 1;
+        }
+      `);
+      assert.strictEqual(field.utf8Validation, true);
+    });
+    test("true for edition 2023 string field", async () => {
+      const field = await compileField(`
+        edition="2023";
+        message M {
+          string f = 1;
+        }
+      `);
+      assert.strictEqual(field.utf8Validation, true);
+    });
+    test("false for field with features.utf8_validation = NONE", async () => {
+      const field = await compileField(`
+        edition="2023";
+        message M {
+          string f = 1 [features.utf8_validation = NONE];
+        }
+      `);
+      assert.strictEqual(field.utf8Validation, false);
+    });
+    test("false for file with features.utf8_validation = NONE", async () => {
+      const field = await compileField(`
+        edition="2023";
+        option features.utf8_validation = NONE;
+        message M {
+          string f = 1;
+        }
+      `);
+      assert.strictEqual(field.utf8Validation, false);
+    });
+    test("true for map field in proto3", async () => {
+      const field = await compileField(`
+        syntax="proto3";
+        message M {
+          map <string, string> f = 1;
+        }
+      `);
+      assert.strictEqual(field.utf8Validation, true);
     });
   });
   void suite("longAsString", () => {

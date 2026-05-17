@@ -376,6 +376,7 @@ export class BinaryReader {
     buf: Uint8Array,
     private readonly decodeUtf8: (
       bytes: Uint8Array,
+      strict?: boolean,
     ) => string = getTextEncoding().decodeUtf8,
   ) {
     this.buf = buf;
@@ -385,16 +386,23 @@ export class BinaryReader {
   }
 
   /**
-   * Reads a tag - field number and wire type.
+   * Reads a tag - field number and wire type. Tags are uint32 varints; values
+   * that do not fit in uint32 are rejected.
    */
   tag(): [number, WireType] {
-    let tag = this.uint32(),
-      fieldNo = tag >>> 3,
-      wireType = tag & 7;
-    if (fieldNo <= 0 || wireType < 0 || wireType > 5)
+    const start = this.pos;
+    const tag = this.uint32();
+    const bytesRead = this.pos - start;
+    if (bytesRead > 5 || (bytesRead == 5 && this.buf[this.pos - 1] > 0x0f)) {
+      throw new Error("illegal tag: varint overflows uint32");
+    }
+    const fieldNo = tag >>> 3;
+    const wireType = tag & 7;
+    if (fieldNo <= 0 || wireType > 5) {
       throw new Error(
         "illegal tag: field no " + fieldNo + " wire type " + wireType,
       );
+    }
     return [fieldNo, wireType];
   }
 
@@ -563,10 +571,11 @@ export class BinaryReader {
   }
 
   /**
-   * Read a `string` field, length-delimited data converted to UTF-8 text.
+   * Read a `string` field, length-delimited data converted to UTF-8 text. If
+   * `strict` is true, throw on invalid UTF-8 instead of substituting U+FFFD.
    */
-  string(): string {
-    return this.decodeUtf8(this.bytes());
+  string(strict?: boolean): string {
+    return this.decodeUtf8(this.bytes(), strict);
   }
 }
 

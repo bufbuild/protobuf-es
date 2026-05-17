@@ -283,7 +283,7 @@ export declare const PhoneTypeSchema: GenEnum<PhoneType>;
 
 ## Extensions
 
-Extensions become typed extension descriptors:
+Extensions become typed extension descriptors. For full runtime usage including `setExtension()`, `getExtension()`, `hasExtension()`, and JSON serialization, see the dedicated [Extensions](/extensions/) page.
 
 ```protobuf
 syntax = "proto2";
@@ -301,9 +301,7 @@ extend User {
 export declare const age: GenExtension<User, number>;
 ```
 
-At runtime, use helpers such as `setExtension()`, `getExtension()`, `hasExtension()`, and `clearExtension()`.
-
-See [Reflection](/reflection/) for registries and custom options built on top of the same descriptor model.
+Extensions are the foundation for [custom options](/reflection/#custom-options), which let you annotate any schema element with arbitrary metadata.
 
 ## Services
 

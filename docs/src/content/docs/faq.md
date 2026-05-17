@@ -2,23 +2,6 @@
 title: FAQ
 ---
 
-## What features are implemented?
-
-Protobuf-ES is a modern Protobuf implementation for the JavaScript ecosystem.
-
-Highlights include:
-
-- ECMAScript module support
-- first-class TypeScript support
-- idiomatic generated JavaScript and TypeScript
-- smaller bundles than the legacy generator
-- all proto3 features, including ProtoJSON
-- all proto2 features except the text format
-- Editions support
-- standard JavaScript APIs instead of the Closure Library
-- conformance coverage
-- descriptors and reflection
-
 ## Why not use string unions for Protobuf enums instead of TypeScript `enum`?
 
 String unions look attractive, but they lose important Protobuf behavior.
@@ -41,17 +24,7 @@ JavaScript numbers are only safe up to `Number.MAX_SAFE_INTEGER`, which is small
 
 ## How does Protobuf-ES compare to `protoc`'s JavaScript generator?
 
-The legacy generator has fallen behind modern JavaScript and TypeScript.
-
-Some of the key differences are:
-
-- Protobuf-ES supports ECMAScript modules.
-- Protobuf-ES can generate TypeScript directly.
-- Protobuf-ES implements ProtoJSON.
-- Protobuf-ES carries comments into generated output.
-- Protobuf-ES uses plain properties instead of getter and setter methods.
-- Protobuf-ES produces much smaller bundles.
-- Protobuf-ES relies on standard JavaScript APIs instead of the Closure Library.
+The legacy generator has fallen behind modern JavaScript and TypeScript. See [How it compares](/how-it-compares/) for the full breakdown with conformance numbers, capability tables, and code examples.
 
 ## What is your stance on plugin options?
 
@@ -89,3 +62,5 @@ plugins:
 Binary and JSON serialization are deterministic within a version of Protobuf-ES.
 
 Regular fields are ordered by field number. Map entries, repeated fields, and extensions are ordered by insertion.
+
+

@@ -123,3 +123,30 @@ PATH=$(dirname $(yarn bin protoc-gen-es)):${PATH}
 - [Plugin options](/plugin-options/): Change the generated target, import style, JSON typing, and more.
 - [Generated code](/generated-code/): See how messages, enums, services, maps, oneofs, and extensions are represented.
 - [Working with messages](/working-with-messages/): Learn the main runtime APIs.
+
+## Protocol Buffers in brief
+
+If you are new to Protobuf: Protocol Buffers is an interface definition language and binary serialization format. Schemas are defined in `.proto` files and used to generate code in many languages.
+
+```protobuf
+syntax = "proto3";
+package example;
+
+message User {
+  string first_name = 1;
+  string last_name = 2;
+  bool active = 3;
+  User manager = 4;
+  repeated string locations = 5;
+  map<string, string> projects = 6;
+}
+```
+
+To use a schema like this in JavaScript or TypeScript, generate code with `@bufbuild/protoc-gen-es`, then work with the generated types and schema exports directly in your application. The rest of this site shows you how.
+
+## Compatibility
+
+- [Node.js](https://nodejs.org/): All maintained releases are supported.
+- [Deno](https://deno.com/): Latest LTS release is supported.
+- [Bun](https://bun.com/): Latest v1 release is supported.
+- [TypeScript](https://www.typescriptlang.org/): Versions less than 2 years old are supported with default compiler settings.

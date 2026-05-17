@@ -373,7 +373,7 @@ Protobuf-ES generates the following property:
 /**
  * @generated from field: example.User manager = 4;
  */
-manager?: User
+manager?: User | undefined;
 ```
 
 Message fields don't have default values in Protobuf. They are always optional in ECMAScript.
@@ -531,7 +531,7 @@ For this group field, Protobuf-ES generates the following property and the messa
 /**
  * @generated from field: optional example.User.MyGroup mygroup = 1;
  */
-mygroup?: User_MyGroup;
+mygroup?: User_MyGroup | undefined;
 ```
 
 > [!CAUTION]
@@ -567,7 +567,7 @@ The field is generated as an optional property:
 /**
  * @generated from field: optional bool active = 3;
  */
-active?: boolean;
+active?: boolean | undefined;
 ```
 
 > [!TIP]
@@ -953,7 +953,7 @@ field, it's generated as the type `JsonObject` from [@bufbuild/protobuf]. For ex
 /**
  * @generated from field: google.protobuf.Struct struct = 1;
  */
-struct?: JsonObject;
+struct?: JsonObject | undefined;
 ```
 
 This feature makes it very easy to work with `Struct` fields:
@@ -977,7 +977,7 @@ For convenience, it generates fields that use one of the wrapper messages as "un
 /**
  * @generated from field: google.protobuf.BoolValue bool_value_field = 1;
  */
-boolValueField?: boolean;
+boolValueField?: boolean | undefined;
 ```
 
 ## Working with messages
@@ -1219,7 +1219,7 @@ Options for `toJson` and `toJsonString`:
 ### Unknown fields
 
 When binary message data is parsed, unrecognized fields are stored on the message as unknown fields in the property
-`$unknown?: UnknownField[]`. When the message is serialized, unknown fields are included, preserving them.
+`$unknown?: UnknownField[] | undefined`. When the message is serialized, unknown fields are included, preserving them.
 
 This default behavior can be modified with the [binary serialization options](#binary-serialization-options)
 `readUnknownFields` and `writeUnknownFields`.

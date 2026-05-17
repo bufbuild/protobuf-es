@@ -34,33 +34,7 @@ Nested message fields accept initializer objects too. You do not need to call `c
 
 ## Serialize and parse
 
-Use binary helpers for wire format:
-
-```typescript
-import { toBinary, fromBinary } from "@bufbuild/protobuf";
-import { type User, UserSchema } from "./gen/example_pb";
-
-declare let user: User;
-
-const bytes: Uint8Array = toBinary(UserSchema, user);
-user = fromBinary(UserSchema, bytes);
-```
-
-Use JSON helpers for [ProtoJSON](https://protobuf.dev/programming-guides/json/):
-
-```typescript
-import { toJson, fromJson, type JsonValue } from "@bufbuild/protobuf";
-import { type User, UserSchema } from "./gen/example_pb";
-
-declare let user: User;
-
-const json: JsonValue = toJson(UserSchema, user);
-user = fromJson(UserSchema, json);
-```
-
-For JSON strings, use `toJsonString()` and `fromJsonString()`.
-
-For serialization options, lower-level APIs, and unknown fields, see [Serialization](/serialization/).
+Use `toBinary` / `fromBinary` for wire format, and `toJson` / `fromJson` for [ProtoJSON](https://protobuf.dev/programming-guides/json/). For serialization options, lower-level APIs, and unknown fields, see [Serialization](/serialization/).
 
 ## Identifying messages
 

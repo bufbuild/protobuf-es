@@ -19,6 +19,7 @@
     "esModuleInterop": false,
     // As strict as possible
     "strict": true,
+    "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

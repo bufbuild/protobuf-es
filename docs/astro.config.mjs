@@ -35,7 +35,7 @@ export default defineConfig({
       pagination: false,
       plugins: [starlightLinksValidator()],
       customCss: ["./src/styles/custom.css"],
-      // Organize the docs around the user journey from first generation to advanced reflection and plugins.
+      // Organize the docs around the user journey from pitch to advanced topics.
       sidebar: [
         {
           label: "Introduction",
@@ -50,8 +50,6 @@ export default defineConfig({
           items: [
             { slug: "plugin-options" },
             { slug: "generated-code" },
-            { slug: "json-types" },
-            { slug: "valid-types" },
           ],
         },
         {
@@ -59,12 +57,15 @@ export default defineConfig({
           items: [
             { slug: "working-with-messages" },
             { slug: "serialization" },
+            { slug: "extensions" },
             { slug: "well-known-types" },
+            { slug: "json-types" },
+            { slug: "valid-types" },
             { slug: "reflection" },
           ],
         },
         {
-          label: "Advanced",
+          label: "Plugins",
           items: [{ slug: "writing-plugins" }],
         },
         {

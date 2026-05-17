@@ -12,11 +12,4 @@ If you want runnable code instead of isolated snippets, start here.
 ## Related projects
 
 - [Connect-ES](https://github.com/connectrpc/connect-es): RPC support built on Protobuf-ES service descriptors.
-- [Protovalidate-ES example](https://github.com/bufbuild/protovalidate-es/tree/main/packages/example#valid-types): A working example of Valid types with Protovalidate.
-
-## Good pages to read next
-
-- [Getting started](/getting-started/)
-- [Working with messages](/working-with-messages/)
-- [Reflection](/reflection/)
-- [Writing plugins](/writing-plugins/)
+- [Protovalidate-ES](https://github.com/bufbuild/protovalidate-es): Validation for Protobuf messages, with a [Valid types example](https://github.com/bufbuild/protovalidate-es/tree/main/packages/example#valid-types).

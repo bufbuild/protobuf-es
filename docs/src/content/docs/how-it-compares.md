@@ -28,14 +28,132 @@ Those numbers matter because they say something simple: Protobuf-ES does not mak
 | Generated code readability | ✅ Typed `User` definitions and schema exports | ❌ Generated classes with list and map helper methods | ⚠️ Generated JavaScript plus separate `.d.ts` output |
 | Tooling friction | ✅ One generator, one runtime | ⚠️ Extra TypeScript tooling and older JS conventions | ❌ `pbjs`, `pbts`, `skipLibChecks`, and custom wrapping in the runner |
 
-## Where the difference shows up fastest
+## Code comparison
 
-If you only read one more page after this one, make it [Generated code](/generated-code/). That is where the difference becomes obvious in seconds.
+Tables describe the difference. Code shows it.
 
-Protobuf-ES generates plain message types and schemas. It does not make you build your application around generated classes, verbose getter and setter APIs, or a secondary step to recover TypeScript types.
+### Creating a message
 
-From there, move to:
+**`google-protobuf`**
 
-- [Getting started](/getting-started/)
-- [Working with messages](/working-with-messages/)
-- [Reflection](/reflection/)
+```javascript
+const { User } = require("./gen/example_pb");
+
+const user = new User();
+user.setFirstName("Alice");
+user.setLastName("Smith");
+user.setActive(true);
+user.setLocationsList(["NYC", "LDN"]);
+user.getProjectsMap().set("atlas", "infra");
+
+const bytes = user.serializeBinary();
+const parsed = User.deserializeBinary(bytes);
+parsed.getFirstName(); // "Alice"
+parsed.getProjectsMap().get("atlas"); // "infra"
+```
+
+**`protobuf.js`**
+
+```javascript
+const { User } = require("./gen/example");
+
+const errMsg = User.verify({ firstName: "Alice", lastName: "Smith", active: true });
+if (errMsg) throw Error(errMsg);
+
+const user = User.create({ firstName: "Alice", lastName: "Smith", active: true });
+user.locations.push("NYC", "LDN");
+user.projects["atlas"] = "infra";
+
+const bytes = User.encode(user).finish();
+const parsed = User.decode(bytes);
+parsed.firstName; // "Alice"
+parsed.projects["atlas"]; // "infra"
+```
+
+**`protobuf-es`**
+
+```typescript
+import { create, toBinary, fromBinary } from "@bufbuild/protobuf";
+import { type User, UserSchema } from "./gen/example_pb";
+
+const user: User = create(UserSchema, {
+  firstName: "Alice",
+  lastName: "Smith",
+  active: true,
+  locations: ["NYC", "LDN"],
+  projects: { atlas: "infra" },
+});
+
+const bytes = toBinary(UserSchema, user);
+const parsed = fromBinary(UserSchema, bytes);
+parsed.firstName; // "Alice"
+parsed.projects.atlas; // "infra"
+```
+
+### Oneofs
+
+**`google-protobuf`**
+
+```javascript
+switch (msg.getResultCase()) {
+  case Question.ResultCase.NUMBER:
+    msg.getNumber();
+    break;
+  case Question.ResultCase.ERROR:
+    msg.getError();
+    break;
+  case Question.ResultCase.RESULT_NOT_SET:
+    break;
+}
+```
+
+**`protobuf-es`**
+
+```typescript
+switch (msg.result.case) {
+  case "number":
+    msg.result.value; // number
+    break;
+  case "error":
+    msg.result.value; // string
+    break;
+}
+```
+
+TypeScript narrows `msg.result.value` to the correct type in each branch. No enum import, no getter chain.
+
+### Code generation toolchain
+
+**`google-protobuf`** uses a standard `protoc` plugin, but only generates JavaScript. TypeScript types come from third-party generators or community `.d.ts` files.
+
+**`protobuf.js`** uses its own CLI tools instead of a `protoc` plugin:
+
+```shellsession
+npx pbjs -t static-module -w es6 -o gen/example.js proto/example.proto
+npx pbts -o gen/example.d.ts gen/example.js
+```
+
+**`protobuf-es`** is a standard plugin that works with both `protoc` and the Buf CLI:
+
+```shellsession
+npx buf generate
+```
+
+One command, one plugin, TypeScript output by default.
+
+## Bundle size {#bundle-size}
+
+`google-protobuf` does not support ES6 imports, which limits what modern bundlers can tree-shake. Protobuf-ES generates ESM by default and produces significantly smaller output.
+
+From this repo's [bundle size comparison](https://github.com/bufbuild/protobuf-es/tree/main/packages/bundle-size):
+
+| Scenario | `protobuf-es` | `google-protobuf` |
+|---|---|---|
+| 1 generated file | `15,803 b` compressed | `35,999 b` compressed |
+| 32 generated files | `24,783 b` compressed | `75,520 b` compressed |
+
+The gap grows as you import more generated files because `protobuf-es` shares runtime code more efficiently.
+
+## Ready to try it?
+
+[Getting started](/getting-started/) takes about five minutes.

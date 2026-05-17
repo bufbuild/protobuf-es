@@ -5,6 +5,7 @@
     "moduleResolution": "Node10",
     "resolveJsonModule": true,
     "strict": true,
+    "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true
   }
 }

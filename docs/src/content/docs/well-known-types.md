@@ -54,7 +54,7 @@ const ms: number = timestampMs(ts);
 ```typescript
 import { type Duration, durationFromMs, durationMs } from "@bufbuild/protobuf/wkt";
 
-let duration: Duration = durationFromMs(1012);
+const duration: Duration = durationFromMs(1012);
 const ms: number = durationMs(duration);
 ```
 
