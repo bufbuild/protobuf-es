@@ -2,7 +2,7 @@
 title: Generated code
 ---
 
-Running `buf generate` or `protoc` with `protoc-gen-es` produces one `_pb` file per `.proto` file. Treat generated files as build artifacts: regenerate them instead of editing them by hand.
+Generated Protobuf-ES files are intentionally plain TypeScript: message types, schema exports, typed fields, discriminated oneofs, arrays, and objects. Running `buf generate` or `protoc` with `protoc-gen-es` produces one `_pb` file per `.proto` file. Treat generated files as build artifacts: regenerate them instead of editing them by hand.
 
 ## Files
 

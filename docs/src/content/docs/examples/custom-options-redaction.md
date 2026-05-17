@@ -2,7 +2,9 @@
 title: Custom option redaction
 ---
 
-This recipe combines [Custom options](/reflection/custom-options/) with [Dynamic messages](/reflection/dynamic-messages/). Fields marked as sensitive in `.proto` are cleared with reflection before logging or export.
+Mark fields as sensitive in `.proto`, then clear them with reflection before logging or exporting a message. The same pattern works for any custom field option.
+
+See [Custom options](/reflection/custom-options/) and [Dynamic messages](/reflection/dynamic-messages/) for the underlying APIs.
 
 ## Define the option
 

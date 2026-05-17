@@ -4,7 +4,7 @@ title: Valid types
 
 Valid types are an advanced feature enabled with the plugin option `valid_types`.
 
-When enabled, `@bufbuild/protoc-gen-es` generates an extra type for each message. That type adjusts optionality based on selected Protobuf features and validation signals, which makes the generated surface more useful in applications that care about stronger static guarantees.
+When enabled, `@bufbuild/protoc-gen-es` generates an extra type for each message. The extra type adjusts optionality based on Protobuf features and validation rules so the TypeScript type can reflect runtime guarantees more closely.
 
 > [!NOTE]
 >

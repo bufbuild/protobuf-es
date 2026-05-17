@@ -2,9 +2,9 @@
 title: Well-known types
 ---
 
-Protobuf ships with a standard library of well-known types. Protobuf-ES provides them as precompiled exports from `@bufbuild/protobuf/wkt`, along with convenience APIs where JavaScript and TypeScript benefit from them most.
+Protobuf ships with a standard library of types defined in `google/protobuf/*.proto`. Protobuf-ES provides them as precompiled exports from `@bufbuild/protobuf/wkt`, with convenience APIs for the ones that map naturally to JavaScript values.
 
-If your schema imports a well-known type, generated code imports it from that subpath automatically.
+If your schema imports a well-known type, generated code imports it from `@bufbuild/protobuf/wkt` automatically.
 
 ## Available files
 

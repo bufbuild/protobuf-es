@@ -34,7 +34,7 @@ Regenerate code, then read the option with `getOption()` or `hasOption()`.
 
 ```typescript
 import { getOption, hasOption } from "@bufbuild/protobuf";
-import { sensitive } from "./gen/example-option_pb";
+import { sensitive } from "./gen/example_options_pb";
 import { UserSchema } from "./gen/example_pb";
 
 hasOption(UserSchema.field.lastName, sensitive); // true

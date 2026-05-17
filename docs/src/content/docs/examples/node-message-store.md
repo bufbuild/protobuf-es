@@ -2,7 +2,9 @@
 title: Node message store
 ---
 
-This walkthrough is a shortened version of [`packages/protobuf-example`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example). A size-delimited binary file can store a sequence of `User` messages. Each message is prefixed with its encoded length, so a stream can contain more than one message.
+A Node application that writes `User` messages to a binary file and reads them back as a stream. Each message is prefixed with its encoded length, so one file can hold many messages.
+
+The full source is in [`packages/protobuf-example`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example).
 
 ## Schema
 
@@ -59,7 +61,3 @@ for await (const user of sizeDelimitedDecodeStream(UserSchema, stream)) {
 ```
 
 For single-message binary serialization, use `toBinary()` and `fromBinary()` instead. See [Serialization](/serialization/) for both formats.
-
-## Runnable version
-
-The repository has a complete version with prompts and npm scripts in [`packages/protobuf-example`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-example).

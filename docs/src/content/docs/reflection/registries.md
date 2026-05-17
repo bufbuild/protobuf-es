@@ -6,6 +6,8 @@ Registries are collections of descriptors keyed by fully qualified name. Use the
 
 ## Lookup
 
+A `Registry` exposes typed accessors and is iterable. Look up a descriptor by its fully qualified name:
+
 ```typescript
 import type { Registry } from "@bufbuild/protobuf";
 

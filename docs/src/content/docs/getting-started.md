@@ -2,7 +2,7 @@
 title: Getting started
 ---
 
-This is the fast path into the runtime JavaScript and TypeScript should have had from the start. In a few minutes, you will generate plain TypeScript, create a real typed message object, and serialize it with a standard Protobuf plugin.
+Start with the core Protobuf-ES flow: generate plain TypeScript or JavaScript from a `.proto` file, create a typed message object, and serialize it with the same schema. The flow uses a standard Protobuf plugin, so it works with the Buf CLI and `protoc`.
 
 ## Prerequisites
 
@@ -98,7 +98,7 @@ const roundTrip = fromBinary(UserSchema, bytes);
 roundTrip.firstName; // "Homer"
 ```
 
-`create()` constructs a message value. `toBinary()` serializes it. `fromBinary()` parses it back. There is no generated class boilerplate, no getter and setter layer, and no second step to recover TypeScript types.
+`create()` constructs a message value. `toBinary()` serializes it. `fromBinary()` parses it back. Generated messages are ordinary objects, not class instances.
 
 ## Generate with `protoc`
 
@@ -122,34 +122,8 @@ PATH=$(dirname $(yarn bin protoc-gen-es)):${PATH}
 
 ## Next steps
 
-- [Plugin options](/plugin-options/): Change the generated target, import style, JSON typing, and more.
-- [Generated code](/generated-code/): See how messages, enums, services, maps, oneofs, and extensions are represented.
-- [Working with messages](/working-with-messages/): Learn the main runtime APIs.
-- [Examples](/examples/): Apply the generated code in practical patterns.
-
-## Protocol Buffers in brief
-
-If you are new to Protobuf: Protocol Buffers is an interface definition language and binary serialization format. Schemas are defined in `.proto` files and used to generate code in many languages.
-
-```protobuf
-syntax = "proto3";
-package example;
-
-message User {
-  string first_name = 1;
-  string last_name = 2;
-  bool active = 3;
-  User manager = 4;
-  repeated string locations = 5;
-  map<string, string> projects = 6;
-}
-```
-
-To use a schema like this in JavaScript or TypeScript, generate code with `@bufbuild/protoc-gen-es`, then work with the generated types and schema exports directly in your application. The rest of this site shows you how.
-
-## Compatibility
-
-- [Node.js](https://nodejs.org/): All maintained releases are supported.
-- [Deno](https://deno.com/): Latest LTS release is supported.
-- [Bun](https://bun.com/): Latest v1 release is supported.
-- [TypeScript](https://www.typescriptlang.org/): Versions less than 2 years old are supported with default compiler settings.
+- [Working with messages](/working-with-messages/): the main runtime APIs.
+- [Serialization](/serialization/): binary, JSON, and lower-level wire helpers.
+- [Generated code](/generated-code/): how messages, enums, services, maps, oneofs, and extensions are represented.
+- [Plugin options](/plugin-options/): change the generated target, import style, JSON typing, and more.
+- [Examples](/examples/): copyable patterns built on the generated code.

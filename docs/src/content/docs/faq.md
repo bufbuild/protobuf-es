@@ -24,19 +24,19 @@ JavaScript numbers are only safe up to `Number.MAX_SAFE_INTEGER`, which is small
 
 ## How does Protobuf-ES compare to `protoc`'s JavaScript generator?
 
-The legacy generator has fallen behind modern JavaScript and TypeScript. See the [comparison on the introduction page](/#comparison) for conformance numbers, capability tables, and code examples.
+The official [`google-protobuf`](https://github.com/protocolbuffers/protobuf-javascript) generator emits getter and setter classes, uses CommonJS, and lags behind on Protobuf Edition support. Protobuf-ES generates plain object messages, ESM by default, with full Edition 2024 support. The [public Protobuf conformance runner](https://github.com/bufbuild/protobuf-conformance) tracks failures for both implementations.
 
-## What is your stance on plugin options?
+## Why doesn't Protobuf-ES expose more plugin options?
 
 Protobuf-ES is intentionally opinionated.
 
-Too many options make code generation harder to learn, harder to debug, and harder for downstream tools to support consistently. We add options when there is a real interoperability or compatibility need, not for stylistic preferences.
+Too many options make code generation harder to learn and debug, and harder for downstream tools to support consistently. New options are added when there is a real interoperability or compatibility need, not for stylistic preferences.
 
 ## Parcel or Metro fails to resolve imports
 
 Protobuf-ES uses [package exports](https://nodejs.org/docs/latest-v12.x/api/packages.html#packages_exports).
 
-If Parcel reports a failure to resolve `@bufbuild/protobuf/codegenv1`, enable package exports in Parcel.
+If Parcel reports a failure to resolve `@bufbuild/protobuf/codegenv2` (or `codegenv1` for older generated code), enable package exports in Parcel.
 
 If Metro or Expo reports the same kind of failure, enable package exports in Metro.
 

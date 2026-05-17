@@ -2,7 +2,7 @@
 title: Working with messages
 ---
 
-Messages are plain objects. Runtime APIs construct, identify, compare, and clone those objects without generated getter and setter classes.
+Messages are plain objects, so application code reads like TypeScript instead of a generated getter and setter API. Runtime helpers construct, identify, compare, and clone messages. For binary and JSON serialization, see [Serialization](/serialization/).
 
 ## Constructing a message
 
@@ -31,10 +31,6 @@ const user = create(UserSchema, {
 ```
 
 Nested message fields accept initializer objects too. You do not need to call `create()` for every nested value.
-
-## Serialize and parse
-
-Use `toBinary` / `fromBinary` for wire format, and `toJson` / `fromJson` for [ProtoJSON](https://protobuf.dev/programming-guides/json/). For serialization options, lower-level APIs, and unknown fields, see [Serialization](/serialization/).
 
 ## Identifying messages
 

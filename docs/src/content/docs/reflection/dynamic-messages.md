@@ -30,47 +30,45 @@ Important methods:
 
 ## ReflectList
 
-Repeated fields use `ReflectList`.
+Repeated fields use `ReflectList`. Given a `User` schema with `repeated string locations = 5`:
 
 ```typescript
-import type { DescField } from "@bufbuild/protobuf";
-import type { ReflectList, ReflectMessage } from "@bufbuild/protobuf/reflect";
+import type { ReflectList } from "@bufbuild/protobuf/reflect";
+import { reflect } from "@bufbuild/protobuf/reflect";
+import { UserSchema } from "./gen/example_pb";
 
-function inspectList(message: ReflectMessage, field: DescField) {
-  if (field.fieldKind !== "list") {
-    return;
+const r = reflect(UserSchema, user);
+const field = UserSchema.field.locations;
+
+if (field.fieldKind === "list") {
+  const list: ReflectList<string> = r.get(field);
+  for (const location of list) {
+    console.log(location);
   }
-  const list: ReflectList = message.get(field);
-  for (const item of list) {
-    item;
-  }
-  list.get(123);
-  list.add(123);
+  list.add("New York");
 }
 ```
 
-64-bit `jstype=JS_STRING` scalars are exposed as `bigint`, and message values are exposed as `ReflectMessage`.
+64-bit `jstype=JS_STRING` scalars are exposed as `bigint`, and message values are wrapped as `ReflectMessage`.
 
 ## ReflectMap
 
-Map fields use `ReflectMap`.
+Map fields use `ReflectMap`. Given a `User` schema with `map<string, string> projects = 6`:
 
 ```typescript
-import type { DescField } from "@bufbuild/protobuf";
-import type { ReflectMap, ReflectMessage } from "@bufbuild/protobuf/reflect";
+import type { ReflectMap } from "@bufbuild/protobuf/reflect";
+import { reflect } from "@bufbuild/protobuf/reflect";
+import { UserSchema } from "./gen/example_pb";
 
-function inspectMap(message: ReflectMessage, field: DescField) {
-  if (field.fieldKind !== "map") {
-    return;
+const r = reflect(UserSchema, user);
+const field = UserSchema.field.projects;
+
+if (field.fieldKind === "map") {
+  const map: ReflectMap<string, string> = r.get(field);
+  for (const [project, role] of map) {
+    console.log(`${project}: ${role}`);
   }
-  const map: ReflectMap = message.get(field);
-  for (const [key, value] of map) {
-    key;
-    value;
-  }
-  map.has(123);
-  map.get(123);
-  map.set(123, "abc");
+  map.set("atlas", "infra");
 }
 ```
 

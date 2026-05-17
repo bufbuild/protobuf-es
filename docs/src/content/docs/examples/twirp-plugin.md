@@ -2,7 +2,9 @@
 title: Twirp plugin
 ---
 
-This walkthrough is based on [`packages/protoplugin-example`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example). The package defines a custom `protoc-gen-twirp-es` plugin that reads service descriptors and generates TypeScript clients.
+A custom `protoc-gen-twirp-es` plugin reads service descriptors and generates TypeScript clients that call [Twirp](https://twitchtv.github.io/twirp/) endpoints over `fetch`.
+
+The full source is in [`packages/protoplugin-example`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example).
 
 ## Schema
 

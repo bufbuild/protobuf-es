@@ -50,18 +50,9 @@ f.print`// hello ${world}`;
 
 ## Imports
 
-`GeneratedFile.import()` returns an `ImportSymbol` that only becomes an import statement if you print it.
+`GeneratedFile.import()` returns an `ImportSymbol` that only becomes an `import` statement if you print it.
 
-```typescript
-const useEffect = f.import("useEffect", "react");
-f.print(useEffect, "(() => {");
-f.print("  document.title = `You clicked ${count} times`;");
-f.print("}, [count]);");
-```
-
-Use `toTypeOnly()` on an `ImportSymbol` for type-only imports.
-
-When working with Protobuf-ES generated output, use helper methods:
+For Protobuf-ES generated output, use the typed helpers:
 
 ```typescript
 for (const message of file.messages) {
@@ -72,7 +63,16 @@ for (const message of file.messages) {
 }
 ```
 
-Generated imports are lazy. If an `ImportSymbol` is never printed, no import appears in the output. If two imports would use the same local name, `GeneratedFile` renames one of them to avoid collisions. If the user asks for `js_import_style=legacy_commonjs`, the same calls generate `require()` statements instead of ESM imports.
+For any other package, pass a name and module path. For example, generating code that calls `fetch` from `undici`:
+
+```typescript
+const fetch = f.import("fetch", "undici");
+f.print("const response = await ", fetch, "(url);");
+```
+
+Use `toTypeOnly()` on an `ImportSymbol` for type-only imports.
+
+Generated imports are lazy. If an `ImportSymbol` is never printed, no import appears in the output. If two imports would use the same local name, `GeneratedFile` renames one of them to avoid collisions. With `js_import_style=legacy_commonjs`, the same calls generate `require()` statements instead of ESM imports.
 
 ## Exports
 

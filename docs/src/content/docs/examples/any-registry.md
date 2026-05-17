@@ -2,7 +2,9 @@
 title: Any with registries
 ---
 
-This recipe expands the `Any` and registry APIs from [Well-known types](/well-known-types/#googleprotobufany) and [Registries](/reflection/registries/). `google.protobuf.Any` stores a message together with a type URL. If you know the expected schema, unpack directly. If you only receive the type URL at runtime, use a registry.
+`google.protobuf.Any` stores an arbitrary message together with a type URL. If you know the expected schema, unpack directly. If you only learn the type URL at runtime, use a registry.
+
+See [Well-known types](/well-known-types/#googleprotobufany) and [Registries](/reflection/registries/) for the underlying APIs.
 
 ## Schema
 

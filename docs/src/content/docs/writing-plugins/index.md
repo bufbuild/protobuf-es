@@ -2,7 +2,7 @@
 title: Writing plugins
 ---
 
-Protobuf compilers run plugins that generate files from schemas. Protobuf-ES includes `@bufbuild/protoplugin`, a framework for building those plugins in TypeScript.
+Protobuf-ES lets you write standard Protobuf plugins in TypeScript. `@bufbuild/protoplugin` handles the plugin protocol and gives you helpers for generating JavaScript and TypeScript from schemas.
 
 Plugins are executables named `protoc-gen-x`. They read schema data from standard input and write generated files to standard output.
 
@@ -60,8 +60,8 @@ For the options accepted by `protoc-gen-es`, see [Plugin options](/plugin-option
 
 ## Next steps
 
-- [Generating files](/writing-plugins/generating-files/): Create output files, print code, imports, and exports.
-- [Plugin options](/writing-plugins/options/): Parse custom options, handle transpilation, release, and test plugins.
-- [Reflection](/reflection/): Inspect the schema passed to your plugin.
+- [Generating files](/writing-plugins/generating-files/): create output files, print code, imports, and exports.
+- [Plugin options and release](/writing-plugins/options/): parse custom options, handle transpilation, release, and test plugins.
+- [Reflection](/reflection/): inspect the schema passed to your plugin.
 
-For a complete runnable example, see [`packages/protoplugin-example`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example).
+For a complete runnable example, see the [Twirp plugin](/examples/twirp-plugin/) walkthrough or [`packages/protoplugin-example`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example) directly.

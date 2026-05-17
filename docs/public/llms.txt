@@ -4,45 +4,51 @@
 
 Use this file as a map for agents and LLMs reading the documentation.
 
-## Primary Pages
+## Primary pages
 
-- /: README-style overview, positioning, comparison, quickstart, migration tables, packages, compatibility.
-- /getting-started/: shortest end-to-end code generation flow with the Buf CLI and protoc.
+- /: short landing with hero example, packages, and compatibility.
+- /getting-started/: end-to-end code generation flow with the Buf CLI and protoc.
 - /working-with-messages/: create messages, initializer objects, identify messages, field presence, equals, clone.
 - /serialization/: binary, JSON, options, unknown fields, wire helpers, text encoding, Base64, size-delimited streams.
 - /extensions/: proto2 extensions, custom options, runtime helpers, JSON registry use.
-- /reflection/: overview for descriptors, registries, custom options, reflection wrappers, dynamic message access.
+
+## Reflection
+
+- /reflection/: overview for descriptors, registries, custom options, dynamic message access.
 - /reflection/descriptors/: descriptor hierarchy, schema traversal, field descriptors, traversal helpers.
 - /reflection/registries/: descriptor lookup, mutable registries, descriptor-set loading.
 - /reflection/custom-options/: defining and reading custom Protobuf options.
 - /reflection/dynamic-messages/: ReflectMessage, ReflectList, ReflectMap.
+
+## Writing plugins
+
 - /writing-plugins/: minimal protoplugin workflow.
 - /writing-plugins/generating-files/: generated files, printing, imports, exports.
 - /writing-plugins/options/: custom plugin options, transpilation, release, testing.
 
-## Reference Pages
+## Reference
 
 - /reference/: reference map.
 - /generated-code/: generated file, message, enum, extension, and service overview.
 - /generated-code/field-types/: scalar, message, enum, repeated, map, and WKT field shapes.
 - /generated-code/features/: oneofs, required fields, optional fields, services, reserved names, comments.
 - /plugin-options/: protoc-gen-es options.
-- /migrating-from-v1/: v1 to v2 migration reference.
 - /well-known-types/: precompiled google.protobuf types and helpers.
 - /json-types/: generated JSON type support.
 - /valid-types/: experimental Valid type support.
+- /migrating-from-v1/: v1 to v2 migration reference.
 - /faq/: design choices and troubleshooting.
-
-## Package Names
-
-- @bufbuild/protobuf: runtime library.
-- @bufbuild/protoc-gen-es: standard Protobuf plugin for JS/TS generation.
-- @bufbuild/protoplugin: framework for writing custom plugins in TypeScript.
 
 ## Examples
 
 - /examples/: examples map.
-- /examples/node-message-store/: Node.js size-delimited binary file example.
-- /examples/twirp-plugin/: custom Twirp client plugin based on protoplugin-example.
+- /examples/node-message-store/: Node.js size-delimited binary file example, based on packages/protobuf-example.
+- /examples/twirp-plugin/: custom Twirp client plugin, based on packages/protoplugin-example.
 - /examples/any-registry/: google.protobuf.Any with registries.
 - /examples/custom-options-redaction/: custom options with reflection-based redaction.
+
+## Packages
+
+- @bufbuild/protobuf: runtime library.
+- @bufbuild/protoc-gen-es: standard Protobuf plugin for JS/TS generation.
+- @bufbuild/protoplugin: framework for writing custom plugins in TypeScript.

@@ -2,12 +2,12 @@
 title: Reflection
 ---
 
-Reflection gives you typed access to Protobuf schemas at runtime. Use it when you need to inspect generated schemas, build registries, read custom options, or manipulate messages without hardcoding their concrete type.
+Reflection is a first-class Protobuf-ES API, not hidden runtime internals. Use it when you need to inspect generated schemas, build registries, read custom options, or manipulate messages without hardcoding their concrete type.
 
 ```typescript
 import { getOption, type DescMessage, type Message } from "@bufbuild/protobuf";
 import { reflect } from "@bufbuild/protobuf/reflect";
-import { sensitive } from "./gen/example-option_pb";
+import { sensitive } from "./gen/example_options_pb";
 
 export function redact(schema: DescMessage, message: Message) {
   const r = reflect(schema, message);
