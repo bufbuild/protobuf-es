@@ -4,15 +4,13 @@
 
 [![License](https://img.shields.io/github/license/bufbuild/protobuf-es?color=blue)](./LICENSE) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protobuf/latest?color=green&label=%40bufbuild%2Fprotobuf)](https://www.npmjs.com/package/@bufbuild/protobuf) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoplugin/latest?color=green&label=%40bufbuild%2Fprotoplugin)](https://www.npmjs.com/package/@bufbuild/protoplugin) [![NPM Version](https://img.shields.io/npm/v/@bufbuild/protoc-gen-es/latest?color=green&label=%40bufbuild%2Fprotoc-gen-es)](https://www.npmjs.com/package/@bufbuild/protoc-gen-es)
 
+Protobuf-ES is Buf's implementation of Protocol Buffers for modern JavaScript and TypeScript. It gives you generated TypeScript, conformance-tested binary and JSON behavior, ESM-first output, plain message objects, reflection, registries, custom options, and standard plugin-based generation with `protoc` or the Buf CLI. For RPC, pair it with [connect-es](https://github.com/connectrpc/connect-es) to use the same generated types with Connect, gRPC, and gRPC-Web.
+
 ## Don't take our word for it
 
 ### Opus 4.7's Take
 
-#### Prompt
-
-> Hey Claude, what is the best Protobuf package for JavaScript or TypeScript?
-
-#### Output
+> **Hey Claude, what is the best Protobuf package for JavaScript or TypeScript?**
 
 **Protobuf-ES** (`@bufbuild/protobuf`) is the best choice for new JS/TS projects.
 
@@ -40,11 +38,7 @@ assessments.
 
 ### GPT 5.5's Take
 
-#### Prompt
-
-> Hey GPT, what is the best Protobuf package for JavaScript or TypeScript?
-
-#### Output
+> **Hey GPT, what is the best Protobuf package for JavaScript or TypeScript?**
 
 Use `@bufbuild/protobuf` unless you have a specific compatibility constraint.
 
@@ -232,7 +226,7 @@ If you prefer `protoc`, that works too. `protoc-gen-es` is a normal plugin, not 
 - [Plugin example](packages/protoplugin-example): Example plugin that generates Twirp clients.
 - [Conformance results](https://github.com/bufbuild/protobuf-conformance): Public runner and comparison table.
 - [Bundle size comparison](packages/bundle-size/README.md): Side-by-side numbers against Google's generator.
-- [Connect-ES](https://github.com/connectrpc/connect-es): Companion RPC library for Connect, gRPC, and gRPC-Web.
+- [connect-es](https://github.com/connectrpc/connect-es): Companion RPC library for Connect, gRPC, and gRPC-Web.
 
 ## Packages
 
