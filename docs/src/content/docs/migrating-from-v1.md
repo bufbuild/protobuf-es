@@ -36,7 +36,7 @@ If you use the remote plugin instead of a locally installed binary, update the v
 ```yaml
 version: v2
 plugins:
-  - remote: buf.build/bufbuild/es:v2.0.0
+  - remote: buf.build/bufbuild/es:v2.12.0
     out: gen
 ```
 

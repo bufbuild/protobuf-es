@@ -6,6 +6,34 @@ Binary and JSON each have their place.
 
 Binary is usually the better choice for network traffic and storage. It preserves unknown fields, handles schema evolution well, and is generally faster. JSON is excellent for debugging, APIs that already speak JSON, and integrations that need plain JSON values. Protobuf-ES implements both with the same conformance-first approach that drives the rest of the runtime.
 
+## Serialize and parse
+
+Use `toBinary()` and `fromBinary()` for the Protobuf wire format:
+
+```typescript
+import { fromBinary, toBinary } from "@bufbuild/protobuf";
+import { type User, UserSchema } from "./gen/example_pb";
+
+declare let user: User;
+
+const bytes: Uint8Array = toBinary(UserSchema, user);
+user = fromBinary(UserSchema, bytes);
+```
+
+Use `toJson()` and `fromJson()` for ProtoJSON values:
+
+```typescript
+import { fromJson, toJson, type JsonValue } from "@bufbuild/protobuf";
+import { type User, UserSchema } from "./gen/example_pb";
+
+declare let user: User;
+
+const json: JsonValue = toJson(UserSchema, user);
+user = fromJson(UserSchema, json);
+```
+
+If you want strings instead of `JsonValue`, use `toJsonString()` and `fromJsonString()`. To parse into an existing message, use `mergeFromBinary()` or `mergeFromJson()`.
+
 ## Binary serialization options
 
 `toBinary()` accepts one option:
@@ -33,7 +61,7 @@ Binary is usually the better choice for network traffic and storage. It preserve
 
 ## Unknown fields
 
-When Protobuf-ES parses binary data, unrecognized fields are stored on the message as `$unknown?: UnknownField[]`. When the message is serialized again, those fields are preserved by default.
+When Protobuf-ES parses binary data, unrecognized fields are stored on the message as `$unknown?: UnknownField[] | undefined`. When the message is serialized again, those fields are preserved by default.
 
 Extensions use the same storage under the hood.
 

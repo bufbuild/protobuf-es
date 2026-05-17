@@ -79,8 +79,8 @@ When this option is enabled, `toJson()` returns those JSON types automatically w
 
 Generate a Valid type for every message.
 
-- `valid_types=legacy_required`: Treat proto2 `required` fields and Edition `LEGACY_REQUIRED` fields as non-optional in the generated Valid type.
-- `valid_types=protovalidate_required`: Treat fields with Protovalidate's `required` rule as non-optional in the generated Valid type.
+- `valid_types=legacy_required`: Treat proto2 `required` message fields and Edition `LEGACY_REQUIRED` message fields as non-optional in the generated Valid type.
+- `valid_types=protovalidate_required`: Treat message fields with Protovalidate's `required` rule as non-optional in the generated Valid type.
 
 You can combine both with `+`, for example `valid_types=legacy_required+protovalidate_required`.
 

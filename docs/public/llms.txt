@@ -1,0 +1,31 @@
+# Protobuf-ES
+
+> Buf's Protocol Buffers implementation for modern JavaScript and TypeScript.
+
+Use this file as a map for agents and LLMs reading the documentation.
+
+## Primary Pages
+
+- /: README-style overview, positioning, comparison, quickstart, migration tables, packages, compatibility.
+- /getting-started/: shortest end-to-end code generation flow with the Buf CLI and protoc.
+- /working-with-messages/: create messages, initializer objects, identify messages, field presence, equals, clone.
+- /serialization/: binary, JSON, options, unknown fields, wire helpers, text encoding, Base64, size-delimited streams.
+- /extensions/: proto2 extensions, custom options, runtime helpers, JSON registry use.
+- /reflection/: descriptors, registries, custom options, reflection wrappers, dynamic message access.
+- /writing-plugins/: protoplugin workflow, generated files, imports, exports, plugin options, release, testing.
+
+## Reference Pages
+
+- /reference/: reference map.
+- /generated-code/: exact generated TypeScript shapes and edge cases.
+- /plugin-options/: protoc-gen-es options.
+- /well-known-types/: precompiled google.protobuf types and helpers.
+- /json-types/: generated JSON type support.
+- /valid-types/: experimental Valid type support.
+- /faq/: design choices and troubleshooting.
+
+## Package Names
+
+- @bufbuild/protobuf: runtime library.
+- @bufbuild/protoc-gen-es: standard Protobuf plugin for JS/TS generation.
+- @bufbuild/protoplugin: framework for writing custom plugins in TypeScript.

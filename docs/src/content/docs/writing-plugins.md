@@ -130,6 +130,8 @@ for (const message of file.messages) {
 }
 ```
 
+Generated imports are lazy. If an `ImportSymbol` is never printed, no import appears in the output. If two imports would use the same local name, `GeneratedFile` renames one of them to avoid collisions. If the user asks for `js_import_style=legacy_commonjs`, the same calls generate `require()` statements instead of ESM imports.
+
 ## Exporting
 
 Use `export()` to build exported declarations safely:
@@ -140,6 +142,8 @@ f.print(f.export("const", "foo"), " = 123;");
 
 If your plugin generates names from Protobuf input, use `safeIdentifier()` from `@bufbuild/protoplugin` to escape reserved words.
 
+`export()` also adapts to CommonJS output when `js_import_style=legacy_commonjs` is set.
+
 ## Parsing plugin options
 
 If your plugin needs custom options, provide `parseOptions()` to `createEcmaScriptPlugin()`.
@@ -149,6 +153,8 @@ parseOptions(rawOptions: { key: string; value: string }[]): T;
 ```
 
 The framework parses common options first, then passes any unrecognized key-value pairs to `parseOptions()`.
+
+The return value is merged into the plugin options passed to `generateTs`, `generateJs`, and `generateDts`. Use this for plugin-specific switches, not for options already handled by `@bufbuild/protoplugin`.
 
 ## Automatic transpilation
 

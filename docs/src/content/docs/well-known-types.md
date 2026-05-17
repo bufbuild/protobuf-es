@@ -11,17 +11,20 @@ If your schema imports a well-known type, generated code imports it from that su
 The well-known type package includes generated output for:
 
 - `google/protobuf/any.proto`
-- `google/protobuf/duration.proto`
-- `google/protobuf/timestamp.proto`
-- `google/protobuf/wrappers.proto`
-- `google/protobuf/struct.proto`
-- `google/protobuf/field_mask.proto`
-- `google/protobuf/empty.proto`
 - `google/protobuf/api.proto`
-- `google/protobuf/type.proto`
-- `google/protobuf/source_context.proto`
-- `google/protobuf/descriptor.proto`
 - `google/protobuf/compiler/plugin.proto`
+- `google/protobuf/cpp_features.proto`
+- `google/protobuf/descriptor.proto`
+- `google/protobuf/duration.proto`
+- `google/protobuf/empty.proto`
+- `google/protobuf/field_mask.proto`
+- `google/protobuf/go_features.proto`
+- `google/protobuf/java_features.proto`
+- `google/protobuf/source_context.proto`
+- `google/protobuf/struct.proto`
+- `google/protobuf/timestamp.proto`
+- `google/protobuf/type.proto`
+- `google/protobuf/wrappers.proto`
 
 Some of them also get convenience APIs.
 
@@ -90,7 +93,7 @@ Registries are especially useful when you do not know the target type up front. 
 /**
  * @generated from field: google.protobuf.Struct struct = 1;
  */
-struct?: JsonObject;
+struct?: JsonObject | undefined;
 ```
 
 That makes it easy to assign plain values directly:
@@ -110,7 +113,7 @@ The wrappers in `google/protobuf/wrappers.proto` become unboxed optional primiti
 /**
  * @generated from field: google.protobuf.BoolValue bool_value_field = 1;
  */
-boolValueField?: boolean;
+boolValueField?: boolean | undefined;
 ```
 
 Wrappers are useful when you need to distinguish absence from a primitive's default value, or when you want to pack primitives into `Any`.

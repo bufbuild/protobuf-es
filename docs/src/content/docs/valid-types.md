@@ -12,7 +12,7 @@ When enabled, `@bufbuild/protoc-gen-es` generates an extra type for each message
 
 ## `valid_types=legacy_required`
 
-With `legacy_required`, proto2 `required` fields and Edition `LEGACY_REQUIRED` fields become non-optional in the generated Valid type.
+With `legacy_required`, proto2 `required` message fields and Edition `LEGACY_REQUIRED` message fields become non-optional in the generated Valid type.
 
 ```protobuf
 syntax = "proto2";
@@ -34,7 +34,7 @@ export type ExampleValid = Message<"Example"> & {
 
 ## `valid_types=protovalidate_required`
 
-With `protovalidate_required`, fields marked with Protovalidate's `required` rule become non-optional in the generated Valid type.
+With `protovalidate_required`, message fields marked with Protovalidate's `required` rule become non-optional in the generated Valid type.
 
 ```protobuf
 syntax = "proto3";

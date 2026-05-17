@@ -24,7 +24,7 @@ JavaScript numbers are only safe up to `Number.MAX_SAFE_INTEGER`, which is small
 
 ## How does Protobuf-ES compare to `protoc`'s JavaScript generator?
 
-The legacy generator has fallen behind modern JavaScript and TypeScript. See [How it compares](/how-it-compares/) for the full breakdown with conformance numbers, capability tables, and code examples.
+The legacy generator has fallen behind modern JavaScript and TypeScript. See the [comparison on the introduction page](/#comparison) for conformance numbers, capability tables, and code examples.
 
 ## What is your stance on plugin options?
 

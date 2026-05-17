@@ -63,6 +63,17 @@ If you only have a type name and not a schema, use a [registry](/reflection/).
 
 Fields in Protobuf are conceptually optional, and most implementations provide default values to reduce boilerplate.
 
+New messages created with `create()` include usable defaults for fields with implicit presence:
+
+```typescript
+const user = create(UserSchema);
+
+user.firstName; // ""
+user.active; // false
+user.locations; // []
+user.projects; // {}
+```
+
 Proto3 fields with implicit presence do not serialize zero values such as `false`, `0`, or `""`. Adding `optional` switches a field to explicit presence.
 
 ```protobuf
@@ -90,7 +101,17 @@ isFieldSet(msg, PresenceSchema.field.a); // false
 isFieldSet(msg, PresenceSchema.field.b); // true
 ```
 
-For repeated fields, `isFieldSet()` returns true when the array has at least one element. For map fields, it returns true when the object has at least one entry. Use `clearField()` to reset a field.
+For repeated fields, `isFieldSet()` returns true when the array has at least one element. For map fields, it returns true when the object has at least one entry. Use `clearField()` to reset a field:
+
+```typescript
+import { clearField } from "@bufbuild/protobuf";
+
+msg.b = false;
+isFieldSet(msg, PresenceSchema.field.b); // true
+
+clearField(msg, PresenceSchema.field.b);
+isFieldSet(msg, PresenceSchema.field.b); // false
+```
 
 > [!IMPORTANT]
 >

@@ -23,7 +23,7 @@ export default defineConfig({
           tag: "script",
           attrs: {
             src: "https://cdn.usefathom.com/script.js",
-            "data-site": "TODO",
+            "data-site": "PAGVMLSX",
             defer: true,
           },
         },
@@ -35,47 +35,39 @@ export default defineConfig({
       pagination: false,
       plugins: [starlightLinksValidator()],
       customCss: ["./src/styles/custom.css"],
-      // Organize the docs around the user journey from pitch to advanced topics.
+      // Separate mainline learning pages from dense reference material.
       sidebar: [
         {
-          label: "Introduction",
+          label: "Start",
           items: [
             { slug: "index" },
-            { slug: "how-it-compares" },
             { slug: "getting-started" },
+            { slug: "migrating-from-v1" },
           ],
         },
         {
-          label: "Code Generation",
-          items: [
-            { slug: "plugin-options" },
-            { slug: "generated-code" },
-          ],
-        },
-        {
-          label: "Runtime",
+          label: "Mainline Guides",
           items: [
             { slug: "working-with-messages" },
             { slug: "serialization" },
             { slug: "extensions" },
+            { slug: "reflection" },
+            { slug: "writing-plugins" },
+          ],
+        },
+        {
+          label: "Reference",
+          items: [
+            { slug: "reference" },
+            { slug: "generated-code" },
+            { slug: "plugin-options" },
             { slug: "well-known-types" },
             { slug: "json-types" },
             { slug: "valid-types" },
-            { slug: "reflection" },
-          ],
-        },
-        {
-          label: "Plugins",
-          items: [{ slug: "writing-plugins" }],
-        },
-        {
-          label: "More",
-          items: [
-            { slug: "examples" },
-            { slug: "migrating-from-v1" },
             { slug: "faq" },
           ],
         },
+        { label: "Examples", items: [{ slug: "examples" }] },
       ],
     }),
   ],

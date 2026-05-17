@@ -24,6 +24,21 @@ Their names start with `Desc`:
 
 Generated schemas are descriptors with additional type information attached.
 
+Descriptors form a hierarchy rooted at a file:
+
+```text
+DescFile
+├─ messages: DescMessage[]
+│  ├─ fields: DescField[]
+│  ├─ oneofs: DescOneof[]
+│  ├─ nestedMessages: DescMessage[]
+│  ├─ nestedExtensions: DescExtension[]
+│  └─ nestedEnums: DescEnum[]
+├─ enums: DescEnum[]
+├─ extensions: DescExtension[]
+└─ services: DescService[]
+```
+
 ## Walking through a schema
 
 Every generated file exports a file descriptor such as `file_example`.
@@ -66,6 +81,18 @@ import { file_example as file } from "./gen/example_pb";
 for (const type of nestedTypes(file)) {
   type.kind; // "message" | "enum" | "extension" | "service"
 }
+```
+
+Other traversal helpers cover common graph questions:
+
+```typescript
+import { buildPath, parentTypes, pathToString, usedTypes } from "@bufbuild/protobuf/reflect";
+
+usedTypes(UserSchema); // messages and enums referenced by User fields
+parentTypes(UserSchema.field.firstName); // ancestors up to the file
+
+const path = buildPath(UserSchema).field(UserSchema.field.firstName).toPath();
+pathToString(path); // "first_name"
 ```
 
 Generated schemas also provide typed lookups:
@@ -172,7 +199,21 @@ const registry = createRegistry(UserSchema, file_example, otherRegistry);
 
 Use `createMutableRegistry()` if you need to add and remove descriptors over time.
 
+```typescript
+import { createMutableRegistry } from "@bufbuild/protobuf";
+
+const mutable = createMutableRegistry();
+mutable.add(UserSchema);
+mutable.remove(UserSchema);
+```
+
 If you have a `google.protobuf.FileDescriptorSet`, create a file registry with `createFileRegistry()`.
+
+Compile one with the Buf CLI:
+
+```shellsession
+buf build proto --output set.binpb
+```
 
 ```typescript
 import { readFileSync } from "node:fs";
@@ -181,6 +222,10 @@ import { FileDescriptorSetSchema } from "@bufbuild/protobuf/wkt";
 
 const fileDescriptorSet = fromBinary(FileDescriptorSetSchema, readFileSync("set.binpb"));
 const registry = createFileRegistry(fileDescriptorSet);
+
+for (const file of registry.files) {
+  file.name;
+}
 ```
 
 ## Custom options
@@ -243,6 +288,19 @@ export function redact(schema: DescMessage, message: Message) {
 
 To keep schema and message aligned at the type level, use `MessageShape<Desc>`.
 
+```typescript
+import type { DescMessage, MessageShape } from "@bufbuild/protobuf";
+
+export function redactTyped<Desc extends DescMessage>(schema: Desc, message: MessageShape<Desc>) {
+  const r = reflect(schema, message);
+  for (const field of r.fields) {
+    if (getOption(field, sensitive)) {
+      r.clear(field);
+    }
+  }
+}
+```
+
 ## `ReflectMessage`
 
 `reflect()` returns a `ReflectMessage`.
@@ -255,6 +313,8 @@ Its most important methods are:
 - `set(field, value)`: Set a field with reflected values.
 
 `get()` never returns `undefined`. For unset fields, it returns default values, empty reflection wrappers, or fresh message wrappers depending on the field kind.
+
+`set()` expects values in the same form that `get()` returns. It throws if the value is invalid for the field. `undefined` is not a valid value; use `clear()` to reset a field.
 
 ## `ReflectList`
 
