@@ -62,5 +62,3 @@ plugins:
 Binary and JSON serialization are deterministic within a version of Protobuf-ES.
 
 Regular fields are ordered by field number. Map entries, repeated fields, and extensions are ordered by insertion.
-
-
