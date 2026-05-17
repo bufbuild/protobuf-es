@@ -83,7 +83,7 @@ const registry = createRegistry(UserSchema);
 anyUnpack(any, registry); // Message | undefined
 ```
 
-Registries are especially useful when you do not know the target type up front. See [Reflection](/reflection/).
+Registries are especially useful when you do not know the target type up front. See [Registries](/reflection/registries/) and [Any with registries](/examples/any-registry/).
 
 ## `google.protobuf.Struct`
 
@@ -122,4 +122,4 @@ Wrappers are useful when you need to distinguish absence from a primitive's defa
 
 `descriptor.proto` and `compiler/plugin.proto` are also included. Those types are the foundation for reflection, custom options, and plugin development.
 
-See [Reflection](/reflection/) and [Writing plugins](/writing-plugins/).
+See [Reflection](/reflection/), [Writing plugins](/writing-plugins/), and [Custom option redaction](/examples/custom-options-redaction/).

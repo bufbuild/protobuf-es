@@ -2,7 +2,7 @@
 title: Extensions
 ---
 
-An extension is a field defined outside of its container message. Extensions are a core part of proto2 and are used in proto3 for [custom options](/reflection/#custom-options).
+An extension is a field defined outside of its container message. Extensions are a core part of proto2 and are used in proto3 for [custom options](/reflection/custom-options/).
 
 ## Defining extensions
 
@@ -76,6 +76,6 @@ const parsed = fromJson(UserSchema, json, { registry });
 
 ## Extensions in proto3
 
-In proto3, extensions can only be used for [custom options](/reflection/#custom-options). Custom options are extensions to the `google.protobuf.*Options` messages defined in `google/protobuf/descriptor.proto`.
+In proto3, extensions can only be used for [custom options](/reflection/custom-options/). Custom options are extensions to the `google.protobuf.*Options` messages defined in `google/protobuf/descriptor.proto`.
 
-See [Custom options](/reflection/#custom-options) for a full walkthrough of defining and reading custom options.
+See [Custom options](/reflection/custom-options/) for a full walkthrough of defining and reading custom options.

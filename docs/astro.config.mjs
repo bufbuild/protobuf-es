@@ -35,39 +35,71 @@ export default defineConfig({
       pagination: false,
       plugins: [starlightLinksValidator()],
       customCss: ["./src/styles/custom.css"],
-      // Separate mainline learning pages from dense reference material.
+      // Keep tutorials, guides, reference material, and examples in separate groups.
       sidebar: [
         {
           label: "Start",
           items: [
             { slug: "index" },
             { slug: "getting-started" },
-            { slug: "migrating-from-v1" },
           ],
         },
         {
-          label: "Mainline Guides",
+          label: "Guides",
           items: [
             { slug: "working-with-messages" },
             { slug: "serialization" },
             { slug: "extensions" },
-            { slug: "reflection" },
-            { slug: "writing-plugins" },
+            {
+              label: "Reflection",
+              items: [
+                { slug: "reflection" },
+                { slug: "reflection/descriptors" },
+                { slug: "reflection/registries" },
+                { slug: "reflection/custom-options" },
+                { slug: "reflection/dynamic-messages" },
+              ],
+            },
+            {
+              label: "Writing Plugins",
+              items: [
+                { slug: "writing-plugins" },
+                { slug: "writing-plugins/generating-files" },
+                { slug: "writing-plugins/options" },
+              ],
+            },
           ],
         },
         {
           label: "Reference",
           items: [
             { slug: "reference" },
-            { slug: "generated-code" },
+            {
+              label: "Generated Code",
+              items: [
+                { slug: "generated-code" },
+                { slug: "generated-code/field-types" },
+                { slug: "generated-code/features" },
+              ],
+            },
             { slug: "plugin-options" },
+            { slug: "migrating-from-v1" },
             { slug: "well-known-types" },
             { slug: "json-types" },
             { slug: "valid-types" },
             { slug: "faq" },
           ],
         },
-        { label: "Examples", items: [{ slug: "examples" }] },
+        {
+          label: "Examples",
+          items: [
+            { slug: "examples" },
+            { slug: "examples/node-message-store" },
+            { slug: "examples/twirp-plugin" },
+            { slug: "examples/any-registry" },
+            { slug: "examples/custom-options-redaction" },
+          ],
+        },
       ],
     }),
   ],

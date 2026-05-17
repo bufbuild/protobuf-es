@@ -2,7 +2,7 @@
 title: Working with messages
 ---
 
-This page covers the core runtime APIs for constructing, identifying, comparing, and cloning messages. The important thing to notice is that messages are plain objects, so the runtime API stays small and the generated code stays out of your way.
+Messages are plain objects. Runtime APIs construct, identify, compare, and clone those objects without generated getter and setter classes.
 
 ## Constructing a message
 
@@ -57,7 +57,7 @@ Messages also expose their fully qualified name in `$typeName`:
 msg.$typeName; // "example.User"
 ```
 
-If you only have a type name and not a schema, use a [registry](/reflection/).
+If you only have a type name and not a schema, use a [registry](/reflection/registries/).
 
 ## Field presence and default values
 
@@ -100,6 +100,8 @@ msg.b = false;
 isFieldSet(msg, PresenceSchema.field.a); // false
 isFieldSet(msg, PresenceSchema.field.b); // true
 ```
+
+See [Generated features](/generated-code/features/#proto3-optional-fields) for the generated TypeScript shape of `optional` fields.
 
 For repeated fields, `isFieldSet()` returns true when the array has at least one element. For map fields, it returns true when the object has at least one entry. Use `clearField()` to reset a field:
 

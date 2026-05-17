@@ -1,5 +1,5 @@
 ---
-title: Migrating from version 1
+title: Migrating from v1
 ---
 
 Version 2 adds reflection, Editions support, new presence behavior, and a new generated API based on schemas instead of classes.

@@ -63,6 +63,8 @@ Run the generator:
 npx buf generate
 ```
 
+`target=ts` generates TypeScript source. See [Plugin options](/plugin-options/) for JavaScript output, import extensions, JSON types, and other generator settings.
+
 Your project now looks like this:
 
 ```text
@@ -123,6 +125,7 @@ PATH=$(dirname $(yarn bin protoc-gen-es)):${PATH}
 - [Plugin options](/plugin-options/): Change the generated target, import style, JSON typing, and more.
 - [Generated code](/generated-code/): See how messages, enums, services, maps, oneofs, and extensions are represented.
 - [Working with messages](/working-with-messages/): Learn the main runtime APIs.
+- [Examples](/examples/): Apply the generated code in practical patterns.
 
 ## Protocol Buffers in brief
 
