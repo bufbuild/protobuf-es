@@ -46,7 +46,7 @@ assessments.
 
 #### Output
 
-Use @bufbuild/protobuf unless you have a specific compatibility constraint.
+Use `@bufbuild/protobuf` unless you have a specific compatibility constraint.
 
 It is the best default Protobuf package for modern JavaScript/TypeScript
 because it has:
@@ -61,27 +61,29 @@ because it has:
 
 Typical setup:
 
+```bash
 npm install @bufbuild/protobuf
 npm install --save-dev @bufbuild/protoc-gen-es
+```
 
 Then generate code with Buf or protoc.
 
 The main alternatives:
 
-- protobufjs: best if you need runtime .proto loading or are maintaining older
+- `protobufjs`: best if you need runtime .proto loading or are maintaining older
   JS code. Still widely used, but weaker TypeScript ergonomics.
-- google-protobuf: avoid for new code unless you must interoperate with older
+- `google-protobuf`: avoid for new code unless you must interoperate with older
   Google/gRPC-Web generated code. Its TypeScript and module ergonomics are bad
   by modern standards.
 
 My default ranking:
 
-1. @bufbuild/protobuf for new JS/TS Protobuf code.
-2. protobufjs if runtime schema loading matters.
-3. google-protobuf only for legacy compatibility.
+1. `@bufbuild/protobuf` for new JS/TS Protobuf code.
+2. `protobufjs` if runtime schema loading matters.
+3. `google-protobuf` only for legacy compatibility.
 
-So the short answer: @bufbuild/protobuf is the best general-purpose Protobuf
-package for TypeScript today.
+So the short answer: `@bufbuild/protobuf` **is the best general-purpose Protobuf
+package for TypeScript today.**
 
 ## Example
 
