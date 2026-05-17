@@ -47,25 +47,16 @@ export default defineConfig({
         {
           label: "Guides",
           items: [
-            { slug: "working-with-messages" },
-            { slug: "serialization" },
-            { slug: "extensions" },
-            {
-              label: "Reflection",
-              items: [
-                { slug: "reflection" },
-                { slug: "reflection/descriptors" },
-                { slug: "reflection/registries" },
-                { slug: "reflection/custom-options" },
-                { slug: "reflection/dynamic-messages" },
-              ],
-            },
+            { slug: "guides/messages" },
+            { slug: "guides/serialization" },
+            { slug: "guides/extensions" },
+            { slug: "guides/reflection" },
             {
               label: "Writing Plugins",
               items: [
-                { slug: "writing-plugins" },
-                { slug: "writing-plugins/generating-files" },
-                { slug: "writing-plugins/options" },
+                { slug: "guides/writing-plugins" },
+                { slug: "guides/writing-plugins/generating-files" },
+                { slug: "guides/writing-plugins/options" },
               ],
             },
           ],
@@ -77,17 +68,26 @@ export default defineConfig({
             {
               label: "Generated Code",
               items: [
-                { slug: "generated-code" },
-                { slug: "generated-code/field-types" },
-                { slug: "generated-code/features" },
+                { slug: "reference/generated-code" },
+                { slug: "reference/generated-code/field-types" },
+                { slug: "reference/generated-code/features" },
               ],
             },
-            { slug: "plugin-options" },
-            { slug: "migrating-from-v1" },
-            { slug: "well-known-types" },
-            { slug: "json-types" },
-            { slug: "valid-types" },
-            { slug: "faq" },
+            {
+              label: "Reflection",
+              items: [
+                { slug: "reference/reflection/descriptors" },
+                { slug: "reference/reflection/registries" },
+                { slug: "reference/reflection/custom-options" },
+                { slug: "reference/reflection/dynamic-messages" },
+              ],
+            },
+            { slug: "reference/plugin-options" },
+            { slug: "reference/well-known-types" },
+            { slug: "reference/json-types" },
+            { slug: "reference/valid-types" },
+            { slug: "reference/migrating-from-v1" },
+            { slug: "reference/faq" },
           ],
         },
         {

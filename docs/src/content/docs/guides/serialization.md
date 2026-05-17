@@ -57,7 +57,7 @@ If you want strings instead of `JsonValue`, use `toJsonString()` and `fromJsonSt
 - `registry?: Registry`: Use a registry for `google.protobuf.Any` and extensions.
 - `prettySpaces?: number`: Only for `toJsonString()`. Passed through to `JSON.stringify()`.
 
-See [Registries](/reflection/registries/) for creating registries, [Any with registries](/examples/any-registry/) for a complete `Any` example, and [Plugin options](/plugin-options/#json_typestrue) if you want generated JSON types.
+See [Registries](/reference/reflection/registries/) for creating registries, [Any with registries](/examples/any-registry/) for a complete `Any` example, and [Plugin options](/reference/plugin-options/#json_typestrue) if you want generated JSON types.
 
 ## Unknown fields
 

@@ -2,7 +2,9 @@
 title: Getting started
 ---
 
-Start with the core Protobuf-ES flow: generate plain TypeScript or JavaScript from a `.proto` file, create a typed message object, and serialize it with the same schema. The flow uses a standard Protobuf plugin, so it works with the Buf CLI and `protoc`.
+JavaScript Protobuf should not force you to choose between correct Protobuf semantics and idiomatic TypeScript. Protobuf-ES gives you both: plain message objects, generated schema exports, ESM by default, typed fields, discriminated oneofs, binary and JSON serialization, reflection, extensions, and custom options.
+
+This guide takes the fastest path from `.proto` to working code. You will generate TypeScript with the Buf CLI, create a typed message object, and serialize it with the same schema. Using the Buf CLI is the easiest way to run local code generation from npm, but Protobuf-ES is not tied to it: `protoc-gen-es` is a standard `protoc` plugin and fits existing Protobuf toolchains too.
 
 ## Prerequisites
 
@@ -43,14 +45,24 @@ message User {
 }
 ```
 
+## Configure the Buf module
+
+For this example, create `buf.yaml`:
+
+```yaml
+version: v2
+modules:
+  - path: proto
+```
+
+This declares `proto` as a Buf module, so generation can run from the project root.
+
 ## Configure code generation
 
 Create `buf.gen.yaml`:
 
 ```yaml
 version: v2
-inputs:
-  - directory: proto
 plugins:
   - local: protoc-gen-es
     out: src/gen
@@ -63,12 +75,15 @@ Run the generator:
 npx buf generate
 ```
 
-`target=ts` generates TypeScript source. See [Plugin options](/plugin-options/) for JavaScript output, import extensions, JSON types, and other generator settings.
+`target=ts` generates TypeScript source. See [Plugin options](/reference/plugin-options/) for JavaScript output, import extensions, JSON types, and other generator settings.
+
+If you already use `protoc`, use the same plugin directly: `mkdir -p src/gen && PATH=${PATH}:$(pwd)/node_modules/.bin protoc -I proto --es_out=src/gen --es_opt=target=ts example.proto`.
 
 Your project now looks like this:
 
 ```text
 .
+├── buf.yaml
 ├── buf.gen.yaml
 ├── package.json
 ├── proto
@@ -100,30 +115,10 @@ roundTrip.firstName; // "Homer"
 
 `create()` constructs a message value. `toBinary()` serializes it. `fromBinary()` parses it back. Generated messages are ordinary objects, not class instances.
 
-## Generate with `protoc`
-
-`protoc-gen-es` is a standard Protobuf plugin, so it also works with `protoc`:
-
-```shellsession
-PATH=${PATH}:$(pwd)/node_modules/.bin \
-  protoc -I . \
-  --es_out src/gen \
-  --es_opt target=ts \
-  proto/example.proto
-```
-
-`protoc` must be able to find `protoc-gen-es` on `PATH`. npm scripts take care of this automatically.
-
-If you use Yarn v2 or later, there is no `node_modules/.bin` directory. Use the path returned by `yarn bin protoc-gen-es` instead:
-
-```shellsession
-PATH=$(dirname $(yarn bin protoc-gen-es)):${PATH}
-```
-
 ## Next steps
 
-- [Working with messages](/working-with-messages/): the main runtime APIs.
-- [Serialization](/serialization/): binary, JSON, and lower-level wire helpers.
-- [Generated code](/generated-code/): how messages, enums, services, maps, oneofs, and extensions are represented.
-- [Plugin options](/plugin-options/): change the generated target, import style, JSON typing, and more.
+- [Working with messages](/guides/messages/): the main runtime APIs.
+- [Serialization](/guides/serialization/): binary, JSON, and lower-level wire helpers.
+- [Generated code](/reference/generated-code/): how messages, enums, services, maps, oneofs, and extensions are represented.
+- [Plugin options](/reference/plugin-options/): change the generated target, import style, JSON typing, and more.
 - [Examples](/examples/): copyable patterns built on the generated code.

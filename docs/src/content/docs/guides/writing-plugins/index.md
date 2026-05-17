@@ -56,12 +56,12 @@ plugins:
 
 Run `npx buf generate` again. The plugin emits `example_hello.ts`.
 
-For the options accepted by `protoc-gen-es`, see [Plugin options](/plugin-options/).
+For the options accepted by `protoc-gen-es`, see [Plugin options](/reference/plugin-options/).
 
 ## Next steps
 
-- [Generating files](/writing-plugins/generating-files/): create output files, print code, imports, and exports.
-- [Plugin options and release](/writing-plugins/options/): parse custom options, handle transpilation, release, and test plugins.
-- [Reflection](/reflection/): inspect the schema passed to your plugin.
+- [Generating files](/guides/writing-plugins/generating-files/): create output files, print code, imports, and exports.
+- [Plugin options and release](/guides/writing-plugins/options/): parse custom options, handle transpilation, release, and test plugins.
+- [Reflection](/guides/reflection/): inspect the schema passed to your plugin.
 
 For a complete runnable example, see the [Twirp plugin](/examples/twirp-plugin/) walkthrough or [`packages/protoplugin-example`](https://github.com/bufbuild/protobuf-es/tree/main/packages/protoplugin-example) directly.

@@ -2,7 +2,7 @@
 title: Working with messages
 ---
 
-Messages are plain objects, so application code reads like TypeScript instead of a generated getter and setter API. Runtime helpers construct, identify, compare, and clone messages. For binary and JSON serialization, see [Serialization](/serialization/).
+Messages are plain objects, so application code reads like TypeScript instead of a generated getter and setter API. Runtime helpers construct, identify, compare, and clone messages. For binary and JSON serialization, see [Serialization](/guides/serialization/).
 
 ## Constructing a message
 
@@ -53,7 +53,7 @@ Messages also expose their fully qualified name in `$typeName`:
 msg.$typeName; // "example.User"
 ```
 
-If you only have a type name and not a schema, use a [registry](/reflection/registries/).
+If you only have a type name and not a schema, use a [registry](/reference/reflection/registries/).
 
 ## Field presence and default values
 
@@ -97,7 +97,7 @@ isFieldSet(msg, PresenceSchema.field.a); // false
 isFieldSet(msg, PresenceSchema.field.b); // true
 ```
 
-See [Generated features](/generated-code/features/#proto3-optional-fields) for the generated TypeScript shape of `optional` fields.
+See [Generated features](/reference/generated-code/features/#proto3-optional-fields) for the generated TypeScript shape of `optional` fields.
 
 For repeated fields, `isFieldSet()` returns true when the array has at least one element. For map fields, it returns true when the object has at least one entry. Use `clearField()` to reset a field:
 

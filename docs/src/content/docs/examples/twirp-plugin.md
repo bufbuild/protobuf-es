@@ -83,4 +83,4 @@ npx buf generate
 npm test
 ```
 
-See [Writing plugins](/writing-plugins/) for the minimal plugin flow and [Generating files](/writing-plugins/generating-files/) for imports, exports, and printing.
+See [Writing plugins](/guides/writing-plugins/) for the minimal plugin flow and [Generating files](/guides/writing-plugins/generating-files/) for imports, exports, and printing.

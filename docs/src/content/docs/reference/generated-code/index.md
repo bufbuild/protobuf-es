@@ -20,7 +20,7 @@ Each file starts with a generated-file preamble:
 /* eslint-disable */
 ```
 
-Generated imports are relative and follow the [plugin options](/plugin-options/) you configured. If your Protobuf file imports another file, the generated code imports the matching `_pb` output.
+Generated imports are relative and follow the [plugin options](/reference/plugin-options/) you configured. If your Protobuf file imports another file, the generated code imports the matching `_pb` output.
 
 ## File schema
 
@@ -33,7 +33,7 @@ Every generated file exports a file descriptor:
 export const file_example: GenFile = fileDesc(/* ... */);
 ```
 
-Use this descriptor with [registries](/reflection/registries/) and [reflection](/reflection/).
+Use this descriptor with [registries](/reference/reflection/registries/) and [reflection](/guides/reflection/).
 
 ## Messages
 
@@ -119,5 +119,5 @@ export const UserService: GenService<{
 
 ## Reference pages
 
-- [Field types](/generated-code/field-types/): Scalar, message, enum, repeated, map, and well-known type field shapes.
-- [Features](/generated-code/features/): Oneofs, required fields, optional fields, extensions, services, reserved names, nested types, comments, and packages.
+- [Field types](/reference/generated-code/field-types/): Scalar, message, enum, repeated, map, and well-known type field shapes.
+- [Features](/reference/generated-code/features/): Oneofs, required fields, optional fields, extensions, services, reserved names, nested types, comments, and packages.

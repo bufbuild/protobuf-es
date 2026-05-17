@@ -22,7 +22,7 @@ message User {
 }
 ```
 
-Generate TypeScript with the same setup from [Getting started](/getting-started/). For import path and target settings, see [Plugin options](/plugin-options/).
+Generate TypeScript with the same setup from [Getting started](/getting-started/). For import path and target settings, see [Plugin options](/reference/plugin-options/).
 
 ## Add a user
 
@@ -60,4 +60,4 @@ for await (const user of sizeDelimitedDecodeStream(UserSchema, stream)) {
 }
 ```
 
-For single-message binary serialization, use `toBinary()` and `fromBinary()` instead. See [Serialization](/serialization/) for both formats.
+For single-message binary serialization, use `toBinary()` and `fromBinary()` instead. See [Serialization](/guides/serialization/) for both formats.

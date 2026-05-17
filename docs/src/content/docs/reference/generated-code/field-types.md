@@ -115,4 +115,4 @@ Wrapper messages become unboxed optional primitives:
 boolValueField?: boolean | undefined;
 ```
 
-See [Well-known types](/well-known-types/) for the full list of precompiled exports and helper functions.
+See [Well-known types](/reference/well-known-types/) for the full list of precompiled exports and helper functions.

@@ -2,7 +2,7 @@
 title: Extensions
 ---
 
-An extension is a field defined outside of its container message. Extensions are a core part of proto2 and are used in proto3 for [custom options](/reflection/custom-options/).
+An extension is a field defined outside of its container message. Extensions are a core part of proto2 and are used in proto3 for [custom options](/reference/reflection/custom-options/).
 
 ## Defining extensions
 
@@ -48,7 +48,7 @@ hasExtension(user, age); // false
 
 ## Mutating repeated extension values
 
-Extensions are stored as [unknown fields](/serialization/#unknown-fields) on the message. Reading an extension value deserializes it from binary data each time. To mutate a repeated extension, read the value, modify it, then store it back:
+Extensions are stored as [unknown fields](/guides/serialization/#unknown-fields) on the message. Reading an extension value deserializes it from binary data each time. To mutate a repeated extension, read the value, modify it, then store it back:
 
 ```typescript
 import { getExtension, setExtension } from "@bufbuild/protobuf";
@@ -62,7 +62,7 @@ setExtension(user, hobbies, h);
 
 ## Extensions and JSON
 
-To serialize or parse extensions with JSON, you need to provide them in the [JSON serialization options](/serialization/#json-serialization-options) via a registry:
+To serialize or parse extensions with JSON, you need to provide them in the [JSON serialization options](/guides/serialization/#json-serialization-options) via a registry:
 
 ```typescript
 import { toJson, fromJson, createRegistry } from "@bufbuild/protobuf";
@@ -76,6 +76,6 @@ const parsed = fromJson(UserSchema, json, { registry });
 
 ## Extensions in proto3
 
-In proto3, extensions can only be used for [custom options](/reflection/custom-options/). Custom options are extensions to the `google.protobuf.*Options` messages defined in `google/protobuf/descriptor.proto`.
+In proto3, extensions can only be used for [custom options](/reference/reflection/custom-options/). Custom options are extensions to the `google.protobuf.*Options` messages defined in `google/protobuf/descriptor.proto`.
 
-See [Custom options](/reflection/custom-options/) for a full walkthrough of defining and reading custom options.
+See [Custom options](/reference/reflection/custom-options/) for a full walkthrough of defining and reading custom options.

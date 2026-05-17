@@ -73,7 +73,7 @@ Set `elide_plugin_version=true` to remove it. We usually recommend keeping the v
 
 Generate JSON types for every Protobuf message and enumeration.
 
-When this option is enabled, `toJson()` returns those JSON types automatically when available. See [JSON types](/json-types/).
+When this option is enabled, `toJson()` returns those JSON types automatically when available. See [JSON types](/reference/json-types/).
 
 ## `valid_types` (experimental)
 
@@ -84,4 +84,4 @@ Generate a Valid type for every message.
 
 You can combine both with `+`, for example `valid_types=legacy_required+protovalidate_required`.
 
-See [Valid types](/valid-types/) for details.
+See [Valid types](/reference/valid-types/) for details.

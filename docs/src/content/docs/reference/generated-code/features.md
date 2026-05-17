@@ -71,11 +71,11 @@ optional bool active = 3;
 active?: boolean | undefined;
 ```
 
-See [Working with messages](/working-with-messages/) for presence tracking at runtime.
+See [Working with messages](/guides/messages/) for presence tracking at runtime.
 
 ## Extensions
 
-Extensions become typed extension descriptors. For runtime usage, see [Extensions](/extensions/).
+Extensions become typed extension descriptors. For runtime usage, see [Extensions](/guides/extensions/).
 
 ```protobuf
 syntax = "proto2";
@@ -93,7 +93,7 @@ extend User {
 export const age: GenExtension<User, number> = extDesc(/* ... */);
 ```
 
-Extensions are also the foundation for [custom options](/reflection/custom-options/).
+Extensions are also the foundation for [custom options](/reference/reflection/custom-options/).
 
 ## Services
 

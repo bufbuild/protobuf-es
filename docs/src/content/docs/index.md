@@ -73,7 +73,7 @@ Protobuf-ES keeps the usable API and adds the pieces teams eventually need: stan
 - [Getting started](/getting-started/): generate code and write your first message.
 - [Examples](/examples/): copyable patterns and runnable example packages.
 - [Reference](/reference/): generated shapes, plugin options, and runtime types.
-- [Migrating from v1](/migrating-from-v1/): for existing Protobuf-ES users.
+- [Migrating from v1](/reference/migrating-from-v1/): for existing Protobuf-ES users.
 
 ## Packages
 

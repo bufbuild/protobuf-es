@@ -23,10 +23,10 @@ Generated schemas are descriptors with extra type information. That means the sa
 
 ## Core pieces
 
-- [Descriptors](/reflection/descriptors/): Schema objects such as `DescFile`, `DescMessage`, `DescField`, `DescEnum`, and `DescService`.
-- [Registries](/reflection/registries/): Collections of descriptors keyed by fully qualified name.
-- [Custom options](/reflection/custom-options/): Extension-backed annotations on schema elements.
-- [Dynamic messages](/reflection/dynamic-messages/): `reflect()`, `ReflectMessage`, `ReflectList`, and `ReflectMap`.
+- [Descriptors](/reference/reflection/descriptors/): Schema objects such as `DescFile`, `DescMessage`, `DescField`, `DescEnum`, and `DescService`.
+- [Registries](/reference/reflection/registries/): Collections of descriptors keyed by fully qualified name.
+- [Custom options](/reference/reflection/custom-options/): Extension-backed annotations on schema elements.
+- [Dynamic messages](/reference/reflection/dynamic-messages/): `reflect()`, `ReflectMessage`, `ReflectList`, and `ReflectMap`.
 
 ## Typed lookup
 

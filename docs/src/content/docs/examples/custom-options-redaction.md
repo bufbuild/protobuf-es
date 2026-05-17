@@ -4,7 +4,7 @@ title: Custom option redaction
 
 Mark fields as sensitive in `.proto`, then clear them with reflection before logging or exporting a message. The same pattern works for any custom field option.
 
-See [Custom options](/reflection/custom-options/) and [Dynamic messages](/reflection/dynamic-messages/) for the underlying APIs.
+See [Custom options](/reference/reflection/custom-options/) and [Dynamic messages](/reference/reflection/dynamic-messages/) for the underlying APIs.
 
 ## Define the option
 
@@ -72,4 +72,4 @@ redact(UserSchema, user);
 user.email; // ""
 ```
 
-For the reference material behind this pattern, see [Custom options](/reflection/custom-options/), [Descriptors](/reflection/descriptors/), and [Dynamic messages](/reflection/dynamic-messages/).
+For the reference material behind this pattern, see [Custom options](/reference/reflection/custom-options/), [Descriptors](/reference/reflection/descriptors/), and [Dynamic messages](/reference/reflection/dynamic-messages/).

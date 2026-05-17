@@ -4,7 +4,7 @@ title: Any with registries
 
 `google.protobuf.Any` stores an arbitrary message together with a type URL. If you know the expected schema, unpack directly. If you only learn the type URL at runtime, use a registry.
 
-See [Well-known types](/well-known-types/#googleprotobufany) and [Registries](/reflection/registries/) for the underlying APIs.
+See [Well-known types](/reference/well-known-types/#googleprotobufany) and [Registries](/reference/reflection/registries/) for the underlying APIs.
 
 ## Schema
 
@@ -68,4 +68,4 @@ if (event.payload) {
 }
 ```
 
-Use the same registry when converting `Any` values to and from JSON. See [Well-known types](/well-known-types/#googleprotobufany), [Registries](/reflection/registries/), and [Serialization](/serialization/#json-serialization-options).
+Use the same registry when converting `Any` values to and from JSON. See [Well-known types](/reference/well-known-types/#googleprotobufany), [Registries](/reference/reflection/registries/), and [Serialization](/guides/serialization/#json-serialization-options).
