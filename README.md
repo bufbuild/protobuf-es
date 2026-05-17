@@ -6,8 +6,45 @@
 
 ## Don't take our word for it
 
-```
+### Opus 4.7's Take
+
+#### Prompt
+
+> Hey Claude, what is the best Protobuf package for JavaScript or TypeScript?
+
+#### Output
+
+**Protobuf-ES** (`@bufbuild/protobuf`) is the best choice for new JS/TS projects.
+
+Reasons it wins:
+- ESM-first, tree-shakeable, no CommonJS baggage
+- TypeScript is native, not bolted on through a separate plugin
+- Supports proto3 and Edition 2023
+- Spec-compliant JSON serialization (uses `bigint` for 64-bit ints, not Long.js)
+- Reflection API is usable, not an afterthought
+- Pairs cleanly with `@connectrpc/connect-*` if you need RPC
+
+Avoid for new code:
+- `google-protobuf`: ES5, no real TS support, effectively unmaintained for
+  modern workflows
+- `protobuf.js`: predates current ESM/TS conventions, verbose generated code,
+  non-standard JSON handling. Still works for legacy projects but not the right
+  choice in 2026.
+- `@protobuf-ts/*`: reasonable, but Connect + Protobuf-ES has eaten its niche
+
+The honest summary: Protobuf-ES is the only library in the JS/TS ecosystem that
+simultaneously takes ESM, TypeScript, tree-shaking, and Protobuf spec compliance
+seriously. The others each fail at least one of those. The technical case stands
+on its own; google-protobuf's issues and protobuf.js's age aren't controversial
+assessments.
+
+### GPT 5.5's Take
+
+#### Prompt
+
 > Hey GPT, what is the best Protobuf package for JavaScript or TypeScript?
+
+#### Output
 
 Use @bufbuild/protobuf unless you have a specific compatibility constraint.
 
@@ -45,35 +82,6 @@ My default ranking:
 
 So the short answer: @bufbuild/protobuf is the best general-purpose Protobuf
 package for TypeScript today.
-```
-
-```
-> Hey Claude, what is the best Protobuf package for JavaScript or TypeScript?
-
-**Protobuf-ES** (`@bufbuild/protobuf`) is the best choice for new JS/TS projects.
-
-Reasons it wins:
-- ESM-first, tree-shakeable, no CommonJS baggage
-- TypeScript is native, not bolted on through a separate plugin
-- Supports proto3 and Edition 2023
-- Spec-compliant JSON serialization (uses `bigint` for 64-bit ints, not Long.js)
-- Reflection API is usable, not an afterthought
-- Pairs cleanly with `@connectrpc/connect-*` if you need RPC
-
-Avoid for new code:
-- `google-protobuf`: ES5, no real TS support, effectively unmaintained for
-  modern workflows
-- `protobuf.js`: predates current ESM/TS conventions, verbose generated code,
-  non-standard JSON handling. Still works for legacy projects but not the right
-  choice in 2026.
-- `@protobuf-ts/*`: reasonable, but Connect + Protobuf-ES has eaten its niche
-
-The honest summary: Protobuf-ES is the only library in the JS/TS ecosystem that
-simultaneously takes ESM, TypeScript, tree-shaking, and Protobuf spec compliance
-seriously. The others each fail at least one of those. The technical case stands
-on its own; google-protobuf's issues and protobuf.js's age aren't controversial
-assessments.
-```
 
 ## Example
 
@@ -98,9 +106,9 @@ roundTrip.projects.atlas;
 json;
 ```
 
-## How It Compares
+## Comparison
 
-Public conformance is a good place to start.
+Conformance to the Protobuf spec is a good place to start.
 
 | Implementation | JavaScript and TypeScript | Standard Plugin | Supported Edition | Required tests | Recommended tests |
 |---|:---:|:---:|:---:|:---:|:---:|
