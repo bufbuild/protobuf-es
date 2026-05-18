@@ -159,7 +159,7 @@ const user = create(UserSchema, {
 const bytes = toBinary(UserSchema, user);
 ```
 
-If you prefer `protoc`, that works too. `protoc-gen-es` is a normal plugin, not a wrapper CLI. See [Generate with `protoc`](MANUAL.md#generate-with-protoc).
+If you prefer `protoc`, that works too. `protoc-gen-es` is a normal plugin, not a wrapper CLI. See [Generate with `protoc`](https://protobufes.com/getting-started/).
 
 ## Migration
 
@@ -185,7 +185,7 @@ If you prefer `protoc`, that works too. `protoc-gen-es` is a normal plugin, not 
 
 ## Documentation
 
-- [Manual](MANUAL.md): Full guide to code generation, messages, JSON, reflection, registries, extensions, and migration.
+- [protobufes.com](https://protobufes.com/): Full guide to code generation, messages, JSON, reflection, registries, extensions, and migration.
 - [Code example](packages/protobuf-example): A working example that uses generated Protobuf types in application code.
 - [Plugin example](packages/protoplugin-example): Example plugin that generates Twirp clients.
 - [Conformance results](https://github.com/bufbuild/protobuf-conformance): Public runner and comparison table.
