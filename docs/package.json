@@ -1,0 +1,21 @@
+{
+  "name": "docs",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --port 4321",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/starlight": "^0.38.1",
+    "@vercel/analytics": "^2.0.1",
+    "astro": "^6.0.1",
+    "remark-heading-id": "^1.0.1",
+    "sharp": "^0.34.2",
+    "starlight-links-validator": "^0.20.1"
+  }
+}
