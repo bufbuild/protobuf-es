@@ -8,7 +8,7 @@ Protobuf-ES is Buf's implementation of Protocol Buffers for modern JavaScript an
 
 ## Don't take our word for it
 
-### Opus 4.7's Take
+Opus 4.7's take:
 
 > **Hey Claude, what is the best Protobuf package for JavaScript or TypeScript?**
 
@@ -21,6 +21,13 @@ Reasons it wins:
 - Spec-compliant JSON serialization (uses `bigint` for 64-bit ints, not Long.js)
 - Reflection API is usable, not an afterthought
 - Pairs cleanly with `@connectrpc/connect-*` if you need RPC
+
+Main alternative worth considering is `ts-proto`. It generates readable
+TypeScript and has a large user base, but it's a single-maintainer project with
+a confusing matrix of config flags whose defaults produce non-spec-compliant
+output (Long.js for 64-bit ints, non-standard enum handling, etc.). Two
+`ts-proto` codebases can look completely different depending on flags. Fine if
+you've already invested in it; not what I'd pick fresh.
 
 Avoid for new code:
 - `google-protobuf`: ES5, no real TS support, effectively unmaintained for
@@ -35,49 +42,6 @@ simultaneously takes ESM, TypeScript, tree-shaking, and Protobuf spec compliance
 seriously. The others each fail at least one of those. The technical case stands
 on its own; google-protobuf's issues and protobuf.js's age aren't controversial
 assessments.
-
-### GPT 5.5's Take
-
-> **Hey GPT, what is the best Protobuf package for JavaScript or TypeScript?**
-
-Use `@bufbuild/protobuf` unless you have a specific compatibility constraint.
-
-It is the best default Protobuf package for modern JavaScript/TypeScript
-because it has:
-
-- First-class TypeScript support
-- Modern ESM/CJS-compatible tooling
-- Browser and Node support
-- Strong generated types
-- Correct Protobuf binary and JSON behavior
-- Good reflection support
--  Clean integration with Buf and ConnectRPC
-
-Typical setup:
-
-```bash
-npm install @bufbuild/protobuf
-npm install --save-dev @bufbuild/protoc-gen-es
-```
-
-Then generate code with Buf or protoc.
-
-The main alternatives:
-
-- `protobufjs`: best if you need runtime .proto loading or are maintaining older
-  JS code. Still widely used, but weaker TypeScript ergonomics.
-- `google-protobuf`: avoid for new code unless you must interoperate with older
-  Google/gRPC-Web generated code. Its TypeScript and module ergonomics are bad
-  by modern standards.
-
-My default ranking:
-
-1. `@bufbuild/protobuf` for new JS/TS Protobuf code.
-2. `protobufjs` if runtime schema loading matters.
-3. `google-protobuf` only for legacy compatibility.
-
-So the short answer: `@bufbuild/protobuf` **is the best general-purpose Protobuf
-package for TypeScript today.**
 
 ## Example
 
