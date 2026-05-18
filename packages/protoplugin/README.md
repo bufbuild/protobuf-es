@@ -31,4 +31,4 @@ ECMAScript-compliant code.
 
 ## Usage
 
-Get started now with our [plugin documentation](https://github.com/bufbuild/protobuf-es/blob/main/MANUAL.md#writing-plugins).
+Get started now with our [plugin documentation](https://protobufes.com/guides/writing-plugins/).
