@@ -42,4 +42,4 @@ This example is a starting point—we encourage you to try it out and experiment
 
 Take a look at the code generation logic in [protoc-gen-twirp-es.ts](./src/protoc-gen-twirp-es.ts),
 and at [buf.gen.yaml](./buf.gen.yaml) to see how it's invoked. To learn more, see our guide
-for [writing plugins](../../MANUAL.md#writing-plugins).
+for [writing plugins](https://protobufes.com/guides/writing-plugins/).
