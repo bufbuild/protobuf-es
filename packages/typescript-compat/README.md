@@ -38,6 +38,13 @@ and merge it with the existing one:
   transpilation issues only occur when emitting them. 
 - We explicitly want to check libs.
 
+Newer versions of TypeScript ship stricter `tsc --init` defaults. For example,
+5.9 enables `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes`. Because
+we want compatibility tests to reflect the out-of-the-box experience, keep these
+flags on. If existing test sources don't satisfy a newly-stricter default, drop
+them from `include` (with a comment explaining why) rather than disabling the
+flag.
+
 #### Hoisting and the `test` script
 
 The `test` script runs `tsc`. For most compatibility packages, the pinned
