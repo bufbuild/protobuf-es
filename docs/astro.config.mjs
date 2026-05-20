@@ -26,6 +26,13 @@ export default defineConfig({
     sitemap(),
     starlight({
       title: "Protobuf-ES",
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/bufbuild/protobuf-es",
+        },
+      ],
       logo: {
         src: "./src/assets/logo.svg",
         replacesTitle: true,
