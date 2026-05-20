@@ -1,6 +1,6 @@
 # @bufbuild/protoc-gen-es
 
-The code generator plugin for Protocol Buffers for ECMAScript. Learn more about the project at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
+The code generator plugin for Protocol Buffers for ECMAScript. Learn more about the project at [protobufes.com](https://protobufes.com/).
 
 ## Installation
 
