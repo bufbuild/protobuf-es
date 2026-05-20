@@ -2,7 +2,7 @@
   "name": "@bufbuild/protobuf",
   "version": "2.12.0",
   "license": "(Apache-2.0 AND BSD-3-Clause)",
-  "description": "A complete implementation of Protocol Buffers in TypeScript, suitable for web browsers and Node.js.",
+  "description": "Protocol Buffers for ECMAScript. The only JavaScript Protobuf library that is fully-compliant with Protobuf conformance tests.",
   "keywords": ["protobuf", "schema", "typescript", "ecmascript"],
   "homepage": "https://protobufes.com/",
   "repository": {
