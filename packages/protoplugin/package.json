@@ -10,6 +10,7 @@
     "ecmascript",
     "protoc-plugin"
   ],
+  "homepage": "https://protobufes.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/bufbuild/protobuf-es.git",
