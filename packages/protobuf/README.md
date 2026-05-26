@@ -32,10 +32,10 @@ npm install @bufbuild/protobuf
 
 ## Documentation
 
-To learn how to work with `@bufbuild/protobuf`, check out the docs for the [Runtime API](https://github.com/bufbuild/protobuf-es/tree/main/MANUAL.md#working-with-messages)
-and the [generated code](https://github.com/bufbuild/protobuf-es/tree/main/MANUAL.md#generated-code).
+To learn how to work with `@bufbuild/protobuf`, check out the docs for the [Runtime API](https://protobufes.com/guides/messages/)
+and the [generated code](https://protobufes.com/reference/generated-code/).
 
-Official documentation for the Protobuf-ES project can be found at [github.com/bufbuild/protobuf-es](https://github.com/bufbuild/protobuf-es).
+Official documentation for the Protobuf-ES project can be found at [protobufes.com](https://protobufes.com/).
 
 For more information on Buf, check out the official [Buf documentation](https://buf.build/docs/).
 
