@@ -100,11 +100,12 @@ export type GenServiceMethods = Record<
   Pick<DescMethod, "input" | "output" | "methodKind">
 >;
 
-class brandv1<A, B = unknown> {
-  protected v = "codegenv1" as const;
-  protected a: A | boolean = false;
-  protected b: B | boolean = false;
-}
+type brandv1<A, B = unknown> = {
+  /**
+   * @internal
+   */
+  readonly $codegenv1: { a: A; b: B };
+};
 
 /**
  * Union of the property names of all fields, including oneof members.
