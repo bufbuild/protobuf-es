@@ -1,44 +1,37 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
+  "include": [
+    "./src/**/*.ts",
+    "../../protobuf-test/src/types.test.ts",
+    "../../protobuf-test/src/json_types.test.ts",
+    "../../protobuf-test/src/is-message.test.ts",
+    "../../protobuf-test/src/fields.test.ts",
+    "../../protobuf-test/src/wkt/*.test.ts",
+    "../../protobuf-test/src/gen/**/*",
+    "../../protobuf-test/src/codegenv1/types.test.ts"
+    // We stop compiling the following tests because our tests do not comply with `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes`
+    // "../../protobuf-test/src/registry.test.ts",
+    // "../../protobuf-test/src/generate-code.test.ts",
+    // "../../protobuf-test/src/create.test.ts",
+  ],
   "compilerOptions": {
-    // File Layout
-    "rootDir": "./src",
-    // "outDir": "./dist",
-
-    // Environment Settings
-    // See also https://aka.ms/tsconfig/module
+    "rootDir": "../..",
     "module": "nodenext",
     "target": "esnext",
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
-
-    // Other Outputs
+    // Default types is [], but our tests import from node built-in packages
+    "types": ["node"],
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-
-    // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
-
-    // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    // To guard against regression and ensure we are remaining backwards
+    // compatible, set the skipLibCheck flag to false explicitly.
+    "skipLibCheck": false,
   }
 }
