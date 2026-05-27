@@ -7,5 +7,8 @@
     "src/wkt/index.ts",
     "src/wire/index.ts"
   ],
-  "extends": "../../tsconfig.base.json"
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src"
+  }
 }
