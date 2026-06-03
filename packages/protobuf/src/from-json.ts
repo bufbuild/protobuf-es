@@ -72,17 +72,27 @@ export interface JsonReadOptions {
    * from JSON format.
    */
   registry?: Registry | undefined;
+
+  /**
+   * The maximum depth of nested messages to parse. If a message nests deeper
+   * than this limit, parsing fails with an error instead of exhausting the
+   * call stack. Defaults to 100.
+   */
+  recursionLimit: number;
 }
 
-// Default options for parsing JSON.
-const jsonReadDefaults: Readonly<JsonReadOptions> = {
-  ignoreUnknownFields: false,
-};
+interface JsonReadContext extends JsonReadOptions {
+  // Recursion depth, guarded by recursionLimit.
+  depth: number;
+}
 
-function makeReadOptions(
-  options?: Partial<JsonReadOptions>,
-): Readonly<JsonReadOptions> {
-  return options ? { ...jsonReadDefaults, ...options } : jsonReadDefaults;
+function makeReadContext(options?: Partial<JsonReadOptions>): JsonReadContext {
+  return {
+    ignoreUnknownFields: false,
+    recursionLimit: 100,
+    ...options,
+    depth: 0,
+  };
 }
 
 /**
@@ -129,7 +139,7 @@ export function fromJson<Desc extends DescMessage>(
 ): MessageShape<Desc> {
   const msg = reflect(schema);
   try {
-    readMessage(msg, json, makeReadOptions(options));
+    readMessage(msg, json, makeReadContext(options));
   } catch (e) {
     if (isFieldError(e)) {
       // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
@@ -158,7 +168,7 @@ export function mergeFromJson<Desc extends DescMessage>(
   options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
   try {
-    readMessage(reflect(schema, target), json, makeReadOptions(options));
+    readMessage(reflect(schema, target), json, makeReadContext(options));
   } catch (e) {
     if (isFieldError(e)) {
       // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
@@ -207,9 +217,15 @@ function getJsonField(desc: DescMessage, jsonKey: string) {
 function readMessage(
   msg: ReflectMessage,
   json: JsonValue,
-  opts: JsonReadOptions,
+  ctx: JsonReadContext,
 ) {
-  if (tryWktFromJson(msg, json, opts)) {
+  if (++ctx.depth > ctx.recursionLimit) {
+    throw new Error(
+      `cannot decode ${msg.desc} from JSON: maximum recursion depth of ${ctx.recursionLimit} reached`,
+    );
+  }
+  if (tryWktFromJson(msg, json, ctx)) {
+    ctx.depth--;
     return;
   }
   if (json == null || Array.isArray(json) || typeof json != "object") {
@@ -233,52 +249,53 @@ function readMessage(
         }
         oneofSeen.set(field.oneof, field);
       }
-      readField(msg, field, jsonValue, opts);
+      readField(msg, field, jsonValue, ctx);
     } else {
       let extension: DescExtension | undefined = undefined;
       if (
         jsonKey.startsWith("[") &&
         jsonKey.endsWith("]") &&
         // biome-ignore lint/suspicious/noAssignInExpressions: no
-        (extension = opts.registry?.getExtension(
+        (extension = ctx.registry?.getExtension(
           jsonKey.substring(1, jsonKey.length - 1),
         )) &&
         extension.extendee.typeName === msg.desc.typeName
       ) {
         const [container, field, get] = createExtensionContainer(extension);
-        readField(container, field, jsonValue, opts);
+        readField(container, field, jsonValue, ctx);
         setExtension(msg.message, extension, get());
       }
-      if (!extension && !opts.ignoreUnknownFields) {
+      if (!extension && !ctx.ignoreUnknownFields) {
         throw new Error(
           `cannot decode ${msg.desc} from JSON: key "${jsonKey}" is unknown`,
         );
       }
     }
   }
+  ctx.depth--;
 }
 
 function readField(
   msg: ReflectMessage,
   field: DescField,
   json: JsonValue,
-  opts: JsonReadOptions,
+  ctx: JsonReadContext,
 ) {
   switch (field.fieldKind) {
     case "scalar":
       readScalarField(msg, field, json);
       break;
     case "enum":
-      readEnumField(msg, field, json, opts);
+      readEnumField(msg, field, json, ctx);
       break;
     case "message":
-      readMessageField(msg, field, json, opts);
+      readMessageField(msg, field, json, ctx);
       break;
     case "list":
-      readListField(msg.get(field), json, opts);
+      readListField(msg.get(field), json, ctx);
       break;
     case "map":
-      readMapField(msg.get(field), json, opts);
+      readMapField(msg.get(field), json, ctx);
       break;
   }
 }
@@ -286,19 +303,19 @@ function readField(
 function readListOrMapItem(
   field: DescField & { fieldKind: "map" | "list" },
   json: JsonValue,
-  opts: JsonReadOptions,
+  ctx: JsonReadContext,
 ) {
   if (field.scalar && json !== null) {
     return scalarFromJson(field, json);
   }
   if (field.message && !isResetSentinelNullValue(field, json)) {
     const msgValue = reflect(field.message);
-    readMessage(msgValue, json, opts);
+    readMessage(msgValue, json, ctx);
 
     return msgValue;
   }
   if (field.enum && !isResetSentinelNullValue(field, json)) {
-    return readEnum(field.enum, json, opts.ignoreUnknownFields);
+    return readEnum(field.enum, json, ctx.ignoreUnknownFields);
   }
 
   throw new FieldError(
@@ -307,7 +324,7 @@ function readListOrMapItem(
   );
 }
 
-function readMapField(map: ReflectMap, json: JsonValue, opts: JsonReadOptions) {
+function readMapField(map: ReflectMap, json: JsonValue, ctx: JsonReadContext) {
   if (json === null) {
     return;
   }
@@ -317,7 +334,7 @@ function readMapField(map: ReflectMap, json: JsonValue, opts: JsonReadOptions) {
   }
   for (const [jsonMapKey, jsonMapValue] of Object.entries(json)) {
     const key = mapKeyFromJson(field.mapKey, jsonMapKey);
-    const value = readListOrMapItem(field, jsonMapValue, opts);
+    const value = readListOrMapItem(field, jsonMapValue, ctx);
     if (value !== tokenIgnoredUnknownEnum) {
       map.set(key, value);
     }
@@ -327,7 +344,7 @@ function readMapField(map: ReflectMap, json: JsonValue, opts: JsonReadOptions) {
 function readListField(
   list: ReflectList,
   json: JsonValue,
-  opts: JsonReadOptions,
+  ctx: JsonReadContext,
 ) {
   if (json === null) {
     return;
@@ -337,7 +354,7 @@ function readListField(
     throw new FieldError(field, "expected Array, got " + formatVal(json));
   }
   for (const jsonItem of json) {
-    const value = readListOrMapItem(field, jsonItem, opts);
+    const value = readListOrMapItem(field, jsonItem, ctx);
     if (value !== tokenIgnoredUnknownEnum) {
       list.add(value);
     }
@@ -348,14 +365,14 @@ function readMessageField(
   msg: ReflectMessage,
   field: DescField & { fieldKind: "message" },
   json: JsonValue,
-  opts: JsonReadOptions,
+  ctx: JsonReadContext,
 ) {
   if (isResetSentinelNullValue(field, json)) {
     msg.clear(field);
     return;
   }
   const msgValue = msg.isSet(field) ? msg.get(field) : reflect(field.message);
-  readMessage(msgValue, json, opts);
+  readMessage(msgValue, json, ctx);
   msg.set(field, msgValue);
 }
 
@@ -363,13 +380,13 @@ function readEnumField(
   msg: ReflectMessage,
   field: DescField & { fieldKind: "enum" },
   json: JsonValue,
-  opts: JsonReadOptions,
+  ctx: JsonReadContext,
 ) {
   if (isResetSentinelNullValue(field, json)) {
     msg.clear(field);
     return;
   }
-  const enumValue = readEnum(field.enum, json, opts.ignoreUnknownFields);
+  const enumValue = readEnum(field.enum, json, ctx.ignoreUnknownFields);
   if (enumValue !== tokenIgnoredUnknownEnum) {
     msg.set(field, enumValue);
   }
@@ -602,14 +619,14 @@ function parseJsonString(jsonString: string, typeName: string) {
 function tryWktFromJson(
   msg: ReflectMessage,
   jsonValue: JsonValue,
-  opts: JsonReadOptions,
+  ctx: JsonReadContext,
 ): boolean {
   if (!msg.desc.typeName.startsWith("google.protobuf.")) {
     return false;
   }
   switch (msg.desc.typeName) {
     case "google.protobuf.Any":
-      anyFromJson(msg.message as Any, jsonValue, opts);
+      anyFromJson(msg.message as Any, jsonValue, ctx);
       return true;
     case "google.protobuf.Timestamp":
       timestampFromJson(msg.message as Timestamp, jsonValue);
@@ -621,13 +638,13 @@ function tryWktFromJson(
       fieldMaskFromJson(msg.message as FieldMask, jsonValue);
       return true;
     case "google.protobuf.Struct":
-      structFromJson(msg.message as Struct, jsonValue);
+      structFromJson(msg.message as Struct, jsonValue, ctx);
       return true;
     case "google.protobuf.Value":
-      valueFromJson(msg.message as Value, jsonValue);
+      valueFromJson(msg.message as Value, jsonValue, ctx);
       return true;
     case "google.protobuf.ListValue":
-      listValueFromJson(msg.message as ListValue, jsonValue);
+      listValueFromJson(msg.message as ListValue, jsonValue, ctx);
       return true;
     default:
       if (isWrapperDesc(msg.desc)) {
@@ -643,7 +660,7 @@ function tryWktFromJson(
   }
 }
 
-function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
+function anyFromJson(any: Any, json: JsonValue, ctx: JsonReadContext) {
   if (json === null || Array.isArray(json) || typeof json != "object") {
     throw new Error(
       `cannot decode message ${any.$typeName} from JSON: expected object but got ${formatVal(json)}`,
@@ -666,7 +683,7 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
       `cannot decode message ${any.$typeName} from JSON: "@type" is invalid`,
     );
   }
-  const desc = opts.registry?.getMessage(typeName);
+  const desc = ctx.registry?.getMessage(typeName);
   if (!desc) {
     throw new Error(
       `cannot decode message ${any.$typeName} from JSON: ${typeUrl} is not in the type registry`,
@@ -678,12 +695,12 @@ function anyFromJson(any: Any, json: JsonValue, opts: JsonReadOptions) {
     Object.prototype.hasOwnProperty.call(json, "value")
   ) {
     const value = json.value;
-    readMessage(msg, value, opts);
+    readMessage(msg, value, ctx);
   } else {
     const copy = Object.assign({}, json);
     // biome-ignore lint/performance/noDelete: <explanation>
     delete copy["@type"];
-    readMessage(msg, copy, opts);
+    readMessage(msg, copy, ctx);
   }
   anyPack(msg.desc, msg.message, any);
 }
@@ -776,7 +793,7 @@ function fieldMaskFromJson(fieldMask: FieldMask, json: JsonValue) {
   });
 }
 
-function structFromJson(struct: Struct, json: JsonValue) {
+function structFromJson(struct: Struct, json: JsonValue, ctx: JsonReadContext) {
   if (typeof json != "object" || json == null || Array.isArray(json)) {
     throw new Error(
       `cannot decode message ${struct.$typeName} from JSON ${formatVal(json)}`,
@@ -784,12 +801,17 @@ function structFromJson(struct: Struct, json: JsonValue) {
   }
   for (const [k, v] of Object.entries(json)) {
     const parsedV = create(ValueSchema);
-    valueFromJson(parsedV, v);
+    valueFromJson(parsedV, v, ctx);
     struct.fields[k] = parsedV;
   }
 }
 
-function valueFromJson(value: Value, json: JsonValue) {
+function valueFromJson(value: Value, json: JsonValue, ctx: JsonReadContext) {
+  if (++ctx.depth > ctx.recursionLimit) {
+    throw new Error(
+      `cannot decode ${value.$typeName} from JSON: maximum recursion depth of ${ctx.recursionLimit} reached`,
+    );
+  }
   switch (typeof json) {
     case "number":
       value.kind = { case: "numberValue", value: json };
@@ -805,11 +827,11 @@ function valueFromJson(value: Value, json: JsonValue) {
         value.kind = { case: "nullValue", value: NullValue.NULL_VALUE };
       } else if (Array.isArray(json)) {
         const listValue = create(ListValueSchema);
-        listValueFromJson(listValue, json);
+        listValueFromJson(listValue, json, ctx);
         value.kind = { case: "listValue", value: listValue };
       } else {
         const struct = create(StructSchema);
-        structFromJson(struct, json);
+        structFromJson(struct, json, ctx);
         value.kind = { case: "structValue", value: struct };
       }
       break;
@@ -818,10 +840,15 @@ function valueFromJson(value: Value, json: JsonValue) {
         `cannot decode message ${value.$typeName} from JSON ${formatVal(json)}`,
       );
   }
+  ctx.depth--;
   return value;
 }
 
-function listValueFromJson(listValue: ListValue, json: JsonValue) {
+function listValueFromJson(
+  listValue: ListValue,
+  json: JsonValue,
+  ctx: JsonReadContext,
+) {
   if (!Array.isArray(json)) {
     throw new Error(
       `cannot decode message ${listValue.$typeName} from JSON ${formatVal(json)}`,
@@ -829,7 +856,7 @@ function listValueFromJson(listValue: ListValue, json: JsonValue) {
   }
   for (const e of json) {
     const value = create(ValueSchema);
-    valueFromJson(value, e);
+    valueFromJson(value, e, ctx);
     listValue.values.push(value);
   }
 }
