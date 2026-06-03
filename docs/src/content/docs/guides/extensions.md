@@ -46,6 +46,8 @@ hasExtension(user, age); // false
 
 `getExtension` never returns `undefined`. If the extension is not set, it returns the default value for the field type (e.g., `0` for numeric types, `[]` for repeated fields, an empty message for message fields).
 
+Because extension values are decoded from binary on read, `getExtension` accepts an optional third argument with [binary serialization options](/guides/serialization/#binary-serialization-options), such as `recursionLimit`.
+
 ## Mutating repeated extension values
 
 Extensions are stored as [unknown fields](/guides/serialization/#unknown-fields) on the message. Reading an extension value deserializes it from binary data each time. To mutate a repeated extension, read the value, modify it, then store it back:
