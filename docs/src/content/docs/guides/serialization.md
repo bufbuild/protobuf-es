@@ -38,9 +38,10 @@ If you want strings instead of `JsonValue`, use `toJsonString()` and `fromJsonSt
 
 - `writeUnknownFields?: boolean`: Include unknown fields in the serialized output. By default, unknown fields are preserved and written back out.
 
-`fromBinary()` accepts one option:
+`fromBinary()` accepts:
 
 - `readUnknownFields?: boolean`: Retain unknown fields while parsing. By default, unknown fields are kept.
+- `recursionLimit?: number`: Maximum depth of nested messages to parse. Parsing fails with an error instead of exhausting the call stack when input nests deeper. Defaults to 100.
 
 ## JSON serialization options
 
@@ -48,6 +49,7 @@ If you want strings instead of `JsonValue`, use `toJsonString()` and `fromJsonSt
 
 - `ignoreUnknownFields?: boolean`: Ignore unknown properties and unknown enum string values instead of rejecting them.
 - `registry?: Registry`: Use a registry when parsing `google.protobuf.Any` and extensions from JSON.
+- `recursionLimit?: number`: Maximum depth of nested messages to parse. Parsing fails with an error instead of exhausting the call stack when input nests deeper. Defaults to 100.
 
 `toJson()` and `toJsonString()` accept:
 

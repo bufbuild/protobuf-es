@@ -44,6 +44,7 @@ import {
 import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
+import { TestAllTypesProto3Schema } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { compileMessage } from "./helpers.js";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 
@@ -403,6 +404,48 @@ void suite("UTF-8 validation on binary input", () => {
       message M { repeated string f = 1; }
     `);
     assert.throws(() => fromBinary(desc, fieldOneStringBytes));
+  });
+});
+
+void suite("fromBinary recursion limit", () => {
+  // Nested TestAllTypesProto3 via its recursive_message field, as wire bytes.
+  function makeNestedRecursiveMessage(depth: number): Uint8Array {
+    let message = new Uint8Array(0);
+    const fieldNo = TestAllTypesProto3Schema.field.recursiveMessage.number;
+    for (let i = 0; i < depth; i++) {
+      message = new BinaryWriter()
+        .tag(fieldNo, WireType.LengthDelimited)
+        .bytes(message)
+        .finish();
+    }
+    return message;
+  }
+
+  test("rejects deeply nested messages instead of overflowing the stack", () => {
+    assert.throws(
+      () =>
+        fromBinary(TestAllTypesProto3Schema, makeNestedRecursiveMessage(1000)),
+      /maximum recursion depth of 100 reached/,
+    );
+  });
+  test("accepts nesting within the default limit", () => {
+    assert.doesNotThrow(() =>
+      fromBinary(TestAllTypesProto3Schema, makeNestedRecursiveMessage(50)),
+    );
+  });
+  test("honors a custom recursionLimit", () => {
+    assert.throws(
+      () =>
+        fromBinary(TestAllTypesProto3Schema, makeNestedRecursiveMessage(5), {
+          recursionLimit: 3,
+        }),
+      /maximum recursion depth of 3 reached/,
+    );
+    assert.doesNotThrow(() =>
+      fromBinary(TestAllTypesProto3Schema, makeNestedRecursiveMessage(5), {
+        recursionLimit: 10,
+      }),
+    );
   });
 });
 

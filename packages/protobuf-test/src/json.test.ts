@@ -1294,6 +1294,76 @@ void suite("JSON parse errors", () => {
   }
 });
 
+void suite("fromJson recursion limit", () => {
+  // Nested google.protobuf.Any values.
+  function makeNestedAny(depth: number): JsonValue {
+    const root: Record<string, JsonValue> = {
+      "@type": "type.googleapis.com/google.protobuf.Any",
+    };
+    let cursor = root;
+    for (let i = 0; i < depth; i++) {
+      const next: Record<string, JsonValue> = {
+        "@type": "type.googleapis.com/google.protobuf.Any",
+      };
+      cursor.value = next;
+      cursor = next;
+    }
+    return root;
+  }
+  // Nested TestAllTypesProto3 via its recursive_message field, as JSON.
+  function makeNestedRecursiveMessage(depth: number): JsonValue {
+    let message: JsonValue = {};
+    for (let i = 0; i < depth; i++) {
+      message = { recursiveMessage: message };
+    }
+    return message;
+  }
+
+  test("rejects deeply nested Any instead of overflowing the stack", () => {
+    const registry = createRegistry(AnySchema);
+    assert.throws(
+      () => fromJson(AnySchema, makeNestedAny(1000), { registry }),
+      /cannot decode message google.protobuf.Any from JSON: maximum recursion depth of 100 reached/,
+    );
+  });
+  test("rejects deeply nested messages", () => {
+    assert.throws(
+      () =>
+        fromJson(TestAllTypesProto3Schema, makeNestedRecursiveMessage(1000)),
+      /maximum recursion depth of 100 reached/,
+    );
+  });
+  test("rejects deeply nested Struct", () => {
+    let struct: JsonValue = {};
+    for (let i = 0; i < 1000; i++) {
+      struct = { nested: struct };
+    }
+    assert.throws(
+      () => fromJson(StructSchema, struct),
+      /maximum recursion depth of 100 reached/,
+    );
+  });
+  test("accepts nesting within the default limit", () => {
+    assert.doesNotThrow(() =>
+      fromJson(TestAllTypesProto3Schema, makeNestedRecursiveMessage(50)),
+    );
+  });
+  test("honors a custom recursionLimit", () => {
+    assert.throws(
+      () =>
+        fromJson(TestAllTypesProto3Schema, makeNestedRecursiveMessage(5), {
+          recursionLimit: 3,
+        }),
+      /maximum recursion depth of 3 reached/,
+    );
+    assert.doesNotThrow(() =>
+      fromJson(TestAllTypesProto3Schema, makeNestedRecursiveMessage(5), {
+        recursionLimit: 10,
+      }),
+    );
+  });
+});
+
 function testJson<Desc extends DescMessage>(
   desc: Desc,
   init: MessageInitShape<Desc>,
