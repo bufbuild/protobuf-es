@@ -20,13 +20,13 @@ import type {
   GenEnum as CjsGenEnumV2,
   GenExtension as CjsGenExtensionV2,
   GenMessage as CjsGenMessageV2,
-} from "../../protobuf/dist/cjs/codegenv2/types.js";
+} from "../../protobuf/dist/commonjs/codegenv2/types.js";
 import type {
   GenEnum as EsmGenEnumV2,
   GenExtension as EsmGenExtensionV2,
   GenMessage as EsmGenMessageV2,
 } from "../../protobuf/dist/esm/codegenv2/types.js";
-import type { GenMessage as CjsGenMessageV1 } from "../../protobuf/dist/cjs/codegenv1/types.js";
+import type { GenMessage as CjsGenMessageV1 } from "../../protobuf/dist/commonjs/codegenv1/types.js";
 import type { GenMessage as EsmGenMessageV1 } from "../../protobuf/dist/esm/codegenv1/types.js";
 
 type M = Message<"example.M"> & { name: string };
