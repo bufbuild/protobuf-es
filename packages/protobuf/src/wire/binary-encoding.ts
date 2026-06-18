@@ -410,9 +410,11 @@ export class BinaryReader {
    * Skip one element and return the skipped data.
    *
    * When skipping StartGroup, provide the tags field number to check for
-   * matching field number in the EndGroup tag.
+   * matching field number in the EndGroup tag. Recursion into nested groups
+   * is guarded by the `recursionLimit` argument: When the limit is reached,
+   * this method throws.
    */
-  skip(wireType: WireType, fieldNo?: number): Uint8Array {
+  skip(wireType: WireType, fieldNo?: number, recursionLimit = 100): Uint8Array {
     let start = this.pos;
     switch (wireType) {
       case WireType.Varint:
@@ -431,6 +433,9 @@ export class BinaryReader {
         this.pos += len;
         break;
       case WireType.StartGroup:
+        if (recursionLimit <= 0) {
+          throw new Error("maximum recursion depth reached");
+        }
         for (;;) {
           const [fn, wt] = this.tag();
           if (wt === WireType.EndGroup) {
@@ -439,7 +444,7 @@ export class BinaryReader {
             }
             break;
           }
-          this.skip(wt, fn);
+          this.skip(wt, fn, recursionLimit - 1);
         }
         break;
       default:
