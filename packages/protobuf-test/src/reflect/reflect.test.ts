@@ -16,6 +16,7 @@ import { suite, test, beforeEach } from "node:test";
 import * as assert from "node:assert";
 import type { DescMessage, Message } from "@bufbuild/protobuf";
 import { create, protoInt64 } from "@bufbuild/protobuf";
+import { INT32_MAX, INT32_MIN } from "@bufbuild/protobuf/wire";
 import type { ReflectMessage } from "@bufbuild/protobuf/reflect";
 import {
   isReflectList,
@@ -370,8 +371,10 @@ void suite("ReflectMessage", () => {
     });
     test("sets unknown value for open enum", () => {
       const f = desc.field.singularEnumField;
-      r.set(f, 99);
-      assert.strictEqual(msg.singularEnumField, 99);
+      r.set(f, INT32_MIN);
+      assert.strictEqual(msg.singularEnumField, INT32_MIN);
+      r.set(f, INT32_MAX);
+      assert.strictEqual(msg.singularEnumField, INT32_MAX);
     });
     test("selects oneof field", () => {
       const f = desc.field.oneofInt32Field;
@@ -409,7 +412,7 @@ void suite("ReflectMessage", () => {
           /^cannot use field Foreign.foreign with message spec.Proto3Message$/,
       });
     });
-    test("returns error setting number out of range", () => {
+    test("throws error setting number out of range", () => {
       const f = desc.field.singularInt32Field;
       const err = catchFieldError(() => r.set(f, Number.MAX_SAFE_INTEGER));
       assert.ok(err !== undefined);
@@ -419,14 +422,14 @@ void suite("ReflectMessage", () => {
       );
       assert.equal(err.name, "FieldValueInvalidError");
     });
-    test("returns error setting float for int", () => {
+    test("throws error setting float for int", () => {
       const f = desc.field.singularInt32Field;
       const err = catchFieldError(() => r.set(f, 3.14));
       assert.ok(err !== undefined);
       assert.match(err.message, /^expected number \(int32\), got 3.14$/);
       assert.equal(err.name, "FieldValueInvalidError");
     });
-    void suite("returns error setting undefined", () => {
+    void suite("throws error setting undefined", () => {
       for (const f of desc.fields) {
         void test(`for proto3 field ${f.name}`, () => {
           const err = catchFieldError(() => r.set(f, undefined));
@@ -436,7 +439,7 @@ void suite("ReflectMessage", () => {
         });
       }
     });
-    void suite("returns error setting null", () => {
+    void suite("throws error setting null", () => {
       for (const f of desc.fields) {
         void test(`for proto3 field ${f.name}`, () => {
           const err = catchFieldError(() => r.set(f, null));
@@ -508,31 +511,40 @@ void suite("ReflectMessage", () => {
         });
       }
     });
-    void suite("throws error setting non-integer value for enum field", () => {
+    void suite("throws error setting invalid value for enum field", () => {
       const fields = desc.fields.filter((f) => f.fieldKind == "enum");
+      const cases: { label: string; value: unknown; message: RegExp }[] = [
+        { label: "true", value: true, message: /^expected enum .*, got true$/ },
+        {
+          label: "'abc'",
+          value: "abc",
+          message: /^expected enum .*, got "abc"$/,
+        },
+        {
+          label: "3.14",
+          value: 3.14,
+          message: /^expected enum .*, got 3\.14$/,
+        },
+        {
+          label: `${INT32_MAX + 1}`,
+          value: INT32_MAX + 1,
+          message: /^expected enum .*: .* out of range$/,
+        },
+        {
+          label: `${INT32_MIN - 1}`,
+          value: INT32_MIN - 1,
+          message: /^expected enum .*: .* out of range$/,
+        },
+      ];
       for (const f of fields) {
-        void test(`set ${f.name} true`, () => {
-          const err = catchFieldError(() => r.set(f, true));
-          assert.ok(err !== undefined);
-          assert.match(err.message, /^expected enum .*, got true$/);
-          assert.equal(err.name, "FieldValueInvalidError");
-        });
-      }
-      for (const f of fields) {
-        void test(`set ${f.name} 'abc'`, () => {
-          const err = catchFieldError(() => r.set(f, "abc"));
-          assert.ok(err !== undefined);
-          assert.match(err.message, /^expected enum .*, got "abc"$/);
-          assert.equal(err.name, "FieldValueInvalidError");
-        });
-      }
-      for (const f of fields) {
-        void test(`set ${f.name} 3.14`, () => {
-          const err = catchFieldError(() => r.set(f, 3.14));
-          assert.ok(err !== undefined);
-          assert.match(err.message, /^expected enum .*, got 3.14$/);
-          assert.equal(err.name, "FieldValueInvalidError");
-        });
+        for (const { label, value, message } of cases) {
+          void test(`set ${f.name} ${label}`, () => {
+            const err = catchFieldError(() => r.set(f, value));
+            assert.ok(err !== undefined);
+            assert.match(err.message, message);
+            assert.equal(err.name, "FieldValueInvalidError");
+          });
+        }
       }
     });
     test("throws error setting incompatible ReflectMessage", () => {
