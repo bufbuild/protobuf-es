@@ -16,6 +16,7 @@ import { suite, test } from "node:test";
 import * as assert from "node:assert";
 import {
   create,
+  isFieldSet,
   setExtension,
   getExtension,
   toBinary,
@@ -45,6 +46,7 @@ import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
 import { TestAllTypesProto3Schema } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
+import { Proto3MessageSchema } from "./gen/ts/extra/proto3_pb.js";
 import { compileMessage } from "./helpers.js";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 
@@ -446,6 +448,30 @@ void suite("fromBinary recursion limit", () => {
         recursionLimit: 10,
       }),
     );
+  });
+});
+
+void suite("negative zero serialization", () => {
+  test("singular float with -0 is set and round-trips", () => {
+    const msg = create(Proto3MessageSchema, { singularFloatField: -0 });
+    assert.strictEqual(
+      isFieldSet(msg, Proto3MessageSchema.field.singularFloatField),
+      true,
+    );
+    const bytes = toBinary(Proto3MessageSchema, msg);
+    assert.ok(bytes.length > 0);
+    const back = fromBinary(Proto3MessageSchema, bytes);
+    assert.ok(Object.is(back.singularFloatField, -0));
+  });
+  test("singular float with +0 is unset and omitted", () => {
+    const msg = create(Proto3MessageSchema, { singularFloatField: 0 });
+    assert.ok(!isFieldSet(msg, Proto3MessageSchema.field.singularFloatField));
+    assert.strictEqual(toBinary(Proto3MessageSchema, msg).length, 0);
+  });
+  test("singular int32 with -0 is unset and omitted", () => {
+    const msg = create(Proto3MessageSchema, { singularInt32Field: -0 });
+    assert.ok(!isFieldSet(msg, Proto3MessageSchema.field.singularInt32Field));
+    assert.strictEqual(toBinary(Proto3MessageSchema, msg).length, 0);
   });
 });
 
