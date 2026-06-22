@@ -42,6 +42,14 @@ export type ScalarValue<
 
 /**
  * Returns true if both scalar values are equal.
+ *
+ * For float and double, values are compared following IEEE semantics: -0
+ * equals 0, and NaN does not equal NaN. This is value equality, not identity.
+ *
+ * It deliberately differs from isScalarZeroValue, which treats -0 as distinct
+ * from 0. A value can equal the zero value without being a zero value
+ * (scalarEquals(DOUBLE, -0, 0) is true while isScalarZeroValue(DOUBLE, -0) is
+ * false) so this function must not be used to derive implicit presence.
  */
 export function scalarEquals(
   type: ScalarType,
@@ -83,7 +91,13 @@ export function scalarEquals(
 }
 
 /**
- * Returns the zero value for the given scalar type.
+ * Returns the zero value for the given scalar type, the value a field of this
+ * type has when unset: 0 for numeric types, "" for strings, false for
+ * booleans, and an empty Uint8Array for bytes. For 64-bit integer types, the
+ * result is "0" when longAsString is true, otherwise 0n.
+ *
+ * This is the type's zero value, not a proto2 custom field default. For float
+ * and double it is +0; isScalarZeroValue treats only +0, not -0, as this value.
  */
 export function scalarZeroValue<
   T extends ScalarType,
@@ -116,11 +130,19 @@ export function scalarZeroValue<
 }
 
 /**
- * Returns true for a zero-value. For example, an integer has the zero-value `0`,
- * a boolean is `false`, a string is `""`, and bytes is an empty Uint8Array.
+ * Returns true if the value is the zero value for the given scalar type: `0`
+ * for numeric types, `false` for booleans, `""` for strings, and an empty
+ * Uint8Array for bytes.
  *
- * In proto3, zero-values are not written to the wire, unless the field is
- * optional or repeated.
+ * This is the implicit-presence default check. A singular field with implicit
+ * presence is treated as unset, and omitted from the wire, when its value is
+ * the zero value. With explicit presence, or in repeated and map fields,
+ * presence is structural and this function does not apply.
+ *
+ * Note that -0 is NOT a zero value for float and double: under implicit
+ * presence, +0 is omitted from the wire but -0 is written, following the
+ * proto3 specification. As a result this can disagree with scalarEquals, which
+ * compares by value and treats -0 as equal to 0.
  */
 export function isScalarZeroValue(type: ScalarType, value: unknown): boolean {
   switch (type) {
@@ -130,7 +152,12 @@ export function isScalarZeroValue(type: ScalarType, value: unknown): boolean {
       return value === "";
     case ScalarType.BYTES:
       return value instanceof Uint8Array && !value.byteLength;
+    case ScalarType.DOUBLE:
+    case ScalarType.FLOAT:
+      // Object.is distinguishes -0 from 0.
+      return Object.is(value, 0);
     default:
-      return value == 0; // Loose comparison matches 0n, 0 and "0"
+      // Loose comparison matches 0n, 0 and "0".
+      return value == 0;
   }
 }
