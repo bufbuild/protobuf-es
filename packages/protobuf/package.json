@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protobuf",
-  "version": "2.12.0",
+  "version": "2.12.1",
   "license": "(Apache-2.0 AND BSD-3-Clause)",
   "description": "Protocol Buffers for ECMAScript. The only JavaScript Protobuf library that is fully-compliant with Protobuf conformance tests.",
   "keywords": [
