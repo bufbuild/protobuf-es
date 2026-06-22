@@ -1125,6 +1125,14 @@ void suite("JSON parse errors", () => {
     );
   });
 
+  test("open enum value out of int32 range", () => {
+    // Open enums accept unrecognized values, but enum values are always int32.
+    expectJsonParseError(
+      { optionalNestedEnum: 2147483648 },
+      "cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_nested_enum from JSON: expected enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum: 2147483648 out of range",
+    );
+  });
+
   void suite("Any", () => {
     test("without @type", () => {
       assert.throws(

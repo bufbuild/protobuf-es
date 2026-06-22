@@ -20,26 +20,30 @@ import { createImportSymbol } from "@bufbuild/protoplugin";
 import { createTestPluginAndRun } from "./helpers.js";
 
 void suite("GeneratedFile.print", () => {
-  void test("should print bigint literals", async () => {
-    const lines = await testGenerate((f) => {
-      f.print(0n);
-      f.print(-9223372036854775808n); // min signed
-      f.print(18446744073709551615n); // max unsigned
-    });
-    assert.deepStrictEqual(lines, [
-      `import { protoInt64 } from "@bufbuild/protobuf";`,
-      "",
-      "protoInt64.zero",
-      `protoInt64.parse("-9223372036854775808")`,
-      `protoInt64.uParse("18446744073709551615")`,
-    ]);
-    assert.ok(
-      protoInt64.parse("-9223372036854775808") === -9223372036854775808n,
-    );
-    assert.ok(
-      protoInt64.uParse("18446744073709551615") === 18446744073709551615n,
-    );
-  });
+  void test(
+    "should print bigint literals",
+    { skip: protoInt64.supported ? false : "requires BigInt" },
+    async () => {
+      const lines = await testGenerate((f) => {
+        f.print(0n);
+        f.print(-9223372036854775808n); // min signed
+        f.print(18446744073709551615n); // max unsigned
+      });
+      assert.deepStrictEqual(lines, [
+        `import { protoInt64 } from "@bufbuild/protobuf";`,
+        "",
+        "protoInt64.zero",
+        `protoInt64.parse("-9223372036854775808")`,
+        `protoInt64.uParse("18446744073709551615")`,
+      ]);
+      assert.ok(
+        protoInt64.parse("-9223372036854775808") === -9223372036854775808n,
+      );
+      assert.ok(
+        protoInt64.uParse("18446744073709551615") === 18446744073709551615n,
+      );
+    },
+  );
 
   void test("should print number literals", async () => {
     const lines = await testGenerate((f) => {
