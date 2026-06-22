@@ -134,7 +134,9 @@ function readMessage(
     }
     const field = message.findNumber(fieldNo);
     if (!field) {
-      const data = reader.skip(wireType, fieldNo);
+      // Use remaining recursion budget for skipping nested groups
+      const recursionLimit = ctx.recursionLimit - ctx.depth;
+      const data = reader.skip(wireType, fieldNo, recursionLimit);
       if (ctx.readUnknownFields) {
         unknownFields.push({ no: fieldNo, wireType, data });
       }
