@@ -20,7 +20,7 @@
     }
   },
   "dependencies": {
-    "fflate": "^0.8.1",
+    "fflate": "^0.8.3",
     "protoc": "34.1.0"
   }
 }
