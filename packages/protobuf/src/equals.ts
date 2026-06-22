@@ -58,10 +58,15 @@ interface EqualsOptions {
 }
 
 /**
- * Compare two messages of the same type.
+ * Compare two messages of the same type for equality.
  *
- * Note that this function disregards extensions and unknown fields, and that
- * NaN is not equal NaN, following the IEEE standard.
+ * Fields are compared one by one, but only when set: a field set in one message
+ * but not the other makes them unequal, while fields set in both are compared
+ * by value. Extensions and unknown fields are disregarded by default.
+ *
+ * Float and double values are compared with IEEE semantics: NaN does not equal
+ * NaN, and -0 equals 0 (with the exception for singular fields with implicit
+ * presence: -0 is set, +0 is unset).
  */
 export function equals<Desc extends DescMessage>(
   schema: Desc,
