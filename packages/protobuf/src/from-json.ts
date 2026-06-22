@@ -97,6 +97,8 @@ function makeReadContext(options?: Partial<JsonReadOptions>): JsonReadContext {
 
 /**
  * Parse a message from a JSON string.
+ *
+ * Duplicate keys are rejected.
  */
 export function fromJsonString<Desc extends DescMessage>(
   schema: Desc,
@@ -107,13 +109,15 @@ export function fromJsonString<Desc extends DescMessage>(
 }
 
 /**
- * Parse a message from a JSON string, merging fields.
+ * Parse a message from a JSON string, merging fields into the target.
  *
  * Repeated fields are appended. Map entries are added, overwriting
  * existing keys.
  *
  * If a message field is already present, it will be merged with the
  * new data.
+ *
+ * Duplicate keys in the JSON are rejected, as in `fromJsonString`.
  */
 export function mergeFromJsonString<Desc extends DescMessage>(
   schema: Desc,
@@ -131,6 +135,10 @@ export function mergeFromJsonString<Desc extends DescMessage>(
 
 /**
  * Parse a message from a JSON value.
+ *
+ * Duplicate keys are rejected, but a value parsed by JSON.parse has already
+ * dropped duplicates (the last one wins). Use `fromJsonString` for strict
+ * duplicate-key checking.
  */
 export function fromJson<Desc extends DescMessage>(
   schema: Desc,
@@ -153,13 +161,16 @@ export function fromJson<Desc extends DescMessage>(
 }
 
 /**
- * Parse a message from a JSON value, merging fields.
+ * Parse a message from a JSON value, merging fields into the target.
  *
  * Repeated fields are appended. Map entries are added, overwriting
  * existing keys.
  *
  * If a message field is already present, it will be merged with the
  * new data.
+ *
+ * Duplicate keys are rejected as in `fromJson`; use `mergeFromJsonString`
+ * for strict checking.
  */
 export function mergeFromJson<Desc extends DescMessage>(
   schema: Desc,
@@ -232,14 +243,22 @@ function readMessage(
     throw new Error(`cannot decode ${msg.desc} from JSON: ${formatVal(json)}`);
   }
   const oneofSeen = new Map<DescOneof, DescField>();
+  const fieldSeen = new Set<DescField>();
   for (const [jsonKey, jsonValue] of Object.entries(json)) {
     const field = getJsonField(msg.desc, jsonKey);
     if (field) {
+      if (fieldSeen.has(field)) {
+        // The same field may be set by its proto name and its JSON name, or by
+        // a duplicate or unicode-escaped key that JSON.parse already collapsed.
+        // Checked before the null-skip below so that a null entry still counts.
+        throw new FieldError(field, "set multiple times");
+      }
+      fieldSeen.add(field);
+      if (field.oneof && jsonValue === null && field.fieldKind == "scalar") {
+        // see conformance test Required.Proto3.JsonInput.OneofFieldNull{First,Second}
+        continue;
+      }
       if (field.oneof) {
-        if (jsonValue === null && field.fieldKind == "scalar") {
-          // see conformance test Required.Proto3.JsonInput.OneofFieldNull{First,Second}
-          continue;
-        }
         const seen = oneofSeen.get(field.oneof);
         if (seen !== undefined) {
           throw new FieldError(
@@ -332,8 +351,13 @@ function readMapField(map: ReflectMap, json: JsonValue, ctx: JsonReadContext) {
   if (typeof json != "object" || Array.isArray(json)) {
     throw new FieldError(field, "expected object, got " + formatVal(json));
   }
+  const seen = new Set<unknown>();
   for (const [jsonMapKey, jsonMapValue] of Object.entries(json)) {
     const key = mapKeyFromJson(field.mapKey, jsonMapKey);
+    if (seen.has(key)) {
+      throw new FieldError(field, `duplicate map key "${jsonMapKey}"`);
+    }
+    seen.add(key);
     const value = readListOrMapItem(field, jsonMapValue, ctx);
     if (value !== tokenIgnoredUnknownEnum) {
       map.set(key, value);
@@ -548,7 +572,8 @@ function scalarFromJson(
 
 /**
  * Try to parse a JSON value to a map key for the reflect API.
- *
+ * Canonicalizes 64-bit integers given as string, so that "01 and "1" are one
+ * key, and duplicates can raise an error.
  * Returns the input if the JSON value cannot be converted.
  */
 function mapKeyFromJson(
@@ -573,6 +598,14 @@ function mapKeyFromJson(
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
       return int32FromJson(jsonString);
+    case ScalarType.INT64:
+    case ScalarType.SINT64:
+    case ScalarType.SFIXED64:
+    case ScalarType.UINT64:
+    case ScalarType.FIXED64:
+      return /^-?0+$/.test(jsonString)
+        ? "0"
+        : jsonString.replace(/^(-?)0+(?=\d)/, "$1");
     default:
       return jsonString;
   }
@@ -603,9 +636,14 @@ function int32FromJson(json: NonNullable<JsonValue>) {
   return json;
 }
 
+/**
+ * Parse a JSON string, rejecting duplicate object keys (which JSON.parse would
+ * otherwise silently merge).
+ */
 function parseJsonString(jsonString: string, typeName: string) {
+  let json: JsonValue;
   try {
-    return JSON.parse(jsonString) as JsonValue;
+    json = JSON.parse(jsonString) as JsonValue;
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
     throw new Error(
@@ -613,6 +651,86 @@ function parseJsonString(jsonString: string, typeName: string) {
       // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
       { cause: e },
     );
+  }
+  checkDuplicateKeys(jsonString, typeName);
+  return json;
+}
+
+/**
+ * Scan a JSON string for duplicate object member names at any depth, throwing
+ * if any are found. JSON.parse() silently keeps the last of duplicate keys, so
+ * this raw-string scan is the only way to reject them. It must only be called
+ * with a string that JSON.parse() has already accepted, so it can assume the
+ * input is well-formed.
+ */
+function checkDuplicateKeys(jsonString: string, typeName: string): void {
+  // One Set of seen member names for each open object; arrays push null.
+  const stack: (Set<string> | null)[] = [];
+  // Whether the next string token is an object member name.
+  let expectKey = false;
+  let i = 0;
+  while (i < jsonString.length) {
+    switch (jsonString[i]) {
+      case "{":
+        stack.push(new Set());
+        expectKey = true;
+        i++;
+        break;
+      case "[":
+        stack.push(null);
+        expectKey = false;
+        i++;
+        break;
+      case "}":
+      case "]":
+        stack.pop();
+        expectKey = false;
+        i++;
+        break;
+      case ",":
+        expectKey = stack[stack.length - 1] != null;
+        i++;
+        break;
+      case ":":
+        expectKey = false;
+        i++;
+        break;
+      case '"': {
+        const open = i++;
+        let escaped = false;
+        while (i < jsonString.length) {
+          if (jsonString[i] == "\\") {
+            escaped = true;
+            i += 2; // skip the backslash and the character it escapes
+            continue;
+          }
+          if (jsonString[i] == '"') {
+            break;
+          }
+          i++;
+        }
+        const close = i++;
+        const seen = stack[stack.length - 1];
+        if (expectKey && seen) {
+          // Decode escapes (rare) so that, for example, a key written with a
+          // unicode escape collides with the same key written literally.
+          const name = escaped
+            ? (JSON.parse(jsonString.substring(open, close + 1)) as string)
+            : jsonString.substring(open + 1, close);
+          if (seen.has(name)) {
+            throw new Error(
+              `cannot decode message ${typeName} from JSON: duplicate object key "${name}"`,
+            );
+          }
+          seen.add(name);
+        }
+        expectKey = false;
+        break;
+      }
+      default:
+        i++;
+        break;
+    }
   }
 }
 
