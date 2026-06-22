@@ -974,22 +974,123 @@ void suite("JsonWriteOptions", () => {
   });
 });
 
-void suite("parsing duplicate fields", () => {
-  void suite("proto field name and JSON field name", () => {
-    // This depends on the ECMA-262-defined behavior for JSON.parse() and
-    // Object.entries() and the internal preservation of object key order.
-    test("last entry wins", () => {
-      const a = fromJsonString(
-        proto3_ts.Proto3MessageSchema,
-        '{ "singular_string_field": "b", "singularStringField": "a" }',
+void suite("parsing duplicate keys", () => {
+  // Literal and alternate-casing duplicate field names are covered by the
+  // conformance suite (*.JsonInput.FieldNameDuplicate*), so they are not
+  // repeated here. What conformance does not cover is here: duplicate map keys,
+  // unicode-escaped keys, the fromJson() value entry point, and merging.
+  void suite("rejects duplicate map keys", () => {
+    const cases: { name: string; json: string }[] = [
+      {
+        name: "literal string keys",
+        json: `{"strStrField":{"a":"1","a":"2"}}`,
+      },
+      {
+        name: "int32 keys differing by a leading zero",
+        json: `{"int32StrField":{"1":"a","01":"b"}}`,
+      },
+      {
+        name: "int64 keys differing by a leading zero",
+        json: `{"int64StrField":{"1":"a","01":"b"}}`,
+      },
+      {
+        name: "int64 keys differing by a redundant sign on zero",
+        json: `{"int64StrField":{"0":"a","-0":"b"}}`,
+      },
+      {
+        name: "unicode-escaped string key",
+        json: `{"strStrField":{"\\u0061":"1","a":"2"}}`,
+      },
+      {
+        name: "message-valued map keys differing by a leading zero",
+        json: `{"int32MsgField":{"1":{},"01":{}}}`,
+      },
+    ];
+    for (const { name, json } of cases) {
+      void test(name, () => {
+        assert.throws(() => fromJsonString(MapsMessageSchema, json), {
+          message: /from JSON: duplicate (map key|object key) ".*"/,
+        });
+      });
+    }
+  });
+  void test("accepts distinct 64-bit map keys", () => {
+    // Guards canonicalization from over-collapsing keys that share a prefix:
+    // "1" and "10" are distinct.
+    const m = fromJsonString(
+      MapsMessageSchema,
+      `{"int64StrField":{"1":"a","10":"b"}}`,
+    );
+    assert.deepEqual(m.int64StrField, { "1": "a", "10": "b" });
+  });
+  void test("stores 64-bit map keys in canonical form", () => {
+    // The same normalization that detects duplicates also canonicalizes the
+    // stored key, matching the 32-bit path: "01" is stored as "1".
+    const m = fromJsonString(MapsMessageSchema, `{"int64StrField":{"01":"x"}}`);
+    assert.deepEqual(m.int64StrField, { "1": "x" });
+  });
+  void test("rejects a unicode-escaped duplicate field name", () => {
+    // JSON.parse collapses this to a single key, so only the raw-string scan
+    // can detect it.
+    assert.throws(
+      () =>
+        fromJsonString(
+          proto3_ts.Proto3MessageSchema,
+          `{"\\u0073ingularStringField":"a","singularStringField":"b"}`,
+        ),
+      { message: /from JSON: duplicate object key "singularStringField"/ },
+    );
+  });
+  void test("rejects a duplicate field via the fromJson value entry point", () => {
+    // fromJson() receives an already-parsed object, so it can only detect
+    // distinct keys that resolve to the same field (proto name vs JSON name).
+    assert.throws(
+      () =>
+        fromJson(proto3_ts.Proto3MessageSchema, {
+          singular_string_field: "b",
+          singularStringField: "a",
+        }),
+      { message: /singular_string_field from JSON: set multiple times/ },
+    );
+  });
+  void test("rejects a duplicate oneof field when one occurrence is null", () => {
+    // A null oneof scalar is skipped, but it still counts as the field being
+    // present, so an alternate spelling of the same field is a duplicate.
+    assert.throws(
+      () =>
+        fromJson(proto3_ts.Proto3MessageSchema, {
+          oneof_int32_field: null,
+          oneofInt32Field: 5,
+        }),
+      { message: /oneof_int32_field from JSON: set multiple times/ },
+    );
+  });
+  void suite("merge", () => {
+    void test("rejects duplicate keys within a single document", () => {
+      const target = create(proto3_ts.Proto3MessageSchema);
+      assert.throws(
+        () =>
+          mergeFromJsonString(
+            proto3_ts.Proto3MessageSchema,
+            target,
+            `{"singularStringField":"a","singularStringField":"b"}`,
+          ),
+        { message: /from JSON: duplicate object key "singularStringField"/ },
       );
-      const b = fromJsonString(
-        proto3_ts.Proto3MessageSchema,
-        '{ "singularStringField": "a", "singular_string_field": "b" }',
+    });
+    void test("merges the same key across separate documents", () => {
+      const target = create(MapsMessageSchema);
+      mergeFromJsonString(
+        MapsMessageSchema,
+        target,
+        `{"strStrField":{"a":"1"}}`,
       );
-
-      assert.equal(a.singularStringField, "a");
-      assert.equal(b.singularStringField, "b");
+      mergeFromJsonString(
+        MapsMessageSchema,
+        target,
+        `{"strStrField":{"a":"2"}}`,
+      );
+      assert.deepEqual(target.strStrField, { a: "2" });
     });
   });
 });
@@ -1021,6 +1122,14 @@ void suite("JSON parse errors", () => {
     expectJsonParseError(
       { notAKnownField: "abc" },
       `cannot decode message protobuf_test_messages.proto3.TestAllTypesProto3 from JSON: key "notAKnownField" is unknown`,
+    );
+  });
+
+  test("open enum value out of int32 range", () => {
+    // Open enums accept unrecognized values, but enum values are always int32.
+    expectJsonParseError(
+      { optionalNestedEnum: 2147483648 },
+      "cannot decode field protobuf_test_messages.proto3.TestAllTypesProto3.optional_nested_enum from JSON: expected enum protobuf_test_messages.proto3.TestAllTypesProto3.NestedEnum: 2147483648 out of range",
     );
   });
 
@@ -1292,6 +1401,76 @@ void suite("JSON parse errors", () => {
     }
     assert.strictEqual(gotErrorMessage, errorMessage);
   }
+});
+
+void suite("fromJson recursion limit", () => {
+  // Nested google.protobuf.Any values.
+  function makeNestedAny(depth: number): JsonValue {
+    const root: Record<string, JsonValue> = {
+      "@type": "type.googleapis.com/google.protobuf.Any",
+    };
+    let cursor = root;
+    for (let i = 0; i < depth; i++) {
+      const next: Record<string, JsonValue> = {
+        "@type": "type.googleapis.com/google.protobuf.Any",
+      };
+      cursor.value = next;
+      cursor = next;
+    }
+    return root;
+  }
+  // Nested TestAllTypesProto3 via its recursive_message field, as JSON.
+  function makeNestedRecursiveMessage(depth: number): JsonValue {
+    let message: JsonValue = {};
+    for (let i = 0; i < depth; i++) {
+      message = { recursiveMessage: message };
+    }
+    return message;
+  }
+
+  test("rejects deeply nested Any instead of overflowing the stack", () => {
+    const registry = createRegistry(AnySchema);
+    assert.throws(
+      () => fromJson(AnySchema, makeNestedAny(1000), { registry }),
+      /cannot decode message google.protobuf.Any from JSON: maximum recursion depth of 100 reached/,
+    );
+  });
+  test("rejects deeply nested messages", () => {
+    assert.throws(
+      () =>
+        fromJson(TestAllTypesProto3Schema, makeNestedRecursiveMessage(1000)),
+      /maximum recursion depth of 100 reached/,
+    );
+  });
+  test("rejects deeply nested Struct", () => {
+    let struct: JsonValue = {};
+    for (let i = 0; i < 1000; i++) {
+      struct = { nested: struct };
+    }
+    assert.throws(
+      () => fromJson(StructSchema, struct),
+      /maximum recursion depth of 100 reached/,
+    );
+  });
+  test("accepts nesting within the default limit", () => {
+    assert.doesNotThrow(() =>
+      fromJson(TestAllTypesProto3Schema, makeNestedRecursiveMessage(50)),
+    );
+  });
+  test("honors a custom recursionLimit", () => {
+    assert.throws(
+      () =>
+        fromJson(TestAllTypesProto3Schema, makeNestedRecursiveMessage(5), {
+          recursionLimit: 3,
+        }),
+      /maximum recursion depth of 3 reached/,
+    );
+    assert.doesNotThrow(() =>
+      fromJson(TestAllTypesProto3Schema, makeNestedRecursiveMessage(5), {
+        recursionLimit: 10,
+      }),
+    );
+  });
 });
 
 function testJson<Desc extends DescMessage>(

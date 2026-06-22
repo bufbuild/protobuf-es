@@ -1,6 +1,8 @@
 .astro
 .tmp
 .turbo
+.tshy
+.tshy-build
 dist
 node_modules
 /packages/protobuf-test/*.0x

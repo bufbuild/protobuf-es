@@ -3,7 +3,12 @@
   "version": "2.12.0",
   "license": "(Apache-2.0 AND BSD-3-Clause)",
   "description": "Protocol Buffers for ECMAScript. The only JavaScript Protobuf library that is fully-compliant with Protobuf conformance tests.",
-  "keywords": ["protobuf", "schema", "typescript", "ecmascript"],
+  "keywords": [
+    "protobuf",
+    "schema",
+    "typescript",
+    "ecmascript"
+  ],
   "homepage": "https://protobufes.com/",
   "repository": {
     "type": "git",
@@ -11,10 +16,7 @@
     "directory": "packages/protobuf"
   },
   "scripts": {
-    "prebuild": "rm -rf ./dist/*",
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "../../node_modules/typescript/bin/tsc --project tsconfig.json --module commonjs --verbatimModuleSyntax false --moduleResolution node10 --outDir ./dist/cjs && echo >./dist/cjs/package.json '{\"type\":\"commonjs\"}'",
-    "build:esm": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/esm",
+    "build": "tshy",
     "bootstrap": "npm run bootstrap:inject && npm run bootstrap:wkt",
     "bootstrap:inject": "node scripts/bootstrap-inject.mjs src",
     "bootstrap:wkt": "protoc --es_out=src/wkt/gen --es_opt=bootstrap_wkt=true,target=ts,import_extension=js,json_types=true --proto_path $(upstream-include wkt) $(upstream-files wkt)",
@@ -26,44 +28,107 @@
   },
   "type": "module",
   "sideEffects": false,
-  "main": "./dist/cjs/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
-    },
-    "./codegenv1": {
-      "import": "./dist/esm/codegenv1/index.js",
-      "require": "./dist/cjs/codegenv1/index.js"
-    },
-    "./codegenv2": {
-      "import": "./dist/esm/codegenv2/index.js",
-      "require": "./dist/cjs/codegenv2/index.js"
-    },
-    "./reflect": {
-      "import": "./dist/esm/reflect/index.js",
-      "require": "./dist/cjs/reflect/index.js"
-    },
-    "./wkt": {
-      "import": "./dist/esm/wkt/index.js",
-      "require": "./dist/cjs/wkt/index.js"
-    },
-    "./wire": {
-      "import": "./dist/esm/wire/index.js",
-      "require": "./dist/cjs/wire/index.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "codegenv1": ["./dist/cjs/codegenv1/index.d.ts"],
-      "codegenv2": ["./dist/cjs/codegenv2/index.d.ts"],
-      "reflect": ["./dist/cjs/reflect/index.d.ts"],
-      "wkt": ["./dist/cjs/wkt/index.d.ts"],
-      "wire": ["./dist/cjs/wire/index.d.ts"]
+  "tshy": {
+    "exports": {
+      ".": "./src/index.ts",
+      "./codegenv1": "./src/codegenv1/index.ts",
+      "./codegenv2": "./src/codegenv2/index.ts",
+      "./reflect": "./src/reflect/index.ts",
+      "./wkt": "./src/wkt/index.ts",
+      "./wire": "./src/wire/index.ts",
+      "./package.json": "./package.json"
     }
   },
   "devDependencies": {
+    "tshy": "^4.1.3",
     "upstream-protobuf": "*"
   },
-  "files": ["dist/**"]
+  "files": [
+    "dist/**"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/index.d.ts",
+        "default": "./dist/commonjs/index.js"
+      }
+    },
+    "./codegenv1": {
+      "import": {
+        "types": "./dist/esm/codegenv1/index.d.ts",
+        "default": "./dist/esm/codegenv1/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/codegenv1/index.d.ts",
+        "default": "./dist/commonjs/codegenv1/index.js"
+      }
+    },
+    "./codegenv2": {
+      "import": {
+        "types": "./dist/esm/codegenv2/index.d.ts",
+        "default": "./dist/esm/codegenv2/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/codegenv2/index.d.ts",
+        "default": "./dist/commonjs/codegenv2/index.js"
+      }
+    },
+    "./reflect": {
+      "import": {
+        "types": "./dist/esm/reflect/index.d.ts",
+        "default": "./dist/esm/reflect/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/reflect/index.d.ts",
+        "default": "./dist/commonjs/reflect/index.js"
+      }
+    },
+    "./wkt": {
+      "import": {
+        "types": "./dist/esm/wkt/index.d.ts",
+        "default": "./dist/esm/wkt/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/wkt/index.d.ts",
+        "default": "./dist/commonjs/wkt/index.js"
+      }
+    },
+    "./wire": {
+      "import": {
+        "types": "./dist/esm/wire/index.d.ts",
+        "default": "./dist/esm/wire/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/wire/index.d.ts",
+        "default": "./dist/commonjs/wire/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "typesVersions": {
+    "*": {
+      "codegenv1": [
+        "./dist/commonjs/codegenv1/index.d.ts"
+      ],
+      "codegenv2": [
+        "./dist/commonjs/codegenv2/index.d.ts"
+      ],
+      "reflect": [
+        "./dist/commonjs/reflect/index.d.ts"
+      ],
+      "wkt": [
+        "./dist/commonjs/wkt/index.d.ts"
+      ],
+      "wire": [
+        "./dist/commonjs/wire/index.d.ts"
+      ]
+    }
+  }
 }

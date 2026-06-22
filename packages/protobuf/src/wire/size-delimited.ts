@@ -51,7 +51,7 @@ export function sizeDelimitedEncode<Desc extends DescMessage>(
 export async function* sizeDelimitedDecodeStream<Desc extends DescMessage>(
   messageDesc: Desc,
   iterable: AsyncIterable<Uint8Array>,
-  options?: BinaryReadOptions,
+  options?: Partial<BinaryReadOptions>,
 ): AsyncIterableIterator<MessageShape<Desc>> {
   // append chunk to buffer, returning updated buffer
   function append(

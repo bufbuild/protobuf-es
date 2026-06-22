@@ -38,9 +38,10 @@ If you want strings instead of `JsonValue`, use `toJsonString()` and `fromJsonSt
 
 - `writeUnknownFields?: boolean`: Include unknown fields in the serialized output. By default, unknown fields are preserved and written back out.
 
-`fromBinary()` accepts one option:
+`fromBinary()` accepts:
 
 - `readUnknownFields?: boolean`: Retain unknown fields while parsing. By default, unknown fields are kept.
+- `recursionLimit?: number`: Maximum depth of nested messages to parse. Parsing fails with an error instead of exhausting the call stack when input nests deeper. Defaults to 100.
 
 ## JSON serialization options
 
@@ -48,6 +49,7 @@ If you want strings instead of `JsonValue`, use `toJsonString()` and `fromJsonSt
 
 - `ignoreUnknownFields?: boolean`: Ignore unknown properties and unknown enum string values instead of rejecting them.
 - `registry?: Registry`: Use a registry when parsing `google.protobuf.Any` and extensions from JSON.
+- `recursionLimit?: number`: Maximum depth of nested messages to parse. Parsing fails with an error instead of exhausting the call stack when input nests deeper. Defaults to 100.
 
 `toJson()` and `toJsonString()` accept:
 
@@ -58,6 +60,18 @@ If you want strings instead of `JsonValue`, use `toJsonString()` and `fromJsonSt
 - `prettySpaces?: number`: Only for `toJsonString()`. Passed through to `JSON.stringify()`.
 
 See [Registries](/reference/reflection/registries/) for creating registries, [Any with registries](/examples/any-registry/) for a complete `Any` example, and [Plugin options](/reference/plugin-options/#json_typestrue) if you want generated JSON types.
+
+## Duplicate JSON keys
+
+A duplicate key is the same field provided more than once, by repeating a key, or by mixing its proto field name with its JSON name:
+
+```json
+{ "firstName": "Homer", "first_name": "Max" }
+```
+
+`fromJsonString()` and `mergeFromJsonString()` reject duplicate keys at any depth, including inside maps and `google.protobuf.Struct`. This matches the behavior of Protobuf implementations in other languages.
+
+`fromJson()` and `mergeFromJson()` parse a value that has already gone through `JSON.parse()`, which silently keeps only the last value of any repeated key. They still reject a field set by both its proto name and its JSON name, but identical repeated keys are gone before parsing begins. Parse from a string when you need strict duplicate-key checking.
 
 ## Unknown fields
 

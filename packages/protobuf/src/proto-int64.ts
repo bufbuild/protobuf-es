@@ -119,7 +119,7 @@ interface Int64Support {
 }
 
 // The environment variable BUF_BIGINT_DISABLE=1 disables bigint support for
-// testing (unless globalThis.Deno is defined).
+// testing (unless globalThis.Deno or globalThis.Bun is defined).
 declare const process: {
   env: Record<string, string>;
 };
@@ -134,6 +134,7 @@ function makeInt64Support(): Int64Support {
     typeof dv.setBigInt64 === "function" &&
     typeof dv.setBigUint64 === "function" &&
     (!!(globalThis as { Deno?: unknown }).Deno ||
+      !!(globalThis as { Bun?: unknown }).Bun ||
       typeof process != "object" ||
       typeof process.env != "object" ||
       process.env.BUF_BIGINT_DISABLE !== "1");
