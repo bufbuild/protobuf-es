@@ -239,6 +239,42 @@ void suite("BinaryReader", () => {
         assert.strictEqual(sr.pos, sr.len);
       }
     });
+    void test("rejects deeply nested groups", () => {
+      // A run of StartGroup tags (0x0b = field 1, WireType.StartGroup) with no
+      // matching EndGroup tags. Without a recursion limit, skipping this
+      // overflows the call stack.
+      const startGroupTags = new Uint8Array(10000).fill(0x0b);
+      const reader = new BinaryReader(startGroupTags);
+      const [, wireType] = reader.tag();
+      assert.strictEqual(wireType, WireType.StartGroup);
+      assert.throws(
+        () => reader.skip(wireType),
+        /maximum recursion depth reached/,
+      );
+    });
+    void test("honors a custom recursionLimit when skipping groups", () => {
+      // `depth` nested groups, each closed by a matching EndGroup.
+      function nestedGroups(depth: number): Uint8Array {
+        const writer = new BinaryWriter();
+        for (let i = 0; i < depth; i++) {
+          writer.tag(1, WireType.StartGroup);
+        }
+        for (let i = 0; i < depth; i++) {
+          writer.tag(1, WireType.EndGroup);
+        }
+        return writer.finish();
+      }
+      function skipGroups(bytes: Uint8Array, recursionLimit: number): void {
+        const reader = new BinaryReader(bytes);
+        const [, wireType] = reader.tag();
+        reader.skip(wireType, 1, recursionLimit);
+      }
+      assert.doesNotThrow(() => skipGroups(nestedGroups(5), 10));
+      assert.throws(
+        () => skipGroups(nestedGroups(5), 3),
+        /maximum recursion depth reached/,
+      );
+    });
   });
   void suite("tag", () => {
     // Tag byte for (fieldNo=1, wireType=Varint) with the varint continuation
