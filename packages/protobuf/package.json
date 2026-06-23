@@ -36,6 +36,7 @@
       "./reflect": "./src/reflect/index.ts",
       "./wkt": "./src/wkt/index.ts",
       "./wire": "./src/wire/index.ts",
+      "./txtpb": "./src/txtpb/index.ts",
       "./package.json": "./package.json"
     }
   },
@@ -107,6 +108,16 @@
         "default": "./dist/commonjs/wire/index.js"
       }
     },
+    "./txtpb": {
+      "import": {
+        "types": "./dist/esm/txtpb/index.d.ts",
+        "default": "./dist/esm/txtpb/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/txtpb/index.d.ts",
+        "default": "./dist/commonjs/txtpb/index.js"
+      }
+    },
     "./package.json": "./package.json"
   },
   "main": "./dist/commonjs/index.js",
@@ -128,6 +139,9 @@
       ],
       "wire": [
         "./dist/commonjs/wire/index.d.ts"
+      ],
+      "txtpb": [
+        "./dist/commonjs/txtpb/index.d.ts"
       ]
     }
   }
