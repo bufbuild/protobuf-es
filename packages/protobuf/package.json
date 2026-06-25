@@ -29,6 +29,7 @@
   "type": "module",
   "sideEffects": false,
   "tshy": {
+    "selfLink": false,
     "exports": {
       ".": "./src/index.ts",
       "./codegenv1": "./src/codegenv1/index.ts",
@@ -36,8 +37,7 @@
       "./reflect": "./src/reflect/index.ts",
       "./wkt": "./src/wkt/index.ts",
       "./wire": "./src/wire/index.ts",
-      "./txtpb": "./src/txtpb/index.ts",
-      "./package.json": "./package.json"
+      "./txtpb": "./src/txtpb/index.ts"
     }
   },
   "devDependencies": {
@@ -117,8 +117,7 @@
         "types": "./dist/commonjs/txtpb/index.d.ts",
         "default": "./dist/commonjs/txtpb/index.js"
       }
-    },
-    "./package.json": "./package.json"
+    }
   },
   "main": "./dist/commonjs/index.js",
   "types": "./dist/commonjs/index.d.ts",
