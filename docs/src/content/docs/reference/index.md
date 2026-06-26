@@ -14,7 +14,7 @@ Reference pages cover exact generated shapes, plugin options, runtime types, and
 ## Runtime
 
 - [Working with messages](/guides/messages/): `create()`, initializer objects, `isMessage()`, `$typeName`, field presence, `equals()`, and `clone()`.
-- [Serialization](/guides/serialization/): binary and JSON helpers, options, unknown fields, low-level wire APIs, text encoding, Base64, and size-delimited streams.
+- [Serialization](/guides/serialization/): binary and JSON helpers, options, unknown fields, low-level wire APIs, the text format, text encoding, Base64, and size-delimited streams.
 - [Extensions](/guides/extensions/): defining, setting, reading, mutating, clearing, and serializing extensions.
 - [Reflection](/guides/reflection/): overview and typed dynamic message patterns.
 - [Descriptors](/reference/reflection/descriptors/): descriptor hierarchy, schema traversal, field descriptors, and traversal helpers.

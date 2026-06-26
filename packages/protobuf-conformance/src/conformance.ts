@@ -24,7 +24,9 @@ import {
   toBinary,
   toJsonString,
   createRegistry,
+  protoInt64,
 } from "@bufbuild/protobuf";
+import { fromText, toText } from "@bufbuild/protobuf/txtpb";
 import {
   type ConformanceRequest,
   type ConformanceResponse,
@@ -136,6 +138,14 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
         });
         break;
 
+      case "textPayload":
+        if (!protoInt64.supported) {
+          // The text format requires BigInt.
+          return { case: "skipped", value: "text format requires BigInt" };
+        }
+        payload = fromText(payloadType, request.payload.value, { registry });
+        break;
+
       default:
         // We use a failure list instead of skipping, because that is more transparent.
         return {
@@ -172,7 +182,21 @@ function test(request: ConformanceRequest): ConformanceResponse["result"] {
         return { case: "skipped", value: "JSPB not supported." };
 
       case WireFormat.TEXT_FORMAT:
-        return { case: "skipped", value: "Text format not supported." };
+        if (!protoInt64.supported) {
+          // The text format requires BigInt; we skip these tests in the string
+          // fall-back enabled by BUF_BIGINT_DISABLE rather than fail them.
+          return { case: "skipped", value: "text format requires BigInt" };
+        }
+        return {
+          case: "textPayload",
+          // toText omits unknown fields by default. The runner asks us to print
+          // them via request.printUnknownFields (true for the *_Print tests,
+          // false for the *_Drop tests).
+          value: toText(payloadType, payload, {
+            printUnknownFields: request.printUnknownFields,
+            registry,
+          }),
+        };
 
       default:
         return {

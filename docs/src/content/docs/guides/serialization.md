@@ -100,11 +100,15 @@ const user = fromBinary(UserSchema, bytes);
 
 Use the message-level helpers unless you are working directly with the wire format.
 
-## Text encoding
+## Text format
 
-Protobuf-ES uses the WHATWG [Text Encoding API](https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API) to convert UTF-8 to and from binary.
+The [Text Format](https://protobuf.dev/reference/protobuf/textformat-spec/) is a syntax for representing protobuf data in text form. It's mainly used for debugging, tests, and config files. You can use it to read and write `.txtpb` files.
 
-If your environment does not provide the API, call `configureTextEncoding()` from `@bufbuild/protobuf/wire` early during initialization and supply your own implementation.
+Like ProtoJSON and the binary wire format, the format is exposed via free functions, exported from `@bufbuild/protobuf/txtpb`:
+
+- `toText()` - Serialize a message to the protobuf text format.
+- `fromText()` - Parse a message from the protobuf text format.
+- `mergeFromText()` - Parse into an existing message.
 
 ## Base64 encoding
 
@@ -151,3 +155,9 @@ for await (const user of sizeDelimitedDecodeStream(UserSchema, stream)) {
 ```
 
 This format is compatible with the delimited message support in the C++, Java, Go, and other Protobuf runtimes.
+
+## Text encoding API
+
+Protobuf-ES uses the WHATWG [Text Encoding API](https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API) to convert UTF-8 to and from binary.
+
+If your environment does not provide the API, call `configureTextEncoding()` from `@bufbuild/protobuf/wire` early during initialization and supply your own implementation.

@@ -6,7 +6,7 @@ code generator plugin.
 ## Protocol Buffers for ECMAScript
 
 A complete implementation of [Protocol Buffers](https://protobuf.dev/) in TypeScript,
-suitable for web browsers, Node.js, and Deno, created by [Buf](https://buf.build).
+suitable for web browsers, Node.js, Deno, and Bun, created by [Buf](https://buf.build).
 
 **Protobuf-ES** is a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem. It's
 the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC
@@ -19,7 +19,7 @@ Some additional features that set it apart from the others:
 - Generation of idiomatic JavaScript and TypeScript code
 - Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/tree/main/packages/bundle-size/)
 - Implementation of all proto3 features, including the [canonical JSON format](https://protobuf.dev/programming-guides/proto3/#json)
-- Implementation of all proto2 features, except for extensions and the text format
+- Implementation of all proto2 features, including extensions and the text format
 - Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
 - Compatibility is covered by the Protocol Buffers [conformance tests](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-conformance/)
 - Descriptor and reflection support

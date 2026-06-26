@@ -12,7 +12,7 @@ Use this file as a map for agents and LLMs reading the documentation.
 ## Guides
 
 - /guides/messages/: create messages, initializer objects, identify messages, field presence, equals, clone.
-- /guides/serialization/: binary, JSON, options, unknown fields, wire helpers, text encoding, Base64, size-delimited streams.
+- /guides/serialization/: binary, JSON, options, unknown fields, wire helpers, text format, text encoding, Base64, size-delimited streams.
 - /guides/extensions/: proto2 extensions, custom options, runtime helpers, JSON registry use.
 - /guides/reflection/: overview for descriptors, registries, custom options, dynamic message access.
 
