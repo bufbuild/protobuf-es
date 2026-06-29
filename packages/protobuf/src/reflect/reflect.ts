@@ -32,6 +32,8 @@ import {
   unsafeGet,
   unsafeIsSet,
   unsafeLocal,
+  unsafeMapGet,
+  unsafeMapSet,
   unsafeOneofCase,
   unsafeSet,
 } from "./unsafe.js";
@@ -349,7 +351,11 @@ class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
         throw err;
       }
     }
-    this.obj[mapKeyToLocal(key)] = mapValueToLocal(this._field, value);
+    unsafeMapSet(
+      this.obj,
+      mapKeyToLocal(key),
+      mapValueToLocal(this._field, value),
+    );
     return this;
   }
   delete(key: K) {
@@ -366,7 +372,7 @@ class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
     }
   }
   get(key: K) {
-    let val = this.obj[mapKeyToLocal(key)];
+    let val = unsafeMapGet(this.obj, mapKeyToLocal(key));
     if (val !== undefined) {
       val = mapValueToReflect(this._field, val, this.check);
     }
@@ -627,7 +633,7 @@ function wktStructToReflect(json: JsonValue): Struct {
   };
   if (isObject(json)) {
     for (const [k, v] of Object.entries(json)) {
-      struct.fields[k] = wktValueToReflect(v);
+      unsafeMapSet(struct.fields, k, wktValueToReflect(v));
     }
   }
   return struct;
@@ -636,7 +642,7 @@ function wktStructToReflect(json: JsonValue): Struct {
 function wktStructToLocal(val: Struct) {
   const json: JsonObject = {};
   for (const [k, v] of Object.entries(val.fields)) {
-    json[k] = wktValueToLocal(v);
+    unsafeMapSet(json, k, wktValueToLocal(v));
   }
   return json;
 }

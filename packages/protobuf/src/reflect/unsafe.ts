@@ -127,6 +127,58 @@ export function unsafeSet(
 }
 
 /**
+ * Set an entry on the plain object backing a map field.
+ *
+ * The key "__proto__" is special: assigning it with bracket notation invokes
+ * the inherited prototype setter instead of creating an own property, which
+ * would change the object's prototype to the map value.
+ *
+ * A null-prototype backing object would avoid this, but React Server
+ * Components reject null-prototype objects.
+ *
+ * @private
+ */
+export function unsafeMapSet(
+  obj: Record<string, unknown>,
+  key: string | number,
+  value: unknown,
+): void {
+  if (key === "__proto__") {
+    Object.defineProperty(obj, "__proto__", {
+      value,
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    });
+  } else {
+    // Plain assignment is the engine's optimized fast path: defineProperty is
+    // several times slower and can deoptimize the object, so we reserve it for
+    // the only key that actually needs it.
+    obj[key] = value;
+  }
+}
+
+/**
+ * Read an entry from the plain object backing a map field.
+ *
+ * Bracket access walks the prototype chain, so reading an unset key such as
+ * "__proto__", "toString", or "constructor" would return an inherited value
+ * instead of undefined. Guarding on own-property membership keeps map reads
+ * faithful for every key.
+ *
+ * A null-prototype backing object would avoid this, but React Server
+ * Components reject null-prototype objects.
+ *
+ * @private
+ */
+export function unsafeMapGet(
+  obj: Record<string, unknown>,
+  key: string | number,
+): unknown {
+  return Object.prototype.hasOwnProperty.call(obj, key) ? obj[key] : undefined;
+}
+
+/**
  * Resets the field, so that unsafeIsSet() will return false.
  *
  * @private
