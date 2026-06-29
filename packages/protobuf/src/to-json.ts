@@ -50,6 +50,7 @@ import { hasCustomJsonRepresentation, isWrapperDesc } from "./wkt/wrappers.js";
 import { base64Encode } from "./wire/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
 import { checkField, formatVal } from "./reflect/reflect-check.js";
+import { unsafeMapSet } from "./reflect/unsafe.js";
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
 const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
@@ -244,23 +245,28 @@ function mapToJson(map: ReflectMap, opts: JsonWriteOptions) {
   switch (f.mapKind) {
     case "scalar":
       for (const [entryKey, entryValue] of map) {
-        jsonObj[entryKey as keyof object] = scalarToJson(f, entryValue);
+        unsafeMapSet(
+          jsonObj,
+          entryKey as string | number,
+          scalarToJson(f, entryValue),
+        );
       }
       break;
     case "message":
       for (const [entryKey, entryValue] of map) {
-        jsonObj[entryKey as keyof object] = reflectToJson(
-          entryValue as ReflectMessage,
-          opts,
+        unsafeMapSet(
+          jsonObj,
+          entryKey as string | number,
+          reflectToJson(entryValue as ReflectMessage, opts),
         );
       }
       break;
     case "enum":
       for (const [entryKey, entryValue] of map) {
-        jsonObj[entryKey as keyof object] = enumToJsonInternal(
-          f.enum,
-          entryValue,
-          opts.enumAsInteger,
+        unsafeMapSet(
+          jsonObj,
+          entryKey as string | number,
+          enumToJsonInternal(f.enum, entryValue, opts.enumAsInteger),
         );
       }
       break;
@@ -500,7 +506,7 @@ function fieldMaskToJson(val: FieldMask) {
 function structToJson(val: Struct) {
   const json: JsonObject = {};
   for (const [k, v] of Object.entries(val.fields)) {
-    json[k] = valueToJson(v);
+    unsafeMapSet(json, k, valueToJson(v));
   }
   return json;
 }

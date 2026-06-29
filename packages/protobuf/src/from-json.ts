@@ -33,6 +33,7 @@ import { reflect } from "./reflect/reflect.js";
 import { FieldError, isFieldError } from "./reflect/error.js";
 import { formatVal } from "./reflect/reflect-check.js";
 import { protoSnakeCase } from "./reflect/names.js";
+import { unsafeMapSet } from "./reflect/unsafe.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 import type { EnumJsonType, EnumShape, MessageShape } from "./types.js";
 import { base64Decode } from "./wire/base64-encoding.js";
@@ -920,7 +921,7 @@ function structFromJson(struct: Struct, json: JsonValue, ctx: JsonReadContext) {
   for (const [k, v] of Object.entries(json)) {
     const parsedV = create(ValueSchema);
     valueFromJson(parsedV, v, ctx);
-    struct.fields[k] = parsedV;
+    unsafeMapSet(struct.fields, k, parsedV);
   }
 }
 

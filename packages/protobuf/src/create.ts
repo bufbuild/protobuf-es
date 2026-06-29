@@ -23,7 +23,12 @@ import type { Message, MessageInitShape, MessageShape } from "./types.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
 import type { FieldError } from "./reflect/error.js";
 import { isObject, type OneofADT } from "./reflect/guard.js";
-import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";
+import {
+  unsafeGet,
+  unsafeMapSet,
+  unsafeOneofCase,
+  unsafeSet,
+} from "./reflect/unsafe.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
 import type {
   Edition,
@@ -181,7 +186,7 @@ function convertObjectValues(
 ): Record<string, unknown> {
   const ret: Record<string, unknown> = {};
   for (const entry of Object.entries(obj)) {
-    ret[entry[0]] = fn(entry[1]);
+    unsafeMapSet(ret, entry[0], fn(entry[1]));
   }
   return ret;
 }
