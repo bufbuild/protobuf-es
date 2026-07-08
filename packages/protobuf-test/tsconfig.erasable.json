@@ -1,0 +1,7 @@
+{
+  "include": ["src/erasable_syntax_only.test.ts"],
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "erasableSyntaxOnly": true
+  }
+}

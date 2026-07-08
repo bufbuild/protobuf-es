@@ -59,6 +59,7 @@ type Options = {
     legacyRequired: boolean;
     protovalidateRequired: boolean;
   };
+  erasableSyntax: boolean;
 };
 
 function parseOptions(
@@ -72,6 +73,7 @@ function parseOptions(
     legacyRequired: false,
     protovalidateRequired: false,
   };
+  let erasableSyntax = false;
   for (const { key, value } of options) {
     switch (key) {
       case "json_types":
@@ -94,11 +96,17 @@ function parseOptions(
           }
         }
         break;
+      case "erasable_syntax":
+        if (!["true", "1", "false", "0"].includes(value)) {
+          throw "please provide true or false";
+        }
+        erasableSyntax = ["true", "1"].includes(value);
+        break;
       default:
         throw new Error();
     }
   }
-  return { jsonTypes, validTypes };
+  return { jsonTypes, validTypes, erasableSyntax };
 }
 
 // This annotation informs bundlers that the succeeding function call is free of
@@ -107,7 +115,6 @@ function parseOptions(
 // See https://github.com/bufbuild/protobuf-es/pull/470
 const pure = "/*@__PURE__*/";
 
-// biome-ignore format: want this to read well
 function generateTs(schema: Schema<Options>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.ts");
@@ -137,7 +144,11 @@ function generateTs(schema: Schema<Options>) {
           break;
         }
         case "enum": {
-          generateEnumShape(f, desc);
+          if (schema.options.erasableSyntax) {
+            generateObjEnum(f, desc, "ts");
+          } else {
+            generateEnumShape(f, desc);
+          }
           if (schema.options.jsonTypes) {
             generateEnumJsonShape(f, desc, "ts");
           }
@@ -183,7 +194,6 @@ function generateTs(schema: Schema<Options>) {
   }
 }
 
-// biome-ignore format: want this to read well
 function generateJs(schema: Schema<Options>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.js");
@@ -216,12 +226,12 @@ function generateJs(schema: Schema<Options>) {
             f.print("  ", call, ";");
             f.print();
           }
-          // declare TypeScript enum
+          // generate enum
           {
             f.print(f.jsDoc(desc));
             f.print(f.export("const", f.importShape(desc).name), " = ", pure);
-            const { tsEnum } = f.runtime.codegen;
-            const call = functionCall(tsEnum, [f.importSchema(desc)]);
+            const enumFn = schema.options.erasableSyntax ? f.runtime.codegen.objEnum : f.runtime.codegen.tsEnum;
+            const call = functionCall(enumFn, [f.importSchema(desc)]);
             f.print("  ", call, ";");
             f.print();
           }
@@ -252,7 +262,6 @@ function generateJs(schema: Schema<Options>) {
   }
 }
 
-// biome-ignore format: want this to read well
 function generateDts(schema: Schema<Options>) {
   for (const file of schema.files) {
     const f = schema.generateFile(file.name + "_pb.d.ts");
@@ -279,7 +288,11 @@ function generateDts(schema: Schema<Options>) {
           break;
         }
         case "enum": {
-          generateEnumShape(f, desc);
+          if (schema.options.erasableSyntax) {
+            generateObjEnum(f, desc, "dts");
+          } else {
+            generateEnumShape(f, desc);
+          }
           if (schema.options.jsonTypes) {
             generateEnumJsonShape(f, desc, "dts");
           }
@@ -349,7 +362,6 @@ function generateDescDoc(
   });
 }
 
-// biome-ignore format: want this to read well
 function getFileDescCall(f: GeneratedFile, file: DescFile, schema: Schema) {
   // Schema provides files with source retention options. Since we do not want to
   // embed source retention options in generated code, we use FileDescriptorProto
@@ -376,7 +388,6 @@ function getFileDescCall(f: GeneratedFile, file: DescFile, schema: Schema) {
   return functionCall(fileDesc, [f.string(info.base64())]);
 }
 
-// biome-ignore format: want this to read well
 function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable {
   const p: Printable[] = ["{\n"];
   for (const method of service.methods) {
@@ -391,7 +402,6 @@ function getServiceShapeExpr(f: GeneratedFile, service: DescService): Printable 
   return p;
 }
 
-// biome-ignore format: want this to read well
 function generateEnumShape(f: GeneratedFile, enumeration: DescEnum) {
   f.print(f.jsDoc(enumeration));
   f.print(f.export("enum", f.importShape(enumeration).name), " {");
@@ -406,7 +416,35 @@ function generateEnumShape(f: GeneratedFile, enumeration: DescEnum) {
   f.print();
 }
 
-// biome-ignore format: want this to read well
+function generateObjEnum(f: GeneratedFile, enumeration: DescEnum, target: Extract<Target, "ts" | "dts">) {
+  const { name } = f.importShape(enumeration);
+  f.print(f.jsDoc(enumeration));
+  if (target == "ts") {
+    f.print(f.export("const", name), " = {");
+  } else {
+    f.print(f.export("declare const", name), ": {");
+  }
+  for (const value of enumeration.values) {
+    if (enumeration.values.indexOf(value) > 0) {
+      f.print();
+    }
+    f.print(f.jsDoc(value, "  "));
+    f.print("  ", (target == "ts" ? "" : "readonly "), value.localName, ": ", value.number, ",");
+  }
+  f.print("}", (target == "ts" ? " as const" : ""), ";");
+  f.print();
+
+  generateObjEnumType(f, enumeration, target);
+}
+
+function generateObjEnumType(f: GeneratedFile, enumeration: DescEnum, target: Extract<Target, "ts" | "dts">) {
+  const { name } = f.importShape(enumeration);
+  f.print(f.jsDoc(enumeration));
+  const declaration = target == "ts" ? "type" : "declare type";
+  f.print(f.export(declaration, name), " = (typeof ", name, ")[keyof typeof ", name, "];");
+  f.print();
+}
+
 function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: Extract<Target, "ts" | "dts">) {
   f.print(f.jsDoc(enumeration));
   const declaration = target == "ts" ? "type" : "declare type";
@@ -425,7 +463,6 @@ function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: 
   f.print();
 }
 
-// biome-ignore format: want this to read well
 function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Extract<Target, "ts" | "dts">) {
   const { Message } = f.runtime;
   const declaration = target == "ts" ? "type" : "declare type";
@@ -441,7 +478,6 @@ function generateMessageShape(f: GeneratedFile, message: DescMessage, target: Ex
   f.print();
 }
 
-// biome-ignore format: want this to read well
 function generateMessageValidShape(f: GeneratedFile, message: DescMessage, validTypes: Options["validTypes"], target: Extract<Target, "ts" | "dts">) {
   const declaration = target == "ts" ? "type" : "declare type";
   if (!messageNeedsCustomValidType(message, validTypes)) {
@@ -462,7 +498,6 @@ function generateMessageValidShape(f: GeneratedFile, message: DescMessage, valid
   f.print();
 }
 
-// biome-ignore format: want this to read well
 function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOneof, validTypes?: Options["validTypes"]) {
   switch (member.kind) {
     case "oneof":
@@ -497,7 +532,6 @@ function generateMessageShapeMember(f: GeneratedFile, member: DescField | DescOn
   }
 }
 
-// biome-ignore format: want this to read well
 function generateMessageJsonShape(f: GeneratedFile, message: DescMessage, target: Extract<Target, "ts" | "dts">) {
   const exp = f.export(target == "ts" ? "type" : "declare type", f.importJson(message).name);
   f.print(f.jsDoc(message));

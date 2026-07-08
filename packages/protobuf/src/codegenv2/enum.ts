@@ -37,9 +37,15 @@ export function enumDesc<
 
 /**
  * Construct a TypeScript enum object at runtime from a descriptor.
+ *
+ * The returned object is identical to a transpiled TS enum and includes the
+ * reverse mapping, see https://www.typescriptlang.org/docs/handbook/enums.html#reverse-mappings
  */
 export function tsEnum(desc: DescEnum) {
-  const enumObject = {} as enumObject;
+  const enumObject: {
+    [key: number]: string;
+    [k: string]: number | string;
+  } = {};
   for (const value of desc.values) {
     enumObject[value.localName] = value.number;
     enumObject[value.number] = value.localName;
@@ -47,7 +53,17 @@ export function tsEnum(desc: DescEnum) {
   return enumObject;
 }
 
-type enumObject = {
-  [key: number]: string;
-  [k: string]: number | string;
-};
+/**
+ * Construct an object enum at runtime from a descriptor.
+ *
+ * The returned object is a record of enum value name to integer value. It's
+ * a subset of transpiled TS enums - it does not include the reverse mapping,
+ * and only supports lookup by value name.
+ */
+export function objEnum(desc: DescEnum) {
+  const enumObject: { [key: string]: number } = {};
+  for (const value of desc.values) {
+    enumObject[value.localName] = value.number;
+  }
+  return enumObject;
+}

@@ -63,6 +63,7 @@ export const symbols = {
     messageDesc:       {typeOnly: false, bootstrapWktFrom: "../../codegenv2/message.js",    from: packageName + "/codegenv2" },
     serviceDesc:       {typeOnly: false, bootstrapWktFrom: "../../codegenv2/service.js",    from: packageName + "/codegenv2" },
     tsEnum:            {typeOnly: false, bootstrapWktFrom: "../../codegenv2/enum.js",       from: packageName + "/codegenv2" },
+    objEnum:           {typeOnly: false, bootstrapWktFrom: "../../codegenv2/enum.js",       from: packageName + "/codegenv2" },
     GenFile:           {typeOnly: true,  bootstrapWktFrom: "../../codegenv2/types.js",      from: packageName + "/codegenv2" },
     GenEnum:           {typeOnly: true,  bootstrapWktFrom: "../../codegenv2/types.js",      from: packageName + "/codegenv2" },
     GenExtension:      {typeOnly: true,  bootstrapWktFrom: "../../codegenv2/types.js",      from: packageName + "/codegenv2" },
