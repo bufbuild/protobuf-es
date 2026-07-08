@@ -21,7 +21,11 @@ import type {
 } from "@bufbuild/protobuf";
 import { create, createFileRegistry } from "@bufbuild/protobuf";
 import type { CodeGeneratorRequest } from "@bufbuild/protobuf/wkt";
-import { Edition, FileDescriptorSetSchema } from "@bufbuild/protobuf/wkt";
+import {
+  Edition,
+  EditionSchema,
+  FileDescriptorSetSchema,
+} from "@bufbuild/protobuf/wkt";
 import { nestedTypes } from "@bufbuild/protobuf/reflect";
 import type {
   CreatePreambleFn,
@@ -294,8 +298,9 @@ function getFilesToGenerate(
 }
 
 function editionToString(edition: number): string {
-  if (edition in Edition) {
-    return Edition[edition].replace(/^EDITION_/, "");
+  const value = EditionSchema.values.find((e) => e.number == edition);
+  if (value !== undefined) {
+    return value.name.replace(/^EDITION_/, "");
   }
   return `unknown (${edition})`;
 }

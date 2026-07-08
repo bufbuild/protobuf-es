@@ -25,17 +25,13 @@ import type { FieldError } from "./reflect/error.js";
 import { isObject, type OneofADT } from "./reflect/guard.js";
 import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
-import type {
-  Edition,
-  FeatureSet_FieldPresence,
-} from "./wkt/gen/google/protobuf/descriptor_pb.js";
 
-// bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name: Edition.$localName = $number;
-const EDITION_PROTO3: Edition.EDITION_PROTO3 = 999;
-// bootstrap-inject google.protobuf.Edition.EDITION_PROTO2: const $name: Edition.$localName = $number;
-const EDITION_PROTO2: Edition.EDITION_PROTO2 = 998;
-// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
-const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
+// bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name = $number;
+const EDITION_PROTO3 = 999;
+// bootstrap-inject google.protobuf.Edition.EDITION_PROTO2: const $name = $number;
+const EDITION_PROTO2 = 998;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name = $number;
+const IMPLICIT = 2;
 
 /**
  * Create a new message instance.

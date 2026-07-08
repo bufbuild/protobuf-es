@@ -23,7 +23,11 @@ void suite("open enum", () => {
   test("from binary sets foreign value", () => {
     assert.strictEqual(proto3_ts.Proto3EnumSchema.open, true);
     const foreignValue = 4;
-    assert.strictEqual(proto3_ts.Proto3Enum[foreignValue], undefined);
+    assert.strictEqual(
+      foreignValue in proto3_ts.Proto3EnumSchema.value,
+      false,
+      "fixture defines unexpected enum value",
+    );
     const bytes = new BinaryWriter()
       .tag(
         proto3_ts.Proto3MessageSchema.field.singularEnumField.number,
@@ -46,7 +50,11 @@ void suite("closed enum", () => {
   test("from binary sets foreign value as unknown field", () => {
     assert.strictEqual(proto2_ts.Proto2EnumSchema.open, false);
     const foreignValue = 4;
-    assert.strictEqual(proto2_ts.Proto2Enum[foreignValue], undefined);
+    assert.strictEqual(
+      foreignValue in proto2_ts.Proto2EnumSchema.value,
+      false,
+      "fixture defines unexpected enum value",
+    );
     const bytes = new BinaryWriter()
       .tag(
         proto2_ts.Proto2MessageSchema.field.optionalEnumField.number,

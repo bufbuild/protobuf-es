@@ -47,11 +47,13 @@ import {
 } from "./guard.js";
 import type {
   ListValue,
-  NullValue,
   Struct,
   Value,
 } from "../wkt/gen/google/protobuf/struct_pb.js";
 import type { JsonObject, JsonValue } from "../json-value.js";
+
+// google.protobuf.NullValue.NULL_VALUE;
+const NULL_VALUE = 0;
 
 /**
  * Create a ReflectMessage.
@@ -672,8 +674,7 @@ function wktValueToReflect(json: JsonValue): Value {
       break;
     case "object":
       if (json === null) {
-        const nullValue: NullValue.NULL_VALUE = 0;
-        value.kind = { case: "nullValue", value: nullValue };
+        value.kind = { case: "nullValue", value: NULL_VALUE };
       } else if (Array.isArray(json)) {
         const listValue: ListValue = {
           $typeName: "google.protobuf.ListValue",
