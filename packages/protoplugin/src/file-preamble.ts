@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Edition } from "@bufbuild/protobuf/wkt";
-import type { DescFile, DescComments } from "@bufbuild/protobuf";
+import { Edition, EditionSchema } from "@bufbuild/protobuf/wkt";
+import type { DescFile, DescComments, DescEnumValue } from "@bufbuild/protobuf";
 import {
   getPackageComments,
   getSyntaxComments,
@@ -71,9 +71,10 @@ export function makeFilePreamble(
       // Report the raw edition from the descriptor so files using
       // EDITION_UNSTABLE (which we collapse to maximumEdition internally)
       // still render as "edition unstable".
-      const editionString = Edition[file.proto.edition] as string | undefined;
-      if (typeof editionString == "string") {
-        const e = editionString.replace("EDITION_", "").toLowerCase();
+      const editionValue: DescEnumValue | undefined =
+        EditionSchema.value[file.proto.edition];
+      if (editionValue !== undefined) {
+        const e = editionValue.name.replace("EDITION_", "").toLowerCase();
         builder.push(`edition ${e})\n`);
       } else {
         builder.push("unknown edition\n");

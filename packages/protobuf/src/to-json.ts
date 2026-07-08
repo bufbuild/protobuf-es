@@ -38,7 +38,6 @@ import type {
 import type {
   Any,
   Duration,
-  FeatureSet_FieldPresence,
   FieldMask,
   ListValue,
   Struct,
@@ -51,11 +50,11 @@ import { base64Encode } from "./wire/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
 import { checkField, formatVal } from "./reflect/reflect-check.js";
 
-// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name: FeatureSet_FieldPresence.$localName = $number;
-const LEGACY_REQUIRED: FeatureSet_FieldPresence.LEGACY_REQUIRED = 3;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name = $number;
+const LEGACY_REQUIRED = 3;
 
-// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
-const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name = $number;
+const IMPLICIT = 2;
 
 /**
  * Options for serializing to JSON.
