@@ -1,0 +1,17 @@
+# Learn more: https://buf.build/docs/configuration/v2/buf-gen-yaml
+version: v2
+inputs:
+  - directory: proto
+plugins:
+  - local: protoc-gen-es
+    opt: target=ts,import_extension=js
+    out: src/gen/ts
+  - local: protoc-gen-grpc-js
+    opt: target=ts,import_extension=js
+    out: src/gen/ts
+  - local: protoc-gen-es
+    opt: target=js+dts,import_extension=js
+    out: src/gen/js
+  - local: protoc-gen-grpc-js
+    opt: target=js+dts,import_extension=js
+    out: src/gen/js

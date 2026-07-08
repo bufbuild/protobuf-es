@@ -4,6 +4,7 @@
   "workspaces": [
     "packages/protobuf",
     "packages/protoc-gen-es",
+    "packages/protoc-gen-grpc-js",
     "packages/protoplugin",
     "packages/protoplugin-test",
     "packages/protoplugin-example",

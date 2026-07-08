@@ -1,0 +1,59 @@
+{
+  "name": "@bufbuild/protoc-gen-grpc-js",
+  "version": "2.12.1",
+  "license": "Apache-2.0",
+  "description": "Protocol Buffers code generator for @grpc/grpc-js",
+  "keywords": [
+    "protobuf",
+    "schema",
+    "typescript",
+    "ecmascript",
+    "grpc",
+    "protoc-plugin"
+  ],
+  "homepage": "https://protobufes.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bufbuild/protobuf-es.git",
+    "directory": "packages/protoc-gen-grpc-js"
+  },
+  "bin": {
+    "protoc-gen-grpc-js": "bin/protoc-gen-grpc-js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "prebuild": "rm -rf ./dist/cjs/*",
+    "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist/cjs",
+    "pregenerate": "rm -rf src/gen/*/*",
+    "generate": "buf generate",
+    "postgenerate": "license-header src/gen",
+    "pretest": "../../node_modules/typescript/bin/tsc --project tsconfig.test.json",
+    "test": "tsx --test test/*.test.ts",
+    "format": "biome format --write",
+    "license-header": "license-header",
+    "lint": "biome lint --error-on-warnings"
+  },
+  "preferUnplugged": true,
+  "dependencies": {
+    "@bufbuild/protobuf": "2.12.1",
+    "@bufbuild/protoplugin": "2.12.1"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.66.1",
+    "@bufbuild/protoc-gen-es": "2.12.1",
+    "@grpc/grpc-js": "^1.10.0",
+    "@types/node": "^26.0.0",
+    "tsx": "^4.22.4"
+  },
+  "peerDependencies": {
+    "@bufbuild/protobuf": "2.12.1"
+  },
+  "peerDependenciesMeta": {
+    "@bufbuild/protobuf": {
+      "optional": true
+    }
+  },
+  "files": ["dist/**", "bin/**"]
+}

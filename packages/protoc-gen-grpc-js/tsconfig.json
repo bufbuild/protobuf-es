@@ -1,0 +1,12 @@
+{
+  "files": ["src/protoc-gen-grpc-js-plugin.ts"],
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // We import the plugin's version number from package.json
+    "resolveJsonModule": true,
+    // This package is CommonJS
+    "verbatimModuleSyntax": false,
+    "module": "CommonJS",
+    "moduleResolution": "Node10"
+  }
+}

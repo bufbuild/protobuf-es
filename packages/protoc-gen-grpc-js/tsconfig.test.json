@@ -1,0 +1,14 @@
+{
+  "include": ["src/gen/**/*.ts", "test/**/*.ts"],
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // This config only type-checks generated code and tests; tests are run with tsx
+    "noEmit": true,
+    // Generated code and tests use ECMAScript modules, but this package is CommonJS
+    "verbatimModuleSyntax": false,
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    // We use Node.js modules in tests
+    "types": ["node"]
+  }
+}
