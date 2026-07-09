@@ -55,6 +55,7 @@ export const symbols = {
   protoInt64:          {typeOnly: false, bootstrapWktFrom: "../../proto-int64.js",          from: packageName },
   JsonValue:           {typeOnly: true,  bootstrapWktFrom: "../../json-value.js",           from: packageName },
   JsonObject:          {typeOnly: true,  bootstrapWktFrom: "../../json-value.js",           from: packageName },
+  UnknownEnum:         {typeOnly: true,  bootstrapWktFrom: "../../types.js",                from: packageName },
   codegen: {
     boot:              {typeOnly: false, bootstrapWktFrom: "../../codegenv2/boot.js",       from: packageName + "/codegenv2" },
     fileDesc:          {typeOnly: false, bootstrapWktFrom: "../../codegenv2/file.js",       from: packageName + "/codegenv2" },

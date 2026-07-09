@@ -71,7 +71,7 @@ const val: PhoneType = PhoneType.MOBILE;
 const name = PhoneType[val]; // "MOBILE"
 ```
 
-Protobuf has open and closed enums. Open enums can contain numeric values that are not declared in the generated TypeScript enum, so code that receives data from newer schemas should handle unknown enum numbers.
+Protobuf has open and closed enums. Open enums can contain numeric values that are not declared in the generated TypeScript enum, so code that receives data from newer schemas should handle unknown enum numbers (see `isUnknownEnum` from `@bufbuild/protobuf`).
 
 ## Repeated fields
 
