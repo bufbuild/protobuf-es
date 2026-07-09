@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import type { Message } from "@bufbuild/protobuf";
+import type { Message, UnknownEnum } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/erasable_syntax.proto.
@@ -32,6 +32,11 @@ export declare type ESyntax = Message<"ESyntax"> & {
    * @generated from field: Color color = 1;
    */
   color: Color;
+
+  /**
+   * @generated from field: Season season = 2;
+   */
+  season: Season;
 };
 
 /**
@@ -68,10 +73,47 @@ export declare const Color: {
 /**
  * @generated from enum Color
  */
-export declare type Color = (typeof Color)[keyof typeof Color];
+export declare type Color = (typeof Color)[keyof typeof Color] | UnknownEnum;
 
 /**
  * Describes the enum Color.
  */
 export declare const ColorSchema: GenEnum<Color>;
+
+/**
+ * @generated from enum Season
+ * @generated with option features.enum_type = CLOSED
+ */
+export declare const Season: {
+  /**
+   * @generated from enum value: SEASON_SPRING = 1;
+   */
+  readonly SPRING: 1,
+
+  /**
+   * @generated from enum value: SEASON_SUMMER = 2;
+   */
+  readonly SUMMER: 2,
+
+  /**
+   * @generated from enum value: SEASON_AUTUMN = 3;
+   */
+  readonly AUTUMN: 3,
+
+  /**
+   * @generated from enum value: SEASON_WINTER = 4;
+   */
+  readonly WINTER: 4,
+};
+
+/**
+ * @generated from enum Season
+ * @generated with option features.enum_type = CLOSED
+ */
+export declare type Season = (typeof Season)[keyof typeof Season];
+
+/**
+ * Describes the enum Season.
+ */
+export declare const SeasonSchema: GenEnum<Season>;
 

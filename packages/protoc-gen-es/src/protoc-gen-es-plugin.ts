@@ -441,7 +441,8 @@ function generateObjEnumType(f: GeneratedFile, enumeration: DescEnum, target: Ex
   const { name } = f.importShape(enumeration);
   f.print(f.jsDoc(enumeration));
   const declaration = target == "ts" ? "type" : "declare type";
-  f.print(f.export(declaration, name), " = (typeof ", name, ")[keyof typeof ", name, "];");
+  const unknown: Printable = enumeration.open ? [" | ", f.runtime.UnknownEnum] : [];
+  f.print(f.export(declaration, name), " = (typeof ", name, ")[keyof typeof ", name, "]", unknown, ";");
   f.print();
 }
 

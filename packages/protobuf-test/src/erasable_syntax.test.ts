@@ -14,7 +14,12 @@
 
 import * as assert from "node:assert";
 import { suite, test } from "node:test";
-import { Color } from "./gen/ts,erasable/extra/erasable_syntax_pb.js";
+import { isUnknownEnum, type UnknownEnum } from "@bufbuild/protobuf";
+import {
+  type Season,
+  Color,
+  ColorSchema,
+} from "./gen/ts,erasable/extra/erasable_syntax_pb.js";
 
 void suite("erasable_syntax", () => {
   test("generates an object and a type", () => {
@@ -28,7 +33,7 @@ void suite("erasable_syntax", () => {
     assert.strictEqual(val, Color.RED);
   });
 
-  test("Only values in range assign", () => {
+  test("values in range and UnknownEnum assign", () => {
     function f(): Color {
       let t: Color;
       // Enum value assigns
@@ -38,8 +43,18 @@ void suite("erasable_syntax", () => {
       // @ts-expect-error - out-of-range literal rejects
       t = 4;
       // @ts-expect-error - number value rejects
-      t = 4 as number;
+      t = 99 as number;
+      // UnknownEnum assigns
+      t = 99 as UnknownEnum;
       return t;
+    }
+    assert.ok(f);
+  });
+
+  test("closed enum rejects UnknownEnum", () => {
+    function f(): Season {
+      // @ts-expect-error
+      return 4 as UnknownEnum;
     }
     assert.ok(f);
   });
@@ -52,6 +67,9 @@ void suite("erasable_syntax", () => {
 
   test("allows exhaustive switch", () => {
     function f(c: Color) {
+      if (isUnknownEnum(ColorSchema, c)) {
+        return false;
+      }
       switch (c) {
         case Color.UNSPECIFIED:
           return true;

@@ -18,13 +18,13 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { Message } from "@bufbuild/protobuf";
+import type { Message, UnknownEnum } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/erasable_syntax.proto.
  */
 export const file_extra_erasable_syntax: GenFile = /*@__PURE__*/
-  fileDesc("ChtleHRyYS9lcmFzYWJsZV9zeW50YXgucHJvdG8iIAoHRVN5bnRheBIVCgVjb2xvchgBIAEoDjIGLkNvbG9yKk4KBUNvbG9yEhUKEUNPTE9SX1VOU1BFQ0lGSUVEEAASDQoJQ09MT1JfUkVEEAESDwoLQ09MT1JfR1JFRU4QAhIOCgpDT0xPUl9CTFVFEANiCGVkaXRpb25zcOkH");
+  fileDesc("ChtleHRyYS9lcmFzYWJsZV9zeW50YXgucHJvdG8iOQoHRVN5bnRheBIVCgVjb2xvchgBIAEoDjIGLkNvbG9yEhcKBnNlYXNvbhgCIAEoDjIHLlNlYXNvbipOCgVDb2xvchIVChFDT0xPUl9VTlNQRUNJRklFRBAAEg0KCUNPTE9SX1JFRBABEg8KC0NPTE9SX0dSRUVOEAISDgoKQ09MT1JfQkxVRRADKloKBlNlYXNvbhIRCg1TRUFTT05fU1BSSU5HEAESEQoNU0VBU09OX1NVTU1FUhACEhEKDVNFQVNPTl9BVVRVTU4QAxIRCg1TRUFTT05fV0lOVEVSEAQaBDoCEAJiCGVkaXRpb25zcOkH");
 
 /**
  * @generated from message ESyntax
@@ -34,6 +34,11 @@ export type ESyntax = Message<"ESyntax"> & {
    * @generated from field: Color color = 1;
    */
   color: Color;
+
+  /**
+   * @generated from field: Season season = 2;
+   */
+  season: Season;
 };
 
 /**
@@ -71,11 +76,49 @@ export const Color = {
 /**
  * @generated from enum Color
  */
-export type Color = (typeof Color)[keyof typeof Color];
+export type Color = (typeof Color)[keyof typeof Color] | UnknownEnum;
 
 /**
  * Describes the enum Color.
  */
 export const ColorSchema: GenEnum<Color> = /*@__PURE__*/
   enumDesc(file_extra_erasable_syntax, 0);
+
+/**
+ * @generated from enum Season
+ * @generated with option features.enum_type = CLOSED
+ */
+export const Season = {
+  /**
+   * @generated from enum value: SEASON_SPRING = 1;
+   */
+  SPRING: 1,
+
+  /**
+   * @generated from enum value: SEASON_SUMMER = 2;
+   */
+  SUMMER: 2,
+
+  /**
+   * @generated from enum value: SEASON_AUTUMN = 3;
+   */
+  AUTUMN: 3,
+
+  /**
+   * @generated from enum value: SEASON_WINTER = 4;
+   */
+  WINTER: 4,
+} as const;
+
+/**
+ * @generated from enum Season
+ * @generated with option features.enum_type = CLOSED
+ */
+export type Season = (typeof Season)[keyof typeof Season];
+
+/**
+ * Describes the enum Season.
+ */
+export const SeasonSchema: GenEnum<Season> = /*@__PURE__*/
+  enumDesc(file_extra_erasable_syntax, 1);
 

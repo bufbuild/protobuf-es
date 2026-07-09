@@ -16,6 +16,7 @@ edition = "2024";
 
 message ESyntax {
   Color color = 1;
+  Season season = 2;
 }
 
 enum Color {
@@ -23,4 +24,12 @@ enum Color {
   COLOR_RED = 1;
   COLOR_GREEN = 2;
   COLOR_BLUE = 3;
+}
+
+enum Season {
+  option features.enum_type = CLOSED;
+  SEASON_SPRING = 1;
+  SEASON_SUMMER = 2;
+  SEASON_AUTUMN = 3;
+  SEASON_WINTER = 4;
 }

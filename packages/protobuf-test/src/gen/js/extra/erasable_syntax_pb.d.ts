@@ -32,6 +32,11 @@ export declare type ESyntax = Message<"ESyntax"> & {
    * @generated from field: Color color = 1;
    */
   color: Color;
+
+  /**
+   * @generated from field: Season season = 2;
+   */
+  season: Season;
 };
 
 /**
@@ -69,4 +74,35 @@ export enum Color {
  * Describes the enum Color.
  */
 export declare const ColorSchema: GenEnum<Color>;
+
+/**
+ * @generated from enum Season
+ * @generated with option features.enum_type = CLOSED
+ */
+export enum Season {
+  /**
+   * @generated from enum value: SEASON_SPRING = 1;
+   */
+  SPRING = 1,
+
+  /**
+   * @generated from enum value: SEASON_SUMMER = 2;
+   */
+  SUMMER = 2,
+
+  /**
+   * @generated from enum value: SEASON_AUTUMN = 3;
+   */
+  AUTUMN = 3,
+
+  /**
+   * @generated from enum value: SEASON_WINTER = 4;
+   */
+  WINTER = 4,
+}
+
+/**
+ * Describes the enum Season.
+ */
+export declare const SeasonSchema: GenEnum<Season>;
 

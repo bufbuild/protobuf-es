@@ -119,8 +119,10 @@ export const PhoneType = {
   LAND_LINE: 2,
 } as const;
 
-export type PhoneType = (typeof PhoneType)[keyof typeof PhoneType];
+export type PhoneType = (typeof PhoneType)[keyof typeof PhoneType] | UnknownEnum;
 ```
+
+Open enums can contain numeric values that are not in the set of values defined by the enum, so the type for an open enum is a union with `UnknownEnum`.
 
 The object does not support mapping from numeric value to string, but it is compatible with the `tsconfig` option [erasableSyntaxOnly](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly), and allows [running TypeScript natively in Node.js](https://nodejs.org/learn/typescript/run-natively).
 

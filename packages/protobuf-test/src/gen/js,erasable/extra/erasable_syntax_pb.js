@@ -22,7 +22,7 @@ import { enumDesc, fileDesc, messageDesc, objEnum } from "@bufbuild/protobuf/cod
  * Describes the file extra/erasable_syntax.proto.
  */
 export const file_extra_erasable_syntax = /*@__PURE__*/
-  fileDesc("ChtleHRyYS9lcmFzYWJsZV9zeW50YXgucHJvdG8iIAoHRVN5bnRheBIVCgVjb2xvchgBIAEoDjIGLkNvbG9yKk4KBUNvbG9yEhUKEUNPTE9SX1VOU1BFQ0lGSUVEEAASDQoJQ09MT1JfUkVEEAESDwoLQ09MT1JfR1JFRU4QAhIOCgpDT0xPUl9CTFVFEANiCGVkaXRpb25zcOkH");
+  fileDesc("ChtleHRyYS9lcmFzYWJsZV9zeW50YXgucHJvdG8iOQoHRVN5bnRheBIVCgVjb2xvchgBIAEoDjIGLkNvbG9yEhcKBnNlYXNvbhgCIAEoDjIHLlNlYXNvbipOCgVDb2xvchIVChFDT0xPUl9VTlNQRUNJRklFRBAAEg0KCUNPTE9SX1JFRBABEg8KC0NPTE9SX0dSRUVOEAISDgoKQ09MT1JfQkxVRRADKloKBlNlYXNvbhIRCg1TRUFTT05fU1BSSU5HEAESEQoNU0VBU09OX1NVTU1FUhACEhEKDVNFQVNPTl9BVVRVTU4QAxIRCg1TRUFTT05fV0lOVEVSEAQaBDoCEAJiCGVkaXRpb25zcOkH");
 
 /**
  * Describes the message ESyntax.
@@ -42,4 +42,17 @@ export const ColorSchema = /*@__PURE__*/
  */
 export const Color = /*@__PURE__*/
   objEnum(ColorSchema);
+
+/**
+ * Describes the enum Season.
+ */
+export const SeasonSchema = /*@__PURE__*/
+  enumDesc(file_extra_erasable_syntax, 1);
+
+/**
+ * @generated from enum Season
+ * @generated with option features.enum_type = CLOSED
+ */
+export const Season = /*@__PURE__*/
+  objEnum(SeasonSchema);
 
