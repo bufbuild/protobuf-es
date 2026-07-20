@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/wkt-features.proto.
  */
 export const file_extra_wkt_features: GenFile = /*@__PURE__*/
-  fileDesc("ChhleHRyYS93a3QtZmVhdHVyZXMucHJvdG8SBHNwZWMiFAoSV2t0RmVhdHVyZXNNZXNzYWdlQhKSAw/CPgIIAco+AhAC0j4CEANiCGVkaXRpb25zcOgH", [file_google_protobuf_go_features, file_google_protobuf_java_features, file_google_protobuf_cpp_features]);
+  fileDesc("ChhleHRyYS93a3QtZmVhdHVyZXMucHJvdG8SBHNwZWMiFAoSV2t0RmVhdHVyZXNNZXNzYWdlQhKSAw/CPgIIAco+AhAC0j4CEANiCGVkaXRpb25zcOgH", [file_google_protobuf_cpp_features, file_google_protobuf_go_features, file_google_protobuf_java_features]);
 
 /**
  * @generated from message spec.WktFeaturesMessage

@@ -17,9 +17,9 @@ package spec;
 
 import "extra/options.proto";
 
-option (spec.file_option_retention_unknown) = "file option retention unknown";
 option (spec.file_option_retention_runtime) = "file option retention runtime";
 option (spec.file_option_retention_source) = "file option retention source";
+option (spec.file_option_retention_unknown) = "file option retention unknown";
 
 message MessageWithOptions {
   option (spec.message_option_retention_unknown) = "message option retention unknown";
@@ -53,7 +53,7 @@ service ServiceWithOptions {
   option (spec.service_option_retention_unknown) = "service option retention unknown";
   option (spec.service_option_retention_runtime) = "service option retention runtime";
   option (spec.service_option_retention_source) = "service option retention source";
-  rpc Foo (MessageWithOptions) returns (MessageWithOptions) {
+  rpc Foo(MessageWithOptions) returns (MessageWithOptions) {
     option (spec.method_option_retention_unknown) = "method option retention unknown";
     option (spec.method_option_retention_runtime) = "method option retention runtime";
     option (spec.method_option_retention_source) = "method option retention source";

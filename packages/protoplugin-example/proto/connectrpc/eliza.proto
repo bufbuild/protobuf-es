@@ -14,13 +14,12 @@
 
 syntax = "proto3";
 
-import "customoptions/default_host.proto";
-
 package connectrpc.eliza.v1;
+
+import "customoptions/default_host.proto";
 
 // This is a modified copy of ElizaService from https://buf.build/connectrpc/eliza
 service ElizaService {
-
   // Set the default host for this service with a custom option.
   // Comment this line out and run `npm run generate` to see how the generated
   // code changes.
