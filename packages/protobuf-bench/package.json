@@ -1,0 +1,29 @@
+{
+  "name": "@bufbuild/protobuf-bench",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Benchmarks for @bufbuild/protobuf",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "generate": "buf generate",
+    "postgenerate": "license-header src/gen",
+    "bench": "tsx src/bench.ts",
+    "profile": "node --cpu-prof --cpu-prof-dir .cpuprof --import tsx src/profile.ts",
+    "format": "biome format --write",
+    "license-header": "license-header",
+    "lint": "biome lint --error-on-warnings"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@bufbuild/protobuf": "2.12.1",
+    "tinybench": "^3.1.1"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.66.1",
+    "@bufbuild/protoc-gen-es": "2.12.1",
+    "@types/node": "^26.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}
