@@ -43,7 +43,7 @@
     "@biomejs/biome": "^1.9.4",
     "@bufbuild/license-header": "^0.0.4",
     "@types/node": "^26.0.0",
-    "turbo": "^2.9.16",
+    "turbo": "^2.10.2",
     "typescript": "^6.0.3"
   }
 }
