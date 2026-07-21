@@ -23,7 +23,7 @@ import { file_google_protobuf_cpp_features, file_google_protobuf_go_features, fi
  * Describes the file extra/wkt-features.proto.
  */
 export const file_extra_wkt_features = /*@__PURE__*/
-  fileDesc("ChhleHRyYS93a3QtZmVhdHVyZXMucHJvdG8SBHNwZWMiFAoSV2t0RmVhdHVyZXNNZXNzYWdlQhKSAw/CPgIIAco+AhAC0j4CEANiCGVkaXRpb25zcOgH", [file_google_protobuf_go_features, file_google_protobuf_java_features, file_google_protobuf_cpp_features]);
+  fileDesc("ChhleHRyYS93a3QtZmVhdHVyZXMucHJvdG8SBHNwZWMiFAoSV2t0RmVhdHVyZXNNZXNzYWdlQhKSAw/CPgIIAco+AhAC0j4CEANiCGVkaXRpb25zcOgH", [file_google_protobuf_cpp_features, file_google_protobuf_go_features, file_google_protobuf_java_features]);
 
 /**
  * Describes the message spec.WktFeaturesMessage.
