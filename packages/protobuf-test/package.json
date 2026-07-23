@@ -4,7 +4,7 @@
   "scripts": {
     "prebuild": "rm -rf ./dist/*",
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist",
-    "postbuild": "cp src/perf-payload.* dist && cp -r src/gen/js* dist/gen",
+    "postbuild": "cp -r src/gen/js* dist/gen",
     "pregenerate": "rm -rf src/gen/*/*",
     "generate": "npm run generate:ts && npm run generate:js && npm run generate:ts,json_types && npm run generate:js,json_types && npm run generate:ts,valid_types && npm run generate:js,valid_types",
     "generate:ts": "protoc --es_out=src/gen/ts --es_opt=target=ts,import_extension=js     --proto_path=. $(buf ls-files extra) --proto_path=$(upstream-include test) $(upstream-files test) google/protobuf/type.proto",
@@ -14,9 +14,6 @@
     "generate:ts,valid_types": "protoc --es_out=src/gen/ts,valid_types --es_opt=target=ts,import_extension=js,valid_types=protovalidate_required+legacy_required --proto_path=. extra/valid_types.proto extra/minimal-validate.proto",
     "generate:js,valid_types": "protoc --es_out=src/gen/js,valid_types --es_opt=target=js+dts,import_extension=js,valid_types=protovalidate_required+legacy_required --proto_path=. extra/valid_types.proto extra/minimal-validate.proto",
     "postgenerate": "license-header src/gen",
-    "perf": "tsx src/perf.ts benchmark '.*'",
-    "profile": "dexnode dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
-    "flamegraph": "npx 0x -- node dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
     "test": "tsx --test $(find src -type f -path '*.test.ts')",
     "format": "biome format --write",
     "license-header": "license-header",
@@ -26,10 +23,6 @@
   "dependencies": {
     "@bufbuild/protobuf": "2.12.1",
     "@bufbuild/protoc-gen-es": "2.12.1",
-    "@types/benchmark": "^2.1.5",
-    "0x": "^6.0.0",
-    "benchmark": "^2.1.4",
-    "dexnode": "^1.2.2",
     "long": "~5.3.2",
     "upstream-protobuf": "*"
   }
