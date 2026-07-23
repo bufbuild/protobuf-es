@@ -33,20 +33,12 @@ import {
   UserSchema,
 } from "./gen/bench/v1/bench_pb.js";
 
-export type Run = () => unknown;
-
 export interface Case {
   ops: number;
-  run: Run;
+  run: () => unknown;
 }
 
 export const OPS_PER_RUN = 4096;
-
-// Sample values, allocated once so the writer/reader cases measure the wire
-// operation, not the cost of constructing their input each call.
-const SAMPLE_INT64 = BigInt("-6917529027641081857");
-const SAMPLE_UINT64 = BigInt("13835058055282163712");
-const SAMPLE_BYTES = new Uint8Array(32).fill(0xab);
 
 // Size for testing large collections.
 const MESSAGE_COLLECTION_SIZE = 1000;
@@ -118,20 +110,22 @@ export const cases: Record<string, Case> = {
   })(),
   "BinaryWriter/int64": (() => {
     const w = new BinaryWriter();
+    const value = BigInt("-6917529027641081857");
     return {
       ops: OPS_PER_RUN,
       run: () => {
-        for (let i = 0; i < OPS_PER_RUN; i++) w.int64(SAMPLE_INT64);
+        for (let i = 0; i < OPS_PER_RUN; i++) w.int64(value);
         return w.finish();
       },
     };
   })(),
   "BinaryWriter/uint64": (() => {
     const w = new BinaryWriter();
+    const value = BigInt("13835058055282163712");
     return {
       ops: OPS_PER_RUN,
       run: () => {
-        for (let i = 0; i < OPS_PER_RUN; i++) w.uint64(SAMPLE_UINT64);
+        for (let i = 0; i < OPS_PER_RUN; i++) w.uint64(value);
         return w.finish();
       },
     };
@@ -148,10 +142,11 @@ export const cases: Record<string, Case> = {
   })(),
   "BinaryWriter/sint64": (() => {
     const w = new BinaryWriter();
+    const value = BigInt("-6917529027641081857");
     return {
       ops: OPS_PER_RUN,
       run: () => {
-        for (let i = 0; i < OPS_PER_RUN; i++) w.sint64(SAMPLE_INT64);
+        for (let i = 0; i < OPS_PER_RUN; i++) w.sint64(value);
         return w.finish();
       },
     };
@@ -168,10 +163,11 @@ export const cases: Record<string, Case> = {
   })(),
   "BinaryWriter/fixed64": (() => {
     const w = new BinaryWriter();
+    const value = BigInt("13835058055282163712");
     return {
       ops: OPS_PER_RUN,
       run: () => {
-        for (let i = 0; i < OPS_PER_RUN; i++) w.fixed64(SAMPLE_UINT64);
+        for (let i = 0; i < OPS_PER_RUN; i++) w.fixed64(value);
         return w.finish();
       },
     };
@@ -229,10 +225,11 @@ export const cases: Record<string, Case> = {
   })(),
   "BinaryWriter/bytes": (() => {
     const w = new BinaryWriter();
+    const value = new Uint8Array(32).fill(0xab);
     return {
       ops: OPS_PER_RUN,
       run: () => {
-        for (let i = 0; i < OPS_PER_RUN; i++) w.bytes(SAMPLE_BYTES);
+        for (let i = 0; i < OPS_PER_RUN; i++) w.bytes(value);
         return w.finish();
       },
     };
@@ -291,7 +288,8 @@ export const cases: Record<string, Case> = {
   })(),
   "BinaryReader/int64": (() => {
     const w = new BinaryWriter();
-    for (let i = 0; i < OPS_PER_RUN; i++) w.int64(SAMPLE_INT64);
+    const value = BigInt("-6917529027641081857");
+    for (let i = 0; i < OPS_PER_RUN; i++) w.int64(value);
     const r = new BinaryReader(w.finish());
     return {
       ops: OPS_PER_RUN,
@@ -305,7 +303,8 @@ export const cases: Record<string, Case> = {
   })(),
   "BinaryReader/sint64": (() => {
     const w = new BinaryWriter();
-    for (let i = 0; i < OPS_PER_RUN; i++) w.sint64(SAMPLE_INT64);
+    const value = BigInt("-6917529027641081857");
+    for (let i = 0; i < OPS_PER_RUN; i++) w.sint64(value);
     const r = new BinaryReader(w.finish());
     return {
       ops: OPS_PER_RUN,
@@ -319,7 +318,8 @@ export const cases: Record<string, Case> = {
   })(),
   "BinaryReader/fixed64": (() => {
     const w = new BinaryWriter();
-    for (let i = 0; i < OPS_PER_RUN; i++) w.fixed64(SAMPLE_UINT64);
+    const value = BigInt("13835058055282163712");
+    for (let i = 0; i < OPS_PER_RUN; i++) w.fixed64(value);
     const r = new BinaryReader(w.finish());
     return {
       ops: OPS_PER_RUN,
@@ -389,7 +389,8 @@ export const cases: Record<string, Case> = {
   })(),
   "BinaryReader/bytes": (() => {
     const w = new BinaryWriter();
-    for (let i = 0; i < OPS_PER_RUN; i++) w.bytes(SAMPLE_BYTES);
+    const value = new Uint8Array(32).fill(0xab);
+    for (let i = 0; i < OPS_PER_RUN; i++) w.bytes(value);
     const r = new BinaryReader(w.finish());
     return {
       ops: OPS_PER_RUN,

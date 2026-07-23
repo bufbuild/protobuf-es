@@ -40,76 +40,88 @@ const MESSAGE_COLLECTION_CAP = 3;
 /** A tiny deterministic PRNG (Mulberry32). */
 function mulberry32(seed: number): () => number {
   let a = seed >>> 0;
-  const MAX_UINT32 = 2 ** 32; // normalize the uint32 result down to [0, 1)
+  const TWO_POW_32 = 2 ** 32; // normalize the uint32 result down to [0, 1)
   return () => {
     a = (a + 0x6d2b79f5) | 0;
     let t = Math.imul(a ^ (a >>> 15), 1 | a);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / MAX_UINT32;
+    return ((t ^ (t >>> 14)) >>> 0) / TWO_POW_32;
   };
 }
-const rand = mulberry32(SEED);
 
-const randomUint32 = () => {
-  const MAX_UINT32 = 2 ** 32;
-  return Math.floor(rand() * MAX_UINT32);
-};
-
-const randomInt32 = () => {
-  // Shift the uint32 range [0, 2**32) down to the int32 range [-2**31, 2**31).
-  const MAX_INT32 = 2 ** 31;
-  return randomUint32() - MAX_INT32;
-};
-
-const randomUint64 = () =>
-  (BigInt(randomUint32()) << BigInt(32)) | BigInt(randomUint32());
-
-const randomInt64 = () => {
-  // Shift the uint64 range [0, 2**64) down to the int64 range [-2**63, 2**63).
-  const MAX_INT64 = BigInt(1) << BigInt(63);
-  return randomUint64() - MAX_INT64;
-};
-
-const randomBool = () => rand() < 0.5;
-
-const pick = <T>(items: readonly T[]): T =>
-  items[Math.floor(rand() * items.length)];
-
-function makeString(length: number): string {
-  const POOL = "abcdefghijklmnopqrstuvwxyz      ";
-  let s = "";
-  for (let i = 0; i < length; i++) s += POOL[Math.floor(rand() * POOL.length)];
-  return s;
+/** A seeded source of random values. makeInit() creates one per call, so a
+ * fixture's payload depends only on its own schema — never on how many other
+ * fixtures exist or the order they are built. */
+interface Rand {
+  /** A uniform float in [0, 1). */
+  rand(): number;
+  uint32(): number;
+  int32(): number;
+  uint64(): bigint;
+  int64(): bigint;
+  bool(): boolean;
+  /** A uniformly chosen element of `items`. */
+  pick<T>(items: readonly T[]): T;
+  /** `length` random lowercase letters (a-z). */
+  string(length: number): string;
 }
 
-function scalarValue(scalar: ScalarType): unknown {
+function makeRand(seed: number): Rand {
+  const TWO_POW_32 = 2 ** 32;
+
+  const rand = mulberry32(seed);
+  const uint32 = () => Math.floor(rand() * TWO_POW_32);
+  const uint64 = () => (BigInt(uint32()) << BigInt(32)) | BigInt(uint32());
+
+  return {
+    rand,
+    uint32,
+    int32: () => uint32() - 2 ** 31,
+    uint64,
+    int64: () => uint64() - (BigInt(1) << BigInt(63)),
+    bool: () => rand() < 0.5,
+    pick<T>(items: readonly T[]): T {
+      return items[Math.floor(rand() * items.length)];
+    },
+    string(length: number): string {
+      let s = "";
+      for (let i = 0; i < length; i++)
+        s += String.fromCharCode(
+          "a".charCodeAt(0) + Math.floor(rand() * 26),
+        );
+      return s;
+    },
+  };
+}
+
+function scalarValue(rand: Rand, scalar: ScalarType): unknown {
   switch (scalar) {
     case ScalarType.DOUBLE:
-      return (rand() - 0.5) * 2e9;
+      return (rand.rand() - 0.5) * 2e9;
     case ScalarType.FLOAT:
-      return (rand() - 0.5) * 2e6;
+      return (rand.rand() - 0.5) * 2e6;
     case ScalarType.INT32:
     case ScalarType.SINT32:
     case ScalarType.SFIXED32:
-      return randomInt32();
+      return rand.int32();
     case ScalarType.UINT32:
     case ScalarType.FIXED32:
-      return randomUint32();
+      return rand.uint32();
     case ScalarType.INT64:
     case ScalarType.SINT64:
     case ScalarType.SFIXED64:
-      return randomInt64();
+      return rand.int64();
     case ScalarType.UINT64:
     case ScalarType.FIXED64:
-      return randomUint64();
+      return rand.uint64();
     case ScalarType.BOOL:
-      return randomBool();
+      return rand.bool();
     case ScalarType.STRING:
-      return makeString(STRING_LENGTH);
+      return rand.string(STRING_LENGTH);
     case ScalarType.BYTES:
       return Uint8Array.from(
         { length: STRING_LENGTH },
-        () => randomUint32() & 0xff,
+        () => rand.uint32() & 0xff,
       );
     default:
       throw new Error(`unhandled scalar type: ${scalar as number}`);
@@ -126,42 +138,44 @@ function collectionCount(
 }
 
 function fieldValue(
+  rand: Rand,
   field: DescField,
   depth: number,
   messageSize: number,
 ): unknown {
   switch (field.fieldKind) {
     case "scalar":
-      return scalarValue(field.scalar);
+      return scalarValue(rand, field.scalar);
     case "enum":
-      return pick(field.enum.values).number;
+      return rand.pick(field.enum.values).number;
     case "message":
       return depth >= MAX_DEPTH
         ? undefined
-        : build(field.message, depth + 1, messageSize);
+        : build(rand, field.message, depth + 1, messageSize);
     case "list":
-      return listValue(field, depth, messageSize);
+      return listValue(rand, field, depth, messageSize);
     case "map":
-      return mapValue(field, depth, messageSize);
+      return mapValue(rand, field, depth, messageSize);
   }
 }
 
 // One element/value for a repeated field or map entry.
 function randValue(
+  rand: Rand,
   field: DescField & { fieldKind: "list" | "map" },
   depth: number,
   messageSize: number,
 ): unknown {
-  if (field.scalar !== undefined) return scalarValue(field.scalar);
-  if (field.enum !== undefined) return pick(field.enum.values).number;
-  return build(field.message, depth + 1, messageSize);
+  if (field.scalar !== undefined) return scalarValue(rand, field.scalar);
+  if (field.enum !== undefined) return rand.pick(field.enum.values).number;
+  return build(rand, field.message, depth + 1, messageSize);
 }
 
 // A distinct map key for entry i, per the key type (map keys are always scalar).
-function randMapKey(keyType: ScalarType, i: number): string {
+function randMapKey(rand: Rand, keyType: ScalarType, i: number): string {
   switch (keyType) {
     case ScalarType.STRING:
-      return `k${i}_${makeString(3)}`;
+      return `k${i}_${rand.string(3)}`;
     case ScalarType.BOOL:
       return i % 2 === 0 ? "true" : "false";
     default: // integer key types
@@ -170,6 +184,7 @@ function randMapKey(keyType: ScalarType, i: number): string {
 }
 
 function listValue(
+  rand: Rand,
   field: DescField & { fieldKind: "list" },
   depth: number,
   messageSize: number,
@@ -177,11 +192,12 @@ function listValue(
   const count = collectionCount(field.listKind, depth, messageSize);
   if (count === 0) return undefined;
   return Array.from({ length: count }, () =>
-    randValue(field, depth, messageSize),
+    randValue(rand, field, depth, messageSize),
   );
 }
 
 function mapValue(
+  rand: Rand,
   field: DescField & { fieldKind: "map" },
   depth: number,
   messageSize: number,
@@ -190,23 +206,30 @@ function mapValue(
   if (count === 0) return undefined;
   const out: Record<string, unknown> = {};
   for (let i = 0; i < count; i++) {
-    out[randMapKey(field.mapKey, i)] = randValue(field, depth, messageSize);
+    out[randMapKey(rand, field.mapKey, i)] = randValue(
+      rand,
+      field,
+      depth,
+      messageSize,
+    );
   }
   return out;
 }
 
 function oneofValue(
+  rand: Rand,
   oneof: DescOneof,
   depth: number,
   messageSize: number,
 ): unknown {
-  const field = pick(oneof.fields);
+  const field = rand.pick(oneof.fields);
   if (field === undefined) return undefined;
-  const value = fieldValue(field, depth, messageSize);
+  const value = fieldValue(rand, field, depth, messageSize);
   return value === undefined ? undefined : { case: field.localName, value };
 }
 
 function build(
+  rand: Rand,
   schema: DescMessage,
   depth: number,
   messageSize: number,
@@ -215,8 +238,8 @@ function build(
   for (const member of schema.members) {
     const value =
       member.kind === "oneof"
-        ? oneofValue(member, depth, messageSize)
-        : fieldValue(member, depth, messageSize);
+        ? oneofValue(rand, member, depth, messageSize)
+        : fieldValue(rand, member, depth, messageSize);
     if (value !== undefined) init[member.localName] = value;
   }
   return init;
@@ -235,5 +258,8 @@ export function makeInit<Desc extends DescMessage>(
   schema: Desc,
   messageCollectionSize: number = MESSAGE_COLLECTION_CAP,
 ): MessageInitShape<Desc> {
-  return build(schema, 0, messageCollectionSize) as never;
+  // A fresh PRNG per call, so this fixture's payload is independent of any
+  // others - their count, and the order they are built.
+  const rand = makeRand(SEED);
+  return build(rand, schema, 0, messageCollectionSize) as never;
 }

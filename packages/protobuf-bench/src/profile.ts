@@ -14,23 +14,40 @@
 
 // Runs ONE case in a tight loop, in its own process. The `profile` script runs
 // this under Node's CPU profiler, writing a .cpuprofile to open in speedscope.
-//
-//   npm run profile -- BinaryWriter/int32          # default duration
-//   npm run profile -- BinaryWriter/int32 10000    # run for 10s
-//
-// Args: <case-name> [durationMs]. The default runs long enough for the CPU
-// profiler to collect a useful sample.
+// See --help for usage.
 
+import { parseArgs } from "node:util";
 import { cases } from "./corpus.js";
 
-const [name, countArg] = process.argv.slice(2);
-if (name === undefined) {
-  console.error("usage: profile <case-name> [durationMs]");
-  console.error("cases:");
+const usage = `USAGE: npm run profile -- <case-name> [durationMs]
+
+Run a case in a tight loop under Node's CPU profiler (the npm script adds
+--cpu-prof), writing a .cpuprofile to .cpuprof/ to open in speedscope.
+
+  npm run profile -- BinaryWriter/int32          # default duration (5s)
+  npm run profile -- BinaryWriter/int32 10000    # run for 10s
+
+Options:
+  -h, --help   Print this help (with the list of case names) and exit.
+`;
+
+const { values, positionals } = parseArgs({
+  options: { help: { type: "boolean", short: "h" } },
+  allowPositionals: true,
+});
+if (values.help) {
+  console.log(usage);
+  console.log("cases:");
   for (const caseName of Object.keys(cases)) {
-    console.error(`  ${caseName}`);
+    console.log(`  ${caseName}`);
   }
-  process.exit(1);
+  process.exit(0);
+}
+
+const [name, countArg] = positionals;
+if (name === undefined) {
+  console.error(usage);
+  process.exit(2);
 }
 
 const testCase = cases[name];

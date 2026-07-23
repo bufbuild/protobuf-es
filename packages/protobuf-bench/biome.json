@@ -2,6 +2,6 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["../../biome.base.json"],
   "files": {
-    "ignore": ["dist", ".0x", "src/gen"]
+    "ignore": ["dist", "src/gen"]
   }
 }

@@ -12,26 +12,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Runs the corpus under tinybench and prints a per-operation table.
-//
-//   npm run bench                      # the whole corpus
-//   npm run bench -- '^BinaryWriter/'  # only the BinaryWriter cases
-//   npm run bench -- int32             # every case whose name contains "int32"
-//
-// Any arguments are treated as regular expressions, OR'd together. No
-// arguments runs everything.
+// Runs the corpus under tinybench and prints a per-operation table. See --help
+// for usage.
 //
 // Each case's run() does `ops` operations (OPS_PER_RUN for the batched wire
 // primitives, one for the message cases); we divide the per-run latency by `ops`
 // to report per-operation numbers.
 
+import { parseArgs } from "node:util";
 import { Bench } from "tinybench";
 import { cases, select } from "./corpus.js";
 
-const patterns = process.argv.slice(2);
-const selected = select(patterns);
+const usage = `USAGE: npm run bench -- [regex...]
+
+Run the benchmark corpus under tinybench and print a per-operation table.
+Arguments are regular expressions matched (unanchored) against case names and
+OR'd together; with no arguments, the whole corpus runs.
+
+  npm run bench                      # the whole corpus
+  npm run bench -- '^BinaryWriter/'  # only the BinaryWriter cases
+  npm run bench -- int32             # every case whose name contains "int32"
+
+Options:
+  -h, --help   Print this help and exit.
+`;
+
+const { values, positionals } = parseArgs({
+  options: { help: { type: "boolean", short: "h" } },
+  allowPositionals: true,
+});
+if (values.help) {
+  console.log(usage);
+  process.exit(0);
+}
+
+const selected = select(positionals);
 if (selected.length === 0) {
-  const quoted = patterns.map((pattern) => JSON.stringify(pattern)).join(", ");
+  const quoted = positionals
+    .map((pattern) => JSON.stringify(pattern))
+    .join(", ");
   console.error(`no cases match: ${quoted}`);
   process.exit(1);
 }

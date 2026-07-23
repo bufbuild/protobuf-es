@@ -1,13 +1,13 @@
-# @bufbuild/protobuf-bench
+# Benchmarks for @bufbuild/protobuf
 
-Benchmarks for `@bufbuild/protobuf`, in two layers:
+Two layers of benchmarks:
 
 - **`BinaryWriter/*`, `BinaryReader/*`** — wire primitives, the ns-scale
   encode/decode hot paths every message operation is built on. Each runs many
   operations against a reused writer/reader so the per-sample overhead is
   batched away.
 - **`toBinary/*`, `fromBinary/*`, `toJson/*`, `fromJson/*`** — whole-message
-  operations over a fixture (`general`, `scalar`, `repeated-*`, `map-*`, …), one
+  operations over a fixture (`general`, `scalar`, `repeated-*`, `map-*`, ...), one
   operation per sample.
 
 ## Run it
@@ -20,7 +20,7 @@ npm ci
 npx turbo build -F @bufbuild/protobuf
 ```
 
-Then, from this package:
+Then, from this package (`npm run bench -- --help`):
 
 ```sh
 npm run bench                      # the whole corpus
@@ -31,7 +31,7 @@ npm run bench -- int32             # every case whose name contains "int32"
 ```
 
 Arguments are regular expressions matched against case names (unanchored, OR'd
-together; anchor with `^…$` for an exact match). It prints a per-operation
+together; anchor with `^...$` for an exact match). It prints a per-operation
 latency/throughput table via [tinybench](https://github.com/tinylibs/tinybench).
 (The `BinaryWriter/*` / `BinaryReader/*` cases batch many ops per run to measure
 nanosecond ops accurately; the table divides that back down to per-op.)
@@ -58,7 +58,7 @@ change the library, `bench` the case to confirm the improvement.
 
 Message fixtures are populated deterministically from their schema by
 `src/fixtures.ts` (a seeded PRNG walks the descriptor and fills every field), so
-adding a fixture is just adding a message to the proto and one `messageCases(…)`
+adding a fixture is just adding a message to the proto and one `messageCases(...)`
 line in `corpus.ts`. To change the schema, edit `proto/bench/v1/bench.proto` and
 regenerate:
 
