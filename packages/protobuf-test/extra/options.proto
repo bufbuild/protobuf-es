@@ -18,49 +18,49 @@ package spec;
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.FileOptions {
-  optional string file_option_retention_unknown = 70101;
+  optional string file_option_retention_default = 70101;
   optional string file_option_retention_runtime = 70102 [retention = RETENTION_RUNTIME];
   optional string file_option_retention_source = 70103 [retention = RETENTION_SOURCE];
 }
 
 extend google.protobuf.MessageOptions {
-  optional string message_option_retention_unknown = 70201;
+  optional string message_option_retention_default = 70201;
   optional string message_option_retention_runtime = 70202 [retention = RETENTION_RUNTIME];
   optional string message_option_retention_source = 70203 [retention = RETENTION_SOURCE];
 }
 
 extend google.protobuf.FieldOptions {
-  optional string field_option_retention_unknown = 70301;
+  optional string field_option_retention_default = 70301;
   optional string field_option_retention_runtime = 70302 [retention = RETENTION_RUNTIME];
   optional string field_option_retention_source = 70303 [retention = RETENTION_SOURCE];
 }
 
 extend google.protobuf.OneofOptions {
-  optional string oneof_option_retention_unknown = 70401;
+  optional string oneof_option_retention_default = 70401;
   optional string oneof_option_retention_runtime = 70402 [retention = RETENTION_RUNTIME];
   optional string oneof_option_retention_source = 70403 [retention = RETENTION_SOURCE];
 }
 
 extend google.protobuf.EnumOptions {
-  optional string enum_option_retention_unknown = 70501;
+  optional string enum_option_retention_default = 70501;
   optional string enum_option_retention_runtime = 70502 [retention = RETENTION_RUNTIME];
   optional string enum_option_retention_source = 70503 [retention = RETENTION_SOURCE];
 }
 
 extend google.protobuf.EnumValueOptions {
-  optional string enum_value_option_retention_unknown = 70601;
+  optional string enum_value_option_retention_default = 70601;
   optional string enum_value_option_retention_runtime = 70602 [retention = RETENTION_RUNTIME];
   optional string enum_value_option_retention_source = 70603 [retention = RETENTION_SOURCE];
 }
 
 extend google.protobuf.ServiceOptions {
-  optional string service_option_retention_unknown = 70701;
+  optional string service_option_retention_default = 70701;
   optional string service_option_retention_runtime = 70702 [retention = RETENTION_RUNTIME];
   optional string service_option_retention_source = 70703 [retention = RETENTION_SOURCE];
 }
 
 extend google.protobuf.MethodOptions {
-  optional string method_option_retention_unknown = 70801;
+  optional string method_option_retention_default = 70801;
   optional string method_option_retention_runtime = 70802 [retention = RETENTION_RUNTIME];
   optional string method_option_retention_source = 70803 [retention = RETENTION_SOURCE];
 }

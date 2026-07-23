@@ -1,6 +1,6 @@
 {
   "name": "@bufbuild/protoc-gen-es",
-  "version": "2.12.1",
+  "version": "2.13.0",
   "license": "Apache-2.0",
   "description": "Protocol Buffers code generator for ECMAScript",
   "keywords": [
@@ -33,14 +33,14 @@
   },
   "preferUnplugged": true,
   "dependencies": {
-    "@bufbuild/protobuf": "2.12.1",
-    "@bufbuild/protoplugin": "2.12.1"
+    "@bufbuild/protobuf": "2.13.0",
+    "@bufbuild/protoplugin": "2.13.0"
   },
   "devDependencies": {
     "upstream-protobuf": "*"
   },
   "peerDependencies": {
-    "@bufbuild/protobuf": "2.12.1"
+    "@bufbuild/protobuf": "2.13.0"
   },
   "peerDependenciesMeta": {
     "@bufbuild/protobuf": {

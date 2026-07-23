@@ -26,8 +26,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/test/${{ github.sha }}
@@ -47,8 +47,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/conformance/${{ github.sha }}
@@ -60,8 +60,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/lint/${{ github.sha }}
@@ -71,8 +71,8 @@ jobs:
   attw:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/attw/${{ github.sha }}
@@ -82,8 +82,8 @@ jobs:
   typescript-compat:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/typescript-compat/${{ github.sha }}
@@ -93,8 +93,8 @@ jobs:
   license-header:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/license-header/${{ github.sha }}
@@ -105,8 +105,8 @@ jobs:
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/format/${{ github.sha }}
@@ -117,8 +117,8 @@ jobs:
   bundle-size:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/bundle-size/${{ github.sha }}
@@ -129,8 +129,8 @@ jobs:
   bootstrap:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/bootstrap/${{ github.sha }}

@@ -15,8 +15,8 @@
 syntax = "proto3";
 package spec;
 
-import "google/protobuf/empty.proto";
 import "google/protobuf/descriptor.proto";
+import "google/protobuf/empty.proto";
 
 // The entire message is deprecated
 message DeprecatedMessage {

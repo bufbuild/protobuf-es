@@ -3,5 +3,11 @@
   "extends": ["../../biome.base.json"],
   "files": {
     "ignore": ["dist"]
-  }
+  },
+  "overrides": [
+    {
+      "include": ["src/protoc-gen-es-plugin.ts"],
+      "formatter": { "enabled": false }
+    }
+  ]
 }
