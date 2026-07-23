@@ -65,3 +65,16 @@ regenerate:
 ```sh
 npm run generate
 ```
+
+## Resources
+
+- [Profiling Node.js Applications](https://nodejs.org/learn/getting-started/profiling)
+- [Flame Graphs](https://nodejs.org/learn/diagnostics/flame-graphs)
+- [Node.js Performance Measurement APIs](https://nodejs.org/docs/latest/api/perf_hooks.html)
+- [JavaScript Engine Fundamentals: Shapes and Inline Caches](https://mathiasbynens.be/notes/shapes-ics)
+- [Fast Properties in V8](https://v8.dev/blog/fast-properties)
+- [Elements Kinds in V8](https://v8.dev/blog/elements-kinds)
+- [Maglev: V8's Fastest Optimizing JIT](https://v8.dev/blog/maglev)
+- [V8 Function Optimization](https://erdem.pl/2019/08/v-8-function-optimization)
+- [`deoptimize-reason.h`](https://github.com/v8/v8/blob/f12fe3b141d3b7a5c96793a820cdc578a63e0c01/src/deoptimizer/deoptimize-reason.h)
+- [Overhead of Deoptimization Checks in the V8 JavaScript Engine](https://masc.soe.ucsc.edu/docs/iiswc16.pdf)
