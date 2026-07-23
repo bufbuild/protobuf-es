@@ -86,9 +86,7 @@ function makeRand(seed: number): Rand {
     string(length: number): string {
       let s = "";
       for (let i = 0; i < length; i++)
-        s += String.fromCharCode(
-          "a".charCodeAt(0) + Math.floor(rand() * 26),
-        );
+        s += String.fromCharCode("a".charCodeAt(0) + Math.floor(rand() * 26));
       return s;
     },
   };
