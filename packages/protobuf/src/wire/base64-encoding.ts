@@ -76,23 +76,16 @@ export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
   return bytes.subarray(0, bytePos);
 }
 
+// Native Uint8Array.prototype.toBase64, if the runtime provides it.
 type ToBase64Options = {
   readonly alphabet?: "base64" | "base64url";
   readonly omitPadding?: boolean;
 };
-type Uint8ArrayWithToBase64 = {
-  toBase64(options?: ToBase64Options): string;
-};
-
-// Whether the runtime provides native Uint8Array.prototype.toBase64.
-const isNativeBase64Available =
-  typeof (Uint8Array.prototype as Partial<Uint8ArrayWithToBase64>).toBase64 ==
-  "function";
-function supportsNativeToBase64(
-  bytes: Uint8Array,
-): bytes is Uint8Array & Uint8ArrayWithToBase64 {
-  return isNativeBase64Available;
-}
+const nativeUint8ArrayToBase64 = (
+  Uint8Array.prototype as Partial<{
+    toBase64(options?: ToBase64Options): string;
+  }>
+).toBase64;
 
 type Base64Encoding = "std" | "std_raw" | "url";
 const toBase64OptionsMap: Readonly<
@@ -117,8 +110,8 @@ export function base64Encode(
   bytes: Uint8Array,
   encoding: Base64Encoding = "std",
 ) {
-  if (supportsNativeToBase64(bytes)) {
-    return bytes.toBase64(toBase64OptionsMap[encoding]);
+  if (nativeUint8ArrayToBase64) {
+    return nativeUint8ArrayToBase64.call(bytes, toBase64OptionsMap[encoding]);
   }
   const table = getEncodeTable(encoding);
   const pad = encoding == "std";
