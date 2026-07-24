@@ -15,15 +15,19 @@
 import { suite, test } from "node:test";
 import * as assert from "node:assert";
 import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
-import { fromBinary, isFieldSet } from "@bufbuild/protobuf";
+import { fromBinary, isFieldSet, isUnknownEnum } from "@bufbuild/protobuf";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
 
 void suite("open enum", () => {
   test("from binary sets foreign value", () => {
     assert.strictEqual(proto3_ts.Proto3EnumSchema.open, true);
-    const foreignValue = 4;
-    assert.strictEqual(proto3_ts.Proto3Enum[foreignValue], undefined);
+    const foreignValue = 99;
+    assert.strictEqual(
+      foreignValue in proto3_ts.Proto3EnumSchema.value,
+      false,
+      "fixture defines unexpected enum value",
+    );
     const bytes = new BinaryWriter()
       .tag(
         proto3_ts.Proto3MessageSchema.field.singularEnumField.number,
@@ -37,6 +41,10 @@ void suite("open enum", () => {
       proto3_ts.Proto3MessageSchema.field.singularEnumField,
     );
     assert.strictEqual(set, true);
+    assert.strictEqual(
+      isUnknownEnum(proto3_ts.Proto3EnumSchema, msg.singularEnumField),
+      true,
+    );
     assert.strictEqual(msg.singularEnumField, foreignValue);
     assert.strictEqual(msg.$unknown, undefined);
   });
@@ -45,8 +53,12 @@ void suite("open enum", () => {
 void suite("closed enum", () => {
   test("from binary sets foreign value as unknown field", () => {
     assert.strictEqual(proto2_ts.Proto2EnumSchema.open, false);
-    const foreignValue = 4;
-    assert.strictEqual(proto2_ts.Proto2Enum[foreignValue], undefined);
+    const foreignValue = 99;
+    assert.strictEqual(
+      foreignValue in proto2_ts.Proto2EnumSchema.value,
+      false,
+      "fixture defines unexpected enum value",
+    );
     const bytes = new BinaryWriter()
       .tag(
         proto2_ts.Proto2MessageSchema.field.optionalEnumField.number,
@@ -61,6 +73,10 @@ void suite("closed enum", () => {
     );
     assert.strictEqual(set, false);
     assert.strictEqual(msg.optionalEnumField, proto2_ts.Proto2Enum.YES);
+    assert.strictEqual(
+      isUnknownEnum(proto2_ts.Proto2EnumSchema, msg.optionalEnumField),
+      false,
+    );
     assert.ok(msg.$unknown !== undefined);
     assert.strictEqual(msg.$unknown?.length, 1);
     assert.strictEqual(

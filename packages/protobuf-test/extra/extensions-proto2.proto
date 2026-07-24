@@ -16,8 +16,8 @@ syntax = "proto2";
 package proto2ext;
 
 import "extra/example.proto";
-import "google/protobuf/wrappers.proto";
 import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
 
 // The message we're going to extend
 message Proto2Extendee {
@@ -40,7 +40,6 @@ message Proto2ExtMessage {
 // Testing all kinds of extensions.
 // Required fields, maps, oneof are not allowed in extensions.
 extend Proto2Extendee {
-
   optional uint32 uint32_ext = 1001;
   optional uint32 uint32_ext_with_default = 1002 [default = 999];
 

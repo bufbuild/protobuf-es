@@ -1,0 +1,13 @@
+{
+  "name": "ts6.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "tsc --outDir dist"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf-test": "*",
+    "@types/node": "26.0.0",
+    "typescript": "6.0.x"
+  }
+}

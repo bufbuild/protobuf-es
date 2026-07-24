@@ -15,10 +15,9 @@
 import type { DescField, DescOneof } from "../descriptors.js";
 import type { OneofADT } from "./guard.js";
 import { isScalarZeroValue, scalarZeroValue } from "./scalar.js";
-import type { FeatureSet_FieldPresence } from "../wkt/gen/google/protobuf/descriptor_pb.js";
 
-// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name: FeatureSet_FieldPresence.$localName = $number;
-const IMPLICIT: FeatureSet_FieldPresence.IMPLICIT = 2;
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name = $number;
+const IMPLICIT = 2;
 
 export const unsafeLocal = Symbol.for("reflect unsafe local");
 

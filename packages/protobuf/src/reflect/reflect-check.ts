@@ -114,7 +114,9 @@ function checkSingular(
   }
   if (field.enum !== undefined) {
     if (field.enum.open) {
-      return Number.isInteger(value);
+      // Open enums accept unrecognized values, but enum values are always
+      // int32 (see https://protobuf.dev/programming-guides/proto3/#enum).
+      return checkScalarValue(value, ScalarType.INT32);
     }
     return field.enum.values.some((v) => v.number === value);
   }

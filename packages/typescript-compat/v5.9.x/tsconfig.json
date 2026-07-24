@@ -1,0 +1,38 @@
+{
+  "include": [
+    "./src/**/*.ts",
+    "../../protobuf-test/src/types.test.ts",
+    "../../protobuf-test/src/json_types.test.ts",
+    "../../protobuf-test/src/is-message.test.ts",
+    "../../protobuf-test/src/fields.test.ts",
+    "../../protobuf-test/src/wkt/*.test.ts",
+    "../../protobuf-test/src/gen/**/*",
+    "../../protobuf-test/src/codegenv1/types.test.ts"
+    // We stop compiling the following tests because our tests do not comply with `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes`
+    // "../../protobuf-test/src/registry.test.ts",
+    // "../../protobuf-test/src/generate-code.test.ts",
+    // "../../protobuf-test/src/create.test.ts",
+  ],
+  // These are the default compiler options for TypeScript v5.9.x, created
+  // with `tsc --init` (except where noted in comments below)
+  "compilerOptions": {
+    "module": "nodenext",
+    "target": "esnext",
+    // Default types is [], but our tests import from node built-in packages
+    "types": ["node"],
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    // To guard against regression and ensure we are remaining backwards
+    // compatible, set the skipLibCheck flag to false explicitly.
+    "skipLibCheck": false,
+  }
+}

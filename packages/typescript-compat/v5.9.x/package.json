@@ -1,0 +1,13 @@
+{
+  "name": "ts5.9",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node_modules/.bin/tsc --outDir dist"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf-test": "*",
+    "@types/node": "26.0.0",
+    "typescript": "5.9.x"
+  }
+}

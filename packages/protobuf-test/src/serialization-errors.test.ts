@@ -14,7 +14,7 @@
 
 import { suite, test } from "node:test";
 import * as assert from "node:assert";
-import { create, toBinary, toJson } from "@bufbuild/protobuf";
+import { create, protoInt64, toBinary, toJson } from "@bufbuild/protobuf";
 import { FieldMaskSchema, ValueSchema } from "@bufbuild/protobuf/wkt";
 import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import * as proto2_ts from "./gen/ts/extra/proto2_pb.js";
@@ -205,7 +205,11 @@ void suite("serialization errors", () => {
       },
       jsonErr:
         /^cannot encode field spec.ScalarValuesMessage.int64_field to JSON: expected bigint \(int64\), got true/,
-      binaryErr: null,
+      // With bigint, BigInt(true) === 1n and the value silently encodes; the
+      // string fallback rejects "true".
+      binaryErr: protoInt64.supported
+        ? null
+        : /^cannot encode field spec.ScalarValuesMessage.int64_field to binary: invalid int64: true$/,
     },
     {
       name: "uint64 field -1",
@@ -224,8 +228,11 @@ void suite("serialization errors", () => {
       },
       jsonErr:
         /^cannot encode field spec.ScalarValuesMessage.uint64_field to JSON: expected bigint \(uint64\): Infinity out of range/,
-      binaryErr:
-        /^cannot encode field spec.ScalarValuesMessage.uint64_field to binary: The number Infinity cannot be converted to a BigInt because it is not an integer$/,
+      // bigint throws a native BigInt() error; the string fallback throws its
+      // own uniform message.
+      binaryErr: protoInt64.supported
+        ? /^cannot encode field spec.ScalarValuesMessage.uint64_field to binary: The number Infinity cannot be converted to a BigInt because it is not an integer$/
+        : /^cannot encode field spec.ScalarValuesMessage.uint64_field to binary: invalid uint64: Infinity$/,
     },
     {
       name: "bytes field true",

@@ -22,21 +22,21 @@ import {
 } from "@bufbuild/protobuf";
 import {
   enum_option_retention_runtime,
-  enum_option_retention_unknown,
+  enum_option_retention_default,
   enum_value_option_retention_runtime,
-  enum_value_option_retention_unknown,
+  enum_value_option_retention_default,
   field_option_retention_runtime,
-  field_option_retention_unknown,
+  field_option_retention_default,
   file_option_retention_runtime,
-  file_option_retention_unknown,
+  file_option_retention_default,
   message_option_retention_runtime,
-  message_option_retention_unknown,
+  message_option_retention_default,
   method_option_retention_runtime,
-  method_option_retention_unknown,
+  method_option_retention_default,
   oneof_option_retention_runtime,
-  oneof_option_retention_unknown,
+  oneof_option_retention_default,
   service_option_retention_runtime,
-  service_option_retention_unknown,
+  service_option_retention_default,
 } from "./gen/ts/extra/options_pb.js";
 import {
   EnumWithOptionsSchema,
@@ -86,8 +86,8 @@ void suite("getOption()", () => {
   void test("returns option", () => {
     const file = file_extra_option_usage;
     assert.strictEqual(
-      getOption(file, file_option_retention_unknown),
-      "file option retention unknown",
+      getOption(file, file_option_retention_default),
+      "file option retention default",
     );
     assert.strictEqual(
       getOption(file, file_option_retention_runtime),
@@ -96,8 +96,8 @@ void suite("getOption()", () => {
 
     const message = MessageWithOptionsSchema;
     assert.strictEqual(
-      getOption(message, message_option_retention_unknown),
-      "message option retention unknown",
+      getOption(message, message_option_retention_default),
+      "message option retention default",
     );
     assert.strictEqual(
       getOption(message, message_option_retention_runtime),
@@ -106,8 +106,8 @@ void suite("getOption()", () => {
 
     const field = MessageWithOptionsSchema.fields[0];
     assert.strictEqual(
-      getOption(field, field_option_retention_unknown),
-      "field option retention unknown",
+      getOption(field, field_option_retention_default),
+      "field option retention default",
     );
     assert.strictEqual(
       getOption(field, field_option_retention_runtime),
@@ -116,8 +116,8 @@ void suite("getOption()", () => {
 
     const oneof = MessageWithOptionsSchema.oneofs[0];
     assert.strictEqual(
-      getOption(oneof, oneof_option_retention_unknown),
-      "oneof option retention unknown",
+      getOption(oneof, oneof_option_retention_default),
+      "oneof option retention default",
     );
     assert.strictEqual(
       getOption(oneof, oneof_option_retention_runtime),
@@ -126,8 +126,8 @@ void suite("getOption()", () => {
 
     const enumeration = EnumWithOptionsSchema;
     assert.strictEqual(
-      getOption(enumeration, enum_option_retention_unknown),
-      "enum option retention unknown",
+      getOption(enumeration, enum_option_retention_default),
+      "enum option retention default",
     );
     assert.strictEqual(
       getOption(enumeration, enum_option_retention_runtime),
@@ -136,8 +136,8 @@ void suite("getOption()", () => {
 
     const enumValue = EnumWithOptionsSchema.values[0];
     assert.strictEqual(
-      getOption(enumValue, enum_value_option_retention_unknown),
-      "enum value option retention unknown",
+      getOption(enumValue, enum_value_option_retention_default),
+      "enum value option retention default",
     );
     assert.strictEqual(
       getOption(enumValue, enum_value_option_retention_runtime),
@@ -146,8 +146,8 @@ void suite("getOption()", () => {
 
     const service = ServiceWithOptions;
     assert.strictEqual(
-      getOption(service, service_option_retention_unknown),
-      "service option retention unknown",
+      getOption(service, service_option_retention_default),
+      "service option retention default",
     );
     assert.strictEqual(
       getOption(service, service_option_retention_runtime),
@@ -156,8 +156,8 @@ void suite("getOption()", () => {
 
     const method = ServiceWithOptions.methods[0];
     assert.strictEqual(
-      getOption(method, method_option_retention_unknown),
-      "method option retention unknown",
+      getOption(method, method_option_retention_default),
+      "method option retention default",
     );
     assert.strictEqual(
       getOption(method, method_option_retention_runtime),

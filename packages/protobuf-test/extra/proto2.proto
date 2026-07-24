@@ -14,8 +14,10 @@
 
 syntax = "proto2";
 package spec;
-option go_package = "github.com/bufbuild/protobuf-es";
+
 import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/bufbuild/protobuf-es";
 
 // Note: We do not exhaust all field types
 message Proto2Message {
@@ -23,8 +25,8 @@ message Proto2Message {
   required bytes required_bytes_field = 2;
   required int32 required_int32_field = 3;
   required int64 required_int64_field = 4;
-  required int64 required_int64_js_number_field = 103 [jstype=JS_NUMBER];
-  required int64 required_int64_js_string_field = 102 [jstype=JS_STRING];
+  required int64 required_int64_js_number_field = 103 [jstype = JS_NUMBER];
+  required int64 required_int64_js_string_field = 102 [jstype = JS_STRING];
   required float required_float_field = 5;
   required bool required_bool_field = 6;
   required Proto2Enum required_enum_field = 7;
@@ -38,8 +40,14 @@ message Proto2Message {
   required bytes required_default_bytes_field = 11 [default = "\0x\\x\"x\'A\101\x41\x41\u0041\U00000041\b\f\n\r\t\v"];
   required int32 required_default_int32_field = 12 [default = 128];
   required int64 required_default_int64_field = 13 [default = -256];
-  required int64 required_default_int64_js_number_field = 110 [default = -256, jstype = JS_NUMBER];
-  required int64 required_default_int64_js_string_field = 113 [default = -256, jstype = JS_STRING];
+  required int64 required_default_int64_js_number_field = 110 [
+    default = -256,
+    jstype = JS_NUMBER
+  ];
+  required int64 required_default_int64_js_string_field = 113 [
+    default = -256,
+    jstype = JS_STRING
+  ];
   required float required_default_float_field = 14 [default = -512.13];
   required bool required_default_bool_field = 15 [default = true];
   required Proto2Enum required_default_enum_field = 16 [default = PROTO2_ENUM_YES];
@@ -53,8 +61,8 @@ message Proto2Message {
   optional bytes optional_bytes_field = 20;
   optional int32 optional_int32_field = 21;
   optional int64 optional_int64_field = 22;
-  optional int64 optional_int64_js_number_field = 106 [jstype=JS_NUMBER];
-  optional int64 optional_int64_js_string_field = 105 [jstype=JS_STRING];
+  optional int64 optional_int64_js_number_field = 106 [jstype = JS_NUMBER];
+  optional int64 optional_int64_js_string_field = 105 [jstype = JS_STRING];
   optional float optional_float_field = 23;
   optional bool optional_bool_field = 24;
   optional Proto2Enum optional_enum_field = 25;
@@ -68,8 +76,14 @@ message Proto2Message {
   optional bytes optional_default_bytes_field = 29 [default = "\0x\\x\"x\'A\101\x41\x41\u0041\U00000041\b\f\n\r\t\v"];
   optional int32 optional_default_int32_field = 30 [default = 128];
   optional int64 optional_default_int64_field = 31 [default = -256];
-  optional int64 optional_default_int64_js_number_field = 120 [default = -256, jstype = JS_NUMBER];
-  optional int64 optional_default_int64_js_string_field = 121 [default = -256, jstype = JS_STRING];
+  optional int64 optional_default_int64_js_number_field = 120 [
+    default = -256,
+    jstype = JS_NUMBER
+  ];
+  optional int64 optional_default_int64_js_string_field = 121 [
+    default = -256,
+    jstype = JS_STRING
+  ];
   optional float optional_default_float_field = 32 [default = -512.13];
   optional bool optional_default_bool_field = 33 [default = true];
   optional Proto2Enum optional_default_enum_field = 34 [default = PROTO2_ENUM_YES];
@@ -83,8 +97,8 @@ message Proto2Message {
   repeated bytes repeated_bytes_field = 38;
   repeated int32 repeated_int32_field = 39;
   repeated int64 repeated_int64_field = 40;
-  repeated int64 repeated_int64_js_number_field = 109 [jstype=JS_NUMBER];
-  repeated int64 repeated_int64_js_string_field = 108 [jstype=JS_STRING];
+  repeated int64 repeated_int64_js_number_field = 109 [jstype = JS_NUMBER];
+  repeated int64 repeated_int64_js_string_field = 108 [jstype = JS_STRING];
   repeated float repeated_float_field = 41;
   repeated bool repeated_bool_field = 42;
   repeated Proto2Enum repeated_enum_field = 43;
@@ -107,8 +121,8 @@ message Proto2Message {
     bytes oneof_bytes_field = 53;
     int32 oneof_int32_field = 54;
     int64 oneof_int64_field = 55;
-    int64 oneof_int64_js_number_field = 112 [jstype=JS_NUMBER];
-    int64 oneof_int64_js_string_field = 111 [jstype=JS_STRING];
+    int64 oneof_int64_js_number_field = 112 [jstype = JS_NUMBER];
+    int64 oneof_int64_js_string_field = 111 [jstype = JS_STRING];
     float oneof_float_field = 56;
     bool oneof_bool_field = 57;
     Proto2Enum oneof_enum_field = 58;

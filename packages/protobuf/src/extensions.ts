@@ -25,7 +25,8 @@ import type {
   DescService,
 } from "./descriptors.js";
 import { create } from "./create.js";
-import { readField } from "./from-binary.js";
+import { makeReadContext, readField } from "./from-binary.js";
+import type { BinaryReadOptions } from "./from-binary.js";
 import type { ReflectMessage } from "./reflect/reflect-types.js";
 import { reflect } from "./reflect/reflect.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
@@ -66,14 +67,14 @@ import type {
 export function getExtension<Desc extends DescExtension>(
   message: Extendee<Desc>,
   extension: Desc,
+  options?: Partial<BinaryReadOptions>,
 ): ExtensionValueShape<Desc> {
   assertExtendee(extension, message);
   const ufs = filterUnknownFields(message.$unknown, extension);
   const [container, field, get] = createExtensionContainer(extension);
+  const ctx = makeReadContext(options);
   for (const uf of ufs) {
-    readField(container, new BinaryReader(uf.data), field, uf.wireType, {
-      readUnknownFields: true,
-    });
+    readField(container, new BinaryReader(uf.data), field, uf.wireType, ctx);
   }
   return get();
 }

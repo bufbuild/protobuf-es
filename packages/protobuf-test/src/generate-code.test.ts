@@ -40,6 +40,10 @@ import type * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_p
 import type * as json_types_js_json from "./gen/js,json_types/extra/json_types_pb.js";
 import type * as valid_types_ts from "./gen/ts,valid_types/extra/valid_types_pb.js";
 import type * as valid_types_js from "./gen/js,valid_types/extra/valid_types_pb.js";
+import * as enums_erasable_ts from "./gen/ts,erasable/extra/erasable_syntax_pb.js";
+import * as enums_erasable_js from "./gen/js,erasable/extra/erasable_syntax_pb.js";
+import * as enums_regular_ts from "./gen/ts/extra/erasable_syntax_pb.js";
+import * as enums_regular_js from "./gen/js/extra/erasable_syntax_pb.js";
 
 test("source retention options are unavailable in generated code", () => {
   const fileOptions = option_usage_ts.file_extra_option_usage.proto.options;
@@ -151,6 +155,11 @@ void suite("JSON types", () => {
 
 test("ts generated code is assignable to js", () => {
   assert.ok([
+    function f(ts: enums_erasable_ts.ESyntax, js: enums_erasable_js.ESyntax) {
+      ts = js;
+      js = ts;
+      return [ts, js];
+    },
     function f(ts: valid_types_ts.VTypes, js: valid_types_js.VTypes) {
       ts = js;
       js = ts;
@@ -285,6 +294,16 @@ void suite("ts generated code is equal to js generated code", () => {
   });
   test("service", () => {
     assert.deepStrictEqual(toPlain(service_ts), toPlain(service_js));
+  });
+  test("TS enums and object as const enums", () => {
+    assert.deepStrictEqual(
+      toPlain(enums_regular_js),
+      toPlain(enums_regular_ts),
+    );
+    assert.deepStrictEqual(
+      toPlain(enums_erasable_js),
+      toPlain(enums_erasable_ts),
+    );
   });
 
   /**

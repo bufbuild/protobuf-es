@@ -37,3 +37,4 @@ export {
   getOption,
 } from "./extensions.js";
 export * from "./proto-int64.js";
+export * from "./unknown-enum.js";

@@ -36,17 +36,27 @@ export interface BinaryReadOptions {
    * For more details see https://developers.google.com/protocol-buffers/docs/proto3#unknowns
    */
   readUnknownFields: boolean;
+
+  /**
+   * The maximum depth of nested messages to parse. If a message nests deeper
+   * than this limit, parsing fails with an error instead of exhausting the
+   * call stack. Defaults to 100.
+   */
+  recursionLimit: number;
 }
 
-// Default options for parsing binary data.
-const readDefaults: Readonly<BinaryReadOptions> = {
-  readUnknownFields: true,
-};
+interface BinaryReadContext extends BinaryReadOptions {
+  // Recursion depth, guarded by recursionLimit.
+  depth: number;
+}
 
-function makeReadOptions(
+/**
+ * @private Only exported for getExtension()
+ */
+export function makeReadContext(
   options?: Partial<BinaryReadOptions>,
-): Readonly<BinaryReadOptions> {
-  return options ? { ...readDefaults, ...options } : readDefaults;
+): BinaryReadContext {
+  return { readUnknownFields: true, recursionLimit: 100, ...options, depth: 0 };
 }
 
 /**
@@ -61,7 +71,7 @@ export function fromBinary<Desc extends DescMessage>(
   readMessage(
     msg,
     new BinaryReader(bytes),
-    makeReadOptions(options),
+    makeReadContext(options),
     false,
     bytes.byteLength,
   );
@@ -86,7 +96,7 @@ export function mergeFromBinary<Desc extends DescMessage>(
   readMessage(
     reflect(schema, target, false),
     new BinaryReader(bytes),
-    makeReadOptions(options),
+    makeReadContext(options),
     false,
     bytes.byteLength,
   );
@@ -104,10 +114,15 @@ export function mergeFromBinary<Desc extends DescMessage>(
 function readMessage(
   message: ReflectMessage,
   reader: BinaryReader,
-  options: BinaryReadOptions,
+  ctx: BinaryReadContext,
   delimited: boolean,
   lengthOrDelimitedFieldNo: number,
 ): void {
+  if (++ctx.depth > ctx.recursionLimit) {
+    throw new Error(
+      `cannot decode ${message.desc} from binary: maximum recursion depth of ${ctx.recursionLimit} reached`,
+    );
+  }
   const end = delimited ? reader.len : reader.pos + lengthOrDelimitedFieldNo;
   let fieldNo: number | undefined;
   let wireType: WireType | undefined;
@@ -119,13 +134,15 @@ function readMessage(
     }
     const field = message.findNumber(fieldNo);
     if (!field) {
-      const data = reader.skip(wireType, fieldNo);
-      if (options.readUnknownFields) {
+      // Use remaining recursion budget for skipping nested groups
+      const recursionLimit = ctx.recursionLimit - ctx.depth;
+      const data = reader.skip(wireType, fieldNo, recursionLimit);
+      if (ctx.readUnknownFields) {
         unknownFields.push({ no: fieldNo, wireType, data });
       }
       continue;
     }
-    readField(message, reader, field, wireType, options);
+    readField(message, reader, field, wireType, ctx);
   }
   if (delimited) {
     if (wireType != WireType.EndGroup || fieldNo !== lengthOrDelimitedFieldNo) {
@@ -135,17 +152,18 @@ function readMessage(
   if (unknownFields.length > 0) {
     message.setUnknown(unknownFields);
   }
+  ctx.depth--;
 }
 
 /**
- * @private
+ * @private Only exported for getExtension()
  */
 export function readField(
   message: ReflectMessage,
   reader: BinaryReader,
   field: DescField,
   wireType: WireType,
-  options: BinaryReadOptions,
+  ctx: BinaryReadContext,
 ) {
   switch (field.fieldKind) {
     case "scalar":
@@ -162,7 +180,7 @@ export function readField(
         const ok = field.enum.values.some((v) => v.number === val);
         if (ok) {
           message.set(field, val);
-        } else if (options.readUnknownFields) {
+        } else if (ctx.readUnknownFields) {
           const bytes: number[] = [];
           varint32write(val as number, bytes);
           const unknownFields = message.getUnknown() ?? [];
@@ -178,14 +196,14 @@ export function readField(
     case "message":
       message.set(
         field,
-        readMessageField(reader, options, field, message.get(field)),
+        readMessageField(reader, ctx, field, message.get(field)),
       );
       break;
     case "list":
-      readListField(reader, wireType, message.get(field), options);
+      readListField(reader, wireType, message.get(field), ctx);
       break;
     case "map":
-      readMapEntry(reader, message.get(field), options);
+      readMapEntry(reader, message.get(field), ctx);
       break;
   }
 }
@@ -194,7 +212,7 @@ export function readField(
 function readMapEntry(
   reader: BinaryReader,
   map: ReflectMap,
-  options: BinaryReadOptions,
+  ctx: BinaryReadContext,
 ): void {
   const field = map.field();
   let key: ScalarValue | undefined;
@@ -219,7 +237,7 @@ function readMapEntry(
             val = reader.int32();
             break;
           case "message":
-            val = readMessageField(reader, options, field);
+            val = readMessageField(reader, ctx, field);
             break;
         }
         break;
@@ -248,11 +266,11 @@ function readListField(
   reader: BinaryReader,
   wireType: WireType,
   list: ReflectList,
-  options: BinaryReadOptions,
+  ctx: BinaryReadContext,
 ) {
   const field = list.field();
   if (field.listKind === "message") {
-    list.add(readMessageField(reader, options, field));
+    list.add(readMessageField(reader, ctx, field));
     return;
   }
   const scalarType = field.scalar ?? ScalarType.INT32;
@@ -272,7 +290,7 @@ function readListField(
 
 function readMessageField(
   reader: BinaryReader,
-  options: BinaryReadOptions,
+  ctx: BinaryReadContext,
   field: DescField & { message: DescMessage },
   mergeMessage?: ReflectMessage,
 ): ReflectMessage {
@@ -281,7 +299,7 @@ function readMessageField(
   readMessage(
     message,
     reader,
-    options,
+    ctx,
     delimited,
     delimited ? field.number : reader.uint32(),
   );

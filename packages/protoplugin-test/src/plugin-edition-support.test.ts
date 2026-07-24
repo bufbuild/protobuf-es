@@ -14,7 +14,12 @@
 
 import { suite, test } from "node:test";
 import * as assert from "node:assert";
-import { fromBinary, minimumEdition, maximumEdition } from "@bufbuild/protobuf";
+import {
+  fromBinary,
+  minimumEdition,
+  maximumEdition,
+  protoInt64,
+} from "@bufbuild/protobuf";
 import {
   CodeGeneratorRequestSchema,
   CodeGeneratorResponse_Feature,
@@ -57,91 +62,95 @@ function noop() {
   //
 }
 
-void suite("editions support in plugins", () => {
-  void test("sets SUPPORTS_EDITIONS", async () => {
-    const res = await createTestPluginAndRun({
-      proto: `syntax="proto3";`,
-      generateAny: noop,
+void suite(
+  "editions support in plugins",
+  { skip: protoInt64.supported ? false : "requires BigInt" },
+  () => {
+    void test("sets SUPPORTS_EDITIONS", async () => {
+      const res = await createTestPluginAndRun({
+        proto: `syntax="proto3";`,
+        generateAny: noop,
+      });
+      const supportsEditions =
+        (res.supportedFeatures &
+          BigInt(CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS)) ===
+        BigInt(CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS);
+      assert.strictEqual(supportsEditions, true);
     });
-    const supportsEditions =
-      (res.supportedFeatures &
-        BigInt(CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS)) ===
-      BigInt(CodeGeneratorResponse_Feature.SUPPORTS_EDITIONS);
-    assert.strictEqual(supportsEditions, true);
-  });
-  void test("sets supported edition range to @bufbuild/protobuf's supported range", async () => {
-    const res = await createTestPluginAndRun({
-      proto: `syntax="proto3";`,
-      generateAny: noop,
+    void test("sets supported edition range to @bufbuild/protobuf's supported range", async () => {
+      const res = await createTestPluginAndRun({
+        proto: `syntax="proto3";`,
+        generateAny: noop,
+      });
+      assert.strictEqual(res.minimumEdition, minimumEdition);
+      assert.strictEqual(res.maximumEdition, maximumEdition);
     });
-    assert.strictEqual(res.minimumEdition, minimumEdition);
-    assert.strictEqual(res.maximumEdition, maximumEdition);
-  });
-  void test("sets supported edition range to the provided range", async () => {
-    const res = await createTestPluginAndRun({
-      proto: `syntax="proto3";`,
-      minimumEdition: Edition.EDITION_PROTO2,
-      maximumEdition: Edition.EDITION_PROTO3,
-      generateAny: noop,
+    void test("sets supported edition range to the provided range", async () => {
+      const res = await createTestPluginAndRun({
+        proto: `syntax="proto3";`,
+        minimumEdition: Edition.EDITION_PROTO2,
+        maximumEdition: Edition.EDITION_PROTO3,
+        generateAny: noop,
+      });
+      assert.strictEqual(res.minimumEdition, Edition.EDITION_PROTO2);
+      assert.strictEqual(res.maximumEdition, Edition.EDITION_PROTO3);
     });
-    assert.strictEqual(res.minimumEdition, Edition.EDITION_PROTO2);
-    assert.strictEqual(res.maximumEdition, Edition.EDITION_PROTO3);
-  });
-  void test("raises error for minimumEdition > maximumEdition", async () => {
-    await assert.rejects(
-      async () =>
-        runPlugin(
-          Edition.EDITION_PROTO3,
-          Edition.EDITION_PROTO3,
-          Edition.EDITION_PROTO2,
-        ),
-      {
-        message:
-          /^configured minimumEdition PROTO3 > maximumEdition PROTO2 - please contact plugin author$/,
-      },
-    );
-  });
-  void test("raises error on unsupported edition from the past with default range", async () => {
-    await assert.rejects(async () => runPlugin(Edition.EDITION_1_TEST_ONLY), {
-      message:
-        /^test.proto: unsupported edition 1_TEST_ONLY - the earliest supported edition is PROTO2$/,
+    void test("raises error for minimumEdition > maximumEdition", async () => {
+      await assert.rejects(
+        async () =>
+          runPlugin(
+            Edition.EDITION_PROTO3,
+            Edition.EDITION_PROTO3,
+            Edition.EDITION_PROTO2,
+          ),
+        {
+          message:
+            /^configured minimumEdition PROTO3 > maximumEdition PROTO2 - please contact plugin author$/,
+        },
+      );
     });
-  });
-  void test("raises error on unsupported edition from the future with default range", async () => {
-    await assert.rejects(
-      async () => runPlugin(Edition.EDITION_99999_TEST_ONLY),
-      {
+    void test("raises error on unsupported edition from the past with default range", async () => {
+      await assert.rejects(async () => runPlugin(Edition.EDITION_1_TEST_ONLY), {
         message:
-          /^test.proto: unsupported edition 99999_TEST_ONLY - the latest supported edition is 2024$/,
-      },
-    );
-  });
-  void test("raises error on unsupported edition from the past with custom range", async () => {
-    await assert.rejects(
-      async () =>
-        runPlugin(
-          Edition.EDITION_PROTO2,
-          Edition.EDITION_PROTO3,
-          Edition.EDITION_PROTO3,
-        ),
-      {
-        message:
-          /^test.proto: unsupported edition PROTO2 - the earliest supported edition is PROTO3$/,
-      },
-    );
-  });
-  void test("raises error on unsupported edition from the future with custom range", async () => {
-    await assert.rejects(
-      async () =>
-        runPlugin(
-          Edition.EDITION_2023,
-          Edition.EDITION_PROTO3,
-          Edition.EDITION_PROTO3,
-        ),
-      {
-        message:
-          /^test.proto: unsupported edition 2023 - the latest supported edition is PROTO3$/,
-      },
-    );
-  });
-});
+          /^test.proto: unsupported edition 1_TEST_ONLY - the earliest supported edition is PROTO2$/,
+      });
+    });
+    void test("raises error on unsupported edition from the future with default range", async () => {
+      await assert.rejects(
+        async () => runPlugin(Edition.EDITION_99999_TEST_ONLY),
+        {
+          message:
+            /^test.proto: unsupported edition 99999_TEST_ONLY - the latest supported edition is 2024$/,
+        },
+      );
+    });
+    void test("raises error on unsupported edition from the past with custom range", async () => {
+      await assert.rejects(
+        async () =>
+          runPlugin(
+            Edition.EDITION_PROTO2,
+            Edition.EDITION_PROTO3,
+            Edition.EDITION_PROTO3,
+          ),
+        {
+          message:
+            /^test.proto: unsupported edition PROTO2 - the earliest supported edition is PROTO3$/,
+        },
+      );
+    });
+    void test("raises error on unsupported edition from the future with custom range", async () => {
+      await assert.rejects(
+        async () =>
+          runPlugin(
+            Edition.EDITION_2023,
+            Edition.EDITION_PROTO3,
+            Edition.EDITION_PROTO3,
+          ),
+        {
+          message:
+            /^test.proto: unsupported edition 2023 - the latest supported edition is PROTO3$/,
+        },
+      );
+    });
+  },
+);

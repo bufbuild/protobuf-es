@@ -29,7 +29,6 @@ import {
   FieldDescriptorProto_Label,
   FieldDescriptorProto_Type,
   FieldDescriptorProtoSchema,
-  FieldOptions_JSType,
   FieldOptionsSchema,
   FeatureSetSchema,
   SourceCodeInfo_LocationSchema,
@@ -37,6 +36,7 @@ import {
   DescriptorProtoSchema,
   EnumDescriptorProtoSchema,
   ServiceDescriptorProtoSchema,
+  FieldOptions_JSTypeSchema,
 } from "@bufbuild/protobuf/wkt";
 
 /**
@@ -241,7 +241,8 @@ export function getDeclarationString(
     protoOptions !== undefined &&
     isFieldSet(protoOptions, FieldOptionsSchema.field.jstype)
   ) {
-    options.push(`jstype = ${FieldOptions_JSType[protoOptions.jstype]}`);
+    const value = FieldOptions_JSTypeSchema.value[protoOptions.jstype];
+    options.push(`jstype = ${value.name}`);
   }
   if (
     protoOptions !== undefined &&

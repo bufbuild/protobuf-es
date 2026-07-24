@@ -1,5 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["BUF_BIGINT_DISABLE"],
   "tasks": {
     "build": {
       "dependsOn": ["^build", "generate"],

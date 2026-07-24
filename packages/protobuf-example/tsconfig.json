@@ -5,6 +5,8 @@
     "moduleResolution": "Node10",
     "strict": true,
     "exactOptionalPropertyTypes": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
+    "types": ["node"]
   }
 }

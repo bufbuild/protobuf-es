@@ -16,6 +16,7 @@ import { suite, test } from "node:test";
 import * as assert from "node:assert";
 import {
   create,
+  isFieldSet,
   setExtension,
   getExtension,
   toBinary,
@@ -27,7 +28,7 @@ import {
   type DescMessage,
   protoInt64,
 } from "@bufbuild/protobuf";
-import { StructSchema, ValueSchema } from "@bufbuild/protobuf/wkt";
+import { EmptySchema, StructSchema, ValueSchema } from "@bufbuild/protobuf/wkt";
 import {
   RepeatedScalarValuesMessageSchema,
   ScalarValuesMessageSchema,
@@ -44,6 +45,8 @@ import {
 import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
+import { TestAllTypesProto3Schema } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
+import { Proto3MessageSchema } from "./gen/ts/extra/proto3_pb.js";
 import { compileMessage } from "./helpers.js";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 
@@ -403,6 +406,148 @@ void suite("UTF-8 validation on binary input", () => {
       message M { repeated string f = 1; }
     `);
     assert.throws(() => fromBinary(desc, fieldOneStringBytes));
+  });
+});
+
+void suite("fromBinary recursion limit", () => {
+  // Nested TestAllTypesProto3 via its recursive_message field, as wire bytes.
+  function makeNestedRecursiveMessage(depth: number): Uint8Array {
+    let message = new Uint8Array(0);
+    const fieldNo = TestAllTypesProto3Schema.field.recursiveMessage.number;
+    for (let i = 0; i < depth; i++) {
+      message = new BinaryWriter()
+        .tag(fieldNo, WireType.LengthDelimited)
+        .bytes(message)
+        .finish();
+    }
+    return message;
+  }
+
+  test("rejects deeply nested messages instead of overflowing the stack", () => {
+    assert.throws(
+      () =>
+        fromBinary(TestAllTypesProto3Schema, makeNestedRecursiveMessage(1000)),
+      /maximum recursion depth of 100 reached/,
+    );
+  });
+  test("accepts nesting within the default limit", () => {
+    assert.doesNotThrow(() =>
+      fromBinary(TestAllTypesProto3Schema, makeNestedRecursiveMessage(50)),
+    );
+  });
+  test("honors a custom recursionLimit", () => {
+    assert.throws(
+      () =>
+        fromBinary(TestAllTypesProto3Schema, makeNestedRecursiveMessage(5), {
+          recursionLimit: 3,
+        }),
+      /maximum recursion depth of 3 reached/,
+    );
+    assert.doesNotThrow(() =>
+      fromBinary(TestAllTypesProto3Schema, makeNestedRecursiveMessage(5), {
+        recursionLimit: 10,
+      }),
+    );
+  });
+
+  test("honors recursionLimit for unknown groups", () => {
+    // A run of StartGroup tags at field 1, which is unknown to Empty. fromBinary
+    // skips unknown fields, and skipping a group recurses for each nested group.
+    function makeNestedUnknownGroups(
+      depth: number,
+      closed: boolean,
+    ): Uint8Array {
+      const writer = new BinaryWriter();
+      for (let i = 0; i < depth; i++) {
+        writer.tag(1, WireType.StartGroup);
+      }
+      if (closed) {
+        for (let i = 0; i < depth; i++) {
+          writer.tag(1, WireType.EndGroup);
+        }
+      }
+      return writer.finish();
+    }
+    assert.throws(
+      () => fromBinary(EmptySchema, makeNestedUnknownGroups(10000, false)),
+      /maximum recursion depth reached/,
+    );
+    assert.throws(
+      () =>
+        fromBinary(EmptySchema, makeNestedUnknownGroups(10000, false), {
+          readUnknownFields: false,
+        }),
+      /maximum recursion depth reached/,
+    );
+    assert.doesNotThrow(() =>
+      fromBinary(EmptySchema, makeNestedUnknownGroups(50, true)),
+    );
+    assert.throws(
+      () =>
+        fromBinary(EmptySchema, makeNestedUnknownGroups(50, true), {
+          recursionLimit: 10,
+        }),
+      /maximum recursion depth reached/,
+    );
+  });
+
+  test("uses the remaining recursion budget for unknown nested groups", () => {
+    // The helper function nest() creates a nested message with variable depth.
+    // The innermost message also holds unknown groups with variable depth.
+    const unknownNo =
+      Math.max(...TestAllTypesProto3Schema.fields.map((f) => f.number)) + 1;
+    const recursiveNo = TestAllTypesProto3Schema.field.recursiveMessage.number;
+    function nest(messageDepth: number, groupDepth: number): Uint8Array {
+      const inner = new BinaryWriter();
+      for (let i = 0; i < groupDepth; i++) {
+        inner.tag(unknownNo, WireType.StartGroup);
+      }
+      for (let i = 0; i < groupDepth; i++) {
+        inner.tag(unknownNo, WireType.EndGroup);
+      }
+      let message = inner.finish();
+      for (let i = 0; i < messageDepth; i++) {
+        message = new BinaryWriter()
+          .tag(recursiveNo, WireType.LengthDelimited)
+          .bytes(message)
+          .finish();
+      }
+      return message;
+    }
+    // groupDepth (60) is within the limit on its own, but combined with the
+    // surrounding message depth (60) it exceeds recursionLimit and is rejected.
+    assert.throws(
+      () => fromBinary(TestAllTypesProto3Schema, nest(60, 60)),
+      /maximum recursion depth reached/,
+    );
+    // The same group depth is accepted when the message depth leaves room.
+    assert.doesNotThrow(() =>
+      fromBinary(TestAllTypesProto3Schema, nest(30, 60)),
+    );
+  });
+});
+
+void suite("negative zero serialization", () => {
+  test("singular float with -0 is set and round-trips", () => {
+    const msg = create(Proto3MessageSchema, { singularFloatField: -0 });
+    assert.strictEqual(
+      isFieldSet(msg, Proto3MessageSchema.field.singularFloatField),
+      true,
+    );
+    const bytes = toBinary(Proto3MessageSchema, msg);
+    assert.ok(bytes.length > 0);
+    const back = fromBinary(Proto3MessageSchema, bytes);
+    assert.ok(Object.is(back.singularFloatField, -0));
+  });
+  test("singular float with +0 is unset and omitted", () => {
+    const msg = create(Proto3MessageSchema, { singularFloatField: 0 });
+    assert.ok(!isFieldSet(msg, Proto3MessageSchema.field.singularFloatField));
+    assert.strictEqual(toBinary(Proto3MessageSchema, msg).length, 0);
+  });
+  test("singular int32 with -0 is unset and omitted", () => {
+    const msg = create(Proto3MessageSchema, { singularInt32Field: -0 });
+    assert.ok(!isFieldSet(msg, Proto3MessageSchema.field.singularInt32Field));
+    assert.strictEqual(toBinary(Proto3MessageSchema, msg).length, 0);
   });
 });
 
