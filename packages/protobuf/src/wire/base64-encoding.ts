@@ -76,6 +76,26 @@ export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
   return bytes.subarray(0, bytePos);
 }
 
+// Native Uint8Array.prototype.toBase64, if the runtime provides it.
+type ToBase64Options = {
+  readonly alphabet?: "base64" | "base64url";
+  readonly omitPadding?: boolean;
+};
+const nativeUint8ArrayToBase64 = (
+  Uint8Array.prototype as Partial<{
+    toBase64(options?: ToBase64Options): string;
+  }>
+).toBase64;
+
+type Base64Encoding = "std" | "std_raw" | "url";
+const toBase64OptionsMap: Readonly<
+  Record<Base64Encoding, Required<ToBase64Options>>
+> = {
+  std: { alphabet: "base64", omitPadding: false },
+  std_raw: { alphabet: "base64", omitPadding: true },
+  url: { alphabet: "base64url", omitPadding: true },
+};
+
 /**
  * Encode a byte array to a base64 string.
  *
@@ -88,8 +108,11 @@ export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
  */
 export function base64Encode(
   bytes: Uint8Array,
-  encoding: "std" | "std_raw" | "url" = "std",
+  encoding: Base64Encoding = "std",
 ) {
+  if (nativeUint8ArrayToBase64) {
+    return nativeUint8ArrayToBase64.call(bytes, toBase64OptionsMap[encoding]);
+  }
   const table = getEncodeTable(encoding);
   const pad = encoding == "std";
   let base64 = "",
