@@ -14,19 +14,10 @@
 
 const symbol = Symbol.for("@bufbuild/protobuf/text-encoding");
 
-type StringWithIsWellFormed = {
-  isWellFormed(): boolean;
-};
-
-// Whether the runtime provides native String.prototype.isWellFormed.
-const isWellFormedAvailable =
-  typeof (String.prototype as Partial<StringWithIsWellFormed>).isWellFormed ==
-  "function";
-function supportsIsWellFormed(
-  text: string,
-): text is string & StringWithIsWellFormed {
-  return isWellFormedAvailable;
-}
+// Native String.prototype.isWellFormed, if the runtime provides it.
+const nativeStringIsWellFormed = (
+  String.prototype as Partial<{ isWellFormed(): boolean }>
+).isWellFormed;
 
 interface TextEncoding {
   /**
@@ -83,8 +74,8 @@ export function getTextEncoding() {
         return td.decode(bytes);
       },
       checkUtf8(text: string): boolean {
-        if (supportsIsWellFormed(text)) {
-          return text.isWellFormed();
+        if (nativeStringIsWellFormed) {
+          return nativeStringIsWellFormed.call(text);
         }
         try {
           encodeURIComponent(text);
