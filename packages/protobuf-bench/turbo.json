@@ -2,18 +2,18 @@
   "$schema": "https://turbo.build/schema.json",
   "extends": ["//"],
   "tasks": {
-    "perf": {
+    "build": {
       "dependsOn": ["^build", "generate"],
+      "outputs": [],
+      "outputLogs": "new-only"
+    },
+    "bench": {
+      "dependsOn": ["^build"],
       "cache": false,
       "outputLogs": "new-only"
     },
     "profile": {
-      "dependsOn": ["^build", "generate"],
-      "cache": false,
-      "outputLogs": "new-only"
-    },
-    "flamegraph": {
-      "dependsOn": ["^build", "generate"],
+      "dependsOn": ["^build"],
       "cache": false,
       "outputLogs": "new-only"
     }

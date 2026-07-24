@@ -8,6 +8,7 @@
     "packages/protoplugin-test",
     "packages/protoplugin-example",
     "packages/protobuf-test",
+    "packages/protobuf-bench",
     "packages/protobuf-conformance",
     "packages/bundle-size",
     "packages/protobuf-example",
