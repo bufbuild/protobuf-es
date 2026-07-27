@@ -19,6 +19,7 @@ import type { MessageShape } from "../types.js";
 import { BinaryReader, BinaryWriter } from "./binary-encoding.js";
 import type { BinaryReadOptions } from "../from-binary.js";
 import { fromBinary } from "../from-binary.js";
+import { ByteBuffer } from "./byte-buffer.js";
 
 /**
  * Serialize a message, prefixing it with its size.
@@ -56,36 +57,6 @@ export interface SizeDelimitedDecodeOptions extends BinaryReadOptions {
 
 // Default for SizeDelimitedDecodeOptions.readMaxBytes.
 const defaultReadMaxBytes = 64 * 1024 * 1024; // 64 MiB
-
-/**
- * A growable byte buffer. Used in place of a resizable ArrayBuffer, which is
- * not widely available.
- */
-class ByteBuffer {
-  private buffer = new Uint8Array(0);
-  private length = 0;
-
-  get byteLength(): number {
-    return this.length;
-  }
-
-  bytes(): Uint8Array {
-    return this.buffer.subarray(0, this.length);
-  }
-
-  append(chunk: Uint8Array): void {
-    const newByteLength = this.length + chunk.byteLength;
-    if (newByteLength > this.buffer.byteLength) {
-      const grown = new Uint8Array(
-        Math.max(this.buffer.byteLength * 2, newByteLength),
-      );
-      grown.set(this.buffer.subarray(0, this.length));
-      this.buffer = grown;
-    }
-    this.buffer.set(chunk, this.length);
-    this.length += chunk.byteLength;
-  }
-}
 
 /**
  * Parse a stream of size-delimited messages.
@@ -142,7 +113,7 @@ export async function* sizeDelimitedDecodeStream<Desc extends DescMessage>(
       buffer.append(bytes.subarray(offset));
     }
   }
-  if (buffer.byteLength > 0) {
+  if (buffer.length > 0) {
     throw new Error("incomplete data");
   }
 }
