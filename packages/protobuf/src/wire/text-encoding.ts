@@ -52,8 +52,24 @@ interface TextEncoding {
  * Note that the Text Encoding API does not provide a way to validate UTF-8.
  * Our implementation falls back to use encodeURIComponent().
  */
-export function configureTextEncoding(textEncoding: TextEncoding): void {
-  (globalThis as GlobalWithTextEncoding)[symbol] = textEncoding;
+export function configureTextEncoding(
+  textEncoding: Partial<TextEncoding>,
+): void {
+  const current = getTextEncoding();
+  const merged: TextEncoding = {
+    checkUtf8: textEncoding.checkUtf8 ?? current.checkUtf8,
+    decodeUtf8: textEncoding.decodeUtf8 ?? current.decodeUtf8,
+    encodeUtf8: textEncoding.encodeUtf8 ?? current.encodeUtf8,
+  };
+  // encodeUtf8Into must encode identically to encodeUtf8, so only carry over
+  // the previous encodeUtf8Into if encodeUtf8 wasn't also overridden.
+  const encodeUtf8Into = textEncoding.encodeUtf8
+    ? textEncoding.encodeUtf8Into
+    : (textEncoding.encodeUtf8Into ?? current.encodeUtf8Into);
+  if (encodeUtf8Into) {
+    merged.encodeUtf8Into = encodeUtf8Into;
+  }
+  (globalThis as GlobalWithTextEncoding)[symbol] = merged;
 }
 
 export function getTextEncoding() {

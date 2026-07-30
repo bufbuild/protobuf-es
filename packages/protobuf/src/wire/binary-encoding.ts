@@ -506,9 +506,7 @@ const INITIAL_SIZE = 128;
 /**
  * Bytes `fork()` reserves for the length prefix, betting that the payload will
  * be under 128 bytes. `join()` fills them in, and widens them if the bet was
- * wrong. Documents the offset rather than parameterizing it: `fork()` writes
- * exactly one byte, and reserving more would leave a gap for short payloads,
- * since a length must be encoded in as few bytes as possible.
+ * wrong.
  */
 const DEFAULT_LEN_PREFIX_SIZE = 1;
 
