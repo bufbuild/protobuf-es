@@ -20,7 +20,7 @@
     "protoc-gen-es": "bin/protoc-gen-es"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
     "prebuild": "rm -rf ./dist/cjs/*",
