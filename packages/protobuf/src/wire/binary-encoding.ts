@@ -170,6 +170,10 @@ export class BinaryWriter {
    */
   fork(): this {
     this.stackPos.push(this.pos);
+    // Reserve one byte for the length prefix. Payloads under 128 bytes, fairly
+    // common, will need no copy in join().
+    this.ensureCapacity(1);
+    this.buffer[this.pos++] = 0;
     return this;
   }
 
@@ -181,12 +185,17 @@ export class BinaryWriter {
     const forkPos = this.stackPos.pop();
     if (forkPos === undefined)
       throw new Error("invalid state, fork stack empty");
-    const len = this.pos - forkPos;
+    const len = this.pos - forkPos - 1;
+    if (len < 0x80) {
+      this.buffer[forkPos] = len;
+      return this;
+    }
+    // Widen the single byte we reserved for the length in fork by
+    // shifting the payload forward by the prefix's additional bytes,
+    // then write the length varint in place.
     const size = varint32Size(len);
-    this.ensureCapacity(size);
-    // Make room for the length prefix by shifting the fork's data forward.
-    this.buffer.copyWithin(forkPos + size, forkPos, this.pos);
-    // Write the unsigned varint length directly in place.
+    this.ensureCapacity(size - 1);
+    this.buffer.copyWithin(forkPos + size, forkPos + 1, this.pos);
     let p = forkPos;
     let v = len;
     while (v > 0x7f) {
@@ -194,7 +203,7 @@ export class BinaryWriter {
       v >>>= 7;
     }
     this.buffer[p] = v;
-    this.pos += size;
+    this.pos += size - 1;
     return this;
   }
 
