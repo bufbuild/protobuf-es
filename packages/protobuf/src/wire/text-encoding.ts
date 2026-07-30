@@ -29,6 +29,13 @@ interface TextEncoding {
    */
   encodeUtf8: (text: string) => Uint8Array<ArrayBuffer>;
   /**
+   * Encode UTF-8 text to a Uint8Array.
+   */
+  encodeUtf8Into?: (
+    text: string,
+    dest: Uint8Array,
+  ) => { read: number; written: number };
+  /**
    * Decode UTF-8 text from binary. If `strict` is true, throw on invalid byte
    * sequences instead of silently substituting U+FFFD. Implementations that
    * do not support strict decoding may ignore the flag.
@@ -51,27 +58,28 @@ export function configureTextEncoding(textEncoding: TextEncoding): void {
 
 export function getTextEncoding() {
   if ((globalThis as GlobalWithTextEncoding)[symbol] == undefined) {
-    const te = new (
+    const textEncoder = new (
       globalThis as unknown as GlobalWithTextEncoderDecoder
     ).TextEncoder();
-    const td = new (
+    const textDecoder = new (
       globalThis as unknown as GlobalWithTextEncoderDecoder
     ).TextDecoder();
-    let tdStrict: { decode(data: Uint8Array): string } | undefined;
-    (globalThis as GlobalWithTextEncoding)[symbol] = {
+    let textDecoderStrict: { decode(data: Uint8Array): string } | undefined;
+
+    const textEncoding: TextEncoding = {
       encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
-        return te.encode(text);
+        return textEncoder.encode(text);
       },
       decodeUtf8(bytes: Uint8Array, strict?: boolean): string {
         if (strict) {
-          if (tdStrict === undefined) {
-            tdStrict = new (
+          if (textDecoderStrict === undefined) {
+            textDecoderStrict = new (
               globalThis as unknown as GlobalWithTextEncoderDecoder
             ).TextDecoder("utf-8", { fatal: true });
           }
-          return tdStrict.decode(bytes);
+          return textDecoderStrict.decode(bytes);
         }
-        return td.decode(bytes);
+        return textDecoder.decode(bytes);
       },
       checkUtf8(text: string): boolean {
         if (nativeStringIsWellFormed) {
@@ -85,6 +93,11 @@ export function getTextEncoding() {
         }
       },
     };
+    const encodeUtf8Into = textEncoder.encodeInto?.bind(textEncoder);
+    if (encodeUtf8Into !== undefined) {
+      textEncoding.encodeUtf8Into = encodeUtf8Into;
+    }
+    (globalThis as GlobalWithTextEncoding)[symbol] = textEncoding;
   }
   return (globalThis as GlobalWithTextEncoding)[symbol] as TextEncoding;
 }
@@ -97,6 +110,10 @@ type GlobalWithTextEncoderDecoder = {
   TextEncoder: {
     new (): {
       encode(text: string): Uint8Array<ArrayBuffer>;
+      encodeInto?(
+        text: string,
+        dest: Uint8Array,
+      ): { read: number; written: number };
     };
   };
   TextDecoder: {
