@@ -12,6 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Native Uint8Array.fromBase64, if the runtime provides it.
+const nativeUint8ArrayFromBase64 = (
+  Uint8Array as Partial<{
+    fromBase64(base64Str: string): Uint8Array<ArrayBuffer>;
+  }>
+).fromBase64;
+
 /**
  * Decodes a base64 string to a byte array.
  *
@@ -24,6 +31,15 @@
  *   no padding
  */
 export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
+  if (nativeUint8ArrayFromBase64) {
+    try {
+      return nativeUint8ArrayFromBase64(base64Str);
+    } catch {
+      // The native decoder rejects base64url and inner padding, which we
+      // accept. Fall through to the implementation below, which is lenient,
+      // and raises our own error for genuinely invalid input.
+    }
+  }
   const table = getDecodeTable();
   // estimate byte size, not accounting for inner padding and whitespace
   let es = (base64Str.length * 3) / 4;
