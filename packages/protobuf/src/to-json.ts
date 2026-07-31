@@ -40,10 +40,7 @@ import type {
   Value,
 } from "./wkt/index.js";
 import { anyUnpack } from "./wkt/index.js";
-import {
-  hasCustomJsonRepresentation,
-  isWrapperDesc,
-} from "./wkt/wrappers.js";
+import { hasCustomJsonRepresentation, isWrapperDesc } from "./wkt/wrappers.js";
 import {
   durationSecondsMax,
   durationSecondsMin,
