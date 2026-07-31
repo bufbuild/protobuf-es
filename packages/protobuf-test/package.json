@@ -5,7 +5,7 @@
     "prebuild": "rm -rf ./dist/*",
     "build": "../../node_modules/typescript/bin/tsc --project tsconfig.json --outDir ./dist && npm run build:erasable",
     "build:erasable": "../../node_modules/typescript/bin/tsc --project tsconfig.erasable.json --noEmit",
-    "postbuild": "cp src/perf-payload.* dist && cp -r src/gen/js* dist/gen",
+    "postbuild": "cp -r src/gen/js* dist/gen",
     "pregenerate": "rm -rf src/gen/*/*",
     "generate": "npm run generate:ts && npm run generate:js && npm run generate:ts,json_types && npm run generate:js,json_types && npm run generate:ts,valid_types && npm run generate:js,valid_types && npm run generate:ts,erasable && npm run generate:js,erasable",
     "generate:ts": "protoc --es_out=src/gen/ts --es_opt=target=ts,import_extension=js     --proto_path=. $(buf ls-files extra) --proto_path=$(upstream-include test) $(upstream-files test) google/protobuf/type.proto",
@@ -17,9 +17,6 @@
     "generate:ts,erasable": "protoc --es_out=src/gen/ts,erasable --es_opt=target=ts,import_extension=js,erasable_syntax=true --proto_path=. extra/erasable_syntax.proto",
     "generate:js,erasable": "protoc --es_out=src/gen/js,erasable --es_opt=target=js+dts,import_extension=js,erasable_syntax=true --proto_path=. extra/erasable_syntax.proto",
     "postgenerate": "license-header src/gen",
-    "perf": "tsx src/perf.ts benchmark '.*'",
-    "profile": "dexnode dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
-    "flamegraph": "npx 0x -- node dist/esm/perf.js run 'fromBinary perf-payload.bin' 10000",
     "test": "tsx --test $(find src -type f -path '*.test.ts')",
     "format": "biome format --write",
     "license-header": "license-header",
@@ -29,10 +26,6 @@
   "dependencies": {
     "@bufbuild/protobuf": "2.13.0",
     "@bufbuild/protoc-gen-es": "2.13.0",
-    "@types/benchmark": "^2.1.5",
-    "0x": "^6.0.0",
-    "benchmark": "^2.1.4",
-    "dexnode": "^1.2.2",
     "long": "~5.3.2",
     "upstream-protobuf": "*"
   }
