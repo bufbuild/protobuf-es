@@ -200,6 +200,7 @@ If you prefer `protoc`, that works too. `protoc-gen-es` is a normal plugin, not 
 
 ## Compatibility
 
+- [Baseline web browsers](https://developer.mozilla.org/en-US/docs/Glossary/Baseline/Compatibility) from the last 2.5 years are supported.
 - [Node.js](https://nodejs.org/): All maintained releases are supported.
 - [Deno](https://deno.com/): Latest LTS release is supported.
 - [Bun](https://bun.com/): Latest v1 release is supported.
