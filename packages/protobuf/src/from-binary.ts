@@ -13,15 +13,14 @@
 // limitations under the License.
 
 import { type DescField, type DescMessage, ScalarType } from "./descriptors.js";
-import type { MessageShape } from "./types.js";
-import type {
-  ReflectList,
-  ReflectMap,
-  ReflectMessage,
-} from "./reflect/index.js";
+import type { Message, MessageShape, UnknownField } from "./types.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
-import type { ScalarValue } from "./reflect/scalar.js";
-import { reflect } from "./reflect/reflect.js";
+import type { ReflectMessage } from "./reflect/index.js";
+import { FieldError } from "./reflect/error.js";
+import { unsafeLocal } from "./reflect/unsafe.js";
+import { localMessageMapper } from "./reflect/message.js";
+import { create } from "./create.js";
+import { protoInt64 } from "./proto-int64.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";
 import { varint32write } from "./wire/varint.js";
 
@@ -67,15 +66,14 @@ export function fromBinary<Desc extends DescMessage>(
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc> {
-  const msg = reflect(schema, undefined, false);
-  readMessage(
-    msg,
+  const message = create(schema);
+  compiledReader(schema).read(
+    message as Record<string, unknown>,
     new BinaryReader(bytes),
     makeReadContext(options),
-    false,
     bytes.byteLength,
   );
-  return msg.message as MessageShape<Desc>;
+  return message;
 }
 
 /**
@@ -93,66 +91,179 @@ export function mergeFromBinary<Desc extends DescMessage>(
   bytes: Uint8Array,
   options?: Partial<BinaryReadOptions>,
 ): MessageShape<Desc> {
-  readMessage(
-    reflect(schema, target, false),
+  if (
+    (target as Message).$typeName !== schema.typeName &&
+    schema.fields.length > 0
+  ) {
+    throw new FieldError(
+      schema.fields[0],
+      `cannot use ${schema.fields[0]} with message ${(target as Message).$typeName}`,
+      "ForeignFieldError",
+    );
+  }
+  compiledReader(schema).read(
+    target as Record<string, unknown>,
     new BinaryReader(bytes),
     makeReadContext(options),
-    false,
     bytes.byteLength,
   );
   return target;
 }
 
 /**
- * If `delimited` is false, read the length given in `lengthOrDelimitedFieldNo`.
- *
- * If `delimited` is true, read until an EndGroup tag. `lengthOrDelimitedFieldNo`
- * is the expected field number.
- *
- * @private
+ * A message decoder, compiled from a descriptor ahead of time so that
+ * decoding does not interpret the descriptor for every message.
  */
-function readMessage(
-  message: ReflectMessage,
+interface CompiledReader {
+  /**
+   * Read a message body of `length` bytes.
+   */
+  read(
+    message: Record<string, unknown>,
+    reader: BinaryReader,
+    ctx: BinaryReadContext,
+    length: number,
+  ): void;
+
+  /**
+   * Read a message with the delimited encoding (group), until the EndGroup
+   * tag with the field number `fieldNo`.
+   */
+  readGroup(
+    message: Record<string, unknown>,
+    reader: BinaryReader,
+    ctx: BinaryReadContext,
+    fieldNo: number,
+  ): void;
+}
+
+/**
+ * A decoder for a single field. Called with the reader positioned after
+ * the field's tag.
+ */
+type CompiledFieldReader = (
+  message: Record<string, unknown>,
   reader: BinaryReader,
   ctx: BinaryReadContext,
-  delimited: boolean,
-  lengthOrDelimitedFieldNo: number,
-): void {
-  if (++ctx.depth > ctx.recursionLimit) {
-    throw new Error(
-      `cannot decode ${message.desc} from binary: maximum recursion depth of ${ctx.recursionLimit} reached`,
-    );
+  wireType: WireType,
+) => void;
+
+const compiledReaders = new WeakMap<DescMessage, CompiledReader>();
+
+/**
+ * Return the compiled decoder for a message, compiling it on first use.
+ */
+function compiledReader(desc: DescMessage): CompiledReader {
+  let compiled = compiledReaders.get(desc);
+  if (compiled === undefined) {
+    compiled = compileMessage(desc);
   }
-  const end = delimited ? reader.len : reader.pos + lengthOrDelimitedFieldNo;
-  let fieldNo: number | undefined;
-  let wireType: WireType | undefined;
-  const unknownFields = message.getUnknown() ?? [];
-  while (reader.pos < end) {
-    [fieldNo, wireType] = reader.tag();
-    if (delimited && wireType == WireType.EndGroup) {
-      break;
+  return compiled;
+}
+
+function compileMessage(desc: DescMessage): CompiledReader {
+  const descString = String(desc);
+  const fieldReaders = new Map<number, CompiledFieldReader>();
+  const compiled: CompiledReader = {
+    read: compileMessageReader(descString, fieldReaders),
+    readGroup: compileGroupReader(descString, fieldReaders),
+  };
+  // Register before compiling fields, so that recursive message types
+  // resolve to this instance instead of compiling endlessly.
+  compiledReaders.set(desc, compiled);
+  for (const field of desc.fields) {
+    fieldReaders.set(field.number, compileFieldReader(field));
+  }
+  return compiled;
+}
+
+/**
+ * Create a decoder for a length-prefixed message body, dispatching wire
+ * records to the compiled field decoders by field number.
+ */
+function compileMessageReader(
+  descString: string,
+  fieldReaders: Map<number, CompiledFieldReader>,
+): CompiledReader["read"] {
+  return (message, reader, ctx, length) => {
+    if (++ctx.depth > ctx.recursionLimit) {
+      throw new Error(
+        `cannot decode ${descString} from binary: maximum recursion depth of ${ctx.recursionLimit} reached`,
+      );
     }
-    const field = message.findNumber(fieldNo);
-    if (!field) {
-      // Use remaining recursion budget for skipping nested groups
-      const recursionLimit = ctx.recursionLimit - ctx.depth;
-      const data = reader.skip(wireType, fieldNo, recursionLimit);
-      if (ctx.readUnknownFields) {
-        unknownFields.push({ no: fieldNo, wireType, data });
+    const end = reader.pos + length;
+    const unknownFields =
+      (message.$unknown as UnknownField[] | undefined) ?? [];
+    while (reader.pos < end) {
+      const [fieldNo, wireType] = reader.tag();
+      const fieldReader = fieldReaders.get(fieldNo);
+      if (fieldReader === undefined) {
+        // Use remaining recursion budget for skipping nested groups
+        const data = reader.skip(
+          wireType,
+          fieldNo,
+          ctx.recursionLimit - ctx.depth,
+        );
+        if (ctx.readUnknownFields) {
+          unknownFields.push({ no: fieldNo, wireType, data });
+        }
+        continue;
       }
-      continue;
+      fieldReader(message, reader, ctx, wireType);
     }
-    readField(message, reader, field, wireType, ctx);
-  }
-  if (delimited) {
-    if (wireType != WireType.EndGroup || fieldNo !== lengthOrDelimitedFieldNo) {
+    if (unknownFields.length > 0) {
+      message.$unknown = unknownFields;
+    }
+    ctx.depth--;
+  };
+}
+
+/**
+ * Create a decoder for a message with the delimited encoding (group),
+ * reading until the EndGroup tag, like compileMessageReader.
+ */
+function compileGroupReader(
+  descString: string,
+  fieldReaders: Map<number, CompiledFieldReader>,
+): CompiledReader["readGroup"] {
+  return (message, reader, ctx, fieldNo) => {
+    if (++ctx.depth > ctx.recursionLimit) {
+      throw new Error(
+        `cannot decode ${descString} from binary: maximum recursion depth of ${ctx.recursionLimit} reached`,
+      );
+    }
+    let recordFieldNo: number | undefined;
+    let wireType: WireType | undefined;
+    const unknownFields =
+      (message.$unknown as UnknownField[] | undefined) ?? [];
+    while (reader.pos < reader.len) {
+      [recordFieldNo, wireType] = reader.tag();
+      if (wireType == WireType.EndGroup) {
+        break;
+      }
+      const fieldReader = fieldReaders.get(recordFieldNo);
+      if (fieldReader === undefined) {
+        // Use remaining recursion budget for skipping nested groups
+        const data = reader.skip(
+          wireType,
+          recordFieldNo,
+          ctx.recursionLimit - ctx.depth,
+        );
+        if (ctx.readUnknownFields) {
+          unknownFields.push({ no: recordFieldNo, wireType, data });
+        }
+        continue;
+      }
+      fieldReader(message, reader, ctx, wireType);
+    }
+    if (wireType != WireType.EndGroup || recordFieldNo !== fieldNo) {
       throw new Error("invalid end group tag");
     }
-  }
-  if (unknownFields.length > 0) {
-    message.setUnknown(unknownFields);
-  }
-  ctx.depth--;
+    if (unknownFields.length > 0) {
+      message.$unknown = unknownFields;
+    }
+    ctx.depth--;
+  };
 }
 
 /**
@@ -164,183 +275,360 @@ export function readField(
   field: DescField,
   wireType: WireType,
   ctx: BinaryReadContext,
-) {
-  switch (field.fieldKind) {
-    case "scalar":
-      message.set(
-        field,
-        readScalar(reader, field.scalar, field.utf8Validation),
-      );
-      break;
-    case "enum":
-      const val = readScalar(reader, ScalarType.INT32);
-      if (field.enum.open) {
-        message.set(field, val);
-      } else {
-        const ok = field.enum.values.some((v) => v.number === val);
-        if (ok) {
-          message.set(field, val);
-        } else if (ctx.readUnknownFields) {
-          const bytes: number[] = [];
-          varint32write(val as number, bytes);
-          const unknownFields = message.getUnknown() ?? [];
-          unknownFields.push({
-            no: field.number,
-            wireType,
-            data: new Uint8Array(bytes),
-          });
-          message.setUnknown(unknownFields);
-        }
-      }
-      break;
-    case "message":
-      message.set(
-        field,
-        readMessageField(reader, ctx, field, message.get(field)),
-      );
-      break;
-    case "list":
-      readListField(reader, wireType, message.get(field), ctx);
-      break;
-    case "map":
-      readMapEntry(reader, message.get(field), ctx);
-      break;
-  }
-}
-
-// Read a map field, expecting key field = 1, value field = 2
-function readMapEntry(
-  reader: BinaryReader,
-  map: ReflectMap,
-  ctx: BinaryReadContext,
 ): void {
-  const field = map.field();
-  let key: ScalarValue | undefined;
-  let val: ScalarValue | ReflectMessage | undefined;
-  // Read the length of the map entry, which is a varint.
-  const len = reader.uint32();
-  // WARNING: Calculate end AFTER advancing reader.pos (above), so that
-  //          reader.pos is at the start of the map entry.
-  const end = reader.pos + len;
-  while (reader.pos < end) {
-    const [fieldNo] = reader.tag();
-    switch (fieldNo) {
-      case 1:
-        key = readScalar(reader, field.mapKey, field.utf8Validation);
-        break;
-      case 2:
-        switch (field.mapKind) {
-          case "scalar":
-            val = readScalar(reader, field.scalar, field.utf8Validation);
-            break;
-          case "enum":
-            val = reader.int32();
-            break;
-          case "message":
-            val = readMessageField(reader, ctx, field);
-            break;
-        }
-        break;
-    }
-  }
-  if (key === undefined) {
-    key = scalarZeroValue(field.mapKey, false);
-  }
-  if (val === undefined) {
-    switch (field.mapKind) {
-      case "scalar":
-        val = scalarZeroValue(field.scalar, false);
-        break;
-      case "enum":
-        val = field.enum.values[0].number;
-        break;
-      case "message":
-        val = reflect(field.message, undefined, false);
-        break;
-    }
-  }
-  map.set(key, val);
-}
-
-function readListField(
-  reader: BinaryReader,
-  wireType: WireType,
-  list: ReflectList,
-  ctx: BinaryReadContext,
-) {
-  const field = list.field();
-  if (field.listKind === "message") {
-    list.add(readMessageField(reader, ctx, field));
-    return;
-  }
-  const scalarType = field.scalar ?? ScalarType.INT32;
-  const packed =
-    wireType == WireType.LengthDelimited &&
-    scalarType != ScalarType.STRING &&
-    scalarType != ScalarType.BYTES;
-  if (!packed) {
-    list.add(readScalar(reader, scalarType, field.utf8Validation));
-    return;
-  }
-  const e = reader.uint32() + reader.pos;
-  while (reader.pos < e) {
-    list.add(readScalar(reader, scalarType, field.utf8Validation));
-  }
-}
-
-function readMessageField(
-  reader: BinaryReader,
-  ctx: BinaryReadContext,
-  field: DescField & { message: DescMessage },
-  mergeMessage?: ReflectMessage,
-): ReflectMessage {
-  const delimited = field.delimitedEncoding;
-  const message = mergeMessage ?? reflect(field.message, undefined, false);
-  readMessage(
-    message,
+  compileFieldReader(field)(
+    message[unsafeLocal] as unknown as Record<string, unknown>,
     reader,
     ctx,
-    delimited,
-    delimited ? field.number : reader.uint32(),
+    wireType,
   );
-  return message;
 }
 
-function readScalar(
+function compileFieldReader(field: DescField): CompiledFieldReader {
+  switch (field.fieldKind) {
+    case "scalar":
+      return compileScalarFieldReader(field);
+    case "enum":
+      return compileEnumFieldReader(field);
+    case "message":
+      return compileMessageFieldReader(field);
+    case "list":
+      return compileListFieldReader(field);
+    case "map":
+      return compileMapFieldReader(field);
+  }
+}
+
+function compileScalarFieldReader(
+  field: DescField & { fieldKind: "scalar" },
+): CompiledFieldReader {
+  const readScalar = compileScalarReader(
+    field.scalar,
+    field.utf8Validation,
+    field.longAsString,
+  );
+  const localName = field.localName;
+  if (field.oneof) {
+    const oneofLocalName = field.oneof.localName;
+    return (message, reader) => {
+      message[oneofLocalName] = {
+        case: localName,
+        value: readScalar(reader),
+      };
+    };
+  }
+  return (message, reader) => {
+    message[localName] = readScalar(reader);
+  };
+}
+
+function compileEnumFieldReader(
+  field: DescField & { fieldKind: "enum" },
+): CompiledFieldReader {
+  const localName = field.localName;
+  const oneofLocalName = field.oneof?.localName;
+  if (field.enum.open) {
+    if (oneofLocalName !== undefined) {
+      return (message, reader) => {
+        message[oneofLocalName] = { case: localName, value: reader.int32() };
+      };
+    }
+    return (message, reader) => {
+      message[localName] = reader.int32();
+    };
+  }
+  // Closed enums: unknown values are stored as unknown fields.
+  const values = field.enum.values;
+  const fieldNo = field.number;
+  return (message, reader, ctx, wireType) => {
+    const val = reader.int32();
+    if (values.some((v) => v.number === val)) {
+      if (oneofLocalName !== undefined) {
+        message[oneofLocalName] = { case: localName, value: val };
+      } else {
+        message[localName] = val;
+      }
+    } else if (ctx.readUnknownFields) {
+      const bytes: number[] = [];
+      varint32write(val, bytes);
+      const unknownFields =
+        (message.$unknown as UnknownField[] | undefined) ?? [];
+      unknownFields.push({
+        no: fieldNo,
+        wireType,
+        data: new Uint8Array(bytes),
+      });
+      message.$unknown = unknownFields;
+    }
+  };
+}
+
+function compileMessageFieldReader(
+  field: DescField & { fieldKind: "message" },
+): CompiledFieldReader {
+  const localName = field.localName;
+  const { toMessage, toLocal } = localMessageMapper(field);
+  const readChild = compileChildReader(field);
+  if (field.oneof) {
+    const oneofLocalName = field.oneof.localName;
+    return (message, reader, ctx) => {
+      const oneof = message[oneofLocalName] as {
+        case: string | undefined;
+        value?: unknown;
+      };
+      const child = toMessage(
+        oneof.case === localName ? oneof.value : undefined,
+      );
+      readChild(child, reader, ctx);
+      message[oneofLocalName] = { case: localName, value: toLocal(child) };
+    };
+  }
+  return (message, reader, ctx) => {
+    const child = toMessage(message[localName]);
+    readChild(child, reader, ctx);
+    message[localName] = toLocal(child);
+  };
+}
+
+/**
+ * Compile a decoder for the wire format of a message field, honoring the
+ * delimited encoding of the field.
+ */
+function compileChildReader(
+  field: DescField &
+    ({ fieldKind: "message" } | { fieldKind: "list"; listKind: "message" }),
+): (
+  child: Record<string, unknown>,
   reader: BinaryReader,
-  type: ScalarType,
-  validateUtf8 = false,
-): ScalarValue {
+  ctx: BinaryReadContext,
+) => void {
+  const compiledChild = compiledReader(field.message);
+  if (field.delimitedEncoding) {
+    const fieldNo = field.number;
+    return (child, reader, ctx) =>
+      compiledChild.readGroup(child, reader, ctx, fieldNo);
+  }
+  return (child, reader, ctx) =>
+    compiledChild.read(child, reader, ctx, reader.uint32());
+}
+
+function compileListFieldReader(
+  field: DescField & { fieldKind: "list" },
+): CompiledFieldReader {
+  const localName = field.localName;
+  if (field.listKind == "message") {
+    const { toMessage, toLocal } = localMessageMapper(field);
+    const readChild = compileChildReader(field);
+    return (message, reader, ctx) => {
+      const child = toMessage(undefined);
+      readChild(child, reader, ctx);
+      (message[localName] as unknown[]).push(toLocal(child));
+    };
+  }
+  const scalarType = field.listKind == "enum" ? ScalarType.INT32 : field.scalar;
+  const readScalar = compileScalarReader(
+    scalarType,
+    field.utf8Validation,
+    (field as { longAsString?: boolean }).longAsString ?? false,
+  );
+  const packedPossible =
+    scalarType != ScalarType.STRING && scalarType != ScalarType.BYTES;
+  return (message, reader, ctx, wireType) => {
+    const items = message[localName] as unknown[];
+    if (wireType == WireType.LengthDelimited && packedPossible) {
+      const end = reader.uint32() + reader.pos;
+      while (reader.pos < end) {
+        items.push(readScalar(reader));
+      }
+    } else {
+      items.push(readScalar(reader));
+    }
+  };
+}
+
+function compileMapFieldReader(
+  field: DescField & { fieldKind: "map" },
+): CompiledFieldReader {
+  const localName = field.localName;
+  const readKey = compileScalarReader(
+    field.mapKey,
+    field.utf8Validation,
+    false,
+  );
+  const keyToLocal = compileMapKeyToLocal(field.mapKey);
+  const keyZero = scalarZeroValue(field.mapKey, false);
+  let readValue: (reader: BinaryReader, ctx: BinaryReadContext) => unknown;
+  let valueDefault: () => unknown;
+  switch (field.mapKind) {
+    case "scalar": {
+      const scalar = field.scalar;
+      const longAsString =
+        (field as { longAsString?: boolean }).longAsString === true;
+      const readScalar = compileScalarReader(
+        scalar,
+        field.utf8Validation,
+        longAsString,
+      );
+      readValue = (reader) => readScalar(reader);
+      // The default is converted like a read value: with longAsString, the
+      // 64-bit zero value is a string. Bytes zero values are created per
+      // entry, so that entries do not share one instance.
+      if (longAsString) {
+        valueDefault = () => "0";
+      } else if (scalar == ScalarType.BYTES) {
+        valueDefault = () => new Uint8Array(0);
+      } else {
+        const zero = scalarZeroValue(scalar, false);
+        valueDefault = () => zero;
+      }
+      break;
+    }
+    case "enum": {
+      const zero = field.enum.values[0].number;
+      readValue = (reader) => reader.int32();
+      valueDefault = () => zero;
+      break;
+    }
+    case "message": {
+      const { toMessage, toLocal } = localMessageMapper(field);
+      const readChild = compiledReader(field.message).read;
+      readValue = (reader, ctx) => {
+        const child = toMessage(undefined);
+        readChild(child, reader, ctx, reader.uint32());
+        return toLocal(child);
+      };
+      valueDefault = () => toLocal(toMessage(undefined));
+      break;
+    }
+  }
+  return (message, reader, ctx) => {
+    const record = message[localName] as Record<string, unknown>;
+    let key: unknown;
+    let val: unknown;
+    // Read the length of the map entry, which is a varint.
+    const len = reader.uint32();
+    // Calculate end AFTER advancing reader.pos (above), so that reader.pos is
+    // at the start of the map entry.
+    const end = reader.pos + len;
+    while (reader.pos < end) {
+      // Map entries have the key in field 1, and the value in field 2.
+      const [fieldNo] = reader.tag();
+      switch (fieldNo) {
+        case 1:
+          key = readKey(reader);
+          break;
+        case 2:
+          val = readValue(reader, ctx);
+          break;
+      }
+    }
+    if (key === undefined) {
+      key = keyZero;
+    }
+    if (val === undefined) {
+      val = valueDefault();
+    }
+    record[keyToLocal(key) as string] = val;
+  };
+}
+
+/**
+ * Returns a converter from a map key value read from the wire to its local
+ * representation as an object key: booleans and 64-bit integers become
+ * strings, strings and numbers are used as-is.
+ */
+function compileMapKeyToLocal(
+  type: Exclude<
+    ScalarType,
+    ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES
+  >,
+): (key: unknown) => unknown {
   switch (type) {
     case ScalarType.STRING:
-      return reader.string(validateUtf8);
+      return (key) => key;
     case ScalarType.BOOL:
-      return reader.bool();
-    case ScalarType.DOUBLE:
-      return reader.double();
-    case ScalarType.FLOAT:
-      return reader.float();
-    case ScalarType.INT32:
-      return reader.int32();
+      return (key) => String(key);
     case ScalarType.INT64:
-      return reader.int64();
-    case ScalarType.UINT64:
-      return reader.uint64();
-    case ScalarType.FIXED64:
-      return reader.fixed64();
-    case ScalarType.BYTES:
-      return reader.bytes();
-    case ScalarType.FIXED32:
-      return reader.fixed32();
-    case ScalarType.SFIXED32:
-      return reader.sfixed32();
-    case ScalarType.SFIXED64:
-      return reader.sfixed64();
     case ScalarType.SINT64:
-      return reader.sint64();
+    case ScalarType.SFIXED64:
+    case ScalarType.UINT64:
+    case ScalarType.FIXED64:
+      // 64-bit keys are strings already when BigInt is unavailable.
+      return protoInt64.supported ? (key) => String(key) : (key) => key;
+    default:
+      // Handles INT32, UINT32, SINT32, FIXED32, SFIXED32.
+      // We do not use individual cases to save a few bytes code size.
+      return (key) => key;
+  }
+}
+
+/**
+ * Returns a reader for a scalar value, including the conversion to the
+ * local representation for 64-bit integers: the reader returns them as
+ * strings when BigInt is unavailable, and they are run through protoInt64,
+ * mirroring the reflect layer. Which case applies is fixed at load time,
+ * see protoInt64.supported.
+ */
+function compileScalarReader(
+  type: ScalarType,
+  utf8Validation: boolean,
+  longAsString: boolean,
+): (reader: BinaryReader) => unknown {
+  switch (type) {
+    case ScalarType.STRING:
+      return (reader) => reader.string(utf8Validation);
+    case ScalarType.BOOL:
+      return (reader) => reader.bool();
+    case ScalarType.DOUBLE:
+      return (reader) => reader.double();
+    case ScalarType.FLOAT:
+      return (reader) => reader.float();
+    case ScalarType.INT32:
+      return (reader) => reader.int32();
+    case ScalarType.INT64:
+      if (longAsString) {
+        return (reader) => String(reader.int64());
+      }
+      return protoInt64.supported
+        ? (reader) => reader.int64()
+        : (reader) => protoInt64.parse(reader.int64());
+    case ScalarType.UINT64:
+      if (longAsString) {
+        return (reader) => String(reader.uint64());
+      }
+      return protoInt64.supported
+        ? (reader) => reader.uint64()
+        : (reader) => protoInt64.uParse(reader.uint64());
+    case ScalarType.FIXED64:
+      if (longAsString) {
+        return (reader) => String(reader.fixed64());
+      }
+      return protoInt64.supported
+        ? (reader) => reader.fixed64()
+        : (reader) => protoInt64.uParse(reader.fixed64());
+    case ScalarType.BYTES:
+      return (reader) => reader.bytes();
+    case ScalarType.FIXED32:
+      return (reader) => reader.fixed32();
+    case ScalarType.SFIXED32:
+      return (reader) => reader.sfixed32();
+    case ScalarType.SFIXED64:
+      if (longAsString) {
+        return (reader) => String(reader.sfixed64());
+      }
+      return protoInt64.supported
+        ? (reader) => reader.sfixed64()
+        : (reader) => protoInt64.parse(reader.sfixed64());
+    case ScalarType.SINT64:
+      if (longAsString) {
+        return (reader) => String(reader.sint64());
+      }
+      return protoInt64.supported
+        ? (reader) => reader.sint64()
+        : (reader) => protoInt64.parse(reader.sint64());
     case ScalarType.UINT32:
-      return reader.uint32();
+      return (reader) => reader.uint32();
     case ScalarType.SINT32:
-      return reader.sint32();
+      return (reader) => reader.sint32();
   }
 }

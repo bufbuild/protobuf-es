@@ -14,7 +14,6 @@
 
 import {
   type DescEnum,
-  type DescExtension,
   type DescField,
   type DescMessage,
   type DescOneof,
@@ -24,17 +23,22 @@ import type { JsonValue } from "./json-value.js";
 import { protoInt64 } from "./proto-int64.js";
 import { create } from "./create.js";
 import type { Registry } from "./registry.js";
-import type {
-  ReflectList,
-  ReflectMap,
-  ReflectMessage,
-} from "./reflect/reflect-types.js";
-import { reflect } from "./reflect/reflect.js";
 import { FieldError, isFieldError } from "./reflect/error.js";
-import { formatVal } from "./reflect/reflect-check.js";
+import {
+  formatVal,
+  reasonSingular,
+  checkScalarValue,
+} from "./reflect/reflect-check.js";
 import { protoSnakeCase } from "./reflect/names.js";
-import type { ScalarValue } from "./reflect/scalar.js";
-import type { EnumJsonType, EnumShape, MessageShape } from "./types.js";
+import { scalarZeroValue } from "./reflect/scalar.js";
+import { unsafeLocal } from "./reflect/unsafe.js";
+import { localMessageMapper } from "./reflect/message.js";
+import type {
+  EnumJsonType,
+  EnumShape,
+  Message,
+  MessageShape,
+} from "./types.js";
 import { base64Decode } from "./wire/base64-encoding.js";
 import type {
   Any,
@@ -55,6 +59,15 @@ import {
   ValueSchema,
 } from "./wkt/index.js";
 import { createExtensionContainer, setExtension } from "./extensions.js";
+import {
+  durationSecondsMax,
+  durationSecondsMin,
+  timestampMsMax,
+  timestampMsMin,
+} from "./wkt/json.js";
+
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name = $number;
+const IMPLICIT = 2;
 
 /**
  * Options for parsing JSON data.
@@ -145,19 +158,9 @@ export function fromJson<Desc extends DescMessage>(
   json: JsonValue,
   options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
-  const msg = reflect(schema);
-  try {
-    readMessage(msg, json, makeReadContext(options));
-  } catch (e) {
-    if (isFieldError(e)) {
-      // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
-      throw new Error(`cannot decode ${e.field()} from JSON: ${e.message}`, {
-        cause: e,
-      });
-    }
-    throw e;
-  }
-  return msg.message as MessageShape<Desc>;
+  const message = create(schema);
+  readMessage(schema, message, json, options);
+  return message;
 }
 
 /**
@@ -178,8 +181,36 @@ export function mergeFromJson<Desc extends DescMessage>(
   json: JsonValue,
   options?: Partial<JsonReadOptions>,
 ): MessageShape<Desc> {
+  if (
+    (target as Message).$typeName !== schema.typeName &&
+    schema.fields.length > 0
+  ) {
+    throw new FieldError(
+      schema.fields[0],
+      `cannot use ${schema.fields[0]} with message ${(target as Message).$typeName}`,
+      "ForeignFieldError",
+    );
+  }
+  readMessage(schema, target, json, options);
+  return target;
+}
+
+/**
+ * Run the compiled decoder for the message, wrapping FieldErrors with the
+ * standard error message.
+ */
+function readMessage(
+  schema: DescMessage,
+  message: MessageShape<DescMessage>,
+  json: JsonValue,
+  options: Partial<JsonReadOptions> | undefined,
+): void {
   try {
-    readMessage(reflect(schema, target), json, makeReadContext(options));
+    compiledReader(schema)(
+      message as Record<string, unknown>,
+      json,
+      makeReadContext(options),
+    );
   } catch (e) {
     if (isFieldError(e)) {
       // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
@@ -189,7 +220,6 @@ export function mergeFromJson<Desc extends DescMessage>(
     }
     throw e;
   }
-  return target;
 }
 
 /**
@@ -199,7 +229,9 @@ export function enumFromJson<Desc extends DescEnum>(
   descEnum: Desc,
   json: EnumJsonType<Desc>,
 ): EnumShape<Desc> {
-  return readEnum(descEnum, json, false) as EnumShape<Desc>;
+  // With ignoreUnknownFields false, the converter never returns the token
+  // for ignored unknown enum values.
+  return compileEnumConverter(descEnum)(json, false) as EnumShape<Desc>;
 }
 
 /**
@@ -212,336 +244,645 @@ export function isEnumJson<Desc extends DescEnum>(
   return undefined !== descEnum.values.find((v) => v.name === value);
 }
 
-const messageJsonFields = new WeakMap<DescMessage, Map<string, DescField>>();
-
-function getJsonField(desc: DescMessage, jsonKey: string) {
-  if (!messageJsonFields.has(desc)) {
-    const jsonNames = new Map<string, DescField>();
-    for (const field of desc.fields) {
-      jsonNames.set(field.name, field).set(field.jsonName, field);
-    }
-    messageJsonFields.set(desc, jsonNames);
-  }
-  return messageJsonFields.get(desc)?.get(jsonKey);
-}
-
-function readMessage(
-  msg: ReflectMessage,
+/**
+ * A message or field decoder, compiled from a descriptor ahead of time so
+ * that decoding does not interpret the descriptor for every message.
+ */
+type CompiledJsonReader = (
+  message: Record<string, unknown>,
   json: JsonValue,
   ctx: JsonReadContext,
-) {
-  if (++ctx.depth > ctx.recursionLimit) {
-    throw new Error(
-      `cannot decode ${msg.desc} from JSON: maximum recursion depth of ${ctx.recursionLimit} reached`,
-    );
+) => void;
+
+const compiledReaders = new WeakMap<DescMessage, CompiledJsonReader>();
+
+/**
+ * Return the compiled decoder for a message, compiling it on first use.
+ */
+function compiledReader(desc: DescMessage): CompiledJsonReader {
+  let compiled = compiledReaders.get(desc);
+  if (compiled === undefined) {
+    compiled = compileMessage(desc);
   }
-  if (tryWktFromJson(msg, json, ctx)) {
-    ctx.depth--;
-    return;
-  }
-  if (json == null || Array.isArray(json) || typeof json != "object") {
-    throw new Error(`cannot decode ${msg.desc} from JSON: ${formatVal(json)}`);
-  }
-  const oneofSeen = new Map<DescOneof, DescField>();
-  const fieldSeen = new Set<DescField>();
-  for (const [jsonKey, jsonValue] of Object.entries(json)) {
-    const field = getJsonField(msg.desc, jsonKey);
-    if (field) {
-      if (fieldSeen.has(field)) {
-        // The same field may be set by its proto name and its JSON name, or by
-        // a duplicate or unicode-escaped key that JSON.parse already collapsed.
-        // Checked before the null-skip below so that a null entry still counts.
-        throw new FieldError(field, "set multiple times");
-      }
-      fieldSeen.add(field);
-      if (field.oneof && jsonValue === null && field.fieldKind == "scalar") {
-        // see conformance test Required.Proto3.JsonInput.OneofFieldNull{First,Second}
-        continue;
-      }
-      if (field.oneof) {
-        const seen = oneofSeen.get(field.oneof);
-        if (seen !== undefined) {
-          throw new FieldError(
-            field.oneof,
-            `oneof set multiple times by ${seen.name} and ${field.name}`,
-          );
-        }
-        oneofSeen.set(field.oneof, field);
-      }
-      readField(msg, field, jsonValue, ctx);
-    } else {
-      let extension: DescExtension | undefined = undefined;
-      if (
-        jsonKey.startsWith("[") &&
-        jsonKey.endsWith("]") &&
-        // biome-ignore lint/suspicious/noAssignInExpressions: no
-        (extension = ctx.registry?.getExtension(
-          jsonKey.substring(1, jsonKey.length - 1),
-        )) &&
-        extension.extendee.typeName === msg.desc.typeName
-      ) {
-        const [container, field, get] = createExtensionContainer(extension);
-        readField(container, field, jsonValue, ctx);
-        setExtension(msg.message, extension, get());
-      }
-      if (!extension && !ctx.ignoreUnknownFields) {
+  return compiled;
+}
+
+interface CompiledFieldEntry {
+  read: CompiledJsonReader;
+  field: DescField;
+  oneof: DescOneof | undefined;
+  // A oneof member that is a scalar field skips JSON null, see conformance
+  // test Required.Proto3.JsonInput.OneofFieldNull{First,Second}.
+  oneofScalarNullSkip: boolean;
+}
+
+function compileMessage(desc: DescMessage): CompiledJsonReader {
+  const descString = String(desc);
+  const readWkt = compileWkt(desc);
+  if (readWkt !== undefined) {
+    // All message decoders count against the recursion limit, including
+    // well-known types with a custom JSON representation.
+    const compiled: CompiledJsonReader = (message, json, ctx) => {
+      if (++ctx.depth > ctx.recursionLimit) {
         throw new Error(
-          `cannot decode ${msg.desc} from JSON: key "${jsonKey}" is unknown`,
+          `cannot decode ${descString} from JSON: maximum recursion depth of ${ctx.recursionLimit} reached`,
         );
       }
+      readWkt(message, json, ctx);
+      ctx.depth--;
+    };
+    compiledReaders.set(desc, compiled);
+    return compiled;
+  }
+  const typeName = desc.typeName;
+  // Fields are looked up by their proto name and their JSON name.
+  const fieldsByJsonKey = new Map<string, CompiledFieldEntry>();
+  const compiled: CompiledJsonReader = (message, json, ctx) => {
+    if (++ctx.depth > ctx.recursionLimit) {
+      throw new Error(
+        `cannot decode ${descString} from JSON: maximum recursion depth of ${ctx.recursionLimit} reached`,
+      );
     }
-  }
-  ctx.depth--;
-}
-
-function readField(
-  msg: ReflectMessage,
-  field: DescField,
-  json: JsonValue,
-  ctx: JsonReadContext,
-) {
-  switch (field.fieldKind) {
-    case "scalar":
-      readScalarField(msg, field, json);
-      break;
-    case "enum":
-      readEnumField(msg, field, json, ctx);
-      break;
-    case "message":
-      readMessageField(msg, field, json, ctx);
-      break;
-    case "list":
-      readListField(msg.get(field), json, ctx);
-      break;
-    case "map":
-      readMapField(msg.get(field), json, ctx);
-      break;
-  }
-}
-
-function readListOrMapItem(
-  field: DescField & { fieldKind: "map" | "list" },
-  json: JsonValue,
-  ctx: JsonReadContext,
-) {
-  if (field.scalar && json !== null) {
-    return scalarFromJson(field, json);
-  }
-  if (field.message && !isResetSentinelNullValue(field, json)) {
-    const msgValue = reflect(field.message);
-    readMessage(msgValue, json, ctx);
-
-    return msgValue;
-  }
-  if (field.enum && !isResetSentinelNullValue(field, json)) {
-    return readEnum(field.enum, json, ctx.ignoreUnknownFields);
-  }
-
-  throw new FieldError(
-    field,
-    `${field.fieldKind === "list" ? "list item" : "map value"} must not be null`,
-  );
-}
-
-function readMapField(map: ReflectMap, json: JsonValue, ctx: JsonReadContext) {
-  if (json === null) {
-    return;
-  }
-  const field = map.field();
-  if (typeof json != "object" || Array.isArray(json)) {
-    throw new FieldError(field, "expected object, got " + formatVal(json));
-  }
-  const seen = new Set<unknown>();
-  for (const [jsonMapKey, jsonMapValue] of Object.entries(json)) {
-    const key = mapKeyFromJson(field.mapKey, jsonMapKey);
-    if (seen.has(key)) {
-      throw new FieldError(field, `duplicate map key "${jsonMapKey}"`);
+    if (json == null || Array.isArray(json) || typeof json != "object") {
+      throw new Error(
+        `cannot decode ${descString} from JSON: ${formatVal(json)}`,
+      );
     }
-    seen.add(key);
-    const value = readListOrMapItem(field, jsonMapValue, ctx);
-    if (value !== tokenIgnoredUnknownEnum) {
-      map.set(key, value);
+    const oneofSeen = new Map<DescOneof, DescField>();
+    const fieldSeen = new Set<DescField>();
+    for (const jsonKey of Object.keys(json)) {
+      const jsonValue = json[jsonKey];
+      const entry = fieldsByJsonKey.get(jsonKey);
+      if (entry !== undefined) {
+        const field = entry.field;
+        if (fieldSeen.has(field)) {
+          // The same field may be set by its proto name and its JSON name, or by
+          // a duplicate or unicode-escaped key that JSON.parse already collapsed.
+          // Checked before the null-skip below so that a null entry still counts.
+          throw new FieldError(field, "set multiple times");
+        }
+        fieldSeen.add(field);
+        if (entry.oneofScalarNullSkip && jsonValue === null) {
+          continue;
+        }
+        if (entry.oneof) {
+          const seen = oneofSeen.get(entry.oneof);
+          if (seen !== undefined) {
+            throw new FieldError(
+              entry.oneof,
+              `oneof set multiple times by ${seen.name} and ${field.name}`,
+            );
+          }
+          oneofSeen.set(entry.oneof, field);
+        }
+        entry.read(message, jsonValue, ctx);
+      } else {
+        const extension =
+          jsonKey.startsWith("[") && jsonKey.endsWith("]")
+            ? ctx.registry?.getExtension(
+                jsonKey.substring(1, jsonKey.length - 1),
+              )
+            : undefined;
+        if (extension?.extendee.typeName == typeName) {
+          const [container, field, get] = createExtensionContainer(extension);
+          compileFieldReader(field)(
+            container[unsafeLocal] as unknown as Record<string, unknown>,
+            jsonValue,
+            ctx,
+          );
+          setExtension(message as unknown as Message, extension, get());
+        }
+        if (extension === undefined && !ctx.ignoreUnknownFields) {
+          throw new Error(
+            `cannot decode ${descString} from JSON: key "${jsonKey}" is unknown`,
+          );
+        }
+      }
     }
+    ctx.depth--;
+  };
+  // Register before compiling fields, so that recursive message types
+  // resolve to this instance instead of compiling endlessly.
+  compiledReaders.set(desc, compiled);
+  for (const field of desc.fields) {
+    const entry: CompiledFieldEntry = {
+      read: compileFieldReader(field),
+      field,
+      oneof: field.oneof,
+      oneofScalarNullSkip:
+        field.oneof !== undefined && field.fieldKind == "scalar",
+    };
+    fieldsByJsonKey.set(field.name, entry).set(field.jsonName, entry);
   }
-}
-
-function readListField(
-  list: ReflectList,
-  json: JsonValue,
-  ctx: JsonReadContext,
-) {
-  if (json === null) {
-    return;
-  }
-  const field = list.field();
-  if (!Array.isArray(json)) {
-    throw new FieldError(field, "expected Array, got " + formatVal(json));
-  }
-  for (const jsonItem of json) {
-    const value = readListOrMapItem(field, jsonItem, ctx);
-    if (value !== tokenIgnoredUnknownEnum) {
-      list.add(value);
-    }
-  }
-}
-
-function readMessageField(
-  msg: ReflectMessage,
-  field: DescField & { fieldKind: "message" },
-  json: JsonValue,
-  ctx: JsonReadContext,
-) {
-  if (isResetSentinelNullValue(field, json)) {
-    msg.clear(field);
-    return;
-  }
-  const msgValue = msg.isSet(field) ? msg.get(field) : reflect(field.message);
-  readMessage(msgValue, json, ctx);
-  msg.set(field, msgValue);
-}
-
-function readEnumField(
-  msg: ReflectMessage,
-  field: DescField & { fieldKind: "enum" },
-  json: JsonValue,
-  ctx: JsonReadContext,
-) {
-  if (isResetSentinelNullValue(field, json)) {
-    msg.clear(field);
-    return;
-  }
-  const enumValue = readEnum(field.enum, json, ctx.ignoreUnknownFields);
-  if (enumValue !== tokenIgnoredUnknownEnum) {
-    msg.set(field, enumValue);
-  }
-}
-
-function readScalarField(
-  msg: ReflectMessage,
-  field: DescField & { fieldKind: "scalar" },
-  json: JsonValue,
-) {
-  if (json === null) {
-    msg.clear(field);
-  } else {
-    msg.set(field, scalarFromJson(field, json));
-  }
+  return compiled;
 }
 
 /**
- * Indicates whether a value is a sentinel for reseting a field.
- *
- * For this to be true, the value must be a JSON null and the field must not
- * permit a present, Protobuf-serializable null.
- *
- * Only message google.protobuf.Value and enum google.protobuf.NullValue fields
- * permit Protobuf-serializable nulls.
- *
- * Note that field-resetting sentinel nulls are not permitted in lists and maps.
+ * Compile a decoder for a well-known type with a custom JSON representation,
+ * or return undefined for other messages. The recursion limit is enforced by
+ * the caller.
  */
-function isResetSentinelNullValue(
-  field: DescField & ({ message: DescMessage } | { enum: DescEnum }),
-  json: JsonValue,
-): boolean {
-  return (
-    json === null &&
-    field.message?.typeName != "google.protobuf.Value" &&
-    field.enum?.typeName != "google.protobuf.NullValue"
-  );
+function compileWkt(desc: DescMessage): CompiledJsonReader | undefined {
+  if (!desc.typeName.startsWith("google.protobuf.")) {
+    return undefined;
+  }
+  switch (desc.typeName) {
+    case "google.protobuf.Any":
+      return (message, json, ctx) =>
+        anyFromJson(message as unknown as Any, json, ctx);
+    case "google.protobuf.Timestamp":
+      return (message, json) =>
+        timestampFromJson(message as unknown as Timestamp, json);
+    case "google.protobuf.Duration":
+      return (message, json) =>
+        durationFromJson(message as unknown as Duration, json);
+    case "google.protobuf.FieldMask":
+      return (message, json) =>
+        fieldMaskFromJson(message as unknown as FieldMask, json);
+    case "google.protobuf.Struct":
+      return (message, json, ctx) =>
+        structFromJson(message as unknown as Struct, json, ctx);
+    case "google.protobuf.Value":
+      return (message, json, ctx) =>
+        valueFromJson(message as unknown as Value, json, ctx);
+    case "google.protobuf.ListValue":
+      return (message, json, ctx) =>
+        listValueFromJson(message as unknown as ListValue, json, ctx);
+    default:
+      if (isWrapperDesc(desc)) {
+        const valueField = desc.fields[0];
+        const localName = valueField.localName;
+        const scalar = valueField.scalar;
+        const longAsString = valueField.longAsString;
+        const readScalar = compileScalarConverter(valueField);
+        return (message, json) => {
+          if (json === null) {
+            message[localName] = scalarZeroValue(scalar, longAsString);
+          } else {
+            message[localName] = readScalar(json);
+          }
+        };
+      }
+      return undefined;
+  }
+}
+
+function compileFieldReader(field: DescField): CompiledJsonReader {
+  switch (field.fieldKind) {
+    case "scalar":
+      return compileScalarFieldReader(field);
+    case "enum":
+      return compileEnumFieldReader(field);
+    case "message":
+      return compileMessageFieldReader(field);
+    case "list":
+      return compileListFieldReader(field);
+    case "map":
+      return compileMapFieldReader(field);
+  }
+}
+
+function compileScalarFieldReader(
+  field: DescField & { fieldKind: "scalar" },
+): CompiledJsonReader {
+  const readScalar = compileScalarConverter(field);
+  const localName = field.localName;
+  if (field.oneof) {
+    // JSON null for a oneof scalar member is skipped by the message decoder.
+    const oneofLocalName = field.oneof.localName;
+    return (message, json) => {
+      message[oneofLocalName] = {
+        case: localName,
+        value: readScalar(json as NonNullable<JsonValue>),
+      };
+    };
+  }
+  const clear = compileClear(field);
+  return (message, json) => {
+    if (json === null) {
+      clear(message);
+    } else {
+      message[localName] = readScalar(json);
+    }
+  };
+}
+
+/**
+ * Compile a function that resets the field to unset, mirroring the clear
+ * operation of the reflect API for fields that are not part of a oneof.
+ */
+function compileClear(
+  field: DescField & ({ fieldKind: "scalar" } | { fieldKind: "enum" }),
+): (message: Record<string, unknown>) => void {
+  const localName = field.localName;
+  if (field.presence != IMPLICIT) {
+    // Fields with explicit presence have properties on the prototype chain
+    // for default / zero values (except for proto3). By deleting their own
+    // property, the field is reset.
+    return (message) => {
+      delete message[localName];
+    };
+  }
+  if (field.fieldKind == "enum") {
+    const zero = field.enum.values[0].number;
+    return (message) => {
+      message[localName] = zero;
+    };
+  }
+  const scalar = field.scalar;
+  const longAsString = field.longAsString;
+  return (message) => {
+    message[localName] = scalarZeroValue(scalar, longAsString);
+  };
+}
+
+function compileEnumFieldReader(
+  field: DescField & { fieldKind: "enum" },
+): CompiledJsonReader {
+  const readEnumValue = compileEnumConverter(field.enum);
+  const checkEnum = compileEnumCheck(field.enum);
+  const localName = field.localName;
+  // Fields with enum google.protobuf.NullValue permit a Protobuf-serializable
+  // null; for all other enums, JSON null resets the field.
+  const nullResets = field.enum.typeName != "google.protobuf.NullValue";
+  if (field.oneof) {
+    const oneofLocalName = field.oneof.localName;
+    return (message, json, ctx) => {
+      if (json === null && nullResets) {
+        const oneof = message[oneofLocalName] as { case: string | undefined };
+        if (oneof.case === localName) {
+          message[oneofLocalName] = { case: undefined };
+        }
+        return;
+      }
+      const value = readEnumValue(json, ctx.ignoreUnknownFields);
+      if (value === tokenIgnoredUnknownEnum) {
+        return;
+      }
+      const check = checkEnum(value);
+      if (check !== true) {
+        throw new FieldError(field, reasonSingular(field, value, check));
+      }
+      message[oneofLocalName] = { case: localName, value };
+    };
+  }
+  const clear = compileClear(field);
+  return (message, json, ctx) => {
+    if (json === null && nullResets) {
+      clear(message);
+      return;
+    }
+    const value = readEnumValue(json, ctx.ignoreUnknownFields);
+    if (value === tokenIgnoredUnknownEnum) {
+      return;
+    }
+    const check = checkEnum(value);
+    if (check !== true) {
+      throw new FieldError(field, reasonSingular(field, value, check));
+    }
+    message[localName] = value;
+  };
+}
+
+function compileMessageFieldReader(
+  field: DescField & { fieldKind: "message" },
+): CompiledJsonReader {
+  const localName = field.localName;
+  const { toMessage, toLocal } = localMessageMapper(field);
+  const readChild = compiledReader(field.message);
+  // Fields with message google.protobuf.Value permit a Protobuf-serializable
+  // null; for all other messages, JSON null resets the field.
+  const nullResets = field.message.typeName != "google.protobuf.Value";
+  if (field.oneof) {
+    const oneofLocalName = field.oneof.localName;
+    return (message, json, ctx) => {
+      const oneof = message[oneofLocalName] as {
+        case: string | undefined;
+        value?: unknown;
+      };
+      if (json === null && nullResets) {
+        if (oneof.case === localName) {
+          message[oneofLocalName] = { case: undefined };
+        }
+        return;
+      }
+      const child = toMessage(
+        oneof.case === localName ? oneof.value : undefined,
+      );
+      readChild(child, json, ctx);
+      message[oneofLocalName] = { case: localName, value: toLocal(child) };
+    };
+  }
+  return (message, json, ctx) => {
+    if (json === null && nullResets) {
+      delete message[localName];
+      return;
+    }
+    const child = toMessage(message[localName]);
+    readChild(child, json, ctx);
+    message[localName] = toLocal(child);
+  };
+}
+
+function compileListFieldReader(
+  field: DescField & { fieldKind: "list" },
+): CompiledJsonReader {
+  const localName = field.localName;
+  const readItem = compileListItemReader(field);
+  return (message, json, ctx) => {
+    if (json === null) {
+      return;
+    }
+    if (!Array.isArray(json)) {
+      throw new FieldError(field, "expected Array, got " + formatVal(json));
+    }
+    const items = message[localName] as unknown[];
+    for (const jsonItem of json) {
+      const value = readItem(jsonItem, ctx, items.length);
+      if (value !== tokenIgnoredUnknownEnum) {
+        items.push(value);
+      }
+    }
+  };
+}
+
+/**
+ * Compile a decoder for a list item. The index is only used in errors, and
+ * accounts for previously merged items.
+ */
+function compileListItemReader(
+  field: DescField & { fieldKind: "list" },
+): (json: JsonValue, ctx: JsonReadContext, index: number) => unknown {
+  switch (field.listKind) {
+    case "scalar": {
+      const parseScalar = compileScalarParse(field);
+      const checkValue = checkScalarValue(field.scalar);
+      const toLocal = compileScalarToLocal(field);
+      return (json, ctx, index) => {
+        if (json === null) {
+          throw new FieldError(field, "list item must not be null");
+        }
+        const value = parseScalar(json);
+        const check = checkValue(value);
+        if (check !== true) {
+          throw new FieldError(
+            field,
+            `list item #${index + 1}: ${reasonSingular(field, value, check)}`,
+          );
+        }
+        return toLocal(value);
+      };
+    }
+    case "enum": {
+      const readEnumValue = compileEnumConverter(field.enum);
+      const checkEnum = compileEnumCheck(field.enum);
+      const nullResets = field.enum.typeName != "google.protobuf.NullValue";
+      return (json, ctx, index) => {
+        if (json === null && nullResets) {
+          throw new FieldError(field, "list item must not be null");
+        }
+        const value = readEnumValue(json, ctx.ignoreUnknownFields);
+        if (value === tokenIgnoredUnknownEnum) {
+          return value;
+        }
+        const check = checkEnum(value);
+        if (check !== true) {
+          throw new FieldError(
+            field,
+            `list item #${index + 1}: ${reasonSingular(field, value, check)}`,
+          );
+        }
+        return value;
+      };
+    }
+    case "message": {
+      const { toMessage, toLocal } = localMessageMapper(field);
+      const readChild = compiledReader(field.message);
+      const nullResets = field.message.typeName != "google.protobuf.Value";
+      return (json, ctx) => {
+        if (json === null && nullResets) {
+          throw new FieldError(field, "list item must not be null");
+        }
+        const child = toMessage(undefined);
+        readChild(child, json, ctx);
+        return toLocal(child);
+      };
+    }
+  }
+}
+
+function compileMapFieldReader(
+  field: DescField & { fieldKind: "map" },
+): CompiledJsonReader {
+  const localName = field.localName;
+  const mapKey = field.mapKey;
+  const parseMapKey = compileMapKeyParse(mapKey);
+  const checkMapKey = checkScalarValue(mapKey);
+  const mapKeyToLocal = compileMapKeyToLocal(mapKey);
+  let parseValue: (
+    json: NonNullable<JsonValue>,
+    ctx: JsonReadContext,
+  ) => unknown;
+  // Additional validation for scalar and enum values, matching the checks
+  // of the reflect API. Message values need no validation.
+  let checkValue: ((value: unknown) => true | string | false) | undefined;
+  let toLocalValue: (value: unknown) => unknown = (value) => value;
+  // Fields with google.protobuf.Value or google.protobuf.NullValue values
+  // permit a Protobuf-serializable null.
+  let nullResets = true;
+  switch (field.mapKind) {
+    case "scalar": {
+      parseValue = compileScalarParse(field);
+      checkValue = checkScalarValue(field.scalar);
+      toLocalValue = compileScalarToLocal(field);
+      break;
+    }
+    case "enum": {
+      const readEnumValue = compileEnumConverter(field.enum);
+      parseValue = (json, ctx) => readEnumValue(json, ctx.ignoreUnknownFields);
+      checkValue = compileEnumCheck(field.enum);
+      nullResets = field.enum.typeName != "google.protobuf.NullValue";
+      break;
+    }
+    case "message": {
+      const { toMessage, toLocal } = localMessageMapper(field);
+      const readChild = compiledReader(field.message);
+      nullResets = field.message.typeName != "google.protobuf.Value";
+      parseValue = (json, ctx) => {
+        const child = toMessage(undefined);
+        readChild(child, json, ctx);
+        return toLocal(child);
+      };
+      break;
+    }
+  }
+  return (message, json, ctx) => {
+    if (json === null) {
+      return;
+    }
+    if (typeof json != "object" || Array.isArray(json)) {
+      throw new FieldError(field, "expected object, got " + formatVal(json));
+    }
+    const record = message[localName] as Record<string, unknown>;
+    const seen = new Set<unknown>();
+    for (const jsonMapKey of Object.keys(json)) {
+      const jsonMapValue = json[jsonMapKey];
+      const key = parseMapKey(jsonMapKey);
+      if (seen.has(key)) {
+        throw new FieldError(field, `duplicate map key "${jsonMapKey}"`);
+      }
+      seen.add(key);
+      if (jsonMapValue === null && nullResets) {
+        throw new FieldError(field, "map value must not be null");
+      }
+      const value = parseValue(jsonMapValue as NonNullable<JsonValue>, ctx);
+      if (value === tokenIgnoredUnknownEnum) {
+        continue;
+      }
+      const checkKey = checkMapKey(key);
+      if (checkKey !== true) {
+        throw new FieldError(
+          field,
+          `invalid map key: ${reasonSingular({ scalar: mapKey }, key, checkKey)}`,
+        );
+      }
+      if (checkValue !== undefined) {
+        const check = checkValue(value);
+        if (check !== true) {
+          throw new FieldError(
+            field,
+            `map entry ${formatVal(key)}: ${reasonSingular(field, value, check)}`,
+          );
+        }
+      }
+      record[mapKeyToLocal(key)] = toLocalValue(value);
+    }
+  };
 }
 
 const tokenIgnoredUnknownEnum = Symbol();
 
 /**
- * Try to parse a JSON value to an enum value. JSON null returns the enum's first value.
- * With ignoreUnknownFields false, unknown values raise a FieldError
- * With ignoreUnknownFields true, unknown values return tokenIgnoredUnknownEnum.
+ * Compile a converter from a JSON value to an enum value. JSON null returns
+ * the enum's first value. With ignoreUnknownFields false, unknown string
+ * values raise an error; with true, they return tokenIgnoredUnknownEnum.
+ * The value is not checked against the enum's values, see compileEnumCheck.
  */
-function readEnum(
+function compileEnumConverter(
   desc: DescEnum,
-  json: JsonValue,
-  ignoreUnknownFields: false,
-): number;
-function readEnum(
-  desc: DescEnum,
+): (
   json: JsonValue,
   ignoreUnknownFields: boolean,
-): number | typeof tokenIgnoredUnknownEnum;
-function readEnum(
-  desc: DescEnum,
-  json: JsonValue,
-  ignoreUnknownFields: boolean,
-): number | typeof tokenIgnoredUnknownEnum {
-  if (json === null) {
-    return desc.values[0].number;
-  }
-  switch (typeof json) {
-    case "number":
-      if (Number.isInteger(json)) {
-        return json;
+) => number | typeof tokenIgnoredUnknownEnum {
+  const zero = desc.values[0].number;
+  const values = desc.values;
+  return (json, ignoreUnknownFields) => {
+    if (json === null) {
+      return zero;
+    }
+    switch (typeof json) {
+      case "number":
+        if (Number.isInteger(json)) {
+          return json;
+        }
+        break;
+      case "string": {
+        const value = values.find((ev) => ev.name === json);
+        if (value !== undefined) {
+          return value.number;
+        }
+        if (ignoreUnknownFields) {
+          return tokenIgnoredUnknownEnum;
+        }
+        break;
       }
-      break;
-    case "string":
-      const value = desc.values.find((ev) => ev.name === json);
-      if (value !== undefined) {
-        return value.number;
-      }
-      if (ignoreUnknownFields) {
-        return tokenIgnoredUnknownEnum;
-      }
-      break;
-  }
-  throw new Error(`cannot decode ${desc} from JSON: ${formatVal(json)}`);
+    }
+    throw new Error(`cannot decode ${desc} from JSON: ${formatVal(json)}`);
+  };
 }
 
 /**
- * Try to parse a JSON value to a scalar value for the reflect API.
- *
- * Returns the input if the JSON value cannot be converted. Raises a FieldError
- * if conversion would be ambiguous.
+ * Compile the check that the reflect API performs for enum values: open
+ * enums accept any int32 value, closed enums accept only declared values.
  */
-function scalarFromJson(
+function compileEnumCheck(
+  desc: DescEnum,
+): (value: unknown) => true | string | false {
+  if (desc.open) {
+    return checkScalarValue(ScalarType.INT32);
+  }
+  const values = desc.values;
+  return (value) => values.some((v) => v.number === value);
+}
+
+/**
+ * Compile a converter from a JSON value to the local representation of a
+ * scalar, fusing JSON parsing, the validation of the reflect API, and the
+ * conversion to the local 64-bit integer representation.
+ */
+function compileScalarConverter(
   field: DescField & { scalar: ScalarType },
-  json: NonNullable<JsonValue>,
-): ScalarValue | NonNullable<JsonValue> {
-  // int64, sfixed64, sint64, fixed64, uint64: Reflect supports string and number.
-  // string, bool: Supported by reflect.
+): (json: NonNullable<JsonValue>) => unknown {
+  const parseScalar = compileScalarParse(field);
+  const checkValue = checkScalarValue(field.scalar);
+  const toLocal = compileScalarToLocal(field);
+  return (json) => {
+    const value = parseScalar(json);
+    const check = checkValue(value);
+    if (check !== true) {
+      throw new FieldError(field, reasonSingular(field, value, check));
+    }
+    return toLocal(value);
+  };
+}
+
+/**
+ * Compile the JSON-specific parsing step for a scalar value: the special
+ * string values of float and double, string-encoded numbers, and base64
+ * bytes. Returns the input unchanged if the JSON value cannot be converted;
+ * the validation step raises an error for it.
+ */
+function compileScalarParse(
+  field: DescField & { scalar: ScalarType },
+): (json: NonNullable<JsonValue>) => unknown {
   switch (field.scalar) {
     // float, double: JSON value will be a number or one of the special string values "NaN", "Infinity", and "-Infinity".
     // Either numbers or strings are accepted. Exponent notation is also accepted.
     case ScalarType.DOUBLE:
     case ScalarType.FLOAT:
-      if (json === "NaN") return NaN;
-      if (json === "Infinity") return Number.POSITIVE_INFINITY;
-      if (json === "-Infinity") return Number.NEGATIVE_INFINITY;
-      if (typeof json == "number") {
-        if (Number.isNaN(json)) {
-          // NaN must be encoded with string constants
-          throw new FieldError(field, "unexpected NaN number");
+      return (json) => {
+        if (json === "NaN") return NaN;
+        if (json === "Infinity") return Number.POSITIVE_INFINITY;
+        if (json === "-Infinity") return Number.NEGATIVE_INFINITY;
+        if (typeof json == "number") {
+          if (Number.isNaN(json)) {
+            // NaN must be encoded with string constants
+            throw new FieldError(field, "unexpected NaN number");
+          }
+          if (!Number.isFinite(json)) {
+            // Infinity must be encoded with string constants
+            throw new FieldError(field, "unexpected infinite number");
+          }
+          return json;
         }
-        if (!Number.isFinite(json)) {
-          // Infinity must be encoded with string constants
-          throw new FieldError(field, "unexpected infinite number");
+        if (typeof json == "string") {
+          if (json === "") {
+            // empty string is not a number
+            return json;
+          }
+          if (json.trim().length !== json.length) {
+            // extra whitespace
+            return json;
+          }
+          const float = Number(json);
+          if (!Number.isFinite(float)) {
+            // Infinity and NaN must be encoded with string constants
+            return json;
+          }
+          return float;
         }
-        break;
-      }
-      if (typeof json == "string") {
-        if (json === "") {
-          // empty string is not a number
-          break;
-        }
-        if (json.trim().length !== json.length) {
-          // extra whitespace
-          break;
-        }
-        const float = Number(json);
-        if (!Number.isFinite(float)) {
-          // Infinity and NaN must be encoded with string constants
-          break;
-        }
-        return float;
-      }
-      break;
+        return json;
+      };
 
     // int32, fixed32, uint32: JSON value will be a decimal number. Either numbers or strings are accepted.
     case ScalarType.INT32:
@@ -549,66 +890,129 @@ function scalarFromJson(
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
     case ScalarType.UINT32:
-      return int32FromJson(json);
+      return int32FromJson;
 
     // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
     case ScalarType.BYTES:
-      if (typeof json == "string") {
-        if (json === "") {
-          return new Uint8Array(0);
+      return (json) => {
+        if (typeof json == "string") {
+          if (json === "") {
+            return new Uint8Array(0);
+          }
+          try {
+            return base64Decode(json);
+          } catch (e) {
+            const message = e instanceof Error ? e.message : String(e);
+            throw new FieldError(field, message);
+          }
         }
-        try {
-          return base64Decode(json);
-        } catch (e) {
-          const message = e instanceof Error ? e.message : String(e);
-          throw new FieldError(field, message);
-        }
-      }
-      break;
+        return json;
+      };
+
+    // int64, sfixed64, sint64, fixed64, uint64: The validation step accepts
+    // string and number. string, bool: no conversion.
+    default:
+      return (json) => json;
   }
-  return json;
 }
 
 /**
- * Try to parse a JSON value to a map key for the reflect API.
- * Canonicalizes 64-bit integers given as string, so that "01 and "1" are one
- * key, and duplicates can raise an error.
- * Returns the input if the JSON value cannot be converted.
+ * Compile the conversion of a validated scalar value to its local
+ * representation: 64-bit integers become bigint, or string with the
+ * longAsString option.
  */
-function mapKeyFromJson(
+function compileScalarToLocal(
+  field: DescField & { scalar: ScalarType },
+): (value: unknown) => unknown {
+  const longAsString =
+    (field as { longAsString?: boolean }).longAsString === true;
+  switch (field.scalar) {
+    case ScalarType.INT64:
+    case ScalarType.SFIXED64:
+    case ScalarType.SINT64:
+      if (longAsString) {
+        return (value) => String(value);
+      }
+      return (value) =>
+        typeof value == "string" || typeof value == "number"
+          ? protoInt64.parse(value)
+          : value;
+    case ScalarType.FIXED64:
+    case ScalarType.UINT64:
+      if (longAsString) {
+        return (value) => String(value);
+      }
+      return (value) =>
+        typeof value == "string" || typeof value == "number"
+          ? protoInt64.uParse(value)
+          : value;
+    default:
+      return (value) => value;
+  }
+}
+
+/**
+ * Return a parser from a JSON value to a map key for the given key type.
+ * Canonicalizes 64-bit integers given as string, so that "01" and "1" are
+ * one key, and duplicates can raise an error.
+ * The parser returns the input if the JSON value cannot be converted.
+ */
+function compileMapKeyParse(
   type: Exclude<
     ScalarType,
     ScalarType.BYTES | ScalarType.DOUBLE | ScalarType.FLOAT
   >,
-  jsonString: string,
-) {
+): (jsonString: string) => unknown {
   switch (type) {
     case ScalarType.BOOL:
-      switch (jsonString) {
-        case "true":
-          return true;
-        case "false":
-          return false;
-      }
-      return jsonString;
+      return (jsonString) => {
+        switch (jsonString) {
+          case "true":
+            return true;
+          case "false":
+            return false;
+        }
+        return jsonString;
+      };
     case ScalarType.INT32:
     case ScalarType.FIXED32:
     case ScalarType.UINT32:
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
-      return int32FromJson(jsonString);
+      return int32FromJson;
     case ScalarType.INT64:
     case ScalarType.SINT64:
     case ScalarType.SFIXED64:
     case ScalarType.UINT64:
     case ScalarType.FIXED64:
-      return /^-?0+$/.test(jsonString)
-        ? "0"
-        : jsonString.replace(/^(-?)0+(?=\d)/, "$1");
+      return (jsonString) =>
+        /^-?0+$/.test(jsonString)
+          ? "0"
+          : jsonString.replace(/^(-?)0+(?=\d)/, "$1");
     default:
-      return jsonString;
+      // ScalarType.STRING
+      return (jsonString) => jsonString;
   }
+}
+
+/**
+ * Return a converter from a parsed and checked map key to its
+ * representation as an object key: booleans become strings, strings and
+ * numbers are used as-is.
+ */
+function compileMapKeyToLocal(
+  type: Exclude<
+    ScalarType,
+    ScalarType.BYTES | ScalarType.DOUBLE | ScalarType.FLOAT
+  >,
+): (key: unknown) => string | number {
+  if (type == ScalarType.BOOL) {
+    return (key) => String(key);
+  }
+  // Strings, 32-bit integers, and canonicalized 64-bit integer strings are
+  // used as object keys as-is.
+  return (key) => key as string | number;
 }
 
 /**
@@ -734,50 +1138,6 @@ function checkDuplicateKeys(jsonString: string, typeName: string): void {
   }
 }
 
-function tryWktFromJson(
-  msg: ReflectMessage,
-  jsonValue: JsonValue,
-  ctx: JsonReadContext,
-): boolean {
-  if (!msg.desc.typeName.startsWith("google.protobuf.")) {
-    return false;
-  }
-  switch (msg.desc.typeName) {
-    case "google.protobuf.Any":
-      anyFromJson(msg.message as Any, jsonValue, ctx);
-      return true;
-    case "google.protobuf.Timestamp":
-      timestampFromJson(msg.message as Timestamp, jsonValue);
-      return true;
-    case "google.protobuf.Duration":
-      durationFromJson(msg.message as Duration, jsonValue);
-      return true;
-    case "google.protobuf.FieldMask":
-      fieldMaskFromJson(msg.message as FieldMask, jsonValue);
-      return true;
-    case "google.protobuf.Struct":
-      structFromJson(msg.message as Struct, jsonValue, ctx);
-      return true;
-    case "google.protobuf.Value":
-      valueFromJson(msg.message as Value, jsonValue, ctx);
-      return true;
-    case "google.protobuf.ListValue":
-      listValueFromJson(msg.message as ListValue, jsonValue, ctx);
-      return true;
-    default:
-      if (isWrapperDesc(msg.desc)) {
-        const valueField = msg.desc.fields[0];
-        if (jsonValue === null) {
-          msg.clear(valueField);
-        } else {
-          msg.set(valueField, scalarFromJson(valueField, jsonValue));
-        }
-        return true;
-      }
-      return false;
-  }
-}
-
 function anyFromJson(any: Any, json: JsonValue, ctx: JsonReadContext) {
   if (json === null || Array.isArray(json) || typeof json != "object") {
     throw new Error(
@@ -807,20 +1167,19 @@ function anyFromJson(any: Any, json: JsonValue, ctx: JsonReadContext) {
       `cannot decode message ${any.$typeName} from JSON: ${typeUrl} is not in the type registry`,
     );
   }
-  const msg = reflect(desc);
+  const message = create(desc) as Record<string, unknown>;
   if (
     hasCustomJsonRepresentation(desc) &&
     Object.prototype.hasOwnProperty.call(json, "value")
   ) {
-    const value = json.value;
-    readMessage(msg, value, ctx);
+    compiledReader(desc)(message, json.value, ctx);
   } else {
     const copy = Object.assign({}, json);
     // biome-ignore lint/performance/noDelete: <explanation>
     delete copy["@type"];
-    readMessage(msg, copy, ctx);
+    compiledReader(desc)(message, copy, ctx);
   }
-  anyPack(msg.desc, msg.message, any);
+  anyPack(desc, message as unknown as Message, any);
 }
 
 function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
@@ -846,10 +1205,7 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
       `cannot decode message ${timestamp.$typeName} from JSON: invalid RFC 3339 string`,
     );
   }
-  if (
-    ms < Date.parse("0001-01-01T00:00:00Z") ||
-    ms > Date.parse("9999-12-31T23:59:59Z")
-  ) {
+  if (ms < timestampMsMin || ms > timestampMsMax) {
     throw new Error(
       `cannot decode message ${timestamp.$typeName} from JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
     );
@@ -876,7 +1232,7 @@ function durationFromJson(duration: Duration, json: JsonValue) {
     );
   }
   const longSeconds = Number(match[1]);
-  if (longSeconds > 315576000000 || longSeconds < -315576000000) {
+  if (longSeconds > durationSecondsMax || longSeconds < durationSecondsMin) {
     throw new Error(
       `cannot decode message ${duration.$typeName} from JSON: ${formatVal(json)}`,
     );
@@ -917,9 +1273,9 @@ function structFromJson(struct: Struct, json: JsonValue, ctx: JsonReadContext) {
       `cannot decode message ${struct.$typeName} from JSON ${formatVal(json)}`,
     );
   }
-  for (const [k, v] of Object.entries(json)) {
+  for (const k of Object.keys(json)) {
     const parsedV = create(ValueSchema);
-    valueFromJson(parsedV, v, ctx);
+    valueFromJson(parsedV, json[k], ctx);
     struct.fields[k] = parsedV;
   }
 }

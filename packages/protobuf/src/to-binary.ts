@@ -12,12 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { MessageShape } from "./types.js";
-import { reflect } from "./reflect/reflect.js";
+import type { MessageShape, UnknownField } from "./types.js";
 import { BinaryWriter, WireType } from "./wire/binary-encoding.js";
-import type { ScalarValue } from "./reflect/scalar.js";
 import { type DescField, type DescMessage, ScalarType } from "./descriptors.js";
-import type { ReflectList, ReflectMessage } from "./reflect/index.js";
+import type { ReflectMessage } from "./reflect/index.js";
+import { FieldError } from "./reflect/error.js";
+import { unsafeLocal } from "./reflect/unsafe.js";
+import { localMessageMapper } from "./reflect/message.js";
+import { protoInt64 } from "./proto-int64.js";
+
+// bootstrap-inject google.protobuf.FeatureSet.FieldPresence.IMPLICIT: const $name = $number;
+const IMPLICIT = 2;
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name = $number;
 const LEGACY_REQUIRED = 3;
@@ -54,36 +59,442 @@ export function toBinary<Desc extends DescMessage>(
   message: MessageShape<Desc>,
   options?: Partial<BinaryWriteOptions>,
 ): Uint8Array<ArrayBuffer> {
-  return writeFields(
-    new BinaryWriter(),
+  const writer = new BinaryWriter();
+  compiledWriter(schema)(
+    writer,
     makeWriteOptions(options),
-    reflect(schema, message),
-  ).finish();
-}
-
-function writeFields(
-  writer: BinaryWriter,
-  opts: BinaryWriteOptions,
-  msg: ReflectMessage,
-): BinaryWriter {
-  for (const f of msg.sortedFields) {
-    if (!msg.isSet(f)) {
-      if (f.presence == LEGACY_REQUIRED) {
-        throw new Error(`cannot encode ${f} to binary: required field not set`);
-      }
-      continue;
-    }
-    writeField(writer, opts, msg, f);
-  }
-  if (opts.writeUnknownFields) {
-    for (const { no, wireType, data } of msg.getUnknown() ?? []) {
-      writer.tag(no, wireType).raw(data);
-    }
-  }
-  return writer;
+    message as Record<string, unknown>,
+  );
+  return writer.finish();
 }
 
 /**
+ * A message or field encoder, compiled from a descriptor ahead of time.
+ */
+type CompiledWriter = (
+  writer: BinaryWriter,
+  opts: BinaryWriteOptions,
+  message: Record<string, unknown>,
+) => void;
+
+const compiledWriters = new WeakMap<DescMessage, CompiledWriter>();
+
+/**
+ * Return the compiled encoder for a message, compiling it on first use.
+ */
+function compiledWriter(desc: DescMessage): CompiledWriter {
+  let compiled = compiledWriters.get(desc);
+  if (compiled === undefined) {
+    compiled = compileMessage(desc);
+  }
+  return compiled;
+}
+
+function compileMessage(desc: DescMessage): CompiledWriter {
+  const typeName = desc.typeName;
+  const sortedFields = desc.fields.concat().sort((a, b) => a.number - b.number);
+  // The field reported in ForeignFieldError.
+  const foreignField: DescField | undefined = sortedFields[0];
+  const fieldWriters: CompiledWriter[] = [];
+  const compiled: CompiledWriter = (writer, opts, message) => {
+    if (message.$typeName !== typeName && foreignField !== undefined) {
+      throw new FieldError(
+        foreignField,
+        `cannot use ${foreignField} with message ${message.$typeName}`,
+        "ForeignFieldError",
+      );
+    }
+    for (let i = 0; i < fieldWriters.length; i++) {
+      fieldWriters[i](writer, opts, message);
+    }
+    const unknown = message.$unknown as UnknownField[] | undefined;
+    if (unknown !== undefined && opts.writeUnknownFields) {
+      for (const { no, wireType, data } of unknown) {
+        writer.tag(no, wireType).raw(data);
+      }
+    }
+  };
+  // Register before compiling fields, so that recursive message types
+  // resolve to this instance instead of compiling endlessly.
+  compiledWriters.set(desc, compiled);
+  for (const field of sortedFields) {
+    fieldWriters.push(compileField(field));
+  }
+  return compiled;
+}
+
+function compileField(field: DescField): CompiledWriter {
+  switch (field.fieldKind) {
+    case "message":
+    case "scalar":
+    case "enum":
+      return compileSingularField(field);
+    case "list":
+      return compileListField(field);
+    case "map":
+      return compileMapField(field);
+  }
+}
+
+type DescFieldSingular = DescField &
+  ({ fieldKind: "scalar" } | { fieldKind: "enum" } | { fieldKind: "message" });
+
+/**
+ * Compile an encoder for a singular field: the presence check, and the
+ * value encoder.
+ */
+function compileSingularField(field: DescFieldSingular): CompiledWriter {
+  const writeValue = compileSingularValue(field);
+  const localName = field.localName;
+  if (field.oneof) {
+    const oneofLocalName = field.oneof.localName;
+    return (writer, opts, message) => {
+      const oneof = message[oneofLocalName] as {
+        case: string | undefined;
+        value?: unknown;
+      };
+      if (oneof.case === localName) {
+        writeValue(writer, opts, oneof.value);
+      }
+    };
+  }
+  if (field.presence != IMPLICIT) {
+    const requiredError =
+      field.presence == LEGACY_REQUIRED
+        ? `cannot encode ${field} to binary: required field not set`
+        : undefined;
+    return (writer, opts, message) => {
+      const value = message[localName];
+      // Fields with explicit presence have properties on the prototype
+      // chain for default / zero values (except for proto3).
+      if (
+        value !== undefined &&
+        Object.prototype.hasOwnProperty.call(message, localName)
+      ) {
+        writeValue(writer, opts, value);
+      } else if (requiredError !== undefined) {
+        throw new Error(requiredError);
+      }
+    };
+  }
+  // Implicit presence: the field is set when the value is not the zero
+  // value. The check is inlined per type, see isScalarZeroValue.
+  if (field.fieldKind == "enum") {
+    const zero = field.enum.values[0].number;
+    return (writer, opts, message) => {
+      const value = message[localName];
+      if (value !== zero) {
+        writeValue(writer, opts, value);
+      }
+    };
+  }
+  switch (field.scalar) {
+    case ScalarType.BOOL:
+      return (writer, opts, message) => {
+        const value = message[localName];
+        if (value !== false) {
+          writeValue(writer, opts, value);
+        }
+      };
+    case ScalarType.STRING:
+      return (writer, opts, message) => {
+        const value = message[localName];
+        if (value !== "") {
+          writeValue(writer, opts, value);
+        }
+      };
+    case ScalarType.BYTES:
+      return (writer, opts, message) => {
+        const value = message[localName];
+        if (!(value instanceof Uint8Array) || value.byteLength > 0) {
+          writeValue(writer, opts, value);
+        }
+      };
+    case ScalarType.DOUBLE:
+    case ScalarType.FLOAT:
+      return (writer, opts, message) => {
+        const value = message[localName];
+        // Object.is distinguishes -0 from 0.
+        if (!Object.is(value, 0)) {
+          writeValue(writer, opts, value);
+        }
+      };
+    default:
+      return (writer, opts, message) => {
+        const value = message[localName];
+        // Loose comparison matches 0n, 0 and "0".
+        if (value != 0) {
+          writeValue(writer, opts, value);
+        }
+      };
+  }
+}
+
+/**
+ * An encoder for a field value. The tag is written by the encoder itself.
+ */
+type CompiledValueWriter = (
+  writer: BinaryWriter,
+  opts: BinaryWriteOptions,
+  value: unknown,
+) => void;
+
+/**
+ * Compile an encoder for the value of a singular field, including the tag.
+ */
+function compileSingularValue(field: DescFieldSingular): CompiledValueWriter {
+  switch (field.fieldKind) {
+    case "message": {
+      const { toMessage } = localMessageMapper(field);
+      const writeChild = compileChildWriter(field);
+      return (writer, opts, value) => {
+        writeChild(writer, opts, toMessage(value));
+      };
+    }
+    case "scalar":
+    case "enum": {
+      const scalarType =
+        field.fieldKind == "enum" ? ScalarType.INT32 : field.scalar;
+      const fieldNo = field.number;
+      const wireType = writeTypeOfScalar(scalarType);
+      const writeScalar = compileScalarValue(
+        scalarType,
+        field.parent.typeName,
+        field.name,
+      );
+      return (writer, opts, value) => {
+        writer.tag(fieldNo, wireType);
+        writeScalar(writer, value);
+      };
+    }
+  }
+}
+
+function compileListField(
+  field: DescField & { fieldKind: "list" },
+): CompiledWriter {
+  const localName = field.localName;
+  const fieldNo = field.number;
+  switch (field.listKind) {
+    case "message": {
+      const { toMessage } = localMessageMapper(field);
+      const writeChild = compileChildWriter(field);
+      return (writer, opts, message) => {
+        const items = message[localName] as unknown[];
+        for (let i = 0; i < items.length; i++) {
+          writeChild(writer, opts, toMessage(items[i]));
+        }
+      };
+    }
+    case "scalar":
+    case "enum": {
+      const scalarType =
+        field.listKind == "enum" ? ScalarType.INT32 : field.scalar;
+      const writeScalar = compileScalarValue(
+        scalarType,
+        field.parent.typeName,
+        field.name,
+      );
+      if (field.packed) {
+        return (writer, opts, message) => {
+          const items = message[localName] as unknown[];
+          if (items.length == 0) {
+            return;
+          }
+          writer.tag(fieldNo, WireType.LengthDelimited).fork();
+          for (let i = 0; i < items.length; i++) {
+            writeScalar(writer, items[i]);
+          }
+          writer.join();
+        };
+      }
+      const wireType = writeTypeOfScalar(scalarType);
+      return (writer, opts, message) => {
+        const items = message[localName] as unknown[];
+        for (let i = 0; i < items.length; i++) {
+          writer.tag(fieldNo, wireType);
+          writeScalar(writer, items[i]);
+        }
+      };
+    }
+  }
+}
+
+function compileMapField(
+  field: DescField & { fieldKind: "map" },
+): CompiledWriter {
+  const localName = field.localName;
+  const fieldNo = field.number;
+  const writeKey = compileMapKey(field);
+  if (field.mapKind == "message") {
+    const { toMessage } = localMessageMapper(field);
+    const writeMessage = compiledWriter(field.message);
+    return (writer, opts, message) => {
+      const record = message[localName] as Record<string, unknown>;
+      for (const key of Object.keys(record)) {
+        writer.tag(fieldNo, WireType.LengthDelimited).fork();
+        writeKey(writer, key);
+        // The value of a map entry is always field number 2.
+        writer.tag(2, WireType.LengthDelimited).fork();
+        writeMessage(writer, opts, toMessage(record[key]));
+        writer.join();
+        writer.join();
+      }
+    };
+  }
+  const scalarType = field.mapKind == "enum" ? ScalarType.INT32 : field.scalar;
+  const valueWireType = writeTypeOfScalar(scalarType);
+  const writeScalar = compileScalarValue(
+    scalarType,
+    field.parent.typeName,
+    field.name,
+  );
+  return (writer, opts, message) => {
+    const record = message[localName] as Record<string, unknown>;
+    for (const key of Object.keys(record)) {
+      writer.tag(fieldNo, WireType.LengthDelimited).fork();
+      writeKey(writer, key);
+      // The value of a map entry is always field number 2.
+      writer.tag(2, valueWireType);
+      writeScalar(writer, record[key]);
+      writer.join();
+    }
+  };
+}
+
+/**
+ * Compile an encoder for a map key. Map keys are stored as object keys and
+ * are always strings locally. Convert them to their scalar type before
+ * writing, like the reflect API does when iterating map entries.
+ */
+function compileMapKey(
+  field: DescField & { fieldKind: "map" },
+): (writer: BinaryWriter, key: string) => void {
+  const wireType = writeTypeOfScalar(field.mapKey);
+  const writeScalar = compileScalarValue(
+    field.mapKey,
+    field.parent.typeName,
+    field.name,
+  );
+  const convertKey = compileMapKeyConverter(field.mapKey);
+  return (writer, key) => {
+    // The key of a map entry is always field number 1.
+    writer.tag(1, wireType);
+    writeScalar(writer, convertKey(key));
+  };
+}
+
+/**
+ * Returns a converter from an object key (always a string) to the closest
+ * possible type for the map key type. Invalid keys are passed through to
+ * the scalar writer, which raises an error for them.
+ */
+function compileMapKeyConverter(
+  type: Exclude<
+    ScalarType,
+    ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES
+  >,
+): (key: string) => unknown {
+  switch (type) {
+    case ScalarType.STRING:
+      return (key) => key;
+    case ScalarType.BOOL:
+      return (key) => (key === "true" ? true : key === "false" ? false : key);
+    case ScalarType.UINT64:
+    case ScalarType.FIXED64:
+      return (key) => {
+        try {
+          return protoInt64.uParse(key);
+        } catch {
+          return key;
+        }
+      };
+    case ScalarType.INT64:
+    case ScalarType.SFIXED64:
+    case ScalarType.SINT64:
+      return (key) => {
+        try {
+          return protoInt64.parse(key);
+        } catch {
+          return key;
+        }
+      };
+    default:
+      // Handles INT32, UINT32, SINT32, FIXED32, SFIXED32.
+      // We do not use individual cases to save a few bytes code size.
+      return (key) => {
+        const n = Number.parseInt(key);
+        return Number.isFinite(n) ? n : key;
+      };
+  }
+}
+
+/**
+ * Compile an encoder for a bare scalar value (no tag), wrapping errors from
+ * the writer with the message and field name.
+ */
+function compileScalarValue(
+  type: ScalarType,
+  messageName: string,
+  fieldName: string,
+): (writer: BinaryWriter, value: unknown) => void {
+  const writeScalar = compileScalarWrite(type);
+  return (writer, value) => {
+    try {
+      writeScalar(writer, value);
+    } catch (e) {
+      if (e instanceof Error) {
+        throw new Error(
+          `cannot encode field ${messageName}.${fieldName} to binary: ${e.message}`,
+        );
+      }
+      throw e;
+    }
+  };
+}
+
+function compileScalarWrite(
+  type: ScalarType,
+): (writer: BinaryWriter, value: unknown) => void {
+  switch (type) {
+    case ScalarType.STRING:
+      return (writer, value) => writer.string(value as string);
+    case ScalarType.BOOL:
+      return (writer, value) => writer.bool(value as boolean);
+    case ScalarType.DOUBLE:
+      return (writer, value) => writer.double(value as number);
+    case ScalarType.FLOAT:
+      return (writer, value) => writer.float(value as number);
+    case ScalarType.INT32:
+      return (writer, value) => writer.int32(value as number);
+    case ScalarType.INT64:
+      return (writer, value) => writer.int64(value as number);
+    case ScalarType.UINT64:
+      return (writer, value) => writer.uint64(value as number);
+    case ScalarType.FIXED64:
+      return (writer, value) => writer.fixed64(value as number);
+    case ScalarType.BYTES:
+      return (writer, value) => writer.bytes(value as Uint8Array);
+    case ScalarType.FIXED32:
+      return (writer, value) => writer.fixed32(value as number);
+    case ScalarType.SFIXED32:
+      return (writer, value) => writer.sfixed32(value as number);
+    case ScalarType.SFIXED64:
+      return (writer, value) => writer.sfixed64(value as number);
+    case ScalarType.SINT64:
+      return (writer, value) => writer.sint64(value as number);
+    case ScalarType.UINT32:
+      return (writer, value) => writer.uint32(value as number);
+    case ScalarType.SINT32:
+      return (writer, value) => writer.sint32(value as number);
+  }
+}
+
+/**
+ * Write a single field to binary format, if it is set. Used to serialize
+ * extensions: extensions always have explicit presence, so an extension
+ * value that was just set on the container is always written.
+ *
  * @private
  */
 export function writeField(
@@ -91,213 +502,36 @@ export function writeField(
   opts: BinaryWriteOptions,
   msg: ReflectMessage,
   field: DescField,
-) {
-  switch (field.fieldKind) {
-    case "scalar":
-    case "enum":
-      writeScalar(
-        writer,
-        msg.desc.typeName,
-        field.name,
-        field.scalar ?? ScalarType.INT32,
-        field.number,
-        msg.get(field),
-      );
-      break;
-    case "list":
-      writeListField(writer, opts, field, msg.get(field));
-      break;
-    case "message":
-      writeMessageField(writer, opts, field, msg.get(field));
-      break;
-    case "map":
-      for (const [key, val] of msg.get(field)) {
-        writeMapEntry(writer, opts, field, key, val);
-      }
-      break;
-  }
-}
-
-function writeScalar(
-  writer: BinaryWriter,
-  msgName: string,
-  fieldName: string,
-  scalarType: ScalarType,
-  fieldNo: number,
-  value: unknown,
-) {
-  writeScalarValue(
-    writer.tag(fieldNo, writeTypeOfScalar(scalarType)),
-    msgName,
-    fieldName,
-    scalarType,
-    value as ScalarValue,
+): void {
+  compileField(field)(
+    writer,
+    opts,
+    msg[unsafeLocal] as unknown as Record<string, unknown>,
   );
 }
 
-function writeMessageField(
-  writer: BinaryWriter,
-  opts: BinaryWriteOptions,
+/**
+ * Compile an encoder for the wire format of a message field, honoring the
+ * delimited encoding of the field. The tag is written by the encoder.
+ */
+function compileChildWriter(
   field: DescField &
     ({ fieldKind: "message" } | { fieldKind: "list"; listKind: "message" }),
-  message: ReflectMessage,
-) {
+): CompiledValueWriter {
+  const fieldNo = field.number;
+  const writeMessage = compiledWriter(field.message);
   if (field.delimitedEncoding) {
-    writeFields(
-      writer.tag(field.number, WireType.StartGroup),
-      opts,
-      message,
-    ).tag(field.number, WireType.EndGroup);
-  } else {
-    writeFields(
-      writer.tag(field.number, WireType.LengthDelimited).fork(),
-      opts,
-      message,
-    ).join();
+    return (writer, opts, child) => {
+      writer.tag(fieldNo, WireType.StartGroup);
+      writeMessage(writer, opts, child as Record<string, unknown>);
+      writer.tag(fieldNo, WireType.EndGroup);
+    };
   }
-}
-
-function writeListField(
-  writer: BinaryWriter,
-  opts: BinaryWriteOptions,
-  field: DescField & { fieldKind: "list" },
-  list: ReflectList,
-) {
-  if (field.listKind == "message") {
-    for (const item of list) {
-      writeMessageField(writer, opts, field, item as ReflectMessage);
-    }
-    return;
-  }
-  const scalarType = field.scalar ?? ScalarType.INT32;
-  if (field.packed) {
-    if (!list.size) {
-      return;
-    }
-    writer.tag(field.number, WireType.LengthDelimited).fork();
-    for (const item of list) {
-      writeScalarValue(
-        writer,
-        field.parent.typeName,
-        field.name,
-        scalarType,
-        item as ScalarValue,
-      );
-    }
+  return (writer, opts, child) => {
+    writer.tag(fieldNo, WireType.LengthDelimited).fork();
+    writeMessage(writer, opts, child as Record<string, unknown>);
     writer.join();
-    return;
-  }
-  for (const item of list) {
-    writeScalar(
-      writer,
-      field.parent.typeName,
-      field.name,
-      scalarType,
-      field.number,
-      item,
-    );
-  }
-}
-
-function writeMapEntry(
-  writer: BinaryWriter,
-  opts: BinaryWriteOptions,
-  field: DescField & { fieldKind: "map" },
-  key: unknown,
-  value: unknown,
-) {
-  writer.tag(field.number, WireType.LengthDelimited).fork();
-
-  // write key, expecting key field number = 1
-  writeScalar(writer, field.parent.typeName, field.name, field.mapKey, 1, key);
-
-  // write value, expecting value field number = 2
-  switch (field.mapKind) {
-    case "scalar":
-    case "enum":
-      writeScalar(
-        writer,
-        field.parent.typeName,
-        field.name,
-        field.scalar ?? ScalarType.INT32,
-        2,
-        value,
-      );
-      break;
-    case "message":
-      writeFields(
-        writer.tag(2, WireType.LengthDelimited).fork(),
-        opts,
-        value as ReflectMessage,
-      ).join();
-      break;
-  }
-  writer.join();
-}
-
-function writeScalarValue(
-  writer: BinaryWriter,
-  msgName: string,
-  fieldName: string,
-  type: ScalarType,
-  value: ScalarValue,
-) {
-  try {
-    switch (type) {
-      case ScalarType.STRING:
-        writer.string(value as string);
-        break;
-      case ScalarType.BOOL:
-        writer.bool(value as boolean);
-        break;
-      case ScalarType.DOUBLE:
-        writer.double(value as number);
-        break;
-      case ScalarType.FLOAT:
-        writer.float(value as number);
-        break;
-      case ScalarType.INT32:
-        writer.int32(value as number);
-        break;
-      case ScalarType.INT64:
-        writer.int64(value as number);
-        break;
-      case ScalarType.UINT64:
-        writer.uint64(value as number);
-        break;
-      case ScalarType.FIXED64:
-        writer.fixed64(value as number);
-        break;
-      case ScalarType.BYTES:
-        writer.bytes(value as Uint8Array);
-        break;
-      case ScalarType.FIXED32:
-        writer.fixed32(value as number);
-        break;
-      case ScalarType.SFIXED32:
-        writer.sfixed32(value as number);
-        break;
-      case ScalarType.SFIXED64:
-        writer.sfixed64(value as number);
-        break;
-      case ScalarType.SINT64:
-        writer.sint64(value as number);
-        break;
-      case ScalarType.UINT32:
-        writer.uint32(value as number);
-        break;
-      case ScalarType.SINT32:
-        writer.sint32(value as number);
-        break;
-    }
-  } catch (e) {
-    if (e instanceof Error) {
-      throw new Error(
-        `cannot encode field ${msgName}.${fieldName} to binary: ${e.message}`,
-      );
-    }
-    throw e;
-  }
+  };
 }
 
 function writeTypeOfScalar(type: ScalarType): WireType {

@@ -21,19 +21,14 @@ import {
 } from "./descriptors.js";
 import type { JsonObject, JsonValue } from "./json-value.js";
 import { protoCamelCase, protoSnakeCase } from "./reflect/names.js";
-import { reflect } from "./reflect/reflect.js";
 import type { Registry } from "./registry.js";
-import type {
-  ReflectList,
-  ReflectMap,
-  ReflectMessage,
-} from "./reflect/reflect-types.js";
 import type {
   EnumJsonType,
   EnumShape,
   Message,
   MessageJsonType,
   MessageShape,
+  UnknownField,
 } from "./types.js";
 import type {
   Any,
@@ -45,10 +40,23 @@ import type {
   Value,
 } from "./wkt/index.js";
 import { anyUnpack } from "./wkt/index.js";
-import { hasCustomJsonRepresentation, isWrapperDesc } from "./wkt/wrappers.js";
+import {
+  hasCustomJsonRepresentation,
+  isWrapperDesc,
+} from "./wkt/wrappers.js";
+import {
+  durationSecondsMax,
+  durationSecondsMin,
+  timestampMsMax,
+  timestampMsMin,
+} from "./wkt/json.js";
 import { base64Encode } from "./wire/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
 import { checkField, formatVal } from "./reflect/reflect-check.js";
+import { FieldError } from "./reflect/error.js";
+import { unsafeLocal } from "./reflect/unsafe.js";
+import { scalarZeroValue } from "./reflect/scalar.js";
+import { localMessageMapper } from "./reflect/message.js";
 
 // bootstrap-inject google.protobuf.FeatureSet.FieldPresence.LEGACY_REQUIRED: const $name = $number;
 const LEGACY_REQUIRED = 3;
@@ -130,9 +138,9 @@ export function toJson<
   message: MessageShape<Desc>,
   options?: Opts,
 ): ToJson<Desc, Opts> {
-  return reflectToJson(
-    reflect(schema, message),
+  return compiledWriter(schema)(
     makeWriteOptions(options),
+    message as Record<string, unknown>,
   ) as ToJson<Desc, Opts>;
 }
 
@@ -180,142 +188,451 @@ export function enumToJson<Desc extends DescEnum>(
   return name as EnumJsonType<Desc>;
 }
 
-function reflectToJson(msg: ReflectMessage, opts: JsonWriteOptions): JsonValue {
-  const wktJson = tryWktToJson(msg, opts);
-  if (wktJson !== undefined) return wktJson;
-  const json: JsonObject = {};
-  for (const f of msg.sortedFields) {
-    if (!msg.isSet(f)) {
-      if (f.presence == LEGACY_REQUIRED) {
-        throw new Error(`cannot encode ${f} to JSON: required field not set`);
-      }
-      if (!opts.alwaysEmitImplicit || f.presence !== IMPLICIT) {
-        // Fields with implicit presence omit zero values (e.g. empty string) by default
-        continue;
-      }
-    }
-    const jsonValue = fieldToJson(f, msg.get(f), opts);
-    if (jsonValue !== undefined) {
-      json[jsonName(f, opts)] = jsonValue;
-    }
+/**
+ * A message encoder, compiled from a descriptor ahead of time.
+ */
+type CompiledJsonWriter = (
+  opts: JsonWriteOptions,
+  message: Record<string, unknown>,
+) => JsonValue;
+
+/**
+ * An encoder for a field: checks presence and writes the value to the JSON
+ * object under the field's JSON name.
+ */
+type CompiledFieldJsonWriter = (
+  opts: JsonWriteOptions,
+  message: Record<string, unknown>,
+  json: JsonObject,
+) => void;
+
+/**
+ * An encoder for a value. Always produces a JSON value.
+ */
+type CompiledValueJsonWriter = (
+  opts: JsonWriteOptions,
+  value: unknown,
+) => JsonValue;
+
+/**
+ * An encoder for the value of a field of any kind. Returns undefined when
+ * the value is omitted from JSON output (empty list and map fields).
+ */
+type CompiledFieldValueJsonWriter = (
+  opts: JsonWriteOptions,
+  value: unknown,
+) => JsonValue | undefined;
+
+const compiledWriters = new WeakMap<DescMessage, CompiledJsonWriter>();
+
+/**
+ * Return the compiled encoder for a message, compiling it on first use.
+ */
+function compiledWriter(desc: DescMessage): CompiledJsonWriter {
+  let compiled = compiledWriters.get(desc);
+  if (compiled === undefined) {
+    compiled = compileMessage(desc);
   }
-  if (opts.registry) {
-    const tagSeen = new Set<number>();
-    for (const { no } of msg.getUnknown() ?? []) {
-      // Same tag can appear multiple times, so we
-      // keep track and skip identical ones.
-      if (!tagSeen.has(no)) {
-        tagSeen.add(no);
-        const extension = opts.registry.getExtensionFor(msg.desc, no);
-        if (!extension) {
-          continue;
-        }
-        const value = getExtension(msg.message, extension);
-        const [container, field] = createExtensionContainer(extension, value);
-        const jsonValue = fieldToJson(field, container.get(field), opts);
-        if (jsonValue !== undefined) {
-          json[extension.jsonName] = jsonValue;
-        }
-      }
-    }
-  }
-  return json;
+  return compiled;
 }
 
-function fieldToJson(f: DescField, val: unknown, opts: JsonWriteOptions) {
-  switch (f.fieldKind) {
+function compileMessage(desc: DescMessage): CompiledJsonWriter {
+  const typeName = desc.typeName;
+  const writeWkt = compileWkt(desc);
+  if (writeWkt !== undefined) {
+    // The field reported in ForeignFieldError. All well-known types with a
+    // custom JSON representation have at least one field.
+    const foreignField: DescField | undefined = desc.fields[0];
+    const compiledWriter: CompiledJsonWriter = (opts, message) => {
+      if (message.$typeName !== typeName && foreignField !== undefined) {
+        throw new FieldError(
+          foreignField,
+          `cannot use ${foreignField} with message ${message.$typeName}`,
+          "ForeignFieldError",
+        );
+      }
+      return writeWkt(opts, message);
+    };
+    compiledWriters.set(desc, compiledWriter);
+    return compiledWriter;
+  }
+  const sortedFields = desc.fields.concat().sort((a, b) => a.number - b.number);
+  // The field reported in ForeignFieldError.
+  const foreignField: DescField | undefined = sortedFields[0];
+  const fieldWriters: CompiledFieldJsonWriter[] = [];
+  const compiledWriter: CompiledJsonWriter = (opts, message) => {
+    if (message.$typeName !== typeName && foreignField !== undefined) {
+      throw new FieldError(
+        foreignField,
+        `cannot use ${foreignField} with message ${message.$typeName}`,
+        "ForeignFieldError",
+      );
+    }
+    const json: JsonObject = {};
+    for (let i = 0; i < fieldWriters.length; i++) {
+      fieldWriters[i](opts, message, json);
+    }
+    if (opts.registry) {
+      writeExtensions(json, opts, opts.registry, message, desc);
+    }
+    return json;
+  };
+  // Register before compiling fields, so that recursive message types
+  // resolve to this instance instead of compiling endlessly.
+  compiledWriters.set(desc, compiledWriter);
+  for (const field of sortedFields) {
+    fieldWriters.push(compileField(field));
+  }
+  return compiledWriter;
+}
+
+/**
+ * Compile an encoder for a well-known type with a custom JSON representation,
+ * or return undefined for other messages.
+ */
+function compileWkt(desc: DescMessage): CompiledJsonWriter | undefined {
+  if (!desc.typeName.startsWith("google.protobuf.")) {
+    return undefined;
+  }
+  switch (desc.typeName) {
+    case "google.protobuf.Any":
+      return (opts, message) => anyToJson(message as unknown as Any, opts);
+    case "google.protobuf.Timestamp":
+      return (opts, message) =>
+        timestampToJson(message as unknown as Timestamp);
+    case "google.protobuf.Duration":
+      return (opts, message) => durationToJson(message as unknown as Duration);
+    case "google.protobuf.FieldMask":
+      return (opts, message) =>
+        fieldMaskToJson(message as unknown as FieldMask);
+    case "google.protobuf.Struct":
+      return (opts, message) => structToJson(message as unknown as Struct);
+    case "google.protobuf.Value":
+      return (opts, message) => valueToJson(message as unknown as Value);
+    case "google.protobuf.ListValue":
+      return (opts, message) =>
+        listValueToJson(message as unknown as ListValue);
+    default:
+      if (isWrapperDesc(desc)) {
+        const valueField = desc.fields[0];
+        const localName = valueField.localName;
+        const zero = scalarZeroValue(valueField.scalar, false);
+        const writeScalar = compileScalarValue(valueField);
+        return (opts, message) => {
+          const value = message[localName];
+          return writeScalar(opts, value === undefined ? zero : value);
+        };
+      }
+      return undefined;
+  }
+}
+
+function compileField(field: DescField): CompiledFieldJsonWriter {
+  switch (field.fieldKind) {
     case "scalar":
-      return scalarToJson(f, val);
-    case "message":
-      return reflectToJson(val as ReflectMessage, opts);
     case "enum":
-      return enumToJsonInternal(f.enum, val, opts.enumAsInteger);
+    case "message":
+      return compileSingularField(field);
     case "list":
-      return listToJson(val as ReflectList, opts);
-    case "map":
-      return mapToJson(val as ReflectMap, opts);
+    case "map": {
+      const writeValue =
+        field.fieldKind == "list"
+          ? compileListValue(field)
+          : compileMapValue(field);
+      const protoName = field.name;
+      const jsonKey = field.jsonName;
+      const localName = field.localName;
+      return (opts, message, json) => {
+        const value = writeValue(opts, message[localName]);
+        if (value !== undefined) {
+          json[opts.useProtoFieldName ? protoName : jsonKey] = value;
+        }
+      };
+    }
   }
 }
 
-function mapToJson(map: ReflectMap, opts: JsonWriteOptions) {
-  const f = map.field();
-  const jsonObj: JsonObject = {};
-  switch (f.mapKind) {
-    case "scalar":
-      for (const [entryKey, entryValue] of map) {
-        jsonObj[entryKey as keyof object] = scalarToJson(f, entryValue);
-      }
-      break;
-    case "message":
-      for (const [entryKey, entryValue] of map) {
-        jsonObj[entryKey as keyof object] = reflectToJson(
-          entryValue as ReflectMessage,
+type DescFieldSingular = DescField &
+  ({ fieldKind: "scalar" } | { fieldKind: "enum" } | { fieldKind: "message" });
+
+/**
+ * Compile an encoder for a singular field: the presence check, and the
+ * value encoder.
+ */
+function compileSingularField(
+  field: DescFieldSingular,
+): CompiledFieldJsonWriter {
+  const writeValue = compileSingularValue(field);
+  const protoName = field.name;
+  const jsonKey = field.jsonName;
+  const localName = field.localName;
+  if (field.oneof) {
+    const oneofLocalName = field.oneof.localName;
+    return (opts, message, json) => {
+      const oneof = message[oneofLocalName] as {
+        case: string | undefined;
+        value?: unknown;
+      };
+      if (oneof.case === localName) {
+        json[opts.useProtoFieldName ? protoName : jsonKey] = writeValue(
           opts,
+          oneof.value,
         );
       }
-      break;
-    case "enum":
-      for (const [entryKey, entryValue] of map) {
-        jsonObj[entryKey as keyof object] = enumToJsonInternal(
-          f.enum,
-          entryValue,
-          opts.enumAsInteger,
-        );
-      }
-      break;
+    };
   }
-  return opts.alwaysEmitImplicit || map.size > 0 ? jsonObj : undefined;
+  if (field.presence != IMPLICIT) {
+    const requiredError =
+      field.presence == LEGACY_REQUIRED
+        ? `cannot encode ${field} to JSON: required field not set`
+        : undefined;
+    return (opts, message, json) => {
+      const value = message[localName];
+      // Fields with explicit presence have properties on the prototype
+      // chain for default / zero values (except for proto3).
+      if (
+        value !== undefined &&
+        Object.prototype.hasOwnProperty.call(message, localName)
+      ) {
+        json[opts.useProtoFieldName ? protoName : jsonKey] = writeValue(
+          opts,
+          value,
+        );
+      } else if (requiredError !== undefined) {
+        throw new Error(requiredError);
+      }
+    };
+  }
+  // Implicit presence: the field is emitted when the value is not the zero
+  // value, or when alwaysEmitImplicit is enabled. The zero check is inlined
+  // per type, see isScalarZeroValue.
+  if (field.fieldKind == "enum") {
+    const zero = field.enum.values[0].number;
+    return (opts, message, json) => {
+      const value = message[localName];
+      if (value !== zero || opts.alwaysEmitImplicit) {
+        json[opts.useProtoFieldName ? protoName : jsonKey] = writeValue(
+          opts,
+          value,
+        );
+      }
+    };
+  }
+  switch (field.scalar) {
+    case ScalarType.BOOL:
+      return (opts, message, json) => {
+        const value = message[localName];
+        if (value !== false || opts.alwaysEmitImplicit) {
+          json[opts.useProtoFieldName ? protoName : jsonKey] = writeValue(
+            opts,
+            value,
+          );
+        }
+      };
+    case ScalarType.STRING:
+      return (opts, message, json) => {
+        const value = message[localName];
+        if (value !== "" || opts.alwaysEmitImplicit) {
+          json[opts.useProtoFieldName ? protoName : jsonKey] = writeValue(
+            opts,
+            value,
+          );
+        }
+      };
+    case ScalarType.BYTES:
+      return (opts, message, json) => {
+        const value = message[localName];
+        if (
+          !(value instanceof Uint8Array) ||
+          value.byteLength > 0 ||
+          opts.alwaysEmitImplicit
+        ) {
+          json[opts.useProtoFieldName ? protoName : jsonKey] = writeValue(
+            opts,
+            value,
+          );
+        }
+      };
+    case ScalarType.DOUBLE:
+    case ScalarType.FLOAT:
+      return (opts, message, json) => {
+        const value = message[localName];
+        // Object.is distinguishes -0 from 0.
+        if (!Object.is(value, 0) || opts.alwaysEmitImplicit) {
+          json[opts.useProtoFieldName ? protoName : jsonKey] = writeValue(
+            opts,
+            value,
+          );
+        }
+      };
+    default:
+      return (opts, message, json) => {
+        const value = message[localName];
+        // Loose comparison matches 0n, 0 and "0".
+        if (value != 0 || opts.alwaysEmitImplicit) {
+          json[opts.useProtoFieldName ? protoName : jsonKey] = writeValue(
+            opts,
+            value,
+          );
+        }
+      };
+  }
 }
 
-function listToJson(list: ReflectList, opts: JsonWriteOptions) {
-  const f = list.field();
-  const jsonArr: JsonValue[] = [];
-  switch (f.listKind) {
+/**
+ * Compile an encoder for the value of a field of any kind. Used for
+ * extension values.
+ */
+function compileFieldValue(field: DescField): CompiledFieldValueJsonWriter {
+  switch (field.fieldKind) {
     case "scalar":
-      for (const item of list) {
-        jsonArr.push(scalarToJson(f, item) as JsonValue);
-      }
-      break;
     case "enum":
-      for (const item of list) {
-        jsonArr.push(
-          enumToJsonInternal(f.enum, item, opts.enumAsInteger) as JsonValue,
-        );
-      }
-      break;
     case "message":
-      for (const item of list) {
-        jsonArr.push(reflectToJson(item as ReflectMessage, opts));
-      }
-      break;
+      return compileSingularValue(field);
+    case "list":
+      return compileListValue(field);
+    case "map":
+      return compileMapValue(field);
   }
-  return opts.alwaysEmitImplicit || jsonArr.length > 0 ? jsonArr : undefined;
 }
 
-function enumToJsonInternal(
-  desc: DescEnum,
-  value: unknown,
-  enumAsInteger: boolean,
-): string | number | null {
-  if (typeof value != "number") {
-    throw new Error(
-      `cannot encode ${desc} to JSON: expected number, got ${formatVal(value)}`,
-    );
+/**
+ * Compile an encoder for the value of a singular field.
+ */
+function compileSingularValue(
+  field: DescFieldSingular,
+): CompiledValueJsonWriter {
+  switch (field.fieldKind) {
+    case "scalar":
+      return compileScalarValue(field);
+    case "enum":
+      return compileEnumValue(field);
+    case "message":
+      return compileMessageValue(field);
   }
+}
+
+/**
+ * Compile an encoder for the value of a message field.
+ */
+function compileMessageValue(
+  field: DescField & { message: DescMessage },
+): CompiledValueJsonWriter {
+  const { toMessage } = localMessageMapper(field);
+  const writeMessage = compiledWriter(field.message);
+  return (opts, value) => writeMessage(opts, toMessage(value));
+}
+
+/**
+ * Compile an encoder for a list field value. Returns undefined for an empty
+ * list, unless alwaysEmitImplicit is enabled.
+ */
+function compileListValue(
+  field: DescField & { fieldKind: "list" },
+): CompiledFieldValueJsonWriter {
+  const writeItem = compileListItemValue(field);
+  return (opts, value) => {
+    const items = value as unknown[];
+    if (items.length == 0 && !opts.alwaysEmitImplicit) {
+      return undefined;
+    }
+    const jsonArray: JsonValue[] = [];
+    for (let i = 0; i < items.length; i++) {
+      jsonArray.push(writeItem(opts, items[i]));
+    }
+    return jsonArray;
+  };
+}
+
+function compileListItemValue(
+  field: DescField & { fieldKind: "list" },
+): CompiledValueJsonWriter {
+  switch (field.listKind) {
+    case "scalar":
+      return compileScalarValue(field);
+    case "enum":
+      return compileEnumValue(field);
+    case "message":
+      return compileMessageValue(field);
+  }
+}
+
+/**
+ * Compile an encoder for a map field value. Returns undefined for an empty
+ * map, unless alwaysEmitImplicit is enabled. Map keys are stored as object
+ * keys and are used as JSON keys as-is.
+ */
+function compileMapValue(
+  field: DescField & { fieldKind: "map" },
+): CompiledFieldValueJsonWriter {
+  const writeMapValue = compileMapEntryValue(field);
+  return (opts, value) => {
+    const record = value as Record<string, unknown>;
+    const keys = Object.keys(record);
+    if (keys.length == 0 && !opts.alwaysEmitImplicit) {
+      return undefined;
+    }
+    const jsonObject: JsonObject = {};
+    for (const key of keys) {
+      jsonObject[key] = writeMapValue(opts, record[key]);
+    }
+    return jsonObject;
+  };
+}
+
+function compileMapEntryValue(
+  field: DescField & { fieldKind: "map" },
+): CompiledValueJsonWriter {
+  switch (field.mapKind) {
+    case "scalar":
+      return compileScalarValue(field);
+    case "enum":
+      return compileEnumValue(field);
+    case "message":
+      return compileMessageValue(field);
+  }
+}
+
+/**
+ * Compile an encoder for an enum value.
+ */
+function compileEnumValue(
+  field: DescField & { enum: DescEnum },
+): CompiledValueJsonWriter {
+  const desc = field.enum;
   if (desc.typeName == "google.protobuf.NullValue") {
-    return null;
+    return (opts, value) => {
+      if (typeof value != "number") {
+        throw errorEnumValue(desc, value);
+      }
+      return null;
+    };
   }
-  if (enumAsInteger) {
-    return value;
-  }
-  const val = desc.value[value] as DescEnumValue | undefined;
-  return val?.name ?? value; // if we don't know the enum value, just return the number
+  return (opts, value) => {
+    if (typeof value != "number") {
+      throw errorEnumValue(desc, value);
+    }
+    if (opts.enumAsInteger) {
+      return value;
+    }
+    // If we don't know the enum value, just return the number.
+    return (desc.value[value] as DescEnumValue | undefined)?.name ?? value;
+  };
 }
 
-function scalarToJson(
+function errorEnumValue(desc: DescEnum, value: unknown): Error {
+  return new Error(
+    `cannot encode ${desc} to JSON: expected number, got ${formatVal(value)}`,
+  );
+}
+
+/**
+ * Compile an encoder for a scalar value. Errors report the original field
+ * descriptor, which may be a list or map field for items of those fields.
+ */
+function compileScalarValue(
   field: DescField & { scalar: ScalarType },
-  value: unknown,
-): string | number | boolean {
+): CompiledValueJsonWriter {
   switch (field.scalar) {
     // int32, fixed32, uint32: JSON value will be a decimal number. Either numbers or strings are accepted.
     case ScalarType.INT32:
@@ -323,44 +640,44 @@ function scalarToJson(
     case ScalarType.SINT32:
     case ScalarType.FIXED32:
     case ScalarType.UINT32:
-      if (typeof value != "number") {
-        throw new Error(
-          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
-        );
-      }
-      return value;
+      return (opts, value) => {
+        if (typeof value != "number") {
+          throw errorScalarValue(field, value);
+        }
+        return value;
+      };
 
     // float, double: JSON value will be a number or one of the special string values "NaN", "Infinity", and "-Infinity".
     // Either numbers or strings are accepted. Exponent notation is also accepted.
     case ScalarType.FLOAT:
-    case ScalarType.DOUBLE: // eslint-disable-line no-fallthrough
-      if (typeof value != "number") {
-        throw new Error(
-          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
-        );
-      }
-      if (Number.isNaN(value)) return "NaN";
-      if (value === Number.POSITIVE_INFINITY) return "Infinity";
-      if (value === Number.NEGATIVE_INFINITY) return "-Infinity";
-      return value;
+    case ScalarType.DOUBLE:
+      return (opts, value) => {
+        if (typeof value != "number") {
+          throw errorScalarValue(field, value);
+        }
+        if (Number.isNaN(value)) return "NaN";
+        if (value === Number.POSITIVE_INFINITY) return "Infinity";
+        if (value === Number.NEGATIVE_INFINITY) return "-Infinity";
+        return value;
+      };
 
     // string:
     case ScalarType.STRING:
-      if (typeof value != "string") {
-        throw new Error(
-          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
-        );
-      }
-      return value;
+      return (opts, value) => {
+        if (typeof value != "string") {
+          throw errorScalarValue(field, value);
+        }
+        return value;
+      };
 
     // bool:
     case ScalarType.BOOL:
-      if (typeof value != "boolean") {
-        throw new Error(
-          `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
-        );
-      }
-      return value;
+      return (opts, value) => {
+        if (typeof value != "boolean") {
+          throw errorScalarValue(field, value);
+        }
+        return value;
+      };
 
     // JSON value will be a decimal string. Either numbers or strings are accepted.
     case ScalarType.UINT64:
@@ -368,62 +685,70 @@ function scalarToJson(
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
-      if (
-        typeof value == "bigint" ||
-        typeof value == "string" ||
-        (typeof value == "number" && Number.isInteger(value))
-      ) {
-        return value.toString();
-      }
-      throw new Error(
-        `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
-      );
+      return (opts, value) => {
+        if (
+          typeof value == "bigint" ||
+          typeof value == "string" ||
+          (typeof value == "number" && Number.isInteger(value))
+        ) {
+          return value.toString();
+        }
+        throw errorScalarValue(field, value);
+      };
 
     // bytes: JSON value will be the data encoded as a string using standard base64 encoding with paddings.
     // Either standard or URL-safe base64 encoding with/without paddings are accepted.
     case ScalarType.BYTES:
-      if (value instanceof Uint8Array) {
-        return base64Encode(value);
-      }
-      throw new Error(
-        `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
-      );
+      return (opts, value) => {
+        if (value instanceof Uint8Array) {
+          return base64Encode(value);
+        }
+        throw errorScalarValue(field, value);
+      };
   }
 }
 
-function jsonName(f: DescField, opts: JsonWriteOptions) {
-  return opts.useProtoFieldName ? f.name : f.jsonName;
+function errorScalarValue(field: DescField, value: unknown): Error {
+  return new Error(
+    `cannot encode ${field} to JSON: ${checkField(field, value)?.message}`,
+  );
 }
 
-// returns a json value if wkt, otherwise returns undefined.
-function tryWktToJson(
-  msg: ReflectMessage,
+/**
+ * Write extensions for unknown fields that are found in the registry.
+ */
+function writeExtensions(
+  json: JsonObject,
   opts: JsonWriteOptions,
-): JsonValue | undefined {
-  if (!msg.desc.typeName.startsWith("google.protobuf.")) {
-    return undefined;
+  registry: Registry,
+  message: Record<string, unknown>,
+  desc: DescMessage,
+): void {
+  const unknown = message.$unknown as UnknownField[] | undefined;
+  if (unknown === undefined) {
+    return;
   }
-  switch (msg.desc.typeName) {
-    case "google.protobuf.Any":
-      return anyToJson(msg.message as Any, opts);
-    case "google.protobuf.Timestamp":
-      return timestampToJson(msg.message as Timestamp);
-    case "google.protobuf.Duration":
-      return durationToJson(msg.message as Duration);
-    case "google.protobuf.FieldMask":
-      return fieldMaskToJson(msg.message as FieldMask);
-    case "google.protobuf.Struct":
-      return structToJson(msg.message as Struct);
-    case "google.protobuf.Value":
-      return valueToJson(msg.message as Value);
-    case "google.protobuf.ListValue":
-      return listValueToJson(msg.message as ListValue);
-    default:
-      if (isWrapperDesc(msg.desc)) {
-        const valueField = msg.desc.fields[0];
-        return scalarToJson(valueField, msg.get(valueField));
+  const tagSeen = new Set<number>();
+  for (const { no } of unknown) {
+    // Same tag can appear multiple times, so we
+    // keep track and skip identical ones.
+    if (!tagSeen.has(no)) {
+      tagSeen.add(no);
+      const extension = registry.getExtensionFor(desc, no);
+      if (!extension) {
+        continue;
       }
-      return undefined;
+      const value = getExtension(message as unknown as Message, extension);
+      const [container, field] = createExtensionContainer(extension, value);
+      const local = container[unsafeLocal] as unknown as Record<
+        string,
+        unknown
+      >;
+      const jsonValue = compileFieldValue(field)(opts, local[field.localName]);
+      if (jsonValue !== undefined) {
+        json[extension.jsonName] = jsonValue;
+      }
+    }
   }
 }
 
@@ -445,10 +770,17 @@ function anyToJson(val: Any, opts: JsonWriteOptions): JsonValue {
       `cannot encode message ${val.$typeName} to JSON: "${val.typeUrl}" is not in the type registry`,
     );
   }
-  const reflected = reflect(desc, message);
   const json: JsonObject = hasCustomJsonRepresentation(desc)
-    ? { value: tryWktToJson(reflected, opts) as JsonValue }
-    : (reflectToJson(reflected, opts) as JsonObject);
+    ? {
+        value: compiledWriter(desc)(
+          opts,
+          message as unknown as Record<string, unknown>,
+        ),
+      }
+    : (compiledWriter(desc)(
+        opts,
+        message as unknown as Record<string, unknown>,
+      ) as JsonObject);
   json["@type"] = val.typeUrl;
   return json;
 }
@@ -456,7 +788,7 @@ function anyToJson(val: Any, opts: JsonWriteOptions): JsonValue {
 function durationToJson(val: Duration) {
   const seconds = Number(val.seconds);
   const nanos = val.nanos;
-  if (seconds > 315576000000 || seconds < -315576000000) {
+  if (seconds > durationSecondsMax || seconds < durationSecondsMin) {
     throw new Error(
       `cannot encode message ${val.$typeName} to JSON: value out of range`,
     );
@@ -498,8 +830,8 @@ function fieldMaskToJson(val: FieldMask) {
 
 function structToJson(val: Struct) {
   const json: JsonObject = {};
-  for (const [k, v] of Object.entries(val.fields)) {
-    json[k] = valueToJson(v);
+  for (const k of Object.keys(val.fields)) {
+    json[k] = valueToJson(val.fields[k]);
   }
   return json;
 }
@@ -532,10 +864,7 @@ function listValueToJson(val: ListValue): JsonValue[] {
 
 function timestampToJson(val: Timestamp) {
   const ms = Number(val.seconds) * 1000;
-  if (
-    ms < Date.parse("0001-01-01T00:00:00Z") ||
-    ms > Date.parse("9999-12-31T23:59:59Z")
-  ) {
+  if (ms < timestampMsMin || ms > timestampMsMax) {
     throw new Error(
       `cannot encode message ${val.$typeName} to JSON: must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive`,
     );
