@@ -562,7 +562,9 @@ export class BinaryReader {
     return this.buf.subarray(start, this.pos);
   }
 
-  protected varint64 = varint64read as () => [number, number]; // dirty cast for `this`
+  protected varint64Lo = 0;
+  protected varint64Hi = 0;
+  protected varint64 = varint64read as () => void; // dirty cast for `this`
 
   /**
    * Throws error if position in byte array is out of range.
@@ -596,21 +598,25 @@ export class BinaryReader {
    * Read a `int64` field, a signed 64-bit varint.
    */
   int64(): bigint | string {
-    return protoInt64.dec(...this.varint64());
+    this.varint64();
+    return protoInt64.dec(this.varint64Lo, this.varint64Hi);
   }
 
   /**
    * Read a `uint64` field, an unsigned 64-bit varint.
    */
   uint64(): bigint | string {
-    return protoInt64.uDec(...this.varint64());
+    this.varint64();
+    return protoInt64.uDec(this.varint64Lo, this.varint64Hi);
   }
 
   /**
    * Read a `sint64` field, a signed, zig-zag-encoded 64-bit varint.
    */
   sint64(): bigint | string {
-    let [lo, hi] = this.varint64();
+    this.varint64();
+    let lo = this.varint64Lo;
+    let hi = this.varint64Hi;
     // decode zig zag
     let s = -(lo & 1);
     lo = ((lo >>> 1) | ((hi & 1) << 31)) ^ s;
@@ -622,8 +628,14 @@ export class BinaryReader {
    * Read a `bool` field, a variant.
    */
   bool(): boolean {
-    let [lo, hi] = this.varint64();
-    return lo !== 0 || hi !== 0;
+    // Fast path: most bools are 0x0 or 0x1.
+    const b = this.buf[this.pos];
+    if (b < 0x80) {
+      this.pos++;
+      return b !== 0;
+    }
+    this.varint64();
+    return this.varint64Lo !== 0 || this.varint64Hi !== 0;
   }
 
   /**
