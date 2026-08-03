@@ -569,7 +569,7 @@ export class BinaryReader {
   /**
    * Throws error if position in byte array is out of range.
    */
-  protected assertBounds(): void {
+  private assertBounds(): void {
     if (this.pos > this.len) throw new RangeError("premature EOF");
   }
 
