@@ -13,21 +13,33 @@
 // limitations under the License.
 
 /**
- * Minimum google.protobuf.Timestamp in JSON, in milliseconds (inclusive).
+ * Minimum google.protobuf.Timestamp in milliseconds (inclusive).
+ * Only enforced in ProtoJSON.
+ *
+ * @private
  */
 export const timestampMsMin = /*@__PURE__*/ Date.parse("0001-01-01T00:00:00Z");
 
 /**
- * Maximum google.protobuf.Timestamp in JSON, in milliseconds (inclusive).
+ * Maximum google.protobuf.Timestamp in milliseconds (inclusive).
+ * Only enforced in ProtoJSON.
+ *
+ * @private
  */
 export const timestampMsMax = /*@__PURE__*/ Date.parse("9999-12-31T23:59:59Z");
 
 /**
- * Minimum google.protobuf.Duration in JSON, in seconds.
+ * Minimum google.protobuf.Duration in seconds.
+ * Only enforced in ProtoJSON.
+ *
+ * @private
  */
 export const durationSecondsMin = -315576000000;
 
 /**
- * Maximum google.protobuf.Duration in JSON, in seconds.
+ * Maximum google.protobuf.Duration in seconds.
+ * Only enforced in ProtoJSON.
+ *
+ * @private
  */
 export const durationSecondsMax = 315576000000;
