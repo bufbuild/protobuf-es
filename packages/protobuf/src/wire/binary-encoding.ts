@@ -477,7 +477,7 @@ export class BinaryReader {
    */
   readonly len: number;
 
-  protected readonly buf: Uint8Array;
+  private readonly buf: Uint8Array;
   private readonly view: DataView;
 
   constructor(
@@ -562,9 +562,9 @@ export class BinaryReader {
     return this.buf.subarray(start, this.pos);
   }
 
-  protected varint64Lo = 0;
-  protected varint64Hi = 0;
-  protected varint64 = varint64read as () => void; // dirty cast for `this`
+  private varint64Lo = 0;
+  private varint64Hi = 0;
+  private varint64 = varint64read as () => void; // dirty cast for `this`
 
   /**
    * Throws error if position in byte array is out of range.
