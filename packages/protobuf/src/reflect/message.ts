@@ -34,6 +34,8 @@ const NULL_VALUE = 0;
  * part of a oneof group, and google.protobuf.Struct is represented with
  * JsonObject when used in a field, except when used in
  * google.protobuf.Value.
+ *
+ * @private
  */
 export interface LocalMessageMapper {
   /**
@@ -53,6 +55,8 @@ export interface LocalMessageMapper {
 /**
  * Return the conversions between the local representation of the field
  * value and the message it represents.
+ *
+ * @private
  */
 export function localMessageMapper(
   field: DescField & { message: DescMessage },
@@ -119,6 +123,8 @@ function usesJsonRepresentation(
 /**
  * Convert the JsonValue representation of a google.protobuf.Struct to the
  * message representation.
+ *
+ * @private
  */
 export function wktStructToReflect(json: JsonValue): Struct {
   const struct: Struct = {
@@ -135,6 +141,8 @@ export function wktStructToReflect(json: JsonValue): Struct {
 
 /**
  * Convert a google.protobuf.Struct message to its JsonValue representation.
+ *
+ * @private
  */
 export function wktStructToLocal(val: Struct): JsonObject {
   const json: JsonObject = {};

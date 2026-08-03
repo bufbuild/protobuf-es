@@ -127,6 +127,8 @@ type InvalidScalarValueErr = false | "invalid UTF8" | `${string} out of range`;
 
 /**
  * Return the check for values of the given scalar type.
+ *
+ * @private
  */
 export function checkScalarValue(
   scalar: ScalarType,
@@ -225,6 +227,8 @@ export function checkScalarValue(
 
 /**
  * Format the reason why a value is invalid for a singular field.
+ *
+ * @private
  */
 export function reasonSingular(
   field:
