@@ -34,46 +34,54 @@
 /**
  * Read a 64 bit varint as two JS numbers.
  *
- * Returns tuple:
- * [0]: low bits
- * [1]: high bits
+ * Stores the low and high words on the reader.
  *
  * Copyright 2008 Google Inc.  All rights reserved.
  *
  * See https://github.com/protocolbuffers/protobuf/blob/8a71927d74a4ce34efe2d8769fda198f52d20d12/js/experimental/runtime/kernel/buffer_decoder.js#L175
  */
-export function varint64read<T extends ReaderLike>(this: T): [number, number] {
-  let lowBits = 0;
-  let highBits = 0;
-
+export function varint64read<T extends ReaderLike>(this: T): void {
+  const buf = this.buf;
+  let pos = this.pos;
+  let lo = 0;
+  let hi = 0;
   for (let shift = 0; shift < 28; shift += 7) {
-    let b = this.buf[this.pos++];
-    lowBits |= (b & 0x7f) << shift;
+    const b = buf[pos++];
+    lo |= (b & 0x7f) << shift;
     if ((b & 0x80) == 0) {
+      this.pos = pos;
       this.assertBounds();
-      return [lowBits, highBits];
+      this.varint64Lo = lo;
+      this.varint64Hi = hi;
+      return;
     }
   }
 
-  let middleByte = this.buf[this.pos++];
+  const middleByte = buf[pos++];
 
   // last four bits of the first 32 bit number
-  lowBits |= (middleByte & 0x0f) << 28;
+  lo |= (middleByte & 0x0f) << 28;
 
   // 3 upper bits are part of the next 32 bit number
-  highBits = (middleByte & 0x70) >> 4;
+  hi = (middleByte & 0x70) >> 4;
 
   if ((middleByte & 0x80) == 0) {
+    this.pos = pos;
     this.assertBounds();
-    return [lowBits, highBits];
+    this.varint64Lo = lo;
+    this.varint64Hi = hi;
+    return;
   }
 
   for (let shift = 3; shift <= 31; shift += 7) {
-    let b = this.buf[this.pos++];
-    highBits |= (b & 0x7f) << shift;
+    const b = buf[pos++];
+    hi |= (b & 0x7f) << shift;
     if ((b & 0x80) == 0) {
+      this.pos = pos;
       this.assertBounds();
-      return [lowBits, highBits];
+      this.varint64Lo = lo;
+      this.varint64Hi = hi;
+      return;
     }
   }
 
@@ -351,5 +359,7 @@ type ReaderLike = {
   buf: Uint8Array;
   pos: number;
   len: number;
+  varint64Lo: number;
+  varint64Hi: number;
   assertBounds(): void;
 };
