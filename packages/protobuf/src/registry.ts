@@ -860,7 +860,14 @@ function newField(
     field.oneof = undefined;
     field.typeName = typeName;
     field.jsonName = `[${typeName}]`; // option json_name is not allowed on extension fields
-    field.toString = () => `extension ${typeName}`;
+    // A plain assignment throws where built-in prototypes are frozen. The
+    // attributes below match what an assignment produces.
+    Object.defineProperty(field, "toString", {
+      value: () => `extension ${typeName}`,
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    });
     const extendee = reg.getMessage(trimLeadingDot(proto.extendee));
     assert(
       extendee,
@@ -877,7 +884,12 @@ function newField(
       ? protoCamelCase(proto.name)
       : safeObjectProperty(protoCamelCase(proto.name));
     field.jsonName = proto.jsonName;
-    field.toString = () => `field ${parent.typeName}.${proto.name}`;
+    Object.defineProperty(field, "toString", {
+      value: () => `field ${parent.typeName}.${proto.name}`,
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    });
   }
   const label: FieldDescriptorProto_Label = proto.label;
   const type: FieldDescriptorProto_Type = proto.type;

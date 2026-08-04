@@ -2171,3 +2171,75 @@ void suite("DescMethod", () => {
     });
   });
 });
+
+void suite("descriptor toString()", () => {
+  const protoSource = `
+    syntax="proto2";
+    message Msg {
+      optional int32 fld = 1;
+      extensions 100 to 200;
+    }
+    extend Msg { optional int32 ext = 100; }
+  `;
+
+  // Object.freeze(Object.prototype) is irreversible and would leak into every
+  // later test in this process.
+  function withNonWritableToString<T>(fn: () => T): T {
+    const original = Object.getOwnPropertyDescriptor(
+      Object.prototype,
+      "toString",
+    );
+    assert.ok(original);
+    Object.defineProperty(Object.prototype, "toString", {
+      ...original,
+      writable: false,
+      configurable: true,
+    });
+    try {
+      return fn();
+    } finally {
+      Object.defineProperty(Object.prototype, "toString", original);
+    }
+  }
+
+  function describeAll(reg: FileRegistry): string[] {
+    const msg = reg.getMessage("Msg");
+    assert.ok(msg);
+    const ext = reg.getExtension("ext");
+    assert.ok(ext);
+    return [msg.fields[0].toString(), ext.toString()];
+  }
+
+  void test("describes a field and an extension", async () => {
+    const reg = createFileRegistry(
+      await compileFileDescriptorSet({ "a.proto": protoSource }),
+    );
+    assert.deepStrictEqual(describeAll(reg), [
+      "field Msg.fld",
+      "extension ext",
+    ]);
+  });
+
+  void test("is an enumerable own property", async () => {
+    const reg = createFileRegistry(
+      await compileFileDescriptorSet({ "a.proto": protoSource }),
+    );
+    const msg = reg.getMessage("Msg");
+    assert.ok(msg);
+    assert.strictEqual(
+      Object.getOwnPropertyDescriptor(msg.fields[0], "toString")?.enumerable,
+      true,
+    );
+  });
+
+  void test("works with non-writable Object.prototype.toString", async () => {
+    const fileDescriptorSet = await compileFileDescriptorSet({
+      "a.proto": protoSource,
+    });
+    const expected = describeAll(createFileRegistry(fileDescriptorSet));
+    const actual = withNonWritableToString(() =>
+      describeAll(createFileRegistry(fileDescriptorSet)),
+    );
+    assert.deepStrictEqual(actual, expected);
+  });
+});
