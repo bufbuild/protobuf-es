@@ -113,29 +113,23 @@ export class BinaryWriter {
   private stackPos: number[] = [];
 
   /**
-   * UTF-8 codec used by `string()`. Bundled into a single field (rather than
-   * one field per function) to keep the instance field count from growing.
+   * UTF-8 codec used by `string()`. Uses the text encoding's `encodeUtf8Into`,
+   * or emulates it if a custom `encodeUtf8` was passed to the constructor.
    */
-  private readonly encode: {
-    encodeUtf8: (text: string) => Uint8Array;
-    encodeUtf8Into?:
-      | ((text: string, dest: Uint8Array) => { read: number; written: number })
-      | undefined;
-  };
+  private readonly encodeUtf8Into: (
+    text: string,
+    dest: Uint8Array,
+  ) => { read: number; written: number };
 
-  constructor(
-    encodeUtf8: (text: string) => Uint8Array = getTextEncoding().encodeUtf8,
-  ) {
-    const textEncoding = getTextEncoding();
-    this.encode = {
-      encodeUtf8,
-      encodeUtf8Into:
-        encodeUtf8 === textEncoding.encodeUtf8
-          ? textEncoding.encodeUtf8Into
-          : undefined,
-    };
-    // Defer the first Uint8Array allocation: small messages (e.g. a bool-only
-    // request) would otherwise pay for a full INITIAL_SIZE zeroed buffer.
+  constructor(encodeUtf8?: (text: string) => Uint8Array) {
+    this.encodeUtf8Into =
+      encodeUtf8 === undefined
+        ? getTextEncoding().encodeUtf8Into
+        : (text, dest) => {
+            const bytes = encodeUtf8(text);
+            dest.set(bytes);
+            return { read: text.length, written: bytes.byteLength };
+          };
     this.buffer = EMPTY_BUFFER;
     this.viewCache = EMPTY_VIEW;
     this.pos = 0;
@@ -305,43 +299,36 @@ export class BinaryWriter {
    * Write a `string` value, length-delimited data converted to UTF-8 text.
    */
   string(value: string): this {
-    const encodeUtf8Into = this.encode.encodeUtf8Into;
-    if (encodeUtf8Into && typeof value === "string") {
-      // encodeInto needs the full-length buffer upfront. The length prefix can
-      // be upto 5 bytes, and a UTF-16 code unit takes at most 3 UTF-8 bytes.
-      const len = value.length;
-      this.ensureCapacity(len * 3 + 5);
+    // encodeUtf8Into needs the full-length buffer upfront. The length prefix
+    // can be upto 5 bytes, and a UTF-16 code unit takes at most 3 UTF-8 bytes.
+    const len = value.length;
+    this.ensureCapacity(len * 3 + 5);
 
-      // The length prefix goes first, but the byte length is only known after
-      // encoding. We guess the final varint size here (assuming most text is
-      // ASCII) and then encode.
-      const lenPrefixSizeGuess = varint32Size(len);
-      const buf = this.buffer;
-      const start = this.pos;
-      const { written } = encodeUtf8Into(
-        value,
-        buf.subarray(start + lenPrefixSizeGuess),
+    // The length prefix goes first, but the byte length is only known after
+    // encoding. We guess the final varint size here (assuming most text is
+    // ASCII) and then encode.
+    const lenPrefixSizeGuess = varint32Size(len);
+    const buf = this.buffer;
+    const start = this.pos;
+    const { written } = this.encodeUtf8Into(
+      value,
+      buf.subarray(start + lenPrefixSizeGuess),
+    );
+
+    // If our guess was incorrect, we need to shift the bytes we just wrote.
+    const lenPrefixSize = varint32Size(written);
+    if (lenPrefixSize != lenPrefixSizeGuess) {
+      buf.copyWithin(
+        start + lenPrefixSize,
+        start + lenPrefixSizeGuess,
+        start + lenPrefixSizeGuess + written,
       );
-
-      // If our guess was incorrect, we need to shift the bytes we just wrote.
-      const lenPrefixSize = varint32Size(written);
-      if (lenPrefixSize != lenPrefixSizeGuess) {
-        buf.copyWithin(
-          start + lenPrefixSize,
-          start + lenPrefixSizeGuess,
-          start + lenPrefixSizeGuess + written,
-        );
-      }
-
-      // Write the lenPrefix and advance the pos.
-      this.uint32(written);
-      this.pos += written;
-      return this;
     }
 
-    let chunk = this.encode.encodeUtf8(value);
-    this.uint32(chunk.byteLength);
-    return this.raw(chunk);
+    // Write the lenPrefix and advance the pos.
+    this.uint32(written);
+    this.pos += written;
+    return this;
   }
 
   /**

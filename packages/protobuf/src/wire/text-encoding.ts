@@ -31,7 +31,7 @@ interface TextEncoding {
   /**
    * Encode UTF-8 text to a Uint8Array.
    */
-  encodeUtf8Into?: (
+  encodeUtf8Into: (
     text: string,
     dest: Uint8Array,
   ) => { read: number; written: number };
@@ -53,23 +53,20 @@ interface TextEncoding {
  * Our implementation falls back to use encodeURIComponent().
  */
 export function configureTextEncoding(
-  textEncoding: Partial<TextEncoding>,
+  textEncoding: Omit<TextEncoding, "encodeUtf8Into"> &
+    Partial<Pick<TextEncoding, "encodeUtf8Into">>,
 ): void {
-  const current = getTextEncoding();
-  const merged: TextEncoding = {
-    checkUtf8: textEncoding.checkUtf8 ?? current.checkUtf8,
-    decodeUtf8: textEncoding.decodeUtf8 ?? current.decodeUtf8,
-    encodeUtf8: textEncoding.encodeUtf8 ?? current.encodeUtf8,
+  (globalThis as GlobalWithTextEncoding)[symbol] = {
+    ...textEncoding,
+    // Emulate encodeUtf8Into with encodeUtf8 if it is not provided.
+    encodeUtf8Into:
+      textEncoding.encodeUtf8Into ??
+      ((text, dest) => {
+        const bytes = textEncoding.encodeUtf8(text);
+        dest.set(bytes);
+        return { read: text.length, written: bytes.byteLength };
+      }),
   };
-  // encodeUtf8Into must encode identically to encodeUtf8, so only carry over
-  // the previous encodeUtf8Into if encodeUtf8 wasn't also overridden.
-  const encodeUtf8Into = textEncoding.encodeUtf8
-    ? textEncoding.encodeUtf8Into
-    : (textEncoding.encodeUtf8Into ?? current.encodeUtf8Into);
-  if (encodeUtf8Into) {
-    merged.encodeUtf8Into = encodeUtf8Into;
-  }
-  (globalThis as GlobalWithTextEncoding)[symbol] = merged;
 }
 
 export function getTextEncoding() {
@@ -82,10 +79,15 @@ export function getTextEncoding() {
     ).TextDecoder();
     let textDecoderStrict: { decode(data: Uint8Array): string } | undefined;
 
-    const textEncoding: TextEncoding = {
+    configureTextEncoding({
       encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
         return textEncoder.encode(text);
       },
+      // With exactOptionalPropertyTypes, an explicit undefined is not
+      // assignable to the optional property, so spread conditionally.
+      ...(textEncoder.encodeInto !== undefined
+        ? { encodeUtf8Into: textEncoder.encodeInto.bind(textEncoder) }
+        : undefined),
       decodeUtf8(bytes: Uint8Array, strict?: boolean): string {
         if (strict) {
           if (textDecoderStrict === undefined) {
@@ -108,12 +110,7 @@ export function getTextEncoding() {
           return false;
         }
       },
-    };
-    const encodeUtf8Into = textEncoder.encodeInto?.bind(textEncoder);
-    if (encodeUtf8Into !== undefined) {
-      textEncoding.encodeUtf8Into = encodeUtf8Into;
-    }
-    (globalThis as GlobalWithTextEncoding)[symbol] = textEncoding;
+    });
   }
   return (globalThis as GlobalWithTextEncoding)[symbol] as TextEncoding;
 }
