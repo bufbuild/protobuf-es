@@ -109,7 +109,8 @@ function compileMessage(desc: DescMessage): CompiledWriter {
     }
     const unknown = message.$unknown as UnknownField[] | undefined;
     if (unknown !== undefined && opts.writeUnknownFields) {
-      for (const { no, wireType, data } of unknown) {
+      for (let i = 0; i < unknown.length; i++) {
+        const { no, wireType, data } = unknown[i];
         writer.tag(no, wireType).raw(data);
       }
     }
@@ -331,7 +332,9 @@ function compileMapField(
     const writeMessage = compiledWriter(field.message);
     return (writer, opts, message) => {
       const record = message[localName] as Record<string, unknown>;
-      for (const key of Object.keys(record)) {
+      const keys = Object.keys(record);
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
         writer.tag(fieldNo, WireType.LengthDelimited).fork();
         writeKey(writer, key);
         // The value of a map entry is always field number 2.
@@ -351,7 +354,9 @@ function compileMapField(
   );
   return (writer, opts, message) => {
     const record = message[localName] as Record<string, unknown>;
-    for (const key of Object.keys(record)) {
+    const keys = Object.keys(record);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
       writer.tag(fieldNo, WireType.LengthDelimited).fork();
       writeKey(writer, key);
       // The value of a map entry is always field number 2.

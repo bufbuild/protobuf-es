@@ -310,7 +310,9 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
     }
     const oneofSeen = new Map<DescOneof, DescField>();
     const fieldSeen = new Set<DescField>();
-    for (const jsonKey of Object.keys(json)) {
+    const jsonKeys = Object.keys(json);
+    for (let i = 0; i < jsonKeys.length; i++) {
+      const jsonKey = jsonKeys[i];
       const jsonValue = json[jsonKey];
       const entry = fieldsByJsonKey.get(jsonKey);
       if (entry !== undefined) {
@@ -597,8 +599,8 @@ function compileListFieldReader(
       throw new FieldError(field, "expected Array, got " + formatVal(json));
     }
     const items = message[localName] as unknown[];
-    for (const jsonItem of json) {
-      const value = readItem(jsonItem, ctx, items.length);
+    for (let i = 0; i < json.length; i++) {
+      const value = readItem(json[i], ctx, items.length);
       if (value !== tokenIgnoredUnknownEnum) {
         items.push(value);
       }
@@ -725,7 +727,9 @@ function compileMapFieldReader(
     }
     const record = message[localName] as Record<string, unknown>;
     const seen = new Set<unknown>();
-    for (const jsonMapKey of Object.keys(json)) {
+    const jsonMapKeys = Object.keys(json);
+    for (let i = 0; i < jsonMapKeys.length; i++) {
+      const jsonMapKey = jsonMapKeys[i];
       const jsonMapValue = json[jsonMapKey];
       const key = parseMapKey(jsonMapKey);
       if (seen.has(key)) {
@@ -1273,10 +1277,12 @@ function structFromJson(struct: Struct, json: JsonValue, ctx: JsonReadContext) {
       `cannot decode message ${struct.$typeName} from JSON ${formatVal(json)}`,
     );
   }
-  for (const k of Object.keys(json)) {
-    const parsedV = create(ValueSchema);
-    valueFromJson(parsedV, json[k], ctx);
-    struct.fields[k] = parsedV;
+  const keys = Object.keys(json);
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    const parsedValue = create(ValueSchema);
+    valueFromJson(parsedValue, json[key], ctx);
+    struct.fields[key] = parsedValue;
   }
 }
 
@@ -1328,9 +1334,9 @@ function listValueFromJson(
       `cannot decode message ${listValue.$typeName} from JSON ${formatVal(json)}`,
     );
   }
-  for (const e of json) {
+  for (let i = 0; i < json.length; i++) {
     const value = create(ValueSchema);
-    valueFromJson(value, e, ctx);
+    valueFromJson(value, json[i], ctx);
     listValue.values.push(value);
   }
 }

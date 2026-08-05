@@ -570,7 +570,8 @@ function compileMapValue(
       return undefined;
     }
     const jsonObject: JsonObject = {};
-    for (const key of keys) {
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
       jsonObject[key] = writeMapValue(opts, record[key]);
     }
     return jsonObject;
@@ -726,7 +727,8 @@ function writeExtensions(
     return;
   }
   const tagSeen = new Set<number>();
-  for (const { no } of unknown) {
+  for (let i = 0; i < unknown.length; i++) {
+    const { no } = unknown[i];
     // Same tag can appear multiple times, so we
     // keep track and skip identical ones.
     if (!tagSeen.has(no)) {
@@ -827,8 +829,10 @@ function fieldMaskToJson(val: FieldMask) {
 
 function structToJson(val: Struct) {
   const json: JsonObject = {};
-  for (const k of Object.keys(val.fields)) {
-    json[k] = valueToJson(val.fields[k]);
+  const keys = Object.keys(val.fields);
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    json[key] = valueToJson(val.fields[key]);
   }
   return json;
 }
