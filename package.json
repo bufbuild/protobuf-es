@@ -30,7 +30,7 @@
   "type": "module",
   "engineStrict": true,
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "npm": ">=10"
   },
   "packageManager": "npm@10.9.0",
@@ -44,7 +44,7 @@
     "@biomejs/biome": "^1.9.4",
     "@bufbuild/license-header": "^0.0.4",
     "@types/node": "^26.0.0",
-    "turbo": "^2.10.2",
+    "turbo": "^2.10.7",
     "typescript": "^6.0.3"
   }
 }

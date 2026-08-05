@@ -12,6 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Native Uint8Array.fromBase64, if the runtime provides it.
+const nativeUint8ArrayFromBase64 = (
+  Uint8Array as Partial<{
+    fromBase64(base64Str: string): Uint8Array<ArrayBuffer>;
+  }>
+).fromBase64;
+
 /**
  * Decodes a base64 string to a byte array.
  *
@@ -24,6 +31,15 @@
  *   no padding
  */
 export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
+  if (nativeUint8ArrayFromBase64) {
+    try {
+      return nativeUint8ArrayFromBase64(base64Str);
+    } catch {
+      // The native decoder rejects base64url and inner padding, which we
+      // accept. Fall through to the implementation below, which is lenient,
+      // and raises our own error for genuinely invalid input.
+    }
+  }
   const table = getDecodeTable();
   // estimate byte size, not accounting for inner padding and whitespace
   let es = (base64Str.length * 3) / 4;
@@ -76,6 +92,26 @@ export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
   return bytes.subarray(0, bytePos);
 }
 
+// Native Uint8Array.prototype.toBase64, if the runtime provides it.
+type ToBase64Options = {
+  readonly alphabet?: "base64" | "base64url";
+  readonly omitPadding?: boolean;
+};
+const nativeUint8ArrayToBase64 = (
+  Uint8Array.prototype as Partial<{
+    toBase64(options?: ToBase64Options): string;
+  }>
+).toBase64;
+
+type Base64Encoding = "std" | "std_raw" | "url";
+const toBase64OptionsMap: Readonly<
+  Record<Base64Encoding, Required<ToBase64Options>>
+> = {
+  std: { alphabet: "base64", omitPadding: false },
+  std_raw: { alphabet: "base64", omitPadding: true },
+  url: { alphabet: "base64url", omitPadding: true },
+};
+
 /**
  * Encode a byte array to a base64 string.
  *
@@ -88,8 +124,11 @@ export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
  */
 export function base64Encode(
   bytes: Uint8Array,
-  encoding: "std" | "std_raw" | "url" = "std",
+  encoding: Base64Encoding = "std",
 ) {
+  if (nativeUint8ArrayToBase64) {
+    return nativeUint8ArrayToBase64.call(bytes, toBase64OptionsMap[encoding]);
+  }
   const table = getEncodeTable(encoding);
   const pad = encoding == "std";
   let base64 = "",
