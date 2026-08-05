@@ -680,7 +680,6 @@ function compileMapFieldReader(
   const mapKey = field.mapKey;
   const parseMapKey = compileMapKeyParse(mapKey);
   const checkMapKey = checkScalarValue(mapKey);
-  const mapKeyToLocal = compileMapKeyToLocal(mapKey);
   let parseValue: (
     json: NonNullable<JsonValue>,
     ctx: JsonReadContext,
@@ -759,7 +758,7 @@ function compileMapFieldReader(
           );
         }
       }
-      record[mapKeyToLocal(key)] = toLocalValue(value);
+      record[key as string] = toLocalValue(value);
     }
   };
 }
@@ -929,8 +928,7 @@ function compileScalarParse(
 function compileScalarToLocal(
   field: DescField & { scalar: ScalarType },
 ): (value: unknown) => unknown {
-  const longAsString =
-    (field as { longAsString?: boolean }).longAsString === true;
+  const longAsString = field.fieldKind !== "map" && field.longAsString;
   switch (field.scalar) {
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
@@ -998,25 +996,6 @@ function compileMapKeyParse(
       // ScalarType.STRING
       return (jsonString) => jsonString;
   }
-}
-
-/**
- * Return a converter from a parsed and checked map key to its
- * representation as an object key: booleans become strings, strings and
- * numbers are used as-is.
- */
-function compileMapKeyToLocal(
-  type: Exclude<
-    ScalarType,
-    ScalarType.BYTES | ScalarType.DOUBLE | ScalarType.FLOAT
-  >,
-): (key: unknown) => string | number {
-  if (type == ScalarType.BOOL) {
-    return (key) => String(key);
-  }
-  // Strings, 32-bit integers, and canonicalized 64-bit integer strings are
-  // used as object keys as-is.
-  return (key) => key as string | number;
 }
 
 /**

@@ -20,7 +20,6 @@ import { FieldError } from "./reflect/error.js";
 import { unsafeLocal } from "./reflect/unsafe.js";
 import { localMessageMapper } from "./reflect/message.js";
 import { create } from "./create.js";
-import { protoInt64 } from "./proto-int64.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";
 import { varint32write } from "./wire/varint.js";
 
@@ -426,10 +425,11 @@ function compileListFieldReader(
     };
   }
   const scalarType = field.listKind == "enum" ? ScalarType.INT32 : field.scalar;
+  const longAsString = field.listKind == "scalar" ? field.longAsString : false;
   const readScalar = compileScalarReader(
     scalarType,
     field.utf8Validation,
-    (field as { longAsString?: boolean }).longAsString ?? false,
+    longAsString,
   );
   const packedPossible =
     scalarType != ScalarType.STRING && scalarType != ScalarType.BYTES;
@@ -455,7 +455,6 @@ function compileMapFieldReader(
     field.utf8Validation,
     false,
   );
-  const keyToLocal = compileMapKeyToLocal(field.mapKey);
   const keyZero = scalarZeroValue(field.mapKey, false);
   let readValue: (reader: BinaryReader, ctx: BinaryReadContext) => unknown;
   let valueDefault: () => unknown;
@@ -467,7 +466,7 @@ function compileMapFieldReader(
       const readScalar = compileScalarReader(
         scalar,
         field.utf8Validation,
-        longAsString,
+        false,
       );
       readValue = (reader) => readScalar(reader);
       // The default is converted like a read value: with longAsString, the
@@ -528,38 +527,8 @@ function compileMapFieldReader(
     if (val === undefined) {
       val = valueDefault();
     }
-    record[keyToLocal(key) as string] = val;
+    record[key as string] = val;
   };
-}
-
-/**
- * Returns a converter from a map key value read from the wire to its local
- * representation as an object key: booleans and 64-bit integers become
- * strings, strings and numbers are used as-is.
- */
-function compileMapKeyToLocal(
-  type: Exclude<
-    ScalarType,
-    ScalarType.FLOAT | ScalarType.DOUBLE | ScalarType.BYTES
-  >,
-): (key: unknown) => unknown {
-  switch (type) {
-    case ScalarType.STRING:
-      return (key) => key;
-    case ScalarType.BOOL:
-      return (key) => String(key);
-    case ScalarType.INT64:
-    case ScalarType.SINT64:
-    case ScalarType.SFIXED64:
-    case ScalarType.UINT64:
-    case ScalarType.FIXED64:
-      // 64-bit keys are strings already when BigInt is unavailable.
-      return protoInt64.supported ? (key) => String(key) : (key) => key;
-    default:
-      // Handles INT32, UINT32, SINT32, FIXED32, SFIXED32.
-      // We do not use individual cases to save a few bytes code size.
-      return (key) => key;
-  }
 }
 
 /**
@@ -589,23 +558,17 @@ function compileScalarReader(
       if (longAsString) {
         return (reader) => String(reader.int64());
       }
-      return protoInt64.supported
-        ? (reader) => reader.int64()
-        : (reader) => protoInt64.parse(reader.int64());
+      return (reader) => reader.int64();
     case ScalarType.UINT64:
       if (longAsString) {
         return (reader) => String(reader.uint64());
       }
-      return protoInt64.supported
-        ? (reader) => reader.uint64()
-        : (reader) => protoInt64.uParse(reader.uint64());
+      return (reader) => reader.uint64();
     case ScalarType.FIXED64:
       if (longAsString) {
         return (reader) => String(reader.fixed64());
       }
-      return protoInt64.supported
-        ? (reader) => reader.fixed64()
-        : (reader) => protoInt64.uParse(reader.fixed64());
+      return (reader) => reader.fixed64();
     case ScalarType.BYTES:
       return (reader) => reader.bytes();
     case ScalarType.FIXED32:
@@ -616,16 +579,12 @@ function compileScalarReader(
       if (longAsString) {
         return (reader) => String(reader.sfixed64());
       }
-      return protoInt64.supported
-        ? (reader) => reader.sfixed64()
-        : (reader) => protoInt64.parse(reader.sfixed64());
+      return (reader) => reader.sfixed64();
     case ScalarType.SINT64:
       if (longAsString) {
         return (reader) => String(reader.sint64());
       }
-      return protoInt64.supported
-        ? (reader) => reader.sint64()
-        : (reader) => protoInt64.parse(reader.sint64());
+      return (reader) => reader.sint64();
     case ScalarType.UINT32:
       return (reader) => reader.uint32();
     case ScalarType.SINT32:
