@@ -259,7 +259,7 @@ function compileInitImplicit(
   if (convert === undefined) {
     return (message, init) => {
       const value = init[name];
-      message[name] = value != null ? value : zeroValue;
+      message[name] = value ?? zeroValue;
     };
   }
   return (message, init) => {
@@ -279,17 +279,14 @@ function compileInitList(field: DescField & { fieldKind: "list" }): MemberInit {
   if (convertItem === undefined) {
     return (message, init) => {
       const value = init[name];
-      message[name] = value == null ? [] : value;
+      message[name] = value ?? [];
     };
   }
   return (message, init) => {
     const value = init[name];
-    message[name] =
-      value == null
-        ? []
-        : Array.isArray(value)
-          ? value.map(convertItem)
-          : value;
+    message[name] = Array.isArray(value)
+      ? value.map(convertItem)
+      : (value ?? []);
   };
 }
 
@@ -307,7 +304,7 @@ function compileInitMap(field: DescField & { fieldKind: "map" }): MemberInit {
       // Object.create(null) would be desirable for the fresh map, but is
       // unsupported by React:
       // https://react.dev/reference/react/use-server#serializable-parameters-and-return-values
-      message[name] = value == null ? {} : value;
+      message[name] = value ?? {};
     };
   }
   return (message, init) => {
