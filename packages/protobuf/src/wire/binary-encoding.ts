@@ -299,6 +299,11 @@ export class BinaryWriter {
    * Write a `string` value, length-delimited data converted to UTF-8 text.
    */
   string(value: string): this {
+    // TextEncoder.encode() coerces its argument to string, but encodeInto()
+    // rejects non-strings.
+    if (typeof value !== "string") {
+      value = String(value);
+    }
     // encodeUtf8Into needs the full-length buffer upfront. The length prefix
     // can be upto 5 bytes, and a UTF-16 code unit takes at most 3 UTF-8 bytes.
     const len = value.length;
