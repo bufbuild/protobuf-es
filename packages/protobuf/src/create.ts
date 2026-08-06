@@ -70,89 +70,93 @@ function compiledCreate(desc: DescMessage): CompiledCreate {
   return compiled;
 }
 
-// Cutoff below which storing properties in a loop beats cloning the template.
-const smallMessageMaxProperties = 12;
+// Cutoff below which storing properties one by one beats cloning a template.
+const smallMessageMaxProperties = 16;
 
 /**
  * Compile the create function for this message type, so that creating a
  * message does not interpret the descriptor every time.
  */
 function compileCreate(desc: DescMessage): CompiledCreate {
-  const values = new Map<string, unknown>([["$typeName", desc.typeName]]);
+  const typeName = desc.typeName;
 
-  // Default values for fields with explicit presence, served via the
-  // prototype chain, where presence is tracked by own properties.
+  // Fields with explicit presence store default values in a prototype.
   const prototype: Record<string, unknown> = {};
-  const usePrototypeChain = needsPrototypeChain(desc);
+  const usePrototype = needsPrototypeChain(desc);
 
+  // Scalar / enum fields with implicit presence, and their zero values.
+  const implicitScalars: string[] = [];
+  const implicitScalarValues: unknown[] = [];
+
+  // Fields containing mutable types - lists, maps, and oneofs.
   const lists: string[] = [];
   const maps: string[] = [];
   const oneofs: string[] = [];
 
-  // Mutable values (lists, maps, oneofs) cannot be shared via the template.
-  // We store nulls in their slots that we replace later.
   for (const member of desc.members) {
     if (member.kind == "oneof") {
-      values.set(member.localName, null);
       oneofs.push(member.localName);
       continue;
     }
     switch (member.fieldKind) {
       case "message":
-        // Message fields track presence by absence of the property.
         break;
       case "list":
-        values.set(member.localName, null);
         lists.push(member.localName);
         break;
       case "map":
-        values.set(member.localName, null);
         maps.push(member.localName);
         break;
       default:
         if (member.presence == IMPLICIT) {
-          values.set(member.localName, createZeroValue(member));
-        } else if (usePrototypeChain) {
+          implicitScalars.push(member.localName);
+          implicitScalarValues.push(createZeroValue(member));
+        } else if (usePrototype) {
           prototype[member.localName] = createZeroValue(member);
         }
         break;
     }
   }
 
-  const initializers = desc.members.map((member) => compileInitMember(member));
-  const typeName = desc.typeName;
-
-  const zeroNames: string[] = [];
-  const zeroValues: unknown[] = [];
+  // For smaller messages, a megamorphic clone has a high fixed cost, so we're
+  // better off setting fields to their zero values ourselves.
   let template: Record<string, unknown> | undefined;
-
-  // Small messages are built with a store per property instead of cloning a
-  // template: below the threshold this beats the megamorphic clone.
-  const isSmallMessage = values.size <= smallMessageMaxProperties;
-  if (isSmallMessage) {
-    for (const [key, value] of values) {
-      if (key != "$typeName" && value !== null) {
-        zeroNames.push(key);
-        zeroValues.push(value);
-      }
-    }
-  } else {
-    const skeleton: Record<string, null> = {};
-    for (const key of values.keys()) {
+  const isSmallMessage = desc.members.length + 1 <= smallMessageMaxProperties; // + 1 for $typeName
+  if (!isSmallMessage) {
+    const skeleton: Record<string, unknown> = { $typeName: typeName };
+    for (const key of [...implicitScalars, ...lists, ...maps, ...oneofs]) {
       skeleton[key] = null;
     }
-    // Create the template shape in one shot via JSON.parse - adding properties
-    // one by one overflows V8's in-object slots.
+    // Create the template shape via JSON.parse() - adding properties one by
+    // one overflows V8's in-object slots.
     template = JSON.parse(JSON.stringify(skeleton)) as Record<string, unknown>;
-    for (const [key, value] of values) {
-      template[key] = value;
+    for (let i = 0; i < implicitScalars.length; i++) {
+      template[implicitScalars[i]] = implicitScalarValues[i];
     }
   }
 
+  // Cloning the template already sets zero values, only set zero values if we
+  // are not cloning the template.
+  const initializers = desc.members.map((member) =>
+    compileInitMember(member, template === undefined),
+  );
+
   return (init) => {
     let message: Record<string, unknown>;
-    if (template !== undefined) {
-      if (usePrototypeChain) {
+    if (template === undefined) {
+      if (usePrototype) {
+        message = Object.create(prototype) as Record<string, unknown>;
+        message.$typeName = typeName;
+      } else {
+        message = { $typeName: typeName };
+      }
+      if (init === undefined) {
+        for (let i = 0; i < implicitScalars.length; i++) {
+          message[implicitScalars[i]] = implicitScalarValues[i];
+        }
+      }
+    } else {
+      if (usePrototype) {
         message = Object.assign(
           Object.create(prototype) as Record<string, unknown>,
           template,
@@ -160,16 +164,8 @@ function compileCreate(desc: DescMessage): CompiledCreate {
       } else {
         message = { ...template };
       }
-    } else if (usePrototypeChain) {
-      message = Object.create(prototype) as Record<string, unknown>;
-      message.$typeName = typeName;
-    } else {
-      message = { $typeName: typeName };
     }
     if (init === undefined) {
-      for (let i = 0; i < zeroNames.length; i++) {
-        message[zeroNames[i]] = zeroValues[i];
-      }
       for (const name of lists) {
         message[name] = [];
       }
@@ -189,7 +185,7 @@ function compileCreate(desc: DescMessage): CompiledCreate {
 }
 
 /**
- * Sets one member from a MessageInitShape on a cloned template.
+ * Sets one member from a MessageInitShape on a message under construction.
  */
 type MemberInit = (
   message: Record<string, unknown>,
@@ -202,7 +198,10 @@ type MemberInit = (
  */
 type Converter = (value: unknown) => unknown;
 
-function compileInitMember(member: DescField | DescOneof): MemberInit {
+function compileInitMember(
+  member: DescField | DescOneof,
+  setZeroValues: boolean,
+): MemberInit {
   if (member.kind == "oneof") {
     return compileInitOneof(member);
   }
@@ -213,25 +212,25 @@ function compileInitMember(member: DescField | DescOneof): MemberInit {
       return compileInitMap(member);
     case "message":
       const convert = compileConvertMessage(member);
-      return compileInitExplicit(member.localName, convert);
+      return compileInitProperty(member.localName, convert);
     case "scalar":
     case "enum": {
       const convert =
         member.fieldKind == "scalar" && member.scalar == ScalarType.BYTES
           ? toU8Arr
           : undefined;
-      return member.presence == IMPLICIT
-        ? compileInitImplicit(
+      return member.presence == IMPLICIT && setZeroValues
+        ? compileInitPropertyWithZeroValue(
             member.localName,
             convert,
             createZeroValue(member),
           )
-        : compileInitExplicit(member.localName, convert);
+        : compileInitProperty(member.localName, convert);
     }
   }
 }
 
-function compileInitExplicit(
+function compileInitProperty(
   name: string,
   convert: Converter | undefined,
 ): MemberInit {
@@ -251,7 +250,7 @@ function compileInitExplicit(
   };
 }
 
-function compileInitImplicit(
+function compileInitPropertyWithZeroValue(
   name: string,
   convert: Converter | undefined,
   zeroValue: unknown,
