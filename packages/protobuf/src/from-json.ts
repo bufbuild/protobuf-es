@@ -313,9 +313,9 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
       );
     }
 
-    const seenOneofs = new Map<DescOneof, DescField>();
     let seenFields: number | number[] =
       seenFieldsLength > 1 ? new Array<number>(seenFieldsLength).fill(0) : 0;
+    let seenOneofs: Map<DescOneof, DescField> | undefined;
 
     const jsonKeys = Object.keys(json);
     for (let i = 0; i < jsonKeys.length; i++) {
@@ -345,13 +345,14 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
           continue;
         }
         if (entry.oneof) {
-          const seenOneof = seenOneofs.get(entry.oneof);
+          const seenOneof = seenOneofs?.get(entry.oneof);
           if (seenOneof !== undefined) {
             throw new FieldError(
               entry.oneof,
               `oneof set multiple times by ${seenOneof.name} and ${field.name}`,
             );
           }
+          seenOneofs ??= new Map();
           seenOneofs.set(entry.oneof, field);
         }
         entry.read(message, jsonValue, ctx);
