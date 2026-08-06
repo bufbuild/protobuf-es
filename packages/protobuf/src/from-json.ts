@@ -274,6 +274,8 @@ interface CompiledFieldEntry {
   // A oneof member that is a scalar field skips JSON null, see conformance
   // test Required.Proto3.JsonInput.OneofFieldNull{First,Second}.
   oneofScalarNullSkip: boolean;
+  // The field's index in the descriptor (different from the field number).
+  fieldIdx: number;
 }
 
 function compileMessage(desc: DescMessage): CompiledJsonReader {
@@ -295,6 +297,8 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
     return compiled;
   }
   const typeName = desc.typeName;
+  // Fields seen so far are tracked as a bitset over field index.
+  const seenFieldsLength = Math.ceil(desc.fields.length / 32);
   // Fields are looked up by their proto name and their JSON name.
   const fieldsByJsonKey = new Map<string, CompiledFieldEntry>();
   const compiled: CompiledJsonReader = (message, json, ctx) => {
@@ -308,8 +312,11 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
         `cannot decode ${descString} from JSON: ${formatVal(json)}`,
       );
     }
-    const oneofSeen = new Map<DescOneof, DescField>();
-    const fieldSeen = new Set<DescField>();
+
+    const seenOneofs = new Map<DescOneof, DescField>();
+    let seenFields: number | number[] =
+      seenFieldsLength > 1 ? new Array<number>(seenFieldsLength).fill(0) : 0;
+
     const jsonKeys = Object.keys(json);
     for (let i = 0; i < jsonKeys.length; i++) {
       const jsonKey = jsonKeys[i];
@@ -317,25 +324,35 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
       const entry = fieldsByJsonKey.get(jsonKey);
       if (entry !== undefined) {
         const field = entry.field;
-        if (fieldSeen.has(field)) {
-          // The same field may be set by its proto name and its JSON name, or by
-          // a duplicate or unicode-escaped key that JSON.parse already collapsed.
-          // Checked before the null-skip below so that a null entry still counts.
+        // The same field may be set by its proto name and its JSON name, or by
+        // a duplicate or unicode-escaped key that JSON.parse already collapsed.
+        // Checked before the null-skip below so that a null entry still counts.
+        const bit = 1 << entry.fieldIdx; // bitshifts wrap around
+        let isDuplicateField: boolean;
+        if (typeof seenFields == "number") {
+          isDuplicateField = (seenFields & bit) !== 0;
+          seenFields |= bit;
+        } else {
+          const wordIdx = entry.fieldIdx >>> 5; // Math.floor(entry.fieldIdx / 32)
+          const seenFieldsWord = seenFields[wordIdx];
+          isDuplicateField = (seenFieldsWord & bit) !== 0;
+          seenFields[wordIdx] = seenFieldsWord | bit;
+        }
+        if (isDuplicateField) {
           throw new FieldError(field, "set multiple times");
         }
-        fieldSeen.add(field);
         if (entry.oneofScalarNullSkip && jsonValue === null) {
           continue;
         }
         if (entry.oneof) {
-          const seen = oneofSeen.get(entry.oneof);
-          if (seen !== undefined) {
+          const seenOneof = seenOneofs.get(entry.oneof);
+          if (seenOneof !== undefined) {
             throw new FieldError(
               entry.oneof,
-              `oneof set multiple times by ${seen.name} and ${field.name}`,
+              `oneof set multiple times by ${seenOneof.name} and ${field.name}`,
             );
           }
-          oneofSeen.set(entry.oneof, field);
+          seenOneofs.set(entry.oneof, field);
         }
         entry.read(message, jsonValue, ctx);
       } else {
@@ -366,16 +383,17 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
   // Register before compiling fields, so that recursive message types
   // resolve to this instance instead of compiling endlessly.
   compiledReaders.set(desc, compiled);
-  for (const field of desc.fields) {
+  desc.fields.forEach((field, fieldIdx) => {
     const entry: CompiledFieldEntry = {
       read: compileFieldReader(field),
       field,
       oneof: field.oneof,
       oneofScalarNullSkip:
         field.oneof !== undefined && field.fieldKind == "scalar",
+      fieldIdx,
     };
     fieldsByJsonKey.set(field.name, entry).set(field.jsonName, entry);
-  }
+  });
   return compiled;
 }
 
