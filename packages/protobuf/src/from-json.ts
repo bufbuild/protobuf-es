@@ -758,6 +758,8 @@ function compileMapFieldReader(
           );
         }
       }
+      // Object property keys are always strings or symbols. Assigning with a
+      // boolean, number, or bigint key implicitly converts it to a string.
       record[key as string] = toLocalValue(value);
     }
   };

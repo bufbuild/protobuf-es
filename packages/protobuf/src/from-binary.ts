@@ -461,20 +461,15 @@ function compileMapFieldReader(
   switch (field.mapKind) {
     case "scalar": {
       const scalar = field.scalar;
-      const longAsString =
-        (field as { longAsString?: boolean }).longAsString === true;
       const readScalar = compileScalarReader(
         scalar,
         field.utf8Validation,
         false,
       );
       readValue = (reader) => readScalar(reader);
-      // The default is converted like a read value: with longAsString, the
-      // 64-bit zero value is a string. Bytes zero values are created per
-      // entry, so that entries do not share one instance.
-      if (longAsString) {
-        valueDefault = () => "0";
-      } else if (scalar == ScalarType.BYTES) {
+      // Bytes zero values are created per entry, so that entries do not share
+      // one instance.
+      if (scalar == ScalarType.BYTES) {
         valueDefault = () => new Uint8Array(0);
       } else {
         const zero = scalarZeroValue(scalar, false);
@@ -527,16 +522,16 @@ function compileMapFieldReader(
     if (val === undefined) {
       val = valueDefault();
     }
+    // Object property keys are always strings or symbols. Assigning with a
+    // boolean, number, or bigint key implicitly converts it to a string.
     record[key as string] = val;
   };
 }
 
 /**
- * Returns a reader for a scalar value, including the conversion to the
- * local representation for 64-bit integers: the reader returns them as
- * strings when BigInt is unavailable, and they are run through protoInt64,
- * mirroring the reflect layer. Which case applies is fixed at load time,
- * see protoInt64.supported.
+ * Returns a reader for a scalar value. For 64-bit integers, BinaryReader
+ * already returns the local representation (bigint or string), so, unlike in
+ * the reflection layer, no validation is needed here.
  */
 function compileScalarReader(
   type: ScalarType,
