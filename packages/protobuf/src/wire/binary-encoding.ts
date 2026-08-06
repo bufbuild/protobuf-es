@@ -14,7 +14,7 @@
 
 import { varint32read, varint64read } from "./varint.js";
 import { protoInt64 } from "../proto-int64.js";
-import { getTextEncoding } from "./text-encoding.js";
+import { emulateEncodeInto, getTextEncoding } from "./text-encoding.js";
 
 /**
  * Protobuf binary format wire types.
@@ -119,17 +119,12 @@ export class BinaryWriter {
   private readonly encodeUtf8Into: (
     text: string,
     dest: Uint8Array,
-  ) => { read: number; written: number };
+  ) => { written: number };
 
   constructor(encodeUtf8?: (text: string) => Uint8Array) {
-    this.encodeUtf8Into =
-      encodeUtf8 === undefined
-        ? getTextEncoding().encodeUtf8Into
-        : (text, dest) => {
-            const bytes = encodeUtf8(text);
-            dest.set(bytes);
-            return { read: text.length, written: bytes.byteLength };
-          };
+    this.encodeUtf8Into = encodeUtf8
+      ? emulateEncodeInto(encodeUtf8)
+      : getTextEncoding().encodeUtf8Into;
     this.buffer = EMPTY_BUFFER;
     this.viewCache = EMPTY_VIEW;
     this.pos = 0;
