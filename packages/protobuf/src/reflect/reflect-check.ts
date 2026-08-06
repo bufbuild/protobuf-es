@@ -88,7 +88,7 @@ export function checkMapEntry(
   key: unknown,
   value: unknown,
 ): FieldError | undefined {
-  const checkKey = checkScalarValue(key, field.mapKey);
+  const checkKey = checkScalarValue(field.mapKey)(key);
   if (checkKey !== true) {
     return new FieldError(
       field,
@@ -110,13 +110,13 @@ function checkSingular(
   value: unknown,
 ): true | false | InvalidScalarValueErr {
   if (field.scalar !== undefined) {
-    return checkScalarValue(value, field.scalar);
+    return checkScalarValue(field.scalar)(value);
   }
   if (field.enum !== undefined) {
     if (field.enum.open) {
       // Open enums accept unrecognized values, but enum values are always
       // int32 (see https://protobuf.dev/programming-guides/proto3/#enum).
-      return checkScalarValue(value, ScalarType.INT32);
+      return checkScalarValue(ScalarType.INT32)(value);
     }
     return field.enum.values.some((v) => v.number === value);
   }
@@ -125,93 +125,112 @@ function checkSingular(
 
 type InvalidScalarValueErr = false | "invalid UTF8" | `${string} out of range`;
 
-function checkScalarValue(
-  value: unknown,
+/**
+ * Return the check for values of the given scalar type.
+ *
+ * @private
+ */
+export function checkScalarValue(
   scalar: ScalarType,
-): true | InvalidScalarValueErr {
+): (value: unknown) => true | InvalidScalarValueErr {
   switch (scalar) {
     case ScalarType.DOUBLE:
-      return typeof value == "number";
+      return (value) => typeof value == "number";
     case ScalarType.FLOAT:
-      if (typeof value != "number") {
-        return false;
-      }
-      if (Number.isNaN(value) || !Number.isFinite(value)) {
+      return (value) => {
+        if (typeof value != "number") {
+          return false;
+        }
+        if (Number.isNaN(value) || !Number.isFinite(value)) {
+          return true;
+        }
+        if (value > FLOAT32_MAX || value < FLOAT32_MIN) {
+          return `${value.toFixed()} out of range`;
+        }
         return true;
-      }
-      if (value > FLOAT32_MAX || value < FLOAT32_MIN) {
-        return `${value.toFixed()} out of range`;
-      }
-      return true;
+      };
     case ScalarType.INT32:
     case ScalarType.SFIXED32:
     case ScalarType.SINT32:
       // signed
-      if (typeof value !== "number" || !Number.isInteger(value)) {
-        return false;
-      }
-      if (value > INT32_MAX || value < INT32_MIN) {
-        return `${value.toFixed()} out of range`;
-      }
-      return true;
+      return (value) => {
+        if (typeof value !== "number" || !Number.isInteger(value)) {
+          return false;
+        }
+        if (value > INT32_MAX || value < INT32_MIN) {
+          return `${value.toFixed()} out of range`;
+        }
+        return true;
+      };
     case ScalarType.FIXED32:
     case ScalarType.UINT32:
       // unsigned
-      if (typeof value !== "number" || !Number.isInteger(value)) {
-        return false;
-      }
-      if (value > UINT32_MAX || value < 0) {
-        return `${value.toFixed()} out of range`;
-      }
-      return true;
+      return (value) => {
+        if (typeof value !== "number" || !Number.isInteger(value)) {
+          return false;
+        }
+        if (value > UINT32_MAX || value < 0) {
+          return `${value.toFixed()} out of range`;
+        }
+        return true;
+      };
     case ScalarType.BOOL:
-      return typeof value == "boolean";
+      return (value) => typeof value == "boolean";
     case ScalarType.STRING:
-      if (typeof value != "string") {
-        return false;
-      }
-      return getTextEncoding().checkUtf8(value) || "invalid UTF8";
+      return (value) => {
+        if (typeof value != "string") {
+          return false;
+        }
+        return getTextEncoding().checkUtf8(value) || "invalid UTF8";
+      };
     case ScalarType.BYTES:
-      return value instanceof Uint8Array;
-
+      return (value) => value instanceof Uint8Array;
     case ScalarType.INT64:
     case ScalarType.SFIXED64:
     case ScalarType.SINT64:
       // signed
-      if (
-        typeof value == "bigint" ||
-        typeof value == "number" ||
-        (typeof value == "string" && value.length > 0)
-      ) {
-        try {
-          protoInt64.parse(value);
-          return true;
-        } catch (_) {
-          return `${value} out of range`;
+      return (value) => {
+        if (
+          typeof value == "bigint" ||
+          typeof value == "number" ||
+          (typeof value == "string" && value.length > 0)
+        ) {
+          try {
+            protoInt64.parse(value);
+            return true;
+          } catch (_) {
+            return `${value} out of range`;
+          }
         }
-      }
-      return false;
-
+        return false;
+      };
     case ScalarType.FIXED64:
     case ScalarType.UINT64:
       // unsigned
-      if (
-        typeof value == "bigint" ||
-        typeof value == "number" ||
-        (typeof value == "string" && value.length > 0)
-      ) {
-        try {
-          protoInt64.uParse(value);
-          return true;
-        } catch (_) {
-          return `${value} out of range`;
+      return (value) => {
+        if (
+          typeof value == "bigint" ||
+          typeof value == "number" ||
+          (typeof value == "string" && value.length > 0)
+        ) {
+          try {
+            protoInt64.uParse(value);
+            return true;
+          } catch (_) {
+            return `${value} out of range`;
+          }
         }
-      }
-      return false;
+        return false;
+      };
   }
 }
 
-function reasonSingular(
+/**
+ * Format the reason why a value is invalid for a singular field.
+ *
+ * @private
+ */
+export function reasonSingular(
   field:
     | { scalar: ScalarType; message?: undefined; enum?: undefined }
     | { scalar?: undefined; message: DescMessage; enum?: undefined }
