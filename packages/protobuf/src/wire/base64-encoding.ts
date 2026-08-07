@@ -41,11 +41,8 @@ export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
     }
   }
   const table = getDecodeTable();
-  // estimate byte size, not accounting for inner padding and whitespace
-  let es = (base64Str.length * 3) / 4;
-  if (base64Str[base64Str.length - 2] == "=") es -= 2;
-  else if (base64Str[base64Str.length - 1] == "=") es -= 1;
-
+  // estimate byte size
+  const es = (base64Str.length * 3) / 4;
   let bytes = new Uint8Array(es),
     bytePos = 0, // position in byte array
     groupPos = 0, // position in base64 group

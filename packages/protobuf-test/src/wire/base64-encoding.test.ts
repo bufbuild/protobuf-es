@@ -219,6 +219,19 @@ void suite("base64Decode()", () => {
       );
     });
   }
+  for (const [b64, expected] of [
+    ["c3Vy=", "sur"],
+    ["c3Vy==", "sur"],
+    ["c3VyZS4==", "sure."],
+    ["c3VyZXN1cmU==", "suresure"],
+  ]) {
+    void test(`allows excess padding in ${b64}`, () => {
+      assert.deepStrictEqual(
+        base64Decode(b64),
+        new TextEncoder().encode(expected),
+      );
+    });
+  }
   void test("does not require padding", () => {
     assert.deepStrictEqual(
       base64Decode("c3VyZQ"),
