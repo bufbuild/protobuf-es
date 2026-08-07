@@ -38,6 +38,17 @@ void suite("getTextEncoding()", () => {
       );
     });
   });
+  void suite("encodeUtf8Into()", () => {
+    void test("encodes", () => {
+      const dest = new Uint8Array(10);
+      const { written } = getTextEncoding().encodeUtf8Into("hello 🌍", dest);
+      assert.strictEqual(written, 10);
+      assert.deepStrictEqual(
+        dest,
+        new Uint8Array([104, 101, 108, 108, 111, 32, 240, 159, 140, 141]),
+      );
+    });
+  });
   void suite("decodeUtf8()", () => {
     void test("decodes", () => {
       const text = getTextEncoding().decodeUtf8(
@@ -112,5 +123,43 @@ void suite("configureTextEncoding()", () => {
       new Uint8Array(10),
     );
     assert.strictEqual(arg, "test");
+  });
+  void test("configures encodeUtf8Into", () => {
+    configureTextEncoding({
+      checkUtf8: backup.checkUtf8,
+      decodeUtf8: backup.decodeUtf8,
+      encodeUtf8(): never {
+        throw new Error("must not be called when encodeUtf8Into is provided");
+      },
+      encodeUtf8Into(text: string, dest: Uint8Array) {
+        assert.strictEqual(text, "test");
+        dest.set([1, 2, 3]);
+        return { written: 3 };
+      },
+    });
+    const dest = new Uint8Array(10);
+    const result = getTextEncoding().encodeUtf8Into("test", dest);
+    assert.deepStrictEqual(result, { written: 3 });
+    assert.deepStrictEqual(
+      dest,
+      new Uint8Array([1, 2, 3, 0, 0, 0, 0, 0, 0, 0]),
+    );
+  });
+  void test("emulates encodeUtf8Into from encodeUtf8 when not provided", () => {
+    configureTextEncoding({
+      checkUtf8: backup.checkUtf8,
+      decodeUtf8: backup.decodeUtf8,
+      encodeUtf8(text: string) {
+        assert.strictEqual(text, "test");
+        return new Uint8Array([1, 2, 3]);
+      },
+    });
+    const dest = new Uint8Array(10);
+    const result = getTextEncoding().encodeUtf8Into("test", dest);
+    assert.deepStrictEqual(result, { written: 3 });
+    assert.deepStrictEqual(
+      dest,
+      new Uint8Array([1, 2, 3, 0, 0, 0, 0, 0, 0, 0]),
+    );
   });
 });

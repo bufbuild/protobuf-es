@@ -14,11 +14,6 @@
 
 const symbol = Symbol.for("@bufbuild/protobuf/text-encoding");
 
-// Native String.prototype.isWellFormed, if the runtime provides it.
-const nativeStringIsWellFormed = (
-  String.prototype as Partial<{ isWellFormed(): boolean }>
-).isWellFormed;
-
 interface TextEncoding {
   /**
    * Verify that the given text is valid UTF-8.
@@ -29,6 +24,10 @@ interface TextEncoding {
    */
   encodeUtf8: (text: string) => Uint8Array<ArrayBuffer>;
   /**
+   * Encode UTF-8 text to a Uint8Array. The destination must be large enough.
+   */
+  encodeUtf8Into: (text: string, dest: Uint8Array) => { written: number };
+  /**
    * Decode UTF-8 text from binary. If `strict` is true, throw on invalid byte
    * sequences instead of silently substituting U+FFFD. Implementations that
    * do not support strict decoding may ignore the flag.
@@ -36,47 +35,54 @@ interface TextEncoding {
   decodeUtf8: (bytes: Uint8Array, strict?: boolean) => string;
 }
 
+type TextEncodingConfig = Omit<TextEncoding, "encodeUtf8Into"> &
+  Partial<Pick<TextEncoding, "encodeUtf8Into">>;
+
 /**
  * Protobuf-ES requires the Text Encoding API to convert UTF-8 from and to
  * binary. This WHATWG API is widely available, but it is not part of the
  * ECMAScript standard. On runtimes where it is not available, use this
  * function to provide your own implementation.
  *
+ * Providing `encodeUtf8Into` is optional for backwards compatibility. If it
+ * is omitted, we emulate it with a wrapper that calls `encodeUtf8`.
+ *
  * Note that the Text Encoding API does not provide a way to validate UTF-8.
- * Our implementation falls back to use encodeURIComponent().
+ * Our implementation uses String.prototype.isWellFormed, and falls back
+ * to use encodeURIComponent().
  */
-export function configureTextEncoding(textEncoding: TextEncoding): void {
-  (globalThis as GlobalWithTextEncoding)[symbol] = textEncoding;
+export function configureTextEncoding(textEncoding: TextEncodingConfig): void {
+  (globalThis as GlobalWithTextEncoding)[symbol] = {
+    ...textEncoding,
+    encodeUtf8Into:
+      textEncoding.encodeUtf8Into ??
+      emulateEncodeInto(textEncoding.encodeUtf8.bind(textEncoding)),
+  };
 }
 
-export function getTextEncoding() {
-  if ((globalThis as GlobalWithTextEncoding)[symbol] == undefined) {
-    const te = new (
-      globalThis as unknown as GlobalWithTextEncoderDecoder
-    ).TextEncoder();
-    const td = new (
-      globalThis as unknown as GlobalWithTextEncoderDecoder
-    ).TextDecoder();
-    let tdStrict: { decode(data: Uint8Array): string } | undefined;
-    (globalThis as GlobalWithTextEncoding)[symbol] = {
+export function getTextEncoding(): TextEncoding {
+  const globals = globalThis as unknown as GlobalWithTextEncoding &
+    GlobalWithTextEncoderDecoder;
+  if (!globals[symbol]) {
+    const textEncoder = new globals.TextEncoder();
+    const textDecoder = new globals.TextDecoder();
+    let textDecoderStrict: typeof textDecoder | undefined;
+    const config: TextEncodingConfig = {
       encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
-        return te.encode(text);
+        return textEncoder.encode(text);
       },
       decodeUtf8(bytes: Uint8Array, strict?: boolean): string {
         if (strict) {
-          if (tdStrict === undefined) {
-            tdStrict = new (
-              globalThis as unknown as GlobalWithTextEncoderDecoder
-            ).TextDecoder("utf-8", { fatal: true });
+          if (!textDecoderStrict) {
+            textDecoderStrict = new globals.TextDecoder("utf-8", {
+              fatal: true,
+            });
           }
-          return tdStrict.decode(bytes);
+          return textDecoderStrict.decode(bytes);
         }
-        return td.decode(bytes);
+        return textDecoder.decode(bytes);
       },
       checkUtf8(text: string): boolean {
-        if (nativeStringIsWellFormed) {
-          return nativeStringIsWellFormed.call(text);
-        }
         try {
           encodeURIComponent(text);
           return true;
@@ -85,8 +91,23 @@ export function getTextEncoding() {
         }
       },
     };
+    // If encodeInto is available, use it. Otherwise, configureTextEncoding
+    // fills in a slower fallback that uses encodeUtf8.
+    if (textEncoder.encodeInto) {
+      config.encodeUtf8Into = textEncoder.encodeInto.bind(textEncoder);
+    }
+    // Native String.prototype.isWellFormed, if the runtime provides it.
+    const nativeStringIsWellFormed = (
+      String.prototype as Partial<{ isWellFormed(): boolean }>
+    ).isWellFormed;
+    if (nativeStringIsWellFormed) {
+      config.checkUtf8 = (text: string): boolean => {
+        return nativeStringIsWellFormed.call(text);
+      };
+    }
+    configureTextEncoding(config);
   }
-  return (globalThis as GlobalWithTextEncoding)[symbol] as TextEncoding;
+  return globals[symbol] as TextEncoding;
 }
 
 type GlobalWithTextEncoding = {
@@ -97,6 +118,10 @@ type GlobalWithTextEncoderDecoder = {
   TextEncoder: {
     new (): {
       encode(text: string): Uint8Array<ArrayBuffer>;
+      encodeInto?(
+        text: string,
+        dest: Uint8Array,
+      ): { read: number; written: number };
     };
   };
   TextDecoder: {
@@ -108,3 +133,18 @@ type GlobalWithTextEncoderDecoder = {
     };
   };
 };
+
+/**
+ * Simplistic polyfill for encodeUtf8Into.
+ *
+ * @private
+ */
+export function emulateEncodeInto(
+  encodeUtf8: (str: string) => Uint8Array,
+): TextEncoding["encodeUtf8Into"] {
+  return (text, dest) => {
+    const bytes = encodeUtf8(text);
+    dest.set(bytes);
+    return { written: bytes.byteLength };
+  };
+}
