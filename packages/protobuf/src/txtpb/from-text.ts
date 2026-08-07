@@ -127,7 +127,6 @@ function parseText(
     if (isFieldError(e)) {
       throw new Error(
         `cannot decode ${e.field()} from text format: ${e.message}`,
-        // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
         { cause: e },
       );
     }

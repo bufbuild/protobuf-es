@@ -213,7 +213,6 @@ function readMessage(
     );
   } catch (e) {
     if (isFieldError(e)) {
-      // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
       throw new Error(`cannot decode ${e.field()} from JSON: ${e.message}`, {
         cause: e,
       });
@@ -1035,11 +1034,9 @@ function parseJsonString(jsonString: string, typeName: string) {
     json = JSON.parse(jsonString) as JsonValue;
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
-    throw new Error(
-      `cannot decode message ${typeName} from JSON: ${message}`,
-      // @ts-expect-error we use the ES2022 error CTOR option "cause" for better stack traces
-      { cause: e },
-    );
+    throw new Error(`cannot decode message ${typeName} from JSON: ${message}`, {
+      cause: e,
+    });
   }
   checkDuplicateKeys(jsonString, typeName);
   return json;

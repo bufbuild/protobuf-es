@@ -1,17 +1,9 @@
 {
   "compilerOptions": {
-    // We target ES2017, but require the Text Encoding API, globalThis, and
-    // optionally BigInt and AsyncIterable, see below.
-    "target": "es2017",
-    "lib": [
-      "ES2017",
-      // ES2020.BigInt for the bigint representation of 64-bit integers
-      // Note that these are only required for using bigint literals
-      // or the BigInt constructor function.
-      "ES2020.BigInt",
-      // AsyncIterable is required only for src/wire/size-delimited.ts.
-      "ES2018.AsyncIterable",
-    ],
+    "target": "es2022",
+    "lib": ["ES2022"],
+    // ES2022 defaults this to true; pin false to keep pre-ES2022 field semantics.
+    "useDefineForClassFields": false,
     "declaration": true,
     // Prevent tsc from picking up @types/node and others
     "types": [],
