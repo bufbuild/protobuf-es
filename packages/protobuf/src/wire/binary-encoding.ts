@@ -14,7 +14,7 @@
 
 import { varint32read, varint64read } from "./varint.js";
 import { protoInt64 } from "../proto-int64.js";
-import { getTextEncoding } from "./text-encoding.js";
+import { emulateEncodeInto, getTextEncoding } from "./text-encoding.js";
 
 /**
  * Protobuf binary format wire types.
@@ -112,13 +112,19 @@ export class BinaryWriter {
    */
   private stackPos: number[] = [];
 
-  constructor(
-    private readonly encodeUtf8: (
-      text: string,
-    ) => Uint8Array = getTextEncoding().encodeUtf8,
-  ) {
-    // Defer the first Uint8Array allocation: small messages (e.g. a bool-only
-    // request) would otherwise pay for a full INITIAL_SIZE zeroed buffer.
+  /**
+   * UTF-8 codec used by `string()`. Uses the text encoding's `encodeUtf8Into`,
+   * or emulates it if a custom `encodeUtf8` was passed to the constructor.
+   */
+  private readonly encodeUtf8Into: (
+    text: string,
+    dest: Uint8Array,
+  ) => { written: number };
+
+  constructor(encodeUtf8?: (text: string) => Uint8Array) {
+    this.encodeUtf8Into = encodeUtf8
+      ? emulateEncodeInto(encodeUtf8)
+      : getTextEncoding().encodeUtf8Into;
     this.buffer = EMPTY_BUFFER;
     this.viewCache = EMPTY_VIEW;
     this.pos = 0;
@@ -170,6 +176,10 @@ export class BinaryWriter {
    */
   fork(): this {
     this.stackPos.push(this.pos);
+    // Reserve room for the length prefix. Payloads under 128 bytes, fairly
+    // common, will need no copy in join().
+    this.ensureCapacity(DEFAULT_LEN_PREFIX_SIZE);
+    this.buffer[this.pos++] = 0;
     return this;
   }
 
@@ -181,20 +191,26 @@ export class BinaryWriter {
     const forkPos = this.stackPos.pop();
     if (forkPos === undefined)
       throw new Error("invalid state, fork stack empty");
-    const len = this.pos - forkPos;
-    const size = varint32Size(len);
-    this.ensureCapacity(size);
-    // Make room for the length prefix by shifting the fork's data forward.
-    this.buffer.copyWithin(forkPos + size, forkPos, this.pos);
-    // Write the unsigned varint length directly in place.
-    let p = forkPos;
-    let v = len;
-    while (v > 0x7f) {
-      this.buffer[p++] = (v & 0x7f) | 0x80;
-      v >>>= 7;
+
+    // fork() presumed the payload would fit the prefix it reserved. If it
+    // doesn't, we need to shift the bytes we just wrote.
+    const len = this.pos - forkPos - DEFAULT_LEN_PREFIX_SIZE;
+    const lenPrefixSize = varint32Size(len);
+    if (lenPrefixSize > DEFAULT_LEN_PREFIX_SIZE) {
+      // Widening pushes the payload past the end of the buffer, so grow first:
+      // copyWithin clamps to the buffer instead of throwing, so a short buffer
+      // would silently drop the tail of the payload.
+      this.ensureCapacity(lenPrefixSize - DEFAULT_LEN_PREFIX_SIZE);
+      this.buffer.copyWithin(
+        forkPos + lenPrefixSize,
+        forkPos + DEFAULT_LEN_PREFIX_SIZE,
+        this.pos,
+      );
     }
-    this.buffer[p] = v;
-    this.pos += size;
+
+    this.pos = forkPos;
+    this.uint32(len);
+    this.pos += len;
     return this;
   }
 
@@ -278,9 +294,41 @@ export class BinaryWriter {
    * Write a `string` value, length-delimited data converted to UTF-8 text.
    */
   string(value: string): this {
-    let chunk = this.encodeUtf8(value);
-    this.uint32(chunk.byteLength);
-    return this.raw(chunk);
+    // TextEncoder.encode() coerces its argument to string, but encodeInto()
+    // rejects non-strings.
+    if (typeof value !== "string") {
+      value = String(value);
+    }
+    // encodeUtf8Into needs the full-length buffer upfront. The length prefix
+    // can be upto 5 bytes, and a UTF-16 code unit takes at most 3 UTF-8 bytes.
+    const len = value.length;
+    this.ensureCapacity(len * 3 + 5);
+
+    // The length prefix goes first, but the byte length is only known after
+    // encoding. We guess the final varint size here (assuming most text is
+    // ASCII) and then encode.
+    const lenPrefixSizeGuess = varint32Size(len);
+    const buf = this.buffer;
+    const start = this.pos;
+    const { written } = this.encodeUtf8Into(
+      value,
+      buf.subarray(start + lenPrefixSizeGuess),
+    );
+
+    // If our guess was incorrect, we need to shift the bytes we just wrote.
+    const lenPrefixSize = varint32Size(written);
+    if (lenPrefixSize != lenPrefixSizeGuess) {
+      buf.copyWithin(
+        start + lenPrefixSize,
+        start + lenPrefixSizeGuess,
+        start + lenPrefixSizeGuess + written,
+      );
+    }
+
+    // Write the lenPrefix and advance the pos.
+    this.uint32(written);
+    this.pos += written;
+    return this;
   }
 
   /**
@@ -441,6 +489,13 @@ export class BinaryWriter {
  * Capacity of the buffer allocated by the first write..
  */
 const INITIAL_SIZE = 128;
+
+/**
+ * Bytes `fork()` reserves for the length prefix, betting that the payload will
+ * be under 128 bytes. `join()` fills them in, and widens them if the bet was
+ * wrong.
+ */
+const DEFAULT_LEN_PREFIX_SIZE = 1;
 
 /**
  * Shared empty buffer used as the initial value before the first write.
