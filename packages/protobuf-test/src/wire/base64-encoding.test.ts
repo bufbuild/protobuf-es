@@ -211,12 +211,24 @@ void suite("base64Decode()", () => {
     "c3VyZQ==\tc3VyZQ==",
     "c3VyZQ==\rc3VyZQ==",
     "c3VyZQ== c3VyZQ==",
-    "c3VyZXN1cmU==",
   ]) {
-    void test(`allows padding in ${b64}`, () => {
+    void test(`allows inner padding in ${b64}`, () => {
       assert.deepStrictEqual(
         base64Decode(b64),
         new TextEncoder().encode("suresure"),
+      );
+    });
+  }
+  for (const [b64, expected] of [
+    ["c3Vy=", "sur"],
+    ["c3Vy==", "sur"],
+    ["c3VyZS4==", "sure."],
+    ["c3VyZXN1cmU==", "suresure"],
+  ]) {
+    void test(`allows excess padding in ${b64}`, () => {
+      assert.deepStrictEqual(
+        base64Decode(b64),
+        new TextEncoder().encode(expected),
       );
     });
   }
