@@ -165,15 +165,14 @@ function compileSingularField(field: DescFieldSingular): CompiledWriter {
         ? `cannot encode ${field} to binary: required field not set`
         : undefined;
     return (writer, opts, message) => {
-      const value = message[localName];
-      // Fields with explicit presence have properties on the prototype
-      // chain for default / zero values (except for proto3).
-      if (
-        value !== undefined &&
-        Object.prototype.hasOwnProperty.call(message, localName)
-      ) {
-        writeValue(writer, opts, value);
-      } else if (requiredError !== undefined) {
+      if (Object.prototype.hasOwnProperty.call(message, localName)) {
+        const value = message[localName];
+        if (value !== undefined) {
+          writeValue(writer, opts, value);
+          return;
+        }
+      }
+      if (requiredError !== undefined) {
         throw new Error(requiredError);
       }
     };
