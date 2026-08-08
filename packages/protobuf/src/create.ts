@@ -166,14 +166,14 @@ function compileCreate(desc: DescMessage): CompiledCreate {
       }
     }
     if (init === undefined) {
-      for (const name of lists) {
-        message[name] = [];
+      for (let i = 0; i < lists.length; i++) {
+        message[lists[i]] = [];
       }
-      for (const name of maps) {
-        message[name] = {};
+      for (let i = 0; i < maps.length; i++) {
+        message[maps[i]] = {};
       }
-      for (const name of oneofs) {
-        message[name] = { case: undefined };
+      for (let i = 0; i < oneofs.length; i++) {
+        message[oneofs[i]] = { case: undefined };
       }
       return message as Message;
     }
@@ -312,7 +312,9 @@ function compileInitMap(field: DescField & { fieldKind: "map" }): MemberInit {
       message[name] = {};
     } else if (isObject(value)) {
       const convertedValues: Record<string, unknown> = {};
-      for (const key of Object.keys(value)) {
+      const keys = Object.keys(value);
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
         convertedValues[key] = convertValue(value[key]);
       }
       message[name] = convertedValues;
