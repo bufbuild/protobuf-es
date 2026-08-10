@@ -386,7 +386,16 @@ function compileConvertMessage(
     return undefined;
   }
   const messageDesc = field.message;
-  return (value) => (isObject(value) ? create(messageDesc, value) : value);
+  // Resolved on first use, not here: the message type can be this very field's
+  // parent, whose create function is still being compiled.
+  let compiled: CompiledCreate | undefined;
+  return (value) => {
+    if (!isObject(value) || isMessage(value, messageDesc)) {
+      return value;
+    }
+    compiled ??= compiledCreate(messageDesc);
+    return compiled(value);
+  };
 }
 
 // converts any ArrayLike<number> to Uint8Array if necessary.
