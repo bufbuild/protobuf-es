@@ -70,9 +70,6 @@ function compiledCreate(desc: DescMessage): CompiledCreate {
   return compiled;
 }
 
-// Cutoff below which storing properties one by one beats cloning a template.
-const smallMessageMaxProperties = 16;
-
 /**
  * Compile the create function for this message type, so that creating a
  * message does not interpret the descriptor every time.
@@ -84,98 +81,28 @@ function compileCreate(desc: DescMessage): CompiledCreate {
   const prototype: Record<string, unknown> = {};
   const usePrototype = needsPrototypeChain(desc);
 
-  // Scalar / enum fields with implicit presence, and their zero values.
-  const implicitScalars: string[] = [];
-  const implicitScalarValues: unknown[] = [];
-
-  // Fields containing mutable types - lists, maps, and oneofs.
-  const lists: string[] = [];
-  const maps: string[] = [];
-  const oneofs: string[] = [];
+  // Sets one member from an init / zero value, in declaration order.
+  const initializers: MemberInit[] = [];
 
   for (const member of desc.members) {
-    if (member.kind == "oneof") {
-      oneofs.push(member.localName);
-      continue;
-    }
-    switch (member.fieldKind) {
-      case "message":
-        break;
-      case "list":
-        lists.push(member.localName);
-        break;
-      case "map":
-        maps.push(member.localName);
-        break;
-      default:
-        if (member.presence == IMPLICIT) {
-          implicitScalars.push(member.localName);
-          implicitScalarValues.push(createZeroValue(member));
-        } else if (usePrototype) {
-          prototype[member.localName] = createZeroValue(member);
-        }
-        break;
+    initializers.push(compileInitMember(member));
+    if (
+      usePrototype &&
+      member.kind == "field" &&
+      member.presence != IMPLICIT &&
+      (member.fieldKind == "scalar" || member.fieldKind == "enum")
+    ) {
+      prototype[member.localName] = createZeroValue(member);
     }
   }
-
-  // For smaller messages, a megamorphic clone has a high fixed cost, so we're
-  // better off setting fields to their zero values ourselves.
-  let template: Record<string, unknown> | undefined;
-  const isSmallMessage = desc.members.length + 1 <= smallMessageMaxProperties; // + 1 for $typeName
-  if (!isSmallMessage) {
-    const skeleton: Record<string, unknown> = { $typeName: typeName };
-    for (const key of [...implicitScalars, ...lists, ...maps, ...oneofs]) {
-      skeleton[key] = null;
-    }
-    // Create the template shape via JSON.parse() - adding properties one by
-    // one overflows V8's in-object slots.
-    template = JSON.parse(JSON.stringify(skeleton)) as Record<string, unknown>;
-    for (let i = 0; i < implicitScalars.length; i++) {
-      template[implicitScalars[i]] = implicitScalarValues[i];
-    }
-  }
-
-  // Cloning the template already sets zero values, only set zero values if we
-  // are not cloning the template.
-  const initializers = desc.members.map((member) =>
-    compileInitMember(member, template === undefined),
-  );
 
   return (init) => {
     let message: Record<string, unknown>;
-    if (template === undefined) {
-      if (usePrototype) {
-        message = Object.create(prototype) as Record<string, unknown>;
-        message.$typeName = typeName;
-      } else {
-        message = { $typeName: typeName };
-      }
-      if (init === undefined) {
-        for (let i = 0; i < implicitScalars.length; i++) {
-          message[implicitScalars[i]] = implicitScalarValues[i];
-        }
-      }
+    if (usePrototype) {
+      message = Object.create(prototype) as Record<string, unknown>;
+      message.$typeName = typeName;
     } else {
-      if (usePrototype) {
-        message = Object.assign(
-          Object.create(prototype) as Record<string, unknown>,
-          template,
-        );
-      } else {
-        message = { ...template };
-      }
-    }
-    if (init === undefined) {
-      for (let i = 0; i < lists.length; i++) {
-        message[lists[i]] = [];
-      }
-      for (let i = 0; i < maps.length; i++) {
-        message[maps[i]] = {};
-      }
-      for (let i = 0; i < oneofs.length; i++) {
-        message[oneofs[i]] = { case: undefined };
-      }
-      return message as Message;
+      message = { $typeName: typeName };
     }
     for (let i = 0; i < initializers.length; i++) {
       initializers[i](message, init);
@@ -189,7 +116,7 @@ function compileCreate(desc: DescMessage): CompiledCreate {
  */
 type MemberInit = (
   message: Record<string, unknown>,
-  init: Record<string, unknown>,
+  init: Record<string, unknown> | undefined,
 ) => void;
 
 /**
@@ -198,10 +125,7 @@ type MemberInit = (
  */
 type Converter = (value: unknown) => unknown;
 
-function compileInitMember(
-  member: DescField | DescOneof,
-  setZeroValues: boolean,
-): MemberInit {
+function compileInitMember(member: DescField | DescOneof): MemberInit {
   if (member.kind == "oneof") {
     return compileInitOneof(member);
   }
@@ -219,7 +143,7 @@ function compileInitMember(
         member.fieldKind == "scalar" && member.scalar == ScalarType.BYTES
           ? toU8Arr
           : undefined;
-      return member.presence == IMPLICIT && setZeroValues
+      return member.presence == IMPLICIT
         ? compileInitPropertyWithZeroValue(
             member.localName,
             convert,
@@ -234,20 +158,19 @@ function compileInitProperty(
   name: string,
   convert: Converter | undefined,
 ): MemberInit {
-  if (convert === undefined) {
-    return (message, init) => {
-      const value = init[name];
-      if (value != null) {
-        message[name] = value;
+  return convert === undefined
+    ? (message, init) => {
+        const value = init?.[name];
+        if (value != null) {
+          message[name] = value;
+        }
       }
-    };
-  }
-  return (message, init) => {
-    const value = init[name];
-    if (value != null) {
-      message[name] = convert(value);
-    }
-  };
+    : (message, init) => {
+        const value = init?.[name];
+        if (value != null) {
+          message[name] = convert(value);
+        }
+      };
 }
 
 function compileInitPropertyWithZeroValue(
@@ -255,16 +178,23 @@ function compileInitPropertyWithZeroValue(
   convert: Converter | undefined,
   zeroValue: unknown,
 ): MemberInit {
-  if (convert === undefined) {
-    return (message, init) => {
-      const value = init[name];
-      message[name] = value ?? zeroValue;
-    };
-  }
-  return (message, init) => {
-    const value = init[name];
-    message[name] = value != null ? convert(value) : zeroValue;
-  };
+  return convert === undefined
+    ? (message, init) => {
+        if (init === undefined) {
+          message[name] = zeroValue;
+          return;
+        }
+        const value = init[name];
+        message[name] = value ?? zeroValue;
+      }
+    : (message, init) => {
+        if (init === undefined) {
+          message[name] = zeroValue;
+          return;
+        }
+        const value = init[name];
+        message[name] = value != null ? convert(value) : zeroValue;
+      };
 }
 
 function compileInitList(field: DescField & { fieldKind: "list" }): MemberInit {
@@ -275,18 +205,25 @@ function compileInitList(field: DescField & { fieldKind: "list" }): MemberInit {
   } else if (field.scalar == ScalarType.BYTES) {
     convertItem = toU8Arr;
   }
-  if (convertItem === undefined) {
-    return (message, init) => {
-      const value = init[name];
-      message[name] = value ?? [];
-    };
-  }
-  return (message, init) => {
-    const value = init[name];
-    message[name] = Array.isArray(value)
-      ? value.map(convertItem)
-      : (value ?? []);
-  };
+  return convertItem === undefined
+    ? (message, init) => {
+        if (init === undefined) {
+          message[name] = [];
+          return;
+        }
+        const value = init[name];
+        message[name] = value ?? [];
+      }
+    : (message, init) => {
+        if (init === undefined) {
+          message[name] = [];
+          return;
+        }
+        const value = init[name];
+        message[name] = Array.isArray(value)
+          ? value.map(convertItem)
+          : (value ?? []);
+      };
 }
 
 function compileInitMap(field: DescField & { fieldKind: "map" }): MemberInit {
@@ -297,31 +234,38 @@ function compileInitMap(field: DescField & { fieldKind: "map" }): MemberInit {
   } else if (field.scalar == ScalarType.BYTES) {
     convertValue = toU8Arr;
   }
-  if (convertValue === undefined) {
-    return (message, init) => {
-      const value = init[name];
-      // Object.create(null) would be desirable for the fresh map, but is
-      // unsupported by React:
-      // https://react.dev/reference/react/use-server#serializable-parameters-and-return-values
-      message[name] = value ?? {};
-    };
-  }
-  return (message, init) => {
-    const value = init[name];
-    if (value == null) {
-      message[name] = {};
-    } else if (isObject(value)) {
-      const convertedValues: Record<string, unknown> = {};
-      const keys = Object.keys(value);
-      for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
-        convertedValues[key] = convertValue(value[key]);
+  return convertValue === undefined
+    ? (message, init) => {
+        if (init === undefined) {
+          message[name] = {};
+          return;
+        }
+        const value = init[name];
+        // Object.create(null) would be desirable for the fresh map, but is
+        // unsupported by React:
+        // https://react.dev/reference/react/use-server#serializable-parameters-and-return-values
+        message[name] = value ?? {};
       }
-      message[name] = convertedValues;
-    } else {
-      message[name] = value;
-    }
-  };
+    : (message, init) => {
+        if (init === undefined) {
+          message[name] = {};
+          return;
+        }
+        const value = init[name];
+        if (value == null) {
+          message[name] = {};
+        } else if (isObject(value)) {
+          const convertedValues: Record<string, unknown> = {};
+          const keys = Object.keys(value);
+          for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            convertedValues[key] = convertValue(value[key]);
+          }
+          message[name] = convertedValues;
+        } else {
+          message[name] = value;
+        }
+      };
 }
 
 function compileInitOneof(oneof: DescOneof): MemberInit {
@@ -340,6 +284,10 @@ function compileInitOneof(oneof: DescOneof): MemberInit {
     converters.set(field.localName, convert ?? ((value) => value));
   }
   return (message, init) => {
+    if (init === undefined) {
+      message[name] = { case: undefined };
+      return;
+    }
     const oneofValue = init[name] as
       | { case?: unknown; value?: unknown }
       | null
