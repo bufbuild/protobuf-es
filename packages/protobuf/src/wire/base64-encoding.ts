@@ -32,19 +32,11 @@ const nativeSetFromBase64 = (
  */
 export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
   const len = base64Str.length;
-  let size = (len >> 2) * 3;
-  switch (len & 3) {
-    case 0:
-      if (len > 0 && base64Str.charCodeAt(len - 1) == 61 /* = */) {
-        size -= base64Str.charCodeAt(len - 2) == 61 ? 2 : 1;
-      }
-      break;
-    case 2:
-      size += 1; // unpadded tail, one extra byte
-      break;
-    case 3:
-      size += 2; // unpadded tail, two extra bytes
-      break;
+  // Decoded size, assuming a well-formed string: three bytes per group of
+  // four characters, minus one byte for each padding character.
+  let size = len - ((len + 3) >> 2);
+  if ((len & 3) == 0 && base64Str[len - 1] == "=") {
+    size -= base64Str[len - 2] == "=" ? 2 : 1;
   }
 
   const bytes = new Uint8Array(size);
