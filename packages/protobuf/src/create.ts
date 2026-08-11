@@ -217,7 +217,7 @@ function compileInitMessage(desc: DescMessage): InitMessage {
           constant: undefined,
           convert:
             member.listKind == "message"
-              ? compileConvertMessage(member)
+              ? (compileConvertMessage(member) ?? ((value) => value))
               : member.scalar == ScalarType.BYTES
                 ? toU8Arr
                 : undefined,
@@ -231,7 +231,7 @@ function compileInitMessage(desc: DescMessage): InitMessage {
           constant: undefined,
           convert:
             member.mapKind == "message"
-              ? compileConvertMessage(member)
+              ? (compileConvertMessage(member) ?? ((value) => value))
               : member.scalar == ScalarType.BYTES
                 ? toU8Arr
                 : undefined,
