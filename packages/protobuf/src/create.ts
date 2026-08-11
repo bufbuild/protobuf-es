@@ -107,13 +107,7 @@ type InitProperty = {
     }
 );
 
-/**
- * Compile the create function for this message type. It sets every property
- * of the message in a single walk over the compiled properties, so the switch
- * is the only dispatch. Every kind stores the zero value where the init has
- * no value for the property, which is why a missing or empty init produces a
- * zero message.
- */
+/* Compile the create function for this message type. */
 function compileCreate(desc: DescMessage): CompiledCreate {
   const typeName = desc.typeName;
   const { properties, prototype } = compileInitMessage(desc);
