@@ -8,6 +8,7 @@
       }
       ]]>
     </style>
+    <rect x="-10%" y="-10%" width="120%" height="120%" fill="#ffffff" />
     <g transform="translate(110,310)">
       <line y1="0" x2="700" stroke="black" />
       <text x="0" y="18" text-anchor="start">1 file</text>
