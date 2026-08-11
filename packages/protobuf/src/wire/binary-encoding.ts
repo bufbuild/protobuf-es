@@ -299,9 +299,28 @@ export class BinaryWriter {
     if (typeof value !== "string") {
       value = String(value);
     }
+    const len = value.length;
+
+    // Fast path for ASCII.
+    if (len <= ASCII_MAX_LENGTH) {
+      this.ensureCapacity(len + 1);
+      const ascii = this.buffer;
+      let pos = this.pos;
+      ascii[pos++] = len;
+      let i = 0;
+      for (; i < len; i++) {
+        const code = value.charCodeAt(i);
+        if (code > 0x7f) break;
+        ascii[pos++] = code;
+      }
+      if (i == len) {
+        this.pos = pos;
+        return this;
+      }
+    }
+
     // encodeUtf8Into needs the full-length buffer upfront. The length prefix
     // can be upto 5 bytes, and a UTF-16 code unit takes at most 3 UTF-8 bytes.
-    const len = value.length;
     this.ensureCapacity(len * 3 + 5);
 
     // The length prefix goes first, but the byte length is only known after
@@ -509,6 +528,12 @@ const EMPTY_BUFFER = new Uint8Array(0) as Uint8Array<ArrayBuffer>;
  * fixed-width write first grows the buffer, which replaces this view.
  */
 const EMPTY_VIEW = new DataView(EMPTY_BUFFER.buffer);
+
+/**
+ * Longest string on the ASCII fast paths. Must stay below 0x80, so
+ * that the writer's length prefix always fits a single varint byte.
+ */
+const ASCII_MAX_LENGTH = 32;
 
 /**
  * Number of bytes needed to encode `value` as an unsigned 32-bit varint.
@@ -755,7 +780,23 @@ export class BinaryReader {
    * `strict` is true, throw on invalid UTF-8 instead of substituting U+FFFD.
    */
   string(strict?: boolean): string {
-    return this.decodeUtf8(this.bytes(), strict);
+    const bytes = this.bytes();
+    const len = bytes.length;
+
+    // Fast path for ASCII.
+    if (len <= ASCII_MAX_LENGTH) {
+      const codes = new Array<number>(len);
+      for (let i = 0; i < len; i++) {
+        const byte = bytes[i];
+        if (byte > 0x7f) {
+          return this.decodeUtf8(bytes, strict);
+        }
+        codes[i] = byte;
+      }
+      return String.fromCharCode.apply(String, codes);
+    }
+
+    return this.decodeUtf8(bytes, strict);
   }
 }
 
