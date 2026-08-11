@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Native Uint8Array.fromBase64, if the runtime provides it.
-const nativeUint8ArrayFromBase64 = (
-  Uint8Array as Partial<{
-    fromBase64(base64Str: string): Uint8Array<ArrayBuffer>;
+// Native Uint8Array.prototype.setFromBase64, if the runtime provides it.
+const nativeSetFromBase64 = (
+  Uint8Array.prototype as Partial<{
+    setFromBase64(base64Str: string): { read: number; written: number };
   }>
-).fromBase64;
+).setFromBase64;
 
 /**
  * Decodes a base64 string to a byte array.
@@ -31,20 +31,44 @@ const nativeUint8ArrayFromBase64 = (
  *   no padding
  */
 export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
-  if (nativeUint8ArrayFromBase64) {
+  const len = base64Str.length;
+  let size = (len >> 2) * 3;
+  switch (len & 3) {
+    case 0:
+      if (len > 0 && base64Str.charCodeAt(len - 1) == 61 /* = */) {
+        size -= base64Str.charCodeAt(len - 2) == 61 ? 2 : 1;
+      }
+      break;
+    case 2:
+      size += 1; // unpadded tail, one extra byte
+      break;
+    case 3:
+      size += 2; // unpadded tail, two extra bytes
+      break;
+  }
+
+  const bytes = new Uint8Array(size);
+  let written = -1;
+  if (nativeSetFromBase64) {
     try {
-      return nativeUint8ArrayFromBase64(base64Str);
+      const result = nativeSetFromBase64.call(bytes, base64Str);
+      if (result.read == len) {
+        written = result.written;
+      }
     } catch {
-      // The native decoder rejects base64url and inner padding, which we
-      // accept. Fall through to the implementation below, which is lenient,
-      // and raises our own error for genuinely invalid input.
+      // The native decoder rejects base64url and inner padding, which we accept.
     }
   }
+  if (written < 0) {
+    written = setFromBase64(bytes, base64Str);
+  }
+  return written == size ? bytes : bytes.subarray(0, written);
+}
+
+/** Writes into `bytes` from index 0 and returns the number of bytes written. */
+function setFromBase64(bytes: Uint8Array, base64Str: string): number {
   const table = getDecodeTable();
-  // estimate byte size
-  const es = (base64Str.length * 3) / 4;
-  let bytes = new Uint8Array(es),
-    bytePos = 0, // position in byte array
+  let bytePos = 0, // position in byte array
     groupPos = 0, // position in base64 group
     b: number, // current byte
     p = 0; // previous byte
@@ -86,7 +110,7 @@ export function base64Decode(base64Str: string): Uint8Array<ArrayBuffer> {
     }
   }
   if (groupPos == 1) throw Error("invalid base64 string");
-  return bytes.subarray(0, bytePos);
+  return bytePos;
 }
 
 // Native Uint8Array.prototype.toBase64, if the runtime provides it.
@@ -94,7 +118,7 @@ type ToBase64Options = {
   readonly alphabet?: "base64" | "base64url";
   readonly omitPadding?: boolean;
 };
-const nativeUint8ArrayToBase64 = (
+const nativeToBase64 = (
   Uint8Array.prototype as Partial<{
     toBase64(options?: ToBase64Options): string;
   }>
@@ -123,8 +147,8 @@ export function base64Encode(
   bytes: Uint8Array,
   encoding: Base64Encoding = "std",
 ) {
-  if (nativeUint8ArrayToBase64) {
-    return nativeUint8ArrayToBase64.call(bytes, toBase64OptionsMap[encoding]);
+  if (nativeToBase64) {
+    return nativeToBase64.call(bytes, toBase64OptionsMap[encoding]);
   }
   const table = getEncodeTable(encoding);
   const pad = encoding == "std";
