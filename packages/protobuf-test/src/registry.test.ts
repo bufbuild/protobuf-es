@@ -2182,26 +2182,6 @@ void suite("descriptor toString()", () => {
     extend Msg { optional int32 ext = 100; }
   `;
 
-  // Object.freeze(Object.prototype) is irreversible and would leak into every
-  // later test in this process.
-  function withNonWritableToString<T>(fn: () => T): T {
-    const original = Object.getOwnPropertyDescriptor(
-      Object.prototype,
-      "toString",
-    );
-    assert.ok(original);
-    Object.defineProperty(Object.prototype, "toString", {
-      ...original,
-      writable: false,
-      configurable: true,
-    });
-    try {
-      return fn();
-    } finally {
-      Object.defineProperty(Object.prototype, "toString", original);
-    }
-  }
-
   function describeAll(reg: FileRegistry): string[] {
     const msg = reg.getMessage("Msg");
     assert.ok(msg);
@@ -2232,14 +2212,26 @@ void suite("descriptor toString()", () => {
     );
   });
 
-  void test("works with non-writable Object.prototype.toString", async () => {
+  void test("works with non-writable Object.prototype.toString", async (t) => {
     const fileDescriptorSet = await compileFileDescriptorSet({
       "a.proto": protoSource,
     });
     const expected = describeAll(createFileRegistry(fileDescriptorSet));
-    const actual = withNonWritableToString(() =>
-      describeAll(createFileRegistry(fileDescriptorSet)),
+    // Object.freeze(Object.prototype) is irreversible and would leak into every
+    // later test in this process.
+    const original = Object.getOwnPropertyDescriptor(
+      Object.prototype,
+      "toString",
     );
+    assert.ok(original);
+    Object.defineProperty(Object.prototype, "toString", {
+      ...original,
+      writable: false,
+    });
+    t.after(() =>
+      Object.defineProperty(Object.prototype, "toString", original),
+    );
+    const actual = describeAll(createFileRegistry(fileDescriptorSet));
     assert.deepStrictEqual(actual, expected);
   });
 });

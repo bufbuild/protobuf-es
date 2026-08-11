@@ -849,6 +849,7 @@ function newField(
     longAsString: false,
     getDefaultValue: undefined,
   };
+  let toStr: () => string;
   if (isExtension) {
     // extension field
     const file = parentOrFile.kind == "file" ? parentOrFile : parentOrFile.file;
@@ -860,14 +861,7 @@ function newField(
     field.oneof = undefined;
     field.typeName = typeName;
     field.jsonName = `[${typeName}]`; // option json_name is not allowed on extension fields
-    // A plain assignment throws where built-in prototypes are frozen. The
-    // attributes below match what an assignment produces.
-    Object.defineProperty(field, "toString", {
-      value: () => `extension ${typeName}`,
-      writable: true,
-      enumerable: true,
-      configurable: true,
-    });
+    toStr = () => `extension ${typeName}`;
     const extendee = reg.getMessage(trimLeadingDot(proto.extendee));
     assert(
       extendee,
@@ -884,13 +878,16 @@ function newField(
       ? protoCamelCase(proto.name)
       : safeObjectProperty(protoCamelCase(proto.name));
     field.jsonName = proto.jsonName;
-    Object.defineProperty(field, "toString", {
-      value: () => `field ${parent.typeName}.${proto.name}`,
-      writable: true,
-      enumerable: true,
-      configurable: true,
-    });
+    toStr = () => `field ${parent.typeName}.${proto.name}`;
   }
+  // A plain assignment throws where built-in prototypes are frozen. The
+  // attributes match what an assignment produces.
+  Object.defineProperty(field, "toString", {
+    value: toStr,
+    writable: true,
+    enumerable: true,
+    configurable: true,
+  });
   const label: FieldDescriptorProto_Label = proto.label;
   const type: FieldDescriptorProto_Type = proto.type;
   const jstype: FieldOptions_JSType | undefined = proto.options?.jstype;
