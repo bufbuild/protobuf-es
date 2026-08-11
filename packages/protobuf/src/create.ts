@@ -20,10 +20,8 @@ import {
   ScalarType,
 } from "./descriptors.js";
 import type { Message, MessageInitShape, MessageShape } from "./types.js";
-import { scalarZeroValue } from "./reflect/scalar.js";
-import type { FieldError } from "./reflect/error.js";
-import { isObject, type OneofADT } from "./reflect/guard.js";
-import { unsafeGet, unsafeOneofCase, unsafeSet } from "./reflect/unsafe.js";
+import { type ScalarValue, scalarZeroValue } from "./reflect/scalar.js";
+import { isObject } from "./reflect/guard.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
 
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name = $number;
@@ -46,101 +44,259 @@ export function create<Desc extends DescMessage>(
   if (isMessage(init, schema)) {
     return init;
   }
-  const message = createZeroMessage(schema) as MessageShape<Desc>;
-  if (init !== undefined) {
-    initMessage(schema, message, init);
-  }
-  return message;
+  return compiledCreate(schema)(
+    init as Record<string, unknown> | undefined,
+  ) as MessageShape<Desc>;
 }
 
 /**
- * Sets field values from a MessageInitShape on a zero message.
+ * Creates a message: a zero message without an init, otherwise with member
+ * values from a MessageInitShape.
  */
-function initMessage<Desc extends DescMessage>(
-  messageDesc: Desc,
-  message: MessageShape<Desc>,
-  init: MessageInitShape<Desc>,
-): MessageShape<Desc> | FieldError {
-  for (const member of messageDesc.members) {
-    let value = (init as Record<string, unknown>)[member.localName];
-    if (value == null) {
-      // intentionally ignore undefined and null
+type CompiledCreate = (init?: Record<string, unknown>) => Message;
+
+const compiledCreates = new WeakMap<DescMessage, CompiledCreate>();
+
+/**
+ * Return the compiled create function for a message, compiling it on first use. */
+function compiledCreate(desc: DescMessage): CompiledCreate {
+  let compiled = compiledCreates.get(desc);
+  if (compiled === undefined) {
+    compiled = compileCreate(desc);
+    compiledCreates.set(desc, compiled);
+  }
+  return compiled;
+}
+
+/** Singular field: scalar, enum, or message. */
+const INIT_SINGULAR = 0;
+/** List field: a zero message has a fresh empty array. */
+const INIT_LIST = 1;
+/** Map field: a zero message has a fresh empty object. */
+const INIT_MAP = 2;
+/** Oneof group: the ADT is always stored, cases convert by case name. */
+const INIT_ONEOF = 3;
+
+/** Definition of a message. */
+interface InitMessage {
+  /** One property per member of the message, in declaration order. */
+  readonly properties: InitProperty[];
+  /* Undefined for messages that track presence without the prototype chain. */
+  readonly prototype: Record<string, unknown> | undefined;
+}
+
+/** Definition for one property of a message. */
+type InitProperty = {
+  readonly name: string;
+} & (
+  | {
+      readonly kind: typeof INIT_SINGULAR;
+      /** The zero value for implicit presence, undefined for explicit. */
+      readonly constant: ScalarValue | undefined;
+      readonly convert: Converter | undefined;
+    }
+  | {
+      readonly kind: typeof INIT_LIST | typeof INIT_MAP;
+      readonly constant: undefined;
+      readonly convert: Converter | undefined;
+    }
+  | {
+      readonly kind: typeof INIT_ONEOF;
+      readonly constant: undefined;
+      readonly convert: Map<string, Converter>;
+    }
+);
+
+/* Compile the create function for this message type. */
+function compileCreate(desc: DescMessage): CompiledCreate {
+  const typeName = desc.typeName;
+  const { properties, prototype } = compileInitMessage(desc);
+  return (init) => {
+    let message: Record<string, unknown>;
+    if (prototype !== undefined) {
+      message = Object.create(prototype) as Record<string, unknown>;
+      message.$typeName = typeName;
+    } else {
+      message = { $typeName: typeName };
+    }
+    for (let i = 0; i < properties.length; i++) {
+      const property = properties[i];
+      const name = property.name;
+      const initValue = init?.[name];
+      switch (property.kind) {
+        case INIT_SINGULAR:
+          if (initValue != null) {
+            message[name] =
+              property.convert !== undefined
+                ? property.convert(initValue)
+                : initValue;
+          } else if (property.constant !== undefined) {
+            message[name] = property.constant;
+          }
+          break;
+        case INIT_LIST:
+          message[name] =
+            property.convert !== undefined && Array.isArray(initValue)
+              ? initValue.map(property.convert)
+              : (initValue ?? []);
+          break;
+        case INIT_MAP:
+          // Object.create(null) would be desirable for the fresh map, but is
+          // unsupported by React:
+          // https://react.dev/reference/react/use-server#serializable-parameters-and-return-values
+          if (property.convert === undefined || !isObject(initValue)) {
+            message[name] = initValue ?? {};
+          } else {
+            const converted: Record<string, unknown> = {};
+            const keys = Object.keys(initValue);
+            for (let k = 0; k < keys.length; k++) {
+              converted[keys[k]] = property.convert(initValue[keys[k]]);
+            }
+            message[name] = converted;
+          }
+          break;
+        case INIT_ONEOF: {
+          const oneofValue = initValue as
+            | { case?: unknown; value?: unknown }
+            | null
+            | undefined;
+          if (oneofValue?.case != null) {
+            const convert = property.convert.get(oneofValue.case as string);
+            if (convert !== undefined) {
+              message[name] = {
+                case: oneofValue.case,
+                value: convert(oneofValue.value),
+              };
+              break;
+            }
+          }
+          message[name] = { case: undefined };
+          break;
+        }
+      }
+    }
+    return message as Message;
+  };
+}
+
+/**
+ * Classify every member once, so that creating a message is a walk over a
+ * compact list instead of a walk over the descriptor.
+ */
+function compileInitMessage(desc: DescMessage): InitMessage {
+  const properties: InitProperty[] = [];
+  const prototype: Record<string, unknown> = {};
+  const usePrototype = needsPrototypeChain(desc);
+
+  for (const member of desc.members) {
+    const name = member.localName;
+    if (member.kind == "oneof") {
+      properties.push({
+        name,
+        kind: INIT_ONEOF,
+        constant: undefined,
+        convert: compileConvertOneof(member),
+      });
       continue;
     }
-    let field: DescField;
-    if (member.kind == "oneof") {
-      const oneofField = unsafeOneofCase(init, member);
-      if (!oneofField) {
-        continue;
+    switch (member.fieldKind) {
+      case "message": {
+        // Singular message fields are absent from a zero message.
+        properties.push({
+          name,
+          kind: INIT_SINGULAR,
+          constant: undefined,
+          convert: compileConvertMessage(member),
+        });
+        break;
       }
-      field = oneofField;
-      value = unsafeGet(init, oneofField);
-    } else {
-      field = member;
-    }
-    switch (field.fieldKind) {
-      case "message":
-        value = toMessage(field, value);
+      case "list": {
+        properties.push({
+          name,
+          kind: INIT_LIST,
+          constant: undefined,
+          convert:
+            member.listKind == "message"
+              ? (compileConvertMessage(member) ?? ((value) => value))
+              : member.scalar == ScalarType.BYTES
+                ? toU8Arr
+                : undefined,
+        });
         break;
-      case "scalar":
-        value = initScalar(field, value);
+      }
+      case "map": {
+        properties.push({
+          name,
+          kind: INIT_MAP,
+          constant: undefined,
+          convert:
+            member.mapKind == "message"
+              ? (compileConvertMessage(member) ?? ((value) => value))
+              : member.scalar == ScalarType.BYTES
+                ? toU8Arr
+                : undefined,
+        });
         break;
-      case "list":
-        value = initList(field, value);
+      }
+      default: {
+        const zeroValue = createZeroValue(member);
+        properties.push({
+          name,
+          kind: INIT_SINGULAR,
+          constant: member.presence == IMPLICIT ? zeroValue : undefined,
+          convert:
+            member.fieldKind == "scalar" && member.scalar == ScalarType.BYTES
+              ? toU8Arr
+              : undefined,
+        });
+        if (usePrototype) {
+          prototype[name] = zeroValue;
+        }
         break;
-      case "map":
-        value = initMap(field, value);
-        break;
-    }
-    unsafeSet(message, field, value);
-  }
-  return message;
-}
-
-function initScalar(
-  field: DescField & { fieldKind: "scalar" },
-  value: unknown,
-): unknown {
-  if (field.scalar == ScalarType.BYTES) {
-    return toU8Arr(value);
-  }
-  return value;
-}
-
-function initMap(
-  field: DescField & { fieldKind: "map" },
-  value: unknown,
-): unknown {
-  if (isObject(value)) {
-    if (field.scalar == ScalarType.BYTES) {
-      return convertObjectValues(value, toU8Arr);
-    }
-    if (field.mapKind == "message") {
-      return convertObjectValues(value, (val) => toMessage(field, val));
-    }
-  }
-  return value;
-}
-
-function initList(
-  field: DescField & { fieldKind: "list" },
-  value: unknown,
-): unknown {
-  if (Array.isArray(value)) {
-    if (field.scalar == ScalarType.BYTES) {
-      return value.map(toU8Arr);
-    }
-    if (field.listKind == "message") {
-      return value.map((item: unknown) => toMessage(field, item));
+      }
     }
   }
-  return value;
+
+  return {
+    properties,
+    prototype: usePrototype ? prototype : undefined,
+  };
 }
 
-function toMessage(
+/**
+ * Compile the conversion of each case of a oneof group, keyed by case name.
+ */
+function compileConvertOneof(oneof: DescOneof): Map<string, Converter> {
+  const converters = new Map<string, Converter>();
+  for (const field of oneof.fields) {
+    let convert: Converter | undefined;
+    if (field.fieldKind == "message") {
+      convert = compileConvertMessage(field);
+    } else if (
+      field.fieldKind == "scalar" &&
+      field.scalar == ScalarType.BYTES
+    ) {
+      convert = toU8Arr;
+    }
+    converters.set(field.localName, convert ?? ((value) => value));
+  }
+  return converters;
+}
+
+/**
+ * Converts a member value from a MessageInitShape to its message
+ * representation.
+ */
+type Converter = (value: unknown) => unknown;
+
+/**
+ * Compile the conversion of an init value for a message field, a message
+ * list item, or a message map value. Returns undefined if values are used
+ * as-is.
+ */
+function compileConvertMessage(
   field: DescField & { message: DescMessage },
-  value: unknown,
-): unknown {
+): Converter | undefined {
   if (
     field.fieldKind == "message" &&
     !field.oneof &&
@@ -148,112 +304,34 @@ function toMessage(
   ) {
     // Types from google/protobuf/wrappers.proto are unwrapped when used in
     // a singular field that is not part of a oneof group.
-    return initScalar(field.message.fields[0], value);
+    return field.message.fields[0].scalar == ScalarType.BYTES
+      ? toU8Arr
+      : undefined;
   }
-  if (isObject(value)) {
-    if (
-      field.message.typeName == "google.protobuf.Struct" &&
-      field.parent.typeName !== "google.protobuf.Value"
-    ) {
-      // google.protobuf.Struct is represented with JsonObject when used in a
-      // field, except when used in google.protobuf.Value.
+  if (
+    field.message.typeName == "google.protobuf.Struct" &&
+    field.parent.typeName !== "google.protobuf.Value"
+  ) {
+    // google.protobuf.Struct is represented with JsonObject when used in a
+    // field, except when used in google.protobuf.Value.
+    return undefined;
+  }
+  const messageDesc = field.message;
+  // Resolved on first use, not here: the message type can be this very field's
+  // parent, whose create function is still being compiled.
+  let compiled: CompiledCreate | undefined;
+  return (value) => {
+    if (!isObject(value) || isMessage(value, messageDesc)) {
       return value;
     }
-    if (!isMessage(value, field.message)) {
-      return create(field.message, value);
-    }
-  }
-  return value;
+    compiled ??= compiledCreate(messageDesc);
+    return compiled(value);
+  };
 }
 
 // converts any ArrayLike<number> to Uint8Array if necessary.
 function toU8Arr(value: unknown) {
   return Array.isArray(value) ? new Uint8Array(value) : value;
-}
-
-function convertObjectValues(
-  obj: Record<string, unknown>,
-  fn: (val: unknown) => unknown,
-): Record<string, unknown> {
-  const ret: Record<string, unknown> = {};
-  for (const entry of Object.entries(obj)) {
-    ret[entry[0]] = fn(entry[1]);
-  }
-  return ret;
-}
-
-const tokenZeroMessageField = Symbol();
-
-const messagePrototypes = new WeakMap<
-  DescMessage,
-  { prototype: Record<string, unknown>; members: Set<DescField | DescOneof> }
->();
-
-/**
- * Create a zero message.
- */
-function createZeroMessage(desc: DescMessage): Message {
-  let msg: Record<string, unknown>;
-  if (!needsPrototypeChain(desc)) {
-    msg = {
-      $typeName: desc.typeName,
-    };
-    for (const member of desc.members) {
-      if (member.kind == "oneof" || member.presence == IMPLICIT) {
-        msg[member.localName] = createZeroField(member);
-      }
-    }
-  } else {
-    // Support default values and track presence via the prototype chain
-    const cached = messagePrototypes.get(desc);
-    let prototype: Record<string, unknown>;
-    let members: Set<DescField | DescOneof>;
-    if (cached) {
-      ({ prototype, members } = cached);
-    } else {
-      prototype = {};
-      members = new Set<DescField | DescOneof>();
-      for (const member of desc.members) {
-        if (member.kind == "oneof") {
-          // we can only put immutable values on the prototype,
-          // oneof ADTs are mutable
-          continue;
-        }
-        if (member.fieldKind != "scalar" && member.fieldKind != "enum") {
-          // only scalar and enum values are immutable, map, list, and message
-          // are not
-          continue;
-        }
-        if (member.presence == IMPLICIT) {
-          // implicit presence tracks field presence by zero values - e.g. 0, false, "", are unset, 1, true, "x" are set.
-          // message, map, list fields are mutable, and also have IMPLICIT presence.
-          continue;
-        }
-        members.add(member);
-        prototype[member.localName] = createZeroField(member);
-      }
-      messagePrototypes.set(desc, { prototype, members });
-    }
-    msg = Object.create(prototype) as Record<string, unknown>;
-    msg.$typeName = desc.typeName;
-    for (const member of desc.members) {
-      if (members.has(member)) {
-        continue;
-      }
-      if (member.kind == "field") {
-        if (member.fieldKind == "message") {
-          continue;
-        }
-        if (member.fieldKind == "scalar" || member.fieldKind == "enum") {
-          if (member.presence != IMPLICIT) {
-            continue;
-          }
-        }
-      }
-      msg[member.localName] = createZeroField(member);
-    }
-  }
-  return msg as Message;
 }
 
 /**
@@ -276,34 +354,14 @@ function needsPrototypeChain(desc: DescMessage): boolean {
       );
   }
 }
+
 /**
- * Returns a zero value for oneof groups, and for every field kind except
- * messages. Scalar and enum fields can have default values.
+ * Returns the zero value for a scalar or enum field. Scalar and enum fields
+ * can have default values.
  */
-function createZeroField(
-  field: DescOneof | DescField,
-):
-  | string
-  | boolean
-  | number
-  | bigint
-  | Uint8Array
-  | OneofADT
-  | []
-  | object
-  | typeof tokenZeroMessageField {
-  if (field.kind == "oneof") {
-    return { case: undefined };
-  }
-  if (field.fieldKind == "list") {
-    return [];
-  }
-  if (field.fieldKind == "map") {
-    return {}; // Object.create(null) would be desirable here, but is unsupported by react https://react.dev/reference/react/use-server#serializable-parameters-and-return-values
-  }
-  if (field.fieldKind == "message") {
-    return tokenZeroMessageField;
-  }
+function createZeroValue(
+  field: DescField & { fieldKind: "scalar" | "enum" },
+): ScalarValue {
   const defaultValue = field.getDefaultValue();
   if (defaultValue !== undefined) {
     return field.fieldKind == "scalar" && field.longAsString
