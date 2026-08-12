@@ -99,10 +99,13 @@ class ByteBuffer {
  * Messages exceeding the limit given with the option readMaxBytes raise an
  * error. The limit is 64 MiB by default. All other options are the
  * standard binary read options, passed through to decode each message.
+ *
+ * Accepts a sync iterable as well as an async one, so that data already held
+ * in memory can be decoded without wrapping it in an async iterable.
  */
 export async function* sizeDelimitedDecodeStream<Desc extends DescMessage>(
   messageDesc: Desc,
-  iterable: AsyncIterable<Uint8Array>,
+  iterable: AsyncIterable<Uint8Array> | Iterable<Uint8Array>,
   options?: Partial<SizeDelimitedDecodeOptions>,
 ): AsyncIterableIterator<MessageShape<Desc>> {
   const readMaxBytes = options?.readMaxBytes ?? defaultReadMaxBytes;
