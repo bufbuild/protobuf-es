@@ -54,18 +54,26 @@ function makeWriteOptions(
   return options ? { ...writeDefaults, ...options } : writeDefaults;
 }
 
+/** A writer reused between toBinary calls. */
+let sharedWriter: BinaryWriter | undefined;
+
 export function toBinary<Desc extends DescMessage>(
   schema: Desc,
   message: MessageShape<Desc>,
   options?: Partial<BinaryWriteOptions>,
 ): Uint8Array<ArrayBuffer> {
-  const writer = new BinaryWriter();
+  const writer = sharedWriter ?? new BinaryWriter();
+  // Guard against re-entry. While this should never happen under normal
+  // circumstances, we do use String(value) which may call user code.
+  sharedWriter = undefined;
   compiledWriter(schema)(
     writer,
     makeWriteOptions(options),
     message as Record<string, unknown>,
   );
-  return writer.finish();
+  const bytes = writer.finish();
+  sharedWriter = writer;
+  return bytes;
 }
 
 /**
