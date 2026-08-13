@@ -165,6 +165,10 @@ export class BinaryWriter {
     const result = this.buffer.slice(0, this.pos);
     this.pos = 0;
     this.stackPos = [];
+    if (this.buffer.length > MAX_RETAINED_SIZE) {
+      this.buffer = EMPTY_BUFFER;
+      this.viewCache = EMPTY_VIEW;
+    }
     return result;
   }
 
@@ -508,6 +512,12 @@ export class BinaryWriter {
  * Capacity of the buffer allocated by the first write..
  */
 const INITIAL_SIZE = 128;
+
+/**
+ * Buffer capacity above which a writer releases its buffer in finish()
+ * instead of retaining it for reuse.
+ */
+const MAX_RETAINED_SIZE = 64 * 1024;
 
 /**
  * Bytes `fork()` reserves for the length prefix, betting that the payload will
