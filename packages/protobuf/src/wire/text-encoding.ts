@@ -60,6 +60,17 @@ export function configureTextEncoding(textEncoding: TextEncodingConfig): void {
   };
 }
 
+/**
+ * Returns the process-wide UTF-8 codec.
+ *
+ * Every copy of this library in the same JavaScript isolate shares one
+ * implementation via `Symbol.for("@bufbuild/protobuf/text-encoding")` on
+ * `globalThis`.
+ *
+ * v2.14's `BinaryWriter` requires `encodeUtf8Into` on thatobject; v2.13 and
+ * earlier initialize the slot without it. If an older copy won the race, **fill
+ * out the missing method** the same way `configureTextEncoding` does.
+ */
 export function getTextEncoding(): TextEncoding {
   const globals = globalThis as unknown as GlobalWithTextEncoding &
     GlobalWithTextEncoderDecoder;
@@ -106,12 +117,20 @@ export function getTextEncoding(): TextEncoding {
       };
     }
     configureTextEncoding(config);
+  } else {
+    const existing = globals[symbol];
+    if (existing && typeof existing.encodeUtf8Into !== "function") {
+      // An older copy of this library (v2.13 and earlier) already added the
+      // global singleton, but missing the `encodeUtf8Into` method. Re-run
+      // configureTextEncoding so encodeUtf8Into is emulated from encodeUtf8.
+      configureTextEncoding(existing);
+    }
   }
   return globals[symbol] as TextEncoding;
 }
 
 type GlobalWithTextEncoding = {
-  [symbol]?: TextEncoding;
+  [symbol]?: TextEncodingConfig;
 };
 
 type GlobalWithTextEncoderDecoder = {

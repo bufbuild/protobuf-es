@@ -17,7 +17,11 @@ import * as assert from "node:assert";
 import {
   getTextEncoding,
   configureTextEncoding,
+  BinaryWriter,
+  BinaryReader,
 } from "@bufbuild/protobuf/wire";
+
+const textEncodingSymbol = Symbol.for("@bufbuild/protobuf/text-encoding");
 
 void suite("getTextEncoding()", () => {
   void test("returns TextEncoding", () => {
@@ -161,5 +165,59 @@ void suite("configureTextEncoding()", () => {
       dest,
       new Uint8Array([1, 2, 3, 0, 0, 0, 0, 0, 0, 0]),
     );
+  });
+});
+
+void suite("protobuf-es v2.13 global singleton compatibility", () => {
+  let backup: ReturnType<typeof getTextEncoding>;
+  beforeEach(() => {
+    backup = getTextEncoding();
+  });
+  afterEach(() => {
+    configureTextEncoding(backup);
+  });
+
+  function installV213TextEncoding() {
+    // protobuf-es v2.13 getTextEncoding() adds a global singleton to
+    // `globalThis` but does not include `encodeUtf8Into`.
+    (
+      globalThis as typeof globalThis & {
+        [textEncodingSymbol]?: {
+          encodeUtf8: typeof backup.encodeUtf8;
+          decodeUtf8: typeof backup.decodeUtf8;
+          checkUtf8: typeof backup.checkUtf8;
+        };
+      }
+    )[textEncodingSymbol] = {
+      encodeUtf8: backup.encodeUtf8,
+      decodeUtf8: backup.decodeUtf8,
+      checkUtf8: backup.checkUtf8,
+    };
+  }
+
+  void test("getTextEncoding() backfills encodeUtf8Into", () => {
+    installV213TextEncoding();
+    const te = getTextEncoding();
+    assert.strictEqual(typeof te.encodeUtf8Into, "function");
+    const dest = new Uint8Array(10);
+    const { written } = te.encodeUtf8Into("hello 🌍", dest);
+    assert.strictEqual(written, 10);
+    assert.deepStrictEqual(
+      dest,
+      new Uint8Array([104, 101, 108, 108, 111, 32, 240, 159, 140, 141]),
+    );
+  });
+
+  void test("BinaryWriter.string() encodes non-ASCII", () => {
+    installV213TextEncoding();
+    const bytes = new BinaryWriter().string("hello 🌍").finish();
+    assert.strictEqual(new BinaryReader(bytes).string(), "hello 🌍");
+  });
+
+  void test("BinaryWriter.string() encodes ASCII longer than the fast path", () => {
+    installV213TextEncoding();
+    const longAscii = "a".repeat(40);
+    const bytes = new BinaryWriter().string(longAscii).finish();
+    assert.strictEqual(new BinaryReader(bytes).string(), longAscii);
   });
 });
