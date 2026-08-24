@@ -139,6 +139,12 @@ export type UnknownField = {
 };
 
 /**
+ * An unknown enum is a value that's not in the set of values defined by an
+ * enum. Open Protobuf enums may
+ */
+export type UnknownEnum = number & { __unknown_enum: true };
+
+/**
  * Describes a streaming RPC declaration.
  */
 export type DescMethodStreaming<

@@ -85,3 +85,10 @@ Generate a Valid type for every message.
 You can combine both with `+`, for example `valid_types=legacy_required+protovalidate_required`.
 
 See [Valid types](/reference/valid-types/) for details.
+
+## `erasable_syntax=true` (experimental)
+
+Generates Protobuf enums as an object with `as const` for [running TypeScript
+natively in Node.js](https://nodejs.org/learn/typescript/run-natively), and for
+compatibility with the `tsconfig` option [erasableSyntaxOnly](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly). See [Enums vs Objects](/reference/generated-code/#enums-vs-objects) for details.
+

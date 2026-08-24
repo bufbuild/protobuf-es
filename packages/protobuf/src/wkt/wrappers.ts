@@ -89,19 +89,18 @@ export function hasCustomJsonRepresentation(desc: DescMessage): boolean {
   }
 }
 
+const wrapperTypeNames: ReadonlySet<string> = /*@__PURE__*/ new Set([
+  "google.protobuf.DoubleValue",
+  "google.protobuf.FloatValue",
+  "google.protobuf.Int64Value",
+  "google.protobuf.UInt64Value",
+  "google.protobuf.Int32Value",
+  "google.protobuf.UInt32Value",
+  "google.protobuf.BoolValue",
+  "google.protobuf.StringValue",
+  "google.protobuf.BytesValue",
+]);
+
 function isWrapperTypeName(name: string): boolean {
-  return (
-    name.startsWith("google.protobuf.") &&
-    [
-      "DoubleValue",
-      "FloatValue",
-      "Int64Value",
-      "UInt64Value",
-      "Int32Value",
-      "UInt32Value",
-      "BoolValue",
-      "StringValue",
-      "BytesValue",
-    ].includes(name.substring(16))
-  );
+  return wrapperTypeNames.has(name);
 }

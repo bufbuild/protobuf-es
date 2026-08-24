@@ -14,17 +14,15 @@
 
 syntax = "proto3";
 
-import "google/protobuf/descriptor.proto";
-
 package customoptions;
 
-extend google.protobuf.ServiceOptions {
+import "google/protobuf/descriptor.proto";
 
+extend google.protobuf.ServiceOptions {
   // An example for a custom option. Custom options are extensions to one of
   // the options messages defined in descriptor.proto.
   //
   // We extend the ServiceOptions message, so that other proto files can import
   // this file, and set the option on a service declaration.
   optional string default_host = 1001;
-
 }

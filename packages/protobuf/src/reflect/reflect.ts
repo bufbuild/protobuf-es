@@ -45,15 +45,9 @@ import {
   isReflectMap,
   isReflectMessage,
 } from "./guard.js";
-import type {
-  ListValue,
-  Struct,
-  Value,
-} from "../wkt/gen/google/protobuf/struct_pb.js";
-import type { JsonObject, JsonValue } from "../json-value.js";
-
-// google.protobuf.NullValue.NULL_VALUE;
-const NULL_VALUE = 0;
+import type { Struct } from "../wkt/gen/google/protobuf/struct_pb.js";
+import type { JsonObject } from "../json-value.js";
+import { wktStructToLocal, wktStructToReflect } from "./message.js";
 
 /**
  * Create a ReflectMessage.
@@ -616,84 +610,6 @@ function longToLocal(field: DescField, value: unknown) {
         value = String(value);
       } else if (typeof value == "string" || typeof value == "number") {
         value = protoInt64.uParse(value);
-      }
-      break;
-  }
-  return value;
-}
-
-function wktStructToReflect(json: JsonValue): Struct {
-  const struct: Struct = {
-    $typeName: "google.protobuf.Struct",
-    fields: {},
-  };
-  if (isObject(json)) {
-    for (const [k, v] of Object.entries(json)) {
-      struct.fields[k] = wktValueToReflect(v);
-    }
-  }
-  return struct;
-}
-
-function wktStructToLocal(val: Struct) {
-  const json: JsonObject = {};
-  for (const [k, v] of Object.entries(val.fields)) {
-    json[k] = wktValueToLocal(v);
-  }
-  return json;
-}
-
-function wktValueToLocal(val: Value): JsonValue {
-  switch (val.kind.case) {
-    case "structValue":
-      return wktStructToLocal(val.kind.value);
-    case "listValue":
-      return val.kind.value.values.map(wktValueToLocal);
-    case "nullValue":
-    case undefined:
-      return null;
-    default:
-      return val.kind.value;
-  }
-}
-
-function wktValueToReflect(json: JsonValue): Value {
-  const value: Value = {
-    $typeName: "google.protobuf.Value",
-    kind: { case: undefined },
-  };
-  switch (typeof json) {
-    case "number":
-      value.kind = { case: "numberValue", value: json };
-      break;
-    case "string":
-      value.kind = { case: "stringValue", value: json };
-      break;
-    case "boolean":
-      value.kind = { case: "boolValue", value: json };
-      break;
-    case "object":
-      if (json === null) {
-        value.kind = { case: "nullValue", value: NULL_VALUE };
-      } else if (Array.isArray(json)) {
-        const listValue: ListValue = {
-          $typeName: "google.protobuf.ListValue",
-          values: [],
-        };
-        if (Array.isArray(json)) {
-          for (const e of json) {
-            listValue.values.push(wktValueToReflect(e));
-          }
-        }
-        value.kind = {
-          case: "listValue",
-          value: listValue,
-        };
-      } else {
-        value.kind = {
-          case: "structValue",
-          value: wktStructToReflect(json),
-        };
       }
       break;
   }

@@ -101,6 +101,7 @@ export function generateChart(lines: Chartline[]): string {
       }
       ]]>
     </style>
+    <rect x="-10%" y="-10%" width="120%" height="120%" fill="#ffffff" />
     <g transform="translate(110,310)">
       <line y1="0" x2="${xStep * sizes.length}" stroke="black" />
       ${sizes.map((size, index) => `<text x="${xStep * index}" y="18" text-anchor="start">${size} file${size > 1 ? "s" : ""}</text>`).join("\n")}

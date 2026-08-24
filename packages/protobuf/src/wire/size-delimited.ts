@@ -40,6 +40,54 @@ export function sizeDelimitedEncode<Desc extends DescMessage>(
 }
 
 /**
+ * Options for parsing size-delimited messages from a stream.
+ */
+export interface SizeDelimitedDecodeOptions extends BinaryReadOptions {
+  /**
+   * Limit the size of a single message in the stream, in bytes.
+   *
+   * If a message in the stream declares a size exceeding this limit, an
+   * error is raised before the message is buffered.
+   *
+   * The default limit is 64 MiB.
+   */
+  readMaxBytes: number;
+}
+
+// Default for SizeDelimitedDecodeOptions.readMaxBytes.
+const defaultReadMaxBytes = 64 * 1024 * 1024; // 64 MiB
+
+/**
+ * A growable byte buffer. Used in place of a resizable ArrayBuffer, which is
+ * not widely available.
+ */
+class ByteBuffer {
+  private buffer = new Uint8Array(0);
+  private length = 0;
+
+  get byteLength(): number {
+    return this.length;
+  }
+
+  bytes(): Uint8Array {
+    return this.buffer.subarray(0, this.length);
+  }
+
+  append(chunk: Uint8Array): void {
+    const newByteLength = this.length + chunk.byteLength;
+    if (newByteLength > this.buffer.byteLength) {
+      const grown = new Uint8Array(
+        Math.max(this.buffer.byteLength * 2, newByteLength),
+      );
+      grown.set(this.buffer.subarray(0, this.length));
+      this.buffer = grown;
+    }
+    this.buffer.set(chunk, this.length);
+    this.length += chunk.byteLength;
+  }
+}
+
+/**
  * Parse a stream of size-delimited messages.
  *
  * A size-delimited message is a varint size in bytes, followed by exactly
@@ -47,41 +95,51 @@ export function sizeDelimitedEncode<Desc extends DescMessage>(
  *
  * This size-delimited format is compatible with other implementations.
  * For details, see https://github.com/protocolbuffers/protobuf/issues/10229
+ *
+ * Messages exceeding the limit given with the option readMaxBytes raise an
+ * error. The limit is 64 MiB by default. All other options are the
+ * standard binary read options, passed through to decode each message.
  */
 export async function* sizeDelimitedDecodeStream<Desc extends DescMessage>(
   messageDesc: Desc,
   iterable: AsyncIterable<Uint8Array>,
-  options?: Partial<BinaryReadOptions>,
+  options?: Partial<SizeDelimitedDecodeOptions>,
 ): AsyncIterableIterator<MessageShape<Desc>> {
-  // append chunk to buffer, returning updated buffer
-  function append(
-    buffer: Uint8Array<ArrayBuffer>,
-    chunk: Uint8Array,
-  ): Uint8Array<ArrayBuffer> {
-    const n = new Uint8Array(buffer.byteLength + chunk.byteLength);
-    n.set(buffer);
-    n.set(chunk, buffer.length);
-    return n;
-  }
-  let buffer = new Uint8Array(0);
+  const readMaxBytes = options?.readMaxBytes ?? defaultReadMaxBytes;
+  let buffer = new ByteBuffer();
+
   for await (const chunk of iterable) {
-    buffer = append(buffer, chunk);
+    buffer.append(chunk);
+    const bytes = buffer.bytes();
+    let offset = 0;
+
     for (;;) {
-      const size = sizeDelimitedPeek(buffer);
+      const size = sizeDelimitedPeek(bytes.subarray(offset));
       if (size.eof) {
         // size is incomplete, buffer more data
         break;
       }
-      if (size.offset + size.size > buffer.byteLength) {
+      if (size.size > readMaxBytes) {
+        throw new Error(
+          `message size ${size.size} is larger than configured readMaxBytes ${readMaxBytes}`,
+        );
+      }
+      const messageStart = offset + size.offset;
+      const messageEnd = messageStart + size.size;
+      if (messageEnd > bytes.byteLength) {
         // message is incomplete, buffer more data
         break;
       }
       yield fromBinary(
         messageDesc,
-        buffer.subarray(size.offset, size.offset + size.size),
+        bytes.subarray(messageStart, messageEnd),
         options,
       );
-      buffer = buffer.subarray(size.offset + size.size);
+      offset = messageEnd;
+    }
+    if (offset > 0) {
+      buffer = new ByteBuffer();
+      buffer.append(bytes.subarray(offset));
     }
   }
   if (buffer.byteLength > 0) {

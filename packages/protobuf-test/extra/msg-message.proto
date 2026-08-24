@@ -15,17 +15,12 @@
 syntax = "proto3";
 package spec;
 
-
 message MessageFieldMessage {
+  TestMessage message_field = 1;
 
-    TestMessage message_field = 1;
+  repeated TestMessage repeated_message_field = 2;
 
-    repeated TestMessage repeated_message_field = 2;
-
-
-    message TestMessage {
-        string name = 1;
-    }
-
+  message TestMessage {
+    string name = 1;
+  }
 }
-

@@ -29,17 +29,17 @@ import type { ScalarValue } from "./reflect/scalar.js";
 
 export type SupportedEdition = Extract<
   Edition,
-  | Edition.EDITION_PROTO2
-  | Edition.EDITION_PROTO3
-  | Edition.EDITION_2023
-  | Edition.EDITION_2024
+  | typeof Edition.EDITION_PROTO2
+  | typeof Edition.EDITION_PROTO3
+  | typeof Edition.EDITION_2023
+  | typeof Edition.EDITION_2024
 >;
 
 type SupportedFieldPresence = Extract<
   FeatureSet_FieldPresence,
-  | FeatureSet_FieldPresence.EXPLICIT
-  | FeatureSet_FieldPresence.IMPLICIT
-  | FeatureSet_FieldPresence.LEGACY_REQUIRED
+  | typeof FeatureSet_FieldPresence.EXPLICIT
+  | typeof FeatureSet_FieldPresence.IMPLICIT
+  | typeof FeatureSet_FieldPresence.LEGACY_REQUIRED
 >;
 
 /**

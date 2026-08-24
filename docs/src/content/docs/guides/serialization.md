@@ -154,6 +154,17 @@ for await (const user of sizeDelimitedDecodeStream(UserSchema, stream)) {
 }
 ```
 
+`sizeDelimitedDecodeStream()` raises an error for messages exceeding a size of 64 MiB.
+The option `readMaxBytes` overrides this limit:
+
+```typescript
+const users = sizeDelimitedDecodeStream(UserSchema, stream, {
+  readMaxBytes: 1024 * 1024, // 1 MiB
+});
+```
+
+When parsing untrusted input, set `readMaxBytes` to the smallest limit your messages allow.
+
 This format is compatible with the delimited message support in the C++, Java, Go, and other Protobuf runtimes.
 
 ## Text encoding API

@@ -1,5 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["tsconfig.base.json", "biome.base.json"],
   "globalEnv": ["BUF_BIGINT_DISABLE"],
   "tasks": {
     "build": {

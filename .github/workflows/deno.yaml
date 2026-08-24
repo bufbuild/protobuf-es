@@ -21,8 +21,8 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: lts
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/deno/conformance/${{ github.sha }}
@@ -36,8 +36,8 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: lts
-      - uses: actions/checkout@v6
-      - uses: actions/cache@v5
+      - uses: actions/checkout@v7
+      - uses: actions/cache@v6
         with:
           path: .turbo
           key: protobuf-es/deno/example/${{ github.sha }}

@@ -15,7 +15,7 @@
 import { suite, test } from "node:test";
 import * as assert from "node:assert";
 import { compileEnum, compileFile } from "../helpers.js";
-import { enumDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, objEnum, tsEnum } from "@bufbuild/protobuf/codegenv2";
 
 void suite("enumDesc()", () => {
   test("resolves enum", async () => {
@@ -112,4 +112,26 @@ void suite("tsEnum()", () => {
       valueOf$: 3,
     });
   });
+});
+
+void suite("objEnum()", () => {
+  test("creates object enum", async () => {
+    const descEnum = await compileEnum(`
+      syntax="proto3";
+      enum E {
+        A = 0;
+        B = 1;
+      }
+    `);
+    const e = objEnum(descEnum);
+    assert.strictEqual(e[0], undefined); // no reverse lookup
+    assert.strictEqual(e[1], undefined);
+    assert.strictEqual(e.A, 0);
+    assert.strictEqual(e.B, 1);
+    assert.deepStrictEqual(e, {
+      A: 0,
+      B: 1,
+    });
+  });
+  // prefix dropping and escaping is governed by descriptors
 });

@@ -93,6 +93,75 @@ void suite("sizeDelimitedDecodeStream()", () => {
       }
       assert.strictEqual(i, 2);
     });
+    void test("should raise error for incomplete message", async () => {
+      const stream = createAsyncIterableBytes(
+        sizeDelimitedEncode(desc, testMessages[0]).slice(0, -1),
+      );
+      await assert.rejects(
+        async () => {
+          for await (const dec of sizeDelimitedDecodeStream(desc, stream)) {
+            assert.fail(`unexpected message: ${dec.$typeName}`);
+          }
+        },
+        {
+          name: "Error",
+          message: "incomplete data",
+        },
+      );
+    });
+  });
+  void suite("readMaxBytes", () => {
+    const desc = TestAllTypesProto3Schema;
+    const msg = create(desc, {
+      optionalBool: true,
+    });
+    const msgByteLength = toBinary(desc, msg).byteLength;
+    async function* createStream(
+      ...chunks: Uint8Array[]
+    ): AsyncIterable<Uint8Array> {
+      for (const chunk of chunks) {
+        yield chunk;
+      }
+    }
+
+    void test("should raise error for size exceeding the default limit, before buffering more data", async () => {
+      let pulledMoreData = false;
+      async function* stream(): AsyncIterable<Uint8Array> {
+        // 5-byte varint declaring a size of 0xffffffff (4 GiB - 1)
+        yield Uint8Array.from([0xff, 0xff, 0xff, 0xff, 0x0f]);
+        pulledMoreData = true;
+        yield new Uint8Array(1024);
+      }
+      await assert.rejects(sizeDelimitedDecodeStream(desc, stream()).next(), {
+        name: "Error",
+        message:
+          "message size 4294967295 is larger than configured readMaxBytes 67108864",
+      });
+      assert.strictEqual(pulledMoreData, false);
+    });
+    void test("should enforce a custom readMaxBytes at the boundary", async () => {
+      await assert.rejects(
+        sizeDelimitedDecodeStream(
+          desc,
+          createStream(sizeDelimitedEncode(desc, msg)),
+          { readMaxBytes: msgByteLength - 1 },
+        ).next(),
+        {
+          name: "Error",
+          message: `message size ${msgByteLength} is larger than configured readMaxBytes ${msgByteLength - 1}`,
+        },
+      );
+      let i = 0;
+      for await (const dec of sizeDelimitedDecodeStream(
+        desc,
+        createStream(sizeDelimitedEncode(desc, msg)),
+        { readMaxBytes: msgByteLength },
+      )) {
+        assert.deepStrictEqual(dec, msg);
+        i++;
+      }
+      assert.strictEqual(i, 1);
+    });
   });
   void suite("with Node.js APIS", () => {
     void test("should decode stream", async () => {

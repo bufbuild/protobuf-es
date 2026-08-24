@@ -97,6 +97,35 @@ export const PhoneTypeSchema: GenEnum<PhoneType> = enumDesc(file_example, 0);
 
 If every enum value shares a prefix that matches the enum name, Protobuf-ES drops that prefix in generated code.
 
+TypeScript enums can convert between numeric values and string names:
+
+```typescript
+const val: PhoneType = PhoneType.MOBILE;
+const name = PhoneType[val]; // "MOBILE"
+```
+
+### Enums vs Objects
+
+In modern TypeScript, you may not need an enum when an object with `as const` could suffice.
+See the TypeScript handbook on [Objects vs Enums](https://www.typescriptlang.org/docs/handbook/enums.html#objects-vs-enums) for a comparison.
+
+You can enable generating objects with `as const` with the experimental plugin option [`erasable_syntax=true`](/reference/plugin-options/#erasable_syntaxtrue-experimental).
+For a Protobuf enum, it generates an object with `as const` and a union type for the enum values:
+
+```typescript
+export const PhoneType = {
+  UNSPECIFIED: 0,
+  MOBILE: 1,
+  LAND_LINE: 2,
+} as const;
+
+export type PhoneType = (typeof PhoneType)[keyof typeof PhoneType] | UnknownEnum;
+```
+
+Open enums can contain numeric values that are not in the set of values defined by the enum, so the type for an open enum is a union with `UnknownEnum`.
+
+The object does not support mapping from numeric value to string, but it is compatible with the `tsconfig` option [erasableSyntaxOnly](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly), and allows [running TypeScript natively in Node.js](https://nodejs.org/learn/typescript/run-natively).
+
 ## Extensions and services
 
 Extensions become typed extension descriptors:

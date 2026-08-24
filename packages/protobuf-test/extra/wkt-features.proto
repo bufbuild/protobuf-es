@@ -15,12 +15,12 @@
 edition = "2023";
 package spec;
 
+import "google/protobuf/cpp_features.proto";
 import "google/protobuf/go_features.proto";
 import "google/protobuf/java_features.proto";
-import "google/protobuf/cpp_features.proto";
 
+option features.(pb.cpp).legacy_closed_enum = true;
 option features.(pb.go).api_level = API_OPAQUE;
 option features.(pb.java).utf8_validation = VERIFY;
-option features.(pb.cpp).legacy_closed_enum = true;
 
 message WktFeaturesMessage {}

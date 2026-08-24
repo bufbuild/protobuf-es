@@ -8,21 +8,18 @@ code generator plugin.
 A complete implementation of [Protocol Buffers](https://protobuf.dev/) in TypeScript,
 suitable for web browsers, Node.js, Deno, and Bun, created by [Buf](https://buf.build).
 
-**Protobuf-ES** is a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem. It's
-the first project in this space to provide a comprehensive plugin framework and decouple the base types from RPC
-functionality.
+**Protobuf-ES** is a solid, modern alternative to existing Protobuf implementations for the JavaScript ecosystem. It
+provides a comprehensive plugin framework and decouples the base types from RPC functionality.
 
-Some additional features that set it apart from the others:
+Some additional features:
 
-- ECMAScript module support
-- First-class TypeScript support
-- Generation of idiomatic JavaScript and TypeScript code
-- Generation of [much smaller bundles](https://github.com/bufbuild/protobuf-es/tree/main/packages/bundle-size/)
-- Implementation of all proto3 features, including the [canonical JSON format](https://protobuf.dev/programming-guides/proto3/#json)
-- Implementation of all proto2 features, including extensions and the text format
-- Usage of standard JavaScript APIs instead of the [Closure Library](http://googlecode.blogspot.com/2009/11/introducing-closure-tools.html)
-- Compatibility is covered by the Protocol Buffers [conformance tests](https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf-conformance/)
-- Descriptor and reflection support
+- Generates pure TypeScript
+- Plain message objects, no getters/setters
+- Reflection, registries, and custom options
+- 100% conformant against the official Protobuf test suite
+- Standard plugin-based generation, works with the Buf CLI as well as `protoc`
+- Write your own code generators with [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin)
+- Pairs with [@connectrpc/connect](https://www.npmjs.com/package/@connectrpc/connect) for RPC and [@bufbuild/protovalidate](https://www.npmjs.com/package/@bufbuild/protovalidate) for validation
 
 ## Installation
 
