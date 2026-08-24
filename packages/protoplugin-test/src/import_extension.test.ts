@@ -94,6 +94,30 @@ void suite("import_extension", () => {
       "json",
     ]);
   });
+  for (const { option, ext } of [
+    { option: "none", ext: "" },
+    { option: "js", ext: ".js" },
+    { option: "ts", ext: ".ts" },
+  ]) {
+    void test(`should not touch npm package import with option ${option}`, async () => {
+      const lines = await testGenerate(
+        `target=ts,import_extension=${option}`,
+        (f) => {
+          const Foo = f.import("Foo", "foo/foo.js");
+          const Local = f.import("Local", "./local_pb.js");
+          f.print("console.log(", Foo, ", ", Local, ");");
+        },
+      );
+      // The extension of a published package is fixed. Only the import of
+      // generated code is modified.
+      assert.deepStrictEqual(lines, [
+        'import { Foo } from "foo/foo.js";',
+        `import { Local } from "./local_pb${ext}";`,
+        "",
+        "console.log(Foo, Local);",
+      ]);
+    });
+  }
 
   async function testGenerate(
     parameter: string,

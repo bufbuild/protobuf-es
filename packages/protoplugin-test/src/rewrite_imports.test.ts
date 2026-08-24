@@ -27,13 +27,41 @@ void suite("rewrite_imports", () => {
         f.print("console.log(", Bar, ", ", Baz, ");");
       },
     );
+    // import_extension only applies to relative paths - this plugin's own
+    // output. The rewritten paths keep the .js extension, even though the
+    // option defaults to "none", because the exports of @scope/pkg are fixed
+    // when it is published.
     assert.deepStrictEqual(lines, [
-      'import { Bar } from "@scope/pkg/foo/bar_pb";',
-      'import { Baz } from "@scope/pkg/foo/bar/baz_pb";',
+      'import { Bar } from "@scope/pkg/foo/bar_pb.js";',
+      'import { Baz } from "@scope/pkg/foo/bar/baz_pb.js";',
       "",
       "console.log(Bar, Baz);",
     ]);
   });
+  for (const { option, ext } of [
+    { option: "none", ext: "" },
+    { option: "js", ext: ".js" },
+    { option: "ts", ext: ".ts" },
+  ]) {
+    void test(`should not apply import_extension=${option} to rewritten path`, async () => {
+      const lines = await testGenerate(
+        `target=ts,import_extension=${option},rewrite_imports=./foo/**/*_pb.js:@scope/pkg`,
+        (f) => {
+          const Bar = f.import("Bar", "./foo/bar_pb.js");
+          const Local = f.import("Local", "./local_pb.js");
+          f.print("console.log(", Bar, ", ", Local, ");");
+        },
+      );
+      // Local does not match the pattern. It still gets the extension, which
+      // shows that the option applies to this plugin's own output as usual.
+      assert.deepStrictEqual(lines, [
+        'import { Bar } from "@scope/pkg/foo/bar_pb.js";',
+        `import { Local } from "./local_pb${ext}";`,
+        "",
+        "console.log(Bar, Local);",
+      ]);
+    });
+  }
   void test("should rewrite npm import to other package", async () => {
     const lines = await testGenerate(
       "target=ts,rewrite_imports=@scope/pkg:@other-scope/other-pkg",
