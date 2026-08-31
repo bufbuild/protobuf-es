@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const symbol = Symbol.for("@bufbuild/protobuf/text-encoding");
+let te: TextEncoding | undefined;
 
 interface TextEncoding {
   /**
@@ -41,8 +41,14 @@ type TextEncodingConfig = Omit<TextEncoding, "encodeUtf8Into"> &
 /**
  * Protobuf-ES requires the Text Encoding API to convert UTF-8 from and to
  * binary. This WHATWG API is widely available, but it is not part of the
- * ECMAScript standard. On runtimes where it is not available, use this
- * function to provide your own implementation.
+ * ECMAScript standard. This function used to be the way to supply an
+ * implementation on runtimes that do not provide one.
+ *
+ * It only configures the copy of the library it is imported from. To provide
+ * the encoding API for every copy of Protobuf-ES in an isolate, install
+ * `TextEncoder` (with the methods `encode` and optionally `encodeInto`) and
+ * `TextDecoder` (with the `fatal: true` constructor argument and the `decode`
+ * method) on `globalThis`.
  *
  * Providing `encodeUtf8Into` is optional for backwards compatibility. If it
  * is omitted, we emulate it with a wrapper that calls `encodeUtf8`.
@@ -50,9 +56,11 @@ type TextEncodingConfig = Omit<TextEncoding, "encodeUtf8Into"> &
  * Note that the Text Encoding API does not provide a way to validate UTF-8.
  * Our implementation uses String.prototype.isWellFormed, and falls back
  * to use encodeURIComponent().
+ *
+ * @deprecated Install `TextEncoder` and `TextDecoder` on `globalThis` instead.
  */
 export function configureTextEncoding(textEncoding: TextEncodingConfig): void {
-  (globalThis as GlobalWithTextEncoding)[symbol] = {
+  te = {
     ...textEncoding,
     encodeUtf8Into:
       textEncoding.encodeUtf8Into ??
@@ -61,9 +69,13 @@ export function configureTextEncoding(textEncoding: TextEncodingConfig): void {
 }
 
 export function getTextEncoding(): TextEncoding {
-  const globals = globalThis as unknown as GlobalWithTextEncoding &
-    GlobalWithTextEncoderDecoder;
-  if (!globals[symbol]) {
+  if (!te) {
+    const globals = globalThis as unknown as GlobalWithTextEncoderDecoder;
+    if (!globals.TextEncoder || !globals.TextDecoder) {
+      throw new Error(
+        "Encoding API missing - install TextEncoder and TextDecoder on globalThis",
+      );
+    }
     const textEncoder = new globals.TextEncoder();
     const textDecoder = new globals.TextDecoder();
     let textDecoderStrict: typeof textDecoder | undefined;
@@ -107,12 +119,8 @@ export function getTextEncoding(): TextEncoding {
     }
     configureTextEncoding(config);
   }
-  return globals[symbol] as TextEncoding;
+  return te as TextEncoding;
 }
-
-type GlobalWithTextEncoding = {
-  [symbol]?: TextEncoding;
-};
 
 type GlobalWithTextEncoderDecoder = {
   TextEncoder: {

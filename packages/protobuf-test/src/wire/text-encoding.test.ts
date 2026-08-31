@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { suite, test, beforeEach, afterEach } from "node:test";
+import { suite, test, beforeEach, afterEach, after } from "node:test";
 import * as assert from "node:assert";
 import {
   getTextEncoding,
@@ -68,6 +68,24 @@ void suite("getTextEncoding()", () => {
       const ok = getTextEncoding().checkUtf8(invalid);
       assert.strictEqual(ok, false);
     });
+  });
+  void test("does not read the singleton of v2.13 and earlier", () => {
+    // Up to v2.14, the codec was shared between every copy of the library
+    // through a singleton on `globalThis`.
+    const legacySymbol = Symbol.for("@bufbuild/protobuf/text-encoding");
+    const globalsWithSingleton = globalThis as typeof globalThis & {
+      [legacySymbol]?: unknown;
+    };
+
+    after(() => {
+      delete globalsWithSingleton[legacySymbol];
+    });
+    globalsWithSingleton[legacySymbol] = {
+      checkUtf8() {
+        throw new Error();
+      },
+    };
+    assert.ok(getTextEncoding().checkUtf8(""));
   });
 });
 
