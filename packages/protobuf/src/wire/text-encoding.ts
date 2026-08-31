@@ -71,7 +71,7 @@ export function configureTextEncoding(textEncoding: TextEncodingConfig): void {
 export function getTextEncoding(): TextEncoding {
   if (!te) {
     const globals = globalThis as unknown as GlobalWithTextEncoderDecoder;
-    if (!globals.TextEncoder || !globals.TextDecoder) {
+    if (!globals.TextEncoder || !globals.TextEncoder) {
       throw new Error(
         "Encoding API missing - install TextEncoder and TextDecoder on globalThis",
       );
