@@ -37,7 +37,7 @@ export interface EcmaScriptPluginOptions {
    */
   targets: Target[];
   /**
-   * Add an extension to every import: "js" or "ts".
+   * Add an extension to every relative import: "js" or "ts".
    *
    * The default is "none".
    */

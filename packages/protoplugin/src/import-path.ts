@@ -49,6 +49,12 @@ import type { ImportExtension } from "./parameter.js";
  *
  * With the target `@scope/pkg`, the import path `./foo/bar_pb.js` is
  * transformed to `@scope/pkg/foo/bar_pb.js`.
+ *
+ * Note that the plugin option `import_extension` only applies to relative
+ * import paths. Since the target is typically a npm package name, rewritten
+ * paths keep the .js extension. The exports of a package are fixed when it is
+ * published, and the extension chosen for local code generation must not
+ * change how a dependency is addressed.
  */
 export type RewriteImports = { pattern: string; target: string }[];
 
@@ -58,8 +64,8 @@ const cache = new WeakMap<
 >();
 
 /**
- * Apply import rewrites to the given import path, and change all .js extensions
- * to the given import extension.
+ * Apply import rewrites to the given import path, and change the .js extension
+ * of relative import paths to the given import extension.
  */
 export function rewriteImportPath(
   importPath: string,
@@ -87,7 +93,7 @@ export function rewriteImportPath(
       break;
     }
   }
-  if (importPath.endsWith(".js")) {
+  if (relativePathRE.test(importPath) && importPath.endsWith(".js")) {
     switch (importExtension) {
       case "none":
         return importPath.substring(0, importPath.length - 3);
