@@ -129,6 +129,7 @@ export function createSchema<T extends object>(
         desc.kind == "file" ? desc : desc.file,
         parameter.parsed.bootstrapWkt,
         filesToGenerate,
+        parameter.parsed.mapImports,
       ),
       typeOnly,
     );
@@ -139,6 +140,7 @@ export function createSchema<T extends object>(
         desc.file,
         parameter.parsed.bootstrapWkt,
         filesToGenerate,
+        parameter.parsed.mapImports,
       ),
       true,
     );
@@ -149,6 +151,7 @@ export function createSchema<T extends object>(
         desc.file,
         parameter.parsed.bootstrapWkt,
         filesToGenerate,
+        parameter.parsed.mapImports,
       ),
       true,
     );
@@ -159,6 +162,7 @@ export function createSchema<T extends object>(
         desc.file,
         parameter.parsed.bootstrapWkt,
         filesToGenerate,
+        parameter.parsed.mapImports,
       ),
       true,
     );
