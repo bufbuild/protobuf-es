@@ -55,6 +55,7 @@ import {
   generatedValidTypeName,
 } from "./names.js";
 import { createRuntimeImports } from "./runtime-imports.js";
+import { compileMapImports } from "./map-imports.js";
 
 /**
  * Schema describes the files and types that the plugin is requested to
@@ -122,6 +123,7 @@ export function createSchema<T extends object>(
   let target: Target | undefined;
   const generatedFiles: GeneratedFileController[] = [];
   const runtime = createRuntimeImports(parameter.parsed.bootstrapWkt);
+  const mapImports = compileMapImports(parameter.parsed.mapImports);
   const resolveDescImport: ResolveDescImportFn = (desc, typeOnly) =>
     createImportSymbol(
       generatedDescName(desc),
@@ -129,7 +131,7 @@ export function createSchema<T extends object>(
         desc.kind == "file" ? desc : desc.file,
         parameter.parsed.bootstrapWkt,
         filesToGenerate,
-        parameter.parsed.mapImports,
+        mapImports,
       ),
       typeOnly,
     );
@@ -140,7 +142,7 @@ export function createSchema<T extends object>(
         desc.file,
         parameter.parsed.bootstrapWkt,
         filesToGenerate,
-        parameter.parsed.mapImports,
+        mapImports,
       ),
       true,
     );
@@ -151,7 +153,7 @@ export function createSchema<T extends object>(
         desc.file,
         parameter.parsed.bootstrapWkt,
         filesToGenerate,
-        parameter.parsed.mapImports,
+        mapImports,
       ),
       true,
     );
@@ -162,7 +164,7 @@ export function createSchema<T extends object>(
         desc.file,
         parameter.parsed.bootstrapWkt,
         filesToGenerate,
-        parameter.parsed.mapImports,
+        mapImports,
       ),
       true,
     );

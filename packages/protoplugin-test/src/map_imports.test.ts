@@ -130,9 +130,8 @@ void suite("map_imports", () => {
           f.print(f.importSchema(schema.files[0].messages[0]));
         },
       );
-      // The dependency is mapped and keeps the .js extension, because the
-      // exports of @scope/pkg are fixed when it is published. The local
-      // import gets the extension as usual.
+      // The dependency is mapped to a package and keeps the .js extension.
+      // The local import gets the extension as usual.
       assert.deepStrictEqual(lines, [
         'import { StatusSchema } from "@scope/pkg/google/rpc/status_pb.js";',
         `import { XSchema } from "./x_pb${ext}";`,
@@ -142,10 +141,48 @@ void suite("map_imports", () => {
       ]);
     });
   }
+  for (const { option, ext } of [
+    { option: "none", ext: "" },
+    { option: "js", ext: ".js" },
+    { option: "ts", ext: ".ts" },
+  ]) {
+    void test(`should apply import_extension=${option} to relative target`, async () => {
+      const lines = await createTestPluginAndRun({
+        parameter: `target=ts,import_extension=${option},map_imports=google/rpc/:../other-out`,
+        proto: {
+          "foo/x.proto": `
+          syntax="proto3";
+          import "google/rpc/status.proto";
+          message X { google.rpc.Status s = 1; }
+          `,
+          "google/rpc/status.proto": `
+          syntax="proto3";
+          package google.rpc;
+          message Status {}
+          `,
+        },
+        filesToGenerate: ["foo/x.proto"],
+        generateTs(schema) {
+          const f = schema.generateFile("foo/x_pb.ts");
+          const field = schema.files[0].messages[0].fields[0];
+          assert.ok(field.fieldKind === "message");
+          f.print(f.importSchema(field.message));
+        },
+        returnLinesOfFirstFile: true,
+      });
+      // The target is relative to the output directory, and made relative to
+      // the importing file. It is a local file and gets the extension.
+      assert.strictEqual(
+        lines[0],
+        `import { StatusSchema } from "../../other-out/google/rpc/status_pb${ext}";`,
+      );
+    });
+  }
   void test("maps files being generated", async () => {
-    // Whether a file is part of the current invocation depends on how the
-    // compiler splits work across plugin invocations, so it must not affect
-    // the result. Patterns are expected to not match files being generated.
+    // While it could be nice to catch user error of overglobbing by excluding
+    // generated files from matches, because of potential parallel protobuf
+    // compilation, we don't have a reliable way of knowing generated files.
+    // This test ensures no one forgets and tries that trick.
     const lines = await testGenerate(
       "target=ts,map_imports=**:@scope/pkg",
       (f, schema) => {

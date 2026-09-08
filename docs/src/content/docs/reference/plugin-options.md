@@ -67,7 +67,7 @@ The option takes the form `map_imports=<pattern>:<target>` and can be repeated. 
 - `**/` matches zero or more directories.
 - A trailing `/` matches every file in the directory and its subdirectories.
 
-`import_extension` only applies to imports of local files. Mapped imports always end in `_pb.js`, the file name of the generated code the package provides. Well-known types are always imported from `@bufbuild/protobuf/wkt`.
+The target can also be a path relative to the output directory, for example to import from the output of another plugin. Relative targets are local files, so they receive the `import_extension` like any other local import. Package targets always end in `_pb.js`. Well-known types are always imported from `@bufbuild/protobuf/wkt`.
 
 ## `js_import_style`
 

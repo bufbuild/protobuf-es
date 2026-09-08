@@ -44,7 +44,22 @@
  */
 export type MapImports = { pattern: string; target: string }[];
 
-const cache = new WeakMap<MapImports, { pattern: RegExp; target: string }[]>();
+/**
+ * Patterns of `MapImports` compiled to regular expressions to read during codegen.
+ */
+export type CompiledMapImports = { pattern: RegExp; target: string }[];
+
+/**
+ * Compile the patterns of the given `MapImports`.
+ */
+export function compileMapImports(mapImports: MapImports): CompiledMapImports {
+  return mapImports.map(({ pattern, target }) => {
+    return {
+      pattern: globToRegExp(pattern),
+      target: target.endsWith("/") ? target.slice(0, -1) : target,
+    };
+  });
+}
 
 /**
  * Return the target for the given Protobuf file path, or undefined if none of
@@ -52,19 +67,9 @@ const cache = new WeakMap<MapImports, { pattern: RegExp; target: string }[]>();
  */
 export function mapImportTarget(
   protoFileName: string,
-  mapImports: MapImports,
+  mapImports: CompiledMapImports,
 ): string | undefined {
-  let mi = cache.get(mapImports);
-  if (mi === undefined) {
-    mi = mapImports.map(({ pattern, target }) => {
-      return {
-        pattern: globToRegExp(pattern),
-        target: target.replace(/\/$/, ""),
-      };
-    });
-    cache.set(mapImports, mi);
-  }
-  for (const { pattern, target } of mi) {
+  for (const { pattern, target } of mapImports) {
     if (pattern.test(protoFileName)) {
       return target;
     }
