@@ -48,8 +48,6 @@ export function generateFilePath(
   ) {
     return wktFrom;
   }
-  // The plugin option map_imports may provide the generated code for this
-  // file from a different location.
   const target = mapImportTarget(file.proto.name, mapImports);
   if (target !== undefined) {
     return target + "/" + file.name + "_pb.js";
