@@ -2,19 +2,32 @@
 title: Plugin options and release
 ---
 
-Custom plugins built with `@bufbuild/protoplugin` can parse plugin-specific options, choose how much JavaScript generation to implement directly, and publish as normal npm executables.
+## Built-in options
+
+Every plugin built with `@bufbuild/protoplugin` supports a common set of options, without any work on your part: `target`, `import_extension`, `map_imports`, `js_import_style`, `keep_empty_files`, `ts_nocheck`, and `elide_plugin_version`. See [Plugin options](/reference/plugin-options/) for what each one does. The remaining options on that page are specific to `protoc-gen-es`.
+
+### `map_imports` and your own output
+
+`map_imports` applies to the base types you import with `importShape()`, `importSchema()`, `importJson()`, and `importValid()` — the code `protoc-gen-es` generates for a Protobuf file. If a user points those at a package, your generated code imports them from there, and you don't have to do anything.
+
+It does not apply to imports of the files your plugin generates itself. A path you pass to `import()` is used as written, so a file of yours importing another file of yours always resolves to the local output:
+
+```typescript
+const shape = f.importShape(message);               // subject to map_imports
+const helper = f.import("helper", "./util_foo.js"); // never mapped
+```
 
 ## Custom options
 
-If your plugin needs custom options, provide `parseOptions()` to `createEcmaScriptPlugin()`.
+If your plugin needs options of its own, provide `parseOptions()` to `createEcmaScriptPlugin()`.
 
 ```typescript
 parseOptions(rawOptions: { key: string; value: string }[]): T;
 ```
 
-The framework parses common options first, then passes any unrecognized key-value pairs to `parseOptions()`. The return value is merged into the plugin options passed to `generateTs`, `generateJs`, and `generateDts`.
+The framework parses the built-in options first, then passes any unrecognized key-value pairs to `parseOptions()`. Its return value is merged with the built-in options and available as `schema.options` in `generateTs`, `generateJs`, and `generateDts`.
 
-Use this for plugin-specific switches, not for options already handled by `@bufbuild/protoplugin`.
+Use this for plugin-specific switches only, and don't reuse the name of a built-in option.
 
 ## Transpilation
 
