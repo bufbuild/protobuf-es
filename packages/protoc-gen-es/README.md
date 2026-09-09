@@ -96,7 +96,7 @@ opt: map_imports=buf/validate/:@bufbuild/protovalidate/gen
 
 The option takes the form `map_imports=<pattern>:<target>` and can be repeated. The pattern is matched against the path of the Protobuf file, and the first matching pattern wins. The target is prepended to the path of the generated file, so `buf/validate/validate.proto` is imported from `@bufbuild/protovalidate/gen/buf/validate/validate_pb.js`. Patterns support `*` (any characters except `/`), `**` (any characters), `**/` (zero or more directories), and a trailing `/` (every file in the directory and its subdirectories).
 
-The target can also be a path relative to the output directory, for example to import from the output of another plugin. Relative targets are local files, so they receive the `import_extension` like any other local import. Package targets always end in `_pb.js`. Well-known types are always imported from `@bufbuild/protobuf/wkt`.
+Package imports always end in `_pb.js`. Well-known types are always imported from `@bufbuild/protobuf/wkt`.
 
 ### `js_import_style`
 

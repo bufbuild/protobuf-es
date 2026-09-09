@@ -9,7 +9,7 @@ Reference pages cover exact generated shapes, plugin options, runtime types, and
 - [Generated code](/reference/generated-code/): file names, message shapes, enum generation, extension descriptors, and service schemas.
 - [Field types](/reference/generated-code/field-types/): scalar mappings, message fields, enum fields, repeated fields, map fields, and well-known type field shapes.
 - [Generated features](/reference/generated-code/features/): oneofs, proto2 groups, required fields, optional fields, services, reserved names, nested types, comments, and packages.
-- [Plugin options](/reference/plugin-options/): `target`, import extensions, CommonJS output, empty files, `ts_nocheck`, plugin version elision, JSON types, and Valid types.
+- [Plugin options](/reference/plugin-options/): `target`, import extensions, CommonJS output, empty files, `ts_nocheck`, plugin version elision, JSON types, map imports, and Valid types.
 
 ## Runtime
 
