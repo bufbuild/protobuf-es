@@ -22,6 +22,7 @@ import type {
 import { wktPublicImportPaths } from "@bufbuild/protobuf/codegenv2";
 import { nestedTypes } from "@bufbuild/protobuf/reflect";
 import { safeIdentifier } from "./safe-identifier.js";
+import { type CompiledMapImports, mapImportTarget } from "./map-imports.js";
 
 /**
  * Return a file path for the give file descriptor.
@@ -30,6 +31,7 @@ export function generateFilePath(
   file: DescFile,
   bootstrapWkt: boolean,
   filesToGenerate: DescFile[],
+  mapImports: CompiledMapImports,
 ): string {
   // Well-known types are published with the runtime package. We usually want
   // the generated code to import them from the runtime package, with the
@@ -45,6 +47,10 @@ export function generateFilePath(
     !filesToGenerate.find((f) => f.name === file.name)
   ) {
     return wktFrom;
+  }
+  const target = mapImportTarget(file.proto.name, mapImports);
+  if (target !== undefined) {
+    return target + "/" + file.name + "_pb.js";
   }
   return "./" + file.name + "_pb.js";
 }

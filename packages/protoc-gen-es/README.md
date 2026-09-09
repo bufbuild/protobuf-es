@@ -86,6 +86,18 @@ By default, `protoc-gen-es` doesn't add file extensions to import paths. However
 - `import_extension=js`: Adds the `.js` extension.
 - `import_extension=ts`. Adds the `.ts` extension.
 
+### `map_imports`
+
+By default, `protoc-gen-es` imports dependencies from the local output. If a dependency is provided by a package instead—for example, `@bufbuild/protovalidate` exports the code generated for `buf/validate/validate.proto`—this option imports it from there:
+
+```yaml
+opt: map_imports=buf/validate/:@bufbuild/protovalidate/gen
+```
+
+The option takes the form `map_imports=<pattern>:<target>` and can be repeated. The pattern is matched against the path of the Protobuf file, and the first matching pattern wins. The target is prepended to the path of the generated file, so `buf/validate/validate.proto` is imported from `@bufbuild/protovalidate/gen/buf/validate/validate_pb.js`. Patterns support `*` (any characters except `/`), `**` (any characters), `**/` (zero or more directories), and a trailing `/` (every file in the directory and its subdirectories).
+
+Package imports always end in `_pb.js`. Well-known types are always imported from `@bufbuild/protobuf/wkt`.
+
 ### `js_import_style`
 
 By default, `protoc-gen-es` generates ECMAScript `import` and `export` statements. For use cases where CommonJS is difficult to avoid, this option can be used to generate CommonJS `require()` calls. Possible values:
