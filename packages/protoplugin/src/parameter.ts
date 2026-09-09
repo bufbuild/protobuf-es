@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import type { RewriteImports } from "./import-path.js";
+import type { MapImports } from "./map-imports.js";
 import { PluginOptionError } from "./error.js";
 
 /**
@@ -72,6 +73,13 @@ export interface EcmaScriptPluginOptions {
    */
   bootstrapWkt: boolean;
   /**
+   * Import generated code for Protobuf files matching a pattern from a
+   * package instead of the local output. See `MapImports` for details.
+   *
+   * The default is an empty list.
+   */
+  mapImports: MapImports;
+  /**
    * @private
    */
   rewriteImports: RewriteImports;
@@ -99,6 +107,7 @@ export function parseParameter<T extends object>(
   let bootstrapWkt = false;
   let keepEmptyFiles = false;
   const rewriteImports: RewriteImports = [];
+  const mapImports: MapImports = [];
   let importExtension: ImportExtension = "none";
   let jsImportStyle: "module" | "legacy_commonjs" = "module";
   const extraParameters: {
@@ -188,6 +197,20 @@ export function parseParameter<T extends object>(
         sanitize = true;
         break;
       }
+      case "map_imports": {
+        const i = value.indexOf(":");
+        if (i < 1 || i === value.length - 1) {
+          throw new PluginOptionError(
+            raw,
+            "must be in the form of <pattern>:<target>",
+          );
+        }
+        mapImports.push({
+          pattern: value.substring(0, i),
+          target: value.substring(i + 1),
+        });
+        break;
+      }
       case "import_extension": {
         switch (value) {
           case "none":
@@ -253,6 +276,7 @@ export function parseParameter<T extends object>(
     elidePluginVersion,
     bootstrapWkt,
     rewriteImports,
+    mapImports,
     importExtension,
     jsImportStyle,
     keepEmptyFiles,

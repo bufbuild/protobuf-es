@@ -42,6 +42,33 @@ Use this option when your environment requires one:
 
 Using ECMAScript modules in Node.js typically requires `.js`. Deno typically requires `.ts`.
 
+## `map_imports`
+
+By default, generated code imports dependencies from the local output with a relative path. For example, the file generated for `foo/bar.proto` imports a message from `buf/validate/validate.proto` from `../buf/validate/validate_pb`.
+
+If a dependency is provided by a package instead, use `map_imports` to import it from there. For example, `@bufbuild/protovalidate` exports the code generated for `buf/validate/validate.proto`, so there is no need to generate it again:
+
+```yaml
+version: v2
+plugins:
+  - local: protoc-gen-es
+    out: src/gen
+    opt:
+      - target=ts
+      - map_imports=buf/validate/:@bufbuild/protovalidate/gen
+```
+
+With this option, `buf/validate/validate.proto` is imported from `@bufbuild/protovalidate/gen/buf/validate/validate_pb.js`.
+
+The option takes the form `map_imports=<pattern>:<target>` and can be repeated. The pattern is matched against the path of the Protobuf file, and the first matching pattern wins. The target is prepended to the path of the generated file. Patterns support a subset of glob:
+
+- `*` matches zero or more characters except `/`.
+- `**` matches zero or more characters, including `/`.
+- `**/` matches zero or more directories.
+- A trailing `/` matches every file in the directory and its subdirectories.
+
+Package imports always end in `_pb.js`. Well-known types are always imported from `@bufbuild/protobuf/wkt`.
+
 ## `js_import_style`
 
 By default, Protobuf-ES generates ECMAScript `import` and `export` statements.

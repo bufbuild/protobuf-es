@@ -29,6 +29,7 @@ export type {
   ImportExtension,
 } from "./parameter.js";
 export type { GeneratedFile, FileInfo } from "./generated-file.js";
+export type { MapImports } from "./map-imports.js";
 export type { ImportSymbol } from "./import-symbol.js";
 export { createImportSymbol } from "./import-symbol.js";
 export type { Printable } from "./printable.js";
