@@ -144,7 +144,13 @@ export function checkScalarValue(
         if (Number.isNaN(value) || !Number.isFinite(value)) {
           return true;
         }
-        if (value > FLOAT32_MAX || value < FLOAT32_MIN) {
+        // Round to the nearest float32 before checking the range: other
+        // implementations serialize the largest finite float32 in JSON as
+        // 3.4028235e+38, which is larger than the float64 representation of
+        // FLOAT32_MAX, but converts to FLOAT32_MAX when rounded to float32
+        // precision.
+        const f = Math.fround(value);
+        if (f > FLOAT32_MAX || f < FLOAT32_MIN) {
           return `${value.toFixed()} out of range`;
         }
         return true;
