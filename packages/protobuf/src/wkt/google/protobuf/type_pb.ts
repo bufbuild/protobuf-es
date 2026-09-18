@@ -16,15 +16,15 @@
 // @generated from file google/protobuf/type.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "../../../../codegenv2/types.js";
-import { fileDesc } from "../../../../codegenv2/file.js";
+import type { GenEnum, GenFile, GenMessage } from "../../../codegenv2/types.js";
+import { fileDesc } from "../../../codegenv2/file.js";
 import type { Any, AnyJson } from "./any_pb.js";
 import { file_google_protobuf_any } from "./any_pb.js";
 import type { SourceContext, SourceContextJson } from "./source_context_pb.js";
 import { file_google_protobuf_source_context } from "./source_context_pb.js";
-import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv2/message.js";
-import { enumDesc } from "../../../../codegenv2/enum.js";
+import type { Message } from "../../../types.js";
+import { messageDesc } from "../../../codegenv2/message.js";
+import { enumDesc } from "../../../codegenv2/enum.js";
 
 /**
  * Describes the file google/protobuf/type.proto.

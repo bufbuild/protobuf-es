@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/api.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "../../../../codegenv2/types.js";
-import { fileDesc } from "../../../../codegenv2/file.js";
+import type { GenFile, GenMessage } from "../../../codegenv2/types.js";
+import { fileDesc } from "../../../codegenv2/file.js";
 import type { SourceContext, SourceContextJson } from "./source_context_pb.js";
 import { file_google_protobuf_source_context } from "./source_context_pb.js";
 import type { Option, OptionJson, Syntax, SyntaxJson } from "./type_pb.js";
 import { file_google_protobuf_type } from "./type_pb.js";
-import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv2/message.js";
+import type { Message } from "../../../types.js";
+import { messageDesc } from "../../../codegenv2/message.js";
 
 /**
  * Describes the file google/protobuf/api.proto.

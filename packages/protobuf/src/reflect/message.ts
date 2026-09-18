@@ -21,7 +21,7 @@ import type {
   ListValue,
   Struct,
   Value,
-} from "../wkt/gen/google/protobuf/struct_pb.js";
+} from "../wkt/google/protobuf/struct_pb.js";
 
 // google.protobuf.NullValue.NULL_VALUE;
 const NULL_VALUE = 0;
