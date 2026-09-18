@@ -23,10 +23,13 @@ void suite("wktPublicImportPaths", () => {
     // The record is consulted when generating imports, which must
     // point to @bufbuild/protobuf/wkt or a subpath.
     // This test makes sure that we don't miss a new well-known file
-    // added upstream.
+    // added upstream. Whether it's a barrel or subpath import is not
+    // covered.
     const wktProtoInclude = await new UpstreamProtobuf().getWktProtoInclude();
     for (const protoFile of wktProtoInclude.files) {
-      assert.ok(wktPublicImportPaths[protoFile] !== undefined);
+      const from = wktPublicImportPaths[protoFile];
+      assert.ok(from !== undefined);
+      await import(from);
     }
   });
 });
