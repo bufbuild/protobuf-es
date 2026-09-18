@@ -18,7 +18,8 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import type { Message } from "@bufbuild/protobuf";
-import type { Any, SourceContext } from "@bufbuild/protobuf/wkt";
+import type { SourceContext } from "@bufbuild/protobuf/wkt/google/protobuf/source_context_pb.js";
+import type { Any } from "@bufbuild/protobuf/wkt";
 
 /**
  * Describes the file google/protobuf/type.proto.

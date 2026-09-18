@@ -49,7 +49,8 @@ export const wktPublicImportPaths: Readonly<Record<string, string>> = {
     packageName + "/wkt/google/protobuf/go_features_pb.js",
   "google/protobuf/java_features.proto":
     packageName + "/wkt/google/protobuf/java_features_pb.js",
-  "google/protobuf/source_context.proto": legacyWktBarrel,
+  "google/protobuf/source_context.proto":
+    packageName + "/wkt/google/protobuf/source_context_pb.js",
   "google/protobuf/struct.proto": legacyWktBarrel,
   "google/protobuf/timestamp.proto": legacyWktBarrel,
   "google/protobuf/type.proto": packageName + "/wkt/google/protobuf/type_pb.js",
