@@ -41,13 +41,18 @@
       "./wkt/google/protobuf/compiler/plugin_pb.js": "./src/wkt/google/protobuf/compiler/plugin_pb.ts",
       "./wkt/google/protobuf/any_pb.js": "./src/wkt/google/protobuf/any_pb.ts",
       "./wkt/google/protobuf/api_pb.js": "./src/wkt/google/protobuf/api_pb.ts",
+      "./wkt/google/protobuf/c_sharp_features_pb.js": "./src/wkt/google/protobuf/c_sharp_features_pb.ts",
       "./wkt/google/protobuf/cpp_features_pb.js": "./src/wkt/google/protobuf/cpp_features_pb.ts",
+      "./wkt/google/protobuf/cpp_file_options_pb.js": "./src/wkt/google/protobuf/cpp_file_options_pb.ts",
+      "./wkt/google/protobuf/cpp_options_pb.js": "./src/wkt/google/protobuf/cpp_options_pb.ts",
       "./wkt/google/protobuf/descriptor_pb.js": "./src/wkt/google/protobuf/descriptor_pb.ts",
       "./wkt/google/protobuf/duration_pb.js": "./src/wkt/google/protobuf/duration_pb.ts",
       "./wkt/google/protobuf/empty_pb.js": "./src/wkt/google/protobuf/empty_pb.ts",
       "./wkt/google/protobuf/field_mask_pb.js": "./src/wkt/google/protobuf/field_mask_pb.ts",
       "./wkt/google/protobuf/go_features_pb.js": "./src/wkt/google/protobuf/go_features_pb.ts",
       "./wkt/google/protobuf/java_features_pb.js": "./src/wkt/google/protobuf/java_features_pb.ts",
+      "./wkt/google/protobuf/json_enumvalue_options_pb.js": "./src/wkt/google/protobuf/json_enumvalue_options_pb.ts",
+      "./wkt/google/protobuf/json_options_pb.js": "./src/wkt/google/protobuf/json_options_pb.ts",
       "./wkt/google/protobuf/source_context_pb.js": "./src/wkt/google/protobuf/source_context_pb.ts",
       "./wkt/google/protobuf/struct_pb.js": "./src/wkt/google/protobuf/struct_pb.ts",
       "./wkt/google/protobuf/timestamp_pb.js": "./src/wkt/google/protobuf/timestamp_pb.ts",
@@ -163,6 +168,16 @@
         "default": "./dist/commonjs/wkt/google/protobuf/api_pb.js"
       }
     },
+    "./wkt/google/protobuf/c_sharp_features_pb.js": {
+      "import": {
+        "types": "./dist/esm/wkt/google/protobuf/c_sharp_features_pb.d.ts",
+        "default": "./dist/esm/wkt/google/protobuf/c_sharp_features_pb.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/wkt/google/protobuf/c_sharp_features_pb.d.ts",
+        "default": "./dist/commonjs/wkt/google/protobuf/c_sharp_features_pb.js"
+      }
+    },
     "./wkt/google/protobuf/cpp_features_pb.js": {
       "import": {
         "types": "./dist/esm/wkt/google/protobuf/cpp_features_pb.d.ts",
@@ -171,6 +186,26 @@
       "require": {
         "types": "./dist/commonjs/wkt/google/protobuf/cpp_features_pb.d.ts",
         "default": "./dist/commonjs/wkt/google/protobuf/cpp_features_pb.js"
+      }
+    },
+    "./wkt/google/protobuf/cpp_file_options_pb.js": {
+      "import": {
+        "types": "./dist/esm/wkt/google/protobuf/cpp_file_options_pb.d.ts",
+        "default": "./dist/esm/wkt/google/protobuf/cpp_file_options_pb.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/wkt/google/protobuf/cpp_file_options_pb.d.ts",
+        "default": "./dist/commonjs/wkt/google/protobuf/cpp_file_options_pb.js"
+      }
+    },
+    "./wkt/google/protobuf/cpp_options_pb.js": {
+      "import": {
+        "types": "./dist/esm/wkt/google/protobuf/cpp_options_pb.d.ts",
+        "default": "./dist/esm/wkt/google/protobuf/cpp_options_pb.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/wkt/google/protobuf/cpp_options_pb.d.ts",
+        "default": "./dist/commonjs/wkt/google/protobuf/cpp_options_pb.js"
       }
     },
     "./wkt/google/protobuf/descriptor_pb.js": {
@@ -231,6 +266,26 @@
       "require": {
         "types": "./dist/commonjs/wkt/google/protobuf/java_features_pb.d.ts",
         "default": "./dist/commonjs/wkt/google/protobuf/java_features_pb.js"
+      }
+    },
+    "./wkt/google/protobuf/json_enumvalue_options_pb.js": {
+      "import": {
+        "types": "./dist/esm/wkt/google/protobuf/json_enumvalue_options_pb.d.ts",
+        "default": "./dist/esm/wkt/google/protobuf/json_enumvalue_options_pb.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/wkt/google/protobuf/json_enumvalue_options_pb.d.ts",
+        "default": "./dist/commonjs/wkt/google/protobuf/json_enumvalue_options_pb.js"
+      }
+    },
+    "./wkt/google/protobuf/json_options_pb.js": {
+      "import": {
+        "types": "./dist/esm/wkt/google/protobuf/json_options_pb.d.ts",
+        "default": "./dist/esm/wkt/google/protobuf/json_options_pb.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/wkt/google/protobuf/json_options_pb.d.ts",
+        "default": "./dist/commonjs/wkt/google/protobuf/json_options_pb.js"
       }
     },
     "./wkt/google/protobuf/source_context_pb.js": {

@@ -30,14 +30,19 @@ export const file_google_protobuf_struct: GenFile = /*@__PURE__*/
   fileDesc("Chxnb29nbGUvcHJvdG9idWYvc3RydWN0LnByb3RvEg9nb29nbGUucHJvdG9idWYihAEKBlN0cnVjdBIzCgZmaWVsZHMYASADKAsyIy5nb29nbGUucHJvdG9idWYuU3RydWN0LkZpZWxkc0VudHJ5GkUKC0ZpZWxkc0VudHJ5EgsKA2tleRgBIAEoCRIlCgV2YWx1ZRgCIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5WYWx1ZToCOAEi6gEKBVZhbHVlEjAKCm51bGxfdmFsdWUYASABKA4yGi5nb29nbGUucHJvdG9idWYuTnVsbFZhbHVlSAASFgoMbnVtYmVyX3ZhbHVlGAIgASgBSAASFgoMc3RyaW5nX3ZhbHVlGAMgASgJSAASFAoKYm9vbF92YWx1ZRgEIAEoCEgAEi8KDHN0cnVjdF92YWx1ZRgFIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3RIABIwCgpsaXN0X3ZhbHVlGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLkxpc3RWYWx1ZUgAQgYKBGtpbmQiMwoJTGlzdFZhbHVlEiYKBnZhbHVlcxgBIAMoCzIWLmdvb2dsZS5wcm90b2J1Zi5WYWx1ZSobCglOdWxsVmFsdWUSDgoKTlVMTF9WQUxVRRAAQn8KE2NvbS5nb29nbGUucHJvdG9idWZCC1N0cnVjdFByb3RvUAFaL2dvb2dsZS5nb2xhbmcub3JnL3Byb3RvYnVmL3R5cGVzL2tub3duL3N0cnVjdHBi+AEBogIDR1BCqgIeR29vZ2xlLlByb3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM");
 
 /**
- * `Struct` represents a structured data value, consisting of fields
- * which map to dynamically typed values. In some languages, `Struct`
- * might be supported by a native representation. For example, in
- * scripting languages like JS a struct is represented as an
- * object. The details of that representation are described together
- * with the proto support for the language.
+ * Represents a JSON object.
  *
- * The JSON representation for `Struct` is JSON object.
+ * An unordered key-value map, intending to perfectly capture the semantics of a
+ * JSON object. This enables parsing any arbitrary JSON payload as a message
+ * field in ProtoJSON format.
+ *
+ * This follows RFC 8259 guidelines for interoperable JSON: notably this type
+ * cannot represent large Int64 values or `NaN`/`Infinity` numbers,
+ * since the JSON format generally does not support those values in its number
+ * type.
+ *
+ * If you do not intend to parse arbitrary JSON into your message, a custom
+ * typed message should be preferred instead of using this type.
  *
  * @generated from message google.protobuf.Struct
  */
@@ -51,14 +56,19 @@ export type Struct = Message<"google.protobuf.Struct"> & {
 };
 
 /**
- * `Struct` represents a structured data value, consisting of fields
- * which map to dynamically typed values. In some languages, `Struct`
- * might be supported by a native representation. For example, in
- * scripting languages like JS a struct is represented as an
- * object. The details of that representation are described together
- * with the proto support for the language.
+ * Represents a JSON object.
  *
- * The JSON representation for `Struct` is JSON object.
+ * An unordered key-value map, intending to perfectly capture the semantics of a
+ * JSON object. This enables parsing any arbitrary JSON payload as a message
+ * field in ProtoJSON format.
+ *
+ * This follows RFC 8259 guidelines for interoperable JSON: notably this type
+ * cannot represent large Int64 values or `NaN`/`Infinity` numbers,
+ * since the JSON format generally does not support those values in its number
+ * type.
+ *
+ * If you do not intend to parse arbitrary JSON into your message, a custom
+ * typed message should be preferred instead of using this type.
  *
  * @generated from message google.protobuf.Struct
  */
@@ -72,12 +82,12 @@ export const StructSchema: GenMessage<Struct, {jsonType: StructJson}> = /*@__PUR
   messageDesc(file_google_protobuf_struct, 0);
 
 /**
+ * Represents a JSON value.
+ *
  * `Value` represents a dynamically typed value which can be either
  * null, a number, a string, a boolean, a recursive struct value, or a
  * list of values. A producer of value is expected to set one of these
- * variants. Absence of any variant indicates an error.
- *
- * The JSON representation for `Value` is JSON value.
+ * variants. Absence of any variant is an invalid state.
  *
  * @generated from message google.protobuf.Value
  */
@@ -89,7 +99,7 @@ export type Value = Message<"google.protobuf.Value"> & {
    */
   kind: {
     /**
-     * Represents a null value.
+     * Represents a JSON `null`.
      *
      * @generated from field: google.protobuf.NullValue null_value = 1;
      */
@@ -97,7 +107,10 @@ export type Value = Message<"google.protobuf.Value"> & {
     case: "nullValue";
   } | {
     /**
-     * Represents a double value.
+     * Represents a JSON number. Must not be `NaN`, `Infinity` or
+     * `-Infinity`, since those are not supported in JSON. This also cannot
+     * represent large Int64 values, since JSON format generally does not
+     * support them in its number type.
      *
      * @generated from field: double number_value = 2;
      */
@@ -105,7 +118,7 @@ export type Value = Message<"google.protobuf.Value"> & {
     case: "numberValue";
   } | {
     /**
-     * Represents a string value.
+     * Represents a JSON string.
      *
      * @generated from field: string string_value = 3;
      */
@@ -113,7 +126,7 @@ export type Value = Message<"google.protobuf.Value"> & {
     case: "stringValue";
   } | {
     /**
-     * Represents a boolean value.
+     * Represents a JSON boolean (`true` or `false` literal in JSON).
      *
      * @generated from field: bool bool_value = 4;
      */
@@ -121,7 +134,7 @@ export type Value = Message<"google.protobuf.Value"> & {
     case: "boolValue";
   } | {
     /**
-     * Represents a structured value.
+     * Represents a JSON object.
      *
      * @generated from field: google.protobuf.Struct struct_value = 5;
      */
@@ -129,7 +142,7 @@ export type Value = Message<"google.protobuf.Value"> & {
     case: "structValue";
   } | {
     /**
-     * Represents a repeated `Value`.
+     * Represents a JSON array.
      *
      * @generated from field: google.protobuf.ListValue list_value = 6;
      */
@@ -139,12 +152,12 @@ export type Value = Message<"google.protobuf.Value"> & {
 };
 
 /**
+ * Represents a JSON value.
+ *
  * `Value` represents a dynamically typed value which can be either
  * null, a number, a string, a boolean, a recursive struct value, or a
  * list of values. A producer of value is expected to set one of these
- * variants. Absence of any variant indicates an error.
- *
- * The JSON representation for `Value` is JSON value.
+ * variants. Absence of any variant is an invalid state.
  *
  * @generated from message google.protobuf.Value
  */
@@ -158,9 +171,7 @@ export const ValueSchema: GenMessage<Value, {jsonType: ValueJson}> = /*@__PURE__
   messageDesc(file_google_protobuf_struct, 1);
 
 /**
- * `ListValue` is a wrapper around a repeated field of values.
- *
- * The JSON representation for `ListValue` is JSON array.
+ * Represents a JSON array.
  *
  * @generated from message google.protobuf.ListValue
  */
@@ -174,9 +185,7 @@ export type ListValue = Message<"google.protobuf.ListValue"> & {
 };
 
 /**
- * `ListValue` is a wrapper around a repeated field of values.
- *
- * The JSON representation for `ListValue` is JSON array.
+ * Represents a JSON array.
  *
  * @generated from message google.protobuf.ListValue
  */
@@ -190,10 +199,15 @@ export const ListValueSchema: GenMessage<ListValue, {jsonType: ListValueJson}> =
   messageDesc(file_google_protobuf_struct, 2);
 
 /**
- * `NullValue` is a singleton enumeration to represent the null value for the
- * `Value` type union.
+ * Represents a JSON `null`.
  *
- * The JSON representation for `NullValue` is JSON `null`.
+ * `NullValue` is a sentinel, using an enum with only one value to represent
+ * the null value for the `Value` type union.
+ *
+ * A field of type `NullValue` with any value other than `0` is considered
+ * invalid. Most ProtoJSON serializers will emit a `Value` with a `null_value`
+ * set as a JSON `null` regardless of the integer value, and so will round trip
+ * to a `0` value.
  *
  * @generated from enum google.protobuf.NullValue
  */
@@ -207,10 +221,15 @@ export enum NullValue {
 }
 
 /**
- * `NullValue` is a singleton enumeration to represent the null value for the
- * `Value` type union.
+ * Represents a JSON `null`.
  *
- * The JSON representation for `NullValue` is JSON `null`.
+ * `NullValue` is a sentinel, using an enum with only one value to represent
+ * the null value for the `Value` type union.
+ *
+ * A field of type `NullValue` with any value other than `0` is considered
+ * invalid. Most ProtoJSON serializers will emit a `Value` with a `null_value`
+ * set as a JSON `null` regardless of the integer value, and so will round trip
+ * to a `0` value.
  *
  * @generated from enum google.protobuf.NullValue
  */
