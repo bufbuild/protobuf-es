@@ -39,8 +39,14 @@ export const wktPublicImportPaths: Readonly<Record<string, string>> = {
   "google/protobuf/compiler/plugin.proto": legacyWktBarrel,
   "google/protobuf/any.proto": legacyWktBarrel,
   "google/protobuf/api.proto": packageName + "/wkt/google/protobuf/api_pb.js",
+  "google/protobuf/c_sharp_features.proto":
+    packageName + "/wkt/google/protobuf/c_sharp_features_pb.js",
   "google/protobuf/cpp_features.proto":
     packageName + "/wkt/google/protobuf/cpp_features_pb.js",
+  "google/protobuf/cpp_file_options.proto":
+    packageName + "/wkt/google/protobuf/cpp_file_options_pb.js",
+  "google/protobuf/cpp_options.proto":
+    packageName + "/wkt/google/protobuf/cpp_options_pb.js",
   "google/protobuf/descriptor.proto": legacyWktBarrel,
   "google/protobuf/duration.proto": legacyWktBarrel,
   "google/protobuf/empty.proto": legacyWktBarrel,
@@ -49,6 +55,10 @@ export const wktPublicImportPaths: Readonly<Record<string, string>> = {
     packageName + "/wkt/google/protobuf/go_features_pb.js",
   "google/protobuf/java_features.proto":
     packageName + "/wkt/google/protobuf/java_features_pb.js",
+  "google/protobuf/json_enumvalue_options.proto":
+    packageName + "/wkt/google/protobuf/json_enumvalue_options_pb.js",
+  "google/protobuf/json_options.proto":
+    packageName + "/wkt/google/protobuf/json_options_pb.js",
   "google/protobuf/source_context.proto":
     packageName + "/wkt/google/protobuf/source_context_pb.js",
   "google/protobuf/struct.proto": legacyWktBarrel,

@@ -867,6 +867,11 @@ export declare type TestAllTypesProto2_MessageSetCorrectExtension2 = Message<"pr
    * @generated from field: optional int32 i = 9;
    */
   i: number;
+
+  /**
+   * @generated from field: optional protobuf_test_messages.proto2.TestAllTypesProto2.MessageSetCorrect sub_msg = 10;
+   */
+  subMsg?: TestAllTypesProto2_MessageSetCorrect | undefined;
 };
 
 /**

@@ -7938,13 +7938,6 @@ export declare const oneof_string_extension: GenExtension<TestAllExtensions, str
 export declare const oneof_bytes_extension: GenExtension<TestAllExtensions, Uint8Array>;
 
 /**
- * Singular message containing required fields; used to test initialization.
- *
- * @generated from extension: proto2_unittest.TestRequired required_message_extension = 117;
- */
-export declare const required_message_extension: GenExtension<TestAllExtensions, TestRequired>;
-
-/**
  * @generated from extension: string my_extension_string = 50;
  */
 export declare const my_extension_string: GenExtension<TestFieldOrderings, string>;
