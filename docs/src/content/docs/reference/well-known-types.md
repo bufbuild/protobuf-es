@@ -4,11 +4,9 @@ title: Well-known types
 
 Protobuf ships with a standard library of types defined in `google/protobuf/*.proto`. Protobuf-ES provides them as precompiled exports from `@bufbuild/protobuf/wkt`, with convenience APIs for the ones that map naturally to JavaScript values.
 
-If your schema imports a well-known type, generated code imports it from `@bufbuild/protobuf/wkt` automatically.
+If your schema imports a well-known type, generated code imports it automatically.
 
 ## Available files
-
-The well-known type package includes generated output for:
 
 - `google/protobuf/any.proto`
 - `google/protobuf/api.proto`
@@ -26,7 +24,9 @@ The well-known type package includes generated output for:
 - `google/protobuf/type.proto`
 - `google/protobuf/wrappers.proto`
 
-Some of them also get convenience APIs.
+All files can be imported with a full path, for example `@bufbuild/protobuf/wkt/google/protobuf/source_context_pb.js`.
+
+Commonly used types can be imported directly from `@bufbuild/protobuf/wkt` and get convenience APIs.
 
 ## `google.protobuf.Timestamp`
 
