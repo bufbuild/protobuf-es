@@ -20,7 +20,7 @@
 /* eslint-disable */
 
 import { enumDesc, extDesc, fileDesc, messageDesc, tsEnum } from "@bufbuild/protobuf/codegenv2";
-import { file_google_protobuf_cpp_features } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_cpp_features } from "@bufbuild/protobuf/wkt/google/protobuf/cpp_features_pb.js";
 import { file_google_protobuf_unittest_import } from "./unittest_import_pb.js";
 
 /**

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import { base64Decode } from "../wire/base64-encoding.js";
-import { FileDescriptorProtoSchema } from "../wkt/gen/google/protobuf/descriptor_pb.js";
+import { FileDescriptorProtoSchema } from "../wkt/google/protobuf/descriptor_pb.js";
 import type { DescFile } from "../descriptors.js";
 import { createFileRegistry } from "../registry.js";
 import { restoreJsonNames } from "./restore-json-names.js";

@@ -24,7 +24,7 @@ import type {
   MethodOptions_IdempotencyLevel,
   OneofDescriptorProto,
   ServiceDescriptorProto,
-} from "./wkt/gen/google/protobuf/descriptor_pb.js";
+} from "./wkt/google/protobuf/descriptor_pb.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 
 export type SupportedEdition = Extract<

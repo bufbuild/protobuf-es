@@ -17,7 +17,9 @@
 /* eslint-disable */
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import { file_google_protobuf_cpp_features, file_google_protobuf_go_features, file_google_protobuf_java_features } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_cpp_features } from "@bufbuild/protobuf/wkt/google/protobuf/cpp_features_pb.js";
+import { file_google_protobuf_go_features } from "@bufbuild/protobuf/wkt/google/protobuf/go_features_pb.js";
+import { file_google_protobuf_java_features } from "@bufbuild/protobuf/wkt/google/protobuf/java_features_pb.js";
 
 /**
  * Describes the file extra/wkt-features.proto.

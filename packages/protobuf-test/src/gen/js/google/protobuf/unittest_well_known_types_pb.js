@@ -17,7 +17,9 @@
 /* eslint-disable */
 
 import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import { file_google_protobuf_any, file_google_protobuf_api, file_google_protobuf_duration, file_google_protobuf_empty, file_google_protobuf_field_mask, file_google_protobuf_source_context, file_google_protobuf_struct, file_google_protobuf_timestamp, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_any, file_google_protobuf_duration, file_google_protobuf_empty, file_google_protobuf_field_mask, file_google_protobuf_struct, file_google_protobuf_timestamp, file_google_protobuf_wrappers } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_api } from "@bufbuild/protobuf/wkt/google/protobuf/api_pb.js";
+import { file_google_protobuf_source_context } from "@bufbuild/protobuf/wkt/google/protobuf/source_context_pb.js";
 import { file_google_protobuf_type } from "./type_pb.js";
 
 /**

@@ -16,14 +16,14 @@
 // @generated from file google/protobuf/cpp_features.proto (package pb, syntax proto2)
 /* eslint-disable */
 
-import type { GenEnum, GenExtension, GenFile, GenMessage } from "../../../../codegenv2/types.js";
-import { fileDesc } from "../../../../codegenv2/file.js";
+import type { GenEnum, GenExtension, GenFile, GenMessage } from "../../../codegenv2/types.js";
+import { fileDesc } from "../../../codegenv2/file.js";
 import type { FeatureSet } from "./descriptor_pb.js";
 import { file_google_protobuf_descriptor } from "./descriptor_pb.js";
-import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv2/message.js";
-import { enumDesc } from "../../../../codegenv2/enum.js";
-import { extDesc } from "../../../../codegenv2/extension.js";
+import type { Message } from "../../../types.js";
+import { messageDesc } from "../../../codegenv2/message.js";
+import { enumDesc } from "../../../codegenv2/enum.js";
+import { extDesc } from "../../../codegenv2/extension.js";
 
 /**
  * Describes the file google/protobuf/cpp_features.proto.

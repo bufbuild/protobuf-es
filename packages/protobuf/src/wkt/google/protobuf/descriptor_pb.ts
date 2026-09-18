@@ -24,11 +24,11 @@
 // @generated from file google/protobuf/descriptor.proto (package google.protobuf, syntax proto2)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "../../../../codegenv2/types.js";
-import { boot } from "../../../../codegenv2/boot.js";
-import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv2/message.js";
-import { enumDesc } from "../../../../codegenv2/enum.js";
+import type { GenEnum, GenFile, GenMessage } from "../../../codegenv2/types.js";
+import { boot } from "../../../codegenv2/boot.js";
+import type { Message } from "../../../types.js";
+import { messageDesc } from "../../../codegenv2/message.js";
+import { enumDesc } from "../../../codegenv2/enum.js";
 
 /**
  * Describes the file google/protobuf/descriptor.proto.

@@ -29,13 +29,13 @@
 // @generated from file google/protobuf/compiler/plugin.proto (package google.protobuf.compiler, syntax proto2)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "../../../../../codegenv2/types.js";
-import { fileDesc } from "../../../../../codegenv2/file.js";
+import type { GenEnum, GenFile, GenMessage } from "../../../../codegenv2/types.js";
+import { fileDesc } from "../../../../codegenv2/file.js";
 import type { FileDescriptorProto, FileDescriptorProtoJson, GeneratedCodeInfo, GeneratedCodeInfoJson } from "../descriptor_pb.js";
 import { file_google_protobuf_descriptor } from "../descriptor_pb.js";
-import type { Message } from "../../../../../types.js";
-import { messageDesc } from "../../../../../codegenv2/message.js";
-import { enumDesc } from "../../../../../codegenv2/enum.js";
+import type { Message } from "../../../../types.js";
+import { messageDesc } from "../../../../codegenv2/message.js";
+import { enumDesc } from "../../../../codegenv2/enum.js";
 
 /**
  * Describes the file google/protobuf/compiler/plugin.proto.

@@ -45,7 +45,7 @@ import {
   isReflectMap,
   isReflectMessage,
 } from "./guard.js";
-import type { Struct } from "../wkt/gen/google/protobuf/struct_pb.js";
+import type { Struct } from "../wkt/google/protobuf/struct_pb.js";
 import type { JsonObject } from "../json-value.js";
 import { wktStructToLocal, wktStructToReflect } from "./message.js";
 
