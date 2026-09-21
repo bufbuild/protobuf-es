@@ -30,6 +30,7 @@ import {
   mergeFromJsonString,
   protoInt64,
 } from "@bufbuild/protobuf";
+import { FLOAT32_MAX, FLOAT32_MIN } from "@bufbuild/protobuf/wire";
 import {
   RepeatedScalarValuesMessageSchema,
   ScalarValuesMessageSchema,
@@ -1411,8 +1412,6 @@ void suite("JSON parse errors", () => {
 // FLOAT32_MAX, but converts to FLOAT32_MAX when rounded to float32 precision.
 // See https://github.com/connectrpc/connect-es/issues/1716
 void suite("float32 range", () => {
-  const float32Max = 3.4028234663852886e38;
-
   test("fromJson() accepts 3.4028235e+38", () => {
     const msg = fromJson(ScalarValuesMessageSchema, {
       floatField: 3.4028235e38,
@@ -1429,16 +1428,16 @@ void suite("float32 range", () => {
 
   test("fromJson() accepts FLOAT32_MAX", () => {
     const msg = fromJson(ScalarValuesMessageSchema, {
-      floatField: float32Max,
+      floatField: FLOAT32_MAX,
     });
-    assert.strictEqual(msg.floatField, float32Max);
+    assert.strictEqual(msg.floatField, FLOAT32_MAX);
   });
 
   test("fromJson() accepts FLOAT32_MIN", () => {
     const msg = fromJson(ScalarValuesMessageSchema, {
-      floatField: -float32Max,
+      floatField: FLOAT32_MIN,
     });
-    assert.strictEqual(msg.floatField, -float32Max);
+    assert.strictEqual(msg.floatField, FLOAT32_MIN);
   });
 
   test("fromJson() accepts FLOAT32_MAX in a repeated field", () => {
@@ -1479,7 +1478,7 @@ void suite("float32 range", () => {
     );
     // Encoding to binary rounds the value to float32 precision, which is
     // exactly FLOAT32_MAX.
-    assert.strictEqual(msg2.floatField, float32Max);
+    assert.strictEqual(msg2.floatField, FLOAT32_MAX);
   });
 });
 
