@@ -1,13 +1,14 @@
 {
   "include": ["src/**/*.ts", "test/*.ts"],
   "compilerOptions": {
+    "rootDir": ".",
     "target": "es2017",
-    "moduleResolution": "Node10",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "resolveJsonModule": true,
     "strict": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "ignoreDeprecations": "6.0",
     "types": ["node"]
   }
 }

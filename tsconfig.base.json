@@ -15,8 +15,6 @@
     "declaration": true,
     // Prevent tsc from picking up @types/node and others
     "types": [],
-    // We don't have dependencies that require interop
-    "esModuleInterop": false,
     // As strict as possible
     "strict": true,
     "exactOptionalPropertyTypes": true,
@@ -37,7 +35,5 @@
     "module": "Node16",
     "verbatimModuleSyntax": true,
     "skipLibCheck": false,
-    // Silence TS 6.0 deprecation of moduleResolution=node10, which some builds still rely on.
-    "ignoreDeprecations": "6.0",
   },
 }

@@ -32,7 +32,7 @@ Generate TypeScript with the same setup from [Getting started](/getting-started/
 import { appendFileSync } from "node:fs";
 import { create } from "@bufbuild/protobuf";
 import { sizeDelimitedEncode } from "@bufbuild/protobuf/wire";
-import { UserSchema } from "./gen/example_pb";
+import { UserSchema } from "./gen/example_pb.js";
 
 const user = create(UserSchema, {
   firstName: "Homer",
@@ -51,7 +51,7 @@ appendFileSync("users.binpb", sizeDelimitedEncode(UserSchema, user));
 ```typescript
 import { createReadStream } from "node:fs";
 import { sizeDelimitedDecodeStream } from "@bufbuild/protobuf/wire";
-import { UserSchema } from "./gen/example_pb";
+import { UserSchema } from "./gen/example_pb.js";
 
 const stream = createReadStream("users.binpb");
 
