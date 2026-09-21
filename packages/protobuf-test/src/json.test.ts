@@ -20,14 +20,17 @@ import {
   type JsonValue,
   createRegistry,
   create,
+  fromBinary,
   toJson,
   fromJson,
   fromJsonString,
+  toBinary,
   setExtension,
   getExtension,
   mergeFromJsonString,
   protoInt64,
 } from "@bufbuild/protobuf";
+import { FLOAT32_MAX, FLOAT32_MIN } from "@bufbuild/protobuf/wire";
 import {
   RepeatedScalarValuesMessageSchema,
   ScalarValuesMessageSchema,
@@ -1401,6 +1404,82 @@ void suite("JSON parse errors", () => {
     }
     assert.strictEqual(gotErrorMessage, errorMessage);
   }
+});
+
+// Coverage for float values at the edge of the float32 range. Go and other
+// implementations serialize the largest finite float32 in JSON as
+// 3.4028235e+38, which is larger than the float64 representation of
+// FLOAT32_MAX, but converts to FLOAT32_MAX when rounded to float32 precision.
+// See https://github.com/connectrpc/connect-es/issues/1716
+void suite("float32 range", () => {
+  test("fromJson() accepts 3.4028235e+38", () => {
+    const msg = fromJson(ScalarValuesMessageSchema, {
+      floatField: 3.4028235e38,
+    });
+    assert.strictEqual(msg.floatField, 3.4028235e38);
+  });
+
+  test("fromJson() accepts -3.4028235e+38", () => {
+    const msg = fromJson(ScalarValuesMessageSchema, {
+      floatField: -3.4028235e38,
+    });
+    assert.strictEqual(msg.floatField, -3.4028235e38);
+  });
+
+  test("fromJson() accepts FLOAT32_MAX", () => {
+    const msg = fromJson(ScalarValuesMessageSchema, {
+      floatField: FLOAT32_MAX,
+    });
+    assert.strictEqual(msg.floatField, FLOAT32_MAX);
+  });
+
+  test("fromJson() accepts FLOAT32_MIN", () => {
+    const msg = fromJson(ScalarValuesMessageSchema, {
+      floatField: FLOAT32_MIN,
+    });
+    assert.strictEqual(msg.floatField, FLOAT32_MIN);
+  });
+
+  test("fromJson() accepts FLOAT32_MAX in a repeated field", () => {
+    const msg = fromJson(RepeatedScalarValuesMessageSchema, {
+      floatField: [3.4028235e38, -3.4028235e38],
+    });
+    assert.deepStrictEqual(msg.floatField, [3.4028235e38, -3.4028235e38]);
+  });
+
+  test("fromJson() rejects values that do not fit in a float32", () => {
+    assert.throws(
+      () => fromJson(ScalarValuesMessageSchema, { floatField: 3.5e38 }),
+      (err: unknown) =>
+        err instanceof Error &&
+        err.message.startsWith(
+          "cannot decode field spec.ScalarValuesMessage.float_field from JSON: expected number (float32)",
+        ) &&
+        err.message.endsWith("out of range"),
+    );
+  });
+
+  test("JSON round-trip", () => {
+    const msg = fromJson(ScalarValuesMessageSchema, {
+      floatField: 3.4028235e38,
+    });
+    assert.deepStrictEqual(toJson(ScalarValuesMessageSchema, msg), {
+      floatField: 3.4028235e38,
+    });
+  });
+
+  test("binary round-trip", () => {
+    const msg = fromJson(ScalarValuesMessageSchema, {
+      floatField: 3.4028235e38,
+    });
+    const msg2 = fromBinary(
+      ScalarValuesMessageSchema,
+      toBinary(ScalarValuesMessageSchema, msg),
+    );
+    // Encoding to binary rounds the value to float32 precision, which is
+    // exactly FLOAT32_MAX.
+    assert.strictEqual(msg2.floatField, FLOAT32_MAX);
+  });
 });
 
 void suite("fromJson recursion limit", () => {

@@ -835,7 +835,7 @@ function assertUInt32(arg: unknown): asserts arg is number {
 }
 
 /**
- * Assert a valid protobuf float value as a number or string.
+ * Assert a valid protobuf float32 value as a number or string.
  */
 function assertFloat32(arg: unknown): asserts arg is number {
   if (typeof arg == "string") {
@@ -847,9 +847,9 @@ function assertFloat32(arg: unknown): asserts arg is number {
   } else if (typeof arg != "number") {
     throw new Error("invalid float32: " + typeof arg);
   }
-  if (
-    Number.isFinite(arg) &&
-    ((arg as number) > FLOAT32_MAX || (arg as number) < FLOAT32_MIN)
-  )
+  // float32 is represented with regular 64-bit numbers. A value too large for
+  // a float32 becomes infinity when rounded. NaN and infinity are valid values.
+  if (!Number.isFinite(Math.fround(arg as number)) && Number.isFinite(arg)) {
     throw new Error("invalid float32: " + arg);
+  }
 }

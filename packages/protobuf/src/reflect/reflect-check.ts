@@ -21,13 +21,7 @@ import {
 import { isMessage } from "../is-message.js";
 import { FieldError } from "./error.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
-import {
-  FLOAT32_MAX,
-  FLOAT32_MIN,
-  INT32_MAX,
-  INT32_MIN,
-  UINT32_MAX,
-} from "../wire/binary-encoding.js";
+import { INT32_MAX, INT32_MIN, UINT32_MAX } from "../wire/binary-encoding.js";
 import { getTextEncoding } from "../wire/text-encoding.js";
 import { protoInt64 } from "../proto-int64.js";
 
@@ -141,10 +135,9 @@ export function checkScalarValue(
         if (typeof value != "number") {
           return false;
         }
-        if (Number.isNaN(value) || !Number.isFinite(value)) {
-          return true;
-        }
-        if (value > FLOAT32_MAX || value < FLOAT32_MIN) {
+        // float32 is represented with regular 64-bit numbers. A value too large for
+        // a float32 becomes infinity when rounded. NaN and infinity are valid values.
+        if (!Number.isFinite(Math.fround(value)) && Number.isFinite(value)) {
           return `${value.toFixed()} out of range`;
         }
         return true;
