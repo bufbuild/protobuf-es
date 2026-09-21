@@ -21,13 +21,7 @@ import {
 import { isMessage } from "../is-message.js";
 import { FieldError } from "./error.js";
 import { isReflectList, isReflectMap, isReflectMessage } from "./guard.js";
-import {
-  FLOAT32_MAX,
-  FLOAT32_MIN,
-  INT32_MAX,
-  INT32_MIN,
-  UINT32_MAX,
-} from "../wire/binary-encoding.js";
+import { INT32_MAX, INT32_MIN, UINT32_MAX } from "../wire/binary-encoding.js";
 import { getTextEncoding } from "../wire/text-encoding.js";
 import { protoInt64 } from "../proto-int64.js";
 
@@ -141,16 +135,9 @@ export function checkScalarValue(
         if (typeof value != "number") {
           return false;
         }
-        if (Number.isNaN(value) || !Number.isFinite(value)) {
-          return true;
-        }
-        // Round to the nearest float32 before checking the range: other
-        // implementations serialize the largest finite float32 in JSON as
-        // 3.4028235e+38, which is larger than the float64 representation of
-        // FLOAT32_MAX, but converts to FLOAT32_MAX when rounded to float32
-        // precision.
-        const f = Math.fround(value);
-        if (f > FLOAT32_MAX || f < FLOAT32_MIN) {
+        // float32 is represented with regular 64-bit numbers. A value too large for
+        // a float32 becomes infinity when rounded. NaN and infinity are valid values.
+        if (!Number.isFinite(Math.fround(value)) && Number.isFinite(value)) {
           return `${value.toFixed()} out of range`;
         }
         return true;

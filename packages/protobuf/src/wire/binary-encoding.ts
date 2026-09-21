@@ -835,12 +835,7 @@ function assertUInt32(arg: unknown): asserts arg is number {
 }
 
 /**
- * Assert a valid protobuf float value as a number or string.
- *
- * Values are rounded to the nearest float32 before checking the range, so
- * that any value that is representable as a float32 is accepted - for
- * example 3.4028235e+38, the JSON serialization of the largest finite
- * float32 used by other implementations.
+ * Assert a valid protobuf float32 value as a number or string.
  */
 function assertFloat32(arg: unknown): asserts arg is number {
   if (typeof arg == "string") {
@@ -852,10 +847,9 @@ function assertFloat32(arg: unknown): asserts arg is number {
   } else if (typeof arg != "number") {
     throw new Error("invalid float32: " + typeof arg);
   }
-  if (Number.isFinite(arg)) {
-    const f = Math.fround(arg as number);
-    if (f > FLOAT32_MAX || f < FLOAT32_MIN) {
-      throw new Error("invalid float32: " + arg);
-    }
+  // float32 is represented with regular 64-bit numbers. A value too large for
+  // a float32 becomes infinity when rounded. NaN and infinity are valid values.
+  if (!Number.isFinite(Math.fround(arg as number)) && Number.isFinite(arg)) {
+    throw new Error("invalid float32: " + arg);
   }
 }
