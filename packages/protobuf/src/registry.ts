@@ -426,7 +426,7 @@ const VERIFY = 2;
 
 // biome-ignore format: want this to read well
 // bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2026: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
-// generated from protoc v36.0
+// generated from protoc v36.2
 export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1002;
 const featureDefaults = {
   // EDITION_PROTO2
