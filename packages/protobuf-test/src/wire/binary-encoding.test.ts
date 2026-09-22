@@ -38,6 +38,12 @@ void suite("BinaryWriter", () => {
       3.14,
       -3.14,
       -1024,
+      // The largest finite float32, as serialized to JSON by Go and other
+      // implementations. It is larger than the float64 representation of
+      // FLOAT32_MAX, but converts to FLOAT32_MAX when rounded to float32
+      // precision.
+      3.4028235e38,
+      -3.4028235e38,
       Number.POSITIVE_INFINITY,
       Number.NEGATIVE_INFINITY,
       Number.NaN,
@@ -64,7 +70,7 @@ void suite("BinaryWriter", () => {
         });
       });
     }
-    for (const val of [Number.MAX_VALUE, -Number.MAX_VALUE]) {
+    for (const val of [3.5e38, -3.5e38, Number.MAX_VALUE, -Number.MAX_VALUE]) {
       void test(`should error for value out of range ${val}`, () => {
         assert.throws(() => new BinaryWriter().float(val), {
           message: /^invalid float32: .*/,
