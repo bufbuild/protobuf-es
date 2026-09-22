@@ -17,25 +17,44 @@
  */
 export const packageName = "@bufbuild/protobuf";
 
+const legacyWktBarrel = packageName + "/wkt";
+
 /**
  * @private
+ *
+ * A map from Protobuf file path to import path for the well-known types.
+ *
+ * All well-known files are exported as subpaths from @bufbuild/protobuf/wkt,
+ * but have been historically exported from a barrel. For backwards-compatibility,
+ * the existing barrel exports are maintained.
+ *
+ * For convenience, generated code continues to import from the barrel for
+ * commonly used WKT, and only generates the full subpath import for files
+ * that are rarely used.
+ *
+ * All well-known files must be listed here. New files should import from the
+ * full subpath.
  */
 export const wktPublicImportPaths: Readonly<Record<string, string>> = {
-  "google/protobuf/compiler/plugin.proto": packageName + "/wkt",
-  "google/protobuf/any.proto": packageName + "/wkt",
-  "google/protobuf/api.proto": packageName + "/wkt",
-  "google/protobuf/cpp_features.proto": packageName + "/wkt",
-  "google/protobuf/descriptor.proto": packageName + "/wkt",
-  "google/protobuf/duration.proto": packageName + "/wkt",
-  "google/protobuf/empty.proto": packageName + "/wkt",
-  "google/protobuf/field_mask.proto": packageName + "/wkt",
-  "google/protobuf/go_features.proto": packageName + "/wkt",
-  "google/protobuf/java_features.proto": packageName + "/wkt",
-  "google/protobuf/source_context.proto": packageName + "/wkt",
-  "google/protobuf/struct.proto": packageName + "/wkt",
-  "google/protobuf/timestamp.proto": packageName + "/wkt",
-  "google/protobuf/type.proto": packageName + "/wkt",
-  "google/protobuf/wrappers.proto": packageName + "/wkt",
+  "google/protobuf/compiler/plugin.proto": legacyWktBarrel,
+  "google/protobuf/any.proto": legacyWktBarrel,
+  "google/protobuf/api.proto": packageName + "/wkt/google/protobuf/api_pb.js",
+  "google/protobuf/cpp_features.proto":
+    packageName + "/wkt/google/protobuf/cpp_features_pb.js",
+  "google/protobuf/descriptor.proto": legacyWktBarrel,
+  "google/protobuf/duration.proto": legacyWktBarrel,
+  "google/protobuf/empty.proto": legacyWktBarrel,
+  "google/protobuf/field_mask.proto": legacyWktBarrel,
+  "google/protobuf/go_features.proto":
+    packageName + "/wkt/google/protobuf/go_features_pb.js",
+  "google/protobuf/java_features.proto":
+    packageName + "/wkt/google/protobuf/java_features_pb.js",
+  "google/protobuf/source_context.proto":
+    packageName + "/wkt/google/protobuf/source_context_pb.js",
+  "google/protobuf/struct.proto": legacyWktBarrel,
+  "google/protobuf/timestamp.proto": legacyWktBarrel,
+  "google/protobuf/type.proto": packageName + "/wkt/google/protobuf/type_pb.js",
+  "google/protobuf/wrappers.proto": legacyWktBarrel,
 };
 
 /**
@@ -43,33 +62,33 @@ export const wktPublicImportPaths: Readonly<Record<string, string>> = {
  */
 // biome-ignore format: want this to read well
 export const symbols = {
-  isMessage:           {typeOnly: false, bootstrapWktFrom: "../../is-message.js",           from: packageName },
-  Message:             {typeOnly: true,  bootstrapWktFrom: "../../types.js",                from: packageName },
-  create:              {typeOnly: false, bootstrapWktFrom: "../../create.js",               from: packageName },
-  fromJson:            {typeOnly: false, bootstrapWktFrom: "../../from-json.js",            from: packageName },
-  fromJsonString:      {typeOnly: false, bootstrapWktFrom: "../../from-json.js",            from: packageName },
-  fromBinary:          {typeOnly: false, bootstrapWktFrom: "../../from-binary.js",          from: packageName },
-  toBinary:            {typeOnly: false, bootstrapWktFrom: "../../to-binary.js",            from: packageName },
-  toJson:              {typeOnly: false, bootstrapWktFrom: "../../to-json.js",              from: packageName },
-  toJsonString:        {typeOnly: false, bootstrapWktFrom: "../../to-json.js",              from: packageName },
-  protoInt64:          {typeOnly: false, bootstrapWktFrom: "../../proto-int64.js",          from: packageName },
-  JsonValue:           {typeOnly: true,  bootstrapWktFrom: "../../json-value.js",           from: packageName },
-  JsonObject:          {typeOnly: true,  bootstrapWktFrom: "../../json-value.js",           from: packageName },
-  UnknownEnum:         {typeOnly: true,  bootstrapWktFrom: "../../types.js",                from: packageName },
+  isMessage:           {typeOnly: false, bootstrapWktFrom: "../is-message.js",           from: packageName },
+  Message:             {typeOnly: true,  bootstrapWktFrom: "../types.js",                from: packageName },
+  create:              {typeOnly: false, bootstrapWktFrom: "../create.js",               from: packageName },
+  fromJson:            {typeOnly: false, bootstrapWktFrom: "../from-json.js",            from: packageName },
+  fromJsonString:      {typeOnly: false, bootstrapWktFrom: "../from-json.js",            from: packageName },
+  fromBinary:          {typeOnly: false, bootstrapWktFrom: "../from-binary.js",          from: packageName },
+  toBinary:            {typeOnly: false, bootstrapWktFrom: "../to-binary.js",            from: packageName },
+  toJson:              {typeOnly: false, bootstrapWktFrom: "../to-json.js",              from: packageName },
+  toJsonString:        {typeOnly: false, bootstrapWktFrom: "../to-json.js",              from: packageName },
+  protoInt64:          {typeOnly: false, bootstrapWktFrom: "../proto-int64.js",          from: packageName },
+  JsonValue:           {typeOnly: true,  bootstrapWktFrom: "../json-value.js",           from: packageName },
+  JsonObject:          {typeOnly: true,  bootstrapWktFrom: "../json-value.js",           from: packageName },
+  UnknownEnum:         {typeOnly: true,  bootstrapWktFrom: "../types.js",                from: packageName },
   codegen: {
-    boot:              {typeOnly: false, bootstrapWktFrom: "../../codegenv2/boot.js",       from: packageName + "/codegenv2" },
-    fileDesc:          {typeOnly: false, bootstrapWktFrom: "../../codegenv2/file.js",       from: packageName + "/codegenv2" },
-    enumDesc:          {typeOnly: false, bootstrapWktFrom: "../../codegenv2/enum.js",       from: packageName + "/codegenv2" },
-    extDesc:           {typeOnly: false, bootstrapWktFrom: "../../codegenv2/extension.js",  from: packageName + "/codegenv2" },
-    messageDesc:       {typeOnly: false, bootstrapWktFrom: "../../codegenv2/message.js",    from: packageName + "/codegenv2" },
-    serviceDesc:       {typeOnly: false, bootstrapWktFrom: "../../codegenv2/service.js",    from: packageName + "/codegenv2" },
-    tsEnum:            {typeOnly: false, bootstrapWktFrom: "../../codegenv2/enum.js",       from: packageName + "/codegenv2" },
-    objEnum:           {typeOnly: false, bootstrapWktFrom: "../../codegenv2/enum.js",       from: packageName + "/codegenv2" },
-    GenFile:           {typeOnly: true,  bootstrapWktFrom: "../../codegenv2/types.js",      from: packageName + "/codegenv2" },
-    GenEnum:           {typeOnly: true,  bootstrapWktFrom: "../../codegenv2/types.js",      from: packageName + "/codegenv2" },
-    GenExtension:      {typeOnly: true,  bootstrapWktFrom: "../../codegenv2/types.js",      from: packageName + "/codegenv2" },
-    GenMessage:        {typeOnly: true,  bootstrapWktFrom: "../../codegenv2/types.js",      from: packageName + "/codegenv2" },
-    GenService:        {typeOnly: true,  bootstrapWktFrom: "../../codegenv2/types.js",      from: packageName + "/codegenv2" },
+    boot:              {typeOnly: false, bootstrapWktFrom: "../codegenv2/boot.js",       from: packageName + "/codegenv2" },
+    fileDesc:          {typeOnly: false, bootstrapWktFrom: "../codegenv2/file.js",       from: packageName + "/codegenv2" },
+    enumDesc:          {typeOnly: false, bootstrapWktFrom: "../codegenv2/enum.js",       from: packageName + "/codegenv2" },
+    extDesc:           {typeOnly: false, bootstrapWktFrom: "../codegenv2/extension.js",  from: packageName + "/codegenv2" },
+    messageDesc:       {typeOnly: false, bootstrapWktFrom: "../codegenv2/message.js",    from: packageName + "/codegenv2" },
+    serviceDesc:       {typeOnly: false, bootstrapWktFrom: "../codegenv2/service.js",    from: packageName + "/codegenv2" },
+    tsEnum:            {typeOnly: false, bootstrapWktFrom: "../codegenv2/enum.js",       from: packageName + "/codegenv2" },
+    objEnum:           {typeOnly: false, bootstrapWktFrom: "../codegenv2/enum.js",       from: packageName + "/codegenv2" },
+    GenFile:           {typeOnly: true,  bootstrapWktFrom: "../codegenv2/types.js",      from: packageName + "/codegenv2" },
+    GenEnum:           {typeOnly: true,  bootstrapWktFrom: "../codegenv2/types.js",      from: packageName + "/codegenv2" },
+    GenExtension:      {typeOnly: true,  bootstrapWktFrom: "../codegenv2/types.js",      from: packageName + "/codegenv2" },
+    GenMessage:        {typeOnly: true,  bootstrapWktFrom: "../codegenv2/types.js",      from: packageName + "/codegenv2" },
+    GenService:        {typeOnly: true,  bootstrapWktFrom: "../codegenv2/types.js",      from: packageName + "/codegenv2" },
   },
 } as const satisfies Record<string, symbolInfo | Record<string, symbolInfo>>;
 

@@ -16,10 +16,10 @@
 // @generated from file google/protobuf/any.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "../../../../codegenv2/types.js";
-import { fileDesc } from "../../../../codegenv2/file.js";
-import type { Message } from "../../../../types.js";
-import { messageDesc } from "../../../../codegenv2/message.js";
+import type { GenFile, GenMessage } from "../../../codegenv2/types.js";
+import { fileDesc } from "../../../codegenv2/file.js";
+import type { Message } from "../../../types.js";
+import { messageDesc } from "../../../codegenv2/message.js";
 
 /**
  * Describes the file google/protobuf/any.proto.

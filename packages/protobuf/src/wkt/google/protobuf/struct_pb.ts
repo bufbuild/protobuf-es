@@ -16,12 +16,12 @@
 // @generated from file google/protobuf/struct.proto (package google.protobuf, syntax proto3)
 /* eslint-disable */
 
-import type { GenEnum, GenFile, GenMessage } from "../../../../codegenv2/types.js";
-import { fileDesc } from "../../../../codegenv2/file.js";
-import type { Message } from "../../../../types.js";
-import type { JsonObject, JsonValue } from "../../../../json-value.js";
-import { messageDesc } from "../../../../codegenv2/message.js";
-import { enumDesc } from "../../../../codegenv2/enum.js";
+import type { GenEnum, GenFile, GenMessage } from "../../../codegenv2/types.js";
+import { fileDesc } from "../../../codegenv2/file.js";
+import type { Message } from "../../../types.js";
+import type { JsonObject, JsonValue } from "../../../json-value.js";
+import { messageDesc } from "../../../codegenv2/message.js";
+import { enumDesc } from "../../../codegenv2/enum.js";
 
 /**
  * Describes the file google/protobuf/struct.proto.

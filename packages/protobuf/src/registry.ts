@@ -27,7 +27,7 @@ import type {
   OneofDescriptorProto,
   ServiceDescriptorProto,
   EnumValueDescriptorProto,
-} from "./wkt/gen/google/protobuf/descriptor_pb.js";
+} from "./wkt/google/protobuf/descriptor_pb.js";
 
 import {
   type DescEnum,

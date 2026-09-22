@@ -13,8 +13,8 @@
 // limitations under the License.
 
 import type { Message, MessageShape } from "../types.js";
-import type { Any } from "./gen/google/protobuf/any_pb.js";
-import { AnySchema } from "./gen/google/protobuf/any_pb.js";
+import type { Any } from "./google/protobuf/any_pb.js";
+import { AnySchema } from "./google/protobuf/any_pb.js";
 import type { DescMessage } from "../descriptors.js";
 import type { Registry } from "../registry.js";
 import { create } from "../create.js";

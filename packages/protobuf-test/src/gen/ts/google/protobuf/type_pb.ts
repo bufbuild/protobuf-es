@@ -18,8 +18,10 @@
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
 import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
-import type { Any, SourceContext } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_any, file_google_protobuf_source_context } from "@bufbuild/protobuf/wkt";
+import type { Any } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_any } from "@bufbuild/protobuf/wkt";
+import type { SourceContext } from "@bufbuild/protobuf/wkt/google/protobuf/source_context_pb.js";
+import { file_google_protobuf_source_context } from "@bufbuild/protobuf/wkt/google/protobuf/source_context_pb.js";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
