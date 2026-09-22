@@ -362,6 +362,11 @@ export declare type ComplexOptionType1 = Message<"proto2_unittest.ComplexOptionT
    * @generated from field: repeated int32 foo4 = 4;
    */
   foo4: number[];
+
+  /**
+   * @generated from field: map<string, int32> my_map = 5;
+   */
+  myMap: { [key: string]: number };
 };
 
 /**

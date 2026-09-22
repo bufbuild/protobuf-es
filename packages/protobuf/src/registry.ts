@@ -425,9 +425,9 @@ const OPEN = 1;
 const VERIFY = 2;
 
 // biome-ignore format: want this to read well
-// bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2024: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
-// generated from protoc v34.1
-export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1001;
+// bootstrap-inject defaults: EDITION_PROTO2 to EDITION_2026: export const minimumEdition: SupportedEdition = $minimumEdition, maximumEdition: SupportedEdition = $maximumEdition;
+// generated from protoc v36.0
+export const minimumEdition: SupportedEdition = 998, maximumEdition: SupportedEdition = 1002;
 const featureDefaults = {
   // EDITION_PROTO2
   998: {
@@ -439,6 +439,7 @@ const featureDefaults = {
     jsonFormat: 2, // LEGACY_BEST_EFFORT,
     enforceNamingStyle: 2, // STYLE_LEGACY,
     defaultSymbolVisibility: 1, // EXPORT_ALL,
+    enforceProtoLimits: 1, // LEGACY_NO_EXPLICIT_LIMITS,
   },
   // EDITION_PROTO3
   999: {
@@ -450,6 +451,7 @@ const featureDefaults = {
     jsonFormat: 1, // ALLOW,
     enforceNamingStyle: 2, // STYLE_LEGACY,
     defaultSymbolVisibility: 1, // EXPORT_ALL,
+    enforceProtoLimits: 1, // LEGACY_NO_EXPLICIT_LIMITS,
   },
   // EDITION_2023
   1000: {
@@ -461,6 +463,7 @@ const featureDefaults = {
     jsonFormat: 1, // ALLOW,
     enforceNamingStyle: 2, // STYLE_LEGACY,
     defaultSymbolVisibility: 1, // EXPORT_ALL,
+    enforceProtoLimits: 1, // LEGACY_NO_EXPLICIT_LIMITS,
   },
   // EDITION_2024
   1001: {
@@ -472,6 +475,19 @@ const featureDefaults = {
     jsonFormat: 1, // ALLOW,
     enforceNamingStyle: 1, // STYLE2024,
     defaultSymbolVisibility: 2, // EXPORT_TOP_LEVEL,
+    enforceProtoLimits: 1, // LEGACY_NO_EXPLICIT_LIMITS,
+  },
+  // EDITION_2026
+  1002: {
+    fieldPresence: 1, // EXPLICIT,
+    enumType: 1, // OPEN,
+    repeatedFieldEncoding: 1, // PACKED,
+    utf8Validation: 2, // VERIFY,
+    messageEncoding: 1, // LENGTH_PREFIXED,
+    jsonFormat: 1, // ALLOW,
+    enforceNamingStyle: 3, // STYLE2026,
+    defaultSymbolVisibility: 4, // STRICT,
+    enforceProtoLimits: 2, // PROTO_LIMITS2026,
   },
 } as const;
 

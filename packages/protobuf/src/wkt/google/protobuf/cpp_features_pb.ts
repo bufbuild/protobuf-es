@@ -29,7 +29,7 @@ import { extDesc } from "../../../codegenv2/extension.js";
  * Describes the file google/protobuf/cpp_features.proto.
  */
 export const file_google_protobuf_cpp_features: GenFile = /*@__PURE__*/
-  fileDesc("CiJnb29nbGUvcHJvdG9idWYvY3BwX2ZlYXR1cmVzLnByb3RvEgJwYiL8AwoLQ3BwRmVhdHVyZXMS+wEKEmxlZ2FjeV9jbG9zZWRfZW51bRgBIAEoCELeAYgBAZgBBJgBAaIBCRIEdHJ1ZRiEB6IBChIFZmFsc2UY5weyAbgBCOgHEOgHGq8BVGhlIGxlZ2FjeSBjbG9zZWQgZW51bSBiZWhhdmlvciBpbiBDKysgaXMgZGVwcmVjYXRlZCBhbmQgaXMgc2NoZWR1bGVkIHRvIGJlIHJlbW92ZWQgaW4gZWRpdGlvbiAyMDI1LiAgU2VlIGh0dHA6Ly9wcm90b2J1Zi5kZXYvcHJvZ3JhbW1pbmctZ3VpZGVzL2VudW0vI2NwcCBmb3IgbW9yZSBpbmZvcm1hdGlvbhJaCgtzdHJpbmdfdHlwZRgCIAEoDjIaLnBiLkNwcEZlYXR1cmVzLlN0cmluZ1R5cGVCKYgBAZgBBJgBAaIBCxIGU1RSSU5HGIQHogEJEgRWSUVXGOkHsgEDCOgHEkwKGmVudW1fbmFtZV91c2VzX3N0cmluZ192aWV3GAMgASgIQiiIAQGYAQaYAQGiAQoSBWZhbHNlGIQHogEJEgR0cnVlGOkHsgEDCOkHIkUKClN0cmluZ1R5cGUSFwoTU1RSSU5HX1RZUEVfVU5LTk9XThAAEggKBFZJRVcQARIICgRDT1JEEAISCgoGU1RSSU5HEAM6PwoDY3BwEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQY6AcgASgLMg8ucGIuQ3BwRmVhdHVyZXNSA2NwcA", [file_google_protobuf_descriptor]);
+  fileDesc("CiJnb29nbGUvcHJvdG9idWYvY3BwX2ZlYXR1cmVzLnByb3RvEgJwYiKSBQoLQ3BwRmVhdHVyZXMS+wEKEmxlZ2FjeV9jbG9zZWRfZW51bRgBIAEoCELeAYgBAZgBBJgBAaIBCRIEdHJ1ZRiEB6IBChIFZmFsc2UY5weyAbgBCOgHEOgHGq8BVGhlIGxlZ2FjeSBjbG9zZWQgZW51bSBiZWhhdmlvciBpbiBDKysgaXMgZGVwcmVjYXRlZCBhbmQgaXMgc2NoZWR1bGVkIHRvIGJlIHJlbW92ZWQgaW4gZWRpdGlvbiAyMDI1LiAgU2VlIGh0dHA6Ly9wcm90b2J1Zi5kZXYvcHJvZ3JhbW1pbmctZ3VpZGVzL2VudW0vI2NwcCBmb3IgbW9yZSBpbmZvcm1hdGlvbhJaCgtzdHJpbmdfdHlwZRgCIAEoDjIaLnBiLkNwcEZlYXR1cmVzLlN0cmluZ1R5cGVCKYgBAZgBBJgBAaIBCxIGU1RSSU5HGIQHogEJEgRWSUVXGOkHsgEDCOgHEkwKGmVudW1fbmFtZV91c2VzX3N0cmluZ192aWV3GAMgASgIQiiIAQGYAQaYAQGiAQoSBWZhbHNlGIQHogEJEgR0cnVlGOkHsgEDCOkHElIKDXJlcGVhdGVkX3R5cGUYBCABKA4yHC5wYi5DcHBGZWF0dXJlcy5SZXBlYXRlZFR5cGVCHYgBAZgBBJgBAaIBCxIGTEVHQUNZGIQHsgEDCI9OIkUKClN0cmluZ1R5cGUSFwoTU1RSSU5HX1RZUEVfVU5LTk9XThAAEggKBFZJRVcQARIICgRDT1JEEAISCgoGU1RSSU5HEAMiQAoMUmVwZWF0ZWRUeXBlEhkKFVJFUEVBVEVEX1RZUEVfVU5LTk9XThAAEgoKBkxFR0FDWRABEgkKBVBST1hZEAI6PwoDY3BwEhsuZ29vZ2xlLnByb3RvYnVmLkZlYXR1cmVTZXQY6AcgASgLMg8ucGIuQ3BwRmVhdHVyZXNSA2NwcA", [file_google_protobuf_descriptor]);
 
 /**
  * @generated from message pb.CppFeatures
@@ -54,6 +54,11 @@ export type CppFeatures = Message<"pb.CppFeatures"> & {
    * @generated from field: optional bool enum_name_uses_string_view = 3;
    */
   enumNameUsesStringView: boolean;
+
+  /**
+   * @generated from field: optional pb.CppFeatures.RepeatedType repeated_type = 4;
+   */
+  repeatedType: CppFeatures_RepeatedType;
 };
 
 /**
@@ -79,6 +84,11 @@ export type CppFeaturesJson = {
    * @generated from field: optional bool enum_name_uses_string_view = 3;
    */
   enumNameUsesStringView?: boolean;
+
+  /**
+   * @generated from field: optional pb.CppFeatures.RepeatedType repeated_type = 4;
+   */
+  repeatedType?: CppFeatures_RepeatedTypeJson;
 };
 
 /**
@@ -123,6 +133,43 @@ export type CppFeatures_StringTypeJson = "STRING_TYPE_UNKNOWN" | "VIEW" | "CORD"
  */
 export const CppFeatures_StringTypeSchema: GenEnum<CppFeatures_StringType, CppFeatures_StringTypeJson> = /*@__PURE__*/
   enumDesc(file_google_protobuf_cpp_features, 0, 0);
+
+/**
+ * @generated from enum pb.CppFeatures.RepeatedType
+ */
+export enum CppFeatures_RepeatedType {
+  /**
+   * @generated from enum value: REPEATED_TYPE_UNKNOWN = 0;
+   */
+  REPEATED_TYPE_UNKNOWN = 0,
+
+  /**
+   * The repeated field will be backed by proto2::Repeated(Ptr)Field, and
+   * accessors will return a reference/pointer to this type.
+   *
+   * @generated from enum value: LEGACY = 1;
+   */
+  LEGACY = 1,
+
+  /**
+   * The repeated field has an opaque backing type, and accessors will return
+   * a RepeatedFieldProxy.
+   *
+   * @generated from enum value: PROXY = 2;
+   */
+  PROXY = 2,
+}
+
+/**
+ * @generated from enum pb.CppFeatures.RepeatedType
+ */
+export type CppFeatures_RepeatedTypeJson = "REPEATED_TYPE_UNKNOWN" | "LEGACY" | "PROXY";
+
+/**
+ * Describes the enum pb.CppFeatures.RepeatedType.
+ */
+export const CppFeatures_RepeatedTypeSchema: GenEnum<CppFeatures_RepeatedType, CppFeatures_RepeatedTypeJson> = /*@__PURE__*/
+  enumDesc(file_google_protobuf_cpp_features, 0, 1);
 
 /**
  * @generated from extension: optional pb.CppFeatures cpp = 1000;
