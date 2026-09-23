@@ -65,14 +65,23 @@ bench.runSync();
 console.log(`@bufbuild/protobuf, ${process.version}`);
 console.table(
   bench.table((task) => {
-    const latency = task.result?.latency;
     const ops = cases[task.name].ops;
-    return {
-      Task: task.name,
-      "ns/op": latency && Number(((latency.mean * 1e6) / ops).toFixed(2)),
-      "ops/s": latency && Math.round((ops * 1000) / latency.mean),
-      "rme %": latency && Number(latency.rme.toFixed(2)),
-      samples: latency?.samples.length,
-    };
+    const result = task.result;
+    const latency = "latency" in result ? result.latency : undefined;
+    return latency !== undefined
+      ? {
+          Task: task.name,
+          "ns/op": Number(((latency.mean * 1e6) / ops).toFixed(2)),
+          "ops/s": Math.round((ops * 1000) / latency.mean),
+          "rme %": Number(latency.rme.toFixed(2)),
+          samples: latency.samplesCount,
+        }
+      : {
+          Task: task.name,
+          state:
+            result.state === "errored"
+              ? `errored: ${result.error.message}`
+              : result.state,
+        };
   }),
 );
