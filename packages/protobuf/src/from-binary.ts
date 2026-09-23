@@ -456,7 +456,11 @@ function compileMapFieldReader(
     false,
   );
   const keyZero = scalarZeroValue(field.mapKey, false);
-  let readValue: (reader: BinaryReader, ctx: BinaryReadContext) => unknown;
+  let readValue: (
+    reader: BinaryReader,
+    ctx: BinaryReadContext,
+    existing: unknown,
+  ) => unknown;
   let valueDefault: () => unknown;
   switch (field.mapKind) {
     case "scalar": {
@@ -486,8 +490,10 @@ function compileMapFieldReader(
     case "message": {
       const { toMessage, toLocal } = localMessageMapper(field);
       const readChild = compiledReader(field.message).read;
-      readValue = (reader, ctx) => {
-        const child = toMessage(undefined);
+      // A repeated value field within one entry merges into the previous
+      // value, like any other singular message field.
+      readValue = (reader, ctx, existing) => {
+        const child = toMessage(existing);
         readChild(child, reader, ctx, reader.uint32());
         return toLocal(child);
       };
@@ -512,7 +518,7 @@ function compileMapFieldReader(
           key = readKey(reader);
           break;
         case 2:
-          val = readValue(reader, ctx);
+          val = readValue(reader, ctx, val);
           break;
       }
     }
