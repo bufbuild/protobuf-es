@@ -17,7 +17,7 @@
 /* eslint-disable */
 
 import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import type { Message } from "@bufbuild/protobuf";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file extra/msg-maps.proto.
@@ -97,6 +97,11 @@ export declare type MapsMessage = Message<"spec.MapsMessage"> & {
    * @generated from field: map<int64, spec.MapsEnum> int64_enu_field = 14;
    */
   int64EnuField: { [key: string]: MapsEnum };
+
+  /**
+   * @generated from field: map<string, google.protobuf.Struct> str_struct_field = 15;
+   */
+  strStructField: { [key: string]: JsonObject };
 };
 
 /**

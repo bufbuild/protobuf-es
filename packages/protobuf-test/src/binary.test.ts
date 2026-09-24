@@ -124,6 +124,7 @@ void suite(`binary serialization`, () => {
     strEnuField: { a: 0, b: 1, c: 2 },
     int32EnuField: { 1: 0, 2: 1, 0: 2 },
     int64EnuField: { "-1": 0, "2": 1, "0": 2 },
+    strStructField: { a: { x: 1 } },
   });
   void test(MapsMessageBug1183Schema.typeName, () => {
     const str128bytes = "x".repeat(128);
@@ -406,6 +407,116 @@ void suite("UTF-8 validation on binary input", () => {
       message M { repeated string f = 1; }
     `);
     assert.throws(() => fromBinary(desc, fieldOneStringBytes));
+  });
+});
+
+void suite("map entry with repeated value field on binary input", () => {
+  // A map entry is a message with the key in field 1 and the value in field 2.
+  // If field 2 occurs more than once in a single entry, the regular rules for
+  // repeated occurrences of a singular field apply: message values are merged,
+  // scalar values are replaced.
+  void test("merges message values", () => {
+    const bytes = new BinaryWriter()
+      .tag(MapsMessageSchema.field.strMsgField.number, WireType.LengthDelimited)
+      .fork()
+      .tag(1, WireType.LengthDelimited)
+      .string("k")
+      .tag(2, WireType.LengthDelimited)
+      .bytes(
+        toBinary(
+          MapsMessageSchema,
+          create(MapsMessageSchema, { strInt32Field: { a: 1, x: 1 } }),
+        ),
+      )
+      .tag(2, WireType.LengthDelimited)
+      .bytes(
+        toBinary(
+          MapsMessageSchema,
+          create(MapsMessageSchema, { strInt32Field: { b: 2, x: 2 } }),
+        ),
+      )
+      .join()
+      .finish();
+    const msg = fromBinary(MapsMessageSchema, bytes);
+    assert.deepStrictEqual(msg.strMsgField.k.strInt32Field, {
+      a: 1,
+      b: 2,
+      x: 2,
+    });
+  });
+  void test("keeps message value when followed by an empty value", () => {
+    const bytes = new BinaryWriter()
+      .tag(MapsMessageSchema.field.strMsgField.number, WireType.LengthDelimited)
+      .fork()
+      .tag(1, WireType.LengthDelimited)
+      .string("k")
+      .tag(2, WireType.LengthDelimited)
+      .bytes(
+        toBinary(
+          MapsMessageSchema,
+          create(MapsMessageSchema, { strInt32Field: { a: 1 } }),
+        ),
+      )
+      .tag(2, WireType.LengthDelimited)
+      .bytes(new Uint8Array(0))
+      .join()
+      .finish();
+    const msg = fromBinary(MapsMessageSchema, bytes);
+    assert.deepStrictEqual(msg.strMsgField.k.strInt32Field, { a: 1 });
+  });
+  void test("merges google.protobuf.Struct values", () => {
+    // Struct is represented as JsonObject, and takes a separate path.
+    const bytes = new BinaryWriter()
+      .tag(
+        MapsMessageSchema.field.strStructField.number,
+        WireType.LengthDelimited,
+      )
+      .fork()
+      .tag(1, WireType.LengthDelimited)
+      .string("k")
+      .tag(2, WireType.LengthDelimited)
+      .bytes(
+        toBinary(
+          StructSchema,
+          create(StructSchema, {
+            fields: {
+              a: { kind: { case: "numberValue", value: 1 } },
+              x: { kind: { case: "numberValue", value: 1 } },
+            },
+          }),
+        ),
+      )
+      .tag(2, WireType.LengthDelimited)
+      .bytes(
+        toBinary(
+          StructSchema,
+          create(StructSchema, {
+            fields: {
+              b: { kind: { case: "numberValue", value: 2 } },
+              x: { kind: { case: "numberValue", value: 2 } },
+            },
+          }),
+        ),
+      )
+      .join()
+      .finish();
+    const msg = fromBinary(MapsMessageSchema, bytes);
+    assert.deepStrictEqual(msg.strStructField, { k: { a: 1, b: 2, x: 2 } });
+  });
+  void test("replaces scalar values", () => {
+    const bytes = new BinaryWriter()
+      .tag(MapsMessageSchema.field.strStrField.number, WireType.LengthDelimited)
+      .fork()
+      .tag(1, WireType.LengthDelimited)
+      .string("k")
+      .tag(2, WireType.LengthDelimited)
+      .string("first")
+      .tag(2, WireType.LengthDelimited)
+      .string("last")
+      .join()
+      .finish();
+    const msg = fromBinary(MapsMessageSchema, bytes);
+    assert.deepStrictEqual(msg.strStrField, { k: "last" });
   });
 });
 
