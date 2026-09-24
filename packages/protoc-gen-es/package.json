@@ -2,6 +2,7 @@
   "name": "@bufbuild/protoc-gen-es",
   "version": "2.15.0",
   "license": "Apache-2.0",
+  "type": "commonjs",
   "description": "Protocol Buffers code generator for ECMAScript",
   "keywords": [
     "protobuf",
