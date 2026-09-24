@@ -520,6 +520,25 @@ void suite("map entry with repeated value field on binary input", () => {
   });
 });
 
+void suite("map entry with unknown field on binary input", () => {
+  void test("skips and drops unknown fields", () => {
+    const bytes = new BinaryWriter()
+      .tag(MapsMessageSchema.field.strStrField.number, WireType.LengthDelimited)
+      .fork()
+      .tag(1, WireType.LengthDelimited)
+      .string("k")
+      .tag(3, WireType.Varint) // unknown field
+      .int32(7)
+      .tag(2, WireType.LengthDelimited)
+      .string("v")
+      .join()
+      .finish();
+    const msg = fromBinary(MapsMessageSchema, bytes);
+    assert.deepStrictEqual(msg.strStrField, { k: "v" });
+    assert.strictEqual(msg.$unknown, undefined);
+  });
+});
+
 void suite("fromBinary recursion limit", () => {
   // Nested TestAllTypesProto3 via its recursive_message field, as wire bytes.
   function makeNestedRecursiveMessage(depth: number): Uint8Array {
