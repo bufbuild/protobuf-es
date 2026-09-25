@@ -1,0 +1,32 @@
+// Copyright 2021-2026 Buf Technologies, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+edition = "2026";
+package spec;
+
+import "google/protobuf/json_enumvalue_options.proto";
+
+// Custom JSON names on enum values via the option (pb.enumvalue.json).string
+enum JsonEnumNamesSeason {
+  JSON_ENUM_NAMES_SEASON_UNSPECIFIED = 0;
+  JSON_ENUM_NAMES_SEASON_SPRING = 1 [(pb.enumvalue.json).string = "primavera"];
+  JSON_ENUM_NAMES_SEASON_SUMMER = 2 [(pb.enumvalue.json).string = "estate"];
+  JSON_ENUM_NAMES_SEASON_FALL = 3;
+}
+
+message JsonEnumNamesMessage {
+  JsonEnumNamesSeason season_field = 1;
+  repeated JsonEnumNamesSeason repeated_field = 2;
+  map<string, JsonEnumNamesSeason> map_field = 3;
+}

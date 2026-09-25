@@ -178,11 +178,11 @@ export function enumToJson<Desc extends DescEnum>(
   if (descEnum.typeName == "google.protobuf.NullValue") {
     return null as EnumJsonType<Desc>;
   }
-  const name = (descEnum.value[value] as DescEnumValue | undefined)?.name;
-  if (name === undefined) {
+  const enumValue = descEnum.value[value] as DescEnumValue | undefined;
+  if (enumValue === undefined) {
     throw new Error(`${value} is not a value in ${descEnum}`);
   }
-  return name as EnumJsonType<Desc>;
+  return (enumValue.jsonName ?? enumValue.name) as EnumJsonType<Desc>;
 }
 
 /**
@@ -613,8 +613,12 @@ function compileEnumValue(
     if (opts.enumAsInteger) {
       return value;
     }
-    // If we don't know the enum value, just return the number.
-    return (desc.value[value] as DescEnumValue | undefined)?.name ?? value;
+    const enumValue = desc.value[value] as DescEnumValue | undefined;
+    if (enumValue === undefined) {
+      // If we don't know the enum value, just return the number.
+      return value;
+    }
+    return enumValue.jsonName ?? enumValue.name;
   };
 }
 
