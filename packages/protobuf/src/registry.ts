@@ -48,6 +48,7 @@ import {
 import { nestedTypes } from "./reflect/nested-types.js";
 import { unsafeIsSetExplicit } from "./reflect/unsafe.js";
 import { protoCamelCase, safeObjectProperty } from "./reflect/names.js";
+import { BinaryReader, WireType } from "./wire/binary-encoding.js";
 
 /**
  * A set of descriptors for messages, enumerations, extensions,
@@ -659,6 +660,7 @@ function addEnum(
             : name.substring(sharedPrefix.length),
         ),
         number: p.number,
+        jsonName: findEnumValueJsonName(p),
         toString() {
           return `enum value ${desc.typeName}.${name}`;
         },
@@ -1061,6 +1063,37 @@ function findEnumSharedPrefix(
     }
   }
   return prefix;
+}
+
+/**
+ * Finds the custom JSON name of an enum value, set with the option
+ * `(pb.enumvalue.json).string` from google/protobuf/json_enumvalue_options.proto.
+ *
+ * Extensions are stored as unknown fields, so we read the option from the
+ * wire format instead of importing the extension, which depends on this file.
+ */
+function findEnumValueJsonName(
+  proto: EnumValueDescriptorProto,
+): string | undefined {
+  const extensionNumber = 998; // extend EnumValueOptions { JsonEnumValueOptions json = 998; }
+  const fieldNumber = 1; // message JsonEnumValueOptions { string string = 1; }
+  let jsonName: string | undefined;
+  for (const uf of proto.options?.$unknown ?? []) {
+    if (uf.no !== extensionNumber || uf.wireType !== WireType.LengthDelimited) {
+      continue;
+    }
+    // Occurrences of a message field are merged, so the last value wins.
+    const reader = new BinaryReader(new BinaryReader(uf.data).bytes());
+    while (reader.pos < reader.len) {
+      const [no, wireType] = reader.tag();
+      if (no === fieldNumber && wireType === WireType.LengthDelimited) {
+        jsonName = reader.string();
+      } else {
+        reader.skip(wireType, no);
+      }
+    }
+  }
+  return jsonName;
 }
 
 /**

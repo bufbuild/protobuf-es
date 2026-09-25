@@ -453,11 +453,19 @@ function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: 
   if (enumeration.typeName == "google.protobuf.NullValue") {
     values.push("null");
   } else {
+    // JSON parsing accepts both names, JSON serialization emits the custom one.
+    const names = new Set<string>();
     for (const v of enumeration.values) {
-      if (enumeration.values.indexOf(v) > 0) {
+      names.add(v.name);
+      if (v.jsonName !== undefined) {
+        names.add(v.jsonName);
+      }
+    }
+    for (const name of names) {
+      if (values.length > 0) {
         values.push(" | ");
       }
-      values.push(f.string(v.name));
+      values.push(f.string(name));
     }
   }
   f.print(f.export(declaration, f.importJson(enumeration).name), " = ", values, ";");

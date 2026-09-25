@@ -241,7 +241,10 @@ export function isEnumJson<Desc extends DescEnum>(
   descEnum: Desc,
   value: unknown,
 ): value is EnumJsonType<Desc> {
-  return undefined !== descEnum.values.find((v) => v.name === value);
+  return (
+    undefined !==
+    descEnum.values.find((v) => v.name === value || v.jsonName === value)
+  );
 }
 
 /**
@@ -780,7 +783,16 @@ function compileEnumConverter(
   ignoreUnknownFields: boolean,
 ) => number | typeof tokenIgnoredUnknownEnum {
   const zero = desc.values[0].number;
-  const values = desc.values;
+  // Custom JSON names never shadow the names of values.
+  const numbers = new Map<string, number>();
+  for (const value of desc.values) {
+    if (value.jsonName !== undefined) {
+      numbers.set(value.jsonName, value.number);
+    }
+  }
+  for (const value of desc.values) {
+    numbers.set(value.name, value.number);
+  }
   return (json, ignoreUnknownFields) => {
     if (json === null) {
       return zero;
@@ -792,9 +804,9 @@ function compileEnumConverter(
         }
         break;
       case "string": {
-        const value = values.find((ev) => ev.name === json);
-        if (value !== undefined) {
-          return value.number;
+        const number = numbers.get(json);
+        if (number !== undefined) {
+          return number;
         }
         if (ignoreUnknownFields) {
           return tokenIgnoredUnknownEnum;
