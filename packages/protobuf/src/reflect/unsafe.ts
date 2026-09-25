@@ -126,6 +126,43 @@ export function unsafeSet(
 }
 
 /**
+ * Set a property, treating __proto__ as an own data property.
+ *
+ * @private
+ */
+export function setOwn(
+  obj: Record<string, unknown>,
+  key: string | number,
+  value: unknown,
+): void {
+  if (key === "__proto__") {
+    Object.defineProperty(obj, "__proto__", {
+      value,
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    });
+  } else {
+    // Plain assignment is the engine's optimized fast path: defineProperty is
+    // several times slower and can deoptimize the object, so we reserve it for
+    // the only key that actually needs it.
+    obj[key] = value;
+  }
+}
+
+/**
+ * Get a property, disregarding inherited members.
+ *
+ * @private
+ */
+export function getOwn(
+  obj: Record<string, unknown>,
+  key: string | number,
+): unknown {
+  return Object.prototype.hasOwnProperty.call(obj, key) ? obj[key] : undefined;
+}
+
+/**
  * Resets the field, so that unsafeIsSet() will return false.
  *
  * @private

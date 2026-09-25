@@ -51,7 +51,7 @@ import { base64Encode } from "./wire/index.js";
 import { createExtensionContainer, getExtension } from "./extensions.js";
 import { checkField, formatVal } from "./reflect/reflect-check.js";
 import { FieldError } from "./reflect/error.js";
-import { unsafeLocal } from "./reflect/unsafe.js";
+import { setOwn, unsafeLocal } from "./reflect/unsafe.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
 import { localMessageMapper } from "./reflect/message.js";
 
@@ -278,9 +278,36 @@ function compileMessage(desc: DescMessage): CompiledJsonWriter {
   // resolve to this instance instead of compiling endlessly.
   compiledWriters.set(desc, compiledWriter);
   for (const field of sortedFields) {
-    fieldWriters.push(compileField(field));
+    const writeField = compileField(field);
+    // Both names a field can be written under are fixed by the schema, so we
+    // decide here, once, whether a field needs the wrapper. Ordinary fields
+    // get the plain writer, keeping the hot path free of any per-write check.
+    fieldWriters.push(
+      field.jsonName === "__proto__" || field.name === "__proto__"
+        ? writeOwnKeys(writeField)
+        : writeField,
+    );
   }
   return compiledWriter;
+}
+
+/**
+ * Wrap a field encoder so that a JSON name or proto name of "__proto__" ends
+ * up as an own property. Assigning that key on a plain object hits the
+ * inherited accessor instead, and the field is silently lost. The encoder
+ * writes to a null-prototype object, where the key is ordinary, and the
+ * result is copied to the real output with setOwn().
+ */
+function writeOwnKeys(
+  writeField: CompiledFieldJsonWriter,
+): CompiledFieldJsonWriter {
+  return (opts, message, json) => {
+    const tmp = Object.create(null) as JsonObject;
+    writeField(opts, message, tmp);
+    for (const key of Object.keys(tmp)) {
+      setOwn(json, key, tmp[key]);
+    }
+  };
 }
 
 /**
@@ -572,7 +599,7 @@ function compileMapValue(
     const jsonObject: JsonObject = {};
     for (let i = 0; i < keys.length; i++) {
       const key = keys[i];
-      jsonObject[key] = writeMapValue(opts, record[key]);
+      setOwn(jsonObject, key, writeMapValue(opts, record[key]));
     }
     return jsonObject;
   };
@@ -832,7 +859,7 @@ function structToJson(val: Struct) {
   const keys = Object.keys(val.fields);
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
-    json[key] = valueToJson(val.fields[key]);
+    setOwn(json, key, valueToJson(val.fields[key]));
   }
   return json;
 }

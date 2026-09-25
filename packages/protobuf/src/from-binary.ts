@@ -17,7 +17,7 @@ import type { Message, MessageShape, UnknownField } from "./types.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
 import type { ReflectMessage } from "./reflect/index.js";
 import { FieldError } from "./reflect/error.js";
-import { unsafeLocal } from "./reflect/unsafe.js";
+import { setOwn, unsafeLocal } from "./reflect/unsafe.js";
 import { localMessageMapper } from "./reflect/message.js";
 import { create } from "./create.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";
@@ -528,9 +528,10 @@ function compileMapFieldReader(
     if (val === undefined) {
       val = valueDefault();
     }
-    // Object property keys are always strings or symbols. Assigning with a
-    // boolean, number, or bigint key implicitly converts it to a string.
-    record[key as string] = val;
+    // Map keys may be booleans, numbers, or bigints. Object keys are strings, so
+    // they are converted implicitly. setOwn() is needed because a key can be
+    // "__proto__".
+    setOwn(record, key as string, val);
   };
 }
 

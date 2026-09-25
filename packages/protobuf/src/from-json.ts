@@ -31,7 +31,7 @@ import {
 } from "./reflect/reflect-check.js";
 import { protoSnakeCase } from "./reflect/names.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
-import { unsafeLocal } from "./reflect/unsafe.js";
+import { setOwn, unsafeLocal } from "./reflect/unsafe.js";
 import { localMessageMapper } from "./reflect/message.js";
 import type {
   EnumJsonType,
@@ -758,9 +758,10 @@ function compileMapFieldReader(
           );
         }
       }
-      // Object property keys are always strings or symbols. Assigning with a
-      // boolean, number, or bigint key implicitly converts it to a string.
-      record[key as string] = toLocalValue(value);
+      // Map keys may be booleans, numbers, or bigints. Object keys are strings, so
+      // they are converted implicitly. setOwn() is needed because a key can be
+      // "__proto__".
+      setOwn(record, key as string, toLocalValue(value));
     }
   };
 }
@@ -1159,9 +1160,12 @@ function anyFromJson(any: Any, json: JsonValue, ctx: JsonReadContext) {
   ) {
     compiledReader(desc)(message, json.value, ctx);
   } else {
-    const copy = Object.assign({}, json);
-    // biome-ignore lint/performance/noDelete: <explanation>
-    delete copy["@type"];
+    const copy: Record<string, JsonValue> = {};
+    for (const key of Object.keys(json)) {
+      if (key !== "@type") {
+        setOwn(copy, key, json[key]);
+      }
+    }
     compiledReader(desc)(message, copy, ctx);
   }
   anyPack(desc, message as unknown as Message, any);
@@ -1263,7 +1267,7 @@ function structFromJson(struct: Struct, json: JsonValue, ctx: JsonReadContext) {
     const key = keys[i];
     const parsedValue = create(ValueSchema);
     valueFromJson(parsedValue, json[key], ctx);
-    struct.fields[key] = parsedValue;
+    setOwn(struct.fields, key, parsedValue);
   }
 }
 
