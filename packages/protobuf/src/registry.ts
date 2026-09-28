@@ -1082,7 +1082,6 @@ function findEnumValueJsonName(
     if (uf.no !== extensionNumber || uf.wireType !== WireType.LengthDelimited) {
       continue;
     }
-    jsonName ??= "";
     // Occurrences of a message field are merged, so the last value wins.
     const reader = new BinaryReader(new BinaryReader(uf.data).bytes());
     while (reader.pos < reader.len) {
