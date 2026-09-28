@@ -821,8 +821,6 @@ void suite("DescEnumValue", () => {
       );
     });
     test("is empty string from option with empty message", async () => {
-      // Matches the C++ implementation: The presence of the extension counts,
-      // even if the field `string` is not set.
       assert.strictEqual(
         await compileJsonName(`[(pb.enumvalue.json) = {}]`),
         "",
