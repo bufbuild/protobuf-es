@@ -218,10 +218,9 @@ export interface DescEnumValue {
    */
   readonly number: number;
   /**
-   * The custom JSON name set with the option `(pb.enumvalue.json).string`,
-   * or undefined if the option is not set.
+   * The name of the enumeration value in JSON.
    */
-  readonly jsonName?: string | undefined;
+  readonly jsonName: string;
   /**
    * Marked as deprecated in the protobuf source.
    */

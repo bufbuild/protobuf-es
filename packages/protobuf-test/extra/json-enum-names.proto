@@ -25,6 +25,14 @@ enum JsonEnumNamesSeason {
   JSON_ENUM_NAMES_SEASON_FALL = 3;
 }
 
+// Aliases must have the same custom JSON name
+enum JsonEnumNamesAlias {
+  option allow_alias = true;
+  JSON_ENUM_NAMES_ALIAS_UNSPECIFIED = 0;
+  JSON_ENUM_NAMES_ALIAS_A = 1 [(pb.enumvalue.json).string = "aliased"];
+  JSON_ENUM_NAMES_ALIAS_B = 1 [(pb.enumvalue.json).string = "aliased"];
+}
+
 message JsonEnumNamesMessage {
   JsonEnumNamesSeason season_field = 1;
   repeated JsonEnumNamesSeason repeated_field = 2;

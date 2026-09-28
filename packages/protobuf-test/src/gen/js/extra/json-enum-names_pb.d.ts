@@ -82,3 +82,30 @@ export enum JsonEnumNamesSeason {
  */
 export declare const JsonEnumNamesSeasonSchema: GenEnum<JsonEnumNamesSeason>;
 
+/**
+ * Aliases must have the same custom JSON name
+ *
+ * @generated from enum spec.JsonEnumNamesAlias
+ */
+export enum JsonEnumNamesAlias {
+  /**
+   * @generated from enum value: JSON_ENUM_NAMES_ALIAS_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: JSON_ENUM_NAMES_ALIAS_A = 1;
+   */
+  A = 1,
+
+  /**
+   * @generated from enum value: JSON_ENUM_NAMES_ALIAS_B = 1;
+   */
+  B = 1,
+}
+
+/**
+ * Describes the enum spec.JsonEnumNamesAlias.
+ */
+export declare const JsonEnumNamesAliasSchema: GenEnum<JsonEnumNamesAlias>;
+

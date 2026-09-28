@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { suite, test } from "node:test";
+import { suite, test, before } from "node:test";
 import * as assert from "node:assert";
 import {
+  type DescEnum,
+  type DescMessage,
   create,
   enumFromJson,
   enumToJson,
@@ -22,125 +24,142 @@ import {
   isEnumJson,
   toJson,
 } from "@bufbuild/protobuf";
-import {
-  JsonEnumNamesMessageSchema,
-  JsonEnumNamesSeason,
-  JsonEnumNamesSeasonSchema,
-} from "./gen/ts/extra/json-enum-names_pb.js";
-import * as json_types_ts_json from "./gen/ts,json_types/extra/json-enum-names_pb.js";
+import { compileMessage } from "./helpers.js";
 
 void suite("enum value option (pb.enumvalue.json).string", () => {
-  test("sets DescEnumValue.jsonName", () => {
-    assert.deepStrictEqual(
-      JsonEnumNamesSeasonSchema.values.map((v) => v.jsonName),
-      [undefined, "primavera", "estate", undefined],
-    );
+  const UNSPECIFIED = 0;
+  const CUSTOM = 1;
+  const EMPTY = 2;
+  const DEFAULT = 3;
+  let messageDesc: DescMessage;
+  let enumDesc: DescEnum;
+  before(async () => {
+    messageDesc = await compileMessage(`
+      edition = "2026";
+      import "google/protobuf/json_enumvalue_options.proto";
+      message M {
+        E singular = 1;
+        repeated E list = 2;
+        map<string, E> map = 3;
+      }
+      enum E {
+        E_UNSPECIFIED = 0;
+        E_CUSTOM = 1 [(pb.enumvalue.json).string = "custom"];
+        E_EMPTY = 2 [(pb.enumvalue.json).string = ""];
+        E_DEFAULT = 3;
+      }
+    `);
+    const field = messageDesc.fields[0];
+    assert.ok(field.fieldKind == "enum");
+    enumDesc = field.enum;
   });
-  test("toJson() uses custom JSON names", () => {
-    const msg = create(JsonEnumNamesMessageSchema, {
-      seasonField: JsonEnumNamesSeason.SPRING,
-      repeatedField: [JsonEnumNamesSeason.SUMMER, JsonEnumNamesSeason.FALL],
-      mapField: {
-        a: JsonEnumNamesSeason.SPRING,
-        b: JsonEnumNamesSeason.UNSPECIFIED,
-      },
+  void suite("toJson()", () => {
+    test("emits custom JSON names", () => {
+      const msg = create(messageDesc, {
+        singular: CUSTOM,
+        list: [CUSTOM, EMPTY, DEFAULT],
+        map: { a: CUSTOM, b: EMPTY, c: DEFAULT },
+      });
+      assert.deepStrictEqual(toJson(messageDesc, msg), {
+        singular: "custom",
+        list: ["custom", "", "E_DEFAULT"],
+        map: { a: "custom", b: "", c: "E_DEFAULT" },
+      });
     });
-    assert.deepStrictEqual(toJson(JsonEnumNamesMessageSchema, msg), {
-      seasonField: "primavera",
-      repeatedField: ["estate", "JSON_ENUM_NAMES_SEASON_FALL"],
-      mapField: { a: "primavera", b: "JSON_ENUM_NAMES_SEASON_UNSPECIFIED" },
-    });
-  });
-  test("toJson() with enumAsInteger ignores custom JSON names", () => {
-    const msg = create(JsonEnumNamesMessageSchema, {
-      seasonField: JsonEnumNamesSeason.SPRING,
-    });
-    assert.deepStrictEqual(
-      toJson(JsonEnumNamesMessageSchema, msg, { enumAsInteger: true }),
-      { seasonField: 1 },
-    );
-  });
-  test("fromJson() parses custom JSON names", () => {
-    const msg = fromJson(JsonEnumNamesMessageSchema, {
-      seasonField: "primavera",
-      repeatedField: ["estate", "JSON_ENUM_NAMES_SEASON_FALL"],
-      mapField: { a: "primavera", b: "JSON_ENUM_NAMES_SEASON_UNSPECIFIED" },
-    });
-    assert.strictEqual(msg.seasonField, JsonEnumNamesSeason.SPRING);
-    assert.deepStrictEqual(msg.repeatedField, [
-      JsonEnumNamesSeason.SUMMER,
-      JsonEnumNamesSeason.FALL,
-    ]);
-    assert.deepStrictEqual(msg.mapField, {
-      a: JsonEnumNamesSeason.SPRING,
-      b: JsonEnumNamesSeason.UNSPECIFIED,
+    test("emits numbers with enumAsInteger", () => {
+      const msg = create(messageDesc, {
+        singular: CUSTOM,
+        list: [CUSTOM, EMPTY],
+        map: { a: CUSTOM },
+      });
+      assert.deepStrictEqual(
+        toJson(messageDesc, msg, { enumAsInteger: true }),
+        { singular: 1, list: [1, 2], map: { a: 1 } },
+      );
     });
   });
-  test("fromJson() parses names of values with custom JSON names", () => {
-    const msg = fromJson(JsonEnumNamesMessageSchema, {
-      seasonField: "JSON_ENUM_NAMES_SEASON_SPRING",
-    });
-    assert.strictEqual(msg.seasonField, JsonEnumNamesSeason.SPRING);
-  });
-  test("fromJson() rejects unknown names", () => {
-    assert.throws(
-      () =>
-        fromJson(JsonEnumNamesMessageSchema, {
-          seasonField: "inverno",
+  void suite("fromJson()", () => {
+    test("parses custom JSON names", () => {
+      const msg = fromJson(messageDesc, {
+        singular: "custom",
+        list: ["custom", "", "E_DEFAULT"],
+        map: { a: "custom", b: "", c: "E_DEFAULT" },
+      });
+      assert.deepStrictEqual(
+        msg,
+        create(messageDesc, {
+          singular: CUSTOM,
+          list: [CUSTOM, EMPTY, DEFAULT],
+          map: { a: CUSTOM, b: EMPTY, c: DEFAULT },
         }),
-      {
-        message:
-          /cannot decode enum spec.JsonEnumNamesSeason from JSON: "inverno"/,
-      },
-    );
-    const msg = fromJson(
-      JsonEnumNamesMessageSchema,
-      { seasonField: "inverno" },
-      { ignoreUnknownFields: true },
-    );
-    assert.strictEqual(msg.seasonField, JsonEnumNamesSeason.UNSPECIFIED);
+      );
+    });
+    test("parses Protobuf names of values with custom JSON names", () => {
+      const msg = fromJson(messageDesc, {
+        singular: "E_CUSTOM",
+        list: ["E_CUSTOM", "E_EMPTY"],
+        map: { a: "E_CUSTOM", b: "E_EMPTY" },
+      });
+      assert.deepStrictEqual(
+        msg,
+        create(messageDesc, {
+          singular: CUSTOM,
+          list: [CUSTOM, EMPTY],
+          map: { a: CUSTOM, b: EMPTY },
+        }),
+      );
+    });
+    test("rejects unknown names", () => {
+      assert.throws(() => fromJson(messageDesc, { singular: "unknown" }), {
+        message: /cannot decode enum E from JSON: "unknown"/,
+      });
+    });
+    test("ignores unknown names with ignoreUnknownFields", () => {
+      const msg = fromJson(
+        messageDesc,
+        { singular: "unknown" },
+        { ignoreUnknownFields: true },
+      );
+      assert.deepStrictEqual(msg, create(messageDesc));
+    });
   });
-  test("enumToJson() returns custom JSON name", () => {
-    const json: json_types_ts_json.JsonEnumNamesSeasonJson = enumToJson(
-      json_types_ts_json.JsonEnumNamesSeasonSchema,
-      json_types_ts_json.JsonEnumNamesSeason.SPRING,
-    );
-    assert.strictEqual(json, "primavera");
+  void suite("enumToJson()", () => {
+    test("returns custom JSON name", () => {
+      assert.strictEqual(enumToJson(enumDesc, CUSTOM), "custom");
+      assert.strictEqual(enumToJson(enumDesc, EMPTY), "");
+    });
+    test("returns Protobuf name without custom JSON name", () => {
+      assert.strictEqual(enumToJson(enumDesc, UNSPECIFIED), "E_UNSPECIFIED");
+      assert.strictEqual(enumToJson(enumDesc, DEFAULT), "E_DEFAULT");
+    });
   });
-  test("enumFromJson() parses custom JSON name and name", () => {
-    let e: json_types_ts_json.JsonEnumNamesSeason = enumFromJson(
-      json_types_ts_json.JsonEnumNamesSeasonSchema,
-      "primavera",
-    );
-    assert.strictEqual(e, json_types_ts_json.JsonEnumNamesSeason.SPRING);
-    e = enumFromJson(
-      json_types_ts_json.JsonEnumNamesSeasonSchema,
-      "JSON_ENUM_NAMES_SEASON_SPRING",
-    );
-    assert.strictEqual(e, json_types_ts_json.JsonEnumNamesSeason.SPRING);
+  void suite("enumFromJson()", () => {
+    test("parses custom JSON name", () => {
+      assert.strictEqual(enumFromJson(enumDesc, "custom"), CUSTOM);
+      assert.strictEqual(enumFromJson(enumDesc, ""), EMPTY);
+    });
+    test("parses Protobuf name of value with custom JSON name", () => {
+      assert.strictEqual(enumFromJson(enumDesc, "E_CUSTOM"), CUSTOM);
+      assert.strictEqual(enumFromJson(enumDesc, "E_EMPTY"), EMPTY);
+    });
   });
-  test("isEnumJson() accepts custom JSON name and name", () => {
-    assert.ok(
-      isEnumJson(json_types_ts_json.JsonEnumNamesSeasonSchema, "primavera"),
-    );
-    assert.ok(
-      isEnumJson(
-        json_types_ts_json.JsonEnumNamesSeasonSchema,
-        "JSON_ENUM_NAMES_SEASON_SPRING",
-      ),
-    );
-    assert.strictEqual(
-      isEnumJson(json_types_ts_json.JsonEnumNamesSeasonSchema, "inverno"),
-      false,
-    );
-  });
-  test("JSON type includes custom JSON names and names", () => {
-    const json: json_types_ts_json.JsonEnumNamesMessageJson = {
-      seasonField: "primavera",
-      repeatedField: ["JSON_ENUM_NAMES_SEASON_SPRING", "estate"],
-      // @ts-expect-error TS2322
-      mapField: { a: "inverno" },
-    };
-    assert.ok(json);
+  void suite("isEnumJson()", () => {
+    test("returns true for custom JSON name", () => {
+      assert.strictEqual(isEnumJson(enumDesc, "custom"), true);
+      assert.strictEqual(isEnumJson(enumDesc, ""), true);
+    });
+    test("returns true for Protobuf name without custom JSON name", () => {
+      assert.strictEqual(isEnumJson(enumDesc, "E_DEFAULT"), true);
+    });
+    test("returns false for Protobuf name of value with custom JSON name", () => {
+      assert.strictEqual(isEnumJson(enumDesc, "E_CUSTOM"), false);
+      assert.strictEqual(isEnumJson(enumDesc, "E_EMPTY"), false);
+    });
+    test("returns false for other values", () => {
+      assert.strictEqual(isEnumJson(enumDesc, "unknown"), false);
+      assert.strictEqual(isEnumJson(enumDesc, CUSTOM), false);
+      assert.strictEqual(isEnumJson(enumDesc, undefined), false);
+      assert.strictEqual(isEnumJson(enumDesc, null), false);
+    });
   });
 });

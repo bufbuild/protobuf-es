@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file extra/json-enum-names.proto.
  */
 export const file_extra_json_enum_names: GenFile = /*@__PURE__*/
-  fileDesc("ChtleHRyYS9qc29uLWVudW0tbmFtZXMucHJvdG8SBHNwZWMigwIKFEpzb25FbnVtTmFtZXNNZXNzYWdlEi8KDHNlYXNvbl9maWVsZBgBIAEoDjIZLnNwZWMuSnNvbkVudW1OYW1lc1NlYXNvbhIxCg5yZXBlYXRlZF9maWVsZBgCIAMoDjIZLnNwZWMuSnNvbkVudW1OYW1lc1NlYXNvbhI7CgltYXBfZmllbGQYAyADKAsyKC5zcGVjLkpzb25FbnVtTmFtZXNNZXNzYWdlLk1hcEZpZWxkRW50cnkaSgoNTWFwRmllbGRFbnRyeRILCgNrZXkYASABKAkSKAoFdmFsdWUYAiABKA4yGS5zcGVjLkpzb25FbnVtTmFtZXNTZWFzb246AjgBKsEBChNKc29uRW51bU5hbWVzU2Vhc29uEiYKIkpTT05fRU5VTV9OQU1FU19TRUFTT05fVU5TUEVDSUZJRUQQABIxCh1KU09OX0VOVU1fTkFNRVNfU0VBU09OX1NQUklORxABGg6yPgsKCXByaW1hdmVyYRIuCh1KU09OX0VOVU1fTkFNRVNfU0VBU09OX1NVTU1FUhACGguyPggKBmVzdGF0ZRIfChtKU09OX0VOVU1fTkFNRVNfU0VBU09OX0ZBTEwQA2IIZWRpdGlvbnNw6gc", [file_google_protobuf_json_enumvalue_options]);
+  fileDesc("ChtleHRyYS9qc29uLWVudW0tbmFtZXMucHJvdG8SBHNwZWMigwIKFEpzb25FbnVtTmFtZXNNZXNzYWdlEi8KDHNlYXNvbl9maWVsZBgBIAEoDjIZLnNwZWMuSnNvbkVudW1OYW1lc1NlYXNvbhIxCg5yZXBlYXRlZF9maWVsZBgCIAMoDjIZLnNwZWMuSnNvbkVudW1OYW1lc1NlYXNvbhI7CgltYXBfZmllbGQYAyADKAsyKC5zcGVjLkpzb25FbnVtTmFtZXNNZXNzYWdlLk1hcEZpZWxkRW50cnkaSgoNTWFwRmllbGRFbnRyeRILCgNrZXkYASABKAkSKAoFdmFsdWUYAiABKA4yGS5zcGVjLkpzb25FbnVtTmFtZXNTZWFzb246AjgBKsEBChNKc29uRW51bU5hbWVzU2Vhc29uEiYKIkpTT05fRU5VTV9OQU1FU19TRUFTT05fVU5TUEVDSUZJRUQQABIxCh1KU09OX0VOVU1fTkFNRVNfU0VBU09OX1NQUklORxABGg6yPgsKCXByaW1hdmVyYRIuCh1KU09OX0VOVU1fTkFNRVNfU0VBU09OX1NVTU1FUhACGguyPggKBmVzdGF0ZRIfChtKU09OX0VOVU1fTkFNRVNfU0VBU09OX0ZBTEwQAyqVAQoSSnNvbkVudW1OYW1lc0FsaWFzEiUKIUpTT05fRU5VTV9OQU1FU19BTElBU19VTlNQRUNJRklFRBAAEikKF0pTT05fRU5VTV9OQU1FU19BTElBU19BEAEaDLI+CQoHYWxpYXNlZBIpChdKU09OX0VOVU1fTkFNRVNfQUxJQVNfQhABGgyyPgkKB2FsaWFzZWQaAhABYghlZGl0aW9uc3DqBw", [file_google_protobuf_json_enumvalue_options]);
 
 /**
  * @generated from message spec.JsonEnumNamesMessage
@@ -86,4 +86,32 @@ export enum JsonEnumNamesSeason {
  */
 export const JsonEnumNamesSeasonSchema: GenEnum<JsonEnumNamesSeason> = /*@__PURE__*/
   enumDesc(file_extra_json_enum_names, 0);
+
+/**
+ * Aliases must have the same custom JSON name
+ *
+ * @generated from enum spec.JsonEnumNamesAlias
+ */
+export enum JsonEnumNamesAlias {
+  /**
+   * @generated from enum value: JSON_ENUM_NAMES_ALIAS_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: JSON_ENUM_NAMES_ALIAS_A = 1;
+   */
+  A = 1,
+
+  /**
+   * @generated from enum value: JSON_ENUM_NAMES_ALIAS_B = 1;
+   */
+  B = 1,
+}
+
+/**
+ * Describes the enum spec.JsonEnumNamesAlias.
+ */
+export const JsonEnumNamesAliasSchema: GenEnum<JsonEnumNamesAlias> = /*@__PURE__*/
+  enumDesc(file_extra_json_enum_names, 1);
 

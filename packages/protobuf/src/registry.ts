@@ -660,7 +660,7 @@ function addEnum(
             : name.substring(sharedPrefix.length),
         ),
         number: p.number,
-        jsonName: findEnumValueJsonName(p),
+        jsonName: findEnumValueJsonName(p) ?? name,
         toString() {
           return `enum value ${desc.typeName}.${name}`;
         },
@@ -1082,6 +1082,7 @@ function findEnumValueJsonName(
     if (uf.no !== extensionNumber || uf.wireType !== WireType.LengthDelimited) {
       continue;
     }
+    jsonName ??= "";
     // Occurrences of a message field are merged, so the last value wins.
     const reader = new BinaryReader(new BinaryReader(uf.data).bytes());
     while (reader.pos < reader.len) {

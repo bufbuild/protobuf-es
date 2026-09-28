@@ -25,12 +25,15 @@ import {
   type DescOneof,
   type DescService,
   ScalarType,
+  create,
   createMutableRegistry,
 } from "@bufbuild/protobuf";
 import { protoCamelCase } from "@bufbuild/protobuf/reflect";
+import { BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
 import {
   type FileDescriptorSet,
   Edition,
+  FileDescriptorProtoSchema,
   FeatureSet_FieldPresence,
   MethodOptions_IdempotencyLevel,
 } from "@bufbuild/protobuf/wkt";
@@ -784,6 +787,92 @@ void suite("DescEnumValue", () => {
         assert.strictEqual(descEnum.values[0].name, name);
       });
     }
+  });
+  void suite("jsonName", () => {
+    async function compileJsonName(options: string) {
+      const descEnum = await compileEnum(`
+        edition = "2026";
+        import "google/protobuf/json_enumvalue_options.proto";
+        enum E {
+          E_UNSPECIFIED = 0 ${options};
+        }
+      `);
+      return descEnum.values[0].jsonName;
+    }
+    test("is proto name by default", async () => {
+      assert.strictEqual(await compileJsonName(""), "E_UNSPECIFIED");
+    });
+    test("is custom name from option", async () => {
+      assert.strictEqual(
+        await compileJsonName(`[(pb.enumvalue.json).string = "custom"]`),
+        "custom",
+      );
+    });
+    test("is custom name from option with message literal", async () => {
+      assert.strictEqual(
+        await compileJsonName(`[(pb.enumvalue.json) = {string: "custom"}]`),
+        "custom",
+      );
+    });
+    test("is empty string from option with empty string", async () => {
+      assert.strictEqual(
+        await compileJsonName(`[(pb.enumvalue.json).string = ""]`),
+        "",
+      );
+    });
+    test("is empty string from option with empty message", async () => {
+      // Matches the C++ implementation: The presence of the extension counts,
+      // even if the field `string` is not set.
+      assert.strictEqual(
+        await compileJsonName(`[(pb.enumvalue.json) = {}]`),
+        "",
+      );
+    });
+    test("is custom name with other options", async () => {
+      assert.strictEqual(
+        await compileJsonName(
+          `[deprecated = true, (pb.enumvalue.json).string = "custom", debug_redact = true]`,
+        ),
+        "custom",
+      );
+    });
+    test("merges multiple occurrences of the extension", () => {
+      // Protobuf compilers emit the extension once, but the binary format
+      // permits multiple occurrences. They are merged, so the last value wins.
+      const occurrence = (jsonName: string) => ({
+        no: 998,
+        wireType: WireType.LengthDelimited,
+        data: new BinaryWriter()
+          .bytes(
+            new BinaryWriter()
+              .tag(1, WireType.LengthDelimited)
+              .string(jsonName)
+              .finish(),
+          )
+          .finish(),
+      });
+      const file = create(FileDescriptorProtoSchema, {
+        name: "input.proto",
+        syntax: "proto3",
+        enumType: [
+          {
+            name: "E",
+            value: [
+              {
+                name: "E_UNSPECIFIED",
+                number: 0,
+                options: {},
+              },
+            ],
+          },
+        ],
+      });
+      const options = file.enumType[0].value[0].options;
+      assert.ok(options);
+      options.$unknown = [occurrence("first"), occurrence("second")];
+      const descEnum = createFileRegistry(file, () => undefined).getEnum("E");
+      assert.strictEqual(descEnum?.values[0].jsonName, "second");
+    });
   });
   void suite("localName", () => {
     test("does not change case", async () => {

@@ -102,10 +102,44 @@ export enum JsonEnumNamesSeason {
  *
  * @generated from enum spec.JsonEnumNamesSeason
  */
-export declare type JsonEnumNamesSeasonJson = "JSON_ENUM_NAMES_SEASON_UNSPECIFIED" | "JSON_ENUM_NAMES_SEASON_SPRING" | "primavera" | "JSON_ENUM_NAMES_SEASON_SUMMER" | "estate" | "JSON_ENUM_NAMES_SEASON_FALL";
+export declare type JsonEnumNamesSeasonJson = "JSON_ENUM_NAMES_SEASON_UNSPECIFIED" | "primavera" | "estate" | "JSON_ENUM_NAMES_SEASON_FALL";
 
 /**
  * Describes the enum spec.JsonEnumNamesSeason.
  */
 export declare const JsonEnumNamesSeasonSchema: GenEnum<JsonEnumNamesSeason, JsonEnumNamesSeasonJson>;
+
+/**
+ * Aliases must have the same custom JSON name
+ *
+ * @generated from enum spec.JsonEnumNamesAlias
+ */
+export enum JsonEnumNamesAlias {
+  /**
+   * @generated from enum value: JSON_ENUM_NAMES_ALIAS_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: JSON_ENUM_NAMES_ALIAS_A = 1;
+   */
+  A = 1,
+
+  /**
+   * @generated from enum value: JSON_ENUM_NAMES_ALIAS_B = 1;
+   */
+  B = 1,
+}
+
+/**
+ * Aliases must have the same custom JSON name
+ *
+ * @generated from enum spec.JsonEnumNamesAlias
+ */
+export declare type JsonEnumNamesAliasJson = "JSON_ENUM_NAMES_ALIAS_UNSPECIFIED" | "aliased";
+
+/**
+ * Describes the enum spec.JsonEnumNamesAlias.
+ */
+export declare const JsonEnumNamesAliasSchema: GenEnum<JsonEnumNamesAlias, JsonEnumNamesAliasJson>;
 
