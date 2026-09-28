@@ -22,6 +22,7 @@ import {
 import type { Message, MessageInitShape, MessageShape } from "./types.js";
 import { type ScalarValue, scalarZeroValue } from "./reflect/scalar.js";
 import { isObject } from "./reflect/guard.js";
+import { setOwn } from "./reflect/unsafe.js";
 import { isWrapperDesc } from "./wkt/wrappers.js";
 
 // bootstrap-inject google.protobuf.Edition.EDITION_PROTO3: const $name = $number;
@@ -150,7 +151,7 @@ function compileCreate(desc: DescMessage): CompiledCreate {
             const converted: Record<string, unknown> = {};
             const keys = Object.keys(initValue);
             for (let k = 0; k < keys.length; k++) {
-              converted[keys[k]] = property.convert(initValue[keys[k]]);
+              setOwn(converted, keys[k], property.convert(initValue[keys[k]]));
             }
             message[name] = converted;
           }
