@@ -453,11 +453,18 @@ function generateEnumJsonShape(f: GeneratedFile, enumeration: DescEnum, target: 
   if (enumeration.typeName == "google.protobuf.NullValue") {
     values.push("null");
   } else {
+    // The JSON type matches the output of toJson(), which emits the custom JSON
+    // name if one is set. We omit the Protobuf name from the type, even though
+    // fromJson() accepts it.
+    const names = new Set<string>();
     for (const v of enumeration.values) {
-      if (enumeration.values.indexOf(v) > 0) {
+      names.add(v.jsonName);
+    }
+    for (const name of names) {
+      if (values.length > 0) {
         values.push(" | ");
       }
-      values.push(f.string(v.name));
+      values.push(f.string(name));
     }
   }
   f.print(f.export(declaration, f.importJson(enumeration).name), " = ", values, ";");

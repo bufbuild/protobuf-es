@@ -236,12 +236,17 @@ export function enumFromJson<Desc extends DescEnum>(
 
 /**
  * Is the given value a JSON enum value?
+ *
+ * For an enum value with a custom JSON name set with the option
+ * `(pb.enumvalue.json).string`, this function only returns true for the
+ * custom name, while fromJson() and enumFromJson() also accept the Protobuf
+ * name.
  */
 export function isEnumJson<Desc extends DescEnum>(
   descEnum: Desc,
   value: unknown,
 ): value is EnumJsonType<Desc> {
-  return undefined !== descEnum.values.find((v) => v.name === value);
+  return descEnum.values.some((v) => v.jsonName === value);
 }
 
 /**
@@ -781,7 +786,16 @@ function compileEnumConverter(
   ignoreUnknownFields: boolean,
 ) => number | typeof tokenIgnoredUnknownEnum {
   const zero = desc.values[0].number;
-  const values = desc.values;
+  // Protobuf compilers reject a custom JSON name that equals the Protobuf name
+  // of another value. As a fallback, the Protobuf name takes precedence, so we
+  // add Protobuf names last.
+  const numbers = new Map<string, number>();
+  for (const value of desc.values) {
+    numbers.set(value.jsonName, value.number);
+  }
+  for (const value of desc.values) {
+    numbers.set(value.name, value.number);
+  }
   return (json, ignoreUnknownFields) => {
     if (json === null) {
       return zero;
@@ -793,9 +807,9 @@ function compileEnumConverter(
         }
         break;
       case "string": {
-        const value = values.find((ev) => ev.name === json);
-        if (value !== undefined) {
-          return value.number;
+        const number = numbers.get(json);
+        if (number !== undefined) {
+          return number;
         }
         if (ignoreUnknownFields) {
           return tokenIgnoredUnknownEnum;

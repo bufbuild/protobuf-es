@@ -785,6 +785,53 @@ void suite("DescEnumValue", () => {
       });
     }
   });
+  void suite("jsonName", () => {
+    async function compileJsonName(options: string) {
+      const descEnum = await compileEnum(`
+        edition = "2026";
+        import "google/protobuf/json_enumvalue_options.proto";
+        enum E {
+          E_UNSPECIFIED = 0 ${options};
+        }
+      `);
+      return descEnum.values[0].jsonName;
+    }
+    test("is proto name by default", async () => {
+      assert.strictEqual(await compileJsonName(""), "E_UNSPECIFIED");
+    });
+    test("is custom name from option", async () => {
+      assert.strictEqual(
+        await compileJsonName(`[(pb.enumvalue.json).string = "custom"]`),
+        "custom",
+      );
+    });
+    test("is custom name from option with message literal", async () => {
+      assert.strictEqual(
+        await compileJsonName(`[(pb.enumvalue.json) = {string: "custom"}]`),
+        "custom",
+      );
+    });
+    test("is empty string from option with empty string", async () => {
+      assert.strictEqual(
+        await compileJsonName(`[(pb.enumvalue.json).string = ""]`),
+        "",
+      );
+    });
+    test("is proto name from option with empty message", async () => {
+      assert.strictEqual(
+        await compileJsonName(`[(pb.enumvalue.json) = {}]`),
+        "E_UNSPECIFIED",
+      );
+    });
+    test("is custom name with other options", async () => {
+      assert.strictEqual(
+        await compileJsonName(
+          `[deprecated = true, (pb.enumvalue.json).string = "custom", debug_redact = true]`,
+        ),
+        "custom",
+      );
+    });
+  });
   void suite("localName", () => {
     test("does not change case", async () => {
       const value = (

@@ -218,6 +218,10 @@ export interface DescEnumValue {
    */
   readonly number: number;
   /**
+   * The name of the enumeration value in JSON.
+   */
+  readonly jsonName: string;
+  /**
    * Marked as deprecated in the protobuf source.
    */
   readonly deprecated: boolean;
