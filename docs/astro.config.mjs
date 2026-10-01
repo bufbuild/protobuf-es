@@ -102,6 +102,7 @@ export default defineConfig({
               ],
             },
             { slug: "reference/plugin-options" },
+            { slug: "reference/environments" },
             { slug: "reference/well-known-types" },
             { slug: "reference/json-types" },
             { slug: "reference/valid-types" },
