@@ -512,7 +512,7 @@ function compileMapFieldReader(
     const end = reader.pos + len;
     while (reader.pos < end) {
       // Map entries have the key in field 1, and the value in field 2.
-      const [fieldNo] = reader.tag();
+      const [fieldNo, wireType] = reader.tag();
       switch (fieldNo) {
         case 1:
           key = readKey(reader);
@@ -520,6 +520,8 @@ function compileMapFieldReader(
         case 2:
           val = readValue(reader, ctx, val);
           break;
+        default:
+          reader.skip(wireType, fieldNo, ctx.recursionLimit - ctx.depth);
       }
     }
     if (key === undefined) {
