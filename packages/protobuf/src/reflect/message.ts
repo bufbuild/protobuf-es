@@ -16,6 +16,7 @@ import type { DescField, DescMessage } from "../descriptors.js";
 import type { JsonObject, JsonValue } from "../json-value.js";
 import { create } from "../create.js";
 import { isObject } from "./guard.js";
+import { setOwn } from "./unsafe.js";
 import { isWrapperDesc } from "../wkt/wrappers.js";
 import type {
   ListValue,
@@ -133,7 +134,7 @@ export function wktStructToReflect(json: JsonValue): Struct {
   };
   if (isObject(json)) {
     for (const k of Object.keys(json)) {
-      struct.fields[k] = wktValueToReflect(json[k]);
+      setOwn(struct.fields, k, wktValueToReflect(json[k]));
     }
   }
   return struct;
@@ -147,7 +148,7 @@ export function wktStructToReflect(json: JsonValue): Struct {
 export function wktStructToLocal(val: Struct): JsonObject {
   const json: JsonObject = {};
   for (const k of Object.keys(val.fields)) {
-    json[k] = wktValueToLocal(val.fields[k]);
+    setOwn(json, k, wktValueToLocal(val.fields[k]));
   }
   return json;
 }

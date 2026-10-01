@@ -67,6 +67,7 @@ import {
   NullValue,
 } from "@bufbuild/protobuf/wkt";
 import * as json_types_ts_json from "./gen/ts,json_types/extra/json_types_pb.js";
+import * as json_enum_names_ts_json from "./gen/ts,json_types/extra/json-enum-names_pb.js";
 
 void suite("JSON types", () => {
   void test("toJson() returns JSON type for standard options", () => {
@@ -363,6 +364,74 @@ void suite("JSON types", () => {
         },
         { message: /cannot decode enum spec.JsonTypeEnum from JSON: "FOO"/ },
       );
+    });
+  });
+  void suite("enum with custom JSON names", () => {
+    type SeasonJson =
+      | "JSON_ENUM_NAMES_SEASON_UNSPECIFIED"
+      | "primavera"
+      | "estate"
+      | "JSON_ENUM_NAMES_SEASON_FALL";
+    test("JSON type is the union of JSON names", () => {
+      function f(
+        a: EnumJsonType<
+          typeof json_enum_names_ts_json.JsonEnumNamesSeasonSchema
+        >,
+        b: json_enum_names_ts_json.JsonEnumNamesSeasonJson,
+        c: SeasonJson,
+      ) {
+        a = b;
+        b = a;
+        a = c;
+        c = a;
+        // @ts-expect-error TS2322
+        a = "JSON_ENUM_NAMES_SEASON_SPRING";
+        return [a, b, c];
+      }
+      assert.ok(f);
+    });
+    test("JSON type of aliases is deduplicated", () => {
+      function f(
+        a: json_enum_names_ts_json.JsonEnumNamesAliasJson,
+        b: "JSON_ENUM_NAMES_ALIAS_UNSPECIFIED" | "aliased",
+      ) {
+        a = b;
+        b = a;
+        return [a, b];
+      }
+      assert.ok(f);
+    });
+    test("message JSON type uses JSON names", () => {
+      const json: json_enum_names_ts_json.JsonEnumNamesMessageJson = {
+        seasonField: "primavera",
+        repeatedField: ["estate", "JSON_ENUM_NAMES_SEASON_FALL"],
+        // @ts-expect-error TS2322
+        mapField: { a: "JSON_ENUM_NAMES_SEASON_SPRING" },
+      };
+      assert.ok(json);
+    });
+    test("enumToJson() returns JSON type", () => {
+      const json: SeasonJson = enumToJson(
+        json_enum_names_ts_json.JsonEnumNamesSeasonSchema,
+        json_enum_names_ts_json.JsonEnumNamesSeason.SPRING,
+      );
+      assert.strictEqual(json, "primavera");
+    });
+    test("enumFromJson() accepts JSON type", () => {
+      const e: json_enum_names_ts_json.JsonEnumNamesSeason = enumFromJson(
+        json_enum_names_ts_json.JsonEnumNamesSeasonSchema,
+        "primavera",
+      );
+      assert.strictEqual(e, json_enum_names_ts_json.JsonEnumNamesSeason.SPRING);
+    });
+    test("isEnumJson() narrows to JSON type", () => {
+      const str: string = "primavera";
+      if (isEnumJson(json_enum_names_ts_json.JsonEnumNamesSeasonSchema, str)) {
+        const narrowed: SeasonJson = str;
+        assert.strictEqual(narrowed, "primavera");
+      } else {
+        assert.fail("expected isEnumJson() to return true");
+      }
     });
   });
   void suite("isEnumJson()", () => {

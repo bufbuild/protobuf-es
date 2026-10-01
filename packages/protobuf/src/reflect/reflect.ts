@@ -28,6 +28,8 @@ import type {
   ReflectMessage,
 } from "./reflect-types.js";
 import {
+  getOwn,
+  setOwn,
   unsafeClear,
   unsafeGet,
   unsafeIsSet,
@@ -345,7 +347,7 @@ class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
         throw err;
       }
     }
-    this.obj[mapKeyToLocal(key)] = mapValueToLocal(this._field, value);
+    setOwn(this.obj, mapKeyToLocal(key), mapValueToLocal(this._field, value));
     return this;
   }
   delete(key: K) {
@@ -362,7 +364,7 @@ class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
     }
   }
   get(key: K) {
-    let val = this.obj[mapKeyToLocal(key)];
+    let val = getOwn(this.obj, mapKeyToLocal(key));
     if (val !== undefined) {
       val = mapValueToReflect(this._field, val, this.check);
     }
