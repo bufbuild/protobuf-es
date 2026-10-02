@@ -84,7 +84,7 @@ By default, `protoc-gen-es` doesn't add file extensions to import paths. However
 
 - `import_extension=none`: Doesn't add an extension. (Default)
 - `import_extension=js`: Adds the `.js` extension.
-- `import_extension=ts`. Adds the `.ts` extension.
+- `import_extension=ts`: Adds the `.ts` extension.
 
 ### `map_imports`
 
@@ -115,7 +115,7 @@ By default, `protoc-gen-es` omits empty files from the plugin output. This optio
 
 ### `elide_plugin_version=true`
 
-By default, [protoc-gen-es] inserts its version number at the top of each generated file. To remove the version number, set `elide_plugin_version=true`. Be aware that we recommend to keep plugin and runtime versions in sync, and that this option can make it more difficult to spot a mismatch.
+By default, `protoc-gen-es` inserts its version number at the top of each generated file. To remove the version number, set `elide_plugin_version=true`. Be aware that we recommend to keep plugin and runtime versions in sync, and that this option can make it more difficult to spot a mismatch.
 
 ### `json_types=true`
 
@@ -126,7 +126,7 @@ Generates JSON types for every Protobuf message and enumeration. Calling `toJson
 Generates a Valid type for every Protobuf message. Possible values:
 
 - `valid_types=legacy_required`: Message fields with the `required` label, or the Edition feature `features.field_presence=LEGACY_REQUIRED`, are generated as non-optional properties.
-- `valid_types=protovalidate_required`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required)    rule are generated as non-optional properties.
+- `valid_types=protovalidate_required`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required) are generated as non-optional properties.
 
 You can combine both options with `+`—for example, `valid_types=legacy_required+protovalidate_required`.
 
@@ -134,4 +134,9 @@ Learn more about [Valid types](https://protobufes.com/reference/valid-types/).
 
 ### `erasable_syntax=true` (experimental)
 
-Generates Protobuf enums as an object with `as const` for [running TypeScript natively in Node.js](https://nodejs.org/learn/typescript/run-natively), and for compatibility with the `tsconfig` option [erasableSyntaxOnly](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly). See [Enums vs Objects](https://protobufes.com/reference/generated-code/#enums-vs-objects) for details.
+Generates Protobuf enums as an object with `as const` instead of a TypeScript `enum`. See [Enums vs Objects](https://protobufes.com/reference/generated-code/#enums-vs-objects) for details.
+
+Use this option to:
+
+- Run TypeScript [natively in Node.js](https://nodejs.org/learn/typescript/run-natively). Combine it with `target=ts` and `import_extension=ts`.
+- Compile with the `tsconfig` option [erasableSyntaxOnly](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly).
