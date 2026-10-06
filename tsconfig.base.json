@@ -13,8 +13,6 @@
       "ES2018.AsyncIterable",
     ],
     "declaration": true,
-    // Prevent tsc from picking up @types/node and others
-    "types": [],
     // As strict as possible
     "strict": true,
     "exactOptionalPropertyTypes": true,
