@@ -16,7 +16,7 @@
     "@vercel/analytics": "^2.0.1",
     "astro": "^7.3.2",
     "remark-heading-id": "^1.0.1",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "starlight-links-validator": "^0.20.1"
   }
 }
