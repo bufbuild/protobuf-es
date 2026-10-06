@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Timestamp } from "./gen/google/protobuf/timestamp_pb.js";
-import { TimestampSchema } from "./gen/google/protobuf/timestamp_pb.js";
+import type { Timestamp } from "./google/protobuf/timestamp_pb.js";
+import { TimestampSchema } from "./google/protobuf/timestamp_pb.js";
 import { create } from "../create.js";
 import { protoInt64 } from "../proto-int64.js";
 

@@ -15,7 +15,6 @@
 import {
   symbols as symbolsV2,
   packageName as packageNameV1,
-  wktPublicImportPaths as wktPublicImportPathsV2,
 } from "../codegenv2/symbols.js";
 
 /**
@@ -26,7 +25,23 @@ export const packageName = packageNameV1;
 /**
  * @private
  */
-export const wktPublicImportPaths = wktPublicImportPathsV2;
+export const wktPublicImportPaths: Readonly<Record<string, string>> = {
+  "google/protobuf/compiler/plugin.proto": packageName + "/wkt",
+  "google/protobuf/any.proto": packageName + "/wkt",
+  "google/protobuf/api.proto": packageName + "/wkt",
+  "google/protobuf/cpp_features.proto": packageName + "/wkt",
+  "google/protobuf/descriptor.proto": packageName + "/wkt",
+  "google/protobuf/duration.proto": packageName + "/wkt",
+  "google/protobuf/empty.proto": packageName + "/wkt",
+  "google/protobuf/field_mask.proto": packageName + "/wkt",
+  "google/protobuf/go_features.proto": packageName + "/wkt",
+  "google/protobuf/java_features.proto": packageName + "/wkt",
+  "google/protobuf/source_context.proto": packageName + "/wkt",
+  "google/protobuf/struct.proto": packageName + "/wkt",
+  "google/protobuf/timestamp.proto": packageName + "/wkt",
+  "google/protobuf/type.proto": packageName + "/wkt",
+  "google/protobuf/wrappers.proto": packageName + "/wkt",
+};
 
 /**
  * @private

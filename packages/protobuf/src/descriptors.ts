@@ -24,7 +24,7 @@ import type {
   MethodOptions_IdempotencyLevel,
   OneofDescriptorProto,
   ServiceDescriptorProto,
-} from "./wkt/gen/google/protobuf/descriptor_pb.js";
+} from "./wkt/google/protobuf/descriptor_pb.js";
 import type { ScalarValue } from "./reflect/scalar.js";
 
 export type SupportedEdition = Extract<
@@ -33,6 +33,7 @@ export type SupportedEdition = Extract<
   | typeof Edition.EDITION_PROTO3
   | typeof Edition.EDITION_2023
   | typeof Edition.EDITION_2024
+  | typeof Edition.EDITION_2026
 >;
 
 type SupportedFieldPresence = Extract<
@@ -216,6 +217,10 @@ export interface DescEnumValue {
    * The numeric enumeration value, as specified in the protobuf source.
    */
   readonly number: number;
+  /**
+   * The name of the enumeration value in JSON.
+   */
+  readonly jsonName: string;
   /**
    * Marked as deprecated in the protobuf source.
    */

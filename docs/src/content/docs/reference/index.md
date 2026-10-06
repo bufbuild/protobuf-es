@@ -10,6 +10,7 @@ Reference pages cover exact generated shapes, plugin options, runtime types, and
 - [Field types](/reference/generated-code/field-types/): scalar mappings, message fields, enum fields, repeated fields, map fields, and well-known type field shapes.
 - [Generated features](/reference/generated-code/features/): oneofs, proto2 groups, required fields, optional fields, services, reserved names, nested types, comments, and packages.
 - [Plugin options](/reference/plugin-options/): `target`, import extensions, CommonJS output, empty files, `ts_nocheck`, plugin version elision, JSON types, map imports, and Valid types.
+- [Bundlers and runtimes](/reference/environments/): generator options for Vite, Next.js, Node.js, Deno, and Bun.
 
 ## Runtime
 

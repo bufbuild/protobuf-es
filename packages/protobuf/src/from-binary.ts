@@ -17,7 +17,7 @@ import type { Message, MessageShape, UnknownField } from "./types.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
 import type { ReflectMessage } from "./reflect/index.js";
 import { FieldError } from "./reflect/error.js";
-import { unsafeLocal } from "./reflect/unsafe.js";
+import { setOwn, unsafeLocal } from "./reflect/unsafe.js";
 import { localMessageMapper } from "./reflect/message.js";
 import { create } from "./create.js";
 import { BinaryReader, WireType } from "./wire/binary-encoding.js";
@@ -456,7 +456,11 @@ function compileMapFieldReader(
     false,
   );
   const keyZero = scalarZeroValue(field.mapKey, false);
-  let readValue: (reader: BinaryReader, ctx: BinaryReadContext) => unknown;
+  let readValue: (
+    reader: BinaryReader,
+    ctx: BinaryReadContext,
+    existing: unknown,
+  ) => unknown;
   let valueDefault: () => unknown;
   switch (field.mapKind) {
     case "scalar": {
@@ -486,8 +490,10 @@ function compileMapFieldReader(
     case "message": {
       const { toMessage, toLocal } = localMessageMapper(field);
       const readChild = compiledReader(field.message).read;
-      readValue = (reader, ctx) => {
-        const child = toMessage(undefined);
+      // A repeated value field within one entry merges into the previous
+      // value, like any other singular message field.
+      readValue = (reader, ctx, existing) => {
+        const child = toMessage(existing);
         readChild(child, reader, ctx, reader.uint32());
         return toLocal(child);
       };
@@ -506,14 +512,16 @@ function compileMapFieldReader(
     const end = reader.pos + len;
     while (reader.pos < end) {
       // Map entries have the key in field 1, and the value in field 2.
-      const [fieldNo] = reader.tag();
+      const [fieldNo, wireType] = reader.tag();
       switch (fieldNo) {
         case 1:
           key = readKey(reader);
           break;
         case 2:
-          val = readValue(reader, ctx);
+          val = readValue(reader, ctx, val);
           break;
+        default:
+          reader.skip(wireType, fieldNo, ctx.recursionLimit - ctx.depth);
       }
     }
     if (key === undefined) {
@@ -522,9 +530,10 @@ function compileMapFieldReader(
     if (val === undefined) {
       val = valueDefault();
     }
-    // Object property keys are always strings or symbols. Assigning with a
-    // boolean, number, or bigint key implicitly converts it to a string.
-    record[key as string] = val;
+    // Map keys may be booleans, numbers, or bigints. Object keys are strings, so
+    // they are converted implicitly. setOwn() is needed because a key can be
+    // "__proto__".
+    setOwn(record, key as string, val);
   };
 }
 

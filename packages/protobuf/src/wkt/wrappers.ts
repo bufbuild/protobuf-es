@@ -23,7 +23,7 @@ import type {
   StringValue,
   UInt32Value,
   UInt64Value,
-} from "./gen/google/protobuf/wrappers_pb.js";
+} from "./google/protobuf/wrappers_pb.js";
 import type { DescField, DescMessage } from "../descriptors.js";
 
 export function isWrapper(

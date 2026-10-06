@@ -24,7 +24,7 @@ JavaScript numbers are only safe up to `Number.MAX_SAFE_INTEGER`, which is small
 
 ## How does Protobuf-ES compare to `protoc`'s JavaScript generator?
 
-The official [`google-protobuf`](https://github.com/protocolbuffers/protobuf-javascript) generator emits getter and setter classes, uses CommonJS, and lags behind on Protobuf Edition support. Protobuf-ES generates plain object messages, ESM by default, with full Edition 2024 support. The [public Protobuf conformance runner](https://github.com/bufbuild/protobuf-conformance) tracks failures for both implementations.
+The official [`google-protobuf`](https://github.com/protocolbuffers/protobuf-javascript) generator emits getter and setter classes, uses CommonJS, and lags behind on Protobuf Edition support. Protobuf-ES generates plain object messages, ESM by default, with full Edition 2026 support. The [public Protobuf conformance runner](https://github.com/bufbuild/protobuf-conformance) tracks failures for both implementations.
 
 ## Why doesn't Protobuf-ES expose more plugin options?
 

@@ -28,6 +28,8 @@ import type {
   ReflectMessage,
 } from "./reflect-types.js";
 import {
+  getOwn,
+  setOwn,
   unsafeClear,
   unsafeGet,
   unsafeIsSet,
@@ -45,7 +47,7 @@ import {
   isReflectMap,
   isReflectMessage,
 } from "./guard.js";
-import type { Struct } from "../wkt/gen/google/protobuf/struct_pb.js";
+import type { Struct } from "../wkt/google/protobuf/struct_pb.js";
 import type { JsonObject } from "../json-value.js";
 import { wktStructToLocal, wktStructToReflect } from "./message.js";
 
@@ -345,7 +347,7 @@ class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
         throw err;
       }
     }
-    this.obj[mapKeyToLocal(key)] = mapValueToLocal(this._field, value);
+    setOwn(this.obj, mapKeyToLocal(key), mapValueToLocal(this._field, value));
     return this;
   }
   delete(key: K) {
@@ -362,7 +364,7 @@ class ReflectMapImpl<K, V> implements ReflectMap<K, V> {
     }
   }
   get(key: K) {
-    let val = this.obj[mapKeyToLocal(key)];
+    let val = getOwn(this.obj, mapKeyToLocal(key));
     if (val !== undefined) {
       val = mapValueToReflect(this._field, val, this.check);
     }

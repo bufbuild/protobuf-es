@@ -15,6 +15,8 @@
 syntax = "proto3";
 package spec;
 
+import "google/protobuf/struct.proto";
+
 message MapsMessage {
   map<string, string> str_str_field = 1;
   map<string, int32> str_int32_field = 2;
@@ -30,6 +32,7 @@ message MapsMessage {
   map<string, MapsEnum> str_enu_field = 12;
   map<int32, MapsEnum> int32_enu_field = 13;
   map<int64, MapsEnum> int64_enu_field = 14;
+  map<string, google.protobuf.Struct> str_struct_field = 15;
 }
 
 enum MapsEnum {

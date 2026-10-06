@@ -31,7 +31,7 @@ import {
 } from "./reflect/reflect-check.js";
 import { protoSnakeCase } from "./reflect/names.js";
 import { scalarZeroValue } from "./reflect/scalar.js";
-import { unsafeLocal } from "./reflect/unsafe.js";
+import { setOwn, unsafeLocal } from "./reflect/unsafe.js";
 import { localMessageMapper } from "./reflect/message.js";
 import type {
   EnumJsonType,
@@ -236,12 +236,17 @@ export function enumFromJson<Desc extends DescEnum>(
 
 /**
  * Is the given value a JSON enum value?
+ *
+ * For an enum value with a custom JSON name set with the option
+ * `(pb.enumvalue.json).string`, this function only returns true for the
+ * custom name, while fromJson() and enumFromJson() also accept the Protobuf
+ * name.
  */
 export function isEnumJson<Desc extends DescEnum>(
   descEnum: Desc,
   value: unknown,
 ): value is EnumJsonType<Desc> {
-  return undefined !== descEnum.values.find((v) => v.name === value);
+  return descEnum.values.some((v) => v.jsonName === value);
 }
 
 /**
@@ -758,9 +763,10 @@ function compileMapFieldReader(
           );
         }
       }
-      // Object property keys are always strings or symbols. Assigning with a
-      // boolean, number, or bigint key implicitly converts it to a string.
-      record[key as string] = toLocalValue(value);
+      // Map keys may be booleans, numbers, or bigints. Object keys are strings, so
+      // they are converted implicitly. setOwn() is needed because a key can be
+      // "__proto__".
+      setOwn(record, key as string, toLocalValue(value));
     }
   };
 }
@@ -780,7 +786,16 @@ function compileEnumConverter(
   ignoreUnknownFields: boolean,
 ) => number | typeof tokenIgnoredUnknownEnum {
   const zero = desc.values[0].number;
-  const values = desc.values;
+  // Protobuf compilers reject a custom JSON name that equals the Protobuf name
+  // of another value. As a fallback, the Protobuf name takes precedence, so we
+  // add Protobuf names last.
+  const numbers = new Map<string, number>();
+  for (const value of desc.values) {
+    numbers.set(value.jsonName, value.number);
+  }
+  for (const value of desc.values) {
+    numbers.set(value.name, value.number);
+  }
   return (json, ignoreUnknownFields) => {
     if (json === null) {
       return zero;
@@ -792,9 +807,9 @@ function compileEnumConverter(
         }
         break;
       case "string": {
-        const value = values.find((ev) => ev.name === json);
-        if (value !== undefined) {
-          return value.number;
+        const number = numbers.get(json);
+        if (number !== undefined) {
+          return number;
         }
         if (ignoreUnknownFields) {
           return tokenIgnoredUnknownEnum;
@@ -1159,9 +1174,12 @@ function anyFromJson(any: Any, json: JsonValue, ctx: JsonReadContext) {
   ) {
     compiledReader(desc)(message, json.value, ctx);
   } else {
-    const copy = Object.assign({}, json);
-    // biome-ignore lint/performance/noDelete: <explanation>
-    delete copy["@type"];
+    const copy: Record<string, JsonValue> = {};
+    for (const key of Object.keys(json)) {
+      if (key !== "@type") {
+        setOwn(copy, key, json[key]);
+      }
+    }
     compiledReader(desc)(message, copy, ctx);
   }
   anyPack(desc, message as unknown as Message, any);
@@ -1263,7 +1281,7 @@ function structFromJson(struct: Struct, json: JsonValue, ctx: JsonReadContext) {
     const key = keys[i];
     const parsedValue = create(ValueSchema);
     valueFromJson(parsedValue, json[key], ctx);
-    struct.fields[key] = parsedValue;
+    setOwn(struct.fields, key, parsedValue);
   }
 }
 

@@ -48,7 +48,7 @@ import type {
   MethodOptions,
   OneofOptions,
   ServiceOptions,
-} from "./wkt/gen/google/protobuf/descriptor_pb.js";
+} from "./wkt/google/protobuf/descriptor_pb.js";
 
 /**
  * Retrieve an extension value from a message.

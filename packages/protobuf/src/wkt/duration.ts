@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { Duration } from "./gen/google/protobuf/duration_pb.js";
-import { DurationSchema } from "./gen/google/protobuf/duration_pb.js";
+import type { Duration } from "./google/protobuf/duration_pb.js";
+import { DurationSchema } from "./google/protobuf/duration_pb.js";
 import { create } from "../create.js";
 import { protoInt64 } from "../proto-int64.js";
 

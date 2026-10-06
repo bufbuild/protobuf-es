@@ -75,7 +75,7 @@ Run the generator:
 npx buf generate
 ```
 
-`target=ts` generates TypeScript source. See [Plugin options](/reference/plugin-options/) for JavaScript output, import extensions, JSON types, and other generator settings.
+`target=ts` generates TypeScript source. If you use Vite, Next.js, Node.js, Deno, or Bun, see [Configure for your environment](/reference/environments/) for the options your environment needs. See [Plugin options](/reference/plugin-options/) for JavaScript output, import extensions, JSON types, and other generator settings.
 
 If you already use `protoc`, use the same plugin directly: `mkdir -p src/gen && PATH=${PATH}:$(pwd)/node_modules/.bin protoc -I proto --es_out=src/gen --es_opt=target=ts example.proto`.
 
@@ -117,6 +117,7 @@ roundTrip.firstName; // "Homer"
 
 ## Next steps
 
+- [Configure for your environment](/reference/environments/): generator options for Vite, Next.js, Node.js, Deno, and Bun.
 - [Working with messages](/guides/messages/): the main runtime APIs.
 - [Serialization](/guides/serialization/): binary, JSON, and lower-level wire helpers.
 - [Generated code](/reference/generated-code/): how messages, enums, services, maps, oneofs, and extensions are represented.
