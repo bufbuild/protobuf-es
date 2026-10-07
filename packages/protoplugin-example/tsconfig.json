@@ -5,7 +5,6 @@
     "target": "es2017",
     "module": "Node16",
     "moduleResolution": "Node16",
-    "resolveJsonModule": true,
     "strict": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
