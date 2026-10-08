@@ -20,6 +20,6 @@
     "@bufbuild/protoplugin": "^2.16.0",
     "typescript": "^6.0.3",
     "tsx": "^4.23.12",
-    "@types/node": "^26.0.0"
+    "@types/node": "^26.6.4"
   }
 }
