@@ -4,9 +4,9 @@ inputs:
   - directory: proto
 plugins:
   - local: protoc-gen-es
-    opt: target=ts
+    opt: target=ts,import_extension=js
     out: src/gen
     # Run the plugin with tsx
   - local: ["tsx", "./src/protoc-gen-twirp-es.ts"]
-    opt: target=ts,log_requests=true
+    opt: target=ts,import_extension=js,log_requests=true
     out: src/gen

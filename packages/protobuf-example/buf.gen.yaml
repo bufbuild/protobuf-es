@@ -7,7 +7,7 @@ clean: true
 plugins:
   # The local plugin is installed with `npm install @bufbuild/protoc-gen-es`.
   - local: protoc-gen-es
-    opt: target=ts
+    opt: target=ts,import_extension=js
     out: src/gen
     # Also generate any imported dependencies
     include_imports: true

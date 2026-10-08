@@ -1,6 +1,7 @@
 {
+  "include": ["src"],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "verbatimModuleSyntax": false
+    "rootDir": "./src"
   }
 }

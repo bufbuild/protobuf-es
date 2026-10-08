@@ -2,6 +2,7 @@
   "name": "@bufbuild/protoplugin-example",
   "version": "2.16.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "../../node_modules/typescript/bin/tsc --noEmit",
     "start": "npx esbuild src/index.ts --serve=localhost:3000 --servedir=www --outdir=www --bundle --global-name=eliza",
@@ -17,7 +18,7 @@
     "@bufbuild/protobuf": "^2.16.0",
     "@bufbuild/protoc-gen-es": "^2.16.0",
     "@bufbuild/protoplugin": "^2.16.0",
-    "typescript": "^5.6.3",
+    "typescript": "^6.0.3",
     "tsx": "^4.23.12",
     "@types/node": "^26.0.0"
   }

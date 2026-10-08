@@ -2,11 +2,9 @@
   "files": ["src/protoc-gen-es-plugin.ts"],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "rootDir": ".",
     // We import the plugin's version number from package.json
     "resolveJsonModule": true,
-    // This package is CommonJS
-    "verbatimModuleSyntax": false,
-    "module": "CommonJS",
-    "moduleResolution": "Node10"
+    "verbatimModuleSyntax": false
   }
 }
