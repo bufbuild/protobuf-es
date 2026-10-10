@@ -279,6 +279,9 @@ interface CompiledFieldEntry {
   // A oneof member that is a scalar field skips JSON null, see conformance
   // test Required.Proto3.JsonInput.OneofFieldNull{First,Second}.
   oneofScalarNullSkip: boolean;
+  // Whether the JSON name differs from the proto name. Only then can a JSON
+  // object set the field twice.
+  aliased: boolean;
 }
 
 function compileMessage(desc: DescMessage): CompiledJsonReader {
@@ -313,8 +316,12 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
         `cannot decode ${descString} from JSON: ${formatVal(json)}`,
       );
     }
-    const oneofSeen = new Map<DescOneof, DescField>();
-    const fieldSeen = new Set<DescField>();
+    // Only allocated when needed: most objects never set a field twice, and
+    // most messages set at most one oneof.
+    let fieldSeen: Set<DescField> | undefined;
+    let firstOneof: DescOneof | undefined;
+    let firstOneofField: DescField | undefined;
+    let oneofSeen: Map<DescOneof, DescField> | undefined;
     const jsonKeys = Object.keys(json);
     for (let i = 0; i < jsonKeys.length; i++) {
       const jsonKey = jsonKeys[i];
@@ -322,25 +329,42 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
       const entry = fieldsByJsonKey.get(jsonKey);
       if (entry !== undefined) {
         const field = entry.field;
-        if (fieldSeen.has(field)) {
-          // The same field may be set by its proto name and its JSON name, or by
-          // a duplicate or unicode-escaped key that JSON.parse already collapsed.
-          // Checked before the null-skip below so that a null entry still counts.
-          throw new FieldError(field, "set multiple times");
+        if (
+          entry.aliased &&
+          Object.prototype.hasOwnProperty.call(
+            json,
+            jsonKey === field.name ? field.jsonName : field.name,
+          )
+        ) {
+          // The object holds both keys of this field; if both set it, the
+          // second one is an error. Checked before the null-skip below so
+          // that a null entry still counts.
+          if (fieldSeen?.has(field)) {
+            throw new FieldError(field, "set multiple times");
+          }
+          fieldSeen ??= new Set();
+          fieldSeen.add(field);
         }
-        fieldSeen.add(field);
         if (entry.oneofScalarNullSkip && jsonValue === null) {
           continue;
         }
-        if (entry.oneof) {
-          const seen = oneofSeen.get(entry.oneof);
+        const oneof = entry.oneof;
+        if (oneof !== undefined) {
+          const seen =
+            oneof === firstOneof ? firstOneofField : oneofSeen?.get(oneof);
           if (seen !== undefined) {
             throw new FieldError(
-              entry.oneof,
+              oneof,
               `oneof set multiple times by ${seen.name} and ${field.name}`,
             );
           }
-          oneofSeen.set(entry.oneof, field);
+          if (firstOneof === undefined) {
+            firstOneof = oneof;
+            firstOneofField = field;
+          } else {
+            oneofSeen ??= new Map();
+            oneofSeen.set(oneof, field);
+          }
         }
         entry.read(message, jsonValue, ctx);
       } else {
@@ -378,6 +402,7 @@ function compileMessage(desc: DescMessage): CompiledJsonReader {
       oneof: field.oneof,
       oneofScalarNullSkip:
         field.oneof !== undefined && field.fieldKind == "scalar",
+      aliased: field.jsonName !== field.name,
     };
     fieldsByJsonKey.set(field.name, entry).set(field.jsonName, entry);
   }
