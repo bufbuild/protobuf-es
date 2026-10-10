@@ -327,4 +327,53 @@ void suite("BinaryReader", () => {
       assert.strictEqual(wireType, WireType.Varint);
     });
   });
+  void suite("string", () => {
+    // The ASCII fast path covers strings of up to 32 bytes; longer ones and
+    // any string with a byte above 0x7f go to the UTF-8 decoder.
+    const cases: [string, string][] = [
+      ["an empty string", ""],
+      ["a one-byte ASCII string", "a"],
+      ["the longest ASCII string on the fast path", "x".repeat(32)],
+      ["the shortest ASCII string past the fast path", "x".repeat(33)],
+      ["a non-ASCII byte at the end of the fast path", `${"x".repeat(30)}é`],
+      ["a non-ASCII byte at the start", `é${"x".repeat(29)}`],
+      ["multi-byte characters only", "日本語"],
+      ["a long ASCII string", "x".repeat(200)],
+    ];
+    for (const [name, value] of cases) {
+      void test(`reads ${name}`, () => {
+        const bytes = new BinaryWriter().string(value).string("next").finish();
+        const reader = new BinaryReader(bytes);
+        assert.strictEqual(reader.string(), value);
+        // The position must land exactly after the string, also when the
+        // fast path bails out to the decoder part-way through.
+        assert.strictEqual(reader.string(), "next");
+        assert.strictEqual(reader.pos, reader.len);
+      });
+    }
+    void test("reads from a view that does not start at offset 0", () => {
+      // A reader over a subarray indexes relative to the view, not to the
+      // underlying buffer.
+      const inner = new BinaryWriter().string("abc").string("dé").finish();
+      const outer = new Uint8Array(inner.length + 7).fill(0x41);
+      outer.set(inner, 5);
+      const reader = new BinaryReader(outer.subarray(5, 5 + inner.length));
+      assert.strictEqual(reader.string(), "abc");
+      assert.strictEqual(reader.string(), "dé");
+    });
+    void test("rejects a length beyond the end of the data", () => {
+      // Length prefix 5, but only 3 bytes follow.
+      const reader = new BinaryReader(new Uint8Array([5, 0x61, 0x62, 0x63]));
+      assert.throws(() => reader.string(), {
+        name: "RangeError",
+        message: "premature EOF",
+      });
+    });
+    void test("throws on invalid UTF-8 in strict mode only", () => {
+      // 0xff never occurs in UTF-8; short, so it starts on the fast path.
+      const bytes = new Uint8Array([2, 0x61, 0xff]);
+      assert.strictEqual(new BinaryReader(bytes).string(), "a�");
+      assert.throws(() => new BinaryReader(bytes).string(true));
+    });
+  });
 });
