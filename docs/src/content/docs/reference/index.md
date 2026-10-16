@@ -23,6 +23,7 @@ Reference pages cover exact generated shapes, plugin options, runtime types, and
 - [Custom options](/reference/reflection/custom-options/): defining, using, and reading schema annotations.
 - [Dynamic messages](/reference/reflection/dynamic-messages/): `ReflectMessage`, `ReflectList`, and `ReflectMap`.
 - [Well-known types](/reference/well-known-types/): precompiled `google.protobuf` exports and convenience helpers for `Timestamp`, `Duration`, `Any`, `Struct`, wrappers, descriptors, and compiler types.
+- [Using with grpc-node](/reference/using-with-grpc-node/): generating `@grpc/grpc-js` clients and servers that use Protobuf-ES messages with `protoc-gen-grpc-es`.
 
 ## Plugin authors
 
