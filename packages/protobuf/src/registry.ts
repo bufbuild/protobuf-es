@@ -646,26 +646,24 @@ function addEnum(
   reg.add(desc);
   for (const p of proto.value) {
     const name = p.name;
-    desc.values.push(
-      // biome-ignore lint/suspicious/noAssignInExpressions: no
-      (desc.value[p.number] = {
-        kind: "enum_value" as const,
-        proto: p,
-        deprecated: p.options?.deprecated ?? false,
-        parent: desc,
-        name,
-        localName: safeObjectProperty(
-          sharedPrefix == undefined
-            ? name
-            : name.substring(sharedPrefix.length),
-        ),
-        number: p.number,
-        jsonName: findEnumValueJsonName(p) ?? name,
-        toString() {
-          return `enum value ${desc.typeName}.${name}`;
-        },
-      }),
-    );
+    const value = {
+      kind: "enum_value" as const,
+      proto: p,
+      deprecated: p.options?.deprecated ?? false,
+      parent: desc,
+      name,
+      localName: safeObjectProperty(
+        sharedPrefix == undefined ? name : name.substring(sharedPrefix.length),
+      ),
+      number: p.number,
+      jsonName: findEnumValueJsonName(p) ?? name,
+      toString() {
+        return `enum value ${desc.typeName}.${name}`;
+      },
+    };
+    desc.values.push(value);
+    // Preserve the first declared name for aliased enum values.
+    desc.value[p.number] ??= value;
   }
   (parent?.nestedEnums ?? file.enums).push(desc);
 }

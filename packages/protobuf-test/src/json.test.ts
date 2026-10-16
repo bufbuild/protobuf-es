@@ -22,6 +22,7 @@ import {
   create,
   fromBinary,
   toJson,
+  enumToJson,
   fromJson,
   fromJsonString,
   toBinary,
@@ -56,10 +57,29 @@ import * as proto3_ts from "./gen/ts/extra/proto3_pb.js";
 import { OneofMessageSchema } from "./gen/ts/extra/msg-oneof_pb.js";
 import { JsonNamesMessageSchema } from "./gen/ts/extra/msg-json-names_pb.js";
 import { JSTypeProto2NormalMessageSchema } from "./gen/ts/extra/jstype-proto2_pb.js";
-import { TestAllTypesProto3Schema } from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
+import {
+  TestAllTypesProto3Schema,
+  TestAllTypesProto3_AliasedEnumSchema,
+} from "./gen/ts/google/protobuf/test_messages_proto3_pb.js";
 import { compileMessage } from "./helpers.js";
 
 void suite("JSON serialization", () => {
+  test("emits the first name for aliased enum values", () => {
+    const msg = create(TestAllTypesProto3Schema, { optionalAliasedEnum: 2 });
+    assert.deepStrictEqual(toJson(TestAllTypesProto3Schema, msg), {
+      optionalAliasedEnum: "ALIAS_BAZ",
+    });
+    assert.strictEqual(
+      enumToJson(TestAllTypesProto3_AliasedEnumSchema, 2),
+      "ALIAS_BAZ",
+    );
+    for (const name of ["ALIAS_BAZ", "MOO", "moo", "bAz"]) {
+      assert.deepStrictEqual(
+        fromJson(TestAllTypesProto3Schema, { optionalAliasedEnum: name }),
+        msg,
+      );
+    }
+  });
   testJson(
     ScalarValuesMessageSchema,
     {
