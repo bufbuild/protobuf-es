@@ -217,7 +217,7 @@ Repeated fields are standard arrays instead of `getXList()` / `addX()` accessors
 
 ### Oneofs
 
-A `oneof` is generated as a `{ case, value }` discriminated union on a single property instead of `getXCase()` and separate getters (see [Oneofs](/reference/generated-code/features/#oneof)):
+A `oneof` is generated as a `{ case, value }` discriminated union on a single property instead of `getXCase()` and separate getters (see [Oneofs](/reference/generated-code/features/#oneofs)):
 
 ```diff
 - if (req.getPayloadCase() === SayRequest.PayloadCase.TEXT) {
