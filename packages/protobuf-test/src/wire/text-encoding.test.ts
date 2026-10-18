@@ -56,6 +56,13 @@ void suite("getTextEncoding()", () => {
       );
       assert.strictEqual(text, "hello 🌍");
     });
+    void test("keeps a leading U+FEFF", () => {
+      // EF BB BF 78 is U+FEFF followed by "x".
+      const bytes = new Uint8Array([0xef, 0xbb, 0xbf, 0x78]);
+      const encoding = getTextEncoding();
+      assert.strictEqual(encoding.decodeUtf8(bytes), "\uFEFFx");
+      assert.strictEqual(encoding.decodeUtf8(bytes, true), "\uFEFFx");
+    });
   });
   void suite("checkUtf8()", () => {
     void test("returns true for valid", () => {

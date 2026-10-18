@@ -77,7 +77,10 @@ export function getTextEncoding(): TextEncoding {
       );
     }
     const textEncoder = new globals.TextEncoder();
-    const textDecoder = new globals.TextDecoder();
+    // A leading U+FEFF in a protobuf string is text, not a byte-order mark.
+    const textDecoder = new globals.TextDecoder("utf-8", {
+      ignoreBOM: true,
+    });
     let textDecoderStrict: typeof textDecoder | undefined;
     const config: TextEncodingConfig = {
       encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
@@ -88,6 +91,7 @@ export function getTextEncoding(): TextEncoding {
           if (!textDecoderStrict) {
             textDecoderStrict = new globals.TextDecoder("utf-8", {
               fatal: true,
+              ignoreBOM: true,
             });
           }
           return textDecoderStrict.decode(bytes);
@@ -135,7 +139,7 @@ type GlobalWithTextEncoderDecoder = {
   TextDecoder: {
     new (
       label?: string,
-      options?: { fatal?: boolean },
+      options?: { fatal?: boolean; ignoreBOM?: boolean },
     ): {
       decode(data: Uint8Array): string;
     };
