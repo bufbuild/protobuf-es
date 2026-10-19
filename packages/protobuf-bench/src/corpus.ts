@@ -27,7 +27,12 @@ import {
   FileDescriptorProtoSchema,
   FieldDescriptorProto_Type,
 } from "@bufbuild/protobuf/wkt";
-import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
+import {
+  base64Encode,
+  BinaryReader,
+  BinaryWriter,
+  WireType,
+} from "@bufbuild/protobuf/wire";
 import { makeInit } from "./fixtures.js";
 import {
   GeneralSchema,
@@ -105,9 +110,7 @@ function fileInitializationCase(dependencies: number[][]): Case {
       ],
       enumType: [{ name: "Kind", value: [{ name: "UNKNOWN", number: 0 }] }],
     });
-    return Buffer.from(toBinary(FileDescriptorProtoSchema, proto)).toString(
-      "base64",
-    );
+    return base64Encode(toBinary(FileDescriptorProtoSchema, proto));
   });
   return {
     ops: 1,
