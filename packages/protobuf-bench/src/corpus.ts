@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import {
+  type DescFile,
   type DescMessage,
   type MessageInitShape,
   create,
@@ -21,7 +22,17 @@ import {
   toBinary,
   toJson,
 } from "@bufbuild/protobuf";
-import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
+import { fileDesc } from "@bufbuild/protobuf/codegenv2";
+import {
+  FileDescriptorProtoSchema,
+  FieldDescriptorProto_Type,
+} from "@bufbuild/protobuf/wkt";
+import {
+  base64Encode,
+  BinaryReader,
+  BinaryWriter,
+  WireType,
+} from "@bufbuild/protobuf/wire";
 import { makeInit } from "./fixtures.js";
 import {
   GeneralSchema,
@@ -74,6 +85,50 @@ function messageCases<Desc extends DescMessage>(
   );
 }
 
+// One operation initializes an entire graph, as generated modules do on load.
+// Build and encode the fixtures outside the timed operation; every run creates
+// fresh descriptors and includes base64 decoding and descriptor hydration.
+function fileInitializationCase(dependencies: number[][]): Case {
+  const encoded = dependencies.map((_, i) => {
+    const proto = create(FileDescriptorProtoSchema, {
+      name: `file${i}.proto`,
+      package: `bench.file${i}`,
+      syntax: "proto3",
+      messageType: [
+        {
+          name: "Message",
+          field: [
+            {
+              name: "value",
+              number: 1,
+              type: FieldDescriptorProto_Type.STRING,
+            },
+          ],
+          nestedType: [{ name: "Nested" }],
+        },
+        { name: "Other" },
+      ],
+      enumType: [{ name: "Kind", value: [{ name: "UNKNOWN", number: 0 }] }],
+    });
+    return base64Encode(toBinary(FileDescriptorProtoSchema, proto));
+  });
+  return {
+    ops: 1,
+    run: () => {
+      const files: DescFile[] = [];
+      for (let i = 0; i < encoded.length; i++) {
+        files.push(
+          fileDesc(
+            encoded[i],
+            dependencies[i].map((j) => files[j]),
+          ),
+        );
+      }
+      return files;
+    },
+  };
+}
+
 // Hand-built User fixtures in two shapes: "tiny" is almost empty, "normal" is populated.
 const USER_TINY: MessageInitShape<typeof UserSchema> = {
   active: false,
@@ -89,6 +144,27 @@ const USER_NORMAL: MessageInitShape<typeof UserSchema> = {
 };
 
 export const cases: Record<string, Case> = {
+  "fileDesc/leaf": fileInitializationCase([[]]),
+  "fileDesc/chain-64": fileInitializationCase(
+    Array.from({ length: 64 }, (_, i) => (i === 0 ? [] : [i - 1])),
+  ),
+  // Twelve layers of eight files, each importing two files from the prior
+  // layer. Shared paths grow exponentially; the graph itself has 96 files.
+  "fileDesc/shared-96": fileInitializationCase(
+    Array.from({ length: 96 }, (_, i) => {
+      const layer = Math.floor(i / 8);
+      const column = i % 8;
+      return layer === 0
+        ? []
+        : [(layer - 1) * 8 + column, (layer - 1) * 8 + ((column + 1) % 8)];
+    }),
+  ),
+  // Keep the dense case small enough to also run against the old traversal.
+  "fileDesc/dense-16": fileInitializationCase(
+    Array.from({ length: 16 }, (_, i) =>
+      Array.from({ length: i }, (_, j) => i - j - 1),
+    ),
+  ),
   // Baseline: BinaryWriter construction, paid once per toBinary call.
   "BinaryWriter/alloc": {
     ops: OPS_PER_RUN,

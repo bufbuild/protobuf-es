@@ -1,6 +1,6 @@
 # Benchmarks for @bufbuild/protobuf
 
-Two layers of benchmarks:
+Three groups of benchmarks:
 
 - **`BinaryWriter/*`, `BinaryReader/*`** — wire primitives, the ns-scale
   encode/decode hot paths every message operation is built on. Each runs many
@@ -9,6 +9,10 @@ Two layers of benchmarks:
 - **`toBinary/*`, `fromBinary/*`, `toJson/*`, `fromJson/*`** — whole-message
   operations over a fixture (`general`, `scalar`, `repeated-*`, `map-*`, ...), one
   operation per sample.
+- **`fileDesc/*`** — generated descriptor initialization for a leaf, a chain,
+  a layered graph with shared imports, and a dense graph. One operation loads
+  the entire graph with fresh descriptors, including base64 decoding and
+  hydration. Fixture construction and encoding are outside the measurement.
 
 ## Run it
 
@@ -28,6 +32,7 @@ npm run bench -- '^BinaryWriter/'  # only the BinaryWriter primitives
 npm run bench -- '^toBinary/'      # only toBinary, across all fixtures
 npm run bench -- '/general$'       # all four ops on the general fixture
 npm run bench -- int32             # every case whose name contains "int32"
+npm run bench -- '^fileDesc/'      # descriptor initialization for every graph
 ```
 
 Arguments are regular expressions matched against case names (unanchored, OR'd
@@ -53,6 +58,15 @@ needed — for an interactive flamegraph.
 
 The iterate loop for a perf change is: `profile` the case to find the hot frame,
 change the library, `bench` the case to confirm the improvement.
+
+To compare descriptor initialization before and after a runtime change, use
+the same benchmark fixtures on both revisions, rebuild `@bufbuild/protobuf`
+each time, and run `npm run bench -- '^fileDesc/'` with the same Node.js version.
+The shared case has 12 layers of 8 files, with two imports per noninitial file.
+The dense case has 16 files, each importing every earlier file. These sizes
+keep the benchmarks runnable even with the former exponential traversal.
+The numbers measure in-process initialization, excluding module loading,
+filesystem access, and browser startup.
 
 ## Fixtures
 
