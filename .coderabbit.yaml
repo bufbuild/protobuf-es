@@ -1,9 +1,77 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Review criteria live in REVIEW.md
+# This file only holds CodeRabbit behavior and public-repo safety pins.
 inheritance: true
 
 reviews:
+  in_progress_fortune: false
+  auto_apply_labels: false # pinned: "Emergency Bypass Review" label auto-approves PRs
+  path_filters:
+    - "!**/*_pb.ts"
+    - "!**/*_pb.js"
+    - "!**/*_pb.d.ts"
+    - "!package-lock.json"
+    - "!packages/bundle-size/chart.svg"
   auto_review:
     enabled: true
-  review_status: true
-  review_progress: true
-  commit_status: true
+    drafts: false
+    ignore_usernames:
+      - "dependabot[bot]"
+  slop_detection:
+    enabled: true
+    label: "slop"
+  finishing_touches:
+    docstrings:
+      enabled: false
+    custom:
+      - name: "document new public APIs"
+        instructions: |
+          For functions, classes, and types newly exported from a package's public entry points in this PR,
+          add or improve TSDoc following the existing style in that package. Skip internal helpers and
+          anything not exported through package.json "exports". Do not touch *_pb.ts files.
+  pre_merge_checks:
+    docstrings:
+      mode: "off"
+    title:
+      mode: "off" # pr-title.yaml already lints titles
+    custom_checks:
+      - name: "Public API change"
+        mode: "warning"
+        instructions: |
+          Check symbols exported from packages/protobuf, packages/protoplugin, and
+          packages/protoc-gen-es public entry points. Fail if the PR adds a new export
+          without linking a relevant GitHub or internal Linear issue in the PR description
+          where the API was discussed before implementation. Internal Linear issues are
+          acceptable without access to their contents; do not require a public GitHub
+          issue or access to Linear. For internal issues, require a public summary of
+          the API change, rationale, and compatibility impact without confidential details.
+          For any addition, removal, signature change,
+          or behavior change to public API, also fail if the PR description does not
+          explicitly describe the change. Removals, signature changes, and behavior changes
+          must include justification and explain the compatibility impact.
+  tools:
+    biome:
+      enabled: false # CodeRabbit runs Biome 2.x; repo is on 1.9.x. CI enforces lint/format.
+
+chat:
+  allow_non_org_members: false
+  integrations:
+    linear:
+      usage: disabled
+
+# Pinned so central config changes can't leak private context into public PRs
+knowledge_base:
+  code_guidelines:
+    enabled: true
+  learnings:
+    scope: local
+  issues:
+    scope: local
+  pull_requests:
+    scope: local
+  linear:
+    usage: disabled
+  mcp:
+    usage: disabled
+  automatic_linking_mode: disabled
+  linked_repositories: []
