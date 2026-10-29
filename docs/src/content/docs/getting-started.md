@@ -15,7 +15,7 @@ This guide takes the fastest path from `.proto` to working code. You will genera
 
 Start with a new directory:
 
-```shellsession
+```bash
 mkdir example
 cd example
 npm init -y
@@ -25,7 +25,7 @@ npx tsc --init
 
 Install the runtime library, the code generator, and the Buf CLI package:
 
-```shellsession
+```bash
 npm install @bufbuild/protobuf
 npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
 ```
@@ -34,7 +34,7 @@ npm install --save-dev @bufbuild/buf @bufbuild/protoc-gen-es
 
 Create `proto/example.proto`:
 
-```protobuf
+```proto
 syntax = "proto3";
 package example;
 
@@ -64,6 +64,8 @@ Create `buf.gen.yaml`:
 ```yaml
 version: v2
 plugins:
+  # You will need to adapt these values to your environment:
+  # https://protobufes.com/reference/environments/
   - local: protoc-gen-es
     out: src/gen
     opt: target=ts
@@ -71,13 +73,19 @@ plugins:
 
 Run the generator:
 
-```shellsession
+```bash
 npx buf generate
 ```
 
 `target=ts` generates TypeScript source. If you use Vite, Next.js, Node.js, Deno, or Bun, see [Configure for your environment](/reference/environments/) for the options your environment needs. See [Plugin options](/reference/plugin-options/) for JavaScript output, import extensions, JSON types, and other generator settings.
 
-If you already use `protoc`, use the same plugin directly: `mkdir -p src/gen && PATH=${PATH}:$(pwd)/node_modules/.bin protoc -I proto --es_out=src/gen --es_opt=target=ts example.proto`.
+If you already use `protoc`, use the same plugin directly:
+
+```bash
+# You will need to adapt these values to your environment:
+# https://protobufes.com/reference/environments/
+mkdir -p src/gen && PATH=${PATH}:$(pwd)/node_modules/.bin protoc -I proto --es_out=src/gen --es_opt=target=ts example.proto
+```
 
 Your project now looks like this:
 

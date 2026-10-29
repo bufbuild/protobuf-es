@@ -8,7 +8,7 @@ Some Protobuf features generate specialized TypeScript shapes instead of simple 
 
 Oneofs become discriminated unions.
 
-```protobuf
+```proto
 oneof result {
   int32 number = 1;
   string error = 2;
@@ -41,7 +41,7 @@ This representation requires `strictNullChecks`, which is enabled by TypeScript'
 
 Groups are deprecated in proto2, but Protobuf-ES supports them.
 
-```protobuf
+```proto
 optional group MyGroup = 1 {
   optional int32 int32_field = 1;
 }
@@ -55,15 +55,15 @@ Proto2 `required` fields are validated when serializing a message, not while con
 
 With Protobuf-ES v2, scalar and enum `required` fields are no longer generated as optional properties. Message fields keep their previous behavior.
 
-> [!CAUTION]
->
-> `required` is a legacy feature. The official Protobuf language guide says not to use it in new schemas.
+:::caution
+`required` is a legacy feature. The official Protobuf language guide says not to use it in new schemas.
+:::
 
 ## Proto3 optional fields
 
 Proto3 `optional` fields enable presence tracking for scalar and enum fields.
 
-```protobuf
+```proto
 optional bool active = 3;
 ```
 
@@ -77,7 +77,7 @@ See [Working with messages](/guides/messages/) for presence tracking at runtime.
 
 Extensions become typed extension descriptors. For runtime usage, see [Extensions](/guides/extensions/).
 
-```protobuf
+```proto
 syntax = "proto2";
 
 message User {
@@ -99,7 +99,7 @@ Extensions are also the foundation for [custom options](/reference/reflection/cu
 
 Services generate schemas only:
 
-```protobuf
+```proto
 service UserService {
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
 }

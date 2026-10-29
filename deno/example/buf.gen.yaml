@@ -4,6 +4,8 @@ inputs:
   - directory: proto
 clean: true
 plugins:
+  # You will need to adapt these values to your environment:
+  # https://protobufes.com/reference/environments/
   - local: [
       "deno",
       "run",

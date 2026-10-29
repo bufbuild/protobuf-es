@@ -10,7 +10,7 @@ Plugins are executables named `protoc-gen-x`. They read schema data from standar
 
 Install the plugin framework and `tsx`:
 
-```shellsession
+```bash
 npm install @bufbuild/protoplugin tsx
 ```
 
@@ -35,7 +35,7 @@ runNodeJs(plugin);
 
 Run it directly:
 
-```shellsession
+```bash
 npx tsx src/protoc-gen-hello.ts --version
 ```
 
@@ -46,6 +46,8 @@ version: v2
 inputs:
   - directory: proto
 plugins:
+  # You will need to adapt these values to your environment:
+  # https://protobufes.com/reference/environments/
   - local: protoc-gen-es
     out: src/gen
     opt: target=ts

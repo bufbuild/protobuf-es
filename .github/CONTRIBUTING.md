@@ -16,7 +16,7 @@ you to accept the CLA when you open your pull request.
 
 [Fork][fork], then clone the repository:
 
-```
+```bash
 git clone git@github.com:your_github_username/protobuf-es.git
 cd protobuf-es
 git remote add upstream https://github.com/bufbuild/protobuf-es.git
@@ -37,13 +37,13 @@ npx turbo run test lint
 ```
 
 We're using `turborepo` to run tasks. If you haven't used it yet, take a look at
-[filtering and package scoping](https://turbo.build/repo/docs/crafting-your-repository/running-tasks).
+[filtering and package scoping](https://turborepo.dev/docs/crafting-your-repository/running-tasks).
 
 ## Making Changes
 
 Start by creating a new branch for your changes:
 
-```
+```bash
 git checkout main
 git fetch upstream
 git rebase upstream/main
@@ -53,7 +53,7 @@ git checkout -b cool_new_feature
 Make your changes, then ensure that tests and linters still pass.
 When you're satisfied with your changes, push them to your fork.
 
-```
+```bash
 git commit -a
 git push origin cool_new_feature
 ```

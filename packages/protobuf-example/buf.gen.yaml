@@ -6,6 +6,8 @@ inputs:
 clean: true
 plugins:
   # The local plugin is installed with `npm install @bufbuild/protoc-gen-es`.
+  # You will need to adapt these values to your environment:
+  # https://protobufes.com/reference/environments/
   - local: protoc-gen-es
     opt: target=ts,import_extension=js
     out: src/gen

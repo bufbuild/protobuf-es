@@ -28,7 +28,7 @@ If `bigint` is unavailable in your environment, 64-bit integer fields still roun
 
 Use `jstype = JS_STRING` when you want `string` output for a 64-bit field:
 
-```protobuf
+```proto
 int64 field = 1 [jstype = JS_STRING];
 ```
 
@@ -46,7 +46,7 @@ managed:
 
 Message fields become optional properties. With `exactOptionalPropertyTypes`, the generated type includes `undefined` explicitly.
 
-```protobuf
+```proto
 User manager = 4;
 ```
 
@@ -70,7 +70,7 @@ Protobuf has open and closed enums. Open enums can contain numeric values that a
 
 Repeated fields become arrays.
 
-```protobuf
+```proto
 repeated string locations = 5;
 ```
 
@@ -84,7 +84,7 @@ New messages created with `create()` initialize repeated fields to empty arrays.
 
 Map fields become record-like objects.
 
-```protobuf
+```proto
 map<string, string> projects = 6;
 ```
 

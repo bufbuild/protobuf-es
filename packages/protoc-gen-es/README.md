@@ -8,7 +8,7 @@ The code generator plugin for Protocol Buffers for ECMAScript. Learn more about 
 
 To install the runtime library and the plugin, run:
 
-```shell
+```bash
 npm install @bufbuild/protobuf
 npm install --save-dev @bufbuild/protoc-gen-es
 ```
@@ -29,6 +29,8 @@ version: v2
 inputs:
   - directory: proto
 plugins:
+  # You will need to adapt these values to your environment:
+  # https://protobufes.com/reference/environments/
   # This will invoke protoc-gen-es and write output to src/gen
   - local: protoc-gen-es
     out: src/gen
@@ -49,6 +51,8 @@ not just local Protobuf files.
 ### With `protoc`
 
 ```bash
+# You will need to adapt these values to your environment:
+# https://protobufes.com/reference/environments/
 PATH=$PATH:$(pwd)/node_modules/.bin \
   protoc --proto_path proto \
   --es_out src/gen \
@@ -60,7 +64,7 @@ Note that `node_modules/.bin` needs to be added to the `$PATH` so that the Proto
 
 If you use Yarn, versions v2 and above don't use a `node_modules` directory, so you need to change the variable a bit:
 
-```shellsession
+```bash
 PATH=$(dirname $(yarn bin protoc-gen-es)):$PATH
 ```
 
@@ -126,7 +130,7 @@ Generates JSON types for every Protobuf message and enumeration. Calling `toJson
 Generates a Valid type for every Protobuf message. Possible values:
 
 - `valid_types=legacy_required`: Message fields with the `required` label, or the Edition feature `features.field_presence=LEGACY_REQUIRED`, are generated as non-optional properties.
-- `valid_types=protovalidate_required`: Message fields with protovalidate's [`required` rule](https://buf.build/docs/reference/protovalidate/rules/field_rules/#required) are generated as non-optional properties.
+- `valid_types=protovalidate_required`: Message fields with Protovalidate's [`required` rule](https://protovalidate.com/reference/rules/#bufvalidatefieldrequired) are generated as non-optional properties.
 
 You can combine both options with `+`—for example, `valid_types=legacy_required+protovalidate_required`.
 
