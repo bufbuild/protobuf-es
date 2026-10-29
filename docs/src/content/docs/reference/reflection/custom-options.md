@@ -8,7 +8,7 @@ Custom options annotate schema elements with extra metadata. They are extensions
 
 Create an option to mark sensitive fields:
 
-```protobuf
+```proto
 syntax = "proto3";
 package example.options;
 
@@ -21,7 +21,7 @@ extend google.protobuf.FieldOptions {
 
 ## Use the option
 
-```protobuf
+```proto
 message User {
   string first_name = 1;
   string last_name = 2 [(example.options.sensitive) = true];

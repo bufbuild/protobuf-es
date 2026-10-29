@@ -41,7 +41,7 @@ const r = reflect(UserSchema, user);
 const field = UserSchema.field.locations;
 
 if (field.fieldKind === "list") {
-  const list: ReflectList<string> = r.get(field);
+  const list: ReflectList = r.get(field);
   for (const location of list) {
     console.log(location);
   }
@@ -64,7 +64,7 @@ const r = reflect(UserSchema, user);
 const field = UserSchema.field.projects;
 
 if (field.fieldKind === "map") {
-  const map: ReflectMap<string, string> = r.get(field);
+  const map: ReflectMap = r.get(field);
   for (const [project, role] of map) {
     console.log(`${project}: ${role}`);
   }

@@ -11,10 +11,10 @@ list with Dart, and list people with TypeScript interchangeably.
 
 ### Run the example
 
-You need [Node](https://nodejs.org/en/download/) version 20.17.0 or later installed.
+You need [Node](https://nodejs.org/en/download/) version 22 or later installed.
 Download the example project and install its dependencies:
 
-```shell
+```bash
 curl -L https://github.com/bufbuild/protobuf-es/archive/refs/heads/main.zip > protobuf-es-main.zip
 unzip protobuf-es-main.zip 'protobuf-es-main/packages/protobuf-example/*'
 
@@ -24,13 +24,13 @@ npm install
 
 To add a user:
 
-```shellsession
+```bash
 npm run add
 ```
 
 To list all users:
 
-```shellsession
+```bash
 npm run list
 ```
 
@@ -42,7 +42,9 @@ contains the plugin configuration.
 
 If you want to use `protoc`, the following command is equivalent:
 
-```shellsession
+```bash
+# You will need to adapt these values to your environment:
+# https://protobufes.com/reference/environments/
 protoc -I . --es_out=src/gen --es_opt=target=ts --plugin=protoc-gen-es=./node_modules/.bin/protoc-gen-es proto/example.proto
 ```
 

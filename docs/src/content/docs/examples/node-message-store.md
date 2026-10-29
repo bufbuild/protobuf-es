@@ -10,7 +10,7 @@ The full source is in [`packages/protobuf-example`](https://github.com/bufbuild/
 
 Create `proto/example.proto`:
 
-```protobuf
+```proto
 syntax = "proto3";
 package example;
 

@@ -52,6 +52,8 @@ If your schema imports something like `buf/validate/validate.proto`, generated c
 ```yaml
 version: v2
 plugins:
+  # You will need to adapt these values to your environment:
+  # https://protobufes.com/reference/environments/
   - local: protoc-gen-es
     out: src/gen
     include_imports: true

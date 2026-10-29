@@ -10,7 +10,7 @@ To migrate, update dependencies, regenerate code, and then adjust call sites in 
 
 Install the v2 packages you use:
 
-```shellsession
+```bash
 npm install @bufbuild/protobuf@^2.0.0 @bufbuild/protoc-gen-es@^2.0.0
 ```
 
@@ -36,7 +36,9 @@ If you use the remote plugin instead of a locally installed binary, update the v
 ```yaml
 version: v2
 plugins:
-  - remote: buf.build/bufbuild/es:v2.12.0
+  # You will need to adapt these values to your environment:
+  # https://protobufes.com/reference/environments/
+  - remote: buf.build/bufbuild/es:v2.16.0
     out: gen
 ```
 
@@ -55,21 +57,21 @@ Create messages with `create()` and a schema instead of `new`:
 
 - let user = new User({
 + let user = create(UserSchema, {
-  firstName: "Homer",
-});
+    firstName: "Homer",
+  });
 ```
 
 Serialization helpers are now standalone functions that take both schema and message:
 
 ```diff
-import type { User } from "./gen/example_pb";
+  import type { User } from "./gen/example_pb";
 + import { UserSchema } from "./gen/example_pb";
 + import { toJsonString } from "@bufbuild/protobuf";
 
-function show(user: User) {
--  alert(user.toJsonString());
-+  alert(toJsonString(UserSchema, user));
-}
+  function show(user: User) {
+-   alert(user.toJsonString());
++   alert(toJsonString(UserSchema, user));
+  }
 ```
 
 Messages no longer implement `toJSON`. Convert them with `toJson()` before passing them to `JSON.stringify()`.

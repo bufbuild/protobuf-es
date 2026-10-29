@@ -10,7 +10,7 @@ See [Custom options](/reference/reflection/custom-options/) and [Dynamic message
 
 Create `proto/options.proto`:
 
-```protobuf
+```proto
 syntax = "proto3";
 package example.options;
 
@@ -23,7 +23,7 @@ extend google.protobuf.FieldOptions {
 
 ## Use the option
 
-```protobuf
+```proto
 syntax = "proto3";
 package example;
 
