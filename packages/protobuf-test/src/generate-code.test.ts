@@ -327,7 +327,6 @@ void suite("ts generated code is equal to js generated code", () => {
             typeof value.toString == "function" &&
             Object.prototype.hasOwnProperty.call(value, "toString")
           ) {
-            // eslint-disable-next-line @typescript-eslint/no-base-to-string -- we're not calling Object.toString
             id = value.toString() + "@" + seen.size;
           } else {
             id = "unknown@" + seen.size;
