@@ -14,8 +14,9 @@
 
 import { suite, test } from "node:test";
 import * as assert from "node:assert";
-import { fromBinary } from "@bufbuild/protobuf";
+import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
+import { StringValueSchema } from "@bufbuild/protobuf/wkt";
 import { UserSchema } from "../gen/ts/extra/example_pb.js";
 
 void suite("BinaryWriter", () => {
@@ -375,5 +376,21 @@ void suite("BinaryReader", () => {
       assert.strictEqual(new BinaryReader(bytes).string(), "a�");
       assert.throws(() => new BinaryReader(bytes).string(true));
     });
+    // U+FEFF is part of the string, including when it is the first code point.
+    const bomCases: [string, string][] = [
+      ["a string that starts with U+FEFF", "\uFEFFx"],
+      ["a string that is only U+FEFF", "\uFEFF"],
+      ["a string with U+FEFF in the middle", "x\uFEFFy"],
+      ["an ASCII string", "hello"],
+    ];
+    for (const [name, value] of bomCases) {
+      void test(`round-trips ${name}`, () => {
+        const bytes = toBinary(
+          StringValueSchema,
+          create(StringValueSchema, { value }),
+        );
+        assert.strictEqual(fromBinary(StringValueSchema, bytes).value, value);
+      });
+    }
   });
 });
