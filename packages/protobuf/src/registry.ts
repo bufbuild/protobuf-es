@@ -224,33 +224,9 @@ export function createFileRegistry(
     const resolve = args[1] as (
       protoFileName: string,
     ) => FileDescriptorProto | DescFile | undefined;
-    const seen = new Set<string>();
-    function recurseDeps(file: FileDescriptorProto): FileDescriptorProto[] {
-      const deps: FileDescriptorProto[] = [];
-      for (const protoFileName of file.dependency) {
-        if (registry.getFile(protoFileName) != undefined) {
-          continue;
-        }
-        if (seen.has(protoFileName)) {
-          continue;
-        }
-        const dep = resolve(protoFileName);
-        if (!dep) {
-          throw new Error(
-            `Unable to resolve ${protoFileName}, imported by ${file.name}`,
-          );
-        }
-        if ("kind" in dep) {
-          registry.addFile(dep, false, true);
-        } else {
-          seen.add(dep.name);
-          deps.push(dep);
-        }
-      }
-      return deps.concat(...deps.map(recurseDeps));
-    }
-    for (const file of [input, ...recurseDeps(input)].reverse()) {
-      addFile(file, registry);
+    const files = resolveFileDescriptorProtos(input, resolve, registry);
+    for (let i = files.length - 1; i >= 0; i--) {
+      addFile(files[i], registry);
     }
   } else {
     for (const fileReg of args as FileRegistry[]) {
@@ -265,10 +241,15 @@ export function createFileRegistry(
 /**
  * @private
  */
+type RegistryType = DescMessage | DescEnum | DescExtension | DescService;
+
+/**
+ * @private
+ */
 interface BaseRegistry extends FileRegistry {
-  add(desc: DescMessage | DescEnum | DescExtension | DescService): void;
+  add(desc: RegistryType): void;
   addFile(file: DescFile, skipTypes?: boolean, withDeps?: boolean): void;
-  types: Map<string, DescMessage | DescEnum | DescExtension | DescService>;
+  types: Map<string, RegistryType>;
   extendees: Map<string, Map<number, DescExtension>>;
 }
 
@@ -276,10 +257,7 @@ interface BaseRegistry extends FileRegistry {
  * @private
  */
 function createBaseRegistry(): BaseRegistry {
-  const types = new Map<
-    string,
-    DescMessage | DescEnum | DescExtension | DescService
-  >();
+  const types = new Map<string, RegistryType>();
   const extendees = new Map<string, Map<number, DescExtension>>();
   const files = new Map<string, DescFile>();
   return {
@@ -300,9 +278,7 @@ function createBaseRegistry(): BaseRegistry {
         }
       }
       if (withDeps) {
-        for (const f of file.dependencies) {
-          this.addFile(f, skipTypes, withDeps);
-        }
+        addFileDependencies(file, this, files, skipTypes);
       }
     },
     add(desc) {
@@ -348,6 +324,190 @@ function createBaseRegistry(): BaseRegistry {
       return t?.kind == "service" ? t : undefined;
     },
   };
+}
+
+/**
+ * Resolve raw imports in the original order: all direct imports of a file
+ * before descending into its raw dependencies. The returned files are added
+ * to the registry in reverse order, after all resolver calls have completed.
+ */
+function resolveFileDescriptorProtos(
+  input: FileDescriptorProto,
+  resolve: (name: string) => FileDescriptorProto | DescFile | undefined,
+  registry: BaseRegistry,
+): FileDescriptorProto[] {
+  const files = [input];
+  const pending = [input];
+  const seen = new Set<string>();
+  while (pending.length > 0) {
+    const file = pending.pop() as FileDescriptorProto;
+    const firstDependency = files.length;
+    for (const name of file.dependency) {
+      if (registry.getFile(name) !== undefined || seen.has(name)) {
+        continue;
+      }
+      const dep = resolve(name);
+      if (!dep) {
+        throw new Error(`Unable to resolve ${name}, imported by ${file.name}`);
+      }
+      if ("kind" in dep) {
+        registry.addFile(dep, false, true);
+      } else {
+        seen.add(dep.name);
+        files.push(dep);
+      }
+    }
+    for (let i = files.length - 1; i >= firstDependency; i--) {
+      pending.push(files[i]);
+    }
+  }
+  return files;
+}
+
+/**
+ * Add dependencies of an already registered file in depth-first order.
+ * First appearances determine iteration order; last appearances determine
+ * which conflicting descriptors win.
+ */
+function addFileDependencies(
+  file: DescFile,
+  registry: BaseRegistry,
+  files: Map<string, DescFile>,
+  skipTypes?: boolean,
+): void {
+  const dependencies = file.dependencies;
+  if (dependencies.length === 0) {
+    return;
+  }
+  const visited = new Set<DescFile>([file]);
+  // Keep only active paths, rather than queuing every dependency edge.
+  const stack = [{ dependencies, next: 0 }];
+  let hasRepeatedFiles = false;
+  let hasConflicts = false;
+  const addType = (type: RegistryType) => {
+    if (addTypeWithConflictCheck(type, registry)) {
+      hasConflicts = true;
+    }
+  };
+  while (stack.length > 0) {
+    const frame = stack[stack.length - 1];
+    if (frame.next === frame.dependencies.length) {
+      stack.pop();
+      continue;
+    }
+    const dep = frame.dependencies[frame.next++];
+    if (visited.has(dep)) {
+      hasRepeatedFiles = true;
+      continue;
+    }
+    visited.add(dep);
+    const previousFile = files.get(dep.proto.name);
+    if (previousFile !== dep) {
+      hasConflicts ||= previousFile !== undefined;
+      files.set(dep.proto.name, dep);
+    }
+    if (!skipTypes) {
+      visitNestedTypes(dep, addType);
+    }
+    const dependencies = dep.dependencies;
+    if (dependencies.length > 0) {
+      stack.push({ dependencies, next: 0 });
+    }
+  }
+  if (hasRepeatedFiles && hasConflicts) {
+    // Restore the winners without changing the first insertion order:
+    // Map.set() updates an existing key's value without moving the key.
+    const reverseOrder = reverseFileImportOrder(file, visited);
+    for (let i = reverseOrder.length - 1; i >= 0; i--) {
+      registry.addFile(reverseOrder[i], skipTypes);
+    }
+  }
+}
+
+/**
+ * Register a type and report whether it replaces a different descriptor by
+ * type name or by extension number.
+ */
+function addTypeWithConflictCheck(
+  type: RegistryType,
+  registry: BaseRegistry,
+): boolean {
+  const previousType = registry.types.get(type.typeName);
+  let conflicting = previousType !== undefined && previousType !== type;
+  if (type.kind === "extension") {
+    const previousExtension = registry.getExtensionFor(
+      type.extendee,
+      type.number,
+    );
+    conflicting ||=
+      previousExtension !== undefined && previousExtension !== type;
+    // The name may already point to this extension while the number does not.
+    registry.add(type);
+  } else if (previousType !== type) {
+    registry.add(type);
+  }
+  return conflicting;
+}
+
+/**
+ * Visit types in nestedTypes() order without creating a generator for every
+ * imported file and message.
+ */
+function visitNestedTypes(
+  desc: DescFile | DescMessage,
+  visit: (type: RegistryType) => void,
+): void {
+  const isFile = desc.kind === "file";
+  for (const message of isFile ? desc.messages : desc.nestedMessages) {
+    visit(message);
+    visitNestedTypes(message, visit);
+  }
+  for (const type of isFile ? desc.enums : desc.nestedEnums) {
+    visit(type);
+  }
+  if (isFile) {
+    for (const type of desc.services) {
+      visit(type);
+    }
+  }
+  for (const type of isFile ? desc.extensions : desc.nestedExtensions) {
+    visit(type);
+  }
+}
+
+/**
+ * Return files in reverse import order, keeping each file's last occurrence.
+ * Visit children in reverse order before their parent to avoid expanding
+ * repeated paths. The set must contain the root and every reachable file;
+ * it is consumed so the caller can reuse the first traversal's visited set.
+ */
+function reverseFileImportOrder(
+  file: DescFile,
+  remaining: Set<DescFile>,
+): DescFile[] {
+  const order: DescFile[] = [];
+  const stack: {
+    file: DescFile;
+    dependencies: DescFile[];
+    remaining: number;
+  }[] = [];
+  const visit = (file: DescFile) => {
+    if (remaining.delete(file)) {
+      const dependencies = file.dependencies;
+      stack.push({ file, dependencies, remaining: dependencies.length });
+    }
+  };
+  visit(file);
+  while (stack.length > 0) {
+    const frame = stack[stack.length - 1];
+    if (frame.remaining === 0) {
+      order.push(frame.file);
+      stack.pop();
+    } else {
+      visit(frame.dependencies[--frame.remaining]);
+    }
+  }
+  return order;
 }
 
 /**
