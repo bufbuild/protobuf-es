@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { ElizaServiceClient } from "./gen/connectrpc/eliza_twirp";
-import { SayRequestSchema } from "./gen/connectrpc/eliza_pb";
+import { ElizaServiceClient } from "./gen/connectrpc/eliza_twirp.js";
+import { SayRequestSchema } from "./gen/connectrpc/eliza_pb.js";
 import { create } from "@bufbuild/protobuf";
 
 const client = new ElizaServiceClient();

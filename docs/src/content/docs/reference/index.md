@@ -10,6 +10,7 @@ Reference pages cover exact generated shapes, plugin options, runtime types, and
 - [Field types](/reference/generated-code/field-types/): scalar mappings, message fields, enum fields, repeated fields, map fields, and well-known type field shapes.
 - [Generated features](/reference/generated-code/features/): oneofs, proto2 groups, required fields, optional fields, services, reserved names, nested types, comments, and packages.
 - [Plugin options](/reference/plugin-options/): `target`, import extensions, CommonJS output, empty files, `ts_nocheck`, plugin version elision, JSON types, map imports, and Valid types.
+- [Bundlers and runtimes](/reference/environments/): generator options for Vite, Next.js, Node.js, Deno, and Bun.
 
 ## Runtime
 
@@ -22,6 +23,7 @@ Reference pages cover exact generated shapes, plugin options, runtime types, and
 - [Custom options](/reference/reflection/custom-options/): defining, using, and reading schema annotations.
 - [Dynamic messages](/reference/reflection/dynamic-messages/): `ReflectMessage`, `ReflectList`, and `ReflectMap`.
 - [Well-known types](/reference/well-known-types/): precompiled `google.protobuf` exports and convenience helpers for `Timestamp`, `Duration`, `Any`, `Struct`, wrappers, descriptors, and compiler types.
+- [Using with grpc-node](/reference/using-with-grpc-node/): generating `@grpc/grpc-js` clients and servers that use Protobuf-ES messages with `protoc-gen-grpc-es`.
 
 ## Plugin authors
 

@@ -2,7 +2,7 @@
 title: Plugin options
 ---
 
-`@bufbuild/protoc-gen-es` supports a small set of options to control the generated output.
+`@bufbuild/protoc-gen-es` supports a small set of options to control the generated output. To find the right options for Vite, Next.js, Node.js, Deno, or Bun, see [Configure for your environment](/reference/environments/).
 
 With the [Buf CLI](https://buf.build/docs/cli/), specify multiple options as a YAML list:
 
@@ -32,15 +32,13 @@ By default, the plugin generates JavaScript and TypeScript declaration files. If
 
 ## `import_extension`
 
-By default, generated import paths do not include a file extension.
+By default, generated import paths do not include a file extension. Bundlers don't need one, but ECMAScript modules in Node.js typically require `.js`, and Deno typically requires `.ts`.
 
-Use this option when your environment requires one:
+Use this option when your environment requires file extensions in imports:
 
 - `import_extension=none`: No extension. This is the default.
 - `import_extension=js`: Add `.js`.
 - `import_extension=ts`: Add `.ts`.
-
-Using ECMAScript modules in Node.js typically requires `.js`. Deno typically requires `.ts`.
 
 ## `map_imports`
 
@@ -54,7 +52,6 @@ plugins:
   - local: protoc-gen-es
     out: src/gen
     opt:
-      - target=ts
       - map_imports=buf/validate/:@bufbuild/protovalidate/gen
 ```
 
@@ -115,7 +112,11 @@ See [Valid types](/reference/valid-types/) for details.
 
 ## `erasable_syntax=true` (experimental)
 
-Generates Protobuf enums as an object with `as const` for [running TypeScript
-natively in Node.js](https://nodejs.org/learn/typescript/run-natively), and for
-compatibility with the `tsconfig` option [erasableSyntaxOnly](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly). See [Enums vs Objects](/reference/generated-code/#enums-vs-objects) for details.
+Generates Protobuf enums as an object with `as const` instead of a TypeScript
+`enum`. See [Enums vs Objects](/reference/generated-code/#enums-vs-objects) for details.
+
+Use this option to:
+
+- Run TypeScript [natively in Node.js](https://nodejs.org/learn/typescript/run-natively). Combine it with `target=ts` and `import_extension=ts`.
+- Compile with the `tsconfig` option [erasableSyntaxOnly](https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly).
 

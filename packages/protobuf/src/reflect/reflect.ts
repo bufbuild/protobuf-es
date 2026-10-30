@@ -132,7 +132,6 @@ class ReflectMessageImpl implements ReflectMessage {
     const value = unsafeGet(this.message, field);
     switch (field.fieldKind) {
       case "list":
-        // eslint-disable-next-line no-case-declarations
         let list = this.lists.get(field);
         if (!list || list[unsafeLocal] !== value) {
           this.lists.set(

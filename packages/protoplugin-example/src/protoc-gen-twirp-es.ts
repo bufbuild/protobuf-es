@@ -22,11 +22,10 @@ import {
 } from "@bufbuild/protoplugin";
 import { getOption, hasOption } from "@bufbuild/protobuf";
 import { default_host } from "./gen/customoptions/default_host_pb.js";
-import { version } from "../package.json";
 
 const protocGenTwirpEs = createEcmaScriptPlugin({
   name: "protoc-gen-twirp-es",
-  version: `v${String(version)}`,
+  version: "v0.0.1",
   generateTs,
   parseOptions,
 });
