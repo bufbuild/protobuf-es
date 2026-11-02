@@ -172,4 +172,4 @@ This format is compatible with the delimited message support in the C++, Java, G
 Protobuf-ES uses the WHATWG [Text Encoding API](https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API) to convert UTF-8 to and from binary.
 
 If your environment does not provide the API, install your own `TextEncoder` and `TextDecoder` implementations globally.
-We use `TextEncoder`'s methods `encode` and - optionally - `encodeInto`, as well as `TextDecoder`'s `fatal: true` constructor argument and its `decode` method.
+We use `TextEncoder`'s methods `encode` and - optionally - `encodeInto`, as well as `TextDecoder`'s `fatal: true` and `ignoreBOM: true` constructor arguments and its `decode` method.
