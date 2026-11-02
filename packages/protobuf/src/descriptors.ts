@@ -177,6 +177,9 @@ export interface DescEnum {
   readonly values: DescEnumValue[];
   /**
    * All values of this enum by their number.
+   *
+   * If several values share a number (option allow_alias), the first declared
+   * value is used.
    */
   readonly value: Record<number, DescEnumValue>;
   /**
