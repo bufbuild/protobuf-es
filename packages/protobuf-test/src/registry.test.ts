@@ -647,6 +647,21 @@ void suite("DescMessage", () => {
 });
 
 void suite("DescEnum", () => {
+  void suite("value", () => {
+    test("resolves an alias to the first declared value", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum E {
+          option allow_alias = true;
+          E_ZERO = 0;
+          E_OLD = 1;
+          E_NEW = 1;
+        }
+      `);
+      assert.strictEqual(descEnum.values.length, 3);
+      assert.strictEqual(descEnum.value[1].name, "E_OLD");
+    });
+  });
   void suite("open", () => {
     test("proto3 enum is open", async () => {
       const descEnum = await compileEnum(`
