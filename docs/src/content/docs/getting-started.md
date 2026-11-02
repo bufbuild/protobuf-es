@@ -64,10 +64,10 @@ Create `buf.gen.yaml`:
 ```yaml
 version: v2
 plugins:
-  # You will need to adapt these values to your environment:
-  # https://protobufes.com/reference/environments/
   - local: protoc-gen-es
     out: src/gen
+    # You will need to adapt these plugin options to your environment:
+    # https://protobufes.com/reference/environments/
     opt: target=ts
 ```
 
@@ -82,8 +82,6 @@ npx buf generate
 If you already use `protoc`, use the same plugin directly:
 
 ```bash
-# You will need to adapt these values to your environment:
-# https://protobufes.com/reference/environments/
 mkdir -p src/gen && PATH=${PATH}:$(pwd)/node_modules/.bin protoc -I proto --es_out=src/gen --es_opt=target=ts example.proto
 ```
 

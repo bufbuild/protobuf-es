@@ -43,8 +43,6 @@ contains the plugin configuration.
 If you want to use `protoc`, the following command is equivalent:
 
 ```bash
-# You will need to adapt these values to your environment:
-# https://protobufes.com/reference/environments/
 protoc -I . --es_out=src/gen --es_opt=target=ts --plugin=protoc-gen-es=./node_modules/.bin/protoc-gen-es proto/example.proto
 ```
 

@@ -4,8 +4,6 @@ inputs:
   - directory: proto
 clean: true
 plugins:
-  # You will need to adapt these values to your environment:
-  # https://protobufes.com/reference/environments/
   - local: [
       "deno",
       "run",
@@ -13,6 +11,8 @@ plugins:
       "--allow-env",
       "npm:@bufbuild/protoc-gen-es@2.9.0/",
     ]
+    # Adapt plugin options to your environment:
+    # https://protobufes.com/reference/environments/
     opt:
       - target=ts
       - import_extension=ts

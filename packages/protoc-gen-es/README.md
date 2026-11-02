@@ -29,13 +29,13 @@ version: v2
 inputs:
   - directory: proto
 plugins:
-  # You will need to adapt these values to your environment:
-  # https://protobufes.com/reference/environments/
   # This will invoke protoc-gen-es and write output to src/gen
   - local: protoc-gen-es
     out: src/gen
+    # Plugin options control the generated output.
+    # Configure them for your environment, see:
+    # https://protobufes.com/reference/environments/
     opt:
-      # Add more plugin options here
       - target=ts
 ```
 
@@ -51,8 +51,6 @@ not just local Protobuf files.
 ### With `protoc`
 
 ```bash
-# You will need to adapt these values to your environment:
-# https://protobufes.com/reference/environments/
 PATH=$PATH:$(pwd)/node_modules/.bin \
   protoc --proto_path proto \
   --es_out src/gen \

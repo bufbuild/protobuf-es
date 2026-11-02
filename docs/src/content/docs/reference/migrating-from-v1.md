@@ -36,8 +36,6 @@ If you use the remote plugin instead of a locally installed binary, update the v
 ```yaml
 version: v2
 plugins:
-  # You will need to adapt these values to your environment:
-  # https://protobufes.com/reference/environments/
   - remote: buf.build/bufbuild/es:v2.16.0
     out: gen
 ```

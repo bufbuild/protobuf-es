@@ -105,10 +105,10 @@ version: v2
 inputs:
   - directory: proto
 plugins:
-  # You will need to adapt these values to your environment:
-  # https://protobufes.com/reference/environments/
   - local: protoc-gen-es
     out: src/gen
+    # You will need to adapt these plugin options to your environment:
+    # https://protobufes.com/reference/environments/
     opt: target=ts
 ```
 

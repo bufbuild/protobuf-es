@@ -9,8 +9,6 @@ With the [Buf CLI](https://buf.build/docs/cli/), specify multiple options as a Y
 ```yaml
 version: v2
 plugins:
-  # You will need to adapt these values to your environment:
-  # https://protobufes.com/reference/environments/
   - local: protoc-gen-es
     out: src/gen
     opt:
@@ -51,8 +49,6 @@ If a dependency is provided by a package instead, use `map_imports` to import it
 ```yaml
 version: v2
 plugins:
-  # You will need to adapt these values to your environment:
-  # https://protobufes.com/reference/environments/
   - local: protoc-gen-es
     out: src/gen
     opt:
