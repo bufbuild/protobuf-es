@@ -14,6 +14,7 @@
 
 import {
   type DescEnum,
+  type DescEnumValue,
   type DescExtension,
   type DescField,
   type DescMessage,
@@ -432,15 +433,12 @@ function scalarToText(type: ScalarType, value: unknown): string {
 }
 
 function enumToText(descEnum: DescEnum, value: number): string {
-  // Emit the first-declared name for a value, so allow_alias enums match
-  // protobuf-go (the by-number record can resolve to a non-first alias). An
-  // unknown value prints as a decimal.
-  for (const v of descEnum.values) {
-    if (v.number === value) {
-      return v.name;
-    }
-  }
-  return value.toString();
+  // The by-number record holds the first-declared alias, matching protobuf-go.
+  // An unknown value prints as a decimal.
+  return (
+    (descEnum.value[value] as DescEnumValue | undefined)?.name ??
+    value.toString()
+  );
 }
 
 function floatToText(value: number, single: boolean): string {

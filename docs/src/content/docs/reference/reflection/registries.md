@@ -53,7 +53,7 @@ If you have a `google.protobuf.FileDescriptorSet`, create a file registry with `
 
 Compile a descriptor set with the Buf CLI:
 
-```shellsession
+```bash
 buf build proto --output set.binpb
 ```
 
