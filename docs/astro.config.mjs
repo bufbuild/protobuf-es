@@ -107,6 +107,7 @@ export default defineConfig({
             { slug: "reference/json-types" },
             { slug: "reference/valid-types" },
             { slug: "reference/migrating-from-v1" },
+            { slug: "reference/using-with-grpc-node" },
             { slug: "reference/faq" },
           ],
         },

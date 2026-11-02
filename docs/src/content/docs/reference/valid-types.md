@@ -6,15 +6,15 @@ Valid types are an advanced feature enabled with the plugin option `valid_types`
 
 When enabled, `@bufbuild/protoc-gen-es` generates an extra type for each message. The extra type adjusts optionality based on Protobuf features and validation rules so the TypeScript type can reflect runtime guarantees more closely.
 
-> [!NOTE]
->
-> Valid types are experimental. Today they primarily affect message field optionality.
+:::note
+Valid types are experimental. Today they primarily affect message field optionality.
+:::
 
 ## `valid_types=legacy_required`
 
 With `legacy_required`, proto2 `required` message fields and Edition `LEGACY_REQUIRED` message fields become non-optional in the generated Valid type.
 
-```protobuf
+```proto
 syntax = "proto2";
 
 message Example {
@@ -36,7 +36,7 @@ export type ExampleValid = Message<"Example"> & {
 
 With `protovalidate_required`, message fields marked with Protovalidate's `required` rule become non-optional in the generated Valid type.
 
-```protobuf
+```proto
 syntax = "proto3";
 
 import "buf/validate/validate.proto";

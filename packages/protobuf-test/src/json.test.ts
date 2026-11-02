@@ -590,7 +590,7 @@ void suite("JSON serialization", () => {
           });
           assert.throws(() => toJson(TimestampSchema, timestamp), {
             message:
-              "cannot encode message google.protobuf.Timestamp to JSON: nanos must not be greater than 99999999",
+              "cannot encode message google.protobuf.Timestamp to JSON: nanos must not be greater than 999999999",
           });
         });
       });

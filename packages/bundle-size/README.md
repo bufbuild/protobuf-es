@@ -2,7 +2,7 @@
 
 This is a simple code size comparison between Protobuf-ES and google-protobuf.
 
-We are generating code for the module [buf.build/bufbuild/buf](https://buf.build/bufbuild/buf)
+We are generating code for the module [buf.build/googleapis/googleapis](https://buf.build/googleapis/googleapis)
 once with `protoc-gen-js` from [github.com/protocolbuffers/protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript),
 once with `protoc-gen-es` from Protobuf-ES. Then we bundle a [snippet of code that imports from one generated file](./src/gen/protobuf-es/entry-1.ts)
 with [esbuild](https://esbuild.github.io/), minify the bundle, and compress it like a web server would

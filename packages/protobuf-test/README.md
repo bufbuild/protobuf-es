@@ -1,6 +1,6 @@
 # Tests for @bufbuild/protobuf
 
-This package provides test coverage for `@bufbuild/protobuf` with the Node.js 
+This package provides test coverage for `@bufbuild/protobuf` with the Node.js
 built-in test runner.
 
 We also generate code for many of the unit test Protobuf files that are part of

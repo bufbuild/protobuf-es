@@ -508,7 +508,6 @@ function addFile(proto: FileDescriptorProto, reg: BaseRegistry): void {
     extensions: [],
     services: [],
     toString(): string {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- we asserted above
       return `file ${proto.name}`;
     },
   };

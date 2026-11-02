@@ -8,7 +8,7 @@ See [Well-known types](/reference/well-known-types/#googleprotobufany) and [Regi
 
 ## Schema
 
-```protobuf
+```proto
 syntax = "proto3";
 package example;
 

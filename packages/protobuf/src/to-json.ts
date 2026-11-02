@@ -904,7 +904,7 @@ function timestampToJson(val: Timestamp) {
   }
   if (val.nanos > 999999999) {
     throw new Error(
-      `cannot encode message ${val.$typeName} to JSON: nanos must not be greater than 99999999`,
+      `cannot encode message ${val.$typeName} to JSON: nanos must not be greater than 999999999`,
     );
   }
   let z = "Z";

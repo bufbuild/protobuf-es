@@ -1,0 +1,65 @@
+name: docs
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - ".github/workflows/docs.yaml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - ".github/workflows/docs.yaml"
+
+permissions:
+  contents: read
+
+env:
+  # https://consoledonottrack.com/
+  DO_NOT_TRACK: 1
+  ASTRO_TELEMETRY_DISABLED: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci
+        working-directory: docs
+      - run: npm run build
+        working-directory: docs
+  # Vercel deploys only main (Preview branch tracking is disabled to avoid
+  # fork authorization). Same-repo PRs get previews from this job.
+  preview:
+    needs: build
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    environment: docs-preview
+    steps:
+      - name: Deploy preview
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+          HEAD_REF: ${{ github.head_ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        # Vercel clones and builds the commit itself, using docs/vercel.json.
+        run: |
+          jq -n \
+            --arg project "$VERCEL_PROJECT_ID" \
+            --arg org "$REPO_OWNER" \
+            --arg repo "$REPO_NAME" \
+            --arg ref "$HEAD_REF" \
+            --arg sha "$HEAD_SHA" \
+            --argjson prId "$PR_NUMBER" \
+            '{name: "protobuf-es", project: $project, gitSource: {type: "github", org: $org, repo: $repo, ref: $ref, sha: $sha, prId: $prId}}' \
+          | curl -sS --fail-with-body \
+            -X POST "https://api.vercel.com/v13/deployments?teamId=${VERCEL_ORG_ID}&forceNew=1" \
+            -H "Authorization: Bearer ${VERCEL_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data @-

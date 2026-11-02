@@ -11,6 +11,6 @@ The upstream version is picked up from shelling out to `protoc --version`.
 
 To update this project to use a new version, install the corresponding version
 of the `protoc` and `protobuf-conformance` packages. Run `npx turbo run bootstrap -F ./packages/protobuf`.
-This will  re-generate the well-known types from the upstream definitions, and
+This will re-generate the well-known types from the upstream definitions, and
 seed the edition feature-set defaults. As a result, `@bufbuild/protobuf` may
 be modified. Run `npx turbo run test` to run all tests with the updated code.
