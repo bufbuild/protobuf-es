@@ -5,10 +5,10 @@ clients from service definitions in Protobuf files.
 
 ## Run the example
 
-You need [Node](https://nodejs.org/en/download/) version 20.17.0 or later installed.
+You need [Node](https://nodejs.org/en/download/) version 22 or later installed.
 Download the example project and install its dependencies:
 
-```shell
+```bash
 curl -L https://github.com/bufbuild/protobuf-es/archive/refs/heads/main.zip > protobuf-es-main.zip
 unzip protobuf-es-main.zip 'protobuf-es-main/packages/protoplugin-example/*'
 
@@ -18,7 +18,7 @@ npm install
 
 To see the client in action:
 
-```shell
+```bash
 npm start
 ```
 
@@ -26,19 +26,19 @@ Open http://127.0.0.1:3000/ in your browser.
 
 To re-generate code:
 
-```shell
+```bash
 npx buf generate
 ```
 
 Test the generated code:
 
-```shell
+```bash
 npm test
 ```
 
 ## About this example
 
-This example is a starting point—we encourage you to try it out and experiment.
+This example is a starting point. We encourage you to try it out and experiment.
 
 Take a look at the code generation logic in [protoc-gen-twirp-es.ts](./src/protoc-gen-twirp-es.ts),
 and at [buf.gen.yaml](./buf.gen.yaml) to see how it's invoked. To learn more, see our guide

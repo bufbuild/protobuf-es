@@ -12,7 +12,7 @@ For new projects, see [Connect-ES](https://connectrpc.com/docs/node/getting-star
 
 Install `@bufbuild/protobuf` and the two code generator plugins alongside `@grpc/grpc-js` ([README](https://github.com/bufbuild/protoc-gen-grpc-es#installation)):
 
-```shellsession
+```bash
 npm install @bufbuild/protobuf @grpc/grpc-js
 npm install --save-dev @bufbuild/protoc-gen-es @bufbuild/protoc-gen-grpc-es @types/node
 ```
@@ -36,7 +36,7 @@ plugins:
     opt: target=ts
 ```
 
-```shellsession
+```bash
 npx buf generate
 ```
 
@@ -46,7 +46,7 @@ Pass matching `target`, `import_extension`, and `js_import_style` [options](http
 
 For a service definition like `eliza.proto`:
 
-```protobuf
+```proto
 syntax = "proto3";
 package example;
 
@@ -241,4 +241,3 @@ Import well-known types and their helper functions from `@bufbuild/protobuf/wkt`
 + const ts = timestampFromDate(new Date());
 + const date = timestampDate(ts);
 ```
-
