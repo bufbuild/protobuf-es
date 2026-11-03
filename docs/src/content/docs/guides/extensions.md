@@ -8,7 +8,7 @@ An extension is a field defined outside of its container message. Extensions are
 
 In a `.proto` file, declare an extension range on the message and then define extension fields:
 
-```protobuf
+```proto
 syntax = "proto2";
 
 message User {

@@ -31,6 +31,8 @@ interface TextEncoding {
    * Decode UTF-8 text from binary. If `strict` is true, throw on invalid byte
    * sequences instead of silently substituting U+FFFD. Implementations that
    * do not support strict decoding may ignore the flag.
+   *
+   * A leading U+FEFF is part of the text, not stripped as a byte-order mark.
    */
   decodeUtf8: (bytes: Uint8Array, strict?: boolean) => string;
 }
@@ -47,8 +49,8 @@ type TextEncodingConfig = Omit<TextEncoding, "encodeUtf8Into"> &
  * It only configures the copy of the library it is imported from. To provide
  * the encoding API for every copy of Protobuf-ES in an isolate, install
  * `TextEncoder` (with the methods `encode` and optionally `encodeInto`) and
- * `TextDecoder` (with the `fatal: true` constructor argument and the `decode`
- * method) on `globalThis`.
+ * `TextDecoder` (with the `fatal: true` and `ignoreBOM: true` constructor
+ * arguments and the `decode` method) on `globalThis`.
  *
  * Providing `encodeUtf8Into` is optional for backwards compatibility. If it
  * is omitted, we emulate it with a wrapper that calls `encodeUtf8`.
@@ -77,7 +79,10 @@ export function getTextEncoding(): TextEncoding {
       );
     }
     const textEncoder = new globals.TextEncoder();
-    const textDecoder = new globals.TextDecoder();
+    // A leading U+FEFF in a protobuf string is text, not a byte-order mark.
+    const textDecoder = new globals.TextDecoder("utf-8", {
+      ignoreBOM: true,
+    });
     let textDecoderStrict: typeof textDecoder | undefined;
     const config: TextEncodingConfig = {
       encodeUtf8(text: string): Uint8Array<ArrayBuffer> {
@@ -88,6 +93,7 @@ export function getTextEncoding(): TextEncoding {
           if (!textDecoderStrict) {
             textDecoderStrict = new globals.TextDecoder("utf-8", {
               fatal: true,
+              ignoreBOM: true,
             });
           }
           return textDecoderStrict.decode(bytes);
@@ -135,7 +141,7 @@ type GlobalWithTextEncoderDecoder = {
   TextDecoder: {
     new (
       label?: string,
-      options?: { fatal?: boolean },
+      options?: { fatal?: boolean; ignoreBOM?: boolean },
     ): {
       decode(data: Uint8Array): string;
     };

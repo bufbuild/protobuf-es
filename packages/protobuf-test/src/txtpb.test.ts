@@ -492,6 +492,15 @@ void suite(
           1,
         );
       });
+      test("keeps a leading U+FEFF in string values", () => {
+        // Only a byte-order mark at the start of the document is skipped.
+        const msg = fromText(
+          TestAllTypesProto3Schema,
+          'optional_string: "\\xef\\xbb\\xbfx" repeated_string: "\uFEFFy"',
+        );
+        assert.strictEqual(msg.optionalString, "\uFEFFx");
+        assert.deepStrictEqual(msg.repeatedString, ["\uFEFFy"]);
+      });
       test("treats comment-only and empty input as an empty message", () => {
         assert.strictEqual(
           fromText(TestAllTypesProto3Schema, "  # nothing here\n")
