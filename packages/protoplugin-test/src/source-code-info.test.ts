@@ -126,6 +126,53 @@ void suite("getComments()", () => {
     );
     assert.equal(comments.trailing, " Comment next to field.\n");
   });
+  void suite("normalizes line breaks to LF", () => {
+    const lineBreaks = {
+      CRLF: "\r\n",
+      CR: "\r",
+      "LINE SEPARATOR": "\u2028",
+      "PARAGRAPH SEPARATOR": "\u2029",
+    };
+    for (const [name, br] of Object.entries(lineBreaks)) {
+      void test(name, async () => {
+        const field = await compileField(
+          [
+            `syntax="proto3";`,
+            "message M {",
+            "",
+            `  /* detached${br}a${br}b */`,
+            "",
+            `  /* leading${br}a${br}b */`,
+            `  string f = 1; /* trailing${br}a${br}b */`,
+            "}",
+          ].join("\n"),
+        );
+        const comments = getComments(field);
+        assert.deepStrictEqual(comments.leadingDetached, [" detached\na\nb "]);
+        assert.equal(comments.leading, " leading\na\nb ");
+        assert.equal(comments.trailing, " trailing\na\nb ");
+      });
+    }
+    void test("of syntax and package", async () => {
+      const file = await compileFile(
+        [
+          "// before syntax",
+          'syntax = "proto3"; // next to syntax',
+          "// detached",
+          "",
+          "// before package",
+          "package foo;",
+          "",
+        ].join("\r\n"),
+      );
+      const syntax = getSyntaxComments(file);
+      assert.equal(syntax.leading, " before syntax\n");
+      assert.equal(syntax.trailing, " next to syntax\n");
+      const pkg = getPackageComments(file);
+      assert.deepStrictEqual(pkg.leadingDetached, [" detached\n"]);
+      assert.equal(pkg.leading, " before package\n");
+    });
+  });
 });
 
 void suite("getDeclarationString()", () => {
