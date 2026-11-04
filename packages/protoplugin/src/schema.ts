@@ -27,6 +27,7 @@ import {
   FileDescriptorSetSchema,
 } from "@bufbuild/protobuf/wkt";
 import { nestedTypes } from "@bufbuild/protobuf/reflect";
+import { assertValidNames } from "@bufbuild/protobuf/codegenv2";
 import type {
   CreatePreambleFn,
   FileInfo,
@@ -292,6 +293,9 @@ function getFilesToGenerate(
       file: allProtoWithSourceOptions,
     }),
   );
+  // The registry only validates the copies it is given, but plugins may print
+  // names from either copy. For example, protoc-gen-es embeds proto_file.
+  request.protoFile.forEach(assertValidNames);
   const allFiles: DescFile[] = [];
   const filesToGenerate: DescFile[] = [];
   for (const file of registry.files) {

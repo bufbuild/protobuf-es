@@ -196,15 +196,40 @@ export function createFileRegistry(
 export function createFileRegistry(...registries: FileRegistry[]): FileRegistry;
 
 export function createFileRegistry(
-  ...args:
-    | [fileDescriptorSet: FileDescriptorSet]
-    | [
-        fileDescriptorProto: FileDescriptorProto,
-        resolve: (
-          protoFileName: string,
-        ) => FileDescriptorProto | DescFile | undefined,
-      ]
-    | FileRegistry[]
+  ...args: CreateFileRegistryArgs
+): FileRegistry {
+  return buildFileRegistry(args, assertValidNames);
+}
+
+/**
+ * Create a registry from an embedded file descriptor without validating it.
+ * Embedded descriptors are validated when they are generated, so they are
+ * trusted at runtime.
+ *
+ * @private
+ */
+export function createEmbeddedFileRegistry(
+  fileDescriptorProto: FileDescriptorProto,
+  resolve: (protoFileName: string) => DescFile | undefined,
+): FileRegistry {
+  return buildFileRegistry([fileDescriptorProto, resolve]);
+}
+
+type CreateFileRegistryArgs =
+  | [fileDescriptorSet: FileDescriptorSet]
+  | [
+      fileDescriptorProto: FileDescriptorProto,
+      resolve: (
+        protoFileName: string,
+      ) => FileDescriptorProto | DescFile | undefined,
+    ]
+  | FileRegistry[];
+
+function buildFileRegistry(
+  args: CreateFileRegistryArgs,
+  // A function rather than a boolean, so that bundles that only load embedded
+  // descriptors can tree-shake the validation code.
+  check?: (file: FileDescriptorProto) => void,
 ): FileRegistry {
   const registry = createBaseRegistry();
   if (!args.length) {
@@ -215,6 +240,7 @@ export function createFileRegistry(
     args[0].$typeName == "google.protobuf.FileDescriptorSet"
   ) {
     for (const file of args[0].file) {
+      check?.(file);
       addFile(file, registry);
     }
     return registry;
@@ -250,6 +276,7 @@ export function createFileRegistry(
       return deps.concat(...deps.map(recurseDeps));
     }
     for (const file of [input, ...recurseDeps(input)].reverse()) {
+      check?.(file);
       addFile(file, registry);
     }
   } else {
@@ -260,6 +287,60 @@ export function createFileRegistry(
     }
   }
   return registry;
+}
+
+// Matches protoc's descriptor check, which allows a leading digit.
+const identifierRe = /^[A-Za-z0-9_]+$/;
+
+/**
+ * Throw an error if a name in the file is not a Protobuf identifier. Checks
+ * the names of messages, fields, oneofs, extensions, enums, enum values,
+ * services, and methods.
+ *
+ * Compilers reject anything else, but a descriptor can be crafted by hand, and
+ * code generators print these names, for example as identifiers.
+ *
+ * @private
+ */
+export function assertValidNames(file: FileDescriptorProto): void {
+  const check = (kind: string, name: string) => {
+    if (!identifierRe.test(name)) {
+      throw new Error(
+        `${file.name}: invalid ${kind} name ${JSON.stringify(name)}`,
+      );
+    }
+  };
+  const checkEnum = (enumType: EnumDescriptorProto) => {
+    check("enum", enumType.name);
+    for (const value of enumType.value) {
+      check("enum value", value.name);
+    }
+  };
+  const checkMessage = (message: DescriptorProto) => {
+    check("message", message.name);
+    for (const field of message.field) {
+      check("field", field.name);
+    }
+    for (const oneof of message.oneofDecl) {
+      check("oneof", oneof.name);
+    }
+    for (const extension of message.extension) {
+      check("extension", extension.name);
+    }
+    message.nestedType.forEach(checkMessage);
+    message.enumType.forEach(checkEnum);
+  };
+  file.messageType.forEach(checkMessage);
+  file.enumType.forEach(checkEnum);
+  for (const extension of file.extension) {
+    check("extension", extension.name);
+  }
+  for (const service of file.service) {
+    check("service", service.name);
+    for (const method of service.method) {
+      check("method", method.name);
+    }
+  }
 }
 
 /**

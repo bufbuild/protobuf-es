@@ -28,7 +28,7 @@ import type {
 } from "../wkt/google/protobuf/descriptor_pb.js";
 import type { DescFile } from "../descriptors.js";
 import { restoreJsonNames } from "./restore-json-names.js";
-import { createFileRegistry } from "../registry.js";
+import { createEmbeddedFileRegistry } from "../registry.js";
 
 /**
  * Hydrate a file descriptor for google/protobuf/descriptor.proto from a plain
@@ -41,7 +41,7 @@ import { createFileRegistry } from "../registry.js";
 export function boot(boot: FileDescriptorProtoBoot): DescFile {
   const root = bootFileDescriptorProto(boot);
   root.messageType.forEach(restoreJsonNames);
-  const reg = createFileRegistry(root, () => undefined);
+  const reg = createEmbeddedFileRegistry(root, () => undefined);
   // biome-ignore lint/style/noNonNullAssertion: non-null assertion because we just created the registry from the file we look up
   return reg.getFile(root.name)!;
 }
