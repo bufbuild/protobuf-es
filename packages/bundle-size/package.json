@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@bufbuild/buf": "^1.75.0",
-    "@bufbuild/protobuf": "2.16.0",
-    "@bufbuild/protoc-gen-es": "2.16.0",
-    "@bufbuild/protoplugin": "2.16.0",
+    "@bufbuild/protobuf": "2.17.0",
+    "@bufbuild/protoc-gen-es": "2.17.0",
+    "@bufbuild/protoplugin": "2.17.0",
     "brotli": "^2.1.0",
     "esbuild": "^0.28.2",
     "google-protobuf": "4.0.3"
