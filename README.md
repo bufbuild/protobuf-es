@@ -20,7 +20,7 @@ import { create, fromBinary, toBinary, toJson } from "@bufbuild/protobuf";
 import { type User, UserSchema } from "./gen/user/v1/user_pb";
 
 // Messages are plain objects: pass fields in an initializer, or set them later.
-const user: User = create(UserSchema, {
+let user: User = create(UserSchema, {
   id: "123",
   firstName: "Alice",
 });
@@ -41,24 +41,24 @@ Here's what the client looks like:
 ```typescript
 import { createClient } from "@connectrpc/connect";
 import { createConnectTransport } from "@connectrpc/connect-web";
-import { UserService } from "./gen/user/v1/user_pb.js";
+import { UserService } from "./gen/user/v1/user_pb";
 
 const client = createClient(
   UserService,
   createConnectTransport({
     baseUrl: "http://localhost:8080",
-  })
+  }),
 );
 
 const response = await client.getUser({ id: "123" });
-console.log(response.user.firstName); // Alice
+console.log(response.user?.firstName); // Alice
 ```
 
 And the server:
 
 ```typescript
-import { ConnectRouter } from "@connectrpc/connect";
-import { UserService } from "./gen/user/v1/user_pb.js";
+import type { ConnectRouter } from "@connectrpc/connect";
+import { UserService } from "./gen/user/v1/user_pb";
 
 export default (router: ConnectRouter) => {
   router.service(UserService, {
@@ -67,11 +67,10 @@ export default (router: ConnectRouter) => {
       return { user };
     },
   });
-}
+};
 ```
 
 Serve it with [Fastify, Next.js, Express, and more](https://connectrpc.com/docs/node/server-plugins).
-
 
 ## Quickstart
 
@@ -108,13 +107,15 @@ inputs:
 plugins:
   - local: protoc-gen-es
     out: src/gen
+    # You will need to adapt these plugin options to your environment:
+    # https://protobufes.com/reference/environments/
     opt: target=ts
 ```
 
-```shellsession
-$ npm install @bufbuild/protobuf @connectrpc/connect
-$ npm install --save-dev @bufbuild/protoc-gen-es @bufbuild/buf
-$ npx buf generate
+```bash
+npm install @bufbuild/protobuf @connectrpc/connect
+npm install --save-dev @bufbuild/protoc-gen-es @bufbuild/buf
+npx buf generate
 ```
 
 That's all - typed messages and Connect stubs now live in `src/gen`.
@@ -128,7 +129,6 @@ That's all - typed messages and Connect stubs now live in `src/gen`.
 - Standard plugin-based generation, works with the Buf CLI as well as `protoc`
 - Write your own code generators with [@bufbuild/protoplugin](https://www.npmjs.com/package/@bufbuild/protoplugin)
 - Pairs with [@connectrpc/connect](https://www.npmjs.com/package/@connectrpc/connect) for RPC and [@bufbuild/protovalidate](https://www.npmjs.com/package/@bufbuild/protovalidate) for validation
-
 
 ## How it compares
 

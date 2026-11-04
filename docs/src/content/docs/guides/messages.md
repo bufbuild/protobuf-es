@@ -72,7 +72,7 @@ user.projects; // {}
 
 Proto3 fields with implicit presence do not serialize zero values such as `false`, `0`, or `""`. Adding `optional` switches a field to explicit presence.
 
-```protobuf
+```proto
 syntax = "proto3";
 
 message Presence {
@@ -111,13 +111,13 @@ clearField(msg, PresenceSchema.field.b);
 isFieldSet(msg, PresenceSchema.field.b); // false
 ```
 
-> [!IMPORTANT]
->
-> Protobuf-ES uses the prototype chain to track explicit presence for fields with default values.
->
-> - With proto3, messages are always plain objects without a custom prototype.
-> - With proto2, messages always use a custom prototype for default values.
-> - With Editions, messages use a custom prototype unless every scalar and enum field is configured for implicit presence.
+:::note[Important]
+Protobuf-ES uses the prototype chain to track explicit presence for fields with default values.
+
+- With proto3, messages are always plain objects without a custom prototype.
+- With proto2, messages always use a custom prototype for default values.
+- With Editions, messages use a custom prototype unless every scalar and enum field is configured for implicit presence.
+:::
 
 ## Comparing messages
 
@@ -135,9 +135,9 @@ equals(UserSchema, a, b); // boolean
 
 `equals()` ignores extensions and unknown fields.
 
-> [!NOTE]
->
-> `NaN` does not equal `NaN`.
+:::note
+`NaN` does not equal `NaN`.
+:::
 
 ## Cloning messages
 

@@ -14,9 +14,11 @@
 
 import { suite, test } from "node:test";
 import * as assert from "node:assert";
-import { fromBinary } from "@bufbuild/protobuf";
+import { create, fromBinary, toBinary } from "@bufbuild/protobuf";
 import { BinaryReader, BinaryWriter, WireType } from "@bufbuild/protobuf/wire";
+import { StringValueSchema } from "@bufbuild/protobuf/wkt";
 import { UserSchema } from "../gen/ts/extra/example_pb.js";
+import { TestAllTypesProto3Schema } from "../gen/ts/google/protobuf/test_messages_proto3_pb.js";
 
 void suite("BinaryWriter", () => {
   void test("example should work as expected", () => {
@@ -374,6 +376,35 @@ void suite("BinaryReader", () => {
       const bytes = new Uint8Array([2, 0x61, 0xff]);
       assert.strictEqual(new BinaryReader(bytes).string(), "a�");
       assert.throws(() => new BinaryReader(bytes).string(true));
+    });
+    // U+FEFF is part of the string, including when it is the first code point.
+    const bomCases: [string, string][] = [
+      ["a string that starts with U+FEFF", "\uFEFFx"],
+      ["a string that is only U+FEFF", "\uFEFF"],
+      ["a string with U+FEFF in the middle", "x\uFEFFy"],
+      ["an ASCII string", "hello"],
+    ];
+    for (const [name, value] of bomCases) {
+      void test(`round-trips ${name}`, () => {
+        const bytes = toBinary(
+          StringValueSchema,
+          create(StringValueSchema, { value }),
+        );
+        assert.strictEqual(fromBinary(StringValueSchema, bytes).value, value);
+      });
+    }
+    void test("keeps a leading U+FEFF in fields and map keys", () => {
+      const msg = create(TestAllTypesProto3Schema, {
+        optionalString: "\uFEFF",
+        repeatedString: ["\uFEFFa", "a"],
+        mapStringString: { "\uFEFFa": "1", a: "2" },
+      });
+      const bytes = toBinary(TestAllTypesProto3Schema, msg);
+      const back = fromBinary(TestAllTypesProto3Schema, bytes);
+      assert.strictEqual(back.optionalString, "\uFEFF");
+      assert.deepStrictEqual(back.repeatedString, ["\uFEFFa", "a"]);
+      assert.deepStrictEqual(back.mapStringString, { "\uFEFFa": "1", a: "2" });
+      assert.deepStrictEqual(toBinary(TestAllTypesProto3Schema, back), bytes);
     });
   });
 });

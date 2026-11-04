@@ -460,6 +460,44 @@ void suite("createFileRegistry()", () => {
     }
     assert.throws(t, { message: /^d.proto: unsupported edition$/ });
   });
+  void suite("descriptor names", () => {
+    // Compilers only produce identifiers, but a descriptor can be crafted by
+    // hand, and code generators print these names.
+    const invalid = `X = 1; globalThis["injected"] = 1; export const Y`;
+    function getProto(name: string) {
+      return testFileDescriptorSet.file.find((f) => f.name === name);
+    }
+    test("raises error on an invalid name in a FileDescriptorSet", () => {
+      testFileDescriptorSet.file[0].messageType[0].name = invalid;
+      assert.throws(() => createFileRegistry(testFileDescriptorSet), {
+        message: /^d\.proto: invalid message name "X = 1;/,
+      });
+    });
+    test("raises error on an invalid name in a FileDescriptorProto", () => {
+      const a = getProto("a.proto");
+      assert.ok(a !== undefined);
+      a.messageType[0].field[0].name = invalid;
+      assert.throws(() => createFileRegistry(a, getProto), {
+        message: /^a\.proto: invalid field name "X = 1;/,
+      });
+    });
+    test("raises error on an invalid name in a resolved dependency", () => {
+      const a = getProto("a.proto");
+      const d = getProto("d.proto");
+      assert.ok(a !== undefined && d !== undefined);
+      d.messageType[0].name = invalid;
+      assert.throws(() => createFileRegistry(a, getProto), {
+        message: /^d\.proto: invalid message name "X = 1;/,
+      });
+    });
+    test("accepts a name with a leading digit", () => {
+      const d = getProto("d.proto");
+      assert.ok(d !== undefined);
+      d.messageType[0].name = "1D";
+      const reg = createFileRegistry(d, () => undefined);
+      assert.ok(reg.getMessage("1D") !== undefined);
+    });
+  });
   void suite("from FileRegistry", () => {
     test("creates a copy of the given FileRegistry", () => {
       const testReg = createFileRegistry(testFileDescriptorSet);
@@ -647,6 +685,21 @@ void suite("DescMessage", () => {
 });
 
 void suite("DescEnum", () => {
+  void suite("value", () => {
+    test("resolves an alias to the first declared value", async () => {
+      const descEnum = await compileEnum(`
+        syntax="proto3";
+        enum E {
+          option allow_alias = true;
+          E_ZERO = 0;
+          E_OLD = 1;
+          E_NEW = 1;
+        }
+      `);
+      assert.strictEqual(descEnum.values.length, 3);
+      assert.strictEqual(descEnum.value[1].name, "E_OLD");
+    });
+  });
   void suite("open", () => {
     test("proto3 enum is open", async () => {
       const descEnum = await compileEnum(`

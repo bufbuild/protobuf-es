@@ -15,7 +15,7 @@
 import { base64Decode } from "../wire/base64-encoding.js";
 import { FileDescriptorProtoSchema } from "../wkt/google/protobuf/descriptor_pb.js";
 import type { DescFile } from "../descriptors.js";
-import { createFileRegistry } from "../registry.js";
+import { createEmbeddedFileRegistry } from "../registry.js";
 import { restoreJsonNames } from "./restore-json-names.js";
 import { fromBinary } from "../from-binary.js";
 
@@ -28,7 +28,7 @@ export function fileDesc(b64: string, imports?: DescFile[]): DescFile {
   const root = fromBinary(FileDescriptorProtoSchema, base64Decode(b64));
   root.messageType.forEach(restoreJsonNames);
   root.dependency = imports?.map((f) => f.proto.name) ?? [];
-  const reg = createFileRegistry(root, (protoFileName) =>
+  const reg = createEmbeddedFileRegistry(root, (protoFileName) =>
     imports?.find((f) => f.proto.name === protoFileName),
   );
   // biome-ignore lint/style/noNonNullAssertion: non-null assertion because we just created the registry from the file we look up

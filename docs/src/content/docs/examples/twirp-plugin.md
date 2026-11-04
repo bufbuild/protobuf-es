@@ -10,7 +10,7 @@ The full source is in [`packages/protoplugin-example`](https://github.com/bufbui
 
 The example starts with a service definition:
 
-```protobuf
+```proto
 syntax = "proto3";
 package connectrpc.eliza.v1;
 
@@ -76,7 +76,7 @@ for (const method of service.methods) {
 
 ## Run the example package
 
-```shellsession
+```bash
 cd packages/protoplugin-example
 npm install
 npx buf generate

@@ -10,7 +10,7 @@ When enabled, `@bufbuild/protoc-gen-es` generates a JSON type for every Protobuf
 
 Given this schema:
 
-```protobuf
+```proto
 syntax = "proto3";
 
 message Example {
@@ -51,7 +51,7 @@ Without `json_types=true`, those property accesses would not type-check as preci
 
 For enums, Protobuf-ES generates a string union of the JSON names.
 
-```protobuf
+```proto
 syntax = "proto3";
 
 enum Format {
