@@ -41,6 +41,8 @@ import {
 
 /**
  * Get comments on the package element in the protobuf source.
+ *
+ * All line breaks are normalized to LF.
  */
 export function getPackageComments(desc: DescFile): DescComments {
   return findComments(desc.proto.sourceCodeInfo, [
@@ -50,6 +52,8 @@ export function getPackageComments(desc: DescFile): DescComments {
 
 /**
  * Get comments on the syntax element in the protobuf source.
+ *
+ * All line breaks are normalized to LF.
  */
 export function getSyntaxComments(desc: DescFile): DescComments {
   return findComments(desc.proto.sourceCodeInfo, [
@@ -59,6 +63,8 @@ export function getSyntaxComments(desc: DescFile): DescComments {
 
 /**
  * Get comments on the element in the protobuf source.
+ *
+ * All line breaks are normalized to LF.
  */
 export function getComments(desc: Exclude<AnyDesc, DescFile>): DescComments {
   let path: number[] = [];
@@ -309,18 +315,19 @@ function findComments(
       continue;
     }
     return {
-      leadingDetached: location.leadingDetachedComments,
+      leadingDetached:
+        location.leadingDetachedComments.map(normalizeLineBreaks),
       leading: isFieldSet(
         location,
         SourceCodeInfo_LocationSchema.field.leadingComments,
       )
-        ? location.leadingComments
+        ? normalizeLineBreaks(location.leadingComments)
         : undefined,
       trailing: isFieldSet(
         location,
         SourceCodeInfo_LocationSchema.field.trailingComments,
       )
-        ? location.trailingComments
+        ? normalizeLineBreaks(location.trailingComments)
         : undefined,
       sourcePath,
     };
@@ -329,4 +336,11 @@ function findComments(
     leadingDetached: [],
     sourcePath,
   };
+}
+
+/**
+ * Normalize line breaks in a comment to LF.
+ */
+function normalizeLineBreaks(comment: string): string {
+  return comment.replace(/\r\n|[\r\u2028\u2029]/g, "\n");
 }
