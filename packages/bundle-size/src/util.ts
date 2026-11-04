@@ -165,15 +165,18 @@ export function generateChart(lines: Chartline[]): string {
   return svg;
 }
 
-export function bundleStats(entryPoint: string): {
+export async function bundleStats(entryPoint: string): Promise<{
   entryPoint: string;
   size: number;
   minified: number;
   compressed: number;
-} {
+}> {
   const bundle = build(false);
   const bundleMinified = build(true);
-  const compressed = compress(Buffer.from(bundleMinified));
+  const compressed = await compress(bundleMinified);
+  if (compressed === null) {
+    throw new Error(`failed to compress ${entryPoint}`);
+  }
   return {
     entryPoint,
     size: bundle.byteLength,
