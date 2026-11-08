@@ -406,5 +406,22 @@ void suite("BinaryReader", () => {
       assert.deepStrictEqual(back.mapStringString, { "\uFEFFa": "1", a: "2" });
       assert.deepStrictEqual(toBinary(TestAllTypesProto3Schema, back), bytes);
     });
+    // TextEncoder.encode(undefined) returns an empty array, so up to v2.13.0
+    // writing undefined produced an empty string, not "undefined".
+    // See https://github.com/bufbuild/protobuf-es/issues/1563
+    void test("writes undefined as an empty string", () => {
+      const bytes = new BinaryWriter()
+        // @ts-expect-error test undefined
+        .string(undefined)
+        .finish();
+      assert.deepStrictEqual(bytes, new Uint8Array([0]));
+    });
+    void test("writes an implicit field set to undefined as an empty string", () => {
+      const msg = create(StringValueSchema);
+      // @ts-expect-error test undefined
+      msg.value = undefined;
+      const bytes = toBinary(StringValueSchema, msg);
+      assert.strictEqual(fromBinary(StringValueSchema, bytes).value, "");
+    });
   });
 });
