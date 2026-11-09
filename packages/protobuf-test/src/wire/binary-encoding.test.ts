@@ -173,6 +173,13 @@ void suite("BinaryWriter", () => {
 });
 
 void suite("BinaryReader", () => {
+  void test("bytes() returns a plain Uint8Array for a Buffer input", () => {
+    const encoded = new BinaryWriter().bytes(new Uint8Array([1, 2])).finish();
+    const reader = new BinaryReader(Buffer.from(encoded));
+    const bytes = reader.bytes();
+    assert.strictEqual(bytes.constructor, Uint8Array);
+    assert.deepStrictEqual(bytes, new Uint8Array([1, 2]));
+  });
   void suite("skip", () => {
     void test("should skip group", () => {
       const reader = new BinaryReader(
