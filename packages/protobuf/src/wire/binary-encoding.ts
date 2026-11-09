@@ -567,7 +567,11 @@ export class BinaryReader {
       strict?: boolean,
     ) => string = getTextEncoding().decodeUtf8,
   ) {
-    this.buf = buf;
+    // Re-view subclasses like Node's Buffer, which subarray() would propagate.
+    this.buf =
+      buf.constructor === Uint8Array
+        ? buf
+        : new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength);
     this.len = buf.length;
     this.pos = 0;
     this.view = new DataView(buf.buffer, buf.byteOffset, buf.byteLength);
