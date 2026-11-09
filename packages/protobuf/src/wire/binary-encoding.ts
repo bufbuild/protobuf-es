@@ -295,9 +295,9 @@ export class BinaryWriter {
    */
   string(value: string): this {
     // TextEncoder.encode() coerces its argument to string, but encodeInto()
-    // rejects non-strings.
+    // rejects non-strings. Like encode(), treat undefined as an empty string.
     if (typeof value !== "string") {
-      value = String(value);
+      value = value === undefined ? "" : String(value);
     }
     const len = value.length;
 
