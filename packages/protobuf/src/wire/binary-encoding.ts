@@ -567,7 +567,8 @@ export class BinaryReader {
       strict?: boolean,
     ) => string = getTextEncoding().decodeUtf8,
   ) {
-    // Re-view subclasses like Node's Buffer, which subarray() would propagate.
+    // Buffer differs from Uint8Array in some behaviors, and subarray() would
+    // leak it to users.
     this.buf =
       buf.constructor === Uint8Array
         ? buf
