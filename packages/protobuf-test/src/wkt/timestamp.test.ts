@@ -22,7 +22,7 @@ import {
   timestampMs,
   TimestampSchema,
 } from "@bufbuild/protobuf/wkt";
-import { create, protoInt64 } from "@bufbuild/protobuf";
+import { create, fromJson, toJson, protoInt64 } from "@bufbuild/protobuf";
 
 void suite("timestampNow()", () => {
   void test("uses current time", () => {
@@ -113,4 +113,40 @@ void suite("timestampDate()", () => {
     });
     assert.strictEqual(timestampDate(timestampWithMs).getTime(), 818035920123);
   });
+});
+
+void suite("Timestamp JSON calendar validation", () => {
+  for (const input of [
+    "2001-02-29T00:00:00Z",
+    "2001-02-31T00:00:00Z",
+    "1900-02-29T00:00:00Z",
+    "2001-04-31T12:00:00Z",
+    "2001-06-31T12:00:00+01:00",
+    "2001-09-31T12:00:00-01:00",
+    "2001-11-31T12:00:00Z",
+    "1970-01-01T24:00:00Z",
+    "1970-01-01T24:00:00.000000001+01:00",
+  ]) {
+    void test(`rejects ${input}`, () => {
+      assert.throws(() => fromJson(TimestampSchema, input), {
+        message:
+          "cannot decode message google.protobuf.Timestamp from JSON: invalid RFC 3339 string",
+      });
+    });
+  }
+  for (const [input, expected] of [
+    ["2000-02-29T00:00:00Z", "2000-02-29T00:00:00Z"],
+    ["2004-02-29T23:59:59.123456789Z", "2004-02-29T23:59:59.123456789Z"],
+    ["2001-04-30T23:30:00-01:00", "2001-05-01T00:30:00Z"],
+    ["2001-03-01T00:30:00+01:00", "2001-02-28T23:30:00Z"],
+    ["0001-01-01T00:00:00Z", "0001-01-01T00:00:00Z"],
+    ["9999-12-31T23:59:59Z", "9999-12-31T23:59:59Z"],
+  ]) {
+    void test(`accepts ${input}`, () => {
+      assert.strictEqual(
+        toJson(TimestampSchema, fromJson(TimestampSchema, input)),
+        expected,
+      );
+    });
+  }
 });

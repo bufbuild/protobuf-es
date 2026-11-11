@@ -1203,7 +1203,19 @@ function timestampFromJson(timestamp: Timestamp, json: JsonValue) {
     // biome-ignore format: want this to read well
     matches[1] + "-" + matches[2] + "-" + matches[3] + "T" + matches[4] + ":" + matches[5] + ":" + matches[6] + (matches[8] ? matches[8] : "Z"),
   );
-  if (Number.isNaN(ms)) {
+  const year = Number(matches[1]);
+  const month = Number(matches[2]);
+  const day = Number(matches[3]);
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const daysInMonth = [
+    31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
+  ];
+  if (
+    Number.isNaN(ms) ||
+    day < 1 ||
+    day > daysInMonth[month - 1] ||
+    Number(matches[4]) > 23
+  ) {
     throw new Error(
       `cannot decode message ${timestamp.$typeName} from JSON: invalid RFC 3339 string`,
     );
