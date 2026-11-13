@@ -12,6 +12,16 @@ Note that you'll need to sign [Buf's Contributor License Agreement][cla]
 before we can accept any of your contributions. If necessary, a bot will remind
 you to accept the CLA when you open your pull request.
 
+## AI Policy
+
+As a project, we welcome AI as a tool! Contributors are free to use the AI tools
+that work best for them, but:
+
+- If you used AI tools, say so in the pull request or issue description, in your
+  own words.
+- You are accountable for the change you submit, however it was produced.
+- You must be able to explain the change and write your own review replies.
+
 ## Setup
 
 [Fork][fork], then clone the repository:
@@ -30,14 +40,11 @@ and `npm` in the version specified in `package.json`):
 npm ci
 ```
 
-Make sure that the tests and the linters pass:
+Make sure that everything builds and passes:
 
 ```bash
-npx turbo run test lint
+npm run all
 ```
-
-We're using `turborepo` to run tasks. If you haven't used it yet, take a look at
-[filtering and package scoping](https://turborepo.dev/docs/crafting-your-repository/running-tasks).
 
 ## Making Changes
 
@@ -50,7 +57,7 @@ git rebase upstream/main
 git checkout -b cool_new_feature
 ```
 
-Make your changes, then ensure that tests and linters still pass.
+Make your changes, then run `npm run all` again and commit any files it changes.
 When you're satisfied with your changes, push them to your fork.
 
 ```bash
@@ -67,6 +74,7 @@ project maintainers will merge them.
 
 We're much more likely to approve your changes if you:
 
+- Describe clearly what you're changing, why, and how you verified the change.
 - Add tests for new functionality.
 - Write a [good commit message][commit-message].
 - Maintain backward compatibility.
