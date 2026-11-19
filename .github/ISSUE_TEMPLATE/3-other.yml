@@ -4,7 +4,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for getting in touch! If you have a question, you'll get an answer sooner in the [Buf Slack](https://buf.build/links/slack).
+        Thanks for getting in touch!
   - type: textarea
     id: description
     attributes:
