@@ -1,0 +1,14 @@
+name: Other
+description: Anything that is not a bug or a feature request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for getting in touch! If you have a question, you'll get an answer sooner in the [Buf Slack](https://buf.build/links/slack).
+  - type: textarea
+    id: description
+    attributes:
+      label: What's up?
+      description: Tell us what's on your mind.
+    validations:
+      required: true

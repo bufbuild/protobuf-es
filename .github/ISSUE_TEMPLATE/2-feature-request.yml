@@ -1,0 +1,36 @@
+name: Feature request
+description: Let us know about a feature you'd like us to add
+labels: ["Feature"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: |
+        Describe the problem before the solution. What do you want to achieve, why is it hard or impossible today, and what do you do instead for now?
+
+        If this needs a new API, please wait for our reply here before you open a pull request for it.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed implementation or solution
+      description: Optional. If you have a suggestion for how this feature can be implemented or any ideas on the solution, please describe them here.
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples or references
+      description: Optional. Provide examples or references to similar features in other libraries or tools.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Optional. Add any other context or information about the feature request here.
+  - type: input
+    id: use
+    attributes:
+      label: How do you use protobuf-es?
+      description: A sentence about your project, or what you were working on. If you don't use it, just say so and how you came across this.
+    validations:
+      required: true
