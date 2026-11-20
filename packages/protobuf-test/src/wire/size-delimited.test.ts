@@ -93,6 +93,18 @@ void suite("sizeDelimitedDecodeStream()", () => {
       }
       assert.strictEqual(i, 2);
     });
+    void test("should decode a sync iterable", async () => {
+      const bytes = new BinaryWriter()
+        .bytes(toBinary(desc, testMessages[0]))
+        .bytes(toBinary(desc, testMessages[1]))
+        .finish();
+      let i = 0;
+      for await (const dec of sizeDelimitedDecodeStream(desc, [bytes])) {
+        assert.deepStrictEqual(dec, testMessages[i]);
+        i++;
+      }
+      assert.strictEqual(i, 2);
+    });
     void test("should raise error for incomplete message", async () => {
       const stream = createAsyncIterableBytes(
         sizeDelimitedEncode(desc, testMessages[0]).slice(0, -1),
