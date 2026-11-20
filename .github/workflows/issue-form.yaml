@@ -1,0 +1,135 @@
+name: Label issues without form
+# Adds a label to issues whose description does not follow one of this
+# repository's issue forms. A description follows a form if it has the heading
+# and an answer for each required field of the form. The label is removed
+# again when an edit makes the description follow a form.
+on:
+  issues:
+    # An edit of the title or the description. Comments do not trigger this
+    # workflow.
+    types: [opened, edited]
+permissions: {}
+env:
+  LABEL: needs-template
+concurrency:
+  # Only the latest edit of an issue counts. It cancels a run that is still
+  # checking an older edit.
+  group: ${{ github.workflow }}-${{ github.event.issue.number }}
+  cancel-in-progress: true
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    # Skip issues opened by bots.
+    if: github.event.issue.user.type != 'Bot'
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Read issue forms
+        id: forms
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          # Fetch the forms from the default branch through the API. There is
+          # no checkout: it is not needed to read a few files, and it can fail
+          # on the state of the repository, for example a broken submodule.
+          # Forms are the .yml and .yaml files; config.yml is not a form.
+          forms='[]'
+          if ! files=$(gh api "repos/$GITHUB_REPOSITORY/contents/.github/ISSUE_TEMPLATE" --jq '.[] | select(.type == "file" and (.name | test("\\.ya?ml$")) and (.name | test("^config\\.ya?ml$") | not)) | .path'); then
+            echo "Could not list .github/ISSUE_TEMPLATE; assuming there are no issue forms."
+            files=''
+          fi
+          while IFS= read -r file; do
+            [ -n "$file" ] || continue
+            body=$(gh api -H "Accept: application/vnd.github.raw" "repos/$GITHUB_REPOSITORY/contents/$file" | yq -o=json -I=0 '.body // []' -)
+            forms=$(jq -c --argjson body "$body" '. + [$body]' <<<"$forms")
+          done <<<"$files"
+          echo "forms=$forms" >>"$GITHUB_OUTPUT"
+      - name: Add or remove label
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          FORMS: ${{ steps.forms.outputs.forms }}
+        with:
+          script: |
+            const issue = context.payload.issue;
+            // GitHub writes the answers of a form into the description, with
+            // one "### <label>" heading per field and the answer below it.
+            const lines = (issue.body ?? "").split(/\r?\n/).map((line) => line.trim());
+            // Per form, the labels of all fields and of the required fields.
+            // Markdown elements of a form have no label and are not fields.
+            const forms = JSON.parse(process.env.FORMS)
+              .map((body) => body.filter((e) => typeof e.attributes?.label === "string"))
+              .map((fields) => ({
+                all: fields.map((f) => f.attributes.label),
+                required: fields.filter((f) => f.validations?.required === true).map((f) => f.attributes.label),
+              }))
+              .filter((form) => form.all.length > 0);
+            // Returns the answer below the heading of a field: the lines up to
+            // the next heading of a field of the same form. Returns undefined
+            // without the heading. GitHub puts the answer of a field with
+            // `render` into a code block, so lines with a code fence are dropped.
+            function findAnswer(form, label) {
+              const start = lines.indexOf(`### ${label}`);
+              if (start < 0) {
+                return undefined;
+              }
+              const rest = lines.slice(start + 1);
+              const end = rest.findIndex((line) => form.all.some((l) => line === `### ${l}`));
+              return (end < 0 ? rest : rest.slice(0, end))
+                .filter((line) => !line.startsWith("```"))
+                .join("\n")
+                .trim();
+            }
+            // Returns why the description does not follow the form, or
+            // undefined if it does. It needs the heading and an answer for each
+            // required field. If the form requires no field, it needs the
+            // headings of all fields.
+            function findProblem(form) {
+              for (const label of form.required.length > 0 ? form.required : form.all) {
+                const answer = findAnswer(form, label);
+                if (answer === undefined) {
+                  return `the heading "### ${label}" is missing`;
+                }
+                // GitHub writes "_No response_" for a field that was left empty.
+                if (form.required.includes(label) && (answer === "" || answer === "_No response_")) {
+                  return `the required field "${label}" has no answer`;
+                }
+              }
+              return undefined;
+            }
+            if (forms.length === 0) {
+              core.info("This repository has no issue forms.");
+              return;
+            }
+            const label = process.env.LABEL;
+            // The labels in the event can be outdated after quick edits.
+            const { data: current } = await github.rest.issues.listLabelsOnIssue({
+              ...context.repo,
+              issue_number: issue.number,
+              per_page: 100,
+            });
+            const labeled = current.some((l) => l.name === label);
+            const problems = forms.map(findProblem);
+            if (problems.includes(undefined)) {
+              core.info("The description follows an issue form.");
+              if (labeled) {
+                core.info(`Removing the label ${label}.`);
+                await github.rest.issues.removeLabel({
+                  ...context.repo,
+                  issue_number: issue.number,
+                  name: label,
+                });
+              }
+              return;
+            }
+            core.info(`The description follows no issue form: ${problems.join("; ")}.`);
+            if (labeled) {
+              return;
+            }
+            core.info(`Adding the label ${label}.`);
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: issue.number,
+              labels: [label],
+            });

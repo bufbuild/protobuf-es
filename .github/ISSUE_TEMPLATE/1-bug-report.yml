@@ -1,0 +1,64 @@
+name: Bug report
+description: Create a report to help us improve
+labels: ["Bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this! A small example we can run is the most helpful thing you can give us.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Provide a clear and concise description of the bug. What were you trying to accomplish, what was the expected behavior, and how did the actual behavior differ?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: The smallest reproducible example that shows the problem, or a link to a repository. We need to be able to run it.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        Optional. The versions you use and where your code runs.
+        - Packages: the output of `npm ls @bufbuild/protobuf @bufbuild/protoc-gen-es typescript`
+        - Compiler: the output of `buf --version` or `protoc --version`
+        - Runtime and version: Node.js, Bun, or a browser
+      placeholder: |
+        ├── @bufbuild/protobuf@2.10.0
+        ├── @bufbuild/protoc-gen-es@2.10.0
+        └── typescript@5.9.3
+
+        buf 1.59.0
+        Node.js v24.11.0
+      render: text
+  - type: textarea
+    id: solution
+    attributes:
+      label: Possible solution
+      description: Optional. If you have a suggestion for a fix, or identified the source of the problem, share it here.
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: |
+        Optional. Anything else that helps us understand the problem, such as screenshots or log files.
+  - type: input
+    id: use
+    attributes:
+      label: How do you use protobuf-es?
+      description: A sentence about your project, or what you were working on. If you don't use it, just say so and how you came across this.
+    validations:
+      required: true
+  - type: input
+    id: ai-tools
+    attributes:
+      label: Did you use AI tools? For what, and how?
+      description: Use your own words to describe how you used the tools. Write "None" if you used none. See our [AI policy](https://github.com/bufbuild/protobuf-es/blob/main/.github/CONTRIBUTING.md#ai-policy).
+    validations:
+      required: true
